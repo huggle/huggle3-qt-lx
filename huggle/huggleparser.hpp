@@ -57,6 +57,7 @@ namespace Huggle
         //! \todo This function needs a unit test
         HUGGLE_EX QStringList ConfigurationParse_QL(QString key, QString content, QStringList list, bool CS = false);
         //! \todo This function needs a unit test
+        //! Provides a QList from a value that has items separated by commas, each item on a line. The trailing comma will be trimmed.
         HUGGLE_EX QStringList ConfigurationParseTrimmed_QL(QString key, QString content, bool CS = false, bool RemoveNull = false);
         //! \todo This function needs a unit test
         HUGGLE_EX QList<HuggleQueueFilter*> ConfigurationParseQueueList(QString content, bool locked = false);

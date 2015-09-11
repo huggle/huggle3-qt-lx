@@ -101,6 +101,22 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
     this->ScoreUser = HuggleParser::ConfigurationParse("score-user", config, "-200").toInt();
     this->ScoreTalk = HuggleParser::ConfigurationParse("score-talk", config, "-800").toInt();
     this->ScoreRemoval = HuggleParser::ConfigurationParse("score-remove", config, "800").toInt();
+    QStringList tags = HuggleParser::ConfigurationParseTrimmed_QL("score-tags", config);
+    foreach (QString tx, tags)
+    {
+        QStringList parts = tx.split(";");
+        if (parts.count() != 2)
+        {
+            Syslog::HuggleLogs->DebugLog("Ignoring malformed score-tag: " + tx);
+            continue;
+        }
+        if (this->ScoreTags.contains(parts[0]))
+        {
+            Syslog::HuggleLogs->DebugLog("Multiple definitions of score-tag " + parts[0]);
+            continue;
+        }
+        this->ScoreTags.insert(parts[0], parts[1].toInt());
+    }
     // Summaries
     this->WarnSummary = HuggleParser::ConfigurationParse("warn-summary", config);
     this->WarnSummary2 = HuggleParser::ConfigurationParse("warn-summary-2", config);

@@ -199,6 +199,7 @@ namespace Huggle
             QString         SharedIPTemplate = "";
 
             // Definitions
+            QHash<QString, int>     ScoreTags;
             QList<ScoreWord>        ScoreParts;
             QList<ScoreWord>        ScoreWords;
             QList<ScoreWord>        NoTalkScoreWords;
