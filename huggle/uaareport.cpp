@@ -69,7 +69,7 @@ void UAAReport::getPageContents()
     this->qUAApage->Target = _l("uaa-g1");
     QueryPool::HugglePool->AppendQuery(this->qUAApage);
     this->qUAApage->Process();
-    this->Timer->start(200);
+    this->Timer->start(HUGGLE_TIMER);
 }
 
 void UAAReport::onTick()

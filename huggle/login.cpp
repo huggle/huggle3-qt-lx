@@ -1247,7 +1247,6 @@ void Login::OnTimerTick()
             this->ui->ButtonOK->setText("Login");
         }
     }
-
     this->Finish();
 }
 
@@ -1260,8 +1259,7 @@ void Login::on_pushButton_clicked()
     this->timer->start(HUGGLE_TIMER);
     this->qDatabase->OverrideWiki = hcfg->GlobalConfigurationWikiAddress;
     this->ui->ButtonOK->setText(_l("[[cancel]]"));
-    this->qDatabase->Parameters = "prop=revisions&rvprop=content&rvlimit=1&titles="
-                        + hcfg->SystemConfig_GlobalConfigWikiList;
+    this->qDatabase->Parameters = "prop=revisions&rvprop=content&rvlimit=1&titles=" + hcfg->SystemConfig_GlobalConfigWikiList;
     this->qDatabase->Process();
 }
 
@@ -1315,8 +1313,7 @@ void Login::VerifyLogin()
 int Login::RegisterLoadingFormRow(WikiSite *site, int row)
 {
     this->LoadingFormRows[site].insert(row, this->LastRow);
-    this->LastRow++;
-    return this->LastRow - 1;
+    return this->LastRow++;
 }
 
 void Login::ClearLoadingFormRows()
