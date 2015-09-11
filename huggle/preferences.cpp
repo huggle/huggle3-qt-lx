@@ -240,6 +240,8 @@ void Huggle::Preferences::on_listWidget_itemSelectionChanged()
     SetValue(f->getIgnoreFriends(), this->ui->cbqFrd);
     SetValue(f->getIgnoreReverts(), this->ui->cbqRevert);
     SetValue(f->getIgnoreSelf(), this->ui->cbqOwn);
+    this->ui->leIgnoredTags->setText(f->GetIgnoredTags_CommaSeparated());
+    this->ui->leRequiredTags->setText(f->GetRequiredTags_CommaSeparated());
     foreach (QCheckBox *cb, this->NamespaceBoxes.keys())
         cb->setChecked(f->IgnoresNS(this->NamespaceBoxes[cb]));
     this->ui->lineEdit->setText(f->QueueName);
@@ -259,6 +261,8 @@ void Preferences::Disable()
     this->ui->pushButton_6->setEnabled(false);
     this->ui->tableWidget_3->setEnabled(false);
     this->ui->cbqUserspace->setEnabled(false);
+    this->ui->leIgnoredTags->setEnabled(false);
+    this->ui->leRequiredTags->setEnabled(false);
     this->ui->lineEdit->setEnabled(false);
     this->ui->cbqWl->setEnabled(false);
 }
@@ -277,6 +281,8 @@ void Preferences::EnableQueues()
     this->ui->tableWidget_3->setEnabled(true);
     this->ui->pushButton_5->setEnabled(true);
     this->ui->pushButton_6->setEnabled(true);
+    this->ui->leIgnoredTags->setEnabled(true);
+    this->ui->leRequiredTags->setEnabled(true);
     this->ui->cbqUserspace->setEnabled(true);
     this->ui->cbqWl->setEnabled(true);
 }
@@ -406,6 +412,8 @@ void Huggle::Preferences::on_pushButton_6_clicked()
     }
     if (this->ui->tableWidget_3->rowCount() != this->Site->NamespaceList.count())
         throw new Huggle::Exception("Number of ns in config file differs", BOOST_CURRENT_FUNCTION);
+    filter->SetIgnoredTags_CommaSeparated(this->ui->leIgnoredTags->text());
+    filter->SetRequiredTags_CommaSeparated(this->ui->leRequiredTags->text());
     filter->setIgnoreBots(Match(this->ui->cbqBots));
     filter->setIgnoreNP(Match(this->ui->cbqNew));
     filter->setIgnoreWL(Match(this->ui->cbqWl));

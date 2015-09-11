@@ -592,6 +592,16 @@ QList<HuggleQueueFilter*> HuggleParser::ConfigurationParseQueueList(QString cont
                     filter->setIgnore_UserSpace(F2B(val));
                     continue;
                 }
+                if (key == "required-tags")
+                {
+                    filter->SetRequiredTags_CommaSeparated(val);
+                    continue;
+                }
+                if (key == "ignored-tags")
+                {
+                    filter->SetIgnoredTags_CommaSeparated(val);
+                    continue;
+                }
             }
         } else
         {

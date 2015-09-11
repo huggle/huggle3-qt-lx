@@ -13,6 +13,7 @@
 
 #include "definitions.hpp"
 
+#include <QStringList>
 #include <QString>
 #include <QHash>
 #include <QList>
@@ -89,12 +90,18 @@ namespace Huggle
             void setIgnoreReverts(HuggleQueueFilterMatch value);
             HuggleQueueFilterMatch getIgnore_UserSpace() const;
             void setIgnore_UserSpace(HuggleQueueFilterMatch value);
+            QString GetIgnoredTags_CommaSeparated() const;
+            QString GetRequiredTags_CommaSeparated() const;
+            void SetIgnoredTags_CommaSeparated(QString list);
+            void SetRequiredTags_CommaSeparated(QString list);
             bool IgnoresNS(int ns);
             //! Name of this queue, must be unique
             QString QueueName;
             bool ProjectSpecific;
             QHash<int,bool> Namespaces;
         private:
+            QStringList IgnoreTags;
+            QStringList RequireTags;
             HuggleQueueFilterMatch Minor;
             HuggleQueueFilterMatch Users;
             HuggleQueueFilterMatch WL;

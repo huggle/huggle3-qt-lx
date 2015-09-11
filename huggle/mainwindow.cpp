@@ -1150,7 +1150,10 @@ void MainWindow::OnMainTimerTick()
             if (this->PendingEdits.at(c)->IsReady() && this->PendingEdits.at(c)->IsPostProcessed())
             {
                 WikiEdit *edit = this->PendingEdits.at(c);
-                this->Queue1->AddItem(edit);
+                // We need to check the edit against filter once more, because some of the checks work
+                // only on post processed edits
+                if (edit->GetSite()->CurrentFilter->Matches(edit))
+                    this->Queue1->AddItem(edit);
                 this->PendingEdits.removeAt(c);
                 edit->UnregisterConsumer(HUGGLECONSUMER_MAINPEND);
             } else

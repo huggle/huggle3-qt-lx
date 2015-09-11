@@ -156,7 +156,58 @@ bool HuggleQueueFilter::Matches(WikiEdit *edit)
         if (this->Self == HuggleQueueFilterMatchRequire && edit->User->Username.toLower() == Configuration::HuggleConfiguration->SystemConfig_Username.toLower())
             return false;
     }
+    if (edit->IsPostProcessed())
+    {
+        if (!edit->Tags.isEmpty() && this->IgnoreTags.count())
+        {
+            foreach (QString tag, edit->Tags)
+            {
+                if (this->IgnoreTags.contains(tag))
+                    return false;
+            }
+        }
+        if (this->RequireTags.count())
+        {
+            foreach (QString tx, this->RequireTags)
+            {
+                if (!edit->Tags.contains(tx))
+                    return false;
+            }
+        }
+    }
     return true;
+}
+
+QString HuggleQueueFilter::GetIgnoredTags_CommaSeparated() const
+{
+    QString result = "";
+    foreach (QString item, this->IgnoreTags)
+        result += item + ",";
+    if (result.endsWith(","))
+        result = result.mid(0, result.size() - 1);
+    return result;
+}
+
+QString HuggleQueueFilter::GetRequiredTags_CommaSeparated() const
+{
+    QString result = "";
+    foreach (QString item, this->RequireTags)
+        result += item + ",";
+    if (result.endsWith(","))
+        result = result.mid(0, result.size() - 1);
+    return result;
+}
+
+void HuggleQueueFilter::SetIgnoredTags_CommaSeparated(QString list)
+{
+    this->IgnoreTags.clear();
+    this->IgnoreTags.append(list.split(","));
+}
+
+void HuggleQueueFilter::SetRequiredTags_CommaSeparated(QString list)
+{
+    this->RequireTags.clear();
+    this->RequireTags.append(list.split(","));
 }
 
 bool HuggleQueueFilter::IgnoresNS(int ns)
