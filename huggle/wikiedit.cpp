@@ -286,6 +286,15 @@ bool WikiEdit::FinalizePostProcessing()
                 this->Time = MediaWiki::FromMWTimestamp(revision->GetAttribute("timestamp"));
             if (revision->Attributes.contains("comment"))
                 this->Summary = revision->GetAttribute("comment");
+
+            foreach (ApiQueryResultNode *tags, revision->ChildNodes)
+            {
+                if (tags->Name == "tags" && tags->ChildNodes.count())
+                {
+                    foreach (ApiQueryResultNode *t, tags->ChildNodes)
+                        this->Tags.append(t->Value);
+                }
+            }
         }
         if (diffs.count() > 0)
         {
@@ -519,12 +528,12 @@ void WikiEdit::PostProcess()
         if (this->RevID != WIKI_UNKNOWN_REVID)
         {
             // &rvprop=content can't be used because of fuck up of mediawiki
-            this->qDifference->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("ids|user|timestamp|comment") +
+            this->qDifference->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("ids|tags|user|timestamp|comment") +
                                             "&rvlimit=1&rvstartid=" + QString::number(this->RevID) + "&rvdiffto=" + this->DiffTo + "&titles=" +
                                             QUrl::toPercentEncoding(this->Page->PageName);
         } else
         {
-            this->qDifference->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("ids|user|timestamp|comment") +
+            this->qDifference->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("ids|tags|user|timestamp|comment") +
                                             "&rvlimit=1&rvdiffto=" + this->DiffTo + "&titles=" +
                                             QUrl::toPercentEncoding(this->Page->PageName);
         }

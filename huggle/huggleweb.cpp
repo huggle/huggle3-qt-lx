@@ -107,12 +107,25 @@ QString HuggleWeb::GetShortcut()
 static QString Extras(WikiEdit *e)
 {
     QString result = "";
-    if (e->MetaLabels.count())
+    if (e->MetaLabels.count() || e->Tags.count())
     {
         result += "<br><small><b>Meta information:</b><br>";
-        foreach (QString label, e->MetaLabels.keys())
+        if (e->MetaLabels.count() > 0)
         {
-            result += "<b>" + label + ":</b> " + e->MetaLabels[label] + " ";
+            foreach (QString label, e->MetaLabels.keys())
+            {
+                result += "<b>" + label + ":</b> " + e->MetaLabels[label] + " ";
+            }
+        }
+        if (e->Tags.count() > 0)
+        {
+            result += "<b>Tags:</b> ";
+            foreach (QString tag, e->Tags)
+            {
+                result += tag + ", ";
+            }
+            if (result.endsWith(", "))
+                result = result.mid(0, result.size() - 2);
         }
         result += "</small>";
     }
