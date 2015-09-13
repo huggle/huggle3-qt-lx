@@ -27,6 +27,7 @@ namespace Huggle
         class PythonEngine;
     }
 #endif
+    class Configuration;
     class Login;
     class MainWindow;
     class Exception;
@@ -79,6 +80,8 @@ namespace Huggle
             ~Core();
             //! Function which is called as one of first when huggle is loaded
             void Init();
+            //! Use this to initialize huggle core if you are working with Huggle SDK
+            void SdkInit(Configuration *huggle_conf);
             //! Load extensions (libraries as well as python)
             void ExtensionLoad();
             //! Terminate the process, call this after you release all resources and finish all queries

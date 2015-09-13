@@ -44,7 +44,6 @@ void Core::Init()
         throw new Huggle::Exception("Initializing huggle core that was already loaded", BOOST_CURRENT_FUNCTION)
     HUGGLE_PROFILER_RESET;
     this->loaded = true;
-    this->StartupTime = QDateTime::currentDateTime();
     // preload of config
     Configuration::HuggleConfiguration->WikiDB = Generic::SanitizePath(Configuration::GetConfigurationPath() + "wikidb.xml");
     if (Configuration::HuggleConfiguration->SystemConfig_SafeMode)
@@ -129,6 +128,35 @@ Core::~Core()
     delete this->fLogin;
     delete this->gc;
     delete this->Processor;
+}
+
+void Core::SdkInit(Configuration *huggle_conf)
+{
+    if (this->loaded)
+        throw new Huggle::Exception("Initializing huggle core that was already loaded", BOOST_CURRENT_FUNCTION);
+    this->loaded = true;
+    Configuration::HuggleConfiguration = huggle_conf;
+#ifdef HUGGLE_BREAKPAD
+    Syslog::HuggleLogs->Log("Dumping enabled using google breakpad");
+#endif
+    this->gc = new Huggle::GC();
+    GC::gc = this->gc;
+    Query::NetworkManager = new QNetworkAccessManager();
+    QueryPool::HugglePool = new QueryPool();
+    this->HGQP = QueryPool::HugglePool;
+    this->HuggleSyslog = Syslog::HuggleLogs;
+#if QT_VERSION >= 0x050000
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
+#else
+    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
+#endif
+    Resources::Init();
+    this->Processor = new ProcessorThread();
+    // this->Processor->start();
+    // These are separators that we use to parse words, less we have, faster huggle will be,
+    // despite it will fail more to detect vandals. Keep it low but precise enough!!
+    Configuration::HuggleConfiguration->SystemConfig_WordSeparators << " " << "." << "," << "(" << ")" << ":" << ";" << "!"
+        << "?" << "/" << "<" << ">" << "[" << "]";
 }
 
 void Core::LoadDB()
