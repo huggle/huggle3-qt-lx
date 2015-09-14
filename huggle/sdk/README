@@ -1,0 +1,12 @@
+This folder is used to generate huggle SDK for various platforms
+
+Huggle SDK
+=============
+Is a software development kit that consist of a lightweight version of huggle's core and some basic header files. It can be used to create applications based on huggle for all possible platforms, from simple AV tools to complex automated bots.
+
+How to install
+===============
+
+On linux just run ./generate.sh on other platforms you need to compile the cmake project and copy respective header files by yourself, they are all located in parent directory ;)
+
+There is also a repository at http://github.com/huggle/sdk which contains some prebuilt versions of sdk for various platforms, but they are likely obsolete compared to master version
