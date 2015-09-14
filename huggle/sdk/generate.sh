@@ -30,3 +30,6 @@ do
     cp -v "$header" "$folder/include"
 done
 cp -v release/*.so "$folder/lib"
+cp ../definitions.hpp release || exit 1
+echo "#define HUGGLE_SDK" >> release/definitions.hpp
+cp -v release/definitions.hpp "$folder/include"
