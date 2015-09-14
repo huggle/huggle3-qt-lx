@@ -13,8 +13,10 @@
 
 #include "definitions.hpp"
 
+#ifndef HUGGLE_SDK
 #include "pythonengine.hpp"
 #include <QApplication>
+#endif
 #include <QList>
 #include <QDateTime>
 
