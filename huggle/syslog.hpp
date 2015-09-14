@@ -66,7 +66,7 @@ namespace Huggle
             static Syslog *HuggleLogs;
 
             Syslog();
-            ~Syslog();
+            virtual ~Syslog();
             //! Write text to terminal as well as ring log
             /*!
              * \param Message Message to log
