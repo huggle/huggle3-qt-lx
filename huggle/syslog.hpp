@@ -90,6 +90,7 @@ namespace Huggle
             QList<HuggleLog_Line> UnwrittenLogs;
             //! Mutex we lock unwritten logs with so that only 1 thread can write to it
             QMutex *lUnwrittenLogs;
+            bool EnableLogWriteBuffer;
         protected:
             //! Ring log is a buffer that contains system messages
             QList<HuggleLog_Line> RingLog;
