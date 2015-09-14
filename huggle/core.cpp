@@ -545,7 +545,9 @@ void Core::Shutdown()
     // Syslog should be deleted last because since now there is no way to effectively report stuff to terminal
     delete Syslog::HuggleLogs;
     Syslog::HuggleLogs = nullptr;
+#ifndef HUGGLE_SDK
     QApplication::quit();
+#endif
 }
 
 void Core::TestLanguages()
