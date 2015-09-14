@@ -164,7 +164,6 @@ void Core::SdkInit(Configuration *huggle_conf)
 #else
     QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
 #endif
-    Resources::Init();
     this->Processor = new ProcessorThread();
     // this->Processor->start();
     // These are separators that we use to parse words, less we have, faster huggle will be,
