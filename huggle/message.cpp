@@ -13,9 +13,12 @@
 #include "collectable.hpp"
 #include "configuration.hpp"
 #include "exception.hpp"
-#include "history.hpp"
 #include "localization.hpp"
-#include "mainwindow.hpp"
+#ifndef HUGGLE_SDK
+    #include "mainwindow.hpp"
+    #include "history.hpp"
+    #include "historyitem.hpp"
+#endif
 #include "generic.hpp"
 #include "querypool.hpp"
 #include "syslog.hpp"
@@ -200,6 +203,9 @@ void Message::Finish()
                 {
                     Huggle::Syslog::HuggleLogs->Log(_l("message-done", this->User->Username, this->User->GetSite()->Name));
                     sent = true;
+#ifndef HUGGLE_SDK
+                    /// \todo Relocate this to different file later, it should be in main window, not in message handler
+                    /// for this has no use in SDK library
                     HistoryItem *item = new HistoryItem();
                     item->Result = _l("successful");
                     item->NewPage = this->CreateOnly;
@@ -215,6 +221,7 @@ void Message::Finish()
                     {
                         MainWindow::HuggleMain->_History->Prepend(item);
                     }
+#endif
                 }
             }
         }

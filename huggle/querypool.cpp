@@ -15,10 +15,12 @@
 #include "exception.hpp"
 #include "hugglequeue.hpp"
 #include "apiqueryresult.hpp"
+#ifndef HUGGLE_SDK
 #include "mainwindow.hpp"
+#include "processlist.hpp"
+#endif
 #include "hugglefeed.hpp"
 #include "query.hpp"
-#include "processlist.hpp"
 #include "message.hpp"
 #include "syslog.hpp"
 #include "wikiedit.hpp"
@@ -32,7 +34,7 @@ QueryPool *QueryPool::HugglePool = nullptr;
 
 QueryPool::QueryPool()
 {
-    this->Processes = nullptr;
+
 }
 
 QueryPool::~QueryPool()
@@ -113,9 +115,11 @@ void QueryPool::PreProcessEdit(WikiEdit *edit)
             this->UncheckedReverts.append(edit);
         }
     }
+#ifndef HUGGLE_SDK
     if (hcfg->UserConfig->RemoveAfterTrustedEdit && edit->User->IsWhitelisted() &&
         MainWindow::HuggleMain && MainWindow::HuggleMain->Queue1)
         MainWindow::HuggleMain->Queue1->DeleteOlder(edit);
+#endif
     edit->Status = StatusProcessed;
 }
 
@@ -186,18 +190,22 @@ void QueryPool::CheckQueries()
     while (curr < this->RunningQueries.count())
     {
         Query *q = this->RunningQueries.at(curr);
+#ifndef HUGGLE_SDK
         if (this->Processes != nullptr)
             this->Processes->UpdateQuery(q);
+#endif
         if (q->IsProcessed())
         {
             this->RunningQueries.removeAt(curr);
             // this is pretty spamy :o
             HUGGLE_DEBUG("Query finished with: " + q->Result->Data, 8);
+#ifndef HUGGLE_SDK
             if (this->Processes != nullptr)
             {
                 this->Processes->UpdateQuery(q);
                 this->Processes->RemoveQuery(q);
             }
+#endif
             q->UnregisterConsumer(HUGGLECONSUMER_QP);
         } else
         {

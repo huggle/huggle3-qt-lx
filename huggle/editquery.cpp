@@ -12,10 +12,12 @@
 #include "apiqueryresult.hpp"
 #include "configuration.hpp"
 #include "exception.hpp"
+#include "localization.hpp"
+#ifndef HUGGLE_SDK
+#include "mainwindow.hpp"
 #include "history.hpp"
 #include "historyitem.hpp"
-#include "localization.hpp"
-#include "mainwindow.hpp"
+#endif
 #include "generic.hpp"
 #include "syslog.hpp"
 #include "querypool.hpp"
@@ -168,6 +170,7 @@ bool EditQuery::IsProcessed()
                 if (edit->Attributes["result"] == "Success")
                 {
                     failed = false;
+#ifndef HUGGLE_SDK
                     if (MainWindow::HuggleMain != nullptr)
                     {
                         HistoryItem *item = new HistoryItem();
@@ -177,6 +180,7 @@ bool EditQuery::IsProcessed()
                         this->HI = item;
                         MainWindow::HuggleMain->_History->Prepend(item);
                     }
+#endif
                     this->ProcessCallback();
                     Huggle::Syslog::HuggleLogs->Log(_l("editquery-success", this->Page->PageName, this->Page->GetSite()->Name));
                 }

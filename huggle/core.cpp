@@ -12,19 +12,24 @@
 #include "configuration.hpp"
 #include "exception.hpp"
 #include "exceptionwindow.hpp"
+#include "gc.hpp"
 #include "generic.hpp"
-#include "hooks.hpp"
 #include "hugglefeed.hpp"
 #include "huggleprofiler.hpp"
 #include "hugglequeuefilter.hpp"
 #include "iextension.hpp"
 #include "localization.hpp"
-#include "login.hpp"
-#include "mainwindow.hpp"
+#ifndef HUGGLE_SDK
+    #include "hooks.hpp"
+    #include "login.hpp"
+    #include "mainwindow.hpp"
+#endif
 #include "sleeper.hpp"
 #include "resources.hpp"
+#include "query.hpp"
 #include "querypool.hpp"
 #include "syslog.hpp"
+#include "wikiedit.hpp"
 #include "wikipage.hpp"
 #include "wikisite.hpp"
 #include "wikiuser.hpp"
@@ -37,6 +42,7 @@ using namespace Huggle;
 // definitions
 Core    *Core::HuggleCore = nullptr;
 
+#ifndef HUGGLE_SDK
 void Core::Init()
 {
     // We check if this isn't an attempt to start huggle core which was already started, this can cause serious hard to debug problems with network
@@ -110,12 +116,16 @@ void Core::Init()
     HUGGLE_PROFILER_PRINT_TIME("Core::Init()@finalize");
 }
 
+#endif
+
 Core::Core()
 {
 #ifdef HUGGLE_PYTHON
     this->Python = nullptr;
 #endif
+#ifndef HUGGLE_SDK
     this->fLogin = nullptr;
+#endif
     this->Processor = nullptr;
     this->HuggleSyslog = nullptr;
     this->StartupTime = QDateTime::currentDateTime();
@@ -125,10 +135,14 @@ Core::Core()
 
 Core::~Core()
 {
+#ifndef HUGGLE_SDK
     delete this->fLogin;
+#endif
     delete this->gc;
     delete this->Processor;
 }
+
+#ifdef HUGGLE_SDK
 
 void Core::SdkInit(Configuration *huggle_conf)
 {
@@ -158,6 +172,8 @@ void Core::SdkInit(Configuration *huggle_conf)
     Configuration::HuggleConfiguration->SystemConfig_WordSeparators << " " << "." << "," << "(" << ")" << ":" << ";" << "!"
         << "?" << "/" << "<" << ">" << "[" << "]";
 }
+
+#endif
 
 void Core::LoadDB()
 {
@@ -445,11 +461,11 @@ void Core::VersionRead()
 
 void Core::Shutdown()
 {
-    // we need to disable all extensions first
-    Hooks::Shutdown();
-    // now we can shutdown whole huggle
+    // Now we can shutdown whole huggle
     this->Running = false;
-    // grace time for subthreads to finish
+#ifndef HUGGLE_SDK
+    // We need to disable all extensions first
+    Hooks::Shutdown();
     if (MainWindow::HuggleMain != nullptr)
     {
         foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
@@ -459,6 +475,8 @@ void Core::Shutdown()
         }
         MainWindow::HuggleMain->hide();
     }
+#endif
+    // Grace time for subthreads to finish
     Syslog::HuggleLogs->Log("SHUTDOWN: giving a gracetime to other threads to finish");
     Sleeper::msleep(200);
     if (this->Processor->isRunning())
@@ -475,6 +493,7 @@ void Core::Shutdown()
     }
 #endif
     QueryPool::HugglePool = nullptr;
+#ifndef HUGGLE_SDK
     if (this->fLogin != nullptr)
     {
         delete this->fLogin;
@@ -485,15 +504,16 @@ void Core::Shutdown()
         delete MainWindow::HuggleMain;
         MainWindow::HuggleMain = nullptr;
     }
+#endif
     delete this->HGQP;
     this->HGQP = nullptr;
     QueryPool::HugglePool = nullptr;
-    // now stop the garbage collector and wait for it to finish
+    // Now stop the garbage collector and wait for it to finish
     GC::gc->Stop();
     Syslog::HuggleLogs->Log("SHUTDOWN: waiting for garbage collector to finish");
     while(GC::gc->IsRunning())
         Sleeper::usleep(200);
-    // last garbage removal
+    // Last garbage removal
     GC::gc->DeleteOld();
 #ifdef HUGGLE_PROFILING
     Syslog::HuggleLogs->Log("Profiler data:");
@@ -518,12 +538,12 @@ void Core::Shutdown()
     this->gc = nullptr;
     delete Query::NetworkManager;
     delete Configuration::HuggleConfiguration;
-    // we need to change these to null so that functions that would want to access there later during destruction of Qt derived
+    // We need to change these to null so that functions that would want to access there later during destruction of Qt derived
     // HW objects would know that they are no longer available and wouldn't crash huggle
     Configuration::HuggleConfiguration = nullptr;
     delete Localizations::HuggleLocalizations;
     Localizations::HuggleLocalizations = nullptr;
-    // syslog should be deleted last because since now there is no way to effectively report stuff to terminal
+    // Syslog should be deleted last because since now there is no way to effectively report stuff to terminal
     delete Syslog::HuggleLogs;
     Syslog::HuggleLogs = nullptr;
     QApplication::quit();
@@ -555,13 +575,6 @@ void Core::TestLanguages()
             language++;
         }
     }
-}
-
-void Core::ExceptionHandler(Exception *exception)
-{
-    ExceptionWindow *w = new ExceptionWindow(exception);
-    w->exec();
-    delete w;
 }
 
 void Core::LoadLocalizations()
@@ -622,6 +635,15 @@ qint64 Core::GetUptimeInSeconds()
     return this->StartupTime.secsTo(QDateTime::currentDateTime());
 }
 
+// Exception handling
+#ifndef HUGGLE_SDK
+void Core::ExceptionHandler(Exception *exception)
+{
+    ExceptionWindow *w = new ExceptionWindow(exception);
+    w->exec();
+    delete w;
+}
+
 bool HgApplication::notify(QObject *receiver, QEvent *event)
 {
     bool done = true;
@@ -638,3 +660,4 @@ bool HgApplication::notify(QObject *receiver, QEvent *event)
     }
     return done;
 }
+#endif

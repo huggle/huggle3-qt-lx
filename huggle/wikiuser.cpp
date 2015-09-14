@@ -14,7 +14,9 @@
 #include "exception.hpp"
 #include "huggleparser.hpp"
 #include "localization.hpp"
-#include "mainwindow.hpp"
+#ifndef HUGGLE_SDK
+    #include "mainwindow.hpp"
+#endif
 #include "hugglequeue.hpp"
 #include "huggleprofiler.hpp"
 #include "syslog.hpp"
@@ -94,8 +96,10 @@ void WikiUser::UpdateUser(WikiUser *us)
                 // houston, we have this user with a different warning level, what should we do now?? pls tell us
                 // You need to update the interface of huggle so that it display all latest information about it
                 user->WarningLevel = us->WarningLevel;
+#ifndef HUGGLE_SDK
                 // let's update the queue first
                 MainWindow::HuggleMain->Queue1->UpdateUser(us);
+#endif
             }
             user->WhitelistInfo = us->WhitelistInfo;
             if (us->IsReported)
@@ -115,11 +119,14 @@ void WikiUser::UpdateUser(WikiUser *us)
     }
     ProblematicUsers.append(new WikiUser(us));
     WikiUser::ProblematicUserListLock.unlock();
+#ifndef HUGGLE_SDK
+    // This is not needed in library version
     if (us->GetWarningLevel() > 0)
     {
         // this user has higher warning level than 0 so we need to update interface in case it was already somewhere
         MainWindow::HuggleMain->Queue1->UpdateUser(us);
     }
+#endif
 }
 
 bool WikiUser::CompareUsernames(QString a, QString b)

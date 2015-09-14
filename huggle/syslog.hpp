@@ -71,11 +71,11 @@ namespace Huggle
             /*!
              * \param Message Message to log
              */
-            void Log(QString Message, bool TerminalOnly = false, HuggleLogType Type = HuggleLogType_Normal);
-            void ErrorLog(QString Message, bool TerminalOnly = false);
-            void WarningLog(QString Message, bool TerminalOnly = false);
+            virtual void Log(QString Message, bool TerminalOnly = false, HuggleLogType Type = HuggleLogType_Normal);
+            virtual void ErrorLog(QString Message, bool TerminalOnly = false);
+            virtual void WarningLog(QString Message, bool TerminalOnly = false);
             //! This log is only shown if verbosity is same or larger than requested verbosity
-            void DebugLog(QString Message, unsigned int Verbosity = 1);
+            virtual void DebugLog(QString Message, unsigned int Verbosity = 1);
             //! Return a ring log represented as 1 huge string
             QString RingLogToText();
             /*!
@@ -90,7 +90,7 @@ namespace Huggle
             QList<HuggleLog_Line> UnwrittenLogs;
             //! Mutex we lock unwritten logs with so that only 1 thread can write to it
             QMutex *lUnwrittenLogs;
-        private:
+        protected:
             //! Ring log is a buffer that contains system messages
             QList<HuggleLog_Line> RingLog;
             //! Everytime we write to a file we need to lock this

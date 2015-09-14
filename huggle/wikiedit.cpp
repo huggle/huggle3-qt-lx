@@ -14,7 +14,9 @@
 #include "apiqueryresult.hpp"
 #include "configuration.hpp"
 #include "generic.hpp"
-#include "hooks.hpp"
+#ifndef HUGGLE_SDK
+    #include "hooks.hpp"
+#endif
 #include "core.hpp"
 #include "querypool.hpp"
 #include "exception.hpp"
@@ -516,8 +518,10 @@ void WikiEdit::PostProcess()
     if (this->Status != Huggle::StatusProcessed)
         throw new Huggle::Exception("Unable to post process an edit that wasn't in processed status", BOOST_CURRENT_FUNCTION);
     this->PostProcessing = true;
+#ifndef HUGGLE_SDK
     // Send info to other functions
     Hooks::EditBeforePostProcess(this);
+#endif
     this->qTalkpage = Generic::RetrieveWikiPageContents(this->User->GetTalk(), this->GetSite());
     QueryPool::HugglePool->AppendQuery(this->qTalkpage);
     this->qTalkpage->Target = "Retrieving tp " + this->User->GetTalk();
@@ -643,7 +647,11 @@ QString WikiEdit::GetFullUrl()
 
 bool WikiEdit::IsReady()
 {
+#ifdef HUGGLE_SDK
+    return true;
+#else
     return Hooks::EditCheckIfReady(this);
+#endif
 }
 
 QMutex ProcessorThread::EditLock(QMutex::Recursive);
@@ -669,8 +677,10 @@ void ProcessorThread::run()
 
 void ProcessorThread::Process(WikiEdit *edit)
 {
+#ifndef HUGGLE_SDK
     if (Hooks::EditBeforeScore(edit))
     {
+#endif
         bool IgnoreWords = false;
         if (edit->IsRevert)
         {
@@ -740,8 +750,10 @@ void ProcessorThread::Process(WikiEdit *edit)
                 edit->CurrentUserWarningLevel = WarningLevel4;
                 break;
         }
+#ifndef HUGGLE_SDK
     }
     Hooks::EditPostProcess(edit);
+#endif
     edit->PostProcessing = false;
     edit->ProcessedByWorkerThread = true;
     edit->Status = StatusPostProcessed;
