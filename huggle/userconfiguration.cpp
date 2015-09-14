@@ -148,7 +148,7 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
     //configuration_ += "confirm-warned:" + Bool2String(HuggleConfiguration->ProjectConfig->ConfirmWarned) + "\n";
     // configuration_ += "confirm-range:" + Bool2String(HuggleConfiguration->ProjectConfig->ConfirmRange) + "\n";
     configuration_ += "default-summary:" + Project->DefaultSummary + "\n";
-    configuration_ += "// this option will change the behaviour of automatic resolution, be carefull\n";
+    configuration_ += "// This option will change the behaviour of automatic resolution, be carefull\n";
     configuration_ += "revert-auto-multiple-edits:" + Bool2String(this->RevertOnMultipleEdits) + "\n";
     configuration_ += "automatically-resolve-conflicts:" + Bool2String(this->AutomaticallyResolveConflicts) + "\n";
     configuration_ += "software-rollback:" + Bool2String(this->EnforceManualSoftwareRollback) + "\n";
@@ -161,7 +161,7 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
     configuration_ += "TruncateEdits:" + Bool2String(this->TruncateEdits) + "\n";
     configuration_ += "TalkpageFreshness:" + QString::number(this->TalkPageFreshness) + "\n";
     configuration_ += "RemoveAfterTrustedEdit:" + Bool2String(this->RemoveAfterTrustedEdit) + "\n";
-    configuration_ += "//Get original creator of every page so that you can G7 instead of reverting the page\n";
+    configuration_ += "// Get original creator of every page so that you can G7 instead of reverting the page\n";
     configuration_ += "RetrieveFounder:" + Bool2String(this->RetrieveFounder) + "\n";
     configuration_ += "DisplayTitle:" + Bool2String(this->DisplayTitle) + "\n";
     configuration_ += "// Periodically check if you received new messages and display a notification box if you get them\n";
@@ -256,7 +256,9 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
             configuration_ += "        ignored-tags:" + fltr->GetIgnoredTags_CommaSeparated() + "\n";
             configuration_ += "        required-tags:" + fltr->GetRequiredTags_CommaSeparated() + "\n";
             QString ns = "";
-            foreach (int nsid, fltr->Namespaces.keys())
+            QList<int> filter_keys = fltr->Namespaces.keys();
+            qSort(filter_keys);
+            foreach (int nsid, filter_keys)
             {
                 if (fltr->IgnoresNS(nsid))
                     ns += QString::number(nsid) + ",";
