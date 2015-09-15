@@ -278,6 +278,7 @@ void HistoryForm::onTick01()
         if (Configuration::HuggleConfiguration->UserConfig->LastEdit)
         {
             this->Display(0, Resources::Html_StopFire, true);
+            return;
         }
         else
         {
@@ -289,6 +290,46 @@ void HistoryForm::onTick01()
 
             // display a tip
             QToolTip::showText(pntr, "<b><big>" + _l("historyform-not-latest-tip") + "</big></b>", this);
+        }
+    }
+    if (hcfg->UserConfig->AutomaticallyGroup)
+    {
+        // Check if edits made around of this one weren't made by same user
+        // in case they were we need to display a range of them
+        QString user = this->CurrentEdit->User->Username;
+        int RangeStart = this->SelectedRow;
+        int RangeEnd = this->SelectedRow;
+        int row = this->SelectedRow;
+        while (row > 0)
+        {
+            if (user != this->ui->tableWidget->item(row - 1, 1)->text())
+                break;
+            row--;
+        }
+        RangeStart = row;
+        row = this->SelectedRow;
+        while (row < (this->ui->tableWidget->rowCount() - 1))
+        {
+            if (user != this->ui->tableWidget->item(row + 1, 1)->text())
+                break;
+            row++;
+        }
+        RangeEnd = row;
+        if (RangeStart != RangeEnd)
+        {
+            QItemSelectionModel *selectionModel = this->ui->tableWidget->selectionModel();
+            row = RangeStart;
+            this->IgnoreSelectionChanges = true;
+            this->ui->tableWidget->clearSelection();
+            QItemSelection itemSelection = selectionModel->selection();
+            while (row <= RangeEnd)
+            {
+                this->ui->tableWidget->selectRow(row++);
+                itemSelection.merge(selectionModel->selection(), QItemSelectionModel::Select);
+            }
+            selectionModel->clearSelection();
+            this->IgnoreSelectionChanges = false;
+            selectionModel->select(itemSelection, QItemSelectionModel::Select);
         }
     }
     MainWindow::HuggleMain->wEditBar->RefreshPage();
@@ -354,11 +395,20 @@ void HistoryForm::GetEdit(long revid, QString prev, QString user, QString html, 
     }
     // there is no such edit, let's get it
     WikiEdit *w = new WikiEdit();
-    w->DiffTo = prev;
+    // this is some weird work around for weird logic used somewhere deep in
+    // mediawiki internals
+    if (prev == "prev")
+    {
+        w->DiffTo = prev;
+        w->RevID = revid;
+    } else
+    {
+        w->DiffTo = QString::number(revid);
+        w->RevID = prev.toLongLong();
+    }
     w->User = new WikiUser(user);
     w->User->Site = this->CurrentEdit->GetSite();
     w->Page = new WikiPage(this->CurrentEdit->Page);
-    w->RevID = revid;
     QueryPool::HugglePool->PreProcessEdit(w);
     QueryPool::HugglePool->PostProcessEdit(w);
     if (this->t1 != nullptr)
@@ -405,6 +455,11 @@ void HistoryForm::MakeSelectedRowBold()
 
 void Huggle::HistoryForm::on_tableWidget_itemSelectionChanged()
 {
+    if (this->IgnoreSelectionChanges)
+    {
+        // We are doing some complex selection now, so let's wait for it to happen
+        return;
+    }
     // check if user selected a range
     QItemSelection selection(this->ui->tableWidget->selectionModel()->selection());
     QList<int> rows;

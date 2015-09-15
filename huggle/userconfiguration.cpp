@@ -174,6 +174,8 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
     configuration_ += "HAN_DisplayBots:" + Bool2String(this->HAN_DisplayBots) + "\n";
     configuration_ += "HAN_DisplayUser:" + Bool2String(this->HAN_DisplayUser) + "\n";
     configuration_ += "Watchlist:" + WatchListOptionToString(this->Watchlist) + "\n";
+    configuration_ += "// Whether edits made by same user should be grouped up together in page\n";
+    configuration_ += "AutomaticallyGroup:" + Bool2String(this->AutomaticallyGroup) + "\n";
     configuration_ += "QueueID:" + this->QueueID + "\n";
     // shortcuts
     QStringList shortcuts = Configuration::HuggleConfiguration->Shortcuts.keys();
@@ -335,6 +337,7 @@ bool UserConfiguration::ParseUserConfig(QString config, ProjectConfiguration *Pr
     this->HAN_DisplayUserTalk = SafeBool(ConfigurationParse("HAN_DisplayUserTalk", config, "true"));
     this->HtmlAllowedInIrc = SafeBool(ConfigurationParse("HAN_Html", config, "false"));
     this->Watchlist = WatchlistOptionFromString(ConfigurationParse("Watchlist", config));
+    this->AutomaticallyGroup = SafeBool(ConfigurationParse("AutomaticallyGroup", config), this->AutomaticallyGroup);
     this->TalkPageFreshness = ConfigurationParse("TalkpageFreshness", config, QString::number(this->TalkPageFreshness)).toInt();
     this->RemoveOldQueueEdits = SafeBool(ConfigurationParse("RemoveOldestQueueEdits", config, "false"));
     this->QueueID = ConfigurationParse("QueueID", config);

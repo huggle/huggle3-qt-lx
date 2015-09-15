@@ -75,6 +75,8 @@ namespace Huggle
             QString MakeLocalUserConfig(ProjectConfiguration *Project);
             bool            EnforceSoftwareRollback();
             QHash<QString, HuggleOption*> UserOptions;
+            //! Whether edits by same user should be grouped in history widget
+            bool            AutomaticallyGroup = false;
             bool            AutomaticReports = false;
             //! Resolve edit conflict without asking user
             bool            AutomaticallyResolveConflicts = false;

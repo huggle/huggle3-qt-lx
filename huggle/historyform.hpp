@@ -76,6 +76,7 @@ namespace Huggle
             //! Make the selected row bold
             void MakeSelectedRowBold();
             bool RetrievingEdit;
+            bool IgnoreSelectionChanges = false;
             Ui::HistoryForm *ui;
             Collectable_SmartPtr<WikiEdit> CurrentEdit;
             Collectable_SmartPtr<ApiQuery> query;

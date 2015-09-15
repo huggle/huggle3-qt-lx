@@ -301,6 +301,7 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     hcfg->SystemConfig_SuppressWarnings = !this->ui->checkBox_6->isChecked();
     hcfg->UsingIRC = this->ui->checkBox_12->isChecked();
     hcfg->UserConfig->EnforceManualSoftwareRollback = this->ui->checkBox_5->isChecked();
+    hcfg->UserConfig->AutomaticallyGroup = this->ui->checkBox_AutomaticallyGroup->isChecked();
     hcfg->UserConfig->EnforceManualSRT = this->ui->checkBox_5->isChecked();
     hcfg->UserConfig->RevertOnMultipleEdits = this->ui->radioButton_2->isChecked();
     hcfg->ProjectConfig->ConfirmOnSelfRevs = this->ui->checkBox_3->isChecked();
@@ -731,6 +732,7 @@ void Preferences::ResetItems()
             this->ui->radioButton_4->setChecked(false);
             break;
     }
+    this->ui->checkBox_AutomaticallyGroup->setChecked(hcfg->UserConfig->AutomaticallyGroup);
     this->ui->checkBox_26->setChecked(hcfg->SystemConfig_RequestDelay);
     this->ui->checkBox_15->setChecked(hcfg->UserConfig->DeleteEditsAfterRevert);
     this->ui->checkBox_5->setChecked(hcfg->UserConfig->EnforceSoftwareRollback());

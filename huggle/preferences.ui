@@ -450,6 +450,13 @@
         <number>8</number>
        </property>
        <item>
+        <widget class="QCheckBox" name="checkBox_AutomaticallyGroup">
+         <property name="text">
+          <string>Group edits made by same user (will download them after history of edit is processed, pre-caching not possible)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QCheckBox" name="checkBox_14">
          <property name="text">
           <string>Automatically load history and user info (requires lot of network connection)</string>
