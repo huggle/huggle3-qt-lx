@@ -75,7 +75,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -121,6 +121,7 @@
      <addaction name="actionVerbosity_2"/>
      <addaction name="actionReload_tokens"/>
      <addaction name="actionLog_out"/>
+     <addaction name="actionPrint_API_for_diff"/>
     </widget>
     <addaction name="actionContents"/>
     <addaction name="actionQueue_legend"/>
@@ -1089,6 +1090,11 @@
   <action name="actionFinal">
    <property name="text">
     <string>Final</string>
+   </property>
+  </action>
+  <action name="actionPrint_API_for_diff">
+   <property name="text">
+    <string>Print API for diff</string>
    </property>
   </action>
  </widget>

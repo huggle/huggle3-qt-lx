@@ -83,6 +83,7 @@ namespace Huggle
             QString QueryTargetToString();
             //! Returns a type of query as a string
             QString QueryTypeToString();
+            QString GetURL();
             bool EnforceLogin = true;
             //! Whether the query is going to edit any data in wiki
             bool EditingQuery = false;

@@ -304,6 +304,12 @@ void ApiQuery::Kill()
     }
 }
 
+QString ApiQuery::GetURL()
+{
+    this->ConstructUrl();
+    return this->URL;
+}
+
 void ApiQuery::ReadData()
 {
     // don't even try to do anything if query was killed

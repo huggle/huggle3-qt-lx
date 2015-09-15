@@ -2737,7 +2737,7 @@ void Huggle::MainWindow::on_actionRevert_only_this_revision_triggered()
         this->Revert("", true, true);
 }
 
-void Huggle::MainWindow::on_actionTag_2_triggered()
+void MainWindow::on_actionTag_2_triggered()
 {
     if (!this->CheckEditableBrowserPage())
         return;
@@ -2749,7 +2749,7 @@ void Huggle::MainWindow::on_actionTag_2_triggered()
     this->fWikiPageTags->ChangePage(this->CurrentEdit->Page);
 }
 
-void Huggle::MainWindow::on_actionReload_menus_triggered()
+void MainWindow::on_actionReload_menus_triggered()
 {
     this->ReloadInterface();
 }
@@ -2781,7 +2781,7 @@ void MainWindow::SetProviderXml()
     this->ChangeProvider(wiki, new HuggleFeedProviderXml(wiki));
 }
 
-void Huggle::MainWindow::on_actionInsert_page_to_a_watchlist_triggered()
+void MainWindow::on_actionInsert_page_to_a_watchlist_triggered()
 {
     if (!this->CheckEditableBrowserPage())
         return;
@@ -2791,7 +2791,7 @@ void Huggle::MainWindow::on_actionInsert_page_to_a_watchlist_triggered()
     WikiUtil::Watchlist(this->CurrentEdit->Page);
 }
 
-void Huggle::MainWindow::on_actionRemove_page_from_a_watchlist_triggered()
+void MainWindow::on_actionRemove_page_from_a_watchlist_triggered()
 {
     if (!this->CheckEditableBrowserPage())
         return;
@@ -2801,7 +2801,7 @@ void Huggle::MainWindow::on_actionRemove_page_from_a_watchlist_triggered()
     WikiUtil::Unwatchlist(this->CurrentEdit->Page);
 }
 
-void Huggle::MainWindow::on_actionMy_talk_page_triggered()
+void MainWindow::on_actionMy_talk_page_triggered()
 {
     if (Configuration::HuggleConfiguration->Restricted)
         return;
@@ -2811,7 +2811,7 @@ void Huggle::MainWindow::on_actionMy_talk_page_triggered()
                                            QUrl::toPercentEncoding(hcfg->SystemConfig_Username));
 }
 
-void Huggle::MainWindow::on_actionMy_Contributions_triggered()
+void MainWindow::on_actionMy_Contributions_triggered()
 {
     if (Configuration::HuggleConfiguration->Restricted)
         return;
@@ -2827,12 +2827,12 @@ void MainWindow::Go()
     QDesktopServices::openUrl(QString(Configuration::GetProjectWikiURL() + action->toolTip()));
 }
 
-void Huggle::MainWindow::on_actionRevert_only_this_revision_assuming_good_faith_triggered()
+void MainWindow::on_actionRevert_only_this_revision_assuming_good_faith_triggered()
 {
     this->RevertAgf(true);
 }
 
-void Huggle::MainWindow::on_tabWidget_currentChanged(int index)
+void MainWindow::on_tabWidget_currentChanged(int index)
 {
     int in = this->ui->tabWidget->count() - 1;
     if (index == in)
@@ -2853,7 +2853,7 @@ void Huggle::MainWindow::on_tabWidget_currentChanged(int index)
     }
 }
 
-void Huggle::MainWindow::on_actionClose_current_tab_triggered()
+void MainWindow::on_actionClose_current_tab_triggered()
 {
     if (this->Browsers.count() < 2)
     {
@@ -2882,19 +2882,19 @@ void Huggle::MainWindow::on_actionClose_current_tab_triggered()
     delete br;
 }
 
-void Huggle::MainWindow::on_actionOpen_new_tab_triggered()
+void MainWindow::on_actionOpen_new_tab_triggered()
 {
     this->CreateBrowserTab("New tab", this->ui->tabWidget->count() - 1);
     this->CurrentEdit = nullptr;
     this->LockPage();
 }
 
-void Huggle::MainWindow::on_actionVerbosity_2_triggered()
+void MainWindow::on_actionVerbosity_2_triggered()
 {
     hcfg->Verbosity++;
 }
 
-void Huggle::MainWindow::on_actionVerbosity_triggered()
+void MainWindow::on_actionVerbosity_triggered()
 {
     if (hcfg->Verbosity > 0)
         hcfg->Verbosity--;
@@ -2906,7 +2906,7 @@ static void FinishLogout(Query *query)
     query->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
 }
 
-void Huggle::MainWindow::on_actionLog_out_triggered()
+void MainWindow::on_actionLog_out_triggered()
 {
     ApiQuery *qx = new ApiQuery(ActionLogout, this->GetCurrentWikiSite());
     qx->CallbackOwner = this->GetCurrentWikiSite();
@@ -2915,12 +2915,12 @@ void Huggle::MainWindow::on_actionLog_out_triggered()
     qx->Process();
 }
 
-void Huggle::MainWindow::on_actionReload_tokens_triggered()
+void MainWindow::on_actionReload_tokens_triggered()
 {
     WikiUtil::RetrieveTokens(this->GetCurrentWikiSite());
 }
 
-void Huggle::MainWindow::on_actionXmlRcs_triggered()
+void MainWindow::on_actionXmlRcs_triggered()
 {
     WikiSite *site = this->GetCurrentWikiSite();
     this->ChangeProvider(site, new HuggleFeedProviderXml(site));
@@ -2931,14 +2931,14 @@ void MainWindow::OnStatusBarRefreshTimerTick()
     this->UpdateStatusBarData();
 }
 
-void Huggle::MainWindow::on_actionQueue_legend_triggered()
+void MainWindow::on_actionQueue_legend_triggered()
 {
     QueueHelp *w = new QueueHelp(this);
     w->setAttribute(Qt::WA_DeleteOnClose);
     w->show();
 }
 
-void Huggle::MainWindow::on_actionPatrol_triggered()
+void MainWindow::on_actionPatrol_triggered()
 {
     if (!this->CheckEditableBrowserPage())
         return;
@@ -2952,7 +2952,16 @@ void Huggle::MainWindow::on_actionPatrol_triggered()
     this->PatrolEdit();
 }
 
-void Huggle::MainWindow::on_actionFinal_triggered()
+void MainWindow::on_actionFinal_triggered()
 {
     this->ForceWarn(0);
+}
+
+void MainWindow::on_actionPrint_API_for_diff_triggered()
+{
+    if (this->CurrentEdit == nullptr)
+        return;
+    if (!this->CurrentEdit->PropertyBag.contains("debug_api_url_diff"))
+        return;
+    HUGGLE_DEBUG1(this->CurrentEdit->PropertyBag["debug_api_url_diff"].toString());
 }

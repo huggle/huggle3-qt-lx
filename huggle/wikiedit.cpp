@@ -544,6 +544,8 @@ void WikiEdit::PostProcess()
         this->qDifference->Target = this->Page->PageName;
         QueryPool::HugglePool->AppendQuery(this->qDifference);
         this->qDifference->Process();
+        if (hcfg->Verbosity > 0)
+            this->PropertyBag.insert("debug_api_url_diff", this->qDifference->GetURL());
         this->ProcessingDiff = true;
     } else if (this->Page->Contents.isEmpty())
     {
