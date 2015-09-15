@@ -152,6 +152,7 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     this->ui->checkBox_16->setText(_l("config-months-name"));
     this->ui->checkBox_24->setText(_l("config-automatic-warning"));
     this->ui->checkBox_12->setText(_l("config-enable-irc"));
+    //this->ui->checkBox_AutoReport->setText();
     this->ui->checkBox_15->setText(_l("config-remove-reverted"));
     this->ui->checkBox_19->setText(_l("config-remove-old"));
     this->ui->checkBox_12->setText(_l("config-ircmode"));
@@ -323,6 +324,7 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     hcfg->SystemConfig_DelayVal = this->ui->lineEdit_2->text().toUInt();
     hcfg->SystemConfig_RevertDelay = this->ui->lineEdit_3->text().toInt();
     hcfg->SystemConfig_InstantReverts = this->ui->checkBox_27->isChecked();
+    hcfg->UserConfig->AutomaticReports = this->ui->checkBox_AutoReport->isChecked();
     hcfg->SystemConfig_UpdatesEnabled = this->ui->checkBox_notifyUpdate->isChecked();
     hcfg->SystemConfig_NotifyBeta = this->ui->checkBox_notifyBeta->isChecked();
     hcfg->UserConfig->HtmlAllowedInIrc = this->ui->checkBox_31->isChecked();
@@ -759,6 +761,7 @@ void Preferences::ResetItems()
     this->ui->checkBox_22->setChecked(hcfg->SystemConfig_DynamicColsInList);
     this->ui->checkBox_23->setChecked(hcfg->UserConfig->DisplayTitle);
     this->ui->checkBox_30->setChecked(hcfg->UserConfig->WelcomeGood);
+    this->ui->checkBox_AutoReport->setChecked(hcfg->UserConfig->AutomaticReports);
     this->ui->checkBox_31->setChecked(hcfg->UserConfig->HtmlAllowedInIrc);
     this->ui->lineEdit_5->setText(hcfg->SystemConfig_Font);
     this->ui->sxFontSize->setValue(hcfg->SystemConfig_FontSize);

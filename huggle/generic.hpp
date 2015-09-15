@@ -44,7 +44,7 @@ namespace Huggle
         MessageBoxStyleError
     };
 
-    //! Generic C++ functions that are missing standard libs
+    //! Generic C++ functions that are missing in standard libs
     namespace Generic
     {
         /*!

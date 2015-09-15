@@ -39,9 +39,12 @@ namespace Huggle
     {
             Q_OBJECT
         public:
+            static void SilentReport(WikiUser *user);
+
             explicit ReportUser(QWidget *parent = nullptr);
             //! Set a user
             bool SetUser(WikiUser *user);
+            void SilentReport();
             ~ReportUser();
         private slots:
             void Tick();
@@ -58,9 +61,11 @@ namespace Huggle
         private:
             bool CheckUser();
             void InsertUser();
+            void Report();
             //! Stop all operations
             void Kill();
             void failCheck(QString reason);
+            bool flagSilent = false;
             Ui::ReportUser *ui;
             //! Reported user
             WikiUser *ReportedUser;

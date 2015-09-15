@@ -470,6 +470,7 @@
   <string name="report-warn">This user has already reached warning level 4, so no further templates will be delivered to them. You can report them now, but please, make sure that they already reached the proper number of recent warnings! You can do so by clicking the &quot;talk page&quot; button in the following form. Keep in mind that this form and this warning are displayed whether your revert was successful or not, so you might conflict with other users here (double check if the user isn&apos;t already reported). Do you want to report this user?</string>
   <string name="report-tu">Report user</string>
   <string name="report-reason">Reason:</string>
+  <string name="report-auto">Reported $1</string>
   <string name="report-intro">You are going to report user $1</string>
   <string name="report-message">Message:</string>
   <string name="report-log">Warnings for this user:</string>

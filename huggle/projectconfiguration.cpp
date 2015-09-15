@@ -180,6 +180,8 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
     this->Patrolling = SafeBool(HuggleParser::ConfigurationParse("patrolling-enabled", config));
     this->PatrollingFlaggedRevs = SafeBool(HuggleParser::ConfigurationParse("patrolling-flaggedrevs", config, "false"));
     this->ReportSummary = HuggleParser::ConfigurationParse("report-summary", config);
+    this->ReportAutoSummary = HuggleParser::ConfigurationParse("report-auto-summary", config, "This user was automatically reported by huggle, please verify their"\
+                                                                                              " contributions carefully, it may be a false positive");
     this->SpeedyTemplates = HuggleParser::ConfigurationParse_QL("speedy-options", config);
     // Parsing
     this->TemplateAge = HuggleParser::ConfigurationParse("template-age", config, QString::number(this->TemplateAge)).toInt();
@@ -309,7 +311,8 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
     }
     while (month_ < 13)
     {
-        Syslog::HuggleLogs->WarningLog("Project config for " + this->ProjectName + " is missing alternative month names for month " + QString::number(month_) + " the warning parser may not work properly");
+        Syslog::HuggleLogs->WarningLog("Project config for " + this->ProjectName + " is missing alternative month names for month "
+                                       + QString::number(month_) + " the warning parser may not work properly");
         this->AlternativeMonths.insert(month_, QStringList());
         month_++;
     }

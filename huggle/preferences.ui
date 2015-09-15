@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1106</width>
-    <height>658</height>
+    <height>718</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -249,6 +249,13 @@
           <widget class="QCheckBox" name="checkBox_24">
            <property name="text">
             <string>Use automatic warning type and level on &quot;send warning&quot; function</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBox_AutoReport">
+           <property name="text">
+            <string>Automatically report users to AIV page</string>
            </property>
           </widget>
          </item>

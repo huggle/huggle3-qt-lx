@@ -78,7 +78,7 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
             return nullptr;
         }
 
-        if (Generic::ReportPreFlightCheck())
+        if (hcfg->UserConfig->AutomaticReports || Generic::ReportPreFlightCheck())
         {
             *Report = true;
         }
@@ -236,7 +236,16 @@ void Warnings::ResendWarnings()
                 bool Report_;
                 PendingWarning *ptr_warning_ = Warnings::WarnUser(warning->Template, nullptr, warning->RelatedEdit, &Report_);
                 if (Report_)
-                    MainWindow::HuggleMain->DisplayReportUserWindow(warning->RelatedEdit->User);
+                {
+                    if (hcfg->UserConfig->AutomaticReports)
+                    {
+                        ReportUser::SilentReport(warning->RelatedEdit->User);
+                    }
+                    else
+                    {
+                        MainWindow::HuggleMain->DisplayReportUserWindow(warning->RelatedEdit->User);
+                    }
+                }
 
                 if (ptr_warning_ != nullptr)
                     PendingWarning::PendingWarnings.append(ptr_warning_);

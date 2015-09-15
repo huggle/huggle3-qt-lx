@@ -936,7 +936,15 @@ bool MainWindow::Warn(QString WarningType, RevertQuery *dependency)
     bool Report_ = false;
     PendingWarning *ptr_Warning_ = Warnings::WarnUser(WarningType, dependency, this->CurrentEdit, &Report_);
     if (Report_)
-        this->DisplayReportUserWindow(this->CurrentEdit->User);
+    {
+        if (hcfg->UserConfig->AutomaticReports)
+        {
+            ReportUser::SilentReport(this->CurrentEdit->User);
+        } else
+        {
+            this->DisplayReportUserWindow(this->CurrentEdit->User);
+        }
+    }
     if (ptr_Warning_ != nullptr)
     {
         PendingWarning::PendingWarnings.append(ptr_Warning_);

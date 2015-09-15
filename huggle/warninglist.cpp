@@ -16,10 +16,11 @@
 #include "huggleparser.hpp"
 #include "mainwindow.hpp"
 #include "localization.hpp"
+#include "reportuser.hpp"
 #include "warnings.hpp"
-#include "ui_warninglist.h"
 #include "wikisite.hpp"
 #include "wikiuser.hpp"
+#include "ui_warninglist.h"
 
 using namespace Huggle;
 
@@ -73,12 +74,18 @@ void WarningList::on_pushButton_clicked()
     PendingWarning *ptr_Warning_ = Warnings::WarnUser(wt, nullptr, this->wikiEdit, &Report_);
     if (Report_)
     {
-        QMessageBox::StandardButton q = QMessageBox::question(nullptr, "Warning" , "This user has already received a final warning"\
-                                                              ", so I will not send any more warnings to them, do you want to"\
-                                                              " report them instead?", QMessageBox::Yes|QMessageBox::No);
-        if (q == QMessageBox::Yes)
+        if (hcfg->UserConfig->AutomaticReports)
         {
-            MainWindow::HuggleMain->DisplayReportUserWindow(this->wikiEdit->User);
+            ReportUser::SilentReport(this->wikiEdit->User);
+        } else
+        {
+            QMessageBox::StandardButton q = QMessageBox::question(nullptr, "Warning" , "This user has already received a final warning"\
+                                                                  ", so I will not send any more warnings to them, do you want to"\
+                                                                  " report them instead?", QMessageBox::Yes|QMessageBox::No);
+            if (q == QMessageBox::Yes)
+            {
+                MainWindow::HuggleMain->DisplayReportUserWindow(this->wikiEdit->User);
+            }
         }
     }
     if (ptr_Warning_ != nullptr)

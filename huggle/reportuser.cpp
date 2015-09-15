@@ -27,6 +27,30 @@
 #include "ui_reportuser.h"
 using namespace Huggle;
 
+void ReportUser::SilentReport(WikiUser *user)
+{
+    // We need to automatically report this user, that means we create a background instance
+    // of this report form, prefill it and submit without even showing it to user
+    if (Configuration::HuggleConfiguration->Restricted)
+    {
+        Generic::DeveloperError();
+        return;
+    }
+    if (user == nullptr)
+        throw new Huggle::NullPointerException("local WikiUser *user", BOOST_CURRENT_FUNCTION);
+    if (user->IsReported)
+    {
+        Syslog::HuggleLogs->ErrorLog(_l("report-duplicate"));
+        return;
+    }
+    // only use this if current projects support it
+    if (!user->GetSite()->GetProjectConfig()->AIV)
+        return;
+    ReportUser *window = new ReportUser();
+    window->SetUser(user);
+    window->SilentReport();
+}
+
 ReportUser::ReportUser(QWidget *parent) : HW("reportuser", this, parent), ui(new Ui::ReportUser)
 {
     this->ui->setupUi(this);
@@ -122,6 +146,14 @@ bool ReportUser::SetUser(WikiUser *user)
     connect(this->tReportUser, SIGNAL(timeout()), this, SLOT(Tick()));
     this->tReportUser->start(HUGGLE_TIMER);
     return true;
+}
+
+void ReportUser::SilentReport()
+{
+    this->flagSilent = true;
+    this->setAttribute(Qt::WA_DeleteOnClose);
+    this->ui->lineEdit->setText(this->ReportedUser->GetSite()->GetProjectConfig()->ReportAutoSummary);
+    this->Report();
 }
 
 void ReportUser::Tick()
@@ -228,15 +260,31 @@ void ReportUser::Tick()
                 this->tReportUser->stop();
                 this->ui->pushButton->setText(_l("report-user"));
                 this->ui->pushButton->setEnabled(true);
-                Generic::pMessageBox(this, "Failure", _l("report-fail", this->qEdit->GetFailureReason()), MessageBoxStyleError);
-                Syslog::HuggleLogs->DebugLog("REPORT: " + this->qEdit->Result->Data);
-                this->Kill();
-                return;
+                if (this->flagSilent)
+                {
+                    Syslog::HuggleLogs->ErrorLog(_l("report-fail", this->qEdit->GetFailureReason()));
+                    Syslog::HuggleLogs->DebugLog("REPORT: " + this->qEdit->Result->Data);
+                    this->Kill();
+                    //this->close();
+                    delete this;
+                } else
+                {
+                    Generic::pMessageBox(this, "Failure", _l("report-fail", this->qEdit->GetFailureReason()), MessageBoxStyleError);
+                    Syslog::HuggleLogs->DebugLog("REPORT: " + this->qEdit->Result->Data);
+                    this->Kill();
+                    return;
+                }
             }
             this->ReportedUser->IsReported = true;
             this->ui->pushButton->setText(_l("report-done"));
             WikiUser::UpdateUser(this->ReportedUser);
             this->Kill();
+            if (this->flagSilent)
+            {
+                Syslog::HuggleLogs->Log(_l("report-auto", this->ReportedUser->Username));
+                //this->close();
+                delete this;
+            }
         }
         return;
     }
@@ -451,44 +499,7 @@ void ReportUser::Test()
 
 void ReportUser::on_pushButton_clicked()
 {
-    this->ui->pushButton->setEnabled(false);
-    // we need to get a report info for all selected diffs
-    QString reports = "";
-    int xx = 0;
-    int EvidenceID = 0;
-    while (xx < this->ui->tableWidget->rowCount())
-    {
-        if (this->CheckBoxes.count() > xx)
-        {
-            QCheckBox *checkBox = (QCheckBox*)this->ui->tableWidget->cellWidget(xx, 4);
-            if (checkBox->isChecked())
-            {
-                ++EvidenceID;
-                reports += "[[Special:Diff/" + this->ui->tableWidget->item(xx, 3)->text() + "|" +
-                           QString::number(EvidenceID) + "]] ";
-            }
-        }
-        ++xx;
-    }
-    if (reports.isEmpty())
-    {
-        QMessageBox::StandardButton mb;
-        mb = QMessageBox::question(this, "Question", _l("report-evidence-none-provid"), QMessageBox::Yes|QMessageBox::No);
-        if (mb == QMessageBox::No)
-        {
-            this->ui->pushButton->setEnabled(true);
-            return;
-        }
-    }
-    // obtain current page
-    this->Loading = true;
-    this->ui->pushButton->setText(_l("report-retrieving"));
-    this->qHistory = Generic::RetrieveWikiPageContents(this->ReportedUser->GetSite()->GetProjectConfig()->ReportAIV, this->ReportedUser->GetSite());
-    this->qHistory->Site = this->ReportedUser->GetSite();
-    this->qHistory->Process();
-    this->ReportText = reports;
-    this->tReportUser->start(HUGGLE_TIMER);
-    return;
+    this->Report();
 }
 
 void ReportUser::on_pushButton_2_clicked()
@@ -558,6 +569,47 @@ void ReportUser::InsertUser()
     text = text.replace("$2", ReportText);
     text = text.replace("$3", ui->lineEdit->text());
     this->ReportContent = ReportContent + "\n" + text;
+}
+
+void ReportUser::Report()
+{
+    this->ui->pushButton->setEnabled(false);
+    // we need to get a report info for all selected diffs
+    QString reports = "";
+    int xx = 0;
+    int EvidenceID = 0;
+    while (xx < this->ui->tableWidget->rowCount())
+    {
+        if (this->CheckBoxes.count() > xx)
+        {
+            QCheckBox *checkBox = (QCheckBox*)this->ui->tableWidget->cellWidget(xx, 4);
+            if (checkBox->isChecked())
+            {
+                ++EvidenceID;
+                reports += "[[Special:Diff/" + this->ui->tableWidget->item(xx, 3)->text() + "|" +
+                           QString::number(EvidenceID) + "]] ";
+            }
+        }
+        ++xx;
+    }
+    if (!this->flagSilent && reports.isEmpty())
+    {
+        QMessageBox::StandardButton mb;
+        mb = QMessageBox::question(this, "Question", _l("report-evidence-none-provid"), QMessageBox::Yes|QMessageBox::No);
+        if (mb == QMessageBox::No)
+        {
+            this->ui->pushButton->setEnabled(true);
+            return;
+        }
+    }
+    // obtain current page
+    this->Loading = true;
+    this->ui->pushButton->setText(_l("report-retrieving"));
+    this->qHistory = Generic::RetrieveWikiPageContents(this->ReportedUser->GetSite()->GetProjectConfig()->ReportAIV, this->ReportedUser->GetSite());
+    this->qHistory->Site = this->ReportedUser->GetSite();
+    this->qHistory->Process();
+    this->ReportText = reports;
+    this->tReportUser->start(HUGGLE_TIMER);
 }
 
 void ReportUser::Kill()

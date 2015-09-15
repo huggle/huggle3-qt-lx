@@ -75,6 +75,7 @@ namespace Huggle
             QString MakeLocalUserConfig(ProjectConfiguration *Project);
             bool            EnforceSoftwareRollback();
             QHash<QString, HuggleOption*> UserOptions;
+            bool            AutomaticReports = false;
             //! Resolve edit conflict without asking user
             bool            AutomaticallyResolveConflicts = false;
             //! If this is true huggle will always use software rollback even if user has the rollback privileges
