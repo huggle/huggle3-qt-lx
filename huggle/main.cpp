@@ -62,6 +62,8 @@ int main(int argc, char *argv[])
             return ReturnCode;
         }
         Huggle::HgApplication a(argc, argv);
+        // make it possible to select text from message boxens
+        a.setStyleSheet("QMessageBox { messagebox-text-interaction-flags: 5;");
         QApplication::setApplicationName("Huggle");
         QApplication::setOrganizationName("Wikimedia");
         #if QT_VERSION >= 0x050100
