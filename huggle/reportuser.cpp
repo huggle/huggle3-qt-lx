@@ -323,6 +323,11 @@ void ReportUser::Tick()
                 this->ReportedUser->IsReported = true;
                 WikiUser::UpdateUser(this->ReportedUser);
                 this->Kill();
+                if (this->flagSilent)
+                {
+                    Syslog::HuggleLogs->ErrorLog(_l("report-duplicate"));
+                    delete this;
+                }
                 return;
             }
             this->InsertUser();
