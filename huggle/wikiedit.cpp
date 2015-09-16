@@ -542,7 +542,7 @@ void WikiEdit::PostProcess()
                                             QUrl::toPercentEncoding(this->Page->PageName);
         }
         this->qDifference->Target = this->Page->PageName;
-        QueryPool::HugglePool->AppendQuery(this->qDifference);
+        HUGGLE_QP_APPEND(this->qDifference);
         this->qDifference->Process();
         if (hcfg->Verbosity > 0)
             this->PropertyBag.insert("debug_api_url_diff", this->qDifference->GetURL());
@@ -551,7 +551,7 @@ void WikiEdit::PostProcess()
     {
         this->qText = Generic::RetrieveWikiPageContents(this->Page, true);
         this->qText->Target = "Retrieving content of " + this->Page->PageName;
-        QueryPool::HugglePool->AppendQuery(this->qText);
+        HUGGLE_QP_APPEND(this->qText);
         this->qText->Process();
     }
     if (hcfg->UserConfig->RetrieveFounder)
@@ -560,7 +560,7 @@ void WikiEdit::PostProcess()
         this->qFounder->Parameters = "prop=revisions&titles=" + QUrl::toPercentEncoding(this->Page->PageName) + "&rvdir=newer&rvlimit=1&rvprop=" +
                                      QUrl::toPercentEncoding("ids|user|timestamp");
         this->qFounder->Target = this->Page->PageName + " (retrieving founder)";
-        QueryPool::HugglePool->AppendQuery(this->qFounder);
+        HUGGLE_QP_APPEND(this->qFounder);
         this->qFounder->Process();
     }
     this->ProcessingRevs = true;

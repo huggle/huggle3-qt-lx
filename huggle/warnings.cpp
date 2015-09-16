@@ -285,7 +285,7 @@ void Warnings::ResendWarnings()
                 warning->Query = new Huggle::ApiQuery(ActionQuery, warning->RelatedEdit->GetSite());
                 warning->Query->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") +
                                              "&titles=" + QUrl::toPercentEncoding(warning->Warning->User->GetTalk());
-                QueryPool::HugglePool->AppendQuery(warning->Query);
+                HUGGLE_QP_APPEND(warning->Query);
                 warning->Query->Target = _l("main-user-retrieving-tp", warning->Warning->User->Username);
                 warning->Query->Process();
             } else if (warning->Warning->Error == Huggle::MessageError_Expired)
@@ -295,7 +295,7 @@ void Warnings::ResendWarnings()
                 warning->Query = new Huggle::ApiQuery(ActionQuery, warning->RelatedEdit->GetSite());
                 warning->Query->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("timestamp|user|comment|content") +
                                              "&titles=" + QUrl::toPercentEncoding(warning->Warning->User->GetTalk());
-                QueryPool::HugglePool->AppendQuery(warning->Query);
+                HUGGLE_QP_APPEND(warning->Query);
                 warning->Query->Target = _l("main-user-retrieving-tp", warning->Warning->User->Username);
                 warning->Query->Process();
             } else

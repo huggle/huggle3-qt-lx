@@ -322,7 +322,7 @@ void Message::ProcessSend()
                 + QUrl::toPercentEncoding(this->User->GetSite()->GetProjectConfig()->Token_Csrf);
     }
     HUGGLE_DEBUG(QString(" Message to %1 with parameters: %2").arg(this->User->Username, parameters), 2);
-    HUGGLE_AP_APPEND(query);
+    HUGGLE_QP_APPEND(query);
     this->query->Process();
 }
 
