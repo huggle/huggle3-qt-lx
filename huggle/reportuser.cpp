@@ -326,7 +326,7 @@ void ReportUser::Tick()
                 if (this->flagSilent)
                 {
                     Syslog::HuggleLogs->ErrorLog(_l("report-duplicate"));
-                    delete this;
+                    this->close();
                 }
                 return;
             }
