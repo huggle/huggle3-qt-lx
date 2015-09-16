@@ -475,7 +475,11 @@ void Huggle::HistoryForm::on_tableWidget_itemSelectionChanged()
     else if (rows.count() > 1)
     {
         int max = this->ui->tableWidget->item(rows[0], 4)->text().toInt();
-        QString min = this->ui->tableWidget->item(rows[rows.count() - 1], 4)->text();
+        QString min;
+        int row_id = rows[rows.count() - 1];
+        if (this->ui->tableWidget->rowCount() > row_id + 1)
+            row_id++;
+        min = this->ui->tableWidget->item(row_id, 4)->text();
         if (!max)
             return;
 
