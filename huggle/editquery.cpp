@@ -212,7 +212,7 @@ void EditQuery::EditPage()
     {
         // we first need to get a text of current page
         this->qRetrieve = Generic::RetrieveWikiPageContents(this->Page);
-        QueryPool::HugglePool->AppendQuery(this->qRetrieve);
+        HUGGLE_QP_APPEND(this->qRetrieve);
         this->qRetrieve->Process();
         return;
     }
@@ -252,7 +252,7 @@ void EditQuery::EditPage()
     this->qEdit->Parameters = "title=" + QUrl::toPercentEncoding(this->Page->PageName) + "&text=" + QUrl::toPercentEncoding(this->text) + section +
                               wl + "&summary=" + QUrl::toPercentEncoding(this->Summary) + tag + base + start_ + "&token=" +
                               QUrl::toPercentEncoding(this->Page->GetSite()->GetProjectConfig()->Token_Csrf);
-    QueryPool::HugglePool->AppendQuery(this->qEdit);
+    HUGGLE_QP_APPEND(this->qEdit);
     this->qEdit->Process();
 }
 

@@ -1595,7 +1595,7 @@ void MainWindow::SuspiciousEdit()
                           + QString::number(this->CurrentEdit->RevID) + "&summary="
                           + QUrl::toPercentEncoding(this->CurrentEdit->Summary);
         wq_->Process();
-        QueryPool::HugglePool->AppendQuery(wq_);
+        HUGGLE_QP_APPEND(wq_);
         this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore() + 1);
     }
     this->DisplayNext();
@@ -1636,7 +1636,7 @@ void MainWindow::PatrolEdit(WikiEdit *e)
     if (flaggedrevs)
         query->Parameters += "&flag_accuracy=1";
 
-    QueryPool::HugglePool->AppendQuery(query);
+    HUGGLE_QP_APPEND(query);
     HUGGLE_DEBUG1("Patrolling " + e->Page->PageName);
     query->Process();
 }
@@ -2388,7 +2388,7 @@ void Huggle::MainWindow::on_actionShow_talk_triggered()
         ApiQuery *query = new ApiQuery(ActionClearHasMsg, this->GetCurrentWikiSite());
         query->IncRef();
         query->Target = "Flagging new messages as read";
-        QueryPool::HugglePool->AppendQuery(query);
+        HUGGLE_QP_APPEND(query);
         query->Process();
         query->DecRef();
     }
@@ -2911,7 +2911,7 @@ void MainWindow::on_actionLog_out_triggered()
     ApiQuery *qx = new ApiQuery(ActionLogout, this->GetCurrentWikiSite());
     qx->CallbackOwner = this->GetCurrentWikiSite();
     qx->callback = (Callback)FinishLogout;
-    QueryPool::HugglePool->AppendQuery(qx);
+    HUGGLE_QP_APPEND(qx);
     qx->Process();
 }
 

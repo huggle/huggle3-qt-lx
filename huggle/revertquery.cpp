@@ -730,9 +730,7 @@ void RevertQuery::Rollback()
     this->qRevert->Target = edit->Page->PageName;
     this->qRevert->UsingPOST = true;
     if (Configuration::HuggleConfiguration->Verbosity > 0)
-    {
-        QueryPool::HugglePool->AppendQuery(this->qRevert);
-    }
+        HUGGLE_QP_APPEND(this->qRevert);
     this->CustomStatus = _l("rollback", edit->Page->PageName);
     Huggle::Syslog::HuggleLogs->DebugLog("Rolling back " + edit->Page->PageName);
     this->qRevert->Process();

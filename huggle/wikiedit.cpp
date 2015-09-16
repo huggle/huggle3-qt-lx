@@ -523,7 +523,7 @@ void WikiEdit::PostProcess()
     Hooks::EditBeforePostProcess(this);
 #endif
     this->qTalkpage = Generic::RetrieveWikiPageContents(this->User->GetTalk(), this->GetSite());
-    QueryPool::HugglePool->AppendQuery(this->qTalkpage);
+    HUGGLE_QP_APPEND(this->qTalkpage);
     this->qTalkpage->Target = "Retrieving tp " + this->User->GetTalk();
     this->qTalkpage->Process();
     if (!this->NewPage)

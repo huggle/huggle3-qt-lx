@@ -15,6 +15,9 @@
 
 #include <QList>
 
+#define HUGGLE_QP_APPEND(id) if (Huggle::QueryPool::HugglePool)\
+           { Huggle::QueryPool::HugglePool->AppendQuery(id); }
+
 namespace Huggle
 {
     class ApiQuery;

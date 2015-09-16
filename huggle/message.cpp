@@ -245,7 +245,7 @@ void Message::PreflightCheck()
         // we need to retrieve the talk page
         this->query = Generic::RetrieveWikiPageContents(this->User->GetTalk(), this->User->GetSite());
         // inform user what is going on
-        QueryPool::HugglePool->AppendQuery(this->query);
+        HUGGLE_QP_APPEND(this->query);
         this->query->Target = _l("main-user-retrieving-tp", this->User->Username);
         this->query->Process();
     } else
@@ -322,7 +322,7 @@ void Message::ProcessSend()
                 + QUrl::toPercentEncoding(this->User->GetSite()->GetProjectConfig()->Token_Csrf);
     }
     HUGGLE_DEBUG(QString(" Message to %1 with parameters: %2").arg(this->User->Username, parameters), 2);
-    QueryPool::HugglePool->AppendQuery(query);
+    HUGGLE_AP_APPEND(query);
     this->query->Process();
 }
 

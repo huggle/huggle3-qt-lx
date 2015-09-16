@@ -113,7 +113,7 @@ void History::Undo(HistoryItem *hist)
             this->qEdit = Generic::RetrieveWikiPageContents("User_talk:" + hist->Target, hist->GetSite());
             this->qEdit->Site = hist->GetSite();
             this->qEdit->Process();
-            QueryPool::HugglePool->AppendQuery(this->qEdit);
+            HUGGLE_QP_APPEND(this->qEdit);
             this->timerRetrievePageInformation->start(20);
             break;
         case HistoryRollback:
@@ -123,7 +123,7 @@ void History::Undo(HistoryItem *hist)
             this->qEdit = Generic::RetrieveWikiPageContents(hist->Target, hist->GetSite());
             this->qEdit->Site = hist->GetSite();
             this->qEdit->Process();
-            QueryPool::HugglePool->AppendQuery(this->qEdit);
+            HUGGLE_QP_APPEND(this->qEdit);
             this->timerRetrievePageInformation->start(20);
             break;
         case HistoryBlock:
