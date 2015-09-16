@@ -168,6 +168,7 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
     configuration_ += "CheckTP:" + Bool2String(this->CheckTP) + "\n";
     configuration_ += "ManualWarning:" + Bool2String(this->ManualWarning) + "\n";
     configuration_ += "SummaryMode:" + QString::number(this->SummaryMode) + "\n";
+    configuration_ += "AutomaticReports:" + Bool2String(this->AutomaticReports) + "\n";
     configuration_ += "// HAN\n";
     configuration_ += "HAN_Html:" + Bool2String(hcfg->UserConfig->HtmlAllowedInIrc) + "\n";
     configuration_ += "HAN_DisplayUserTalk:" + Bool2String(this->HAN_DisplayUserTalk) + "\n";
@@ -344,6 +345,7 @@ bool UserConfiguration::ParseUserConfig(QString config, ProjectConfiguration *Pr
     this->GoNext = static_cast<Configuration_OnNext>(ConfigurationParse("OnNext", config, "1").toInt());
     this->DeleteEditsAfterRevert = SafeBool(ConfigurationParse("DeleteEditsAfterRevert", config, "true"));
     this->WelcomeGood = this->SetOption("welcome-good", config, ProjectConfig->WelcomeGood).toBool();
+    this->AutomaticReports = SafeBool(ConfigurationParse("AutomaticReports", config), this->AutomaticReports);
     delete this->Previous_Version;
     this->Previous_Version = new Version(ConfigurationParse("version", config, HUGGLE_VERSION));
     // for now we do this only for home wiki but later we need to make it for every wiki
