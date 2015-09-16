@@ -28,6 +28,8 @@
 
 using namespace Huggle;
 
+QString previous_edit;
+
 HistoryForm::HistoryForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::HistoryForm)
 {
     this->RetrievingEdit = false;
@@ -99,6 +101,7 @@ void HistoryForm::Update(WikiEdit *edit)
     if (edit == nullptr)
         throw new Huggle::NullPointerException("WikiEdit *edit", BOOST_CURRENT_FUNCTION);
     this->CurrentEdit = edit;
+    this->IgnoreSelectionChanges = true;
     this->ui->pushButton->setText(_l("historyform-retrieve-history"));
     this->ui->pushButton->show();
     this->ui->pushButton->setEnabled(true);
@@ -332,6 +335,7 @@ void HistoryForm::onTick01()
             selectionModel->select(itemSelection, QItemSelectionModel::Select);
         }
     }
+    this->IgnoreSelectionChanges = false;
     MainWindow::HuggleMain->wEditBar->RefreshPage();
 }
 
@@ -356,7 +360,7 @@ void HistoryForm::Clear()
 
 void HistoryForm::Display(int row, QString html, bool turtlemode)
 {
-    if (row == this->SelectedRow)
+    if (row == this->SelectedRow && previous_edit == this->CurrentEdit->Page->PageName)
     {
         // there is nothing to do because we want to display exactly that row which was already selected
         return;
@@ -368,6 +372,7 @@ void HistoryForm::Display(int row, QString html, bool turtlemode)
     }
 
     int revid = this->ui->tableWidget->item(row, 4)->text().toInt();
+    previous_edit = this->CurrentEdit->Page->PageName;
     if (revid == 0)
         return;
 
@@ -423,7 +428,7 @@ void HistoryForm::GetEdit(long revid, QString prev, QString user, QString html, 
         this->t1->start(HUGGLE_TIMER);
         return;
     }
-    this->t1->start(2000);
+    this->t1->start(HUGGLE_TIMER * 10);
 }
 
 void HistoryForm::MakeSelectedRowBold()
