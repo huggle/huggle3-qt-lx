@@ -132,6 +132,28 @@ static QString Extras(WikiEdit *e)
     return result;
 }
 
+static QString GenerateEditSumm(WikiEdit *edit)
+{
+    QString prefix = "<b>" + _l("summary") + ":</b> ";
+    if (edit->IsRangeOfEdits())
+    {
+        return _l("summary-edit-range", QString::number(edit->RevID), edit->DiffTo);
+    }
+    if (edit->Summary.isEmpty())
+    {
+        if (hcfg->UserConfig->SummaryMode)
+            return prefix + _l("browser-miss-summ");
+        else
+            return prefix + "<font color=red> " + _l("browser-miss-summ") + "</font>";
+    } else
+    {
+        if (hcfg->UserConfig->SummaryMode)
+            return prefix + "<font color=red> " + HuggleWeb::Encode(edit->Summary) + "</font>";
+        else
+            return prefix + "<font> " + HuggleWeb::Encode(edit->Summary) + "</font>";
+    }
+}
+
 void HuggleWeb::DisplayDiff(WikiEdit *edit)
 {
     this->CurrentEdit = edit;
@@ -176,7 +198,7 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
     {
         HTML += "<p><font size=20px>" + Encode(edit->Page->PageName) + "</font></p>";
     }
-    QString Summary;
+    QString Summary = GenerateEditSumm(edit);
     QString size;
     if (edit->SizeIsKnown)
     {
@@ -190,21 +212,8 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
     {
         size = "<font color=red>Unknown</font>";
     }
-    if (edit->Summary.isEmpty())
-    {
-        if (hcfg->UserConfig->SummaryMode)
-            Summary = _l("browser-miss-summ");
-        else
-            Summary = "<font color=red> " + _l("browser-miss-summ") + "</font>";
-    } else
-    {
-        if (hcfg->UserConfig->SummaryMode)
-            Summary = "<font color=red> " + Encode(edit->Summary) + "</font>";
-        else
-            Summary = "<font> " + Encode(edit->Summary) + "</font>";
-    }
     Summary += "<b> Size change: " + size + "</b>";
-    HTML += "<b>" + _l("summary") + ":</b> " + Summary + Extras(edit) + "</td></tr>" + edit->DiffText +
+    HTML += Summary + Extras(edit) + "</td></tr>" + edit->DiffText +
             Resources::DiffFooter + Resources::HtmlFooter;
     this->ui->webView->setHtml(HTML);
 }
@@ -225,16 +234,8 @@ void HuggleWeb::DisplayNewPageEdit(WikiEdit *edit)
     {
         HTML += "<p><font size=20px>" + Encode(edit->Page->PageName) + "</font></p>";
     }
-    QString Summary;
-    if (!edit->Summary.size())
-    {
-        Summary = "<font color=red> " + _l("browser-miss-summ") + "</font>";
-    } else
-    {
-        Summary = Encode(edit->Summary);
-    }
-    HTML += "<b>" + _l("summary") + ":</b> " + Summary + Extras(edit) + "<br>" +
-            edit->Page->Contents + Resources::HtmlFooter;
+    QString Summary = GenerateEditSumm(edit);
+    HTML += Summary + Extras(edit) + "<br>" + edit->Page->Contents + Resources::HtmlFooter;
     this->ui->webView->setHtml(HTML);
 }
 

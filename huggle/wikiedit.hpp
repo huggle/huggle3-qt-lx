@@ -97,6 +97,7 @@ namespace Huggle
             QString GetPixmap();
             //! Return a full url to edit
             QString GetFullUrl();
+            bool IsRangeOfEdits();
             //! Return true in case this edit was post processed already
             bool IsPostProcessed();
             //! If edit is ready to be added to queue

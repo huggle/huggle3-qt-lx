@@ -647,6 +647,13 @@ QString WikiEdit::GetFullUrl()
             "&diff=" + QString::number(this->RevID);
 }
 
+bool WikiEdit::IsRangeOfEdits()
+{
+    return (this->DiffTo.toLower() != "prev"
+       && this->DiffTo.toLower() != "next"
+       && !this->DiffTo.isEmpty());
+}
+
 bool WikiEdit::IsReady()
 {
 #ifdef HUGGLE_SDK
