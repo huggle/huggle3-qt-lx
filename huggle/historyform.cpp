@@ -414,6 +414,12 @@ void HistoryForm::GetEdit(long revid, QString prev, QString user, QString html, 
     w->User = new WikiUser(user);
     w->User->Site = this->CurrentEdit->GetSite();
     w->Page = new WikiPage(this->CurrentEdit->Page);
+    if (QueryPool::HugglePool == nullptr)
+    {
+        // Huggle is shutting down now
+        w->SafeDelete();
+        return;
+    }
     QueryPool::HugglePool->PreProcessEdit(w);
     QueryPool::HugglePool->PostProcessEdit(w);
     if (this->t1 != nullptr)
