@@ -347,8 +347,8 @@ void Message::ProcessTalk()
     {
         if (!missing)
         {
-            this->Fail(_l("message-fail-re-user-tp", this->User->GetTalk()));
             Huggle::Syslog::HuggleLogs->DebugLog(this->query->Result->Data);
+            this->Fail(_l("message-fail-re-user-tp", this->User->GetTalk()));
             return;
         }
     }
