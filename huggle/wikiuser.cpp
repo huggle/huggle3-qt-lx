@@ -230,10 +230,10 @@ WikiUser::WikiUser(QString user)
     this->IP = false;
     if (!user.isEmpty())
     {
-        if (WikiUser::IPv6Regex.exactMatch(user))
+        if (WikiUser::IsIPv4(user))
         {
             this->IP = true;
-        } else if (WikiUser::IPv4Regex.exactMatch(user))
+        } else if (WikiUser::IsIPv6(user))
         {
             this->IP = true;
         }
