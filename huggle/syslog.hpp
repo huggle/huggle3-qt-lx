@@ -33,6 +33,10 @@
                          Huggle::Syslog::HuggleLogs->DebugLog(this->GetExtensionName() + ": " + debug, 1)
 #endif
 
+#define HUGGLE_WARNING(text)   Huggle::Syslog::HuggleLogs->WarningLog(text);
+#define HUGGLE_LOG(text)       Huggle::Syslog::HuggleLogs->Log(text);
+#define HUGGLE_ERROR(text)     Huggle::Syslog::HuggleLogs->ErrorLog(text);
+
 class QMutex;
 
 namespace Huggle
