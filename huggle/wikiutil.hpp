@@ -49,22 +49,29 @@ namespace Huggle
          *
          * This function will deliver a message to user using Message class which is returned by this function
          *
-         * \param User Pointer to user
-         * \param Text Text of message
-         * \param Title Title of message
-         * \param Summary Summary
-         * \param InsertSection Whether this message should be created in a new section
+         * \param User             Pointer to user
+         * \param Text             Text of message
+         * \param Title            Title of message
+         * \param Summary          Edit summary that will be used while delivering the message
+         * \param InsertSection    Whether this message should be created in a new section
          * \param DependencyRevert Rollback that is used as a dependency, if it's not NULL
-         * the system will wait for it to finish before the message is sent
-         * \param NoSuffix will not append huggle suffix if this is true, useful if you need to use custom summary
-         * \param SectionKeep will try to use the identical section, if there is not such a section it
-         *        make it
+         *                         the system will wait for it to finish before the message is sent
+         * \param NoSuffix         Will not append huggle suffix if this is true, useful if you need to use custom summary
+         * \param SectionKeep      If true, huggle will try to use the identical section, if there is not such a section it
+         *                         make it
+         * \param Autoremove       If true the message class is automatically removed by garbage collector once delivered
+         * \param BaseTimestamp    This is used to resolve edit conflicts
+         * \param CreateOnly       If true, nothing will be delivered to user if they already have a talk page
+         * \param FreshOnly        Will abort the message delivery in case the current talk page in operating memory
+         *                         was older than internal "MessageFresh" interval, used as a safeguard while delivering
+         *                         warning to user. Typical usage is, that when the talk page is not fresh it needs
+         *                         to be retrieved again in order to calculate proper warning level
          *
          * \return NULL on error or instance of Huggle::Message in case it's success
          */
         HUGGLE_EX Message *MessageUser(WikiUser *User, QString Text, QString Title, QString Summary, bool InsertSection = true,
                                        Query *Dependency = nullptr, bool NoSuffix = false, bool SectionKeep = false,
-                                       bool autoremove = true, QString BaseTimestamp = "", bool CreateOnly_ = false, bool FreshOnly_ = false);
+                                       bool Autoremove = true, QString BaseTimestamp = "", bool CreateOnly = false, bool FreshOnly = false);
         /*!
          * \brief SanitizeUser removes all invalid or problematic characters from user name
          * \param username Username that is to be fixed
