@@ -12,7 +12,7 @@
   <string name="deleted">Eliminado</string>
   <string name="error">Erro</string>
   <string name="exit">Sair</string>
-  <string name="done">Concluído</string>
+  <string name="done">Feito</string>
   <string name="no">Não</string>
   <string name="ok">OK</string>
   <string name="remove">Remover</string>
@@ -124,6 +124,8 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="config-months-name">Usar meses como cabeçalhos em vez do nome da página</string>
   <string name="config-enable-irc">Ativar IRC</string>
   <string name="config-remove-reverted">Remover edições que já foram revertidas por alguém</string>
+  <string name="config-auto-load-history">Carregar automaticamente a história e informações do usuário (requer uma grande quantidade de largura de banda de rede)</string>
+  <string name="config-require-delay">Exigem um atraso depois de cada carregamento da próxima edição, durante o qual não será possível o uso de qualquer recurso de gravação (útil para evitar teclado bug multi-toque)</string>
   <string name="config-display-text">Mostrar texto</string>
   <string name="config-retrieve-edit">Recuperar minha edição</string>
   <string name="config-nothing">Nada</string>
@@ -387,7 +389,7 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="main-revert-null">Impossível reverter, a edição é nula</string>
   <string name="main-revert-newpage-title">Não é possível desfazer</string>
   <string name="main-revert-newpage" fuzzy="true">Esta é uma página nova, portanto a edição não pode ser desfeita. Pode marcá-la ou eliminá-la.</string>
-  <string name="main-restore-text-fail">Não é possível restaurar a revisão, porque não há nenhum texto disponível para ele</string>
+  <string name="main-restore-text-fail">Não foi possível restaurar a revisão, porque não há texto disponível para ela</string>
   <string name="message-title">Mensagem $1</string>
   <string name="message-help">Introduza um ou ambos os campos de Assunto e Sumário. Se não introduzir o sumário, será usado o assunto. Se não introduzir o assunto, não será criada uma secção.</string>
   <string name="message-subject">Assunto:</string>
@@ -589,7 +591,7 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="history-not-found">Nada foi encontrado para desfazer</string>
   <string name="history-already-done">Já foi desfeita</string>
   <string name="history-undone">A edição em $1 foi desfeita com sucesso</string>
-  <string name="history-retrieve-fail">Não é possível recuperar o conteúdo da página que queria anular, o erro foi: $ 1</string>
+  <string name="history-retrieve-fail">Não foi possível obter o conteúdo da página que queria anular, o erro foi: $1</string>
   <string name="history-welcome-msg-title">Enviar antes uma mensagem de boas-vindas?</string>
   <string name="history-welcome-msg" fuzzy="true">Criou esta página de discussão, por isso não pode desfazer a edição. Pretende substituir por uma mensagem de boas-vindas?</string>
   <string name="notify-fail">Não foi possível notificar o criador de $1</string>
@@ -638,15 +640,17 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="cr-message-same">Existem diversas edições em $1 feitas pelo mesmo utilizador. Tem a certeza de que pretende reverter todas?</string>
   <string name="cr-message-new">Existem edições mais recentes em $1. Tem certeza que pretende reverter?</string>
   <string name="cr-message-not-same">Existem edições mais recentes em $1 feitas por um utilizador diferente. Tem certeza que as pretende reverter a todas? (provavelmente, falhará devido ao código de verificação antigo)</string>
-  <string name="preferences-extension-disabled">Esta extensão já está agendada para desativar a próxima inicialização do huggle</string>
-  <string name="preferences-extension-enabled">Esta extensão não foi programada para ser desativada na próxima
-inicialização do huggle</string>
-  <string name="preferences-extension-enabled-restart">A extensão foi ativada, no entanto, você precisará de reiniciar o huggle para que isso aconteça</string>
+  <string name="preferences-extension-disabled">Esta extensão já está agendada para ser desativada na próxima inicialização do huggle</string>
+  <string name="preferences-extension-disabled-restart">A extensão foi definida para ser desativada na próxima inicialização do huggle</string>
+  <string name="preferences-extension-enabled">Esta extensão não foi programada para ser desativada na próxima inicialização do huggle</string>
+  <string name="preferences-extension-enabled-restart">A extensão foi ativada, contudo você precisará reiniciar o huggle para que isso aconteça</string>
+  <string name="preferences-watchlist-watch">Adicionar às páginas vigiadas</string>
   <string name="fail">Falha</string>
   <string name="request">Pedir</string>
   <string name="requesting">A solicitar</string>
   <string name="requested">Pedido efetuado</string>
   <string name="protect-request-fail">Não foi possível obter o conteúdo atual da página: $1</string>
+  <string name="protect-request-fail-notime">A consulta não retornou nenhum carimbo de data/hora. Este pode ser um erro MediaWiki. Anular a consulta</string>
   <string name="message-fail">Falha ao enviar a mensagem</string>
   <string name="edit-conflict">Conflito de edição</string>
   <string name="page-tag-nodescription">não há descrição para esta marcação :/</string>

@@ -52,6 +52,7 @@
   <string name="disable">Отключить</string>
   <string name="no-token">Нет маркера</string>
   <string name="flags">Флаги</string>
+  <string name="gracetime">Ожидаем завершения запросов на редактирование...</string>
   <string name="browser-none">Страница сейчас не отображается</string>
   <string name="browser-load">Загружаем изменение с помощью веб-рендеринга, пожалуйста, подождите...</string>
   <string name="browser-miss-summ">Описание правки отсутствует</string>
@@ -119,7 +120,7 @@
   <string name="config-instant-reverts">Использовать систему мгновенных откатов (очень быстро, но они не могут быть отменены после того, как запущены)</string>
   <string name="config-revert-wait">Ожидание отката (секунд)</string>
   <string name="config-revert">Откатить</string>
-  <string name="config-revert-diff" fuzzy="true">Откатить правки страницы, которые новее чем показанное изменение, в случае если если они сделаны тем же участником (тем же вандалом)</string>
+  <string name="config-revert-diff">Откатить правки страницы, которые новее чем показанное изменение, в случае если если они сделаны тем же участником-вандалом</string>
   <string name="config-change-all">Изменить все настройки huggle так чтобы его поведение было ближе к huggle 2</string>
   <string name="config-merge-messages">Объединять ваши сообщения с другими в существующих разделах</string>
   <string name="config-months-name">Использовать месяцы в качестве заголовков вместо имён страниц</string>
@@ -127,10 +128,10 @@
   <string name="config-enable-irc">Включить IRC</string>
   <string name="config-remove-reverted">Удалять изменения, которые уже были отменены кем-то другим</string>
   <string name="config-remove-old">Удалять старые правки, если проанализирована новая правка к той же странице</string>
-  <string name="config-auto-load-history" fuzzy="true">Автоматически загружать историю и информацию об участнике (требует много трафика)</string>
+  <string name="config-auto-load-history">Автоматически загружать историю и информацию об участнике (требует много трафика)</string>
   <string name="config-last-revision">Отображать последнюю версию страницы в случае, когда текущая загруженная правка не является последней (загрузка будет выполнена минуя кэш)</string>
-  <string name="config-require-delay" fuzzy="true">Установить задержку после каждой загрузки следующей правки, во время которой невозможно вносить изменения (полезно для разрешения проблем, возникающих из-за нажатия нескольких клавиш сразу)</string>
-  <string name="config-wait-edit" fuzzy="true">Время, которое нужно подождать до того как будут вкючены функции редактирования (в секундах):</string>
+  <string name="config-require-delay">Установить задержку после каждой загрузки следующей правки, во время которой невозможно вносить изменения (полезно для разрешения проблем, возникающих из-за нажатия нескольких клавиш сразу)</string>
+  <string name="config-wait-edit">Задержка (в секундах) до включения функций записи:</string>
   <string name="config-display-text">Показать следующий</string>
   <string name="config-retrieve-edit">Получать свои собственные правки</string>
   <string name="config-nothing">Ничего</string>
@@ -145,7 +146,7 @@
   <string name="config-columns-dynamic">Сделать колонки списков динамическими (будут изменять свой размер в зависимости от размера элементов) или ручными (пользователь может изменять их размер)</string>
   <string name="config-message-notification">Отображать уведомление, когда появляется новое сообщение на вашей странице обсуждения</string>
   <string name="config-warning-api">Отображать предупреждения для API-запросов</string>
-  <string name="config-title-diff" fuzzy="true">Показывать заголовок страницы в каждом сравнении (крупный текст, в котором показан только заголовок страницы, в верхней части каждого сравнения)</string>
+  <string name="config-title-diff">Заголовок страницы в каждом сравнении (крупный текст, в котором показан только заголовок страницы, в верхней части каждого сравнения)</string>
   <string name="config-updates">Проверять на наличие обновлений</string>
   <string name="config-beta">Проверять на наличие бета-версий</string>
   <string name="config-html-messages">HAN может отображать HTML-сообщения (опасно)</string>
@@ -400,7 +401,7 @@
   <string name="main-no-page">Действие, которое вы запросили, требует наличия загруженной страницы. Пожалуйста, загрузите страницу, прежде чем пробовать снова.</string>
   <string name="main-revert-null">Невозможно откатить: правка пуста</string>
   <string name="main-revert-newpage-title">Не могу откатить это</string>
-  <string name="main-revert-newpage" fuzzy="true">Это новая страница, поэтому правка не может быть отменена, вы можете либо поставить метку, либо удалить страницу.</string>
+  <string name="main-revert-newpage">Это новая страница, поэтому правка не может быть отменена. Вы можете либо поставить метку, либо удалить страницу.</string>
   <string name="main-restore-text-fail">Невозможно восстановить эту версию, поскольку для неё недоступен текст</string>
   <string name="main-restore-data-fail">Невозможно восстановить эту версию, поскольку вики не предоставила данных о выбранной версии</string>
   <string name="message-title">Сообщение $1</string>
@@ -572,7 +573,7 @@
   <string name="warning-warntype">Тип предупреждения:</string>
   <string name="warning-warnlog">Предупреждения у этого участника:</string>
   <string name="warning-submit">Отправить</string>
-  <string name="wikiedit-tp-fail" fuzzy="true">Не удалось получить $1, поэтому уровень предупреждений не может быть рассчитан</string>
+  <string name="wikiedit-tp-fail">Не удалось получить уровень предупреждений для $1. Она не будет использоваться в расчётах.</string>
   <string name="missing-warning">Нет шаблона предупреждения $1</string>
   <string name="han-not">Антивандальная сеть (HAN) не разрешена в настройках</string>
   <string name="han-connecting">Подключение к антивандальной сети Huggle (HAN)</string>
@@ -614,7 +615,7 @@
   <string name="history-undone">Успешно отменена правка на странице $1</string>
   <string name="history-retrieve-fail">Невозможно получить содержимое страницы, на которой мы хотели отменить собственную правку, из-за ошибки: $1</string>
   <string name="history-welcome-msg-title">Отправить вместо этого приветственное сообщение?</string>
-  <string name="history-welcome-msg" fuzzy="true">Вы создали эту страницу обсуждения, поэтому действие не может быть отменено. Вы действительно хотите вместо этого вставить шаблон приветствия?</string>
+  <string name="history-welcome-msg">Вы создали эту страницу обсуждения, поэтому действие не может быть отменено. Вы действительно хотите вместо этого вставить шаблон приветствия?</string>
   <string name="notify-fail">Автор страницы \'$1\' не уведомлён</string>
   <string name="notify-unknowncreator">Автор страницы не известен</string>
   <string name="protect-done">Изменён уровень защиты для \'$1\'</string>
@@ -639,7 +640,7 @@
   <string name="editquery-success">Страница успешно отредактирована $1 на $2</string>
   <string name="editquery-token">Получение токена для редактирования $1</string>
   <string name="editquery-token-error">Не удалось получить маркер редактирования</string>
-  <string name="editquery-invalid-token" fuzzy="true">Не удаётся отредактировать $1, поскольку токен, который был у меня в кэше, больше не действителен. Пожалуйста, попробуйте отредактировать страницу ещё раз</string>
+  <string name="editquery-invalid-token">Не удаётся отредактировать $1, поскольку токен, который был у меня в кэше, больше не действителен. Пожалуйста, попробуйте отредактировать страницу ещё раз</string>
   <string name="provider-failure">Отказ провайдера канала $1 на $2, попробуем найти альтернативного провайдера</string>
   <string name="provider-primary-failure">Основной провайдер потока дал сбой, переключаемся на вики-провайдер</string>
   <string name="rc-error">Не удалось получить данные из вики-потока, последняя ошибка: $1</string>
@@ -667,16 +668,19 @@
   <string name="cr-message-not-same">Существуют более новые правки, внесенные в $1 другим участником. Вы уверены, что хотите откатить их все? (в любом случае, это, скорее всего, не получится сделать, из-за старого маркера.)</string>
   <string name="preferences-delete-using-filter">Вы не можете удалить фильтр, который сейчас используется</string>
   <string name="preferences-extension-disabled">Это расширение уже запланировано к отключению во время следующей загрузки huggle</string>
-  <string name="preferences-extension-disabled-restart" fuzzy="true">Это расширение уже запланировано к отключению во время следующей загрузки huggle</string>
+  <string name="preferences-extension-disabled-restart">Расширение будет отключено во время следующей загрузки huggle</string>
   <string name="preferences-extension-enabled">Это расширение не запланировано к отключению во время следующей загрузки huggle</string>
   <string name="preferences-extension-enabled-restart">Расширение будет включено, но нужно перезагрузить huggle чтобы оно включилось</string>
+  <string name="preferences-watchlist-watch">Добавить в список наблюдения</string>
+  <string name="preferences-watchlist-unwatch">Удалить из списка наблюдения</string>
+  <string name="preferences-watchlist-nochange">Ничего не делать</string>
   <string name="fail">Сбой</string>
   <string name="request">Запрос</string>
   <string name="requesting">Запрос</string>
   <string name="requested">Запрошенный</string>
   <string name="protect-request-fail">Не удалось получить текущую страницу сообщений о вандализме: $1</string>
   <string name="protect-request-fail-notext">Не удалось получить текущую страницу сообщений о вандализме, запрос не вернул текст этой страницы</string>
-  <string name="protect-request-fail-notime" fuzzy="true">Запрос не вернул никакую дату/время (баг MediaWiki?), прерываем запрос</string>
+  <string name="protect-request-fail-notime">Запрос не вернул никакой отметки времени. Возможно, это ошибка MediaWiki. Прерываем запрос</string>
   <string name="message-fail">Не удалось доставить сообщение</string>
   <string name="edit-conflict">Конфликт редактирования.</string>
   <string name="page-tag-nodescription">отсутствует описание для этой метки :/</string>
@@ -688,7 +692,7 @@
   <string name="namespace">Пространство имён</string>
   <string name="block-alreadyblocked">Участник уже заблокирован</string>
   <string name="report-fail">Не удалось известить пользователя потому что: $1</string>
-  <string name="report-page-fail" fuzzy="true">Ошибка при попытке получить страницу сообщений о вандализме в $1</string>
+  <string name="report-page-fail">Ошибка: не удалось получить страницу отчётов в $1</string>
   <string name="report-page-fail-time">Не удалось получить дату/время текущей страницы сообщений о вандализме, сбой API:
 
  $1</string>

@@ -22,7 +22,7 @@
   <string name="result">Resultado</string>
   <string name="save">Salvar</string>
   <string name="show">Exibir</string>
-  <string name="no-instant">Advertências instantâneas não estão ativados no projeto de US $ 1, não enviando mensagem para $ 2, escolha um nível de aviso diferente</string>
+  <string name="no-instant">Avisos instantâneos não estão ativados no projeto $1, a mensagem não enviada para $2, escolha um nível de aviso diferente.</string>
   <string name="undo">Desfazer</string>
   <string name="yes">Sim</string>
   <string name="editing-page">Editando página</string>
@@ -351,7 +351,7 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="main-page-protect">Proteger</string>
   <string name="main-page-delete">Eliminar</string>
   <string name="main-page-load">Carregar</string>
-  <string name="main-patrol-not-enabled">Patrulhamento não está habilitado com US $ 1</string>
+  <string name="main-patrol-not-enabled">Patrulhamento não está habilitado em $1</string>
   <string name="main-page-restore">Restaurar revisão</string>
   <string name="main-user-info">Mostrar informações do usuário</string>
   <string name="main-user-ignore">Ignorar edições deste usuário</string>
@@ -492,8 +492,8 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="score-take-whole-no-talk-word">Coincide apenas palavras inteiras em páginas que não são de discussão</string>
   <string name="score-only-whole-word">Combinar somente palavras inteiras</string>
   <string name="score-take-any-word">Combinar qualquer palavra que contenha essa sequência de caracteres</string>
-  <string name="ssl-is-not-supported">Você pediu para usar o SSL, mas $ 1 não apoiá-lo.</string>
-  <string name="ssl-required">Webserver de US $ 1 requer SSL para ser ativado. Por favor ligue o SSL e tente novamente. Se não for possível ativar o SSL (opção é acinzentado) pode ser necessário instalar bibliotecas Open SSL para seu sistema.</string>
+  <string name="ssl-is-not-supported">Você solicitou o uso do SSL, mas $1 não o suporta.</string>
+  <string name="ssl-required">Webserver de $1 requer SSL para ser ativado. Por favor ative o SSL e tente novamente. Se não for possível ativar o SSL (opção fica acinzentada) pode ser necessário a instalação de bibliotecas open ssl em seu sistema.</string>
   <string name="uaa-not-supported">UAA não disponível</string>
   <string name="uaa-not-supported-text">O painel de notícias \"Nomes de usuários que precisam de atenção do administrador\" não está disponível em sua wiki.</string>
   <string name="uaa-reporting">Denunciando $1 para UAA</string>
@@ -574,11 +574,11 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="warning-warntype">Tipo de aviso:</string>
   <string name="warning-warnlog">Avisos a este usuário:</string>
   <string name="warning-submit">Enviar</string>
-  <string name="wikiedit-tp-fail" fuzzy="true">Não é possível recuperar $ 1 nível de aviso não serão marcados por ele</string>
+  <string name="wikiedit-tp-fail">Não foi possível obter o nível de aviso da página $1. Não será utilizada para a pontuação</string>
   <string name="missing-warning">A predefinição de aviso $1 não existe</string>
   <string name="han-not">Rede de vandalismo não está disponível nas opções</string>
   <string name="han-connecting">Conectando à rede de anti-vandalismo do Huggle</string>
-  <string name="han-already-connected">Não conectar a HAN porque já está conectado</string>
+  <string name="han-already-connected">Não foi possível conectar a HAN porque já está conectada</string>
   <string name="han-already-connecting">Por favor aguarde, estou me conectando a HAN</string>
   <string name="han-disconnected">Você foi desconectado da HAN</string>
   <string name="error-loggedout">Você saiu de sua conta de usuário, entrando na conta...</string>
@@ -613,9 +613,9 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="history-not-found">Nada foi encontrado para desfazer</string>
   <string name="history-already-done">isto já foi desfeito</string>
   <string name="history-message-revert-body">Essa foi uma mensagem modificada por um reversor, você tem certeza que deseja reverter somente o modelo e não a pagina que você editou? (você terá que reverter o reversor se você quiser reverter os dois)</string>
-  <string name="history-revert-fail">Não é possível para desfazer sua edição em $ 1 como o seguinte erro foi encontrado: $ 2</string>
+  <string name="history-revert-fail">Não foi possível desfazer sua edição em $1, o seguinte erro foi encontrado: $2</string>
   <string name="history-undone">A edição em $1 foi desfeita com sucesso</string>
-  <string name="history-retrieve-fail">Não é possível recuperar o conteúdo da página que queria desfazer própria edição para, erro foi: $ 1</string>
+  <string name="history-retrieve-fail">Não foi possível obter o conteúdo da página na qual queria desfazer a edição, o erro foi: $1</string>
   <string name="history-welcome-msg-title">Enviar mensagem de boas-vindas?</string>
   <string name="history-welcome-msg" fuzzy="true">Você criou esta página de discussão, por isso não pode ser desfeita, quer substituí-la por uma predefinição de boas-vindas?</string>
   <string name="notify-fail">Não foi possível notificar o criador de \'$1\'</string>
@@ -642,8 +642,8 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="editquery-success">$1 editado com sucesso em $2</string>
   <string name="editquery-token">Recuperando token para editar $1</string>
   <string name="editquery-token-error">Não foi possível recuperar chave para editar</string>
-  <string name="editquery-invalid-token" fuzzy="true">Não é possível editar $ 1 porque sinal que eu tinha no cache não é mais válido, por favor, tente editar a página mais uma vez</string>
-  <string name="provider-failure">Falha do provedor de alimentos para animais $ 1 em $ 2, tentando encontrar algum fornecedor alternativo</string>
+  <string name="editquery-invalid-token">Não foi possível editar $1 porque o token que eu tinha no cache não é mais válido. Por favor, tente editar a página novamente</string>
+  <string name="provider-failure">Falha do provedor de feed $1 em $2, tentando encontrar um provedor alternativo</string>
   <string name="provider-primary-failure">Provedor de feed primário falhou, trocando para provedor wiki</string>
   <string name="rc-error">Impossível recuperar dados do feed da wiki, último erro: $1</string>
   <string name="rc-timestamp-missing">RC Feed: Item estava sem o atributo de data: $1</string>
@@ -669,9 +669,9 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="cr-message-new">Existem novas edições para $1, tem certeza que quer revertê-las?</string>
   <string name="cr-message-not-same">Existem novas edições feitas para $1 por um usuário diferente. Tem certeza que quer revertê-las? (é provável que falhe de qualquer jeito por causa da chave antiga)</string>
   <string name="preferences-delete-using-filter">Você não pode excluir um filtro que atualmente está sendo usado</string>
-  <string name="preferences-extension-disabled">Esta extensão já está programada para desabilitar próxima inicialização do huggle</string>
-  <string name="preferences-extension-disabled-restart" fuzzy="true">Esta extensão já está programada para desabilitar próxima inicialização do huggle</string>
-  <string name="preferences-extension-enabled">Esta extensão não está programado para a desativação próxima inicialização do huggle</string>
+  <string name="preferences-extension-disabled">Esta extensão já está programada para ser desabilitada na próxima inicialização do huggle</string>
+  <string name="preferences-extension-disabled-restart">Esta extensão foi programada para ser desabilitada na próxima inicialização do huggle</string>
+  <string name="preferences-extension-enabled">Esta extensão não está programada para ser desativada na próxima inicialização do huggle</string>
   <string name="preferences-extension-enabled-restart">A extensão foi ativada, no entanto, você precisará reiniciar o Huggle para que isso aconteça</string>
   <string name="fail">Falha</string>
   <string name="request">Solicitar</string>

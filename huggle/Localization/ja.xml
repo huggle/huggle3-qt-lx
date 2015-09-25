@@ -288,6 +288,7 @@
   <string name="main-tip-userreport">この利用者を報告</string>
   <string name="main-tip-userblock">この利用者をブロック</string>
   <string name="main-revert-null">差し戻せません: 編集が空です</string>
+  <string name="main-revert-newpage">これは新しいページなので、差し戻しできません。あなたには、これのタグ付けか消去かを、することができます。</string>
   <string name="message-title">$1 にメッセージ</string>
   <string name="message-help">節タイトルと要約の最低どちらかひとつを指定してください。要約が指定されていない場合、節タイトルが使用されます; 節タイトルが指定されていない場合、節分けは行ないません。</string>
   <string name="message-subject">節タイトル:</string>
@@ -472,6 +473,7 @@
   <string name="cr-revert-same-user">解決済みの問題：全ての編集を復帰-$1について、同じ利用者による複数の編集があります。</string>
   <string name="cr-message-same">$1 には同じ利用者による複数の編集がありますが、それらを本当に差し戻しますか?</string>
   <string name="cr-message-new">$1 には新しい編集があります。それらを本当に差し戻しますか?</string>
+  <string name="preferences-watchlist-nochange">何もしない</string>
   <string name="fail">失敗</string>
   <string name="request">要求</string>
   <string name="requesting">要求している</string>

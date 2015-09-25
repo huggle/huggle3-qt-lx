@@ -119,7 +119,7 @@
   <string name="config-instant-reverts">استفاده از واگردانی‌های فوری (بسیار سریع، اما زمانی که اجرا شد نمی‌تواند لغو شود)</string>
   <string name="config-revert-wait">انتظار واگردانی (به ثانیه)</string>
   <string name="config-revert">واگردانی</string>
-  <string name="config-revert-diff" fuzzy="true">واگردانی ویرایش‌های تازه‌تر صفحه نسبت به تفاوت نمایش داده‌شده در حالتی که توسط همان کاربر صورت گرفته‌باشد (همان خرابکار)</string>
+  <string name="config-revert-diff">واگردانی ویرایش‌های تازه‌تر صفحه نسبت به تفاوت نمایش داده‌شده در حالتی که توسط همان کاربر خرابکار صورت گرفته‌باشد</string>
   <string name="config-change-all">تغییر همه تنظیمات هاگل برای بیشتر شبیه هاگل ۲ رفتارکردن</string>
   <string name="config-merge-messages">ادغام‌کردن پیام‌های شما با دیگران در بخش‌های موجود</string>
   <string name="config-months-name">استفاده از ماه‌ها به عنوان نام سربرگ جای نام صفحه</string>
@@ -127,9 +127,9 @@
   <string name="config-enable-irc">فعال کردن آی‌آرسی</string>
   <string name="config-remove-reverted">حذف ویرایش‌هایی که از پیش توسط شخص دیگری واگردانی شده‌اند</string>
   <string name="config-remove-old">حذف ویرایش‌های قدیمی اگر ویرایش تازه‌تری در همان صفحه صورت گرفته‌است</string>
-  <string name="config-auto-load-history" fuzzy="true">فراخوانی خودکار تاریخچه و اطلاعات کاربر (به مقدار زیادی اتصال شبکه نیاز دارد)</string>
+  <string name="config-auto-load-history">فراخوانی خودکار تاریخچه و اطلاعات کاربر (به مقدار زیادی پنهای شبکه نیاز دارد)</string>
   <string name="config-last-revision">نمایش بازبینی آخر از صفحه در حالتی که ویرایش فراخوانی‌شدهٔ جاری بازبینی آخر نیست (پس از گذشتن از نهان‌گاه دریافتش می‌کند)</string>
-  <string name="config-require-delay" fuzzy="true">به یک تأخیر پس از هر بارگیری از ویرایش بعدی نیاز است، به این دلیل که ممکن نیست از هر ویژگی نوشتن استفاده شود (کاربردی زمانی که باید اشکال چند فشار صفحه کلید رفع شود)</string>
+  <string name="config-require-delay">به یک تأخیر پس از هر بارگیری از ویرایش بعدی نیاز است، به این دلیل که ممکن نیست از هر ویژگی نوشتن استفاده شود (کاربردی زمانی  که باید اشکال چند فشار صفحه کلید رفع شود)</string>
   <string name="config-wait-edit" fuzzy="true">زمانی که باید بین ویژگی‌های ویرایشی که فعال شده‌اند صبر کنید (به ثانیه):</string>
   <string name="config-display-text">نمایش بعدی</string>
   <string name="config-retrieve-edit">بازیابی ویرایش خودتان</string>
@@ -672,6 +672,9 @@
   <string name="preferences-extension-disabled-restart" fuzzy="true">این افزونه برای غیرفعال کردن راه‌اندازی مجدد هاگل برنامه‌ریزی شده است</string>
   <string name="preferences-extension-enabled">این افزونه برای غیرفعال کردن راه‌اندازی مجدد هاگل برنامه‌ریزی نشده است</string>
   <string name="preferences-extension-enabled-restart">افزونه فعال شده‌است، با این وجود برای به کار افتادن هاگل شما باید  آن را دوباره راه‌اندازی کنید</string>
+  <string name="preferences-watchlist-watch">افزودن به پی‌گیری‌ها</string>
+  <string name="preferences-watchlist-unwatch">حذف از فهرست پی‌گیری</string>
+  <string name="preferences-watchlist-nochange">کاری نکن</string>
   <string name="fail">شکست</string>
   <string name="request">درخواست</string>
   <string name="requesting">درخواست دادن</string>

@@ -52,6 +52,7 @@
   <string name="disable">禁用</string>
   <string name="no-token">无标记</string>
   <string name="flags">标记</string>
+  <string name="gracetime">正在等待编辑查询结束...</string>
   <string name="browser-none">现在没有页面可显示</string>
   <string name="browser-load">通过web渲染备选下载版本差异中，请耐心等待…</string>
   <string name="browser-miss-summ">未提供摘要</string>
@@ -145,7 +146,7 @@
   <string name="config-columns-dynamic">让列表的列动态（自动基于项目尺寸调整）或者手动（用户手动调整尺寸）</string>
   <string name="config-message-notification">当您收到一条在您的讨论页的新信息时，显示一条通知</string>
   <string name="config-warning-api">显示API查询的警告</string>
-  <string name="config-title-diff" fuzzy="true">每个差异中的页面标题（在每个差异的顶部显示页面标题的大文本）</string>
+  <string name="config-title-diff">每个差异中的页面标题（在每个差异的顶端显示页面标题的大文本）</string>
   <string name="config-updates">检查更新</string>
   <string name="config-beta">检查测试版本</string>
   <string name="config-html-messages">HAN可以渲染HTML消息（危险）</string>
@@ -573,7 +574,7 @@
   <string name="warning-warntype">警告类型：</string>
   <string name="warning-warnlog">该用户的警告：</string>
   <string name="warning-submit">发送</string>
-  <string name="wikiedit-tp-fail" fuzzy="true">无法检索$1警告等级，将不会被它计分</string>
+  <string name="wikiedit-tp-fail">无法检索$1警告等级。它将不会用于得分</string>
   <string name="missing-warning">没有这种警告模板$1</string>
   <string name="han-not">破坏性网络在选项中不允许</string>
   <string name="han-connecting">连接Huggle反破坏网络</string>
@@ -669,16 +670,20 @@
   <string name="cr-message-not-same">另外用户对$1做出新编辑，您确信希望回退它们么？（这很可能会因为使用旧令牌而失败）</string>
   <string name="preferences-delete-using-filter">你无法删除一个正在使用的过滤器</string>
   <string name="preferences-extension-disabled">此扩展已计划于下次huggle启动时被禁用</string>
-  <string name="preferences-extension-disabled-restart" fuzzy="true">此扩展已计划于下次huggle启动时被禁用</string>
+  <string name="preferences-extension-disabled-restart">扩展将于下次huggle启动时禁用</string>
   <string name="preferences-extension-enabled">此扩展未被计划于下次huggle启动时被禁用</string>
   <string name="preferences-extension-enabled-restart">扩展已启用，但您需要重启huggle才能使它生效</string>
+  <string name="preferences-watchlist-watch">添加至监视列表</string>
+  <string name="preferences-watchlist-unwatch">从监视列表中移除</string>
+  <string name="preferences-watchlist-preferences" fuzzy="true">关注您在wiki上的参数设置</string>
+  <string name="preferences-watchlist-nochange">不做任何事</string>
   <string name="fail">失败</string>
   <string name="request">请求</string>
   <string name="requesting">请求中</string>
   <string name="requested">已请求</string>
   <string name="protect-request-fail">无法获取当前举报页面：$1</string>
   <string name="protect-request-fail-notext">无法获取当前举报页面，因为查询没有返回任何文本</string>
-  <string name="protect-request-fail-notime" fuzzy="true">查询未返回任何时间戳（mediawiki bug？），中止查询</string>
+  <string name="protect-request-fail-notime">查询未返回任何时间戳。这可能是MediaWiki的错误。正在中止查询</string>
   <string name="message-fail">发送信息失败</string>
   <string name="edit-conflict">编辑冲突</string>
   <string name="page-tag-nodescription">这个标记没有说明 :/</string>
@@ -690,7 +695,7 @@
   <string name="namespace">名字空间</string>
   <string name="block-alreadyblocked">用户已被封禁</string>
   <string name="report-fail">无法提报用户，因为：$1</string>
-  <string name="report-page-fail" fuzzy="true">错误 无法获取，请在$1汇报</string>
+  <string name="report-page-fail">错误：无法检索位于$1的报告页面</string>
   <string name="report-page-fail-time">无法获取当前举报页面的时间戳，API错误：
 
 $1</string>

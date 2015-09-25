@@ -52,6 +52,7 @@
   <string name="disable">Désactiver</string>
   <string name="no-token">Pas de jeton</string>
   <string name="flags">Indicateurs</string>
+  <string name="gracetime">En attente de la modification des requêtes à terminer…</string>
   <string name="browser-none">Aucune page n\'est affichée maintenant</string>
   <string name="browser-load">Téléchargement de diff en utilisant un rendu Web de secours, veuillez patienter...</string>
   <string name="browser-miss-summ">Aucun résumé n\'a été fourni</string>
@@ -119,7 +120,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="config-instant-reverts">Utiliser les retours arrière instantanés (très rapide, mais impossible à annuler une fois exécuté)</string>
   <string name="config-revert-wait">Attente de retour arrière (en secondes)</string>
   <string name="config-revert">Rétablir</string>
-  <string name="config-revert-diff" fuzzy="true">Revenir sur les modifications les plus récentes sur la page qui affichait la différence, dans le cas où elles sont faites par le même utilisateur (le même vandale)</string>
+  <string name="config-revert-diff">Revenir sur les modifications de la page qui sont plus récentes que la différence affichée, dans le cas où elles ont été faites par le même utilisateur vandale</string>
   <string name="config-change-all">Modifier tous les paramètres de Huggle pour se comporter davantage comme Huggle 2</string>
   <string name="config-merge-messages">Fusionner vos messages avec les autres dans les sections existantes</string>
   <string name="config-months-name">Utiliser les mois comme entêtes au lieu du nom de la page</string>
@@ -127,10 +128,10 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="config-enable-irc">Permettre l\'IRC</string>
   <string name="config-remove-reverted">Supprimer les modifications qui étaient déjà annulées par quelqu’un d’autre</string>
   <string name="config-remove-old">Supprimer les anciennes modifications si une modification plus récente sur la même page est analysée</string>
-  <string name="config-auto-load-history" fuzzy="true">Charger automatiquement l’historique et les informations utilisateur (nécessite une bonne connexion réseau)</string>
+  <string name="config-auto-load-history">Charger automatiquement l’historique et les informations utilisateur (nécessite une bonne bande passante du réseau)</string>
   <string name="config-last-revision">Afficher la dernière révision de la page si la modification actuellement chargée n’est pas la dernière révision (sera téléchargé ensuite en contournant le cache)</string>
-  <string name="config-require-delay" fuzzy="true">Nécessite un délai après chaque chargement de prochaine modification, pour laquelle il n’est pas possible d’utiliser une fonctionnalité d’écriture (utile si vous devez résoudre un problème de frappe multiple sur le clavier)</string>
-  <string name="config-wait-edit" fuzzy="true">Temps pendant lequel vous devez attendre avant que les fonctionnalités de modification soient activées (en secondes) :</string>
+  <string name="config-require-delay">Nécessite un délai après chaque chargement de prochaine modification, pendant lequel il ne sera pas possible d’utiliser une fonctionnalité d’écriture (utile pour éviter un problème de frappe multiple sur le clavier)</string>
+  <string name="config-wait-edit">Le délai, en secondes, avant que les fonctionnalités d’écriture soient activées :</string>
   <string name="config-display-text">Afficher la suite</string>
   <string name="config-retrieve-edit">Retrouver votre propre modification</string>
   <string name="config-nothing">Rien</string>
@@ -145,7 +146,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="config-columns-dynamic">Rendre les colonnes de liste dynamiques (seront redimensionnées d’après la taille des éléments) ou manuelles (l’utilisateur peut modifier leur taille)</string>
   <string name="config-message-notification">Afficher une notification quand vous recevez un nouveau message sur votre page de discussion</string>
   <string name="config-warning-api">Afficher les avertissements pour les requêtes de l’API</string>
-  <string name="config-title-diff" fuzzy="true">Titre de page dans chaque différence (texte en gros qui affichera uniquement un titre de page en haut de chaque différence)</string>
+  <string name="config-title-diff">Titre de page dans chaque différence (texte en gros qui affiche uniquement le titre de la page en haut de chaque différence)</string>
   <string name="config-updates">Vérifier les mises à jour</string>
   <string name="config-beta">Vérifier les versions bêta</string>
   <string name="config-html-messages">HAN peut formater des messages HTML (dangereux)</string>
@@ -400,7 +401,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="main-no-page">L’action que vous avez demandée nécessite le chargement d’une page. Veuillez charger une page avant de réessayer.</string>
   <string name="main-revert-null">Impossible de revenir, la modification est nulle</string>
   <string name="main-revert-newpage-title">Impossible de revenir sur ça</string>
-  <string name="main-revert-newpage" fuzzy="true">Ceci est une nouvelle page, elle ne peut donc pas être restaurée, vous pouvez soit la tagger soit la supprimer.</string>
+  <string name="main-revert-newpage">Ceci est une nouvelle page, elle ne peut donc pas être restaurée. Vous pouvez soit la marquer soit la supprimer.</string>
   <string name="main-restore-text-fail">Impossible de restaurer cette version, car il n\'y a pas de texte disponible pour cela</string>
   <string name="main-restore-data-fail">Impossible de rétablir la révision, parce que le wiki n’a fourni aucune donnée pour la version sélectionnée</string>
   <string name="message-title">Message $1</string>
@@ -573,7 +574,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="warning-warntype">Type d\'avertissement :</string>
   <string name="warning-warnlog">Avertissements pour cet utilisateur :</string>
   <string name="warning-submit">Envoyer</string>
-  <string name="wikiedit-tp-fail" fuzzy="true">Impossible de récupérer $1 ; le niveau d’avertissement ne sera pas renseigné par lui</string>
+  <string name="wikiedit-tp-fail">Impossible de récupérer le niveau d’avertissement de $1. Il ne sera pas utilisé pour l’évaluation</string>
   <string name="missing-warning">Il n’y a pas un tel modèle d’avertissement $1</string>
   <string name="han-not">Un réseau de vandalisme n’est pas autorisé dans les options</string>
   <string name="han-connecting">Connexion à Huggle, un réseau anti-vandalisme</string>
@@ -616,7 +617,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="history-undone">Annulation réussie de la modification de $1</string>
   <string name="history-retrieve-fail">Impossible de récupérer le contenu de la page pour laquelle nous voulons annuler notre propre modification, l’erreur était : $1</string>
   <string name="history-welcome-msg-title">Envoyer un message de bienvenue à la place ?</string>
-  <string name="history-welcome-msg" fuzzy="true">Vous avez créé cette page de discussion, donc elle ne peut pas être annulée, voulez-vous la remplacer par un modèle de mot de bienvenue ?</string>
+  <string name="history-welcome-msg">Vous avez créé cette page de discussion, donc elle ne peut pas être annulée. Voulez-vous la remplacer par un modèle de mot de bienvenue ?</string>
   <string name="notify-fail">Ne pas notifier le créateur de $1</string>
   <string name="notify-unknowncreator">Incapable de trouver le créateur de la page</string>
   <string name="protect-done">Niveau de protection modifié pour $1</string>
@@ -641,7 +642,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="editquery-success">Modification réussie de $1 le $2</string>
   <string name="editquery-token">Récupération du jeton pour modifier $1</string>
   <string name="editquery-token-error">Impossible de récupérer le jeton de modification</string>
-  <string name="editquery-invalid-token" fuzzy="true">L\'impossibilité de modifier $1 car le jeton que j\'avais dans le cache n\'est plus valide, veuillez essayer de modifier cette page une fois de plus</string>
+  <string name="editquery-invalid-token">Impossible de modifier $1 car le jeton en cache n’est plus valide. Veuillez essayer de modifier cette page une nouvelle fois</string>
   <string name="provider-failure">Échec du fournisseur de flux $1 sur $2, essais en cours pour trouver un fournisseur de remplacement</string>
   <string name="provider-primary-failure">Le fournisseur de flux principal a échoué, retour au fournisseur du wiki</string>
   <string name="rc-error">Impossible de récupérer des données du flux du wiki, dernière erreur : $1</string>
@@ -669,16 +670,20 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="cr-message-not-same">Il y a des modifications plus récentes faites sur $1 par un autre utilisateur, êtes-vous sûr de vouloir les annuler toutes (cela échouera sans doute à cause d’un jeton ancien) ?</string>
   <string name="preferences-delete-using-filter">Vous ne pouvez pas supprimer un filtre qui est utilisé actuellement</string>
   <string name="preferences-extension-disabled">Cette extension est déjà mémorisée pour désactiver le prochain démarrage de huggle</string>
-  <string name="preferences-extension-disabled-restart" fuzzy="true">Cette extension est déjà mémorisée pour désactiver le prochain démarrage de huggle</string>
+  <string name="preferences-extension-disabled-restart">L’extension a été positionnée pour être désactivée au prochain démarrage de huggle</string>
   <string name="preferences-extension-enabled">Cette extension n\'est pas mémorisée pour désactiver le prochain démarrage de huggle</string>
   <string name="preferences-extension-enabled-restart">L\'extension a été activée, cependant, vous devez redémarrer huggle pour la mettre en oeuvre</string>
+  <string name="preferences-watchlist-watch">Ajouter à la liste de suivi</string>
+  <string name="preferences-watchlist-unwatch">Supprimer de la liste de suivi</string>
+  <string name="preferences-watchlist-preferences" fuzzy="true">Vous suivre dans les préférences du wiki</string>
+  <string name="preferences-watchlist-nochange">Ne rien faire</string>
   <string name="fail">Echec</string>
   <string name="request">Requête</string>
   <string name="requesting">En cours de requête</string>
   <string name="requested">Demandé</string>
   <string name="protect-request-fail">Impossible de récupérer la page de rapport en cours: $1</string>
   <string name="protect-request-fail-notext">Impossible de récupérer la page de rapport courante parce que la requête n\'a pas renvoyé de texte pour cette page</string>
-  <string name="protect-request-fail-notime" fuzzy="true">La requête n\'a pas renvoyé de date (bogue mediawiki?) la requête est abandonnée</string>
+  <string name="protect-request-fail-notime">La requête n’a pas renvoyé d’horodatage. C’est peut-être un bogue de MédiaWiki. Abandon de la requête</string>
   <string name="message-fail">Echec lors de la transmission du message</string>
   <string name="edit-conflict">Conflit de modification.</string>
   <string name="page-tag-nodescription">il n\'y a pas de description pour ce tag :/</string>
@@ -690,7 +695,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="namespace">Espace de noms</string>
   <string name="block-alreadyblocked">L\'utilisateur est déjà bloqué</string>
   <string name="report-fail">Erreur lors du signalement utilisateur, raison: $1</string>
-  <string name="report-page-fail" fuzzy="true">Erreur : impossible de récupérer la page de rapport à $1</string>
+  <string name="report-page-fail">Erreur : impossible de récupérer la page de rapport à $1</string>
   <string name="report-page-fail-time">Impossible de récupérer la date pour la page de rapport en cours, échec de l\'api:
 
 $1</string>

@@ -126,7 +126,7 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="config-enable-irc">Activar IRC</string>
   <string name="config-remove-reverted">Borrar las ediciones que ya fueron revertidas por otra persona</string>
   <string name="config-remove-old">Eliminar las ediciones anteriores si se analiza una edición más reciente a la misma página</string>
-  <string name="config-auto-load-history" fuzzy="true">Cargar automáticamente el historial e información de usuario (requiere mucha conexión de red)</string>
+  <string name="config-auto-load-history">Cargar automáticamente el historial y la información de usuario (requiere mucho ancho de banda de red)</string>
   <string name="config-last-revision">Mostrar la última modificación de la página si la edición cargada no es la última (se descargará e invalidará la memoria intermedia)</string>
   <string name="config-wait-edit" fuzzy="true">Tiempo que debes esperar para que se activen las funcionalidades de edición (segundos):</string>
   <string name="config-display-text">Mostrar siguiente</string>
@@ -324,7 +324,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="main-page-purge">Purgar</string>
   <string name="main-page-curr-disp">Actualmente mostrado</string>
   <string name="main-page-display">Mostrar esta página</string>
-  <string name="main-page-patrol">Marcar como patrullado</string>
+  <string name="main-page-patrol">Marcar como verificado</string>
   <string name="main-page-move">Trasladar...</string>
   <string name="main-page-flag-suspicious-edit">Marcar cono edición sospechosa (esta acción da +1 de puntuación para el usuario)</string>
   <string name="main-page-flag-good-edit">Marcar como edición buena (esta acción da -200 de puntuación al usuario)</string>
@@ -608,14 +608,18 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="cr-message-new">Hay nuevas ediciones a $1. ¿Seguro quieres revertirlas?</string>
   <string name="cr-message-not-same">Hay nuevas ediciones a $1 de otro usuario. ¿Seguro quieres revertirlas todas? (De todas formas, probablemente falle por un \"token\" viejo)</string>
   <string name="preferences-delete-using-filter">No se puede eliminar un filtro que se está usando actualmente</string>
+  <string name="preferences-extension-disabled-restart">La extensión se configuró para desactivarse en el siguiente inicio de Huggle</string>
   <string name="preferences-extension-enabled-restart">La extensión se activó. Sin embargo, es necesario reiniciar huggle</string>
+  <string name="preferences-watchlist-watch">Añadir a la lista de seguimiento</string>
+  <string name="preferences-watchlist-unwatch">Quitar de la lista de seguimiento</string>
+  <string name="preferences-watchlist-nochange">No hacer nada</string>
   <string name="fail">Fallo</string>
   <string name="request">Solicitud</string>
   <string name="requesting">Solicitando</string>
   <string name="requested">Solicitado</string>
   <string name="protect-request-fail">No se puede recuperar la página de informe actual: $1</string>
   <string name="protect-request-fail-notext">No se puede recuperar la página de informe actual porque la consulta no devolvió ningún texto sobre esta página</string>
-  <string name="protect-request-fail-notime" fuzzy="true">La consulta no devolvió ninguna marca de tiempo (¿un error de mediawiki?). Se anula la consulta</string>
+  <string name="protect-request-fail-notime">La consulta no devolvió ninguna marca de tiempo. Puede ser un error de MediaWiki. Se anula la consulta</string>
   <string name="message-fail">No se pudo entregar el mensaje</string>
   <string name="edit-conflict">Conflicto de edición</string>
   <string name="page-tag-nodescription">no hay descripción para esta etiqueta :/</string>

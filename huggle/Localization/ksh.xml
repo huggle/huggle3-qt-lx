@@ -109,7 +109,7 @@
   <string name="config-enable-irc">Donn der &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Internet Relay Chat\"&gt;IRC&lt;/i&gt; aanschallde</string>
   <string name="config-remove-reverted">Donn di Änderonge fott lohße, di ene ander ald zerök jenumme hät</string>
   <string name="config-remove-old">Donn de älldere Änderonge fott lohße, wann en neuere Änderong för desällve Sigg beärbeidt weed</string>
-  <string name="config-auto-load-history" fuzzy="true">Donn de Verjangeheid un de Dahte övver dä Metmaacher automttesch lahde — Scheck öhndlesch Dahte övver et Näzwärk.</string>
+  <string name="config-auto-load-history">Donn de Verjangeheid un de Dahte övver dä Metmaacher automttesch lahde — dat scheck ävver öhndlesch Dahte övver et Näzwärk.</string>
   <string name="config-last-revision">Zeijsch de läzde Väsjohn vun dä Sigg wann de jelahde Änderong nit de läzde Väsjohn es — se weed spähder eronger jelahde, aam &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„Zwescheschpeijscher “\"&gt;cache&lt;/i&gt; vörbei.</string>
   <string name="config-display-text" fuzzy="true">Zeisch de Näxte aan</string>
   <string name="config-retrieve-edit">De eije Änderong holle</string>
@@ -123,7 +123,7 @@
   <string name="config-userspace">Appachtemang för de Metmaacher</string>
   <string name="config-talk">Klaafsigg</string>
   <string name="config-warning-api">Zeijsch Warnonge för de Affrohre vun de &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Application Programming Interface\"&gt;API&lt;/i&gt;</string>
-  <string name="config-title-diff" fuzzy="true">Sigge_Övverschreffte en jehdem Ongescheijd — jruhße Täx, dä jrahd de Övverschreff em Koppberett vun jehdem Ongerscheid zeijsch.</string>
+  <string name="config-title-diff">Sigge_Övverschreffte en jehdem Ongescheijd — jruhße Täx, dä jrahd de Övverschreff em Koppberett vun jehdem Ongerscheid zeijsch.</string>
   <string name="config-updates">Op neu Väsohne prööve</string>
   <string name="config-beta">Pröhf op Pröhväsjohne</string>
   <string name="config-html-messages" fuzzy="true">HAN kann HTML aanzeije (jevährlesch)</string>
@@ -387,6 +387,10 @@
   <string name="whitelist-download">Ben en neu „wiiße Leß“ eronger aam Lahde</string>
   <string name="wait">Ene Momang …</string>
   <string name="updating-wl">Ben de „wiiße Leß“ op der neue Schtand aam bränge …</string>
+  <string name="preferences-extension-disabled-restart" fuzzy="true">Dat Zohsazprojramm es esu enschtallt, dadd_et beim nähkst Molh, woh Huggle opjerohfe weed, affjeschalld es.</string>
+  <string name="preferences-watchlist-watch">En de Oppaßleß don</string>
+  <string name="preferences-watchlist-unwatch">Us de Oppaßleß nämme</string>
+  <string name="preferences-watchlist-nochange">Donn nix</string>
   <string name="page-unknown">Onbikannte Sigg</string>
   <string name="namespace">Appachtemang</string>
   <string name="report-unable">Mer künne dä Metmaacher nit mällde.</string>

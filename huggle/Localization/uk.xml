@@ -52,10 +52,11 @@
   <string name="disable">Вимкнено</string>
   <string name="no-token">Немає маркера</string>
   <string name="flags">Прапорці</string>
+  <string name="gracetime">Чекаю на виконання запитів на редагування…</string>
   <string name="browser-none">Зараз не відображається жодна сторінка</string>
   <string name="browser-load">Редагування завантажується шляхом веб-рендерингу. Зачекайте, будь ласка…</string>
   <string name="browser-miss-summ">Немає опису редагування</string>
-  <string name="browser-diff">Різниця версій для сторінки $1 (бали: $2)</string>
+  <string name="browser-diff">Різниця версій для $1 (бали: $2)</string>
   <string name="browser-fail">Не вдалося отримати редагування: $1</string>
   <string name="about-contributors">Розробники:</string>
   <string name="block-not">Користувач не заблокований</string>
@@ -106,7 +107,7 @@
   <string name="config-changeshortcut">Змінити комбінацію клавіш для $1</string>
   <string name="config-noshortcut">Немає</string>
   <string name="config-defaults">Стандартно</string>
-  <string name="config-minor">Позначати редагування як незначні</string>
+  <string name="config-minor">Незначна зміна (м)</string>
   <string name="config-watchlist">Додати до списку спостереження</string>
   <string name="config-defaultsummary">Стандартний опис змін для ручних редагувань</string>
   <string name="config-undosummary">Короткий опис для скасування власних редагувань</string>
@@ -119,22 +120,22 @@
   <string name="config-instant-reverts">Використовувати миттєві відкоти (дуже швидко, проте неможливо скасувати)</string>
   <string name="config-revert-wait">Перед відкотом зачекати (сек.)</string>
   <string name="config-revert">Відкотити</string>
-  <string name="config-revert-diff" fuzzy="true">Відкотити редагування, новіші за показане зараз, якщо їх було зроблено тим самим користувачем (тим самим вандалом)</string>
-  <string name="config-change-all">Прийняти налаштування максимально схожі до таких в Huggle 2</string>
-  <string name="config-merge-messages">Об’єднувати ваші попереджувальні повідомлення з іншими такими ж у вже існуючих темах</string>
+  <string name="config-revert-diff">Відкотити редагування, новіші за показане зараз, якщо їх було зроблено тим самим вандалом</string>
+  <string name="config-change-all">Застосувати налаштування максимально схожі до таких в Huggle 2</string>
+  <string name="config-merge-messages">Об’єднувати Ваші попереджувальні повідомлення з іншими такими ж у вже існуючих темах</string>
   <string name="config-months-name">Для іменування нових тем використовувати місяці, а не назви сторінок, про які йдеться</string>
   <string name="config-automatic-warning">Використовувати автоматичне визначення типу та рівня попереджувального повідомлення в команді «Надіслати попередження»</string>
   <string name="config-enable-irc">Включити IRC</string>
   <string name="config-remove-reverted">Прибирати редагування, що вже скасовані кимось іншим</string>
   <string name="config-remove-old">Прибирати старіші редагування, якщо отримано нове редагування тієї ж сторінки</string>
-  <string name="config-auto-load-history" fuzzy="true">Автоматично завантажувати історію редагувань та останні редагування користувача (потребує багато трафіку)</string>
+  <string name="config-auto-load-history">Автоматично завантажувати історію редагувань та останні редагування користувача (потребує багато трафіку)</string>
   <string name="config-last-revision">Показувати останню версію сторінки, якщо поточне редагування не є найновішим (завантаження буде виконано оминаючи кеш)</string>
-  <string name="config-require-delay" fuzzy="true">Встановити затримку після кожного завантаження наступного редагування, під час якої неможливо внести зміни (корисно для вирішення проблеми з натисканням кількох клавіш одразу)</string>
-  <string name="config-wait-edit" fuzzy="true">Скільки потрібно чекати до ввімкнення можливості редагування (в секундах):</string>
+  <string name="config-require-delay">Встановити затримку після кожного завантаження наступного редагування, під час якої неможливо внести зміни (корисно для вирішення проблеми з натисканням кількох клавіш одразу)</string>
+  <string name="config-wait-edit">Скільки потрібно чекати до ввімкнення можливості редагування (в секундах):</string>
   <string name="config-display-text">Показати наступну</string>
-  <string name="config-retrieve-edit">Показувати ваше редагування</string>
+  <string name="config-retrieve-edit">Показувати Ваше редагування</string>
   <string name="config-nothing">Нічого</string>
-  <string name="config-bot-edits">Редагування бота (b)</string>
+  <string name="config-bot-edits">Редагування бота (б)</string>
   <string name="config-own-edits">Власні редагування</string>
   <string name="config-reverts">Відкіт</string>
   <string name="config-new-page">Нова сторінка</string>
@@ -145,18 +146,18 @@
   <string name="config-columns-dynamic">Зробити стовпці списків динамічними (змінюватимуть розмір залежно від розміру елементів списку) чи ручними (користувач зможе змінювати їх розмір вручну)</string>
   <string name="config-message-notification">Сповіщувати, якщо Ви отримаєте нове повідомлення на своїй сторінці обговорення</string>
   <string name="config-warning-api">Показувати попередження для API-запитів</string>
-  <string name="config-title-diff" fuzzy="true">Назва сторінки у вікні змін (просто назва сторінки великим шрифтом угорі над порівнянням версій)</string>
+  <string name="config-title-diff">Назва сторінки у вікні змін (просто назва сторінки великим шрифтом угорі над порівнянням версій)</string>
   <string name="config-updates">Перевіряти наявність оновлень</string>
   <string name="config-beta">Перевіряти наявність бета-версій</string>
   <string name="config-html-messages">HAN може відображати HTML-повідомлення (небезпечно)</string>
   <string name="config-summary-present">Виділяти червоним опис редагування, якщо він є, замість того, щоб показувати червоне повідомлення, коли опису немає</string>
   <string name="config-close-without">Закрити налаштування не зберігаючи</string>
-  <string name="config-confirmmultiple">Підтвердити можливість відкоту кількох редагувань одного й того ж дописувача</string>
-  <string name="config-confirmsame">Підтвердити відкіт редагуваннь, до версії цього ж користувача</string>
-  <string name="config-confirmselfrevert">Підтвердити відкіт власних редагувань (окрім інших відкотів)</string>
-  <string name="config-confirmwarned">Підтвердити відкіт редагувань попередженого користувача</string>
-  <string name="config-confirmrange">Підтвердити відкіт редагувань аноніма з того ж /16 діапазону, користувачі з якого вже відкочувались</string>
-  <string name="config-confirmpage">Підтвердити відкіт ігнорованих сторінок</string>
+  <string name="config-confirmmultiple">Вимагати підтвердження для скасування кількох редагувань одного й того ж користувача</string>
+  <string name="config-confirmsame">Вимагати підтвердження для скасування редагувань до версії цього ж користувача</string>
+  <string name="config-confirmselfrevert">Вимагати підтвердження для скасування власних редагувань (окрім відкотів)</string>
+  <string name="config-confirmwarned">Вимагати підтвердження для скасування редагувань до версії попередженого користувача</string>
+  <string name="config-confirmrange">Вимагати підтвердження для скасування редагувань до версії аноніма з того ж /16 діапазону, користувачі з якого вже відкочувались</string>
+  <string name="config-confirmpage">Вимагати підтвердження для скасування редагувань на сторінці, що ігнорується</string>
   <string name="config-autoadvance">Після відкоту одразу ж переходити до нового редагування в черзі</string>
   <string name="config-userollback">За можливості використовувати відкіт</string>
   <string name="config-revertsummaries">Описи редагувань для відкотів доступні в меню</string>
@@ -199,11 +200,11 @@
   <string name="historyform-title">Історія</string>
   <string name="historyform-retrieve-history">Завантажити історію</string>
   <string name="historyform-retrieving-history">Завантаження історії</string>
-  <string name="historyform-not-latest-tip">Це не остання версія сторінки. Переконайтеся, що ви переглянули й новіші версії. Будь ласка, майте також на увазі, що відкидання редагувань може бути недоступним з цієї позиції.</string>
+  <string name="historyform-not-latest-tip">Це не остання версія сторінки. Переконайтеся, що Ви переглянули й новіші версії. Будь ласка, майте також на увазі, що відкидання редагувань може бути недоступним з цієї позиції.</string>
   <string name="history-error-message-title">Неможливо скасувати</string>
-  <string name="history-error">Редагування не може бути скасовано. Можливо, сторінку було змінено чи вилучено. Якщо ви хочете переконатися в тому, що редагування скасовано, скористайтеся звичайним браузерним інтерфейсом MediaWiki</string>
+  <string name="history-error">Редагування не може бути скасовано. Можливо, сторінку було змінено чи вилучено. Якщо Ви хочете переконатися в тому, що редагування скасовано, скористайтеся звичайним браузерним інтерфейсом MediaWiki</string>
   <string name="history-failure">Не вдалось завантажити історію</string>
-  <string name="userhistory-title">Історія ваших редагувань</string>
+  <string name="userhistory-title">Ваші редагування</string>
   <string name="irc-connected">$1: Виконано підключення до IRC-каналу нових редагувань</string>
   <string name="irc-connecting">Спроба підключення до IRC-каналу нових редагувань для $1. Це може зайняти кілька хвилин…</string>
   <string name="irc-disconnected">Підключення до IRC-каналу нових редагувань для $1 було втрачено. Повторне підключення…</string>
@@ -218,7 +219,7 @@
   <string name="login-intro">Будь ласка, виберіть проект і введіть ім’я користувача та пароль. Ви також можете одразу ввійти до декількох проектів, скориставшись кнопкою «Проекти».</string>
   <string name="login-tab-oauth">OAuth</string>
   <string name="login-tab-login">Вхід</string>
-  <string name="login-reload-tool-tip">Перезавантажити список проектів, у яких можна використовувати Huggle. Це може бути корисним, якщо ви хочете використовувати Huggle у проекті, для котрого його було підключено лише нещодавно.</string>
+  <string name="login-reload-tool-tip">Перезавантажити список проектів, у яких можна використовувати Huggle. Це може бути корисним, якщо Ви хочете використовувати Huggle у проекті, для котрого його було підключено лише нещодавно.</string>
   <string name="login-language">Мова інтерфейсу:</string>
   <string name="login-project">Проект:</string>
   <string name="login-username">Ім’я користувача:</string>
@@ -230,7 +231,7 @@
   <string name="login-proxydomain">Домен:</string>
   <string name="login-retrieving-user-conf">Отримання користувацьких налаштувань</string>
   <string name="login-fail-css">Помилка входу до $1: Не вдалося отримати користувацькі налаштування. Відсутня сторінка Special:MyPage/huggle3.css. Ви точно створили підсторінку huggle3.css у своєму просторі користувача?</string>
-  <string name="login-fail-enable-true">Помилка входу до $1: Відсутній рядок enable:true у ваших користувацьких налаштуваннях.</string>
+  <string name="login-fail-enable-true">Помилка входу до $1: Відсутній рядок enable:true у Ваших користувацьких налаштуваннях.</string>
   <string name="login-fail-no-info">Помилка входу до $1: Не вдалося отримати інформацію про користувача: $2</string>
   <string name="login-fail-parse-config">Помилка входу до $1: Не вдалося розібрати користувацькі налаштування. Дивіться налагоджувальний журнал для отримання детальної інформації.</string>
   <string name="login-fail-user-data">Помилка входу до $1: Не вдалося отримати інформацію про користувача. API-запит не повертає даних.</string>
@@ -263,7 +264,7 @@
   <string name="login-error-cancelled">Скасовано.</string>
   <string name="login-error-config">Помилка входу до $1: не вдалося розібрати локальні налаштування: $2</string>
   <string name="login-error-count">Для використання Huggle у цьому проекті потрібно зробити щонайменше $1 редагувань.</string>
-  <string name="login-error-disabled">Huggle не ввімкнено для вашого облікового запису в $1. Перевірте сторінку користувацьких налаштувань.</string>
+  <string name="login-error-disabled">Huggle не ввімкнено для Вашого облікового запису в $1. Перевірте сторінку користувацьких налаштувань.</string>
   <string name="login-error-global">Помилка входу: Не вдалося розібрати глобальні налаштування. Дивіться налагоджувальний журнал для отримання детальної інформації.</string>
   <string name="login-error-invalid">Неправильне ім’я користувача</string>
   <string name="login-error-noconfig">В $1 відсутня сторінка налаштувань Huggle</string>
@@ -349,7 +350,7 @@
   <string name="main-page-flag-good-edit">Позначити як добре редагування (-200 балів користувачеві)</string>
   <string name="main-page-protect">Захистити</string>
   <string name="main-page-delete">Вилучити</string>
-  <string name="main-page-load">Завантажити</string>
+  <string name="main-page-load">Показати</string>
   <string name="main-patrol-not-enabled">Патрулювання не ввімкнено на $1</string>
   <string name="main-page-restore">Відновити цю версію</string>
   <string name="main-user-info">Показати інформацію про користувача</string>
@@ -400,7 +401,7 @@
   <string name="main-no-page">Для виконання цієї дії потрібно спочатку обрати редагування.</string>
   <string name="main-revert-null">Неможливо скасувати: пусте редагування</string>
   <string name="main-revert-newpage-title">Неможливо це скасувати</string>
-  <string name="main-revert-newpage" fuzzy="true">Це нова сторінка, тому редагування не може бути скасоване. Ви можете додати шаблон, номінувати сторінку на вилучення, чи самостійно вилучити її (за наявності прав).</string>
+  <string name="main-revert-newpage">Це нова сторінка, тому редагування не може бути скасоване. Ви можете додати шаблон, номінувати сторінку на вилучення чи самостійно вилучити її (за наявності прав).</string>
   <string name="main-restore-text-fail">Неможливо відновити версію, оскільки для неї відсутній текст</string>
   <string name="main-restore-data-fail">Неможливо відновити версію, оскільки wiki не надала дані про неї</string>
   <string name="message-title">Повідомлення $1</string>
@@ -492,7 +493,7 @@
   <string name="score-only-whole-word">Окреме слово на будь-якій сторінці</string>
   <string name="score-take-any-word">Будь-яке включення на будь-якій сторінці</string>
   <string name="ssl-is-not-supported">$1 не підтримує SSL-протокол.</string>
-  <string name="ssl-required">Веб-сервер $1 вимагає ввімкнення SSL-протоколу. Будь ласка, ввімкніть SSL та спробуйте знову. Якщо Ви не можете його ввімкнути (опція недоступна), можливо, потрібно встановити Open SSL бібліотеки на вашому комп’ютері.</string>
+  <string name="ssl-required">Веб-сервер $1 вимагає ввімкнення SSL-протоколу. Будь ласка, ввімкніть SSL та спробуйте знову. Якщо Ви не можете його ввімкнути (опція недоступна), можливо, потрібно встановити Open SSL бібліотеки на Вашому комп’ютері.</string>
   <string name="uaa-not-supported">Сповіщення про ім’я користувача не підтримується</string>
   <string name="uaa-not-supported-text">Повідомлення адміністраторів про недопустиме ім’я користувача не підтримується в цій wiki.</string>
   <string name="uaa-reporting">Повідомляю адміністраторів про недопустиме ім’я користувача $1</string>
@@ -515,7 +516,7 @@
   <string name="revert-cannotundo">Неможливо скасувати через конфлікт з проміжними редагуваннями</string>
   <string name="revert-conflict">Сторінку відредагував користувач \'$1\' з білого списку</string>
   <string name="revert-fail">Не вдалося відкинути $1: $2</string>
-  <string name="revert-nochange">Версія, до якої ви хочете відкотити сторінку, ідентична поточній версії</string>
+  <string name="revert-nochange">Версія, до якої Ви хочете відкотити сторінку, ідентична поточній версії</string>
   <string name="revert-fail-pre-flight">Попередня перевірка не вдалася: $1</string>
   <string name="speedy-reason">Причина:</string>
   <string name="speedy-parameters">Параметри:</string>
@@ -546,7 +547,7 @@
   <string name="shortcut-next">Перейти до наступного редагування</string>
   <string name="shortcut-suspicious">Позначити як підозріле редагування</string>
   <string name="shortcut-back">Перейти до показаного раніше редагування</string>
-  <string name="shortcut-forward">Перейти до редагування, що ви завантажили раніше, проте пропустили</string>
+  <string name="shortcut-forward">Перейти до редагування, що Ви завантажили раніше, проте пропустили</string>
   <string name="shortcut-warn">Попередити користувача, не відкидаючи редагування</string>
   <string name="shortcut-revert">Відкинути редагування</string>
   <string name="shortcut-x-raw">Викликати N-й пункт з меню відкотів та попереджень</string>
@@ -573,7 +574,7 @@
   <string name="warning-warntype">Тип попередження:</string>
   <string name="warning-warnlog">Попередження у цього користувача:</string>
   <string name="warning-submit">Надіслати</string>
-  <string name="wikiedit-tp-fail" fuzzy="true">$1 не може бути завантажена, тому неможливо розрахувати рівень попередження</string>
+  <string name="wikiedit-tp-fail">Неможливо завантажити $1. Інформація про попередження користувача не буде використана при підрахунку штрафних балів.</string>
   <string name="missing-warning">Не існує шаблона-попередження $1</string>
   <string name="han-not">Антивандальна мережа (HAN) не дозволена в налаштуваннях</string>
   <string name="han-connecting">Підключення до антивандальної мережі Huggle (HAN)</string>
@@ -611,12 +612,12 @@
   <string name="history-another-edit">Зараз я скасовую інше редагування; зачекайте, будь ласка</string>
   <string name="history-not-found">Нічого не знайдено для скасування</string>
   <string name="history-already-done">Це вже було скасовано</string>
-  <string name="history-message-revert-body">Це повідомлення, залишене після відкоту. Ви впевнені, що хочете прибрати лише його, не скасовуючи сам відкіт? (Якщо ви хочете відмінити обидві дії, вам потрібно також скасувати відкіт.)</string>
+  <string name="history-message-revert-body">Це повідомлення, залишене після відкоту. Ви впевнені, що хочете прибрати лише його, не скасовуючи сам відкіт? (Якщо Ви хочете відмінити обидві дії, Вам потрібно також скасувати відкіт.)</string>
   <string name="history-revert-fail">Не вдалося скасувати Ваше редагування на сторінці $1, оскільки виникла наступна помилка: $2</string>
   <string name="history-undone">Успішно скасовано редагування на сторінці $1</string>
   <string name="history-retrieve-fail">Не вдалося отримати вміст сторінки, на котрій Ви хотіли скасувати власне редагування. Виникла наступна помилка:</string>
   <string name="history-welcome-msg-title">Відправити замість цього привітання?</string>
-  <string name="history-welcome-msg" fuzzy="true">Ви створили дану сторінку обговорення. Хочете замінити її вміст на привітання?</string>
+  <string name="history-welcome-msg">Ви створили дану сторінку обговорення, цю дію неможливо скасувати. Хочете замінити її вміст на привітання?</string>
   <string name="notify-fail">Не вдалося повідомити автора сторінки $1</string>
   <string name="notify-unknowncreator">Не вдалося знайти автора сторінки</string>
   <string name="protect-done">Змінено рівень захисту для сторінки $1</string>
@@ -641,7 +642,7 @@
   <string name="editquery-success">Успішно відредаговано сторінку $1 в $2</string>
   <string name="editquery-token">Отримую маркер для редагування $1</string>
   <string name="editquery-token-error">Не вдалося отримати маркер редагування</string>
-  <string name="editquery-invalid-token" fuzzy="true">Не вдалося відредагувати $1, оскільки маркер, що було збережено в кеші, більше не дійсний. Будь ласка, спробуйте відредагувати сторінку ще раз.</string>
+  <string name="editquery-invalid-token">Не вдалося відредагувати $1, оскільки маркер, що було збережено в кеші, більше не дійсний. Будь ласка, спробуйте відредагувати сторінку ще раз.</string>
   <string name="provider-failure">Збій у роботі постачальника списку нових редагувань $1 для $2. Спробую знайти іншого постачальника.</string>
   <string name="provider-primary-failure">Збій у роботі основного постачальника списку нових редагувань. Переходжу на отримання списку через wiki.</string>
   <string name="rc-error">Не вдалося отримати дані про нові редагування з wiki. Остання помилка: $1</string>
@@ -669,16 +670,20 @@
   <string name="cr-message-not-same">На сторінці $1 з’явилися нові редагування, зроблені різними користувачами. Ви впевнені, що хочете відкинути їх? (Це швидше за все все одно не спрацює через старий маркер сесії.)</string>
   <string name="preferences-delete-using-filter">Ви не можете видалити фільтр, що використовується в даний момент</string>
   <string name="preferences-extension-disabled">Дане розширення вже планується вимкнути при наступному запуску Huggle</string>
-  <string name="preferences-extension-disabled-restart" fuzzy="true">Дане розширення вже планується вимкнути при наступному запуску Huggle</string>
+  <string name="preferences-extension-disabled-restart">Дане розширення вже планується вимкнути при наступному запуску Huggle</string>
   <string name="preferences-extension-enabled">Дане розширення не планується вимкнути при наступному запуску Huggle</string>
   <string name="preferences-extension-enabled-restart">Розширення буде включено, але для цього потрібно перезапустити Huggle</string>
+  <string name="preferences-watchlist-watch">Додати до списку спостереження</string>
+  <string name="preferences-watchlist-unwatch">Прибрати зі списку спостереження</string>
+  <string name="preferences-watchlist-preferences" fuzzy="true">Дотримуватися правил, встановлених Вами в налаштуваннях wiki</string>
+  <string name="preferences-watchlist-nochange">Нічого не робити</string>
   <string name="fail">Збій</string>
   <string name="request">Запит</string>
   <string name="requesting">Роблю запит</string>
   <string name="requested">Запит виконано</string>
   <string name="protect-request-fail">Не вдалося завантажити сторінку для повідомлення адміністраторів: $1</string>
   <string name="protect-request-fail-notext">Не вдалося завантажити сторінку для повідомлення адміністраторів, оскільки запит не повертає текст для цієї сторінки</string>
-  <string name="protect-request-fail-notime" fuzzy="true">Запит не повертає дату та час (помилка MediaWiki?). Перериваю запит.</string>
+  <string name="protect-request-fail-notime">Запит не повертає дату та час. Можливо, через помилку MediaWiki. Перериваю запит.</string>
   <string name="message-fail">Не вдалося залишити повідомлення</string>
   <string name="edit-conflict">Конфлікт редагування</string>
   <string name="page-tag-nodescription">відсутній опис цього шаблону</string>
@@ -690,7 +695,7 @@
   <string name="namespace">Простір назв</string>
   <string name="block-alreadyblocked">Користувача вже заблоковано</string>
   <string name="report-fail">Не вдалося повідомити про користувача, оскільки: $1</string>
-  <string name="report-page-fail" fuzzy="true">Не вдалося завантажити сторінку для повідомлення адміністраторів в $1</string>
+  <string name="report-page-fail">Помилка: не вдалося завантажити сторінку для повідомлення адміністраторів в $1</string>
   <string name="report-page-fail-time">Не вдалося завантажити дату та час сторінки для повідомлення адміністраторів, збій API:
 
 $1</string>

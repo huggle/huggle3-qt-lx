@@ -52,6 +52,7 @@
   <string name="disable">לכבות</string>
   <string name="no-token">אין אסימון</string>
   <string name="flags">דגלים</string>
+  <string name="gracetime">ממתין לסיום שאילתות עריכה...</string>
   <string name="browser-none">שום דף אינו מוצג עכשיו</string>
   <string name="browser-load">הורדת השוואה באמצעות גיבוי תצוגת וב, נא להמתין...</string>
   <string name="browser-miss-summ">לא ניתן תקציר</string>
@@ -119,7 +120,7 @@
   <string name="config-instant-reverts">להשתמש בשחזור מידי (מהיר מאוד, אבל לא ניתן לבטל אותם אחרי הביצוע)</string>
   <string name="config-revert-wait">המתנה לשחזור (בשניות)</string>
   <string name="config-revert">שחזור</string>
-  <string name="config-revert-diff" fuzzy="true">שחזור עריכות לדף שחדשות יותר מההשוואה המוצגת אם הן נעשו על־ידי אותו משתמש משחית</string>
+  <string name="config-revert-diff">שחזור עריכות לדף שחדשות יותר מההשוואה המוצגת אם הן נעשו על־ידי אותו משתמש משחית</string>
   <string name="config-change-all">לשנות את כל הגדרות האגל כדי להתנהג יותר כמו האגל 2</string>
   <string name="config-merge-messages">למזג את ההודעות שלך עם אחרות בפסקאות קיימות</string>
   <string name="config-months-name">להשתמש בחודשים בתור כותרות במקום בשם הדף</string>
@@ -127,10 +128,10 @@
   <string name="config-enable-irc">הפעלת IRC</string>
   <string name="config-remove-reverted">להסיר עריכות שכבר שוחזרו על־ידי מישהו אחר</string>
   <string name="config-remove-old">להסיר עריכות ישנות אם עריכה חדשה יותר לאותו הדף מפוענחת</string>
-  <string name="config-auto-load-history" fuzzy="true">לטעון אוטומטית היסטוריה ומידע על המשתמש (דורש רוחב פס רב)</string>
+  <string name="config-auto-load-history">לטעון אוטומטית היסטוריה ומידע על המשתמש (דורש רוחב פס רב)</string>
   <string name="config-last-revision">להציג את הגרסה האחרונה של הדף במקרה שהעריכה הטעונה הנוכחית אינה הגרסה האחרונה (יוריד אותה אחרי־כן ויעקוף את המטמון)</string>
-  <string name="config-require-delay" fuzzy="true">לדרוש עיכוב אחרי כל טעינה של העריכה הבאה, שבמהלכו לא ניתן להשתמש בשום אפשרות כתיבה (זה שימושי להימנעות מבאגים של לחיצה מרובה במקלדת)</string>
-  <string name="config-wait-edit" fuzzy="true">זמן ההמתנה בשניות עד שאפשרויות העריכה מופעלות:</string>
+  <string name="config-require-delay">לדרוש עיכוב אחרי כל טעינה של העריכה הבאה, שבמהלכו לא ניתן להשתמש בשום אפשרות כתיבה (זה שימושי להימנעות מבאגים של לחיצה מרובה במקלדת)</string>
+  <string name="config-wait-edit">זמן ההמתנה בשניות עד שאפשרויות הכתיבה מופעלות:</string>
   <string name="config-display-text">להציג את הבא</string>
   <string name="config-retrieve-edit">שחזור עריכה של עצמך</string>
   <string name="config-nothing">שום דבר</string>
@@ -145,7 +146,7 @@
   <string name="config-columns-dynamic">לעשות את העמודות של הרשימות דינמיות (ישנה את הגודל שלהן לפי גודל הפריטים) או ידניות (המשתמש יכול לשנות את הגודל שלהן)</string>
   <string name="config-message-notification">להציג התראה כשמגיעה לדף השיחה שלך הודעה חדשה</string>
   <string name="config-warning-api">הצגות אזהרות לשאילתות API</string>
-  <string name="config-title-diff" fuzzy="true">כותרת הדף בכל השוואה (טקסט גדול שמראה רק כותרת דף בראש כל השוואה)</string>
+  <string name="config-title-diff">כותרת הדף בכל השוואה (טקסט גדול שמראה רק כותרת דף בראש כל השוואה)</string>
   <string name="config-updates">בדיקת עדכונים</string>
   <string name="config-beta">בדיקת גרסאות בטא</string>
   <string name="config-html-messages">HAN יכול לתצג הודעות HTML (מסוכן)</string>
@@ -400,7 +401,7 @@
   <string name="main-no-page">הפעולה שביקשת דורשת שיהיה דף טעון. נא לטעון דף לפני ניסיון נוסף.</string>
   <string name="main-revert-null">לא ניתן לשחזר. זוהי עריכה אפסית.</string>
   <string name="main-revert-newpage-title">אי־אפשר לשחזר את זה</string>
-  <string name="main-revert-newpage" fuzzy="true">זה דף חדש, אז אי־אפשר לשחזר אותו, אפשר לתייג אותו או למחוק אותו.</string>
+  <string name="main-revert-newpage">זה דף חדש, אז אי־אפשר לשחזר אותו. אפשר לתייג אותו או למחוק אותו.</string>
   <string name="main-restore-text-fail">לא ניתן לשחזר את הגרסה כי אין לה טקסט זמין</string>
   <string name="main-restore-data-fail">לא ניתן לשחזר את הגרסה כי הוויקי לא סיפק נתונים לגרסה שנבחרה</string>
   <string name="message-title">שליחת הודעה אל $1</string>
@@ -573,7 +574,7 @@
   <string name="warning-warntype">סוג האזהרה:</string>
   <string name="warning-warnlog">אזהרות למשתמש הזה:</string>
   <string name="warning-submit">שליחה</string>
-  <string name="wikiedit-tp-fail" fuzzy="true">לא ניתן לאחזר את רמת האזהרה של $1. זה לא ישמש לדירוג</string>
+  <string name="wikiedit-tp-fail">לא ניתן לאחזר את רמת האזהרה של $1. זה לא ישמש לדירוג</string>
   <string name="missing-warning">אין תבנית אזהרה כזאת $1</string>
   <string name="han-not">רשת ההשחתות אינה מורשית באפשרויות</string>
   <string name="han-connecting">התחברות לרשת האגל למאבק בהשחתות</string>
@@ -616,7 +617,7 @@
   <string name="history-undone">הצלחתי לבטל עריכה לדף $1</string>
   <string name="history-retrieve-fail">לא ניתן לאחזר תוכן של דף שרצינו לבטל בו עריכה של עצמנו, השגיאה הייתה: $1</string>
   <string name="history-welcome-msg-title">לשלוח במקום זאת הודעת ברוך־בואך?</string>
-  <string name="history-welcome-msg" fuzzy="true">יצרת את דף השיחה הזה ולכן לא ניתן לבטל אותו, האם להחליף אותו בתבנית ברוך־בואך?</string>
+  <string name="history-welcome-msg">יצרת את דף השיחה הזה ולכן לא ניתן לבטל אותו. האם להחליף אותו בתבנית ברוך־בואך?</string>
   <string name="notify-fail">לא שלחת הודעה ליוצר של $1</string>
   <string name="notify-unknowncreator">לא ניתן למצוא את יוצר הדף</string>
   <string name="protect-done">רמת ההגנה עבור $1 שונתה</string>
@@ -641,7 +642,7 @@
   <string name="editquery-success">ערך בהצלחה את $1 ב־$2</string>
   <string name="editquery-token">אחזור אסימון לערוך את $1</string>
   <string name="editquery-token-error">לא ניתן לאחזר אסימון עריכה</string>
-  <string name="editquery-invalid-token" fuzzy="true">לא ניתן לבטל את $1 כי האסימון שהיה לי במטמון כבר אינו תקף, נא לנסות לערוך את הדף ההוא עוד פעם</string>
+  <string name="editquery-invalid-token">לא ניתן לבטל את $1 כי האסימון שהיה לי במטמון כבר אינו תקף. נא לנסות לערוך את הדף ההוא עוד פעם</string>
   <string name="provider-failure">ספק ההזנה $1 ב־$2 נכשל, מתבצע ניסיון למצוא ספק חלופי</string>
   <string name="provider-primary-failure">ספק ההזנה העיקרי נכשל, מתבצע גיבוי לספק ויקי</string>
   <string name="rc-error">לא ניתן לאחזור נתונים מהזנת ויקי. שגיאה אחרונה: $1</string>
@@ -669,16 +670,20 @@
   <string name="cr-message-not-same">יש עריכות חדשות יותר לדף $1 מאת משתמש אחר. האם ברצונך באמת לשחזר את כולן? (זה כנראה ממילא ייכשל בגלל אסימון ישן.)</string>
   <string name="preferences-delete-using-filter">לא ניתן למחוק מסנן שנמצא בשימוש עכשיו</string>
   <string name="preferences-extension-disabled">ההרחבה הזאת כבר תוזמנה לכבות בהפעלה הבאה של האגל</string>
-  <string name="preferences-extension-disabled-restart" fuzzy="true">ההרחבה הזאת כבר תוזמנה לכבות בהפעלה הבאה של האגל</string>
+  <string name="preferences-extension-disabled-restart">ההרחבה הזאת כבר תוזמנה לִכבות בהפעלה הבאה של האגל</string>
   <string name="preferences-extension-enabled">ההרחבה הזאת אינה מתוזמנת לכיבוי בהפעלה הבאה של האגל</string>
   <string name="preferences-extension-enabled-restart">ההרחבה הופעלה, אבל יש להפעיל מחדש את האגל כדי שזה יקרה</string>
+  <string name="preferences-watchlist-watch">הוספה לרשימת המעקב</string>
+  <string name="preferences-watchlist-unwatch">הסרה מרשימת המעקב</string>
+  <string name="preferences-watchlist-preferences" fuzzy="true">כמו בהעדפות בוויקי</string>
+  <string name="preferences-watchlist-nochange">לא לעשות דבר</string>
   <string name="fail">לא עבד</string>
   <string name="request">בקשה</string>
   <string name="requesting">שליחת בקשה</string>
   <string name="requested">נשלחה בקשה</string>
   <string name="protect-request-fail">לא ניתן לאחזר את דף הדו״ח הנוכחי: $1</string>
   <string name="protect-request-fail-notext">לא ניתן לאחזר את דף הדו״ח הנוכחי כי השאילתה לא החזירה שום טקסט לדף הזה</string>
-  <string name="protect-request-fail-notime" fuzzy="true">השאילתה לא החזירה שום חותם־זמן (באג מדיה־ויקי?) זריקת השאילתה</string>
+  <string name="protect-request-fail-notime">השאילתה לא החזירה שום חותם־זמן. ייתכן שזה באג מדיה־ויקי. זריקת השאילתה</string>
   <string name="message-fail">מסירת ההודעה לא עבדה</string>
   <string name="edit-conflict">התנגשות עריכה</string>
   <string name="page-tag-nodescription">אין תיאור לג הזה :/</string>
@@ -690,7 +695,7 @@
   <string name="namespace">מרחב שם</string>
   <string name="block-alreadyblocked">המשתש כבר חסום</string>
   <string name="report-fail">דיווח המשתמש נכשל כי: $1</string>
-  <string name="report-page-fail" fuzzy="true">שגיאה לא ניתן לאחזר דף דו״ח ב$1</string>
+  <string name="report-page-fail">שגיאה: לא ניתן לאחזר דף דו״ח ב$1</string>
   <string name="report-page-fail-time">לא ניתן לאחזר חותם־זמן של דף הדו״ח הנוכחי, שגיאת API:
 
 $1</string>

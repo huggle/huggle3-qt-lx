@@ -136,6 +136,7 @@
   <string name="config-userspace">사용자 공간</string>
   <string name="config-talk">토론 문서</string>
   <string name="config-message-notification">새로운 메시지를 받았을 때 당신의 토론 페이지에 알림을 표시한다.</string>
+  <string name="config-warning-api">API 쿼리 경고 표시</string>
   <string name="config-updates">업데이트 확인</string>
   <string name="config-beta">베타 버전을 체크</string>
   <string name="config-html-messages">HAN 은 HTML 메시지를 렌더링할 수 있다. (그러나 위험)</string>
@@ -466,6 +467,8 @@
   <string name="speedy-reason">이유:</string>
   <string name="speedy-parameters">변수:</string>
   <string name="speedy-notifycreator">문서 만든이에게 알림</string>
+  <string name="rollback">$1 되돌리는 중</string>
+  <string name="software-rollback">되돌리기 사용자 권한이 없으므로, 소프트웨어 되돌리기를 사용합니다</string>
   <string name="tag-title">$1 태그</string>
   <string name="tag-tagselector">태그 추가:</string>
   <string name="tag-tags">태그:</string>
@@ -483,6 +486,7 @@
   <string name="shortcut-my-talk">내 토론 문서</string>
   <string name="shortcut-raw">편집을 되돌리고 사용자를 경고</string>
   <string name="shortcut-next">다음 편집으로 가기</string>
+  <string name="shortcut-suspicious">수상한 편집으로 표시</string>
   <string name="shortcut-revert">편집 되돌리기</string>
   <string name="shortcut-revert-agf-1">최신 판을 좋은 뜻으로 보지만 되돌리기</string>
   <string name="shortcut-browser-close-tab">브라우저 탭 닫기</string>
