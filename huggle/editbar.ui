@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>484</width>
-    <height>69</height>
+    <height>70</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -52,7 +52,7 @@
        <widget class="QPushButton" name="pushButton_2">
         <property name="maximumSize">
          <size>
-          <width>20</width>
+          <width>28</width>
           <height>16777215</height>
          </size>
         </property>
@@ -65,7 +65,7 @@
        <widget class="QPushButton" name="pushButton">
         <property name="maximumSize">
          <size>
-          <width>20</width>
+          <width>28</width>
           <height>16777215</height>
          </size>
         </property>
@@ -102,7 +102,7 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>390</width>
+           <width>398</width>
            <height>22</height>
           </rect>
          </property>
@@ -176,7 +176,7 @@
        <widget class="QPushButton" name="pushButton_4">
         <property name="maximumSize">
          <size>
-          <width>20</width>
+          <width>28</width>
           <height>16777215</height>
          </size>
         </property>
@@ -189,7 +189,7 @@
        <widget class="QPushButton" name="pushButton_3">
         <property name="maximumSize">
          <size>
-          <width>20</width>
+          <width>28</width>
           <height>16777215</height>
          </size>
         </property>
@@ -226,7 +226,7 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>390</width>
+           <width>398</width>
            <height>22</height>
           </rect>
          </property>
