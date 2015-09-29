@@ -821,9 +821,6 @@
    <property name="text">
     <string notr="true">Report username</string>
    </property>
-   <property name="shortcut">
-    <string>Alt+R</string>
-   </property>
   </action>
   <action name="actionShow_list_of_score_words">
    <property name="text">

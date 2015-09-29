@@ -793,6 +793,12 @@ void MainWindow::ReloadShort(QString id)
         case HUGGLE_ACCEL_MAIN_EXIT:
             q = this->ui->actionExit;
             break;
+        case HUGGLE_ACCEL_USER_REPORT_USER_NAME:
+            q = this->ui->actionReport_username;
+            break;
+        case HUGGLE_ACCEL_USER_REPORT:
+            q = this->ui->actionReport_user_2;
+            break;
     }
 
     if (q != nullptr)

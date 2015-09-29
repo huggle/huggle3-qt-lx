@@ -541,6 +541,8 @@
   <string name="user-history-fail">unable to retrieve history for user: $1</string>
   <string name="userinfo-generic">User info</string>
   <string name="userinfo-retrieve">Retrieve info</string>
+  <string name="shortcut-report-username">Report username</string>
+  <string name="shortcut-report-user">Report user</string>
   <string name="shortcut-my-talk">My talk page</string>
   <string name="shortcut-raw">Revert edit and warn a user</string>
   <string name="shortcut-exit">Terminate Huggle in a usual way</string>
