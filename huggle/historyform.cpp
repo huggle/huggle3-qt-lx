@@ -45,8 +45,8 @@ HistoryForm::HistoryForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::Hist
         << _l("user")
         << _l("size")
         << _l("summary")
-        << _l("id")
-        << _l("date");
+        << _l("time")
+        << _l("id");
     this->ui->tableWidget->setHorizontalHeaderLabels(header);
     this->ui->tableWidget->verticalHeader()->setVisible(false);
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -262,11 +262,11 @@ void HistoryForm::onTick01()
         i->setFont(font);
         i->setBackgroundColor(xb);
         this->ui->tableWidget->setItem(x, 3, i);
-        i = new QTableWidgetItem(item->RevID);
+        i = new QTableWidgetItem(item->Date);
         i->setFont(font);
         i->setBackgroundColor(xb);
         this->ui->tableWidget->setItem(x, 4, i);
-        i = new QTableWidgetItem(item->Date);
+        i = new QTableWidgetItem(item->RevID);
         i->setFont(font);
         i->setBackgroundColor(xb);
         this->ui->tableWidget->setItem(x, 5, i);

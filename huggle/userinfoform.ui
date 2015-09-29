@@ -80,7 +80,7 @@
      <widget class="QTableWidget" name="tableWidget">
       <property name="font">
        <font>
-        <family>Bitstream Vera Sans</family>
+        <family>Segoe UI</family>
         <pointsize>9</pointsize>
        </font>
       </property>
