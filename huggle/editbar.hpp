@@ -32,9 +32,8 @@ namespace Huggle
     class EditBarItem;
 
     /*!
-     * \brief The EditBar class can be used to list different edit information of pages like 
-     * the time and username of the last edit or do the same from the users perspective 
-     * (list the pages edited by a user)
+     * \brief The EditBar widget can be used to render various edit information of pages, like
+     *        the time and username of the last edit and display them as icons
      */
     class HUGGLE_EX EditBar : public QDockWidget
     {
@@ -46,21 +45,13 @@ namespace Huggle
 	     */
             explicit EditBar(QWidget *parent = 0);
             ~EditBar();
-	    /*!
-	     * \brief RemoveAll Removes all pages and users from the EditBar
-	     */
+            //! Removes all pages and user contributions in the EditBar
             void RemoveAll();
-	    /*!
-	     * \brief Refresh Reloads all pages and users from the EditBar
-	     */
+            //! Refresh page history and user information in the EditBar
             void Refresh();
-	    /*!
-	     * \brief RefreshPage Reloads all pages from the EditBar
-	     */
+            //! Reloads page history from the EditBar
             void RefreshPage();
-	    /*!
-	     * \brief RefreshUser Reloads all users from the EditBar
-	     */
+            //! Reloads all user contributions in the EditBar
             void RefreshUser();
         private slots:
             void on_pushButton_2_clicked();

@@ -166,7 +166,7 @@ namespace Huggle
              */
             static QString GetProjectURL(WikiSite *Project);
             static QString GetLocalizationDataPath();
-            //! Extension path (typically HR/extensions) where .py and .so files are in
+            //! Extension path (typically $huggle_home/extensions) where .py and .so files are in
             static QString GetExtensionsRootPath();
             //! Return a prefix for url
             static QString GetURLProtocolPrefix(WikiSite *s = nullptr);
@@ -231,7 +231,7 @@ namespace Huggle
             int             SystemConfig_ProviderCache = 200;
             //! Maximum size of ringlog
             int             SystemConfig_RingLogMaxSize = 2000;
-            //! Path where huggle contains its data
+            //! Path where huggle contains its data, known as $huggle_home in manual
             QString         HomePath;
             //! Path to a file where information about wikis are stored
             QString         WikiDB = "";
@@ -272,6 +272,7 @@ namespace Huggle
             //! Whether huggle check for an update on startup
             bool            SystemConfig_UpdatesEnabled = true;
             bool            SystemConfig_NotifyBeta = false;
+            //! If true huggle will perform a sanity check of its language files on startup
             bool            SystemConfig_LanguageSanity = false;
             bool            SystemConfig_RequestDelay = false;
             bool            SystemConfig_SuppressWarnings = true;
@@ -283,7 +284,8 @@ namespace Huggle
             //! mediawiki later, can be synced. If this cache is too low, some actions reported on HAN
             //! may be lost and never applied on actual edits, because these are parsed later
             int             SystemConfig_CacheHAN = 100;
-            //! Debug mode
+            //! Debug mode, if true huggle will switch to "display on terminal" mode, where all debug information
+            //! gets written only to terminal and not syslog widget
             bool            SystemConfig_Dot = false;
             bool            SystemConfig_InstantReverts = false;
             int             SystemConfig_RevertDelay = 6;
@@ -378,7 +380,7 @@ namespace Huggle
             QString     Platform;
         private:
             /*!
-             * \brief InsertConfig
+             * \brief InsertConfig stores a configuration KEY / VALUE in a configuration XML file
              * \param key Configuration key
              * \param value Value of key
              * \param s Stream writer

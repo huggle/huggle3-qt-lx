@@ -156,6 +156,7 @@ void EditBar::ClearUser()
     {
         QLayoutItem *i = this->ui->horizontalLayout_user->itemAt(1);
         this->ui->horizontalLayout_user->removeItem(i);
+        delete i;
     }
 }
 
@@ -166,6 +167,7 @@ void EditBar::ClearPage()
     {
         QLayoutItem *i = this->ui->horizontalLayout_page->itemAt(1);
         this->ui->horizontalLayout_page->removeItem(i);
+        delete i;
     }
 }
 
