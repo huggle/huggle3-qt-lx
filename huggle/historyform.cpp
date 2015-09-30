@@ -371,7 +371,7 @@ void HistoryForm::Display(int row, QString html, bool turtlemode)
         return;
     }
 
-    int revid = this->ui->tableWidget->item(row, 4)->text().toInt();
+    int revid = this->ui->tableWidget->item(row, 5)->text().toInt();
     previous_edit = this->CurrentEdit->Page->PageName;
     if (revid == 0)
         return;
@@ -485,12 +485,12 @@ void Huggle::HistoryForm::on_tableWidget_itemSelectionChanged()
     }
     else if (rows.count() > 1)
     {
-        int max = this->ui->tableWidget->item(rows[0], 4)->text().toInt();
+        int max = this->ui->tableWidget->item(rows[0], 5)->text().toInt();
         QString min;
         int row_id = rows[rows.count() - 1];
         if (this->ui->tableWidget->rowCount() > row_id + 1)
             row_id++;
-        min = this->ui->tableWidget->item(row_id, 4)->text();
+        min = this->ui->tableWidget->item(row_id, 5)->text();
         if (!max)
             return;
 
