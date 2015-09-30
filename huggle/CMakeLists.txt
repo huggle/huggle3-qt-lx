@@ -65,15 +65,11 @@ if (PYTHON_BUILD)
     include_directories(${PYTHON_INCLUDE_DIRS})
 endif()
 
-file(GLOB srcx
-    "*.cpp"
-)
-file (GLOB resx
-    "*.qrc"
-)
-file (GLOB uixx
-    "*.ui"
-)
+file(GLOB srcx "*.cpp")
+file (GLOB resx "*.qrc")
+file (GLOB uixx "*.ui")
+file (GLOB headers "*.hpp")
+
 
 SET(huggle_SOURCES ${srcx})
 SET(huggle_FORMS ${uixx})
@@ -93,16 +89,16 @@ endif()
 ADD_DEFINITIONS(${QT_DEFINITIONS})
 ADD_DEFINITIONS( -DQT_USE_QSTRINGBUILDER )
 if (HUGGLE_EXT OR LIBCORE)
-	ADD_LIBRARY(core SHARED ${huggle_SOURCES} ${huggle_HEADERS_MOC} ${huggle_FORMS_HEADERS} ${huggle_RESOURCES_RCC})
+	ADD_LIBRARY(core SHARED ${huggle_SOURCES} ${headers} ${huggle_HEADERS_MOC} ${huggle_FORMS_HEADERS} ${huggle_RESOURCES_RCC})
 	TARGET_LINK_LIBRARIES(core ${QT_LIBRARIES})
 	SET_TARGET_PROPERTIES(core PROPERTIES COMPILE_FLAGS -DHUGGLE_LIBRARY)
 endif()
-ADD_EXECUTABLE(huggle ${huggle_SOURCES} ${huggle_HEADERS_MOC} ${huggle_FORMS_HEADERS} ${huggle_RESOURCES_RCC})
+ADD_EXECUTABLE(huggle ${huggle_SOURCES} ${headers} ${huggle_HEADERS_MOC} ${huggle_FORMS_HEADERS} ${huggle_RESOURCES_RCC})
 if (NOT PYTHON_BUILD)
     TARGET_LINK_LIBRARIES(huggle ${QT_LIBRARIES})
 else()
     if (WIN32)
-	ADD_EXECUTABLE(py_hug ${huggle_SOURCES} ${huggle_HEADERS_MOC} ${huggle_FORMS_HEADERS} ${huggle_RESOURCES_RCC})
+	ADD_EXECUTABLE(py_hug ${huggle_SOURCES} ${headers} ${huggle_HEADERS_MOC} ${huggle_FORMS_HEADERS} ${huggle_RESOURCES_RCC})
         TARGET_LINK_LIBRARIES(huggle ${QT_LIBRARIES})
         TARGET_LINK_LIBRARIES(py_hug ${PYTHON_LIBRARIES} ${QT_LIBRARIES})
 	SET_TARGET_PROPERTIES(py_hug PROPERTIES COMPILE_FLAGS -DHUGGLE_PYTHON)
