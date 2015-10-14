@@ -471,6 +471,7 @@
   <string name="report-warn">此用户已接收到4级警告，也就是最后警告，所以不会再有更多模板会递送给他。您仍可提报他，但请确保他们已经接收到适当等级的警告！您可通过他们的“讨论页”按钮进行。注意此表单和此警告无论您回退成功与否都会显示，所以你应该避免其他用户的冲突（双击如果用户未准备提报）。您仍要提报此用户？</string>
   <string name="report-tu">报告用户</string>
   <string name="report-reason">原因：</string>
+  <string name="report-auto">已反馈$1</string>
   <string name="report-intro">您将报告用户$1</string>
   <string name="report-message">消息：</string>
   <string name="report-log">此用户收到的警告：</string>
@@ -617,7 +618,7 @@
   <string name="history-undone">成功撤销对$1的编辑</string>
   <string name="history-retrieve-fail">无法检索我们想要撤销的自己编辑的页面内容，错误：$1</string>
   <string name="history-welcome-msg-title">改为发送欢迎消息？</string>
-  <string name="history-welcome-msg" fuzzy="true">您已经创建了此讨论页，因此它无法被撤销。您是否想用一个欢迎模板替换它？</string>
+  <string name="history-welcome-msg">您已经创建了此讨论页，因此它无法被撤销。您是否想用一个欢迎模板替换它？</string>
   <string name="notify-fail">未告知$1的创建者</string>
   <string name="notify-unknowncreator">无法找到页面创建者</string>
   <string name="protect-done">已更改$1的保护级别</string>
@@ -675,7 +676,7 @@
   <string name="preferences-extension-enabled-restart">扩展已启用，但您需要重启huggle才能使它生效</string>
   <string name="preferences-watchlist-watch">添加至监视列表</string>
   <string name="preferences-watchlist-unwatch">从监视列表中移除</string>
-  <string name="preferences-watchlist-preferences" fuzzy="true">关注您在wiki上的参数设置</string>
+  <string name="preferences-watchlist-preferences">关注您在wiki上的参数设置</string>
   <string name="preferences-watchlist-nochange">不做任何事</string>
   <string name="fail">失败</string>
   <string name="request">请求</string>
@@ -690,6 +691,7 @@
   <string name="page-tag-fail">无法标记页面</string>
   <string name="page-tag-error">无法标记页面，错误是:$1</string>
   <string name="page-unknown">未知页面</string>
+  <string name="summary-edit-range">显示从修订ID $1至$2之间的差异</string>
   <string name="speedy-csd-invalid">无效速删标记，没有信息或维基标记可以使用</string>
   <string name="speedy-csd-existing">页面上已经有一个速删标记了。</string>
   <string name="namespace">名字空间</string>

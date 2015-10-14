@@ -331,7 +331,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="main-page-protect">Proteger</string>
   <string name="main-page-delete">Borrar</string>
   <string name="main-page-load">Cargar</string>
-  <string name="main-patrol-not-enabled">El patrullaje no está activado en $1</string>
+  <string name="main-patrol-not-enabled">La verificación no está activada en $1</string>
   <string name="main-page-restore">Restaurar esta revisión</string>
   <string name="main-user-info">Mostrar información</string>
   <string name="main-user-ignore">Ignorar</string>
@@ -612,6 +612,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="preferences-extension-enabled-restart">La extensión se activó. Sin embargo, es necesario reiniciar huggle</string>
   <string name="preferences-watchlist-watch">Añadir a la lista de seguimiento</string>
   <string name="preferences-watchlist-unwatch">Quitar de la lista de seguimiento</string>
+  <string name="preferences-watchlist-preferences">Seguir tus preferencias en el wiki</string>
   <string name="preferences-watchlist-nochange">No hacer nada</string>
   <string name="fail">Fallo</string>
   <string name="request">Solicitud</string>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">Brezhoneg</string>
-  <string name="isrtl">gaou</string>
+  <string name="isrtl">false</string>
   <string name="add">Ouzhpennañ</string>
   <string name="cancel">Nullañ</string>
   <string name="clear">Diverkañ</string>

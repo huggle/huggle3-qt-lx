@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">ინგლისური</string>
-  <string name="isrtl">სიცრუე</string>
+  <string name="isrtl">false</string>
   <string name="add">დამატება</string>
   <string name="cancel">გაუქმება</string>
   <string name="clear">გასუფთავება</string>

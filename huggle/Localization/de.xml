@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">Deutsch</string>
-  <string name="isrtl">falsch</string>
+  <string name="isrtl">false</string>
   <string name="add">Hinzufügen</string>
   <string name="cancel">Abbrechen</string>
   <string name="clear">Leeren</string>
@@ -691,7 +691,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="page-tag-fail">Seite konnte nicht markiert werden</string>
   <string name="page-tag-error">Seite konnte nicht markiert werden. Der Fehler war: $1</string>
   <string name="page-unknown">Unbekannte Seite</string>
-  <string name="summary-edit-range">Zeige einen Bereichsunterschied von Versionskennung $1 bis $2</string>
+  <string name="summary-edit-range">Bereichsunterschied von Versionskennung $1 bis $2</string>
   <string name="speedy-csd-invalid">Ungültige CSD-Markierung. Es gibt keine zu verwendende Nachricht und Wiki-Markierung.</string>
   <string name="speedy-csd-existing">Es gibt bereits eine CSD-Markierung auf der Seite.</string>
   <string name="namespace">Namensraum</string>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">Français</string>
-  <string name="isrtl">faux</string>
+  <string name="isrtl">false</string>
   <string name="add">Ajouter</string>
   <string name="cancel">Annuler</string>
   <string name="clear">Effacer</string>
@@ -216,7 +216,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="irc-wait">En attente de l’arrêt du fournisseur de flux IRC</string>
   <string name="irc-switch-rc">Bascule vers le fil IRC du wiki</string>
   <string name="login-old">Récupération de la configuration utilisateur depuis l’ancien emplacement</string>
-  <string name="login-intro">Veuillez choisir un projet et saisir votre nom d’utilisateur et votre mot de passe. Vous pouvez aussi vous connecter à plusieurs projets en cliquant sur le bouton « Projets ».</string>
+  <string name="login-intro">Veuillez choisir un projet et saisir votre nom d’utilisateur et votre mot de passe. Vous pouvez aussi vous connecter à plusieurs projets en cliquant sur le bouton « Projets ».</string>
   <string name="login-tab-oauth">OAuth</string>
   <string name="login-tab-login">Connexion</string>
   <string name="login-reload-tool-tip">Recharger une liste de projets disponibles qui peut être utilisée dans Huggle ; cela peut être utile si vous voulez utiliser Huggle sur un projet pour lequel Huggle a été récemment activé</string>
@@ -471,6 +471,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="report-warn">« Cet utilisateur a déjà atteint le niveau d’avertissement 4, donc plus aucun modèle ne leur sera fourni. Vous pouvez le leur signaler maintenant, mais veuillez vous assurer qu’ils ont déjà atteint le nombre approprié d’avertissements récents ! Vous pouvez le faire en cliquant sur le bouton « page de discussion » dans le formulaire suivant. Gardez  à l’esprit que ce formulaire et cet avertissement sont affichés que votre annulation soit réussie ou non, donc vous pourriez entrer en conflit avec d’autres utilisateurs ici (vérifiez deux fois si l’utilisateur n’a pas déjà été signalé). Voulez-vous avertir cet utilisateur ?</string>
   <string name="report-tu">Signaler à l’utilisateur</string>
   <string name="report-reason">Raison :</string>
+  <string name="report-auto">$1 signalé</string>
   <string name="report-intro">Vous allez signaler l’utilisateur $1</string>
   <string name="report-message">Message :</string>
   <string name="report-log">Avertissements pour cet utilisateur :</string>
@@ -675,7 +676,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="preferences-extension-enabled-restart">L\'extension a été activée, cependant, vous devez redémarrer huggle pour la mettre en oeuvre</string>
   <string name="preferences-watchlist-watch">Ajouter à la liste de suivi</string>
   <string name="preferences-watchlist-unwatch">Supprimer de la liste de suivi</string>
-  <string name="preferences-watchlist-preferences" fuzzy="true">Vous suivre dans les préférences du wiki</string>
+  <string name="preferences-watchlist-preferences">Suivre vos préférences du wiki</string>
   <string name="preferences-watchlist-nochange">Ne rien faire</string>
   <string name="fail">Echec</string>
   <string name="request">Requête</string>
@@ -690,6 +691,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="page-tag-fail">Échec pour baliser la page</string>
   <string name="page-tag-error">Impossible de baliser la page, l\'erreur était: $1</string>
   <string name="page-unknown">Page inconnue</string>
+  <string name="summary-edit-range">Afficher une plage de différence entre les ids de révision $1 et $2</string>
   <string name="speedy-csd-invalid">Balise CDD invalide, il n\'y a pas de message ni de balise wiki à utiliser</string>
   <string name="speedy-csd-existing">Il y a déjà une étiquette CSD sur la page.</string>
   <string name="namespace">Espace de noms</string>

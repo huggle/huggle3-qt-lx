@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">आङ्ग्लभाषा</string>
-  <string name="isrtl">असत्यम्</string>
+  <string name="isrtl">false</string>
   <string name="add">संयोज्यताम्</string>
   <string name="cancel">निरस्यताम्</string>
   <string name="clear">रिक्तीक्रियताम्</string>

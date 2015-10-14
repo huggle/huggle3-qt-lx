@@ -473,6 +473,7 @@
   <string name="cr-revert-same-user">解決済みの問題：全ての編集を復帰-$1について、同じ利用者による複数の編集があります。</string>
   <string name="cr-message-same">$1 には同じ利用者による複数の編集がありますが、それらを本当に差し戻しますか?</string>
   <string name="cr-message-new">$1 には新しい編集があります。それらを本当に差し戻しますか?</string>
+  <string name="preferences-watchlist-preferences">あなたのwiki上の好みに従ってください</string>
   <string name="preferences-watchlist-nochange">何もしない</string>
   <string name="fail">失敗</string>
   <string name="request">要求</string>
