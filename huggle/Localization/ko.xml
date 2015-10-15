@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">한국어</string>
-  <string name="isrtl">거짓</string>
+  <string name="isrtl">false</string>
   <string name="add">추가</string>
   <string name="cancel">취소</string>
   <string name="clear">지우기</string>
@@ -133,6 +133,7 @@
   <string name="config-reverts">되돌리기</string>
   <string name="config-new-page">새 문서</string>
   <string name="config-whitelisted">허용 목록에 올라감</string>
+  <string name="config-friend">친구</string>
   <string name="config-userspace">사용자 공간</string>
   <string name="config-talk">토론 문서</string>
   <string name="config-message-notification">새로운 메시지를 받았을 때 당신의 토론 페이지에 알림을 표시한다.</string>

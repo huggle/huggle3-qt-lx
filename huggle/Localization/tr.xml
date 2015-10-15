@@ -51,6 +51,7 @@
   <string name="disable">Devre dışı bırak</string>
   <string name="no-token">Belirteç yok</string>
   <string name="flags">İşaretler</string>
+  <string name="gracetime">Düzenleme sorgularının sona ermesi bekleniyor...</string>
   <string name="browser-none">Hiçbir sayfa görüntülenmiyor</string>
   <string name="browser-load">Fark, web rendering geri dönüşü kullanılarak indiriliyor, lütfen bekleyin</string>
   <string name="browser-miss-summ">Özet girilmedi</string>
@@ -62,7 +63,7 @@
   <string name="block-reason">Sebep:</string>
   <string name="block-duration">Süre:</string>
   <string name="block-message">Mesaj sayfası mesajı:</string>
-  <string name="block-message-user">Engellenen kullanıcı açıklama mesajı gönder</string>
+  <string name="block-message-user">Seçilen kullanıcıya engellemenin nedenini içeren mesaj gönder</string>
   <string name="block-anononly">Yalnızca anonim kullanıcıları engelle</string>
   <string name="block-creation">Hesap oluşturmayı engelle</string>
   <string name="block-autoblock">Otomatik engellemeyi etkinleştir</string>
@@ -117,7 +118,7 @@
   <string name="config-instant-reverts">Ani geri alma kullan (çok hızlı, fakat başladıktan sonra durdurulamaz)</string>
   <string name="config-revert-wait">Geri alma zamanı (saniye)</string>
   <string name="config-revert">Geri al</string>
-  <string name="config-revert-diff" fuzzy="true">Aynı kullanıcı (aynı vandal) tarafından sayfaya yapılan yeni değişiklerde farkı göstermek yerine geri al</string>
+  <string name="config-revert-diff">Eğer gösterilen değişiklerden daha yeni olan değişiklikler aynı vandal kullanıcı tarafından yapılmışsa söz konusu değişiklikleri geri al</string>
   <string name="config-change-all">Huggle\'ın tüm ayarlarını huggle 2 versiyonuna çevir</string>
   <string name="config-merge-messages">Mevcut bölümlerdeki mesajlarını birleştir</string>
   <string name="config-months-name">Başlık olarak sayfanın adı yerine ayları kullan</string>
@@ -125,10 +126,10 @@
   <string name="config-enable-irc">IRC\'i etkinleştir</string>
   <string name="config-remove-reverted">Başkası tarafından geri alınmış değişiklikleri listeden çıkar</string>
   <string name="config-remove-old">Eğer sayfada yeni değişiklikler yapılmışsa eskilerini kaldır</string>
-  <string name="config-auto-load-history" fuzzy="true">Geçmişi ve kullanıcı bilgisini otomatik yükle (çok fazla ağ bağlantısı gerektirir)</string>
+  <string name="config-auto-load-history">Geçmişi ve kullanıcı bilgisini otomatik yükle (çok fazla ağ kullanımı gerektirir)</string>
   <string name="config-last-revision">Eğer şuan yüklü olan değişiklik son değişiklik değilse en yeni sürümünü göster (önbelleği atlayarak sonradan indirecektir)</string>
-  <string name="config-require-delay" fuzzy="true">Her yeni değişikliği yüklerken geciktirme gereksin, herhangi bir yazma özelliği kullanılamasın (klavyede çoklu basma sorununu çözmeye çalışırken faydalıdır)</string>
-  <string name="config-wait-edit" fuzzy="true">Düzenleme özelliklerinin etkinleştirilmesi arasına beklemeniz gereken süre (saniye):</string>
+  <string name="config-require-delay">Her yeni değişikliği yüklerken geciktirme gereksin, herhangi bir yazma özelliği kullanılamasın (klavyede çoklu basma sorununu çözmeye çalışırken faydalıdır)</string>
+  <string name="config-wait-edit">Düzenleme özelliklerinin etkinleştirilmesi için beklemeniz gereken süre (saniye):</string>
   <string name="config-display-text">Sonrakini göster</string>
   <string name="config-retrieve-edit">Düzenlemenizi geri alın</string>
   <string name="config-nothing">Hiçbir şey</string>
@@ -143,7 +144,7 @@
   <string name="config-columns-dynamic">Liste kolonlarını dinamik (öğelerin büyüklüğüne göre yeniden boyutlandırılacaktır) veya manuel (kullanıcı boyutu değiştirebilecektir) yap</string>
   <string name="config-message-notification">Konuşma sayfanızda yeni bir mesaj olduğunda bir bildirim gösterilsin</string>
   <string name="config-warning-api">API sorguları için uyarıları göster</string>
-  <string name="config-title-diff" fuzzy="true">Her değişiklikte sayfa başlığı (her değişikliğin tepesinde sadece bir sayfa başlığı gösteren büyük metin)</string>
+  <string name="config-title-diff">Her değişiklikte sayfa başlığı (her değişikliğin tepesinde sadece bir sayfa başlığı gösteren büyük metin)</string>
   <string name="config-updates">Güncelleştirmeleri denetle</string>
   <string name="config-beta">Beta sürümleri kontrol et</string>
   <string name="config-html-messages">HAN, HTML mesajlarını render edebilir (tehlikeli)</string>
@@ -348,6 +349,7 @@
   <string name="main-page-protect">Koru</string>
   <string name="main-page-delete">Sil</string>
   <string name="main-page-load">Yükle</string>
+  <string name="main-patrol-not-enabled">$1\'de devriyelik devre dışı</string>
   <string name="main-page-restore">Bu sürümü geri getir</string>
   <string name="main-user-info">Kullanıcı bilgisini göster</string>
   <string name="main-user-ignore">Yoksay</string>
@@ -397,7 +399,7 @@
   <string name="main-no-page">Talebinizin gerçekleşmesi için bir sayfa yüklenmelidir. Lütfen tekrar denemeden önce bir sayfa yükleyin.</string>
   <string name="main-revert-null">Geri alınamadı: değişiklik boş</string>
   <string name="main-revert-newpage-title">Geri alınamaz.</string>
-  <string name="main-revert-newpage" fuzzy="true">Bu yeni bir sayfa olduğu için geri alınamıyor; sayfayı yalnızca etiketleyebilir veya silebilirsiniz.</string>
+  <string name="main-revert-newpage">Bu yeni bir sayfa olduğu için geri alınamıyor. Sayfayı yalnızca etiketleyebilir veya silebilirsiniz.</string>
   <string name="main-restore-text-fail">Revizyon geri getirilemiyor çünkü kullanılabilir metin yok</string>
   <string name="main-restore-data-fail">Revizyon geri yüklemek mümkün değil çünkü wiki seçili sürümü için veri sağlamadı.</string>
   <string name="message-title">Mesaj $1</string>
@@ -467,6 +469,7 @@
   <string name="report-warn">Bu kullanıcı çoktan 4. uyarı seviyesine erişti, bu yüzden kullanıcıya artık şablon iletilmeyecek. Rapor edebilirsiniz, fakat lütfen uygun sayıda yakın tarihli uyarı sayısına eriştiğinden emin olunuz. Bunu, takip eden formda \"mesaj sayfası\" düğmesini tıklayarak yapabilirsiniz. Geri döndürme işlemi başarılı da olsa başarısız da olsa bu uyarı ve formun görüntülendiğini lütfen akınızdan çıkarmayınız. Yani başka kullanıcılarla değişiklik çakışması yaşıyor olabilirsiniz hâlâ (kullanıcının halihazırda rapor edilmediğini tekrar kontrol ediniz). Kullanıcıyı rapor etmek istiyor musunuz?</string>
   <string name="report-tu">Kullanıcıyı rapor et</string>
   <string name="report-reason">Sebep:</string>
+  <string name="report-auto">$1 rapor edildi</string>
   <string name="report-intro">$1 kullanıcısını rapor edeceksiniz</string>
   <string name="report-message">Mesaj:</string>
   <string name="report-log">Bu kullanıcıya yapılan uyarılar:</string>
@@ -488,6 +491,8 @@
   <string name="score-take-whole-no-talk-word">Tartışma sayfaları dışındaki sayfalara tüm sayfalarla eşleştirme</string>
   <string name="score-only-whole-word">Yalnızca tam sözcükleri eşleştir</string>
   <string name="score-take-any-word">Bu şartlara uyan herhangi bir kelimeyle eşleştir</string>
+  <string name="ssl-is-not-supported">SSL kullanmayı talep ettiniz ancak $1 bunu desteklemiyor.</string>
+  <string name="ssl-required">$1 internet sunucusu SSL\'ın etkinleştirilmesini gerektiriyor. SSL\'i etkinleştirip tekrar deneyin. SSL\'i etkinleştiremiyorsanız (seçenek gri renkte ise) açık ssl kütüphanelerini sisteminize yüklemeniz gerekebilir.</string>
   <string name="uaa-not-supported">UAA mevcut değil</string>
   <string name="uaa-not-supported-text">\"Kullanıcı adları için hizmetli uyarı bildirimi\" tahtası Viki\'nizde kullanıma açık değildir.</string>
   <string name="uaa-reporting">UAA\'ya rapor ediliyor: $1</string>
@@ -568,6 +573,7 @@
   <string name="warning-warntype">Uyarı türü:</string>
   <string name="warning-warnlog">Bu kullanıcıya yapılan uyarılar:</string>
   <string name="warning-submit">Gönder</string>
+  <string name="wikiedit-tp-fail">$1 uyarı seviyesi çağrılamadı. Puanlama için kullanılamayacaktır.</string>
   <string name="missing-warning">Böyle bir uyarı şablonu yok $1</string>
   <string name="han-not">Vandalizm ağı seçeneklerde devredışı</string>
   <string name="han-connecting">Huggle anti-vandalizm ağına bağlanılıyor</string>
@@ -608,8 +614,9 @@
   <string name="history-message-revert-body">Bu bir geri döndürme tarafından referans gösterilen bir mesajdı, sadece şablonu geri almak istediğinize ve sayfa üzerindeki değişikliğinizi bile geri almak istemediğinize emin misiniz? (İkisini de geri almak istiyorsanız geri döndürmeyi geri almalısınız)</string>
   <string name="history-revert-fail">$1 üzerinde değişikliğiniz şu hatayla karşılaşılmasından dolayı geri alınamadı: $2</string>
   <string name="history-undone">$1 üzerindeki değişiklik başarıyla geri alındı.</string>
+  <string name="history-retrieve-fail">Kendi değişikliğini geri almak için istenen sayfa içeriğine erişilemedi. Hata: $1</string>
   <string name="history-welcome-msg-title">Bunun yerine \"Hoşgeldin\" mesajı gönderilsin mi?</string>
-  <string name="history-welcome-msg" fuzzy="true">Bu tartışma sayfasını yarattnız artık, bu yüzden geri alınamaz, sayfa içeriğini \"Hoşgeldin\" şablonuyla değiştirmek ister misiniz?</string>
+  <string name="history-welcome-msg">Bu tartışma sayfasını yarattnız artık, geri alınması mümkün değil. Sayfa içeriğini \"Hoşgeldin\" şablonuyla değiştirmek ister misiniz?</string>
   <string name="notify-fail">$1\'in yaratıcısına bildirim gönderilmedi</string>
   <string name="notify-unknowncreator">Sayfa yaratıcısı bulunamadı</string>
   <string name="protect-done">$1\'in korunma seviyesi değişti</string>
@@ -634,9 +641,13 @@
   <string name="editquery-success">$2 üzerinde $1 başarılı bir şekilde değiştirildi.</string>
   <string name="editquery-token">$1 değiştirmek için belirteç alınıyor</string>
   <string name="editquery-token-error">Değişiklik için belirteç alınamadı</string>
+  <string name="editquery-invalid-token">Önbellekteki fiş geçerli olmadığı için $1 değiştirilemedi. Lütfen sayfayı değiştirmeyi bir kez daha deneyin.</string>
   <string name="provider-failure">$2 üzerinde $1 besleme sağlayıcı hatası, alternatif bir kaynak bulunmaya çalışılıyor</string>
   <string name="provider-primary-failure">Birincil besleme sağlayıcısı başarısız, wiki sağlayıcısına dönülüyor</string>
   <string name="rc-error">Wiki beslemesinden bilgi alınamadı, son hata: $1</string>
+  <string name="rc-timestamp-missing">RC Yayını: Nesnede zaman damgası niteliği eksik: $1</string>
+  <string name="rc-type-missing">RC Yayını: Nesnede tür niteliği eksik: $1</string>
+  <string name="rc-title-missing">RC Yayını: Nesnede başlık niteliği eksik: $1</string>
   <string name="whitelist-download">Yeni beyaz liste indiriyor</string>
   <string name="logs-widget-name">Sistem günlüğü</string>
   <string name="wait">Lütfen bekleyin...</string>
@@ -658,19 +669,35 @@
   <string name="cr-message-not-same">$1 üzerinde farklı kullanıcılar tarafından yapılan yeni değişiklikler var. Hepsini geri almak istediğinize emin misiniz? (Eski belirteç yüzünden muhtemelen zaten başarısız olacaktır.)</string>
   <string name="preferences-delete-using-filter">Kullanılan bir süzgeci silemezsiniz</string>
   <string name="preferences-extension-disabled">Bu uzantı zaten huggle yeniden başlarken devre dışı kalmak üzere planlanmış</string>
-  <string name="preferences-extension-disabled-restart" fuzzy="true">Bu uzantı zaten Huggle yeniden başladığında devre dışı kalmak üzere planlanmış</string>
+  <string name="preferences-extension-disabled-restart">Bu uzantı Huggle yeniden başladığında devre dışı kalmak üzere ayarlanmış</string>
+  <string name="preferences-extension-enabled">Bu uzantı Huggle yeniden başladığında devre dışı kalmak üzere ayarlanmamış</string>
+  <string name="preferences-extension-enabled-restart">Uzantı etkinleştirildi ancak çalışması için Huggle\'ın yeniden başlatılması lazım.</string>
+  <string name="preferences-watchlist-watch">İzleme listesine ekle</string>
+  <string name="preferences-watchlist-unwatch">İzleme listesinden çıkar</string>
+  <string name="preferences-watchlist-preferences">Wiki\'deki tercihlerini takip et</string>
+  <string name="preferences-watchlist-nochange">Hiçbir şey yapma</string>
   <string name="fail">Başarısız</string>
   <string name="request">Talep et</string>
   <string name="requesting">Talep ediliyor</string>
   <string name="requested">Talep edildi</string>
+  <string name="protect-request-fail">Mevcut rapor sayfasına ulaşılamadı: $1</string>
+  <string name="protect-request-fail-notext">Mevcut rapor sayfasına ulaşılamadı çünkü sorgu bu sayfa için herhangi bir metin geri dönüşü yapmadı</string>
+  <string name="protect-request-fail-notime">Sorgu zaman damgası dönüşü yapmadı. Bu bir MediaWiki hatası olabilir. Sorgu sona erdiriliyor</string>
   <string name="message-fail">Mesajı iletme başarısız oldu</string>
   <string name="edit-conflict">Değişiklik çakışması</string>
   <string name="page-tag-nodescription">bu etiket için hiçbir açıklama yok :/</string>
   <string name="page-tag-fail">Sayfa etiketi başarısız oldu</string>
+  <string name="page-tag-error">Sayfa etiketlenemedi. Hata: $1</string>
   <string name="page-unknown">Bilinmeyen sayfa</string>
+  <string name="speedy-csd-invalid">Geçersiz CSD etiketi. Kullanılabilecek mesaj veya wiki etiketi yok.</string>
+  <string name="speedy-csd-existing">Zaten sayfada CSD etiketi var.</string>
   <string name="namespace">Ad alanı</string>
   <string name="block-alreadyblocked">Kullanıcı zaten engellenmiş.</string>
   <string name="report-fail">Rapor edilemedi çünkü: $1</string>
+  <string name="report-page-fail">Hata: $1\'deki rapor sayfası getirilemedi.</string>
+  <string name="report-page-fail-time">Mevcut rapor sayfasının zaman damgası bulunamadı. API hatası:
+
+$1</string>
   <string name="report-unable">Kullanıcı rapor edilemiyor :(</string>
   <string name="about-python-with">,Python destekli</string>
   <string name="about-python-without">,Python desteği olmadan</string>

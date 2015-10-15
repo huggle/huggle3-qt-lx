@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">Ағышын</string>
-  <string name="isrtl">Жалған</string>
+  <string name="isrtl">false</string>
   <string name="add">Қосу</string>
   <string name="cancel">Болдырмау</string>
   <string name="clear">Тазарту</string>

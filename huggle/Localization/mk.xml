@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">Македонски</string>
-  <string name="isrtl">неточно</string>
+  <string name="isrtl">false</string>
   <string name="add">Додај</string>
   <string name="cancel">Откажи</string>
   <string name="clear">Исчисти</string>

@@ -471,6 +471,7 @@
   <string name="report-warn">המשתמש הזה כבר הגיע לרמת אזהרה 4, אז לא יישלחו אליו עוד תבניות. אפשר לדווח אותו עכשיו, אבל נא לוודא שהוא כבר קיבל מספר מתאים של אזהרות לאחרונה! אפשר לעשות זאת באמצעות לחיצה על כפתור \"דף שיחה\" בטופס הבא. נא לזכור שהטופס הזה מוצג אם השחזור הצליח וגם אם לא, אז ייתכן שתהיה לך התנגשות עם משתמשים אחרים (נא לוודא שהמשתמש לא מדווח כבר). האם לדווח את המשתמש הזה?</string>
   <string name="report-tu">לדווח משתמש</string>
   <string name="report-reason">סיבה:</string>
+  <string name="report-auto">$1 דווח</string>
   <string name="report-intro">הולך להישלח בשמך דיווח על המשתמש $1</string>
   <string name="report-message">הודעה:</string>
   <string name="report-log">אזהרות למשתמש:</string>
@@ -675,7 +676,7 @@
   <string name="preferences-extension-enabled-restart">ההרחבה הופעלה, אבל יש להפעיל מחדש את האגל כדי שזה יקרה</string>
   <string name="preferences-watchlist-watch">הוספה לרשימת המעקב</string>
   <string name="preferences-watchlist-unwatch">הסרה מרשימת המעקב</string>
-  <string name="preferences-watchlist-preferences" fuzzy="true">כמו בהעדפות בוויקי</string>
+  <string name="preferences-watchlist-preferences">כמו בהעדפות שלך בוויקי</string>
   <string name="preferences-watchlist-nochange">לא לעשות דבר</string>
   <string name="fail">לא עבד</string>
   <string name="request">בקשה</string>
@@ -690,6 +691,7 @@
   <string name="page-tag-fail">תיוג הדף לא עבד</string>
   <string name="page-tag-error">לא ניתן לתייג את הדף, השגיאה הייתה: $1</string>
   <string name="page-unknown">דך בלתי־ידוע</string>
+  <string name="summary-edit-range">הצגת השוואת טווח בין $1 לבין $2</string>
   <string name="speedy-csd-invalid">תג CSD בלתי־תקין, אין הודעה ותג ויקי לשימוש</string>
   <string name="speedy-csd-existing">כבר יש תג CSD בדף.</string>
   <string name="namespace">מרחב שם</string>

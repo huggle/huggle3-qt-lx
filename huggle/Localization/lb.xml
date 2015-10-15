@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">Lëtzebuergesch</string>
-  <string name="isrtl">falsch</string>
+  <string name="isrtl">false</string>
   <string name="add">Derbäisetzen</string>
   <string name="cancel">Ofbriechen</string>
   <string name="clear">Eidel maachen</string>
@@ -388,7 +388,7 @@ Benotzerinformatioun konnt net ofgefrot ginn: $2</string>
   <string name="cr-message-new">Et gëtt méi nei Ännerunge vu(n) $1, sidd Dir sécher datt Dir se wierklech zrécksetze wëllt?</string>
   <string name="preferences-watchlist-watch">Op d\'Iwwerwaachungslëscht derbäisetzen</string>
   <string name="preferences-watchlist-unwatch">Vun der Iwwerwaachungslëscht erofhuelen</string>
-  <string name="preferences-watchlist-preferences" fuzzy="true">Iwwerwaacht Är Wiki-Astellungen</string>
+  <string name="preferences-watchlist-preferences">Iwwerwaacht Är Wiki-Astellungen</string>
   <string name="preferences-watchlist-nochange">Näischt maachen</string>
   <string name="request">Ufro</string>
   <string name="requesting">Ufroen</string>

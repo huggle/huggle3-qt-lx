@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">અંગ્રેજી</string>
-  <string name="isrtl">ખોટું</string>
+  <string name="isrtl">false</string>
   <string name="add">ઉમેરો</string>
   <string name="cancel">રદ કરો</string>
   <string name="clear">સાફ કરો</string>

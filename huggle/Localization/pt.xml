@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">português</string>
-  <string name="isrtl">falso</string>
+  <string name="isrtl">false</string>
   <string name="add">Adicionar</string>
   <string name="cancel">Cancelar</string>
   <string name="clear">Apagar</string>
@@ -657,6 +657,7 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="page-tag-fail">A marcação da página falhou</string>
   <string name="page-tag-error">Não foi possível marcar a página, o erro foi: $1</string>
   <string name="page-unknown">Página desconhecida</string>
+  <string name="summary-edit-range">Mostrando uma diferença do intervalo de revid $1 para $2</string>
   <string name="namespace">Domínio</string>
   <string name="block-alreadyblocked">O utilizador já se encontra bloqueado</string>
   <string name="report-fail">Não foi possível denunciar o utilizador: $1</string>

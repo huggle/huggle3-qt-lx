@@ -1065,6 +1065,9 @@ void Login::Finish()
         this->loadingForm = nullptr;
         LoadingForm::IsKilled = true;
     }
+    // now we can safely delete this form
+    Core::HuggleCore->fLogin = nullptr;
+    delete this;
 }
 
 void Login::reject()

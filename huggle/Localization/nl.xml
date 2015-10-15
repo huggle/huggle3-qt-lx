@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">Nederlands (Dutch)</string>
-  <string name="isrtl">onwaar</string>
+  <string name="isrtl">false</string>
   <string name="add">Toevoegen</string>
   <string name="cancel">Annuleren</string>
   <string name="clear">Leegmaken</string>
