@@ -381,7 +381,7 @@ QDateTime ProjectConfiguration::ServerTime()
 ScoreWord::ScoreWord(QString Word, int Score)
 {
     this->score = Score;
-    this->word = Word;
+    this->word = Word.toLower();
 }
 
 ScoreWord::ScoreWord(ScoreWord *word)
