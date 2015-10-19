@@ -650,6 +650,9 @@ void MainWindow::ReloadShort(QString id)
         case HUGGLE_ACCEL_MAIN_USER_CONTRIBUTIONS:
             q = this->ui->actionUser_contributions;
             break;
+        case HUGGLE_ACCEL_MAIN_CONTRIB_BROWSER:
+            q = this->ui->actionContribution_browser;
+            break;
         case HUGGLE_ACCEL_CREATE_NEW_TAB:
             q = this->ui->actionOpen_new_tab;
             break;
@@ -2973,4 +2976,12 @@ void MainWindow::on_actionPrint_API_for_diff_triggered()
     if (!this->CurrentEdit->PropertyBag.contains("debug_api_url_diff"))
         return;
     HUGGLE_DEBUG1(this->CurrentEdit->PropertyBag["debug_api_url_diff"].toString());
+}
+
+void Huggle::MainWindow::on_actionContribution_browser_triggered()
+{
+    if (this->CurrentEdit == nullptr)
+        return;
+
+    WikiUtil::DisplayContributionBrowser(this->CurrentEdit->User, this);
 }

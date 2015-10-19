@@ -199,6 +199,7 @@
     <addaction name="actionTalk_page"/>
     <addaction name="actionUser_page"/>
     <addaction name="actionClear_talk_page_of_user"/>
+    <addaction name="actionContribution_browser"/>
     <addaction name="actionUser_contributions"/>
     <addaction name="separator"/>
     <addaction name="actionWelcome_user_2"/>
@@ -625,9 +626,6 @@
   <action name="actionClear_talk_page_of_user">
    <property name="text">
     <string notr="true">Clear talk page of user</string>
-   </property>
-   <property name="shortcut">
-    <string>Shift+C</string>
    </property>
   </action>
   <action name="actionList_all_QGC_items">
@@ -1092,6 +1090,11 @@
   <action name="actionPrint_API_for_diff">
    <property name="text">
     <string>Print API for diff</string>
+   </property>
+  </action>
+  <action name="actionContribution_browser">
+   <property name="text">
+    <string>Contribution browser</string>
    </property>
   </action>
  </widget>

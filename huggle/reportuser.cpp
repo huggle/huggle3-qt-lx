@@ -51,22 +51,27 @@ void ReportUser::SilentReport(WikiUser *user)
     window->SilentReport();
 }
 
-ReportUser::ReportUser(QWidget *parent) : HW("reportuser", this, parent), ui(new Ui::ReportUser)
+ReportUser::ReportUser(QWidget *parent, bool browser) : HW("reportuser", this, parent), ui(new Ui::ReportUser)
 {
+    this->isBrowser = browser;
     this->ui->setupUi(this);
     this->ReportedUser = nullptr;
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
     this->ui->pushButton->setEnabled(false);
     this->ui->pushButton->setText(_l("report-history"));
     QStringList header;
-    this->ui->tableWidget->setColumnCount(5);
     this->tPageDiff = new QTimer(this);
     connect(this->tPageDiff, SIGNAL(timeout()), this, SLOT(On_DiffTick()));
     header << _l("page") <<
               _l("time") <<
               _l("link") <<
-              _l("diffid") <<
-              _l("report-include");
+              _l("diffid");
+    if (!this->isBrowser)
+    {
+        // In case we are in browser mode we don't want to use this column
+        header << _l("report-include");
+    }
+    this->ui->tableWidget->setColumnCount(header.size());
     this->ui->tableWidget->setHorizontalHeaderLabels(header);
     this->ui->tableWidget->verticalHeader()->setVisible(false);
     this->ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -109,6 +114,17 @@ ReportUser::ReportUser(QWidget *parent) : HW("reportuser", this, parent), ui(new
     this->tReportUser = nullptr;
     this->ui->webView->setHtml(_l("report-select"));
     this->RestoreWindow();
+    if (this->isBrowser)
+    {
+        this->ui->label_2->setVisible(false);
+        this->ui->label_3->setVisible(false);
+        this->ui->pushButton->setVisible(false);
+        this->ui->pushButton_2->setVisible(false);
+        this->ui->pushButton_4->setVisible(false);
+        this->ui->pushButton_5->setVisible(false);
+        this->ui->pushButton_6->setVisible(false);
+        this->ui->lineEdit->setVisible(false);
+    }
 }
 
 ReportUser::~ReportUser()
@@ -127,8 +143,15 @@ bool ReportUser::SetUser(WikiUser *user)
     if (this->ReportedUser)
         delete this->ReportedUser;
     this->ReportedUser = new WikiUser(user);
-    this->setWindowTitle(_l("report-title", this->ReportedUser->Username));
-    this->ui->label->setText(_l("report-intro", user->Username));
+    if (this->isBrowser)
+    {
+        this->ui->label->setText(_l("contribution-browser-user-info", user->Username));
+        this->setWindowTitle("Contribution browser for: " + user->Username);
+    } else
+    {
+        this->setWindowTitle(_l("report-title", this->ReportedUser->Username));
+        this->ui->label->setText(_l("report-intro", user->Username));
+    }
     this->ui->lineEdit->setText(this->ReportedUser->GetSite()->GetProjectConfig()->ReportDefaultReason);
     this->qHistory = new ApiQuery(ActionQuery, this->ReportedUser->GetSite());
     this->qHistory->Parameters = "list=recentchanges&rcuser=" + QUrl::toPercentEncoding(user->Username) +

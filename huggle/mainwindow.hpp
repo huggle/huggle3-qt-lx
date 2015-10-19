@@ -332,6 +332,8 @@ namespace Huggle
             void on_actionFinal_triggered();
             void on_actionPrint_API_for_diff_triggered();
 
+            void on_actionContribution_browser_triggered();
+
         private:
             void DisplayWelcomeMessage();
             void FinishRestore();

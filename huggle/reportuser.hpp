@@ -35,13 +35,23 @@ namespace Huggle
     class BlockUser;
 
     //! Report user
+
+    //! Huggle 3.1.19 implemented this window also as contribution list window.
+    //! In standard mode this window is used to report users to AIV, but it's
+    //! possible to switch it into "contrib browser" mode in which it serves
+    //! only in order to display contributions of a given user
     class HUGGLE_EX ReportUser : public HW
     {
             Q_OBJECT
         public:
             static void SilentReport(WikiUser *user);
 
-            explicit ReportUser(QWidget *parent = nullptr);
+            /*!
+             * \brief ReportUser
+             * \param parent
+             * \param browser If true the report form will turn into a contribution browser
+             */
+            explicit ReportUser(QWidget *parent = nullptr, bool browser = false);
             //! Set a user
             bool SetUser(WikiUser *user);
             void SilentReport();
@@ -65,6 +75,7 @@ namespace Huggle
             //! Stop all operations
             void Kill();
             void failCheck(QString reason);
+            bool isBrowser = false;
             bool flagSilent = false;
             Ui::ReportUser *ui;
             //! Reported user

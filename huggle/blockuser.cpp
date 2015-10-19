@@ -239,3 +239,8 @@ void BlockUser::Recheck()
         this->ui->pushButton->setEnabled(true);
     }
 }
+
+void Huggle::BlockUser::on_pushButton_4_clicked()
+{
+    WikiUtil::DisplayContributionBrowser(this->user, this);
+}

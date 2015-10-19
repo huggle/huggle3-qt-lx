@@ -101,6 +101,7 @@ Configuration::Configuration()
     this->MakeShortcut("main-user-report-name", "shortcut-report-username", "Alt+R");
     this->MakeShortcut("main-user-report-user", "shortcut-report-user", "Ctrl+R");
     this->MakeShortcut("main-user-display-contribs", "shortcut-contrib", "C");
+    this->MakeShortcut("main-user-contribs-browser", "shortcut-user-contribs-browser", "Shift+C");
 }
 
 Configuration::~Configuration()
@@ -657,6 +658,8 @@ Shortcut::Shortcut(QString name, QString description)
         this->ID = HUGGLE_ACCEL_USER_REPORT;
     else if (name == "main-user-display-contribs")
         this->ID = HUGGLE_ACCEL_MAIN_USER_CONTRIBUTIONS;
+    else if (name == "main-user-contribs-browser")
+        this->ID = HUGGLE_ACCEL_MAIN_CONTRIB_BROWSER;
     else if (name.startsWith("main-revert-and-warn-"))
     {
         if (name == "main-revert-and-warn-0")

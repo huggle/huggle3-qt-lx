@@ -16,6 +16,7 @@
 #include "editquery.hpp"
 #include "mediawiki.hpp"
 #include "syslog.hpp"
+#include "reportuser.hpp"
 #include "querypool.hpp"
 #include "wikisite.hpp"
 #include "wikiedit.hpp"
@@ -413,3 +414,15 @@ void WikiUtil::RetrieveEditByRevid(revid_ht revid, WikiSite *site, void *source,
 }
 
 /////////////////////////////////////////////////////////////////
+
+
+void WikiUtil::DisplayContributionBrowser(WikiUser *User, QWidget *parent)
+{
+    // We are using ReportUser as a contribution browser because we already have all the code for contribs
+    // in there, the second parameter in constructors switches between standard report form and just
+    // the contribution browser.
+    ReportUser *report = new ReportUser(parent, true);
+    report->setAttribute(Qt::WidgetAttribute::WA_DeleteOnClose);
+    report->SetUser(User);
+    report->show();
+}

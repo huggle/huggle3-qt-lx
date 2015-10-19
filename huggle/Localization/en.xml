@@ -82,6 +82,7 @@
   <string name="block-type">Block / unblock</string>
   <string name="block-admin">Blocking sysop</string>
   <string name="block-none">There is no user to block.</string>
+  <string name="contribution-browser-user-info">Showing recent contributions of user $1</string>
   <string name="config-function">Function</string>
   <string name="config-description">Description</string>
   <string name="config-shortcut">Shortcut</string>

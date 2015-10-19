@@ -60,6 +60,8 @@ namespace Huggle
             void on_pushButton_2_clicked();
             void onTick();
             void on_pushButton_3_clicked();
+            void on_pushButton_4_clicked();
+
         private:
             void Recheck();
             Ui::BlockUser *ui;
