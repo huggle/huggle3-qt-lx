@@ -71,6 +71,7 @@ class QXmlStreamWriter;
 #define HUGGLE_ACCEL_MAIN_WATCH                 45
 #define HUGGLE_ACCEL_MAIN_UNWATCH               46
 #define HUGGLE_ACCEL_MAIN_OPEN                  48
+#define HUGGLE_ACCEL_MAIN_USER_CONTRIBUTIONS    50
 #define HUGGLE_ACCEL_CLOSE_TAB                  200
 #define HUGGLE_ACCEL_CREATE_NEW_TAB             206
 #define HUGGLE_ACCEL_USER_REPORT_USER_NAME      300

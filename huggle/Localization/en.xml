@@ -545,6 +545,7 @@
   <string name="shortcut-report-user">Report user</string>
   <string name="shortcut-my-talk">My talk page</string>
   <string name="shortcut-raw">Revert edit and warn a user</string>
+  <string name="shortcut-contrib">Show contribution for user who made the currently displayed edit</string>
   <string name="shortcut-exit">Terminate Huggle in a usual way</string>
   <string name="shortcut-next">Go to the next edit</string>
   <string name="shortcut-suspicious">Mark edit as suspicious</string>

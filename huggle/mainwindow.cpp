@@ -647,6 +647,9 @@ void MainWindow::ReloadShort(QString id)
             q = this->ui->actionRevert_currently_displayed_edit;
             tip = this->ui->actionRevert;
             break;
+        case HUGGLE_ACCEL_MAIN_USER_CONTRIBUTIONS:
+            q = this->ui->actionUser_contributions;
+            break;
         case HUGGLE_ACCEL_CREATE_NEW_TAB:
             q = this->ui->actionOpen_new_tab;
             break;
