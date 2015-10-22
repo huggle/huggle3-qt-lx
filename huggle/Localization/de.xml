@@ -83,6 +83,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="block-type">Sperren / Freigeben</string>
   <string name="block-admin">Sperrender Administrator</string>
   <string name="block-none">Es gibt keinen Benutzer zum Sperren.</string>
+  <string name="contribution-browser-user-info">Die letzten Beiträge des Benutzers $1</string>
   <string name="config-function">Funktion</string>
   <string name="config-description">Beschreibung</string>
   <string name="config-shortcut">Abkürzung</string>
@@ -542,8 +543,11 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="user-history-fail">Der Verlauf für den Benutzer konnte nicht abgerufen werden: $1</string>
   <string name="userinfo-generic">Benutzerinformation</string>
   <string name="userinfo-retrieve">Rufe Informationen ab</string>
+  <string name="shortcut-report-username">Benutzernamen melden</string>
+  <string name="shortcut-report-user">Benutzer melden</string>
   <string name="shortcut-my-talk">Meine Diskussionsseite</string>
   <string name="shortcut-raw">Bearbeitung zurücksetzen und einen Benutzer warnen</string>
+  <string name="shortcut-contrib">Beitrag für den Benutzer, der die aktuell angezeigte Bearbeitung durchgeführt hat.</string>
   <string name="shortcut-exit">Huggle auf normale Weise beenden</string>
   <string name="shortcut-next">Gehe zur nächsten Bearbeitung</string>
   <string name="shortcut-suspicious">Bearbeitung als verdächtig markieren</string>

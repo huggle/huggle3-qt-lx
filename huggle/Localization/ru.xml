@@ -468,6 +468,7 @@
   <string name="queue-examplelabel3">Не проверять этот атрибут</string>
   <string name="queue-usergroup">Показать правки только этих пользователей</string>
   <string name="report-title">Отчёт $1</string>
+  <string name="report-warn">Этот пользователь уже достиг 4 уровня предупреждения, поэтому никакие дальнейшие шаблоны не будут доставлены к нему. Вы можете сообщить им сейчас, но, пожалуйста, убедитесь, что они уже достигли соответствующего количества предупреждений! Вы можете сделать это, нажав на \"странице обсуждения\" кнопку в следующей форме. Имейте в виду, что эта форма и это предупреждение отображает, что ваш возврат был успешным или нет, так как можете конфликтовать с другими пользователями здесь (двойная проверка, если пользователь не предупреждался). Вы хотите сообщить этому пользователю?</string>
   <string name="report-tu">Сообщить о пользователе</string>
   <string name="report-reason">Причина:</string>
   <string name="report-intro">Вы собираетесь доложить на пользователя $1</string>
@@ -540,6 +541,8 @@
   <string name="user-history-fail">не удалось получить историю для участника: $1</string>
   <string name="userinfo-generic">Информация об участнике</string>
   <string name="userinfo-retrieve">Получить информацию</string>
+  <string name="shortcut-report-username">Пожаловаться на имя учётной записи</string>
+  <string name="shortcut-report-user">Сообщить о нарушении</string>
   <string name="shortcut-my-talk">Моя страница обсуждения</string>
   <string name="shortcut-raw">Отменить редактирование и предупредить пользователя</string>
   <string name="shortcut-exit">Завершить Huggle в обычном режиме</string>

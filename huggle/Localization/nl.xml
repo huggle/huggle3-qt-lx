@@ -22,6 +22,7 @@
   <string name="result">Resultaat</string>
   <string name="save">Opslaan</string>
   <string name="show">Weergeven</string>
+  <string name="no-instant">Instant waarschuwingen zijn niet ingeschakeld op project $1. Er wordt geen bericht verzonden naar $2. Kies een ander waarschuwingsniveau</string>
   <string name="undo">Ongedaan maken</string>
   <string name="yes">Ja</string>
   <string name="editing-page">Pagina bewerken</string>
@@ -51,6 +52,7 @@
   <string name="disable">Uitschakelen</string>
   <string name="no-token">Geen token</string>
   <string name="flags">Markeringen</string>
+  <string name="gracetime">Wacht tot de bewerkingen zijn afgerond...</string>
   <string name="browser-none">Er wordt geen pagina weergegeven</string>
   <string name="browser-load">De verschillen worden geladen door terugvallen op webrenderen. Even geduld...</string>
   <string name="browser-miss-summ">Er werd geen samenvatting opgegeven</string>
@@ -118,7 +120,7 @@ Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string
   <string name="config-instant-reverts">Direct terugdraaien gebruiken (erg snel, maar kan niet geannuleerd worden als het wordt uitgevoerd)</string>
   <string name="config-revert-wait">Wachten met terugdraaien (in seconden)</string>
   <string name="config-revert">Terugdraaien</string>
-  <string name="config-revert-diff" fuzzy="true">Nieuwere bewerkingen dan weergegeven terugdraaien als deze zijn gemaakt door dezelfde gebruiker (zelfde vandaal)</string>
+  <string name="config-revert-diff">Bewerkingen aan pagina terugdraaien die nieuwer zijn dan de weergegeven diff, als ze zijn gemaakt door dezelfde vandaliserende gebruiker</string>
   <string name="config-change-all">Alle instellingen van Huggle zo maken dat ze zich meer als Huggle 2 gedragen</string>
   <string name="config-merge-messages">Uw berichten samenvoegen met anderen berichten in bestaande secties</string>
   <string name="config-months-name">Maanden als kopteksten gebruiken in plaatsen van de paginanaam</string>
@@ -126,7 +128,7 @@ Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string
   <string name="config-enable-irc">IRC inschakelen</string>
   <string name="config-remove-reverted">Bewerkingen verwijderen die al zijn teruggedraaid door iemand anders</string>
   <string name="config-remove-old">Oude bewerkingen verwijderen als de nieuwere bewerking op dezelfde pagina verwerkt is</string>
-  <string name="config-auto-load-history" fuzzy="true">Automatisch geschiedenis en gebruikersgegevens laden (vereist veel netwerkverbindingen)</string>
+  <string name="config-auto-load-history">Automatisch geschiedenis en gebruikersgegevens laden (vereist veel bandbreedte)</string>
   <string name="config-display-text">Volgende weergeven</string>
   <string name="config-retrieve-edit">Uw eigen bewerking ophalen</string>
   <string name="config-nothing">Niets</string>
@@ -139,7 +141,7 @@ Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string
   <string name="config-userspace">Gebruikersruimte</string>
   <string name="config-talk">Overlegpagina</string>
   <string name="config-warning-api">Waarschuwingen voor API-zoekopdrachten weergeven</string>
-  <string name="config-title-diff" fuzzy="true">Paginanaam bij alle verschillen (grote letters met de paginanaam bovenaan verschillen)</string>
+  <string name="config-title-diff">Paginanaam bij alle verschillen (grote letters met de paginanaam bovenaan verschillen)</string>
   <string name="config-updates">Controleren op updates</string>
   <string name="config-beta">Controleren op betaversies</string>
   <string name="config-close-without">Sluiten zonder opslaan</string>
@@ -184,7 +186,7 @@ Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string
   <string name="userhistory-title">Geschiedenis van uw wijzigingen</string>
   <string name="irc-connected">$1: verbonden met IRC recentewijzigingen-feed</string>
   <string name="irc-nochannel">IRC-kanaal voor $1 niet gevonden; huggle gebruikt langzamere API-zoekopdrachten</string>
-  <string name="irc-error" fuzzy="true">Het is niet mogelijk om te verbinden met de IRC recente wijzigingen-feed. Huggle gebruikt in plaats daarvan langzamere API-zoekopdrachten</string>
+  <string name="irc-error">Het is niet mogelijk om te verbinden met de IRC recente wijzigingen-feed ($1: $2). Huggle gebruikt in plaats daarvan langzamere API-zoekopdrachten</string>
   <string name="login-tab-oauth">OAuth</string>
   <string name="login-tab-login">Aanmelden</string>
   <string name="login-language">Taal:</string>
@@ -210,8 +212,8 @@ Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string
   <string name="login-error-nouser">De gebruiker bestaat niet</string>
   <string name="login-error-password">Onjuist wachtwoord</string>
   <string name="login-error-projdisabled">Huggle is momenteel uitgeschakeld op dit project.</string>
-  <string name="login-error-unknown" fuzzy="true">Niet in staat om in te loggen.</string>
-  <string name="login-error-version" fuzzy="true">Versie is verouderd. Werk bij naar de nieuwste versie.</string>
+  <string name="login-error-unknown">Niet in staat om aan te melden bij $1.</string>
+  <string name="login-error-version">Deze versie is verouderd. Werk bij naar de nieuwste versie.</string>
   <string name="login-error-whitelist">Laden van de witte lijst voor $1 is mislukt.</string>
   <string name="main-page">Pagina</string>
   <string name="main-user">Gebruiker</string>
@@ -219,6 +221,7 @@ Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string
   <string name="main-history">Geschiedenis</string>
   <string name="main-system">Systeem</string>
   <string name="main-system-messages">Nieuwe berichten weergeven</string>
+  <string name="main-system-savelog">Logboek aan het opslaan...</string>
   <string name="main-system-statistics">Statistieken...</string>
   <string name="main-system-showqueue">Wachtrij weergeven</string>
   <string name="main-system-options">Opties...</string>
@@ -239,13 +242,14 @@ Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string
   <string name="main-revision-decline">Versie weigeren</string>
   <string name="main-revision">Versie</string>
   <string name="main-revision-view">Bekijken</string>
-  <string name="main-revision-revert" fuzzy="true">Terugdraaien</string>
+  <string name="main-revision-revert">Weergegeven bewerking terugdraaien</string>
   <string name="main-revision-previous">Vorige</string>
   <string name="main-revision-next">Volgende</string>
   <string name="main-revision-latest">Laatste</string>
   <string name="main-tools">Hulpmiddelen</string>
   <string name="main-tools-sess">Sessiegegevens weergeven</string>
   <string name="main-page-next">Volgende</string>
+  <string name="main-page-tag">Label</string>
   <string name="main-page-watch">Volgen</string>
   <string name="main-page-unwatch">Niet volgen</string>
   <string name="main-page-purge">Vernieuwen</string>
@@ -271,6 +275,7 @@ Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string
   <string name="main-help-feedback">Terugkoppeling</string>
   <string name="main-help-about">Over Huggle...</string>
   <string name="main-addqueue">Toevoegen...</string>
+  <string name="main-savelogtitle">Logboek opslaan</string>
   <string name="main-advanced">Geavanceerd...</string>
   <string name="main-stats">$1 bewerkingen per minuut; $2 terugdraaiingen per minuut</string>
   <string name="main-display-session-data">Sessiegegevens weergeven</string>
@@ -280,6 +285,7 @@ Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string
   <string name="main-tip-userreport">Gebruiker rapporteren</string>
   <string name="main-tip-userblock">Deze gebruiker blokkeren</string>
   <string name="main-revert-newpage-title">Kan niet worden teruggedraaid</string>
+  <string name="main-revert-newpage">Dit is een nieuwe pagina, dus er kan niet teruggedraaid worden. U kunt labelen of verwijderen.</string>
   <string name="message-title">Bericht $1</string>
   <string name="message-subject">Onderwerp:</string>
   <string name="message-message">Bericht:</string>
@@ -306,7 +312,7 @@ Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string
   <string name="queue-filterreverts">Terugdraaien</string>
   <string name="queue-filternotifications">Notificatie</string>
   <string name="queue-filterwarnings">Waarschuwing</string>
-  <string name="queue-filtertags">Tag</string>
+  <string name="queue-filtertags">Label</string>
   <string name="queue-filterbot">Robotbewerking</string>
   <string name="queue-filterassisted">Geassisteerde bewerking</string>
   <string name="queue-filterhuggle">Huggle-bewerking</string>
@@ -329,8 +335,12 @@ Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string
   <string name="score-take-any-word">Overeenkomst met woorden die deze tekenreeks bevatten</string>
   <string name="uaa-not-supported">UAA niet beschikbaar</string>
   <string name="uaa-reported">Gerapporteerd</string>
+  <string name="revert-speedy-instead">In plaats daarvan voor snelle verwijdering markeren?</string>
   <string name="speedy-reason">Reden:</string>
   <string name="speedy-parameters">Parameters:</string>
+  <string name="tag-title">Label $1</string>
+  <string name="tag-tagselector">Label toevoegen:</string>
+  <string name="tag-tags">Label(s):</string>
   <string name="tag-parameter">Parameter</string>
   <string name="tag-summary">Samenvatting:</string>
   <string name="tag-insertatend">Aan het einde van de pagina invoegen</string>
@@ -342,6 +352,8 @@ Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string
   <string name="updater-disable-notify">Updates uitschakelen</string>
   <string name="userinfo-generic">Gebruikersinformatie</string>
   <string name="userinfo-retrieve">Informatie ophalen</string>
+  <string name="shortcut-report-username">Gebruikersnaam rapporteren</string>
+  <string name="shortcut-report-user">Gebruiker rapporteren</string>
   <string name="shortcut-my-talk">Mijn overlegpagina</string>
   <string name="shortcut-revert">Bewerking terugdraaien</string>
   <string name="shortcut-tab">Opent een nieuw tabblad</string>
@@ -358,14 +370,28 @@ Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string
   <string name="error-noresponse">Geen antwoord</string>
   <string name="error-pagemissing">De pagina bestaat niet</string>
   <string name="error-unknown">Onbekende fout</string>
+  <string name="blocklog-none">Er is geen blokkeerlogboek voor $1</string>
+  <string name="blocklog-progress">Blokkeerlogboek aan het ophalen voor $1...</string>
   <string name="delete-done">$1 verwijderd</string>
   <string name="delete-progress">$1 verwijderen...</string>
+  <string name="deletelog-none">Er is geen verwijderlogboek voor $1</string>
+  <string name="deletelog-progress">Verwijderlogboek aan het ophalen voor $1...</string>
   <string name="edit-progress">$1 bewerken...</string>
+  <string name="protectlog-fail">Het beveiligingslogboek voor $1 kon niet opgehaald worden</string>
+  <string name="protectlog-none">Er is geen beveiligingslogboek voor $1</string>
+  <string name="protectlog-progress">Beveiligingslogboek aan het ophalen voor $1...</string>
+  <string name="speedy-fail">Het was niet mogelijk de pagina te labelen voor snelle verwijdering: $1</string>
+  <string name="speedy-wrong">Het opgevraagde label is niet geldig. Kies een andere reden voor verwijderen</string>
   <string name="speedy-finished">Voltooid</string>
   <string name="logs-widget-name">Systeemlogboek</string>
   <string name="wait">Een ogenblik geduld...</string>
   <string name="updating-wl">Witte lijst bijwerken...</string>
+  <string name="page-tag-nodescription">er is geen beschrijving voor dit label</string>
+  <string name="page-tag-fail">Het labelen van de pagina is mislukt</string>
+  <string name="page-tag-error">Het was niet mogelijk de pagina te labelen. De foutmelding was: $1</string>
   <string name="page-unknown">Onbekende pagina</string>
+  <string name="speedy-csd-invalid">Ongeldig CSD-label. Er is geen bericht en wikilabel om te gebruiken</string>
+  <string name="speedy-csd-existing">De pagina heeft al een CSD-label.</string>
   <string name="namespace">Naamruimte</string>
   <string name="about-python-with"> ,met python-ondersteuning</string>
   <string name="about-python-without"> zonder python-ondersteuning</string>

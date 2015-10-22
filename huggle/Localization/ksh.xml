@@ -368,6 +368,8 @@
   <string name="user-history-fail">kann de verjangeheid vum Metmaacher $1 nit affrohfe</string>
   <string name="userinfo-generic">Aanjahbe zom Metmaacher</string>
   <string name="userinfo-retrieve">Aanjahbe holle</string>
+  <string name="shortcut-report-username">Donn enem Metmaacher singe Nahme mällde</string>
+  <string name="shortcut-report-user">Donn ene Metmaacher mällde</string>
   <string name="shortcut-my-talk">Ming Klaafsigg</string>
   <string name="shortcut-raw">Donn di Änderong zerök nämme un dä Metmaacher warrne</string>
   <string name="shortcut-exit" fuzzy="true">Donn Huggle om nommahle Wääsch be\'ände.</string>

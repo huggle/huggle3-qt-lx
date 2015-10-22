@@ -77,7 +77,7 @@
   <string name="config-shortcutconflict">Snarvei \'$1\' konflikterer med eksisterende snarvei for \'{1}\'.</string>
   <string name="delete-title">Slett $1</string>
   <string name="delete-reason">Begrunnelse:</string>
-  <string name="delete-deletionlog">Slettingslogg:</string>
+  <string name="delete-deletionlog">Slettelogg:</string>
   <string name="irc-connected">$1: Koblet til siste endringer-strømmen på IRC</string>
   <string name="irc-connecting">Forsøker å koble til IRC for siste endringer på $1, dette kan ta noen øyeblikk...</string>
   <string name="irc-disconnected">Tilkobling til IRC for siste endringer feilet for $1. Kobler til på nytt...</string>

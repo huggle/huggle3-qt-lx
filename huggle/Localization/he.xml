@@ -542,6 +542,8 @@
   <string name="user-history-fail">לא ניתן לאחזר את ההיסטוריה עבור המשתמש: $1</string>
   <string name="userinfo-generic">מידע על המשתמש</string>
   <string name="userinfo-retrieve">אחזור מידע</string>
+  <string name="shortcut-report-username">דיווח שם משתמש</string>
+  <string name="shortcut-report-user">דיווח משתמש</string>
   <string name="shortcut-my-talk">דך השיחה שלי</string>
   <string name="shortcut-raw">לשחזר את העריכה ולהזהיר את המשתמש</string>
   <string name="shortcut-exit">לצאת מהאגל בדרך הרגילה</string>

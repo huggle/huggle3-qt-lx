@@ -30,7 +30,7 @@
   <string name="id">अभिबोधकम्</string>
   <string name="type">प्रकारः</string>
   <string name="target">लक्ष्यम्</string>
-  <string name="user">योजकः</string>
+  <string name="user">सदस्यः</string>
   <string name="size">आकारः</string>
   <string name="date">दिनाङ्कः</string>
   <string name="page">पृष्ठम्</string>
@@ -73,7 +73,7 @@
   <string name="block-error-no-info">प्रश्ने योजकस्य विवरणं नासीत् (भवान्/भवती प्रबन्धकः अस्ति ?)</string>
   <string name="block-type">अवरुद्धम्/अनवरुद्धम्</string>
   <string name="block-admin">प्रबन्धकम् अवरुध्यति</string>
-  <string name="block-none">कोऽपि योजकः अवरोधयितुं न विद्यते ।</string>
+  <string name="block-none">कोऽपि सदस्यः अवरोधयितुं न विद्यते ।</string>
   <string name="config-function">नियोज्यम्</string>
   <string name="config-description">वर्णनम्</string>
   <string name="config-shortcut">लाघवम्</string>
@@ -114,7 +114,7 @@
   <string name="login-error-cancelled">निरस्तम्</string>
   <string name="login-error-invalid">अमान्यं योजकनाम</string>
   <string name="main-page">पृष्ठम्</string>
-  <string name="main-user">योजकः</string>
+  <string name="main-user">सदस्यः</string>
   <string name="main-contribs">योगदानानि</string>
   <string name="main-history">इतिहासः</string>
   <string name="main-system">प्रणालिः</string>
@@ -172,8 +172,8 @@
   <string name="queue-diffsgroup">अन्तरम्</string>
   <string name="queue-namespaces">नामाकाशाः :</string>
   <string name="queue-filternewpage">नवीनपृष्ठम्</string>
-  <string name="queue-filteranonymous">अनामकः योजकः</string>
-  <string name="queue-filterignored">अवगणितः योजकः</string>
+  <string name="queue-filteranonymous">अनामकः सदस्यः</string>
+  <string name="queue-filterignored">अवगणितः सदस्यः</string>
   <string name="queue-filterreverts">पूर्ववत्</string>
   <string name="queue-filternotifications">सूचना</string>
   <string name="queue-filterwarnings">पूर्वसूचना :</string>
@@ -241,7 +241,7 @@
   <string name="edit-fail">$1 न सम्पादितम्</string>
   <string name="edit-progress">$1 सम्पादयति...</string>
   <string name="speedy-finished">समाप्तम्</string>
-  <string name="warn-alreadyblocked">एषः योजकः पूर्वमेव अवरुद्धः अस्ति</string>
+  <string name="warn-alreadyblocked">एषः सदस्यः पूर्वमेव अवरुद्धः अस्ति</string>
   <string name="editquery-success">$1 इत्यस्मिन् $2 सफलतया सम्पादितम्</string>
   <string name="fail">असफलम्</string>
   <string name="request">विनतिः</string>

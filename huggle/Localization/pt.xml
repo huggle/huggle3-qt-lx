@@ -525,6 +525,8 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="user-history-fail">não é possível aceder ao histórico do utilizador: $1</string>
   <string name="userinfo-generic">Informação de utilizador</string>
   <string name="userinfo-retrieve">Consultar informação</string>
+  <string name="shortcut-report-username">Denunciar nome de utilizador(a)</string>
+  <string name="shortcut-report-user">Denunciar utilizador(a)</string>
   <string name="shortcut-my-talk">Minha página de discussão</string>
   <string name="shortcut-raw">Reverter a edição e avisar utilizador</string>
   <string name="shortcut-exit">Encerrar o Huggle de forma habitual</string>

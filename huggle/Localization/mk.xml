@@ -83,6 +83,7 @@
   <string name="block-type">Блокирај / одблокирај</string>
   <string name="block-admin">Администратор што блокирал</string>
   <string name="block-none">Нема корисник за блокирање.</string>
+  <string name="contribution-browser-user-info">Приказ на скорешни придонеси на корисникот $1</string>
   <string name="config-function">Функција</string>
   <string name="config-description">Опис</string>
   <string name="config-shortcut">Кратенка</string>
@@ -542,8 +543,11 @@
   <string name="user-history-fail">не можам да ја добијам историјата на корисникот: $1</string>
   <string name="userinfo-generic">Кориснички информации</string>
   <string name="userinfo-retrieve">Повикај се на информациите</string>
+  <string name="shortcut-report-username">Пријави корисничко име</string>
+  <string name="shortcut-report-user">Пријави корисник</string>
   <string name="shortcut-my-talk">Моја страница за разговор</string>
   <string name="shortcut-raw">Отповикај го уредувањето и опомени го корисникот</string>
+  <string name="shortcut-contrib">Прикажи придонеси за корисникот кој го има направено тековно прикажаното уредување</string>
   <string name="shortcut-exit">Изгасни го Huggle на нормален начин</string>
   <string name="shortcut-next">Прејди на следното уредување</string>
   <string name="shortcut-suspicious">Означи го уредувањето како сомнително</string>

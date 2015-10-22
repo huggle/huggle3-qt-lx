@@ -82,6 +82,7 @@
   <string name="block-type">Blocca / sblocca</string>
   <string name="block-admin">L\'amministratore che ha fatto il blocco</string>
   <string name="block-none">Non c\'è nessun utente da bloccare.</string>
+  <string name="contribution-browser-user-info">Mostrando i contributi recenti dell\'utente $1</string>
   <string name="config-function">Funzione</string>
   <string name="config-description">Descrizione</string>
   <string name="config-shortcut">Scelta rapida</string>
@@ -344,7 +345,7 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="main-page-purge">Purga</string>
   <string name="main-page-curr-disp">Attualmente visualizzato</string>
   <string name="main-page-display">Visualizza questa pagina</string>
-  <string name="main-page-patrol">Segna la modifica come verificata</string>
+  <string name="main-page-patrol">Segna come verificata</string>
   <string name="main-page-move">Sposta...</string>
   <string name="main-page-flag-suspicious-edit">Segna come modifica sospetta (questa azione aggiunge +1 al punteggio dell\'utente)</string>
   <string name="main-page-flag-good-edit">Segna come buona modifica (questa azione toglie -200 dal punteggio dell\'utente)</string>
@@ -542,8 +543,11 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="user-history-fail">impossibile recuperare la cronologia per l\'utente: $1</string>
   <string name="userinfo-generic">Informazioni utente</string>
   <string name="userinfo-retrieve">Recupera le informazioni</string>
+  <string name="shortcut-report-username">Segnala il nome utente</string>
+  <string name="shortcut-report-user">Segnala l\'utente</string>
   <string name="shortcut-my-talk">La mia pagina di discussione</string>
   <string name="shortcut-raw">Ripristina la modifica e avvisa un utente</string>
+  <string name="shortcut-contrib">Mostra i contributi dell\'utente che ha effettuato la modifica attualmente visualizzata.</string>
   <string name="shortcut-exit">Chiudi Huggle normalmente</string>
   <string name="shortcut-next">Vai alla prossima modifica</string>
   <string name="shortcut-suspicious">Marca la modifica come sospetta</string>

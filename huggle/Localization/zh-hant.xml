@@ -408,6 +408,7 @@
   <string name="uaa-reported">已回報</string>
   <string name="revert-delete-instead">是否刪除此頁面？</string>
   <string name="revert-speedy-instead">是否標記快速刪除？</string>
+  <string name="revert-cannotundo">因為編輯衝突而無法撤銷</string>
   <string name="revert-fail">無法回退$1，原因：$2</string>
   <string name="speedy-reason">原因：</string>
   <string name="speedy-parameters">參數：</string>
@@ -429,6 +430,7 @@
   <string name="updater-disable-notify">關閉更新</string>
   <string name="userinfo-generic">使用者資訊</string>
   <string name="userinfo-retrieve">取得資訊</string>
+  <string name="shortcut-report-user">回報使用者</string>
   <string name="shortcut-my-talk">我的對話頁面</string>
   <string name="shortcut-raw">還原編輯並警告使用者</string>
   <string name="shortcut-exit">以一般方式終止 Huggle</string>
@@ -437,6 +439,10 @@
   <string name="shortcut-back">前往先前顯示的編輯</string>
   <string name="shortcut-warn">發送一則警告訊息給使用者，但不回退其編輯</string>
   <string name="shortcut-revert">還原編輯</string>
+  <string name="shortcut-open-in-huggle">開啟目前顯示的頁面</string>
+  <string name="shortcut-open">在外部瀏覽器中開啟目前顯示的編輯</string>
+  <string name="shortcut-talk">顯示做出此次更改的使用者討論頁</string>
+  <string name="shortcut-revert-agf-1">依據善意推定回退最新修訂</string>
   <string name="shortcut-browser-close-tab">關閉瀏覽頁籤</string>
   <string name="shortcut-tab">開啟新頁籤</string>
   <string name="warning-title">警告 $1</string>
@@ -449,6 +455,10 @@
   <string name="warning-warntype">警告類型：</string>
   <string name="warning-warnlog">給此使用者的警告：</string>
   <string name="warning-submit">傳送</string>
+  <string name="missing-warning">查無此警告模板$1</string>
+  <string name="han-connecting">正在連線至Huggle反破壞網路絡</string>
+  <string name="han-already-connected">因已連線至HAN，故沒有進行連線</string>
+  <string name="han-already-connecting">請稍後，我正在連線至HAN</string>
   <string name="error-noresponse">無回應</string>
   <string name="error-pagemissing">此頁面不存在</string>
   <string name="error-reloginfail">重新登入失敗，請嘗試重新啟動Huggle</string>
@@ -468,6 +478,7 @@
   <string name="speedy-progress">標記“$1”為快速刪除...</string>
   <string name="speedy-finished">已完成</string>
   <string name="warn-alreadyblocked">該使用者已被封禁</string>
+  <string name="whitelist-download">正在下載新版本的白名單</string>
   <string name="logs-widget-name">系統日誌</string>
   <string name="wait">請稍候...</string>
   <string name="updating-wl">正在更新白名單...</string>

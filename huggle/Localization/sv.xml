@@ -416,6 +416,8 @@ Denna blockering kommer att åsidosätta effekterna av intervallblockeringen. Fo
   <string name="updater-disable-notify">Inaktivera uppdateringar</string>
   <string name="userinfo-generic">Användarinformation</string>
   <string name="userinfo-retrieve">Hämta information</string>
+  <string name="shortcut-report-username">Rapportera användarnamn</string>
+  <string name="shortcut-report-user">Rapportera användare</string>
   <string name="shortcut-my-talk">Min diskussionssida</string>
   <string name="shortcut-next">Gå till nästa redigering</string>
   <string name="shortcut-suspicious">Märk redigering som misstänkt</string>
