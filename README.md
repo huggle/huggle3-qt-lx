@@ -25,6 +25,10 @@ Linux
 * cd REPO/huggle, execute
 
 ```sh
+# IMPORTANT
+# The --extension option works only if you cloned this repository using git
+# if you downloaded a gzip file, you can only use it after downloading them
+# by hand into "extensions" folder
 ./configure --extension --qt4 #you can use --qt5 in case you have it
 cd huggle_release
 make
