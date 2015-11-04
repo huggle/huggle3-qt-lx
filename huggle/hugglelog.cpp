@@ -25,6 +25,9 @@ HuggleLog::HuggleLog(QWidget *parent) : QDockWidget(parent), ui(new Ui::HuggleLo
     this->ui->setupUi(this);
     this->setWindowTitle(_l("logs-widget-name"));
     this->lock = new QMutex(QMutex::Recursive);
+    this->ui->textEdit->setUndoRedoEnabled(false);
+    this->ui->textEdit->setAcceptRichText(false);
+    this->ui->textEdit->setAutoFormatting(QTextEdit::AutoNone);
     this->ui->textEdit->resize(this->ui->textEdit->width(), 60);
     this->Modified = false;
 }
