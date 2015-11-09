@@ -4,6 +4,13 @@
   <style type="text/css">
 /* Huggle global setting */
 body {
+    /* Colors for text are hardcoded to be black on white background, this fixed issues with different background colors used by some system themes
+       that would make reading of text hard
+    
+       Ensuring the same color on every theme should probably fix this, although there might be better options, such as adapting to color theme itself.
+     */
+    background-color: white;
+    color: black;
     font-size: <<<FONT-SIZE>>>;
     font-family: <<<FONT-FAMILY>>>;
 }

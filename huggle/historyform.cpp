@@ -153,19 +153,8 @@ void HistoryForm::onTick01()
     bool IsLatest = false;
     QList<ApiQueryResultNode*> revision_data = this->query->GetApiQueryResult()->GetNodes("rev");
     int x = 0;
-    QColor xb;
-    bool xt = false;
     while (x < revision_data.count())
     {
-        if (xt)
-        {
-            xb = QColor(206, 202, 250);
-        }
-        else
-        {
-            xb = QColor(224, 222, 250);
-        }
-        xt = !xt;
         ApiQueryResultNode *rv = revision_data.at(x);
         WikiPageHistoryItem *item = new WikiPageHistoryItem();
         if (rv->Attributes.contains("revid"))
@@ -248,27 +237,21 @@ void HistoryForm::onTick01()
         font.setItalic(founder);
         font.setBold(selected);
         QTableWidgetItem *i = new QTableWidgetItem(icon, "");
-        i->setBackgroundColor(xb);
         this->ui->tableWidget->setItem(x, 0, i);
         i = new QTableWidgetItem(item->User);
         i->setFont(font);
-        i->setBackgroundColor(xb);
         this->ui->tableWidget->setItem(x, 1, i);
         i = new QTableWidgetItem(item->Size);
         i->setFont(font);
-        i->setBackgroundColor(xb);
         this->ui->tableWidget->setItem(x, 2, i);
         i = new QTableWidgetItem(item->Summary);
         i->setFont(font);
-        i->setBackgroundColor(xb);
         this->ui->tableWidget->setItem(x, 3, i);
         i = new QTableWidgetItem(item->Date);
         i->setFont(font);
-        i->setBackgroundColor(xb);
         this->ui->tableWidget->setItem(x, 4, i);
         i = new QTableWidgetItem(item->RevID);
         i->setFont(font);
-        i->setBackgroundColor(xb);
         this->ui->tableWidget->setItem(x, 5, i);
         this->Items.append(item);
         x++;

@@ -138,8 +138,8 @@ void UserinfoForm::OnTick()
         int xx = 0;
         if (results.count() > 0)
         {
-            QColor xb;
-            bool xt = false;
+            //QColor xb;
+            //bool xt = false;
             while (results.count() > xx)
             {
                 QDomElement edit = results.at(xx).toElement();
@@ -156,7 +156,7 @@ void UserinfoForm::OnTick()
                     item.Type = EditType_Reported;
                 if (this->User->IsBlocked)
                     item.Type = EditType_Blocked;
-                if (item.Top)
+                /*if (item.Top)
                 {
                     // set a different color for edits that are top
                     if (xt)
@@ -169,9 +169,8 @@ void UserinfoForm::OnTick()
                         xb = QColor(206, 202, 250);
                     else
                         xb = QColor(224, 222, 250);
-                }
-
-                xt = !xt;
+                }*/
+                //xt = !xt;
                 item.Page = "unknown page";
                 if (edit.attributes().contains("title"))
                     item.Page = edit.attribute("title");
@@ -188,14 +187,17 @@ void UserinfoForm::OnTick()
                     font.setBold(true);
                 }
                 QTableWidgetItem *q = new QTableWidgetItem(item.Page);
-                q->setBackgroundColor(xb);
+                //q->setBackgroundColor(xb);
+                //q->setTextColor(QColor(0, 0, 0));
                 q->setFont(font);
                 this->ui->tableWidget->setItem(last, 0, q);
                 q = new QTableWidgetItem(item.Date);
-                q->setBackgroundColor(xb);
+                //q->setTextColor(QColor(0, 0, 0));
+                //q->setBackgroundColor(xb);
                 this->ui->tableWidget->setItem(last, 1, q);
                 q = new QTableWidgetItem(item.RevID);
-                q->setBackgroundColor(xb);
+                //q->setTextColor(QColor(0, 0, 0));
+                //q->setBackgroundColor(xb);
                 this->Items.append(item);
                 this->ui->tableWidget->setItem(last, 2, q);
                 xx++;
