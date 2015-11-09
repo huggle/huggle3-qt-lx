@@ -1201,18 +1201,20 @@ void MainWindow::OnMainTimerTick()
         }
     }
     QueryPool::HugglePool->CheckQueries();
-    Syslog::HuggleLogs->lUnwrittenLogs->lock();
-    if (Syslog::HuggleLogs->UnwrittenLogs.count() > 0)
+    if (this->SystemLog->isVisible())
     {
-        int c = 0;
-        while (c < Syslog::HuggleLogs->UnwrittenLogs.count())
-        {
-            this->SystemLog->InsertText(Syslog::HuggleLogs->UnwrittenLogs.at(c));
-            c++;
-        }
+        // We need to copy the list of unwritten logs so that we don't hold the lock for so long
+        QList<HuggleLog_Line> logs;
+        Syslog::HuggleLogs->lUnwrittenLogs->lock();
+        logs.append(Syslog::HuggleLogs->UnwrittenLogs);
         Syslog::HuggleLogs->UnwrittenLogs.clear();
+        Syslog::HuggleLogs->lUnwrittenLogs->unlock();
+        while (logs.count())
+        {
+            this->SystemLog->InsertText(logs.at(0));
+            logs.removeFirst();
+        }
     }
-    Syslog::HuggleLogs->lUnwrittenLogs->unlock();
     this->Queries->RemoveExpired();
     if (this->OnNext_EvPage != nullptr && this->qNext != nullptr && this->qNext->IsProcessed())
     {
