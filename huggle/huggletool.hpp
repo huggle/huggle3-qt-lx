@@ -56,6 +56,7 @@ namespace Huggle
         private:
             void FinishPage();
             void FinishEdit();
+            QString GenerateColor(QString color);
             Ui::HuggleTool *ui;
             WikiPage *page;
             Collectable_SmartPtr<ApiQuery> query;

@@ -22,6 +22,7 @@
 #include "wikiuser.hpp"
 #include "syslog.hpp"
 #include "ui_huggletool.h"
+#include <QPalette>
 #include <QUrl>
 
 using namespace Huggle;
@@ -47,6 +48,8 @@ HuggleTool::HuggleTool(QWidget *parent) : QDockWidget(parent), ui(new Ui::Huggle
         this->ui->comboBox->addItem(site->Name);    
     this->ui->comboBox->setCurrentIndex(0);
     connect(this->tick, SIGNAL(timeout()), this, SLOT(onTick()));
+    this->ui->lineEdit_2->setStyleSheet(this->GenerateColor("black"));
+    this->ui->lineEdit_3->setStyleSheet(this->GenerateColor("black"));
 }
 
 HuggleTool::~HuggleTool()
@@ -95,8 +98,8 @@ void HuggleTool::SetPage(WikiPage *page)
     this->ui->pushButton->setEnabled(true);
     // change color to default
     this->query.Delete();
-    this->ui->lineEdit_2->setStyleSheet("color: black;");
-    this->ui->lineEdit_3->setStyleSheet("color: black;");
+    this->ui->lineEdit_2->setStyleSheet(this->GenerateColor("black"));
+    this->ui->lineEdit_3->setStyleSheet(this->GenerateColor("black"));
 }
 
 WikiSite *HuggleTool::GetSite()
@@ -120,7 +123,7 @@ void HuggleTool::RenderEdit()
         return;
     }
     this->ui->pushButton->setEnabled(false);
-    this->ui->lineEdit_3->setStyleSheet("color: green;");
+    this->ui->lineEdit_3->setStyleSheet(this->GenerateColor("green"));
     // retrieve information about the page
     this->QueryPhase = 1;
     this->query = Generic::RetrieveWikiPageContents(this->ui->lineEdit_3->text(), this->GetSite());
@@ -160,13 +163,13 @@ void HuggleTool::FinishPage()
         ApiQueryResultNode *item = this->query->GetApiQueryResult()->GetNode("item");
         if (!item)
         {
-            this->ui->lineEdit_2->setStyleSheet("color: red;");
+            this->ui->lineEdit_2->setStyleSheet(this->GenerateColor("red"));
             this->tick->stop();
             return;
         }
         if (!item->Attributes.contains("title"))
         {
-            this->ui->lineEdit_2->setStyleSheet("color: red;");
+            this->ui->lineEdit_2->setStyleSheet(this->GenerateColor("red"));
             this->tick->stop();
             return;
         }
@@ -190,7 +193,7 @@ void HuggleTool::FinishPage()
             if (rev->Attributes.contains("missing"))
             {
                 // there is no such a page
-                this->ui->lineEdit_3->setStyleSheet("color: red;");
+                this->ui->lineEdit_3->setStyleSheet(this->GenerateColor("red"));
                 Huggle::Syslog::HuggleLogs->WarningLog(_l("missing-page", ui->lineEdit_3->text()));
                 this->tick->stop();
                 this->edit.Delete();
@@ -225,6 +228,12 @@ void HuggleTool::FinishEdit()
     MainWindow::HuggleMain->ProcessEdit(this->edit, false, false, false, true);
 }
 
+QString HuggleTool::GenerateColor(QString color)
+{
+    return QString("background-color: white;\n"\
+                   "color: " + color + ";\n");
+}
+
 void Huggle::HuggleTool::on_lineEdit_3_returnPressed()
 {
     this->RenderEdit();
@@ -237,7 +246,7 @@ void Huggle::HuggleTool::on_lineEdit_2_returnPressed()
         return;
     }
     this->ui->pushButton->setEnabled(false);
-    this->ui->lineEdit_2->setStyleSheet("color: green;");
+    this->ui->lineEdit_2->setStyleSheet(this->GenerateColor("green"));
     // retrieve information about the user
     this->query = new ApiQuery(ActionQuery, this->GetSite());
     this->QueryPhase = 3;
