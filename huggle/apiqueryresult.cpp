@@ -32,8 +32,7 @@ static void ProcessChildXMLNodes(ApiQueryResultNode *hiearchy_root, ApiQueryResu
     int id = 0;
     while (id < nodes.count())
     {
-        QDomElement element = nodes.at(id).toElement();
-        id++;
+        QDomElement element = nodes.at(id++).toElement();
         if (element.tagName().isEmpty())
             continue;
         if (element.tagName() != "warnings")
@@ -70,11 +69,9 @@ static void ProcessChildXMLNodes(ApiQueryResultNode *hiearchy_root, ApiQueryResu
             int cn = 0;
             while (element.childNodes().count() > cn)
             {
-                QDomElement warning = element.childNodes().at(cn).toElement();
+                QDomElement warning = element.childNodes().at(cn++).toElement();
                 Syslog::HuggleLogs->WarningLog("API query (" + warning.tagName() + "): " + warning.text());
                 result->Warning = warning.text();
-                // let's go next
-                cn++;
             }
             HUGGLE_DEBUG(result->Data, 5);
         }

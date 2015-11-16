@@ -26,7 +26,6 @@ Query::Query()
     this->Status = StatusNull;
     this->ID = this->LastID;
     this->LastID++;
-    this->CustomStatus = "";
     this->HiddenQuery = false;
     this->Timeout = 60;
     this->StartTime = QDateTime::currentDateTime();
@@ -41,14 +40,10 @@ Query::~Query()
 
 bool Query::IsProcessed()
 {
-    if (this->Status == StatusIsSuspended)
+    if (this->Status == StatusNull || this->Status == StatusIsSuspended)
         return false;
     if (this->Status == StatusDone || this->Status == StatusInError)
-    {
         return true;
-    }
-    if (this->Status == StatusNull)
-        return false;
     if (QDateTime::currentDateTime() > this->StartTime.addSecs(this->Timeout))
     {
         if (!this->Repeated && this->RetryOnTimeoutFailure)

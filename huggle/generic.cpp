@@ -27,9 +27,7 @@ static QString options_ = QUrl::toPercentEncoding("timestamp|user|comment|conten
 QString Generic::Bool2String(bool b)
 {
     if (b)
-    {
         return "true";
-    }
     return "false";
 }
 
