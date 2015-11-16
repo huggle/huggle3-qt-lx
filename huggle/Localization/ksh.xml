@@ -72,6 +72,7 @@
   <string name="block-type">Schärre / Freijävve</string>
   <string name="block-admin">Dä Wikki_Köhbeß, dä jeschpächt hät</string>
   <string name="block-none">Mer han keine Metmaacher zum Schpärre.</string>
+  <string name="contribution-browser-user-info">Mer zeije de neujere Beijdrähsch vum Metmaacher $1 aan</string>
   <string name="config-function">Funxjuhn</string>
   <string name="config-description">Beschrevve!!FUZZYY!!</string>
   <string name="config-shortcut">Affköözong</string>
@@ -372,6 +373,7 @@
   <string name="shortcut-report-user">Donn ene Metmaacher mällde</string>
   <string name="shortcut-my-talk">Ming Klaafsigg</string>
   <string name="shortcut-raw">Donn di Änderong zerök nämme un dä Metmaacher warrne</string>
+  <string name="shortcut-contrib">Zeijsch dä Beijdraach vum Metmaacher, dä di jrahd aanjezeijschte Änderong jemaht hät.</string>
   <string name="shortcut-exit" fuzzy="true">Donn Huggle om nommahle Wääsch be\'ände.</string>
   <string name="shortcut-next">Jangk op de nähxte Änderong</string>
   <string name="shortcut-revert">Donn de Änderong zeröknämme</string>

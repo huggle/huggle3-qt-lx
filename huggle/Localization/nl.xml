@@ -83,6 +83,7 @@ Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string
   <string name="block-type">Blokkeren / deblokkeren</string>
   <string name="block-admin">Blokkerende beheerder</string>
   <string name="block-none">Er is geen gebruiker te blokkeren.</string>
+  <string name="contribution-browser-user-info">Recente bijdragen van gebruiker $1 worden weergegeven</string>
   <string name="config-function">Functie</string>
   <string name="config-description">Beschrijving</string>
   <string name="config-shortcut">Snelkoppeling</string>
@@ -355,6 +356,7 @@ Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string
   <string name="shortcut-report-username">Gebruikersnaam rapporteren</string>
   <string name="shortcut-report-user">Gebruiker rapporteren</string>
   <string name="shortcut-my-talk">Mijn overlegpagina</string>
+  <string name="shortcut-contrib">Bijdragen weergeven voor de gebruiker die de weergegeven bewerking heeft gemaakt</string>
   <string name="shortcut-revert">Bewerking terugdraaien</string>
   <string name="shortcut-tab">Opent een nieuw tabblad</string>
   <string name="warning-title">$1 waarschuwen</string>

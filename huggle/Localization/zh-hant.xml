@@ -323,6 +323,7 @@
   <string name="main-browser-back">返回</string>
   <string name="main-browser-forward">前進</string>
   <string name="main-browser-open">在外部瀏覽器檢視</string>
+  <string name="main-browser-newedits">顯示頁面新編輯</string>
   <string name="main-han-disconnect">中斷連線</string>
   <string name="main-han-connect">連線</string>
   <string name="main-help">說明</string>
@@ -472,6 +473,7 @@
   <string name="delete-user">此頁面為使用者頁面。您確定要刪除此頁面？</string>
   <string name="edit-fail">無法編輯$1</string>
   <string name="edit-progress">編輯 $1 中...</string>
+  <string name="history-welcome-msg-title">是否發送歡迎辭？</string>
   <string name="reqprotection-fail">無法為“$1”請求保護</string>
   <string name="reqprotection-progress">請求保護“$1”...</string>
   <string name="speedy-fail">無法對頁面標記快速刪除：$1</string>
@@ -493,6 +495,7 @@
   <string name="page-tag-fail">標記頁面失敗</string>
   <string name="page-tag-error">無法標記頁面，錯誤：$1</string>
   <string name="page-unknown">不明的頁面</string>
+  <string name="speedy-csd-existing">此頁面已有一組快速刪除的標籤。</string>
   <string name="namespace">命名空間</string>
   <string name="block-alreadyblocked">使用者已被封鎖</string>
   <string name="report-fail">回報使用者失敗，由於：$1</string>

@@ -83,6 +83,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="block-type">Bloquer / débloquer</string>
   <string name="block-admin">L’opérateur système qui a fait le blocage</string>
   <string name="block-none">Il n\'y a aucun utilisateur à bloquer.</string>
+  <string name="contribution-browser-user-info">Afficher les contributions récentes de l’utilisateur $1</string>
   <string name="config-function">Fonction</string>
   <string name="config-description">Description</string>
   <string name="config-shortcut">Raccourci</string>
@@ -546,6 +547,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="shortcut-report-user">Rapport d’utilisateur</string>
   <string name="shortcut-my-talk">Ma page de discussion</string>
   <string name="shortcut-raw">Annuler la modification et avertir un utilisateur</string>
+  <string name="shortcut-contrib">Afficher la contribution de l’utilisateur qui a fait la modification actuellement affichée</string>
   <string name="shortcut-exit">Mettre fin à Huggle de la manière habituelle</string>
   <string name="shortcut-next">Aller à la modification suivante</string>
   <string name="shortcut-suspicious">Marquer la modification comme suspecte</string>

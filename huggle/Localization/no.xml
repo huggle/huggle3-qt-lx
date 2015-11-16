@@ -286,7 +286,7 @@
   <string name="error-unknown">Ukjent feil</string>
   <string name="block-done">Blokkerte \'$1\'</string>
   <string name="block-progress">Blokkerer \'$1\'...</string>
-  <string name="blocklog-fail">Kunne ikke hente blokkeringslogg for \'$1\'</string>
+  <string name="blocklog-fail">Klarte ikke hente blokkeringslogg for \'$1\'</string>
   <string name="blocklog-none">Ingen blokkeringslogg for \'$1\'</string>
   <string name="blocklog-progress">Henter blokkeringslogg for \'$1\'...</string>
   <string name="blocknotify-fail">Varslet ikke \'$1\' om blokkeringen</string>

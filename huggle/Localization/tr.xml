@@ -81,6 +81,7 @@
   <string name="block-type">Engelle / Engeli kaldır</string>
   <string name="block-admin">Engelleyen hizmetli</string>
   <string name="block-none">Engellenecek kullanıcı yok</string>
+  <string name="contribution-browser-user-info">Kulanıcı $1\'ın son değişiklikleri gösteriliyor</string>
   <string name="config-function">İşlev</string>
   <string name="config-description">Açıklama</string>
   <string name="config-shortcut">Kısayol</string>
@@ -540,8 +541,11 @@
   <string name="user-history-fail">$1 kullanıcısı için geçmiş getirilemedi</string>
   <string name="userinfo-generic">Kullanıcı bilgisi</string>
   <string name="userinfo-retrieve">Bilgiyi getir</string>
+  <string name="shortcut-report-username">Kullanıcı adını raporla</string>
+  <string name="shortcut-report-user">Kullanıcıyı raporla</string>
   <string name="shortcut-my-talk">Mesaj sayfam</string>
   <string name="shortcut-raw">Değişikliği geri al ve kullanıcıyı uyar</string>
+  <string name="shortcut-contrib">Şu anda görüntülenen düzenlemeyi yapan kullanıcının katkıları gösteriliyor</string>
   <string name="shortcut-exit">Huggle\'ı normal bir şekilde sonlandır</string>
   <string name="shortcut-next">Sıradaki değişikliğe geç</string>
   <string name="shortcut-suspicious">Değişikliği şüpheli olarak işaretle</string>

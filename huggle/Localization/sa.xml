@@ -106,7 +106,7 @@
   <string name="login-tab-login">प्रविश्यताम्</string>
   <string name="login-language">भाषा :</string>
   <string name="login-project">प्रकल्पः :</string>
-  <string name="login-username">प्रयोक्तृनाम :</string>
+  <string name="login-username">सदस्यनाम :</string>
   <string name="login-password">कूटशब्दः :</string>
   <string name="login-proxyaddress">सङ्केतः :</string>
   <string name="login-proxydomain">क्षेत्रम् :</string>

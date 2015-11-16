@@ -83,6 +83,7 @@
   <string name="block-type">חסימה / שחרור</string>
   <string name="block-admin">המפעיל החוסם</string>
   <string name="block-none">אין משתמש לחסום.</string>
+  <string name="contribution-browser-user-info">הצגת התרומות האחרונות של משתמש $1</string>
   <string name="config-function">פונקציה</string>
   <string name="config-description">תיאור</string>
   <string name="config-shortcut">קיצור דרך</string>
@@ -546,6 +547,7 @@
   <string name="shortcut-report-user">דיווח משתמש</string>
   <string name="shortcut-my-talk">דך השיחה שלי</string>
   <string name="shortcut-raw">לשחזר את העריכה ולהזהיר את המשתמש</string>
+  <string name="shortcut-contrib">הצגת התרומות של המשתמש שעשה את העריכה שמוצגת כעת</string>
   <string name="shortcut-exit">לצאת מהאגל בדרך הרגילה</string>
   <string name="shortcut-next">מעבר לעריכה הבאה</string>
   <string name="shortcut-suspicious">לסמן את העריכה סתור חשודה</string>

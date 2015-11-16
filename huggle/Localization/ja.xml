@@ -396,6 +396,8 @@
   <string name="user-history-fail">利用者の履歴を取得できません: $1</string>
   <string name="userinfo-generic">利用者の情報</string>
   <string name="userinfo-retrieve">情報を取得</string>
+  <string name="shortcut-report-username">利用者名を報告</string>
+  <string name="shortcut-report-user">利用者を報告</string>
   <string name="shortcut-my-talk">自分の会話ページ</string>
   <string name="shortcut-browser-close-tab">ブラウザのタブを閉じる</string>
   <string name="shortcut-tab">新しいタブを開く</string>

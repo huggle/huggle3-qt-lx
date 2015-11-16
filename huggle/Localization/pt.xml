@@ -81,6 +81,7 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="block-type">Bloquear / desbloquear</string>
   <string name="block-admin">O administrador que fez o bloqueio</string>
   <string name="block-none">Não há nenhum utilizador para bloquear.</string>
+  <string name="contribution-browser-user-info">A mostrar contribuições recentes de $1</string>
   <string name="config-function">Função</string>
   <string name="config-description">Descrição</string>
   <string name="config-shortcut">Atalho</string>
@@ -529,6 +530,7 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="shortcut-report-user">Denunciar utilizador(a)</string>
   <string name="shortcut-my-talk">Minha página de discussão</string>
   <string name="shortcut-raw">Reverter a edição e avisar utilizador</string>
+  <string name="shortcut-contrib">Mostrar contribuição do utilizador que realizou a edição apresentada</string>
   <string name="shortcut-exit">Encerrar o Huggle de forma habitual</string>
   <string name="shortcut-next">Ir para a próxima edição</string>
   <string name="shortcut-suspicious">Marcar edição como suspeita</string>
