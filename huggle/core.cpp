@@ -626,6 +626,7 @@ void Core::LoadLocalizations()
     Localizations::HuggleLocalizations->LocalInit("sv"); // Swedish
     Localizations::HuggleLocalizations->LocalInit("ta");
     Localizations::HuggleLocalizations->LocalInit("tr"); // Turkish
+    Localizations::HuggleLocalizations->LocalInit("ur"); // Urdu
     Localizations::HuggleLocalizations->LocalInit("zh"); // Chinese
     Localizations::HuggleLocalizations->LocalInit("zh-hant"); // Chinese hant
     this->TestLanguages();

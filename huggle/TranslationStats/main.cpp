@@ -94,8 +94,9 @@ int main(int argc, char *argv[])
     Localizations::HuggleLocalizations->LocalInit("sa");
     Localizations::HuggleLocalizations->LocalInit("sv"); // Swedish
     Localizations::HuggleLocalizations->LocalInit("ta");
-    Localizations::HuggleLocalizations->LocalInit("zh-hant"); // Chinese
     Localizations::HuggleLocalizations->LocalInit("tr"); // Turkish
+    Localizations::HuggleLocalizations->LocalInit("ur");
+    Localizations::HuggleLocalizations->LocalInit("zh-hant"); // Chinese
     Localizations::HuggleLocalizations->LocalInit("zh"); // Chinese
     HTML();
     return 0;
