@@ -3,6 +3,7 @@ cmake_minimum_required (VERSION 2.8.7)
 #set(CMAKE_CXX_STANDARD 11)
 project(huggle)
 execute_process(COMMAND "${CMAKE_SOURCE_DIR}/build/prepare_cmake.sh" WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
+add_compile_options($<$<CXX_COMPILER_ID:MSVC>:/MP>)
 execute_process(COMMAND "${CMAKE_SOURCE_DIR}/update.sh" WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 #  cmake <folder> -DQT5_BUILD=true
 option(LIBCORE "Build core library" false)
