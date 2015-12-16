@@ -615,7 +615,7 @@ void Login::RetrieveProjectConfig(WikiSite *site)
             result = Generic::EvaluateWikiPageContents(query, &failed);
             if (failed)
             {
-                this->DisplayError("Unable to retrieve user list: " + result);
+                this->DisplayError(_l("unable-to-retrieve-user-list", result));
                 return;
             }
             QStringList users = result.toLower().split("\n");
@@ -836,7 +836,7 @@ void Login::RetrieveUserInfo(WikiSite *site)
             ApiQueryResultNode* ui = query->GetApiQueryResult()->GetNode("userinfo");
             if (!ui)
             {
-                this->DisplayError("Site didn't return any userinfo information");
+                this->DisplayError(_l("login-no-userinfo"));
                 return;
             }
             int editcount = ui->GetAttribute("editcount", "-1").toInt();
@@ -846,7 +846,7 @@ void Login::RetrieveUserInfo(WikiSite *site)
                 QString registration_info = ui->GetAttribute("registrationdate");
                 if (registration_info.isEmpty())
                 {
-                    this->DisplayError("Invalid registrationdate returned by mediawiki");
+                    this->DisplayError(_l("login-invalid-register-date"));
                     return;
                 }
                 QDateTime registration_date = MediaWiki::FromMWTimestamp(registration_info);
@@ -902,7 +902,7 @@ void Login::ProcessSiteInfo(WikiSite *site)
     {
         if (this->qSiteInfo[site]->IsFailed())
         {
-            this->DisplayError("Site info query for " + site->Name + " has failed: " + this->qSiteInfo[site]->GetFailureReason());
+            this->DisplayError(_l("login-site-info-query-failed", site->Name, this->qSiteInfo[site]->GetFailureReason()));
             return;
         }
         if (!this->qTokenInfo[site]->IsFailed())
@@ -955,7 +955,7 @@ void Login::ProcessSiteInfo(WikiSite *site)
         ApiQueryResultNode *g_ = this->qSiteInfo[site]->GetApiQueryResult()->GetNode("general");
         if( g_ == nullptr )
         {
-            this->DisplayError("No site info was returned for this wiki");
+            this->DisplayError(_l("login-no-site-info-returned"));
             return;
         }
         if (g_->Attributes.contains("rtl"))
@@ -1053,7 +1053,7 @@ void Login::Finish()
     // we no longer need a password since this
     hcfg->TemporaryConfig_Password = pw;
     this->ui->lineEdit_password->setText(pw);
-    this->Update("Loading main huggle window");
+    this->Update(_l("loading-main-window"));
     this->timer->stop();
     this->hide();
     MainWindow::HuggleMain = new MainWindow();
@@ -1090,8 +1090,7 @@ bool Login::ProcessOutput(WikiSite *site)
     if (!Result.contains(("<login result")))
     {
         Syslog::HuggleLogs->DebugLog(Result);
-        this->DisplayError("The api.php responded with invalid text (webserver is down?), please check debug "\
-                           "log for precise information");
+        this->DisplayError(_l("api.php-invalid-response"));
         return false;
     }
 
@@ -1099,8 +1098,7 @@ bool Login::ProcessOutput(WikiSite *site)
     if (!Result.contains("\""))
     {
         Syslog::HuggleLogs->DebugLog(Result);
-        this->DisplayError("The api.php responded with invalid text (webserver is broken), please check debug "\
-                           "log for precise information");
+        this->DisplayError(_l("api.php-invalid-response"));
         return false;
     }
     Result = Result.mid(0, Result.indexOf("\""));
@@ -1125,7 +1123,7 @@ bool Login::ProcessOutput(WikiSite *site)
     }
     if (Result == "NotExists")
     {
-        this->DisplayError("This username doesn't exist");
+        this->DisplayError(_l("login-username-doesnt-exist"));
         return false;
     }
     this->DisplayError(_l("login-api", Result));
@@ -1332,13 +1330,13 @@ void Huggle::Login::on_pushButton_2_clicked()
 {
     if (this->ui->tableWidget->isVisible())
     {
-        this->ui->pushButton_2->setText("Projects >>");
+        this->ui->pushButton_2->setText(_l("projects") + " >>");
         this->ui->tableWidget->setVisible(false);
         hcfg->Multiple = false;
     } else
     {
         hcfg->Multiple = true;
-        this->ui->pushButton_2->setText("Projects <<");
+        this->ui->pushButton_2->setText(_l("projects") + " >>");
         this->ui->tableWidget->setVisible(true);
         if (this->height() < 460)
             this->resize(this->width(), 480);
