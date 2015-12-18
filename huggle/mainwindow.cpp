@@ -916,19 +916,19 @@ bool MainWindow::PreflightCheck(WikiEdit *_e)
     QString type = _l("main-revert-type-unknown");
     if (hcfg->WarnUserSpaceRoll && _e->Page->IsUserpage())
     {
-		type = _l("main-revert-type-in-userspace");
+        type = _l("main-revert-type-in-userspace");
         Warn = true;
     } else if (hcfg->ProjectConfig->ConfirmOnSelfRevs && (_e->User->Username.toLower() == hcfg->SystemConfig_Username.toLower()))
     {
-		type = _l("main-revert-type-made-by-you");
+        type = _l("main-revert-type-made-by-you");
         Warn = true;
     } else if (hcfg->ProjectConfig->ConfirmTalk && _e->Page->IsTalk())
     {
-		type = _l("main-revert-type-made-on-talk-page");
+        type = _l("main-revert-type-made-on-talk-page");
         Warn = true;
     } else if (hcfg->ProjectConfig->ConfirmWL && _e->User->IsWhitelisted())
     {
-		type = _l("main-revert-type-white-list");
+        type = _l("main-revert-type-white-list");
         Warn = true;
     }
     if (Warn)
