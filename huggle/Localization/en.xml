@@ -721,7 +721,7 @@
   <string name="developer-mode-enter-message">You entered a developer mode! Addshore stinks!</string>
   <string name="unimplemented">This feature was not implemented yet</string>
   <string name="unknown-item">Unknown item</string>
-  <string name="title-multiple-projects">multiple projects</string>
+  <string name="title-multiple-projects">multiple projects ($1)</string>
   <string name="title-on">on</string>
   <string name="main-revert-custom-reason-text">No reason was provided / custom revert</string>
   <string name="main-revert-already-pending-title">This edit is already being reverted</string>

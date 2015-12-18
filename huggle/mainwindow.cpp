@@ -146,13 +146,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     QString projects = hcfg->Project->Name;
     if (hcfg->Multiple)
     {
-        projects = _l("title-multiple-projects") + " (";
         foreach (WikiSite *site, hcfg->Projects)
             projects += site->Name + ", ";
         projects = projects.mid(0, projects.length() - 2);
-        projects += ")";
     }
-    this->setWindowTitle("Huggle 3 QT-LX " + _l("title-on") + " " + projects);
+    this->setWindowTitle("Huggle 3 QT-LX " + _l("title-on") + " " + _l("title-multiple-projects", projects));
     HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@layout");
     this->DisplayWelcomeMessage();
     HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@welcome");
