@@ -130,10 +130,10 @@ void History::Undo(HistoryItem *hist)
         case HistoryDelete:
         case HistoryProtect:
         case HistoryUndelete:
-            Generic::MessageBox(_l("history-error-message-title"), "This feature was not implemented yet");
+            Generic::MessageBox(_l("history-error-message-title"), _l("unimplemented"));
             return;
         case HistoryUnknown:
-            Generic::MessageBox(_l("history-error-message-title"), "Unknown item");
+            Generic::MessageBox(_l("history-error-message-title"), _l("unknown-item"));
             return;
     }
     Syslog::HuggleLogs->Log(_l("history-work", hist->Target));

@@ -186,7 +186,7 @@ static int DateMark(QString page, WikiSite *site)
     QString mark = "";
     while (m < site->GetProjectConfig()->Parser_Date_Suffix.count())
     {
-		QString m_ = site->GetProjectConfig()->Parser_Date_Suffix.at(m);
+        QString m_ = site->GetProjectConfig()->Parser_Date_Suffix.at(m);
         if (page.contains(m_))
         {
             int mp = page.lastIndexOf(m_);

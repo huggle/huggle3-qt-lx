@@ -705,4 +705,5 @@
   <string name="about-qt">, скомпилировано с использованием QT $1 Работает на QT $1</string>
   <string name="error-unknown-code">Неизвестная ошибка: $1</string>
   <string name="relogin-fail">Не удалось войти в вики: $1</string>
+  <string name="projects">Проекты</string>
 </resources>
