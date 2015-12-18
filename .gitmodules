@@ -1,6 +1,6 @@
 [submodule "huggle/extension_list/mass-delivery"]
 	path = huggle/extension_list/mass-delivery
-	url = http://github.com/huggle/extension/mass-delivery
+	url = http://github.com/huggle/mass-delivery
 [submodule "huggle/extension_list/enwiki"]
 	path = huggle/extension_list/enwiki
 	url = http://github.com/huggle/enwiki
