@@ -288,7 +288,7 @@ void Login::DB()
     }
     if (this->qDatabase->IsFailed())
     {
-        this->DisplayError("Unable to download a db of wikis: " + this->qDatabase->GetFailureReason());
+        this->DisplayError(_l("wikidb-download-fail") + this->qDatabase->GetFailureReason());
         this->timer->stop();
         this->Enable();
         this->Refreshing = false;
@@ -320,13 +320,13 @@ void Login::PressOK()
     this->GlobalConfig = false;
     if (this->ui->tab_oauth->isVisible())
     {
-        Generic::pMessageBox(this, _l("function-miss"), "This function is not available for wmf wikis in this moment");
+        Generic::pMessageBox(this, _l("function-miss"), _l("wmf-function-miss"));
         return;
     }
     if (this->ui->Project->count() == 0)
     {
         // there are no projects in login form
-        Generic::pMessageBox(this, _l("error"), "There are no projects defined in a list you need to set up some on global wiki");
+        Generic::pMessageBox(this, _l("error"), _l("list-empty"));
         return;
     }
     hcfg->SystemConfig_StorePassword = this->ui->checkBox_2->isChecked();
@@ -720,7 +720,7 @@ void Login::RetrieveUserConfig(WikiSite *site)
         {
             if (q->IsFailed())
             {
-                this->DisplayError("Login failed unable to retrieve user config: " + q->Result->ErrorMessage);
+                this->DisplayError(_l("string-retrieve-failure") + q->Result->ErrorMessage);
                 return;
             }
             ApiQueryResultNode *data = q->GetApiQueryResult()->GetNode("rev");
@@ -1330,13 +1330,13 @@ void Huggle::Login::on_pushButton_2_clicked()
 {
     if (this->ui->tableWidget->isVisible())
     {
-        this->ui->pushButton_2->setText(_l("projects") + " >>");
+        this->ui->pushButton_2->setText(_l("projects-shown-not"));
         this->ui->tableWidget->setVisible(false);
         hcfg->Multiple = false;
     } else
     {
         hcfg->Multiple = true;
-        this->ui->pushButton_2->setText(_l("projects") + " >>");
+        this->ui->pushButton_2->setText(_l("projects-shown"));
         this->ui->tableWidget->setVisible(true);
         if (this->height() < 460)
             this->resize(this->width(), 480);
