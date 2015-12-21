@@ -146,13 +146,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     QString projects = hcfg->Project->Name;
     if (hcfg->Multiple)
     {
-        projects = "multiple projects (";
         foreach (WikiSite *site, hcfg->Projects)
             projects += site->Name + ", ";
         projects = projects.mid(0, projects.length() - 2);
-        projects += ")";
     }
-    this->setWindowTitle("Huggle 3 QT-LX on " + projects);
+    this->setWindowTitle("Huggle 3 QT-LX " + _l("title-on") + " " + _l("title-multiple-projects", projects));
     HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@layout");
     this->DisplayWelcomeMessage();
     HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@welcome");
@@ -516,7 +514,7 @@ void MainWindow::RevertAgf(bool only)
     }
     bool ok;
     QString reason = QInputDialog::getText(this, _l("reason"), _l("main-revert-custom-reson"), QLineEdit::Normal,
-                                           "No reason was provided / custom revert", &ok);
+                                           _l("main-revert-custom-reason-text"), &ok);
     if (!ok)
         return;
     QString summary = this->GetCurrentWikiSite()->GetProjectConfig()->AgfRevert;
@@ -906,35 +904,34 @@ bool MainWindow::PreflightCheck(WikiEdit *_e)
         return false;
     if (this->qNext != nullptr)
     {
-        Generic::pMessageBox(this, "This edit is already being reverted", "You can't revert this edit, because it's already being reverted. Please wait!",
+        Generic::pMessageBox(this, _l("main-revert-already-pending-title"), _l("main-revert-already-pending-text"),
                             MessageBoxStyleNormal, true);
         return false;
     }
     if (_e == nullptr)
         throw new Huggle::NullPointerException("WikiEdit *_e", BOOST_CURRENT_FUNCTION);
     bool Warn = false;
-    QString type = "unknown";
+    QString type = _l("main-revert-type-unknown");
     if (hcfg->WarnUserSpaceRoll && _e->Page->IsUserpage())
     {
+        type = _l("main-revert-type-in-userspace");
         Warn = true;
-        type = "in userspace";
     } else if (hcfg->ProjectConfig->ConfirmOnSelfRevs && (_e->User->Username.toLower() == hcfg->SystemConfig_Username.toLower()))
     {
-        type = "made by you";
+        type = _l("main-revert-type-made-by-you");
         Warn = true;
     } else if (hcfg->ProjectConfig->ConfirmTalk && _e->Page->IsTalk())
     {
-        type = "made on talk page";
+        type = _l("main-revert-type-made-on-talk-page");
         Warn = true;
     } else if (hcfg->ProjectConfig->ConfirmWL && _e->User->IsWhitelisted())
     {
-        type = "made by a user who is on white list";
+        type = _l("main-revert-type-white-list");
         Warn = true;
     }
     if (Warn)
     {
-        int q = Generic::pMessageBox(this, _l("shortcut-revert"), "This edit is " + type + ", so even if it looks like it is a vandalism,"\
-                                     " it may not be, are you sure you want to revert it?", MessageBoxStyleQuestion);
+        int q = Generic::pMessageBox(this, _l("shortcut-revert"), _l("main-revert-warn", type), MessageBoxStyleQuestion);
         if (q == QMessageBox::No)
             return false;
     }

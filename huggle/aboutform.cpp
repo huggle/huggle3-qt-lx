@@ -94,7 +94,7 @@ static void check_dev()
 {
     if (developer > 20)
     {
-        Generic::MessageBox("Whee", "You entered a developer mode! Addshore stinks!");
+        Generic::MessageBox(_l("developer-mode-enter-title"), _l("developer-mode-enter-message"));
         hcfg->Verbosity = 1;
         MainWindow::HuggleMain->EnableDev();
         developer = -200;
