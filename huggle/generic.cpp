@@ -280,3 +280,8 @@ int Generic::pMessageBox(QWidget *parent, QString title, QString text, MessageBo
 {
     return Generic::MessageBox(title, text, st, enforce_stop, parent);
 }
+
+QString Generic::IRCQuitDefaultMessage()
+{
+    return "Huggle (" + hcfg->HuggleVersion + "), the anti vandalism software. See #huggle on irc://chat.freenode.net";
+}

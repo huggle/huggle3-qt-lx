@@ -23,6 +23,15 @@ namespace Ui
     class VandalNw;
 }
 
+namespace libircclient
+{
+    class Channel;
+    class Server;
+    class Parser;
+    class User;
+    class Network;
+}
+
 namespace Huggle
 {
     class WikiPage;
@@ -30,10 +39,6 @@ namespace Huggle
     class WikiUser;
     class WikiSite;
 
-    namespace IRC
-    {
-        class NetworkIrc;
-    }
     //! This namespace contains HAN classes
 
     //! Huggle Antivandalism Network is a system that allows users of huggle and other tools
@@ -123,8 +128,6 @@ namespace Huggle
             QHash<WikiSite*,QString> Site2Channel;
             //! Prefix to special commands that are being sent to network to other users
             QString Prefix;
-            //! Timer that is used to connect to network
-            QTimer *tm;
             QList<HAN::RescoreItem> UnparsedScores;
             QList<HAN::GenericItem> UnparsedGood;
             QList<HAN::GenericItem> UnparsedRoll;
@@ -139,16 +142,25 @@ namespace Huggle
             //! when there is no change (that is actually CPU expensive operation)
             bool UsersModified;
             //! Pointer to irc server
-            Huggle::IRC::NetworkIrc *Irc;
+            libircclient::Network *Irc;
             //! Using this we track if channel was joined or not, because we need to send
             //! the request some time after connection or irc server would skip it
             bool JoinedMain;
             QString Text;
         private slots:
-            void onTick();
             void on_pushButton_clicked();
             void on_lineEdit_returnPressed();
             void on_textBrowser_anchorClicked(const QUrl &arg1);
+            // IRC related
+            void OnIRCUserJoin(libircclient::Parser *px, libircclient::User *user, libircclient::Channel *channel);
+            void OnIRCSelfJoin(libircclient::Channel *channel);
+            void OnIRCChannelNames(libircclient::Parser *px);
+            void OnIRCUserPart(libircclient::Parser *px, libircclient::Channel *channel);
+            void OnIRCSelfPart(libircclient::Parser *px, libircclient::Channel *channel);
+            void OnIRCChannelMessage(libircclient::Parser *px);
+            void OnIRCChannelQuit(libircclient::Parser *px, libircclient::Channel *channel);
+            void OnConnected();
+            void OnDisconnected();
     };
 }
 

@@ -13,6 +13,14 @@ option(LIBCORE "Build core library" false)
 option(PYTHON_BUILD "Build huggle with python" false)
 option(QT5_BUILD "Build huggle using the Qt5 framework" false)
 option(HUGGLE_EXT "Build huggle extensions" false)
+
+# This will ensure that produced binaries go to right place on windows
+if(NOT MINGW AND WIN32)
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_CURRENT_BINARY_DIR}/Release)
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_CURRENT_BINARY_DIR}/Debug)
+endif()
+add_subdirectory(../libs/libirc/libirc libirc)
+add_subdirectory(../libs/libirc/libircclient libircclient)
 if (HUGGLE_EXT)
     if(NOT MINGW AND WIN32)
         set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_CURRENT_BINARY_DIR}/Release/extensions)
@@ -120,6 +128,13 @@ if (WIN32)
         target_link_libraries(py_hug dbghelp)
     endif()
 endif()
+
+target_link_libraries(huggle irc ircclient)
+
+if (LIBCORE OR HUGGLE_EXT)
+    target_link_libraries(core irc ircclient)
+endif()
+
 if (QT5_BUILD)
     qt5_use_modules(huggle Core Gui Widgets WebKitWidgets WebKit Network Xml)
     if (HUGGLE_EXT OR LIBCORE)

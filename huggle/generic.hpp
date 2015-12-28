@@ -71,6 +71,7 @@ namespace Huggle
         HUGGLE_EX int MessageBox(QString title, QString text, MessageBoxStyle st = MessageBoxStyleNormal, bool enforce_stop = false, QWidget *parent = nullptr);
         //! Display a message box telling user that function is not allowed during developer mode
         HUGGLE_EX void DeveloperError();
+        HUGGLE_EX QString IRCQuitDefaultMessage();
         /*!
          * \brief EvaluateWikiPageContents evaluates the result of query
          * This function can be only used to check the results of query that was created in order to
