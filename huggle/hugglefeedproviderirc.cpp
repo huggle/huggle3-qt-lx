@@ -8,13 +8,18 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
+#include "definitions.hpp"
+#include "../libs/libirc/libirc/serveraddress.h"
+#include "../libs/libirc/libircclient/parser.h"
+#include "../libs/libirc/libircclient/network.h"
+#include "../libs/libirc/libircclient/channel.h"
 #include "hugglefeedproviderirc.hpp"
 #include "configuration.hpp"
 #include "mainwindow.hpp"
 #include "exception.hpp"
 #include "hugglequeue.hpp"
+#include "generic.hpp"
 #include "localization.hpp"
-#include "networkirc.hpp"
 #include "querypool.hpp"
 #include "syslog.hpp"
 #include "wikiedit.hpp"
@@ -28,15 +33,12 @@ HuggleFeedProviderIRC::HuggleFeedProviderIRC(WikiSite *site) : HuggleFeed(site)
 {
     this->Paused = false;
     this->Connected = false;
-    this->timer = new QTimer();
-    connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTick()));
     this->Network = nullptr;
 }
 
 HuggleFeedProviderIRC::~HuggleFeedProviderIRC()
 {
     this->Stop();
-    delete this->timer;
     while (this->Buffer.count() > 0)
     {
         this->Buffer.at(0)->DecRef();
@@ -58,21 +60,21 @@ bool HuggleFeedProviderIRC::Start()
     QString nick = "huggle";
     qsrand(QTime::currentTime().msec());
     nick += QString::number(qrand());
-    this->Network = new Huggle::IRC::NetworkIrc(Configuration::HuggleConfiguration->IRCServer, nick);
-    this->Network->Port = Configuration::HuggleConfiguration->IRCPort;
-    this->Network->UserName = Configuration::HuggleConfiguration->HuggleVersion;
-    if (!this->Network->Connect())
-    {
-        Huggle::Syslog::HuggleLogs->Log(_l("irc-error", Configuration::HuggleConfiguration->IRCServer, this->Network->ErrorMs));
-        delete this->Network;
-        this->Network = nullptr;
-        return false;
-    }
-    this->Network->Join(this->GetSite()->IRCChannel);
-    Huggle::Syslog::HuggleLogs->Log(_l("irc-connected", this->Site->Name));
-    this->timer->start(HUGGLE_TIMER);
+    libirc::ServerAddress server(hcfg->IRCServer, false, hcfg->IRCPort, nick);
+    this->Network = new libircclient::Network(server, "Wikimedia IRC");
+    this->Network->SetDefaultUsername(Configuration::HuggleConfiguration->HuggleVersion);
+    this->Network->SetDefaultIdent("huggle");
+    connect(this->Network, SIGNAL(Event_Connected()), this, SLOT(OnConnected()));
+    connect(this->Network, SIGNAL(Event_SelfJoin(libircclient::Channel*)), this, SLOT(OnIRCSelfJoin(libircclient::Channel*)));
+    connect(this->Network, SIGNAL(Event_SelfPart(libircclient::Parser*,libircclient::Channel*)), this, SLOT(OnIRCSelfPart(libircclient::Parser*,libircclient::Channel*)));
+    connect(this->Network, SIGNAL(Event_PRIVMSG(libircclient::Parser*)), this, SLOT(OnIRCChannelMessage(libircclient::Parser*)));
+    connect(this->Network, SIGNAL(Event_PerChannelQuit(libircclient::Parser*,libircclient::Channel*)), this, SLOT(OnIRCChannelQuit(libircclient::Parser*,libircclient::Channel*)));
+    connect(this->Network, SIGNAL(Event_Disconnected()), this, SLOT(OnDisconnected()));
+    connect(this->Network, SIGNAL(Event_Join(libircclient::Parser*,libircclient::User*,libircclient::Channel*)), this, SLOT(OnIRCUserJoin(libircclient::Parser*,libircclient::User*,libircclient::Channel*)));
+    connect(this->Network, SIGNAL(Event_Part(libircclient::Parser*,libircclient::Channel*)), this, SLOT(OnIRCUserPart(libircclient::Parser*,libircclient::Channel*)));
+    connect(this->Network, SIGNAL(Event_NetworkFailure(QString,int)), this, SLOT(OnFailure(QString,int)));
     this->Connected = true;
-    this->UptimeDate = QDateTime::currentDateTime();
+    this->Network->Connect();
     return true;
 }
 
@@ -80,7 +82,7 @@ bool HuggleFeedProviderIRC::IsWorking()
 {
     if (this->Network != nullptr)
     {
-        return this->Connected && (this->Network->IsConnected() || this->Network->IsConnecting());
+        return this->Connected && (this->Network->IsConnected());
     }
     return false;
 }
@@ -91,8 +93,7 @@ void HuggleFeedProviderIRC::Stop()
     {
         return;
     }
-    this->timer->stop();
-    this->Network->Disconnect();
+    this->Network->Disconnect(Generic::IRCQuitDefaultMessage());
     this->Connected = false;
 }
 
@@ -312,16 +313,29 @@ QString HuggleFeedProviderIRC::ToString()
     return "IRC";
 }
 
-void HuggleFeedProviderIRC::OnTick()
+void HuggleFeedProviderIRC::OnIRCChannelMessage(libircclient::Parser *px)
 {
-    // wait until we finish connecting to a network
-    if (!this->IsWorking() || !this->Network->IsConnected())
+    this->ParseEdit(px->GetText());
+}
+
+void HuggleFeedProviderIRC::OnConnected()
+{
+    this->Network->RequestJoin(this->GetSite()->IRCChannel);
+    Huggle::Syslog::HuggleLogs->Log(_l("irc-connected", this->Site->Name));
+    this->Connected = true;
+    this->UptimeDate = QDateTime::currentDateTime();
+}
+
+void HuggleFeedProviderIRC::OnFailure(QString reason, int code)
+{
+    // We don't need to echo this as error, it's actually OK
+    if (code == EDISCONNECTED)
         return;
 
-    Huggle::IRC::Message *message = this->Network->GetMessage();
-    if (message != nullptr)
-    {
-        QString text = message->Text;
-        this->ParseEdit(text);
-    }
+    Syslog::HuggleLogs->ErrorLog("IRC provider: ec (" + QString::number(code) + ") " + reason);
+}
+
+void HuggleFeedProviderIRC::OnDisconnected()
+{
+    this->Connected = false;
 }

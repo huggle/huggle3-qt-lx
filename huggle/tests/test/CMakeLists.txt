@@ -46,6 +46,9 @@ file (GLOB uixx
     "../../*.ui"
 )
 
+add_subdirectory(../../../libs/libirc/libirc libirc)
+add_subdirectory(../../../libs/libirc/libircclient libircclient)
+
 SET(tst_testmain_SOURCES ${srcx}
 ../../aboutform.cpp
 ../../apiqueryresult.cpp
@@ -111,7 +114,6 @@ SET(tst_testmain_SOURCES ${srcx}
 ../../loadingform.cpp
 ../../wikisite.cpp
 ../../wikiedit.cpp
-../../networkirc.cpp
 ../../vandalnw.cpp
 ../../speedyform.cpp
 ../../whitelistform.cpp
@@ -153,6 +155,7 @@ endif()
 ADD_DEFINITIONS(${QT_DEFINITIONS})
 ADD_EXECUTABLE(tst_testmain ${tst_testmain_SOURCES} ${tst_testmain_HEADERS_MOC} ${tst_testmain_FORMS_HEADERS} ${tst_testmain_RESOURCES_RCC})
 TARGET_LINK_LIBRARIES(tst_testmain ${QT_LIBRARIES})
+TARGET_LINK_LIBRARIES(tst_testmain irc ircclient)
 if (QT5_BUILD)
     qt5_use_modules(tst_testmain Core Gui Widgets Test WebKitWidgets WebKit Network Xml)
 endif()

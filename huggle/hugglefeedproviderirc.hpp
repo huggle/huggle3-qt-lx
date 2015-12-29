@@ -21,6 +21,14 @@
 #include <QTcpSocket>
 #include "hugglefeed.hpp"
 
+namespace libircclient
+{
+    class Parser;
+    class Network;
+    class Channel;
+    class User;
+}
+
 namespace Huggle
 {
     class WikiEdit;
@@ -36,7 +44,7 @@ namespace Huggle
         public:
             HuggleFeedProviderIRC(WikiSite *site);
             ~HuggleFeedProviderIRC();
-            Huggle::IRC::NetworkIrc *Network;
+            libircclient::Network *Network;
             bool Start();
             bool IsWorking();
             void Stop();
@@ -54,9 +62,11 @@ namespace Huggle
             QString ToString();
             bool Connected;
         private slots:
-            void OnTick();
+            void OnIRCChannelMessage(libircclient::Parser *px);
+            void OnConnected();
+            void OnFailure(QString reason, int code);
+            void OnDisconnected();
         private:
-            QTimer *timer;
             QList<WikiEdit*> Buffer;
             bool Paused;
     };

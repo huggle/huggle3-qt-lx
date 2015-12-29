@@ -8,6 +8,15 @@ Huggle 3 QT-LX is an anti-vandalism tool for use on Wikipedia and other MediaWik
 Building
 =========
 
+IMPORTANT: Since 3.1.19 you must download submodules in folder libs using git:
+
+```
+git submodules init
+git submodules update
+```
+
+If you didn't download this repository using git, there should be a guide on where you can download the libraries from in the respective folders.
+
 Libraries and tools you need to have to build:
 * C++11 compiler
 * [CMake](https://github.com/Kitware/CMake) 2.8.9 or higher is required
