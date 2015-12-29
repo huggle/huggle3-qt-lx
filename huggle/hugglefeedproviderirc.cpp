@@ -72,6 +72,7 @@ bool HuggleFeedProviderIRC::Start()
     connect(this->Network, SIGNAL(Event_Disconnected()), this, SLOT(OnDisconnected()));
     connect(this->Network, SIGNAL(Event_Join(libircclient::Parser*,libircclient::User*,libircclient::Channel*)), this, SLOT(OnIRCUserJoin(libircclient::Parser*,libircclient::User*,libircclient::Channel*)));
     connect(this->Network, SIGNAL(Event_Part(libircclient::Parser*,libircclient::Channel*)), this, SLOT(OnIRCUserPart(libircclient::Parser*,libircclient::Channel*)));
+    connect(this->Network, SIGNAL(Event_NetworkFailure(QString,int)), this, SLOT(OnFailure(QString,int)));
     this->Connected = true;
     this->Network->Connect();
     return true;
@@ -323,6 +324,15 @@ void HuggleFeedProviderIRC::OnConnected()
     Huggle::Syslog::HuggleLogs->Log(_l("irc-connected", this->Site->Name));
     this->Connected = true;
     this->UptimeDate = QDateTime::currentDateTime();
+}
+
+void HuggleFeedProviderIRC::OnFailure(QString reason, int code)
+{
+    // We don't need to echo this as error, it's actually OK
+    if (code == EDISCONNECTED)
+        return;
+
+    Syslog::HuggleLogs->ErrorLog("IRC provider: ec (" + QString::number(code) + ") " + reason);
 }
 
 void HuggleFeedProviderIRC::OnDisconnected()

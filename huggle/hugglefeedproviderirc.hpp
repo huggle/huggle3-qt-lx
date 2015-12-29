@@ -64,6 +64,7 @@ namespace Huggle
         private slots:
             void OnIRCChannelMessage(libircclient::Parser *px);
             void OnConnected();
+            void OnFailure(QString reason, int code);
             void OnDisconnected();
         private:
             QList<WikiEdit*> Buffer;

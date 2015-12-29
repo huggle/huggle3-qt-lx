@@ -501,6 +501,12 @@ void VandalNw::OnIRCChannelNames(libircclient::Parser *px)
     this->UpdateHeader();
 }
 
+void VandalNw::OnIRCNetworkFailure(QString reason, int code)
+{
+    (void) code;
+    this->Insert(reason, HAN::MessageType_Info);
+}
+
 void VandalNw::OnIRCUserPart(libircclient::Parser *px, libircclient::Channel *channel)
 {
     (void)px;

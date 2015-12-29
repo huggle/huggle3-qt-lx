@@ -155,6 +155,7 @@ namespace Huggle
             void OnIRCUserJoin(libircclient::Parser *px, libircclient::User *user, libircclient::Channel *channel);
             void OnIRCSelfJoin(libircclient::Channel *channel);
             void OnIRCChannelNames(libircclient::Parser *px);
+            void OnIRCNetworkFailure(QString reason, int code);
             void OnIRCUserPart(libircclient::Parser *px, libircclient::Channel *channel);
             void OnIRCSelfPart(libircclient::Parser *px, libircclient::Channel *channel);
             void OnIRCChannelMessage(libircclient::Parser *px);
