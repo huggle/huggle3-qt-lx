@@ -160,6 +160,7 @@ namespace Huggle
             void OnIRCSelfPart(libircclient::Parser *px, libircclient::Channel *channel);
             void OnIRCChannelMessage(libircclient::Parser *px);
             void OnIRCChannelQuit(libircclient::Parser *px, libircclient::Channel *channel);
+            void OnIRCLoggedIn(libircclient::Parser *px);
             void OnConnected();
             void OnDisconnected();
     };

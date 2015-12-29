@@ -108,6 +108,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->Queries = new ProcessList(this);
     this->SystemLog = new HuggleLog(this);
     this->CreateBrowserTab("Welcome page", 0);
+    this->TrayIcon.setIcon(this->windowIcon());
+    this->TrayIcon.show();
+    this->TrayIcon.setToolTip("Huggle");
     this->Queue1 = new HuggleQueue(this);
     this->wEditBar = new EditBar(this);
     this->_History = new History(this);
@@ -501,6 +504,11 @@ void MainWindow::RequestPD(WikiEdit *edit)
     this->fSpeedyDelete = new SpeedyForm(this);
     this->fSpeedyDelete->Init(edit);
     this->fSpeedyDelete->show();
+}
+
+void MainWindow::TrayMessage(QString title, QString text)
+{
+    this->TrayIcon.showMessage(title, text);
 }
 
 void MainWindow::RevertAgf(bool only)

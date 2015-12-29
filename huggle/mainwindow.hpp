@@ -14,6 +14,7 @@
 #include "definitions.hpp"
 
 #include <QMainWindow>
+#include <QSystemTrayIcon>
 #include "collectable_smartptr.hpp"
 #include "editquery.hpp"
 #include "revertquery.hpp"
@@ -151,6 +152,7 @@ namespace Huggle
             void ResumeQueue();
             //! Request a page deletion csd or afd and so on
             void RequestPD(WikiEdit *edit = nullptr);
+            void TrayMessage(QString title, QString text);
             void WelcomeGood();
             void SwitchAlternativeFeedProvider(WikiSite *site);
             //! Try to load a page
@@ -212,6 +214,7 @@ namespace Huggle
             //! Pointer to UAA dialog
             UAAReport *fUaaReportForm = nullptr;
             WhitelistForm *fWhitelist = nullptr;
+            QSystemTrayIcon TrayIcon;
             int LastTPRevID;
             //! This is a query for rollback of current edit which we need to keep in case
             //! that user wants to display their own revert instead of next page

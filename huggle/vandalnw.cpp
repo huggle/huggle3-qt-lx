@@ -91,6 +91,7 @@ VandalNw::VandalNw(QWidget *parent) : QDockWidget(parent), ui(new Ui::VandalNw)
     connect(this->Irc, SIGNAL(Event_PerChannelQuit(libircclient::Parser*,libircclient::Channel*)), this, SLOT(OnIRCChannelQuit(libircclient::Parser*,libircclient::Channel*)));
     connect(this->Irc, SIGNAL(Event_Disconnected()), this, SLOT(OnDisconnected()));
     connect(this->Irc, SIGNAL(Event_Join(libircclient::Parser*,libircclient::User*,libircclient::Channel*)), this, SLOT(OnIRCUserJoin(libircclient::Parser*,libircclient::User*,libircclient::Channel*)));
+    connect(this->Irc, SIGNAL(Event_MyInfo(libircclient::Parser*)), this, SLOT(OnIRCLoggedIn(libircclient::Parser*)));
     connect(this->Irc, SIGNAL(Event_Part(libircclient::Parser*,libircclient::Channel*)), this, SLOT(OnIRCUserPart(libircclient::Parser*,libircclient::Channel*)));
     connect(this->Irc, SIGNAL(Event_EndOfNames(libircclient::Parser*)), this, SLOT(OnIRCChannelNames(libircclient::Parser*)));
     this->Irc->SetDefaultUsername(Configuration::HuggleConfiguration->HuggleVersion);
@@ -350,7 +351,7 @@ void VandalNw::UpdateHeader()
         libircclient::Channel *channel_ = this->Irc->GetChannel(this->Site2Channel[Configuration::HuggleConfiguration->Project]);
         if (channel_ != nullptr)
         {
-            this->setWindowTitle(QString("Network (" + QString::number(channel_->GetUserCount()) + ")"));
+            this->setWindowTitle(QString("Network - " + this->Irc->GetNick() + " (" + QString::number(channel_->GetUserCount()) + ")"));
             users = channel_->GetUsers().values();
         }
         if (users.count() > 0)
@@ -535,6 +536,13 @@ void VandalNw::OnIRCChannelMessage(libircclient::Parser *px)
         Syslog::HuggleLogs->DebugLog("Ignoring message to channel " + channel + " as we don't know which site it belongs to");
         return;
     }
+
+    if (message.contains(this->Irc->GetNick()))
+    {
+        // Show a notification in tray
+        MainWindow::HuggleMain->TrayMessage("Huggle anti-vandalism network", message);
+    }
+
     WikiSite *site = this->Ch2Site[channel];
     HAN::MessageType mt;
     if (!nick.toLower().contains("bot"))
@@ -651,9 +659,8 @@ void VandalNw::OnIRCChannelQuit(libircclient::Parser *px, libircclient::Channel 
     this->UpdateHeader();
 }
 
-void VandalNw::OnConnected()
+void VandalNw::OnIRCLoggedIn(libircclient::Parser *px)
 {
-    this->UsersModified = true;
     this->JoinedMain = true;
     this->Insert("You are now connected to huggle antivandalism network", HAN::MessageType_Info);
     foreach(QString channel, this->Site2Channel.values())
@@ -661,6 +668,11 @@ void VandalNw::OnConnected()
         if (channel.startsWith("#"))
             this->Irc->TransferRaw("JOIN " + channel);
     }
+}
+
+void VandalNw::OnConnected()
+{
+    this->UsersModified = true;
 }
 
 void VandalNw::OnDisconnected()
