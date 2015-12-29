@@ -92,6 +92,16 @@ Reporting bugs
 ===============
 Please use https://phabricator.wikimedia.org/maniphest/task/create/?projects=Huggle
 
+Support us
+===============
+
+Your donations are welcome and help us focus on the development even more:
+
+PayPal: http://tools.wmflabs.org/huggle/donate.htm
+LTC:  LUQXStuTpmNnH9fCc9ABgZXjRs2WEPbSGn
+Doge: DL54FhAuw6bJ2dEb9rBqE8G9Mz1X8Cmxr1
+BTC:  19buq6BejVLqEKzDqBXYXEis2Ap1zaQd88
+
 License
 ===============
 
