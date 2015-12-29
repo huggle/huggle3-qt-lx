@@ -597,7 +597,7 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="history-undone">A edição em $1 foi desfeita com sucesso</string>
   <string name="history-retrieve-fail">Não foi possível obter o conteúdo da página que queria anular, o erro foi: $1</string>
   <string name="history-welcome-msg-title">Enviar antes uma mensagem de boas-vindas?</string>
-  <string name="history-welcome-msg" fuzzy="true">Criou esta página de discussão, por isso não pode desfazer a edição. Pretende substituir por uma mensagem de boas-vindas?</string>
+  <string name="history-welcome-msg">Criou esta página de discussão, por isso não pode desfazer a edição. Pretende substituir por uma mensagem de boas-vindas?</string>
   <string name="notify-fail">Não foi possível notificar o criador de $1</string>
   <string name="notify-unknowncreator">Não foi possível determinar o criador da página</string>
   <string name="protect-done">Nível de proteção de $1 foi alterado</string>

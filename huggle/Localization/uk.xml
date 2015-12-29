@@ -83,6 +83,7 @@
   <string name="block-type">Заблокувати / розблокувати</string>
   <string name="block-admin">Блокування адміністратора</string>
   <string name="block-none">Немає кого блокувати</string>
+  <string name="contribution-browser-user-info">Показ останніх внесків користувача $1</string>
   <string name="config-function">Функція</string>
   <string name="config-description">Опис</string>
   <string name="config-shortcut">Комбінація клавіш</string>
@@ -471,6 +472,7 @@
   <string name="report-warn">Цей користувач вже отримав попередження четвертого рівня, тому подальші попередження йому не відправлятимуться. Ви можете повідомити про нього адміністраторів, але, будь ласка, переконайтеся, що він справді отримав достатньо попереджень! Аби зробити це, натисніть кнопку «Сторінка обговорення» у формі, що з’явиться далі. Там само скористайтеся також кнопками «Перевірити, чи заблоковано» та «Перевірити, чи повідомлено», оскільки інші користувачі вже могли сповістити адміністраторів раніше. Ви бажаєте повідомити адміністраторів про цього користувача?</string>
   <string name="report-tu">Повідомити про користувача</string>
   <string name="report-reason">Причина:</string>
+  <string name="report-auto">Повідомлено про $1</string>
   <string name="report-intro">Ви збираєтеся повідомити адміністраторів про користувача $1</string>
   <string name="report-message">Повідомлення:</string>
   <string name="report-log">Попередження для цього користувача:</string>
@@ -541,8 +543,11 @@
   <string name="user-history-fail">неможливо отримати внесок користувача $1</string>
   <string name="userinfo-generic">Внесок користувача</string>
   <string name="userinfo-retrieve">Завантажити внесок</string>
+  <string name="shortcut-report-username">Поскаржитися на ім\'я користувача</string>
+  <string name="shortcut-report-user">Поскаржитися на користувача</string>
   <string name="shortcut-my-talk">Моя сторінка обговорення</string>
   <string name="shortcut-raw">Відкинути та попередити користувача</string>
+  <string name="shortcut-contrib">Показати внесок для користувача, який вніс поточно відображену правку</string>
   <string name="shortcut-exit">Вийти з Huggle</string>
   <string name="shortcut-next">Перейти до наступного редагування</string>
   <string name="shortcut-suspicious">Позначити як підозріле редагування</string>
@@ -675,7 +680,7 @@
   <string name="preferences-extension-enabled-restart">Розширення буде включено, але для цього потрібно перезапустити Huggle</string>
   <string name="preferences-watchlist-watch">Додати до списку спостереження</string>
   <string name="preferences-watchlist-unwatch">Прибрати зі списку спостереження</string>
-  <string name="preferences-watchlist-preferences" fuzzy="true">Дотримуватися правил, встановлених Вами в налаштуваннях wiki</string>
+  <string name="preferences-watchlist-preferences">Дотримуватися ваших налаштувань on-wiki</string>
   <string name="preferences-watchlist-nochange">Нічого не робити</string>
   <string name="fail">Збій</string>
   <string name="request">Запит</string>
@@ -690,6 +695,7 @@
   <string name="page-tag-fail">Не вдалося додати шаблон на сторінку</string>
   <string name="page-tag-error">Не вдалося додати шаблон на сторінку. Помилка: $1</string>
   <string name="page-unknown">Невідома сторінка</string>
+  <string name="summary-edit-range">Показ ряду відмінностей від revid $1 до $2</string>
   <string name="speedy-csd-invalid">Недопустимий CSD-шаблон</string>
   <string name="speedy-csd-existing">На сторінці вже є один CSD-шаблон</string>
   <string name="namespace">Простір назв</string>

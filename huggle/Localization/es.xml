@@ -51,6 +51,7 @@
   <string name="disable">Desactivar</string>
   <string name="no-token">Sin token</string>
   <string name="flags">Flags</string>
+  <string name="gracetime">Esperando que terminen las consultas de edición...</string>
   <string name="browser-none">Ninguna página se muestra ahora</string>
   <string name="browser-load">Descargando diferencia con un procesamiento web alternativo. Espera…</string>
   <string name="browser-miss-summ">No se proporcionó ningún resumen</string>
@@ -81,6 +82,7 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="block-type">Bloquear/desbloquear</string>
   <string name="block-admin">Administrador que ha hecho el bloqueo</string>
   <string name="block-none">No hay ningún usuario que bloquear.</string>
+  <string name="contribution-browser-user-info">Se muestran las contribuciones recientes del usuario $1</string>
   <string name="config-function">Función</string>
   <string name="config-description">Descripción</string>
   <string name="config-shortcut">Atajo</string>
@@ -571,7 +573,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="history-already-done">Esto ya se deshizo</string>
   <string name="history-undone">Se deshizo con éxito la edición a $1</string>
   <string name="history-welcome-msg-title">¿Prefieres mandar un mensaje de bienvenida en su lugar?</string>
-  <string name="history-welcome-msg" fuzzy="true">Tu has creado esta página de discusión, por lo que no puede deshacerse. ¿Quieres reemplazarla con una plantilla de bienvenida?</string>
+  <string name="history-welcome-msg">Tu has creado esta página de discusión, por lo que no puede deshacerse. ¿Quieres reemplazarla con una plantilla de bienvenida?</string>
   <string name="notify-fail">No se pudo avisar al creador de $1</string>
   <string name="notify-unknowncreator">No se puede encontrar al creador de la página</string>
   <string name="protect-done">Cambiado el nivel de protección para \'$1\'</string>
@@ -632,7 +634,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="namespace">Espacio de nombres</string>
   <string name="block-alreadyblocked">La cuenta ya está bloqueada</string>
   <string name="report-fail">No se pudo reportar al usuario porque $1</string>
-  <string name="report-page-fail" fuzzy="true">Error: no se puede recuperar la página de informe en $1</string>
+  <string name="report-page-fail">Error: no se puede recuperar la página de informe en $1</string>
   <string name="report-unable">No ha sido posible denunciar al usuario :(</string>
   <string name="about-python-with">, con soporte para python</string>
   <string name="about-python-without">sin soporte para python</string>

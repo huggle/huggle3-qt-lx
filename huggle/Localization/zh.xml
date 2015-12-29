@@ -206,9 +206,9 @@
   <string name="history-error">此项不能撤销。此页面可能已同时更新或删除，且Huggle当前无法执行撤销。如果您仍希望撤销，您需要通过MediaWiki界面手动进行。</string>
   <string name="history-failure">无法检索历史</string>
   <string name="userhistory-title">您的更改历史</string>
-  <string name="irc-connected">$1：已连接IRC最近更新订阅</string>
+  <string name="irc-connected">$1：已连接IRC最近更改订阅</string>
   <string name="irc-connecting">尝试在$1连接IRC最近更改，这将花费几分钟……</string>
-  <string name="irc-disconnected">连接$1的 IRC 最近更新中断。重新连接中……</string>
+  <string name="irc-disconnected">连接$1上的IRC最近更改订阅失败。正在重新连接...</string>
   <string name="irc-nochannel">未找到IRC频道$1；使用较慢的API请求</string>
   <string name="irc-error">无法连接到IRC最近更改频道（$1：$2）。改为使用较慢的API查询方式</string>
   <string name="irc-stop">等待$1的主订阅提供商停止</string>
@@ -654,7 +654,7 @@
   <string name="rc-timestamp-missing">RC订阅：项目缺少时间戳属性：$1</string>
   <string name="rc-type-missing">RC订阅：项目缺少类型属性：$1</string>
   <string name="rc-title-missing">RC订阅：项目缺少标题属性：$1</string>
-  <string name="whitelist-download">新白名单下载中</string>
+  <string name="whitelist-download">正在下载新白名单</string>
   <string name="logs-widget-name">系统日志</string>
   <string name="wait">请稍候…</string>
   <string name="function-miss">函数目前不可用</string>

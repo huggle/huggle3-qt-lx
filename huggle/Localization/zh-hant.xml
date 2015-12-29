@@ -173,7 +173,7 @@
   <string name="historyform-retrieving-history">取得歷史中</string>
   <string name="history-error-message-title">無法還原</string>
   <string name="history-failure">無法取得歷史</string>
-  <string name="userhistory-title">您的更改歷史</string>
+  <string name="userhistory-title">您的變更歷史</string>
   <string name="irc-not">IRC訂閱被專案設定檔停用</string>
   <string name="login-tab-oauth">OAuth</string>
   <string name="login-tab-login">登入</string>
@@ -252,7 +252,7 @@
   <string name="main-system-options">選項…</string>
   <string name="main-system-logout">登出</string>
   <string name="main-system-abort">中斷</string>
-  <string name="main-system-change-provider">更改提供者</string>
+  <string name="main-system-change-provider">變更提供者</string>
   <string name="main-system-change-provider-irc">IRC</string>
   <string name="main-system-change-provider-wiki">Wiki</string>
   <string name="main-system-exit">結束</string>

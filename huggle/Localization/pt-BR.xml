@@ -119,7 +119,7 @@ Este bloqueio substituirá o efeito do bloqueio de faixa. Continuar?</string>
   <string name="config-instant-reverts">Usar reversões instantâneas (muito rápidas, mas que não se pode cancelar uma vez executadas)</string>
   <string name="config-revert-wait">Espera de reversão (segundos)</string>
   <string name="config-revert">Reverter</string>
-  <string name="config-revert-diff" fuzzy="true">Reverte as edições mais recentes do que a página diff exibida no caso terem sido feitas pelo mesmo usuário (mesmo vândalo)</string>
+  <string name="config-revert-diff">Reverte as edições mais recentes do que a página diff exibida no caso terem sido feitas pelo mesmo usuário (mesmo vândalo)</string>
   <string name="config-change-all">Mudar todas as configurações do huggle para que funcione como huggle 2</string>
   <string name="config-merge-messages">Fundir suas mensagens com outras em seções existentes</string>
   <string name="config-months-name">Usar meses como títulos em vez do nome de página</string>
@@ -127,10 +127,10 @@ Este bloqueio substituirá o efeito do bloqueio de faixa. Continuar?</string>
   <string name="config-enable-irc">Habilitar IRC</string>
   <string name="config-remove-reverted">Remover edições que já tenham sido revertidas por alguém</string>
   <string name="config-remove-old">Remover edições antigas se uma edição mais nova para a mesma página é analisada</string>
-  <string name="config-auto-load-history" fuzzy="true">Carregar automaticamente o histórico e as informações do usuário (requer muita conexão de rede)</string>
+  <string name="config-auto-load-history">Carregar automaticamente o histórico e as informações do usuário (requer muita conexão de rede)</string>
   <string name="config-last-revision">Mostrar última revisão da página caso a edição carregada atualmente não seja a última revisão (divulgaremos ignorando cache)</string>
-  <string name="config-require-delay" fuzzy="true">Requer um atraso após cada carregamento da próxima edição, para os quais não é possível usar qualquer recurso de gravação (útil quando você precisa resolver erros no teclado multifunções)</string>
-  <string name="config-wait-edit" fuzzy="true">O tempo pelo qual você precisa esperar entre editar recursos estão habilitados (segundos):</string>
+  <string name="config-require-delay">Requer um atraso após cada carregamento da próxima edição, para os quais não é possível usar qualquer recurso de gravação (útil quando você precisa resolver erros no teclado multifunções)</string>
+  <string name="config-wait-edit">O tempo pelo qual você precisa esperar entre editar recursos estão habilitados (segundos):</string>
   <string name="config-display-text">Mostrar seguinte</string>
   <string name="config-retrieve-edit">Recuperar sua própria edição</string>
   <string name="config-nothing">Nada</string>
@@ -145,7 +145,7 @@ Este bloqueio substituirá o efeito do bloqueio de faixa. Continuar?</string>
   <string name="config-columns-dynamic">Torna as colunas de listas dinâmicas (redimensionam com base no tamanho de itens) ou manual (o usuário pode alterar seu tamanho)</string>
   <string name="config-message-notification">Mostrar uma notificação quando você receber uma nova mensagem na sua página de discussão</string>
   <string name="config-warning-api">Mostra avisos para consultas API</string>
-  <string name="config-title-diff" fuzzy="true">Título da página em cada diff (texto grande que aparece no topo de cada diff)</string>
+  <string name="config-title-diff">Título da página em cada diff (texto grande que aparece no topo de cada diff)</string>
   <string name="config-updates">Verificar atualizações</string>
   <string name="config-beta">Verificar versões beta</string>
   <string name="config-html-messages">HAN pode mostrar mensagens HTML (perigoso)</string>
@@ -401,7 +401,7 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="main-no-page">A ação que solicitou requer uma página para carregar. Por favor carregue uma página antes de tentar novamente.</string>
   <string name="main-revert-null">Impossível reverter: A edição é nula</string>
   <string name="main-revert-newpage-title">Não é possível desfazer</string>
-  <string name="main-revert-newpage" fuzzy="true">Esta é uma nova página, então esta não pode ser revertida. Pode-se marcá-la ou apagá-la.</string>
+  <string name="main-revert-newpage">Esta é uma nova página, então esta não pode ser revertida. Pode-se marcá-la ou apagá-la.</string>
   <string name="main-restore-text-fail">Não é possível restaurar a revisão, por não haver texto disponível para ela.</string>
   <string name="main-restore-data-fail">Não é possível restaurar a revisão, porque a wiki não providenciou dados para a versão selecionada</string>
   <string name="message-title">Mensagem $1</string>
@@ -471,6 +471,7 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="report-warn">Este usuário já atingiu o 4º nível de aviso, então nenhuma outra predefinição será enviada. Você pode denunciá-lo agora, mas por favor, certifique-se de que já foi atingido o número adequado de avisos! Pode fazê-lo ao clicar no botão \"página de discussão\" no formulário a seguir. Tenha em mente que este formulário e este aviso é exibido, não importa se a sua reversão foi ou não bem sucedida, por isso pode entrar em conflito com outros usuários (verifique se o usuário não foi já denunciado). Pretende denunciar este usuário?</string>
   <string name="report-tu">Denunciar usuário</string>
   <string name="report-reason">Razão:</string>
+  <string name="report-auto">relatado $1</string>
   <string name="report-intro">Você está reportando usuário $1</string>
   <string name="report-message">Mensagem:</string>
   <string name="report-log">Avisos para este usuário:</string>
@@ -541,6 +542,7 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="user-history-fail">não é possível recuperar o histórico do utilizador: $1</string>
   <string name="userinfo-generic">Informação de usuário</string>
   <string name="userinfo-retrieve">Recuperar informação</string>
+  <string name="shortcut-report-username">relatório nome de usuário</string>
   <string name="shortcut-my-talk">Minha página de discussão</string>
   <string name="shortcut-raw">Reverter edição e avisar usuário</string>
   <string name="shortcut-exit">Encerrar o Huggle normalmente</string>
@@ -617,7 +619,7 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="history-undone">A edição em $1 foi desfeita com sucesso</string>
   <string name="history-retrieve-fail">Não foi possível obter o conteúdo da página na qual queria desfazer a edição, o erro foi: $1</string>
   <string name="history-welcome-msg-title">Enviar mensagem de boas-vindas?</string>
-  <string name="history-welcome-msg" fuzzy="true">Você criou esta página de discussão, por isso não pode ser desfeita, quer substituí-la por uma predefinição de boas-vindas?</string>
+  <string name="history-welcome-msg">Você criou esta página de discussão, por isso não pode ser desfeita. Quer substituí-la por uma predefinição de boas-vindas?</string>
   <string name="notify-fail">Não foi possível notificar o criador de \'$1\'</string>
   <string name="notify-unknowncreator">Não foi possível determinar o criador da página</string>
   <string name="protect-done">Nível de proteção de \'$1\' foi alterado</string>
@@ -691,7 +693,7 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="namespace">Espaço nominal</string>
   <string name="block-alreadyblocked">O usuário já está bloqueado</string>
   <string name="report-fail">Falha ao denunciar o usuário porque: $1</string>
-  <string name="report-page-fail" fuzzy="true">Erro. Não é possível recuperar a página de relatório em $1</string>
+  <string name="report-page-fail">Erro: Não é possível recuperar a página de relatório em $1</string>
   <string name="report-page-fail-time">Não foi possível recuperar data da página do relatório atual, falha da API:
 
  $1</string>

@@ -119,15 +119,16 @@
   <string name="config-instant-reverts">즉시 되돌리기 사용 (매우 빠르나 취소할 수 없다.)</string>
   <string name="config-revert-wait">되돌리기 대기 (초)</string>
   <string name="config-revert">되돌리기</string>
-  <string name="config-revert-diff" fuzzy="true">같은 유저일 수 도 있으니 표시된 판보다 새로운 판도 같이 되돌리기</string>
+  <string name="config-revert-diff">같은 문서 훼손자에 의해 이루어진 이 편집보다 최근 편집 되돌리기</string>
   <string name="config-change-all">모든 huggle 옵션을 huggle 2와 비슷하게 하기</string>
   <string name="config-merge-messages">자신의 메세지를 같은 부분에 있는 다른 메세지와 병합하기</string>
   <string name="config-months-name">페이지 이름 대신 월(月)을 헤더로 사용하라.</string>
   <string name="config-automatic-warning">\"경고 보내기\" 사용시 자동 경고 유형과 레벨 사용하기</string>
   <string name="config-enable-irc">IRC 활성화</string>
   <string name="config-remove-reverted">다른 사용자에 의해 이미 되돌려진 수정 사항 삭제</string>
-  <string name="config-auto-load-history" fuzzy="true">역사와 사용자 정보 자동 로드 (많은 네트워크 연결을 필요로함.)</string>
+  <string name="config-auto-load-history">역사와 사용자 정보 자동으로 불러오기 (많은 네트워크 대역폭 필요)</string>
   <string name="config-display-text">다음글</string>
+  <string name="config-nothing">아무것도 하지 않음</string>
   <string name="config-bot-edits">봇 수정 (b)</string>
   <string name="config-own-edits">고유한 수정</string>
   <string name="config-reverts">되돌리기</string>

@@ -575,7 +575,7 @@
   <string name="history-message-revert-body">Toto je pouze zpráva která byla poslána na základě rollbacku, jste si jisti že chcete vrátit pouze odeslání zprávy a ne i revertaci která v ní je zmíněna? (Pokud chcete vrátit obojí klikněte na vrátit na revertaci).</string>
   <string name="history-revert-fail" fuzzy="true">Nelze vrátit zpět editace $1 chyba při revertaci: $2</string>
   <string name="history-welcome-msg-title">Poslat namísto toho uvítací zprávu?</string>
-  <string name="history-welcome-msg" fuzzy="true">Vytvořili jste tuto diskuzní stránku, takže tuto editaci nemůžete odstranit. Chcete ji však přepsat uvítací šablonou?</string>
+  <string name="history-welcome-msg">Vytvořili jste tuto diskuzní stránku, takže tuto editaci nemůžete odstranit. Chcete ji však přepsat uvítací šablonou?</string>
   <string name="notify-fail">Nepodařilo se notifikovat autora $1</string>
   <string name="notify-unknowncreator">Nelze najít autora stránky</string>
   <string name="protect-done">Zámek $1 byl upraven</string>

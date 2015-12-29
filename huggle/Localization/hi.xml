@@ -120,6 +120,7 @@
   <string name="config-change-all">हगल २ की तरह अधिक व्यवहार करने के लिए हगल की पसन्द बदलें</string>
   <string name="config-merge-messages">पहले से उपलब्ध अनुभाग में अपने सन्देशों का विलय करें</string>
   <string name="config-months-name">शीर्षणी में पृष्ठ के नाम के स्थान पर माह का उपयोग करें</string>
+  <string name="config-talk">वार्ता पृष्ठ</string>
   <string name="config-confirmmultiple">एक ही सदस्य के एक ही संपादन के एक से अधिक संस्करण की पुष्टि करें</string>
   <string name="config-confirmsame">एक सदस्य द्वारा किये गये संपादन की आवृति पूर्ववत किये जाने की पुष्टि करें</string>
   <string name="config-confirmselfrevert">स्वयं के संपादन आवृति संस्करण की पुष्टि करें</string>
@@ -151,6 +152,7 @@
   <string name="delete-deletionlog">हटाए जाने का लॉग:</string>
   <string name="delete-rem-talk">सम्बन्धित वार्ता हटाएँ</string>
   <string name="delete-notify">निर्माता को सूचित करें</string>
+  <string name="historyform-title">इतिहास</string>
   <string name="irc-connected">$1: आईआरसी हाल ही भरण से जुड़ा।</string>
   <string name="irc-connecting">$1 पर आईआरसी हाल ही के भरण से जुड़ने का प्रयास हो रहा है, इसमें कुछ समय लग सकता है...</string>
   <string name="irc-disconnected">$1 पर आईआरसी हाल ही के परिवर्तन भरण से सम्पर्क टूट गया। पुनः सम्पर्क किया जा रहा है...</string>
@@ -359,6 +361,7 @@
   <string name="update-error">नवीन संस्करण डाउनलोड करने में असफल</string>
   <string name="updater-update">अद्यतनित करें</string>
   <string name="updater-close">बंद करें</string>
+  <string name="shortcut-my-talk">मेरा वार्ता पृष्ठ</string>
   <string name="warning-title">$1 को चेतावनी दें</string>
   <string name="warning-levelgroup">चेतावनी स्तर</string>
   <string name="warning-levelauto">स्वतः</string>
@@ -411,5 +414,8 @@
   <string name="speedy-fail">पृष्ठ को शीघ्र हटाने हेतु नामांकित करने में असफल रहा: $1</string>
   <string name="speedy-progress">\'$1\' को शीघ्र हटाने के लिए नामांकित कर रहा है।</string>
   <string name="warn-alreadyblocked">यह प्रयोक्ता पहले ही अवरोधित किया जा चुका है</string>
+  <string name="wait">कृपया प्रतीक्षा करें...</string>
+  <string name="page-unknown">अज्ञात पृष्ठ</string>
+  <string name="namespace">नामस्थान</string>
   <string name="report-fail">सदस्य की शिकायत नहीं हो पायी: $1</string>
 </resources>

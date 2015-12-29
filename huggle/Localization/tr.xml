@@ -22,6 +22,7 @@
   <string name="result">Sonuç</string>
   <string name="save">Kaydet</string>
   <string name="show">Göster</string>
+  <string name="no-instant"> $1 projesinde anında uyarılar aktif değil, $2 için mesaj gönderilmeyecek, başka bir uyarı seviyesi seçin</string>
   <string name="undo">Geri al</string>
   <string name="yes">Evet</string>
   <string name="editing-page">Sayfa düzenleniyor</string>
@@ -499,7 +500,7 @@
   <string name="uaa-reporting">UAA\'ya rapor ediliyor: $1</string>
   <string name="uaa-reported">Rapor edildi</string>
   <string name="uaa-no-reason-warn">Kullanıcı adının neden politika ihlali olduğunu belirtmediniz. Lütfen bir neden belirtiniz.</string>
-  <string name="uaa-nr">Neden belirtilmedi.</string>
+  <string name="uaa-nr">Neden belirtilmedi</string>
   <string name="uaa-g1">UAA içeriği alınıyor</string>
   <string name="uaa-e1">sayfa içeriği için yapılan sorgu yanıt olarak herhangi bir veri getirmedi</string>
   <string name="uaa-e2">sayfa içeriğini kullanılabilir değildi.</string>
@@ -542,10 +543,10 @@
   <string name="userinfo-generic">Kullanıcı bilgisi</string>
   <string name="userinfo-retrieve">Bilgiyi getir</string>
   <string name="shortcut-report-username">Kullanıcı adını raporla</string>
-  <string name="shortcut-report-user">Kullanıcıyı raporla</string>
+  <string name="shortcut-report-user">Kullanıcıyı rapor et</string>
   <string name="shortcut-my-talk">Mesaj sayfam</string>
   <string name="shortcut-raw">Değişikliği geri al ve kullanıcıyı uyar</string>
-  <string name="shortcut-contrib">Şu anda görüntülenen düzenlemeyi yapan kullanıcının katkıları gösteriliyor</string>
+  <string name="shortcut-contrib">Şu anda görüntülenen düzenlemeyi yapan kullanıcının katkılarını göster</string>
   <string name="shortcut-exit">Huggle\'ı normal bir şekilde sonlandır</string>
   <string name="shortcut-next">Sıradaki değişikliğe geç</string>
   <string name="shortcut-suspicious">Değişikliği şüpheli olarak işaretle</string>
@@ -582,7 +583,7 @@
   <string name="han-not">Vandalizm ağı seçeneklerde devredışı</string>
   <string name="han-connecting">Huggle anti-vandalizm ağına bağlanılıyor</string>
   <string name="han-already-connected">HAN\'a zaten bağlı</string>
-  <string name="han-already-connecting">Lütfen bekleyin, zaten HAN\'a bağlanılmaya çalışılıyor.</string>
+  <string name="han-already-connecting">Lütfen bekleyin, zaten HAN\'a bağlanmaya çalışıyorum.</string>
   <string name="han-disconnected">HAN ile bağlantınız kesildi</string>
   <string name="error-loggedout">Hesaptan çıkış yapılmış, tekrar bağlanılıyor...</string>
   <string name="error-noresponse">Yanıt yok</string>
@@ -693,6 +694,7 @@
   <string name="page-tag-fail">Sayfa etiketi başarısız oldu</string>
   <string name="page-tag-error">Sayfa etiketlenemedi. Hata: $1</string>
   <string name="page-unknown">Bilinmeyen sayfa</string>
+  <string name="summary-edit-range">$1 sürümünden $2 sürümüne fark aralıkları gösteriliyor</string>
   <string name="speedy-csd-invalid">Geçersiz CSD etiketi. Kullanılabilecek mesaj veya wiki etiketi yok.</string>
   <string name="speedy-csd-existing">Zaten sayfada CSD etiketi var.</string>
   <string name="namespace">Ad alanı</string>
