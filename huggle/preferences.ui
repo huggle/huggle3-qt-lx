@@ -589,7 +589,7 @@
             <number>0</number>
            </property>
            <item row="3" column="0">
-            <widget class="QLabel" name="label_4">
+            <widget class="QLabel" name="label_botEdits">
              <property name="text">
               <string>Bot edits (b)</string>
              </property>
@@ -599,7 +599,7 @@
             <widget class="QComboBox" name="cbqBots"/>
            </item>
            <item row="4" column="0">
-            <widget class="QLabel" name="label_6">
+            <widget class="QLabel" name="label_ownEdits">
              <property name="text">
               <string>Own edits</string>
              </property>
@@ -609,7 +609,7 @@
             <widget class="QComboBox" name="cbqOwn"/>
            </item>
            <item row="5" column="0">
-            <widget class="QLabel" name="label_5">
+            <widget class="QLabel" name="label_reverts">
              <property name="text">
               <string>Reverts</string>
              </property>
@@ -629,7 +629,7 @@
             <widget class="QComboBox" name="cbqNew"/>
            </item>
            <item row="7" column="0">
-            <widget class="QLabel" name="label_7">
+            <widget class="QLabel" name="label_minor">
              <property name="text">
               <string>Minor</string>
              </property>
@@ -669,7 +669,7 @@
             <widget class="QComboBox" name="cbqUserspace"/>
            </item>
            <item row="11" column="0">
-            <widget class="QLabel" name="label_12">
+            <widget class="QLabel" name="label_talk">
              <property name="text">
               <string>Talk page</string>
              </property>
