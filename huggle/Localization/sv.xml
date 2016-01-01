@@ -315,7 +315,9 @@ Denna blockering kommer att åsidosätta effekterna av intervallblockeringen. Fo
   <string name="main-help-about">Om Huggle...</string>
   <string name="main-addqueue">Lägg till...</string>
   <string name="main-savelogtitle">Spara logg</string>
+  <string name="main-usermessageother">Annat meddelande...</string>
   <string name="main-advanced">Avancerat...</string>
+  <string name="main-stats">$1 redigeringar per minut, $2 åtetställningar per minut</string>
   <string name="main-display-session-data">Visa sessionsdata</string>
   <string name="main-display-whitelist">Visa vitlista</string>
   <string name="main-log1">Återställer vald sidversion för $1</string>
@@ -460,6 +462,7 @@ Denna blockering kommer att åsidosätta effekterna av intervallblockeringen. Fo
   <string name="reqprotection-progress">Begär skydd för \'$1\'...</string>
   <string name="speedy-fail">Kunde inte tagga sida för snabbradering: $1</string>
   <string name="speedy-progress">Taggar \'$1\' för snabbradering...</string>
+  <string name="speedy-finished">Klar</string>
   <string name="warn-alreadyblocked">Denna användare har redan blockerats</string>
   <string name="editquery-success">Framgångsrik redigering $1 på $2</string>
   <string name="whitelist-download">Ladda ner ny vitlista</string>
@@ -483,6 +486,22 @@ Denna blockering kommer att åsidosätta effekterna av intervallblockeringen. Fo
   <string name="namespace">Namnrymd</string>
   <string name="block-alreadyblocked">Användaren är redan blockerad</string>
   <string name="report-unable">Kunde inte rapportera användare :(</string>
+  <string name="about-python-with">, med Python-stöd</string>
+  <string name="about-python-without">utan Python-stöd</string>
   <string name="error-unknown-code">Okänt fel: $1</string>
   <string name="relogin-fail">Kunde inte logga in på wiki: $1</string>
+  <string name="projects">Projekt</string>
+  <string name="unable-to-retrieve-user-list">Kunde inte hämta listan över användare: $1</string>
+  <string name="login-no-userinfo">Sidan gav inte att någon användarinformation</string>
+  <string name="unknown-item">Okänt objekt</string>
+  <string name="title-multiple-projects">flera projekt ($1)</string>
+  <string name="title-on" fuzzy="true">på</string>
+  <string name="main-revert-already-pending-title">Denna redigering är redan återställd</string>
+  <string name="main-revert-already-pending-text">Du kan inte återställa denna redigering eftersom det redan håller på att återställas. Vänligen vänta!</string>
+  <string name="main-revert-type-unknown">okänd</string>
+  <string name="main-revert-type-in-userspace">i användarnamnrymden</string>
+  <string name="main-revert-type-made-by-you">gjort av dig</string>
+  <string name="main-revert-type-made-on-talk-page">gjord på diskussionssidan</string>
+  <string name="main-revert-type-made-white-list">gjord av en användare som är vitlistad</string>
+  <string name="main-revert-warn">Denna redigering är $1, så även om det ser ut som det är vandalism kanske det inte är det, är du säker på att du vill återställa den?</string>
 </resources>

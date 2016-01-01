@@ -402,4 +402,12 @@ Benotzerinformatioun konnt net ofgefrot ginn: $2</string>
   <string name="namespace">Nummraum</string>
   <string name="block-alreadyblocked">Benotzer ass scho gespaart</string>
   <string name="error-unknown-code">Onbekannte Feeler: $1</string>
+  <string name="projects">Projeten</string>
+  <string name="login-username-doesnt-exist">Dëse Benotzernumm gëtt et net</string>
+  <string name="developer-mode-enter-title">Whee</string>
+  <string name="title-multiple-projects">méi Projeten ($1)</string>
+  <string name="main-revert-already-pending-title">Dës Ännerung gouf schonn zeréckgesat</string>
+  <string name="main-revert-already-pending-text">Dir kënnt dës Ännerung net zerécksetze well se schonn zeréckgesat gëtt. Gedëllegt Iech w.e.g. e bëssen.</string>
+  <string name="main-revert-type-unknown">onbekannt</string>
+  <string name="main-revert-type-made-by-you">vun Iech gemaach</string>
 </resources>

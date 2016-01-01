@@ -711,4 +711,28 @@
   <string name="about-qt">, составен користејќи QT $1 Работи на QT $1</string>
   <string name="error-unknown-code">Непозната грешка: $1</string>
   <string name="relogin-fail">Не можам да ве најавам на викито: $1</string>
+  <string name="projects">Проекти</string>
+  <string name="unable-to-retrieve-user-list">Не можам да го добијам корисничкиот список: $1</string>
+  <string name="login-no-userinfo">Мрежното место не даде никакви кориснички информации</string>
+  <string name="login-invalid-register-date">МедијаВики даде неважечки датум на регистрација</string>
+  <string name="login-site-info-query-failed">Барањето за информации од мрежното место $1 на успеа: $2</string>
+  <string name="login-no-site-info-returned">Нема информации за ова вики</string>
+  <string name="loading-main-window">Го вчитувам главниот прозорец</string>
+  <string name="api.php-invalid-response">api.php одговори со неважечки текст (мрежниот опслужувач не работи?). Погледајте во дневникот на отстранување грешки за поточни информации</string>
+  <string name="login-username-doesnt-exist">Не постои такво корисничко име.</string>
+  <string name="developer-mode-enter-title">Одлично!</string>
+  <string name="developer-mode-enter-message">Влеговте во развоен режим. Addshore е за никаде!</string>
+  <string name="unimplemented">Оваа функција сè уште не е воведена.</string>
+  <string name="unknown-item">Непозната ставка</string>
+  <string name="title-multiple-projects">повеќе проекти ($1)</string>
+  <string name="title-on" fuzzy="true">на</string>
+  <string name="main-revert-custom-reason-text">Нема укажано причина / кориснички-определено отповикување</string>
+  <string name="main-revert-already-pending-title">Ова уредување е веќе отповикано</string>
+  <string name="main-revert-already-pending-text">Не можам да го отповикам уредувањето бидејќи истото веќе е во тек. Почекајте!</string>
+  <string name="main-revert-type-unknown">непознато</string>
+  <string name="main-revert-type-in-userspace">во кориснички простор</string>
+  <string name="main-revert-type-made-by-you">направено од Вас</string>
+  <string name="main-revert-type-made-on-talk-page">направно на страница за разговор</string>
+  <string name="main-revert-type-made-white-list">направено од корисник на кој е на белиот список</string>
+  <string name="main-revert-warn">Ова уредување е $1, па затоа може да не е вандализам, дури и ако ви изгледа така. Дали сте сигурни дека сакате да го отповикате?</string>
 </resources>

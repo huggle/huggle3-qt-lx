@@ -711,4 +711,11 @@ $1</string>
   <string name="about-qt">, зкомпільовано з використанням QT $1 Працює на QT $1</string>
   <string name="error-unknown-code">Невідома помилка: $1</string>
   <string name="relogin-fail">Не вдалося увійти до wiki: $1</string>
+  <string name="projects">Проекти</string>
+  <string name="unable-to-retrieve-user-list">Не вдалося отримати список користувачів: $1</string>
+  <string name="login-no-userinfo">Сайт не повертає жодних відомостей про користувачів</string>
+  <string name="login-invalid-register-date">Медіавікі повернуло неправильну дату реєстрації</string>
+  <string name="login-site-info-query-failed">Запит інформації про сайт для $1 був невдалим: $2</string>
+  <string name="main-revert-type-in-userspace">у просторі користувача</string>
+  <string name="main-revert-type-made-by-you">зроблені вами</string>
 </resources>

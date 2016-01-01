@@ -711,4 +711,28 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="about-qt">, kompiliert mithilfe QT $1 Läuft auf QT $1</string>
   <string name="error-unknown-code">Unbekannter Fehler: $1</string>
   <string name="relogin-fail">Anmeldung im Wiki konnte nicht ausgeführt werden: $1</string>
+  <string name="projects">Projekte</string>
+  <string name="unable-to-retrieve-user-list">Benutzerliste konnte nicht abgerufen werden: $1</string>
+  <string name="login-no-userinfo">Die Website hat keine Benutzerinformationen zurückgegeben</string>
+  <string name="login-invalid-register-date">Ungültiges Registrierungsdatum von MediaWiki zurückgegeben</string>
+  <string name="login-site-info-query-failed">Websiteinformationsanfrage für $1 fehlgeschlagen: $2</string>
+  <string name="login-no-site-info-returned">Es wurden keine Websiteinformationen für dieses Wiki zurückgegeben</string>
+  <string name="loading-main-window">Lade Haupt-Huggle-Fenster</string>
+  <string name="api.php-invalid-response">Die API hat mit einem ungültigen Text geantwortet. Ist der Webserver nicht erreichbar? Bitte überprüfe das Fehlerbehebungs-Logbuch für genauere Informationen.</string>
+  <string name="login-username-doesnt-exist">Dieser Benutzername ist nicht vorhanden</string>
+  <string name="developer-mode-enter-title">Whee</string>
+  <string name="developer-mode-enter-message">Du hast den Entwicklermodus eingegeben! Addshore stinkt!</string>
+  <string name="unimplemented">Diese Funktion ist noch nicht implementiert</string>
+  <string name="unknown-item">Unbekanntes Objekt</string>
+  <string name="title-multiple-projects">mehrere Projekte ($1)</string>
+  <string name="title-on" fuzzy="true">auf</string>
+  <string name="main-revert-custom-reason-text">Kein Grund angegeben / benutzerdefiniertes Zurücksetzen</string>
+  <string name="main-revert-already-pending-title">Diese Bearbeitung wurde bereits zurückgesetzt</string>
+  <string name="main-revert-already-pending-text">Du kannst diese Bearbeitung nicht zurücksetzen, da sie bereits zurückgesetzt wurde. Bitte warten!</string>
+  <string name="main-revert-type-unknown">unbekannt</string>
+  <string name="main-revert-type-in-userspace">im Benutzernamensraum</string>
+  <string name="main-revert-type-made-by-you">von dir durchgeführt</string>
+  <string name="main-revert-type-made-on-talk-page">auf der Diskussionsseite durchgeführt</string>
+  <string name="main-revert-type-made-white-list">von einem Benutzer durchgeführt, der auf der weißen Liste ist</string>
+  <string name="main-revert-warn">Diese Bearbeitung ist $1. Auch wenn sie nach Vandalismus aussieht, kann sie in Wirklichkeit keiner sein. Bist du sicher, dass du sie zurücksetzen möchtest?</string>
 </resources>

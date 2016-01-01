@@ -711,4 +711,28 @@ $1</string>
   <string name="about-qt">, compilé à l\'aide de QT $1 exécuté sur QT $1</string>
   <string name="error-unknown-code">Erreur inconnue: $1</string>
   <string name="relogin-fail">Impossible de se connecter au wiki: $1</string>
+  <string name="projects">Projets</string>
+  <string name="unable-to-retrieve-user-list">Impossible de récupérer la liste utilisateur : $1</string>
+  <string name="login-no-userinfo">Le site n’a renvoyé aucune information userinfo</string>
+  <string name="login-invalid-register-date">registrationdate renvoyée par MédiaWiki non valide</string>
+  <string name="login-site-info-query-failed">La demande d’information du site pour $1 a échouée : $2</string>
+  <string name="login-no-site-info-returned">Aucune information de site n’a été renvoyée pour ce wiki</string>
+  <string name="loading-main-window">Chargement de la fenêtre principale de huggle</string>
+  <string name="api.php-invalid-response">api.php a répondu avec un texte non valide (serveur web HS ?), veuillez consulter le journal de débogage pour des informations plus précises</string>
+  <string name="login-username-doesnt-exist">Ce nom d’utilisateur n’existe pas</string>
+  <string name="developer-mode-enter-title">Waouh</string>
+  <string name="developer-mode-enter-message">Vous êtes entré dans un mode développeur ! Addshore pue !</string>
+  <string name="unimplemented">Cette fonctionnalité n’est pas encore implémentée</string>
+  <string name="unknown-item">Élément inconnu</string>
+  <string name="title-multiple-projects">projets multiples ($1)</string>
+  <string name="title-on" fuzzy="true">le</string>
+  <string name="main-revert-custom-reason-text">Aucun motif n’a été fourni / annulation personnalisée</string>
+  <string name="main-revert-already-pending-title">Cette modification a déjà été annulée</string>
+  <string name="main-revert-already-pending-text">Vous ne pouvez pas annuler cette modification, car elle l’a déjà été. Veuillez attendre !</string>
+  <string name="main-revert-type-unknown">inconnu</string>
+  <string name="main-revert-type-in-userspace">dans l’espace utilisateur</string>
+  <string name="main-revert-type-made-by-you">fait par vous</string>
+  <string name="main-revert-type-made-on-talk-page">fait sur la page de discussion</string>
+  <string name="main-revert-type-made-white-list">fait par un utilisateur de la liste blanche</string>
+  <string name="main-revert-warn">Cette modification est $1, donc même si elle ressemble à du vandalisme, elle peut ne pas l\'être ; êtes-vous sûr de vouloir l’annuler ?</string>
 </resources>

@@ -711,4 +711,16 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="about-qt">, compilato usando QT $1 In esecuzione su QT $1</string>
   <string name="error-unknown-code">Errore Sconosciuto: $1</string>
   <string name="relogin-fail">Impossibile accedere al wiki: $1</string>
+  <string name="projects">Progetti</string>
+  <string name="login-invalid-register-date">Data di registrazione restituita da MediaWiki non valida</string>
+  <string name="login-username-doesnt-exist">Questo nome utente non esiste</string>
+  <string name="unimplemented">Questa funzionalità non è stata ancora implementata</string>
+  <string name="unknown-item">Elemento sconosciuto</string>
+  <string name="title-multiple-projects">progetti multipli ($1)</string>
+  <string name="main-revert-already-pending-title">Questa modifica è già stata annullata</string>
+  <string name="main-revert-already-pending-text">Non puoi annullare questa modifica, perché è già stata ripristinata. Attendi!</string>
+  <string name="main-revert-type-unknown">sconosciuto</string>
+  <string name="main-revert-type-made-by-you">fatto da te</string>
+  <string name="main-revert-type-made-on-talk-page">fatto sulla pagina di discussione</string>
+  <string name="main-revert-type-made-white-list">fatto da un utente che è nella lista bianca</string>
 </resources>

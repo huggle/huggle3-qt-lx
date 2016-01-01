@@ -621,4 +621,7 @@ See also:
   <string name="namespace">{{Identical|Namespace}}</string>
   <string name="relogin-fail">Used in error message box. Parameters:
 * $1 - reason of failure</string>
+  <string name="projects">{{Identical|Project}}</string>
+  <string name="title-on">{{Identical|On}}</string>
+  <string name="main-revert-type-unknown">{{Identical|Unknown}}</string>
 </resources>
