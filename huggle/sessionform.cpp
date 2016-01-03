@@ -48,7 +48,7 @@ void SessionForm::Reload(int x)
 {
     /// \todo TRANSLATE ME
     WikiSite *site = Configuration::HuggleConfiguration->Projects.at(x);
-    this->ui->label_2->setText("You are logged in as " + Configuration::HuggleConfiguration->SystemConfig_Username + "\n" +
+    this->ui->label_2->setText(_l("logged-in-as") + Configuration::HuggleConfiguration->SystemConfig_Username + "\n" +
                                "SSL: " + Generic::Bool2String(Configuration::HuggleConfiguration->SystemConfig_UsingSSL) + "\n" +
                                "RC feed: " + site->Provider->ToString() + "\n" +
                                "MediaWiki: " + site->MediawikiVersion.ToString());

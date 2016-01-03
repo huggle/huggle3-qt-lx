@@ -19,6 +19,8 @@
   <string name="rename">Rename</string>
   <string name="reload">Reload</string>
   <string name="project">Project</string>
+  <string name="projects-shown-not">Projects &gt;&gt;</string>
+  <string name="projects-shown">Projects &lt;&lt;</string>
   <string name="result">Result</string>
   <string name="save">Save</string>
   <string name="show">Show</string>
@@ -182,6 +184,7 @@
   <string name="config-no-colon">You can&apos;t use : in name of queue</string>
   <string name="config-notify-update">Check for updates</string>
   <string name="config-notify-beta">Check for beta versions if available</string>
+  <string name="config-retrieve-failure">Login failed unable to retrieve user config: </string>
   <string name="delete-title">Delete $1</string>
   <string name="delete-reason">Reason:</string>
   <string name="delete-deletionlog">Deletion log:</string>
@@ -217,6 +220,7 @@
   <string name="irc-switch-rc">Switching to the wiki RC feed</string>
   <string name="login-old">Retrieving user config from old location</string>
   <string name="login-intro">Please pick a project and enter your username and password. You can also login to multiple projects by clicking on &quot;Projects&quot; button.</string>
+  <string name="list-empty">There are no projects defined in a list you need to set up some on global wiki</string>
   <string name="login-tab-oauth">OAuth</string>
   <string name="login-tab-login">Login</string>
   <string name="login-reload-tool-tip">Reload a list of available projects that can be used in Huggle. This can be useful in case you want to use Huggle in a project in which Huggle was recently enabled.</string>
@@ -579,6 +583,7 @@
   <string name="warning-warnlog">Warnings for this user:</string>
   <string name="warning-submit">Send</string>
   <string name="wikiedit-tp-fail">Unable to retrieve $1 warning level. It will not be used for scoring</string>
+  <string name="wikidb-download-fail">Unable to download a db of wikis: </string>
   <string name="missing-warning">There is no such warning template $1</string>
   <string name="han-not">Vandalism network isn&apos;t allowed in options</string>
   <string name="han-connecting">Connecting to Huggle anti vandalism network</string>
@@ -654,6 +659,7 @@
   <string name="rc-type-missing">RC Feed: Item was missing type attribute: $1</string>
   <string name="rc-title-missing">RC Feed: Item was missing title attribute: $1</string>
   <string name="whitelist-download">Downloading new whitelist</string>
+  <string name="logged-in-as">You are logged in as </string>
   <string name="logs-widget-name">System logs</string>
   <string name="wait">Please wait...</string>
   <string name="function-miss">Function is not available now</string>
@@ -664,6 +670,7 @@
   <string name="report-no-user">No user has been selected to report, please select a user first</string>
   <string name="welcome-tp-empty-fail">This user does not have an empty talk page, are you sure you want to send a message to him?</string>
   <string name="welcome-page-miss-fail">Huggle was unable to retrieve the contents of user talk page, are you sure you want to send a welcome message to them?</string>
+  <string name="wmf-function-miss">This function is not available for wmf wikis in this moment</string>
   <string name="cr-newer-edits">Conflict resolved: reverted all edits, including new edits. Edits were by same user: $1.</string>
   <string name="cr-resolved-same-user">Conflict resolved: reverted all edits including new edits, made by same users - edits are by same user: $1</string>
   <string name="cr-stop-new-edit">Conflict resolved: did not perform any action - there are newer edits to $1</string>
