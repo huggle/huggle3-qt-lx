@@ -725,7 +725,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="unimplemented">Diese Funktion ist noch nicht implementiert</string>
   <string name="unknown-item">Unbekanntes Objekt</string>
   <string name="title-multiple-projects">mehrere Projekte ($1)</string>
-  <string name="title-on" fuzzy="true">auf</string>
+  <string name="title-on">auf $1</string>
   <string name="main-revert-custom-reason-text">Kein Grund angegeben / benutzerdefiniertes Zurücksetzen</string>
   <string name="main-revert-already-pending-title">Diese Bearbeitung wurde bereits zurückgesetzt</string>
   <string name="main-revert-already-pending-text">Du kannst diese Bearbeitung nicht zurücksetzen, da sie bereits zurückgesetzt wurde. Bitte warten!</string>

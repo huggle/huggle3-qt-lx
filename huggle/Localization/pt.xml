@@ -668,4 +668,5 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="report-unable">Não foi possível denunciar o utilizador :(</string>
   <string name="error-unknown-code">Erro desconhecido: \"$1\"</string>
   <string name="relogin-fail">Não foi possível iniciar sessão na wiki: $1</string>
+  <string name="main-revert-type-unknown">desconhecido</string>
 </resources>

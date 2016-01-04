@@ -716,17 +716,22 @@ $1</string>
   <string name="login-no-userinfo">网站未返回任何用户信息</string>
   <string name="login-invalid-register-date">由MediaWiki返回的注册日期无效</string>
   <string name="login-site-info-query-failed">对$1的网站信息查询已失败：$2</string>
+  <string name="login-no-site-info-returned">没有返回此wiki的网站信息</string>
   <string name="loading-main-window">正在加载主Huggle窗口</string>
   <string name="login-username-doesnt-exist">此用户名不存在</string>
   <string name="developer-mode-enter-title">啊</string>
   <string name="developer-mode-enter-message">您进入了开发者模式！Addshore的臭味相投！</string>
+  <string name="unimplemented">此功能尚未执行</string>
   <string name="unknown-item">未知项目</string>
   <string name="title-multiple-projects">多个项目（$1）</string>
-  <string name="title-on" fuzzy="true">在</string>
+  <string name="title-on">在$1</string>
+  <string name="main-revert-custom-reason-text">没有提供原因 / 自定义回退</string>
   <string name="main-revert-already-pending-title">此编辑已被回退</string>
   <string name="main-revert-already-pending-text">您不能回退此编辑，因为它已经被回退。请等待！</string>
   <string name="main-revert-type-unknown">未知</string>
   <string name="main-revert-type-in-userspace">在用户空间</string>
   <string name="main-revert-type-made-by-you">由您做出</string>
   <string name="main-revert-type-made-on-talk-page">在讨论页做出</string>
+  <string name="main-revert-type-made-white-list">由白名单上的一位用户做出</string>
+  <string name="main-revert-warn">此编辑是$1，因此即便它看起来像是破坏，它可能不是，您确定要回退它么？</string>
 </resources>

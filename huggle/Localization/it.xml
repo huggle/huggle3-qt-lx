@@ -717,6 +717,7 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="unimplemented">Questa funzionalità non è stata ancora implementata</string>
   <string name="unknown-item">Elemento sconosciuto</string>
   <string name="title-multiple-projects">progetti multipli ($1)</string>
+  <string name="title-on">su $1</string>
   <string name="main-revert-already-pending-title">Questa modifica è già stata annullata</string>
   <string name="main-revert-already-pending-text">Non puoi annullare questa modifica, perché è già stata ripristinata. Attendi!</string>
   <string name="main-revert-type-unknown">sconosciuto</string>

@@ -386,4 +386,5 @@ Ta blokada zniweluje efekt blokady zakresu. Kontynuować?</string>
   <string name="wait">Proszę czekać...</string>
   <string name="missing-aiv">Ten projekt nie używa AIV</string>
   <string name="relogin-fail">Nie można zalogować się na: $1</string>
+  <string name="projects">Projekty</string>
 </resources>

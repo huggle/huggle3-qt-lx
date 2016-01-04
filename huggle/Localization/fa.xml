@@ -703,4 +703,12 @@ $1</string>
   <string name="about-qt">، کامپایل‌شده با استفاده از کیوتی $1 در حال اجرا روی کیوتی $1</string>
   <string name="error-unknown-code">خطای ناشناخته: $1</string>
   <string name="relogin-fail">ناتوان در ورود به ویکی: $1</string>
+  <string name="projects">پروژه ها</string>
+  <string name="login-no-userinfo">سایت هیچ اطلاعاتی درباره کاربر نداشت.</string>
+  <string name="loading-main-window">درحال بارگذاری پنجره اصلی</string>
+  <string name="developer-mode-enter-message">شما وارد حالت توسعه دهنده شده اید.</string>
+  <string name="unknown-item">ایتم ناشناس</string>
+  <string name="main-revert-already-pending-title">این ویرایش در حال حاضر بازگشت داده شده است.</string>
+  <string name="main-revert-type-unknown">ناشناخته</string>
+  <string name="main-revert-type-made-by-you">ساخته شده توسط شما</string>
 </resources>
