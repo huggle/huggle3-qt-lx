@@ -718,7 +718,7 @@
   <string name="api.php-invalid-response">The api.php responded with invalid text (webserver is down?), please check debug log for precise information</string>
   <string name="login-username-doesnt-exist">This username doesn't exist</string>
   <string name="developer-mode-enter-title">Whee</string>
-  <string name="developer-mode-enter-message">You entered a developer mode! Addshore stinks!</string>
+  <string name="developer-mode-enter-message">You entered a developer mode!</string>
   <string name="unimplemented">This feature was not implemented yet</string>
   <string name="unknown-item">Unknown item</string>
   <string name="title-multiple-projects">multiple projects ($1)</string>
