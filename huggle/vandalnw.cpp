@@ -385,7 +385,7 @@ void VandalNw::Insert(QString text, HAN::MessageType type)
     {
         this->Text.prepend(text + "<br>");
     }
-    this->ui->textBrowser->setHtml(this->Text);
+    this->ui->plainTextEdit->setPlainText(this->Text);
 }
 
 void Huggle::VandalNw::on_pushButton_clicked()
@@ -441,7 +441,8 @@ void Huggle::VandalNw::on_lineEdit_returnPressed()
     this->Message();
 }
 
-void Huggle::VandalNw::on_textBrowser_anchorClicked(const QUrl &arg1)
+//The following function should be replaced with an equivalent from the QPlainTextEdit class.
+void Huggle::VandalNw::on_plainTextEdit_anchorClicked(const QUrl &arg1)
 {
     QString path = arg1.path();
     if (arg1.scheme() == "huggle")
@@ -481,7 +482,7 @@ void Huggle::VandalNw::on_textBrowser_anchorClicked(const QUrl &arg1)
     }
     restore:
         // for some reason this event clears the text box, so we need to refill it
-        this->ui->textBrowser->setHtml(this->Text);
+        this->ui->plainTextEdit->setPlainText(this->Text);
 }
 
 void VandalNw::OnIRCUserJoin(libircclient::Parser *px, libircclient::User *user, libircclient::Channel *channel)
