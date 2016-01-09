@@ -92,6 +92,7 @@ void HuggleLog::Render()
         this->lock->unlock();
         this->ui->textEdit->clear();
         this->ui->textEdit->appendHtml(t);
+        this->ui->textEdit->moveCursor(QTextCursor::Start);
     }
 }
 
