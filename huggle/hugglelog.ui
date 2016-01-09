@@ -25,7 +25,7 @@
      <number>0</number>
     </property>
     <item>
-     <widget class="QTextEdit" name="textEdit">
+     <widget class="QPlainTextEdit" name="textEdit">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
         <horstretch>0</horstretch>
