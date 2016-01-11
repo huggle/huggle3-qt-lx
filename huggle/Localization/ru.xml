@@ -706,4 +706,5 @@
   <string name="error-unknown-code">Неизвестная ошибка: $1</string>
   <string name="relogin-fail">Не удалось войти в вики: $1</string>
   <string name="projects">Проекты</string>
+  <string name="title-on">на $1</string>
 </resources>

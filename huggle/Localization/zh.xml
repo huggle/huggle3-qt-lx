@@ -718,9 +718,10 @@ $1</string>
   <string name="login-site-info-query-failed">对$1的网站信息查询已失败：$2</string>
   <string name="login-no-site-info-returned">没有返回此wiki的网站信息</string>
   <string name="loading-main-window">正在加载主Huggle窗口</string>
+  <string name="api.php-invalid-response">api.php响应了无效文字（web服务器当机了？），请检查调试日志以获取精确信息</string>
   <string name="login-username-doesnt-exist">此用户名不存在</string>
   <string name="developer-mode-enter-title">啊</string>
-  <string name="developer-mode-enter-message">您进入了开发者模式！Addshore的臭味相投！</string>
+  <string name="developer-mode-enter-message" fuzzy="true">您进入了开发者模式！Addshore的臭味相投！</string>
   <string name="unimplemented">此功能尚未执行</string>
   <string name="unknown-item">未知项目</string>
   <string name="title-multiple-projects">多个项目（$1）</string>

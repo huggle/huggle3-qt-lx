@@ -716,6 +716,23 @@ $1</string>
   <string name="login-no-userinfo">Сайт не повертає жодних відомостей про користувачів</string>
   <string name="login-invalid-register-date">Медіавікі повернуло неправильну дату реєстрації</string>
   <string name="login-site-info-query-failed">Запит інформації про сайт для $1 був невдалим: $2</string>
+  <string name="login-no-site-info-returned">Жодна інформація про сайт не повернулася для цього вікі</string>
+  <string name="loading-main-window">Завантаження головного вікна huggle</string>
+  <string name="api.php-invalid-response">api.php відповів із неправильним текстом (впав веб-сервер?). Будь ласка, перевірте журнал зневадження для точної інформації</string>
+  <string name="login-username-doesnt-exist">Це ім\'я користувача не існує</string>
+  <string name="developer-mode-enter-title">Ура</string>
+  <string name="developer-mode-enter-message" fuzzy="true">Ви увійшли в режим розробника! Addshore смердить!</string>
+  <string name="unimplemented">Ця функція ще не втілена</string>
+  <string name="unknown-item">Невідомий елемент</string>
+  <string name="title-multiple-projects">кілька проектів ($1)</string>
+  <string name="title-on">на $1</string>
+  <string name="main-revert-custom-reason-text">Жодної причини не вказано / особливого повернення</string>
+  <string name="main-revert-already-pending-title">Це редагування вже відкликане</string>
+  <string name="main-revert-already-pending-text">Ви не зможете повернути цю зміну, бо воно вже відкликана. Будь ласка, почекайте!</string>
+  <string name="main-revert-type-unknown">невідомо</string>
   <string name="main-revert-type-in-userspace">у просторі користувача</string>
   <string name="main-revert-type-made-by-you">зроблені вами</string>
+  <string name="main-revert-type-made-on-talk-page">зроблено на сторінці обговорення</string>
+  <string name="main-revert-type-made-white-list">зроблено користувачем, який знаходиться в білому списку</string>
+  <string name="main-revert-warn">Це редагування є $1, тому навіть якщо воно нагадує вандалізм, насправді це не так. Ви справді хочете повернути його?</string>
 </resources>

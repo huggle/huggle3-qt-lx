@@ -404,4 +404,6 @@
   <string name="about-qt">, övversaz met QT $1 un leuf op QT $1</string>
   <string name="error-unknown-code">Ene onbikannte Fähler es opjetrodde: $1</string>
   <string name="relogin-fail">Mer künne em Wikki nit enlogge, weil: $1</string>
+  <string name="projects">Projäkte</string>
+  <string name="title-on">op $1</string>
 </resources>

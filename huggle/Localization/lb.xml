@@ -403,8 +403,11 @@ Benotzerinformatioun konnt net ofgefrot ginn: $2</string>
   <string name="block-alreadyblocked">Benotzer ass scho gespaart</string>
   <string name="error-unknown-code">Onbekannte Feeler: $1</string>
   <string name="projects">Projeten</string>
+  <string name="login-no-userinfo">De Site huet keng Benotzerinformatioun zréckginn</string>
+  <string name="login-no-site-info-returned">Et goufe keng Informatioune fir dës Wiki zréckginn</string>
   <string name="login-username-doesnt-exist">Dëse Benotzernumm gëtt et net</string>
   <string name="developer-mode-enter-title">Whee</string>
+  <string name="unimplemented">Dës Funktioun gouf nach net implementéiert</string>
   <string name="unknown-item">Onbekannten Objet</string>
   <string name="title-multiple-projects">méi Projeten ($1)</string>
   <string name="title-on">op $1</string>

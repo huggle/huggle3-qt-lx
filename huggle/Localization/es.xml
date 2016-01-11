@@ -648,8 +648,10 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="unknown-item">Elemento desconocido</string>
   <string name="title-multiple-projects">varios proyectos ($1)</string>
   <string name="title-on" fuzzy="true">activado</string>
+  <string name="main-revert-already-pending-text">No se puede revertir esta edición, porque ya se está siendo revirtiendo. Espera, por favor.</string>
   <string name="main-revert-type-unknown">desconocido</string>
   <string name="main-revert-type-in-userspace">en el espacio de usuario</string>
   <string name="main-revert-type-made-by-you">hecho por ti</string>
   <string name="main-revert-type-made-on-talk-page">hecho en la página de discusión</string>
+  <string name="main-revert-type-made-white-list">hecho por un usuario que está en la lista blanca</string>
 </resources>

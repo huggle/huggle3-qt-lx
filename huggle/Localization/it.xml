@@ -714,6 +714,7 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="projects">Progetti</string>
   <string name="login-invalid-register-date">Data di registrazione restituita da MediaWiki non valida</string>
   <string name="login-username-doesnt-exist">Questo nome utente non esiste</string>
+  <string name="developer-mode-enter-message" fuzzy="true">Sei entrato in modalità sviluppatore! Addshore puzza!</string>
   <string name="unimplemented">Questa funzionalità non è stata ancora implementata</string>
   <string name="unknown-item">Elemento sconosciuto</string>
   <string name="title-multiple-projects">progetti multipli ($1)</string>

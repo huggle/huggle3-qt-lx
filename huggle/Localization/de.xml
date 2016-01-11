@@ -721,7 +721,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="api.php-invalid-response">Die API hat mit einem ungültigen Text geantwortet. Ist der Webserver nicht erreichbar? Bitte überprüfe das Fehlerbehebungs-Logbuch für genauere Informationen.</string>
   <string name="login-username-doesnt-exist">Dieser Benutzername ist nicht vorhanden</string>
   <string name="developer-mode-enter-title">Whee</string>
-  <string name="developer-mode-enter-message">Du hast den Entwicklermodus eingegeben! Addshore stinkt!</string>
+  <string name="developer-mode-enter-message" fuzzy="true">Du hast den Entwicklermodus eingegeben! Addshore stinkt!</string>
   <string name="unimplemented">Diese Funktion ist noch nicht implementiert</string>
   <string name="unknown-item">Unbekanntes Objekt</string>
   <string name="title-multiple-projects">mehrere Projekte ($1)</string>

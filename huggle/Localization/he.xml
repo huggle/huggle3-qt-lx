@@ -711,4 +711,14 @@ $1</string>
   <string name="about-qt">, מהודר באמצעות QT $1 רץ על QT $1</string>
   <string name="error-unknown-code">שגיאה בלתי ידועה: $1</string>
   <string name="relogin-fail">לא ניתן להיכנס לוויקי: $1</string>
+  <string name="projects">מיזמים</string>
+  <string name="unable-to-retrieve-user-list">לא ניתן לאחזר את רשימת המשתמשים: $1</string>
+  <string name="login-no-userinfo">האתר לא החזיר שום מידע על משתשים</string>
+  <string name="login-invalid-register-date">ערך registration בלתי־תקין הוחזר על־ידי מדיה־ויקי</string>
+  <string name="login-site-info-query-failed">שאילתת site info נכשלה: $2</string>
+  <string name="login-no-site-info-returned">לא הוחזר שום site info עבור הוויקי הזה</string>
+  <string name="loading-main-window">טעינת חלון ההאגל הראשי</string>
+  <string name="api.php-invalid-response">שרת api.php החזיר טקסט בלתי־תקין (אולי שרת הווב לא פועל?), נא ללחוץ על יומן ניפוי השגיאות למידע מדויק</string>
+  <string name="login-username-doesnt-exist">שם המשתמש הזה אינו קיים</string>
+  <string name="developer-mode-enter-title">יאללה</string>
 </resources>

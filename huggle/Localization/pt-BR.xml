@@ -82,6 +82,7 @@ Este bloqueio substituirá o efeito do bloqueio de faixa. Continuar?</string>
   <string name="block-type">Bloquear / desbloquear</string>
   <string name="block-admin">O administrador que fez o bloqueio</string>
   <string name="block-none">Não há nenhum usuário para bloquear.</string>
+  <string name="contribution-browser-user-info">Mostrar recente contribuições de usuário $1</string>
   <string name="config-function">Função</string>
   <string name="config-description">Descrição</string>
   <string name="config-shortcut">Atalho</string>
@@ -543,8 +544,10 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="userinfo-generic">Informação de usuário</string>
   <string name="userinfo-retrieve">Recuperar informação</string>
   <string name="shortcut-report-username">relatório nome de usuário</string>
+  <string name="shortcut-report-user">Denunciar usuário</string>
   <string name="shortcut-my-talk">Minha página de discussão</string>
   <string name="shortcut-raw">Reverter edição e avisar usuário</string>
+  <string name="shortcut-contrib">Mostrar contribuição do utilizador que realizou a edição apresentada</string>
   <string name="shortcut-exit">Encerrar o Huggle normalmente</string>
   <string name="shortcut-next">Ir para a próxima edição</string>
   <string name="shortcut-suspicious">Marcar como edição suspeita</string>
@@ -675,6 +678,10 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="preferences-extension-disabled-restart">Esta extensão foi programada para ser desabilitada na próxima inicialização do huggle</string>
   <string name="preferences-extension-enabled">Esta extensão não está programada para ser desativada na próxima inicialização do huggle</string>
   <string name="preferences-extension-enabled-restart">A extensão foi ativada, no entanto, você precisará reiniciar o Huggle para que isso aconteça</string>
+  <string name="preferences-watchlist-watch">Adicionar às páginas vigiadas</string>
+  <string name="preferences-watchlist-unwatch">Remover das páginas vigiadas</string>
+  <string name="preferences-watchlist-preferences">Seguir suas preferências na wiki</string>
+  <string name="preferences-watchlist-nochange">Não fazer nada</string>
   <string name="fail">Falha</string>
   <string name="request">Solicitar</string>
   <string name="requesting">Solicitando</string>
@@ -703,4 +710,14 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="about-qt">, compilado usando QT $1 Rodando em QT $1</string>
   <string name="error-unknown-code">Erro desconhecido: $1</string>
   <string name="relogin-fail">Não foi possível fazer login na wiki: $1</string>
+  <string name="projects">Projetos</string>
+  <string name="login-username-doesnt-exist">Esse nome de usuário não existe</string>
+  <string name="unknown-item">Item desconhecido</string>
+  <string name="title-on">Só $1</string>
+  <string name="main-revert-already-pending-title">Esta edição já está sendo revertida</string>
+  <string name="main-revert-already-pending-text">Você não pode reverter esta decisão, porque ela já está sendo revertida. Aguarde por favor!</string>
+  <string name="main-revert-type-unknown">desconhecido</string>
+  <string name="main-revert-type-in-userspace">no espaço de usuário</string>
+  <string name="main-revert-type-made-by-you">feito por você</string>
+  <string name="main-revert-type-made-on-talk-page">feito na página de discussão</string>
 </resources>
