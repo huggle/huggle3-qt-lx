@@ -19,6 +19,7 @@
 #include "mainwindow.hpp"
 #include "syslog.hpp"
 #include "ui_vandalnw.h"
+#include "ircchattextbox.hpp"
 #include "wikiedit.hpp"
 #include "wikipage.hpp"
 #include "wikisite.hpp"
@@ -79,11 +80,38 @@ VandalNw::VandalNw(QWidget *parent) : QDockWidget(parent), ui(new Ui::VandalNw)
     libirc::ServerAddress server(hcfg->VandalNw_Server, false, 6667, hcfg->SystemConfig_Username);
     this->Irc = new libircclient::Network(server, "HAN");
     this->ui->setupUi(this);
+    // such hack. much WOW :P
+    this->ui->horizontalLayout_2->removeWidget(this->ui->plainTextEdit);
+    delete this->ui->plainTextEdit;
+    this->ui->plainTextEdit = new Huggle::IRCChatTextBox(this);
+    this->ui->horizontalLayout_2->insertWidget(0, this->ui->plainTextEdit);
+    /*
+                ▄               ▄
+                ▌▒█           ▄▀▒▌
+                ▌▒▒▀▄       ▄▀▒▒▒▐
+               ▐▄▀▒▒▀▀▀▀▄▄▄▀▒▒▒▒▒▐
+             ▄▄▀▒▒▒▒▒▒▒▒▒▒▒█▒▒▄█▒▐
+           ▄▀▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▀██▀▒▌
+          ▐▒▒▒▄▄▄▒▒▒▒▒▒▒▒▒▒▒▒▒▀▄▒▒▌
+          ▌▒▒▐▄█▀▒▒▒▒▄▀█▄▒▒▒▒▒▒▒█▒▐
+         ▐▒▒▒▒▒▒▒▒▒▒▒▌██▀▒▒▒▒▒▒▒▒▀▄▌
+         ▌▒▀▄██▄▒▒▒▒▒▒▒▒▒▒▒░░░░▒▒▒▒▌
+         ▌▀▐▄█▄█▌▄▒▀▒▒▒▒▒▒░░░░░░▒▒▒▐
+        ▐▒▀▐▀▐▀▒▒▄▄▒▄▒▒▒▒▒░░░░░░▒▒▒▒▌
+        ▐▒▒▒▀▀▄▄▒▒▒▄▒▒▒▒▒▒░░░░░░▒▒▒▐
+         ▌▒▒▒▒▒▒▀▀▀▒▒▒▒▒▒▒▒░░░░▒▒▒▒▌
+         ▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▐
+          ▀▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄▒▒▒▒▌
+            ▀▄▒▒▒▒▒▒▒▒▒▒▄▄▄▀▒▒▒▒▄▀
+           ▐▀▒▀▄▄▄▄▄▄▀▀▀▒▒▒▒▒▄▄▀
+          ▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▀▀
+
+     */
     this->Prefix = QString(QChar(001)) + QString(QChar(001));
-    this->Text = "";
     this->JoinedMain = false;
     this->GetChannel();
     this->UsersModified = false;
+    connect(((IRCChatTextBox*)this->ui->plainTextEdit), SIGNAL(Event_Link(QString)), this, SLOT(TextEdit_anchorClicked(QString)));
     connect(this->Irc, SIGNAL(Event_Connected()), this, SLOT(OnConnected()));
     connect(this->Irc, SIGNAL(Event_SelfJoin(libircclient::Channel*)), this, SLOT(OnIRCSelfJoin(libircclient::Channel*)));
     connect(this->Irc, SIGNAL(Event_SelfPart(libircclient::Parser*,libircclient::Channel*)), this, SLOT(OnIRCSelfPart(libircclient::Parser*,libircclient::Channel*)));
@@ -380,12 +408,9 @@ void VandalNw::Insert(QString text, HAN::MessageType type)
           return;
     if (type == HAN::MessageType_Info)
     {
-        this->Text.prepend("<font color=gray>" + text + "</font><br>");
-    } else
-    {
-        this->Text.prepend(text + "<br>");
+        text = "<font color=gray>" + text + "</font>";
     }
-    this->ui->plainTextEdit->setPlainText(this->Text);
+    this->ui->plainTextEdit->appendHtml(text);
 }
 
 void Huggle::VandalNw::on_pushButton_clicked()
@@ -436,24 +461,27 @@ HAN::GenericItem::GenericItem(HAN::GenericItem *i)
     this->User = i->User;
 }
 
-void Huggle::VandalNw::on_lineEdit_returnPressed()
+void VandalNw::on_lineEdit_returnPressed()
 {
     this->Message();
 }
 
-//The following function should be replaced with an equivalent from the QPlainTextEdit class.
-void Huggle::VandalNw::on_plainTextEdit_anchorClicked(const QUrl &arg1)
+void VandalNw::TextEdit_anchorClicked(QString link)
 {
-    QString path = arg1.path();
-    if (arg1.scheme() == "huggle")
+    QString scheme;
+    if (link.contains("://"))
+    {
+        scheme = link.mid(0, link.indexOf("://"));
+        link = link.mid(link.indexOf("://") + 3);
+    }
+    if (scheme == "huggle")
     {
         // ok this is internal huggle link let's get a site
-        path = path.mid(1);
-        if (!path.contains("/"))
-            goto restore;
-        QStringList elements = path.split("/");
+        if (!link.contains("/"))
+            return;
+        QStringList elements = link.split("/");
         if (elements.size() < 4)
-            goto restore;
+            return;
         if (elements[0] == "diff")
         {
             QString wiki = elements[1];
@@ -473,16 +501,13 @@ void Huggle::VandalNw::on_plainTextEdit_anchorClicked(const QUrl &arg1)
                 if (site == nullptr)
                 {
                     HUGGLE_DEBUG1("There is no such a wiki: " + wiki);
-                    goto restore;
+                    return;
                 }
                 revid_ht id = elements[3].toLongLong();
                 MainWindow::HuggleMain->DisplayRevid(id, site);
             }
         }
     }
-    restore:
-        // for some reason this event clears the text box, so we need to refill it
-        this->ui->plainTextEdit->setPlainText(this->Text);
 }
 
 void VandalNw::OnIRCUserJoin(libircclient::Parser *px, libircclient::User *user, libircclient::Channel *channel)

@@ -137,7 +137,8 @@ SOURCES += main.cpp\
     editbaritem.cpp \
     editbar.cpp \
     hugglefeedproviderxml.cpp \
-    queuehelp.cpp
+    queuehelp.cpp \
+    ircchattextbox.cpp
 
 HEADERS  += mainwindow.hpp \
     login.hpp \
@@ -227,7 +228,8 @@ HEADERS  += mainwindow.hpp \
     editbar.hpp \
     edittype.hpp \
     hugglefeedproviderxml.hpp \
-    queuehelp.hpp
+    queuehelp.hpp \
+    ircchattextbox.hpp
 
 FORMS    += mainwindow.ui \
     login.ui \

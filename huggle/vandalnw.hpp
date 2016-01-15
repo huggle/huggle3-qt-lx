@@ -146,12 +146,11 @@ namespace Huggle
             //! Using this we track if channel was joined or not, because we need to send
             //! the request some time after connection or irc server would skip it
             bool JoinedMain;
-            QString Text;
         private slots:
             void on_pushButton_clicked();
             void on_lineEdit_returnPressed();
 			//The following function should be replaced with an equivalent from the QPlainTextEdit class.
-            void on_plainTextEdit_anchorClicked(const QUrl &arg1);
+            void TextEdit_anchorClicked(QString link);
             // IRC related
             void OnIRCUserJoin(libircclient::Parser *px, libircclient::User *user, libircclient::Channel *channel);
             void OnIRCSelfJoin(libircclient::Channel *channel);
