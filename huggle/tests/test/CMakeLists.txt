@@ -116,6 +116,7 @@ SET(tst_testmain_SOURCES ${srcx}
 ../../wikiedit.cpp
 ../../vandalnw.cpp
 ../../speedyform.cpp
+../../ircchattextbox.cpp
 ../../whitelistform.cpp
 ../../speedyform.cpp
 ../../processlist.cpp
