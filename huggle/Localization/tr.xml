@@ -710,4 +710,11 @@ $1</string>
   <string name="about-qt">,QT $1 le derlenmiş QT $1 üzerinde çalışıyor</string>
   <string name="error-unknown-code">Bilinmeyen Hata: $1</string>
   <string name="relogin-fail">Vikide oturum açılamıyor: $1</string>
+  <string name="projects">Projeler</string>
+  <string name="unable-to-retrieve-user-list">Kullanıcı listesi getirilemiyor: $1</string>
+  <string name="login-no-userinfo">Site herhangi bir kullanıcı bilgisi göndermedi</string>
+  <string name="developer-mode-enter-message">Geliştirici moduna girdiniz!</string>
+  <string name="main-revert-type-unknown">bilinmeyen</string>
+  <string name="main-revert-type-in-userspace">kullanıcı alanı içinde</string>
+  <string name="main-revert-type-made-by-you">siz tarafından yapılmış</string>
 </resources>

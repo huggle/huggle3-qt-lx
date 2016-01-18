@@ -168,7 +168,7 @@
   <string name="login-proxyport">पोर्ट:</string>
   <string name="login-proxydomain">डोमेन:</string>
   <string name="login-password-empty">आपके द्वारा दिया हुआ पासवर्ड रिक्त है।</string>
-  <string name="login-start">लॉग इन</string>
+  <string name="login-start">प्रवेश</string>
   <string name="login-oauth-notsupported">यह विधि इस समय समर्थित नहीं है।</string>
   <string name="login-translate">हगल अनुवाद</string>
   <string name="login-progress-start">$1 में लॉग इन कर रहा है</string>
@@ -418,4 +418,7 @@
   <string name="page-unknown">अज्ञात पृष्ठ</string>
   <string name="namespace">नामस्थान</string>
   <string name="report-fail">सदस्य की शिकायत नहीं हो पायी: $1</string>
+  <string name="projects">परियोजनाएं</string>
+  <string name="title-multiple-projects">कई परियोजनाओं ($1)</string>
+  <string name="title-on">अन $1</string>
 </resources>

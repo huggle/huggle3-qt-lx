@@ -647,7 +647,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="unimplemented">Esta característica aún no se ha implementado</string>
   <string name="unknown-item">Elemento desconocido</string>
   <string name="title-multiple-projects">varios proyectos ($1)</string>
-  <string name="title-on" fuzzy="true">activado</string>
+  <string name="title-on">en $1</string>
   <string name="main-revert-already-pending-text">No se puede revertir esta edición, porque ya se está siendo revirtiendo. Espera, por favor.</string>
   <string name="main-revert-type-unknown">desconocido</string>
   <string name="main-revert-type-in-userspace">en el espacio de usuario</string>

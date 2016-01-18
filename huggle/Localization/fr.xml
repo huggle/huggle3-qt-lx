@@ -721,7 +721,7 @@ $1</string>
   <string name="api.php-invalid-response">api.php a répondu avec un texte non valide (serveur web HS ?), veuillez consulter le journal de débogage pour des informations plus précises</string>
   <string name="login-username-doesnt-exist">Ce nom d’utilisateur n’existe pas</string>
   <string name="developer-mode-enter-title">Waouh</string>
-  <string name="developer-mode-enter-message" fuzzy="true">Vous êtes entré dans un mode développeur ! Addshore pue !</string>
+  <string name="developer-mode-enter-message">Vous êtes entré en mode développeur !</string>
   <string name="unimplemented">Cette fonctionnalité n’est pas encore implémentée</string>
   <string name="unknown-item">Élément inconnu</string>
   <string name="title-multiple-projects">projets multiples ($1)</string>
