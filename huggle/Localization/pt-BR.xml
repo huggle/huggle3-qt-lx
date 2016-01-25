@@ -52,6 +52,7 @@
   <string name="disable">Desabilitar</string>
   <string name="no-token">Sem token</string>
   <string name="flags">Sinalizações</string>
+  <string name="gracetime">Aguardando consultas de edições terminarem...</string>
   <string name="browser-none">Nenhuma página é exibida agora</string>
   <string name="browser-load">Baixando diff usando um renderizador web, por favor aguarde...</string>
   <string name="browser-miss-summ">Nenhum sumário foi fornecido</string>
@@ -688,13 +689,14 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="requested">Solicitado</string>
   <string name="protect-request-fail">Não foi possível recuperar a página do relatório atual: $1</string>
   <string name="protect-request-fail-notext">Não foi possível recuperar a página do relatório atual, porque a consulta não retornou nenhum texto para esta página</string>
-  <string name="protect-request-fail-notime" fuzzy="true">A consulta não retornou nenhuma data (bug no mediawiki?) abortando a consulta</string>
+  <string name="protect-request-fail-notime">A consulta não retornou nenhuma data. Deve ser um bug no mediawiki. Abortando a consulta</string>
   <string name="message-fail">Falha na entrega da mensagem</string>
   <string name="edit-conflict">Conflito de edição</string>
   <string name="page-tag-nodescription">não há descrição para esta etiqueta :/</string>
   <string name="page-tag-fail">A marcação da página falhou</string>
   <string name="page-tag-error">Não foi possível marcar a página, o erro foi: $1</string>
   <string name="page-unknown">Página desconhecida</string>
+  <string name="summary-edit-range">Mostrando um diff de intervalo de revid $1 até $2</string>
   <string name="speedy-csd-invalid">Tag CSD inválida, não há nenhuma mensagem e tag wiki para usar</string>
   <string name="speedy-csd-existing">Já há uma marcação CSD na página</string>
   <string name="namespace">Espaço nominal</string>
@@ -711,13 +713,27 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="error-unknown-code">Erro desconhecido: $1</string>
   <string name="relogin-fail">Não foi possível fazer login na wiki: $1</string>
   <string name="projects">Projetos</string>
+  <string name="unable-to-retrieve-user-list">Não foi possível recuperar lista de usuários: $1</string>
+  <string name="login-no-userinfo">O site não retornou nenhuma userinfo</string>
+  <string name="login-invalid-register-date">registrationdate inválida retornada pelo mediawiki</string>
+  <string name="login-site-info-query-failed">Consulto por info no site para $1 falhou: $2</string>
+  <string name="login-no-site-info-returned">Nenhuma site info foi retornada para essa wiki</string>
+  <string name="loading-main-window">Carregando janela principal do huggle</string>
+  <string name="api.php-invalid-response">api.php respondeu com texto inválido (webserver fora do ar?), por favor confira o debug log para informação precisa</string>
   <string name="login-username-doesnt-exist">Esse nome de usuário não existe</string>
+  <string name="developer-mode-enter-title">Viva</string>
+  <string name="developer-mode-enter-message">Você entrou no modo para desenvolvedor!</string>
+  <string name="unimplemented">Esta funcionalidade não foi implementada ainda</string>
   <string name="unknown-item">Item desconhecido</string>
+  <string name="title-multiple-projects">múltiplos projetos ($1)</string>
   <string name="title-on">Só $1</string>
+  <string name="main-revert-custom-reason-text">Nenhuma razão fornecida / reversão personalisada</string>
   <string name="main-revert-already-pending-title">Esta edição já está sendo revertida</string>
   <string name="main-revert-already-pending-text">Você não pode reverter esta decisão, porque ela já está sendo revertida. Aguarde por favor!</string>
   <string name="main-revert-type-unknown">desconhecido</string>
   <string name="main-revert-type-in-userspace">no espaço de usuário</string>
   <string name="main-revert-type-made-by-you">feito por você</string>
   <string name="main-revert-type-made-on-talk-page">feito na página de discussão</string>
+  <string name="main-revert-type-made-white-list">feito por um usuário na lista branca</string>
+  <string name="main-revert-warn">Essa edição é $1, então mesmo que pareça vandalismo pode não ser. Você está certo que deseja reverter?</string>
 </resources>

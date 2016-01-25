@@ -487,5 +487,6 @@
   <string name="report-fail">報告に失敗しました。理由: $1</string>
   <string name="error-unknown-code">不明なエラー: $1</string>
   <string name="relogin-fail">wikiにログインできません: $1</string>
+  <string name="projects">プロジェクト</string>
   <string name="main-revert-type-unknown">不明</string>
 </resources>

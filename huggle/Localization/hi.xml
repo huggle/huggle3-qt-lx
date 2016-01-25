@@ -419,6 +419,6 @@
   <string name="namespace">नामस्थान</string>
   <string name="report-fail">सदस्य की शिकायत नहीं हो पायी: $1</string>
   <string name="projects">परियोजनाएं</string>
-  <string name="title-multiple-projects">कई परियोजनाओं ($1)</string>
+  <string name="title-multiple-projects">कई परियोजनाएं ($1)</string>
   <string name="title-on">अन $1</string>
 </resources>

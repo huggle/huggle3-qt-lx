@@ -402,4 +402,5 @@ Deze blokkade zal het effect van de rangeblock ongedaan maken. Doorgaan?</string
   <string name="unimplemented">Deze functie is nog niet geïmplementeerd</string>
   <string name="title-on">op $1</string>
   <string name="main-revert-type-unknown">onbekend</string>
+  <string name="main-revert-type-made-by-you">door u gemaakt</string>
 </resources>
