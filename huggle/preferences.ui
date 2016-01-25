@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1106</width>
-    <height>718</height>
+    <width>1125</width>
+    <height>775</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -67,49 +67,49 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QCheckBox" name="checkBox_2">
+          <widget class="QCheckBox" name="checkBox_ConfirmUserSpaceEditRevert">
            <property name="text">
             <string>Require confirmation for revert of edit that was made in user space</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="checkBox_3">
+          <widget class="QCheckBox" name="checkBox_ConfirmOwnEditRevert">
            <property name="text">
             <string>Require confirmation for revert of own edit</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="checkBox_4">
+          <widget class="QCheckBox" name="checkBox_ConfirmWhitelistedRevert">
            <property name="text">
             <string>Require confirmation for revert of edit that was made by whitelisted user</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="checkBox_11">
+          <widget class="QCheckBox" name="checkBox_ConfirmTalkRevert">
            <property name="text">
             <string>Require confirmation for revert of talk page</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="checkBox_5">
+          <widget class="QCheckBox" name="checkBox_UseRollback">
            <property name="text">
             <string>Use software rollback</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="checkBox_30">
+          <widget class="QCheckBox" name="checkBox_WelcomeEmptyPage">
            <property name="text">
             <string>Send welcome messages to users with empty talk page on good edit</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="checkBox">
+          <widget class="QCheckBox" name="checkBox_AutoResolveConflicts">
            <property name="text">
             <string>Automatically resolve conflicts with other users who revert or change the page</string>
            </property>
@@ -232,21 +232,21 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QCheckBox" name="checkBox_17">
+          <widget class="QCheckBox" name="checkBox_MergeMessages">
            <property name="text">
             <string>Merge your messages with others in existing sections</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="checkBox_16">
+          <widget class="QCheckBox" name="checkBox_MonthHeaders">
            <property name="text">
             <string>Use months as headers instead of name of page</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="checkBox_24">
+          <widget class="QCheckBox" name="checkBox_AutoWarning">
            <property name="text">
             <string>Use automatic warning type and level on &quot;send warning&quot; function</string>
            </property>
@@ -262,14 +262,14 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_10">
            <item>
-            <widget class="QLabel" name="label_15">
+            <widget class="QLabel" name="label_WatchlistPreference">
              <property name="text">
               <string>Preference for watchlist when editing or creating any page:</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QComboBox" name="comboBox"/>
+            <widget class="QComboBox" name="comboBox_WatchlistPreference"/>
            </item>
           </layout>
          </item>
@@ -316,21 +316,21 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QCheckBox" name="checkBox_12">
+          <widget class="QCheckBox" name="checkBox_EnableIrc">
            <property name="text">
             <string>Enable IRC</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="checkBox_15">
+          <widget class="QCheckBox" name="checkBox_RemoveRevertedEdits">
            <property name="text">
             <string>Remove edits that were already reverted by someone else</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="checkBox_19">
+          <widget class="QCheckBox" name="checkBox_RemoveOldEdits">
            <property name="text">
             <string>Remove old edits if newer edit to same page is parsed</string>
            </property>

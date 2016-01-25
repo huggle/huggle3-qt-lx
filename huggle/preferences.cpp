@@ -91,11 +91,11 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     foreach (WikiSite *site, hcfg->Projects)
         this->ui->cbSites->addItem(site->Name);
     this->Reload();
-    this->ui->comboBox->addItem(_l("preferences-watchlist-watch"));
-    this->ui->comboBox->addItem(_l("preferences-watchlist-unwatch"));
-    this->ui->comboBox->addItem(_l("preferences-watchlist-preferences"));
-    this->ui->comboBox->addItem(_l("preferences-watchlist-nochange"));
-    this->ui->comboBox->setCurrentIndex(static_cast<int>(hcfg->UserConfig->Watchlist));
+    this->ui->comboBox_WatchlistPreference->addItem(_l("preferences-watchlist-watch"));
+    this->ui->comboBox_WatchlistPreference->addItem(_l("preferences-watchlist-unwatch"));
+    this->ui->comboBox_WatchlistPreference->addItem(_l("preferences-watchlist-preferences"));
+    this->ui->comboBox_WatchlistPreference->addItem(_l("preferences-watchlist-nochange"));
+    this->ui->comboBox_WatchlistPreference->setCurrentIndex(static_cast<int>(hcfg->UserConfig->Watchlist));
     this->ui->cbSites->setCurrentIndex(0);
     while (c < Huggle::Core::HuggleCore->Extensions.count())
     {
@@ -136,26 +136,26 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     }
 #endif
     this->Disable();
-    this->ui->checkBox->setText(_l("config-conflicts-revert"));
-    this->ui->checkBox_2->setText(_l("config-confirm-user"));
-    this->ui->checkBox_3->setText(_l("config-confirmselfrevert"));
-    this->ui->checkBox_4->setText(_l("config-confirm-wl"));
-    this->ui->checkBox_11->setText(_l("config-confirm-talk"));
-    this->ui->checkBox_5->setText(_l("config-use-rollback"));
-    this->ui->checkBox_30->setText(_l("config-welcome-empty-page"));
+    this->ui->checkBox_AutoResolveConflicts->setText(_l("config-conflicts-revert"));
+    this->ui->checkBox_ConfirmUserSpaceEditRevert->setText(_l("config-confirm-user"));
+    this->ui->checkBox_ConfirmOwnEditRevert->setText(_l("config-confirmselfrevert"));
+    this->ui->checkBox_ConfirmWhitelistedRevert->setText(_l("config-confirm-wl"));
+    this->ui->checkBox_ConfirmTalkRevert->setText(_l("config-confirm-talk"));
+    this->ui->checkBox_UseRollback->setText(_l("config-use-rollback"));
+    this->ui->checkBox_WelcomeEmptyPage->setText(_l("config-welcome-empty-page"));
     this->ui->checkBox_27->setText(_l("config-instant-reverts"));
     this->ui->label_3->setText(_l("config-revert-wait"));
     this->ui->radioButton_2->setText(_l("config-revert"));
     this->ui->checkBox_20->setText(_l("config-revert-diff"));
     this->ui->pushButton_7->setText(_l("config-change-all"));
-    this->ui->checkBox_17->setText(_l("config-merge-messages"));
-    this->ui->checkBox_16->setText(_l("config-months-name"));
-    this->ui->checkBox_24->setText(_l("config-automatic-warning"));
-    this->ui->checkBox_12->setText(_l("config-enable-irc"));
+    this->ui->checkBox_MergeMessages->setText(_l("config-merge-messages"));
+    this->ui->checkBox_MonthHeaders->setText(_l("config-months-name"));
+    this->ui->checkBox_AutoWarning->setText(_l("config-automatic-warning"));
+    this->ui->checkBox_EnableIrc->setText(_l("config-enable-irc"));
     //this->ui->checkBox_AutoReport->setText();
-    this->ui->checkBox_15->setText(_l("config-remove-reverted"));
-    this->ui->checkBox_19->setText(_l("config-remove-old"));
-    this->ui->checkBox_12->setText(_l("config-ircmode"));
+    this->ui->checkBox_RemoveRevertedEdits->setText(_l("config-remove-reverted"));
+    this->ui->checkBox_RemoveOldEdits->setText(_l("config-remove-old"));
+    this->ui->checkBox_EnableIrc->setText(_l("config-ircmode"));
     this->ui->checkBox_notifyBeta->setText(_l("config-notify-beta"));
     this->ui->checkBox_notifyUpdate->setText(_l("config-notify-update"));
     this->ui->checkBox_14->setText(_l("config-auto-load-history"));
@@ -296,28 +296,28 @@ void Preferences::on_pushButton_clicked()
 
 void Huggle::Preferences::on_pushButton_2_clicked()
 {
-    hcfg->UserConfig->AutomaticallyResolveConflicts = this->ui->checkBox->isChecked();
-    hcfg->WarnUserSpaceRoll = this->ui->checkBox_2->isChecked();
+    hcfg->UserConfig->AutomaticallyResolveConflicts = this->ui->checkBox_AutoResolveConflicts->isChecked();
+    hcfg->WarnUserSpaceRoll = this->ui->checkBox_ConfirmUserSpaceEditRevert->isChecked();
     hcfg->SystemConfig_SuppressWarnings = !this->ui->checkBox_6->isChecked();
-    hcfg->UsingIRC = this->ui->checkBox_12->isChecked();
-    hcfg->UserConfig->EnforceManualSoftwareRollback = this->ui->checkBox_5->isChecked();
+    hcfg->UsingIRC = this->ui->checkBox_EnableIrc->isChecked();
+    hcfg->UserConfig->EnforceManualSoftwareRollback = this->ui->checkBox_UseRollback->isChecked();
     hcfg->UserConfig->AutomaticallyGroup = this->ui->checkBox_AutomaticallyGroup->isChecked();
-    hcfg->UserConfig->EnforceManualSRT = this->ui->checkBox_5->isChecked();
+    hcfg->UserConfig->EnforceManualSRT = this->ui->checkBox_UseRollback->isChecked();
     hcfg->UserConfig->RevertOnMultipleEdits = this->ui->radioButton_2->isChecked();
-    hcfg->ProjectConfig->ConfirmOnSelfRevs = this->ui->checkBox_3->isChecked();
-    hcfg->ProjectConfig->ConfirmWL = this->ui->checkBox_4->isChecked();
+    hcfg->ProjectConfig->ConfirmOnSelfRevs = this->ui->checkBox_ConfirmOwnEditRevert->isChecked();
+    hcfg->ProjectConfig->ConfirmWL = this->ui->checkBox_ConfirmWhitelistedRevert->isChecked();
     hcfg->UserConfig->RevertNewBySame = this->ui->checkBox_20->isChecked();
     hcfg->UserConfig->HistoryLoad = this->ui->checkBox_14->isChecked();
-    hcfg->UserConfig->EnforceMonthsAsHeaders = this->ui->checkBox_16->isChecked();
-    hcfg->UserConfig->SectionKeep = this->ui->checkBox_17->isChecked();
-    hcfg->ProjectConfig->ConfirmTalk = this->ui->checkBox_11->isChecked();
+    hcfg->UserConfig->EnforceMonthsAsHeaders = this->ui->checkBox_MonthHeaders->isChecked();
+    hcfg->UserConfig->SectionKeep = this->ui->checkBox_MergeMessages->isChecked();
+    hcfg->ProjectConfig->ConfirmTalk = this->ui->checkBox_ConfirmTalkRevert->isChecked();
     hcfg->UserConfig->LastEdit = this->ui->checkBox_21->isChecked();
-    hcfg->UserConfig->DeleteEditsAfterRevert = this->ui->checkBox_15->isChecked();
-    hcfg->UserConfig->TruncateEdits = this->ui->checkBox_19->isChecked();
+    hcfg->UserConfig->DeleteEditsAfterRevert = this->ui->checkBox_RemoveRevertedEdits->isChecked();
+    hcfg->UserConfig->TruncateEdits = this->ui->checkBox_RemoveOldEdits->isChecked();
     hcfg->SystemConfig_DynamicColsInList = this->ui->checkBox_22->isChecked();
     hcfg->UserConfig->DisplayTitle = this->ui->checkBox_23->isChecked();
     hcfg->UserConfig->PreferredProvider = this->ui->cbProviders->currentIndex();
-    hcfg->UserConfig->ManualWarning = this->ui->checkBox_24->isChecked();
+    hcfg->UserConfig->ManualWarning = this->ui->checkBox_AutoWarning->isChecked();
     hcfg->UserConfig->RetrieveFounder = this->ui->checkBox_8->isChecked();
     hcfg->UserConfig->CheckTP = this->ui->checkBox_25->isChecked();
     hcfg->SystemConfig_RequestDelay = this->ui->checkBox_26->isChecked();
@@ -338,12 +338,12 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     if (hcfg->SystemConfig_FontSize < 1)
         hcfg->SystemConfig_FontSize = 10;
 
-    hcfg->UserConfig->Watchlist = static_cast<WatchlistOption>(this->ui->comboBox->currentIndex());
+    hcfg->UserConfig->Watchlist = static_cast<WatchlistOption>(this->ui->comboBox_WatchlistPreference->currentIndex());
     hcfg->SystemConfig_Font = this->ui->lineEdit_5->text();
 
-    if (hcfg->UserConfig->WelcomeGood != this->ui->checkBox_30->isChecked())
+    if (hcfg->UserConfig->WelcomeGood != this->ui->checkBox_WelcomeEmptyPage->isChecked())
     {
-        hcfg->UserConfig->WelcomeGood = this->ui->checkBox_30->isChecked();
+        hcfg->UserConfig->WelcomeGood = this->ui->checkBox_WelcomeEmptyPage->isChecked();
         // now we need to update the option as well just to ensure that user config will be updated as well
         // this option needs to be written only if it was explicitly changed by user to a value that
         // is different from a project config file
@@ -374,9 +374,9 @@ void Huggle::Preferences::on_pushButton_2_clicked()
 
 void Huggle::Preferences::on_checkBox_clicked()
 {
-    this->ui->radioButton_2->setEnabled(this->ui->checkBox->isChecked());
-    this->ui->checkBox_20->setEnabled(this->ui->checkBox->isChecked());
-    this->ui->radioButton->setEnabled(this->ui->checkBox->isChecked());
+    this->ui->radioButton_2->setEnabled(this->ui->checkBox_AutoResolveConflicts->isChecked());
+    this->ui->checkBox_20->setEnabled(this->ui->checkBox_AutoResolveConflicts->isChecked());
+    this->ui->radioButton->setEnabled(this->ui->checkBox_AutoResolveConflicts->isChecked());
 }
 
 static HuggleQueueFilterMatch Match(QComboBox *item)
@@ -624,12 +624,12 @@ void Preferences::RecordKeys(int row, int column)
 
 void Huggle::Preferences::on_pushButton_7_clicked()
 {
-    this->ui->checkBox_30->setChecked(false);
-    this->ui->checkBox_15->setChecked(true);
-    this->ui->checkBox_16->setChecked(true);
-    this->ui->checkBox_17->setChecked(true);
+    this->ui->checkBox_WelcomeEmptyPage->setChecked(false);
+    this->ui->checkBox_RemoveRevertedEdits->setChecked(true);
+    this->ui->checkBox_MonthHeaders->setChecked(true);
+    this->ui->checkBox_MergeMessages->setChecked(true);
     this->ui->checkBox_21->setChecked(true);
-    this->ui->checkBox_19->setChecked(true);
+    this->ui->checkBox_RemoveOldEdits->setChecked(true);
     this->ui->checkBox_23->setChecked(true);
     this->ui->radioButton_4->setChecked(true);
     this->ui->checkBox_14->setChecked(true);
@@ -734,35 +734,35 @@ void Preferences::ResetItems()
     }
     this->ui->checkBox_AutomaticallyGroup->setChecked(hcfg->UserConfig->AutomaticallyGroup);
     this->ui->checkBox_26->setChecked(hcfg->SystemConfig_RequestDelay);
-    this->ui->checkBox_15->setChecked(hcfg->UserConfig->DeleteEditsAfterRevert);
-    this->ui->checkBox_5->setChecked(hcfg->UserConfig->EnforceSoftwareRollback());
+    this->ui->checkBox_RemoveRevertedEdits->setChecked(hcfg->UserConfig->DeleteEditsAfterRevert);
+    this->ui->checkBox_UseRollback->setChecked(hcfg->UserConfig->EnforceSoftwareRollback());
     this->ui->checkBox_6->setChecked(!hcfg->SystemConfig_SuppressWarnings);
-    this->ui->checkBox_2->setChecked(hcfg->WarnUserSpaceRoll);
-    this->ui->checkBox->setChecked(hcfg->UserConfig->AutomaticallyResolveConflicts);
-    this->ui->checkBox_12->setChecked(hcfg->UsingIRC);
+    this->ui->checkBox_ConfirmUserSpaceEditRevert->setChecked(hcfg->WarnUserSpaceRoll);
+    this->ui->checkBox_AutoResolveConflicts->setChecked(hcfg->UserConfig->AutomaticallyResolveConflicts);
+    this->ui->checkBox_EnableIrc->setChecked(hcfg->UsingIRC);
     this->ui->checkBox_14->setChecked(hcfg->UserConfig->HistoryLoad);
-    this->ui->checkBox_3->setChecked(hcfg->ProjectConfig->ConfirmOnSelfRevs);
-    this->ui->checkBox_4->setChecked(hcfg->ProjectConfig->ConfirmWL);
-    this->ui->checkBox_11->setChecked(hcfg->ProjectConfig->ConfirmTalk);
-    this->ui->checkBox_16->setChecked(hcfg->UserConfig->EnforceMonthsAsHeaders);
-    this->ui->checkBox_19->setChecked(hcfg->UserConfig->TruncateEdits);
+    this->ui->checkBox_ConfirmOwnEditRevert->setChecked(hcfg->ProjectConfig->ConfirmOnSelfRevs);
+    this->ui->checkBox_ConfirmWhitelistedRevert->setChecked(hcfg->ProjectConfig->ConfirmWL);
+    this->ui->checkBox_ConfirmTalkRevert->setChecked(hcfg->ProjectConfig->ConfirmTalk);
+    this->ui->checkBox_MonthHeaders->setChecked(hcfg->UserConfig->EnforceMonthsAsHeaders);
+    this->ui->checkBox_RemoveOldEdits->setChecked(hcfg->UserConfig->TruncateEdits);
     this->ui->lineEdit_2->setText(QString::number(hcfg->SystemConfig_DelayVal));
     this->ui->radioButton->setChecked(!hcfg->UserConfig->RevertOnMultipleEdits);
     this->ui->checkBox_21->setChecked(hcfg->UserConfig->LastEdit);
-    this->ui->checkBox_17->setChecked(hcfg->UserConfig->SectionKeep);
+    this->ui->checkBox_MergeMessages->setChecked(hcfg->UserConfig->SectionKeep);
     this->ui->ck_RemoveTrusted->setChecked(hcfg->UserConfig->RemoveAfterTrustedEdit);
     this->ui->radioButton_2->setChecked(hcfg->UserConfig->RevertOnMultipleEdits);
-    this->ui->checkBox_20->setEnabled(this->ui->checkBox->isChecked());
-    this->ui->radioButton_2->setEnabled(this->ui->checkBox->isChecked());
+    this->ui->checkBox_20->setEnabled(this->ui->checkBox_AutoResolveConflicts->isChecked());
+    this->ui->radioButton_2->setEnabled(this->ui->checkBox_AutoResolveConflicts->isChecked());
     this->ui->checkBox_20->setChecked(hcfg->UserConfig->RevertNewBySame);
-    this->ui->radioButton->setEnabled(this->ui->checkBox->isChecked());
+    this->ui->radioButton->setEnabled(this->ui->checkBox_AutoResolveConflicts->isChecked());
     this->ui->lineEdit_3->setText(QString::number(hcfg->SystemConfig_RevertDelay));
-    this->ui->checkBox_24->setChecked(hcfg->UserConfig->ManualWarning);
+    this->ui->checkBox_AutoWarning->setChecked(hcfg->UserConfig->ManualWarning);
     this->ui->checkBox_25->setChecked(hcfg->UserConfig->CheckTP);
     this->ui->checkBox_27->setChecked(hcfg->SystemConfig_InstantReverts);
     this->ui->checkBox_22->setChecked(hcfg->SystemConfig_DynamicColsInList);
     this->ui->checkBox_23->setChecked(hcfg->UserConfig->DisplayTitle);
-    this->ui->checkBox_30->setChecked(hcfg->UserConfig->WelcomeGood);
+    this->ui->checkBox_WelcomeEmptyPage->setChecked(hcfg->UserConfig->WelcomeGood);
     this->ui->checkBox_AutoReport->setChecked(hcfg->UserConfig->AutomaticReports);
     this->ui->checkBox_31->setChecked(hcfg->UserConfig->HtmlAllowedInIrc);
     this->ui->lineEdit_5->setText(hcfg->SystemConfig_Font);
