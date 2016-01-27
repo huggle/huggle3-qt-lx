@@ -22,6 +22,7 @@
   <string name="result">Resultado</string>
   <string name="save">Guardar</string>
   <string name="show">Mostrar</string>
+  <string name="no-instant">Las advertencias instantáneas no están habilitadas en el proyecto $1. No se envía mensaje a $2. Elige un nivel de advertencia distinto.</string>
   <string name="undo">Deshacer</string>
   <string name="yes">Sí</string>
   <string name="editing-page">Editando página</string>
@@ -120,7 +121,7 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="config-instant-reverts">Usa reversiones instantáneas (muy rápido, pero una vez ejecutado no se puede cancelar)</string>
   <string name="config-revert-wait">Espera para revertir (segundos)</string>
   <string name="config-revert">Revertir</string>
-  <string name="config-revert-diff" fuzzy="true">Revertir nuevas ediciones a la página desplegada en el diff en caso de que fueran hechas por el mismo usuario (mismo vándalo)</string>
+  <string name="config-revert-diff">Revertir nuevas ediciones a la página desplegada en el diff en caso de que fueran hechas por el mismo usuario (mismo vándalo)</string>
   <string name="config-change-all">Cambiar todos los ajustes de Huggle para que se parezca más a Huggle 2</string>
   <string name="config-merge-messages">Combinar tus mensajes con otros en las secciones existentes</string>
   <string name="config-months-name">Utilizar meses como titulares en lugar del nombre de la página</string>
@@ -156,12 +157,12 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="config-autoadvance">Después de revertir, pasar a la siguiente edición en cola</string>
   <string name="config-userollback">Usar Rollback si se puede</string>
   <string name="config-revertsummaries">Resúmenes de reversión disponibles en menú</string>
-  <string name="config-extendreports">Extender reportes en caso de vandalismo adicional</string>
+  <string name="config-extendreports">Extender denuncias en caso de vandalismo adicional</string>
   <string name="config-autoreport">Cuando se quiere advertir a un usuario con advertencia final</string>
   <string name="config-reportnone">No hacer nada</string>
-  <string name="config-reportprompt">Preguntar si se quiere reportar al vándalo</string>
-  <string name="config-reportauto">Reportar automáticamente</string>
-  <string name="config-templates">Plantillas de mensajes a usuarios</string>
+  <string name="config-reportprompt">Preguntar por denuncia</string>
+  <string name="config-reportauto">Denunciar automáticamente</string>
+  <string name="config-templates">Mensajes de plantillas de usuarios</string>
   <string name="config-templatetext">Texto</string>
   <string name="config-template">Plantilla</string>
   <string name="config-promptforblock">Preguntar si se quiere bloquear cuando se advierte a un usuario con advertencia final</string>
@@ -173,7 +174,7 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="config-history">Descargar el historial completo de todos los artículos</string>
   <string name="config-defaultsprompt">¿Restaurar los predeterminados?</string>
   <string name="config-logbrowsetitle">Ubicación del archivo de registro</string>
-  <string name="config-shortcutconflict">El atajo \'$1\' coincide con el atajo existente para \'{1}\'.</string>
+  <string name="config-shortcutconflict">El atajo \'$1\' coincide con el atajo existente para \'$1\'.</string>
   <string name="config-no-colon">No puedes utilizar : en nombre de la cola</string>
   <string name="config-notify-update">Buscar actualizaciones</string>
   <string name="config-notify-beta">Buscar versiones beta si las hay</string>
@@ -344,7 +345,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="main-user-message">Enviar mensaje...</string>
   <string name="main-user-warn">Advertir...</string>
   <string name="main-user-db">Disminuir la puntuacion de maldad del usuario</string>
-  <string name="main-user-report">Reportar</string>
+  <string name="main-user-report">Denunciar</string>
   <string name="main-user-ib">Aumentar la puntuación de maldad</string>
   <string name="main-user-clear-tp">Vaciar página de discusión del usuario</string>
   <string name="main-user-retrieving-tp">Consultando página de discusión de $1</string>
@@ -375,7 +376,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="main-log1">Restaurando la revisión seleccionada de $1</string>
   <string name="main-tip-pagetagdelete">Etiquetar esta página para su borrado</string>
   <string name="main-tip-pagedelete">Borrar esta página</string>
-  <string name="main-tip-userreport">Reportar a este usuario</string>
+  <string name="main-tip-userreport">Denunciar a este usuario</string>
   <string name="main-tip-userblock">Bloquear a este usuario</string>
   <string name="main-revision-acceptpend">Aceptar esta revisión pendiente</string>
   <string name="main-no-page">La acción que ha solicitado requiere que la página se cargue. Por favor, carga una página antes de volver a intentarlo.</string>
@@ -439,24 +440,25 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="queue-examplelabel2">Excluir este atributo</string>
   <string name="queue-examplelabel3">No revisar este atributo</string>
   <string name="queue-usergroup">Mostrar sólo ediciones de estos usuarios</string>
-  <string name="report-title">Reportar a $1</string>
-  <string name="report-warn">Este usuario ha alcanzado el nivel 4 de aviso, así que no se le enviarán más avisos. Puedes denunciarlo ahora, pero por favor verifica que en efecto el usuario ha sido suficientemente avisado. Puedes hacerlo pulsando en el botón \"página de discusión\" en el siguiente formulario. Por favor recuerda que este aviso y el formulario que ahora se presentan se muestran independientemente de si tu reversión ha sido procesada correctamente como si no. Es posible, además, que el usuario ya haya sido denunciado (por favor verifica que el usuario no esté ya denunciado). ¿Deseas continuar?</string>
-  <string name="report-tu">Informar de este usuario</string>
+  <string name="report-title">Denunciar a $1</string>
+  <string name="report-warn">Este usuario ha alcanzado el nivel 4 de aviso, así que no se le enviarán más plantillas. Puedes denunciarlo ahora, pero por favor verifica que en efecto el usuario haya sido suficientemente avisado. Puedes hacerlo pulsando en el botón \"página de discusión\" en el siguiente formulario.Recuerda que este aviso y el formulario que ahora se presentan, se muestran independientemente de si tu reversión ha sido procesada correctamente como si no. Es posible, además, que el usuario ya haya sido denunciado (por favor verifica que el usuario no esté ya denunciado). ¿Quieres denunciar a este usuario?</string>
+  <string name="report-tu">Denunciar al usuario</string>
   <string name="report-reason">Motivo:</string>
-  <string name="report-intro">Vas a reportar al usuario $1</string>
+  <string name="report-auto">Denunciado $1</string>
+  <string name="report-intro">Vas a denunciar al usuario $1</string>
   <string name="report-message">Mensaje:</string>
   <string name="report-log">Advertencias a este usuario:</string>
-  <string name="report-include">Incluir en el informe</string>
-  <string name="report-select">Por favor selecciona un \"diff\" en la lista para abrir la previsualización</string>
+  <string name="report-include">Incluir en la denuncia</string>
+  <string name="report-select">Selecciona un \"diff\" en la lista para abrir la previsualización</string>
   <string name="report-write">Escribiendo</string>
   <string name="reportuser-not">Este usuario no se encuentra denunciado actualmente</string>
   <string name="report-evidence-none-provid">No se han proporcionado \"diffs\" como prueba. Esto hará que a los administradores les resulte más difícil averigüar si el usuario es en realidad un vándalo. ¿Deseas continuar de todos modos?</string>
-  <string name="report-duplicate">El usuario ya ha sido reportado</string>
-  <string name="report-fail2">Error: no se puede recuperar de la página del informe en $1</string>
-  <string name="report-progress">Reportando a $1...</string>
-  <string name="report-retrieving">Recuperando página actual de informes...</string>
-  <string name="report-done">Informado</string>
-  <string name="report-user">Informe</string>
+  <string name="report-duplicate">El usuario ya ha sido denunciado</string>
+  <string name="report-fail2">Error: no se puede recuperar la página de la denuncia en $1</string>
+  <string name="report-progress">Denunciando a $1...</string>
+  <string name="report-retrieving">Recuperando la página actual de denuncias...</string>
+  <string name="report-done">Denunciado</string>
+  <string name="report-user">Denunciar</string>
   <string name="score-score">Puntuación</string>
   <string name="score-word">Palabra</string>
   <string name="score-range">Intervalo</string>
@@ -467,7 +469,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="ssl-is-not-supported">Has solicitado el uso de SSL, pero $1 no lo admite.</string>
   <string name="uaa-not-supported">UAA no está disponible</string>
   <string name="uaa-not-supported-text">Esta función no está disponible en tu proyecto.</string>
-  <string name="uaa-reporting">Informado sobre $1 a UAA</string>
+  <string name="uaa-reporting">Denunciando a $1 en UAA</string>
   <string name="uaa-reported">Denunciado</string>
   <string name="uaa-no-reason-warn">No has especificado una razón de por qué el nombre de usuario supone una infracción a las políticas vigentes. Por favor especifica una razón.</string>
   <string name="uaa-nr">No se proporcionó ningún motivo</string>
@@ -512,6 +514,8 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="user-history-fail">no se pudo recuperar el historial del usuario: $1</string>
   <string name="userinfo-generic">Información del usuario</string>
   <string name="userinfo-retrieve">Recuperar información</string>
+  <string name="shortcut-report-username">Denunciar nombre de usuario</string>
+  <string name="shortcut-report-user">Denunciar usuario</string>
   <string name="shortcut-my-talk">Mi página de discusión</string>
   <string name="shortcut-raw">Revertir la edición y advertir al usuario</string>
   <string name="shortcut-exit">Terminar Huggle en una forma habitual</string>
@@ -604,8 +608,8 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="missing-page">No existe la página $1 en este wiki</string>
   <string name="updating-wl">Actualizando lista blanca...</string>
   <string name="feature-nfru">Esta función es sólo para usuarios de IP</string>
-  <string name="report-no-user">Ningún usuario ha sido seleccionada para informar, por favor, seleccione un usuario primero</string>
-  <string name="welcome-tp-empty-fail">Este usuario no tiene página de discusión vacía, ¿está seguro de que desea enviarle un mensaje?</string>
+  <string name="report-no-user">Ningún usuario ha sido seleccionado para denunciar. Selecciona un usuario primero</string>
+  <string name="welcome-tp-empty-fail">Este usuario no tiene una página de discusión vacía, ¿estás seguro de que quieres enviarle un mensaje?</string>
   <string name="cr-message-same">Hay varias ediciones a $1 del mismo usuario, ¿seguro quieres revertirlas?</string>
   <string name="cr-message-new">Hay nuevas ediciones a $1. ¿Seguro quieres revertirlas?</string>
   <string name="cr-message-not-same">Hay nuevas ediciones a $1 de otro usuario. ¿Seguro quieres revertirlas todas? (De todas formas, probablemente falle por un \"token\" viejo)</string>
@@ -620,8 +624,8 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="request">Solicitud</string>
   <string name="requesting">Solicitando</string>
   <string name="requested">Solicitado</string>
-  <string name="protect-request-fail">No se puede recuperar la página de informe actual: $1</string>
-  <string name="protect-request-fail-notext">No se puede recuperar la página de informe actual porque la consulta no devolvió ningún texto sobre esta página</string>
+  <string name="protect-request-fail">No se puede recuperar la página actual de denuncias: $1</string>
+  <string name="protect-request-fail-notext">No se puede recuperar la página actual de denuncias porque la consulta no devolvió ningún texto sobre esta página</string>
   <string name="protect-request-fail-notime">La consulta no devolvió ninguna marca de tiempo. Puede ser un error de MediaWiki. Se anula la consulta</string>
   <string name="message-fail">No se pudo entregar el mensaje</string>
   <string name="edit-conflict">Conflicto de edición</string>
@@ -633,8 +637,11 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="speedy-csd-existing">Ya existe una etiqueta CSD en la página.</string>
   <string name="namespace">Espacio de nombres</string>
   <string name="block-alreadyblocked">La cuenta ya está bloqueada</string>
-  <string name="report-fail">No se pudo reportar al usuario porque $1</string>
-  <string name="report-page-fail">Error: no se puede recuperar la página de informe en $1</string>
+  <string name="report-fail">No se pudo denunciar al usuario porque $1</string>
+  <string name="report-page-fail">Error: no se puede recuperar la página de denuncias en $1</string>
+  <string name="report-page-fail-time">No se puede recuperar la fecha de la página actual de denuncias. Fallo de API:
+
+ $1</string>
   <string name="report-unable">No ha sido posible denunciar al usuario :(</string>
   <string name="about-python-with">, con soporte para python</string>
   <string name="about-python-without">sin soporte para python</string>
@@ -648,10 +655,12 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="unknown-item">Elemento desconocido</string>
   <string name="title-multiple-projects">varios proyectos ($1)</string>
   <string name="title-on">en $1</string>
+  <string name="main-revert-already-pending-title">Esta edición ya está siendo revertida</string>
   <string name="main-revert-already-pending-text">No se puede revertir esta edición, porque ya se está siendo revirtiendo. Espera, por favor.</string>
   <string name="main-revert-type-unknown">desconocido</string>
   <string name="main-revert-type-in-userspace">en el espacio de usuario</string>
   <string name="main-revert-type-made-by-you">hecho por ti</string>
   <string name="main-revert-type-made-on-talk-page">hecho en la página de discusión</string>
   <string name="main-revert-type-made-white-list">hecho por un usuario que está en la lista blanca</string>
+  <string name="main-revert-warn">Esta edición es $1. Incluso aunque parezca vandalismo, puede no serlo. ¿Estás seguro de que quieres revertirla?</string>
 </resources>

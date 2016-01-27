@@ -122,7 +122,7 @@
   <string name="config-revert-wait">回退等待（秒）</string>
   <string name="config-revert">回退</string>
   <string name="config-revert-diff">回退页面上比显示的差异更新的编辑，当他们是同一个用户做出时</string>
-  <string name="config-change-all">将所有设定更改以模拟Huggle 2的行为</string>
+  <string name="config-change-all">更改所有Huggle设置以像Huggle 2那样运转</string>
   <string name="config-merge-messages">将你的信息和其他人的一起合并到已有的段落中</string>
   <string name="config-months-name">使用月份而不是页面名作为标题</string>
   <string name="config-automatic-warning">在“发送警告”功能中自动选择警告类型和级别</string>

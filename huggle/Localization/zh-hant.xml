@@ -120,7 +120,7 @@
   <string name="config-revert-wait">還原等待 (秒)</string>
   <string name="config-revert">還原</string>
   <string name="config-revert-diff" fuzzy="true">當他們是同一個用戶做出時，回退頁面上比顯示的差異更新的編輯</string>
-  <string name="config-change-all">將所有設定更改以模擬Huggle 2的行為</string>
+  <string name="config-change-all">變更所有 huggle 設定以模擬 Huggle 2 的行為</string>
   <string name="config-merge-messages">將你的信息和其他人的一起合併到已有的段落中</string>
   <string name="config-enable-irc">開啟 IRC</string>
   <string name="config-display-text">顯示下一筆</string>
