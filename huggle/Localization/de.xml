@@ -108,7 +108,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="config-changeshortcut">Abkürzung für $1 ändern</string>
   <string name="config-noshortcut">Keine Abkürzung</string>
   <string name="config-defaults">Standardeinstellung</string>
-  <string name="config-minor">Als \"Nur Kleinigkeiten wurden verändert\" markieren</string>
+  <string name="config-minor">Als kleine Änderung markieren</string>
   <string name="config-watchlist">Zur Beobachtungsliste hinzufügen</string>
   <string name="config-defaultsummary">Standardzusammenfassung für manuelle Änderungen</string>
   <string name="config-undosummary">Zusammenfassung für das Widerrufen einer eigenen Änderung</string>
@@ -707,7 +707,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
  $1</string>
   <string name="report-unable">Benutzer konnte nicht berichtet werden :(</string>
   <string name="about-python-with"> , mit Python-Unterstützung</string>
-  <string name="about-python-without"> ohne Python-Unterstützung</string>
+  <string name="about-python-without">ohne Python-Unterstützung</string>
   <string name="about-qt">, kompiliert mithilfe QT $1 Läuft auf QT $1</string>
   <string name="error-unknown-code">Unbekannter Fehler: $1</string>
   <string name="relogin-fail">Anmeldung im Wiki konnte nicht ausgeführt werden: $1</string>
