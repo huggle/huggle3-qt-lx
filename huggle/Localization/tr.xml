@@ -63,7 +63,7 @@
   <string name="block-title">Engellle: $1</string>
   <string name="block-reason">Sebep:</string>
   <string name="block-duration">Süre:</string>
-  <string name="block-message">Mesaj sayfası mesajı:</string>
+  <string name="block-message">Tartışma sayfası mesajı:</string>
   <string name="block-message-user">Seçilen kullanıcıya engellemenin nedenini içeren mesaj gönder</string>
   <string name="block-anononly">Yalnızca anonim kullanıcıları engelle</string>
   <string name="block-creation">Hesap oluşturmayı engelle</string>
