@@ -474,7 +474,7 @@ void Login::PerformLoginPart2(WikiSite *site)
     query->IncRef();
     query->Parameters = "lgname=" + QUrl::toPercentEncoding(hcfg->SystemConfig_Username)
             + "&lgpassword=" + QUrl::toPercentEncoding(hcfg->TemporaryConfig_Password)
-            + "&lgtoken=" + token;
+            + "&lgtoken=" + QUrl::toPercentEncoding(token);
     query->UsingPOST = true;
     query->Process();
 }
