@@ -170,22 +170,32 @@ static void WriteFile(QString text)
     delete file;
 }
 
-static void WriteIn(ApiQuery *q)
+static void WriteIn(ApiQuery *q, QNetworkReply *reply)
 {
     if (hcfg->QueryDebugging)
-        WriteFile(QString::number(q->QueryID()) + " IN " + q->Result->Data);
+    {
+        QString header_list;
+        QList<QByteArray> headerList = reply->rawHeaderList();
+        foreach(QByteArray head, headerList)
+            header_list += head + ": " + reply->rawHeader(head) + "\n";
+        WriteFile(QString::number(q->QueryID()) + " IN HEADERS:\n" + header_list + "\n\nDATA:\n" + q->Result->Data);
+    }
 }
 
-static void WriteOut(ApiQuery *q)
+static void WriteOut(ApiQuery *q, QNetworkRequest *request)
 {
     if (!hcfg->QueryDebugging)
         return;
+    QString header_list;
+    QList<QByteArray> headerList = request->rawHeaderList();
+    foreach(QByteArray head, headerList)
+        header_list += head + ": " + request->rawHeader(head) + "\n";
     if (q->HiddenQuery)
-        WriteFile(QString::number(q->QueryID()) + " OUT secret");
+        WriteFile(QString::number(q->QueryID()) + " OUT (secret url) HEADERS:\n" + header_list + "\n\nDATA: (secret data)");
     else if (q->UsingPOST)
-        WriteFile(QString::number(q->QueryID()) + " OUT " + q->URL + " " + q->Parameters);
+        WriteFile(QString::number(q->QueryID()) + " OUT " + q->URL + " POST/PARAMETERS: " + q->Parameters + "\nHEADERS:\n" + header_list);
     else
-        WriteFile(QString::number(q->QueryID()) + " OUT " + q->URL);
+        WriteFile(QString::number(q->QueryID()) + " OUT " + q->URL + "\nHEADERS:\n" + header_list);
 }
 
 void ApiQuery::Finished()
@@ -219,11 +229,11 @@ void ApiQuery::Finished()
     if (this->Status == StatusIsSuspended)
         return;
     // END OF SHIT
-    this->reply->deleteLater();
-    this->reply = nullptr;
     if (!this->HiddenQuery)
         HUGGLE_DEBUG("Finished request " + this->URL, 6);
-    WriteIn(this);
+    WriteIn(this, this->reply);
+    this->reply->deleteLater();
+    this->reply = nullptr;
     if (result->Data.isEmpty() || result->IsFailed())
     {
         this->Status = StatusInError;
@@ -272,7 +282,7 @@ void ApiQuery::Process()
                                 ") " + this->URL + "\ndata: " + QUrl::fromPercentEncoding(this->Parameters.toUtf8()));
         return;
     }
-    WriteOut(this);
+    WriteOut(this, &request);
     if (this->UsingPOST)
     {
         this->reply = Query::NetworkManager->post(request, this->Parameters.toUtf8());
