@@ -41,8 +41,6 @@
 
 using namespace Huggle;
 
-QString Login::Test = "<login result=\"NeedToken\" token=\"";
-
 Login::Login(QWidget *parent) : HW("login", this, parent), ui(new Ui::Login)
 {
     HUGGLE_PROFILER_RESET;
@@ -148,8 +146,7 @@ void Login::Localize()
     this->ui->checkBox_2->setText(_l("login-remember-password"));
     this->ui->labelIntro->setText(_l("login-intro"));
     this->ui->labelTranslate->setText(QString("<html><head/><body><p><a href=\"http://meta.wikimedia.org/wiki/Huggle/Localization\"><span style=\""\
-                                              " text-decoration: underline; color:#0000ff;\">%1</span></a></p></body></html>")
-                                              .arg(_l("login-translate")));
+                                              " text-decoration: underline; color:#0000ff;\">%1</span></a></p></body></html>").arg(_l("login-translate")));
     // Change the layout based on preference
     if (Localizations::HuggleLocalizations->IsRTL())
         QApplication::setLayoutDirection(Qt::RightToLeft);
@@ -440,12 +437,10 @@ void Login::PerformLogin(WikiSite *site)
 {
     this->Update(_l("[[login-progress-start]]", site->Name));
     // we create an api request to login
-    this->LoginQueries.insert(site, new ApiQuery(ActionLogin, site));
+    this->LoginQueries.insert(site, new ApiQuery(ActionQuery, site));
     ApiQuery *qr = this->LoginQueries[site];
-    qr->Parameters = "lgname=" + QUrl::toPercentEncoding(hcfg->SystemConfig_Username);
-    qr->HiddenQuery = true;
-    qr->UsingPOST = true;
     qr->IncRef();
+    qr->Parameters = "meta=tokens&type=login";
     qr->Process();
     this->Statuses[site] = WaitingForLoginQuery;
 }
@@ -463,7 +458,14 @@ void Login::PerformLoginPart2(WikiSite *site)
         this->Update(_l("login-fail", site->Name) + ": " + query->GetFailureReason());
         return;
     }
-    QString token = this->GetToken(query->Result->Data);
+    ApiQueryResultNode *token_info = query->GetApiQueryResult()->GetNode("tokens");
+    if (!token_info || !token_info->Attributes.contains("logintoken"))
+    {
+        this->CancelLogin();
+        this->Update("No valid login token returned by the site");
+        return;
+    }
+    QString token = token_info->GetAttribute("logintoken");
     this->Tokens.insert(site, token);
     this->Statuses[site] = WaitingForToken;
     this->LoginQueries.remove(site);
@@ -1130,26 +1132,6 @@ bool Login::ProcessOutput(WikiSite *site)
     return false;
 }
 
-QString Login::GetToken(QString source_code)
-{
-    QString token = source_code;
-    if (!token.contains(Login::Test))
-    {
-        Syslog::HuggleLogs->WarningLog("the result of api request doesn't contain valid token");
-        Syslog::HuggleLogs->DebugLog("The token didn't contain the correct string, token was " + token);
-        return "<invalid token>";
-    }
-    token = token.mid(token.indexOf(Login::Test) + Login::Test.length());
-    if (!token.contains("\""))
-    {
-        Syslog::HuggleLogs->WarningLog("the result of api request doesn't contain valid token");
-        Syslog::HuggleLogs->DebugLog("The token didn't contain the closing mark, token was " + token);
-        return "<invalid token>";
-    }
-    token = token.mid(0, token.indexOf("\""));
-    return token;
-}
-
 void Login::on_ButtonOK_clicked()
 {
     if (!this->Processing)
@@ -1213,16 +1195,16 @@ void Login::OnTimerTick()
                 this->PerformLogin(site);
                 break;
             case WaitingForLoginQuery:
-                PerformLoginPart2(site);
+                this->PerformLoginPart2(site);
                 break;
             case WaitingForToken:
-                FinishLogin(site);
+                this->FinishLogin(site);
                 break;
             case RetrievingProjectConfig:
-                RetrieveProjectConfig(site);
+                this->RetrieveProjectConfig(site);
                 break;
             case RetrievingUserConfig:
-                RetrieveUserConfig(site);
+                this->RetrieveUserConfig(site);
                 break;
             case RetrievingUser:
                 RetrieveUserInfo(site);

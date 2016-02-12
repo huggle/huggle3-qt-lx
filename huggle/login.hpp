@@ -83,9 +83,6 @@ namespace Huggle
             void on_label_linkActivated(const QString &link);
 
         private:
-            //! String that is used to test against the login failed text
-            static QString Test;
-
             //! Reset the interface to default
             void Reset();
             void RemoveQueries();
@@ -113,7 +110,6 @@ namespace Huggle
             void reject();
             //! This function make sure that login result is done
             bool ProcessOutput(WikiSite *site);
-            QString GetToken(QString source_code);
             UpdateForm *Updater = nullptr;
             bool GlobalConfig = false;
             Ui::Login *ui;
