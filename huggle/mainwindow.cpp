@@ -101,6 +101,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         this->ui->actionWiki->setVisible(false);
     }
     this->Status = new QLabel();
+    this->Status->setTextInteractionFlags(Qt::TextSelectableByMouse);
     this->Status->setWordWrap(true);
     this->Status->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
     this->ui->statusBar->addWidget(this->Status, 1);
