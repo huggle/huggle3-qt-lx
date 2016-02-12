@@ -462,7 +462,7 @@ void Login::PerformLoginPart2(WikiSite *site)
     if (!token_info || !token_info->Attributes.contains("logintoken"))
     {
         this->CancelLogin();
-        this->Update(site->Name + ": No valid login token returned by the site");
+        this->Update(_l("login-fail", site->Name) + ": No valid login token returned by the site");
         return;
     }
     QString token = token_info->GetAttribute("logintoken");
