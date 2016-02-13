@@ -153,47 +153,6 @@ checkhf()
     fi
 } 
 
-checkqt()
-{
-    text "Checking if $1 or $2 is present... "
-    if [ "$SKIPCHECKS" -eq 1 ];then
-        echo "SKIP"
-        return 0
-    fi
-    if [ "`apt-cache policy $1 | grep -Ev '^\s*Installed: \(none\)' | grep -E '^\s*Installed: ' | wc -l`" -gt 0 ];then
-        ok
-        return 0
-    fi
-
-    if [ "`apt-cache policy $2 | grep -Ev '^\s*Installed: \(none\)' | grep -E '^\s*Installed: ' | wc -l`" -gt 0 ];then
-        ok
-        return 0
-    fi
-
-    fail
-    echo "$1 neither $2 is present, use --skip-checks to ignore this"
-    echo "or execute apt-get install $1 $2 as root"
-    exit 1
-}
-
-
-checkpkg()
-{
-    text "Checking if $1 is present... "
-    if [ "$SKIPCHECKS" == "1" ];then
-        echo "SKIP"
-        return 0
-    fi
-    if [ "`apt-cache policy $1 | grep -Ev '^\s*Installed: \(none\)' | grep -E '^\s*Installed: ' | wc -l`" -gt 0 ];then
-        ok
-        return 0
-    fi
-    fail
-    echo "$1 is not present, use --skip-checks to ignore this"
-    echo "or execute apt-get install $1 as root"
-    exit 1
-}
-
 echo "Checking all required packages..."
 text "Checking for cmake... "
 
@@ -211,9 +170,9 @@ if [ -d "../.git" ];then
     git submodule update
 fi
 
-if [ ! -d "../libs/libirc/libirc" ];then
+if [ ! -d "libs/libirc/libirc" ];then
     echo "The libirc directories are missing! Fixing by using a backup file..."
-    cd "../libs" || exit 1
+    cd "libs" || exit 1
     unzip libirc.zip || exit 1
     cd - || exit 1
 fi

@@ -20,5 +20,5 @@
 	path = huggle/extension_list/extension-scoring
 	url = http://github.com/huggle/extension-scoring
 [submodule "libs/libirc"]
-	path = libs/libirc
+	path = huggle/libs/libirc
 	url = http://github.com/grumpy-irc/libirc
