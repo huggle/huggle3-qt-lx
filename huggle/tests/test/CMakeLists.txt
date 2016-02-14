@@ -46,8 +46,8 @@ file (GLOB uixx
     "../../*.ui"
 )
 
-add_subdirectory(../../../libs/libirc/libirc libirc)
-add_subdirectory(../../../libs/libirc/libircclient libircclient)
+add_subdirectory(../../libs/libirc/libirc libirc)
+add_subdirectory(../../libs/libirc/libircclient libircclient)
 
 SET(tst_testmain_SOURCES ${srcx}
 ../../aboutform.cpp
