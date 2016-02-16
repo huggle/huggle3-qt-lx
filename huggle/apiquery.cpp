@@ -178,7 +178,8 @@ static void WriteIn(ApiQuery *q, QNetworkReply *reply)
         QList<QByteArray> headerList = reply->rawHeaderList();
         foreach(QByteArray head, headerList)
             header_list += head + ": " + reply->rawHeader(head) + "\n";
-        WriteFile(QString::number(q->QueryID()) + " IN HEADERS:\n" + header_list + "\n\nDATA:\n" + q->Result->Data);
+        WriteFile("======================================\n" + QString::number(q->QueryID()) + " IN\n======================================\nHEADERS:\n" +
+            header_list + "\n\nDATA:\n" + q->Result->Data);
     }
 }
 
@@ -186,16 +187,17 @@ static void WriteOut(ApiQuery *q, QNetworkRequest *request)
 {
     if (!hcfg->QueryDebugging)
         return;
+    QString id = "======================================\n" + QString::number(q->QueryID()) + " OUT\n======================================\n";
     QString header_list;
     QList<QByteArray> headerList = request->rawHeaderList();
     foreach(QByteArray head, headerList)
         header_list += head + ": " + request->rawHeader(head) + "\n";
     if (q->HiddenQuery)
-        WriteFile(QString::number(q->QueryID()) + " OUT (secret url) HEADERS:\n" + header_list + "\n\nDATA: (secret data)");
+        WriteFile(id + "(secret url) HEADERS:\n" + header_list + "\n\nDATA: (secret data)");
     else if (q->UsingPOST)
-        WriteFile(QString::number(q->QueryID()) + " OUT " + q->URL + " POST/PARAMETERS: " + q->Parameters + "\nHEADERS:\n" + header_list);
+        WriteFile(id + q->URL + " POST/PARAMETERS: " + q->Parameters + "\nHEADERS:\n" + header_list);
     else
-        WriteFile(QString::number(q->QueryID()) + " OUT " + q->URL + "\nHEADERS:\n" + header_list);
+        WriteFile(id + q->URL + "\nHEADERS:\n" + header_list);
 }
 
 void ApiQuery::Finished()
