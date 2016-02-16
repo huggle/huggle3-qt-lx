@@ -545,6 +545,7 @@
   <string name="shortcut-report-user">Сообщить о нарушении</string>
   <string name="shortcut-my-talk">Моя страница обсуждения</string>
   <string name="shortcut-raw">Отменить редактирование и предупредить пользователя</string>
+  <string name="shortcut-contrib">Показать вклад пользователя, который внёс отображаемую правку</string>
   <string name="shortcut-exit">Завершить Huggle в обычном режиме</string>
   <string name="shortcut-next">Перейти к следующей правке</string>
   <string name="shortcut-suspicious">Пометить правку как подозрительную</string>
@@ -706,5 +707,8 @@
   <string name="error-unknown-code">Неизвестная ошибка: $1</string>
   <string name="relogin-fail">Не удалось войти в вики: $1</string>
   <string name="projects">Проекты</string>
+  <string name="loading-main-window">Загружается главное окно Huggle</string>
   <string name="title-on">на $1</string>
+  <string name="main-revert-already-pending-title">Эта правка уже откачена</string>
+  <string name="main-revert-already-pending-text">Вы не можете откатить эту правку, поскольку она уже откачена. Пожалуйста, подождите!</string>
 </resources>
