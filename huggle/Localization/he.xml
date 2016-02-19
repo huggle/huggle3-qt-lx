@@ -721,4 +721,18 @@ $1</string>
   <string name="api.php-invalid-response">שרת api.php החזיר טקסט בלתי־תקין (אולי שרת הווב לא פועל?), נא ללחוץ על יומן ניפוי השגיאות למידע מדויק</string>
   <string name="login-username-doesnt-exist">שם המשתמש הזה אינו קיים</string>
   <string name="developer-mode-enter-title">יאללה</string>
+  <string name="developer-mode-enter-message">נכנסת למצב מפתחים!</string>
+  <string name="unimplemented">האפשרות הזאת עוד לא ממומשת</string>
+  <string name="unknown-item">פריט בלתי־ידוע</string>
+  <string name="title-multiple-projects">מיזמים מרובים ($1)</string>
+  <string name="title-on">על $1</string>
+  <string name="main-revert-custom-reason-text">לא ניתנה סיבה / שחזור ייחודי</string>
+  <string name="main-revert-already-pending-title">העריכה הזאת כבר שוחזרה</string>
+  <string name="main-revert-already-pending-text">אין לך אפשרות לשחזר את העריכה הזאת, כי היא כבר בתהליך שחזור. נא להמתין!</string>
+  <string name="main-revert-type-unknown">בלתי־ידוע</string>
+  <string name="main-revert-type-in-userspace">במרחב משתמש</string>
+  <string name="main-revert-type-made-by-you">שלך</string>
+  <string name="main-revert-type-made-on-talk-page">בדף השיחה</string>
+  <string name="main-revert-type-made-white-list">של משתמש ברשימה הלבנה</string>
+  <string name="main-revert-warn">זאת עריכה $1, אז גם אם היא נראית כמו השחתה, אולי היא לא כזאת, האם באמת לשחזר אותה?</string>
 </resources>

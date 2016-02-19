@@ -24,6 +24,7 @@
   <string name="show">Pokaż</string>
   <string name="undo">Cofnij</string>
   <string name="yes">Tak</string>
+  <string name="editing-page">Edytowanie strony</string>
   <string name="agf">Wycofaj edycję w dobrej wierze, podając własny powód</string>
   <string name="successful">Sukces!</string>
   <string name="summary">Opis zmian</string>
@@ -50,6 +51,7 @@
   <string name="disable">Wyłącz</string>
   <string name="no-token">Brak tokenu</string>
   <string name="flags">Flagi</string>
+  <string name="gracetime">Oczekiwanie na zakończenie żądań związanych z edycją...</string>
   <string name="browser-none">Strona nie wyświetli się teraz</string>
   <string name="browser-load">Pobieranie różnic używając awaryjnego renderowania web, proszę czekać...</string>
   <string name="browser-miss-summ">Podsumowanie nie zostało dostarczone</string>
@@ -80,10 +82,12 @@ Ta blokada zniweluje efekt blokady zakresu. Kontynuować?</string>
   <string name="block-type">Zablokuj / odblokuj</string>
   <string name="block-admin">Blokujący administrator</string>
   <string name="block-none">Brak użytkowników do zablokowania.</string>
+  <string name="contribution-browser-user-info">Pokazywanie ostatnich edycji przez użytkownika $1</string>
   <string name="config-function">Funkcja</string>
   <string name="config-description">Opis</string>
   <string name="config-shortcut">Skrót</string>
-  <string name="config-queue-filter-exclude">Wyłączyć (nie wymagane)</string>
+  <string name="config-queue-filter-ignore">Ignoruj (nie ma znaczenia)</string>
+  <string name="config-queue-filter-exclude">Wyłączyć (nie może być)</string>
   <string name="config-queue-filter-require">Wymagane (musi być)</string>
   <string name="config-summ">Niestandardowo przywróć podsumowania dla szablonów</string>
   <string name="config-title">Opcje</string>
@@ -112,6 +116,7 @@ Ta blokada zniweluje efekt blokady zakresu. Kontynuować?</string>
   <string name="config-confirm-talk">Wymagaj potwierdzenia do wycofania edycji w dyskusji</string>
   <string name="config-use-rollback">Używaj rewertu programowego</string>
   <string name="config-welcome-empty-page">Wysyłaj wiadomość powitalną do użytkowników z pustą stroną dyskusji, gdy wykonają dobrą edycję</string>
+  <string name="config-conflicts-revert">Automatycznie rozwiązuj konflikty z innymi użytkownikami, którzy wycofują lub wykonują zmiany na stronie</string>
   <string name="config-instant-reverts">Używaj natychmiastowego wycofywania zmian (bardzo szybko działa, ale nie można przerwać po wybraniu)</string>
   <string name="config-revert">Cofnij</string>
   <string name="config-revert-diff">Wycofuj zmiany nowsze niż aktualnie pokazywana, jeśli są wykonane przez tego samego użytkownika-wandala</string>
@@ -125,15 +130,19 @@ Ta blokada zniweluje efekt blokady zakresu. Kontynuować?</string>
   <string name="config-retrieve-edit">Przywróć swoją własną edycję</string>
   <string name="config-nothing">Nic</string>
   <string name="config-bot-edits">Edycje bota (b)</string>
+  <string name="config-own-edits">Własne edycje</string>
   <string name="config-new-page">Nowa strona</string>
   <string name="config-whitelisted">Występuje na białej liście</string>
   <string name="config-userspace">Przestrzeń użytkownika</string>
   <string name="config-talk">Strona dyskusji</string>
+  <string name="config-columns-dynamic">Twórz kolumny list jako dynamiczne (dopasowujące szerokość do rozmiaru wpisów) lub ręcznie (użytkownik sam ustala ich rozmiar)</string>
   <string name="config-message-notification">Wyświetl powiadomienie, gdy pojawi się nowa wiadomość na twojej stronie dyskusji</string>
   <string name="config-warning-api">Wyświetlaj ostrzeżenia dla zapytań API</string>
+  <string name="config-title-diff">Tytuł strony w każdym porównaniu (duży tekst, w którym wyświetlana jest tylko nagłówek strony, w górnej części każdego porównania)</string>
   <string name="config-updates">Sprawdź aktualizacje</string>
   <string name="config-beta">Sprawdź, czy są dostępne wersje beta</string>
   <string name="config-html-messages">HAN może wyświetlać wiadomości HTML (niezalecane, może powodować problemy)</string>
+  <string name="config-summary-present">Podświetlaj opis zmian gdy jest obecny, zamiast kiedy gdy go nie ma</string>
   <string name="config-close-without">Zamknij bez zapisywania</string>
   <string name="config-confirmmultiple">Potwierdź kilka rewersji jednej edycji przez tego samego użytkownika</string>
   <string name="config-confirmsame">Potwierdź rewersję do edycji przez użytkownika będącego rewertowanym</string>
@@ -144,6 +153,7 @@ Ta blokada zniweluje efekt blokady zakresu. Kontynuować?</string>
   <string name="config-autoadvance">Po rewerowaniu, przejdź do następnej edycji w kolejce</string>
   <string name="config-userollback">Korzystaj z funkcji cofnięcia, jeśli jest dostępna</string>
   <string name="config-revertsummaries">Rewertuj opisy dostępne w menu</string>
+  <string name="config-extendreports">Rozszerz raporty po dodatkowych wandalizmach.</string>
   <string name="config-reportnone">Nic nie rób</string>
   <string name="config-templatetext">Wyświetlany tekst</string>
   <string name="config-template">Szablon</string>
@@ -197,7 +207,7 @@ Ta blokada zniweluje efekt blokady zakresu. Kontynuować?</string>
   <string name="login-fail-enable-true">Logowanie na $1 nie powiodło się: Nie masz \"enable:true\" w swojej osobistej konfiguracji.</string>
   <string name="login-fail-no-info">Logowanie na $1 nie powiodło się: Nie można uzyskać informacji o użytkowniku: $2</string>
   <string name="login-fail-rollback-rights">Logowanie na $1 nie powiodło się: Nie masz uprawnień wycofywania w tym projekcie.</string>
-  <string name="login-failed-edit" fuzzy="true">Logowanie nie powiodło się, ponieważ nie masz wystarczająco dużo zmian w tym projekcie</string>
+  <string name="login-failed-edit">Logowanie na $1 nie powiodło się, ponieważ dokonałeś wystarczająco dużo zmian w tym projekcie</string>
   <string name="login-retrieving-info">Pobieranie informacji o użytkowniku na $1</string>
   <string name="login-password-empty">Podane hasło było puste</string>
   <string name="login-fail-wrong-name">Podałeś niepoprawną nazwę użytkownika</string>
@@ -382,7 +392,7 @@ Ta blokada zniweluje efekt blokady zakresu. Kontynuować?</string>
   <string name="delete-progress">Usuwanie $1...</string>
   <string name="history-message-revert-title">Czy chcesz cofnąć tylko tą wiadomość?</string>
   <string name="history-already-done">To już zostało cofnięte</string>
-  <string name="history-revert-fail" fuzzy="true">Nie można cofnąć twojej edycji na $1 błąd podczas przeglądania: $2</string>
+  <string name="history-revert-fail">Nie można cofnąć twojej edycji na $1 z powodu wystąpienia błędu: $2</string>
   <string name="wait">Proszę czekać...</string>
   <string name="missing-aiv">Ten projekt nie używa AIV</string>
   <string name="relogin-fail">Nie można zalogować się na: $1</string>
