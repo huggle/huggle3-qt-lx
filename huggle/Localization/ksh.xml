@@ -405,5 +405,6 @@
   <string name="error-unknown-code">Ene onbikannte Fähler es opjetrodde: $1</string>
   <string name="relogin-fail">Mer künne em Wikki nit enlogge, weil: $1</string>
   <string name="projects">Projäkte</string>
+  <string name="developer-mode-enter-title">Auwieh!</string>
   <string name="title-on">op $1</string>
 </resources>

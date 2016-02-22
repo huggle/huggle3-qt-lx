@@ -721,7 +721,7 @@ $1</string>
   <string name="api.php-invalid-response">api.php відповів із неправильним текстом (впав веб-сервер?). Будь ласка, перевірте журнал зневадження для точної інформації</string>
   <string name="login-username-doesnt-exist">Це ім\'я користувача не існує</string>
   <string name="developer-mode-enter-title">Ура</string>
-  <string name="developer-mode-enter-message" fuzzy="true">Ви увійшли в режим розробника! Addshore смердить!</string>
+  <string name="developer-mode-enter-message">Ви увійшли в режим розробника!</string>
   <string name="unimplemented">Ця функція ще не втілена</string>
   <string name="unknown-item">Невідомий елемент</string>
   <string name="title-multiple-projects">кілька проектів ($1)</string>
