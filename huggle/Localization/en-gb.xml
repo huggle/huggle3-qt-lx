@@ -22,6 +22,7 @@
   <string name="result">Result</string>
   <string name="save">Save</string>
   <string name="show">Show</string>
+  <string name="no-instant">Instant warnings are not enabled on project $1, not sending message to $2, pick a different warning level</string>
   <string name="undo">Undo</string>
   <string name="yes">Yes</string>
   <string name="editing-page">Editing page</string>
@@ -51,6 +52,7 @@
   <string name="disable">Disable</string>
   <string name="no-token">No token</string>
   <string name="flags">Flags</string>
+  <string name="gracetime">Waiting for editing queries to end...</string>
   <string name="browser-none">No page is displayed now</string>
   <string name="browser-load">Downloading diff using a web rendering fall-back, please wait...</string>
   <string name="browser-miss-summ">No summary was provided</string>
@@ -81,6 +83,7 @@ This block will override the effect of the rangeblock. Continue?</string>
   <string name="block-type">Block/unblock</string>
   <string name="block-admin">Blocking sysop</string>
   <string name="block-none">There is no user to block.</string>
+  <string name="contribution-browser-user-info">Showing recent contributions of user $1</string>
   <string name="config-function">Function</string>
   <string name="config-description">Description</string>
   <string name="config-shortcut">Shortcut</string>

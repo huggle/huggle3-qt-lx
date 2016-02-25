@@ -120,7 +120,10 @@
   <string name="config-change-all">हगल २ की तरह अधिक व्यवहार करने के लिए हगल की पसन्द बदलें</string>
   <string name="config-merge-messages">पहले से उपलब्ध अनुभाग में अपने सन्देशों का विलय करें</string>
   <string name="config-months-name">शीर्षणी में पृष्ठ के नाम के स्थान पर माह का उपयोग करें</string>
+  <string name="config-enable-irc">आईआरसी सक्रिय करें</string>
+  <string name="config-friend">दोस्त</string>
   <string name="config-talk">वार्ता पृष्ठ</string>
+  <string name="config-close-without">बिना सहेजे बन्द करें</string>
   <string name="config-confirmmultiple">एक ही सदस्य के एक ही संपादन के एक से अधिक संस्करण की पुष्टि करें</string>
   <string name="config-confirmsame">एक सदस्य द्वारा किये गये संपादन की आवृति पूर्ववत किये जाने की पुष्टि करें</string>
   <string name="config-confirmselfrevert">स्वयं के संपादन आवृति संस्करण की पुष्टि करें</string>
@@ -144,6 +147,7 @@
   <string name="config-blocktimeanon">अनाम प्रयोक्ता</string>
   <string name="config-blocktimereg">पञ्जीकृत प्रयोक्ता</string>
   <string name="config-summaryprompt">सारान्श प्रविष्ट करें</string>
+  <string name="config-history">सभी लेख के पूरे इतिहास को डाउनलोड करें</string>
   <string name="config-defaultsprompt">डिफ़ाल्ट पुनर्स्थापित करें?</string>
   <string name="config-logbrowsetitle">लॉग सञ्चिका ठिकाना</string>
   <string name="config-shortcutconflict">लघुपथ \'$1\' अस्तित्वयुक्त लघुपथ \'$2\' के साथ टकराव स्थिति में है।</string>
@@ -208,6 +212,8 @@
   <string name="main-system-showqueue">पंक्ति दिखाये</string>
   <string name="main-system-options">विकल्प...</string>
   <string name="main-system-logout">सत्रान्त</string>
+  <string name="main-system-abort">परिचय</string>
+  <string name="main-system-change-provider-irc">आई॰आर॰सी॰</string>
   <string name="main-system-change-provider-wiki">विकी</string>
   <string name="main-system-exit">निकास</string>
   <string name="main-queue">पंक्ति</string>
@@ -229,6 +235,7 @@
   <string name="main-revision-previous">पिछला</string>
   <string name="main-revision-next">अगला</string>
   <string name="main-revision-latest">नवीनतम</string>
+  <string name="main-page-next">अगला</string>
   <string name="main-page-switchtotalk">वार्ता पृष्ठ पर जायें</string>
   <string name="main-page-switchtosubject">विषय पृष्ठ पर जायें</string>
   <string name="main-page-switchtoarticle">लेख पर जायें</string>
@@ -262,6 +269,7 @@
   <string name="main-browser-newedits">पृष्ठ पर हुए नये संपादन दिखायें</string>
   <string name="main-browser-newcontribs">सदस्य द्वारा किये गये नये संपादन दिखायें</string>
   <string name="main-help">सहायता</string>
+  <string name="main-han-display-bot-data">बॉट डाटा दिखाएँ</string>
   <string name="main-help-documentation">दस्तावेज़ीकरण</string>
   <string name="main-help-feedback">प्रतिक्रिया</string>
   <string name="main-help-about">हगल के बारे में...</string>
@@ -281,6 +289,8 @@
   <string name="message-message">सन्देश:</string>
   <string name="message-summary">सारान्श:</string>
   <string name="message-autosign">स्वचालित रूप से हस्ताक्षर जोड़ें</string>
+  <string name="message-fail-token-1">सम्पादन टोकन प्राप्त करने में अक्षम</string>
+  <string name="message-fail-token-2">निवेदन पर कोई टोकन नहीं मिला</string>
   <string name="protect-request-title">$1 के लिए सुरक्षा अनुरोध करें</string>
   <string name="protect-reason">कारण:</string>
   <string name="protect-expiry">समाप्ति:</string>
@@ -335,6 +345,7 @@
   <string name="score-range">परास</string>
   <string name="score-only-whole-word">केवल सभी शब्द मेल खाते हैं</string>
   <string name="score-take-any-word">इस शृंखला वाले सभी शब्द मेल खाते हैं</string>
+  <string name="uaa-nr">कोई कारण नहीं दिया गया</string>
   <string name="revert-confirm-multiple">ये \'$1\' द्वारा एकाधिक संपादन को वापस ले लेगा। जारी रखें?</string>
   <string name="revert-confirm-range">लक्षित संशोधन के लेखक, $2, वर्तमान संशोधन के लेखक के समान सीमा में है, $1, और शायद समान व्यक्ति, बढ़ने से पहले सुनिश्चित करे की लक्ष्य संशोधन सही है। जारी रखे?</string>
   <string name="revert-confirm-same">ये वापस ले हुए सदस्य, $1, के अन्य संशोधन को वापस ले लेगा। जारी रखे?</string>
@@ -360,8 +371,14 @@
   <string name="update-progress">नवीन संस्करण डाउनलोड कर रहा है...</string>
   <string name="update-error">नवीन संस्करण डाउनलोड करने में असफल</string>
   <string name="updater-update">अद्यतनित करें</string>
+  <string name="updater-open-manualdownloadpage">डाउनलोड पृष्ठ खोलें</string>
   <string name="updater-close">बंद करें</string>
+  <string name="updater-disable-notify">अद्यतन निष्क्रिय करें</string>
+  <string name="userinfo-generic">सदस्य जानकारी</string>
+  <string name="userinfo-retrieve">जानकारी प्राप्त करें</string>
   <string name="shortcut-my-talk">मेरा वार्ता पृष्ठ</string>
+  <string name="shortcut-browser-close-tab">ब्राउज़र टैब बन्द करें</string>
+  <string name="shortcut-tab">नया टैब खोलें</string>
   <string name="warning-title">$1 को चेतावनी दें</string>
   <string name="warning-levelgroup">चेतावनी स्तर</string>
   <string name="warning-levelauto">स्वतः</string>
@@ -371,6 +388,7 @@
   <string name="warning-level4">स्तर ३ (अन्तिम)</string>
   <string name="warning-warntype">चेतावनी प्रकार:</string>
   <string name="warning-warnlog">इस प्रयोक्ता के लिए चेतावनियाँ:</string>
+  <string name="warning-submit">भेजें</string>
   <string name="error-loggedout">खाते से लॉग आउट किया जा चुका है, पुनः लॉग इन कर रहा है...</string>
   <string name="error-noresponse">कोई प्रतिक्रिया नहीं</string>
   <string name="error-pagemissing">पृष्ठ अस्तित्व में नहीं है</string>
@@ -413,12 +431,18 @@
   <string name="reqprotection-progress">\'$1\' के लिए सुरक्षा अनुरोध कर रहा है...</string>
   <string name="speedy-fail">पृष्ठ को शीघ्र हटाने हेतु नामांकित करने में असफल रहा: $1</string>
   <string name="speedy-progress">\'$1\' को शीघ्र हटाने के लिए नामांकित कर रहा है।</string>
+  <string name="speedy-finished">समाप्त</string>
   <string name="warn-alreadyblocked">यह प्रयोक्ता पहले ही अवरोधित किया जा चुका है</string>
   <string name="wait">कृपया प्रतीक्षा करें...</string>
+  <string name="feature-nfru">यह विशेषता केवल आईपी सदस्यों के लिए है</string>
   <string name="page-unknown">अज्ञात पृष्ठ</string>
   <string name="namespace">नामस्थान</string>
   <string name="report-fail">सदस्य की शिकायत नहीं हो पायी: $1</string>
+  <string name="error-unknown-code">अज्ञात त्रुटि : $1</string>
   <string name="projects">परियोजनाएं</string>
+  <string name="unable-to-retrieve-user-list">सदस्य सूची प्राप्त करने में अक्षम : $1</string>
+  <string name="login-no-site-info-returned">इस विकि से कोई भी जानकारी नहीं प्राप्त हुई।</string>
+  <string name="login-username-doesnt-exist">यह सदस्य नाम उपस्थित नहीं है।</string>
   <string name="title-multiple-projects">कई परियोजनाएं ($1)</string>
   <string name="title-on">अन $1</string>
 </resources>
