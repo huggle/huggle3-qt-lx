@@ -721,11 +721,11 @@
   <string name="api.php-invalid-response">api.php одговори со неважечки текст (мрежниот опслужувач не работи?). Погледајте во дневникот на отстранување грешки за поточни информации</string>
   <string name="login-username-doesnt-exist">Не постои такво корисничко име.</string>
   <string name="developer-mode-enter-title">Одлично!</string>
-  <string name="developer-mode-enter-message" fuzzy="true">Влеговте во развоен режим. Addshore е за никаде!</string>
+  <string name="developer-mode-enter-message">Влеговте во развоен режим!</string>
   <string name="unimplemented">Оваа функција сè уште не е воведена.</string>
   <string name="unknown-item">Непозната ставка</string>
   <string name="title-multiple-projects">повеќе проекти ($1)</string>
-  <string name="title-on" fuzzy="true">на</string>
+  <string name="title-on">на $1</string>
   <string name="main-revert-custom-reason-text">Нема укажано причина / кориснички-определено отповикување</string>
   <string name="main-revert-already-pending-title">Ова уредување е веќе отповикано</string>
   <string name="main-revert-already-pending-text">Не можам да го отповикам уредувањето бидејќи истото веќе е во тек. Почекајте!</string>

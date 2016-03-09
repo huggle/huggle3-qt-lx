@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="name">繁體中文</string>
+  <string name="name">英文</string>
   <string name="isrtl">false</string>
   <string name="add">新增</string>
   <string name="cancel">取消</string>
@@ -46,10 +46,10 @@
   <string name="reason">原因</string>
   <string name="diffid">版本差異ID</string>
   <string name="whitelisted">$1 與在 $3 的得分 $2 已加至白名單</string>
-  <string name="expiry-time">停止時間</string>
+  <string name="expiry-time">到期時間</string>
   <string name="duration">期限</string>
   <string name="enable">啟用</string>
-  <string name="disable">關閉</string>
+  <string name="disable">禁用</string>
   <string name="no-token">無標記</string>
   <string name="flags">標記</string>
   <string name="browser-none">現在無頁面可以顯示</string>
@@ -57,11 +57,11 @@
   <string name="browser-miss-summ">未提供摘要</string>
   <string name="browser-diff">頁面差異：$1（得分：$2）</string>
   <string name="browser-fail">無法檢索版本差異：$1</string>
-  <string name="about-contributors">開發人員</string>
+  <string name="about-contributors">開發人員：</string>
   <string name="block-not">使用者未被封鎖</string>
   <string name="block-title">封禁$1</string>
   <string name="block-reason">原因：</string>
-  <string name="block-duration">時長</string>
+  <string name="block-duration">期限：</string>
   <string name="block-message">對話頁訊息：</string>
   <string name="block-message-user">傳送包含封銷解釋的訊息給目標使用者</string>
   <string name="block-anononly">僅封禁匿名使用者</string>
@@ -70,7 +70,7 @@
   <string name="block-email">阻止電子郵件</string>
   <string name="block-usertalk">對話</string>
   <string name="block-usercontribs">貢獻</string>
-  <string name="block-blockloglabel">查封日誌</string>
+  <string name="block-blockloglabel">封鎖日誌</string>
   <string name="block-warnloglabel">警告：</string>
   <string name="block-sharedipwarning">注意：$1 已被標記爲共享或動態 IP 位址。</string>
   <string name="block-rangeblockwarning">$1已經受到了自動封禁$2的影響。
@@ -106,7 +106,7 @@
   <string name="config-changeshortcut">改變$1的捷徑</string>
   <string name="config-noshortcut">無</string>
   <string name="config-defaults">預設</string>
-  <string name="config-minor">小編輯</string>
+  <string name="config-minor">標記為小修改</string>
   <string name="config-watchlist">增加至監視清單</string>
   <string name="config-defaultsummary">預設為手動編輯摘要</string>
   <string name="config-undosummary">撤銷自身編輯的默認編輯摘要</string>

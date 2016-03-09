@@ -211,7 +211,7 @@ Parameters:
   <string name="irc-stop">Parameters:
 * $1 - sitename</string>
   <string name="irc-failure">Used as error log entry.</string>
-  <string name="irc-switch-rc">Used as log entry.</string>
+  <string name="irc-switch-rc">Used as log entry. RC = Recent Changes</string>
   <string name="login-intro">Used in Login window.
 
 The button label \"Projects &gt;&gt;\" is untranslatable at this time.</string>
