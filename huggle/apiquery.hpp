@@ -59,6 +59,15 @@ namespace Huggle
     //! This class can be used to execute any kind of api query on any wiki
     class HUGGLE_EX ApiQuery : public QObject, public Query, public MediaWikiObject
     {
+        enum Token
+        {
+            TokenLogin,
+            TokenCsrf,
+            TokenRollback,
+            TokenPatrol,
+            TokenWatch
+        };
+
             Q_OBJECT
         public:
             //! Creates a new instance of this class and set the defaults
@@ -84,6 +93,8 @@ namespace Huggle
             //! Returns a type of query as a string
             QString QueryTypeToString();
             QString GetURL();
+            void SetParam(QString name, QString value);
+            void SetToken(Token token, QString name = "", QString value = "");
             bool EnforceLogin = true;
             //! Whether the query is going to edit any data in wiki
             bool EditingQuery = false;
@@ -105,7 +116,6 @@ namespace Huggle
             void ReadData();
             void Finished();
         private:
-            Action _action = ActionQuery;
             //! Generate api url
             void ConstructUrl();
             QString ConstructParameterLessUrl();
@@ -114,6 +124,8 @@ namespace Huggle
             bool FormatIsCurrentlySupported();
             //! This is only needed when you are using rollback
             void FinishRollback();
+            QHash<QString, QString> params;
+            Action _action = ActionQuery;
             QString ActionPart;
             QByteArray temp;
             //! Reply from qnet

@@ -159,6 +159,59 @@ void ApiQuery::SetCustomActionPart(QString action, bool editing, bool enforce_lo
     this->EditingQuery = editing;
 }
 
+void ApiQuery::SetToken(Token token, QString name, QString value)
+{
+    if (value.isEmpty())
+    {
+        switch (token)
+        {
+            case TokenLogin:
+                throw new Exception("Login token requires a user defined value, it's not stored in memory", BOOST_CURRENT_FUNCTION);
+            case TokenWatch:
+                value = this->GetSite()->GetProjectConfig()->Token_Watch;
+                break;
+            case TokenCsrf:
+                value = this->GetSite()->GetProjectConfig()->Token_Csrf;
+                break;
+            case TokenPatrol:
+                value = this->GetSite()->GetProjectConfig()->Token_Patrol;
+                break;
+            case TokenRollback:
+                value = this->GetSite()->GetProjectConfig()->Token_Rollback;
+                break;
+        }
+    }
+
+    if (name.isEmpty())
+    {
+        switch (token)
+        {
+            case TokenLogin:
+                name = "ltoken";
+                break;
+            case TokenRollback:
+                name = "rltoken";
+                break;
+            case TokenWatch:
+                name = "token";
+                break;
+            case TokenPatrol:
+                name = "ptoken";
+                break;
+        }
+    }
+
+    this->SetParam(name, value);
+}
+
+void ApiQuery::SetParam(QString name, QString value)
+{
+    if (this->params.contains(name))
+        this->params[name] = value;
+    else
+        this->params.insert(name, value);
+}
+
 static void WriteFile(QString text)
 {
     QFile *file = new QFile(hcfg->QueryDebugPath);
@@ -258,7 +311,14 @@ void ApiQuery::Process()
     this->StartTime = QDateTime::currentDateTime();
     this->ThrowOnValidResult();
     this->temp.clear();
-    if (!this->URL.size())
+    foreach(QString value, this->params.values())
+        this->Parameters += "&" + value + "=" + QUrl::toPercentEncoding(this->params[value]);
+    if (this->Parameters.startsWith("&"))
+    {
+        // remove the trailing symbol
+        this->Parameters = this->Parameters.mid(1);
+    }
+    if (!this->URL.size() && !this->UsingPOST)
         this->ConstructUrl();
     this->Status = StatusProcessing;
     this->Result = new ApiQueryResult();
