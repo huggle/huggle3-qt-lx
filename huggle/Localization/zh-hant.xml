@@ -134,6 +134,7 @@
   <string name="config-friend">好友</string>
   <string name="config-userspace">使用者空間</string>
   <string name="config-talk">對話頁面</string>
+  <string name="config-message-notification">當您在自己的對話頁面中收到一則新訊息時，顯示通知</string>
   <string name="config-updates">檢查更新</string>
   <string name="config-beta">檢查是否有測試版本</string>
   <string name="config-html-messages">HAN 可以顯示 HTML 訊息 (危險)</string>
