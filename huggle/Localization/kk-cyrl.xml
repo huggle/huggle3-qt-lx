@@ -102,7 +102,7 @@
   <string name="config-use-rollback">Бағдарлама шегіндіруін қолдану</string>
   <string name="config-welcome-empty-page">Жақсы өңдеме жасаған бос талқылау беті бар қатысушыларға қарсы алу хабарламаларын жіберу</string>
   <string name="config-conflicts-revert">Бетті өзгерткен немесе жоққа шығарған басқа қатысушылар арасындағы қақтығыстарды автоматты шешу</string>
-  <string name="config-revert-wait">Жоққа шығаруды күтіңіз (бірнеше секунт)</string>
+  <string name="config-revert-wait">Жоққа шығаруды күтіңіз (бірнеше секунд)</string>
   <string name="config-revert">Қайтару</string>
   <string name="config-display-text">Келесісін көрсету</string>
   <string name="config-retrieve-edit">Өзіңіздің өңдемеңізді қайтып алу</string>
