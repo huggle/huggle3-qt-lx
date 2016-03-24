@@ -22,7 +22,7 @@
   <string name="result">Resultado</string>
   <string name="save">Salvar</string>
   <string name="show">Exibir</string>
-  <string name="no-instant">Avisos instantâneos não estão ativados no projeto $1, a mensagem não enviada para $2, escolha um nível de aviso diferente.</string>
+  <string name="no-instant">Avisos instantâneos não estão ativados no projeto $1, mensagem não enviada para $2, escolha um nível de aviso diferente.</string>
   <string name="undo">Desfazer</string>
   <string name="yes">Sim</string>
   <string name="editing-page">Editando página</string>

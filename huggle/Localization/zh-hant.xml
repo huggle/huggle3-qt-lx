@@ -439,7 +439,7 @@
   <string name="shortcut-next">前往下一個編輯</string>
   <string name="shortcut-suspicious">標記編輯為可疑</string>
   <string name="shortcut-back">前往先前顯示的編輯</string>
-  <string name="shortcut-warn">發送一則警告訊息給使用者，但不回退其編輯</string>
+  <string name="shortcut-warn">向使用者傳送一則警告訊息，但不還原其編輯</string>
   <string name="shortcut-revert">還原編輯</string>
   <string name="shortcut-open-in-huggle">開啟目前顯示的頁面</string>
   <string name="shortcut-open">在外部瀏覽器中開啟目前顯示的編輯</string>
@@ -474,7 +474,7 @@
   <string name="delete-user">此頁面為使用者頁面。您確定要刪除此頁面？</string>
   <string name="edit-fail">無法編輯$1</string>
   <string name="edit-progress">編輯 $1 中...</string>
-  <string name="history-welcome-msg-title">是否發送歡迎辭？</string>
+  <string name="history-welcome-msg-title">是否傳送歡迎辭？</string>
   <string name="reqprotection-fail">無法為“$1”請求保護</string>
   <string name="reqprotection-progress">請求保護“$1”...</string>
   <string name="speedy-fail">無法對頁面標記快速刪除：$1</string>
