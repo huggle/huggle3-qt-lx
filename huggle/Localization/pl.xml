@@ -133,6 +133,7 @@ Ta blokada zniweluje efekt blokady zakresu. Kontynuować?</string>
   <string name="config-own-edits">Własne edycje</string>
   <string name="config-new-page">Nowa strona</string>
   <string name="config-whitelisted">Występuje na białej liście</string>
+  <string name="config-friend">Znajomy</string>
   <string name="config-userspace">Przestrzeń użytkownika</string>
   <string name="config-talk">Strona dyskusji</string>
   <string name="config-columns-dynamic">Twórz kolumny list jako dynamiczne (dopasowujące szerokość do rozmiaru wpisów) lub ręcznie (użytkownik sam ustala ich rozmiar)</string>
