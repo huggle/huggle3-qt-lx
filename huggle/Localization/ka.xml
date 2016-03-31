@@ -208,7 +208,7 @@
   <string name="main-user-message">Сообщение...</string>
   <string name="main-user-warn">Предупредить...</string>
   <string name="main-user-report">Доложить</string>
-  <string name="main-user-retrieving-tp">%1-ის განხილვის გვერდის გაუქმება</string>
+  <string name="main-user-retrieving-tp">$1-ის განხილვის გვერდის გაუქმება</string>
   <string name="main-user-block">Блокировать...</string>
   <string name="main-browser-back">Назад</string>
   <string name="main-browser-forward">Вперёд</string>

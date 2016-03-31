@@ -366,7 +366,7 @@ This block will override the effect of the rangeblock. Continue?</string>
   <string name="main-user-report">Report</string>
   <string name="main-user-ib">Increase badness score</string>
   <string name="main-user-clear-tp">Clear talk page of user</string>
-  <string name="main-user-retrieving-tp">Retrieving Talk Page of %1</string>
+  <string name="main-user-retrieving-tp">Retrieving Talk Page of $1</string>
   <string name="main-user-block">Block...</string>
   <string name="main-browser-back">Back</string>
   <string name="main-browser-forward">Forward</string>

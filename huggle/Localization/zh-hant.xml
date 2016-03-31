@@ -319,7 +319,7 @@
   <string name="main-user-report">回報</string>
   <string name="main-user-ib">提高不良分數</string>
   <string name="main-user-clear-tp">清除使用者的對話頁</string>
-  <string name="main-user-retrieving-tp">取得 %1 的對話頁面</string>
+  <string name="main-user-retrieving-tp">取得 $1 的對話頁面</string>
   <string name="main-user-block">封禁...</string>
   <string name="main-browser-back">返回</string>
   <string name="main-browser-forward">前進</string>

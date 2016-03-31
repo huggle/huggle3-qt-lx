@@ -366,7 +366,7 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="main-user-report">Segnala</string>
   <string name="main-user-ib">Aumenta il punteggio di cattiveria dell\'utente</string>
   <string name="main-user-clear-tp">Pulisci la pagina di discussione dell\'utente</string>
-  <string name="main-user-retrieving-tp">Recupero Pagina di discussione di %1</string>
+  <string name="main-user-retrieving-tp">Recupero Pagina di discussione di $1</string>
   <string name="main-user-block">Blocca...</string>
   <string name="main-browser-back">Indietro</string>
   <string name="main-browser-forward">Avanti</string>

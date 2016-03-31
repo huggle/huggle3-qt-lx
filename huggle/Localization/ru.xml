@@ -365,7 +365,7 @@
   <string name="main-user-report">Сообщить</string>
   <string name="main-user-ib">Увеличить баллы плохости</string>
   <string name="main-user-clear-tp">Очистить страницу обсуждения участника</string>
-  <string name="main-user-retrieving-tp">Получение страницы обсуждения для %1</string>
+  <string name="main-user-retrieving-tp">Получение страницы обсуждения для $1</string>
   <string name="main-user-block">Блокировать...</string>
   <string name="main-browser-back">Назад</string>
   <string name="main-browser-forward">Вперёд</string>

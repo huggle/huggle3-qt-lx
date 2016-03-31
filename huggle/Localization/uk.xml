@@ -366,7 +366,7 @@
   <string name="main-user-report">Повідомити</string>
   <string name="main-user-ib">Збільшити штрафні бали користувача</string>
   <string name="main-user-clear-tp">Очистити сторінку обговорення аноніма</string>
-  <string name="main-user-retrieving-tp">Завантажую сторінку обговорення користувача %1</string>
+  <string name="main-user-retrieving-tp">Завантажую сторінку обговорення користувача $1</string>
   <string name="main-user-block">Заблокувати…</string>
   <string name="main-browser-back">Назад</string>
   <string name="main-browser-forward">Вперед</string>

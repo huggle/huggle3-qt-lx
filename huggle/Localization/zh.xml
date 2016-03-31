@@ -366,7 +366,7 @@
   <string name="main-user-report">报告</string>
   <string name="main-user-ib">提高不良分数</string>
   <string name="main-user-clear-tp">清空用户讨论页</string>
-  <string name="main-user-retrieving-tp">检索%1的讨论页中</string>
+  <string name="main-user-retrieving-tp">检索$1的讨论页中</string>
   <string name="main-user-block">封禁...</string>
   <string name="main-browser-back">后退</string>
   <string name="main-browser-forward">前进</string>
