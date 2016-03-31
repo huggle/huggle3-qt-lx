@@ -11,8 +11,8 @@ Building
 IMPORTANT: Since 3.1.19 you must download submodules in folder libs using git:
 
 ```
-git submodules init
-git submodules update
+git submodule init
+git submodule update
 ```
 
 If you didn't download this repository using git, there should be a guide on where you can download the libraries from in the respective folders.
