@@ -366,7 +366,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="main-user-report">Signaler</string>
   <string name="main-user-ib">Augmenter le score de mauvaise conduite</string>
   <string name="main-user-clear-tp">Nettoyer la page de discussion de l’utilisateur</string>
-  <string name="main-user-retrieving-tp">Récupération de la Page de Discussion de %1</string>
+  <string name="main-user-retrieving-tp">Récupération de la Page de Discussion de $1</string>
   <string name="main-user-block">Bloquer...</string>
   <string name="main-browser-back">Retour</string>
   <string name="main-browser-forward">Forward</string>

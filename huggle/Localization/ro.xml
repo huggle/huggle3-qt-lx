@@ -366,7 +366,7 @@ Această blocare va lua locul efectului blocării gamei. Continuați?</string>
   <string name="main-user-report">Reclamă</string>
   <string name="main-user-ib">Mărește scorul de malițiozitate</string>
   <string name="main-user-clear-tp">Golește pagina de discuție a utilizatorului</string>
-  <string name="main-user-retrieving-tp">Citesc pagina de discuție pentru %1</string>
+  <string name="main-user-retrieving-tp">Citesc pagina de discuție pentru $1</string>
   <string name="main-user-block">Blochează...</string>
   <string name="main-browser-back">Înapoi</string>
   <string name="main-browser-forward">Înainte</string>

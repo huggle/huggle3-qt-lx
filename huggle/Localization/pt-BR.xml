@@ -367,7 +367,7 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="main-user-report">Reportar</string>
   <string name="main-user-ib">Aumentar pontuação de suspeita do usuário</string>
   <string name="main-user-clear-tp">Limpar página de discussão do(a) usuário(a)</string>
-  <string name="main-user-retrieving-tp">Obtendo a Página de Discussão de %1</string>
+  <string name="main-user-retrieving-tp">Obtendo a Página de Discussão de $1</string>
   <string name="main-user-block">Bloquear...</string>
   <string name="main-browser-back">Voltar</string>
   <string name="main-browser-forward">Avançar</string>

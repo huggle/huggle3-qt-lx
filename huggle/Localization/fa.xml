@@ -365,7 +365,7 @@
   <string name="main-user-report">گزارش</string>
   <string name="main-user-ib">بالابردن امتیاز بدی</string>
   <string name="main-user-clear-tp">خالی کردن صفحه بحث کاربر</string>
-  <string name="main-user-retrieving-tp">واگردانی صفحهٔ بحث %1</string>
+  <string name="main-user-retrieving-tp">واگردانی صفحهٔ بحث $1</string>
   <string name="main-user-block">بستن...</string>
   <string name="main-browser-back">بازگشت</string>
   <string name="main-browser-forward">جلو</string>

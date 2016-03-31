@@ -366,7 +366,7 @@
   <string name="main-user-report">Пријави</string>
   <string name="main-user-ib">Зголеми ја оценката на штетноста на корисникот</string>
   <string name="main-user-clear-tp">Исчисти ја страницата за разговор на корисникот</string>
-  <string name="main-user-retrieving-tp">Ја преземам страницаата за разговор %1</string>
+  <string name="main-user-retrieving-tp">Ја преземам страницаата за разговор $1</string>
   <string name="main-user-block">Блокирај...</string>
   <string name="main-browser-back">Назад</string>
   <string name="main-browser-forward">Напред</string>

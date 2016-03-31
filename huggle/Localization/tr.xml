@@ -365,7 +365,7 @@
   <string name="main-user-report">Raporla</string>
   <string name="main-user-ib">Hata puanlarını arttır</string>
   <string name="main-user-clear-tp">Kullanıcının mesaj sayfasını temizle</string>
-  <string name="main-user-retrieving-tp">%1 Kullanıcısının Mesaj Sayfası Getiriliyor</string>
+  <string name="main-user-retrieving-tp">$1 Kullanıcısının Mesaj Sayfası Getiriliyor</string>
   <string name="main-user-block">Engelle...</string>
   <string name="main-browser-back">Geri</string>
   <string name="main-browser-forward">İleri</string>

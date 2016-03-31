@@ -366,7 +366,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="main-user-report">Melde</string>
   <string name="main-user-ib">Schlechtheits-Score erhöhen</string>
   <string name="main-user-clear-tp">Diskussionsseite des Benutzers leeren</string>
-  <string name="main-user-retrieving-tp">Rufe Diskussionsseite von %1 ab</string>
+  <string name="main-user-retrieving-tp">Rufe Diskussionsseite von $1 ab</string>
   <string name="main-user-block">Sperre Benutzer...</string>
   <string name="main-browser-back">Zurück</string>
   <string name="main-browser-forward">Vorwärts</string>

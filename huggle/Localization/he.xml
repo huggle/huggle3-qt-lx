@@ -366,7 +366,7 @@
   <string name="main-user-report">דיווח</string>
   <string name="main-user-ib">הגדלת ציון הגריעוּת של המשתמש</string>
   <string name="main-user-clear-tp">ניקוי דף שיחת המשתמש</string>
-  <string name="main-user-retrieving-tp">אחזור דף השיחה של %1</string>
+  <string name="main-user-retrieving-tp">אחזור דף השיחה של $1</string>
   <string name="main-user-block">חסימה...</string>
   <string name="main-browser-back">הקודם</string>
   <string name="main-browser-forward">הבא</string>

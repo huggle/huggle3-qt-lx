@@ -266,7 +266,7 @@
   <string name="main-user-report">Bereeschte</string>
   <string name="main-user-ib">Däm Metmaacher sing „Schlääschteschkeid“ erop säze</string>
   <string name="main-user-clear-tp">Däm Metmaacher sing Klaafsigg läddesch maache</string>
-  <string name="main-user-retrieving-tp">Ben de Klaafsigg vun %1 aam holle …</string>
+  <string name="main-user-retrieving-tp">Ben de Klaafsigg vun $1 aam holle …</string>
   <string name="main-user-block">Schpärre …</string>
   <string name="main-browser-back">Retuhr</string>
   <string name="main-browser-forward">Förahn</string>
