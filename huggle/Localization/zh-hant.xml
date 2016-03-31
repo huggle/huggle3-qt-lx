@@ -82,6 +82,7 @@
   <string name="block-type">封禁/解禁</string>
   <string name="block-admin">封禁管理員</string>
   <string name="block-none">無可封禁的使用者。</string>
+  <string name="contribution-browser-user-info">顯示使用者$1近期的貢獻</string>
   <string name="config-function">功能</string>
   <string name="config-description">描述說明</string>
   <string name="config-shortcut">捷徑</string>
@@ -325,6 +326,7 @@
   <string name="main-browser-forward">前進</string>
   <string name="main-browser-open">在外部瀏覽器檢視</string>
   <string name="main-browser-newedits">顯示頁面新編輯</string>
+  <string name="main-han">HAN</string>
   <string name="main-han-disconnect">中斷連線</string>
   <string name="main-han-connect">連線</string>
   <string name="main-help">說明</string>
