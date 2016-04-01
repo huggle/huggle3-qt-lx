@@ -334,10 +334,10 @@ namespace Huggle
             void on_actionPatrol_triggered();
             void on_actionFinal_triggered();
             void on_actionPrint_API_for_diff_triggered();
-
             void on_actionContribution_browser_triggered();
+            void on_actionCheck_for_dups_triggered();
 
-        private:
+    private:
             void DisplayWelcomeMessage();
             void FinishRestore();
             void CreateBrowserTab(QString name, int index);

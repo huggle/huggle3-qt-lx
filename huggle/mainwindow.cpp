@@ -40,6 +40,7 @@
 #include "huggleparser.hpp"
 #include "huggleprofiler.hpp"
 #include "hugglequeue.hpp"
+#include "hugglequeueitemlabel.hpp"
 #include "huggletool.hpp"
 #include "huggleweb.hpp"
 #include "blockuser.hpp"
@@ -2829,8 +2830,7 @@ void MainWindow::on_actionMy_talk_page_triggered()
     if (Configuration::HuggleConfiguration->Restricted)
         return;
     this->LockPage();
-    this->Browser->DisplayPage(Configuration::GetProjectWikiURL(this->GetCurrentWikiSite()) +
-                                           "User_talk:" +
+    this->Browser->DisplayPage(Configuration::GetProjectWikiURL(this->GetCurrentWikiSite()) + "User_talk:" +
                                            QUrl::toPercentEncoding(hcfg->SystemConfig_Username));
 }
 
@@ -2839,8 +2839,7 @@ void MainWindow::on_actionMy_Contributions_triggered()
     if (Configuration::HuggleConfiguration->Restricted)
         return;
     this->LockPage();
-    this->Browser->DisplayPage(Configuration::GetProjectWikiURL(this->GetCurrentWikiSite()) +
-                                    "Special:Contributions/" +
+    this->Browser->DisplayPage(Configuration::GetProjectWikiURL(this->GetCurrentWikiSite()) + "Special:Contributions/" +
                                     QUrl::toPercentEncoding(hcfg->SystemConfig_Username));
 }
 
@@ -2995,4 +2994,33 @@ void Huggle::MainWindow::on_actionContribution_browser_triggered()
         return;
 
     WikiUtil::DisplayContributionBrowser(this->CurrentEdit->User, this);
+}
+
+void Huggle::MainWindow::on_actionCheck_for_dups_triggered()
+{
+    QHash<QString, int> occurences;
+    foreach (HuggleQueueItemLabel *e, this->Queue1->Items)
+    {
+        QString page = e->Edit->Page->PageName.toLower();
+        if (!occurences.contains(page))
+        {
+            occurences.insert(page, 1);
+        } else
+        {
+            occurences[page]++;
+        }
+    }
+    bool found = false;
+    foreach (QString page, occurences.keys())
+    {
+        if (occurences[page] > 1)
+        {
+            HUGGLE_WARNING("Multiple occurences found for " + page + ": " + QString::number(occurences[page]));
+            found = true;
+        }
+    }
+    if (!found)
+    {
+        HUGGLE_LOG("No duplicates found");
+    }
 }
