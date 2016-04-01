@@ -66,6 +66,7 @@ namespace Huggle
             //! Parse all information from local config, this function is used in login
             bool Parse(QString config, QString *reason, WikiSite *site);
             void RequestLogin();
+            QString GetConfig(QString key, QString dv = "");
             //! \todo This needs to be later used as a default value for user config, however it's not being ensured
             //!       this value is loaded before the user config right now
             bool AutomaticallyResolveConflicts = false;
@@ -251,6 +252,11 @@ namespace Huggle
             QString                 EditSuffixOfHuggle = "([[WP:HG|HG 3]])";
             //! Regexes that other tools can be identified with
             QStringList             EditRegexOfTools;
+
+        private:
+            QHash<QString, QString> cache;
+            // We keep the config cached here just in case we needed to ever access it later
+            QString                 configurationBuffer;
     };
 
     inline void ProjectConfiguration::RequestLogin()

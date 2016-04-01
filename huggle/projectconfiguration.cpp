@@ -54,6 +54,8 @@ ProjectConfiguration::~ProjectConfiguration()
 
 bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site)
 {
+    this->configurationBuffer = config;
+    this->cache.clear();
     Version version(HuggleParser::ConfigurationParse("min-version", config, "3.0.0"));
     Version huggle_version(HUGGLE_VERSION);
     this->Site = site;
@@ -371,6 +373,16 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
     this->UAAavailable = this->UAAPath.size() > 0;
     this->IsSane = true;
     return true;
+}
+
+QString ProjectConfiguration::GetConfig(QString key, QString dv)
+{
+    if (this->cache.contains(key))
+        return this->cache[key];
+
+    QString value = HuggleParser::ConfigurationParse(key, this->configurationBuffer, dv);
+    this->cache.insert(key, value);
+    return value;
 }
 
 QDateTime ProjectConfiguration::ServerTime()
