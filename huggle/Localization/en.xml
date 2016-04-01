@@ -568,6 +568,7 @@
   <string name="shortcut-tab">Opens a new tab</string>
   <string name="shortcut-rw-stay">Revert current edit, warns a user and stay on page</string>
   <string name="shortcut-revert-and-stay">Revert current edit and stay on page</string>
+  <string name="shortcut-user-contribs-browser">Open user's contributions in a browser</string>
   <string name="warning-title">Warn $1</string>
   <string name="warning-levelgroup">Warning level</string>
   <string name="warning-levelauto">Automatic</string>
