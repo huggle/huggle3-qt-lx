@@ -133,6 +133,7 @@ void WLQuery::Process()
         request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
         this->networkReply = Query::NetworkManager->post(request, data);
     }
+    request.setRawHeader("User-Agent", Configuration::HuggleConfiguration->WebqueryAgent);
     QObject::connect(this->networkReply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(WriteProgress(qint64,qint64)));
     QObject::connect(this->networkReply, SIGNAL(uploadProgress(qint64,qint64)), this, SLOT(WriteProgress(qint64,qint64)));
     QObject::connect(this->networkReply, SIGNAL(finished()), this, SLOT(Finished()));

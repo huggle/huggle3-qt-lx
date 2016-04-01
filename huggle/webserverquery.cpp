@@ -10,11 +10,12 @@
 
 #include "webserverquery.hpp"
 #include "exception.hpp"
+#include "syslog.hpp"
+#include "configuration.hpp"
 #include <QtNetwork>
 #include <QNetworkReply>
 #include <QUrl>
 #include <QtXml>
-#include "syslog.hpp"
 
 using namespace Huggle;
 
@@ -65,6 +66,7 @@ void WebserverQuery::Process()
     {
         this->reply = Query::NetworkManager->get(request);
     }
+    request.setRawHeader("User-Agent", Configuration::HuggleConfiguration->WebqueryAgent);
     QObject::connect(this->reply, SIGNAL(finished()), this, SLOT(Finished()));
     QObject::connect(this->reply, SIGNAL(readyRead()), this, SLOT(ReadData()));
     Huggle::Syslog::HuggleLogs->DebugLog("Processing webserver request " + this->URL, 2);
