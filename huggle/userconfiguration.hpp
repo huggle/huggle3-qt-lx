@@ -79,7 +79,7 @@ namespace Huggle
             bool            AutomaticallyGroup = false;
             bool            AutomaticReports = false;
             //! Resolve edit conflict without asking user
-            bool            AutomaticallyResolveConflicts = false;
+            bool            AutomaticallyResolveConflicts = true;
             //! If this is true huggle will always use software rollback even if user has the rollback privileges
             bool            EnforceManualSoftwareRollback = false;
             bool            EnforceMonthsAsHeaders = true;
@@ -89,16 +89,18 @@ namespace Huggle
             int             PreferredProvider = 2;
             unsigned int    TalkPageFreshness = 20;
             //! Huggle will auto revert all edits that were made by same user on auto conflict resolution
-            bool            RevertOnMultipleEdits = false;
+            bool            RevertOnMultipleEdits = true;
             //! Whether a founder of every page should be retrieved or not
             bool            RetrieveFounder = false;
             bool            HtmlAllowedInIrc = false;
+            //! Removes the edit from queue in case that some trusted user edited the same page
             bool            RemoveAfterTrustedEdit = true;
             bool            HuggleSuffix = true;
             //! If history and user info should be automatically loaded for every edit
             bool                    HistoryLoad = true;
             //! Defines what should be done on next edit
             Configuration_OnNext    GoNext = Configuration_OnNext_Next;
+            //! Check if the edit that was reverted was in queue and if yes, remove it
             bool                    DeleteEditsAfterRevert = true;
             //! Fetch only the last edit of page, that means if there is a newer edit
             //! it get automatically loaded instead of cached version
@@ -107,6 +109,7 @@ namespace Huggle
             unsigned int            HistoryMax = 50;
             bool                    TruncateEdits = false;
             int                     SummaryMode = 0;
+            //! TODO: this probably should be merged with RevertOnMultipleEdits
             bool                    RevertNewBySame = true;
             //! If this is set to false the warning will be selected by huggle when user decide to
             //! use the "warn only" feature in huggle (W) for example, it doesn't affect reverting
