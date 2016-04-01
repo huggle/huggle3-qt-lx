@@ -19,6 +19,7 @@
   <wiki name="nlwiki" url="nl.wikipedia.org/" path="wiki/" script="w/" ssl_required="true" https="true" oauth="true" xmlrcs_name="nl.wikipedia.org" channel="#nl.wikipedia" wl="nl.wikipedia.org"/>
   <wiki name="nowiki" url="no.wikipedia.org/" path="wiki/" script="w/" ssl_required="true" https="true" oauth="true" xmlrcs_name="no.wikipedia.org" channel="#no.wikipedia" wl="no.wikipedia.org"/>
   <wiki name="orwiki" url="or.wikipedia.org/" path="wiki/" script="w/" ssl_required="true" https="true" oauth="true" xmlrcs_name="or.wikipedia.org" channel="#or.wikipedia" wl="or.wikipedia.org"/>
+  <wiki name="rowiki" url="ro.wikipedia.org/" path="wiki/" script="w/" ssl_required="true" https="true" oauth="true" xmlrcs_name="ro.wikipedia.org" channel="#ro.wikipedia" wl="ro.wikipedia.org"/>
   <wiki name="ruwiki" url="ru.wikipedia.org/" path="wiki/" script="w/" ssl_required="true" https="true" oauth="true" xmlrcs_name="ru.wikipedia.org" channel="#ru.wikipedia" wl="ru.wikipedia.org"/>
   <wiki name="svwiki" url="sv.wikipedia.org/" path="wiki/" script="w/" ssl_required="true" https="true" oauth="true" xmlrcs_name="sv.wikipedia.org" channel="#sv.wikipedia" wl="sv.wikipedia.org"/>
   <wiki name="trwiki" url="tr.wikipedia.org/" path="wiki/" script="w/" ssl_required="true" https="true" oauth="true" xmlrcs_name="tr.wikipedia.org" channel="#tr.wikipedia" wl="tr.wikipedia.org"/>
