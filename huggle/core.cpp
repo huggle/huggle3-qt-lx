@@ -621,11 +621,13 @@ void Core::LoadLocalizations()
     Localizations::HuggleLocalizations->LocalInit("pl");
     Localizations::HuggleLocalizations->LocalInit("pt"); // Portuguese
     Localizations::HuggleLocalizations->LocalInit("pt-BR"); // Portuguese (in Brazil)
+    Localizations::HuggleLocalizations->LocalInit("ro"); // ??
     Localizations::HuggleLocalizations->LocalInit("ru"); // Russian
     Localizations::HuggleLocalizations->LocalInit("sa");
     Localizations::HuggleLocalizations->LocalInit("sv"); // Swedish
     Localizations::HuggleLocalizations->LocalInit("ta");
     Localizations::HuggleLocalizations->LocalInit("tr"); // Turkish
+    Localizations::HuggleLocalizations->LocalInit("uk"); // Ukrainian
     Localizations::HuggleLocalizations->LocalInit("ur"); // Urdu
     Localizations::HuggleLocalizations->LocalInit("zh"); // Chinese
     Localizations::HuggleLocalizations->LocalInit("zh-hant"); // Chinese hant

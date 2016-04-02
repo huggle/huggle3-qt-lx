@@ -36,9 +36,11 @@
     <file>Localization/pt.xml</file>
     <file>Localization/sa.xml</file>
     <file>Localization/ru.xml</file>
+    <file>Localization/ro.xml</file>
     <file>Localization/sv.xml</file>
     <file>Localization/ta.xml</file>
     <file>Localization/tr.xml</file>
+    <file>Localization/uk.xml</file>
     <file>Localization/ur.xml</file>
     <file>Localization/zh.xml</file>
     <file>Localization/zh-hant.xml</file>
