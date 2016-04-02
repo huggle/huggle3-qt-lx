@@ -23,6 +23,7 @@
   <wiki name="ruwiki" url="ru.wikipedia.org/" path="wiki/" script="w/" ssl_required="true" https="true" oauth="true" xmlrcs_name="ru.wikipedia.org" channel="#ru.wikipedia" wl="ru.wikipedia.org"/>
   <wiki name="svwiki" url="sv.wikipedia.org/" path="wiki/" script="w/" ssl_required="true" https="true" oauth="true" xmlrcs_name="sv.wikipedia.org" channel="#sv.wikipedia" wl="sv.wikipedia.org"/>
   <wiki name="trwiki" url="tr.wikipedia.org/" path="wiki/" script="w/" ssl_required="true" https="true" oauth="true" xmlrcs_name="tr.wikipedia.org" channel="#tr.wikipedia" wl="tr.wikipedia.org"/>
+  <wiki name="urwiki" url="ur.wikipedia.org/" path="wiki/" script="w/" ssl_required="true" https="true" oauth="true" xmlrcs_name="ur.wikipedia.org" channel="#ur.wikipedia" wl="ur.wikipedia.org"/>
   <wiki name="zhwiki" url="zh.wikipedia.org/" path="wiki/" script="w/" ssl_required="true" https="true" oauth="true" xmlrcs_name="zh.wikipedia.org" channel="#zh.wikipedia" wl="zh.wikipedia.org"/>
   <wiki name="en.wikiversity" url="en.wikiversity.org/" path="wiki/" script="w/" ssl_required="true" https="true" oauth="true" xmlrcs_name="en.wikiversity.org" channel="#en.wikiversity" wl="en.wikiversity.org"/>
   <wiki name="en.wikibooks" url="en.wikibooks.org/" path="wiki/" script="w/" ssl_required="true" https="true" oauth="true" xmlrcs_name="en.wikibooks.org" channel="#en.wikibooks" wl="en.wikibooks.org"/>
