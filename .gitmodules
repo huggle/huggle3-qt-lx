@@ -22,3 +22,6 @@
 [submodule "libs/libirc"]
 	path = huggle/libs/libirc
 	url = http://github.com/grumpy-irc/libirc
+[submodule "huggle/extension_list/extension-flow"]
+	path = huggle/extension_list/extension-flow
+	url = http://github.com/huggle/extension-flow
