@@ -71,6 +71,7 @@ SET(tst_testmain_SOURCES ${srcx}
 ../../localization.cpp
 ../../wikisite.cpp
 ../../wikipage.cpp
+../../contentmodels.cpp
 ../../resources.cpp
 ../../core.cpp
 ../../generic.cpp

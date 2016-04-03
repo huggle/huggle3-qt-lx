@@ -122,5 +122,3 @@ bool WikiPage::IsUserpage()
 {
     return this->GetNS()->GetCanonicalName() == "User";
 }
-
-
