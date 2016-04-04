@@ -568,6 +568,7 @@
   <string name="shortcut-tab">Yeni bir sekme açar</string>
   <string name="shortcut-rw-stay">Mevcut değişikliği geri al, kullanıcıyı uyar ve sayfada kal</string>
   <string name="shortcut-revert-and-stay">Mevcut düzenlemeyi geri al ve sayfada kal</string>
+  <string name="shortcut-user-contribs-browser">Kullanıcının katkılarını bir tarayıcıda göster</string>
   <string name="warning-title">Uyar $1</string>
   <string name="warning-levelgroup">Uyarı seviyesi</string>
   <string name="warning-levelauto">Otomatik</string>

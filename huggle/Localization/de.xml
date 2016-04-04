@@ -569,6 +569,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="shortcut-tab">Öffnet eine neue Registerkarte</string>
   <string name="shortcut-rw-stay">Aktuelle Bearbeitung zurücksetzen, warnt einen Benutzer und bleibt auf der Seite.</string>
   <string name="shortcut-revert-and-stay">Aktuelle Bearbeitung zurücksetzen und auf Seite bleiben</string>
+  <string name="shortcut-user-contribs-browser">Benutzerbeiträge in einem Browser öffnen</string>
   <string name="warning-title">$1 warnen</string>
   <string name="warning-levelgroup">Warnungs-Stufe</string>
   <string name="warning-levelauto">Automatisch</string>

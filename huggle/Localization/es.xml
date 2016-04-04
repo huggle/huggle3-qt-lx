@@ -533,6 +533,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="shortcut-tab">Abre una pestaña nueva</string>
   <string name="shortcut-rw-stay">Revertir edición actual, avisar al usuario y permanecer en la página</string>
   <string name="shortcut-revert-and-stay">Revertir la edición actual y quedarse en la página</string>
+  <string name="shortcut-user-contribs-browser">Mostrar las contribuciones del usuario en un navegador</string>
   <string name="warning-title">Advertir a $1</string>
   <string name="warning-levelgroup">Nivel de advertencia</string>
   <string name="warning-levelauto">Automático</string>

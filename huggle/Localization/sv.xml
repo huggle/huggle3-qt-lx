@@ -296,7 +296,7 @@ Denna blockering kommer att åsidosätta effekterna av intervallblockeringen. Fo
   <string name="main-user-warn">Varna...</string>
   <string name="main-user-report">Rapportera</string>
   <string name="main-user-clear-tp">Töm användarens diskussionssida</string>
-  <string name="main-user-retrieving-tp">Hämtar $1s diskussionssida</string>
+  <string name="main-user-retrieving-tp" fuzzy="true">Hämtar $1s diskussionssida</string>
   <string name="main-user-block">Blockera...</string>
   <string name="main-browser-back">Tillbaka</string>
   <string name="main-browser-forward">Framåt</string>

@@ -83,6 +83,7 @@
   <string name="block-type">Блокировать / разблокировать</string>
   <string name="block-admin">Заблокировавший администратор</string>
   <string name="block-none">Нет участника для блокирования.</string>
+  <string name="contribution-browser-user-info">Показаны недавние вклады пользователя $1</string>
   <string name="config-function">Функция</string>
   <string name="config-description">Описание</string>
   <string name="config-shortcut">Комбинация клавиш</string>
@@ -471,6 +472,7 @@
   <string name="report-warn">Этот пользователь уже достиг 4 уровня предупреждения, поэтому никакие дальнейшие шаблоны не будут доставлены к нему. Вы можете сообщить им сейчас, но, пожалуйста, убедитесь, что они уже достигли соответствующего количества предупреждений! Вы можете сделать это, нажав на \"странице обсуждения\" кнопку в следующей форме. Имейте в виду, что эта форма и это предупреждение отображает, что ваш возврат был успешным или нет, так как можете конфликтовать с другими пользователями здесь (двойная проверка, если пользователь не предупреждался). Вы хотите сообщить этому пользователю?</string>
   <string name="report-tu">Сообщить о пользователе</string>
   <string name="report-reason">Причина:</string>
+  <string name="report-auto">Сообщено $1</string>
   <string name="report-intro">Вы собираетесь доложить на пользователя $1</string>
   <string name="report-message">Сообщение:</string>
   <string name="report-log">Предупреждения для этого участника:</string>
@@ -567,6 +569,7 @@
   <string name="shortcut-tab">Открывает новую вкладку</string>
   <string name="shortcut-rw-stay">Откатить текущую правку, предупредить пользователя и остаться на странице</string>
   <string name="shortcut-revert-and-stay">Откатить текущую правку и остаться на странице</string>
+  <string name="shortcut-user-contribs-browser">Открыть вклад пользователя в браузере</string>
   <string name="warning-title">Предупредить $1</string>
   <string name="warning-levelgroup">Уровень предупреждения</string>
   <string name="warning-levelauto">Автоматически</string>

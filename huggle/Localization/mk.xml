@@ -569,6 +569,7 @@
   <string name="shortcut-tab">Отвора ново јазиче</string>
   <string name="shortcut-rw-stay">Отповикај го тековното уредување, опомени го корисникот и остани на страницата.</string>
   <string name="shortcut-revert-and-stay">Отповикај го тековното уредување и остани на страницата</string>
+  <string name="shortcut-user-contribs-browser">Отвори кориснички придонеси во прелистувач</string>
   <string name="warning-title">Опомени го $1</string>
   <string name="warning-levelgroup">Степен на опомена</string>
   <string name="warning-levelauto">Автоматски</string>

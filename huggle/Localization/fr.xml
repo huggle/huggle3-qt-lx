@@ -366,7 +366,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="main-user-report">Signaler</string>
   <string name="main-user-ib">Augmenter le score de mauvaise conduite</string>
   <string name="main-user-clear-tp">Nettoyer la page de discussion de l’utilisateur</string>
-  <string name="main-user-retrieving-tp">Récupération de la Page de Discussion de $1</string>
+  <string name="main-user-retrieving-tp">Récupération de la page de discussion de $1</string>
   <string name="main-user-block">Bloquer...</string>
   <string name="main-browser-back">Retour</string>
   <string name="main-browser-forward">Forward</string>
@@ -569,6 +569,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="shortcut-tab">Ouvre un nouvel onglet</string>
   <string name="shortcut-rw-stay">Revenir à la modification actuelle, avertir un utilisateur et rester sur la page</string>
   <string name="shortcut-revert-and-stay">Annuler la modification courante et rester sur la page</string>
+  <string name="shortcut-user-contribs-browser">Afficher les contributions de l’utilisateur dans un navigateur</string>
   <string name="warning-title">Avertir $1</string>
   <string name="warning-levelgroup">Niveau d\'avertissement</string>
   <string name="warning-levelauto">Automatique</string>

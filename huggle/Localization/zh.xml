@@ -569,6 +569,7 @@
   <string name="shortcut-tab">打开新标签</string>
   <string name="shortcut-rw-stay">回退最近编辑，警告用户并留在此页</string>
   <string name="shortcut-revert-and-stay">回退当前编辑并留在页面</string>
+  <string name="shortcut-user-contribs-browser">在浏览器中打开用户贡献</string>
   <string name="warning-title">警告$1</string>
   <string name="warning-levelgroup">警告层级</string>
   <string name="warning-levelauto">自动</string>

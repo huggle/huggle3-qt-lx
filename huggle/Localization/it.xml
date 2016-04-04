@@ -569,6 +569,7 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="shortcut-tab">Apre una nuova scheda</string>
   <string name="shortcut-rw-stay">Annulla la modifica attuale, avverte un utente e rimane sulla pagina</string>
   <string name="shortcut-revert-and-stay">Ripristina la versione attuale e rimani sulla pagina</string>
+  <string name="shortcut-user-contribs-browser">Apre i contributi dell\'utente in un browser</string>
   <string name="warning-title">Avverti $1</string>
   <string name="warning-levelgroup">Livello di avviso</string>
   <string name="warning-levelauto">Automatico</string>

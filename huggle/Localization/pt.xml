@@ -354,7 +354,7 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="main-user-report">Denunciar</string>
   <string name="main-user-ib">Aumentar pontuação de suspeição</string>
   <string name="main-user-clear-tp">Limpar página de discussão de utilizador(a)</string>
-  <string name="main-user-retrieving-tp">A obter a página de discussão de $1</string>
+  <string name="main-user-retrieving-tp" fuzzy="true">A obter a página de discussão de $1</string>
   <string name="main-user-block">Bloquear...</string>
   <string name="main-browser-back">Voltar</string>
   <string name="main-browser-forward">Seguinte</string>
@@ -552,6 +552,7 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="shortcut-tab">Abre uma nova aba</string>
   <string name="shortcut-rw-stay">Reverte a edição atual, avisa o utilizador e permanece na página</string>
   <string name="shortcut-revert-and-stay">Reverter edição atual e permanecer na página</string>
+  <string name="shortcut-user-contribs-browser">Mostrar contribuições de utilizador no navegador</string>
   <string name="warning-title">Aviso $1</string>
   <string name="warning-levelgroup">Nível de aviso</string>
   <string name="warning-levelauto">Automático</string>

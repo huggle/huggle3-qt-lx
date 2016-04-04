@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="name">português do Brasil</string>
+  <string name="name">Português do Brasil</string>
   <string name="isrtl">false</string>
   <string name="add">Adicionar</string>
   <string name="cancel">Cancelar</string>
