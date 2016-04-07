@@ -570,6 +570,7 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="shortcut-tab">Abrir uma nova aba</string>
   <string name="shortcut-rw-stay">Reverte a edição atual, avisa o usuário e permanece na página</string>
   <string name="shortcut-revert-and-stay">Desfazer edição atual e permanecer na página</string>
+  <string name="shortcut-user-contribs-browser">Mostrar contribuições do usuário no navegador</string>
   <string name="warning-title">Aviso $1</string>
   <string name="warning-levelgroup">Nível de aviso</string>
   <string name="warning-levelauto">Automático</string>
