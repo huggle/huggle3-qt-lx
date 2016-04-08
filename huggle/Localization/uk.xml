@@ -569,6 +569,7 @@
   <string name="shortcut-tab">Відкрити нову вкладку</string>
   <string name="shortcut-rw-stay">Відкинути, попередити користувача та залишитися на сторінці</string>
   <string name="shortcut-revert-and-stay">Відкинути та залишитися на сторінці</string>
+  <string name="shortcut-user-contribs-browser">Відкрити внесок користувача в браузері</string>
   <string name="warning-title">Попередити $1</string>
   <string name="warning-levelgroup">Рівень попередження</string>
   <string name="warning-levelauto">Автоматично</string>
