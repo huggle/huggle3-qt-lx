@@ -232,6 +232,7 @@ Benotzerinformatioun konnt net ofgefrot ginn: $2</string>
   <string name="main-user-message">Message...</string>
   <string name="main-user-warn">Warnen...</string>
   <string name="main-user-clear-tp">Diskussiounssäit vum Benotzer eidelmaachen</string>
+  <string name="main-user-retrieving-tp">Diskussiounssäit vu(n) $1 ofruffen</string>
   <string name="main-user-block">Spären...</string>
   <string name="main-browser-back">Zréck</string>
   <string name="main-browser-forward">Virun</string>

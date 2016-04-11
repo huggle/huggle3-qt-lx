@@ -569,6 +569,7 @@
   <string name="shortcut-tab">פתיחת לשונית חדשה</string>
   <string name="shortcut-rw-stay">שחזור העריכה הנוכחית, הזהרת משתמש והישארות בדף</string>
   <string name="shortcut-revert-and-stay">לשחזר את העריכה הנוכחית ולהישאר בדף</string>
+  <string name="shortcut-user-contribs-browser">לפתוח את תרומות המשתמש בדפדפן</string>
   <string name="warning-title">להזהיר את $1</string>
   <string name="warning-levelgroup">רמת אזהרה</string>
   <string name="warning-levelauto">אוטומטית</string>
