@@ -116,6 +116,13 @@ Login::Login(QWidget *parent) : HW("login", this, parent), ui(new Ui::Login)
         this->ui->checkBox_2->setChecked(true);
     }
     this->RestoreWindow();
+
+    // Load the proxy
+    if (hcfg->SystemConfig_UseProxy)
+    {
+        Proxy::SetProxy(hcfg->SystemConfig_ProxyType, hcfg->SystemConfig_ProxyHost, hcfg->SystemConfig_ProxyPort,
+                        hcfg->SystemConfig_ProxyUser, hcfg->SystemConfig_ProxyPass);
+    }
 }
 
 Login::~Login()

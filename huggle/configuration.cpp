@@ -422,6 +422,36 @@ void Configuration::LoadSystemConfig(QString fn)
             hcfg->SystemConfig_StorePassword = SafeBool(option.attribute("text"));
             continue;
         }
+        if (key == "UseProxy")
+        {
+            hcfg->SystemConfig_UseProxy = SafeBool(option.attribute("text"));
+            continue;
+        }
+        if (key == "ProxyUser")
+        {
+            hcfg->SystemConfig_ProxyUser = option.attribute("text");
+            continue;
+        }
+        if (key == "ProxyType")
+        {
+            hcfg->SystemConfig_ProxyType = option.attribute("text").toInt();
+            continue;
+        }
+        if (key == "ProxyHost")
+        {
+            hcfg->SystemConfig_ProxyHost = option.attribute("text");
+            continue;
+        }
+        if (key == "ProxyPort")
+        {
+            hcfg->SystemConfig_ProxyPort = option.attribute("text").toUInt();
+            continue;
+        }
+        if (key == "ProxyPass")
+        {
+            hcfg->SystemConfig_ProxyPass = option.attribute("text");
+            continue;
+        }
     }
     item = 0;
     while (item < e.count())
@@ -486,6 +516,14 @@ void Configuration::SaveSystemConfig()
     InsertConfig("FontSize", QString::number(hcfg->SystemConfig_FontSize), writer);
     InsertConfig("SuppressWarnings", Bool2String(hcfg->SystemConfig_SuppressWarnings), writer);
     InsertConfig("StorePassword", Bool2String(hcfg->SystemConfig_StorePassword), writer);
+    InsertConfig("UseProxy", Bool2String(hcfg->SystemConfig_UseProxy), writer);
+    // Only store password if user wants it
+    if (hcfg->SystemConfig_UseProxy)
+        InsertConfig("ProxyPass", hcfg->SystemConfig_ProxyPass, writer);
+    InsertConfig("ProxyHost", hcfg->SystemConfig_ProxyHost, writer);
+    InsertConfig("ProxyUser", hcfg->SystemConfig_ProxyUser, writer);
+    InsertConfig("ProxyPort", QString::number(hcfg->SystemConfig_ProxyPort), writer);
+    InsertConfig("ProxyType", QString::number(hcfg->SystemConfig_ProxyType), writer);
     if (hcfg->SystemConfig_StorePassword)
         InsertConfig("RememberedPassword", hcfg->SystemConfig_RememberedPassword, writer);
     QString projects;

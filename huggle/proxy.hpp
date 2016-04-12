@@ -27,6 +27,8 @@ namespace Huggle
     {
             Q_OBJECT
         public:
+            static void SetProxy(int type, QString host, unsigned int port, QString name, QString pass);
+
             explicit Proxy(QWidget *parent = nullptr);
             ~Proxy();
 

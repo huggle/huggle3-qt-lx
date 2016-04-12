@@ -227,6 +227,7 @@
   <string name="login-proxygroup">Proxy settings</string>
   <string name="login-proxy">Use a proxy server</string>
   <string name="login-proxyaddress">Address:</string>
+  <string name="login-proxy-remember-this">Remember this setting for next time</string>
   <string name="login-proxyport">Port:</string>
   <string name="login-proxydomain">Domain:</string>
   <string name="login-retrieving-user-conf">Retrieving user config</string>

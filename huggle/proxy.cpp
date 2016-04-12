@@ -9,35 +9,17 @@
 //GNU General Public License for more details.
 
 #include "proxy.hpp"
+#include "configuration.hpp"
 #include "localization.hpp"
 #include <QNetworkProxy>
 #include "ui_proxy.h"
 
 using namespace Huggle;
 
-Proxy::Proxy(QWidget *parent) : HW("proxy", this, parent), ui(new Ui::Proxy)
-{
-    this->ui->setupUi(this);
-    this->ui->label->setText(_l("login-proxyaddress"));
-    this->ui->label_3->setText(_l("login-proxyport"));
-    this->ui->comboBox->addItem(_l("protect-none"));
-    this->ui->comboBox->addItem("Socks 5");
-    this->ui->comboBox->addItem("Http");
-    this->ui->comboBox->addItem("Http (caching proxy)");
-    this->ui->comboBox->addItem("Ftp");
-    this->ui->comboBox->setCurrentIndex(0);
-    this->RestoreWindow();
-}
-
-Proxy::~Proxy()
-{
-    delete this->ui;
-}
-
-void Proxy::on_buttonBox_accepted()
+void Proxy::SetProxy(int type, QString host, unsigned int port, QString name, QString pass)
 {
     QNetworkProxy proxy;
-    switch (this->ui->comboBox->currentIndex())
+    switch (type)
     {
         case 0:
             QNetworkProxy::setApplicationProxy(QNetworkProxy::NoProxy);
@@ -56,11 +38,54 @@ void Proxy::on_buttonBox_accepted()
             break;
     }
 
-    proxy.setHostName(this->ui->lineEdit->text());
-    proxy.setPort(this->ui->lineEdit_2->text().toUInt());
-    proxy.setUser(this->ui->lineEdit_3->text());
-    proxy.setPassword(this->ui->lineEdit_4->text());
+    proxy.setHostName(host);
+    proxy.setPort(port);
+    proxy.setUser(name);
+    proxy.setPassword(pass);
     QNetworkProxy::setApplicationProxy(proxy);
+}
+
+Proxy::Proxy(QWidget *parent) : HW("proxy", this, parent), ui(new Ui::Proxy)
+{
+    this->ui->setupUi(this);
+    this->ui->label->setText(_l("login-proxyaddress"));
+    this->ui->label_3->setText(_l("login-proxyport"));
+    this->ui->checkBox->setText(_l("login-proxy-remember-this"));
+    this->ui->comboBox->addItem(_l("protect-none"));
+    this->ui->comboBox->addItem("Socks 5");
+    this->ui->comboBox->addItem("Http");
+    this->ui->comboBox->addItem("Http (caching proxy)");
+    this->ui->comboBox->addItem("Ftp");
+    this->ui->comboBox->setCurrentIndex(hcfg->SystemConfig_ProxyType);
+    if (hcfg->SystemConfig_UseProxy)
+    {
+        this->ui->checkBox->setChecked(true);
+        this->ui->lineEdit->setText(hcfg->SystemConfig_ProxyHost);
+        this->ui->lineEdit_2->setText(QString::number(hcfg->SystemConfig_ProxyPort));
+        this->ui->lineEdit_3->setText(hcfg->SystemConfig_ProxyUser);
+        this->ui->lineEdit_4->setText(hcfg->SystemConfig_ProxyPass);
+    }
+    this->RestoreWindow();
+}
+
+Proxy::~Proxy()
+{
+    delete this->ui;
+}
+
+void Proxy::on_buttonBox_accepted()
+{
+    SetProxy(this->ui->comboBox->currentIndex(), this->ui->lineEdit->text(), this->ui->lineEdit_2->text().toUInt(),
+               this->ui->lineEdit_3->text(), this->ui->lineEdit_4->text());
+    hcfg->SystemConfig_UseProxy = this->ui->checkBox->isChecked();
+    if (this->ui->checkBox->isChecked())
+    {
+        hcfg->SystemConfig_ProxyHost = this->ui->lineEdit->text();
+        hcfg->SystemConfig_ProxyPort = this->ui->lineEdit_2->text().toUInt();
+        hcfg->SystemConfig_ProxyUser = this->ui->lineEdit_3->text();
+        hcfg->SystemConfig_ProxyPass = this->ui->lineEdit_4->text();
+    }
+    hcfg->SaveSystemConfig();
 }
 
 void Proxy::on_buttonBox_rejected()

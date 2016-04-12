@@ -291,6 +291,13 @@ namespace Huggle
             bool            SystemConfig_Dot = false;
             bool            SystemConfig_InstantReverts = false;
             int             SystemConfig_RevertDelay = 6;
+            //! If you set this to true the proxy settings will be applied next time you start huggle
+            bool            SystemConfig_UseProxy = false;
+            int             SystemConfig_ProxyType = 0;
+            QString         SystemConfig_ProxyHost;
+            unsigned int    SystemConfig_ProxyPort = 0;
+            QString         SystemConfig_ProxyUser;
+            QString         SystemConfig_ProxyPass;
             //! This is index for login form so that we can remember which was last wiki user logged to
 
             //! We are storing index instead of wiki name, because in case it was a wiki that later
