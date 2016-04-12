@@ -36,6 +36,8 @@ void Proxy::SetProxy(int type, QString host, unsigned int port, QString name, QS
         case 4:
             proxy.setType(QNetworkProxy::FtpCachingProxy);
             break;
+        default:
+            return;
     }
 
     proxy.setHostName(host);
@@ -81,6 +83,7 @@ void Proxy::on_buttonBox_accepted()
     if (this->ui->checkBox->isChecked())
     {
         hcfg->SystemConfig_ProxyHost = this->ui->lineEdit->text();
+        hcfg->SystemConfig_ProxyType = this->ui->comboBox->currentIndex();
         hcfg->SystemConfig_ProxyPort = this->ui->lineEdit_2->text().toUInt();
         hcfg->SystemConfig_ProxyUser = this->ui->lineEdit_3->text();
         hcfg->SystemConfig_ProxyPass = this->ui->lineEdit_4->text();
