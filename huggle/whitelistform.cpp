@@ -26,7 +26,7 @@ WhitelistForm::WhitelistForm(QWidget *parent) : QDialog(parent), ui(new Ui::Whit
         // register every project we use
         this->ui->comboBox->addItem(wiki->Name);
     }
-    if (!Configuration::HuggleConfiguration->Multiple)
+    if (!Configuration::HuggleConfiguration->SystemConfig_Multiple)
         this->ui->comboBox->setEnabled(false);
     this->ui->comboBox->setCurrentIndex(0);
     this->Reload(0);
@@ -70,7 +70,7 @@ void WhitelistForm::Reload(int pn)
     WikiSite *site;
     this->ui->listWidget->clear();
     this->Whitelist.clear();
-    if (Configuration::HuggleConfiguration->Multiple)
+    if (Configuration::HuggleConfiguration->SystemConfig_Multiple)
     {
         if (Configuration::HuggleConfiguration->Projects.count() <= pn)
         {

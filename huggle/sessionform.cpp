@@ -23,7 +23,7 @@ SessionForm::SessionForm(QWidget *parent) : HW("sessionform", this, parent), ui(
     this->ui->setupUi(this);
     foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
         this->ui->comboBox->addItem(site->Name);
-    this->ui->comboBox->setEnabled(Configuration::HuggleConfiguration->Multiple);
+    this->ui->comboBox->setEnabled(Configuration::HuggleConfiguration->SystemConfig_Multiple);
     this->ui->comboBox->setCurrentIndex(0);
     this->Reload(0);
     this->RestoreWindow();

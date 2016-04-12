@@ -176,7 +176,7 @@ void Huggle::UpdateForm::on_pushButton_clicked()
     Configuration::HuggleConfiguration->SystemConfig_NotifyBeta = this->ui->checkBox_2->isChecked();
     if (this->ui->checkBox->isChecked())
     {
-        Configuration::HuggleConfiguration->SystemConfig_UpdatesEnabled = false;
+        Configuration::HuggleConfiguration->SystemConfig_EnableUpdates = false;
         Configuration::HuggleConfiguration->SaveSystemConfig();
     }
     if (this->manualDownloadpage != nullptr)
@@ -242,7 +242,7 @@ void Huggle::UpdateForm::on_pushButton_2_clicked()
     Configuration::HuggleConfiguration->SystemConfig_NotifyBeta = this->ui->checkBox_2->isChecked();
     if (this->ui->checkBox->isChecked())
     {
-        Configuration::HuggleConfiguration->SystemConfig_UpdatesEnabled = false;
+        Configuration::HuggleConfiguration->SystemConfig_EnableUpdates = false;
         Configuration::HuggleConfiguration->SaveSystemConfig();
     }
     this->close();
@@ -502,7 +502,7 @@ void UpdateForm::reject()
     //    return;
     if (this->ui->checkBox->isChecked())
     {
-        Configuration::HuggleConfiguration->SystemConfig_UpdatesEnabled = false;
+        Configuration::HuggleConfiguration->SystemConfig_EnableUpdates = false;
         Configuration::HuggleConfiguration->SaveSystemConfig();
     }
     Configuration::HuggleConfiguration->SystemConfig_NotifyBeta = this->ui->checkBox_2->isChecked();

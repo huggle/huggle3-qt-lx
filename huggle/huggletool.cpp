@@ -30,7 +30,7 @@ using namespace Huggle;
 HuggleTool::HuggleTool(QWidget *parent) : QDockWidget(parent), ui(new Ui::HuggleTool)
 {
     this->ui->setupUi(this);
-    if (Configuration::HuggleConfiguration->Multiple)
+    if (Configuration::HuggleConfiguration->SystemConfig_Multiple)
     {
         this->ui->label_4->setText(_l("project"));
     } else

@@ -207,7 +207,7 @@ namespace Huggle
             QString           HuggleVersion;
             QString           HANMask = "$feed.huggle";
             QByteArray        WebqueryAgent;
-            bool              Multiple = false;
+            bool              SystemConfig_Multiple = false;
             bool              SystemConfig_UM = false;
             QString           UpdaterRoot;
             //! Every site in which the user is currently logged to
@@ -246,7 +246,7 @@ namespace Huggle
             //! Ask user if they really want to report someone
             bool            AskUserBeforeReport = true;
             //! This is experimental feature that removes the old templates from talk pages when they are being read
-            bool            TrimOldWarnings = true;
+            bool            SystemConfig_TrimOldWarnings = true;
             //! Size of fonts in diff
             int             SystemConfig_FontSize = 12;
             //! Font that we use to render diffs and similar pages
@@ -272,7 +272,7 @@ namespace Huggle
             //! This path is used when Log2File is true to write the logs to
             QString         SystemConfig_SyslogPath = "huggle.log";
             //! Whether huggle check for an update on startup
-            bool            SystemConfig_UpdatesEnabled = true;
+            bool            SystemConfig_EnableUpdates = true;
             bool            SystemConfig_NotifyBeta = false;
             //! If true huggle will perform a sanity check of its language files on startup
             bool            SystemConfig_LanguageSanity = false;
@@ -374,7 +374,7 @@ namespace Huggle
             //! even if user wants that (used by toolbar when user info is loaded).
             bool        ForcedNoEditJump = false;
             //! Warn you in case you want to revert a user page
-            bool        WarnUserSpaceRoll = true;
+            bool        SystemConfig_WarnUserSpaceRoll = true;
             //! Send a message to user on good edit
             bool        WelcomeEmpty = true;
             //! This is changed to true in case that someone send a message to user

@@ -216,6 +216,28 @@ void Configuration::NormalizeConf(WikiSite *site)
         site->UserConfig->EnforceMonthsAsHeaders = false;
 }
 
+// These macros saves us some typing
+// For historical purposes and because it's cleaner, we store variables as real variables, rather than hashes
+// this however make some stuff more complicated, such as reading and writing of configuration, which can't be dynamic this way.
+// Following function basically consist of huge stack of if {} blocks that check if key name matches the known name.
+
+// These will make the writing of code easier, you basically just type RC(variable_name) for every string where variable_name
+// gets substituted to SystemConfig_variable_name, or other version for int and bools
+
+// If you use some exotic variable name or just can't use any of these data types, just write the if condition yourself.
+
+// RC(Test) gets expanded to:
+/*
+  if (key == "Test")
+  {
+      hcfg->SystemConfig_Test = option.attribute("text");
+      continue;
+  }
+*/
+#define RC(n)   if (key == #n) { hcfg->SystemConfig_##n = option.attribute("text"); continue; }
+#define RCB(n)  if (key == #n) { hcfg->SystemConfig_##n = SafeBool(option.attribute("text")); continue; }
+#define RCN(n)  if (key == #n) { hcfg->SystemConfig_##n = option.attribute("text").toInt(); continue; }
+
 void Configuration::LoadSystemConfig(QString fn)
 {
     QFile file(fn);
@@ -252,26 +274,11 @@ void Configuration::LoadSystemConfig(QString fn)
             continue;
         }
         QString key = option.attribute("key");
-        if (key == "Multiple")
-        {
-            hcfg->Multiple = SafeBool(option.attribute("text"));
-            continue;
-        }
-        if (key == "Cache_InfoSize")
-        {
-            hcfg->SystemConfig_QueueSize = option.attribute("text").toInt();
-            continue;
-        }
-        if (key == "Font")
-        {
-            hcfg->SystemConfig_Font = option.attribute("text");
-            continue;
-        }
-        if (key == "FontSize")
-        {
-            hcfg->SystemConfig_FontSize = option.attribute("text").toInt();
-            continue;
-        }
+        // Load properly named config using macros
+        RCB(Multiple);
+        RC(Font);
+        RCN(FontSize);
+        RCN(QueueSize);
         if (key == "GlobalConfigurationWikiAddress")
         {
             hcfg->GlobalConfigurationWikiAddress = option.attribute("text");
@@ -302,21 +309,13 @@ void Configuration::LoadSystemConfig(QString fn)
             Localizations::HuggleLocalizations->PreferredLanguage = option.attribute("text");
             continue;
         }
-        if (key == "ProviderCache")
-        {
-            hcfg->SystemConfig_ProviderCache = option.attribute("text").toInt();
-            continue;
-        }
+        RCN(ProviderCache);
         if (key == "AskUserBeforeReport")
         {
             hcfg->AskUserBeforeReport = SafeBool(option.attribute("text"));
             continue;
         }
-        if (key == "HistorySize")
-        {
-            hcfg->SystemConfig_HistorySize = option.attribute("text").toInt();
-            continue;
-        }
+        RCN(HistorySize);
         if (key == "VandalNw_Login")
         {
             hcfg->VandalNw_Login = SafeBool(option.attribute("text"));
@@ -327,56 +326,20 @@ void Configuration::LoadSystemConfig(QString fn)
             hcfg->SystemConfig_Username = option.attribute("text");
             continue;
         }
-        if (key == "RingLogMaxSize")
-        {
-            hcfg->SystemConfig_RingLogMaxSize = option.attribute("text").toInt();
-            continue;
-        }
-        if (key == "GlobalConfig")
-        {
-            hcfg->SystemConfig_GlobalConfig = option.attribute("text");
-            continue;
-        }
-        if (key == "DynamicColsInList")
-        {
-            hcfg->SystemConfig_DynamicColsInList = SafeBool(option.attribute("text"));
-            continue;
-        }
-        if (key == "WarnUserSpaceRoll")
-        {
-            hcfg->WarnUserSpaceRoll = SafeBool(option.attribute("text"));
-            continue;
-        }
-        if (key == "EnableUpdates")
-        {
-            hcfg->SystemConfig_UpdatesEnabled = SafeBool(option.attribute("text"));
-            continue;
-        }
-        if (key == "NotifyBeta")
-        {
-            hcfg->SystemConfig_NotifyBeta = SafeBool(option.attribute("text"));
-            continue;
-        }
-        if (key == "QueueNewEditsUp")
-        {
-            hcfg->SystemConfig_QueueNewEditsUp = SafeBool(option.attribute("text"));
-            continue;
-        }
+        RCN(RingLogMaxSize);
+        RC(GlobalConfig);
+        RCB(DynamicColsInList);
+        RCB(WarnUserSpaceRoll);
+        RCB(EnableUpdates);
+        RCB(NotifyBeta);
+        RCB(QueueNewEditsUp);
         if (key == "IndexOfLastWiki")
         {
             hcfg->IndexOfLastWiki = option.attribute("text").toInt();
             continue;
         }
-        if (key == "UsingSSL")
-        {
-            hcfg->SystemConfig_UsingSSL = SafeBool(option.attribute("text"));
-            continue;
-        }
-        if (key == "GlobalConfigWikiList")
-        {
-            hcfg->SystemConfig_GlobalConfigWikiList = option.attribute("text");
-            continue;
-        }
+        RCB(UsingSSL);
+        RC(GlobalConfigWikiList);
         if (key == "DelayVal")
         {
             hcfg->SystemConfig_DelayVal = option.attribute("text").toUInt();
@@ -472,6 +435,11 @@ void Configuration::LoadSystemConfig(QString fn)
     Huggle::Syslog::HuggleLogs->DebugLog("Finished conf");
 }
 
+// These macros make our life easier, but work only if you name the variables properly
+#define INSERT_CONFIG(name)     InsertConfig(#name, Huggle::Configuration::HuggleConfiguration->SystemConfig_##name, writer)
+#define INSERT_CONFIG_B(name)   InsertConfig(#name, Bool2String(Huggle::Configuration::HuggleConfiguration->SystemConfig_##name), writer)
+#define INSERT_CONFIG_N(name)   InsertConfig(#name, QString::number(Huggle::Configuration::HuggleConfiguration->SystemConfig_##name), writer)
+
 void Configuration::SaveSystemConfig()
 {
     QFile file(Configuration::GetConfigurationPath() + QDir::separator() + "huggle3.xml");
@@ -485,33 +453,33 @@ void Configuration::SaveSystemConfig()
     writer->setAutoFormatting(true);
     writer->writeStartDocument();
     writer->writeStartElement("huggle");
-    InsertConfig("DelayVal", QString::number(hcfg->SystemConfig_DelayVal), writer);
-    InsertConfig("RequestDelay", Bool2String(hcfg->SystemConfig_RequestDelay), writer);
-    InsertConfig("RevertDelay", QString::number(hcfg->SystemConfig_RevertDelay), writer);
-    InsertConfig("InstantReverts", Bool2String(hcfg->SystemConfig_InstantReverts), writer);
-    InsertConfig("UsingSSL", Bool2String(hcfg->SystemConfig_UsingSSL), writer);
-    InsertConfig("Cache_InfoSize", QString::number(hcfg->SystemConfig_QueueSize), writer);
-    InsertConfig("GlobalConfig", hcfg->SystemConfig_GlobalConfig, writer);
+    INSERT_CONFIG_N(DelayVal);
+    INSERT_CONFIG_B(RequestDelay);
+    INSERT_CONFIG_N(RevertDelay);
+    INSERT_CONFIG_B(InstantReverts);
+    INSERT_CONFIG_B(UsingSSL);
+    INSERT_CONFIG_N(QueueSize);
+    INSERT_CONFIG(GlobalConfig);
     InsertConfig("GlobalConfigurationWikiAddress", hcfg->GlobalConfigurationWikiAddress, writer);
     InsertConfig("IRCIdent", hcfg->IRCIdent, writer);
     InsertConfig("IRCNick", hcfg->IRCNick, writer);
     InsertConfig("IRCPort", QString::number(hcfg->IRCPort), writer);
     InsertConfig("IRCServer", hcfg->IRCServer, writer);
     InsertConfig("Language", Localizations::HuggleLocalizations->PreferredLanguage, writer);
-    InsertConfig("ProviderCache", QString::number(hcfg->SystemConfig_ProviderCache), writer);
+    INSERT_CONFIG_N(ProviderCache);
     InsertConfig("AskUserBeforeReport", Bool2String(hcfg->AskUserBeforeReport), writer);
-    InsertConfig("HistorySize", QString::number(hcfg->SystemConfig_HistorySize), writer);
-    InsertConfig("QueueNewEditsUp", Bool2String(hcfg->SystemConfig_QueueNewEditsUp), writer);
-    InsertConfig("RingLogMaxSize", QString::number(hcfg->SystemConfig_RingLogMaxSize), writer);
-    InsertConfig("TrimOldWarnings", Bool2String(hcfg->TrimOldWarnings), writer);
-    InsertConfig("EnableUpdates", Bool2String(hcfg->SystemConfig_UpdatesEnabled), writer);
-    InsertConfig("NotifyBeta", Bool2String(hcfg->SystemConfig_NotifyBeta), writer);
-    InsertConfig("WarnUserSpaceRoll", Bool2String(hcfg->WarnUserSpaceRoll), writer);
-    InsertConfig("WikiRC", QString::number(hcfg->SystemConfig_WikiRC), writer);
+    INSERT_CONFIG_N(HistorySize);
+    INSERT_CONFIG_B(QueueNewEditsUp);
+    INSERT_CONFIG_N(RingLogMaxSize);
+    INSERT_CONFIG_B(TrimOldWarnings);
+    INSERT_CONFIG_B(EnableUpdates);
+    INSERT_CONFIG_B(NotifyBeta);
+    INSERT_CONFIG_B(WarnUserSpaceRoll);
+    INSERT_CONFIG_N(WikiRC);
     InsertConfig("UserName", hcfg->SystemConfig_Username, writer);
     InsertConfig("IndexOfLastWiki", QString::number(hcfg->IndexOfLastWiki), writer);
     InsertConfig("DynamicColsInList", Bool2String(hcfg->SystemConfig_DynamicColsInList), writer);
-    InsertConfig("Multiple", Bool2String(hcfg->Multiple), writer);
+    INSERT_CONFIG_B(Multiple);
     InsertConfig("Font", hcfg->SystemConfig_Font, writer);
     InsertConfig("FontSize", QString::number(hcfg->SystemConfig_FontSize), writer);
     InsertConfig("SuppressWarnings", Bool2String(hcfg->SystemConfig_SuppressWarnings), writer);

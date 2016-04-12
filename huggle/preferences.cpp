@@ -297,7 +297,7 @@ void Preferences::on_pushButton_clicked()
 void Huggle::Preferences::on_pushButton_2_clicked()
 {
     hcfg->UserConfig->AutomaticallyResolveConflicts = this->ui->checkBox_AutoResolveConflicts->isChecked();
-    hcfg->WarnUserSpaceRoll = this->ui->checkBox_ConfirmUserSpaceEditRevert->isChecked();
+    hcfg->SystemConfig_WarnUserSpaceRoll = this->ui->checkBox_ConfirmUserSpaceEditRevert->isChecked();
     hcfg->SystemConfig_SuppressWarnings = !this->ui->checkBox_6->isChecked();
     hcfg->UsingIRC = this->ui->checkBox_EnableIrc->isChecked();
     hcfg->UserConfig->EnforceManualSoftwareRollback = this->ui->checkBox_UseRollback->isChecked();
@@ -326,7 +326,7 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     hcfg->SystemConfig_RevertDelay = this->ui->lineEdit_3->text().toInt();
     hcfg->SystemConfig_InstantReverts = this->ui->checkBox_27->isChecked();
     hcfg->UserConfig->AutomaticReports = this->ui->checkBox_AutoReport->isChecked();
-    hcfg->SystemConfig_UpdatesEnabled = this->ui->checkBox_notifyUpdate->isChecked();
+    hcfg->SystemConfig_EnableUpdates = this->ui->checkBox_notifyUpdate->isChecked();
     hcfg->SystemConfig_NotifyBeta = this->ui->checkBox_notifyBeta->isChecked();
     hcfg->UserConfig->HtmlAllowedInIrc = this->ui->checkBox_31->isChecked();
     if (this->ui->checkBox_7->isChecked())
@@ -737,7 +737,7 @@ void Preferences::ResetItems()
     this->ui->checkBox_RemoveRevertedEdits->setChecked(hcfg->UserConfig->DeleteEditsAfterRevert);
     this->ui->checkBox_UseRollback->setChecked(hcfg->UserConfig->EnforceSoftwareRollback());
     this->ui->checkBox_6->setChecked(!hcfg->SystemConfig_SuppressWarnings);
-    this->ui->checkBox_ConfirmUserSpaceEditRevert->setChecked(hcfg->WarnUserSpaceRoll);
+    this->ui->checkBox_ConfirmUserSpaceEditRevert->setChecked(hcfg->SystemConfig_WarnUserSpaceRoll);
     this->ui->checkBox_AutoResolveConflicts->setChecked(hcfg->UserConfig->AutomaticallyResolveConflicts);
     this->ui->checkBox_EnableIrc->setChecked(hcfg->UsingIRC);
     this->ui->checkBox_14->setChecked(hcfg->UserConfig->HistoryLoad);
@@ -768,7 +768,7 @@ void Preferences::ResetItems()
     this->ui->lineEdit_5->setText(hcfg->SystemConfig_Font);
     this->ui->sxFontSize->setValue(hcfg->SystemConfig_FontSize);
     this->ui->checkBox_8->setChecked(hcfg->UserConfig->RetrieveFounder);
-    this->ui->checkBox_notifyUpdate->setChecked(hcfg->SystemConfig_UpdatesEnabled);
+    this->ui->checkBox_notifyUpdate->setChecked(hcfg->SystemConfig_EnableUpdates);
     this->ui->checkBox_notifyBeta->setChecked(hcfg->SystemConfig_NotifyBeta);
 }
 

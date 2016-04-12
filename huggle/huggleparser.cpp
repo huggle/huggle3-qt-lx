@@ -209,7 +209,7 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt, WikiSite *site)
         // for compatibilty purposes
         site = Configuration::HuggleConfiguration->Project;
     }
-    if (Configuration::HuggleConfiguration->TrimOldWarnings)
+    if (Configuration::HuggleConfiguration->SystemConfig_TrimOldWarnings)
     {
         // we need to get rid of old warnings now
         QStringList sections;

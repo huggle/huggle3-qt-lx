@@ -93,7 +93,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->EditablePage = false;
     this->ShuttingDown = false;
     this->ui->setupUi(this);
-    if (Configuration::HuggleConfiguration->Multiple)
+    if (Configuration::HuggleConfiguration->SystemConfig_Multiple)
     {
         this->ui->menuChange_provider->setVisible(false);
         this->ui->actionStop_provider->setVisible(false);
@@ -149,13 +149,13 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     }
     QueryPool::HugglePool->Processes = this->Queries;
     QString projects = hcfg->Project->Name;
-    if (hcfg->Multiple)
+    if (hcfg->SystemConfig_Multiple)
     {
         foreach (WikiSite *site, hcfg->Projects)
             projects += site->Name + ", ";
         projects = projects.mid(0, projects.length() - 2);
     }
-    if (!hcfg->Multiple)
+    if (!hcfg->SystemConfig_Multiple)
         this->setWindowTitle("Huggle 3 QT-LX " + _l("title-on", projects));
     else
         this->setWindowTitle("Huggle 3 QT-LX " + _l("title-on", _l("title-multiple-projects", projects)));
@@ -175,7 +175,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     // configure RC feed provider
     foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
     {
-        if (Configuration::HuggleConfiguration->Multiple)
+        if (Configuration::HuggleConfiguration->SystemConfig_Multiple)
         {
             QMenu *menu = new QMenu(site->Name, this);
             this->ui->menuChange_provider->addMenu(menu);
@@ -925,7 +925,7 @@ bool MainWindow::PreflightCheck(WikiEdit *_e)
         throw new Huggle::NullPointerException("WikiEdit *_e", BOOST_CURRENT_FUNCTION);
     bool Warn = false;
     QString type = _l("main-revert-type-unknown");
-    if (hcfg->WarnUserSpaceRoll && _e->Page->IsUserpage())
+    if (hcfg->SystemConfig_WarnUserSpaceRoll && _e->Page->IsUserpage())
     {
         type = _l("main-revert-type-in-userspace");
         Warn = true;
@@ -2028,7 +2028,7 @@ void MainWindow::ChangeProvider(WikiSite *site, HuggleFeed *provider)
 
     site->Provider = provider;
     Syslog::HuggleLogs->Log(_l("provider-up", provider->ToString(), site->Name));
-    if (!hcfg->Multiple)
+    if (!hcfg->SystemConfig_Multiple)
     {
         // uncheck all menus for provider
         this->ui->actionXmlRcs->setChecked(false);

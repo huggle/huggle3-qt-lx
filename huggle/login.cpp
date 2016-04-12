@@ -47,7 +47,7 @@ Login::Login(QWidget *parent) : HW("login", this, parent), ui(new Ui::Login)
     this->Loading = true;
     this->ui->setupUi(this);
     this->ui->tableWidget->setVisible(false);
-    if (hcfg->Multiple)
+    if (hcfg->SystemConfig_Multiple)
         this->on_pushButton_2_clicked();
     this->ui->tableWidget->setColumnCount(2);
     this->ui->tableWidget->horizontalHeader()->setVisible(false);
@@ -91,7 +91,7 @@ Login::Login(QWidget *parent) : HW("login", this, parent), ui(new Ui::Login)
         this->ui->checkBox->setEnabled(false);
         this->ui->checkBox->setChecked(false);
     }
-    if (hcfg->SystemConfig_UpdatesEnabled)
+    if (hcfg->SystemConfig_EnableUpdates)
     {
         this->Updater = new UpdateForm();
         this->Updater->Check();
@@ -342,7 +342,7 @@ void Login::PressOK()
     hcfg->Projects.clear();
     hcfg->SystemConfig_UsingSSL = this->ui->checkBox->isChecked();
     hcfg->Projects << hcfg->Project;
-    if (hcfg->Multiple)
+    if (hcfg->SystemConfig_Multiple)
     {
         int project_id = 0;
         foreach (QCheckBox* cb, this->Project_CheckBoxens)
@@ -355,7 +355,7 @@ void Login::PressOK()
             project_id++;
         }
     }
-    hcfg->Multiple = hcfg->Projects.count() > 1;
+    hcfg->SystemConfig_Multiple = hcfg->Projects.count() > 1;
     if (hcfg->SystemConfig_UsingSSL)
     {
         foreach(WikiSite *wiki, hcfg->Projects)
@@ -1321,10 +1321,10 @@ void Huggle::Login::on_pushButton_2_clicked()
     {
         this->ui->pushButton_2->setText(_l("projects") + " >>");
         this->ui->tableWidget->setVisible(false);
-        hcfg->Multiple = false;
+        hcfg->SystemConfig_Multiple = false;
     } else
     {
-        hcfg->Multiple = true;
+        hcfg->SystemConfig_Multiple = true;
         this->ui->pushButton_2->setText(_l("projects") + " >>");
         this->ui->tableWidget->setVisible(true);
         if (this->height() < 460)
