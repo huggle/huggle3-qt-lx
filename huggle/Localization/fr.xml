@@ -228,6 +228,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="login-proxygroup">Paramètres de proxy</string>
   <string name="login-proxy">Utiliser un serveur proxy</string>
   <string name="login-proxyaddress">Adresse :</string>
+  <string name="login-proxy-remember-this">Se souvenir de ce paramètre la prochaine fois</string>
   <string name="login-proxyport">Port :</string>
   <string name="login-proxydomain">Domaine :</string>
   <string name="login-retrieving-user-conf">Récupération de la configuration utilisateur</string>

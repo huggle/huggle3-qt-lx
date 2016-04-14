@@ -228,6 +228,7 @@
   <string name="login-proxygroup">הגדרות שרת מתווך</string>
   <string name="login-proxy">שימוש בשרת מתווך</string>
   <string name="login-proxyaddress">כתובת:</string>
+  <string name="login-proxy-remember-this">שמירת הגדרה זו עבור הפעם הבאה</string>
   <string name="login-proxyport">פורט:</string>
   <string name="login-proxydomain">מתחם:</string>
   <string name="login-retrieving-user-conf">אחזור הגדרות אישיות</string>

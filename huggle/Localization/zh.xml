@@ -228,6 +228,7 @@
   <string name="login-proxygroup">代理设置</string>
   <string name="login-proxy">使用代理服务器</string>
   <string name="login-proxyaddress">地址：</string>
+  <string name="login-proxy-remember-this">下次记住此次设置</string>
   <string name="login-proxyport">端口：</string>
   <string name="login-proxydomain">域:</string>
   <string name="login-retrieving-user-conf">获取用户配置</string>

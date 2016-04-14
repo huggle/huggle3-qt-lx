@@ -228,6 +228,7 @@
   <string name="login-proxygroup">Поставки на застапникот</string>
   <string name="login-proxy">Користи застапнички опслужувач</string>
   <string name="login-proxyaddress">Адреса:</string>
+  <string name="login-proxy-remember-this">Запомни ја поставкава за понатаму</string>
   <string name="login-proxyport">Порта:</string>
   <string name="login-proxydomain">Домен:</string>
   <string name="login-retrieving-user-conf">Добивање на кориснички поставки</string>

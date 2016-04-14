@@ -216,6 +216,7 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="login-proxygroup">Configuración de proxy</string>
   <string name="login-proxy">Usar servidor proxy</string>
   <string name="login-proxyaddress">Dirección:</string>
+  <string name="login-proxy-remember-this">Recordar esta configuración para la próxima vez</string>
   <string name="login-proxyport">Puerto:</string>
   <string name="login-proxydomain">Dominio:</string>
   <string name="login-retrieving-user-conf">Consultando configuración de usuario</string>

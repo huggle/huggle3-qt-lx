@@ -228,6 +228,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="login-proxygroup">Proxy-Einstellungen</string>
   <string name="login-proxy">Verwende Proxy-Server</string>
   <string name="login-proxyaddress">Proxy-Adresse:</string>
+  <string name="login-proxy-remember-this">Diese Einstellung für das nächste Mal speichern</string>
   <string name="login-proxyport">Proxy-Port:</string>
   <string name="login-proxydomain">Proxy-Domain:</string>
   <string name="login-retrieving-user-conf">Rufe Benutzerkonfiguration ab</string>

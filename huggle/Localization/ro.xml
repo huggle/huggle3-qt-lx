@@ -711,4 +711,12 @@ $1</string>
   <string name="about-qt">, compilat folosind QT $1 rulând pe QT $1</string>
   <string name="error-unknown-code">Eroare necunoscută: $1</string>
   <string name="relogin-fail">Nu m-am putut autentifica în wiki: $1</string>
+  <string name="projects">Proiecte</string>
+  <string name="login-username-doesnt-exist">Acest nume de utilizator nu există</string>
+  <string name="developer-mode-enter-message">Ați intrat în modul de dezvoltator!</string>
+  <string name="unknown-item">Element necunoscut</string>
+  <string name="title-multiple-projects">mai multe proiecte ($1)</string>
+  <string name="title-on">la $1</string>
+  <string name="main-revert-type-unknown">necunoscut</string>
+  <string name="main-revert-type-in-userspace">în spațiul utilizator</string>
 </resources>
