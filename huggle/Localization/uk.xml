@@ -228,6 +228,7 @@
   <string name="login-proxygroup">Налаштування проксі</string>
   <string name="login-proxy">Використовувати проксі</string>
   <string name="login-proxyaddress">Адреса:</string>
+  <string name="login-proxy-remember-this">Запам\'ятати це налаштування на наступний раз</string>
   <string name="login-proxyport">Порт:</string>
   <string name="login-proxydomain">Домен:</string>
   <string name="login-retrieving-user-conf">Отримання користувацьких налаштувань</string>

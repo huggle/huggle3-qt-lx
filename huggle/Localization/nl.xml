@@ -228,6 +228,7 @@ Deze blokkade maakt het effect van de rangeblokkade ongedaan. Doorgaan?</string>
   <string name="login-proxygroup">Proxy-instellingen</string>
   <string name="login-proxy">Een proxyserver gebruiken</string>
   <string name="login-proxyaddress">Adres:</string>
+  <string name="login-proxy-remember-this">Onthoud deze instelling voor de volgende keer</string>
   <string name="login-proxyport">Poort:</string>
   <string name="login-proxydomain">Domein:</string>
   <string name="login-retrieving-user-conf">Gebruikersconfiguratie ophalen</string>
@@ -366,7 +367,7 @@ Deze blokkade maakt het effect van de rangeblokkade ongedaan. Doorgaan?</string>
   <string name="main-user-report">Rapporteren</string>
   <string name="main-user-ib">Slechtheidsscore verhogen</string>
   <string name="main-user-clear-tp">Overlegpagina van gebruiker leegmaken</string>
-  <string name="main-user-retrieving-tp" fuzzy="true">Overlegpagina ophalen van $1</string>
+  <string name="main-user-retrieving-tp">Ophalen overlegpagina van $1</string>
   <string name="main-user-block">Blokkeren...</string>
   <string name="main-browser-back">Terug</string>
   <string name="main-browser-forward">Verder</string>
@@ -441,14 +442,19 @@ Deze blokkade maakt het effect van de rangeblokkade ongedaan. Doorgaan?</string>
   <string name="queue-listselector">Lijst:</string>
   <string name="queue-listbuilder">Lijstenmaker...</string>
   <string name="queue-sortorder">Sorteervolgorde:</string>
+  <string name="queue-removeviewed">Verwijderen bewerkt wanneer bekeken</string>
   <string name="queue-removeold">Oude bewerkingen aan dezelfde pagina verwijderen</string>
   <string name="queue-ignorepages">Bewerkingen aan pagina\'s op de lijst van te negeren pagina\'s negeren</string>
   <string name="queue-traynotification">Notificatie weergeven als een versie aan deze wachtrij wordt toegevoegd</string>
   <string name="queue-diffsgroup">Verschillen</string>
   <string name="queue-pagefiltersgroup">Paginanaamfilters</string>
+  <string name="queue-pageregex">Titel overeenkomt met een reguliere expressie:</string>
   <string name="queue-namespaces">Naamruimten:</string>
   <string name="queue-editfiltersgroup">Filters bewerken</string>
+  <string name="queue-userregex">Gebruikersnaam overeenkomt met een reguliere expressie:</string>
+  <string name="queue-summaryregex">Samenvatting wedstrijden reguliere expressie:</string>
   <string name="queue-filternewpage">Nieuwe pagina</string>
+  <string name="queue-filterownuserspace">Eigen gebruikersruimte</string>
   <string name="queue-filteranonymous">Anonieme gebruiker</string>
   <string name="queue-filterignored">Genegeerde gebruiker</string>
   <string name="queue-filterreverts">Terugdraaien</string>
@@ -459,11 +465,20 @@ Deze blokkade maakt het effect van de rangeblokkade ongedaan. Doorgaan?</string>
   <string name="queue-filterassisted">Geassisteerde bewerking</string>
   <string name="queue-filterhuggle">Huggle-bewerking</string>
   <string name="queue-filterme">Mijn bewerking</string>
+  <string name="queue-examplelabel1">Dit vereist kenmerk</string>
+  <string name="queue-examplelabel2">Exclusief dit kenmerk</string>
+  <string name="queue-examplelabel3">Niet na dit kenmerk</string>
+  <string name="queue-usergroup">Toon alleen bewerkingen van deze gebruikers</string>
   <string name="report-title">$1 rapporteren</string>
+  <string name="report-warn">Deze gebruiker is al bereikt niveau 4 waarschuwing, dus verder geen sjablonen worden geleverd. U kunt zich melden ze nu is, maar alsjeblieft, zorg ervoor dat ze al bereikt het juiste aantal recente waarschuwingen! U kunt dit doen door te klikken op de \"overlegpagina\" knop in het onderstaande formulier. Houd in gedachten dat dit formulier, en deze waarschuwing worden weergegeven of uw revert succesvol was of niet, zodat u in conflict komt met andere gebruikers hier (dubbel te controleren of de gebruiker nog niet gerapporteerd). Wilt u dit melden?</string>
   <string name="report-tu">Gebruiker rapporteren</string>
   <string name="report-reason">Reden:</string>
+  <string name="report-auto">Gemeld $1</string>
+  <string name="report-intro">U gaat melden gebruiker $1</string>
   <string name="report-message">Bericht:</string>
   <string name="report-log">Waarschuwingen voor deze gebruiker:</string>
+  <string name="report-include">Opnemen in rapport</string>
+  <string name="report-select">Selecteer een verschil in de lijst om het te openen preview</string>
   <string name="report-write">Schrijven</string>
   <string name="report-progress">$1 rapporteren...</string>
   <string name="report-done">Gerapporteerd</string>

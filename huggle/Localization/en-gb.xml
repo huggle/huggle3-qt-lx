@@ -228,6 +228,7 @@ This block will override the effect of the rangeblock. Continue?</string>
   <string name="login-proxygroup">Proxy settings</string>
   <string name="login-proxy">Use a proxy server</string>
   <string name="login-proxyaddress">Address:</string>
+  <string name="login-proxy-remember-this">Remember this setting for next time</string>
   <string name="login-proxyport">Port:</string>
   <string name="login-proxydomain">Domain:</string>
   <string name="login-retrieving-user-conf">Retrieving user config</string>
@@ -569,6 +570,7 @@ This block will override the effect of the rangeblock. Continue?</string>
   <string name="shortcut-tab">Opens a new tab</string>
   <string name="shortcut-rw-stay">Reverts current edit, warns user and stays on page</string>
   <string name="shortcut-revert-and-stay">Revert current edit and stay on page</string>
+  <string name="shortcut-user-contribs-browser">Open user\'s contributions in a browser</string>
   <string name="warning-title">Warn $1</string>
   <string name="warning-levelgroup">Warning level</string>
   <string name="warning-levelauto">Automatic</string>
