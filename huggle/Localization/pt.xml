@@ -216,6 +216,7 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="login-proxygroup">Definições de proxy</string>
   <string name="login-proxy">Usar um servidor proxy</string>
   <string name="login-proxyaddress">Endereço:</string>
+  <string name="login-proxy-remember-this">Lembrar esta definição na próxima vez</string>
   <string name="login-proxyport">Porta:</string>
   <string name="login-proxydomain">Domínio:</string>
   <string name="login-retrieving-user-conf">A aceder à configuração de utilizador</string>
