@@ -69,8 +69,8 @@
   <string name="block-creation">Impedir la creación de cuentas</string>
   <string name="block-autoblock">Activar bloqueos automáticos</string>
   <string name="block-email">Impedir que el usuario envíe correo electrónico.</string>
-  <string name="block-usertalk">discusión</string>
-  <string name="block-usercontribs">contribuciones</string>
+  <string name="block-usertalk">Discusión</string>
+  <string name="block-usercontribs">Contribuciones</string>
   <string name="block-blockloglabel">Registro de bloqueos:</string>
   <string name="block-warnloglabel">Advertencias:</string>
   <string name="block-sharedipwarning">Nota: $1 está etiquetada como una IP compartida o dinámica.</string>
