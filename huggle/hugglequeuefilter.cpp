@@ -201,13 +201,31 @@ QString HuggleQueueFilter::GetRequiredTags_CommaSeparated() const
 void HuggleQueueFilter::SetIgnoredTags_CommaSeparated(QString list)
 {
     this->IgnoreTags.clear();
-    this->IgnoreTags.append(list.split(","));
+    QList<QString> tags = list.split(",");
+    foreach(QString x, tags)
+    {
+        x = x.replace(" ", "").replace("\n", "");
+        if (!x.isEmpty())
+        {
+            // only use tags that contain something
+            this->IgnoreTags.append(x);
+        }
+    }
 }
 
 void HuggleQueueFilter::SetRequiredTags_CommaSeparated(QString list)
 {
     this->RequireTags.clear();
-    this->RequireTags.append(list.split(","));
+    QList<QString> tags = list.split(",");
+    foreach(QString x, tags)
+    {
+        x = x.replace(" ", "").replace("\n", "");
+        if (!x.isEmpty())
+        {
+            // only use tags that contain something
+            this->RequireTags.append(x);
+        }
+    }
 }
 
 bool HuggleQueueFilter::IgnoresNS(int ns)
