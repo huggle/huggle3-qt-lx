@@ -613,57 +613,6 @@ void Login::RetrieveWhitelist(WikiSite *site)
 
 void Login::RetrieveProjectConfig(WikiSite *site)
 {
-    // check approval page
-    if (this->qApproval.contains(site))
-    {
-        ApiQuery *query = this->qApproval[site];
-        if (query->IsProcessed())
-        {
-            QString result;
-            bool failed = false;
-            result = Generic::EvaluateWikiPageContents(query, &failed);
-            if (failed)
-            {
-                this->DisplayError(_l("unable-to-retrieve-user-list", result));
-                return;
-            }
-            QStringList users = result.toLower().split("\n");
-            QStringList sanitized;
-            // sanitize user list
-            foreach(QString user, users)
-            {
-                user = user.replace("_", " ");
-                user = user.trimmed();
-                sanitized.append(user);
-            }
-            QString sanitized_name = hcfg->SystemConfig_Username;
-            sanitized_name = sanitized_name.toLower();
-            sanitized_name = sanitized_name.replace("_", " ");
-            if (!sanitized.contains("* [[special:contributions/" + sanitized_name + "|" + sanitized_name + "]]"))
-            {
-                if (site->GetProjectConfig()->Approval)
-                {
-                    this->DisplayError(_l("login-error-approval", site->Name));
-                    return;
-                }
-                if (site->GetProjectConfig()->UserlistSync)
-                {
-                    // we need to insert this user into the list
-                    QString un = WikiUtil::SanitizeUser(hcfg->SystemConfig_Username);
-                    QString line = "* [[Special:Contributions/" + un + "|" + un + "]]";
-                    result += "\n" + line;
-                    QString summary = site->GetProjectConfig()->UserlistUpdateSummary;
-                    summary.replace("$1", hcfg->SystemConfig_Username);
-                    WikiUtil::EditPage(site->GetProjectConfig()->ApprovalPage, result, summary, false, "", 0, site);
-                    //WikiUtil::AppendTextToPage(site->GetProjectConfig()->ApprovalPage, line, site->GetProjectConfig()->UserlistUpdateSummary, true, site);
-                }
-            }
-            this->loadingForm->ModifyIcon(this->GetRowIDForSite(site, LOGINFORM_LOCALCONFIG), LoadingForm_Icon_Success);
-            this->Statuses[site] = RetrievingUserConfig;
-        }
-        return;
-    }
-
     if (this->LoginQueries.contains(site))
     {
         ApiQuery *query = this->LoginQueries[site];
@@ -692,13 +641,6 @@ void Login::RetrieveProjectConfig(WikiSite *site)
                 if (!site->GetProjectConfig()->EnableAll)
                 {
                     this->DisplayError(_l("login-error-projdisabled", site->Name));
-                    return;
-                }
-                if (site->GetProjectConfig()->UserlistSync || site->GetProjectConfig()->Approval)
-                {
-                    this->qApproval.insert(site, Generic::RetrieveWikiPageContents(site->GetProjectConfig()->ApprovalPage, site));
-                    this->qApproval[site]->IncRef();
-                    this->qApproval[site]->Process();
                     return;
                 }
                 this->loadingForm->ModifyIcon(this->GetRowIDForSite(site, LOGINFORM_LOCALCONFIG), LoadingForm_Icon_Success);
@@ -805,6 +747,58 @@ void Login::RetrieveUserConfig(WikiSite *site)
 
 void Login::RetrieveUserInfo(WikiSite *site)
 {
+    // check approval page
+    if (this->qApproval.contains(site))
+    {
+        ApiQuery *query = this->qApproval[site];
+        if (query->IsProcessed())
+        {
+            QString result;
+            bool failed = false;
+            result = Generic::EvaluateWikiPageContents(query, &failed);
+            if (failed)
+            {
+                this->DisplayError(_l("unable-to-retrieve-user-list", result));
+                return;
+            }
+            QStringList users = result.toLower().split("\n");
+            QStringList sanitized;
+            // sanitize user list
+            foreach(QString user, users)
+            {
+                user = user.replace("_", " ");
+                user = user.trimmed();
+                sanitized.append(user);
+            }
+            QString sanitized_name = hcfg->SystemConfig_Username;
+            sanitized_name = sanitized_name.toLower();
+            sanitized_name = sanitized_name.replace("_", " ");
+            if (!sanitized.contains("* [[special:contributions/" + sanitized_name + "|" + sanitized_name + "]]"))
+            {
+                if (site->GetProjectConfig()->Approval)
+                {
+                    this->DisplayError(_l("login-error-approval", site->Name));
+                    return;
+                }
+                if (site->GetProjectConfig()->UserlistSync)
+                {
+                    // we need to insert this user into the list
+                    QString un = WikiUtil::SanitizeUser(hcfg->SystemConfig_Username);
+                    QString line = "* [[Special:Contributions/" + un + "|" + un + "]]";
+                    result += "\n" + line;
+                    QString summary = site->GetProjectConfig()->UserlistUpdateSummary;
+                    summary.replace("$1", hcfg->SystemConfig_Username);
+                    WikiUtil::EditPage(site->GetProjectConfig()->ApprovalPage, result, summary, false, "", 0, site);
+                    //WikiUtil::AppendTextToPage(site->GetProjectConfig()->ApprovalPage, line, site->GetProjectConfig()->UserlistUpdateSummary, true, site);
+                }
+            }
+            this->loadingForm->ModifyIcon(this->GetRowIDForSite(site, LOGINFORM_USERINFO), LoadingForm_Icon_Success);
+            this->processedLogin[site] = true;
+            this->Statuses[site] = LoginDone;
+        }
+        return;
+    }
+
     if (this->LoginQueries.contains(site))
     {
         ApiQuery *query = this->LoginQueries[site];
@@ -872,6 +866,15 @@ void Login::RetrieveUserInfo(WikiSite *site)
             }
 
             /// \todo Implement check for "require-time"
+
+            // So now we passed all checks if we can use huggle, so let's update the user list in case we want that
+            if (site->GetProjectConfig()->UserlistSync || site->GetProjectConfig()->Approval)
+            {
+                this->qApproval.insert(site, Generic::RetrieveWikiPageContents(site->GetProjectConfig()->ApprovalPage, site));
+                this->qApproval[site]->IncRef();
+                this->qApproval[site]->Process();
+                return;
+            }
             this->loadingForm->ModifyIcon(this->GetRowIDForSite(site, LOGINFORM_USERINFO), LoadingForm_Icon_Success);
             this->processedLogin[site] = true;
             this->Statuses[site] = LoginDone;
