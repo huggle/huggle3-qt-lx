@@ -153,7 +153,7 @@ namespace Huggle
             //! Request a page deletion csd or afd and so on
             void RequestPD(WikiEdit *edit = nullptr);
             void TrayMessage(QString title, QString text);
-            void WelcomeGood();
+            void FlagGood();
             void SwitchAlternativeFeedProvider(WikiSite *site);
             //! Try to load a page
             void RenderPage(QString Page);

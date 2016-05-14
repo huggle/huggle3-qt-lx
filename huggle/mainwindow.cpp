@@ -1871,7 +1871,7 @@ void MainWindow::ResumeQueue()
         site->Provider->Resume();
 }
 
-void MainWindow::WelcomeGood()
+void MainWindow::FlagGood()
 {
     if (this->CurrentEdit == nullptr || !this->CheckExit() || !this->CheckEditableBrowserPage())
         return;
@@ -2195,7 +2195,7 @@ void MainWindow::on_actionDecrease_badness_score_by_20_triggered()
 
 void MainWindow::on_actionGood_edit_triggered()
 {
-    this->WelcomeGood();
+    this->FlagGood();
 }
 
 void MainWindow::on_actionUser_contributions_triggered()
@@ -2214,7 +2214,7 @@ void MainWindow::on_actionTalk_page_triggered()
 
 void MainWindow::on_actionFlag_as_a_good_edit_triggered()
 {
-    this->WelcomeGood();
+    this->FlagGood();
 }
 
 void MainWindow::on_actionDisplay_this_page_in_browser_triggered()
