@@ -166,7 +166,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="config-autoreport">Quand il est demandé d’avertir un utilisateur avec un avertissement final</string>
   <string name="config-reportnone">Ne rien faire</string>
   <string name="config-reportprompt">Proposer de signaler</string>
-  <string name="config-reportauto">Issue report automatically</string>
+  <string name="config-reportauto">Rapporter automatiquement</string>
   <string name="config-templates">Modèle de messages d\'utilisateur</string>
   <string name="config-templatetext">Afficher le texte</string>
   <string name="config-template">Modèle</string>
@@ -309,7 +309,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="main-queue-next">Suivante</string>
   <string name="main-queue-clear">Clear current</string>
   <string name="main-queue-count">$1 éléments</string>
-  <string name="main-queue-query">Running query...</string>
+  <string name="main-queue-query">Exécution de la requête...</string>
   <string name="main-queue-reset">Réinitialiser</string>
   <string name="main-queue-clearall">Effacer tout</string>
   <string name="main-queue-options">Gérer les queues...</string>
@@ -332,7 +332,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="main-tools-il">Afficher la liste d’ignorance du wiki actuel</string>
   <string name="main-page-next">Suivant</string>
   <string name="main-page-switchtotalk">Passer à la page de discussion</string>
-  <string name="main-page-switchtosubject">Switch to subject page</string>
+  <string name="main-page-switchtosubject">Passer à la page du sujet</string>
   <string name="main-page-switchtoarticle">Passer à l\'article</string>
   <string name="main-page-viewlatest">Afficher la dernière révision</string>
   <string name="main-page-history">Récupérer l’historique</string>
@@ -372,7 +372,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="main-browser-back">Retour</string>
   <string name="main-browser-forward">Forward</string>
   <string name="main-browser-open">Afficher ceci dans un navigateur externe</string>
-  <string name="main-browser-newedits">Show new edits to page</string>
+  <string name="main-browser-newedits">Afficher les nouvelles modifications de la page</string>
   <string name="main-browser-newcontribs">Show new contributions by user</string>
   <string name="main-browser-lasttab">Je ne peux pas fermer cet onglet car c\'est le dernier, vous devez avoir au moins 1 onglet ouvert</string>
   <string name="main-revert-manual">Aucun jeton d’annulation, passage en annulation manuelle de $1</string>
@@ -391,7 +391,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="main-usermessageother">Autre message...</string>
   <string name="main-advanced">Avancé...</string>
   <string name="main-stats">$1 modifications par minute, $2 rétablissements par minute</string>
-  <string name="main-display-session-data">Afficher une donnée de session</string>
+  <string name="main-display-session-data">Afficher les données de session</string>
   <string name="main-display-whitelist">Afficher la liste blanche</string>
   <string name="main-revert-custom-reson">Veuillez fournir un motif expliquant pourquoi vous voulez rétablir cette modification à la révision précédente</string>
   <string name="main-log1">Restauration de la révision sélectionnée de $1</string>
