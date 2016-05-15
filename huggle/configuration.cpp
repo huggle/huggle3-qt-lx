@@ -143,7 +143,7 @@ QString Configuration::GetExtensionsRootPath()
     QDir conf(path_);
     if (!conf.exists() && !conf.mkpath(path_))
     {
-            Syslog::HuggleLogs->WarningLog("Unable to create " + path_);
+        Syslog::HuggleLogs->WarningLog("Unable to create " + path_);
     }
     return path_;
 }
@@ -235,6 +235,7 @@ void Configuration::NormalizeConf(WikiSite *site)
   }
 */
 #define RC(n)   if (key == #n) { hcfg->SystemConfig_##n = option.attribute("text"); continue; }
+#define RCU(n)  if (key == #n) { hcfg->SystemConfig_##n = option.attribute("text").toUInt(); continue; }
 #define RCB(n)  if (key == #n) { hcfg->SystemConfig_##n = SafeBool(option.attribute("text")); continue; }
 #define RCN(n)  if (key == #n) { hcfg->SystemConfig_##n = option.attribute("text").toInt(); continue; }
 
@@ -340,81 +341,29 @@ void Configuration::LoadSystemConfig(QString fn)
         }
         RCB(UsingSSL);
         RC(GlobalConfigWikiList);
-        if (key == "DelayVal")
-        {
-            hcfg->SystemConfig_DelayVal = option.attribute("text").toUInt();
-            continue;
-        }
-        if (key == "WikiRC")
-        {
-            hcfg->SystemConfig_WikiRC = option.attribute("text").toUInt();
-            continue;
-        }
-        if (key == "RequestDelay")
-        {
-            hcfg->SystemConfig_RequestDelay = SafeBool(option.attribute("text"));
-            continue;
-        }
-        if (key == "RevertDelay")
-        {
-            hcfg->SystemConfig_RevertDelay = option.attribute("text").toUInt();
-            continue;
-        }
-        if (key == "InstantReverts")
-        {
-            hcfg->SystemConfig_InstantReverts = SafeBool(option.attribute("text"));
-            continue;
-        }
+        RCU(DelayVal);
+        RCU(WikiRC);
+        RCB(RequestDelay);
+        RCU(RevertDelay);
+        RCB(InstantReverts);
         if (key == "Projects")
         {
             hcfg->ProjectString = option.attribute("text").split(",");
             continue;
         }
-        if (key == "SuppressWarnings")
-        {
-            hcfg->SystemConfig_SuppressWarnings = SafeBool(option.attribute("text"));
-            continue;
-        }
-        if (key == "RememberedPassword")
-        {
-            hcfg->SystemConfig_RememberedPassword = option.attribute("text");
-            continue;
-        }
-        if (key == "StorePassword")
-        {
-            hcfg->SystemConfig_StorePassword = SafeBool(option.attribute("text"));
-            continue;
-        }
-        if (key == "UseProxy")
-        {
-            hcfg->SystemConfig_UseProxy = SafeBool(option.attribute("text"));
-            continue;
-        }
-        if (key == "ProxyUser")
-        {
-            hcfg->SystemConfig_ProxyUser = option.attribute("text");
-            continue;
-        }
-        if (key == "ProxyType")
-        {
-            hcfg->SystemConfig_ProxyType = option.attribute("text").toInt();
-            continue;
-        }
+        RCB(SuppressWarnings);
+        RC(RememberedPassword);
+        RCB(StorePassword);
+        RCB(UseProxy);
+        RC(ProxyUser);
+        RCN(ProxyType);
         if (key == "ProxyHost")
         {
             hcfg->SystemConfig_ProxyHost = option.attribute("text");
             continue;
         }
-        if (key == "ProxyPort")
-        {
-            hcfg->SystemConfig_ProxyPort = option.attribute("text").toUInt();
-            continue;
-        }
-        if (key == "ProxyPass")
-        {
-            hcfg->SystemConfig_ProxyPass = option.attribute("text");
-            continue;
-        }
+        RCU(ProxyPort);
+        RC(ProxyPass);
     }
     item = 0;
     while (item < e.count())
