@@ -716,10 +716,12 @@ $1</string>
   <string name="unable-to-retrieve-user-list">Kullanıcı listesi getirilemiyor: $1</string>
   <string name="login-no-userinfo">Site herhangi bir kullanıcı bilgisi göndermedi</string>
   <string name="login-site-info-query-failed">Site bilgileri sorgu için $1 başarısız oldu: $2</string>
+  <string name="login-username-doesnt-exist">Bu kullanıcı adı yok</string>
   <string name="developer-mode-enter-title">Vaaay</string>
   <string name="developer-mode-enter-message">Geliştirici moduna girdiniz!</string>
   <string name="unimplemented">Bu özellik henüz uygulanmadı</string>
   <string name="unknown-item">Bilinmeyen madde</string>
+  <string name="title-multiple-projects">Çoklu projeler ($1)</string>
   <string name="title-on"> $1 de</string>
   <string name="main-revert-type-unknown">bilinmeyen</string>
   <string name="main-revert-type-in-userspace">kullanıcı alanı içinde</string>
