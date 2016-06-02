@@ -56,9 +56,7 @@ ProcessList::ProcessList(QWidget *parent) : QDockWidget(parent), ui(new Ui::Proc
         this->ui->tableWidget->setColumnWidth(2, 200);
         this->ui->tableWidget->setColumnWidth(3, 80);
         if (this->IsDebuged)
-        {
             this->ui->tableWidget->setColumnWidth(4, 800);
-        }
     }
     this->ui->tableWidget->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
     this->ui->tableWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
@@ -101,8 +99,7 @@ void ProcessList::Clear()
 bool ProcessList::ContainsQuery(Query *query)
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
-    int result = GetItem(query);
-    return result != -1;
+    return GetItem(query) != -1;
 }
 
 void ProcessList::RemoveQuery(Query *query)
@@ -175,9 +172,8 @@ int ProcessList::GetItem(Query *q)
     while (curr < size)
     {
         if (this->ui->tableWidget->item(curr,0)->text() == QString::number(q->QueryID()))
-        {
             return curr;
-        }
+
         curr++;
     }
     return -1;
@@ -233,4 +229,3 @@ bool ProcessListRemovedItem::Expired(bool Debug)
         return this->time < QDateTime::currentDateTime().addSecs(-120);
     return this->time < QDateTime::currentDateTime().addSecs(-hcfg->SystemConfig_QueryListTimeLimit);
 }
-
