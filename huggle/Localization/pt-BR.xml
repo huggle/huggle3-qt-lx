@@ -228,6 +228,7 @@ Este bloqueio substituirá o efeito do bloqueio de faixa. Continuar?</string>
   <string name="login-proxygroup">Configurações de proxy</string>
   <string name="login-proxy">Usar um servidor proxy</string>
   <string name="login-proxyaddress">Endereço:</string>
+  <string name="login-proxy-remember-this">Lembrar desta configuração</string>
   <string name="login-proxyport">Porta:</string>
   <string name="login-proxydomain">Domínio:</string>
   <string name="login-retrieving-user-conf">Recuperando configuração do usuário</string>
