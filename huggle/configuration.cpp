@@ -66,6 +66,11 @@ Configuration::Configuration()
     this->MakeShortcut("main-revert-and-warn-7", "shortcut-x-raw");
     this->MakeShortcut("main-revert-and-warn-8", "shortcut-x-raw");
     this->MakeShortcut("main-revert-and-warn-9", "shortcut-x-raw");
+    this->MakeShortcut("main-revert-and-warn-10", "shortcut-x-raw");
+    this->MakeShortcut("main-revert-and-warn-11", "shortcut-x-raw");
+    this->MakeShortcut("main-revert-and-warn-12", "shortcut-x-raw");
+    this->MakeShortcut("main-revert-and-warn-13", "shortcut-x-raw");
+    this->MakeShortcut("main-revert-and-warn-14", "shortcut-x-raw");
     this->MakeShortcut("main-warn-0", "shortcut-x-warn");
     this->MakeShortcut("main-warn-1", "shortcut-x-warn");
     this->MakeShortcut("main-warn-2", "shortcut-x-warn");
@@ -76,6 +81,11 @@ Configuration::Configuration()
     this->MakeShortcut("main-warn-7", "shortcut-x-warn");
     this->MakeShortcut("main-warn-8", "shortcut-x-warn");
     this->MakeShortcut("main-warn-9", "shortcut-x-warn");
+    this->MakeShortcut("main-warn-10", "shortcut-x-warn");
+    this->MakeShortcut("main-warn-11", "shortcut-x-warn");
+    this->MakeShortcut("main-warn-12", "shortcut-x-warn");
+    this->MakeShortcut("main-warn-13", "shortcut-x-warn");
+    this->MakeShortcut("main-warn-14", "shortcut-x-warn");
     this->MakeShortcut("main-revert-0", "shortcut-x-revert");
     this->MakeShortcut("main-revert-1", "shortcut-x-revert");
     this->MakeShortcut("main-revert-2", "shortcut-x-revert");
@@ -86,6 +96,11 @@ Configuration::Configuration()
     this->MakeShortcut("main-revert-7", "shortcut-x-revert");
     this->MakeShortcut("main-revert-8", "shortcut-x-revert");
     this->MakeShortcut("main-revert-9", "shortcut-x-revert");
+    this->MakeShortcut("main-revert-10", "shortcut-x-revert");
+    this->MakeShortcut("main-revert-11", "shortcut-x-revert");
+    this->MakeShortcut("main-revert-12", "shortcut-x-revert");
+    this->MakeShortcut("main-revert-13", "shortcut-x-revert");
+    this->MakeShortcut("main-revert-14", "shortcut-x-revert");
     this->MakeShortcut("main-talk", "shortcut-talk", "T");
     this->MakeShortcut("main-mytalk", "shortcut-my-talk", "Alt+M");
     this->MakeShortcut("main-open-in-browser", "shortcut-open", "O");
@@ -637,6 +652,16 @@ Shortcut::Shortcut(QString name, QString description)
             this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN8;
         else if (name == "main-revert-and-warn-9")
             this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN9;
+        else if (name == "main-revert-and-warn-10")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN10;
+        else if (name == "main-revert-and-warn-11")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN11;
+        else if (name == "main-revert-and-warn-12")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN12;
+        else if (name == "main-revert-and-warn-13")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN13;
+        else if (name == "main-revert-and-warn-14")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN14;
     } else if (name.startsWith("main-revert-"))
     {
         if (name == "main-revert-0")
@@ -659,6 +684,16 @@ Shortcut::Shortcut(QString name, QString description)
             this->ID = HUGGLE_ACCEL_MAIN_REVERT_8;
         else if (name == "main-revert-9")
             this->ID = HUGGLE_ACCEL_MAIN_REVERT_9;
+        else if (name == "main-revert-10")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_10;
+        else if (name == "main-revert-11")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_11;
+        else if (name == "main-revert-12")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_12;
+        else if (name == "main-revert-13")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_13;
+        else if (name == "main-revert-14")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_14;
     } else if (name.startsWith("main-warn-"))
     {
         if (name == "main-warn-0")
@@ -681,6 +716,16 @@ Shortcut::Shortcut(QString name, QString description)
             this->ID = HUGGLE_ACCEL_MAIN_WARN8;
         else if (name == "main-warn-9")
             this->ID = HUGGLE_ACCEL_MAIN_WARN9;
+        else if (name == "main-warn-10")
+            this->ID = HUGGLE_ACCEL_MAIN_WARN10;
+        else if (name == "main-warn-11")
+            this->ID = HUGGLE_ACCEL_MAIN_WARN11;
+        else if (name == "main-warn-12")
+            this->ID = HUGGLE_ACCEL_MAIN_WARN12;
+        else if (name == "main-warn-13")
+            this->ID = HUGGLE_ACCEL_MAIN_WARN13;
+        else if (name == "main-warn-14")
+            this->ID = HUGGLE_ACCEL_MAIN_WARN14;
     }
 }
 

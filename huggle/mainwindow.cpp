@@ -712,6 +712,21 @@ void MainWindow::ReloadShort(QString id)
         case HUGGLE_ACCEL_MAIN_REVERT_AND_WARN9:
             ReloadIndexedMenuShortcut(this->RevertAndWarnItems, 9, s);
             return;
+        case HUGGLE_ACCEL_MAIN_REVERT_AND_WARN10:
+            ReloadIndexedMenuShortcut(this->RevertAndWarnItems, 10, s);
+            return;
+        case HUGGLE_ACCEL_MAIN_REVERT_AND_WARN11:
+            ReloadIndexedMenuShortcut(this->RevertAndWarnItems, 11, s);
+            return;
+        case HUGGLE_ACCEL_MAIN_REVERT_AND_WARN12:
+            ReloadIndexedMenuShortcut(this->RevertAndWarnItems, 12, s);
+            return;
+        case HUGGLE_ACCEL_MAIN_REVERT_AND_WARN13:
+            ReloadIndexedMenuShortcut(this->RevertAndWarnItems, 13, s);
+            return;
+        case HUGGLE_ACCEL_MAIN_REVERT_AND_WARN14:
+            ReloadIndexedMenuShortcut(this->RevertAndWarnItems, 14, s);
+            return;
         case HUGGLE_ACCEL_MAIN_WARN0:
             ReloadIndexedMenuShortcut(this->WarnItems, 0, s);
             return;
@@ -742,6 +757,21 @@ void MainWindow::ReloadShort(QString id)
         case HUGGLE_ACCEL_MAIN_WARN9:
             ReloadIndexedMenuShortcut(this->WarnItems, 9, s);
             return;
+        case HUGGLE_ACCEL_MAIN_WARN10:
+            ReloadIndexedMenuShortcut(this->WarnItems, 10, s);
+            return;
+        case HUGGLE_ACCEL_MAIN_WARN11:
+            ReloadIndexedMenuShortcut(this->WarnItems, 11, s);
+            return;
+        case HUGGLE_ACCEL_MAIN_WARN12:
+            ReloadIndexedMenuShortcut(this->WarnItems, 12, s);
+            return;
+        case HUGGLE_ACCEL_MAIN_WARN13:
+            ReloadIndexedMenuShortcut(this->WarnItems, 13, s);
+            return;
+        case HUGGLE_ACCEL_MAIN_WARN14:
+            ReloadIndexedMenuShortcut(this->WarnItems, 14, s);
+            return;
         case HUGGLE_ACCEL_MAIN_REVERT_0:
             ReloadIndexedMenuShortcut(this->RevertItems, 0, s);
             return;
@@ -771,6 +801,21 @@ void MainWindow::ReloadShort(QString id)
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_9:
             ReloadIndexedMenuShortcut(this->RevertItems, 9, s);
+            return;
+        case HUGGLE_ACCEL_MAIN_REVERT_10:
+            ReloadIndexedMenuShortcut(this->RevertItems, 10, s);
+            return;
+        case HUGGLE_ACCEL_MAIN_REVERT_11:
+            ReloadIndexedMenuShortcut(this->RevertItems, 11, s);
+            return;
+        case HUGGLE_ACCEL_MAIN_REVERT_12:
+            ReloadIndexedMenuShortcut(this->RevertItems, 12, s);
+            return;
+        case HUGGLE_ACCEL_MAIN_REVERT_13:
+            ReloadIndexedMenuShortcut(this->RevertItems, 13, s);
+            return;
+        case HUGGLE_ACCEL_MAIN_REVERT_14:
+            ReloadIndexedMenuShortcut(this->RevertItems, 14, s);
             return;
         case HUGGLE_ACCEL_SUSPICIOUS_EDIT:
             q = this->ui->actionFlag_as_suspicious_edit;

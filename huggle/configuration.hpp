@@ -41,6 +41,11 @@ class QXmlStreamWriter;
 #define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN7      15
 #define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN8      16
 #define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN9      17
+#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN10     10000
+#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN11     10001
+#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN12     10002
+#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN13     10003
+#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN14     10004
 #define HUGGLE_ACCEL_MAIN_WARN0                 18
 #define HUGGLE_ACCEL_MAIN_WARN1                 19
 #define HUGGLE_ACCEL_MAIN_WARN2                 20
@@ -51,6 +56,11 @@ class QXmlStreamWriter;
 #define HUGGLE_ACCEL_MAIN_WARN7                 25
 #define HUGGLE_ACCEL_MAIN_WARN8                 26
 #define HUGGLE_ACCEL_MAIN_WARN9                 27
+#define HUGGLE_ACCEL_MAIN_WARN10                20001
+#define HUGGLE_ACCEL_MAIN_WARN11                20002
+#define HUGGLE_ACCEL_MAIN_WARN12                20003
+#define HUGGLE_ACCEL_MAIN_WARN13                20004
+#define HUGGLE_ACCEL_MAIN_WARN14                20005
 #define HUGGLE_ACCEL_MAIN_REVERT_0              28
 #define HUGGLE_ACCEL_MAIN_REVERT_1              29
 #define HUGGLE_ACCEL_MAIN_REVERT_2              30
@@ -61,6 +71,11 @@ class QXmlStreamWriter;
 #define HUGGLE_ACCEL_MAIN_REVERT_7              35
 #define HUGGLE_ACCEL_MAIN_REVERT_8              36
 #define HUGGLE_ACCEL_MAIN_REVERT_9              37
+#define HUGGLE_ACCEL_MAIN_REVERT_10             20110
+#define HUGGLE_ACCEL_MAIN_REVERT_11             20111
+#define HUGGLE_ACCEL_MAIN_REVERT_12             20112
+#define HUGGLE_ACCEL_MAIN_REVERT_13             20113
+#define HUGGLE_ACCEL_MAIN_REVERT_14             20114
 #define HUGGLE_ACCEL_MAIN_TALK                  38
 #define HUGGLE_ACCEL_REVERT_STAY                39
 #define HUGGLE_ACCEL_MAIN_OPEN_IN_BROWSER       40
