@@ -99,27 +99,15 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
     }
 
     MessageText_ = MessageText_.replace("$2", Edit->GetFullUrl()).replace("$1", Edit->Page->PageName);
-    /// \todo This needs to be localized because it's in message, but it must be in config, not localization
-    QString Summary_ = "Message re " + Edit->Page->PageName;
-
-    switch (Edit->User->GetWarningLevel())
+    QString Summary_;
+    if (!Edit->GetSite()->GetProjectConfig()->WarningSummaries.contains(Edit->User->GetWarningLevel()))
     {
-        case 1:
-            Summary_ = Edit->GetSite()->GetProjectConfig()->WarnSummary;
-            break;
-        case 2:
-            Summary_ = Edit->GetSite()->GetProjectConfig()->WarnSummary2;
-            break;
-        case 3:
-            Summary_ = Edit->GetSite()->GetProjectConfig()->WarnSummary3;
-            break;
-        case 4:
-            Summary_ = Edit->GetSite()->GetProjectConfig()->WarnSummary4;
-            break;
+        Summary_ = Edit->GetSite()->GetProjectConfig()->WarningSummaries[1];
+    } else
+    {
+        Summary_ = Edit->GetSite()->GetProjectConfig()->WarningSummaries[Edit->User->GetWarningLevel()];
     }
-
     Summary_ = Summary_.replace("$1", Edit->Page->PageName);
-    /// \todo This really needs to be localized somehow (in config only)
     QString HeadingText_ = Edit->GetSite()->GetProjectConfig()->TemplateHeader;
     HeadingText_ = HeadingText_.replace("$1", Edit->Page->PageName);
     if (Edit->GetSite()->GetProjectConfig()->MessageHeadings == HeadingsStandard)
@@ -347,33 +335,24 @@ void Warnings::ForceWarn(int Level, WikiEdit *Edit)
     }
 
     MessageText_ = MessageText_.replace("$2", Edit->GetFullUrl()).replace("$1", Edit->Page->PageName);
-    QString MessageTitle_ = Configuration::GenerateSuffix("Message re", Edit->GetSite()->GetProjectConfig());
-
-    switch (Level)
+    QString Summary_;
+    if (!Edit->GetSite()->GetProjectConfig()->WarningSummaries.contains(Edit->User->GetWarningLevel()))
     {
-        case 1:
-            MessageTitle_ = Edit->GetSite()->GetProjectConfig()->WarnSummary;
-            break;
-        case 2:
-            MessageTitle_ = Edit->GetSite()->GetProjectConfig()->WarnSummary2;
-            break;
-        case 3:
-            MessageTitle_ = Edit->GetSite()->GetProjectConfig()->WarnSummary3;
-            break;
-        case 4:
-            MessageTitle_ = Edit->GetSite()->GetProjectConfig()->WarnSummary4;
-            break;
+        Summary_ = Edit->GetSite()->GetProjectConfig()->WarningSummaries[1];
+    } else
+    {
+        Summary_ = Edit->GetSite()->GetProjectConfig()->WarningSummaries[Edit->User->GetWarningLevel()];
     }
-
-    MessageTitle_ = MessageTitle_.replace("$1", Edit->Page->PageName);
-    QString id = "Your edits to " + Edit->Page->PageName;
+    Summary_ = Summary_.replace("$1", Edit->Page->PageName);
+    QString id = Edit->GetSite()->GetProjectConfig()->TemplateHeader;
+    id = id.replace("$1", Edit->Page->PageName);
     if (Configuration::HuggleConfiguration->UserConfig->EnforceMonthsAsHeaders)
     {
         QDateTime date_ = Edit->GetSite()->GetProjectConfig()->ServerTime();
         id = WikiUtil::MonthText(date_.date().month(), Edit->GetSite()) + " " + QString::number(date_.date().year());
     }
     MessageText_ = Warnings::UpdateSharedIPTemplate(Edit->User, MessageText_, Edit->GetSite());
-    WikiUtil::MessageUser(Edit->User, MessageText_, id, MessageTitle_, true, nullptr, false,
+    WikiUtil::MessageUser(Edit->User, MessageText_, id, Summary_, true, nullptr, false,
                               Configuration::HuggleConfiguration->UserConfig->SectionKeep,
                               true, Edit->TPRevBaseTime);
 }

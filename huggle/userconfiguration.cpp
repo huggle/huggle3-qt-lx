@@ -302,11 +302,15 @@ bool UserConfiguration::ParseUserConfig(QString config, ProjectConfiguration *Pr
     // so there is no point in using a hash for it
     ProjectConfig->IPScore = this->SetOption(ProjectConfig_IPScore_Key, config, ProjectConfig->IPScore).toInt();
     ProjectConfig->ScoreFlag = this->SetOption("score-flag", config, ProjectConfig->ScoreFlag).toInt();
-    ProjectConfig->WarnSummary = this->SetOption("warn-summary", config, ProjectConfig->WarnSummary).toString();
     this->EnforceManualSoftwareRollback = SafeBool(ConfigurationParse("software-rollback", config));
-    ProjectConfig->WarnSummary2 = this->SetOption("warn-summary-2", config, ProjectConfig->WarnSummary2).toString();
-    ProjectConfig->WarnSummary3 = this->SetOption("warn-summary-3", config, ProjectConfig->WarnSummary3).toString();
-    ProjectConfig->WarnSummary4 = this->SetOption("warn-summary-4", config, ProjectConfig->WarnSummary4).toString();
+    if (ProjectConfig->WarningSummaries.contains(1))
+        ProjectConfig->WarningSummaries[1] = this->SetOption("warn-summary", config, ProjectConfig->WarningSummaries[1]).toString();
+    if (ProjectConfig->WarningSummaries.contains(2))
+        ProjectConfig->WarningSummaries[2] = this->SetOption("warn-summary-2", config, ProjectConfig->WarningSummaries[2]).toString();
+    if (ProjectConfig->WarningSummaries.contains(3))
+        ProjectConfig->WarningSummaries[3] = this->SetOption("warn-summary-3", config, ProjectConfig->WarningSummaries[3]).toString();
+    if (ProjectConfig->WarningSummaries.contains(4))
+        ProjectConfig->WarningSummaries[4] = this->SetOption("warn-summary-4", config, ProjectConfig->WarningSummaries[4]).toString();
     this->AutomaticallyResolveConflicts = SafeBool(ConfigurationParse("automatically-resolve-conflicts", config), false);
     ProjectConfig->TemplateAge = this->SetOption("template-age", config, ProjectConfig->TemplateAge).toInt();
     ProjectConfig->RevertSummaries = this->SetUserOptionList("template-summ", config, ProjectConfig->RevertSummaries);

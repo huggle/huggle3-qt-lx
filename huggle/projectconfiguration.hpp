@@ -127,6 +127,7 @@ namespace Huggle
             QString         WelcomeSummary = "Welcoming user";
             QString         TemplateHeader;
             Headings        MessageHeadings;
+            QHash<int, QString> WarningSummaries;
             int             TemplateAge = -30;
             /// \todo move the following confirms to UserConfig, probably shouldn't read at all (initially) from ProjectConfig
             bool            ConfirmTalk = true;
@@ -170,10 +171,6 @@ namespace Huggle
             QString         AssociatedDelete = "G8. Page dependent on a non-existent or deleted page.";
             // Warnings
             QString         AgfRevert = "Reverted good faith edits";
-            QString         WarnSummary = "Warning (level 1)";
-            QString         WarnSummary2 = "Warning (level 2)";
-            QString         WarnSummary3 = "Warning (level 3)";
-            QString         WarnSummary4 = "Warning (level 4)";
             QStringList     WarningTemplates;
             //! Instant level - last warning messages supported
             bool            InstantWarnings = false;
