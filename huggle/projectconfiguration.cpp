@@ -273,6 +273,7 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
     this->RFPP_Section = (unsigned int)HuggleParser::ConfigurationParse("rfpp-section", config, "0").toInt();
     this->RFPP_Page = HuggleParser::ConfigurationParse("protection-request-page", config);
     this->RFPP_Template = HuggleParser::ConfigurationParse("rfpp-template", config);
+    this->TemplateHeader = HuggleParser::ConfigurationParse("template-header", config, "Your edits to $1");
     this->RFPP_Mark = HuggleParser::ConfigurationParse("rfpp-mark", config);
     this->RFPP_Summary = HuggleParser::ConfigurationParse("protection-request-summary", config, "Request to protect page");
     this->RFPP = (this->RFPP_Template.length() && this->RFPP_Regex.length());

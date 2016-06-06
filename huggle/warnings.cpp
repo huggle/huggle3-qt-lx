@@ -120,7 +120,8 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
 
     Summary_ = Summary_.replace("$1", Edit->Page->PageName);
     /// \todo This really needs to be localized somehow (in config only)
-    QString HeadingText_ = "Your edits to " + Edit->Page->PageName;
+    QString HeadingText_ = Edit->GetSite()->GetProjectConfig()->TemplateHeader;
+    HeadingText_ = HeadingText_.replace("$1", Edit->Page->PageName);
     if (Edit->GetSite()->GetProjectConfig()->MessageHeadings == HeadingsStandard)
     {
         QDateTime d = Edit->GetSite()->GetProjectConfig()->ServerTime();

@@ -125,6 +125,7 @@ namespace Huggle
             QString         RUTemplateReport = "User $1: $2$3 ~~~~";
             QString         ReportDefaultReason = "vandalism";
             QString         WelcomeSummary = "Welcoming user";
+            QString         TemplateHeader;
             Headings        MessageHeadings;
             int             TemplateAge = -30;
             /// \todo move the following confirms to UserConfig, probably shouldn't read at all (initially) from ProjectConfig
