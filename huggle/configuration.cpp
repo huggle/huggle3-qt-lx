@@ -66,6 +66,10 @@ Configuration::Configuration()
     this->MakeShortcut("main-revert-and-warn-7", "shortcut-x-raw");
     this->MakeShortcut("main-revert-and-warn-8", "shortcut-x-raw");
     this->MakeShortcut("main-revert-and-warn-9", "shortcut-x-raw");
+    this->MakeShortcut("main-revert-and-warn-10", "shortcut-x-raw");
+    this->MakeShortcut("main-revert-and-warn-11", "shortcut-x-raw");
+    this->MakeShortcut("main-revert-and-warn-12", "shortcut-x-raw");
+    this->MakeShortcut("main-revert-and-warn-13", "shortcut-x-raw");
     this->MakeShortcut("main-warn-0", "shortcut-x-warn");
     this->MakeShortcut("main-warn-1", "shortcut-x-warn");
     this->MakeShortcut("main-warn-2", "shortcut-x-warn");
@@ -76,6 +80,10 @@ Configuration::Configuration()
     this->MakeShortcut("main-warn-7", "shortcut-x-warn");
     this->MakeShortcut("main-warn-8", "shortcut-x-warn");
     this->MakeShortcut("main-warn-9", "shortcut-x-warn");
+    this->MakeShortcut("main-warn-10", "shortcut-x-warn");
+    this->MakeShortcut("main-warn-11", "shortcut-x-warn");
+    this->MakeShortcut("main-warn-12", "shortcut-x-warn");
+    this->MakeShortcut("main-warn-13", "shortcut-x-warn");
     this->MakeShortcut("main-revert-0", "shortcut-x-revert");
     this->MakeShortcut("main-revert-1", "shortcut-x-revert");
     this->MakeShortcut("main-revert-2", "shortcut-x-revert");
@@ -86,6 +94,10 @@ Configuration::Configuration()
     this->MakeShortcut("main-revert-7", "shortcut-x-revert");
     this->MakeShortcut("main-revert-8", "shortcut-x-revert");
     this->MakeShortcut("main-revert-9", "shortcut-x-revert");
+    this->MakeShortcut("main-revert-10", "shortcut-x-revert");
+    this->MakeShortcut("main-revert-11", "shortcut-x-revert");
+    this->MakeShortcut("main-revert-12", "shortcut-x-revert");
+    this->MakeShortcut("main-revert-13", "shortcut-x-revert");
     this->MakeShortcut("main-talk", "shortcut-talk", "T");
     this->MakeShortcut("main-mytalk", "shortcut-my-talk", "Alt+M");
     this->MakeShortcut("main-open-in-browser", "shortcut-open", "O");
