@@ -52,7 +52,7 @@
   <string name="disable">Désactiver</string>
   <string name="no-token">Pas de jeton</string>
   <string name="flags">Indicateurs</string>
-  <string name="gracetime">En attente de la modification des requêtes à terminer…</string>
+  <string name="gracetime">En attente de la terminaison des requêtes de modification…</string>
   <string name="browser-none">Aucune page n\'est affichée maintenant</string>
   <string name="browser-load">Téléchargement de diff en utilisant un rendu Web de secours, veuillez patienter...</string>
   <string name="browser-miss-summ">Aucun résumé n\'a été fourni</string>

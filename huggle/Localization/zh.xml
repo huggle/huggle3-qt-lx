@@ -343,7 +343,7 @@
   <string name="main-page-reqprotection">请求保护页面</string>
   <string name="main-page-watch">监视</string>
   <string name="main-page-unwatch">取消监视</string>
-  <string name="main-page-purge">清除</string>
+  <string name="main-page-purge">刷新缓存</string>
   <string name="main-page-curr-disp">当前显示</string>
   <string name="main-page-display">显示此页</string>
   <string name="main-page-patrol">标记为已检查</string>
