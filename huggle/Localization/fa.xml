@@ -52,6 +52,7 @@
   <string name="disable">غیرفعال</string>
   <string name="no-token">بدون رمز</string>
   <string name="flags">پرچم‌ها</string>
+  <string name="gracetime">در انتظار پایان صف ویرایش‌ها</string>
   <string name="browser-none">هیچ صفحه‌ای نمایش داده نشد</string>
   <string name="browser-load">بارگیری تفاوت با استفاده از رندر وب، لطفاً صبر کنید....</string>
   <string name="browser-miss-summ">هیچ خلاصه‌ای ارائه نشده است</string>
@@ -227,6 +228,7 @@
   <string name="login-proxygroup">تنظیمات پراکسی</string>
   <string name="login-proxy">استفاده از سرور پراکسی</string>
   <string name="login-proxyaddress">نشانی:</string>
+  <string name="login-proxy-remember-this">این تنظیمات را برای دفعه بعدی بیاد نگه‌دار</string>
   <string name="login-proxyport">درگاه:</string>
   <string name="login-proxydomain">دامنه:</string>
   <string name="login-retrieving-user-conf">واگردانی تنظیمات کاربر</string>
@@ -568,6 +570,7 @@
   <string name="shortcut-tab">بازکردن یک سربرگ تازه</string>
   <string name="shortcut-rw-stay">واگردانی نسخهٔ کنونی، به یک کاربر هشدار می‌دهد و در همین صفحه می‌ماند</string>
   <string name="shortcut-revert-and-stay">واگردانی ویرایش کنونی و در صفحه ماندن</string>
+  <string name="shortcut-user-contribs-browser">نمایش مشارکت‌های کاربر در یک مرورگر</string>
   <string name="warning-title">هشدار $1</string>
   <string name="warning-levelgroup">سطح هشدار</string>
   <string name="warning-levelauto">خودکار</string>
@@ -712,9 +715,15 @@ $1</string>
   <string name="projects">پروژه ها</string>
   <string name="unable-to-retrieve-user-list">ناتوانی در دریافت فهرست کاربر: $1</string>
   <string name="login-no-userinfo">سایت هیچ اطلاعاتی درباره کاربر نداشت.</string>
+  <string name="login-invalid-register-date">صفحه ثبت‌نام نامعتبر توسط مدیاویکی برگردانده شد</string>
+  <string name="login-site-info-query-failed">کوئری اطلاعات سایت برای $1 شکست خورد: $2</string>
+  <string name="login-no-site-info-returned">اطلاعات سایت برای این ویکی بازگردانی نشد</string>
   <string name="loading-main-window">درحال بارگذاری پنجره اصلی</string>
+  <string name="api.php-invalid-response">api.php پاسخ با متن نامعتبر داد (وبسرور مشکل دارد؟) لطفا لاگ دیباگ برای اطلاعات دقیق بررسی کنید.</string>
   <string name="login-username-doesnt-exist">این نام کاربری وجود ندارد</string>
+  <string name="developer-mode-enter-title">زمان</string>
   <string name="developer-mode-enter-message">شما وارد حالت توسعه دهنده شده اید.</string>
+  <string name="unimplemented">این ویژگی هنوز اجرایی نشده‌است</string>
   <string name="unknown-item">ایتم ناشناس</string>
   <string name="title-multiple-projects">پروژه های متعدد ($1)</string>
   <string name="title-on">در $1</string>
