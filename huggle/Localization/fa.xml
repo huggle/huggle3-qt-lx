@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="name">Persian</string>
+  <string name="name">فارسی</string>
   <string name="isrtl">true</string>
   <string name="add">افزودن</string>
   <string name="cancel">لغو</string>
@@ -132,7 +132,7 @@
   <string name="config-auto-load-history">فراخوانی خودکار تاریخچه و اطلاعات کاربر (به مقدار زیادی پنهای شبکه نیاز دارد)</string>
   <string name="config-last-revision">نمایش بازبینی آخر از صفحه در حالتی که ویرایش فراخوانی‌شدهٔ جاری بازبینی آخر نیست (پس از گذشتن از نهان‌گاه دریافتش می‌کند)</string>
   <string name="config-require-delay">به یک تأخیر پس از هر بارگیری از ویرایش بعدی نیاز است، به این دلیل که ممکن نیست از هر ویژگی نوشتن استفاده شود (کاربردی زمانی  که باید اشکال چند فشار صفحه کلید رفع شود)</string>
-  <string name="config-wait-edit">زمانی که باید صبر کنید(به ثانیه) تا ویژگی‌های نوشتاری فعال شوند:</string>
+  <string name="config-wait-edit">زمانی که باید صبر کنید (به ثانیه) تا ویژگی‌های نوشتاری فعال شوند:</string>
   <string name="config-display-text">نمایش بعدی</string>
   <string name="config-retrieve-edit">بازیابی ویرایش خودتان</string>
   <string name="config-nothing">هیچ‌چیز</string>
@@ -228,7 +228,7 @@
   <string name="login-proxygroup">تنظیمات پراکسی</string>
   <string name="login-proxy">استفاده از سرور پراکسی</string>
   <string name="login-proxyaddress">نشانی:</string>
-  <string name="login-proxy-remember-this">این تنظیمات را برای دفعه بعدی بیاد نگه‌دار</string>
+  <string name="login-proxy-remember-this">این تنظیمات را برای دفعه بعدی به یاد نگه‌دار</string>
   <string name="login-proxyport">درگاه:</string>
   <string name="login-proxydomain">دامنه:</string>
   <string name="login-retrieving-user-conf">واگردانی تنظیمات کاربر</string>
@@ -473,7 +473,7 @@
   <string name="report-warn">کاربر هم‌اکنون هم هشدار سطح چهار دریافت کرده است، پس هشدار دیگری برایش گذاشته نخواهد شد. هم‌اکنون می‌توانید ایشان را گزارش کنید، اما لطفاً بار دیگری مطئن شوید که به تعداد کافی هشدار دریافت کرده‌اند! برای این کار می‌توانید روی دکمهٔ «صفحهٔ بحث» در فرم زیر کلیک کنید. توجه داشته باشید که این فرم و این هشدار بدون در نظر گرفتن اینکه واگردانی شما موفق بوده است یا نه نمایش می‌یابد، بنابراین ممکن است در اینجا با دیگر کاربران دچار تعارض ویرایشی شده باشید (مطمئن شوید که آن کاربر از پیش گزارش نشده است). مطمئنید که می‌خواهید این کاربر را گزارش کنید؟</string>
   <string name="report-tu">گزارش کاربر</string>
   <string name="report-reason">دلیل:</string>
-  <string name="report-auto">گزارش شده$1</string>
+  <string name="report-auto">گزارش شده $1</string>
   <string name="report-intro">شما در حال گزارش کاربر $1 هستید</string>
   <string name="report-message">پیام:</string>
   <string name="report-log">هشدار برای این کاربر:</string>
@@ -511,10 +511,10 @@
   <string name="revert-confirm-same">این کار باعث واگردانی به نسخهٔ دیگری از ویرایش‌های همان کاربری که در حال واگردانی ویرایش او هستید، $1، می‌شود. ادامه می‌دهید؟</string>
   <string name="revert-confirm-warned">این کار موجب واگردانی به نسخه‌ای بدست $1 می‌شود که از قبل هشدار دریافت کرده است. ادامه می دهید؟</string>
   <string name="revert-error-first">این ویرایش نخستین ویرایش صفحه است، نمی‌توان واگردانی‌اش کرد.</string>
-  <string name="revert-only">ویرایش, تنها ویرایش این صفحه است</string>
+  <string name="revert-only">ویرایش، تنها ویرایش این صفحه است.</string>
   <string name="revert-creator">آخرین ویرایش به وسیله سازنده صفحه اش، $1 ، انجام شده است.</string>
   <string name="revert-preflightcheck">بررسی پیش‌ از جدال</string>
-  <string name="revert-delete-instead">به جای آن حذف صفحه؟</string>
+  <string name="revert-delete-instead">به جای آن صفحه حذف شود؟</string>
   <string name="revert-speedy-instead">برچسب زدن برای حذف سریع؟</string>
   <string name="revert-cannotundo">با توجه به تعارض ویرایش‌های میانی، امکان واگردانی وجود ندارد</string>
   <string name="revert-conflict">صفحه به وسیله کاربر فهرست سفید، «$1» ویرایش شده‌است.</string>
@@ -556,21 +556,21 @@
   <string name="shortcut-forward">به ویرایشی که در گذشته بارگذاشته‌اید اما از آن برگشته‌اید بروید</string>
   <string name="shortcut-warn">فرستادن هشدار به کاربر بدون واگردانی ویرایش</string>
   <string name="shortcut-revert">واگردانی ویرایش</string>
-  <string name="shortcut-x-raw">آتش‌کردن مورد اِن‌اُم در گزینگان واگردانی‌ها و هشدار</string>
-  <string name="shortcut-x-revert">آتش‌کردن مورد اِن‌اُم در گزینگان واگردانی</string>
+  <string name="shortcut-x-raw">ارسال مورد چندم در منوی واگردانی و هشدار</string>
+  <string name="shortcut-x-revert">ارسال مورد چندم در منوی واگردانی</string>
   <string name="shortcut-watch">درج صفحهٔ نمایش به فهرست پیگیری‌ها</string>
   <string name="shortcut-unwatch">حذف صفحهٔ نمایش از فهرست پیگیری‌ها</string>
-  <string name="shortcut-x-warn">آتش‌کردن مورد اِن‌اُم در گزینگان هشدار</string>
+  <string name="shortcut-x-warn">ارسال مورد چندم در منوی هشدار</string>
   <string name="shortcut-good">این ویرایش را به عنوان خوب علامت بزن</string>
   <string name="shortcut-open-in-huggle">بازکردن صفحه در حال حاضر نمایش داده‌شده</string>
-  <string name="shortcut-open">این ویرایش را در یک مرورگر نمایش بده</string>
+  <string name="shortcut-open">این ویرایش را در مرورگر نمایش بده</string>
   <string name="shortcut-talk">نمایش صفحه بحث کاربری که این ویرایش را انجام داده است</string>
   <string name="shortcut-revert-agf-1">واگردانی آخرین نسخه با فرض حسن نیت</string>
-  <string name="shortcut-browser-close-tab">بستن یک سربرگ مرورگر</string>
-  <string name="shortcut-tab">بازکردن یک سربرگ تازه</string>
-  <string name="shortcut-rw-stay">واگردانی نسخهٔ کنونی، به یک کاربر هشدار می‌دهد و در همین صفحه می‌ماند</string>
+  <string name="shortcut-browser-close-tab">بستن سربرگ مرورگر</string>
+  <string name="shortcut-tab">بازکردن سربرگ تازه</string>
+  <string name="shortcut-rw-stay">واگردانی نسخهٔ کنونی، به کاربر هشدار می‌دهد و در همین صفحه می‌ماند</string>
   <string name="shortcut-revert-and-stay">واگردانی ویرایش کنونی و در صفحه ماندن</string>
-  <string name="shortcut-user-contribs-browser">نمایش مشارکت‌های کاربر در یک مرورگر</string>
+  <string name="shortcut-user-contribs-browser">نمایش مشارکت‌های کاربر در مرورگر</string>
   <string name="warning-title">هشدار $1</string>
   <string name="warning-levelgroup">سطح هشدار</string>
   <string name="warning-levelauto">خودکار</string>
@@ -697,6 +697,7 @@
   <string name="page-tag-fail">شکست در برچسب‌زدن صفحه</string>
   <string name="page-tag-error">ناتوان در برچسب‌زدن صفحه، پیام خطا: $1</string>
   <string name="page-unknown">صفحهٔ ناشناخته</string>
+  <string name="summary-edit-range">نمایش محدوده‌ای از تفاوت میان شناسهٔ نسخهٔ $1 تا $2</string>
   <string name="speedy-csd-invalid">برچسب سی‌اس‌دی نامعتبر است، هیچ پیام و برچسب ویکی برای استفاده وجود ندارد</string>
   <string name="speedy-csd-existing">از پیش یک برچسب سی‌اس‌دی در صفحه وجود دارد.</string>
   <string name="namespace">فضای نام</string>
@@ -712,7 +713,7 @@ $1</string>
   <string name="about-qt">، کامپایل‌شده با استفاده از کیوتی $1 در حال اجرا روی کیوتی $1</string>
   <string name="error-unknown-code">خطای ناشناخته: $1</string>
   <string name="relogin-fail">ناتوان در ورود به ویکی: $1</string>
-  <string name="projects">پروژه ها</string>
+  <string name="projects">پروژه‌ها</string>
   <string name="unable-to-retrieve-user-list">ناتوانی در دریافت فهرست کاربر: $1</string>
   <string name="login-no-userinfo">سایت هیچ اطلاعاتی درباره کاربر نداشت.</string>
   <string name="login-invalid-register-date">صفحه ثبت‌نام نامعتبر توسط مدیاویکی برگردانده شد</string>
@@ -722,10 +723,10 @@ $1</string>
   <string name="api.php-invalid-response">api.php پاسخ با متن نامعتبر داد (وبسرور مشکل دارد؟) لطفا لاگ دیباگ برای اطلاعات دقیق بررسی کنید.</string>
   <string name="login-username-doesnt-exist">این نام کاربری وجود ندارد</string>
   <string name="developer-mode-enter-title">زمان</string>
-  <string name="developer-mode-enter-message">شما وارد حالت توسعه دهنده شده اید.</string>
+  <string name="developer-mode-enter-message">شما وارد حالت توسعه دهنده شده‌اید.</string>
   <string name="unimplemented">این ویژگی هنوز اجرایی نشده‌است</string>
-  <string name="unknown-item">ایتم ناشناس</string>
-  <string name="title-multiple-projects">پروژه های متعدد ($1)</string>
+  <string name="unknown-item">آیتم ناشناس</string>
+  <string name="title-multiple-projects">پروژه‌های متعدد ($1)</string>
   <string name="title-on">در $1</string>
   <string name="main-revert-custom-reason-text">دلیلی ارائه نشد/واگردانی سفارشی شده</string>
   <string name="main-revert-already-pending-title">این ویرایش هم‌اکنون در حال واگردانی است.</string>
@@ -735,5 +736,5 @@ $1</string>
   <string name="main-revert-type-made-by-you">ساخته شده توسط شما</string>
   <string name="main-revert-type-made-on-talk-page">ایجاد شده در صفحه بحث</string>
   <string name="main-revert-type-made-white-list">ایجاد شده توسط کاربری که در لیست سفید است</string>
-  <string name="main-revert-warn">این ویرایش $1 است, پس اگر شبیه به خرابکاری به نظر برسد, لزوما خرابکاری نیست, آیا از واگردانی اطمینان دارید؟</string>
+  <string name="main-revert-warn">این ویرایش $1 است، پس اگر شبیه به خرابکاری به نظر برسد، لزوماً خرابکاری نیست، آیا از واگردانی اطمینان دارید؟</string>
 </resources>
