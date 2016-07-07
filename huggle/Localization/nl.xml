@@ -481,6 +481,7 @@ Deze blokkade maakt het effect van de rangeblokkade ongedaan. Doorgaan?</string>
   <string name="report-select">Selecteer een verschil in de lijst om een voorvertoning te openen</string>
   <string name="report-write">Schrijven</string>
   <string name="report-progress">$1 rapporteren...</string>
+  <string name="report-retrieving">Huidige rapportagepagina aan het ophalen...</string>
   <string name="report-done">Gerapporteerd</string>
   <string name="report-user">Rapporteren</string>
   <string name="score-score">Score</string>
@@ -492,9 +493,11 @@ Deze blokkade maakt het effect van de rangeblokkade ongedaan. Doorgaan?</string>
   <string name="score-take-any-word">Overeenkomst met woorden die deze tekenreeks bevatten</string>
   <string name="uaa-not-supported">UAA niet beschikbaar</string>
   <string name="uaa-reported">Gerapporteerd</string>
+  <string name="revert-delete-instead">In plaats daarvan de pagina verwijderen?</string>
   <string name="revert-speedy-instead">In plaats daarvan voor snelle verwijdering markeren?</string>
   <string name="speedy-reason">Reden:</string>
   <string name="speedy-parameters">Parameters:</string>
+  <string name="rollback">$1 aan het terugdraaien</string>
   <string name="tag-title">Label $1</string>
   <string name="tag-tagselector">Label toevoegen:</string>
   <string name="tag-tags">Label(s):</string>
@@ -514,7 +517,9 @@ Deze blokkade maakt het effect van de rangeblokkade ongedaan. Doorgaan?</string>
   <string name="shortcut-my-talk">Mijn overlegpagina</string>
   <string name="shortcut-contrib">Bijdragen weergeven voor de gebruiker die de weergegeven bewerking heeft gemaakt</string>
   <string name="shortcut-revert">Bewerking terugdraaien</string>
+  <string name="shortcut-browser-close-tab">Sluit een browsertabblad</string>
   <string name="shortcut-tab">Opent een nieuw tabblad</string>
+  <string name="shortcut-rw-stay">Huidige bewerking terugdraaien, waarschuwt een gebruiker en blijft op de pagina</string>
   <string name="warning-title">$1 waarschuwen</string>
   <string name="warning-levelgroup">Waarschuwingsniveau</string>
   <string name="warning-levelauto">Automatisch</string>
@@ -528,6 +533,9 @@ Deze blokkade maakt het effect van de rangeblokkade ongedaan. Doorgaan?</string>
   <string name="error-noresponse">Geen antwoord</string>
   <string name="error-pagemissing">De pagina bestaat niet</string>
   <string name="error-unknown">Onbekende fout</string>
+  <string name="block-done">$1 geblokkeerd</string>
+  <string name="block-progress">$1 aan het blokkeren...</string>
+  <string name="blocklog-fail">Het ophalen van het blokkeerlogboek voor $1 is mislukt</string>
   <string name="blocklog-none">Er is geen blokkeerlogboek voor $1</string>
   <string name="blocklog-progress">Blokkeerlogboek aan het ophalen voor $1...</string>
   <string name="delete-done">$1 verwijderd</string>

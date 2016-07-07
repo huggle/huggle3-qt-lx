@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">فارسی</string>
-  <string name="isrtl">true</string>
+  <string name="isrtl">ناصحیح</string>
   <string name="add">افزودن</string>
   <string name="cancel">لغو</string>
   <string name="clear">پاک‌کردن</string>
@@ -723,7 +723,7 @@ $1</string>
   <string name="api.php-invalid-response">api.php پاسخ با متن نامعتبر داد (وبسرور مشکل دارد؟) لطفا لاگ دیباگ برای اطلاعات دقیق بررسی کنید.</string>
   <string name="login-username-doesnt-exist">این نام کاربری وجود ندارد</string>
   <string name="developer-mode-enter-title">زمان</string>
-  <string name="developer-mode-enter-message">شما وارد حالت توسعه دهنده شده‌اید.</string>
+  <string name="developer-mode-enter-message">شما وارد حالت توسعه دهنده شده‌اید!</string>
   <string name="unimplemented">این ویژگی هنوز اجرایی نشده‌است</string>
   <string name="unknown-item">آیتم ناشناس</string>
   <string name="title-multiple-projects">پروژه‌های متعدد ($1)</string>

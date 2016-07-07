@@ -439,7 +439,7 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="queue-title">Code</string>
   <string name="queue-queues">Code:</string>
   <string name="queue-typegroup">Tipo di coda</string>
-  <string name="queue-listselector">Lista:</string>
+  <string name="queue-listselector">Elenco:</string>
   <string name="queue-listbuilder">Generatore di liste...</string>
   <string name="queue-sortorder">Ordinamento:</string>
   <string name="queue-removeviewed">Rimuovi le modifiche quando vengono visualizzate</string>

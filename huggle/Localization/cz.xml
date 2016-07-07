@@ -51,6 +51,7 @@
   <string name="disable">Vypnuto</string>
   <string name="no-token">Chybí token</string>
   <string name="flags">Flagy</string>
+  <string name="gracetime">Čekání na dokončení editačních dotazů...</string>
   <string name="browser-none">Žádná stránka nyní není zobrazena</string>
   <string name="browser-load">Stahuji diff pomocí \"web rendering\", počkejte prosím...</string>
   <string name="browser-miss-summ">žádné shrnutí</string>
@@ -80,6 +81,7 @@
   <string name="block-type">Zablokovat / odblokovat</string>
   <string name="block-admin">Správce, který provedl tento blok</string>
   <string name="block-none">Neexistuje žádný uživatel ktereho lze zablokovat.</string>
+  <string name="contribution-browser-user-info">Zobrazuji nedávné příspěvky uživatele $1</string>
   <string name="config-function">Funkce</string>
   <string name="config-description">Popis</string>
   <string name="config-shortcut">Klávesové zkratky</string>
@@ -109,6 +111,7 @@
   <string name="config-defaultsummary">Výchozí shrnutí pro ruční editace</string>
   <string name="config-undosummary">Shrnutí při vracení vlastní úpravy</string>
   <string name="config-confirm-wl">Požadovat potvrzení pro návrat úpravy, která byla provedena uživatelem ktery je na bílé listině</string>
+  <string name="config-confirm-talk">Požadovat potvrzení pro vrácení na diskusní stránku</string>
   <string name="config-use-rollback">Použít softwarové vrácení změn</string>
   <string name="config-welcome-empty-page">Poslat uvítání uživatelům s prázdnou diskuzní stránkou za dobrou editaci</string>
   <string name="config-conflicts-revert">Autoamticky vyřešit konflikty s ostatními uživateli, kteří revertují nebo mění tuto stránku</string>
@@ -120,6 +123,7 @@
   <string name="config-remove-old">Odstranit staré editace, pokud jsou parsovány na stránku novější editace</string>
   <string name="config-display-text">Zobrazit další</string>
   <string name="config-nothing">Nic</string>
+  <string name="config-bot-edits">Úpravy robota (b)</string>
   <string name="config-own-edits">Vlastní úpravy</string>
   <string name="config-reverts">Reverty</string>
   <string name="config-new-page">Nová stránka</string>
@@ -129,6 +133,7 @@
   <string name="config-talk">Diskuzní stránka</string>
   <string name="config-updates">Zkontrolovat aktualizace</string>
   <string name="config-beta">Zkontrolovat beta verze</string>
+  <string name="config-close-without">Zavřít bez uložení</string>
   <string name="config-confirmmultiple">Potvrdit více revertů úprav provedených jedním uživatelem</string>
   <string name="config-confirmsame">Potvrdit revert do úpravy vyrobené stejným uživatelem</string>
   <string name="config-confirmselfrevert">Potvrdit reverzi vlastní úpravy</string>
@@ -172,6 +177,7 @@
   <string name="delete-edsc">Nelze odstranit stránku, protože $1</string>
   <string name="delete-failed-no-info">Žádné informace o stránce nebyly přítomne v dotazu (jste sysop?)</string>
   <string name="extension-kl">Neběží</string>
+  <string name="extension-ok">Načten a spuštěn</string>
   <string name="historyform-no-info">Není otevřen diff</string>
   <string name="historyform-title">Historie</string>
   <string name="historyform-retrieve-history">Stáhnout historii</string>
@@ -349,7 +355,7 @@
   <string name="main-han-disconnect">Odpojit</string>
   <string name="main-han-connect">Připojit</string>
   <string name="main-help">Nápověda</string>
-  <string name="main-han-display-bot-data">Zobrazit bot data</string>
+  <string name="main-han-display-bot-data">Zobrazit data robota</string>
   <string name="main-han-display-user-messages">Zobrazit uživatelské zprávy</string>
   <string name="main-han-display-user-data">Zobrazit data uživatele</string>
   <string name="main-help-documentation">Dokumentace</string>
@@ -440,6 +446,7 @@
   <string name="report-warn">Tento uživatel již dosáhl poslední úrovně, žádné další varování mu nebudou zaslány, můžete ho reportovat, ale ověřte že opravdu dosáhl dostatečného počtu varování. Můžete to udělat kliknutím na tlačítko \"diskuze\" v okně které se zobrazí v případě že se rozhodnete uživatele nahlásit. Berte na vědomí že tento formulář i toto varování se objeví bez ohledu na to, jestli byl revert jejich editu úspěšný, nebo ne, možná vás někdo předběhl (proto se ujistěte že uživatel již není nahlášen) Chcete tohoto uživatele nahlásit?</string>
   <string name="report-tu">Reportovat uživatele</string>
   <string name="report-reason">Důvod:</string>
+  <string name="report-auto">Nahlášeno $1</string>
   <string name="report-intro">Chystáte se nahlásit $1</string>
   <string name="report-message">Zpráva:</string>
   <string name="report-log">Upozornění pro tohoto uživatele:</string>
@@ -506,6 +513,7 @@
   <string name="user-history-fail">Nepodařilo se načíst historii pro uživatele: $1</string>
   <string name="userinfo-generic">Uživatelské info</string>
   <string name="userinfo-retrieve">Načíst informace</string>
+  <string name="shortcut-report-username">Nahlásit uživatelské jméno</string>
   <string name="shortcut-report-user">Nahlásit uživatele</string>
   <string name="shortcut-my-talk">Moje diskusní stránka</string>
   <string name="shortcut-raw">Vrátit úpravy a varovat uživatele</string>
@@ -623,8 +631,13 @@
   <string name="cr-message-same">Stránka $1 má nové editace vyrobené stejným uživatelem, jste si jist že je chcete vrátit?</string>
   <string name="cr-message-new">Stránka $1 má nové editace, jste si jist že je chcete vrátit?</string>
   <string name="cr-message-not-same">Stránka $1 má nové editace vyrobené jiným uživatelem, opravdu je chcete vrátit? (nejspíš to stejně nepůjde, protože token byl získán před těmito úpravami)</string>
+  <string name="preferences-watchlist-watch">Přidat do sledovaných stránek</string>
+  <string name="preferences-watchlist-unwatch">Odstranit ze sledovaných stránek</string>
+  <string name="preferences-watchlist-nochange">Nedělat nic</string>
   <string name="fail">Neúspěšný</string>
   <string name="request">Požadavek</string>
+  <string name="requesting">Požaduji</string>
+  <string name="requested">Požadované</string>
   <string name="edit-conflict">Editační konflikt</string>
   <string name="page-tag-nodescription">neexistuje žádný popis pro tuto značku :/</string>
   <string name="page-unknown">Neznámá stránka</string>
