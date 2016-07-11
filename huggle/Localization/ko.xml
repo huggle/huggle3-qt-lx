@@ -478,6 +478,7 @@
   <string name="uaa-reported">보고됨</string>
   <string name="uaa-no-reason-warn">사용자 이름이 정책 위반인 이유를 지정하지 않았습니다. 이유를 지정해 주십시오.</string>
   <string name="uaa-nr">제공된 이유가 없습니다</string>
+  <string name="uaa-g1">UAA의 내용을 가져오는 중</string>
   <string name="uaa-e1">문서 내용에 대한 쿼리는 반환한 데이터가 없습니다 .</string>
   <string name="uaa-e2">문서 내용은 사용할 수 없었습니다.</string>
   <string name="revert-confirm-multiple">$1의 여러번의 편집을 되돌립니다. 계속하시겠습니까?</string>
@@ -502,7 +503,9 @@
   <string name="update-title">새 버전을 사용할 수 있습니다</string>
   <string name="update-progress">새 버전을 다운로드 중...</string>
   <string name="update-error">새 버전을 다운로드하는 데 실패했습니다</string>
+  <string name="updater-title">새로운 버전의 Huggle을 이용할 수 있습니다</string>
   <string name="updater-update">업데이트</string>
+  <string name="updater-update-available">새로운 버전의 Huggle을 이용할 수 있습니다: 버전 $1</string>
   <string name="updater-open-manualdownloadpage">다운로드 페이지 열기</string>
   <string name="updater-close">닫기</string>
   <string name="updater-disable-notify">업데이트 비활성화</string>
@@ -531,6 +534,7 @@
   <string name="warning-submit">보내기</string>
   <string name="han-already-connected">이미 연결되어 있으므로 HAN에 연결하지 않습니다</string>
   <string name="han-already-connecting">기다려 주십시오. HAN에 이미 연결 중입니다</string>
+  <string name="han-disconnected">HAN으로부터 접속이 끊어졌습니다</string>
   <string name="error-noresponse">응답 없음</string>
   <string name="error-pagemissing">문서가 존재하지 않습니다</string>
   <string name="error-timeout">요청 시간 초과</string>
@@ -570,6 +574,7 @@
   <string name="loadprojectconfig-fail">프로젝트 구성 문서 불러오기 실패</string>
   <string name="loaduserconfig-fail">사용자 구성 문서 불러오기 실패</string>
   <string name="reqprotection-duplicate">보호가 이미 요청되었습니다</string>
+  <string name="reqprotection-fail">\'$1\' 보호 요청을 하지 못했습니다</string>
   <string name="reqprotection-progress">\'$1\' 보호 요청 중...</string>
   <string name="speedy-fail">빠른 삭제를 위해 문서에 태그할 수 없습니다: $1</string>
   <string name="speedy-wrong">요청한 태그가 유효하지 않습니다. 다른 삭제 이유를 선택해 주십시오</string>
@@ -629,6 +634,7 @@
   <string name="login-invalid-register-date">미디어위키가 유효하지 않은 등록일을 반환했습니다</string>
   <string name="login-site-info-query-failed">$1에 대한 사이트 정보 조회 실패: $2</string>
   <string name="login-no-site-info-returned">이 위키에 대한 사이트 정보가 반환되지 않았습니다</string>
+  <string name="loading-main-window">주 Huggle 창을 불러오는 중</string>
   <string name="api.php-invalid-response">api.php가 유효하지 않은 텍스트로 응답했습니다. (웹 서버가 다운되었나요?) 정확한 정보를 위해 디버그 로그를 확인해 주십시오.</string>
   <string name="login-username-doesnt-exist">이 사용자 이름은 존재하지 않습니다</string>
   <string name="developer-mode-enter-message">개발자 모드에 진입했습니다!</string>

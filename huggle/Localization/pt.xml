@@ -355,7 +355,7 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="main-user-report">Denunciar</string>
   <string name="main-user-ib">Aumentar pontuação de suspeição</string>
   <string name="main-user-clear-tp">Limpar página de discussão de utilizador(a)</string>
-  <string name="main-user-retrieving-tp" fuzzy="true">A obter a página de discussão de $1</string>
+  <string name="main-user-retrieving-tp">A obter a página de discussão de $1</string>
   <string name="main-user-block">Bloquear...</string>
   <string name="main-browser-back">Voltar</string>
   <string name="main-browser-forward">Seguinte</string>
@@ -390,7 +390,7 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="main-no-page">A ação que solicitou requer uma página para carregar. Por favor, carregue uma página antes de tentar novamente.</string>
   <string name="main-revert-null">Impossível reverter, a edição é nula</string>
   <string name="main-revert-newpage-title">Não é possível desfazer</string>
-  <string name="main-revert-newpage" fuzzy="true">Esta é uma página nova, portanto a edição não pode ser desfeita. Pode marcá-la ou eliminá-la.</string>
+  <string name="main-revert-newpage">Esta é uma página nova, portanto a edição não pode ser desfeita. Pode marcá-la ou eliminá-la.</string>
   <string name="main-restore-text-fail">Não foi possível restaurar a revisão, porque não há texto disponível para ela</string>
   <string name="message-title">Mensagem $1</string>
   <string name="message-help">Introduza um ou ambos os campos de Assunto e Sumário. Se não introduzir o sumário, será usado o assunto. Se não introduzir o assunto, não será criada uma secção.</string>
@@ -651,6 +651,8 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="preferences-extension-enabled">Esta extensão não foi programada para ser desativada na próxima inicialização do huggle</string>
   <string name="preferences-extension-enabled-restart">A extensão foi ativada, contudo você precisará reiniciar o huggle para que isso aconteça</string>
   <string name="preferences-watchlist-watch">Adicionar às páginas vigiadas</string>
+  <string name="preferences-watchlist-unwatch">Remover das páginas vigiadas</string>
+  <string name="preferences-watchlist-nochange">Não fazer nada</string>
   <string name="fail">Falha</string>
   <string name="request">Pedir</string>
   <string name="requesting">A solicitar</string>
@@ -679,6 +681,7 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="unimplemented">Esta funcionalidade não foi implementada ainda</string>
   <string name="unknown-item">Elemento desconhecido</string>
   <string name="title-multiple-projects">vários projetos ($1)</string>
+  <string name="title-on">em $1</string>
   <string name="main-revert-custom-reason-text">Não foi fornecida nenhuma razão / reversão personalizada</string>
   <string name="main-revert-already-pending-title">Esta edição já está a ser desfeita</string>
   <string name="main-revert-already-pending-text">Não pode desfazer esta edição porque alguém já o fez. Por favor, aguarde!</string>
