@@ -514,6 +514,7 @@
   <string name="userinfo-retrieve">정보 얻기</string>
   <string name="shortcut-my-talk">내 토론 문서</string>
   <string name="shortcut-raw">편집을 되돌리고 사용자를 경고</string>
+  <string name="shortcut-exit">일반적인 방식으로 Huggle 끝내기</string>
   <string name="shortcut-next">다음 편집으로 가기</string>
   <string name="shortcut-suspicious">수상한 편집으로 표시</string>
   <string name="shortcut-revert">편집 되돌리기</string>
@@ -557,6 +558,7 @@
   <string name="history-fail">$1의 역사를 얻는 데 실패함</string>
   <string name="history-progress">$1 ($2)의 역사를 얻는 중...</string>
   <string name="history-work">$1에 대한 편집을 취소하는 중</string>
+  <string name="history-no-item-selected">역사 위젯에서 선택된 항목이 없습니다</string>
   <string name="history-message-revert-title">이 메시지를 정말로 취소하시겠습니까?</string>
   <string name="history-another-edit">이미 다른 편집을 취소하고 있으니 기다려 주십시오</string>
   <string name="history-not-found">실행 취소를 할 것을 찾을 수 없습니다</string>
@@ -567,6 +569,7 @@
   <string name="history-welcome-msg-title">환영 메시지를 대신 보내시겠습니까?</string>
   <string name="history-welcome-msg">이 토론 문서를 만들었으나 이 동작을 취소할 수 없습니다. 환영 틀로 대체하시겠습니까?</string>
   <string name="notify-unknowncreator">문서 작성자를 찾을 수 없습니다</string>
+  <string name="protect-progress">$1의 보호 수준을 변경하는 중...</string>
   <string name="protectlog-fail">$1에 대한 보호 기록을 얻는 데 실패했습니다</string>
   <string name="protectlog-none">$1에 대한 보호 기록이 없습니다</string>
   <string name="protectlog-progress">$1에 대한 보호 기록을 얻는 중...</string>
