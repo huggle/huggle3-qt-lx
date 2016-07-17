@@ -1675,8 +1675,13 @@ void MainWindow::PatrolEdit(WikiEdit *e)
     ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
     if (e == nullptr)
         e = this->CurrentEdit;
-    if (e == nullptr || !conf->Patrolling)
+    if (e == nullptr)
         return;
+    if (!conf->Patrolling)
+    {
+        HUGGLE_DEBUG("Not patrolling " + e->Page->PageName + " because patrolling is not enabled on " + this->GetCurrentWikiSite()->Name, 2);
+        return;
+    }
     ApiQuery *query = nullptr;
     bool flaggedrevs = conf->PatrollingFlaggedRevs;
 
