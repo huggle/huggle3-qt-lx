@@ -85,6 +85,7 @@ class QXmlStreamWriter;
 #define HUGGLE_ACCEL_MAIN_REVERT_AGF_ONE_REV    44
 #define HUGGLE_ACCEL_MAIN_WATCH                 45
 #define HUGGLE_ACCEL_MAIN_UNWATCH               46
+#define HUGGLE_ACCEL_MAIN_PATROL                47
 #define HUGGLE_ACCEL_MAIN_OPEN                  48
 #define HUGGLE_ACCEL_MAIN_USER_CONTRIBUTIONS    50
 #define HUGGLE_ACCEL_MAIN_CONTRIB_BROWSER       52

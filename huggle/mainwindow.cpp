@@ -861,6 +861,9 @@ void MainWindow::ReloadShort(QString id)
         case HUGGLE_ACCEL_USER_REPORT:
             q = this->ui->actionReport_user_2;
             break;
+        case HUGGLE_ACCEL_MAIN_PATROL:
+            q = this->ui->actionPatrol;
+            break;
     }
 
     if (q != nullptr)
