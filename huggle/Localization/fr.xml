@@ -544,6 +544,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="user-history-fail">impossible de récupérer l’historique pour l’utilisateur : $1</string>
   <string name="userinfo-generic">Information utilisateur</string>
   <string name="userinfo-retrieve">Récupérer l’information</string>
+  <string name="shortcut-page-patrol-edit">Patrouiller la modification</string>
   <string name="shortcut-report-username">Rapport de nom d’utilisateur</string>
   <string name="shortcut-report-user">Rapport d’utilisateur</string>
   <string name="shortcut-my-talk">Ma page de discussion</string>

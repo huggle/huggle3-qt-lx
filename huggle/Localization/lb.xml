@@ -330,6 +330,7 @@ Benotzerinformatioun konnt net ofgefrot ginn: $2</string>
   <string name="updater-disable-notify">Aktualisatiounen desaktivéieren</string>
   <string name="userinfo-generic">Benotzerinformatioun</string>
   <string name="userinfo-retrieve">Informatiounen ofruffen</string>
+  <string name="shortcut-page-patrol-edit">Ännerung kontrolléiert</string>
   <string name="shortcut-report-username">Benotzernumm mellen</string>
   <string name="shortcut-report-user">Benotzer mellen</string>
   <string name="shortcut-my-talk">Meng Diskussiounssäit</string>

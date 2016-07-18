@@ -544,6 +544,7 @@
   <string name="user-history-fail">无法检索用户$1的历史</string>
   <string name="userinfo-generic">用户信息</string>
   <string name="userinfo-retrieve">检索信息</string>
+  <string name="shortcut-page-patrol-edit">巡查编辑</string>
   <string name="shortcut-report-username">报告用户名</string>
   <string name="shortcut-report-user">报告用户</string>
   <string name="shortcut-my-talk">我的讨论页</string>

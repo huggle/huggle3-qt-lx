@@ -350,6 +350,7 @@
   <string name="main-browser-open">Zobrazit toto v externím prohlížeči</string>
   <string name="main-browser-newedits">Zobrazit nové úpravy na stránce</string>
   <string name="main-browser-newcontribs">Zobrazit nové příspěvky uživatele</string>
+  <string name="main-browser-lasttab">Nemůžu zavřít tuto kartu, protože je poslední, musíte alespoň 1 kartu otevřít</string>
   <string name="main-revert-manual">Token pro $1 se nepodařilo získat, pokusím se provést revert manuální editací</string>
   <string name="main-han">HAN</string>
   <string name="main-han-disconnect">Odpojit</string>
@@ -378,7 +379,7 @@
   <string name="main-no-page">Akce, vyžaduje načtenou stránku.</string>
   <string name="main-revert-null">Nelze vrátit, edit je NULL</string>
   <string name="main-revert-newpage-title">Toto nelze revertovat</string>
-  <string name="main-revert-newpage" fuzzy="true">Toto je nová stránka, není ji možné revertovat, ani tagovat nebo smazat.</string>
+  <string name="main-revert-newpage">Toto je nová stránka, není ji možné revertovat. Můžete ji označit nebo smazat.</string>
   <string name="main-restore-text-fail">Není možné obnovit revizi, neboť není k dispozici žádný text.</string>
   <string name="message-title">Poslat zprávu uživateli $1</string>
   <string name="message-help">Zadejte předmět zprávy nebo i shrnutí. Pokud není uvedeno žádné shrnutí úpravy, předmět bude použit. Pokud není uveden žádný předmět, zpráva nebude v nové sekci</string>
@@ -513,6 +514,7 @@
   <string name="user-history-fail">Nepodařilo se načíst historii pro uživatele: $1</string>
   <string name="userinfo-generic">Uživatelské info</string>
   <string name="userinfo-retrieve">Načíst informace</string>
+  <string name="shortcut-page-patrol-edit">Hlídka úprav</string>
   <string name="shortcut-report-username">Nahlásit uživatelské jméno</string>
   <string name="shortcut-report-user">Nahlásit uživatele</string>
   <string name="shortcut-my-talk">Moje diskusní stránka</string>
@@ -538,6 +540,7 @@
   <string name="shortcut-tab">Otevře novou záložku</string>
   <string name="shortcut-rw-stay">Vrátí aktuální edit, varuje tohoto uživatele a zůstane na stránce</string>
   <string name="shortcut-revert-and-stay">Revertovat současné editace a zůstat na stránce</string>
+  <string name="shortcut-user-contribs-browser">Zobrazit příspěvky uživatele v prohlížeči</string>
   <string name="warning-title">Varovat $1</string>
   <string name="warning-levelgroup">Úroveň pro upozornění</string>
   <string name="warning-levelauto">Automatické</string>
@@ -579,6 +582,7 @@
   <string name="history-progress">Načítání historie $1 ($2)...</string>
   <string name="history-work">Obnovuji vlastní editaci která byla na $1</string>
   <string name="history-message-revert-title">Opravdu chcete vrátit jen tuto zprávu?</string>
+  <string name="history-another-edit">Už pracuji na další editaci, prosím čekejte.</string>
   <string name="history-not-found">Nic nebylo nalezeno</string>
   <string name="history-already-done">Již bylo vráceno zpět</string>
   <string name="history-message-revert-body">Toto je pouze zpráva která byla poslána na základě rollbacku, jste si jisti že chcete vrátit pouze odeslání zprávy a ne i revertaci která v ní je zmíněna? (Pokud chcete vrátit obojí klikněte na vrátit na revertaci).</string>
@@ -638,13 +642,35 @@
   <string name="request">Požadavek</string>
   <string name="requesting">Požaduji</string>
   <string name="requested">Požadované</string>
+  <string name="message-fail">Nepodařilo se doručit zprávu</string>
   <string name="edit-conflict">Editační konflikt</string>
   <string name="page-tag-nodescription">neexistuje žádný popis pro tuto značku :/</string>
+  <string name="page-tag-fail">Nepodařilo se označit stránku</string>
+  <string name="page-tag-error">Nelze označit stránku, chyba byla: $1</string>
   <string name="page-unknown">Neznámá stránka</string>
   <string name="namespace">Jmenný prostor</string>
   <string name="block-alreadyblocked">Uživatel již je zablokován.</string>
   <string name="report-fail" fuzzy="true">Nepodařilo se nahlásit uživatele: $1</string>
+  <string name="report-unable">Nelze nahlásit uživatele :(</string>
+  <string name="about-python-with">s podoporou pynthonu</string>
+  <string name="about-python-without">bez podpory pythonu</string>
   <string name="error-unknown-code">Neznámá chyba: $1</string>
   <string name="relogin-fail">Nemohu se přihlásit na wiki: $1</string>
   <string name="projects">Projekty</string>
+  <string name="loading-main-window">Načítání hlavního huggle okna</string>
+  <string name="login-username-doesnt-exist">Toto uživatelské jméno neexistuje</string>
+  <string name="developer-mode-enter-title">Whee</string>
+  <string name="developer-mode-enter-message">Otevřeli jste režim pro vývojáře!</string>
+  <string name="unimplemented">Tato funkce ještě není implementována</string>
+  <string name="unknown-item">Neznámá položka</string>
+  <string name="title-multiple-projects">více projektů ($1)</string>
+  <string name="title-on">na $1</string>
+  <string name="main-revert-already-pending-title">Tato úprava je již byla vrácena</string>
+  <string name="main-revert-already-pending-text">Nemůžete vrátit tuto editaci protože už byla vrácena. Prosím čekejte!</string>
+  <string name="main-revert-type-unknown">Neznámé</string>
+  <string name="main-revert-type-in-userspace">v seznamu uživatelů</string>
+  <string name="main-revert-type-made-by-you">vytvořeno vámi</string>
+  <string name="main-revert-type-made-on-talk-page">vytvořené na diskusní stránce</string>
+  <string name="main-revert-type-made-white-list">vytvořené uživatelem, který je na white list</string>
+  <string name="main-revert-warn">Tento edit je $1, takže i když to vypadá, že to je vandalismus, to nemusí být, jste si jisti, že úpravy chcete vrátit?</string>
 </resources>
