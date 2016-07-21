@@ -392,7 +392,7 @@
   <string name="message-message">메시지:</string>
   <string name="message-summary">요약:</string>
   <string name="message-autosign">서명은 자동으로 추가됩니다</string>
-  <string name="message-retrieve-new-token">$1(을)를 편집할 토큰을 얻는 중</string>
+  <string name="message-retrieve-new-token">$1을(를) 편집할 토큰을 얻는 중</string>
   <string name="message-fail-re-user-tp">$1를 찾을 수 없습니다. 사용자에게 메시지 배달 멈춤을 얻을 수 없습니다.</string>
   <string name="message-er">$1님에게 메시지를 배달할 수 없습니다: $2</string>
   <string name="message-error">메시지를 $1에 전달하는데 실패했습니다! 로그를 확인해 주십시오!</string>
