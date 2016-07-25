@@ -77,7 +77,7 @@
   <string name="block-token-1">Získávání tokenu pro blok $1</string>
   <string name="block-fail">Nelze blokovat uživatele, $1</string>
   <string name="block-token-e1">Nelze načíst token: $1</string>
-  <string name="block-error-no-info">Žádne informace o uzivateli nebyly v dotazu (jste sysop?)</string>
+  <string name="block-error-no-info">Žádné informace o uživateli v dotazu nebyly (jste správce?)</string>
   <string name="block-type">Zablokovat / odblokovat</string>
   <string name="block-admin">Správce, který provedl tento blok</string>
   <string name="block-none">Neexistuje žádný uživatel ktereho lze zablokovat.</string>
@@ -86,9 +86,9 @@
   <string name="config-description">Popis</string>
   <string name="config-shortcut">Klávesové zkratky</string>
   <string name="config-queue-filter-ignore">Ignorovat (nezáleží)</string>
-  <string name="config-queue-filter-exclude">Vyloučit (nesmí být)</string>
-  <string name="config-queue-filter-require">Vyžadují (musí být)</string>
-  <string name="config-summ">Vlastní shrnutí pro editace pomocí template</string>
+  <string name="config-queue-filter-exclude">Vyloučit (není nutné)</string>
+  <string name="config-queue-filter-require">Vyžadovat (povinné)</string>
+  <string name="config-summ">Vlastní shrnutí revertů u šablon</string>
   <string name="config-title">Nastavení</string>
   <string name="config-already-in-use">Tento zástupce je již používán $1, vyberte prosím jiný</string>
   <string name="config-openinbrowser">Otevřít odkazy v novém okně prohlížeče</string>
@@ -149,7 +149,7 @@
   <string name="config-autoreport">V případě dotazu na varování uživatele co má finální varování</string>
   <string name="config-reportnone">Nedělat nic</string>
   <string name="config-reportprompt">Vyzvat pro nahlášení uživatele</string>
-  <string name="config-reportauto">Automaticky reportovat uzivatele</string>
+  <string name="config-reportauto">Automaticky nahlásit</string>
   <string name="config-templates">Uživatelské šablony zpráv</string>
   <string name="config-templatetext">Zobrazit text</string>
   <string name="config-template">Šablona</string>
@@ -161,7 +161,7 @@
   <string name="config-summaryprompt">Zadejte shrnutí</string>
   <string name="config-history">Stáhnout celou historii všech článků</string>
   <string name="config-defaultsprompt">Obnovit výchozí hodnoty?</string>
-  <string name="config-logbrowsetitle">Umístění souboru protokolu</string>
+  <string name="config-logbrowsetitle">Umístění souborového protokolu</string>
   <string name="config-shortcutconflict">Zástupce \'$1\' je v konfliktu s existující zkratkou pro \'$1\'</string>
   <string name="config-no-colon">Nemůžete použít symbol : v názvu fronty</string>
   <string name="config-notify-update">Zkontrolovat aktualizace</string>
@@ -193,7 +193,7 @@
   <string name="irc-connecting">$1: Pokouším se připojit k IRC serveru...</string>
   <string name="irc-disconnected">Ztraceno připojení k IRC seznamu pro $1, připojuji se...</string>
   <string name="irc-nochannel">IRC kanál $1 nenalezen; místo toho použiji pomalejší API dotazy</string>
-  <string name="irc-error">Nepodařilo se připojit k IRC serveru ($1: $2). Používáte pomalejší API systém.</string>
+  <string name="irc-error">Nepodařilo se připojit k posledním změnámn na IRC serveru ($1: $2). Použijí se pomalejší API dotazy.</string>
   <string name="irc-stop">Čekání na zastavení primárního poskytovatele pro $1</string>
   <string name="irc-not">Zdroj: IRC je zakázán v projekt configu</string>
   <string name="irc-failure">Primarni poskytovatel wiki zmen selhal, probiha fallback na manualni refresh</string>
@@ -353,7 +353,7 @@
   <string name="main-browser-open">Zobrazit toto v externím prohlížeči</string>
   <string name="main-browser-newedits">Zobrazit nové úpravy na stránce</string>
   <string name="main-browser-newcontribs">Zobrazit nové příspěvky uživatele</string>
-  <string name="main-browser-lasttab">Nemůžu zavřít tuto kartu, protože je poslední, musíte alespoň 1 kartu otevřít</string>
+  <string name="main-browser-lasttab">Nemůžu zavřít tuto kartu, protože je poslední, musíte mít alespoň 1 další kartu otevřenou</string>
   <string name="main-revert-manual">Token pro $1 se nepodařilo získat, pokusím se provést revert manuální editací</string>
   <string name="main-han">HAN</string>
   <string name="main-han-disconnect">Odpojit</string>
@@ -382,7 +382,7 @@
   <string name="main-no-page">Akce, vyžaduje načtenou stránku.</string>
   <string name="main-revert-null">Nelze vrátit, edit je NULL</string>
   <string name="main-revert-newpage-title">Toto nelze revertovat</string>
-  <string name="main-revert-newpage">Toto je nová stránka, není ji možné revertovat. Můžete ji označit nebo smazat.</string>
+  <string name="main-revert-newpage">Toto je nová stránka, není ji možné revertovat. Můžete ji buď označit nebo smazat.</string>
   <string name="main-restore-text-fail">Není možné obnovit revizi, neboť není k dispozici žádný text.</string>
   <string name="message-title">Poslat zprávu uživateli $1</string>
   <string name="message-help">Zadejte předmět zprávy nebo i shrnutí. Pokud není uvedeno žádné shrnutí úpravy, předmět bude použit. Pokud není uveden žádný předmět, zpráva nebude v nové sekci</string>
@@ -413,6 +413,7 @@
   <string name="protect-message-title-fail">Nelze nastavit ochranu</string>
   <string name="protect-moveprotection">Zamknout přesun</string>
   <string name="protect-ft">Načítání klíče k zámku $1</string>
+  <string name="protect-request-proj-fail">Tento projekt nepodporuje žádosti o zamknutí</string>
   <string name="queue-title">Fronty</string>
   <string name="queue-queues">Fronty:</string>
   <string name="queue-typegroup">Typ fronty</string>
@@ -585,7 +586,7 @@
   <string name="history-fail">Nepodařilo se načíst historii $1</string>
   <string name="history-progress">Načítání historie $1 ($2)...</string>
   <string name="history-work">Obnovuji vlastní editaci která byla na $1</string>
-  <string name="history-no-item-selected">Žádná položka není vybrána v historii</string>
+  <string name="history-no-item-selected">Žádná položka v historii není vybrána</string>
   <string name="history-message-revert-title">Opravdu chcete vrátit jen tuto zprávu?</string>
   <string name="history-another-edit">Již pracuji na vrácení další editace, prosím čekejte</string>
   <string name="history-not-found">Nic nebylo nalezeno</string>
@@ -680,6 +681,6 @@
   <string name="main-revert-type-in-userspace">v uživatelském prostoru</string>
   <string name="main-revert-type-made-by-you">vytvořeno vámi</string>
   <string name="main-revert-type-made-on-talk-page">vytvořeno na diskusní stránce</string>
-  <string name="main-revert-type-made-white-list">vytvořené uživatelem, který je na white list</string>
-  <string name="main-revert-warn">Tento edit je $1, takže i když to vypadá, že to je vandalismus, to nemusí být, jste si jisti, že úpravy chcete vrátit?</string>
+  <string name="main-revert-type-made-white-list">vytvořeno uživatelem, který je na white-listu</string>
+  <string name="main-revert-warn">Tato editace je $1, takže i když to vypadá na vandalismus, nemusí tomu tak být. Jste si {{GENDER:|jist|jista|jist(a)}}, že tuto editaci chcete vrátit?</string>
 </resources>
