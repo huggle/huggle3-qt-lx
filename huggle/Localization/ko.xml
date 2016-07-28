@@ -333,7 +333,7 @@
   <string name="main-page-curr-disp">현재 표시됨</string>
   <string name="main-page-display">이 문서 보기</string>
   <string name="main-page-patrol">점검한 것으로 표시</string>
-  <string name="main-page-move">옮기기...</string>
+  <string name="main-page-move">이동...</string>
   <string name="main-page-flag-suspicious-edit">의심스러운 편집으로 플래그 (이 행동은 사용자에게 +1점을 줍니다)</string>
   <string name="main-page-flag-good-edit">좋은 편집으로 플래그 (이 행동은 사용자에게 -200점을 줍니다)</string>
   <string name="main-page-protect">보호</string>
@@ -416,7 +416,7 @@
   <string name="protect-fail-no-info">문서 정보를 이용할 수 없습니다 (관리자인가요?)</string>
   <string name="protect-fullprotection">보호</string>
   <string name="protect-message-title-fail">보호할 수 없음</string>
-  <string name="protect-moveprotection">옮기기 보호</string>
+  <string name="protect-moveprotection">이동 보호</string>
   <string name="protect-ft">$1 문서를 보호하기 위해 토큰을 가져오는 중</string>
   <string name="protect-request-proj-fail">이 프로젝트는 보호 요청을 지원하지 않습니다</string>
   <string name="queue-title">대기열</string>
@@ -540,6 +540,7 @@
   <string name="warning-warntype">경고 유형:</string>
   <string name="warning-warnlog">이 사용자에게 경고:</string>
   <string name="warning-submit">보내기</string>
+  <string name="missing-warning">$1 경고 틀이 없습니다</string>
   <string name="han-already-connected">이미 연결되어 있으므로 HAN에 연결하지 않습니다</string>
   <string name="han-already-connecting">기다려 주십시오. HAN에 이미 연결 중입니다</string>
   <string name="han-disconnected">HAN으로부터 접속이 끊어졌습니다</string>
