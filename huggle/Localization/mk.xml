@@ -544,6 +544,7 @@
   <string name="user-history-fail">не можам да ја добијам историјата на корисникот: $1</string>
   <string name="userinfo-generic">Кориснички информации</string>
   <string name="userinfo-retrieve">Повикај се на информациите</string>
+  <string name="shortcut-page-patrol-edit">Означи како проверено</string>
   <string name="shortcut-report-username">Пријави корисничко име</string>
   <string name="shortcut-report-user">Пријави корисник</string>
   <string name="shortcut-my-talk">Моја страница за разговор</string>

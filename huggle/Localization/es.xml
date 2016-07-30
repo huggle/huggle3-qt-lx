@@ -545,6 +545,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="user-history-fail">no se pudo recuperar el historial del usuario: $1</string>
   <string name="userinfo-generic">Información del usuario</string>
   <string name="userinfo-retrieve">Recuperar información</string>
+  <string name="shortcut-page-patrol-edit">Edición de verificación</string>
   <string name="shortcut-report-username">Denunciar nombre de usuario</string>
   <string name="shortcut-report-user">Denunciar usuario</string>
   <string name="shortcut-my-talk">Mi página de discusión</string>

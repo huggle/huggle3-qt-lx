@@ -544,6 +544,7 @@
   <string name="user-history-fail">امکان دریافت تاریخچه برای کاربر نبود: $1</string>
   <string name="userinfo-generic">اطلاعات کاربری</string>
   <string name="userinfo-retrieve">بازیابی اطلاعات</string>
+  <string name="shortcut-page-patrol-edit">گشت‌زدن ویرایش</string>
   <string name="shortcut-report-username">گزارش نام کاربری</string>
   <string name="shortcut-report-user">گزارش کاربر</string>
   <string name="shortcut-my-talk">صفحهٔ بحث من</string>

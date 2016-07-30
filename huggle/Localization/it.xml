@@ -544,6 +544,7 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="user-history-fail">impossibile recuperare la cronologia per l\'utente: $1</string>
   <string name="userinfo-generic">Informazioni utente</string>
   <string name="userinfo-retrieve">Recupera le informazioni</string>
+  <string name="shortcut-page-patrol-edit">Verifica modifica</string>
   <string name="shortcut-report-username">Segnala il nome utente</string>
   <string name="shortcut-report-user">Segnala l\'utente</string>
   <string name="shortcut-my-talk">La mia pagina di discussione</string>

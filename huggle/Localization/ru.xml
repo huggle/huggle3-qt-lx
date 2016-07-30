@@ -544,6 +544,7 @@
   <string name="user-history-fail">не удалось получить историю для участника: $1</string>
   <string name="userinfo-generic">Информация об участнике</string>
   <string name="userinfo-retrieve">Получить информацию</string>
+  <string name="shortcut-page-patrol-edit">Отпатрулировать правку</string>
   <string name="shortcut-report-username">Пожаловаться на имя учётной записи</string>
   <string name="shortcut-report-user">Сообщить о нарушении</string>
   <string name="shortcut-my-talk">Моя страница обсуждения</string>
