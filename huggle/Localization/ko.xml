@@ -134,11 +134,11 @@
   <string name="config-own-edits">자신의 편집</string>
   <string name="config-reverts">되돌리기</string>
   <string name="config-new-page">새 문서</string>
-  <string name="config-whitelisted">허용 목록됨</string>
+  <string name="config-whitelisted">허용 목록에 추가됨</string>
   <string name="config-friend">친구</string>
   <string name="config-userspace">사용자 공간</string>
   <string name="config-talk">토론 문서</string>
-  <string name="config-message-notification">새로운 메시지를 받았을 때 당신의 토론 문서에 알림을 표시</string>
+  <string name="config-message-notification">당신의 토론 문서에 새로운 메시지를 받을 때 알림을 표시</string>
   <string name="config-warning-api">API 쿼리 경고 표시</string>
   <string name="config-updates">업데이트 확인</string>
   <string name="config-beta">베타 버전을 확인</string>
@@ -529,7 +529,7 @@
   <string name="shortcut-browser-close-tab">브라우저 탭 닫기</string>
   <string name="shortcut-tab">새 탭 열기</string>
   <string name="shortcut-rw-stay">현재 편집을 되돌리고, 사용자를 경고하고 문서에 머물기</string>
-  <string name="shortcut-revert-and-stay">문서에서 현재 편집을 되돌리고 머물기</string>
+  <string name="shortcut-revert-and-stay">현재 편집을 되돌리고 문서에 머물기</string>
   <string name="warning-title">$1에게 경고</string>
   <string name="warning-levelgroup">경고 수준</string>
   <string name="warning-levelauto">자동</string>
