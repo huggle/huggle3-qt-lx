@@ -543,6 +543,7 @@
   <string name="user-history-fail">$1 kullanıcısı için geçmiş getirilemedi</string>
   <string name="userinfo-generic">Kullanıcı bilgisi</string>
   <string name="userinfo-retrieve">Bilgiyi getir</string>
+  <string name="shortcut-page-patrol-edit">Devriye Düzenle</string>
   <string name="shortcut-report-username">Kullanıcı adını raporla</string>
   <string name="shortcut-report-user">Kullanıcıyı rapor et</string>
   <string name="shortcut-my-talk">Mesaj sayfam</string>
@@ -716,6 +717,7 @@ $1</string>
   <string name="unable-to-retrieve-user-list">Kullanıcı listesi getirilemiyor: $1</string>
   <string name="login-no-userinfo">Site herhangi bir kullanıcı bilgisi göndermedi</string>
   <string name="login-site-info-query-failed">Site bilgileri sorgu için $1 başarısız oldu: $2</string>
+  <string name="loading-main-window">Huggle ana penceresinden yükleniyor</string>
   <string name="login-username-doesnt-exist">Bu kullanıcı adı yok</string>
   <string name="developer-mode-enter-title">Vaaay</string>
   <string name="developer-mode-enter-message">Geliştirici moduna girdiniz!</string>

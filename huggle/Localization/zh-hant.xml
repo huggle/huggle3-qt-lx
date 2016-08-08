@@ -52,6 +52,7 @@
   <string name="disable">禁用</string>
   <string name="no-token">無標記</string>
   <string name="flags">標記</string>
+  <string name="gracetime">正在等待編輯查詢結束...</string>
   <string name="browser-none">現在無頁面可以顯示</string>
   <string name="browser-load">通過web渲染備選下載版本差異中，請耐心等待…</string>
   <string name="browser-miss-summ">未提供摘要</string>
@@ -100,9 +101,9 @@
   <string name="config-logfile">日誌檔案</string>
   <string name="config-viewlocalconfig">檢視本機設定資料夾</string>
   <string name="config-trayicon">顯示通知區域圖示</string>
-  <string name="config-startupmessage">顯示開始訊息</string>
+  <string name="config-startupmessage">顯示啟動訊息</string>
   <string name="config-shownewmessages">顯示新訊息列</string>
-  <string name="config-shortcutlist">鍵盤捷徑</string>
+  <string name="config-shortcutlist">快捷鍵</string>
   <string name="config-shortcutaction">動作</string>
   <string name="config-changeshortcut">改變$1的捷徑</string>
   <string name="config-noshortcut">無</string>
@@ -120,9 +121,10 @@
   <string name="config-instant-reverts">使用立即回退（非常快，但執行後無法撤銷）</string>
   <string name="config-revert-wait">還原等待 (秒)</string>
   <string name="config-revert">還原</string>
-  <string name="config-revert-diff" fuzzy="true">當他們是同一個用戶做出時，回退頁面上比顯示的差異更新的編輯</string>
+  <string name="config-revert-diff">回退頁面上比顯示的差異更新的編輯，當他們是同一個用戶做出時</string>
   <string name="config-change-all">變更所有 huggle 設定以模擬 Huggle 2 的行為</string>
   <string name="config-merge-messages">將你的信息和其他人的一起合併到已有的段落中</string>
+  <string name="config-months-name">使用月份而不是頁面名作為標題</string>
   <string name="config-enable-irc">開啟 IRC</string>
   <string name="config-display-text">顯示下一筆</string>
   <string name="config-retrieve-edit">取得您自己的編輯</string>
@@ -166,7 +168,7 @@
   <string name="delete-e1">此頁面不能被刪除，原因：$1</string>
   <string name="delete-e2">無法刪除頁面</string>
   <string name="delete-edsc">無法刪除頁面，由於 $1</string>
-  <string name="delete-failed-no-info">查詢中無頁面資訊 (你是系統管理員嗎？)</string>
+  <string name="delete-failed-no-info">查詢中無頁面資訊 (你是管理員嗎？)</string>
   <string name="extension-kl">未執行</string>
   <string name="extension-ok">已載入並且執行</string>
   <string name="historyform-no-info">無編輯資訊</string>

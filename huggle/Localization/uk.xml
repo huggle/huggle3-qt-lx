@@ -544,6 +544,7 @@
   <string name="user-history-fail">неможливо отримати внесок користувача $1</string>
   <string name="userinfo-generic">Внесок користувача</string>
   <string name="userinfo-retrieve">Завантажити внесок</string>
+  <string name="shortcut-page-patrol-edit">Відпатрулювати редагування</string>
   <string name="shortcut-report-username">Поскаржитися на ім\'я користувача</string>
   <string name="shortcut-report-user">Поскаржитися на користувача</string>
   <string name="shortcut-my-talk">Моя сторінка обговорення</string>
