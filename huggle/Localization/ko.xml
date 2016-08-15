@@ -45,13 +45,14 @@
   <string name="link">링크</string>
   <string name="reason">이유</string>
   <string name="diffid">차이ID</string>
-  <string name="whitelisted">$3에서 $2점으로 된 $1 사용자를 허용 목록에 넣었습니다</string>
+  <string name="whitelisted">$3에서 $2점으로 된 $1님을 허용 목록에 넣었습니다</string>
   <string name="expiry-time">만료 시간</string>
   <string name="duration">기간</string>
   <string name="enable">활성화</string>
   <string name="disable">비활성화</string>
   <string name="no-token">토큰 없음</string>
   <string name="flags">플래그</string>
+  <string name="gracetime">쿼리 편집이 끝나기를 기다리는 중...</string>
   <string name="browser-none">지금 표시되는 문서가 없습니다</string>
   <string name="browser-load">웹 렌더링 폴백을 사용하여 차이를 다운로드하고 있습니다, 기다려 주세요...</string>
   <string name="browser-miss-summ">제공된 요약이 없습니다</string>
@@ -127,7 +128,9 @@
   <string name="config-automatic-warning">\"경고 보내기\" 사용시 자동 경고 유형과 레벨 사용하기</string>
   <string name="config-enable-irc">IRC 활성화</string>
   <string name="config-remove-reverted">다른 누군가가 이미 되돌린 편집을 제거</string>
+  <string name="config-remove-old">동일 문서에 더 새로운 편집의 구문이 분석되면 오래된 편집은 제거합니다</string>
   <string name="config-auto-load-history">자동으로 역사와 사용자 정보를 불러오기 (많은 네트워크 대역폭 필요)</string>
+  <string name="config-last-revision">현재 불러들인 편집이 마지막 판이 아닌 경우 문서의 마지막 판을 보여줍니다 (캐시를 우회하여 다운로드)</string>
   <string name="config-display-text">다음 표시</string>
   <string name="config-retrieve-edit">자신의 편집 가져오기</string>
   <string name="config-nothing">아무 것도 하지 않음</string>
@@ -160,7 +163,7 @@
   <string name="config-reportprompt">보고에 대해 물어보기</string>
   <string name="config-reportauto">자동으로 문제 보고</string>
   <string name="config-templates">사용자 틀 메시지</string>
-  <string name="config-templatetext">보여줄 글</string>
+  <string name="config-templatetext">텍스트 표시</string>
   <string name="config-template">틀</string>
   <string name="config-promptforblock">사용자에게 마지막 경고를 한다면 차단할 것인지 물어보기</string>
   <string name="config-blockreason">기본 차단 이유</string>
@@ -269,6 +272,7 @@
   <string name="login-error-whitelist">$1의 사용자 허용 목록을 불러오는 데 실패했습니다.</string>
   <string name="main-menu-provider-stop">제공자 멈춤</string>
   <string name="main-menu-provider-resume">제공자 다시 시작</string>
+  <string name="provider-up">제공자를 사용하여 $2의 최근 바뀜 스트림에 연결합니다: $1</string>
   <string name="main-no-reason">사용자가 제공한 이유가 없습니다</string>
   <string name="main-restoring-slap">제가 다른 편집을 되살리고 있으니, 기다려주세요...</string>
   <string name="main-page">문서</string>
@@ -337,8 +341,8 @@
   <string name="main-page-display">이 문서 보기</string>
   <string name="main-page-patrol">점검한 것으로 표시</string>
   <string name="main-page-move">이동...</string>
-  <string name="main-page-flag-suspicious-edit">의심스러운 편집으로 플래그 (이 행동은 사용자에게 +1점을 줍니다)</string>
-  <string name="main-page-flag-good-edit">좋은 편집으로 플래그 (이 행동은 사용자에게 -200점을 줍니다)</string>
+  <string name="main-page-flag-suspicious-edit">의심스러운 편집으로 플래그 (이 동작은 사용자에게 +1점을 줍니다)</string>
+  <string name="main-page-flag-good-edit">좋은 편집으로 플래그 (이 동작은 사용자에게 -200점을 줍니다)</string>
   <string name="main-page-protect">보호</string>
   <string name="main-page-delete">삭제</string>
   <string name="main-page-load">불러오기</string>
@@ -355,6 +359,7 @@
   <string name="main-user-report">보고</string>
   <string name="main-user-ib">나쁜 점수 올리기</string>
   <string name="main-user-clear-tp">사용자의 토론 문서 지우기</string>
+  <string name="main-user-retrieving-tp">$1의 토론 문서를 가져옵니다</string>
   <string name="main-user-block">차단...</string>
   <string name="main-browser-back">뒤로</string>
   <string name="main-browser-forward">앞으로</string>
@@ -379,7 +384,7 @@
   <string name="main-advanced">고급...</string>
   <string name="main-stats">분마다 편집 $1번, 분마다 되돌리기 $2번</string>
   <string name="main-display-session-data">세션 데이터 보기</string>
-  <string name="main-display-whitelist">허용 목록 보기</string>
+  <string name="main-display-whitelist">허용 목록 표시</string>
   <string name="main-revert-custom-reson">이 편집을 이전 판으로 되돌리려는 이유를 제공해주세요</string>
   <string name="main-log1">$1의 선택된 판을 되살리는 중</string>
   <string name="main-tip-pagetagdelete">이 문서를 삭제 요청으로 태그</string>
@@ -387,7 +392,7 @@
   <string name="main-tip-userreport">이 사용자 보고</string>
   <string name="main-tip-userblock">이 사용자 차단</string>
   <string name="main-revision-acceptpend">보류 중인 판 승인</string>
-  <string name="main-no-page">요청한 행동은 문서를 불러오는 것이 필요합니다. 다시 시도하기 전에 문서를 불러오세요.</string>
+  <string name="main-no-page">요청한 동작은 문서를 불러오는 것이 필요합니다. 다시 시도하기 전에 문서를 불러오세요.</string>
   <string name="main-revert-null">되돌릴 수 없으며, 편집이 비어 있습니다 (null)</string>
   <string name="main-revert-newpage-title">이것을 되돌릴 수 없습니다</string>
   <string name="main-revert-newpage">이것은 새 문서이므로 되돌릴 수 없습니다. 태그하거나 삭제할 수 있습니다.</string>
@@ -399,7 +404,7 @@
   <string name="message-summary">요약:</string>
   <string name="message-autosign">서명은 자동으로 추가됩니다</string>
   <string name="message-retrieve-new-token">$1을(를) 편집할 토큰을 얻는 중</string>
-  <string name="message-fail-re-user-tp">$1를 찾을 수 없습니다. 사용자에게 메시지 배달 멈춤을 얻을 수 없습니다.</string>
+  <string name="message-fail-re-user-tp">$1 문서를 얻을 수 없습니다. 해당 사용자로의 메시지 전달을 중단합니다</string>
   <string name="message-er">$1님에게 메시지를 배달할 수 없습니다: $2</string>
   <string name="message-error">메시지를 $1에 전달하는데 실패했습니다! 로그를 확인해 주십시오!</string>
   <string name="message-fail-retrieve-talk">사용자 토론 문서를 얻을 수 없습니다</string>
@@ -475,6 +480,8 @@
   <string name="score-score">점수</string>
   <string name="score-word">낱말</string>
   <string name="score-range">범위</string>
+  <string name="score-take-any-no-talk-word">토론이 아닌 문서의 모든 낱말과 일치시킵니다</string>
+  <string name="score-take-whole-no-talk-word">토론이 아닌 문서의 낱말 전체만 일치시킵니다</string>
   <string name="score-only-whole-word">전체 낱말만 일치</string>
   <string name="score-take-any-word">이 문자열을 포함하는 어떠한 낱말을 일치</string>
   <string name="ssl-is-not-supported">SSL 사용을 요청하였으나 $1은(는) 이를 지원하지 않습니다.</string>
@@ -489,12 +496,14 @@
   <string name="uaa-e2">문서 내용은 사용할 수 없었습니다.</string>
   <string name="revert-confirm-multiple">$1의 여러번의 편집을 되돌립니다. 계속하시겠습니까?</string>
   <string name="revert-error-first">이 편집은 문서의 첫 편집이므로 되돌릴 수 없습니다.</string>
+  <string name="revert-only">편집은 이 문서의 유일한 편집입니다.</string>
   <string name="revert-creator">마지막 편집은 문서 작성자 $1에 의해 이루어졌습니다.</string>
   <string name="revert-delete-instead">대신에 문서를 삭제하겠습니까?</string>
   <string name="revert-speedy-instead">대신에 빠른 삭제로 태그하겠습니까?</string>
   <string name="revert-cannotundo">중간 편집 충돌로 인해 실행을 취소할 수 없습니다</string>
   <string name="revert-conflict">이 페이지는 허용된 사용자 \'$1\'에 의해 편집되었습니다</string>
   <string name="revert-fail">$1을 되돌리지 못했습니다: $2</string>
+  <string name="revert-nochange">대상 판의 내용은 현재 판의 내용과 동일합니다</string>
   <string name="speedy-reason">이유:</string>
   <string name="speedy-parameters">변수:</string>
   <string name="speedy-notifycreator">문서 만든이에게 알림</string>
@@ -528,8 +537,10 @@
   <string name="shortcut-back">이전에 표시된 편집으로 이동</string>
   <string name="shortcut-warn">편집을 되돌리지 않고 사용자에게 경고 보내기</string>
   <string name="shortcut-revert">편집 되돌리기</string>
+  <string name="shortcut-good">현재 보이는 편집을 정상 편집으로 표시</string>
   <string name="shortcut-open-in-huggle">현재 표시된 문서 열기</string>
   <string name="shortcut-open">브라우저에서 현재 표시된 편집 열기</string>
+  <string name="shortcut-talk">이 변경을 한 사용자의 토론 문서를 보여줍니다</string>
   <string name="shortcut-revert-agf-1">최신 판을 좋은 뜻으로 보지만 되돌리기</string>
   <string name="shortcut-browser-close-tab">브라우저 탭 닫기</string>
   <string name="shortcut-tab">새 탭 열기</string>
@@ -547,6 +558,8 @@
   <string name="warning-warnlog">이 사용자에게 경고:</string>
   <string name="warning-submit">보내기</string>
   <string name="missing-warning">$1 경고 틀이 없습니다</string>
+  <string name="han-not">문서 훼손 네트워크는 옵션에서 허용되지 않습니다</string>
+  <string name="han-connecting">Huggle 문서 훼손 방지 네트워크로 연결 중</string>
   <string name="han-already-connected">이미 연결되어 있으므로 HAN에 연결하지 않습니다</string>
   <string name="han-already-connecting">기다려 주십시오. HAN에 이미 연결 중입니다</string>
   <string name="han-disconnected">HAN으로부터 접속이 끊어졌습니다</string>
@@ -558,9 +571,9 @@
   <string name="error-unknown">알 수 없는 오류</string>
   <string name="block-done">$1님을 차단했습니다</string>
   <string name="block-progress">$1님을 차단하는 중...</string>
-  <string name="blocklog-fail">$1 사용자에 대한 차단 기록을 얻는 데 실패했습니다</string>
-  <string name="blocklog-none">$1 사용자에 대한 차단 기록이 없습니다</string>
-  <string name="blocklog-progress">$1 사용자에 대한 차단 기록을 얻는 중...</string>
+  <string name="blocklog-fail">$1님에 대한 차단 기록을 얻는 데 실패했습니다</string>
+  <string name="blocklog-none">$1님에 대한 차단 기록이 없습니다</string>
+  <string name="blocklog-progress">$1님에 대한 차단 기록을 얻는 중...</string>
   <string name="delete-done">$1 문서를 삭제했습니다</string>
   <string name="delete-fail">$1 문서를 삭제하지 못했습니다</string>
   <string name="delete-progress">$1 문서를 삭제하는 중...</string>
@@ -607,7 +620,12 @@
   <string name="editquery-token">$1 문서를 편집할 토큰을 얻는 중</string>
   <string name="editquery-token-error">편집 토큰을 얻을 수 없습니다</string>
   <string name="editquery-invalid-token">캐시에 있는 토큰이 더 이상 유효하지 않기 때문에 $1을(를) 편집할 수 없습니다. 한 번 더 문서 편집을 시도해 주십시오</string>
+  <string name="provider-failure">$2의 피드 제공자 $1 실패. 대안이 되는 일부 제공자 검색 시도 중</string>
+  <string name="provider-primary-failure">1차 피드 제공자가 실패하였습니다. 위키 제공자로 대체하는 중</string>
   <string name="rc-error">위키 피드에서 데이터를 얻을 수 없습니다, 마지막 오류: $1</string>
+  <string name="rc-timestamp-missing">RC 피드: 항목에 타임스탬프 속성이 없습니다: $1</string>
+  <string name="rc-type-missing">RC 피드: 항목에 유형 속성이 없습니다: $1</string>
+  <string name="rc-title-missing">RC 피드: 항목에 제목 속성이 없습니다: $1</string>
   <string name="whitelist-download">새 허용 목록을 다운로드 중</string>
   <string name="logs-widget-name">시스템 기록</string>
   <string name="wait">기다려 주세요...</string>
@@ -665,7 +683,7 @@
   <string name="relogin-fail">위키에 로그인할 수 없습니다: $1</string>
   <string name="projects">프로젝트</string>
   <string name="unable-to-retrieve-user-list">사용자 목록을 검색할 수 없습니다: $1</string>
-  <string name="login-no-userinfo">사이트가 사용자 정보를 반환하지 않았습니다</string>
+  <string name="login-no-userinfo">사이트가 userinfo 정보를 반환하지 않았습니다</string>
   <string name="login-invalid-register-date">미디어위키가 유효하지 않은 등록일을 반환했습니다</string>
   <string name="login-site-info-query-failed">$1에 대한 사이트 정보 조회 실패: $2</string>
   <string name="login-no-site-info-returned">이 위키에 대한 사이트 정보가 반환되지 않았습니다</string>
