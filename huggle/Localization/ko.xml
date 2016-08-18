@@ -131,6 +131,7 @@
   <string name="config-remove-old">동일 문서에 더 새로운 편집의 구문이 분석되면 오래된 편집은 제거합니다</string>
   <string name="config-auto-load-history">자동으로 역사와 사용자 정보를 불러오기 (많은 네트워크 대역폭 필요)</string>
   <string name="config-last-revision">현재 불러들인 편집이 마지막 판이 아닌 경우 문서의 마지막 판을 보여줍니다 (캐시를 우회하여 다운로드)</string>
+  <string name="config-wait-edit">쓰기 기능이 활성활될 때까지의 지연 시간 (초 단위):</string>
   <string name="config-display-text">다음 표시</string>
   <string name="config-retrieve-edit">자신의 편집 가져오기</string>
   <string name="config-nothing">아무 것도 하지 않음</string>
@@ -346,6 +347,7 @@
   <string name="main-page-protect">보호</string>
   <string name="main-page-delete">삭제</string>
   <string name="main-page-load">불러오기</string>
+  <string name="main-patrol-not-enabled">점검은 $1에 사용되지 않습니다</string>
   <string name="main-page-restore">이 판을 되살리기</string>
   <string name="main-user-info">사용자 정보 보기</string>
   <string name="main-user-ignore">무시</string>
@@ -527,6 +529,7 @@
   <string name="user-history-fail">사용자의 역사를 검색하지 못했습니다: $1</string>
   <string name="userinfo-generic">사용자 정보</string>
   <string name="userinfo-retrieve">정보 얻기</string>
+  <string name="shortcut-page-patrol-edit">편집 점검</string>
   <string name="shortcut-report-username">사용자 이름 보고</string>
   <string name="shortcut-report-user">사용자 보고</string>
   <string name="shortcut-my-talk">내 토론 문서</string>
