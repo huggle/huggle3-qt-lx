@@ -355,6 +355,8 @@ namespace Huggle
             QString     SystemConfig_Username = "";
             //! If SSL is being used
             bool        SystemConfig_UsingSSL = true;
+            QString     SystemConfig_BotLogin;
+            bool        SystemConfig_BotPassword = true;
             //! Consumer key
             QString     WmfOAuthConsumerKey;
             //! Password

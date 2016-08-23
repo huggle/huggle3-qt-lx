@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>388</width>
-    <height>406</height>
+    <height>420</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -97,11 +97,11 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab_oauth">
       <attribute name="title">
-       <string>OAuth</string>
+       <string>Bot password</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <property name="spacing">
@@ -120,43 +120,41 @@
         <number>0</number>
        </property>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_4">
-         <property name="leftMargin">
-          <number>8</number>
-         </property>
-         <property name="topMargin">
-          <number>2</number>
-         </property>
-         <property name="rightMargin">
-          <number>8</number>
-         </property>
-         <property name="bottomMargin">
-          <number>8</number>
-         </property>
-         <item>
-          <widget class="QLabel" name="labelOauthUsername">
+        <layout class="QGridLayout" name="gridLayout_3">
+         <item row="0" column="0">
+          <widget class="QLabel" name="labelBotUserName">
            <property name="text">
-            <string>Username:</string>
+            <string>User</string>
            </property>
           </widget>
          </item>
-         <item>
-          <widget class="QLineEdit" name="lineEdit_oauth_username"/>
+         <item row="1" column="0">
+          <widget class="QLabel" name="labelBotPassword">
+           <property name="text">
+            <string>Pw</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="lineEditBotUser"/>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="lineEditBotP">
+           <property name="inputMethodHints">
+            <set>Qt::ImhHiddenText|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData</set>
+           </property>
+           <property name="echoMode">
+            <enum>QLineEdit::Password</enum>
+           </property>
+          </widget>
          </item>
         </layout>
-       </item>
-       <item>
-        <widget class="QLabel" name="labelOauthNotSupported">
-         <property name="text">
-          <string>This method is not supported at this moment</string>
-         </property>
-        </widget>
        </item>
       </layout>
      </widget>
      <widget class="QWidget" name="tab_login">
       <attribute name="title">
-       <string>Login</string>
+       <string>Legacy password</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <property name="spacing">
@@ -219,6 +217,13 @@
        </item>
       </layout>
      </widget>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>&lt;a href=&quot;huggle://login&quot;&gt;What is Bot / Interactive password&lt;/a&gt;</string>
+     </property>
     </widget>
    </item>
    <item>

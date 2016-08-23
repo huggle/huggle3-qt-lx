@@ -96,12 +96,23 @@ Login::Login(QWidget *parent) : HW("login", this, parent), ui(new Ui::Login)
         this->Updater = new UpdateForm();
         this->Updater->Check();
     }
-    if (!hcfg->SystemConfig_Username.isEmpty())
+    if (hcfg->SystemConfig_BotPassword)
     {
-        this->ui->lineEdit_username->setText(hcfg->SystemConfig_Username);
-        this->ui->lineEdit_password->setFocus();
+        this->ui->lineEditBotP->setText(hcfg->TemporaryConfig_Password);
+        if (!hcfg->SystemConfig_Username.isEmpty())
+        {
+            this->ui->lineEditBotUser->setText(hcfg->SystemConfig_BotLogin);
+            this->ui->lineEditBotP->setFocus();
+        }
+    } else
+    {
+        if (!hcfg->SystemConfig_Username.isEmpty())
+        {
+            this->ui->lineEdit_username->setText(hcfg->SystemConfig_Username);
+            this->ui->lineEdit_password->setFocus();
+        }
+        this->ui->lineEdit_password->setText(hcfg->TemporaryConfig_Password);
     }
-    this->ui->lineEdit_password->setText(hcfg->TemporaryConfig_Password);
     this->Loading = false;
     this->Localize();
     HUGGLE_PROFILER_PRINT_TIME(BOOST_CURRENT_FUNCTION);
@@ -116,6 +127,8 @@ Login::Login(QWidget *parent) : HW("login", this, parent), ui(new Ui::Login)
         this->ui->checkBox_2->setChecked(true);
     }
     this->RestoreWindow();
+    if (hcfg->SystemConfig_BotPassword)
+        this->ui->tab_oauth->setFocus();
 
     // Load the proxy
     if (hcfg->SystemConfig_UseProxy)
@@ -140,12 +153,13 @@ void Login::Localize()
     this->ui->ButtonExit->setText(_l("main-system-exit"));
     this->ui->ButtonOK->setText(_l("login-start"));
     this->ui->checkBox->setText(_l("login-ssl"));
-    this->ui->labelOauthUsername->setText(_l("login-username"));
+    this->ui->labelBotUserName->setText(_l("login-username"));
     this->ui->pushButton->setToolTip(_l("login-reload-tool-tip"));
     this->ui->pushButton->setText(_l("reload"));
-    this->ui->tabWidget->setTabText(0, _l("login-tab-oauth"));
+    this->ui->labelBotPassword->setText(_l("login-password"));
+    this->ui->tabWidget->setTabText(0, _l("login-tab-botp"));
     this->ui->tabWidget->setTabText(1, _l("login-tab-login"));
-    this->ui->labelOauthNotSupported->setText(_l("login-oauth-notsupported"));
+    //this->ui->labelOauthNotSupported->setText(_l("login-oauth-notsupported"));
     this->ui->labelUsername->setText(_l("login-username"));
     this->ui->labelProject->setText(_l("login-project"));
     this->ui->labelLanguage->setText(_l("login-language"));
@@ -232,7 +246,8 @@ int Login::GetRowIDForSite(WikiSite *site, int row)
 void Login::Enable(bool value)
 {
     this->ui->checkBox_2->setEnabled(value);
-    this->ui->lineEdit_oauth_username->setEnabled(value);
+    this->ui->lineEditBotP->setEnabled(value);
+    this->ui->lineEditBotUser->setEnabled(value);
     this->ui->Language->setEnabled(value);
     this->ui->label->setEnabled(value);
     this->ui->Project->setEnabled(value);
@@ -322,11 +337,7 @@ void Login::DB()
 void Login::PressOK()
 {
     this->GlobalConfig = false;
-    if (this->ui->tab_oauth->isVisible())
-    {
-        Generic::pMessageBox(this, _l("function-miss"), "This function is not available for wmf wikis in this moment");
-        return;
-    }
+    hcfg->SystemConfig_BotPassword = this->ui->tab_oauth->isVisible();
     if (this->ui->Project->count() == 0)
     {
         // there are no projects in login form
@@ -334,8 +345,26 @@ void Login::PressOK()
         return;
     }
     hcfg->SystemConfig_StorePassword = this->ui->checkBox_2->isChecked();
-    if (hcfg->SystemConfig_StorePassword)
-        hcfg->SystemConfig_RememberedPassword = this->ui->lineEdit_password->text();
+    if (hcfg->SystemConfig_BotPassword)
+    {
+        hcfg->SystemConfig_BotLogin = this->ui->lineEditBotUser->text();
+        if (!this->ui->lineEditBotUser->text().contains("@"))
+        {
+            this->DisplayError(_l("invalid-bot-user-name"));
+            return;
+        }
+        QString name = hcfg->SystemConfig_BotLogin;
+        hcfg->SystemConfig_Username = WikiUtil::SanitizeUser(name.mid(0, name.indexOf("@")));
+        if (hcfg->SystemConfig_StorePassword)
+            hcfg->SystemConfig_RememberedPassword = this->ui->lineEditBotP->text();
+        hcfg->TemporaryConfig_Password = ui->lineEditBotP->text();
+    } else
+    {
+        if (hcfg->SystemConfig_StorePassword)
+            hcfg->SystemConfig_RememberedPassword = this->ui->lineEdit_password->text();
+        hcfg->SystemConfig_Username = WikiUtil::SanitizeUser(ui->lineEdit_username->text());
+        hcfg->TemporaryConfig_Password = ui->lineEdit_password->text();
+    }
     hcfg->IndexOfLastWiki = this->ui->Project->currentIndex();
     hcfg->Project = hcfg->ProjectList.at(this->ui->Project->currentIndex());
     // we need to clear a list of projects we are logged to and insert at least this one
@@ -378,8 +407,6 @@ void Login::PressOK()
             }
         }
     }
-    hcfg->SystemConfig_Username = WikiUtil::SanitizeUser(ui->lineEdit_username->text());
-    hcfg->TemporaryConfig_Password = ui->lineEdit_password->text();
     if (this->loadingForm != nullptr)
         delete this->loadingForm;
 
@@ -481,9 +508,17 @@ void Login::PerformLoginPart2(WikiSite *site)
     this->LoginQueries.insert(site, query);
     query->HiddenQuery = true;
     query->IncRef();
-    query->Parameters = "lgname=" + QUrl::toPercentEncoding(hcfg->SystemConfig_Username)
-            + "&lgpassword=" + QUrl::toPercentEncoding(hcfg->TemporaryConfig_Password)
-            + "&lgtoken=" + QUrl::toPercentEncoding(token);
+    if (hcfg->SystemConfig_BotPassword)
+    {
+        query->Parameters = "lgname=" + QUrl::toPercentEncoding(hcfg->SystemConfig_BotLogin)
+                + "&lgpassword=" + QUrl::toPercentEncoding(hcfg->TemporaryConfig_Password)
+                + "&lgtoken=" + QUrl::toPercentEncoding(token);
+    } else
+    {
+        query->Parameters = "lgname=" + QUrl::toPercentEncoding(hcfg->SystemConfig_Username)
+                + "&lgpassword=" + QUrl::toPercentEncoding(hcfg->TemporaryConfig_Password)
+                + "&lgtoken=" + QUrl::toPercentEncoding(token);
+    }
     query->UsingPOST = true;
     query->Process();
 }

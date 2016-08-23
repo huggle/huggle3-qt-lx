@@ -343,6 +343,11 @@ void Configuration::LoadSystemConfig(QString fn)
             hcfg->SystemConfig_Username = option.attribute("text");
             continue;
         }
+        if (key == "BotLogin" && hcfg->SystemConfig_BotLogin.isEmpty())
+        {
+            hcfg->SystemConfig_BotLogin = option.attribute("text");
+            continue;
+        }
         RCN(RingLogMaxSize);
         RC(GlobalConfig);
         RCB(DynamicColsInList);
@@ -441,6 +446,7 @@ void Configuration::SaveSystemConfig()
     INSERT_CONFIG_B(NotifyBeta);
     INSERT_CONFIG_B(WarnUserSpaceRoll);
     INSERT_CONFIG_N(WikiRC);
+    InsertConfig("BotLogin", hcfg->SystemConfig_BotLogin, writer);
     InsertConfig("UserName", hcfg->SystemConfig_Username, writer);
     InsertConfig("IndexOfLastWiki", QString::number(hcfg->IndexOfLastWiki), writer);
     InsertConfig("DynamicColsInList", Bool2String(hcfg->SystemConfig_DynamicColsInList), writer);
