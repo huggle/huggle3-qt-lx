@@ -178,6 +178,7 @@
   <string name="history-error-message-title">無法還原</string>
   <string name="history-failure">無法取得歷史</string>
   <string name="userhistory-title">您的變更歷史</string>
+  <string name="irc-connected">$1：已連結IRC最近更改訂閱。</string>
   <string name="irc-not">IRC訂閱被專案設定檔停用</string>
   <string name="login-tab-oauth">OAuth</string>
   <string name="login-tab-login">登入</string>

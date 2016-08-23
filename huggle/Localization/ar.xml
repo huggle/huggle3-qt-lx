@@ -165,11 +165,11 @@
   <string name="login-error-admin">استخدام Huggle في هذا المشروع يحتاج حسابا إداريا.</string>
   <string name="login-error-age">استخدام Huggle في هذا المشروع يحتاج حسابا عمره $1 يوما على الأقل.</string>
   <string name="login-error-alldisabled">تم تعطيل Huggle حاليا في كل المشاريع.</string>
-  <string name="login-error-approval" fuzzy="true">استخدام Huggle في هذا المشروع يحتاج موافقة.</string>
+  <string name="login-error-approval">استخدام Huggle في $1 يحتاج موافقة.</string>
   <string name="login-error-cancelled">ملغى.</string>
   <string name="login-error-config" fuzzy="true">فشل تحميل صفحات الخيارات.</string>
   <string name="login-error-count">استخدام Huggle في هذا المشروع يحتاج $1 تعديلات على الأقل.</string>
-  <string name="login-error-disabled" fuzzy="true">Huggle غير مفعل في حسابك، راجع صفحة خيارات المستخدم.</string>
+  <string name="login-error-disabled">Huggle غير مفعل في حسابك على $1، راجع صفحة خيارات المستخدم.</string>
   <string name="login-error-global" fuzzy="true">تعذر تحميل صفحة الخيارات العمومية.</string>
   <string name="login-error-invalid">اسم مستخدم خاطئ.</string>
   <string name="login-error-noconfig">ليس لهذا المشروع صفحة خيارات لبرمجية هغل.</string>
@@ -332,7 +332,7 @@
   <string name="revert-speedy-instead">وسم الصفحة للشطب السريع بدلاً عن ذلك؟</string>
   <string name="revert-cannotundo">لا يمكن التراجع بسبب وجود تعديلات متوسطة التناقض</string>
   <string name="revert-conflict">تم تعديل الصفحة بواسطة مستخدم متجاهل \'$1\'</string>
-  <string name="revert-fail" fuzzy="true">لم يتم استرجاع \'$1\'</string>
+  <string name="revert-fail">لم يتم استرجاع $1: $2</string>
   <string name="revert-nochange">محتوى النسخة المستهدفة مطابق لمحتوى النسخة الحالية</string>
   <string name="speedy-reason">السبب:</string>
   <string name="speedy-parameters">المعلمة:</string>
