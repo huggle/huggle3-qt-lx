@@ -219,7 +219,7 @@
   <string name="login-intro">Please pick a project and enter your username and password. You can also login to multiple projects by clicking on &quot;Projects&quot; button.</string>
   <string name="invalid-bot-user-name">This is not a valid bot name. Example of right bot name: Jimbo@Huggle</string>
   <string name="login-tab-botp">Bot password</string>
-  <string name="login-tab-login">Interactive login</string>
+  <string name="login-tab-login">Legacy</string>
   <string name="login-reload-tool-tip">Reload a list of available projects that can be used in Huggle. This can be useful in case you want to use Huggle in a project in which Huggle was recently enabled.</string>
   <string name="login-language">Language:</string>
   <string name="login-project">Project:</string>
@@ -235,7 +235,7 @@
   <string name="login-fail-css">Login failed on $1: Unable to retrieve user configuration. Special:MyPage/huggle3.css is missing. Did you create huggle3.css in your userspace?</string>
   <string name="login-fail-enable-true">Login failed on $1: You don&apos;t have enable:true in your personal config.</string>
   <string name="login-fail-no-info">Login failed on $1: Unable to retrieve user info: $2</string>
-  <string name="login-bot">What is a difference between Bot and Interactive login?</string>
+  <string name="login-bot">What is a difference between Bot and Legacy login?</string>
   <string name="login-fail-parse-config">Login failed on $1: Unable to parse the user configuration. See the debug log for more details.</string>
   <string name="login-fail-user-data">Login failed on $1: Unable to retrieve user info. The API query returned no data.</string>
   <string name="login-fail-rollback-rights">Login failed on $1: You don&apos;t have rollback permissions on this project.</string>
