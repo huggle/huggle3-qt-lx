@@ -365,6 +365,7 @@ void Configuration::LoadSystemConfig(QString fn)
         RCU(DelayVal);
         RCU(WikiRC);
         RCB(RequestDelay);
+        RCB(BotPassword);
         RCU(RevertDelay);
         RCB(InstantReverts);
         if (key == "Projects")
@@ -440,6 +441,7 @@ void Configuration::SaveSystemConfig()
     InsertConfig("AskUserBeforeReport", Bool2String(hcfg->AskUserBeforeReport), writer);
     INSERT_CONFIG_N(HistorySize);
     INSERT_CONFIG_B(QueueNewEditsUp);
+    INSERT_CONFIG_B(BotPassword);
     INSERT_CONFIG_N(RingLogMaxSize);
     INSERT_CONFIG_B(TrimOldWarnings);
     INSERT_CONFIG_B(EnableUpdates);

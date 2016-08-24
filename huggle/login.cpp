@@ -98,7 +98,7 @@ Login::Login(QWidget *parent) : HW("login", this, parent), ui(new Ui::Login)
     }
     if (hcfg->SystemConfig_BotPassword)
     {
-        this->ui->lineEditBotP->setText(hcfg->TemporaryConfig_Password);
+        this->ui->tab_oauth->show();
         if (!hcfg->SystemConfig_Username.isEmpty())
         {
             this->ui->lineEditBotUser->setText(hcfg->SystemConfig_BotLogin);
@@ -106,15 +106,21 @@ Login::Login(QWidget *parent) : HW("login", this, parent), ui(new Ui::Login)
         }
     } else
     {
+        this->ui->tab_login->show();
         if (!hcfg->SystemConfig_Username.isEmpty())
         {
             this->ui->lineEdit_username->setText(hcfg->SystemConfig_Username);
             this->ui->lineEdit_password->setFocus();
         }
-        this->ui->lineEdit_password->setText(hcfg->TemporaryConfig_Password);
     }
     this->Loading = false;
     this->Localize();
+    // Load the proxy
+    if (hcfg->SystemConfig_UseProxy)
+    {
+        Proxy::SetProxy(hcfg->SystemConfig_ProxyType, hcfg->SystemConfig_ProxyHost, hcfg->SystemConfig_ProxyPort,
+            hcfg->SystemConfig_ProxyUser, hcfg->SystemConfig_ProxyPass);
+    }
     HUGGLE_PROFILER_PRINT_TIME(BOOST_CURRENT_FUNCTION);
     if (hcfg->Login)
     {
@@ -123,19 +129,17 @@ Login::Login(QWidget *parent) : HW("login", this, parent), ui(new Ui::Login)
         this->PressOK();
     } else if (hcfg->SystemConfig_StorePassword)
     {
-        this->ui->lineEdit_password->setText(hcfg->SystemConfig_RememberedPassword);
+        if (hcfg->SystemConfig_BotPassword)
+            this->ui->lineEditBotP->setText(hcfg->SystemConfig_RememberedPassword);
+        else
+            this->ui->lineEdit_password->setText(hcfg->SystemConfig_RememberedPassword);
         this->ui->checkBox_2->setChecked(true);
     }
     this->RestoreWindow();
     if (hcfg->SystemConfig_BotPassword)
         this->ui->tab_oauth->setFocus();
-
-    // Load the proxy
-    if (hcfg->SystemConfig_UseProxy)
-    {
-        Proxy::SetProxy(hcfg->SystemConfig_ProxyType, hcfg->SystemConfig_ProxyHost, hcfg->SystemConfig_ProxyPort,
-                        hcfg->SystemConfig_ProxyUser, hcfg->SystemConfig_ProxyPass);
-    }
+    else
+        this->ui->tab_login->setFocus();
 }
 
 Login::~Login()
@@ -163,6 +167,7 @@ void Login::Localize()
     this->ui->labelUsername->setText(_l("login-username"));
     this->ui->labelProject->setText(_l("login-project"));
     this->ui->labelLanguage->setText(_l("login-language"));
+    this->ui->label_2->setText("<a href=\"https://www.mediawiki.org/wiki/Manual:Bot_passwords\">" + _l("login-bot") + "</a>");
     this->ui->labelPassword->setText(_l("login-password"));
     this->ui->checkBox_2->setText(_l("login-remember-password"));
     this->ui->labelIntro->setText(_l("login-intro"));
@@ -1330,7 +1335,8 @@ void Huggle::Login::on_lineEdit_password_textChanged(const QString &arg1)
 
 void Login::VerifyLogin()
 {
-    if((this->ui->lineEdit_username->text().size() == 0 || this->ui->lineEdit_password->text().size() == 0) &&
+    if(((this->ui->lineEditBotUser->text().size() == 0 && this->ui->lineEdit_username->text().size() == 0) ||
+        (this->ui->lineEdit_password->text().size() == 0) && this->ui->lineEditBotP->text().size() == 0 ) &&
        (this->ui->lineEdit_username->text() != "Developer Mode" &&
         this->ui->lineEdit_username->text() != "Developer_Mode"))
         this->ui->ButtonOK->setEnabled( false );
@@ -1375,4 +1381,21 @@ void Huggle::Login::on_label_linkActivated(const QString &link)
     Q_UNUSED(link);
     Proxy pr;
     pr.exec();
+}
+
+void Huggle::Login::on_lineEditBotUser_textChanged(const QString &arg1)
+{
+    Q_UNUSED( arg1 )
+    Login::VerifyLogin();
+}
+
+void Huggle::Login::on_lineEditBotP_textChanged(const QString &arg1)
+{
+    Q_UNUSED( arg1 )
+    Login::VerifyLogin();
+}
+
+void Huggle::Login::on_label_2_linkActivated(const QString &link)
+{
+    QDesktopServices::openUrl(link);
 }

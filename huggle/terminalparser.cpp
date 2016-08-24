@@ -53,7 +53,7 @@ static void DisplayVersion()
 {
     // version is stored in built in resource which we need to extract using call to core here
     Core::VersionRead();
-    cout << QString("Huggle3 QT-LX " + Configuration::HuggleConfiguration->HuggleVersion).toStdString() << endl;
+    cout << QString("Huggle3 QT-LX " + hcfg->HuggleVersion).toStdString() << endl;
 }
 
 bool TerminalParser::Parse()
@@ -166,8 +166,15 @@ bool TerminalParser::Parse()
                     return true;
                 }
                 // we need to split it by first colon now
-                Configuration::HuggleConfiguration->SystemConfig_Username = credentials.mid(0, credentials.indexOf(":"));
-                Configuration::HuggleConfiguration->TemporaryConfig_Password = credentials.mid(credentials.indexOf(":") + 1);
+                hcfg->SystemConfig_BotPassword = true;
+                hcfg->SystemConfig_BotLogin = credentials.mid(0, credentials.indexOf(":"));
+                if (!hcfg->SystemConfig_BotLogin.contains("@"))
+                {
+                    cerr << "Only bot logins are allowed using this method. Username didn't have valid format (no @ symbol found)." << endl;
+                    return true;
+                }
+                hcfg->SystemConfig_Username = hcfg->SystemConfig_BotLogin.mid(0, hcfg->SystemConfig_BotLogin.indexOf("@"));
+                hcfg->TemporaryConfig_Password = credentials.mid(credentials.indexOf(":") + 1);
                 valid = true;
                 ++x;
             } else
@@ -179,12 +186,12 @@ bool TerminalParser::Parse()
         if (text == "--login")
         {
             valid = true;
-            Configuration::HuggleConfiguration->Login = true;
+            hcfg->Login = true;
         }
         if (text == "--fuzzy")
         {
             valid = true;
-            Configuration::HuggleConfiguration->Fuzzy = true;
+            hcfg->Fuzzy = true;
         }
         if (text == "--pylibs-dump")
         {
@@ -214,7 +221,7 @@ bool TerminalParser::ParseChar(QChar x)
             //quit
             return true;
         case 'v':
-            Configuration::HuggleConfiguration->Verbosity++;
+            hcfg->Verbosity++;
             return false;
         case 'V':
             DisplayVersion();

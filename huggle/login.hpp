@@ -81,6 +81,9 @@ namespace Huggle
             void on_lineEdit_password_textChanged(const QString &arg1);
             void on_pushButton_2_clicked();
             void on_label_linkActivated(const QString &link);
+            void on_lineEditBotUser_textChanged(const QString &arg1);
+            void on_lineEditBotP_textChanged(const QString &arg1);
+            void on_label_2_linkActivated(const QString &link);
 
         private:
             //! Reset the interface to default
