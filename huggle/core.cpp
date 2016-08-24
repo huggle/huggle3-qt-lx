@@ -216,7 +216,6 @@ void Core::LoadDB()
         }
         WikiSite *site = new WikiSite(e.attribute("name"), e.attribute("url"));
         site->IRCChannel = "";
-        site->SupportOAuth = false;
         site->SupportHttps = false;
         site->WhiteList = "test";
         if (e.attributes().contains("path"))
@@ -227,8 +226,6 @@ void Core::LoadDB()
             site->ScriptPath = e.attribute("script");
         if (e.attributes().contains("https"))
             site->SupportHttps = Generic::SafeBool(e.attribute("https"));
-        if (e.attributes().contains("oauth"))
-            site->SupportOAuth = Generic::SafeBool(e.attribute("oauth"));
         if (e.attributes().contains("channel"))
             site->IRCChannel = e.attribute("channel");
         if (e.attributes().contains("rtl"))

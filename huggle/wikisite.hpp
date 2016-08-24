@@ -118,8 +118,6 @@ namespace Huggle
             QString LongPath;
             //! short path
             QString ScriptPath;
-            //! URL of oauth handler for this site
-            QString OAuthURL;
             //! IRC channel of this site, if it doesn't have a channel leave it empty
             QString IRCChannel;
             //! Name of this site as known by XMLRPC server, if this is empty, alternative provider is used
@@ -135,7 +133,6 @@ namespace Huggle
             //! Whether the site supports the ssl
             bool SupportHttps;
             bool IsRightToLeft = false;
-            bool SupportOAuth;
     };
 }
 
