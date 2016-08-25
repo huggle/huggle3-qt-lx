@@ -215,10 +215,8 @@ Parameters:
   <string name="login-intro">Used in Login window.
 
 The button label \"Projects &gt;&gt;\" is untranslatable at this time.</string>
-  <string name="login-tab-oauth">name of tab at login window for OAuth-login.
-{{Identical|OAuth}}</string>
   <string name="login-tab-login">name of tab at login window for normal username and password login.
-{{Identical|Log in}}</string>
+{{Identical|Legacy}}</string>
   <string name="login-reload-tool-tip">Used as tooltip for the button which is labeled {{msg-huggle|Reload}}.</string>
   <string name="login-language">{{Identical|Language}}</string>
   <string name="login-project">{{Identical|Project}}</string>

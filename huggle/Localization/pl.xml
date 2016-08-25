@@ -193,8 +193,8 @@ Ta blokada zniweluje efekt blokady zakresu. Kontynuować?</string>
   <string name="irc-connecting">Próba połączenia do IRC ostatnich zmian na $1, to może chwilkę potrwać...</string>
   <string name="irc-disconnected">Połączenie do IRC ostatnich zmian utracone na $1. Ponowne łączenie...</string>
   <string name="login-intro">Proszę wybrać projekt i wpisać swój login i hasło. Możesz się też zalogować do wielu projektów klikając przycisk \"Projekty\".</string>
-  <string name="login-tab-oauth">OAuth</string>
-  <string name="login-tab-login">Logowanie</string>
+  <string name="login-tab-botp">Hasło bota</string>
+  <string name="login-tab-login" fuzzy="true">Logowanie interaktywne</string>
   <string name="login-language">Język:</string>
   <string name="login-project">Projekt:</string>
   <string name="login-username">Nazwa użytkownika:</string>

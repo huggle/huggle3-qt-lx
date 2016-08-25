@@ -218,8 +218,7 @@
   <string name="irc-switch-rc">מעבר להזנת שינויים אחרונים מהוויקי</string>
   <string name="login-old">מאחזר הגדרות משתמש מהמיקום הישן</string>
   <string name="login-intro">נא לבחור מיזם ולהזין את שם המשתמש והססמה שלך. באפשרותך להתחבר למיזמים מרובים גם באמצעות לחיצה על הכפתור \"מיזמים\".</string>
-  <string name="login-tab-oauth">OAuth</string>
-  <string name="login-tab-login">כניסה</string>
+  <string name="login-tab-login" fuzzy="true">כניסה</string>
   <string name="login-reload-tool-tip">רענון רשימת המיזמים הזמינים שאפשר להשתמש בהם בהאגל. זה יכול להיות שימושי בעת הפעלת האגל במיזם שבו הוא הופעל לאחרונה</string>
   <string name="login-language">שפה:</string>
   <string name="login-project">מיזם:</string>

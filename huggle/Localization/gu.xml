@@ -118,8 +118,7 @@
   <string name="history-error-message-title">પૂર્વવત કરવામાં અસમર્થ</string>
   <string name="history-failure">ઇતિહાસ લાવવામાં અસમર્થ</string>
   <string name="userhistory-title">તમારા પરિવર્તનોનો ઇતિહાસ</string>
-  <string name="login-tab-oauth">OAuth</string>
-  <string name="login-tab-login">પ્રવેશો</string>
+  <string name="login-tab-login" fuzzy="true">પ્રવેશો</string>
   <string name="login-language">ભાષા:</string>
   <string name="login-project">પરિયોજના:</string>
   <string name="login-username">સભ્યનામ:</string>

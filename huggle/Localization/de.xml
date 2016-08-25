@@ -218,8 +218,9 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="irc-switch-rc">Wechsle auf den IRC-Feed der Letzten Änderungen des Wikis</string>
   <string name="login-old">Rufe Benutzerkonfiguration vom alten Standort ab</string>
   <string name="login-intro">Bitte wähle ein Projekt aus und gib deinen Benutzernamen und Passwort ein. Du kannst dich auch mit dem Klick auf die Schaltfläche „Projekte“ bei mehreren Projekten anmelden.</string>
-  <string name="login-tab-oauth">OAuth</string>
-  <string name="login-tab-login">Anmeldung</string>
+  <string name="invalid-bot-user-name">Dies ist kein gültiger Botname. Beispiel für einen korrekten Botnamen: Jimbo@Huggle</string>
+  <string name="login-tab-botp">Bot-Passwort</string>
+  <string name="login-tab-login">Veraltet</string>
   <string name="login-reload-tool-tip">Eine Liste mit verfügbaren Projekten neu laden, die in Huggle verwendet werden können. Dies kann hilfreich sein in einem Fall, bei dem du Huggle auf einem Projekt benutzen willst, auf dem Huggle kürzlich aktiviert wurde.</string>
   <string name="login-language">Sprache:</string>
   <string name="login-project">Projekt:</string>
@@ -235,6 +236,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="login-fail-css">Anmeldung auf $1 fehlgeschlagen: Die Benutzerkonfiguration konnte nicht abgerufen werden. Special:MyPage/huggle3.css fehlt. Hast du in deinem Benutzernamensraum huggle3.css erstellt?</string>
   <string name="login-fail-enable-true">Anmeldung auf $1 fehlgeschlagen: In deiner persönlichen Konfiguration wurde nicht enable:true festgelegt.</string>
   <string name="login-fail-no-info">Anmeldung auf $1 fehlgeschlagen: Benutzerinformation konnte nicht abgerufen werden: $2</string>
+  <string name="login-bot">Was ist der Unterschied zwischen der Bot- und veralteten Anmeldung?</string>
   <string name="login-fail-parse-config">Anmeldung auf $1 fehlgeschlagen: Die Benutzerkonfiguration konnte nicht geparst werden. Siehe das Debug-Logbuch für weitere Einzelheiten.</string>
   <string name="login-fail-user-data">Anmeldung auf $1 fehlgeschlagen: Die Benutzerinformation konnte nicht abgerufen werden. Die API-Abfrage hat keine Daten zurückgegeben.</string>
   <string name="login-fail-rollback-rights">Anmeldung auf $1 fehlgeschlagen: Du hast keine Zurücksetzungsrechte auf diesem Projekt.</string>

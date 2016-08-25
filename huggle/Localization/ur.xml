@@ -96,8 +96,7 @@
   <string name="historyform-title">تاریخچہ</string>
   <string name="userhistory-title">آپ کی ترامیم کا تاریخچہ</string>
   <string name="login-intro">براہ کرم منصوبہ منتخب کریں اور اپنا صارف نام و پاسورڈ درج کریں۔ نیز آپ \"Projects\" بٹن پر کلک کرکے متعدد منصوبوں میں بھی لاگ ان ہو سکتے ہیں۔</string>
-  <string name="login-tab-oauth">OAuth</string>
-  <string name="login-tab-login">لاگ ان</string>
+  <string name="login-tab-login" fuzzy="true">لاگ ان</string>
   <string name="login-language">زبان:</string>
   <string name="login-project">منصوبہ:</string>
   <string name="login-username">صارف نام:</string>

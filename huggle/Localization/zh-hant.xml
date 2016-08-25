@@ -180,8 +180,7 @@
   <string name="userhistory-title">您的變更歷史</string>
   <string name="irc-connected">$1：已連結IRC最近更改訂閱。</string>
   <string name="irc-not">IRC訂閱被專案設定檔停用</string>
-  <string name="login-tab-oauth">OAuth</string>
-  <string name="login-tab-login">登入</string>
+  <string name="login-tab-login" fuzzy="true">登入</string>
   <string name="login-language">語言：</string>
   <string name="login-project">專案：</string>
   <string name="login-username">使用者名稱：</string>

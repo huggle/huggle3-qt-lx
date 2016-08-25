@@ -214,8 +214,9 @@
   <string name="irc-switch-rc">위키 최근 바뀜 피드로 전환</string>
   <string name="login-old">오래된 위치에서 사용자 설정을 얻는 중</string>
   <string name="login-intro">프로젝트를 고르고 사용자 이름과 비밀번호를 입력해주세요. 또한 \"프로젝트\" 버튼을 클릭하여 여러 프로젝트에 로그인할 수 있습니다.</string>
-  <string name="login-tab-oauth">OAuth</string>
-  <string name="login-tab-login">로그인</string>
+  <string name="invalid-bot-user-name">유효한 봇 이름이 아닙니다. 유효한 봇 이름의 예: Jimbo@Huggle</string>
+  <string name="login-tab-botp">봇 비밀번호</string>
+  <string name="login-tab-login" fuzzy="true">상호작용 로그인</string>
   <string name="login-language">언어:</string>
   <string name="login-project">프로젝트:</string>
   <string name="login-username">사용자 이름:</string>
@@ -230,6 +231,7 @@
   <string name="login-fail-css">사용자 설정을 얻을 수 없어 $1에 로그인에 실패했습니다. 당신의 사용자 공간에 huggle3.css를 만들었습니까? (Special:MyPage/huggle3.css가 없습니다)</string>
   <string name="login-fail-enable-true">당신의 개인 설정에 enable:true가 없기 때문에 $1에 로그인에 실패했습니다</string>
   <string name="login-fail-no-info">사용자 정보를 얻을 수 없어 $1에 로그인에 실패했습니다: $2</string>
+  <string name="login-bot" fuzzy="true">봇과 상호작용 로그인 간에 차이가 있나요?</string>
   <string name="login-fail-parse-config">사용자 설정을 구문 분석할 수 없어 $1에 로그인에 실패했습니다, 더 많은 자세한 사항은 디버그 기록을 보세요</string>
   <string name="login-fail-user-data">사용자 정보를 얻을 수 없어 $1에 로그인에 실패했으며, api 쿼리는 반환한 데이터가 없습니다</string>
   <string name="login-fail-rollback-rights">당신은 이 프로젝트에 되돌리기 권한이 없기 때문에 $1에 로그인에 실패했습니다</string>

@@ -125,8 +125,7 @@
   <string name="history-error-message-title">Réckgängegmaachen kann net gemaach ginn</string>
   <string name="userhistory-title">Lëscht vun Ären Ännerungen (chronologesch)</string>
   <string name="login-intro">Sicht w.e.g. e Projet eraus a gitt Äre Benotzernumm an Äert Passwuert an. Dir kënnt Iech op méi Projeten alogge wann Dir och op de Knäppche \'Porjeten\' klickt.</string>
-  <string name="login-tab-oauth">OAuth</string>
-  <string name="login-tab-login">Aloggen</string>
+  <string name="login-tab-login" fuzzy="true">Aloggen</string>
   <string name="login-language">Sprooch:</string>
   <string name="login-project">Projet:</string>
   <string name="login-username">Benotzernumm:</string>

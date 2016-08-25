@@ -144,8 +144,7 @@
   <string name="irc-disconnected">انقطع الاتصال بتلقيم آي آر سي لأحدث التغييرات؛ معاودة الاتصال</string>
   <string name="irc-nochannel">قناة آي آر سي ل$1 غير موجودة؛ استخدام استعلامات واجهة برمجة تطبيقات أبطأ بدلاً منها</string>
   <string name="irc-error" fuzzy="true">تعذر الاتصال بملقم آي آر سي لأحدث التغييرات. استخدام استعلامات واجهة برمجة تطبيقات أبطأ بدلاً منها</string>
-  <string name="login-tab-oauth">أو أوث</string>
-  <string name="login-tab-login">تسجيل الدخول</string>
+  <string name="login-tab-login" fuzzy="true">تسجيل الدخول</string>
   <string name="login-language">اللغة:</string>
   <string name="login-project">المشروع:</string>
   <string name="login-username">اسم المستخدم:</string>

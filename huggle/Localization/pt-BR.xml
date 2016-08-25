@@ -218,8 +218,7 @@ Este bloqueio substituirá o efeito do bloqueio de faixa. Continuar?</string>
   <string name="irc-switch-rc">Trocando para o feed RC da wiki</string>
   <string name="login-old">Recuperando configuração do usuário de local antigo.</string>
   <string name="login-intro">Por favor, escolha um projeto e digite o seu nome de usuário(a) e senha. Você pode iniciar a sessão em vários projetos ao clicar no botão \"Projetos\".</string>
-  <string name="login-tab-oauth">OAuth</string>
-  <string name="login-tab-login">Entrar</string>
+  <string name="login-tab-login" fuzzy="true">Entrar</string>
   <string name="login-reload-tool-tip">Recarregue uma lista de projetos disponíveis que podem ser usados com o Huggle. Isto pode ser útil no caso de desejar usar o Huggle em um projeto onde foi recentemente ativado.</string>
   <string name="login-language">Língua:</string>
   <string name="login-project">Projeto:</string>

@@ -217,8 +217,7 @@
   <string name="irc-switch-rc">Viki SD beslemesine geçiliyor</string>
   <string name="login-old">Kullanıcı yapılandırması eski konumdan alınıyor</string>
   <string name="login-intro">Lütfen bir proje seçiniz ve kullanıcı adınızı ve parolanızı giriniz. \"Projeler\" düğmesine basarak birden fazla projede de oturum açabilirsiniz.</string>
-  <string name="login-tab-oauth">OAuth</string>
-  <string name="login-tab-login">Giriş</string>
+  <string name="login-tab-login" fuzzy="true">Giriş</string>
   <string name="login-reload-tool-tip">Huggle\'da kullanılabilecek projelerin bir listesini yeniden yükleyin. Bu Huggle\'ın yakın zamanda aktifleştirildiği bir projede Huggle kullanmak istemeniz halinde faydalı olabilir.</string>
   <string name="login-language">Dil:</string>
   <string name="login-project">Proje:</string>

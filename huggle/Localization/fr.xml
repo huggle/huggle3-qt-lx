@@ -218,8 +218,9 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="irc-switch-rc">Bascule vers le fil IRC du wiki</string>
   <string name="login-old">Récupération de la configuration utilisateur depuis l’ancien emplacement</string>
   <string name="login-intro">Veuillez choisir un projet et saisir votre nom d’utilisateur et votre mot de passe. Vous pouvez aussi vous connecter à plusieurs projets en cliquant sur le bouton « Projets ».</string>
-  <string name="login-tab-oauth">OAuth</string>
-  <string name="login-tab-login">Connexion</string>
+  <string name="invalid-bot-user-name">Ce n’est pas un nom de robot valide. Exemple de nom de robot correct : Jimbo@Huggle</string>
+  <string name="login-tab-botp">Mot de passe du robot</string>
+  <string name="login-tab-login">Normal</string>
   <string name="login-reload-tool-tip">Recharger une liste de projets disponibles qui peut être utilisée dans Huggle ; cela peut être utile si vous voulez utiliser Huggle sur un projet pour lequel Huggle a été récemment activé</string>
   <string name="login-language">Langue :</string>
   <string name="login-project">Projet :</string>
@@ -235,6 +236,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="login-fail-css">Échec de la connexion sur $1 : Impossible de récupérer la configuration utilisateur. Special:MyPage/huggle3.css est absent. Avez-vous créé huggle3.css dans votre espace utilisateur ?</string>
   <string name="login-fail-enable-true">Échec de la connexion sur $1 : Vous n’avez pas enable:true dans votre configuration personnelle.</string>
   <string name="login-fail-no-info">Échec à la connexion sur $1 : Impossible de récupérer l’information utilisateur : $2</string>
+  <string name="login-bot">Quelle est la différence entre un robot et une connexion manuelle ?</string>
   <string name="login-fail-parse-config">Échec à la connexion sur $1 : Impossible d’analyser la configuration utilisateur. Voyez la trace de débogage pour plus de détails.</string>
   <string name="login-fail-user-data">Échec à la connexion sur $1 : Impossible de récupérer l’information utilisateur. La requête à l’API n’a renvoyé aucune donnée.</string>
   <string name="login-fail-rollback-rights">Échec à la connexion sur $1 : Vous n’avez pas de droit de retour arrière sur ce projet.</string>

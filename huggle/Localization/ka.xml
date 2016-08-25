@@ -114,7 +114,7 @@
   <string name="history-error-message-title">გაუქმება შეუძლებელია</string>
   <string name="history-failure">ისტორიის მიღება შეუძლებელია</string>
   <string name="userhistory-title">თქვენი ცვლილებების ისტორია</string>
-  <string name="login-tab-login">შესვლა</string>
+  <string name="login-tab-login" fuzzy="true">შესვლა</string>
   <string name="login-language">Язык:</string>
   <string name="login-project">Проект:</string>
   <string name="login-username">Логин:</string>

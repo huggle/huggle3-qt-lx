@@ -161,7 +161,7 @@
   <string name="irc-connecting">$1 сайтындағы IRC жуықтағы өзгерістер тізбегіне байлануға әрекеттенуде, бұл біраз уақыт алуы мүмкін...</string>
   <string name="irc-disconnected">$1 сайтындағы IRC жуықтағы өзгерістер тізбегіне байланысы жоғалды. Қайта байланысуда...</string>
   <string name="irc-switch-rc">Уикидің жуықтағы өзгерістер тізбегіне ауысуда</string>
-  <string name="login-tab-login">Кіру</string>
+  <string name="login-tab-login" fuzzy="true">Кіру</string>
   <string name="login-language">Тіл:</string>
   <string name="login-project">Жоба:</string>
   <string name="login-username">Қатысушы есімі</string>

@@ -217,8 +217,7 @@
   <string name="irc-switch-rc">Passaggio al feed RC del wiki</string>
   <string name="login-old">Recupero della configurazione utente dalla vecchia posizione</string>
   <string name="login-intro">Per favore scegli un progetto e inserisci nome utente e password. Puoi anche accedere a più progetti cliccando sul pulsante \"Progetti\".</string>
-  <string name="login-tab-oauth">OAuth</string>
-  <string name="login-tab-login">Accedi</string>
+  <string name="login-tab-login" fuzzy="true">Accesso interattivo</string>
   <string name="login-reload-tool-tip">Ricarica una lista di progetti disponibili che possono essere utilizzati con Huggle. Può essere utile in caso tu voglia usare Huggle in un progetto dove Huggle è stato attivato da poco.</string>
   <string name="login-language">Lingua:</string>
   <string name="login-project">Progetto:</string>
@@ -235,6 +234,7 @@
 Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio utente?</string>
   <string name="login-fail-enable-true">Accesso non riuscito a $1: Non hai enable:true nella tua configurazione personale.</string>
   <string name="login-fail-no-info">Accesso non riuscito a $1: Impossibile recuperare le informazioni dell\'utente: $2</string>
+  <string name="login-bot" fuzzy="true">Qual è la differenza tra bot e accesso interattivo?</string>
   <string name="login-fail-parse-config">Accesso non riuscito a $1: Impossibile analizzare la configurazione dell\'utente. Vedi il registro di debug per ulteriori dettagli.</string>
   <string name="login-fail-user-data">Accesso non riuscito a $1: Impossibile recuperare le informazioni dell\'utente. L\'interrogazione API non ha restituito dati.</string>
   <string name="login-fail-rollback-rights">Accesso non riuscito a $1: Non hai i permessi di rollback su questo progetto.</string>

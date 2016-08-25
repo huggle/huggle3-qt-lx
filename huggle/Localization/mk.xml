@@ -218,8 +218,9 @@
   <string name="irc-switch-rc">Се префрлам на RC-викиканал</string>
   <string name="login-old">Добивање на кориснички поставки од старо наоѓалиште</string>
   <string name="login-intro">Одберете проект, па внесете го вашето корисничко име и лозинка. Можете да се најавите и на повеќе проекти наеднаш со копчето „Проекти“.</string>
-  <string name="login-tab-oauth">OAuth</string>
-  <string name="login-tab-login">Најава</string>
+  <string name="invalid-bot-user-name">Ова не е важечко име за бот. Пример за правилно име: Jimbo@Huggle</string>
+  <string name="login-tab-botp">Ботовска лозинка</string>
+  <string name="login-tab-login" fuzzy="true">Интерактивна најава</string>
   <string name="login-reload-tool-tip">Превчитајте список на расположиви проекти што може да се користат во Huggle. Ова може да е корисно ако сакате да го користите на проект каде Huggle е неодамна овозможен.</string>
   <string name="login-language">Јазик:</string>
   <string name="login-project">Проект:</string>
@@ -235,6 +236,7 @@
   <string name="login-fail-css">Најавата не успеа на $1: Не можам да ги преземам корисничките поставки од старото место. Дали создадовте huggle3.css во вашиот кориснички простор? (недостасува Special:MyPage/huggle3.css)</string>
   <string name="login-fail-enable-true">Најавата не успеа на $1: Немате enable:true во вашите лични поставки.</string>
   <string name="login-fail-no-info">Најавате не успеа на $1: Не можам да ги добијам корисничките информации: $2</string>
+  <string name="login-bot" fuzzy="true">Која е разликата помеѓу ботовската и интрактивната најава?</string>
   <string name="login-fail-parse-config">Најавате не успеа на $1: Не можам да ги расчленам корисничките поставки. Повеќе информации ќе најдете во дневникот на грешки.</string>
   <string name="login-fail-user-data">Најавате не успеа на $1: Не можам да ги добијам корисничките информации. Извршникот не даде податоци по зададеното барање.</string>
   <string name="login-fail-rollback-rights">Најавате не успеа на $1: Немате дозвола за отповикување на проектов.</string>
