@@ -217,6 +217,8 @@
   <string name="irc-switch-rc">Viki SD beslemesine geçiliyor</string>
   <string name="login-old">Kullanıcı yapılandırması eski konumdan alınıyor</string>
   <string name="login-intro">Lütfen bir proje seçiniz ve kullanıcı adınızı ve parolanızı giriniz. \"Projeler\" düğmesine basarak birden fazla projede de oturum açabilirsiniz.</string>
+  <string name="invalid-bot-user-name">Bu geçerli bir bot ismi değil.Örnek bir boz ismi: Jimbo@Huggle</string>
+  <string name="login-tab-botp">Bot şifresi</string>
   <string name="login-tab-login" fuzzy="true">Giriş</string>
   <string name="login-reload-tool-tip">Huggle\'da kullanılabilecek projelerin bir listesini yeniden yükleyin. Bu Huggle\'ın yakın zamanda aktifleştirildiği bir projede Huggle kullanmak istemeniz halinde faydalı olabilir.</string>
   <string name="login-language">Dil:</string>
@@ -233,6 +235,7 @@
   <string name="login-fail-css">$1 üzerinde oturum açma başarısız: Kullanıcı yapılandırması alınamadı. Özel:KullanıcıSayfam/huggle3.css eksik. Kullanıcı alanınızda huggle3.css sayfasını oluşturdunuz mu?</string>
   <string name="login-fail-enable-true">Kişisel yapılandırma sayfasında \"enable:true\" parametresi olmadığı için $1 üzerinde oturum açma başarısız oldu.</string>
   <string name="login-fail-no-info">$1 üzerinde giriş başarısız: Kullanıcı bilgisi alınamadı: $2</string>
+  <string name="login-bot">Bot ve Eski oturum açma arasındaki fark nedir ?</string>
   <string name="login-fail-parse-config">$1 üzerinde oturum açma başarısız oldu: Kullanıcı yapılandırması ayrıştırılamadı. Ayrıntılı bilgi için hata ayıklama kayıtlarına bakınız.</string>
   <string name="login-fail-user-data">$1 üzerinde oturum açma başarısız oldu: Kullanıcı bilgisi alınamıyor. API sorgusunda veri elde edilemedi.</string>
   <string name="login-fail-rollback-rights">$1 üzerinde geri alma yetkiniz olmadığı için oturum açma başarısız oldu.</string>
@@ -715,8 +718,11 @@ $1</string>
   <string name="projects">Projeler</string>
   <string name="unable-to-retrieve-user-list">Kullanıcı listesi getirilemiyor: $1</string>
   <string name="login-no-userinfo">Site herhangi bir kullanıcı bilgisi göndermedi</string>
+  <string name="login-invalid-register-date">Geçersiz kayıt tarihi medyaviki tarafından geri döndü.</string>
   <string name="login-site-info-query-failed">Site bilgileri sorgu için $1 başarısız oldu: $2</string>
+  <string name="login-no-site-info-returned">Bu viki için site bilgisi geri gelmedi.</string>
   <string name="loading-main-window">Huggle ana penceresinden yükleniyor</string>
+  <string name="api.php-invalid-response">api.php geçersiz metin(internet sunucusu çöktü?) ile yanıt aldı,lütfen daha ayrıntılı bilgi için hata ayıklama günlüğünü kontrol edin.</string>
   <string name="login-username-doesnt-exist">Bu kullanıcı adı yok</string>
   <string name="developer-mode-enter-title">Vaaay</string>
   <string name="developer-mode-enter-message">Geliştirici moduna girdiniz!</string>
@@ -724,7 +730,13 @@ $1</string>
   <string name="unknown-item">Bilinmeyen madde</string>
   <string name="title-multiple-projects">Çoklu projeler ($1)</string>
   <string name="title-on"> $1 de</string>
+  <string name="main-revert-custom-reason-text">Sebep sağlanmadı/özel geri alma</string>
+  <string name="main-revert-already-pending-title">Bu düzenleme zaten geri çevrildi.</string>
+  <string name="main-revert-already-pending-text">Bu düzenlemeyi geri alamazsınız çünkü zaten geri alındı.Lütfen bekleyiniz!</string>
   <string name="main-revert-type-unknown">bilinmeyen</string>
   <string name="main-revert-type-in-userspace">kullanıcı alanı içinde</string>
   <string name="main-revert-type-made-by-you">siz tarafından yapılmış</string>
+  <string name="main-revert-type-made-on-talk-page">konuşma sayfasında yapıldı</string>
+  <string name="main-revert-type-made-white-list">beyaz listedeki bir kullanıcı tarafından yapıldı</string>
+  <string name="main-revert-warn">Bu düzenleme $1, vandalizm gibi görünse bile olmayabilir geri döndürmek istediğinizden emin misiniz?$1$1</string>
 </resources>

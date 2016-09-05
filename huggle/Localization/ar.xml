@@ -12,6 +12,7 @@
   <string name="deleted">محذوف</string>
   <string name="error">خطأ</string>
   <string name="exit">خروج</string>
+  <string name="done">تم</string>
   <string name="no">لا</string>
   <string name="ok">موافق</string>
   <string name="remove">أزل</string>
@@ -45,6 +46,7 @@
   <string name="diffid">رقم الفرق</string>
   <string name="expiry-time">تاريخ الانتهاء</string>
   <string name="duration">المدة</string>
+  <string name="enable">تمكين</string>
   <string name="no-token">لا يوجد رمز مميز</string>
   <string name="flags">الأعلام</string>
   <string name="browser-none">ما من صفحات معروضة الآن</string>
@@ -95,6 +97,13 @@
   <string name="config-watchlist">أضف لقائمة مراقباتي</string>
   <string name="config-defaultsummary">الملخص المبدئي للتعديلات اليدوية</string>
   <string name="config-undosummary">الملخص عند رجوعك عن تعديلاتك الخاصة</string>
+  <string name="config-enable-irc">تمكين IRC (قناة دردشة ويكيبيديا)</string>
+  <string name="config-display-text">اعرض النص</string>
+  <string name="config-nothing">لا شيء</string>
+  <string name="config-new-page">صفحة جديدة</string>
+  <string name="config-friend">صديق</string>
+  <string name="config-talk">صفحة النقاش</string>
+  <string name="config-updates">اطلع على التحديثات</string>
   <string name="config-confirmmultiple">أكد استرجاعات متعدد لتعديل لنفس المستخدم</string>
   <string name="config-confirmsame">أكد الرجوع إلى تعديل قام به نفس المستخدم الذي تقوم باسترجاع تعديله</string>
   <string name="config-confirmselfrevert">أكد الرجوع عن تعديلاتك الخاصة (ما عدا التراجع)</string>
@@ -144,7 +153,8 @@
   <string name="irc-disconnected">انقطع الاتصال بتلقيم آي آر سي لأحدث التغييرات؛ معاودة الاتصال</string>
   <string name="irc-nochannel">قناة آي آر سي ل$1 غير موجودة؛ استخدام استعلامات واجهة برمجة تطبيقات أبطأ بدلاً منها</string>
   <string name="irc-error" fuzzy="true">تعذر الاتصال بملقم آي آر سي لأحدث التغييرات. استخدام استعلامات واجهة برمجة تطبيقات أبطأ بدلاً منها</string>
-  <string name="login-tab-login" fuzzy="true">تسجيل الدخول</string>
+  <string name="login-tab-botp">كلمة مرور البوت</string>
+  <string name="login-tab-login">الخروج من التاريخ</string>
   <string name="login-language">اللغة:</string>
   <string name="login-project">المشروع:</string>
   <string name="login-username">اسم المستخدم:</string>
@@ -191,7 +201,9 @@
   <string name="main-system-showqueue">أظهر الطابور</string>
   <string name="main-system-options">الخيارات...</string>
   <string name="main-system-logout">خروج</string>
+  <string name="main-system-abort">إجهاض</string>
   <string name="main-system-change-provider-irc">آي آر سي</string>
+  <string name="main-system-change-provider-wiki">ويكي</string>
   <string name="main-system-exit">خروج</string>
   <string name="main-queue">طابور</string>
   <string name="main-queue-next">تالي</string>
@@ -210,6 +222,8 @@
   <string name="main-revision-previous">سابق</string>
   <string name="main-revision-next">تالي</string>
   <string name="main-revision-latest">الأخير</string>
+  <string name="main-tools">أدوات</string>
+  <string name="main-page-next">التالي</string>
   <string name="main-page-switchtotalk">حول إلى صفحة النقاش</string>
   <string name="main-page-switchtosubject">حول إلى صفحة الموضوع</string>
   <string name="main-page-switchtoarticle">حول إلى المقالة</string>
@@ -227,6 +241,7 @@
   <string name="main-page-move">انقل...</string>
   <string name="main-page-protect">احم</string>
   <string name="main-page-delete">احذف</string>
+  <string name="main-page-load">تحميل</string>
   <string name="main-user-info">أظهر معلومات المستخدم</string>
   <string name="main-user-ignore">تجاهل</string>
   <string name="main-user-unignore">لا تتجاهل</string>

@@ -218,7 +218,9 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="irc-switch-rc">El cambio a la wiki RC alimentación</string>
   <string name="login-old">Consultando configuración de usuario de antigua localización</string>
   <string name="login-intro">Elige un proyecto y escribe tu nombre de usuario y tu contraseña. También puedes acceder a múltiples proyectos haciendo clic en el botón \"Proyectos\".</string>
-  <string name="login-tab-login" fuzzy="true">Acceder</string>
+  <string name="invalid-bot-user-name">Esto no es un nombre de bot válido. Ejemplo de nombre válido: Jimbo@Huggle</string>
+  <string name="login-tab-botp">Contraseña de bot</string>
+  <string name="login-tab-login">Normal</string>
   <string name="login-reload-tool-tip">Volver a cargar la lista de proyectos disponibles para su uso en Huggle. Esto es necesario si quieres usar Huggle con un proyecto en que recién se ha permitido su utilización.</string>
   <string name="login-language">Idioma:</string>
   <string name="login-project">Proyecto:</string>
@@ -235,6 +237,7 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
 Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu espacio de usuario?</string>
   <string name="login-fail-enable-true">Falló el acceso a $1: falta la orden «enable:true» en tu configuración personal.</string>
   <string name="login-fail-no-info">Falló el acceso a $1: no se pudo obtener la información de la cuenta ($2)</string>
+  <string name="login-bot">¿Cuál es la diferencia entre el inicio de sesión de bot y el normal?</string>
   <string name="login-fail-parse-config">Error de inicio de sesión en $1: no se puede analizar la configuración de usuario. Ver el registro de depuración para obtener más detalles.</string>
   <string name="login-fail-user-data">Error de inicio de sesión en $1: no se puede recuperar la información de usuario. La API de consulta no devuelve datos.</string>
   <string name="login-fail-rollback-rights">Falló el acceso a $1: no tienes el permiso de reversor en este proyecto.</string>

@@ -218,7 +218,9 @@
   <string name="irc-switch-rc">מעבר להזנת שינויים אחרונים מהוויקי</string>
   <string name="login-old">מאחזר הגדרות משתמש מהמיקום הישן</string>
   <string name="login-intro">נא לבחור מיזם ולהזין את שם המשתמש והססמה שלך. באפשרותך להתחבר למיזמים מרובים גם באמצעות לחיצה על הכפתור \"מיזמים\".</string>
-  <string name="login-tab-login" fuzzy="true">כניסה</string>
+  <string name="invalid-bot-user-name">זהו לא שם בוט תקין. דוגמה לשם בוט תקין: Jimbo@Huggle</string>
+  <string name="login-tab-botp">ססמת בוט</string>
+  <string name="login-tab-login">ישן</string>
   <string name="login-reload-tool-tip">רענון רשימת המיזמים הזמינים שאפשר להשתמש בהם בהאגל. זה יכול להיות שימושי בעת הפעלת האגל במיזם שבו הוא הופעל לאחרונה</string>
   <string name="login-language">שפה:</string>
   <string name="login-project">מיזם:</string>
@@ -234,6 +236,7 @@
   <string name="login-fail-css">הכניסה נכשלה ב־$1. אין אפשרות לאחזר את הגדרות המשתמש. Special:MyPage/huggle3.css חסר. האם יצרת את huggle3.css במרחב המשתמש שלך?</string>
   <string name="login-fail-enable-true">הכניסה נכשלה ב־$1: אין לך enable:true בקובץ ההגדרות האישי</string>
   <string name="login-fail-no-info">הכניסה נכשלה ב־$1: אין אפשרות לאחזר מידע על המשתמש: $2</string>
+  <string name="login-bot">מה ההבדל בין כניסת בוט לבין הכניסה הישנה?</string>
   <string name="login-fail-parse-config">הכניסה נכשלה ב־$1: אין אפשרות לפענח את הגדרות המשתמש. ר\' יומן debug לפרטים נוספים.</string>
   <string name="login-fail-user-data">כניסה נכשלה ב־$1: אין אפשרות לאחזר פרטי משתמש. שאילתת API לא החזירה נתונים.</string>
   <string name="login-fail-rollback-rights">הכניסה נכשלה ב־$1: אין לך הרשאות שחזור במיזם הזה.</string>
