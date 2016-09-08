@@ -179,7 +179,7 @@
   <string name="irc-switch-rc">Pereinama prie viki RC srauto</string>
   <string name="login-old">Gaunama vartotojo konfigūracija iš senos vietos</string>
   <string name="login-intro">Prašome pasirinkti projektą ir įvesti savo vartotojo vardą ir slaptažodį. Gali prisijungti prie kelių projektų paspausdami „Projektai“ mygtuką.</string>
-  <string name="invalid-bot-user-name">Tai nėra galiojantis roboto vardas. Pavyzdinis robot vardas: Jimbo@Huggle</string>
+  <string name="invalid-bot-user-name">Tai nėra galiojantis roboto vardas. Pavyzdinis roboto vardas: Jimbo@Huggle</string>
   <string name="login-tab-botp">Roboto slaptažodis</string>
   <string name="login-tab-login" fuzzy="true">Interaktyvus prisijungimas</string>
   <string name="login-reload-tool-tip">Atnaujinti projektų, kuriuose Huggle gali būti naudojamas, sąrašą. Tai gali būti naudinga, jei norite naudoti Huggle projekte, kuriame Huggle buvo neseniai įgalintas.</string>

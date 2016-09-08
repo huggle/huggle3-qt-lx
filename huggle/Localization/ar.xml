@@ -47,6 +47,7 @@
   <string name="expiry-time">تاريخ الانتهاء</string>
   <string name="duration">المدة</string>
   <string name="enable">تمكين</string>
+  <string name="disable">تعطيل</string>
   <string name="no-token">لا يوجد رمز مميز</string>
   <string name="flags">الأعلام</string>
   <string name="browser-none">ما من صفحات معروضة الآن</string>

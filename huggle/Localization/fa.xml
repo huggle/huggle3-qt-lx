@@ -218,7 +218,8 @@
   <string name="irc-switch-rc">تعویض به خوراک تغییرات اخیر ویکی</string>
   <string name="login-old">بازیابی پیکربندی کاربر از محل قدیمی</string>
   <string name="login-intro">لطفاً یک پروژه را برگزینید و نام کاربری و گذرواژهٔ خود را وارد کنید. همچنین می‌توانید با کلیک‌کردن روی دکمهٔ «پروژه‌ها» در چند پروژه ثبت ورود نمایید.</string>
-  <string name="login-tab-login" fuzzy="true">ورود</string>
+  <string name="login-tab-botp">گذرواژهٔ ربات</string>
+  <string name="login-tab-login">میراث</string>
   <string name="login-reload-tool-tip">بارگیری دوبارهٔ فهرست پروژه‌های موجود که می‌تواند مورد استفادهٔ هاگل قرار گیرد. در صورتی که هاگل در پروژه‌ای به تازگی فعال شده این گزینه می‌تواند مفید باشد.</string>
   <string name="login-language">زبان:</string>
   <string name="login-project">پروژه:</string>
@@ -234,6 +235,7 @@
   <string name="login-fail-css">ورود به سیستم انجام نشد. دریافت پیکربندی کاربر ناممکن بود. Special:MyPage/huggle3.css یافت نشد. آیا Huggle3.css را در فضای کاربری خودتان ساخته‌اید؟</string>
   <string name="login-fail-enable-true">ورود ناموفق در $1: شما مقدار enable:true را در پیکربندی شخصی خود ندارید.</string>
   <string name="login-fail-no-info">ورود ناموفق در $1: امکان دریافت اطلاعات کاربر نبود: $2</string>
+  <string name="login-bot">تفاوت بین ربات و ورود چیست؟</string>
   <string name="login-fail-parse-config">ورود ناموفق در $1: قادر به تجزیهٔ پیکربندی کاربر نبود. برای جزئیات بیشتر سیاههٔ اشکال‌زدایی را ببینید.</string>
   <string name="login-fail-user-data">ورود ناموفق در $1: قادر به دریافت اطلاعات کاربر نبود. پرس‌وجو از API هیچ داده‌ای را برنگرداند.</string>
   <string name="login-fail-rollback-rights">ورود ناموفق در $1: شما در این پروژه دسترسی واگردانی ندارید.</string>
