@@ -144,9 +144,9 @@ Login::Login(QWidget *parent) : HW("login", this, parent), ui(new Ui::Login)
     }
     this->RestoreWindow();
     if (hcfg->SystemConfig_BotPassword)
-        this->ui->tab_oauth->setFocus();
+        this->ui->tabWidget->setCurrentIndex(0);
     else
-        this->ui->tab_login->setFocus();
+        this->ui->tabWidget->setCurrentIndex(1);
 }
 
 Login::~Login()
@@ -174,7 +174,7 @@ void Login::Localize()
     this->ui->labelUsername->setText(_l("login-username"));
     this->ui->labelProject->setText(_l("login-project"));
     this->ui->labelLanguage->setText(_l("login-language"));
-    this->ui->label_2->setText("<a href=\"https://www.mediawiki.org/wiki/Manual:Bot_passwords\">" + _l("login-bot") + "</a>");
+    this->ui->label_2->setText("<a href=\"https://www.mediawiki.org/wiki/Manual:Huggle/Bot_passwords\">" + _l("login-bot") + "</a>");
     this->ui->labelPassword->setText(_l("login-password"));
     this->ui->checkBox_2->setText(_l("login-remember-password"));
     this->ui->labelIntro->setText(_l("login-intro"));

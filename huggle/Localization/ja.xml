@@ -141,8 +141,8 @@
   <string name="irc-nochannel">$1のIRCチャンネルが見つかりません。より低速なAPIクエリを代わりに使用します</string>
   <string name="irc-error">IRCの最近の更新フィード($1: $2)に接続できませんでした。より低速なAPIクエリを代わりに使用します</string>
   <string name="login-intro">プロジェクトを選択して、利用者名とパスワードを入力してください。「Projects」ボタンをクリックすることで、複数のプロジェクトにログインすることもできます。</string>
-  <string name="login-tab-oauth">OAuth</string>
-  <string name="login-tab-login">ログイン</string>
+  <string name="login-tab-botp">ボット用パスワード</string>
+  <string name="login-tab-login" fuzzy="true">ログイン</string>
   <string name="login-language">言語:</string>
   <string name="login-project">プロジェクト:</string>
   <string name="login-username">利用者名:</string>

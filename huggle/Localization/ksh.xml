@@ -161,8 +161,7 @@
   <string name="history-error-message-title">Künne mer nit retuhr maache</string>
   <string name="history-failure">Mer kunnte de ällder Väsjohne nit holle</string>
   <string name="userhistory-title">Ding ällder Väsjohne</string>
-  <string name="login-tab-oauth">OAuth</string>
-  <string name="login-tab-login">Enlogge</string>
+  <string name="login-tab-login" fuzzy="true">Enlogge</string>
   <string name="login-language">De Schprohch:</string>
   <string name="login-project">Et Projäk:</string>
   <string name="login-username">Dä Metmaacher_Nahme:</string>

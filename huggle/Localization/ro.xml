@@ -218,8 +218,7 @@ Această blocare va lua locul efectului blocării gamei. Continuați?</string>
   <string name="irc-switch-rc">Comut la feedul de schimbări recente al wikiului</string>
   <string name="login-old">Citesc configurația utilizatorului din vechea locație</string>
   <string name="login-intro">Vă rog să alegeți un proiect și să vă introduceți numele de utilizator și parola. Vă puteți și autentifica la proiecte multiple, prin click pe butonul „Proiecte”</string>
-  <string name="login-tab-oauth">OAuth</string>
-  <string name="login-tab-login">Autentificare</string>
+  <string name="login-tab-login" fuzzy="true">Autentificare</string>
   <string name="login-reload-tool-tip">Încarcă o listă de proiecte disponibile pentru a fi folosite de Huggle. Aceasta poate fi utilă în caz că doriți să folosiți Huggle într-un proiect în care Huggle a fost recent activat.</string>
   <string name="login-language">Limba:</string>
   <string name="login-project">Proiect:</string>

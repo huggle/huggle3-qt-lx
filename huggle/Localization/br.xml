@@ -137,8 +137,7 @@
   <string name="history-error-message-title">Ne c\'haller ket dizober</string>
   <string name="history-failure">Ne c\'haller ket adtapout an istor.</string>
   <string name="userhistory-title">Istor ho kemmoù</string>
-  <string name="login-tab-oauth">OAuth</string>
-  <string name="login-tab-login">Kevreañ</string>
+  <string name="login-tab-login" fuzzy="true">Kevreañ</string>
   <string name="login-language">Yezh :</string>
   <string name="login-project">Raktres :</string>
   <string name="login-username">Anv implijer :</string>

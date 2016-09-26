@@ -218,8 +218,7 @@
   <string name="irc-switch-rc">Переходжу на постачання списку нових редагувань через wiki</string>
   <string name="login-old">Отримання користувацьких налаштувань</string>
   <string name="login-intro">Будь ласка, виберіть проект і введіть ім’я користувача та пароль. Ви також можете одразу ввійти до декількох проектів, скориставшись кнопкою «Проекти».</string>
-  <string name="login-tab-oauth">OAuth</string>
-  <string name="login-tab-login">Вхід</string>
+  <string name="login-tab-login" fuzzy="true">Вхід</string>
   <string name="login-reload-tool-tip">Перезавантажити список проектів, у яких можна використовувати Huggle. Це може бути корисним, якщо Ви хочете використовувати Huggle у проекті, для котрого його було підключено лише нещодавно.</string>
   <string name="login-language">Мова інтерфейсу:</string>
   <string name="login-project">Проект:</string>

@@ -180,8 +180,8 @@ Denna blockering kommer att åsidosätta effekterna av intervallblockeringen. Fo
   <string name="irc-switch-rc">Byter till wiki RC-flödet</string>
   <string name="login-old">Hämta användarinställningar från tidigare plats</string>
   <string name="login-intro">Var god välj ett projekt och ange ditt användarnamn och lösenord. Du kan logga in på flera projekt genom att även klicka på \"Projekt\"-knappen.</string>
-  <string name="login-tab-oauth">OAuth</string>
-  <string name="login-tab-login">Logga in</string>
+  <string name="login-tab-botp">Botlösenord</string>
+  <string name="login-tab-login" fuzzy="true">Logga in</string>
   <string name="login-language">Språk:</string>
   <string name="login-project">Projekt:</string>
   <string name="login-username">Användarnamn:</string>

@@ -22,7 +22,7 @@
   <string name="result">نتیجہ</string>
   <string name="save">محفوظ کریں</string>
   <string name="show">دکھائیں</string>
-  <string name="undo">استرجع</string>
+  <string name="undo">ترمیم رد کریں</string>
   <string name="yes">ہاں</string>
   <string name="editing-page">زیر ترمیم صفحہ</string>
   <string name="agf">ذاتی وجہ کے ساتھ حسن نیت کی حامل ترمیم کا استرجع کریں</string>
@@ -93,11 +93,12 @@
   <string name="delete-title">حذف $1</string>
   <string name="delete-reason">وجہ:</string>
   <string name="delete-deletionlog">نوشتۂ حذف شدگی:</string>
+  <string name="delete-rem-talk">متعلقہ تبادلۂ خیال صفحہ حذف کریں</string>
+  <string name="delete-e2">صفحہ حذف نہیں کیا جا سکا</string>
   <string name="historyform-title">تاریخچہ</string>
   <string name="userhistory-title">آپ کی ترامیم کا تاریخچہ</string>
   <string name="login-intro">براہ کرم منصوبہ منتخب کریں اور اپنا صارف نام و پاسورڈ درج کریں۔ نیز آپ \"Projects\" بٹن پر کلک کرکے متعدد منصوبوں میں بھی لاگ ان ہو سکتے ہیں۔</string>
-  <string name="login-tab-oauth">OAuth</string>
-  <string name="login-tab-login">لاگ ان</string>
+  <string name="login-tab-login" fuzzy="true">لاگ ان</string>
   <string name="login-language">زبان:</string>
   <string name="login-project">منصوبہ:</string>
   <string name="login-username">صارف نام:</string>

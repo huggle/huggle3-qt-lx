@@ -125,8 +125,7 @@
   <string name="history-error-message-title">Réckgängegmaachen kann net gemaach ginn</string>
   <string name="userhistory-title">Lëscht vun Ären Ännerungen (chronologesch)</string>
   <string name="login-intro">Sicht w.e.g. e Projet eraus a gitt Äre Benotzernumm an Äert Passwuert an. Dir kënnt Iech op méi Projeten alogge wann Dir och op de Knäppche \'Porjeten\' klickt.</string>
-  <string name="login-tab-oauth">OAuth</string>
-  <string name="login-tab-login">Aloggen</string>
+  <string name="login-tab-login">Patrimoine</string>
   <string name="login-language">Sprooch:</string>
   <string name="login-project">Projet:</string>
   <string name="login-username">Benotzernumm:</string>
@@ -139,6 +138,7 @@
   <string name="login-fail-enable-true">Aloggen op $1 huet net funktionéiert: An Äre perséinlechen Astellungen ass enable:true net dran.</string>
   <string name="login-fail-no-info">Aloggen op $1 huet net funktionéiert.
 Benotzerinformatioun konnt net ofgefrot ginn: $2</string>
+  <string name="login-bot">Wat ass den Ënnerscheed tëscht engem Bot -Login an engem traditionelle Login?</string>
   <string name="login-fail-user-data">Aloggen op $1 huet funktionéiert: Benotzerinformatioun konnt net ofgeruf ginn. D\'Api Ufro huet keng Daten zréckgeschéckt.</string>
   <string name="login-failed-edit">Aloggen op $1 huet net funktionéiert: Dir hutt net genuch Ännerungen op dësem Projet.</string>
   <string name="login-retrieving-info">Benotzerinformatioun iwwer $1 offroen</string>

@@ -218,8 +218,7 @@ Deze blokkade maakt het effect van de rangeblokkade ongedaan. Doorgaan?</string>
   <string name="irc-switch-rc">Overschakelen naar de feed met recente wijzigingen van de wiki</string>
   <string name="login-old">Gebruikerinstellingen ophalen van oude locatie</string>
   <string name="login-intro">Kies een project en voer uw gebruikersnaam en wachtwood in. U kunt ook bij meerdere projecten aanmelden via de knop \"Projecten\".</string>
-  <string name="login-tab-oauth">OAuth</string>
-  <string name="login-tab-login">Aanmelden</string>
+  <string name="login-tab-login" fuzzy="true">Aanmelden</string>
   <string name="login-reload-tool-tip">De lijst met projecten waar Huggle mee kan werken opnieuw laden. Dit kan handig zijn als u Huggle wilt gebruiken met een project waar ondersteuning recentelijk voor is toegevoegd.</string>
   <string name="login-language">Taal:</string>
   <string name="login-project">Project:</string>
