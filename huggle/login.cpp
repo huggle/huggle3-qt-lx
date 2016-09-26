@@ -21,6 +21,7 @@
 #include "mainwindow.hpp"
 #include "mediawiki.hpp"
 #include "proxy.hpp"
+#include "welcomeinfo.hpp"
 #include "syslog.hpp"
 #include "ui_login.h"
 #include "updateform.hpp"
@@ -122,6 +123,12 @@ Login::Login(QWidget *parent) : HW("login", this, parent), ui(new Ui::Login)
             hcfg->SystemConfig_ProxyUser, hcfg->SystemConfig_ProxyPass);
     }
     HUGGLE_PROFILER_PRINT_TIME(BOOST_CURRENT_FUNCTION);
+    if (!hcfg->Login && (hcfg->SystemConfig_FirstRun ||
+        hcfg->SystemConfig_ShowStartupInfo))
+    {
+        WelcomeInfo info;
+        info.exec();
+    }
     if (hcfg->Login)
     {
         // user wanted to login using a terminal
@@ -1385,13 +1392,13 @@ void Huggle::Login::on_label_linkActivated(const QString &link)
 
 void Huggle::Login::on_lineEditBotUser_textChanged(const QString &arg1)
 {
-    Q_UNUSED( arg1 )
+    Q_UNUSED(arg1)
     Login::VerifyLogin();
 }
 
 void Huggle::Login::on_lineEditBotP_textChanged(const QString &arg1)
 {
-    Q_UNUSED( arg1 )
+    Q_UNUSED(arg1)
     Login::VerifyLogin();
 }
 

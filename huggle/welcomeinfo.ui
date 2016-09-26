@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>WelcomeInfo</class>
+ <widget class="QDialog" name="WelcomeInfo">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>643</width>
+    <height>727</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="pictures.qrc">
+    <normaloff>:/huggle/pictures/Resources/huggle3_small.ico</normaloff>:/huggle/pictures/Resources/huggle3_small.ico</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="font">
+      <font>
+       <pointsize>36</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Welcome to Huggle!</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="label_4">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>language</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="cb_Language">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_2">
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;It looks like this is a first time you launched Huggle! (Or at least this version of huggle).&lt;/p&gt;&lt;p&gt;Welcome! Here are some quick tips that will help you out while using this program:&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;== Login ==&lt;/span&gt;&lt;/p&gt;&lt;p&gt;We support 2 types of login. One is called &amp;quot;bot login&amp;quot;, but should be considered as application login, as it doesn't serve just for bots. That is actually a preferred one as it's generally more secure. In order to use bot login, you first need to generate it. In order to do that, visit Bot login page, on English wikipedia that would be [[Special:BotPasswords]]. That will get you a new special password that you will supply to Huggle instead of normal one.&lt;/p&gt;&lt;p&gt;The other supported login is a standard one, just use same username and password as you would when logging in to a wiki. Support for this login may be dropped by MediaWiki in future versions.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;== Using huggle ==&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Long and detailed manual is here: &lt;a href=&quot;https://www.mediawiki.org/wiki/Manual:Huggle&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://www.mediawiki.org/wiki/Manual:Huggle&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;For these lazy to read it, here are few tips to get started really quickly:&lt;/p&gt;&lt;p&gt;* Huggle is a diff browser, that means it will connect to a recent changes stream and load wiki diffs into its memory. You will see pre-loaded diffs on left side in window called &amp;quot;Queue&amp;quot;&lt;/p&gt;&lt;p&gt;* Navigate to next edit in a Queue by using spacebar or click next button&lt;/p&gt;&lt;p&gt;* Move back and forward in history using keys [ and ]&lt;/p&gt;&lt;p&gt;* If you see an edit that is harmfull and needs to be reverted and you also wish to warn user who made it, press Q, if you want to just revert it, press R&lt;/p&gt;&lt;p&gt;* You can also pick more specific reasons for revert in dropdown menu in toolbar&lt;/p&gt;&lt;p&gt;* Huggle allows you to revert edits, restore specific versions, send warnings to users, welcome users, tag pages, delete pages, view user information, block users and many other advanced features.&lt;/p&gt;&lt;p&gt;* Be carefull. This tool can blow the wiki up. Make sure you are familiar with dealing with vandalism on the wiki before you start reverting. Don't be too fast, take breaks. Think twice before pressing Q (or R). If you made a mistake, press ESC ASAP and maybe you will cancel before actual revert. If you were too slow, right click the revert in history window (bottom left) and click Undo. That will restore your revert and undo warnings sent to user.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;== Getting help ==&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Best way to get help is probably visiting a feedback page on English wikipedia at &lt;a href=&quot;https://en.wikipedia.org/wiki/WP:HG/T&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://en.wikipedia.org/wiki/WP:HG/T&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="scaledContents">
+      <bool>false</bool>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Clicking OK will get you to login page. Pick up a project(s) you wish to login to, enter your credentials and login.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="checkBox">
+     <property name="text">
+      <string>Show this message next time</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="pushButton">
+     <property name="text">
+      <string>OK</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="pictures.qrc"/>
+ </resources>
+ <connections/>
+</ui>

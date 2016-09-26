@@ -367,6 +367,8 @@ void Configuration::LoadSystemConfig(QString fn)
         RCB(RequestDelay);
         RCB(BotPassword);
         RCU(RevertDelay);
+        RCB(FirstRun);
+        RCB(ShowStartupInfo);
         RCB(InstantReverts);
         if (key == "Projects")
         {
@@ -424,6 +426,8 @@ void Configuration::SaveSystemConfig()
     writer->setAutoFormatting(true);
     writer->writeStartDocument();
     writer->writeStartElement("huggle");
+    INSERT_CONFIG_B(FirstRun);
+    INSERT_CONFIG_B(ShowStartupInfo);
     INSERT_CONFIG_N(DelayVal);
     INSERT_CONFIG_B(RequestDelay);
     INSERT_CONFIG_N(RevertDelay);
