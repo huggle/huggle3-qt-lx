@@ -134,6 +134,7 @@ SET(tst_testmain_SOURCES ${srcx}
 ../../revertquery.cpp
 ../../xmlutils.cpp
 ../../gc_thread.cpp
+../../welcomeinfo.cpp
 ../../webserverquery.cpp
 ../../userconfiguration.cpp
 ../../projectconfiguration.cpp 
