@@ -60,7 +60,7 @@ void WelcomeInfo::Localize()
     this->ui->checkBox->setText(_l("welcome-show"));
     this->ui->label_4->setText(_l("login-language"));
 }
-/*
+
 void Huggle::WelcomeInfo::on_label_2_linkActivated(const QString &link)
 {
 
@@ -92,5 +92,3 @@ void WelcomeInfo::DisableLanguage()
     this->ui->cb_Language->setVisible(false);
 }
 
-
-*/

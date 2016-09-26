@@ -75,7 +75,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>19</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -124,6 +124,7 @@
      <addaction name="actionPrint_API_for_diff"/>
      <addaction name="actionCheck_for_dups"/>
     </widget>
+    <addaction name="actionIntroduction"/>
     <addaction name="actionContents"/>
     <addaction name="actionQueue_legend"/>
     <addaction name="separator"/>
@@ -1101,6 +1102,11 @@
   <action name="actionCheck_for_dups">
    <property name="text">
     <string>Check for duplicates in current queue</string>
+   </property>
+  </action>
+  <action name="actionIntroduction">
+   <property name="text">
+    <string>Introduction</string>
    </property>
   </action>
  </widget>

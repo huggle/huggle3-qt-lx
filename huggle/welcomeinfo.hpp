@@ -27,12 +27,12 @@ namespace Huggle
         public:
             explicit WelcomeInfo(QWidget *parent = 0);
             ~WelcomeInfo();
-            //void DisableLanguage();
+            void DisableLanguage();
 
         private slots:
             void on_pushButton_clicked();
-            //void on_label_2_linkActivated(const QString &link);
-            //void on_cb_Language_currentIndexChanged(const QString &arg1);
+            void on_label_2_linkActivated(const QString &link);
+            void on_cb_Language_currentIndexChanged(const QString &arg1);
 
         private:
             void Localize();

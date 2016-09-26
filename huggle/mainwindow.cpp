@@ -31,6 +31,7 @@
 #include "generic.hpp"
 #include "gc.hpp"
 #include "querypool.hpp"
+#include "welcomeinfo.hpp"
 #include "hooks.hpp"
 #include "history.hpp"
 #include "hugglefeedproviderwiki.hpp"
@@ -3076,4 +3077,12 @@ void Huggle::MainWindow::on_actionCheck_for_dups_triggered()
     {
         HUGGLE_LOG("No duplicates found");
     }
+}
+
+void Huggle::MainWindow::on_actionIntroduction_triggered()
+{
+    WelcomeInfo *w = new WelcomeInfo(this);
+    w->setAttribute(Qt::WA_DeleteOnClose);
+    w->DisableLanguage();
+    w->show();
 }
