@@ -668,6 +668,7 @@
   <string name="updating-wl">正在更新白名單...</string>
   <string name="feature-nfru">此功能僅限IP用戶使用</string>
   <string name="report-no-user">沒有用戶被選擇回報，請先選擇一個用戶</string>
+  <string name="welcome-show">在下次您啟用huggle時顯示此訊息</string>
   <string name="welcome-tp-empty-fail">此用戶沒有空的對話頁，您卻您要寄送訊息給對方？</string>
   <string name="welcome-page-miss-fail">Huggle無法檢索使用者討論頁內容，您卻要為他寄送歡迎訊息嗎？</string>
   <string name="cr-newer-edits">衝突解決：已回退包含新編輯的所有編輯。由同一位用戶：$1所編輯。</string>

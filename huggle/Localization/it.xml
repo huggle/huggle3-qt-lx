@@ -666,6 +666,7 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="updating-wl">Aggiornamento della lista bianca...</string>
   <string name="feature-nfru">Questa funzionalità è solo per gli utenti IP</string>
   <string name="report-no-user">Nessun utente è stato scelto per la segnalazione, per favore prima scegli un utente</string>
+  <string name="welcome-show">Visualizza questo messaggio anche la prossima volta che si avvia huggle</string>
   <string name="welcome-tp-empty-fail">Questo utente non ha una pagina di discussione vuota, sei sicuro di volergli inviare un messaggio?</string>
   <string name="welcome-page-miss-fail">Huggle non è riuscito a recuperare il contenuto della pagina di discussione dell\'utente, sei sicuro di volergli inviare un messaggio di benvenuto?</string>
   <string name="cr-newer-edits">Confitto risolto: ripristinate tutte le modifiche, incluse le nuove modifiche. Le modifiche provenivano dallo stesso utente: $1.</string>
