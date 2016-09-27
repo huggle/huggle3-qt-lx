@@ -363,14 +363,16 @@ void MainWindow::DisplayReportUserWindow(WikiUser *User)
         Generic::pMessageBox(this, _l("missing-aiv"), _l("function-miss"));
         return;
     }
-    if (this->fReportForm != nullptr)
-    {
-        delete this->fReportForm;
-        this->fReportForm = nullptr;
-    }
-    this->fReportForm = new ReportUser(this);
-    this->fReportForm->show();
-    this->fReportForm->SetUser(User);
+    // we don't need to do this because report form gets deleted on close
+    //if (this->fReportForm != nullptr)
+    //{
+    //    delete this->fReportForm;
+    //    this->fReportForm = nullptr;
+    //}
+    ReportUser *rf = new ReportUser(this);
+    rf->SetUser(User);
+    rf->setAttribute(Qt::WA_DeleteOnClose);
+    rf->show();
 }
 
 WikiEdit *MainWindow::GetCurrentWikiEdit()
