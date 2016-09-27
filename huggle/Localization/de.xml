@@ -668,6 +668,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="updating-wl">Aktualisiere Whitelist …</string>
   <string name="feature-nfru">Diese Funktion ist nur für IP-Benutzer</string>
   <string name="report-no-user">Es wurde kein Benutzer für den Bericht ausgewählt. Bitte zuerst einen auswählen.</string>
+  <string name="welcome-show">Diese Nachricht auch beim nächsten Huggle-Start anzeigen</string>
   <string name="welcome-tp-empty-fail">Dieser Benutzer hat keine leere Diskussionsseite. Bist du sicher, dass du eine Nachricht an ihn senden willst?</string>
   <string name="welcome-page-miss-fail">Huggle konnte die Inhalte der Benutzerdiskussionsseite nicht abrufen. Bist du sicher, dass du eine Willkommensnachricht senden willst?</string>
   <string name="cr-newer-edits">Konflikt gelöst: Alle Bearbeitungen inklusive neuer Bearbeitungen zurückgesetzt. Bearbeitungen waren vom gleichen Benutzer: $1.</string>

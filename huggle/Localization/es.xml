@@ -669,6 +669,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="updating-wl">Actualizando lista blanca...</string>
   <string name="feature-nfru">Esta función es sólo para usuarios de IP</string>
   <string name="report-no-user">Ningún usuario ha sido seleccionado para denunciar. Selecciona un usuario primero</string>
+  <string name="welcome-show">También mostrar este mensaje la próxima vez que inicies Huggle</string>
   <string name="welcome-tp-empty-fail">Este usuario no tiene una página de discusión vacía, ¿estás seguro de que quieres enviarle un mensaje?</string>
   <string name="welcome-page-miss-fail">Huggle fue incapaz de recuperar el contenido de la página de discusión del usuario, está seguro de que desea enviar un mensaje de bienvenida para ellos?</string>
   <string name="cr-newer-edits">El conflicto se resuelve: revertir todas las ediciones, incluyendo nuevas ediciones. Ediciones fueron por el mismo usuario: $1.</string>
