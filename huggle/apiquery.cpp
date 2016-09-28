@@ -399,6 +399,7 @@ void ApiQuery::SetAction(const Action action)
     {
         case ActionClearHasMsg:
             this->ActionPart = "clearhasmsg";
+            this->UsingPOST = true;
             return;
         case ActionQuery:
             this->ActionPart = "query";
