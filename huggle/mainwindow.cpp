@@ -149,12 +149,16 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
             site->GetProjectConfig()->WhiteList.append(hcfg->SystemConfig_Username);
     }
     QueryPool::HugglePool->Processes = this->Queries;
-    QString projects = hcfg->Project->Name;
+    QString projects;
     if (hcfg->SystemConfig_Multiple)
     {
         foreach (WikiSite *site, hcfg->Projects)
             projects += site->Name + ", ";
         projects = projects.mid(0, projects.length() - 2);
+    } else
+    {
+        // Set the name of current site
+        projects = hcfg->Project->Name;
     }
     if (!hcfg->SystemConfig_Multiple)
         this->setWindowTitle("Huggle 3 QT-LX " + _l("title-on", projects));
