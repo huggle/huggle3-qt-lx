@@ -667,6 +667,7 @@
   <string name="updating-wl">Beyaz liste güncelleniyor...</string>
   <string name="feature-nfru">Bu özellik yalnızca IP kullanıcıları içindir.</string>
   <string name="report-no-user">Rapor etmek için kullanıcı seçilmedi, lütfen önce bir kullanıcı seçin</string>
+  <string name="welcome-show">Bu ileti bir dahaki sefere huggle ekranında başlatılacak</string>
   <string name="welcome-tp-empty-fail">Kullanıcının mesaj sayfası boş değil, ona mesaj göndermek istediğinizden emin misiniz?</string>
   <string name="welcome-page-miss-fail">Huggle kullanıcı mesaj sayfasına ulaşamadı, hoş geldin mesajı göndermek istediğinize emin misiniz?</string>
   <string name="cr-newer-edits">Çakışma çözüldü: yenileri de dahil tüm değişiklikler geri alındı. Değişiklikler aynı kullanıcıya aitti: $1</string>

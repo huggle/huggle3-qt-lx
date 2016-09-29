@@ -388,6 +388,7 @@ Benotzerinformatioun konnt net ofgefrot ginn: $2</string>
   <string name="missing-page">Et gëtt keng Säit $1 op dëser Wiki</string>
   <string name="feature-nfru">Dës Funktioun ass nëmme fir anonym (IP) Benotzer</string>
   <string name="report-no-user">Et gouf kee Benotzer erausgesicht fir de Rapport, sicht w.e.g. fir d\'éischt e Benotzer eraus</string>
+  <string name="welcome-show">Dëse Message och beim nächste Start vun Huggle weisen</string>
   <string name="welcome-tp-empty-fail">Dëse Benotzer huet keng eidel Diskussiounssäit, sidd Dir sécher datt Dir him e Message schécke wëllt?</string>
   <string name="cr-newer-edits">Konflikt geléist: all Ännerunge goufen zréckgesat, inklusiv nei Ännerungen. D\'Ännerunge ware vum selwechte Benotzer: $1.</string>
   <string name="cr-message-new">Et gëtt méi nei Ännerunge vu(n) $1, sidd Dir sécher datt Dir se wierklech zrécksetze wëllt?</string>
