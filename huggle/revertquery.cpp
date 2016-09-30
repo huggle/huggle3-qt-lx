@@ -718,6 +718,9 @@ void RevertQuery::Rollback()
         this->ProcessFailure();
         return;
     }
+    QString tag = "";
+    if (Huggle::Version("1.28") <= this->GetSite()->MediawikiVersion && !this->GetSite()->GetProjectConfig()->Tag.isEmpty())
+        tag = "&tags=" + QUrl::toPercentEncoding(this->GetSite()->GetProjectConfig()->Tag);
     this->qRevert = new ApiQuery(ActionRollback, this->GetSite());
     QString token = this->edit->GetSite()->GetProjectConfig()->Token_Rollback;
     if (token.endsWith("+\\"))
@@ -725,7 +728,7 @@ void RevertQuery::Rollback()
         token = QUrl::toPercentEncoding(token);
     }
     this->qRevert->Parameters = "title=" + QUrl::toPercentEncoding(edit->Page->PageName) + "&token="
-                + token + "&watchlist=nochange&user=" + QUrl::toPercentEncoding(edit->User->Username)
+                + token + tag + "&watchlist=nochange&user=" + QUrl::toPercentEncoding(edit->User->Username)
                 + "&summary=" + QUrl::toPercentEncoding(this->Summary);
     this->qRevert->Target = edit->Page->PageName;
     this->qRevert->UsingPOST = true;
