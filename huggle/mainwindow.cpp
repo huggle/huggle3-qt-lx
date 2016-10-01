@@ -3089,6 +3089,6 @@ void Huggle::MainWindow::on_actionIntroduction_triggered()
 {
     WelcomeInfo *w = new WelcomeInfo(this);
     w->setAttribute(Qt::WA_DeleteOnClose);
-    w->DisableLanguage();
+    w->DisableFirst();
     w->show();
 }

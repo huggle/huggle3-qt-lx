@@ -27,7 +27,7 @@ namespace Huggle
         public:
             explicit WelcomeInfo(QWidget *parent = 0);
             ~WelcomeInfo();
-            void DisableLanguage();
+            void DisableFirst();
 
         private slots:
             void on_pushButton_clicked();
