@@ -88,9 +88,9 @@ void Huggle::WelcomeInfo::on_cb_Language_currentIndexChanged(const QString &arg1
 
 void WelcomeInfo::DisableFirst()
 {
-    this->ui->label_4->setVisible(false);
     this->ui->label_3->setVisible(false);
     this->ui->label_4->setVisible(false);
+    this->ui->label_5->setVisible(false);
     this->ui->cb_Language->setVisible(false);
 }
 
