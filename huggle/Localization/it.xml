@@ -217,6 +217,8 @@
   <string name="irc-switch-rc">Passaggio al feed RC del wiki</string>
   <string name="login-old">Recupero della configurazione utente dalla vecchia posizione</string>
   <string name="login-intro">Per favore scegli un progetto e inserisci nome utente e password. Puoi anche accedere a più progetti cliccando sul pulsante \"Progetti\".</string>
+  <string name="invalid-bot-user-name">Questo non è un nome di bot valido. Esempio di nome valido: Jimbo@Huggle</string>
+  <string name="login-tab-botp">Password bot</string>
   <string name="login-tab-login">Normale</string>
   <string name="login-reload-tool-tip">Ricarica una lista di progetti disponibili che possono essere utilizzati con Huggle. Può essere utile in caso tu voglia usare Huggle in un progetto dove Huggle è stato attivato da poco.</string>
   <string name="login-language">Lingua:</string>
