@@ -231,6 +231,7 @@ namespace Huggle
             PyObject *edit_revid_v = PyLong_FromLongLong(Edit->RevID);
             PyObject *edit_user_v = WikiUser2PyObject(Edit->User);
             PyObject *edit_page_v = WikiPage2PyObject(Edit->Page);
+            PyObject *edit_site_v = WikiSite2PyObject(Edit->GetSite());
             if (!InsertToPythonHash(edit, "revid", edit_revid_v, true))
                 goto error;
             if (!InsertToPythonHash(edit, "user", edit_user_v))
@@ -248,6 +249,8 @@ namespace Huggle
             if (!InsertToPythonHash(edit, "bot", Bool2PyObject(Edit->Bot), true))
                 goto error;
             if (!InsertToPythonHash(edit, "newpage", Bool2PyObject(Edit->NewPage), true))
+                goto error;
+            if (!InsertToPythonHash(edit, "site", edit_site_v))
                 goto error;
 
             return edit;
