@@ -180,8 +180,6 @@ namespace Huggle
                 goto error;
             if (!InsertToPythonHash(site, "irtl", Bool2PyObject(Site->IsRightToLeft), true))
                 goto error;
-            if (!InsertToPythonHash(site, "oauth_url", QString2PyObject(Site->OAuthURL), true))
-                goto error;
             if (!InsertToPythonHash(site, "xmlrcsname", QString2PyObject(Site->XmlRcsName), true))
                 goto error;
             if (!InsertToPythonHash(site, "han", QString2PyObject(Site->HANChannel), true))
