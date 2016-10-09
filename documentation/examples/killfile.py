@@ -1,3 +1,4 @@
+#!/bin/echo This is a huggle extension, please use huggle instead
 import huggle
 
 def get_author():
