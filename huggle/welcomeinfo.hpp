@@ -11,6 +11,8 @@
 #ifndef WELCOMEINFO_HPP
 #define WELCOMEINFO_HPP
 
+#include "definitions.hpp"
+
 #include <QDialog>
 
 namespace Ui
