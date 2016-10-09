@@ -30,6 +30,12 @@ This is called when you finish tagging of a page for speedy deletion
 ##hook_on_edit_pre_process(C++ edit)
 1 parameter: use huggle.Marshalling.mWikiEdit(edit) to retrieve the WikiEdit instance
 
+##hook_on_edit_load_to_queue(C++ edit)
+1 parameter: use huggle.Marshalling.mWikiEdit(edit) to retrieve the WikiEdit instance
+returns: bool
+
+This hook is called before edit is added to queue, if False is returned, the edit is not inserted to queue
+
 Debugging
 ===========
 
