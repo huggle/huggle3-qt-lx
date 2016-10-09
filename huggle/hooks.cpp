@@ -48,7 +48,8 @@ void Huggle::Hooks::EditPreProcess(Huggle::WikiEdit *Edit)
             extension->Hook_EditPreProcess((void*)Edit);
     }
 #ifdef HUGGLE_PYTHON
-    Huggle::Core::HuggleCore->Python->Hook_OnEditPreProcess(Edit);
+    if (Huggle::Core::HuggleCore->Python != nullptr)
+        Huggle::Core::HuggleCore->Python->Hook_OnEditPreProcess(Edit);
 #endif
 }
 
@@ -92,8 +93,25 @@ void Huggle::Hooks::EditPostProcess(Huggle::WikiEdit *Edit)
             extension->Hook_EditPostProcess((void*)Edit);
     }
 #ifdef HUGGLE_PYTHON
-    Huggle::Core::HuggleCore->Python->Hook_OnEditPostProcess(Edit);
+    if (Huggle::Core::HuggleCore->Python != nullptr)
+        Huggle::Core::HuggleCore->Python->Hook_OnEditPostProcess(Edit);
 #endif
+}
+
+bool Huggle::Hooks::OnEditLoadToQueue(Huggle::WikiEdit *Edit)
+{
+    bool result = true;
+    foreach(Huggle::iExtension *extension, Huggle::Core::HuggleCore->Extensions)
+    {
+        if (extension->IsWorking())
+            if (!extension->Hook_OnEditLoadToQueue((void*)Edit))
+                result = false;
+    }
+#ifdef HUGGLE_PYTHON
+    if (Huggle::Core::HuggleCore->Python != nullptr && !Huggle::Core::HuggleCore->Python->Hook_OnEditLoadToQueue(Edit))
+        result = false;
+#endif
+    return result;
 }
 
 void Huggle::Hooks::OnGood(Huggle::WikiEdit *Edit)
@@ -105,7 +123,8 @@ void Huggle::Hooks::OnGood(Huggle::WikiEdit *Edit)
             e->Hook_GoodEdit((void*)Edit);
     }
 #ifdef HUGGLE_PYTHON
-    Huggle::Core::HuggleCore->Python->Hook_GoodEdit(Edit);
+    if (Huggle::Core::HuggleCore->Python != nullptr)
+        Huggle::Core::HuggleCore->Python->Hook_GoodEdit(Edit);
 #endif
 }
 
@@ -155,7 +174,8 @@ void Huggle::Hooks::Speedy_Finished(Huggle::WikiEdit *edit, QString tags, bool s
             e->Hook_SpeedyFinished((void*)edit, tags, success);
     }
 #ifdef HUGGLE_PYTHON
-    Huggle::Core::HuggleCore->Python->Hook_SpeedyFinished(edit, tags, success);
+    if (Huggle::Core::HuggleCore->Python != nullptr)
+        Huggle::Core::HuggleCore->Python->Hook_SpeedyFinished(edit, tags, success);
 #endif
 }
 
@@ -179,7 +199,8 @@ void Huggle::Hooks::MainWindow_OnLoad(Huggle::MainWindow *window)
             e->Hook_MainWindowOnLoad((void*)window);
     }
 #ifdef HUGGLE_PYTHON
-    Huggle::Core::HuggleCore->Python->Hook_MainWindowIsLoaded();
+    if (Huggle::Core::HuggleCore->Python != nullptr)
+        Huggle::Core::HuggleCore->Python->Hook_MainWindowIsLoaded();
 #endif
 }
 
@@ -191,7 +212,8 @@ void Huggle::Hooks::Shutdown()
            e->Hook_Shutdown();
     }
 #ifdef HUGGLE_PYTHON
-    Huggle::Core::HuggleCore->Python->Hook_HuggleShutdown();
+    if (Huggle::Core::HuggleCore->Python != nullptr)
+        Huggle::Core::HuggleCore->Python->Hook_HuggleShutdown();
 #endif
 }
 

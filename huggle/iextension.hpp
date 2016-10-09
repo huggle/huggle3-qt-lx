@@ -106,6 +106,7 @@ namespace Huggle
              */
             virtual bool Hook_EditBeforeScore(QString text, QString page, int* editscore, int userscore) { return true; }
             virtual void Hook_EditBeforePostProcessing(void *edit) {}
+            virtual bool Hook_OnEditLoadToQueue(void *edit) { return true; }
             /*!
              * \brief Hook_EditIsReady Event that checks if edit can be considered processed
              *

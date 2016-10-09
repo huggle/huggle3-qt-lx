@@ -828,6 +828,20 @@ void PythonEngine::Hook_OnEditPostProcess(WikiEdit *edit)
     }
 }
 
+bool PythonEngine::Hook_OnEditLoadToQueue(WikiEdit *edit)
+{
+    bool rs = true;
+    foreach (PythonScript *c, this->Scripts)
+    {
+        if (c->IsEnabled())
+        {
+            if (!c->Hook_OnEditLoadToQueue(edit))
+                rs = false;
+        }
+    }
+    return rs;
+}
+
 void PythonEngine::Hook_GoodEdit(WikiEdit *edit)
 {
     foreach (PythonScript *c, this->Scripts)
@@ -888,12 +902,6 @@ PythonScript::PythonScript(QString name)
     {
         this->ModuleID = this->ModuleID.mid(this->ModuleID.lastIndexOf("\\") + 1);
     }
-    this->ptr_Hook_MainLoaded = nullptr;
-    this->ptr_Hook_GoodEdit = nullptr;
-    this->ptr_Hook_OnEditPostProcess = nullptr;
-    this->ptr_Hook_OnEditPreProcess = nullptr;
-    this->ptr_Hook_Shutdown = nullptr;
-    this->ptr_Hook_SpeedyFinished = nullptr;
     this->Description = "<unknown>";
     this->Author = "<unknown>";
     this->Version = "<unknown>";
@@ -907,6 +915,7 @@ PythonScript::~PythonScript()
     if (this->ptr_Hook_GoodEdit != nullptr)  Py_DECREF(this->ptr_Hook_GoodEdit);
     if (this->ptr_Hook_OnEditPostProcess != nullptr)  Py_DECREF(this->ptr_Hook_OnEditPostProcess);
     if (this->ptr_Hook_OnEditPreProcess != nullptr)  Py_DECREF(this->ptr_Hook_OnEditPreProcess);
+    if (this->ptr_Hook_OnEditLoadToQueue != nullptr) Py_DECREF(this->ptr_Hook_OnEditLoadToQueue);
     if (this->ptr_Hook_Shutdown != nullptr)  Py_DECREF(this->ptr_Hook_Shutdown);
     if (this->object != nullptr) Py_DECREF(this->object);
 }
@@ -1034,9 +1043,15 @@ void PythonScript::Hook_OnEditPreProcess(WikiEdit *edit)
     if (!PyObject_CallObject(this->ptr_Hook_OnEditPreProcess, args))
         goto error;
 
+    goto cleanup;
+
     error:
         HUGGLE_DEBUG("Error in: " + this->Name, 2);
         TryCatch(nullptr);
+
+    cleanup:
+        Py_DECREF(edit_);
+        Py_DECREF(args);
 }
 
 void PythonScript::Hook_OnEditPostProcess(WikiEdit *edit)
@@ -1052,9 +1067,55 @@ void PythonScript::Hook_OnEditPostProcess(WikiEdit *edit)
     if (!PyObject_CallObject(this->ptr_Hook_OnEditPostProcess, args))
         goto error;
 
+    goto cleanup;
+
     error:
         HUGGLE_DEBUG("Error in: " + this->Name, 2);
         TryCatch(nullptr);
+
+    cleanup:
+        Py_DECREF(edit_);
+        Py_DECREF(args);
+}
+
+bool PythonScript::Hook_OnEditLoadToQueue(WikiEdit *edit)
+{
+    if (edit == nullptr || this->ptr_Hook_OnEditLoadToQueue == nullptr)
+        return true;
+
+    bool rv = true;
+
+    HUGGLE_DEBUG("Calling hook Hook_OnEditLoadToQueue@" + this->Name, 2);
+    PyObject *edit_ = WikiEdit2PyObject(edit);
+    PyObject *args = PyTuple_Pack(1, edit_);
+    PyObject *result;
+    if (!args)
+        goto error;
+    result = PyObject_CallObject(this->ptr_Hook_OnEditLoadToQueue, args);
+    if (!result)
+        goto error;
+
+    // Result should be bool here
+    if (!PyBool_Check(result))
+    {
+        // But it's not
+        HUGGLE_DEBUG("Warning: bool expected as return value of Hook_OnEditLoadToQueue in: " + this->Name, 1);
+        goto cleanup;
+    }
+
+    rv = result == Py_True;
+    goto cleanup;
+
+    error:
+        HUGGLE_DEBUG("Error in: " + this->Name, 2);
+        TryCatch(nullptr);
+
+    cleanup:
+        Py_DECREF(result);
+        Py_DECREF(edit_);
+        Py_DECREF(args);
+
+    return rv;
 }
 
 void PythonScript::Hook_GoodEdit(WikiEdit *edit)
@@ -1070,9 +1131,15 @@ void PythonScript::Hook_GoodEdit(WikiEdit *edit)
     if (!PyObject_CallObject(this->ptr_Hook_GoodEdit, args))
         goto error;
 
+    goto cleanup;
+
     error:
         HUGGLE_DEBUG("Error in: " + this->Name, 2);
         TryCatch(nullptr);
+
+    cleanup:
+        Py_DECREF(edit_);
+        Py_DECREF(args);
 }
 
 void PythonScript::Hook_SpeedyFinished(WikiEdit *edit, QString tags, bool successfull)
@@ -1158,6 +1225,7 @@ bool PythonScript::Init()
         this->ptr_Hook_SpeedyFinished = this->Hook("hook_speedy_finished");
         this->ptr_Hook_MainLoaded = this->Hook("hook_main_window_is_loaded");
         this->ptr_Hook_GoodEdit = this->Hook("hook_good_edit");
+        this->ptr_Hook_OnEditLoadToQueue = this->Hook("hook_on_edit_load_to_queue");
         this->ptr_Hook_OnEditPostProcess = this->Hook("hook_on_edit_post_process");
         this->ptr_Hook_OnEditPreProcess = this->Hook("hook_on_edit_pre_process");
 
