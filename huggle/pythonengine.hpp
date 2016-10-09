@@ -20,7 +20,6 @@
 
 #define HUGGLE_EINVALIDQUERY 1
 
-#include <Python.h>
 #include <QString>
 #include <QThread>
 #include <QHash>
