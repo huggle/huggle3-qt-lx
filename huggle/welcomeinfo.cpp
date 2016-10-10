@@ -12,6 +12,7 @@
 #include "ui_welcomeinfo.h"
 #include "configuration.hpp"
 #include "localization.hpp"
+#include <QDesktopServices>
 
 using namespace Huggle;
 
@@ -63,7 +64,7 @@ void WelcomeInfo::Localize()
 
 void Huggle::WelcomeInfo::on_label_2_linkActivated(const QString &link)
 {
-
+    QDesktopServices::openUrl(QUrl(link));
 }
 
 void Huggle::WelcomeInfo::on_cb_Language_currentIndexChanged(const QString &arg1)

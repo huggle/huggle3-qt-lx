@@ -14,6 +14,7 @@
 #include "definitions.hpp"
 
 #include <QDialog>
+#include <QUrl>
 
 namespace Ui
 {
