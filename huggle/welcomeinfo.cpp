@@ -42,6 +42,11 @@ WelcomeInfo::WelcomeInfo(QWidget *parent) : QDialog(parent), ui(new Ui::WelcomeI
     this->ui->cb_Language->setCurrentIndex(preferred);
     this->loading = false;
     this->Localize();
+    // let's hide this language bar for now, this form is not yet supporting it
+
+    // this can be removed once there is l10 for this
+    this->ui->label_4->setVisible(false);
+    this->ui->cb_Language->setVisible(false);
 }
 
 WelcomeInfo::~WelcomeInfo()

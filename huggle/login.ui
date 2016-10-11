@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>388</width>
-    <height>420</height>
+    <height>425</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -232,6 +232,9 @@
     <widget class="QLabel" name="label_2">
      <property name="text">
       <string>&lt;a href=&quot;huggle://login&quot;&gt;What is Bot / Interactive password&lt;/a&gt;</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
