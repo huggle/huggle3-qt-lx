@@ -1091,7 +1091,7 @@ bool PythonScript::Hook_OnEditLoadToQueue(WikiEdit *edit)
     HUGGLE_DEBUG("Calling hook Hook_OnEditLoadToQueue@" + this->Name, 2);
     PyObject *edit_ = WikiEdit2PyObject(edit);
     PyObject *args = PyTuple_Pack(1, edit_);
-    PyObject *result;
+    PyObject *result = NULL;
     if (!args)
         goto error;
     result = PyObject_CallObject(this->ptr_Hook_OnEditLoadToQueue, args);
@@ -1114,7 +1114,8 @@ bool PythonScript::Hook_OnEditLoadToQueue(WikiEdit *edit)
         TryCatch(nullptr);
 
     cleanup:
-        Py_DECREF(result);
+        if (result)
+            Py_DECREF(result);
         Py_DECREF(edit_);
         Py_DECREF(args);
 
@@ -1153,33 +1154,47 @@ void PythonScript::Hook_SpeedyFinished(WikiEdit *edit, QString tags, bool succes
     {
         HUGGLE_DEBUG("Calling hook Hook_SpeedyFinished @" + this->Name, 2);
         // let's make a new list of params
-        PyObject *page_name = PyUnicode_FromString(edit->Page->PageName.toUtf8().data());
+        PyObject *args = NULL, *page_name = PyUnicode_FromString(edit->Page->PageName.toUtf8().data());
+        PyObject *page_t_ = NULL, *user_name = NULL, *success = NULL;
         if (!page_name)
             goto error;
-        PyObject *page_t_ = PyUnicode_FromString(tags.toUtf8().data());
+        page_t_ = PyUnicode_FromString(tags.toUtf8().data());
         if (!page_t_)
             goto error;
-        PyObject *user_name = PyUnicode_FromString(edit->User->Username.toUtf8().data());
+        user_name = PyUnicode_FromString(edit->User->Username.toUtf8().data());
         if (!user_name)
             goto error;
-        PyObject *success;
         if (!successfull)
             success = PyUnicode_FromString("fail");
         else
             success = PyUnicode_FromString("success");
         if (!success)
             goto error;
-        PyObject *args = PyTuple_Pack(4, page_name, user_name, page_t_, success);
+        args = PyTuple_Pack(4, page_name, user_name, page_t_, success);
         if (!args)
             goto error;
         if (!PyObject_CallObject(this->ptr_Hook_SpeedyFinished, args))
             goto error;
+
+        goto cleanup;
+
+        error:
+            HUGGLE_DEBUG("Error in: " + this->Name, 2);
+            TryCatch(nullptr);
+
+        // Remove refs to python vars
+        cleanup:
+            Py_DECREF(page_name);
+            if (page_t_)
+                Py_DECREF(page_t_);
+            if (success)
+                Py_DECREF(success);
+            if (user_name)
+                Py_DECREF(user_name);
+            if (args)
+                Py_DECREF(args);
     }
     return;
-
-    error:
-        HUGGLE_DEBUG("Error in: " + this->Name, 2);
-        TryCatch(nullptr);
 }
 
 void PythonScript::Hook_MainWindowIsLoaded()
