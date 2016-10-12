@@ -104,9 +104,9 @@ namespace Huggle
         static PyObject *Bool2PyObject(bool Bool)
         {
             if (Bool)
-                return Py_True;
+                Py_RETURN_TRUE;
             
-            return Py_False;
+            Py_RETURN_FALSE;
         }
         
         static PyObject *Long2PyObject(long no)
@@ -121,7 +121,15 @@ namespace Huggle
             return n_;
         }
 
-        static bool InsertToPythonHash(PyObject *dict, QString key, PyObject *object, bool dcro = false)
+        /*!
+         * \brief InsertToPythonHash Inserts an object to python hash
+         * \param dict Hash
+         * \param key Key name
+         * \param object Object
+         * \param dcro Decrement reference to object, by default true (it will steal the ref)
+         * \return
+         */
+        static bool InsertToPythonHash(PyObject *dict, QString key, PyObject *object, bool dcro = true)
         {
             if (!object)
                 throw new Huggle::NullPointerException("loc object", BOOST_CURRENT_FUNCTION);
@@ -146,11 +154,11 @@ namespace Huggle
             if (ver == nullptr)
                 throw new Huggle::NullPointerException("ver", BOOST_CURRENT_FUNCTION);
             
-            if (!InsertToPythonHash(ver, "major", Long2PyObject(Version->GetMajor()), true))
+            if (!InsertToPythonHash(ver, "major", Long2PyObject(Version->GetMajor())))
                 goto error;
-            if (!InsertToPythonHash(ver, "minor", Long2PyObject(Version->GetMinor()), true))
+            if (!InsertToPythonHash(ver, "minor", Long2PyObject(Version->GetMinor())))
                 goto error;
-            if (!InsertToPythonHash(ver, "revision", Long2PyObject(Version->GetRevision()), true))
+            if (!InsertToPythonHash(ver, "revision", Long2PyObject(Version->GetRevision())))
                 goto error;
             
             return ver;
@@ -166,23 +174,23 @@ namespace Huggle
                 throw new Huggle::NullPointerException("site", BOOST_CURRENT_FUNCTION);
 
             PyObject *site_name_v = QString2PyObject(Site->Name);
-            if (!InsertToPythonHash(site, "name", site_name_v, true))
+            if (!InsertToPythonHash(site, "name", site_name_v))
                 goto error;
             if (!InsertToPythonHash(site, "mediawiki_version", Version2PyObject(&Site->MediawikiVersion)))
                 goto error;
-            if (!InsertToPythonHash(site, "lp", QString2PyObject(Site->LongPath), true))
+            if (!InsertToPythonHash(site, "lp", QString2PyObject(Site->LongPath)))
                 goto error;
-            if (!InsertToPythonHash(site, "url", QString2PyObject(Site->URL), true))
+            if (!InsertToPythonHash(site, "url", QString2PyObject(Site->URL)))
                 goto error;
-            if (!InsertToPythonHash(site, "sp", QString2PyObject(Site->ScriptPath), true))
+            if (!InsertToPythonHash(site, "sp", QString2PyObject(Site->ScriptPath)))
                 goto error;
-            if (!InsertToPythonHash(site, "irc", QString2PyObject(Site->IRCChannel), true))
+            if (!InsertToPythonHash(site, "irc", QString2PyObject(Site->IRCChannel)))
                 goto error;
-            if (!InsertToPythonHash(site, "irtl", Bool2PyObject(Site->IsRightToLeft), true))
+            if (!InsertToPythonHash(site, "irtl", Bool2PyObject(Site->IsRightToLeft)))
                 goto error;
-            if (!InsertToPythonHash(site, "xmlrcsname", QString2PyObject(Site->XmlRcsName), true))
+            if (!InsertToPythonHash(site, "xmlrcsname", QString2PyObject(Site->XmlRcsName)))
                 goto error;
-            if (!InsertToPythonHash(site, "han", QString2PyObject(Site->HANChannel), true))
+            if (!InsertToPythonHash(site, "han", QString2PyObject(Site->HANChannel)))
                 goto error;
             
             return site;
@@ -213,7 +221,7 @@ namespace Huggle
         static PyObject *WikiPage2PyObject(WikiPage *Page)
         {
             PyObject *page = PyDict_New();
-            if (!InsertToPythonHash(page, "name", QString2PyObject(Page->PageName), true))
+            if (!InsertToPythonHash(page, "name", QString2PyObject(Page->PageName)))
                 goto error;
             if (!InsertToPythonHash(page, "site", WikiSite2PyObject(Page->GetSite())))
                 goto error;
@@ -234,11 +242,11 @@ namespace Huggle
             PyObject *edit_site_v = WikiSite2PyObject(Edit->GetSite());
             if (!InsertToPythonHash(edit, "revid", edit_revid_v, true))
                 goto error;
-            if (!InsertToPythonHash(edit, "user", edit_user_v))
+            if (!InsertToPythonHash(edit, "user", edit_user_v, true))
                 goto error;
-            if (!InsertToPythonHash(edit, "page", edit_page_v))
+            if (!InsertToPythonHash(edit, "page", edit_page_v, true))
                 goto error;
-            if (!InsertToPythonHash(edit, "minor", Bool2PyObject(Edit->Minor)))
+            if (!InsertToPythonHash(edit, "minor", Bool2PyObject(Edit->Minor), true))
                 goto error;
             if (!InsertToPythonHash(edit, "summary", QString2PyObject(Edit->Summary), true))
                 goto error;
@@ -250,7 +258,7 @@ namespace Huggle
                 goto error;
             if (!InsertToPythonHash(edit, "newpage", Bool2PyObject(Edit->NewPage), true))
                 goto error;
-            if (!InsertToPythonHash(edit, "site", edit_site_v))
+            if (!InsertToPythonHash(edit, "site", edit_site_v, true))
                 goto error;
 
             return edit;
@@ -1117,7 +1125,8 @@ bool PythonScript::Hook_OnEditLoadToQueue(WikiEdit *edit)
         if (result)
             Py_DECREF(result);
         Py_DECREF(edit_);
-        Py_DECREF(args);
+        if (args)
+            Py_DECREF(args);
 
     return rv;
 }
