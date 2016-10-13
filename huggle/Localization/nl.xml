@@ -548,9 +548,13 @@ Deze blokkade maakt het effect van de rangeblokkade ongedaan. Doorgaan?</string>
   <string name="speedy-fail">Het was niet mogelijk de pagina te labelen voor snelle verwijdering: $1</string>
   <string name="speedy-wrong">Het opgevraagde label is niet geldig. Kies een andere reden voor verwijderen</string>
   <string name="speedy-finished">Voltooid</string>
+  <string name="warn-alreadyblocked">De gebruiker is al geblokkeerd</string>
   <string name="logs-widget-name">Systeemlogboek</string>
   <string name="wait">Een ogenblik geduld...</string>
   <string name="updating-wl">Witte lijst bijwerken...</string>
+  <string name="preferences-watchlist-watch">Toevoegen aan volglijst</string>
+  <string name="preferences-watchlist-unwatch">Verwijderen uit volglijst</string>
+  <string name="preferences-watchlist-nochange">Niets doen</string>
   <string name="edit-conflict">Bewerkingsconflict</string>
   <string name="page-tag-nodescription">er is geen beschrijving voor dit label</string>
   <string name="page-tag-fail">Het labelen van de pagina is mislukt</string>
@@ -559,10 +563,12 @@ Deze blokkade maakt het effect van de rangeblokkade ongedaan. Doorgaan?</string>
   <string name="speedy-csd-invalid">Ongeldig CSD-label. Er is geen bericht en wikilabel om te gebruiken</string>
   <string name="speedy-csd-existing">De pagina heeft al een CSD-label.</string>
   <string name="namespace">Naamruimte</string>
+  <string name="block-alreadyblocked">De gebruiker is al geblokkeerd</string>
   <string name="about-python-with"> ,met python-ondersteuning</string>
   <string name="about-python-without"> zonder python-ondersteuning</string>
   <string name="error-unknown-code">Onbekende fout: $1</string>
   <string name="projects">Projecten</string>
+  <string name="login-username-doesnt-exist">Deze gebruikersnaam bestaat niet</string>
   <string name="developer-mode-enter-title">Jawel!</string>
   <string name="developer-mode-enter-message">U werkt in ontwikkelaarsmodus</string>
   <string name="unimplemented">Deze functie is nog niet geïmplementeerd</string>

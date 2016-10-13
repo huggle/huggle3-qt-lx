@@ -636,6 +636,7 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="updating-wl">A actualizar a lista branca...</string>
   <string name="feature-nfru">Esta funcionalidade é apenas para utilizadores anónimos</string>
   <string name="report-no-user">Não foi selecionado nenhum utilizador para denunciar, marque um primeiro por favor</string>
+  <string name="welcome-show">Exibir esta mensagem novamente na próxima vez que iniciar o huggle</string>
   <string name="welcome-tp-empty-fail">Este utilizador não tem a página de discussão vazia, tem a certeza de que pretende enviar-lhe uma mensagem?</string>
   <string name="welcome-page-miss-fail">O Huggle não conseguiu aceder ao conteúdo da página de discussão de utilizador. Tem certeza de que deseja enviar uma mensagem de boas-vindas?</string>
   <string name="cr-newer-edits">Conflito resolvido: todas as edições foram revertidas, incluindo novas edições. As edições eram do mesmo utilizador: $1.</string>
