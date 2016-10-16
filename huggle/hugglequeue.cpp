@@ -12,6 +12,7 @@
 #include "mainwindow.hpp"
 #include "configuration.hpp"
 #include "exception.hpp"
+#include "hooks.hpp"
 #include "huggleprofiler.hpp"
 #include "hugglequeueitemlabel.hpp"
 #include "vandalnw.hpp"
@@ -44,6 +45,12 @@ void HuggleQueue::AddItem(WikiEdit *page)
     if (!page->IsValid)
     {
         HUGGLE_DEBUG1("Not inserting edit " + page->Page->PageName + " because it's broken");
+        return;
+    }
+
+    if (!Hooks::OnEditLoadToQueue(page))
+    {
+        HUGGLE_DEBUG("Queue: extension hook rejected edit " + page->Page->PageName, 3);
         return;
     }
 

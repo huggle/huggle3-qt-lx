@@ -640,6 +640,7 @@
   <string name="updating-wl">허용 목록을 업데이트 중...</string>
   <string name="feature-nfru">이 기능은 IP 사용자만입니다</string>
   <string name="report-no-user">보고서에 선택된 사용자가 없습니다. 먼저 사용자를 선택해 주십시오</string>
+  <string name="welcome-show">다음에 Huggle을 시작할 때에도 이 메시지 보이기</string>
   <string name="welcome-tp-empty-fail">이 사용자는 비어있는 토론 문서가 없습니다. 정말 메시지를 보내시겠습니까?</string>
   <string name="welcome-page-miss-fail">허글이 사용자 토론 문서의 포함을 얻을 수 없습니다, 그들에게 환영 메시지를 보내겠습니까?</string>
   <string name="cr-newer-edits">충돌 해결: 새로운 편집을 포함한 모든 편집을 되돌렸습니다. 편집은 동일 사용자에 의해 이루어졌습니다: $1.</string>

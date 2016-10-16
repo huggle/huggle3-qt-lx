@@ -668,6 +668,7 @@
   <string name="updating-wl">עדכון הרשימה הלבנה...</string>
   <string name="feature-nfru">האפשרות הזאת מיועדת רק למשתמש IP</string>
   <string name="report-no-user">לא נבחר שום משתמש לדיווח. נא לבחור משתמש תחילה.</string>
+  <string name="welcome-show">להציג את ההודעה הזאת בפעם הבאה שתריץ את Huggle</string>
   <string name="welcome-tp-empty-fail">למשתמש הזה יש דף שיחה שאינו ריק. האם לשלוח לו הודעה?</string>
   <string name="welcome-page-miss-fail">האגל לא הצליח לאחזר את תוכן דף שיחת המשתמש. האם ברצונך לשלוח למשתמש הודעת \"ברוך בואך\"?</string>
   <string name="cr-newer-edits">ההתנגשות נפתרה: כל העריכות שוחזרו, כולל עריכות חדשות. העריכות היו מאת אותו המשתמש: $1.</string>

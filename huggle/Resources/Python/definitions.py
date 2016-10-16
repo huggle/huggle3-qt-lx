@@ -61,7 +61,6 @@ class WikiSite:
     ScriptPath  = 'w/'
     IRCChannel  = None
     XmlRcsName  = None
-    OAuthURL    = ''
     HANChannel  = ''
     MediaWikiVersion = None
 
@@ -109,7 +108,6 @@ class Marshalling:
         s_.ScriptPath = site["sp"]
         s_.IRCChannel = site["irc"]
         s_.XmlRcsName = site["xmlrcsname"]
-        s_.OAuthURL = site["oauth_url"]
         s_.HANChannel = site["han"]
         s_.MediaWikiVersion = huggle.Marshalling.mVersion(site["mediawiki_version"])
         return s_;

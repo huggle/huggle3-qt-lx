@@ -34,8 +34,8 @@ namespace Huggle
 	    /*!
 	     * \brief HuggleOption Creates a new instance of the HuggleOption class
 	     * \param name The name of the user option
-	     * \param value The state of the option, can hold the most common Qt variable types
-	     * \param isdefault True if option should be default
+         * \param value The value of the option, can hold the most common Qt variable types
+         * \param isdefault True if option is same as it was
 	     */
             HuggleOption(QString name, QVariant value, bool isdefault);
 	    /*!

@@ -475,6 +475,7 @@ Denna blockering kommer att åsidosätta effekterna av intervallblockeringen. Fo
   <string name="updating-wl">Uppdaterar vitlista...</string>
   <string name="feature-nfru">Den här funktionen är endast för IP-användare</string>
   <string name="report-no-user">Ingen användare har valts för att rapportera, vänligen välj en användare först</string>
+  <string name="welcome-show">Visa detta meddelande även nästa gång du startar huggle</string>
   <string name="welcome-tp-empty-fail">Denna användare har inte en tom diskussionssida, är du säker på att du vill skicka ett meddelande till hen?</string>
   <string name="welcome-page-miss-fail">Huggle kunde inte hämta innehållet i användarens diskussionssida, är du säker på att du vill skicka ett välkomstmeddelande till hen?</string>
   <string name="fail">Misslyckades</string>

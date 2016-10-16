@@ -20,7 +20,6 @@
 
 #define HUGGLE_EINVALIDQUERY 1
 
-#include <Python.h>
 #include <QString>
 #include <QThread>
 #include <QHash>
@@ -52,6 +51,7 @@ namespace Huggle
                 void Hook_Shutdown(); 
                 void Hook_OnEditPreProcess(WikiEdit *edit);
                 void Hook_OnEditPostProcess(WikiEdit *edit);
+                bool Hook_OnEditLoadToQueue(WikiEdit *edit);
                 void Hook_GoodEdit(WikiEdit *edit);
                 PyObject *PythonObject();
                 //! Initialize the script
@@ -71,12 +71,13 @@ namespace Huggle
                 QString ModuleID;
                 QString CallInternal(QString function);
                 bool Enabled;
-                PyObject *ptr_Hook_SpeedyFinished;
-                PyObject *ptr_Hook_MainLoaded;
-                PyObject *ptr_Hook_OnEditPreProcess;
-                PyObject *ptr_Hook_Shutdown;
-                PyObject *ptr_Hook_OnEditPostProcess;
-                PyObject *ptr_Hook_GoodEdit;
+                PyObject *ptr_Hook_SpeedyFinished = nullptr;
+                PyObject *ptr_Hook_MainLoaded = nullptr;
+                PyObject *ptr_Hook_OnEditPreProcess = nullptr;
+                PyObject *ptr_Hook_Shutdown = nullptr;
+                PyObject *ptr_Hook_OnEditPostProcess = nullptr;
+                PyObject *ptr_Hook_OnEditLoadToQueue = nullptr;
+                PyObject *ptr_Hook_GoodEdit = nullptr;
                 QString SourceCode;
         };
 
@@ -98,6 +99,8 @@ namespace Huggle
                 void Hook_HuggleShutdown();
                 void Hook_OnEditPreProcess(WikiEdit *edit);
                 void Hook_OnEditPostProcess(WikiEdit *edit);
+                //! Called before the edit is inserted into queue of huggle, if returns false, the edit is not inserted into queue
+                bool Hook_OnEditLoadToQueue(WikiEdit *edit);
                 void Hook_GoodEdit(WikiEdit *edit);
                 QString HugglePyLibSource();
                 PythonScript *PythonScriptObjFromPyObj(PyObject *object);

@@ -74,7 +74,7 @@ else()
 endif()
 if (PYTHON_BUILD)
     find_package(PythonLibs REQUIRED)
-    include_directories(${PYTHON_include_DIRS})
+    include_directories(${PYTHON_INCLUDE_DIRS})
 endif()
 
 file(GLOB srcx "*.cpp")

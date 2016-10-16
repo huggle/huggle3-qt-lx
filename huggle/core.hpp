@@ -119,7 +119,7 @@ namespace Huggle
             //! Garbage collector
             Huggle::GC *gc;
 #ifdef HUGGLE_PYTHON
-            Python::PythonEngine *Python;
+            Python::PythonEngine *Python = nullptr;
 #endif
         private:
             //! This is a post-processor for edits

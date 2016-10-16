@@ -79,16 +79,16 @@ void Proxy::on_buttonBox_accepted()
 {
     SetProxy(this->ui->comboBox->currentIndex(), this->ui->lineEdit->text(), this->ui->lineEdit_2->text().toUInt(),
                this->ui->lineEdit_3->text(), this->ui->lineEdit_4->text());
-    hcfg->SystemConfig_UseProxy = this->ui->checkBox->isChecked();
     if (this->ui->checkBox->isChecked())
     {
+        hcfg->SystemConfig_UseProxy = this->ui->comboBox->currentIndex() != 0;
         hcfg->SystemConfig_ProxyHost = this->ui->lineEdit->text();
         hcfg->SystemConfig_ProxyType = this->ui->comboBox->currentIndex();
         hcfg->SystemConfig_ProxyPort = this->ui->lineEdit_2->text().toUInt();
         hcfg->SystemConfig_ProxyUser = this->ui->lineEdit_3->text();
         hcfg->SystemConfig_ProxyPass = this->ui->lineEdit_4->text();
+        hcfg->SaveSystemConfig();
     }
-    hcfg->SaveSystemConfig();
 }
 
 void Proxy::on_buttonBox_rejected()

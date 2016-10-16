@@ -668,7 +668,7 @@
   <string name="updating-wl">正在更新白名单…</string>
   <string name="feature-nfru">此功能仅限IP用户可用</string>
   <string name="report-no-user">没有选择用户报告，请先选择一些用户</string>
-  <string name="welcome-show">在您下次启用Huggle时显示此讯息</string>
+  <string name="welcome-show">在下次您启用huggle时也显示此消息</string>
   <string name="welcome-tp-empty-fail">此用户没有空的讨论页，您确信您要发送消息给他？</string>
   <string name="welcome-page-miss-fail">Huggle无法检索用户讨论页内容，您确信要给他发送欢迎信息？</string>
   <string name="cr-newer-edits">冲突已解决：回退了所有编辑，包括新编辑。编辑由同一用户做出：$1。</string>

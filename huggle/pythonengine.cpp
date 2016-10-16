@@ -104,9 +104,9 @@ namespace Huggle
         static PyObject *Bool2PyObject(bool Bool)
         {
             if (Bool)
-                return Py_True;
+                Py_RETURN_TRUE;
             
-            return Py_False;
+            Py_RETURN_FALSE;
         }
         
         static PyObject *Long2PyObject(long no)
@@ -121,7 +121,15 @@ namespace Huggle
             return n_;
         }
 
-        static bool InsertToPythonHash(PyObject *dict, QString key, PyObject *object, bool dcro = false)
+        /*!
+         * \brief InsertToPythonHash Inserts an object to python hash
+         * \param dict Hash
+         * \param key Key name
+         * \param object Object
+         * \param dcro Decrement reference to object, by default true (it will steal the ref)
+         * \return
+         */
+        static bool InsertToPythonHash(PyObject *dict, QString key, PyObject *object, bool dcro = true)
         {
             if (!object)
                 throw new Huggle::NullPointerException("loc object", BOOST_CURRENT_FUNCTION);
@@ -146,11 +154,11 @@ namespace Huggle
             if (ver == nullptr)
                 throw new Huggle::NullPointerException("ver", BOOST_CURRENT_FUNCTION);
             
-            if (!InsertToPythonHash(ver, "major", Long2PyObject(Version->GetMajor()), true))
+            if (!InsertToPythonHash(ver, "major", Long2PyObject(Version->GetMajor())))
                 goto error;
-            if (!InsertToPythonHash(ver, "minor", Long2PyObject(Version->GetMinor()), true))
+            if (!InsertToPythonHash(ver, "minor", Long2PyObject(Version->GetMinor())))
                 goto error;
-            if (!InsertToPythonHash(ver, "revision", Long2PyObject(Version->GetRevision()), true))
+            if (!InsertToPythonHash(ver, "revision", Long2PyObject(Version->GetRevision())))
                 goto error;
             
             return ver;
@@ -166,25 +174,23 @@ namespace Huggle
                 throw new Huggle::NullPointerException("site", BOOST_CURRENT_FUNCTION);
 
             PyObject *site_name_v = QString2PyObject(Site->Name);
-            if (!InsertToPythonHash(site, "name", site_name_v, true))
+            if (!InsertToPythonHash(site, "name", site_name_v))
                 goto error;
             if (!InsertToPythonHash(site, "mediawiki_version", Version2PyObject(&Site->MediawikiVersion)))
                 goto error;
-            if (!InsertToPythonHash(site, "lp", QString2PyObject(Site->LongPath), true))
+            if (!InsertToPythonHash(site, "lp", QString2PyObject(Site->LongPath)))
                 goto error;
-            if (!InsertToPythonHash(site, "url", QString2PyObject(Site->URL), true))
+            if (!InsertToPythonHash(site, "url", QString2PyObject(Site->URL)))
                 goto error;
-            if (!InsertToPythonHash(site, "sp", QString2PyObject(Site->ScriptPath), true))
+            if (!InsertToPythonHash(site, "sp", QString2PyObject(Site->ScriptPath)))
                 goto error;
-            if (!InsertToPythonHash(site, "irc", QString2PyObject(Site->IRCChannel), true))
+            if (!InsertToPythonHash(site, "irc", QString2PyObject(Site->IRCChannel)))
                 goto error;
-            if (!InsertToPythonHash(site, "irtl", Bool2PyObject(Site->IsRightToLeft), true))
+            if (!InsertToPythonHash(site, "irtl", Bool2PyObject(Site->IsRightToLeft)))
                 goto error;
-            if (!InsertToPythonHash(site, "oauth_url", QString2PyObject(Site->OAuthURL), true))
+            if (!InsertToPythonHash(site, "xmlrcsname", QString2PyObject(Site->XmlRcsName)))
                 goto error;
-            if (!InsertToPythonHash(site, "xmlrcsname", QString2PyObject(Site->XmlRcsName), true))
-                goto error;
-            if (!InsertToPythonHash(site, "han", QString2PyObject(Site->HANChannel), true))
+            if (!InsertToPythonHash(site, "han", QString2PyObject(Site->HANChannel)))
                 goto error;
             
             return site;
@@ -215,7 +221,7 @@ namespace Huggle
         static PyObject *WikiPage2PyObject(WikiPage *Page)
         {
             PyObject *page = PyDict_New();
-            if (!InsertToPythonHash(page, "name", QString2PyObject(Page->PageName), true))
+            if (!InsertToPythonHash(page, "name", QString2PyObject(Page->PageName)))
                 goto error;
             if (!InsertToPythonHash(page, "site", WikiSite2PyObject(Page->GetSite())))
                 goto error;
@@ -233,13 +239,14 @@ namespace Huggle
             PyObject *edit_revid_v = PyLong_FromLongLong(Edit->RevID);
             PyObject *edit_user_v = WikiUser2PyObject(Edit->User);
             PyObject *edit_page_v = WikiPage2PyObject(Edit->Page);
+            PyObject *edit_site_v = WikiSite2PyObject(Edit->GetSite());
             if (!InsertToPythonHash(edit, "revid", edit_revid_v, true))
                 goto error;
-            if (!InsertToPythonHash(edit, "user", edit_user_v))
+            if (!InsertToPythonHash(edit, "user", edit_user_v, true))
                 goto error;
-            if (!InsertToPythonHash(edit, "page", edit_page_v))
+            if (!InsertToPythonHash(edit, "page", edit_page_v, true))
                 goto error;
-            if (!InsertToPythonHash(edit, "minor", Bool2PyObject(Edit->Minor)))
+            if (!InsertToPythonHash(edit, "minor", Bool2PyObject(Edit->Minor), true))
                 goto error;
             if (!InsertToPythonHash(edit, "summary", QString2PyObject(Edit->Summary), true))
                 goto error;
@@ -250,6 +257,8 @@ namespace Huggle
             if (!InsertToPythonHash(edit, "bot", Bool2PyObject(Edit->Bot), true))
                 goto error;
             if (!InsertToPythonHash(edit, "newpage", Bool2PyObject(Edit->NewPage), true))
+                goto error;
+            if (!InsertToPythonHash(edit, "site", edit_site_v, true))
                 goto error;
 
             return edit;
@@ -830,6 +839,20 @@ void PythonEngine::Hook_OnEditPostProcess(WikiEdit *edit)
     }
 }
 
+bool PythonEngine::Hook_OnEditLoadToQueue(WikiEdit *edit)
+{
+    bool rs = true;
+    foreach (PythonScript *c, this->Scripts)
+    {
+        if (c->IsEnabled())
+        {
+            if (!c->Hook_OnEditLoadToQueue(edit))
+                rs = false;
+        }
+    }
+    return rs;
+}
+
 void PythonEngine::Hook_GoodEdit(WikiEdit *edit)
 {
     foreach (PythonScript *c, this->Scripts)
@@ -890,12 +913,6 @@ PythonScript::PythonScript(QString name)
     {
         this->ModuleID = this->ModuleID.mid(this->ModuleID.lastIndexOf("\\") + 1);
     }
-    this->ptr_Hook_MainLoaded = nullptr;
-    this->ptr_Hook_GoodEdit = nullptr;
-    this->ptr_Hook_OnEditPostProcess = nullptr;
-    this->ptr_Hook_OnEditPreProcess = nullptr;
-    this->ptr_Hook_Shutdown = nullptr;
-    this->ptr_Hook_SpeedyFinished = nullptr;
     this->Description = "<unknown>";
     this->Author = "<unknown>";
     this->Version = "<unknown>";
@@ -909,6 +926,7 @@ PythonScript::~PythonScript()
     if (this->ptr_Hook_GoodEdit != nullptr)  Py_DECREF(this->ptr_Hook_GoodEdit);
     if (this->ptr_Hook_OnEditPostProcess != nullptr)  Py_DECREF(this->ptr_Hook_OnEditPostProcess);
     if (this->ptr_Hook_OnEditPreProcess != nullptr)  Py_DECREF(this->ptr_Hook_OnEditPreProcess);
+    if (this->ptr_Hook_OnEditLoadToQueue != nullptr) Py_DECREF(this->ptr_Hook_OnEditLoadToQueue);
     if (this->ptr_Hook_Shutdown != nullptr)  Py_DECREF(this->ptr_Hook_Shutdown);
     if (this->object != nullptr) Py_DECREF(this->object);
 }
@@ -1036,9 +1054,15 @@ void PythonScript::Hook_OnEditPreProcess(WikiEdit *edit)
     if (!PyObject_CallObject(this->ptr_Hook_OnEditPreProcess, args))
         goto error;
 
+    goto cleanup;
+
     error:
         HUGGLE_DEBUG("Error in: " + this->Name, 2);
         TryCatch(nullptr);
+
+    cleanup:
+        Py_DECREF(edit_);
+        Py_DECREF(args);
 }
 
 void PythonScript::Hook_OnEditPostProcess(WikiEdit *edit)
@@ -1054,9 +1078,57 @@ void PythonScript::Hook_OnEditPostProcess(WikiEdit *edit)
     if (!PyObject_CallObject(this->ptr_Hook_OnEditPostProcess, args))
         goto error;
 
+    goto cleanup;
+
     error:
         HUGGLE_DEBUG("Error in: " + this->Name, 2);
         TryCatch(nullptr);
+
+    cleanup:
+        Py_DECREF(edit_);
+        Py_DECREF(args);
+}
+
+bool PythonScript::Hook_OnEditLoadToQueue(WikiEdit *edit)
+{
+    if (edit == nullptr || this->ptr_Hook_OnEditLoadToQueue == nullptr)
+        return true;
+
+    bool rv = true;
+
+    HUGGLE_DEBUG("Calling hook Hook_OnEditLoadToQueue@" + this->Name, 2);
+    PyObject *edit_ = WikiEdit2PyObject(edit);
+    PyObject *args = PyTuple_Pack(1, edit_);
+    PyObject *result = NULL;
+    if (!args)
+        goto error;
+    result = PyObject_CallObject(this->ptr_Hook_OnEditLoadToQueue, args);
+    if (!result)
+        goto error;
+
+    // Result should be bool here
+    if (!PyBool_Check(result))
+    {
+        // But it's not
+        HUGGLE_DEBUG("Warning: bool expected as return value of Hook_OnEditLoadToQueue in: " + this->Name, 1);
+        goto cleanup;
+    }
+
+    rv = result == Py_True;
+    goto cleanup;
+
+    error:
+        HUGGLE_DEBUG("Error in: " + this->Name, 2);
+        TryCatch(nullptr);
+
+    cleanup:
+        if (result)
+            Py_DECREF(result);
+        Py_DECREF(edit_);
+        if (args)
+            Py_DECREF(args);
+
+    return rv;
 }
 
 void PythonScript::Hook_GoodEdit(WikiEdit *edit)
@@ -1072,9 +1144,15 @@ void PythonScript::Hook_GoodEdit(WikiEdit *edit)
     if (!PyObject_CallObject(this->ptr_Hook_GoodEdit, args))
         goto error;
 
+    goto cleanup;
+
     error:
         HUGGLE_DEBUG("Error in: " + this->Name, 2);
         TryCatch(nullptr);
+
+    cleanup:
+        Py_DECREF(edit_);
+        Py_DECREF(args);
 }
 
 void PythonScript::Hook_SpeedyFinished(WikiEdit *edit, QString tags, bool successfull)
@@ -1085,33 +1163,47 @@ void PythonScript::Hook_SpeedyFinished(WikiEdit *edit, QString tags, bool succes
     {
         HUGGLE_DEBUG("Calling hook Hook_SpeedyFinished @" + this->Name, 2);
         // let's make a new list of params
-        PyObject *page_name = PyUnicode_FromString(edit->Page->PageName.toUtf8().data());
+        PyObject *args = NULL, *page_name = PyUnicode_FromString(edit->Page->PageName.toUtf8().data());
+        PyObject *page_t_ = NULL, *user_name = NULL, *success = NULL;
         if (!page_name)
             goto error;
-        PyObject *page_t_ = PyUnicode_FromString(tags.toUtf8().data());
+        page_t_ = PyUnicode_FromString(tags.toUtf8().data());
         if (!page_t_)
             goto error;
-        PyObject *user_name = PyUnicode_FromString(edit->User->Username.toUtf8().data());
+        user_name = PyUnicode_FromString(edit->User->Username.toUtf8().data());
         if (!user_name)
             goto error;
-        PyObject *success;
         if (!successfull)
             success = PyUnicode_FromString("fail");
         else
             success = PyUnicode_FromString("success");
         if (!success)
             goto error;
-        PyObject *args = PyTuple_Pack(4, page_name, user_name, page_t_, success);
+        args = PyTuple_Pack(4, page_name, user_name, page_t_, success);
         if (!args)
             goto error;
         if (!PyObject_CallObject(this->ptr_Hook_SpeedyFinished, args))
             goto error;
+
+        goto cleanup;
+
+        error:
+            HUGGLE_DEBUG("Error in: " + this->Name, 2);
+            TryCatch(nullptr);
+
+        // Remove refs to python vars
+        cleanup:
+            Py_DECREF(page_name);
+            if (page_t_)
+                Py_DECREF(page_t_);
+            if (success)
+                Py_DECREF(success);
+            if (user_name)
+                Py_DECREF(user_name);
+            if (args)
+                Py_DECREF(args);
     }
     return;
-
-    error:
-        HUGGLE_DEBUG("Error in: " + this->Name, 2);
-        TryCatch(nullptr);
 }
 
 void PythonScript::Hook_MainWindowIsLoaded()
@@ -1160,6 +1252,7 @@ bool PythonScript::Init()
         this->ptr_Hook_SpeedyFinished = this->Hook("hook_speedy_finished");
         this->ptr_Hook_MainLoaded = this->Hook("hook_main_window_is_loaded");
         this->ptr_Hook_GoodEdit = this->Hook("hook_good_edit");
+        this->ptr_Hook_OnEditLoadToQueue = this->Hook("hook_on_edit_load_to_queue");
         this->ptr_Hook_OnEditPostProcess = this->Hook("hook_on_edit_post_process");
         this->ptr_Hook_OnEditPreProcess = this->Hook("hook_on_edit_pre_process");
 

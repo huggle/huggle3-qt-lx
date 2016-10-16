@@ -12,6 +12,7 @@
 #include "ui_welcomeinfo.h"
 #include "configuration.hpp"
 #include "localization.hpp"
+#include <QDesktopServices>
 
 using namespace Huggle;
 
@@ -41,6 +42,11 @@ WelcomeInfo::WelcomeInfo(QWidget *parent) : QDialog(parent), ui(new Ui::WelcomeI
     this->ui->cb_Language->setCurrentIndex(preferred);
     this->loading = false;
     this->Localize();
+    // let's hide this language bar for now, this form is not yet supporting it
+
+    // this can be removed once there is l10 for this
+    this->ui->label_4->setVisible(false);
+    this->ui->cb_Language->setVisible(false);
 }
 
 WelcomeInfo::~WelcomeInfo()
@@ -63,7 +69,7 @@ void WelcomeInfo::Localize()
 
 void Huggle::WelcomeInfo::on_label_2_linkActivated(const QString &link)
 {
-
+    QDesktopServices::openUrl(QUrl(link));
 }
 
 void Huggle::WelcomeInfo::on_cb_Language_currentIndexChanged(const QString &arg1)
