@@ -67,7 +67,7 @@ No parameters, called when huggle is shut down
 
 This is called when you finish tagging of a page for speedy deletion
 
-##hook_main_window_is_loaded
+##hook_main_window_is_loaded()
 0 parameters, called when main window of huggle is loaded
 
 ##hook_good_edit(C++ edit)
