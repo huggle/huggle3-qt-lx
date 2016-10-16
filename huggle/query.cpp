@@ -42,7 +42,7 @@ bool Query::IsProcessed()
 {
     if (this->Status == StatusNull || this->Status == StatusIsSuspended)
         return false;
-    if (this->Status == StatusDone || this->Status == StatusInError)
+    if (this->Status == StatusDone || this->Status == StatusInError || this->Status == StatusKilled)
         return true;
     if (QDateTime::currentDateTime() > this->StartTime.addSecs(this->Timeout))
     {

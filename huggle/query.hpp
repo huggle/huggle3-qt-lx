@@ -80,7 +80,8 @@ namespace Huggle
             Query();
             //! Destructor for query
             virtual ~Query();
-            //! Returns true in case that query is processed
+            //! Returns true in case that query is processed which means that it's finished and it's not going to
+            //! do anything on its own unless you restart it
             virtual bool IsProcessed();
             //! Execute query
 
