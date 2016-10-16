@@ -99,9 +99,9 @@ Your donations are welcome and help us focus on the development even more:
 
 PayPal: http://tools.wmflabs.org/huggle/donate.htm
 ```
-LTC:  LUQXStuTpmNnH9fCc9ABgZXjRs2WEPbSGn
+LTC:  LfMDMWKqhiT45q4h1uduiDfjUZfiwGiCes
 Doge: DL54FhAuw6bJ2dEb9rBqE8G9Mz1X8Cmxr1
-BTC:  19buq6BejVLqEKzDqBXYXEis2Ap1zaQd88
+BTC:  18YTu4mPqzaaRv5QarvMGRuPiH3ntk5ir2
 ```
 
 License
