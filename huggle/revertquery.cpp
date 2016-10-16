@@ -177,7 +177,7 @@ bool RevertQuery::IsProcessed()
 {
     if (this->Status == StatusIsSuspended)
         return false;
-    if (this->Status == StatusDone || this->Status == StatusInError)
+    if (this->Status == StatusDone || this->Status == StatusInError || this->Status == StatusKilled)
         return true;
     if (!this->PreflightFinished)
         return false;

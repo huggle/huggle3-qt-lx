@@ -62,8 +62,8 @@ namespace Huggle
     //! Query base class for all http queries executed by huggle
 
     //! Every request to website is processed as a query, this is a base object that all
-    //! other queries are derived from. The query system is using GC.
-    //! That means every query is either unmanaged or managed. In case it is managed,
+    //! other queries are derived from. This is an abstract class meaning that you can't create instances of it.
+    //! The query system is using GC. That means every query is either unmanaged or managed. In case it is managed,
     //! the GC will care about it being removed from operating memory and you must not
     //! call a delete on it, otherwise program will crash.
     class HUGGLE_EX Query : public Collectable
@@ -91,10 +91,7 @@ namespace Huggle
 
             //! In case it's not running nothing happens, in case query is currently running
             //! it should be immediately stopped and error result should be generated
-
-            //! This is only a virtual interface implemented in Query which does nothing by default
-            //! it is necessary for every query to implement this for it to work properly
-            virtual void Kill() {}
+            virtual void Kill() = 0;
             //! Convert a type of this query to a string
             virtual QString QueryTypeToString();
             //! Return a target of a query
