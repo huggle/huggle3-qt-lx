@@ -138,7 +138,7 @@ bool Query::IsFailed()
     if (this->Result != nullptr && this->Result->IsFailed())
         return true;
 
-    if (this->Status == Huggle::StatusInError)
+    if (this->Status == Huggle::StatusInError || this->Status == Huggle::StatusKilled)
         return true;
 
     return false;
@@ -146,6 +146,9 @@ bool Query::IsFailed()
 
 QString Query::GetFailureReason()
 {
+    if (this->Status == Huggle::StatusKilled)
+        return "Query was killed";
+
     if (this->Result != nullptr)
         return this->Result->ErrorMessage;
 
