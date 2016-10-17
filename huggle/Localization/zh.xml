@@ -22,7 +22,7 @@
   <string name="result">结果</string>
   <string name="save">保存</string>
   <string name="show">显示</string>
-  <string name="no-instant">即时警告未在项目$1上启用，未向$2发送消息，选择一个不同的警告级别</string>
+  <string name="no-instant">即时警告未在项目$1上启用，未向$2发送消息；选择一个不同的警告级别</string>
   <string name="undo">撤销</string>
   <string name="yes">是</string>
   <string name="editing-page">编辑页面</string>
@@ -45,7 +45,7 @@
   <string name="link">链接</string>
   <string name="reason">原因</string>
   <string name="diffid">版本差异ID</string>
-  <string name="whitelisted">$1连带在$3的分数$2已加入白名单</string>
+  <string name="whitelisted">$1（在$3的分数为$2）已加入白名单</string>
   <string name="expiry-time">终止时间</string>
   <string name="duration">期限</string>
   <string name="enable">启用</string>
@@ -122,7 +122,7 @@
   <string name="config-revert-wait">回退等待（秒）</string>
   <string name="config-revert">回退</string>
   <string name="config-revert-diff">回退页面上比显示的差异更新的编辑，当他们是同一个用户做出时</string>
-  <string name="config-change-all">更改所有Huggle设置以像Huggle 2那样运转</string>
+  <string name="config-change-all">更改所有Huggle设置以尽量像Huggle 2那样运转</string>
   <string name="config-merge-messages">将你的信息和其他人的一起合并到已有的段落中</string>
   <string name="config-months-name">使用月份而不是页面名作为标题</string>
   <string name="config-automatic-warning">在“发送警告”功能中自动选择警告类型和级别</string>
@@ -151,7 +151,7 @@
   <string name="config-updates">检查更新</string>
   <string name="config-beta">检查测试版本</string>
   <string name="config-html-messages">HAN可以渲染HTML消息（危险）</string>
-  <string name="config-summary-present">当它存在而非缺失时高亮摘要</string>
+  <string name="config-summary-present">当摘要存在而非缺失时将其高亮</string>
   <string name="config-close-without">不保存关闭</string>
   <string name="config-confirmmultiple">同一用户的多个贡献时确认历史版本</string>
   <string name="config-confirmsame">回退用户的编辑时确认历史版本</string>
@@ -184,7 +184,7 @@
   <string name="config-notify-update">检查更新</string>
   <string name="config-notify-beta">如果可用，检查测试版本</string>
   <string name="delete-title">删除$1</string>
-  <string name="delete-reason">原因:</string>
+  <string name="delete-reason">原因：</string>
   <string name="delete-deletionlog">删除日志：</string>
   <string name="delete-rem-talk">删除相关的讨论页</string>
   <string name="delete-notify">通知创建者</string>
@@ -214,7 +214,7 @@
   <string name="irc-stop">等待$1的主订阅提供商停止</string>
   <string name="irc-not">IRC订阅被项目配置文件禁用</string>
   <string name="irc-failure">首选订阅提供程序失败。退回wiki提供……</string>
-  <string name="irc-wait">等待IRC订阅提供商停止</string>
+  <string name="irc-wait">等待IRC订阅提供者停止</string>
   <string name="irc-switch-rc">切换为wiki RC订阅</string>
   <string name="login-old">从旧位置检索用户配置</string>
   <string name="login-intro">请选择一个项目并输入您的用户名和密码。您也可通过按下“项目”按钮多次登陆多个项目。</string>
@@ -225,7 +225,7 @@
   <string name="login-language">语言：</string>
   <string name="login-project">项目：</string>
   <string name="login-username">用户名：</string>
-  <string name="login-password">密码:</string>
+  <string name="login-password">密码：</string>
   <string name="login-proxygroup">代理设置</string>
   <string name="login-proxy">使用代理服务器</string>
   <string name="login-proxyaddress">地址：</string>
@@ -287,7 +287,7 @@
   <string name="main-user">用户</string>
   <string name="main-contribs">贡献</string>
   <string name="main-history">历史</string>
-  <string name="main-new-messages">你有新消息。选择系统 -&gt; 显示新消息或者按M查看。</string>
+  <string name="main-new-messages">您有新消息。选择系统-&gt;显示新消息或者按M查看。</string>
   <string name="main-space">页面名不能以空格结尾，请修正页面名</string>
   <string name="main-system">系统</string>
   <string name="main-status-bar">处理&lt;b&gt;$1&lt;/b&gt;次编辑和&lt;b&gt;$2&lt;/b&gt;次查询中。白名单用户：&lt;b&gt;$3&lt;/b&gt; 队列大小：&lt;b&gt;$4&lt;/b&gt; $6的统计：$5</string>
@@ -443,7 +443,7 @@
   <string name="queue-typegroup">队列类型</string>
   <string name="queue-listselector">列表：</string>
   <string name="queue-listbuilder">列表生成器......</string>
-  <string name="queue-sortorder">排序方式:</string>
+  <string name="queue-sortorder">排序方式：</string>
   <string name="queue-removeviewed">移除查看后的编辑</string>
   <string name="queue-removeold">移除同一页面旧的编辑</string>
   <string name="queue-ignorepages">忽略对忽略列表中页面的编辑</string>
@@ -453,14 +453,14 @@
   <string name="queue-pageregex">匹配正则表达式的标题：</string>
   <string name="queue-namespaces">名字空间：</string>
   <string name="queue-editfiltersgroup">编辑过滤器</string>
-  <string name="queue-userregex">符合正则表达式的用户名：</string>
-  <string name="queue-summaryregex">符合正则表达式的摘要：</string>
+  <string name="queue-userregex">匹配正则表达式的用户名：</string>
+  <string name="queue-summaryregex">匹配正则表达式的摘要：</string>
   <string name="queue-filternewpage">新页面</string>
   <string name="queue-filterownuserspace">用户自己的用户空间</string>
   <string name="queue-filteranonymous">匿名用户</string>
   <string name="queue-filterignored">忽略用户</string>
   <string name="queue-filterreverts">回退</string>
-  <string name="queue-filternotifications">提示</string>
+  <string name="queue-filternotifications">通知</string>
   <string name="queue-filterwarnings">警告</string>
   <string name="queue-filtertags">标记</string>
   <string name="queue-filterbot">机器人编辑</string>
@@ -472,7 +472,7 @@
   <string name="queue-examplelabel3">不检查这个属性</string>
   <string name="queue-usergroup">只显示这些用户的编辑</string>
   <string name="report-title">报告$1</string>
-  <string name="report-warn">此用户已接收到4级警告，也就是最后警告，所以不会再有更多模板会递送给他。您仍可提报他，但请确保他们已经接收到适当等级的警告！您可通过他们的“讨论页”按钮进行。注意此表单和此警告无论您回退成功与否都会显示，所以你应该避免其他用户的冲突（双击如果用户未准备提报）。您仍要提报此用户？</string>
+  <string name="report-warn">此用户已接收到4级警告，也就是最后警告，所以不会再有更多模板会递送给他。您仍可提报他，但请确保他们已经接收到适当等级的警告！您可通过他们的“讨论页”按钮确认。注意此表单和此警告无论您回退成功与否都会显示，所以您应该避免与其他用户冲突（请再确认一次用户是否还未被提报）。您仍要提报此用户？</string>
   <string name="report-tu">报告用户</string>
   <string name="report-reason">原因：</string>
   <string name="report-auto">已反馈$1</string>
@@ -537,9 +537,9 @@
   <string name="update-title">新版本可用</string>
   <string name="update-progress">正在下载新的版本...</string>
   <string name="update-error">未能下载最新版本</string>
-  <string name="updater-title">Huggle新版本可用</string>
+  <string name="updater-title">有新版Huggle可用</string>
   <string name="updater-update">更新</string>
-  <string name="updater-update-available">Huggle的新版本现在可用：版本 $1</string>
+  <string name="updater-update-available">有新版Huggle可用：$1</string>
   <string name="updater-open-manualdownloadpage">打开下载页</string>
   <string name="updater-close">关闭</string>
   <string name="updater-disable-notify">停用更新</string>
@@ -587,7 +587,7 @@
   <string name="wikiedit-tp-fail">无法检索$1警告等级。它将不会用于得分</string>
   <string name="missing-warning">没有这种警告模板$1</string>
   <string name="han-not">破坏性网络在选项中不允许</string>
-  <string name="han-connecting">连接Huggle反破坏网络</string>
+  <string name="han-connecting">正在连接Huggle反破坏网络（HAN）</string>
   <string name="han-already-connected">没有连接到HAN，因为它已经连接</string>
   <string name="han-already-connecting">请稍候，我正在连接HAN</string>
   <string name="han-disconnected">您已从HAN断开</string>
@@ -621,7 +621,7 @@
   <string name="history-message-revert-title">您真的希望只撤销此消息么？</string>
   <string name="history-another-edit">我已经正在撤销另一个编辑，请稍候</string>
   <string name="history-not-found">没有可以撤销的</string>
-  <string name="history-already-done">这已经完成</string>
+  <string name="history-already-done">这已被撤掉过</string>
   <string name="history-message-revert-body">这是一条引用自回退操作的消息，您确信您只希望撤销模板甚至不编辑页面么？（您需要在您希望纠正错误回退时才撤销回退）</string>
   <string name="history-revert-fail">因为遇到以下错误，我们无法撤销您对$1的编辑：$2</string>
   <string name="history-undone">成功撤销对$1的编辑</string>

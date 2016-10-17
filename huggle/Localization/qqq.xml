@@ -305,7 +305,9 @@ Parameters:
   <string name="main-user">{{Identical|User}}</string>
   <string name="main-contribs">{{Identical|Contribution}}</string>
   <string name="main-history">{{Identical|History}}</string>
-  <string name="main-new-messages">* \"System\" is {{Msg-huggle|Main-system}}
+  <string name="main-new-messages">{{doc-important|Please do not modify \"-&gt;\" to any other styles, if you modified, then Huggle will break in your language.}}
+
+* \"System\" is {{Msg-huggle|Main-system}}
 * \"Show new messages\" is {{Msg-huggle|Main-system-messages}}.</string>
   <string name="main-space">Used as error message.
 
