@@ -12,11 +12,19 @@
 #include <QMessageBox>
 #include <QModelIndex>
 #include <QtXml>
-#include <QWebView>
+#ifdef HUGGLE_WEBEN
+    #include <QWebEngineView>
+#else
+    #include <QWebView>
+#endif
 #include "configuration.hpp"
 #include "exception.hpp"
 #include "generic.hpp"
-#include "huggleweb.hpp"
+#ifdef HUGGLE_WEBEN
+    #include "web_engine/huggleweb.hpp"
+#else
+    #include "webkit/huggleweb.hpp"
+#endif
 #include "syslog.hpp"
 #include "localization.hpp"
 #include "resources.hpp"
@@ -112,7 +120,6 @@ ReportUser::ReportUser(QWidget *parent, bool browser) : HW("reportuser", this, p
 #endif
     this->ui->tableWidget_2->setShowGrid(false);
     this->tReportUser = nullptr;
-    this->ui->webView->setHtml(_l("report-select"));
     this->RestoreWindow();
     if (this->isBrowser)
     {
@@ -125,6 +132,13 @@ ReportUser::ReportUser(QWidget *parent, bool browser) : HW("reportuser", this, p
         this->ui->pushButton_6->setVisible(false);
         this->ui->lineEdit->setVisible(false);
     }
+#ifdef HUGGLE_WEBEN
+
+#else
+    this->webView = new QWebView(this);
+#endif
+    this->layout()->addWidget(this->webView);
+    this->webView->setHtml(_l("report-select"));
 }
 
 ReportUser::~ReportUser()
@@ -418,7 +432,7 @@ void ReportUser::On_DiffTick()
 
     if (this->qDiff->Result->IsFailed())
     {
-        ui->webView->setHtml(_l("browser-fail", this->qDiff->Result->ErrorMessage));
+        this->webView->setHtml(_l("browser-fail", this->qDiff->Result->ErrorMessage));
         this->tPageDiff->stop();
         return;
     }
@@ -436,8 +450,8 @@ void ReportUser::On_DiffTick()
     } else
     {
         Huggle::Syslog::HuggleLogs->DebugLog(this->qDiff->Result->Data);
-        this->ui->webView->setHtml("Unable to retrieve diff because api returned no data for it, debug information:<br><hr>" +
-                                HuggleWeb::Encode(this->qDiff->Result->Data));
+        this->webView->setHtml("Unable to retrieve diff because api returned no data for it, debug information:<br><hr>" +
+                                Generic::HtmlEncode(this->qDiff->Result->Data));
         this->tPageDiff->stop();
         return;
     }
@@ -452,9 +466,9 @@ void ReportUser::On_DiffTick()
     if (!Summary.size())
         Summary = "<font color=red>" + _l("browser-miss-summ") + "</font>";
     else
-        Summary = HuggleWeb::Encode(Summary);
+        Summary = Generic::HtmlEncode(Summary);
 
-    this->ui->webView->setHtml(Resources::GetHtmlHeader() + Resources::DiffHeader + "<tr></td colspan=2><b>" + _l("summary")
+    this->webView->setHtml(Resources::GetHtmlHeader() + Resources::DiffHeader + "<tr></td colspan=2><b>" + _l("summary")
                                + ":</b> " + Summary + "</td></tr>" + Diff + Resources::DiffFooter + Resources::HtmlFooter);
     this->tPageDiff->stop();
 }
@@ -534,12 +548,12 @@ void ReportUser::on_pushButton_2_clicked()
 {
     QUrl u = QUrl::fromEncoded(QString(Configuration::GetProjectWikiURL(this->ReportedUser->GetSite()) + QUrl::toPercentEncoding
                                  (this->ReportedUser->GetTalk()) + "?action=render").toUtf8());
-    this->ui->webView->load(u);
+    this->webView->load(u);
 }
 
 void ReportUser::on_tableWidget_clicked(const QModelIndex &index)
 {
-    this->ui->webView->setHtml(_l("wait"));
+    this->webView->setHtml(_l("wait"));
     this->tPageDiff->stop();
     if (this->qDiff != nullptr)
         this->qDiff->Kill();

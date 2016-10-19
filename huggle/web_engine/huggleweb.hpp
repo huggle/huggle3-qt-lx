@@ -11,13 +11,13 @@
 #ifndef HUGGLEWEB_H
 #define HUGGLEWEB_H
 
-#include "definitions.hpp"
+#include "../definitions.hpp"
 
 #include <QFrame>
-#include <QWebHistory>
-#include <QWebFrame>
-#include "collectable_smartptr.hpp"
-#include "wikiedit.hpp"
+#include <QWebEngineHistory>
+#include <QWebEngineView>
+#include "../collectable_smartptr.hpp"
+#include "../wikiedit.hpp"
 
 namespace Ui
 {

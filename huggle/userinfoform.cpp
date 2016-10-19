@@ -14,7 +14,11 @@
 #include "editbar.hpp"
 #include "exception.hpp"
 #include "localization.hpp"
-#include "huggleweb.hpp"
+#ifdef HUGGLE_WEBEN
+    #include "web_engine/huggleweb.hpp"
+#else
+    #include "webkit/huggleweb.hpp"
+#endif
 #include "mainwindow.hpp"
 #include "querypool.hpp"
 #include "syslog.hpp"

@@ -53,6 +53,7 @@ namespace Huggle
          * \return string
          */
         HUGGLE_EX QString Bool2String(bool b);
+        HUGGLE_EX QString HtmlEncode(QString text);
         /*!
          * \brief Safely turn a QString into a bool value
          * \param value QString Text that needs to be changed to bool

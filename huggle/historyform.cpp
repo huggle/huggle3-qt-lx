@@ -18,7 +18,11 @@
 #include "mainwindow.hpp"
 #include "localization.hpp"
 #include "resources.hpp"
-#include "huggleweb.hpp"
+#ifdef HUGGLE_WEBEN
+    #include "web_engine/huggleweb.hpp"
+#else
+    #include "webkit/huggleweb.hpp"
+#endif
 #include "syslog.hpp"
 #include "ui_historyform.h"
 #include "querypool.hpp"

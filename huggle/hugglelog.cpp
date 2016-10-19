@@ -14,7 +14,7 @@
 #include <QMutex>
 #include "localization.hpp"
 #include "exception.hpp"
-#include "huggleweb.hpp"
+#include "generic.hpp"
 #include "syslog.hpp"
 #include "ui_hugglelog.h"
 
@@ -71,10 +71,10 @@ QString HuggleLog::Format(HuggleLog_Line line)
 
     if (color.isEmpty())
     {
-        return "<font color=blue>" + line.Date + "</font>" + "<font>&nbsp;&nbsp;" + HuggleWeb::Encode(line.Text) + "</font>";
+        return "<font color=blue>" + line.Date + "</font>" + "<font>&nbsp;&nbsp;" + Generic::HtmlEncode(line.Text) + "</font>";
     } else
     {
-        return "<font color=blue>" + line.Date + "</font>" + "<font color=" + color + ">&nbsp;&nbsp;" + HuggleWeb::Encode(line.Text) + "</font>";
+        return "<font color=blue>" + line.Date + "</font>" + "<font color=" + color + ">&nbsp;&nbsp;" + Generic::HtmlEncode(line.Text) + "</font>";
     }
 }
 

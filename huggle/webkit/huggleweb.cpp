@@ -10,14 +10,15 @@
 
 #include "huggleweb.hpp"
 #include <QDesktopServices>
-#include "exception.hpp"
-#include "localization.hpp"
-#include "syslog.hpp"
-#include "configuration.hpp"
-#include "wikipage.hpp"
-#include "wikisite.hpp"
-#include "wikiedit.hpp"
-#include "resources.hpp"
+#include "../exception.hpp"
+#include "../generic.hpp"
+#include "../localization.hpp"
+#include "../syslog.hpp"
+#include "../configuration.hpp"
+#include "../wikipage.hpp"
+#include "../wikisite.hpp"
+#include "../wikiedit.hpp"
+#include "../resources.hpp"
 #include "ui_huggleweb.h"
 
 using namespace Huggle;
@@ -71,22 +72,6 @@ void HuggleWeb::DisplayPage(const QString &url)
 void HuggleWeb::RenderHtml(const QString &html)
 {
     this->ui->webView->setContent(html.toUtf8());
-}
-
-QString HuggleWeb::Encode(const QString &string)
-{
-    QString encoded;
-    for(int i=0;i<string.size();++i)
-    {
-        QChar ch = string.at(i);
-        if(ch.unicode() > 255)
-            encoded += QString("&#%1;").arg((int)ch.unicode());
-        else
-            encoded += ch;
-    }
-    encoded = encoded.replace("<", "&lt;");
-    encoded = encoded.replace(">", "&gt;");
-    return encoded;
 }
 
 void HuggleWeb::Click(const QUrl &page)
@@ -148,9 +133,9 @@ static QString GenerateEditSumm(WikiEdit *edit)
     } else
     {
         if (hcfg->UserConfig->SummaryMode)
-            return prefix + "<font color=red> " + HuggleWeb::Encode(edit->Summary) + "</font>";
+            return prefix + "<font color=red> " + Generic::HtmlEncode(edit->Summary) + "</font>";
         else
-            return prefix + "<font> " + HuggleWeb::Encode(edit->Summary) + "</font>";
+            return prefix + "<font> " + Generic::HtmlEncode(edit->Summary) + "</font>";
     }
 }
 
@@ -196,7 +181,7 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
     HTML += Resources::DiffHeader + "<tr></td colspan=2>";
     if (Configuration::HuggleConfiguration->UserConfig->DisplayTitle)
     {
-        HTML += "<p><font size=20px>" + Encode(edit->Page->PageName) + "</font></p>";
+        HTML += "<p><font size=20px>" + Generic::HtmlEncode(edit->Page->PageName) + "</font></p>";
     }
     QString Summary = GenerateEditSumm(edit);
     QString size;
@@ -232,7 +217,7 @@ void HuggleWeb::DisplayNewPageEdit(WikiEdit *edit)
     }
     if (Configuration::HuggleConfiguration->UserConfig->DisplayTitle)
     {
-        HTML += "<p><font size=20px>" + Encode(edit->Page->PageName) + "</font></p>";
+        HTML += "<p><font size=20px>" + Generic::HtmlEncode(edit->Page->PageName) + "</font></p>";
     }
     QString Summary = GenerateEditSumm(edit);
     HTML += Summary + Extras(edit) + "<br>" + edit->Page->Contents + Resources::HtmlFooter;

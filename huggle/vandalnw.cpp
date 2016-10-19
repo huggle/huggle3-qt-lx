@@ -14,7 +14,11 @@
 #include "exception.hpp"
 #include "generic.hpp"
 #include "localization.hpp"
-#include "huggleweb.hpp"
+#ifdef HUGGLE_WEBEN
+    #include "web_engine/huggleweb.hpp"
+#else
+    #include "webkit/huggleweb.hpp"
+#endif
 #include "hugglequeue.hpp"
 #include "mainwindow.hpp"
 #include "syslog.hpp"
@@ -49,7 +53,7 @@ QString VandalNw::SafeHtml(QString text)
         // if there is no closing we don't want to render this tag
         if (!part.contains(">"))
         {
-            result += HuggleWeb::Encode(part);
+            result += Generic::HtmlEncode(part);
             continue;
         }
         // now we need to find what tag it is
@@ -62,7 +66,7 @@ QString VandalNw::SafeHtml(QString text)
             tag = tag.mid(0, tag.indexOf(" "));
         }
         if (!AllowedTags.contains(tag))
-            part = HuggleWeb::Encode(part);
+            part = Generic::HtmlEncode(part);
         result += part;
     }
 

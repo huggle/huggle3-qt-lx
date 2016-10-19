@@ -285,3 +285,19 @@ QString Generic::IRCQuitDefaultMessage()
 {
     return "Huggle (" + hcfg->HuggleVersion + "), the anti vandalism software. See #huggle on irc://chat.freenode.net";
 }
+
+QString Generic::HtmlEncode(QString text)
+{
+    QString encoded;
+    for(int i=0;i<text.size();++i)
+    {
+        QChar ch = text.at(i);
+        if(ch.unicode() > 255)
+            encoded += QString("&#%1;").arg((int)ch.unicode());
+        else
+            encoded += ch;
+    }
+    encoded = encoded.replace("<", "&lt;");
+    encoded = encoded.replace(">", "&gt;");
+    return encoded;
+}

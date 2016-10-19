@@ -58,6 +58,7 @@ do
         echo " --python: will build huggle with p engine"
         echo " --folder <folder>: change the default build folder"
         echo " --no-colors: suppress colors"
+        echo " --web-engine: use web engine instead of web kit"
         echo " --version: show version"
         echo
         echo "Copyright (c) 2013 - 2014 Petr Bena and Huggle team. This script is licensed under the BSD license."
@@ -106,6 +107,10 @@ do
     if [ "$var" = "--version" ];then
         echo "Huggle configure v 1.0"
         exit 0
+    fi
+    if [ "$var" = "--web-engine" ];then
+        CMAKE_ARGS="$CMAKE_ARGS -DWEB_ENGINE=true"
+        continue
     fi
     if [ "$var" = "--disable-dependency-tracking" ];then
         SKIPCHECKS=1
