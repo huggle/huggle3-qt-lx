@@ -48,6 +48,18 @@ MacOS
 ------------
 https://github.com/huggle/huggle3-qt-lx/wiki/Building-on-MacOS
 
+WebKit vs Chromium
+-------------------
+Qt4 - Qt5.4 supports WebKit, which is a default backend for Huggle. Newer Qt support only Chromium backend (code named WebEngine)
+
+If you want to build huggle with Qt newer than 5.4 you will have to enable it like this:
+
+```
+./configure --qt5 --web-engine
+```
+
+Or alternatively if you are starting cmake by hand, just pass it `-DWEB_ENGINE=true` parameter
+
 Python
 ------------
 To enable python engine you need to:
