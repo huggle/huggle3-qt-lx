@@ -65,9 +65,6 @@ namespace Huggle
             static QString Encode(const QString &string);
             Collectable_SmartPtr<WikiEdit> CurrentEdit;
 
-        private slots:
-            void Click(const QUrl &page);
-
         private:
             QString GetShortcut();
             Ui::HuggleWeb *ui;

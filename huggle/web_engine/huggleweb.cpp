@@ -9,7 +9,6 @@
 //GNU General Public License for more details.
 
 #include "huggleweb.hpp"
-#include <QDesktopServices>
 #include "hugglewebpage.hpp"
 #include "../exception.hpp"
 #include "../generic.hpp"
@@ -50,8 +49,6 @@ void HuggleWeb::DisplayPreFormattedPage(WikiPage *page)
     this->ui->webView->history()->clear();
     this->ui->webView->load(QString(Configuration::GetProjectScriptURL(page->Site) + "index.php?title=" + page->PageName + "&action=render"));
     this->CurrentPage = page->PageName;
-    //this->ui->webView->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
-    connect(this->ui->webView, SIGNAL(linkClicked(QUrl)), this, SLOT(Click(QUrl)));
 }
 
 void HuggleWeb::DisplayPreFormattedPage(QString url)
@@ -60,25 +57,16 @@ void HuggleWeb::DisplayPreFormattedPage(QString url)
     url += "&action=render";
     this->ui->webView->load(url);
     this->CurrentPage = this->ui->webView->title();
-    //this->ui->webView->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
-    connect(this->ui->webView, SIGNAL(linkClicked(QUrl)), this, SLOT(Click(QUrl)));
 }
 
 void HuggleWeb::DisplayPage(const QString &url)
 {
     this->ui->webView->load(url);
-    //this->ui->webView->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
-    connect(this->ui->webView, SIGNAL(linkClicked(QUrl)), this, SLOT(Click(QUrl)));
 }
 
 void HuggleWeb::RenderHtml(const QString &html)
 {
     this->ui->webView->setContent(html.toUtf8());
-}
-
-void HuggleWeb::Click(const QUrl &page)
-{
-    QDesktopServices::openUrl(page);
 }
 
 QString HuggleWeb::GetShortcut()
