@@ -10,6 +10,7 @@
 
 #include "huggleweb.hpp"
 #include <QDesktopServices>
+#include "hugglewebpage.hpp"
 #include "../exception.hpp"
 #include "../generic.hpp"
 #include "../localization.hpp"
@@ -27,6 +28,7 @@ HuggleWeb::HuggleWeb(QWidget *parent) : QFrame(parent), ui(new Ui::HuggleWeb)
 {
     this->ui->setupUi(this);
     this->CurrentPage = _l("browser-none");
+    this->ui->webView->setPage(new HuggleWebEnginePage());
 }
 
 HuggleWeb::~HuggleWeb()
