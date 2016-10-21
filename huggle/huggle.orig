@@ -6,10 +6,10 @@
 
 CONFIG += c++11 qt
 
-QT += xml webkit core gui network
+QT += xml webengine core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4) {
-    QT += widgets webkitwidgets
+    QT += widgets webengine webenginewidgets
 }
 
 
@@ -69,7 +69,7 @@ SOURCES += main.cpp\
     hugglequeue.cpp \
     hugglelog.cpp \
     huggletool.cpp \
-    huggleweb.cpp \
+    web_engine/huggleweb.cpp \
     terminalparser.cpp \
     wikiuser.cpp \
     wikipage.cpp \
@@ -237,7 +237,7 @@ FORMS    += mainwindow.ui \
     hugglequeue.ui \
     hugglelog.ui \
     huggletool.ui \
-    huggleweb.ui \
+    web_engine/huggleweb.ui \
     proxy.ui \
     hugglequeueitemlabel.ui \
     processlist.ui \

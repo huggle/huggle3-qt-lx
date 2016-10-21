@@ -43,7 +43,11 @@
 #include "hugglequeue.hpp"
 #include "hugglequeueitemlabel.hpp"
 #include "huggletool.hpp"
-#include "huggleweb.hpp"
+#ifdef HUGGLE_WEBEN
+    #include "web_engine/huggleweb.hpp"
+#else
+    #include "webkit/huggleweb.hpp"
+#endif
 #include "blockuser.hpp"
 #include "deleteform.hpp"
 #include "wikipage.hpp"

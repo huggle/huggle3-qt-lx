@@ -93,7 +93,7 @@ SET(tst_testmain_SOURCES ${srcx}
 ../../iextension.cpp
 ../../reloginform.cpp
 ../../huggletool.cpp
-../../huggleweb.cpp
+../../webkit/huggleweb.cpp
 ../../hugglequeueitemlabel.cpp
 ../../hugglequeuefilter.cpp
 ../../hugglequeue.cpp
@@ -140,7 +140,7 @@ SET(tst_testmain_SOURCES ${srcx}
 ../../projectconfiguration.cpp 
 ../../queuehelp.cpp)
 
-SET(tst_testmain_FORMS ${uixx})
+SET(tst_testmain_FORMS "../../webkit/huggleweb.ui" ${uixx})
 SET(tst_testmain_RESOURCES ${resx})
 if(QT5_BUILD)
     QT5_WRAP_CPP(tst_testmain_HEADERS_MOC ${tst_testmain_HEADERS})

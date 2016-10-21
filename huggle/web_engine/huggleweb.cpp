@@ -9,15 +9,16 @@
 //GNU General Public License for more details.
 
 #include "huggleweb.hpp"
-#include <QDesktopServices>
-#include "exception.hpp"
-#include "localization.hpp"
-#include "syslog.hpp"
-#include "configuration.hpp"
-#include "wikipage.hpp"
-#include "wikisite.hpp"
-#include "wikiedit.hpp"
-#include "resources.hpp"
+#include "hugglewebpage.hpp"
+#include "../exception.hpp"
+#include "../generic.hpp"
+#include "../localization.hpp"
+#include "../syslog.hpp"
+#include "../configuration.hpp"
+#include "../wikipage.hpp"
+#include "../wikisite.hpp"
+#include "../wikiedit.hpp"
+#include "../resources.hpp"
 #include "ui_huggleweb.h"
 
 using namespace Huggle;
@@ -26,6 +27,7 @@ HuggleWeb::HuggleWeb(QWidget *parent) : QFrame(parent), ui(new Ui::HuggleWeb)
 {
     this->ui->setupUi(this);
     this->CurrentPage = _l("browser-none");
+    this->ui->webView->setPage(new HuggleWebEnginePage());
 }
 
 HuggleWeb::~HuggleWeb()
@@ -47,8 +49,6 @@ void HuggleWeb::DisplayPreFormattedPage(WikiPage *page)
     this->ui->webView->history()->clear();
     this->ui->webView->load(QString(Configuration::GetProjectScriptURL(page->Site) + "index.php?title=" + page->PageName + "&action=render"));
     this->CurrentPage = page->PageName;
-    this->ui->webView->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
-    connect(this->ui->webView, SIGNAL(linkClicked(QUrl)), this, SLOT(Click(QUrl)));
 }
 
 void HuggleWeb::DisplayPreFormattedPage(QString url)
@@ -57,41 +57,16 @@ void HuggleWeb::DisplayPreFormattedPage(QString url)
     url += "&action=render";
     this->ui->webView->load(url);
     this->CurrentPage = this->ui->webView->title();
-    this->ui->webView->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
-    connect(this->ui->webView, SIGNAL(linkClicked(QUrl)), this, SLOT(Click(QUrl)));
 }
 
 void HuggleWeb::DisplayPage(const QString &url)
 {
     this->ui->webView->load(url);
-    this->ui->webView->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
-    connect(this->ui->webView, SIGNAL(linkClicked(QUrl)), this, SLOT(Click(QUrl)));
 }
 
 void HuggleWeb::RenderHtml(const QString &html)
 {
-    this->ui->webView->setContent(html.toUtf8());
-}
-
-QString HuggleWeb::Encode(const QString &string)
-{
-    QString encoded;
-    for(int i=0;i<string.size();++i)
-    {
-        QChar ch = string.at(i);
-        if(ch.unicode() > 255)
-            encoded += QString("&#%1;").arg((int)ch.unicode());
-        else
-            encoded += ch;
-    }
-    encoded = encoded.replace("<", "&lt;");
-    encoded = encoded.replace(">", "&gt;");
-    return encoded;
-}
-
-void HuggleWeb::Click(const QUrl &page)
-{
-    QDesktopServices::openUrl(page);
+    this->ui->webView->setHtml(html);
 }
 
 QString HuggleWeb::GetShortcut()
@@ -148,9 +123,9 @@ static QString GenerateEditSumm(WikiEdit *edit)
     } else
     {
         if (hcfg->UserConfig->SummaryMode)
-            return prefix + "<font color=red> " + HuggleWeb::Encode(edit->Summary) + "</font>";
+            return prefix + "<font color=red> " + Generic::HtmlEncode(edit->Summary) + "</font>";
         else
-            return prefix + "<font> " + HuggleWeb::Encode(edit->Summary) + "</font>";
+            return prefix + "<font> " + Generic::HtmlEncode(edit->Summary) + "</font>";
     }
 }
 
@@ -196,7 +171,7 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
     HTML += Resources::DiffHeader + "<tr></td colspan=2>";
     if (Configuration::HuggleConfiguration->UserConfig->DisplayTitle)
     {
-        HTML += "<p><font size=20px>" + Encode(edit->Page->PageName) + "</font></p>";
+        HTML += "<p><font size=20px>" + Generic::HtmlEncode(edit->Page->PageName) + "</font></p>";
     }
     QString Summary = GenerateEditSumm(edit);
     QString size;
@@ -232,7 +207,7 @@ void HuggleWeb::DisplayNewPageEdit(WikiEdit *edit)
     }
     if (Configuration::HuggleConfiguration->UserConfig->DisplayTitle)
     {
-        HTML += "<p><font size=20px>" + Encode(edit->Page->PageName) + "</font></p>";
+        HTML += "<p><font size=20px>" + Generic::HtmlEncode(edit->Page->PageName) + "</font></p>";
     }
     QString Summary = GenerateEditSumm(edit);
     HTML += Summary + Extras(edit) + "<br>" + edit->Page->Contents + Resources::HtmlFooter;
@@ -241,5 +216,5 @@ void HuggleWeb::DisplayNewPageEdit(WikiEdit *edit)
 
 QString HuggleWeb::RetrieveHtml()
 {
-    return this->ui->webView->page()->mainFrame()->toHtml();
+    return "Retrieving of source code is not supported yet in Chromium library";
 }
