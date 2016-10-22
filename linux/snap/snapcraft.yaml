@@ -1,0 +1,25 @@
+name: huggle
+version: "3.2.0"
+summary: Diff browser for MediaWiki based websites intended to deal with vandalism
+description: Diff browser for MediaWiki based websites intended to deal with vandalism
+confinement: strict
+
+apps:
+  huggle:
+    command: huggle
+    plugs:
+        - unity7
+        - network
+        - home
+
+parts:
+  application:
+    plugin: cmake
+    configflags:
+      - -DLINUX_SNAP=true
+      - -DHUGGLE_EXT=true
+    source: src/
+    stage-packages:
+      - libqtgui4
+      - libqtwebkit4
+    after: [qt4conf]

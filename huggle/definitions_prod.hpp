@@ -150,7 +150,10 @@ namespace std { typedef decltype(nullptr) nullptr_t; }
 #endif
 
 //! Change this to DEBIAN / UBUNTU / WINDOWS to get automatic updates for selected channels
-#ifdef __linux__
+#ifdef HUGGLE_SNAP
+    #define HUGGLE_UPDATER_PLATFORM_TYPE            "linux/snap"
+    #define HUGGLE_GLOBAL_EXTENSION_PATH            QCoreApplication::applicationDirPath() + "/extensions"
+#elif defined __linux__
     #define HUGGLE_UPDATER_PLATFORM_TYPE            "linux"
     #define HUGGLE_GLOBAL_EXTENSION_PATH            "/usr/share/huggle/extensions"
 #elif defined HUGGLE_WIN

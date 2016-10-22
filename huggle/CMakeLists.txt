@@ -10,6 +10,7 @@ endif()
 execute_process(COMMAND "${CMAKE_SOURCE_DIR}/update.sh" WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 #  cmake <folder> -DQT5_BUILD=true
 option(LIBCORE "Build core library" false)
+option(LINUX_SNAP "Enable support for snap, use this option only if you are building snapshotable version" false)
 option(PYTHON_BUILD "Build huggle with python" false)
 option(QT5_BUILD "Build huggle using the Qt5 framework" false)
 option(HUGGLE_EXT "Build huggle extensions" false)
@@ -17,6 +18,10 @@ option(WEB_ENGINE "Use Qt WebEngine instead of WebKit library" false)
 
 if (WEB_ENGINE)
     add_definitions(-DHUGGLE_WEBEN)
+endif()
+
+if (LINUX_SNAP)
+    add_definitions(-DHUGGLE_SNAP)
 endif()
 
 # This will ensure that produced binaries go to right place on windows
