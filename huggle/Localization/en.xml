@@ -712,6 +712,7 @@
   <string name="about-python-with"> ,with python support</string>
   <string name="about-python-without"> without python support</string>
   <string name="about-qt">, compiled using QT $1 Running on QT $1</string>
+  <string name="about-info">, based on $1, target platform: $2</string>
   <string name="error-unknown-code">Unknown Error: $1</string>
   <string name="relogin-fail">Unable to login to wiki: $1</string>
   <string name="projects">Projects</string>

@@ -30,6 +30,12 @@ typedef long long revid_ht;
 #define HUGGLE_STATISTICS_LIFETIME     200
 #define HUGGLE_STATISTICS_BLOCK_SIZE   20
 
+#ifdef HUGGLE_WE
+    #define HUGGLE_WEB_ENGINE_NAME "Chromium"
+#else
+    #define HUGGLE_WEB_ENGINE_NAME "WebKit"
+#endif
+
 // we are using translatewiki and if this is not defined there is a huge overhead of Qt code
 #ifndef QT_NO_TRANSLATION
     #define QT_NO_TRANSLATION
