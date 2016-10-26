@@ -21,11 +21,6 @@
 #include "apiquery.hpp"
 #include "collectable_smartptr.hpp"
 class QModelIndex;
-#ifdef HUGGLE_WEBEN
-class QWebEngineView;
-#else
-class QWebView;
-#endif
 
 namespace Ui
 {
@@ -35,6 +30,7 @@ namespace Ui
 namespace Huggle
 {
     class WikiUser;
+    class HuggleWeb;
     class ApiQuery;
     class EditQuery;
     class BlockUser;
@@ -80,11 +76,7 @@ namespace Huggle
             //! Stop all operations
             void Kill();
             void failCheck(QString reason);
-#ifdef HUGGLE_WEBEN
-            QWebEngineView   *webView = nullptr;
-#else
-            QWebView         *webView = nullptr;
-#endif
+            HuggleWeb        *webView = nullptr;
             bool isBrowser = false;
             bool flagSilent = false;
             Ui::ReportUser *ui;
