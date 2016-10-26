@@ -84,7 +84,6 @@ namespace Huggle
                 RescoreItem(WikiSite *site, int _revID, int _score, QString _user);
                 RescoreItem(const RescoreItem &item);
                 RescoreItem(RescoreItem *item);
-                WikiSite *Site;
                 int Score;
         };
 
