@@ -30,7 +30,7 @@ typedef long long revid_ht;
 #define HUGGLE_STATISTICS_LIFETIME     200
 #define HUGGLE_STATISTICS_BLOCK_SIZE   20
 
-#ifdef HUGGLE_WE
+#ifdef HUGGLE_WEBEN
     #define HUGGLE_WEB_ENGINE_NAME "Chromium"
 #else
     #define HUGGLE_WEB_ENGINE_NAME "WebKit"
