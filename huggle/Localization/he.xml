@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">עברית</string>
-  <string name="isrtl">true</string>
+  <string name="isrtl">שגוי</string>
   <string name="add">הוספה</string>
   <string name="cancel">ביטול</string>
   <string name="clear">ניקוי</string>
@@ -22,7 +22,7 @@
   <string name="result">תוצאה</string>
   <string name="save">שמירה</string>
   <string name="show">הצגה</string>
-  <string name="no-instant">אזהרות מידיות אינן מופעלות במיזן $1, לא השלחת הודעה אל $2, יש לבחור רמת אזהרה שונה</string>
+  <string name="no-instant">אזהרות מידיות אינן מופעלות במיזם $1, לא נשלחה הודעה אל $2, יש לבחור רמת אזהרה שונה</string>
   <string name="undo">ביטול</string>
   <string name="yes">כן</string>
   <string name="editing-page">עריכת דף</string>
@@ -44,7 +44,7 @@
   <string name="status">מצב</string>
   <string name="link">קישור</string>
   <string name="reason">סיבה</string>
-  <string name="diffid">DiffID</string>
+  <string name="diffid">מזהה גרסה</string>
   <string name="whitelisted">$1 עם ציון $2 באתר $3 הוכנס לרשימה הלבנה</string>
   <string name="expiry-time">זמן פקיעה</string>
   <string name="duration">משך</string>
@@ -193,7 +193,7 @@
   <string name="delete-token02">לא הוחזר שום אסימון על־ידי השאילתה</string>
   <string name="delete-e1">לא ניתן למחוק את הדף: $1</string>
   <string name="delete-e2">אין אפשרות למחוק את דף</string>
-  <string name="delete-edsc">אין אפשרות למחוק את הדף: $1</string>
+  <string name="delete-edsc">אין אפשרות למחוק את הדף בגלל $1</string>
   <string name="delete-failed-no-info">לא היה שום דף בשאילתה (האם יש לך הרשאת מפעיל?)</string>
   <string name="extension-kl">לא רץ</string>
   <string name="extension-ok">נטען ורץ</string>
@@ -209,7 +209,7 @@
   <string name="irc-connected">$1: מחובר להזנת שינויים אחרונים ב־IRC</string>
   <string name="irc-connecting">מנסה להתחבר להזנת שינויים אחרונים ב־IRC ב־$1, זה יכול לקחת מספר רגעים...</string>
   <string name="irc-disconnected">התחברות להזנת שינויים אחרונים אבדה ב־$1. התחברות מחדש...</string>
-  <string name="irc-nochannel">לא נמצא ערוץ IRC בשביל $1; תשמשנה שאילתות API אטיות יותר במקוםו</string>
+  <string name="irc-nochannel">לא נמצא ערוץ IRC בשביל $1; תשמשנה שאילתות API אטיות יותר במקום</string>
   <string name="irc-error">לא ניתן להתחבר להזנת IRC של שינויים אחרונים ($1: $2). תשמשנה שאילתות API אטיות יותר במקומו</string>
   <string name="irc-stop">ממתין לעצירת ספק ההזמנה העיקרי ב־$1</string>
   <string name="irc-not">הזנה: IRC כבוי בהגדרות מיזם</string>
@@ -234,7 +234,7 @@
   <string name="login-proxydomain">מתחם:</string>
   <string name="login-retrieving-user-conf">אחזור הגדרות אישיות</string>
   <string name="login-fail-css">הכניסה נכשלה ב־$1. אין אפשרות לאחזר את הגדרות המשתמש. Special:MyPage/huggle3.css חסר. האם יצרת את huggle3.css במרחב המשתמש שלך?</string>
-  <string name="login-fail-enable-true">הכניסה נכשלה ב־$1: אין לך enable:true בקובץ ההגדרות האישי</string>
+  <string name="login-fail-enable-true">הכניסה נכשלה ב־$1: אין לך enable:true בדף ההגדרות האישי</string>
   <string name="login-fail-no-info">הכניסה נכשלה ב־$1: אין אפשרות לאחזר מידע על המשתמש: $2</string>
   <string name="login-bot">מה ההבדל בין כניסת בוט לבין הכניסה הישנה?</string>
   <string name="login-fail-parse-config">הכניסה נכשלה ב־$1: אין אפשרות לפענח את הגדרות המשתמש. ר\' יומן debug לפרטים נוספים.</string>
@@ -288,7 +288,7 @@
   <string name="main-contribs">תרומות</string>
   <string name="main-history">היסטוריה</string>
   <string name="main-new-messages">יש לך הודעת חדשה. נא לבחור מערכת -&gt; הצגת ההודעת החדשות או ללחוץ M כדי להציג אותן.</string>
-  <string name="main-space">שם הדף אינו יכול להסתמיים ברווח. נא לתקן את שם הדף</string>
+  <string name="main-space">שם הדף אינו יכול להסתיים ברווח. נא לתקן את שם הדף</string>
   <string name="main-system">מערכת</string>
   <string name="main-status-bar">עיבוד &lt;b&gt;$1&lt;/b&gt; עריכות ו־&lt;b&gt;$2&lt;/b&gt; שאילתות. משתמשים ברשימה הלבנה: &lt;b&gt;$3&lt;/b&gt; גודל התור: &lt;b&gt;$4&lt;/b&gt; סטטיסטיקה עבור $6: $5</string>
   <string name="main-shutting-down">מתבצעת יציאה מהאגל, הפעולה לא תתבצע</string>
@@ -299,7 +299,7 @@
   <string name="main-system-showqueue">הצגת תור</string>
   <string name="main-system-options">אפשרויות...</string>
   <string name="main-system-logout">יציאה</string>
-  <string name="main-system-abort">נטישה</string>
+  <string name="main-system-abort">יציאה</string>
   <string name="main-system-change-provider">שינוי ספק</string>
   <string name="main-system-change-provider-irc">IRC</string>
   <string name="main-system-change-provider-wiki">ויקי</string>
@@ -316,7 +316,7 @@
   <string name="main-queue-clearall">ניקוי הכול</string>
   <string name="main-queue-options">ניהול תורים...</string>
   <string name="main-goto">מעבר אל</string>
-  <string name="main-goto-mytalk">דך השיחה שלי</string>
+  <string name="main-goto-mytalk">דף השיחה שלי</string>
   <string name="main-goto-mycontribs">התרומות שלי</string>
   <string name="main-revision-decline">דחיית הגרסה</string>
   <string name="main-revision">גרסה</string>
@@ -351,7 +351,7 @@
   <string name="main-page-patrol">סימון השינוי כבדוק</string>
   <string name="main-page-move">העברה...</string>
   <string name="main-page-flag-suspicious-edit">לסמן כעריכה חשודה (הפעולה הזאת תיתן למשתמש ציון ‎+1)</string>
-  <string name="main-page-flag-good-edit">ימון בתור עריכה טובה (הפעולה הזאת נותנת למשתמש ציון ‎-200)</string>
+  <string name="main-page-flag-good-edit">סימון בתור עריכה טובה (הפעולה הזאת נותנת למשתמש ציון ‎-200)</string>
   <string name="main-page-protect">הגנה</string>
   <string name="main-page-delete">מחיקה</string>
   <string name="main-page-load">טעינה</string>
@@ -376,7 +376,7 @@
   <string name="main-browser-open">להציג את זה בדפדפן חיצוני</string>
   <string name="main-browser-newedits">הצגת עריכות חדשות לדף</string>
   <string name="main-browser-newcontribs">הצגת התרומות החדשות של המשתמש</string>
-  <string name="main-browser-lasttab">אני לא יכול לסגור את הלשונית הזאת, כי היא האחרונה, צריך שתהיה פתוחה לך לפחות לשונית אחת</string>
+  <string name="main-browser-lasttab">אני לא יכול לסגור את הלשונית הזאת כי היא האחרונה, צריך שתהיה פתוחה לך לפחות לשונית אחת</string>
   <string name="main-revert-manual">אין אסימון שחזור, גיבוי לשחזור ידני של $1</string>
   <string name="main-han">רמ\"ה</string>
   <string name="main-han-disconnect">התנתקות</string>
@@ -392,7 +392,7 @@
   <string name="main-savelogtitle">שמירת יומן</string>
   <string name="main-usermessageother">הודעה אחרת...</string>
   <string name="main-advanced">מתקדם...</string>
-  <string name="main-stats">$1 עריכות בשנייה, $2 שחזורים בדקה</string>
+  <string name="main-stats">$1 עריכות בדקה, $2 שחזורים בדקה</string>
   <string name="main-display-session-data">להציג נתוני השיחה</string>
   <string name="main-display-whitelist">הצגת הרשימה הלבנה</string>
   <string name="main-revert-custom-reson">נא לספק סיבה למה ברצונך לשחזר את העריכה הזאת לגרסה הקודמת</string>
@@ -471,22 +471,22 @@
   <string name="queue-examplelabel2">לא לכלול את המאפיין הזה</string>
   <string name="queue-examplelabel3">לא לבדוק את המאפיין הזה</string>
   <string name="queue-usergroup">להציג רק עריכות מהמשתמשים האלה</string>
-  <string name="report-title">לדווח את $1</string>
-  <string name="report-warn">המשתמש הזה כבר הגיע לרמת אזהרה 4, אז לא יישלחו אליו עוד תבניות. אפשר לדווח אותו עכשיו, אבל נא לוודא שהוא כבר קיבל מספר מתאים של אזהרות לאחרונה! אפשר לעשות זאת באמצעות לחיצה על כפתור \"דף שיחה\" בטופס הבא. נא לזכור שהטופס הזה מוצג אם השחזור הצליח וגם אם לא, אז ייתכן שתהיה לך התנגשות עם משתמשים אחרים (נא לוודא שהמשתמש לא מדווח כבר). האם לדווח את המשתמש הזה?</string>
-  <string name="report-tu">לדווח משתמש</string>
+  <string name="report-title">לדווח על $1</string>
+  <string name="report-warn">המשתמש הזה כבר הגיע לרמת אזהרה 4, אז לא יישלחו אליו עוד תבניות. אפשר לדווח עליו עכשיו, אבל נא לוודא שהוא כבר קיבל מספר מתאים של אזהרות לאחרונה! אפשר לעשות זאת באמצעות לחיצה על כפתור \"דף שיחה\" בטופס הבא. נא לזכור שהטופס הזה מוצג אם השחזור הצליח וגם אם לא, אז ייתכן שתהיה לך התנגשות עם משתמשים אחרים (נא לוודא שלא דיווחו כבר על המשתמש). האם לדווח על המשתמש הזה?</string>
+  <string name="report-tu">לדווח על המשתמש</string>
   <string name="report-reason">סיבה:</string>
-  <string name="report-auto">$1 דווח</string>
+  <string name="report-auto">דווח על $1</string>
   <string name="report-intro">הולך להישלח בשמך דיווח על המשתמש $1</string>
   <string name="report-message">הודעה:</string>
   <string name="report-log">אזהרות למשתמש:</string>
   <string name="report-include">לכלול בדו\"ח</string>
   <string name="report-select">נא לבחור השוואה ברשימה כדי לפתוח תצוגה מקדימה</string>
   <string name="report-write">כתיבה</string>
-  <string name="reportuser-not">המשתמש הזה אינו מדְווח עכשיו</string>
+  <string name="reportuser-not">המשתמש הזה אינו מדווח עכשיו</string>
   <string name="report-evidence-none-provid">לא ניתנו השוואות בין גרסאות בתור ראיות. זה יקשה מאוד על המפעילים להבין אם המשתמש הוא משחית או לא. האם ברצונך להמשיך?</string>
   <string name="report-duplicate">המשתמש הזה כבר דווח</string>
   <string name="report-fail2">שגיאה: לא ניתן לאחזר את דף הדיווח $1</string>
-  <string name="report-progress">דיווח $1...</string>
+  <string name="report-progress">מדווח על $1...</string>
   <string name="report-retrieving">אחזור דף הדיווח הנוכחי...</string>
   <string name="report-done">דווח</string>
   <string name="report-user">לדווח</string>
@@ -547,14 +547,14 @@
   <string name="userinfo-generic">מידע על המשתמש</string>
   <string name="userinfo-retrieve">אחזור מידע</string>
   <string name="shortcut-page-patrol-edit">סימון העריכה כבדוקה</string>
-  <string name="shortcut-report-username">דיווח שם משתמש</string>
-  <string name="shortcut-report-user">דיווח משתמש</string>
+  <string name="shortcut-report-username">דיווח על שם המשתמש</string>
+  <string name="shortcut-report-user">לדווח על המשתמש</string>
   <string name="shortcut-my-talk">דך השיחה שלי</string>
   <string name="shortcut-raw">לשחזר את העריכה ולהזהיר את המשתמש</string>
   <string name="shortcut-contrib">הצגת התרומות של המשתמש שעשה את העריכה שמוצגת כעת</string>
   <string name="shortcut-exit">לצאת מהאגל בדרך הרגילה</string>
   <string name="shortcut-next">מעבר לעריכה הבאה</string>
-  <string name="shortcut-suspicious">לסמן את העריכה סתור חשודה</string>
+  <string name="shortcut-suspicious">לסמן את העריכה בתור חשודה</string>
   <string name="shortcut-back">ללכת לעריכה שהוצגה קודם</string>
   <string name="shortcut-forward">ללכת לעריכה שטענת קודם וחזרת ממנו</string>
   <string name="shortcut-warn">לשלוח אזהרה למשתמש בלי לשחזר את העריכה</string>
@@ -567,7 +567,7 @@
   <string name="shortcut-good">לסמן את העריכה הנוכחית בתור טובה</string>
   <string name="shortcut-open-in-huggle">פתיחת הדף שמוצג עכשיו</string>
   <string name="shortcut-open">לפתוח את העריכה שמוצגת כעת בדפדפן</string>
-  <string name="shortcut-talk">להציג את דףך השיחה של המשתמש שעשה את השינוי הזה</string>
+  <string name="shortcut-talk">להציג את דף השיחה של המשתמש שעשה את השינוי הזה</string>
   <string name="shortcut-revert-agf-1">שחזור הגרסה האחרונה עם הנחת כוונה טובה</string>
   <string name="shortcut-browser-close-tab">סגירת לשונית של הדפדפן</string>
   <string name="shortcut-tab">פתיחת לשונית חדשה</string>
@@ -597,8 +597,8 @@
   <string name="error-reloginfail">הכניסה חזרה נכשלה. נא לנסות להפעיל מחדש את האגל</string>
   <string name="error-timeout">תם הזמן המוקצב לבקשה</string>
   <string name="error-unknown">שגיאה בלתי־ידועה</string>
-  <string name="block-done">חסמת את $1</string>
-  <string name="block-progress">מתבצעת חסימת $1...</string>
+  <string name="block-done">$1 נחסם</string>
+  <string name="block-progress">חוסם את $1...</string>
   <string name="blocklog-fail">אחזור יומן חסימות של $1 לא הצליח</string>
   <string name="blocklog-none">אין יומן חסימות עבור $1</string>
   <string name="blocklog-progress">אחזור יומן חסימות עבור $1...</string>
@@ -634,7 +634,7 @@
   <string name="protect-fail">רמת ההגנה עבור $1 לא שונתה</string>
   <string name="protect-progress">שינוי רמת ההגנה עבור $1...</string>
   <string name="protectlog-fail">אחזור יומן ההגנה עבור $1 לא הצליח</string>
-  <string name="protectlog-none">אין יומן הגנה עובר $1</string>
+  <string name="protectlog-none">אין יומן הגנה עבור $1</string>
   <string name="protectlog-progress">אחזור יומן ההגנה עבור $1...</string>
   <string name="saveuserconfig-progress">עדכון דף הגדרות המשתמש...</string>
   <string name="loadglobalconfig-fail">טעינת דף ההגדרות הגלובלי נכשלה</string>
@@ -666,9 +666,9 @@
   <string name="missing-aiv">המיזם הזה אינו משתמש בדף AIV</string>
   <string name="missing-page">אין דף בשם $1 בוויקי הזה</string>
   <string name="updating-wl">עדכון הרשימה הלבנה...</string>
-  <string name="feature-nfru">האפשרות הזאת מיועדת רק למשתמש IP</string>
+  <string name="feature-nfru">תכונה זו למשתמשים אנונימיים בלבד</string>
   <string name="report-no-user">לא נבחר שום משתמש לדיווח. נא לבחור משתמש תחילה.</string>
-  <string name="welcome-show">להציג את ההודעה הזאת בפעם הבאה שתריץ את Huggle</string>
+  <string name="welcome-show">להציג את ההודעה הזאת בפעם הבאה שתריץ את האגל</string>
   <string name="welcome-tp-empty-fail">למשתמש הזה יש דף שיחה שאינו ריק. האם לשלוח לו הודעה?</string>
   <string name="welcome-page-miss-fail">האגל לא הצליח לאחזר את תוכן דף שיחת המשתמש. האם ברצונך לשלוח למשתמש הודעת \"ברוך בואך\"?</string>
   <string name="cr-newer-edits">ההתנגשות נפתרה: כל העריכות שוחזרו, כולל עריכות חדשות. העריכות היו מאת אותו המשתמש: $1.</string>
@@ -697,10 +697,10 @@
   <string name="protect-request-fail-notime">השאילתה לא החזירה שום חותם־זמן. ייתכן שזה באג מדיה־ויקי. זריקת השאילתה</string>
   <string name="message-fail">מסירת ההודעה לא עבדה</string>
   <string name="edit-conflict">התנגשות עריכה</string>
-  <string name="page-tag-nodescription">אין תיאור לג הזה :/</string>
+  <string name="page-tag-nodescription">אין תיאור לתג הזה :/</string>
   <string name="page-tag-fail">תיוג הדף לא עבד</string>
   <string name="page-tag-error">לא ניתן לתייג את הדף, השגיאה הייתה: $1</string>
-  <string name="page-unknown">דך בלתי־ידוע</string>
+  <string name="page-unknown">דף בלתי־ידוע</string>
   <string name="summary-edit-range">הצגת השוואת טווח בין $1 לבין $2</string>
   <string name="speedy-csd-invalid">תג CSD בלתי־תקין, אין הודעה ותג ויקי לשימוש</string>
   <string name="speedy-csd-existing">כבר יש תג CSD בדף.</string>
@@ -711,7 +711,7 @@
   <string name="report-page-fail-time">לא ניתן לאחזר חותם־זמן של דף הדו״ח הנוכחי, שגיאת API:
 
 $1</string>
-  <string name="report-unable">לא ניתן לדווח את המשתמש :(</string>
+  <string name="report-unable">לא ניתן לדווח על המשתמש</string>
   <string name="about-python-with">, עם תמיכה בפייתון</string>
   <string name="about-python-without">ללא תמיכה בפייתון</string>
   <string name="about-qt">, מהודר באמצעות QT $1 רץ על QT $1</string>
@@ -719,7 +719,7 @@ $1</string>
   <string name="relogin-fail">לא ניתן להיכנס לוויקי: $1</string>
   <string name="projects">מיזמים</string>
   <string name="unable-to-retrieve-user-list">לא ניתן לאחזר את רשימת המשתמשים: $1</string>
-  <string name="login-no-userinfo">האתר לא החזיר שום מידע על משתשים</string>
+  <string name="login-no-userinfo">האתר לא החזיר שום מידע על משתמשים</string>
   <string name="login-invalid-register-date">ערך registration בלתי־תקין הוחזר על־ידי מדיה־ויקי</string>
   <string name="login-site-info-query-failed">שאילתת site info נכשלה: $2</string>
   <string name="login-no-site-info-returned">לא הוחזר שום site info עבור הוויקי הזה</string>

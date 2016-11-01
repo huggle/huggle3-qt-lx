@@ -715,6 +715,7 @@ $1</string>
   <string name="about-python-with">,avec le support python</string>
   <string name="about-python-without">sans le support python</string>
   <string name="about-qt">, compilé à l\'aide de QT $1 exécuté sur QT $1</string>
+  <string name="about-info">, basé sur $1, plateforme cible : $2</string>
   <string name="error-unknown-code">Erreur inconnue: $1</string>
   <string name="relogin-fail">Impossible de se connecter au wiki: $1</string>
   <string name="projects">Projets</string>

@@ -716,6 +716,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="about-python-with">, con soporte para python</string>
   <string name="about-python-without">sin soporte para python</string>
   <string name="about-qt">, compilado usando QT $1 ejecutándose en QT $1</string>
+  <string name="about-info">, basado en $1, plataforma de destino: $2</string>
   <string name="error-unknown-code">Error desconocido: $1</string>
   <string name="relogin-fail">No ha sido posible iniciar sesión en el wiki: $1</string>
   <string name="projects">Proyectos</string>

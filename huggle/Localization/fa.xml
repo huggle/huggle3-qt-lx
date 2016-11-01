@@ -218,6 +218,7 @@
   <string name="irc-switch-rc">تعویض به خوراک تغییرات اخیر ویکی</string>
   <string name="login-old">بازیابی پیکربندی کاربر از محل قدیمی</string>
   <string name="login-intro">لطفاً یک پروژه را برگزینید و نام کاربری و گذرواژهٔ خود را وارد کنید. همچنین می‌توانید با کلیک‌کردن روی دکمهٔ «پروژه‌ها» در چند پروژه ثبت ورود نمایید.</string>
+  <string name="invalid-bot-user-name">این ربات نیست. به عنوان مثال نام ربات درست: Jimbo@Huggle</string>
   <string name="login-tab-botp">گذرواژهٔ ربات</string>
   <string name="login-tab-login">میراث</string>
   <string name="login-reload-tool-tip">بارگیری دوبارهٔ فهرست پروژه‌های موجود که می‌تواند مورد استفادهٔ هاگل قرار گیرد. در صورتی که هاگل در پروژه‌ای به تازگی فعال شده این گزینه می‌تواند مفید باشد.</string>
@@ -667,6 +668,7 @@
   <string name="updating-wl">به‌روزرسانی فهرست سفید...</string>
   <string name="feature-nfru">این قابلیت تنها برای کاربران آی‌پی است</string>
   <string name="report-no-user">هیچ کاربر برای گزارش انتخاب نشده است، لطفا نخست برخی از کاربران را انتخاب نمایید.</string>
+  <string name="welcome-show">دفعه بعد که شما شروع به زبان این پیام مشاهده</string>
   <string name="welcome-tp-empty-fail">این کاربر، صفحه بحثی خالی دارد، آیا شما مطمئن هستید که می‌خواهید به وی پیامی بفرستید؟</string>
   <string name="welcome-page-miss-fail">هاگل نتوانست محتوای صفحه بحث کاربری را بازیابی کند، آیا مطمئن هستید که می‌خواهید پیام خوشامدگویی برایشان بفرستید؟</string>
   <string name="cr-newer-edits">درگیری حل و فصل شد: همه ویرایش‌های از جمله ویرایش‌های جدید را  واگردانی کن. ویرایش‌ها توسط همان کاربر: هستند.</string>

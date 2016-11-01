@@ -715,6 +715,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="about-python-with"> , mit Python-Unterstützung</string>
   <string name="about-python-without">ohne Python-Unterstützung</string>
   <string name="about-qt">, kompiliert mithilfe QT $1 Läuft auf QT $1</string>
+  <string name="about-info">, basierend auf $1, Ziel-Plattform: $2</string>
   <string name="error-unknown-code">Unbekannter Fehler: $1</string>
   <string name="relogin-fail">Anmeldung im Wiki konnte nicht ausgeführt werden: $1</string>
   <string name="projects">Projekte</string>

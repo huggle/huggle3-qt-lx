@@ -566,6 +566,7 @@ Deze blokkade maakt het effect van de rangeblokkade ongedaan. Doorgaan?</string>
   <string name="block-alreadyblocked">De gebruiker is al geblokkeerd</string>
   <string name="about-python-with"> ,met python-ondersteuning</string>
   <string name="about-python-without"> zonder python-ondersteuning</string>
+  <string name="about-info">, gebaseerd op $1, doelplatform: $2</string>
   <string name="error-unknown-code">Onbekende fout: $1</string>
   <string name="projects">Projecten</string>
   <string name="login-username-doesnt-exist">Deze gebruikersnaam bestaat niet</string>

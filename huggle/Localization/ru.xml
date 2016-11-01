@@ -218,7 +218,9 @@
   <string name="irc-switch-rc">Переключение на ленту свежих правок</string>
   <string name="login-old">Получение пользовательских настроек из старого местоположения</string>
   <string name="login-intro">Пожалуйста, выберите проект и введите своё имя пользователя и пароль. Вы также можете войти в несколько проектов, нажав на кнопку \"Проекты\".</string>
-  <string name="login-tab-login" fuzzy="true">Войти</string>
+  <string name="invalid-bot-user-name">Это не допустимое имя бота. Пример правильное название бота: Jimbo@Huggle</string>
+  <string name="login-tab-botp">Пароли ботов</string>
+  <string name="login-tab-login">Наследие</string>
   <string name="login-reload-tool-tip">Перезагрузить список проектов, которые могут быть использованы в Huggle. Это может быть полезно в случае, если вы хотите использовать Huggle в проекте, для которого Huggle был включен недавно.</string>
   <string name="login-language">Язык:</string>
   <string name="login-project">Проект:</string>
@@ -234,6 +236,7 @@
   <string name="login-fail-css">Ошибка входа на $1: Не удалось получить настройки пользователя. Страница Special:MyPage/huggle3.css отсутствует. Вы создали подстраницу huggle3.css в своём пространстве?</string>
   <string name="login-fail-enable-true">Ошибка входа на $1: Отсутствует enable:true в настройках.</string>
   <string name="login-fail-no-info">Ошибка входа на $1: Не удалось получить информацию о пользователе: $2</string>
+  <string name="login-bot">Какая разница между ботом и Наследие логин?</string>
   <string name="login-fail-parse-config">Ошибка входа на $1: Не удалось разобрать настройки пользователя. Смотрите отладочный журнал для получения дополнительных сведений.</string>
   <string name="login-fail-user-data">Ошибка входа на $1: Не удалось получить информацию о пользователе. API-запрос не возвращает данных.</string>
   <string name="login-fail-rollback-rights">Ошибка входа на $1: у вас нет флага откатывающего на этом проекте.</string>
@@ -665,6 +668,7 @@
   <string name="updating-wl">Обновляем белый список...</string>
   <string name="feature-nfru">Эта функция только для IP-участников</string>
   <string name="report-no-user">Получатель сообщения не выбран, пожалуйста, выберите одного из участников</string>
+  <string name="welcome-show">Показывать это сообщение и в следующий раз вы запустите на huggle</string>
   <string name="welcome-tp-empty-fail">У этого участника не пустая страница обсуждения. Вы уверены, что хотите отправить ему сообщение?</string>
   <string name="welcome-page-miss-fail">Huggle не удалось получить содержимое страницы обсуждения участника. Вы уверены, что хотите отправить ему приветственное сообщение?</string>
   <string name="cr-newer-edits">Конфликт разрешён: отменены все изменения, включая новые правки. Правки были от одного пользователя: $1.</string>
@@ -711,6 +715,7 @@
   <string name="about-python-with"> ,с поддержкой python</string>
   <string name="about-python-without">без поддержки python</string>
   <string name="about-qt">, скомпилировано с использованием QT $1 Работает на QT $1</string>
+  <string name="about-info">, на основе $1, целевая платформа: $2</string>
   <string name="error-unknown-code">Неизвестная ошибка: $1</string>
   <string name="relogin-fail">Не удалось войти в вики: $1</string>
   <string name="projects">Проекты</string>
