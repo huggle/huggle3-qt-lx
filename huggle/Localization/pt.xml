@@ -206,7 +206,7 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="irc-switch-rc">A trocar para o feed RC da wiki</string>
   <string name="login-old">A recuperar configuração de utilizador do local antigo.</string>
   <string name="login-intro">Por favor, escolha um projeto e digite o seu nome de utilizador(a) e palavra-passe. Pode iniciar a sessão em vários projetos ao clicar no botão \"Projetos\".</string>
-  <string name="login-tab-login" fuzzy="true">Entrar</string>
+  <string name="login-tab-login">Normal</string>
   <string name="login-reload-tool-tip">Recarregue uma lista de projetos disponíveis que podem ser usados com o huggle, isto pode ser útil no caso de desejar usar o huggle num projeto onde foi recentemente ativado</string>
   <string name="login-language">Língua:</string>
   <string name="login-project">Projeto:</string>

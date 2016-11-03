@@ -715,6 +715,7 @@
   <string name="about-python-with"> , со поддршка за Python</string>
   <string name="about-python-without"> без поддршка за Python</string>
   <string name="about-qt">, составен користејќи QT $1 Работи на QT $1</string>
+  <string name="about-info">, на основа на $1, целна подлога: $2</string>
   <string name="error-unknown-code">Непозната грешка: $1</string>
   <string name="relogin-fail">Не можам да ве најавам на викито: $1</string>
   <string name="projects">Проекти</string>

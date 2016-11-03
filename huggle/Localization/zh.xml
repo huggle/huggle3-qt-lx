@@ -22,7 +22,7 @@
   <string name="result">结果</string>
   <string name="save">保存</string>
   <string name="show">显示</string>
-  <string name="no-instant">即时警告未在项目$1上启用，未向$2发送消息；选择一个不同的警告级别</string>
+  <string name="no-instant">即时警告未在项目$1上启用，并因此不能向$2发送消息。请选择一个不同的警告级别。</string>
   <string name="undo">撤销</string>
   <string name="yes">是</string>
   <string name="editing-page">编辑页面</string>
@@ -111,7 +111,7 @@
   <string name="config-minor">标记为小编辑</string>
   <string name="config-watchlist">添加到监视列表</string>
   <string name="config-defaultsummary">默认为手工编辑摘要</string>
-  <string name="config-undosummary">撤销自身编辑的默认编辑摘要</string>
+  <string name="config-undosummary">撤销自己编辑时的摘要</string>
   <string name="config-confirm-user">回退在用户命名空间做出的编辑时需要确认</string>
   <string name="config-confirm-wl">需要确认以回退白名单用户做出的编辑</string>
   <string name="config-confirm-talk">回退在讨论页上做出的编辑时需要确认</string>
@@ -621,7 +621,7 @@
   <string name="history-message-revert-title">您真的希望只撤销此消息么？</string>
   <string name="history-another-edit">我已经正在撤销另一个编辑，请稍候</string>
   <string name="history-not-found">没有可以撤销的</string>
-  <string name="history-already-done">这已被撤掉过</string>
+  <string name="history-already-done">这已被撤销过</string>
   <string name="history-message-revert-body">这是一条引用自回退操作的消息，您确信您只希望撤销模板甚至不编辑页面么？（您需要在您希望纠正错误回退时才撤销回退）</string>
   <string name="history-revert-fail">因为遇到以下错误，我们无法撤销您对$1的编辑：$2</string>
   <string name="history-undone">成功撤销对$1的编辑</string>
@@ -679,7 +679,7 @@
   <string name="cr-message-same">太多对$1的编辑由同一用户，您希望回退它们？</string>
   <string name="cr-message-new">有新的编辑需要$1，您希望回退它们？</string>
   <string name="cr-message-not-same">另外用户对$1做出新编辑，您确信希望回退它们么？（这很可能会因为使用旧令牌而失败）</string>
-  <string name="preferences-delete-using-filter">你无法删除一个正在使用的过滤器</string>
+  <string name="preferences-delete-using-filter">您无法删除一个正在使用的过滤器</string>
   <string name="preferences-extension-disabled">此扩展已计划于下次huggle启动时被禁用</string>
   <string name="preferences-extension-disabled-restart">扩展将于下次huggle启动时禁用</string>
   <string name="preferences-extension-enabled">此扩展未被计划于下次huggle启动时被禁用</string>
@@ -715,6 +715,7 @@ $1</string>
   <string name="about-python-with">，包含Python支持</string>
   <string name="about-python-without">无Python支持</string>
   <string name="about-qt">，使用QT $1编译 正在用QT $1运行</string>
+  <string name="about-info">，基于$1，目标平台：$2</string>
   <string name="error-unknown-code">未知错误：$1</string>
   <string name="relogin-fail">无法登陆wiki：$1</string>
   <string name="projects">项目</string>

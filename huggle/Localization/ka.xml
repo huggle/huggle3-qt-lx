@@ -103,7 +103,7 @@
   <string name="config-notify-update">განახლებების შემოწმება</string>
   <string name="delete-title">$1-ის წაშლა</string>
   <string name="delete-reason">Причина:</string>
-  <string name="delete-deletionlog">Журнал удалений:</string>
+  <string name="delete-deletionlog">წაშლა შესვლა:</string>
   <string name="delete-rem-talk">დაკავშირებული განხილვის წაშლა</string>
   <string name="delete-notify">ავტორისთვის შეტყობინება</string>
   <string name="delete-e2">გვერდის წაშლა ვერ ხერხდება</string>

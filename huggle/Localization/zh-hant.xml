@@ -715,6 +715,7 @@ $1</string>
   <string name="about-python-with">，包含python支援</string>
   <string name="about-python-without">不包含python支援</string>
   <string name="about-qt">，使用 QT $1 編譯，執行於 QT $1</string>
+  <string name="about-info">，基於$1，目標平台：$2</string>
   <string name="error-unknown-code">不明錯誤：$1</string>
   <string name="relogin-fail">無法登入至 wiki：$1</string>
   <string name="projects">項目</string>
