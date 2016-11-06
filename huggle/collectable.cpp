@@ -48,7 +48,7 @@ Collectable::~Collectable()
 {
     if (this->IsManaged())
     {
-        throw new Huggle::Exception("Request to delete managed entity", BOOST_CURRENT_FUNCTION);
+        Huggle::Exception::ThrowSoftException("Request to delete managed entity", BOOST_CURRENT_FUNCTION);
     }
     this->Unlock();
     delete this->_collectableQL;
