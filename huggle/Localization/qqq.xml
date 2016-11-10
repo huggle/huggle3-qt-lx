@@ -215,6 +215,7 @@ Parameters:
   <string name="login-intro">Used in Login window.
 
 The button label \"Projects &gt;&gt;\" is untranslatable at this time.</string>
+  <string name="login-tab-botp">Tab name on login form that allows you to login using bot passwords</string>
   <string name="login-tab-login">name of tab at login window for normal username and password login.
 {{Identical|Legacy}}</string>
   <string name="login-reload-tool-tip">Used as tooltip for the button which is labeled {{msg-huggle|Reload}}.</string>
