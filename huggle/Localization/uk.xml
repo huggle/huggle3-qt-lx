@@ -218,7 +218,9 @@
   <string name="irc-switch-rc">Переходжу на постачання списку нових редагувань через wiki</string>
   <string name="login-old">Отримання користувацьких налаштувань</string>
   <string name="login-intro">Будь ласка, виберіть проект і введіть ім’я користувача та пароль. Ви також можете одразу ввійти до декількох проектів, скориставшись кнопкою «Проекти».</string>
-  <string name="login-tab-login" fuzzy="true">Вхід</string>
+  <string name="invalid-bot-user-name">Це не є дійсним іменем бота. Приклад коректного імені бота: Jimbo@Huggle</string>
+  <string name="login-tab-botp">Пароль бота</string>
+  <string name="login-tab-login">Старий спосіб</string>
   <string name="login-reload-tool-tip">Перезавантажити список проектів, у яких можна використовувати Huggle. Це може бути корисним, якщо Ви хочете використовувати Huggle у проекті, для котрого його було підключено лише нещодавно.</string>
   <string name="login-language">Мова інтерфейсу:</string>
   <string name="login-project">Проект:</string>
@@ -234,6 +236,7 @@
   <string name="login-fail-css">Помилка входу до $1: Не вдалося отримати користувацькі налаштування. Відсутня сторінка Special:MyPage/huggle3.css. Ви точно створили підсторінку huggle3.css у своєму просторі користувача?</string>
   <string name="login-fail-enable-true">Помилка входу до $1: Відсутній рядок enable:true у Ваших користувацьких налаштуваннях.</string>
   <string name="login-fail-no-info">Помилка входу до $1: Не вдалося отримати інформацію про користувача: $2</string>
+  <string name="login-bot">Яка різниця між старим способом входу і входом бота?</string>
   <string name="login-fail-parse-config">Помилка входу до $1: Не вдалося розібрати користувацькі налаштування. Дивіться налагоджувальний журнал для отримання детальної інформації.</string>
   <string name="login-fail-user-data">Помилка входу до $1: Не вдалося отримати інформацію про користувача. API-запит не повертає даних.</string>
   <string name="login-fail-rollback-rights">Помилка входу до $1: Ви не маєте прав відкочувача у цьому проекті.</string>
@@ -665,6 +668,7 @@
   <string name="updating-wl">Оновлюю білий список…</string>
   <string name="feature-nfru">Дана функція доступна лише для анонімних користувачів</string>
   <string name="report-no-user">Ви не вибрали користувача, про якого хочете повідомити.</string>
+  <string name="welcome-show">Показати це повідомлення також при наступному Вашому вході у Huggle</string>
   <string name="welcome-tp-empty-fail">Сторінка обговорення цього користувача не порожня. Ви впевнені, що хочете привітати його?</string>
   <string name="welcome-page-miss-fail">Huggle не зміг отримати вміст сторінки обговорення цього користувача. Ви впевнені, що хочете привітати його?</string>
   <string name="cr-newer-edits">Конфлікт вирішено: відкинуто всі зміни, включно з новими редагуваннями. Усі редагування були від одного користувача: $1.</string>
@@ -711,6 +715,7 @@ $1</string>
   <string name="about-python-with">, з підтримкою python</string>
   <string name="about-python-without">без підтримки python</string>
   <string name="about-qt">, зкомпільовано з використанням QT $1 Працює на QT $1</string>
+  <string name="about-info">, на основі $1, цільова платформа: $2</string>
   <string name="error-unknown-code">Невідома помилка: $1</string>
   <string name="relogin-fail">Не вдалося увійти до wiki: $1</string>
   <string name="projects">Проекти</string>

@@ -299,7 +299,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="main-system-statistics">Estadísticas...</string>
   <string name="main-system-showqueue">Mostrar cola de ediciones</string>
   <string name="main-system-options">Opciones...</string>
-  <string name="main-system-logout">Cerrar sesión</string>
+  <string name="main-system-logout">Salir</string>
   <string name="main-system-abort">Interrumpir</string>
   <string name="main-system-change-provider">Cambiar proveedor</string>
   <string name="main-system-change-provider-irc">IRC</string>

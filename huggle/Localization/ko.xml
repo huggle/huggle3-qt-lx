@@ -292,7 +292,7 @@
   <string name="main-system-savelog">기록 저장...</string>
   <string name="main-system-statistics">통계...</string>
   <string name="main-system-showqueue">대기열 보기</string>
-  <string name="main-system-options">속성...</string>
+  <string name="main-system-options">옵션...</string>
   <string name="main-system-logout">로그아웃</string>
   <string name="main-system-abort">중단</string>
   <string name="main-system-change-provider">제공자 바꾸기</string>
