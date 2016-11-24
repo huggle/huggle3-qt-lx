@@ -408,7 +408,7 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="protect-request-title">Pedir proteção de $1</string>
   <string name="protect-reason">Motivo:</string>
   <string name="protect-expiry">Validade:</string>
-  <string name="protect-log">Registo de proteção:</string>
+  <string name="protect-log">Registo de proteções:</string>
   <string name="protect-currentlevel">Nível de proteção atual:</string>
   <string name="protect-type">Tipo de proteção:</string>
   <string name="protect-none">Nenhuma</string>

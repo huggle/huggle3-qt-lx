@@ -218,6 +218,7 @@ Deze blokkade maakt het effect van de rangeblokkade ongedaan. Doorgaan?</string>
   <string name="irc-switch-rc">Overschakelen naar de feed met recente wijzigingen van de wiki</string>
   <string name="login-old">Gebruikerinstellingen ophalen van oude locatie</string>
   <string name="login-intro">Kies een project en voer uw gebruikersnaam en wachtwood in. U kunt ook bij meerdere projecten aanmelden via de knop \"Projecten\".</string>
+  <string name="login-tab-botp">Bot wachtwoord</string>
   <string name="login-tab-login" fuzzy="true">Aanmelden</string>
   <string name="login-reload-tool-tip">De lijst met projecten waar Huggle mee kan werken opnieuw laden. Dit kan handig zijn als u Huggle wilt gebruiken met een project waar ondersteuning recentelijk voor is toegevoegd.</string>
   <string name="login-language">Taal:</string>
@@ -492,6 +493,11 @@ Deze blokkade maakt het effect van de rangeblokkade ongedaan. Doorgaan?</string>
   <string name="score-take-any-word">Overeenkomst met woorden die deze tekenreeks bevatten</string>
   <string name="uaa-not-supported">UAA niet beschikbaar</string>
   <string name="uaa-reported">Gerapporteerd</string>
+  <string name="uaa-no-reason-warn">U heeft niet aangegeven waarom deze gebruikersnaam in strijd is met de voorwaarden. Geef alstublieft een reden.</string>
+  <string name="uaa-nr">Geen reden opgegeven</string>
+  <string name="uaa-e2">de inhoud van de pagina was niet beschikbaar.</string>
+  <string name="revert-confirm-multiple">Dit draait meerdere bewerkingen van $1 terug. Wilt u doorgaan?</string>
+  <string name="revert-confirm-same">Dit draait de bewerking terug naar een andere revisie van de gebruiker die u nu terugdraait, $1. Wilt u doorgaan?</string>
   <string name="revert-delete-instead">In plaats daarvan de pagina verwijderen?</string>
   <string name="revert-speedy-instead">In plaats daarvan voor snelle verwijdering markeren?</string>
   <string name="speedy-reason">Reden:</string>
