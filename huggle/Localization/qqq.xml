@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="name">This is a name of the language as shown on the login form (it is meant to be localized to target language so that user can easily find it).
+  <string name="name">{{doc-important|Please change this word to the autonym of language that you are translating to, not directly translate \"English\".}}
+This is a name of the language as shown on the login form.
 {{Identical|English}}</string>
   <string name="isrtl">{{doc-important|This is a magic key that huggle uses to determine if localization is right to left or not.}}
 * write \"true\" if your localization is right to left
