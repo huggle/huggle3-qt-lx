@@ -716,6 +716,7 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="about-python-with">,com suporte para python</string>
   <string name="about-python-without">sem suporte para python</string>
   <string name="about-qt">, compilado usando QT $1 Rodando em QT $1</string>
+  <string name="about-info">, baseado em $1, plataforma alvo: $2</string>
   <string name="error-unknown-code">Erro desconhecido: $1</string>
   <string name="relogin-fail">Não foi possível fazer login na wiki: $1</string>
   <string name="projects">Projetos</string>
