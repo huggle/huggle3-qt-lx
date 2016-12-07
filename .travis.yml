@@ -2,6 +2,7 @@
 # See ./travis/* for the actual scripts that get run
 
 language: cpp
+sudo: required
 
 env:
   - THENEEDFORTHIS=FAIL
@@ -20,11 +21,11 @@ matrix:
   exclude:
     - env: THENEEDFORTHIS=FAIL
 
-before_install: bash ./travis/before_install.sh
-install: bash ./travis/install.sh
+before_install: bash -x ./travis/before_install.sh
+install: bash -x ./travis/install.sh
 
-before_script: bash ./travis/before_script.sh
-script: bash ./travis/script.sh
+before_script: bash -x ./travis/before_script.sh
+script: bash -x ./travis/script.sh
 
 notifications: 
   irc: 
