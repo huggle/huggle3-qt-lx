@@ -336,16 +336,20 @@ void VandalNw::ProcessGood(WikiEdit *edit, QString user)
 {
     edit->User->SetBadnessScore(edit->User->GetBadnessScore() - 200);
     QString sid = QString::number(edit->RevID);
-    this->Insert("<font color=blue>" + user + " saw a good edit on " + edit->GetSite()->Name + " to " + edit->Page->PageName + " by " + edit->User->Username
-                     + " (" + GenerateWikiDiffLink(sid, sid, edit->GetSite()) + ")" + "</font>", HAN::MessageType_User);
+    QStringList params;
+    params << user << edit->GetSite()->Name << edit->Page->PageName;
+    params << edit->User->Username << GenerateWikiDiffLink(sid, sid, edit->GetSite());
+    this->Insert("<font color=blue>" + _l("user-saw-good-edit", params) + "</font>", HAN::MessageType_User);
     MainWindow::HuggleMain->Queue1->DeleteByRevID(edit->RevID, edit->GetSite());
 }
 
 void VandalNw::ProcessRollback(WikiEdit *edit, QString user)
 {
     QString sid = QString::number(edit->RevID);
-    this->Insert("<font color=orange>" + user + " did a rollback on " + edit->GetSite()->Name + " of " + edit->Page->PageName + " by " + edit->User->Username
-                 + " (" + GenerateWikiDiffLink(sid, sid, edit->GetSite()) + ")" + "</font>", HAN::MessageType_User);
+    QStringList params;
+    params << user << edit->GetSite()->Name << edit->Page->PageName;
+    params << edit->User->Username << GenerateWikiDiffLink(sid, sid, edit->GetSite());
+    this->Insert("<font color=orange>" + _l("user-did-rollback", params) + "</font>", HAN::MessageType_User);
     edit->User->SetBadnessScore(edit->User->GetBadnessScore() + 200);
     if (Huggle::Configuration::HuggleConfiguration->UserConfig->DeleteEditsAfterRevert)
     {
@@ -360,9 +364,10 @@ void VandalNw::ProcessRollback(WikiEdit *edit, QString user)
 void VandalNw::ProcessSusp(WikiEdit *edit, QString user)
 {
     QString sid = QString::number(edit->RevID);
-    this->Insert("<font color=red>" + user + " thinks that edit on " + edit->GetSite()->Name + " to " + edit->Page->PageName + " by "
-                 + edit->User->Username + " (" + GenerateWikiDiffLink(sid, sid, edit->GetSite()) +
-                 ") is likely a vandalism, but they didn't revert it </font>", HAN::MessageType_User);
+    QStringList params;
+    params << user << edit->GetSite()->Name << edit->Page->PageName;
+    params << edit->User->Username << GenerateWikiDiffLink(sid, sid, edit->GetSite());
+    this->Insert("<font color=red>" + _l("user-vandalism-but-didnt-revert", params) + "</font>", HAN::MessageType_User);
     edit->Score += 600;
     MainWindow::HuggleMain->Queue1->SortItemByEdit(edit);
 }
@@ -504,7 +509,7 @@ void VandalNw::TextEdit_anchorClicked(QString link)
                 }
                 if (site == nullptr)
                 {
-                    HUGGLE_DEBUG1("There is no such a wiki: " + wiki);
+                    HUGGLE_DEBUG1(_l("no-such-wiki", wiki));
                     return;
                 }
                 revid_ht id = elements[3].toLongLong();
@@ -563,14 +568,14 @@ void VandalNw::OnIRCChannelMessage(libircclient::Parser *px)
 
     if (!this->Ch2Site.contains(channel))
     {
-        Syslog::HuggleLogs->DebugLog("Ignoring message to channel " + channel + " as we don't know which site it belongs to");
+        Syslog::HuggleLogs->DebugLog(_l("ignore-message-antivandalism-network", channel));
         return;
     }
 
     if (message.contains(this->Irc->GetNick()))
     {
         // Show a notification in tray
-        MainWindow::HuggleMain->TrayMessage("Huggle anti-vandalism network", message);
+        MainWindow::HuggleMain->TrayMessage(_l("notification-antivandalism-network"), message);
     }
 
     WikiSite *site = this->Ch2Site[channel];
@@ -692,7 +697,7 @@ void VandalNw::OnIRCChannelQuit(libircclient::Parser *px, libircclient::Channel 
 void VandalNw::OnIRCLoggedIn(libircclient::Parser *px)
 {
     this->JoinedMain = true;
-    this->Insert("You are now connected to huggle antivandalism network", HAN::MessageType_Info);
+    this->Insert(_l("connected-antivandalism-network"), HAN::MessageType_Info);
     foreach(QString channel, this->Site2Channel.values())
     {
         if (channel.startsWith("#"))
@@ -707,6 +712,5 @@ void VandalNw::OnConnected()
 
 void VandalNw::OnDisconnected()
 {
-    /// \todo LOCALIZE ME
-    this->Insert("Lost connection to antivandalism network", HAN::MessageType_Info);
+    this->Insert(_l("lost-connection-antivandalism-network"), HAN::MessageType_Info);
 }

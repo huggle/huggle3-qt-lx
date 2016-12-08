@@ -565,10 +565,7 @@ bool RevertQuery::ProcessRevert()
         summary = Configuration::GenerateSuffix(summary, this->GetSite()->GetProjectConfig());
         if (content.isEmpty())
         {
-            /// \todo LOCALIZE ME
-            this->DisplayError("Cowardly refusing to blank \"" + this->edit->Page->PageName +
-                               "\" software rollback was cancelled to prevent damage",
-                               "content was resolved to blank edit");
+            this->DisplayError(_l("refuse-to-blank"), this->edit->Page->PageName);
             return true;
         }
         this->eqSoftwareRollback = WikiUtil::EditPage(this->edit->Page, content, summary, this->MinorEdit);
@@ -579,7 +576,7 @@ bool RevertQuery::ProcessRevert()
         return false;
     if (this->qHistoryInfo->IsFailed())
     {
-        this->DisplayError("Failed to retrieve a list of edits made to this page: " + this->qHistoryInfo->Result->ErrorMessage);
+        this->DisplayError(_l("failed-to-retrieve", this->qHistoryInfo->Result->ErrorMessage));
         return true;
     }
     QList<ApiQueryResultNode *> revs = this->qHistoryInfo->GetApiQueryResult()->GetNodes("rev");

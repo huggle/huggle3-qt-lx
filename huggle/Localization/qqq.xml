@@ -137,6 +137,7 @@ The column contains \"block\" and \"unblock\".</string>
 
 {{doc-important|This refers to the sysop who did the blocking, not to the blocking of a sysop!}}</string>
   <string name="block-none">Shown when there is no user to block</string>
+  <string name="cannot-perform-action">Used when cannot perform the action</string>
   <string name="config-function">{{Identical|Function}}</string>
   <string name="config-description">{{Identical|Description}}</string>
   <string name="config-shortcut">{{Identical|Shortcut}}</string>
@@ -174,6 +175,9 @@ The column contains \"block\" and \"unblock\".</string>
   <string name="config-notify-update">Used as label for the checkbox.
 {{Identical|Check for update}}</string>
   <string name="config-notify-beta">Used as label for the checkbox.</string>
+  <string name="confirm-store-config">Confirm whenever you want to save the config or not</string>
+  <string name="connected-antivandalism-network">Confirm when you are connected to huggle antivandalism network</string>
+  <string name="clean-old-template">Used after cleaning old templates</string>
   <string name="delete-title">{{Identical|Delete}}</string>
   <string name="delete-reason">{{Identical|Reason}}</string>
   <string name="delete-deletionlog">{{Identical|Deletion log}}</string>
@@ -201,6 +205,10 @@ Followed by any one of the following:
 * {{msg-huggle|History-error}}
 * \"Unknown item\" (hard-coded)</string>
   <string name="history-error">Used in the message box having the title {{msg-huggle|History-error-message-title}}.</string>
+  <string name="failed-to-retrieve">Used if fail to retrieve a list of edits made to a page
+
+Parameters:
+* $1 - page name</string>
   <string name="irc-connected">Parameters:
 * $1 - sitename</string>
   <string name="irc-connecting">Parameters:
@@ -213,6 +221,14 @@ Parameters:
 * $1 - sitename</string>
   <string name="irc-failure">Used as error log entry.</string>
   <string name="irc-switch-rc">Used as log entry. RC = Recent Changes</string>
+  <string name="ignore-edit-request">Used wehn edit request is to fast
+
+Parameters:
+* $1 - time</string>
+  <string name="ignore-message-antivandalism-network">Used when a channel is from an unknown site
+
+Parameters:
+* $1 - channel name</string>
   <string name="login-intro">Used in Login window.
 
 The button label \"Projects &gt;&gt;\" is untranslatable at this time.</string>
@@ -302,6 +318,7 @@ Parameters:
 
 Parameters:
 * $1 - ...</string>
+  <string name="lost-connection-antivandalism-network">Lost connection to antivandalism network</string>
   <string name="main-restoring-slap">Used as log entry.</string>
   <string name="main-page">{{Identical|Page}}</string>
   <string name="main-user">{{Identical|User}}</string>
@@ -434,6 +451,13 @@ Parameters:
 * $2 - sitename</string>
   <string name="message-fail-token-1">Used as error message.</string>
   <string name="message-fail-token-2">Used as failure message.</string>
+  <string name="no-such-wiki">Used when wiki is not found. Parameters:
+* $1 - wikiname</string>
+  <string name="notification-antivandalism-network">Shows "Huggle anti-vandalism network"</string>
+  <string name="older-version-than-last">Used if the version of huggle is older than the last one you used. Parameters:
+
+* $1 - current version
+* $2 - last version</string>
   <string name="protect-reason">{{Identical|Reason}}</string>
   <string name="protect-expiry">{{Identical|Expiry}}</string>
   <string name="protect-none">{{Identical|None}}</string>
@@ -468,6 +492,10 @@ The windows has the message \"Unable to protect the page because \'\'reason\'\'\
   <string name="report-progress">{{Identical|Reporting}}</string>
   <string name="report-done">{{Identical|Reported}}</string>
   <string name="report-user">{{Identical|Report}}</string>
+  <string name="refuse-to-blank">Used if software rollback shows blank
+
+Parameters:
+* $1 - software name</string>
   <string name="score-score">{{Identical|Score}}</string>
   <string name="score-word">{{Identical|Word}}</string>
   <string name="score-range">{{Identical|Range}}</string>
@@ -514,6 +542,30 @@ Parameters:
   <string name="user-history-fail">Used as error log entry. Parameters:
 * $1 - username</string>
   <string name="userinfo-retrieve">Used as label for the button.</string>
+  <string name="user-vandalism-but-didnt-revert">Used when a user founds a likely vandalism but didn't revert it.
+
+Parameters:
+* $1 - username
+* $2 - pagename
+* $3 - changedpage
+* $4 - changer username
+* $5 - diff</string>
+  <string name="user-did-rollback">Used when a user did a roll back.
+
+Parameters:
+* $1 - username
+* $2 - pagename
+* $3 - changedpage
+* $4 - changer username
+* $5 - diff</string>
+  <string name="user-saw-good-edit">Used when a user found a good edit by another user.
+
+Parameters:
+* $1 - username
+* $2 - pagename
+* $3 - changedpage
+* $4 - changer username
+* $5 - diff</string></string>
   <string name="shortcut-x-raw">\"N\" refers to Number (0 - 9).
 {{Related|Shortcut-x}}</string>
   <string name="shortcut-x-revert">\"N\" refers to Number (0 - 9).

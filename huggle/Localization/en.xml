@@ -739,4 +739,19 @@
   <string name="main-revert-type-made-on-talk-page">made on talk page</string>
   <string name="main-revert-type-made-white-list">made by a user who is on white list</string>
   <string name="main-revert-warn">This edit is $1, so even if it looks like it is a vandalism, it may not be, are you sure you want to revert it?</string>
+  <string name="confirm-store-config">Do you really want to store the configs?</string>
+	<string name="older-version-than-last">This version of huggle ($1) is older than version of huggle that you used last ($2) if you continue, some of the settings you stored with the newer version may be lost. Do you really want to do that? (clicking no will skip it)</string>
+  <string name="cannot-perform-action">Cannot perform action</string>
+  <string name="ignore-edit-request">Ignoring edit request because you are too fast, please wait $1 ms</string>
+  <string name="clean-old-template">Cleaned old templates from talk page</string>
+  <string name="refuse-to-blank">Cowardly refusing to blank "$1" software rollback was cancelled to prevent damage</string>
+  <string name="failed-to-retrieve">Failed to retrieve a list of edits made to this page: $1</string>
+  <string name="lost-connection-antivandalism-network">Lost connection to antivandalism network</string>
+  <string name="connected-antivandalism-network">You are now connected to huggle antivandalism network</string>
+  <string name="notification-antivandalism-network">Huggle anti-vandalism network</string>
+  <string name="ignore-message-antivandalism-network">Ignoring message to channel $1 as we don't know which site it belongs to</string>
+  <string name="no-such-wiki">There is no such a wiki: $1</string>
+  <string name="user-vandalism-but-didnt-revert">$1 thinks that edit on $2 to $3 by $4 ($5) is likely a vandalism, but they didn't revert it</string>
+  <string name="user-did-rollback">$1 did a rollback on $2 of $3 by $4 ($5)</string>
+  <string name="user-saw-good-edit">$1 saw a good edit on $2 to $3 by $4 ($5)</string>
 </resources>

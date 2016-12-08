@@ -1401,12 +1401,10 @@ void MainWindow::OnTimerTick0()
             {
                 if (*site->UserConfig->Previous_Version > huggle_version)
                 {
-                    //! \todo LOCALIZE THIS
-                    if (Generic::pMessageBox(this, "Do you really want to store the configs",
-                                              "This version of huggle (" + QString(HUGGLE_VERSION) + ") is older than version of huggle that you used last (" +
-                                              site->UserConfig->Previous_Version->ToString() + ") if you continue, some of the settings you stored "\
-                                              "with the newer version may be lost. Do you really want to do that? (clicking no will skip it)",
-                                              MessageBoxStyleQuestion, true) == QMessageBox::No)
+                    if (Generic::pMessageBox(this, _l("confirm-store-config"),
+                                                   _l("older-version-than-last", QString(HUGGLE_VERSION),
+                                                   site->UserConfig->Previous_Version->ToString()),
+                                                   MessageBoxStyleQuestion, true) == QMessageBox::No)
                         continue;
                 }
                 WikiPage *uc = new WikiPage(page);
@@ -1638,12 +1636,11 @@ bool MainWindow::BrowserPageIsEditable()
     return this->EditablePage;
 }
 
-//! \todo LOCALIZE THIS
 bool MainWindow::CheckEditableBrowserPage()
 {
     if (!this->EditablePage || this->CurrentEdit == nullptr)
     {
-        Generic::pMessageBox(this, "Cannot perform action", _l("main-no-page"), MessageBoxStyleNormal, true);
+        Generic::pMessageBox(this, _l("cannot-perform-action"), _l("main-no-page"), MessageBoxStyleNormal, true);
         return false;
     }
     if (Configuration::HuggleConfiguration->SystemConfig_RequestDelay)
@@ -1651,8 +1648,7 @@ bool MainWindow::CheckEditableBrowserPage()
         qint64 wt = QDateTime::currentDateTime().msecsTo(this->EditLoad.addSecs(hcfg->SystemConfig_DelayVal));
         if (wt > 0)
         {
-            Syslog::HuggleLogs->WarningLog("Ignoring edit request because you are too fast, please wait " +
-                                           QString::number(wt)+ " ms");
+            Syslog::HuggleLogs->WarningLog(_l("ignore-edit-request", QString::number(wt)));
             return false;
         }
     }
@@ -2333,10 +2329,9 @@ void MainWindow::on_actionClear_talk_page_of_user_triggered()
         return;
     }
     WikiPage *page = new WikiPage(this->CurrentEdit->User->GetTalk());
-    /// \todo LOCALIZE ME
     WikiUtil::EditPage(page, this->GetCurrentWikiSite()->ProjectConfig->ClearTalkPageTemp
                        + "\n" + this->GetCurrentWikiSite()->ProjectConfig->WelcomeAnon + " ~~~~",
-                       Configuration::GenerateSuffix("Cleaned old templates from talk page", this->GetCurrentWikiSite()->ProjectConfig));
+                       Configuration::GenerateSuffix(_l("Cleaned-old-template"), this->GetCurrentWikiSite()->ProjectConfig));
     delete page;
 }
 
