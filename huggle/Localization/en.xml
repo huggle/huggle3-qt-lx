@@ -651,6 +651,13 @@
   <string name="editquery-success">Successfully edit $1 on $2</string>
   <string name="editquery-token">Retrieving token to edit $1</string>
   <string name="editquery-token-error">Unable to retrieve edit token</string>
+  <string name="editquery-nocsrft">No CSRF token</string>
+  <string name="editquery-error-retrieve-prev">Unable to retrieve the previous content of page: </string>
+  <string name="editquery-error-append">You can't use both Append and Prepend for edit of page</string>
+  <string name="editquery-error-badtoken">Bad token</string>
+  <string name="editquery-error-sessionexpired">Session expired requesting a new login</string>
+  <string name="editquery-request-ignore-suspended">Ignoring request to process suspended query </string>
+  <string name="editquery-request-ignore-active">Ignoring request to process query that is already running </string>
   <string name="editquery-invalid-token">Unable to edit $1 because token I had in cache is no longer valid. Please try to edit that page once more</string>
   <string name="provider-failure">Failure of feed provider $1 on $2, trying to find some alternative provider</string>
   <string name="provider-primary-failure">Primary feed provider has failed, falling back to wiki provider</string>
@@ -739,4 +746,11 @@
   <string name="main-revert-type-made-on-talk-page">made on talk page</string>
   <string name="main-revert-type-made-white-list">made by a user who is on white list</string>
   <string name="main-revert-warn">This edit is $1, so even if it looks like it is a vandalism, it may not be, are you sure you want to revert it?</string>
+  <string name="query-result-nodata">Query result doesn't contain any data</string>
+  <string name="query-request-process">Processing api request </string>
+  <string name="query-request-noaction">No action provided for api request</string>
+  <string name="query-login-undefined">Login token requires a user defined value, it's not stored in memory</string>
+  <string name="query-execute-drymode">If I wasn't in dry mode I would execute this query (post=</string>
+  <string name="query-protected-link">Protected link</string>
+
 </resources>
