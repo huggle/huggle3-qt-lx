@@ -62,13 +62,13 @@ void EditQuery::Process()
 {
     if (this->Status == StatusIsSuspended)
     {
-        HUGGLE_DEBUG1("Ignoring request to process suspended query " + QString::number(this->QueryID()) + " fix me");
+        HUGGLE_DEBUG1(_l("editquery-request-ignore-suspended") + QString::number(this->QueryID()) + " fix me");
         return;
     }
 
     if (this->Status == StatusProcessing)
     {
-        HUGGLE_DEBUG1("Ignoring request to process query that is already running " + QString::number(this->QueryID()) + " fix me");
+        HUGGLE_DEBUG1(_l("editquery-request-ignore-active") + QString::number(this->QueryID()) + " fix me");
         return;
     }
 
@@ -81,7 +81,7 @@ void EditQuery::Process()
     this->StartTime = QDateTime::currentDateTime();
     if (this->Page->GetSite()->GetProjectConfig()->Token_Csrf.isEmpty())
     {
-        this->SetError("No CSRF token");
+        this->SetError(_l("editquery-nocsrf"));
         return;
     }
     this->EditPage();
@@ -99,7 +99,7 @@ bool EditQuery::IsProcessed()
     {
         if (this->qRetrieve->IsFailed())
         {
-            this->SetError("Unable to retrieve the previous content of page: " + this->qRetrieve->Result->ErrorMessage);
+            this->SetError(_l("editquery-error-retrieve-prev") + this->qRetrieve->Result->ErrorMessage);
             this->qRetrieve.Delete();
             return true;
         }
@@ -109,7 +109,7 @@ bool EditQuery::IsProcessed()
         this->qRetrieve.Delete();
         if (failed)
         {
-            this->SetError("Unable to retrieve the previous content of page: " + this->OriginalText);
+            this->SetError(_l("editquery-error-retrieve-prev") + this->OriginalText);
             return true;
         }
         this->HasPreviousPageText = true;
@@ -139,12 +139,12 @@ bool EditQuery::IsProcessed()
                     hec = HUGGLE_ENOTLOGGEDIN;
                     // this is some fine hacking here :)
                     // we use this later in main form
-                    HUGGLE_DEBUG1("Session expired requesting a new login");
+                    HUGGLE_DEBUG1(_l("editquery-error-sessionexpired"));
                     this->Suspend();
                     Configuration::Logout(this->Page->GetSite());
                 } else if (ec == "badtoken")
                 {
-                    reason = "Bad token";
+                    reason = _l("editquery-error-badtoken");
                     hec = HUGGLE_ETOKEN;
                     // we log off the site
                     this->Suspend();
@@ -206,7 +206,7 @@ void EditQuery::EditPage()
 {
     if (this->Append && this->Prepend)
     {
-        throw Huggle::Exception("You can't use both Append and Prepend for edit of page", BOOST_CURRENT_FUNCTION);
+        throw Huggle::Exception(_l("editquery-error-append"), BOOST_CURRENT_FUNCTION);
     }
     if ((this->Append || this->Prepend) && !this->HasPreviousPageText)
     {

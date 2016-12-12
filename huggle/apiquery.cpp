@@ -17,6 +17,7 @@
 #include "syslog.hpp"
 #include "revertquery.hpp"
 #include "exception.hpp"
+#include "localization.hpp"
 #include "generic.hpp"
 #include "wikisite.hpp"
 
@@ -56,14 +57,14 @@ Action ApiQuery::GetAction()
 QString ApiQuery::GetFailureReason()
 {
     if (this->FailureReason.isEmpty() && this->Result && this->Result->Data.isEmpty())
-        return "Query result doesn't contain any data";
+        return _l("query-result-nodata");
     return Query::GetFailureReason();
 }
 
 void ApiQuery::ConstructUrl()
 {
     if (this->ActionPart.isEmpty())
-        throw new Huggle::Exception("No action provided for api request", BOOST_CURRENT_FUNCTION);
+        throw new Huggle::Exception(_l("query-request-noaction"), BOOST_CURRENT_FUNCTION);
     if (this->OverrideWiki.isEmpty())
     {
         this->URL = Configuration::GetProjectScriptURL(this->GetSite()) + "api.php?action=" + this->ActionPart;
@@ -95,7 +96,7 @@ QString ApiQuery::ConstructParameterLessUrl()
     QString url;
     if (this->ActionPart.isEmpty())
     {
-        throw new Huggle::Exception("No action provided for api request", BOOST_CURRENT_FUNCTION);
+        throw new Huggle::Exception(_l("query-request-noaction"), BOOST_CURRENT_FUNCTION);
     }
     if (!this->OverrideWiki.size())
         url = Configuration::GetProjectScriptURL(this->GetSite()) + "api.php?action=" + this->ActionPart;
@@ -166,7 +167,7 @@ void ApiQuery::SetToken(Token token, QString name, QString value)
         switch (token)
         {
             case TokenLogin:
-                throw new Exception("Login token requires a user defined value, it's not stored in memory", BOOST_CURRENT_FUNCTION);
+                throw new Exception(_l("query-login-undefined"), BOOST_CURRENT_FUNCTION);
             case TokenWatch:
                 value = this->GetSite()->GetProjectConfig()->Token_Watch;
                 break;
@@ -340,7 +341,7 @@ void ApiQuery::Process()
         this->Result->Data = "DM (didn't run a query)";
         this->Status = StatusDone;
         this->ProcessCallback();
-        Syslog::HuggleLogs->Log("If I wasn't in dry mode I would execute this query (post=" + Generic::Bool2String(this->UsingPOST) +
+        Syslog::HuggleLogs->Log(_l("query-execute-drymode") + Generic::Bool2String(this->UsingPOST) +
                                 ") " + this->URL + "\ndata: " + QUrl::fromPercentEncoding(this->Parameters.toUtf8()));
         return;
     }
@@ -353,7 +354,7 @@ void ApiQuery::Process()
         this->reply = Query::NetworkManager->get(request);
     }
     if (!this->HiddenQuery)
-        HUGGLE_DEBUG("Processing api request " + this->URL, 6);
+        HUGGLE_DEBUG(_l("query-request-process") + this->URL, 6);
     QObject::connect(this->reply, SIGNAL(finished()), this, SLOT(Finished()));
     QObject::connect(this->reply, SIGNAL(readyRead()), this, SLOT(ReadData()));
 }
@@ -464,7 +465,7 @@ void ApiQuery::SetAction(const Action action)
 QString ApiQuery::DebugURL()
 {
     if (this->HiddenQuery)
-        return "Protected link";
+        return _l("query-protected-link");
     if (this->UsingPOST)
         return this->URL + " POST: " + this->Parameters;
     return this->URL;
