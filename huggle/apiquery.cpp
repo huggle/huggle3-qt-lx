@@ -17,6 +17,7 @@
 #include "syslog.hpp"
 #include "revertquery.hpp"
 #include "exception.hpp"
+#include "localization.hpp"
 #include "generic.hpp"
 #include "wikisite.hpp"
 
@@ -340,7 +341,7 @@ void ApiQuery::Process()
         this->Result->Data = "DM (didn't run a query)";
         this->Status = StatusDone;
         this->ProcessCallback();
-        Syslog::HuggleLogs->Log(l("query-execute-drymode") + Generic::Bool2String(this->UsingPOST) +
+        Syslog::HuggleLogs->Log(_l("query-execute-drymode") + Generic::Bool2String(this->UsingPOST) +
                                 ") " + this->URL + "\ndata: " + QUrl::fromPercentEncoding(this->Parameters.toUtf8()));
         return;
     }
@@ -353,7 +354,7 @@ void ApiQuery::Process()
         this->reply = Query::NetworkManager->get(request);
     }
     if (!this->HiddenQuery)
-        HUGGLE_DEBUG(l("query-request-process") + this->URL, 6);
+        HUGGLE_DEBUG(_l("query-request-process") + this->URL, 6);
     QObject::connect(this->reply, SIGNAL(finished()), this, SLOT(Finished()));
     QObject::connect(this->reply, SIGNAL(readyRead()), this, SLOT(ReadData()));
 }
