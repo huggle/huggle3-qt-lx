@@ -652,7 +652,7 @@
   <string name="editquery-token">Retrieving token to edit $1</string>
   <string name="editquery-token-error">Unable to retrieve edit token</string>
   <string name="editquery-nocsrft">No CSRF token</string>
-  <string name="editquery-error-retrieve-prev">Unable to retrieve the previous content of page: </string>
+  <string name="editquery-error-retrieve-prev">Unable to retrieve the previous content of page: $1</string>
   <string name="editquery-error-append">You can't use both Append and Prepend for edit of page</string>
   <string name="editquery-error-badtoken">Bad token</string>
   <string name="editquery-error-sessionexpired">Session expired requesting a new login</string>

@@ -99,7 +99,7 @@ bool EditQuery::IsProcessed()
     {
         if (this->qRetrieve->IsFailed())
         {
-            this->SetError(_l("editquery-error-retrieve-prev") + this->qRetrieve->Result->ErrorMessage);
+            this->SetError(_l("editquery-error-retrieve-prev", this->qRetrieve->Result->ErrorMessage));
             this->qRetrieve.Delete();
             return true;
         }
@@ -109,7 +109,7 @@ bool EditQuery::IsProcessed()
         this->qRetrieve.Delete();
         if (failed)
         {
-            this->SetError(_l("editquery-error-retrieve-prev") + this->OriginalText);
+            this->SetError(_l("editquery-error-retrieve-prev", this->OriginalText));
             return true;
         }
         this->HasPreviousPageText = true;
