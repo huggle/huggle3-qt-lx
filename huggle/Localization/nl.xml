@@ -218,6 +218,7 @@ Deze blokkade maakt het effect van de rangeblokkade ongedaan. Doorgaan?</string>
   <string name="irc-switch-rc">Overschakelen naar de feed met recente wijzigingen van de wiki</string>
   <string name="login-old">Gebruikerinstellingen ophalen van oude locatie</string>
   <string name="login-intro">Kies een project en voer uw gebruikersnaam en wachtwood in. U kunt ook bij meerdere projecten aanmelden via de knop \"Projecten\".</string>
+  <string name="invalid-bot-user-name">Dit is geen geldig botnaam. Voorbeeld van een correcte botnaam: Jimbo@Huggle</string>
   <string name="login-tab-botp">Bot wachtwoord</string>
   <string name="login-tab-login">Aanmelden verouderd</string>
   <string name="login-reload-tool-tip">De lijst met projecten waar Huggle mee kan werken opnieuw laden. Dit kan handig zijn als u Huggle wilt gebruiken met een project waar ondersteuning recentelijk voor is toegevoegd.</string>
@@ -235,6 +236,7 @@ Deze blokkade maakt het effect van de rangeblokkade ongedaan. Doorgaan?</string>
   <string name="login-fail-css">Aanmelden bij $1 is mislukt: het was niet mogelijk de gebruikersinstellingen op te halen. Special:MyPage/huggle3.css ontbreekt. Hebt u de pagina huggle3.css aangemaakt in uw gebruikersnaamruimte?</string>
   <string name="login-fail-enable-true">Aanmelden bij $1 is mislukt: \"enable:true\" ontbreekt in uw persoonlijke instellingen.</string>
   <string name="login-fail-no-info">Aanmelden bij $1 is mislukt: de gebruikersgegevens kunnen niet opgehaald worden: $2</string>
+  <string name="login-bot">Wat is het verschil tussen Bot- en Legacy-aanmelden?</string>
   <string name="login-fail-parse-config">Aanmelden bij $1 is mislukt: de gebruikersinstellingen kunnen niet verwerkt worden. Zie het debuglogboek voor meer details.</string>
   <string name="login-fail-user-data">Aanmelden bij $1 is mislukt: de gebruikersgegevens kunnen niet opgehaald worden. De API heeft geen gegevens teruggegeven.</string>
   <string name="login-fail-rollback-rights">Aanmelden bij $1 is mislukt: u hebt geen terugdraairechten op dit project.</string>
@@ -480,6 +482,9 @@ Deze blokkade maakt het effect van de rangeblokkade ongedaan. Doorgaan?</string>
   <string name="report-include">Opnemen in rapport</string>
   <string name="report-select">Selecteer een verschil in de lijst om een voorvertoning te openen</string>
   <string name="report-write">Schrijven</string>
+  <string name="reportuser-not">Deze gebruiker wordt nu niet gerapporteerd</string>
+  <string name="report-evidence-none-provid">Er zijn geen vergelijkingen verstrekt als bewijs. Dit maakt het erg moeilijk voor beheerders om erachter te komen of de gebruiker een vandaal is of niet. Weet u zeker dat u wilt doorgaan?</string>
+  <string name="report-duplicate">De gebruiker is al gerapporteerd</string>
   <string name="report-progress">$1 rapporteren...</string>
   <string name="report-retrieving">Huidige rapportagepagina aan het ophalen...</string>
   <string name="report-done">Gerapporteerd</string>

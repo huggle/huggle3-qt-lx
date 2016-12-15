@@ -22,7 +22,7 @@
   <string name="result">結果</string>
   <string name="save">儲存</string>
   <string name="show">顯示</string>
-  <string name="no-instant">即時警告未在項目$1上啟用，未向$2發送消息，選擇一個不同的警告級別</string>
+  <string name="no-instant">即時警告未在專案$1上啟用，因此未向$2傳送訊息。請選擇一個不同的警告級別。</string>
   <string name="undo">撤銷</string>
   <string name="yes">是</string>
   <string name="editing-page">正在編輯頁面</string>
@@ -299,7 +299,7 @@
   <string name="main-system-showqueue">顯示序列</string>
   <string name="main-system-options">選項…</string>
   <string name="main-system-logout">登出</string>
-  <string name="main-system-abort">中斷</string>
+  <string name="main-system-abort">中止</string>
   <string name="main-system-change-provider">變更提供者</string>
   <string name="main-system-change-provider-irc">IRC</string>
   <string name="main-system-change-provider-wiki">Wiki</string>
@@ -652,6 +652,13 @@
   <string name="editquery-success">在$2成功編輯$1</string>
   <string name="editquery-token">取得令牌來編輯$1</string>
   <string name="editquery-token-error">無法取得編輯令牌</string>
+  <string name="editquery-nocsrft">沒有跨站請求偽造令牌</string>
+  <string name="editquery-error-retrieve-prev">無法取得頁面之前內容：$1</string>
+  <string name="editquery-error-append">您不在編輯頁面時一同使用前置和附加操作</string>
+  <string name="editquery-error-badtoken">錯誤令牌</string>
+  <string name="editquery-error-sessionexpired">Session逾期；正請求重新登錄</string>
+  <string name="editquery-request-ignore-suspended">忽略請求來處理暫停的查詢</string>
+  <string name="editquery-request-ignore-active">忽略請求來處理已運作的查詢</string>
   <string name="editquery-invalid-token">無法編輯$1因為我在快取裡持有的令牌已無效。請再次嘗試編輯此頁面</string>
   <string name="provider-failure">在$2上的訂閱提供者$1失效，嘗試找尋其它可替代的提供者</string>
   <string name="provider-primary-failure">首要訂閱提供者失效，改退回成wiki提供者</string>
@@ -742,4 +749,10 @@ $1</string>
   <string name="main-revert-type-made-on-talk-page">在對話頁做出</string>
   <string name="main-revert-type-made-white-list">由白名單上的一位用戶做出</string>
   <string name="main-revert-warn">此編輯是$1，因此即使看起來像是個破壞行為也可能並非如此，您確定要回退此編輯嗎？</string>
+  <string name="query-result-nodata">查詢結果未包含任何資料</string>
+  <string name="query-request-process">api請求處理中</string>
+  <string name="query-request-noaction">沒有為api請求提供操作</string>
+  <string name="query-login-undefined">登入令牌需要用戶定義內容，它並沒有儲存於記憶體中</string>
+  <string name="query-execute-drymode">如果我不處於枯燥模式情況下，我會執行此查詢 (post=</string>
+  <string name="query-protected-link">已保護連結</string>
 </resources>

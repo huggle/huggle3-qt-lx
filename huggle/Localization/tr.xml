@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">Türkçe</string>
-  <string name="isrtl">false</string>
+  <string name="isrtl">yanlış</string>
   <string name="add">Ekle</string>
   <string name="cancel">İptal</string>
   <string name="clear">Temizle</string>
@@ -714,6 +714,7 @@ $1</string>
   <string name="about-python-with">,Python destekli</string>
   <string name="about-python-without">,Python desteği olmadan</string>
   <string name="about-qt">,QT $1 le derlenmiş QT $1 üzerinde çalışıyor</string>
+  <string name="about-info">, $1\'e dayalı, hedef platform $2</string>
   <string name="error-unknown-code">Bilinmeyen Hata: $1</string>
   <string name="relogin-fail">Vikide oturum açılamıyor: $1</string>
   <string name="projects">Projeler</string>

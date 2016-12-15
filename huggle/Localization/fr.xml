@@ -652,6 +652,13 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="editquery-success">Modification réussie de $1 le $2</string>
   <string name="editquery-token">Récupération du jeton pour modifier $1</string>
   <string name="editquery-token-error">Impossible de récupérer le jeton de modification</string>
+  <string name="editquery-nocsrft">Aucun jeton CSRF</string>
+  <string name="editquery-error-retrieve-prev" fuzzy="true">Impossible de récupérer le contenu précédent de la page :</string>
+  <string name="editquery-error-append">Vous ne pouvez pas utiliser à la fois Append et Prepend pour modifier la page</string>
+  <string name="editquery-error-badtoken">Mauvais jeton</string>
+  <string name="editquery-error-sessionexpired">La session a expiré et nécessite une nouvelle connexion</string>
+  <string name="editquery-request-ignore-suspended">Requête d’effectuer la requête en suspens ignorée</string>
+  <string name="editquery-request-ignore-active">Requête ignorée car une requête est déja en cours d\'exécution</string>
   <string name="editquery-invalid-token">Impossible de modifier $1 car le jeton en cache n’est plus valide. Veuillez essayer de modifier cette page une nouvelle fois</string>
   <string name="provider-failure">Échec du fournisseur de flux $1 sur $2, essais en cours pour trouver un fournisseur de remplacement</string>
   <string name="provider-primary-failure">Le fournisseur de flux principal a échoué, retour au fournisseur du wiki</string>
@@ -742,4 +749,10 @@ $1</string>
   <string name="main-revert-type-made-on-talk-page">fait sur la page de discussion</string>
   <string name="main-revert-type-made-white-list">fait par un utilisateur de la liste blanche</string>
   <string name="main-revert-warn">Cette modification est $1, donc même si elle ressemble à du vandalisme, elle peut ne pas l\'être ; êtes-vous sûr de vouloir l’annuler ?</string>
+  <string name="query-result-nodata">Le résultat de la requête ne contient aucune donnée</string>
+  <string name="query-request-process">Traitement de la requête de l’API</string>
+  <string name="query-request-noaction">Aucune action fournie pour la requête de l’API</string>
+  <string name="query-login-undefined">Le jeton de connexion nécessite une valeur définie par l’utilisateur, il n’est pas stocké en mémoire</string>
+  <string name="query-execute-drymode">Si je n’étais pas en mode aride, j’exécuterais cette requête (post=</string>
+  <string name="query-protected-link">Lien protégé</string>
 </resources>
