@@ -546,6 +546,7 @@
   <string name="speedy-finished">Baigta</string>
   <string name="warn-alreadyblocked">Šis vartotojas jau buvo užblokuotas</string>
   <string name="editquery-success">$1 sėkmingai redaguotas $2</string>
+  <string name="editquery-error-badtoken">Blogas žetonas</string>
   <string name="provider-failure">Srauto tiekėjo $1 klaida $2, bandoma rasti kitą tiekėją</string>
   <string name="rc-error">Nepavyko gauti duomenų iš viki srauto, paskutinė klaida: $1</string>
   <string name="rc-timestamp-missing">RC Srautas: Objekte nebuvo laiko žymės atributo: $1</string>
@@ -619,4 +620,6 @@
   <string name="main-revert-type-made-on-talk-page">atlikta aptarimo puslapyje</string>
   <string name="main-revert-type-made-white-list">atlikta vartotojo, kuris yra baltajame sąraše</string>
   <string name="main-revert-warn">Šis keitimas yra $1, tad jei jis ir atrodo kaip vandalizmas gali toks ir nebūti, ar tikrai norite jį anuliuoti?</string>
+  <string name="query-request-process">Apdorojami api prašymai</string>
+  <string name="query-protected-link">Apsaugota nuoroda</string>
 </resources>

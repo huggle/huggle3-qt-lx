@@ -492,6 +492,7 @@
   <string name="ssl-required">$1의 웹서버에는 SSL 사용이 필요합니다. SSL을 켜고 다시 시도하십시오. SSL을 사용할 수 없다면(옵션이 회색으로 되어 있다면) open ssl 라이브러리를 시스템에 설치해야 합니다.</string>
   <string name="uaa-not-supported">사용자 관리 신청 사용할 수 없음</string>
   <string name="uaa-not-supported-text">이 위키에는 \"관리자의 관심이 필요한 사용자명\" 알림판이 존재하지 않습니다.</string>
+  <string name="uaa-reporting">UAA로 $1 신고 중</string>
   <string name="uaa-reported">보고됨</string>
   <string name="uaa-no-reason-warn">사용자 이름이 정책 위반인 이유를 지정하지 않았습니다. 이유를 지정해 주십시오.</string>
   <string name="uaa-nr">제공된 이유가 없습니다</string>
@@ -625,7 +626,9 @@
   <string name="editquery-token">$1 문서를 편집할 토큰을 얻는 중</string>
   <string name="editquery-token-error">편집 토큰을 얻을 수 없습니다</string>
   <string name="editquery-nocsrft">CSRF 토큰이 없습니다</string>
+  <string name="editquery-error-append">페이지 편집 시 Append와 Prepend를 둘 다 사용할 수 없습니다</string>
   <string name="editquery-error-badtoken">잘못된 토큰</string>
+  <string name="editquery-error-sessionexpired">새로운 로그인을 요청하는 도중 세션이 만료되었습니다</string>
   <string name="editquery-invalid-token">캐시에 있는 토큰이 더 이상 유효하지 않기 때문에 $1을(를) 편집할 수 없습니다. 한 번 더 문서 편집을 시도해 주십시오</string>
   <string name="provider-failure">$2의 피드 제공자 $1 실패. 대안이 되는 일부 제공자 검색 시도 중</string>
   <string name="provider-primary-failure">1차 피드 제공자가 실패하였습니다. 위키 제공자로 대체하는 중</string>
@@ -708,5 +711,7 @@
   <string name="main-revert-type-in-userspace">사용자 공간에서</string>
   <string name="main-revert-warn">이 편집은 $1이므로 문서 훼손으로 보이더라도 그렇지 않을 수 있습니다. 정말 되돌리시겠습니까?</string>
   <string name="query-result-nodata">쿼리 결과에 어떠한 데이터도 포함되어 있지 않습니다</string>
+  <string name="query-request-process">API 요청 처리 중</string>
   <string name="query-login-undefined">로그인 토큰에는 사용자 정의 값이 필요하지만, 메모리에 저장되어 있지 않습니다</string>
+  <string name="query-protected-link">보호된 링크</string>
 </resources>

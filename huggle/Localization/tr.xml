@@ -651,6 +651,7 @@
   <string name="editquery-success">$2 üzerinde $1 başarılı bir şekilde değiştirildi.</string>
   <string name="editquery-token">$1 değiştirmek için belirteç alınıyor</string>
   <string name="editquery-token-error">Değişiklik için belirteç alınamadı</string>
+  <string name="editquery-nocsrft">CSRF olmadan</string>
   <string name="editquery-invalid-token">Önbellekteki fiş geçerli olmadığı için $1 değiştirilemedi. Lütfen sayfayı değiştirmeyi bir kez daha deneyin.</string>
   <string name="provider-failure">$2 üzerinde $1 besleme sağlayıcı hatası, alternatif bir kaynak bulunmaya çalışılıyor</string>
   <string name="provider-primary-failure">Birincil besleme sağlayıcısı başarısız, wiki sağlayıcısına dönülüyor</string>
