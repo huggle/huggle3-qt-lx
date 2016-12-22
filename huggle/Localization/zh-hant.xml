@@ -671,7 +671,7 @@
   <string name="wait">請稍候...</string>
   <string name="function-miss">函式目前不可用</string>
   <string name="missing-aiv">此項目沒有使用AIV</string>
-  <string name="missing-page">在此wiki上沒有$1頁面</string>
+  <string name="missing-page">在此 wiki 上沒有 $1 頁面</string>
   <string name="updating-wl">正在更新白名單...</string>
   <string name="feature-nfru">此功能僅限IP用戶使用</string>
   <string name="report-no-user">沒有用戶被選擇回報，請先選擇一個用戶</string>
