@@ -83,6 +83,8 @@ namespace Huggle
             //! If this is true huggle will always use software rollback even if user has the rollback privileges
             bool            EnforceManualSoftwareRollback = false;
             bool            EnforceMonthsAsHeaders = true;
+            //! Whether to mark the revert as minor
+            bool           MarkRevertsAsMinor = false;
             //! This will temporarily make huggle use software rollback as a workaround for bug where
             //! mediawiki reject token with no reason
             bool            EnforceManualSRT = false;
