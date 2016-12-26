@@ -148,6 +148,7 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
     //configuration_ += "confirm-warned:" + Bool2String(HuggleConfiguration->ProjectConfig->ConfirmWarned) + "\n";
     // configuration_ += "confirm-range:" + Bool2String(HuggleConfiguration->ProjectConfig->ConfirmRange) + "\n";
     configuration_ += "default-summary:" + Project->DefaultSummary + "\n";
+    configuration_ += "mark-minor:" + Bool2String(this->MarkRevertsAsMinor) + "\n";
     configuration_ += "// This option will change the behaviour of automatic resolution, be carefull\n";
     configuration_ += "revert-auto-multiple-edits:" + Bool2String(this->RevertOnMultipleEdits) + "\n";
     configuration_ += "automatically-resolve-conflicts:" + Bool2String(this->AutomaticallyResolveConflicts) + "\n";
@@ -328,6 +329,7 @@ bool UserConfiguration::ParseUserConfig(QString config, ProjectConfiguration *Pr
     ProjectConfig->ConfirmTalk = SafeBool(ConfigurationParse("confirm-talk", config), ProjectConfig->ConfirmTalk);
     ProjectConfig->ConfirmOnSelfRevs = SafeBool(ConfigurationParse("confirm-self-revert", config), ProjectConfig->ConfirmOnSelfRevs);
     ProjectConfig->ConfirmWL = SafeBool(ConfigurationParse("confirm-whitelist", config), ProjectConfig->ConfirmWL);
+    this->MarkRevertsAsMinor = SafeBool(ConfigurationParse("mark-minor", config), this->MarkRevertsAsMinor);
     this->DisplayTitle = SafeBool(ConfigurationParse("DisplayTitle", config), this->DisplayTitle);
     this->TruncateEdits = SafeBool(ConfigurationParse("TruncateEdits", config), this->TruncateEdits);
     this->HistoryLoad = SafeBool(ConfigurationParse("HistoryLoad", config), this->HistoryLoad);
