@@ -104,7 +104,7 @@
          <item>
           <widget class="QCheckBox" name="checkBox_markMinor">
            <property name="text">
-            <string>Mark edits as minor</string>
+            <string>Mark reverts as minor</string>
            </property>
           </widget>
          </item>
