@@ -59,7 +59,7 @@ namespace Huggle
             QString Summary = "";
             //! Rollback with no check if it's a good idea or not (revert even whitelisted users, sysops etc)
             bool IgnorePreflightCheck = false;
-            bool MinorEdit = false;
+            bool MinorEdit = true;
         public slots:
             void OnTick();
         private:
