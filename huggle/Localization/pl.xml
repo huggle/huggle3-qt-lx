@@ -22,7 +22,7 @@
   <string name="result">Rezultat</string>
   <string name="save">Zapisz</string>
   <string name="show">Pokaż</string>
-  <string name="no-instant">Na projekcie $1 szybkie ostrzeżenia są wyłączone, nie zostanie wysłana wiadomość do $2, wybierz inny poziom ostrzeżenia.</string>
+  <string name="no-instant" fuzzy="true">Na projekcie $1 szybkie ostrzeżenia są wyłączone, nie zostanie wysłana wiadomość do $2, wybierz inny poziom ostrzeżenia.</string>
   <string name="undo">Cofnij</string>
   <string name="yes">Tak</string>
   <string name="editing-page">Edytowanie strony</string>

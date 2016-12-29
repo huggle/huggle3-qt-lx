@@ -22,7 +22,7 @@
   <string name="result">Resultado</string>
   <string name="save">Guardar</string>
   <string name="show">Mostrar</string>
-  <string name="no-instant">Las advertencias instantáneas no están habilitadas en el proyecto $1. No se envía mensaje a $2. Elige un nivel de advertencia distinto.</string>
+  <string name="no-instant" fuzzy="true">Las advertencias instantáneas no están habilitadas en el proyecto $1. No se envía mensaje a $2. Elige un nivel de advertencia distinto.</string>
   <string name="undo">Deshacer</string>
   <string name="yes">Sí</string>
   <string name="editing-page">Editando página</string>
@@ -743,4 +743,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="main-revert-type-made-on-talk-page">hecho en la página de discusión</string>
   <string name="main-revert-type-made-white-list">hecho por un usuario que está en la lista blanca</string>
   <string name="main-revert-warn">Esta edición es $1. Incluso aunque parezca vandalismo, puede no serlo. ¿Estás seguro de que quieres revertirla?</string>
+  <string name="query-result-nodata">El resultado de la consulta no contiene datos</string>
+  <string name="query-request-process">Procesando petición de la API</string>
+  <string name="query-protected-link">Enlace protegido</string>
 </resources>

@@ -22,7 +22,7 @@
   <string name="result">Sonuç</string>
   <string name="save">Kaydet</string>
   <string name="show">Göster</string>
-  <string name="no-instant"> $1 projesinde anında uyarılar aktif değil, $2 için mesaj gönderilmeyecek, başka bir uyarı seviyesi seçin</string>
+  <string name="no-instant" fuzzy="true"> $1 projesinde anında uyarılar aktif değil, $2 için mesaj gönderilmeyecek, başka bir uyarı seviyesi seçin</string>
   <string name="undo">Geri al</string>
   <string name="yes">Evet</string>
   <string name="editing-page">Sayfa düzenleniyor</string>

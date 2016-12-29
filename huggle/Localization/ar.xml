@@ -22,7 +22,7 @@
   <string name="result">النتيجة</string>
   <string name="save">احفظ</string>
   <string name="show">أظهر</string>
-  <string name="no-instant">لم يتم تمكين التحذيرات الفورية على المشروع $1، لم يتم إرسال الرسالة إلى $2; اختر مستوى تحذير مختلفً</string>
+  <string name="no-instant" fuzzy="true">لم يتم تمكين التحذيرات الفورية على المشروع $1، لم يتم إرسال الرسالة إلى $2; اختر مستوى تحذير مختلفً</string>
   <string name="undo">تراجع</string>
   <string name="yes">نعم</string>
   <string name="editing-page">تعديل الصفحة</string>

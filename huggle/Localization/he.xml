@@ -22,7 +22,7 @@
   <string name="result">תוצאה</string>
   <string name="save">שמירה</string>
   <string name="show">הצגה</string>
-  <string name="no-instant">אזהרות מידיות אינן מופעלות במיזם $1, לא נשלחה הודעה אל $2, יש לבחור רמת אזהרה שונה</string>
+  <string name="no-instant" fuzzy="true">אזהרות מידיות אינן מופעלות במיזם $1, לא נשלחה הודעה אל $2, יש לבחור רמת אזהרה שונה</string>
   <string name="undo">ביטול</string>
   <string name="yes">כן</string>
   <string name="editing-page">עריכת דף</string>

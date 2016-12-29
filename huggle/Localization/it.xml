@@ -22,7 +22,7 @@
   <string name="result">Risultato</string>
   <string name="save">Salva</string>
   <string name="show">Mostra</string>
-  <string name="no-instant">I messaggi di avvertimento istantanei non sono abilitati sul progetto $1, non inviano messaggi a $2, scegli un livello di avviso diverso.</string>
+  <string name="no-instant">I messaggi di avvertimento istantanei non sono abilitati sul progetto $1, per cui i messaggi a $2 non possono essere inviati. Scegli un livello di avviso diverso.</string>
   <string name="undo">Annulla</string>
   <string name="yes">Sì</string>
   <string name="editing-page">Modifica della pagina</string>

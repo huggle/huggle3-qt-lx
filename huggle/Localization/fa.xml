@@ -22,7 +22,7 @@
   <string name="result">نتیجه</string>
   <string name="save">ذخیره کردن</string>
   <string name="show">نمایش</string>
-  <string name="no-instant">خطای فوری در پروژه $1 فعال نشده‌است، پیام به $2 ارسال نمی‌شود، سطح هشدار دیگری را انتخاب کنید</string>
+  <string name="no-instant" fuzzy="true">خطای فوری در پروژه $1 فعال نشده‌است، پیام به $2 ارسال نمی‌شود، سطح هشدار دیگری را انتخاب کنید</string>
   <string name="undo">واگردانی</string>
   <string name="yes">بله</string>
   <string name="editing-page">در حال ویرایش صفحه</string>

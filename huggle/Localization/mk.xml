@@ -22,7 +22,7 @@
   <string name="result">Резултат</string>
   <string name="save">Зачувај</string>
   <string name="show">Прикажи</string>
-  <string name="no-instant">Моментните предупредувања не се овозможени на проектот $1. Нема да ја испратам пораката на $2. Одберете друг степен на предупредување.</string>
+  <string name="no-instant" fuzzy="true">Моментните предупредувања не се овозможени на проектот $1. Нема да ја испратам пораката на $2. Одберете друг степен на предупредување.</string>
   <string name="undo">Врати</string>
   <string name="yes">Да</string>
   <string name="editing-page">Уредување на страница</string>

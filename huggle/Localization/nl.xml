@@ -22,7 +22,7 @@
   <string name="result">Resultaat</string>
   <string name="save">Opslaan</string>
   <string name="show">Weergeven</string>
-  <string name="no-instant">Instant waarschuwingen zijn niet ingeschakeld op project $1. Er wordt geen bericht verzonden naar $2. Kies een ander waarschuwingsniveau</string>
+  <string name="no-instant" fuzzy="true">Instant waarschuwingen zijn niet ingeschakeld op project $1. Er wordt geen bericht verzonden naar $2. Kies een ander waarschuwingsniveau</string>
   <string name="undo">Ongedaan maken</string>
   <string name="yes">Ja</string>
   <string name="editing-page">Pagina bewerken</string>

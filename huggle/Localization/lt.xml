@@ -22,7 +22,7 @@
   <string name="result">Rezultatas</string>
   <string name="save">Išsaugoti</string>
   <string name="show">Rodyti</string>
-  <string name="no-instant">Momentiniai įspėjimai nėra įgalinti $1 projekte, žinutės $2 nesiunčiamos, pasirinkite kitą įspėjimo lygį</string>
+  <string name="no-instant" fuzzy="true">Momentiniai įspėjimai nėra įgalinti $1 projekte, žinutės $2 nesiunčiamos, pasirinkite kitą įspėjimo lygį</string>
   <string name="undo">Atšaukti</string>
   <string name="yes">Taip</string>
   <string name="editing-page">Puslapis redaguojamas</string>

@@ -22,7 +22,7 @@
   <string name="result">Ergebnis</string>
   <string name="save">Speichern</string>
   <string name="show">Anzeigen</string>
-  <string name="no-instant">Sofortwarnungen sind auf dem Projekt $1 nicht aktiviert. Die Nachricht wurde nicht an $2 versandt. Wähle eine andere Warnstufe.</string>
+  <string name="no-instant">Sofortwarnungen sind auf dem Projekt $1 nicht aktiviert, so dass die Nachricht nicht an $2 versandt werden konnte. Bitte wähle eine andere Warnstufe.</string>
   <string name="undo">Rückgängig</string>
   <string name="yes">Ja</string>
   <string name="editing-page">Bearbeite Seite</string>

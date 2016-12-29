@@ -22,7 +22,7 @@
   <string name="result">Результат</string>
   <string name="save">Сохранить</string>
   <string name="show">Показать</string>
-  <string name="no-instant">Мгновенные предупреждения не включены в проекте $1, сообщение для $2 не отправляется, выберите другой уровень предупреждения</string>
+  <string name="no-instant" fuzzy="true">Мгновенные предупреждения не включены в проекте $1, сообщение для $2 не отправляется, выберите другой уровень предупреждения</string>
   <string name="undo">Отменить</string>
   <string name="yes">Да</string>
   <string name="editing-page">Редактирование страницы</string>

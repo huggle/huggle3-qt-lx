@@ -85,6 +85,7 @@
   <string name="config-revert">Zrécksetzen</string>
   <string name="config-enable-irc">IRC aktivéieren</string>
   <string name="config-display-text">Nächst weisen</string>
+  <string name="config-retrieve-edit">Är eegen Ännerungen ofruffen</string>
   <string name="config-nothing">Näischt</string>
   <string name="config-bot-edits">Bot-Ännerungen (b)</string>
   <string name="config-own-edits">Eegen Ännerungen</string>

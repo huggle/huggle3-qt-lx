@@ -22,7 +22,7 @@
   <string name="result">Rezultat</string>
   <string name="save">Salvează</string>
   <string name="show">Arată</string>
-  <string name="no-instant">Mesajele instant nu sunt activate pe proiectul $1, nu se trimite mesaj către $2, alegeți un alt nivel de avertizare.</string>
+  <string name="no-instant" fuzzy="true">Mesajele instant nu sunt activate pe proiectul $1, nu se trimite mesaj către $2, alegeți un alt nivel de avertizare.</string>
   <string name="undo">Anulează</string>
   <string name="yes">Da</string>
   <string name="editing-page">Editarea paginii</string>

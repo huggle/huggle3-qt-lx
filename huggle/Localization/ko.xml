@@ -22,7 +22,7 @@
   <string name="result">결과</string>
   <string name="save">저장</string>
   <string name="show">보이기</string>
-  <string name="no-instant">$1 프로젝트에 순간 경고가 사용되지 않습니다. $2에 메시지를 보낼 수 없습니다, 다른 경고 레벨을 고르세요.</string>
+  <string name="no-instant" fuzzy="true">$1 프로젝트에 순간 경고가 사용되지 않습니다. $2에 메시지를 보낼 수 없습니다, 다른 경고 레벨을 고르세요.</string>
   <string name="undo">되돌리기</string>
   <string name="yes">예</string>
   <string name="editing-page">페이지 편집</string>
