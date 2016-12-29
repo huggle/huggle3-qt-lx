@@ -1081,7 +1081,7 @@ void Login::DisplayError(QString message)
 {
     this->CancelLogin();
     Syslog::HuggleLogs->ErrorLog(message);
-    this->Update(QString("<span style=\"color: red;\">%1</span").arg(message));
+    this->Update(QString("<span style=\"color: red;\">%1</span>").arg(message));
     QMessageBox::critical(this->window(), _l("error"), message);
 }
 
