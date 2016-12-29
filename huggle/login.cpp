@@ -32,6 +32,7 @@
 #include <QUrl>
 #include <QSslSocket>
 #include <QDesktopServices>
+#include <QMessageBox>
 
 #define LOGINFORM_LOGIN 0
 #define LOGINFORM_SITEINFO 1
@@ -500,15 +501,13 @@ void Login::PerformLoginPart2(WikiSite *site)
     ApiQuery *query = this->LoginQueries[site];
     if (query->IsFailed())
     {
-        this->CancelLogin();
-        this->Update(_l("login-fail", site->Name) + ": " + query->GetFailureReason());
+        this->DisplayError(_l("login-fail", site->Name) + ": " + query->GetFailureReason());
         return;
     }
     ApiQueryResultNode *token_info = query->GetApiQueryResult()->GetNode("tokens");
     if (!token_info || !token_info->Attributes.contains("logintoken"))
     {
-        this->CancelLogin();
-        this->Update(_l("login-fail", site->Name) + ": No valid login token returned by the site");
+        this->DisplayError(_l("login-fail", site->Name) + ": No valid login token returned by the site");
         return;
     }
     QString token = token_info->GetAttribute("logintoken");
@@ -1082,7 +1081,8 @@ void Login::DisplayError(QString message)
 {
     this->CancelLogin();
     Syslog::HuggleLogs->ErrorLog(message);
-    this->Update(message);
+    this->Update(QString("<span style=\"color: red;\">%1</span").arg(message));
+    QMessageBox::critical(this->window(), _l("error"), message);
 }
 
 void Login::Finish()
