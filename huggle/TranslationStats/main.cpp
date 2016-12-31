@@ -62,7 +62,6 @@ int main(int argc, char *argv[])
     Localizations::HuggleLocalizations->LocalInit("bg"); // Bulgarian
     //Localizations::HuggleLocalizations->LocalInit("bn"); // Bengali
     Localizations::HuggleLocalizations->LocalInit("br"); // Brezhoneg
-    Localizations::HuggleLocalizations->LocalInit("hr"); // Croatian
     Localizations::HuggleLocalizations->LocalInit("cz"); // Czech
     Localizations::HuggleLocalizations->LocalInit("de"); // Deutsch
     Localizations::HuggleLocalizations->LocalInit("es"); // Spanish
@@ -71,6 +70,7 @@ int main(int argc, char *argv[])
     Localizations::HuggleLocalizations->LocalInit("gu");
     Localizations::HuggleLocalizations->LocalInit("he"); // Hebrew
     Localizations::HuggleLocalizations->LocalInit("hi"); // Hindi
+    Localizations::HuggleLocalizations->LocalInit("hr"); // Croatian
     Localizations::HuggleLocalizations->LocalInit("it"); // Italian
     Localizations::HuggleLocalizations->LocalInit("ja"); // Japanese
     Localizations::HuggleLocalizations->LocalInit("ka"); // ?
@@ -89,7 +89,7 @@ int main(int argc, char *argv[])
     Localizations::HuggleLocalizations->LocalInit("no"); // Norwegian
     Localizations::HuggleLocalizations->LocalInit("oc"); // Occitan
     Localizations::HuggleLocalizations->LocalInit("or"); // Oriya
-    Localizations::HuggleLocalizations->LocalInit("pl");
+    Localizations::HuggleLocalizations->LocalInit("pl"); // Polish
     Localizations::HuggleLocalizations->LocalInit("pt"); // Portuguese
     Localizations::HuggleLocalizations->LocalInit("pt-BR"); // Portuguese (in Brazil)
     Localizations::HuggleLocalizations->LocalInit("ru"); // Russian
