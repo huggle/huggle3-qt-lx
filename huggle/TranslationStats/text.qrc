@@ -6,14 +6,20 @@
     <file>../Localization/bg.xml</file>
     <file>../Localization/bn.xml</file>
     <file>../Localization/br.xml</file>
+    <file>../Localization/ca.xml</file>
     <file>../Localization/cz.xml</file>
+    <file>../Localization/da.xml</file>
     <file>../Localization/de.xml</file>
     <file>../Localization/es.xml</file>
     <file>../Localization/fa.xml</file>
+    <file>../Localization/fi.xml</file>
+    <file>../Localization/fj.xml</file>
     <file>../Localization/fr.xml</file>
     <file>../Localization/gu.xml</file>
-    <file>../Localization/hi.xml</file>
     <file>../Localization/he.xml</file>
+    <file>../Localization/hi.xml</file>
+    <file>../Localization/hu.xml</file>
+    <file>../Localization/id.xml</file>
     <file>../Localization/it.xml</file>
     <file>../Localization/ja.xml</file>
     <file>../Localization/ka.xml</file>
@@ -36,13 +42,16 @@
     <file>../Localization/pt-BR.xml</file>
     <file>../Localization/pt.xml</file>
     <file>../Localization/sa.xml</file>
+    <file>../Localization/sr.xml</file>
     <file>../Localization/ro.xml</file>
     <file>../Localization/ru.xml</file>
     <file>../Localization/sv.xml</file>
     <file>../Localization/ta.xml</file>
+    <file>../Localization/th.xml</file>
     <file>../Localization/tr.xml</file>
     <file>../Localization/uk.xml</file>
     <file>../Localization/ur.xml</file>
+    <file>../Localization/uz.xml</file>
     <file>../Localization/zh.xml</file>
     <file>../Localization/zh-hant.xml</file>
   </qresource>
