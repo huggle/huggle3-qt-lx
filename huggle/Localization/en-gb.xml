@@ -22,7 +22,7 @@
   <string name="result">Result</string>
   <string name="save">Save</string>
   <string name="show">Show</string>
-  <string name="no-instant" fuzzy="true">Instant warnings are not enabled on project $1, not sending message to $2, pick a different warning level</string>
+  <string name="no-instant">Instant warnings are not enabled on project $1, so the message to $2 cannot be sent. Please pick a different warning level.</string>
   <string name="undo">Undo</string>
   <string name="yes">Yes</string>
   <string name="editing-page">Editing page</string>
@@ -652,6 +652,13 @@ This block will override the effect of the rangeblock. Continue?</string>
   <string name="editquery-success">Successfully edit $1 on $2</string>
   <string name="editquery-token">Retrieving token to edit $1</string>
   <string name="editquery-token-error">Unable to retrieve edit token</string>
+  <string name="editquery-nocsrft">No CSRF token</string>
+  <string name="editquery-error-retrieve-prev">Unable to retrieve the previous content of page $1</string>
+  <string name="editquery-error-append">You cannot use both \'append\' and \'prepend\' to edit the page</string>
+  <string name="editquery-error-badtoken">Bad token</string>
+  <string name="editquery-error-sessionexpired">Session expired. Requesting new login...</string>
+  <string name="editquery-request-ignore-suspended">Ignoring request to process suspended query</string>
+  <string name="editquery-request-ignore-active">Ignoring request to process query that is already running</string>
   <string name="editquery-invalid-token">Unable to edit $1 because the token in the cache is no longer valid. Try to edit the page again.</string>
   <string name="provider-failure">Failure of feed provider $1 on $2, trying to find an alternative provider</string>
   <string name="provider-primary-failure">Primary feed provider has failed, falling back to wiki provider</string>
@@ -668,6 +675,7 @@ This block will override the effect of the rangeblock. Continue?</string>
   <string name="updating-wl">Updating whitelist...</string>
   <string name="feature-nfru">This feature is for IP users only</string>
   <string name="report-no-user">No user has been selected to report, please select a user first</string>
+  <string name="welcome-show">Display this message next time you launch Huggle</string>
   <string name="welcome-tp-empty-fail">This user does not have an empty talk page, are you sure you want to send a message to him?</string>
   <string name="welcome-page-miss-fail">Huggle was unable to retrieve the contents of user talk page, are you sure you want to send a welcome message to them?</string>
   <string name="cr-newer-edits">Conflict resolved: reverted all edits, including new edits. Edits were by same user: $1.</string>
@@ -714,6 +722,7 @@ This block will override the effect of the rangeblock. Continue?</string>
   <string name="about-python-with">with python support</string>
   <string name="about-python-without">without python support</string>
   <string name="about-qt">, compiled using QT $1 Running on QT $1</string>
+  <string name="about-info">, based on $1, target platform: $2</string>
   <string name="error-unknown-code">Unknown Error: $1</string>
   <string name="relogin-fail">Unable to login to wiki: $1</string>
   <string name="projects">Projects</string>
@@ -738,6 +747,11 @@ This block will override the effect of the rangeblock. Continue?</string>
   <string name="main-revert-type-in-userspace">in userspace</string>
   <string name="main-revert-type-made-by-you">made by you</string>
   <string name="main-revert-type-made-on-talk-page">made on talk page</string>
-  <string name="main-revert-type-made-white-list">made by a user who is on white list</string>
+  <string name="main-revert-type-made-white-list">made by a user who is on the whitelist</string>
   <string name="main-revert-warn">This edit is $1, so even if it looks like it is a vandalism, it may not be, are you sure you want to revert it?</string>
+  <string name="query-result-nodata">Query result does not contain any data</string>
+  <string name="query-request-process">Processing API request...</string>
+  <string name="query-request-noaction">No action provided for API request</string>
+  <string name="query-login-undefined">Login token requires a user defined value that is not stored in memory</string>
+  <string name="query-protected-link">Protected link</string>
 </resources>
