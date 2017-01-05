@@ -467,6 +467,7 @@
   <string name="report-title">$1 보고</string>
   <string name="report-tu">사용자 보고하기</string>
   <string name="report-reason">이유:</string>
+  <string name="report-auto">$1 보고됨</string>
   <string name="report-intro">$1 사용자를 보고하려고 합니다</string>
   <string name="report-message">메시지:</string>
   <string name="report-log">이 사용자에게 경고:</string>

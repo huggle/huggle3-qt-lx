@@ -101,12 +101,17 @@
   <string name="config-defaults">Dre ziouer</string>
   <string name="config-watchlist">Ouzhpennañ d\'ar roll evezhiañ</string>
   <string name="config-confirm-wl">Goulenn kadarnaat evit nullañ ur c\'hemm graet gant un implijer el listenn wenn.</string>
+  <string name="config-revert">Disteuler</string>
   <string name="config-enable-irc">Gweredekaat IRC</string>
   <string name="config-nothing">Netra</string>
+  <string name="config-reverts">Distaoladennoù</string>
   <string name="config-new-page">Pajenn nevez</string>
   <string name="config-whitelisted">El listenn wenn</string>
   <string name="config-friend">Mignon</string>
   <string name="config-talk">Pajenn gaozeal</string>
+  <string name="config-updates">Klask hizivadennoù</string>
+  <string name="config-beta">Klask stummoù beta</string>
+  <string name="config-close-without">Serriñ hep enrollañ</string>
   <string name="config-confirmmultiple">Kadanaat eo bet nullet lies a cheñchamañtoù gant ar memes implijer</string>
   <string name="config-confirmwarned">Kadarnaat nulladur ur c\'hemm gant un implijer arroutet</string>
   <string name="config-confirmpage">Kadarnaat nulladur ar pajennoù dianavezet</string>
@@ -137,7 +142,8 @@
   <string name="history-error-message-title">Ne c\'haller ket dizober</string>
   <string name="history-failure">Ne c\'haller ket adtapout an istor.</string>
   <string name="userhistory-title">Istor ho kemmoù</string>
-  <string name="login-tab-login" fuzzy="true">Kevreañ</string>
+  <string name="login-tab-botp">Ger-tremen ar bot</string>
+  <string name="login-tab-login">Normal</string>
   <string name="login-language">Yezh :</string>
   <string name="login-project">Raktres :</string>
   <string name="login-username">Anv implijer :</string>
@@ -156,8 +162,9 @@
   <string name="login-progress-global">O wiriañ ar c\'hefluniadur hollek...</string>
   <string name="login-progress-config">O wiriañ ar pajennoù kefluniañ...</string>
   <string name="login-progress-local">O wiriañ ar c\'hefluniadur lec\'hel evit $1</string>
+  <string name="login-remember-password">Derc\'hel soñj eus ar ger-tremen</string>
   <string name="login-ssl">Implijout HTTPS (ezhomm en deus eus OpenSSL)</string>
-  <string name="login-fail" fuzzy="true">C\'hwitet eo ar c\'hevreañ</string>
+  <string name="login-fail">C\'hwitet kevreañ ouzh $1</string>
   <string name="login-error-alldisabled">Diweredekaet eo Huggle war an holl raktresoù evit bremañ.</string>
   <string name="login-error-cancelled">Nullet.</string>
   <string name="login-error-invalid">Anv implijer direizh</string>
@@ -175,6 +182,7 @@
   <string name="main-system-showqueue">Diskouez al lostennad</string>
   <string name="main-system-options">Dibarzhioù...</string>
   <string name="main-system-logout">Digevreañ</string>
+  <string name="main-system-abort">Dilezel</string>
   <string name="main-system-change-provider">Cheñch pourchaser</string>
   <string name="main-system-change-provider-irc">IRC</string>
   <string name="main-system-change-provider-wiki">Wiki</string>
@@ -283,11 +291,13 @@
   <string name="updater-close">Serriñ</string>
   <string name="updater-disable-notify">Diweredekaat an hizivadennoù</string>
   <string name="warning-title">Berzañ $1</string>
+  <string name="warning-levelgroup">Live kemennoù-diwall</string>
   <string name="warning-levelauto">Emgefre</string>
   <string name="warning-level1">Live 1</string>
   <string name="warning-level2">Live 2</string>
   <string name="warning-level3">Live 3</string>
   <string name="warning-level4">Live 4 (diwezhañ)</string>
+  <string name="warning-warntype">Seurt kemennoù-diwall :</string>
   <string name="warning-submit">Kas</string>
   <string name="error-noresponse">Respont ebet</string>
   <string name="error-pagemissing">N\'eus ket eus ar bajenn</string>
@@ -307,6 +317,7 @@
   <string name="warn-alreadyblocked">Stanket eo bet an implijer dija</string>
   <string name="logs-widget-name">Marilhoù ar reizhiad</string>
   <string name="wait">Gortozit mar plij...</string>
+  <string name="fail">C\'hwitet</string>
   <string name="request">Reked</string>
   <string name="page-unknown">Pajenn dianav</string>
   <string name="namespace">Esaouenn anv</string>
