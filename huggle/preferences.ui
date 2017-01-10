@@ -102,6 +102,13 @@
           </widget>
          </item>
          <item>
+          <widget class="QCheckBox" name="checkBox_markMinor">
+           <property name="text">
+            <string>Mark reverts as minor</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QCheckBox" name="checkBox_WelcomeEmptyPage">
            <property name="text">
             <string>Send welcome messages to users with empty talk page on good edit</string>

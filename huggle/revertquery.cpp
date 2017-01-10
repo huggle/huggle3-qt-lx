@@ -571,7 +571,7 @@ bool RevertQuery::ProcessRevert()
                                "content was resolved to blank edit");
             return true;
         }
-        this->eqSoftwareRollback = WikiUtil::EditPage(this->edit->Page, content, summary, this->MinorEdit);
+        this->eqSoftwareRollback = WikiUtil::EditPage(this->edit->Page, content, summary, this->MarkRevertsAsMinor);
         this->CustomStatus = _l("editing-page");
         return false;
     }

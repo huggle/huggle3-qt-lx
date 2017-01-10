@@ -142,6 +142,7 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     this->ui->checkBox_ConfirmWhitelistedRevert->setText(_l("config-confirm-wl"));
     this->ui->checkBox_ConfirmTalkRevert->setText(_l("config-confirm-talk"));
     this->ui->checkBox_UseRollback->setText(_l("config-use-rollback"));
+    this->ui->checkBox_markMinor->setText(_l("config-mark-minor"));
     this->ui->checkBox_WelcomeEmptyPage->setText(_l("config-welcome-empty-page"));
     this->ui->checkBox_27->setText(_l("config-instant-reverts"));
     this->ui->label_3->setText(_l("config-revert-wait"));
@@ -301,6 +302,7 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     hcfg->SystemConfig_SuppressWarnings = !this->ui->checkBox_6->isChecked();
     hcfg->UsingIRC = this->ui->checkBox_EnableIrc->isChecked();
     hcfg->UserConfig->EnforceManualSoftwareRollback = this->ui->checkBox_UseRollback->isChecked();
+    hcfg->UserConfig->MarkRevertsAsMinor = this->ui->checkBox_markMinor->isChecked();
     hcfg->UserConfig->AutomaticallyGroup = this->ui->checkBox_AutomaticallyGroup->isChecked();
     hcfg->UserConfig->EnforceManualSRT = this->ui->checkBox_UseRollback->isChecked();
     hcfg->UserConfig->RevertOnMultipleEdits = this->ui->radioButton_2->isChecked();
@@ -741,6 +743,7 @@ void Preferences::ResetItems()
     this->ui->checkBox_AutoResolveConflicts->setChecked(hcfg->UserConfig->AutomaticallyResolveConflicts);
     this->ui->checkBox_EnableIrc->setChecked(hcfg->UsingIRC);
     this->ui->checkBox_14->setChecked(hcfg->UserConfig->HistoryLoad);
+    this->ui->checkBox_markMinor->setChecked(hcfg->UserConfig->MarkRevertsAsMinor);
     this->ui->checkBox_ConfirmOwnEditRevert->setChecked(hcfg->ProjectConfig->ConfirmOnSelfRevs);
     this->ui->checkBox_ConfirmWhitelistedRevert->setChecked(hcfg->ProjectConfig->ConfirmWL);
     this->ui->checkBox_ConfirmTalkRevert->setChecked(hcfg->ProjectConfig->ConfirmTalk);
