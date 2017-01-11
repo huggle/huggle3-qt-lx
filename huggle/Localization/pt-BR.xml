@@ -22,7 +22,7 @@
   <string name="result">Resultado</string>
   <string name="save">Salvar</string>
   <string name="show">Exibir</string>
-  <string name="no-instant" fuzzy="true">Avisos instantâneos não estão ativados no projeto $1, mensagem não enviada para $2, escolha um nível de aviso diferente.</string>
+  <string name="no-instant">Avisos instantâneos não estão ativados no projeto $1, mensagem não enviada para $2, escolha um nível de aviso diferente.</string>
   <string name="undo">Desfazer</string>
   <string name="yes">Sim</string>
   <string name="editing-page">Editando página</string>
@@ -653,6 +653,13 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="editquery-success">$1 editado com sucesso em $2</string>
   <string name="editquery-token">Recuperando token para editar $1</string>
   <string name="editquery-token-error">Não foi possível recuperar chave para editar</string>
+  <string name="editquery-nocsrft">Nenhum token CSRF</string>
+  <string name="editquery-error-retrieve-prev">Não foi possível recuperar o conteúdo anterior da página: $1</string>
+  <string name="editquery-error-append">Você não pode usar ambos Anexar e Preencher para edição de página</string>
+  <string name="editquery-error-badtoken">Sinal incorreto</string>
+  <string name="editquery-error-sessionexpired">Sessão expirada solicitando um novo login</string>
+  <string name="editquery-request-ignore-suspended">Ignorar solicitação para processar a consulta suspensa</string>
+  <string name="editquery-request-ignore-active">Ignorar solicitação para processar consulta que já está em execução</string>
   <string name="editquery-invalid-token">Não foi possível editar $1 porque o token que eu tinha no cache não é mais válido. Por favor, tente editar a página novamente</string>
   <string name="provider-failure">Falha do provedor de feed $1 em $2, tentando encontrar um provedor alternativo</string>
   <string name="provider-primary-failure">Provedor de feed primário falhou, trocando para provedor wiki</string>
@@ -743,4 +750,10 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="main-revert-type-made-on-talk-page">feito na página de discussão</string>
   <string name="main-revert-type-made-white-list">feito por um usuário na lista branca</string>
   <string name="main-revert-warn">Essa edição é $1, então mesmo que pareça vandalismo pode não ser. Você está certo que deseja reverter?</string>
+  <string name="query-result-nodata">O resultado da consulta não contém dados</string>
+  <string name="query-request-process">Processando pedido de api</string>
+  <string name="query-request-noaction">Nenhuma ação fornecida para o pedido de api</string>
+  <string name="query-login-undefined">Login token requer um valor definido pelo usuário, ele não é armazenado na memória</string>
+  <string name="query-execute-drymode">Se eu não estava no modo seco eu executaria esta consulta (post=</string>
+  <string name="query-protected-link">Link protegido</string>
 </resources>
