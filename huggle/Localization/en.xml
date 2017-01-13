@@ -82,6 +82,9 @@
   <string name="block-type">Block / unblock</string>
   <string name="block-admin">Blocking sysop</string>
   <string name="block-none">There is no user to block.</string>
+  <string name="color-green">green</string>
+  <string name="color-orange">orange</string>
+  <string name="color-red">red</string>
   <string name="contribution-browser-user-info">Showing recent contributions of user $1</string>
   <string name="config-function">Function</string>
   <string name="config-description">Description</string>
