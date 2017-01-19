@@ -22,7 +22,7 @@
   <string name="result">Резултат</string>
   <string name="save">Зачувај</string>
   <string name="show">Прикажи</string>
-  <string name="no-instant" fuzzy="true">Моментните предупредувања не се овозможени на проектот $1. Нема да ја испратам пораката на $2. Одберете друг степен на предупредување.</string>
+  <string name="no-instant">Моментните предупредувања не се овозможени на проектот $1. Затоа, не можам да ја испратам пораката на $2. Одберете друг степен на предупредување.</string>
   <string name="undo">Врати</string>
   <string name="yes">Да</string>
   <string name="editing-page">Уредување на страница</string>
@@ -653,7 +653,7 @@
   <string name="editquery-token">Ја преземам шифрата за уредувањето $1</string>
   <string name="editquery-token-error">Не можев да ја добијам шифрата на уредувањето</string>
   <string name="editquery-nocsrft">Нема CSRF-шифра</string>
-  <string name="editquery-error-retrieve-prev" fuzzy="true">Не можев да ја добијам претходната содржина на страницата:</string>
+  <string name="editquery-error-retrieve-prev">Не можев да ја добијам претходната содржина на страницата: $1</string>
   <string name="editquery-error-append">Не можете едновремено да користите вметнување пред и зад за уредување на страница</string>
   <string name="editquery-error-badtoken">Неправилна шифра</string>
   <string name="editquery-error-sessionexpired">Седницата истече. Барам нова најава.</string>
