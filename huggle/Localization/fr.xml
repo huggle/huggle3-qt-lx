@@ -262,12 +262,12 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="login-ssl">Utiliser HTTPS (nécessite OpenSSL)</string>
   <string name="login-fail">Échec de la connexion sur $1</string>
   <string name="login-error-admin">Un compte d\'administrateur est nécessaire pour utiliser Huggle sur ce projet.</string>
-  <plurals name="login-error-age"/>
+  <string name="login-error-age">L’utilisation de Huggle sur ce projet nécessite un compte d’au moins $1 jour{{PLURAL:$1||s}}.</string>
   <string name="login-error-alldisabled">Huggle est actuellement désactivé sur tous les projets.</string>
   <string name="login-error-approval">L’utilisation de Huggle sur $1 nécessite une approbation.</string>
   <string name="login-error-cancelled">Annulé.</string>
   <string name="login-error-config">Échec à la connexion, impossible d’analyser la configuration locale pour $1 : $2</string>
-  <plurals name="login-error-count"/>
+  <string name="login-error-count">L’utilisation de Huggle sur ce projet requiert au moins $1 modification{{PLURAL:$1||s}}.</string>
   <string name="login-error-disabled">Huggle n’est pas activé pour votre compte sur $1. Vérifiez la page de configuration de l’utilisateur.</string>
   <string name="login-error-global">La connexion a échoué : la configuration globale n’a pas pu être lue. Reportez-vous au journal de débogage pour plus de détails.</string>
   <string name="login-error-invalid">Nom d\'utilisateur invalide.</string>
