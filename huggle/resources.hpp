@@ -22,8 +22,11 @@ namespace Huggle
     {
         public:
             static void Init();
+            static void PlayExternalSoundFile(QString path);
+            static void PlayEmbeddedSoundFile(QString file);
             static QString GetHtmlHeader();
-            static QString GetResource(QString file);
+            static QString GetResource(QString path);
+            static QByteArray GetResourceAsBinary(QString path);
             static QString HtmlIncoming;
             //! This string contains a html header
             static QString HtmlHeader;
