@@ -104,7 +104,9 @@ namespace std { typedef decltype(nullptr) nullptr_t; }
     #define HUGGLE_QTV5
 #else
     // we can't use audio in Qt4, it's too broken
+    #ifndef HUGGLE_NOAUDIO
     #define HUGGLE_NOAUDIO
+    #endif
 #endif
 
 #define HUGGLE_SUCCESS                     1
