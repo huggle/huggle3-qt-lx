@@ -88,7 +88,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="config-description">Beschreibung</string>
   <string name="config-shortcut">Abkürzung</string>
   <string name="config-queue-filter-ignore">Ignorieren (spielt keine Rolle)</string>
-  <string name="config-queue-filter-exclude">Ausschließen (muss nicht sein)</string>
+  <string name="config-queue-filter-exclude">Ausschließen (darf nicht sein)</string>
   <string name="config-queue-filter-require">Erfordern (muss sein)</string>
   <string name="config-summ">Benutzerdefinierte Zurücksetzungszusammenfassungen für Vorlagen</string>
   <string name="config-title">Einstellungen</string>
