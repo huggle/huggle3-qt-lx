@@ -1376,7 +1376,7 @@ void Huggle::Login::on_pushButton_2_clicked()
     } else
     {
         hcfg->SystemConfig_Multiple = true;
-        this->ui->pushButton_2->setText(_l("projects") + " >>");
+        this->ui->pushButton_2->setText(_l("projects") + " <<");
         this->ui->tableWidget->setVisible(true);
         if (this->height() < 460)
             this->resize(this->width(), 480);
