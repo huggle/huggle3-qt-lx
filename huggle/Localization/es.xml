@@ -653,6 +653,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="editquery-success">Se editó con éxito $1 en $2</string>
   <string name="editquery-token">La recuperación de token para editar $1</string>
   <string name="editquery-token-error">No se puede recuperar editar token</string>
+  <string name="editquery-error-badtoken">Clave incorrecta</string>
   <string name="editquery-invalid-token">No se puede editar de$1 porque token que yo tenía en caché no es válida. Por favor, intente editar esa página una vez más</string>
   <string name="provider-failure">Fallo de alimentación de proveedor de $1 a $2, tratando de encontrar alguna alternativa de proveedor</string>
   <string name="provider-primary-failure">Principal proveedor de alimentación ha fallado, volver a caer en la wiki proveedor</string>

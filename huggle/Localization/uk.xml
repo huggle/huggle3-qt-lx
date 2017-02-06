@@ -22,7 +22,7 @@
   <string name="result">Результат</string>
   <string name="save">Зберегти</string>
   <string name="show">Показати</string>
-  <string name="no-instant" fuzzy="true">Миттєві попередження не підключені для проекту $1, повідомлення для $2 не залишено, спробуйте вибрати інший рівень попередження</string>
+  <string name="no-instant">Миттєві попередження не підключені для проекту $1, тому неможливо надіслати повідомлення для $2. Спробуйте вибрати інший рівень попередження.</string>
   <string name="undo">Скасувати</string>
   <string name="yes">Так</string>
   <string name="editing-page">Редагувати сторінку</string>

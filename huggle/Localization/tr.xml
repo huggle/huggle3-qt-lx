@@ -652,6 +652,8 @@
   <string name="editquery-token">$1 değiştirmek için belirteç alınıyor</string>
   <string name="editquery-token-error">Değişiklik için belirteç alınamadı</string>
   <string name="editquery-nocsrft">CSRF olmadan</string>
+  <string name="editquery-error-badtoken">Kötü token</string>
+  <string name="editquery-error-sessionexpired">Oturumu yeni bir oturum talep süresi</string>
   <string name="editquery-invalid-token">Önbellekteki fiş geçerli olmadığı için $1 değiştirilemedi. Lütfen sayfayı değiştirmeyi bir kez daha deneyin.</string>
   <string name="provider-failure">$2 üzerinde $1 besleme sağlayıcı hatası, alternatif bir kaynak bulunmaya çalışılıyor</string>
   <string name="provider-primary-failure">Birincil besleme sağlayıcısı başarısız, wiki sağlayıcısına dönülüyor</string>
@@ -742,4 +744,6 @@ $1</string>
   <string name="main-revert-type-made-on-talk-page">konuşma sayfasında yapıldı</string>
   <string name="main-revert-type-made-white-list">beyaz listedeki bir kullanıcı tarafından yapıldı</string>
   <string name="main-revert-warn">Bu düzenleme $1, vandalizm gibi görünse bile olmayabilir geri döndürmek istediğinizden emin misiniz?$1$1</string>
+  <string name="query-request-process">İşleme apı isteği</string>
+  <string name="query-protected-link">Korumalı link</string>
 </resources>

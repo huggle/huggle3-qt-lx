@@ -76,7 +76,7 @@
   <string name="block-sharedipwarning">Nota: $1 está marcado como sendo um endereço IP compartilhado ou dinâmico.</string>
   <string name="block-rangeblockwarning">$1 já está afetado por um bloqueio de faixa em $2.
 Este bloqueio substituirá o efeito do bloqueio de faixa. Continuar?</string>
-  <string name="block-token-1">Obtendo chave para deletar $1</string>
+  <string name="block-token-1">Obtendo chave para bloquear $1</string>
   <string name="block-fail">Impossível bloquear o(a) usuário(a), $1</string>
   <string name="block-token-e1">A chave não pôde ser obtida: $1</string>
   <string name="block-error-no-info">Nenhuma informação do usuário estava presente na consulta (você é um administrador?)</string>
@@ -93,7 +93,7 @@ Este bloqueio substituirá o efeito do bloqueio de faixa. Continuar?</string>
   <string name="config-summ">Resumos personalizados de reversão para predefinições</string>
   <string name="config-title">Opções</string>
   <string name="config-already-in-use">Este atalho já é usado por $1, por favor escolha um diferente</string>
-  <string name="config-openinbrowser">Abrir hiperligações numa nova janela do navegador externo</string>
+  <string name="config-openinbrowser">Abrir link numa nova janela do navegador externo</string>
   <string name="config-shownewedits">Mostrar automaticamente novas edições na página caso elas ocorram</string>
   <string name="config-ircmode">Usar, se possível, o feed do IRC para mudanças recentes</string>
   <string name="config-ircport">Porta do IRC</string>
@@ -131,7 +131,7 @@ Este bloqueio substituirá o efeito do bloqueio de faixa. Continuar?</string>
   <string name="config-remove-old">Remover edições antigas se uma edição mais nova para a mesma página for analisada</string>
   <string name="config-auto-load-history">Carregar automaticamente o histórico e as informações do usuário (requer muita conexão de rede)</string>
   <string name="config-last-revision">Mostrar última revisão da página caso a edição carregada atualmente não seja a última revisão (divulgaremos ignorando cache)</string>
-  <string name="config-require-delay">Requer um atraso após cada carregamento da próxima edição, para os quais não é possível usar qualquer recurso de gravação (útil quando você precisa resolver erros no teclado multifunções)</string>
+  <string name="config-require-delay">Requer um atraso após cada carregamento da próxima edição, para os quais não é possível usar qualquer recurso de gravação (útil quando você precisa evitar erros no teclado multifunções)</string>
   <string name="config-wait-edit">O tempo pelo qual você precisa esperar entre editar recursos estão habilitados (segundos):</string>
   <string name="config-display-text">Mostrar seguinte</string>
   <string name="config-retrieve-edit">Recuperar sua própria edição</string>
@@ -166,8 +166,8 @@ Este bloqueio substituirá o efeito do bloqueio de faixa. Continuar?</string>
   <string name="config-autoreport">Quando me for perguntado se quero dar um aviso final a um usuário</string>
   <string name="config-reportnone">Não fazer nada</string>
   <string name="config-reportprompt">Perguntar se quero reportar o vândalo</string>
-  <string name="config-reportauto">Reportar vândalo automaticamente</string>
-  <string name="config-templates">Mensagens para notificar usuários</string>
+  <string name="config-reportauto">Reportar problema automaticamente</string>
+  <string name="config-templates">Modelo de mensagens de usuario</string>
   <string name="config-templatetext">Mostrar texto</string>
   <string name="config-template">Predefinição</string>
   <string name="config-promptforblock">Perguntar se quero bloquear ao avisar pela última vez um usuário</string>
