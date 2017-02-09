@@ -300,8 +300,8 @@ bool UserConfiguration::ParseUserConfig(QString config, ProjectConfiguration *Pr
     ProjectConfig->Ignores = HuggleParser::ConfigurationParse_QL("ignore", config, ProjectConfig->Ignores);
     // this is a hack so that we can access this value more directly, it can't be changed in huggle
     // so there is no point in using a hash for it
-    ProjectConfig->IPScore = this->SetOption(ProjectConfig_IPScore_Key, config, ProjectConfig->IPScore).toInt();
-    ProjectConfig->ScoreFlag = this->SetOption("score-flag", config, ProjectConfig->ScoreFlag).toInt();
+    ProjectConfig->IPScore = this->SetOption(ProjectConfig_IPScore_Key, config, ProjectConfig->IPScore).toLongLong();
+    ProjectConfig->ScoreFlag = this->SetOption("score-flag", config, ProjectConfig->ScoreFlag).toLongLong();
     this->EnforceManualSoftwareRollback = SafeBool(ConfigurationParse("software-rollback", config));
     if (ProjectConfig->WarningSummaries.contains(1))
         ProjectConfig->WarningSummaries[1] = this->SetOption("warn-summary", config, ProjectConfig->WarningSummaries[1]).toString();
@@ -315,12 +315,12 @@ bool UserConfiguration::ParseUserConfig(QString config, ProjectConfiguration *Pr
     ProjectConfig->TemplateAge = this->SetOption("template-age", config, ProjectConfig->TemplateAge).toInt();
     ProjectConfig->RevertSummaries = this->SetUserOptionList("template-summ", config, ProjectConfig->RevertSummaries);
     ProjectConfig->WarningTypes = this->SetUserOptionList("warning-types", config, ProjectConfig->WarningTypes);
-    ProjectConfig->ScoreChange = this->SetOption("score-change", config, ProjectConfig->ScoreChange).toInt();
-    ProjectConfig->ScoreUser = this->SetOption("score-user", config, ProjectConfig->ScoreUser).toInt();
+    ProjectConfig->ScoreChange = this->SetOption("score-change", config, ProjectConfig->ScoreChange).toLongLong();
+    ProjectConfig->ScoreUser = this->SetOption("score-user", config, ProjectConfig->ScoreUser).toLongLong();
     this->SummaryMode = ConfigurationParse("SummaryMode", config, QString::number(this->SummaryMode)).toInt();
-    ProjectConfig->ScoreTalk = this->SetOption("score-talk", config, ProjectConfig->ScoreTalk).toInt();
+    ProjectConfig->ScoreTalk = this->SetOption("score-talk", config, ProjectConfig->ScoreTalk).toLongLong();
     ProjectConfig->WarningDefs = this->SetUserOptionList("warning-template-tags", config, ProjectConfig->WarningDefs);
-    ProjectConfig->BotScore = this->SetOption("score-bot", config, ProjectConfig->BotScore).toInt();
+    ProjectConfig->BotScore = this->SetOption("score-bot", config, ProjectConfig->BotScore).toLongLong();
     if (!HuggleQueueFilter::Filters.contains(ProjectConfig->Site))
         throw new Huggle::Exception("There is no such a wiki", BOOST_CURRENT_FUNCTION);
     (*HuggleQueueFilter::Filters[ProjectConfig->Site]) += HuggleParser::ConfigurationParseQueueList(config, false);

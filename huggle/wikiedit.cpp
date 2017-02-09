@@ -157,7 +157,7 @@ bool WikiEdit::FinalizePostProcessing()
                 {
                     this->User->EditCount = user_info_->GetAttribute("editcount").toLong();
                     // users with high number of edits aren't vandals
-                    this->Score += this->User->EditCount*-2;
+                    this->Score += this->User->EditCount * this->GetSite()->ProjectConfig->EditScore;
                 }
                 else
                 {

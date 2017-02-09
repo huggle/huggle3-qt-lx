@@ -13,6 +13,7 @@
 #ifndef DEFINITIONS_H
 #define DEFINITIONS_H
 
+typedef long long score_ht;
 typedef char byte_ht;
 typedef long long revid_ht;
 
