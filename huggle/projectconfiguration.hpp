@@ -141,7 +141,8 @@ namespace Huggle
             // bool            ConfirmWarned = false;
             bool            Patrolling = false;
             bool            PatrollingFlaggedRevs = false;
-            int             IPScore = 20;
+            score_ht        EditScore = -2;
+            score_ht        IPScore = 20;
             // Reverting
             QString         MultipleRevertSummary = "Reverted,edit by,edits by,and,other users,to last revision by,to an older version by";
             bool            RevertingEnabled = true;
@@ -204,14 +205,14 @@ namespace Huggle
             QList<ScoreWord>        ScoreWords;
             QList<ScoreWord>        NoTalkScoreWords;
             QList<ScoreWord>        NoTalkScoreParts;
-            int                     ScoreFlag = -60;
-            int                     ForeignUser = 800;
-            int                     ScoreTalk = -200;
+            score_ht                ScoreFlag = -60;
+            score_ht                ForeignUser = 800;
+            score_ht                ScoreTalk = -200;
             //! Score that is added for every edit that has really big size
-            int                     ScoreChange = 100;
-            int                     LargeRemoval = 400;
-            int                     ScoreRemoval = 800;
-            int                     ScoreUser = -600;
+            score_ht                ScoreChange = 100;
+            score_ht                LargeRemoval = 400;
+            score_ht                ScoreRemoval = 800;
+            score_ht                ScoreUser = -600;
             //! This is a number that can be used to get a current server time
             qint64                  ServerOffset = 0;
             QStringList             Ignores;
@@ -221,7 +222,7 @@ namespace Huggle
             QStringList             IgnorePatterns;
             QString                 Parser_Date_Prefix = ",";
             QStringList             Parser_Date_Suffix;
-            int                     TalkPageWarningScore = -800;
+            score_ht                TalkPageWarningScore = -800;
             bool                    GlobalRequired = true;
             // Tagging
             QString                 TaggingSummary;
@@ -233,8 +234,8 @@ namespace Huggle
             QString                 WelcomeMP = "Project:Huggle/Message";
             // This is internal only do not prefix it!!
             QList<QRegExp>          _revertPatterns;
-            int                     BotScore = -200;
-            int                     WarningScore = 2000;
+            score_ht                BotScore = -200;
+            score_ht                WarningScore = 2000;
             QStringList             WarningTypes;
             QString                 SpeedyEditSummary = "Tagging page for deletion";
             QString                 SpeedyWarningSummary = "Sending user a notification regarding deletion of their page";
