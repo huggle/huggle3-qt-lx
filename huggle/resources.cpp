@@ -73,7 +73,7 @@ void Huggle::Resources::PlayExternalSoundFile(QString path)
 #ifndef HUGGLE_NOAUDIO
     QMediaPlayer *player = new QMediaPlayer();
     player->setMedia(QUrl::fromLocalFile(path));
-    player->setVolume(50);
+    player->setVolume(100);
     player->play();
 #endif
 }
@@ -83,7 +83,7 @@ void Huggle::Resources::PlayEmbeddedSoundFile(QString file)
 #ifndef HUGGLE_NOAUDIO
     QMediaPlayer *player = new QMediaPlayer();
     player->setMedia(QUrl("qrc:/huggle/sounds/" + file));
-    player->setVolume(50);
+    player->setVolume(100);
     player->play();
 #endif
 }
