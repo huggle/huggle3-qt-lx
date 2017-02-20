@@ -656,7 +656,7 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="editquery-nocsrft">Nenhum token CSRF</string>
   <string name="editquery-error-retrieve-prev">Não foi possível recuperar o conteúdo anterior da página: $1</string>
   <string name="editquery-error-append">Você não pode usar ambos Anexar e Preencher para edição de página</string>
-  <string name="editquery-error-badtoken">Sinal incorreto</string>
+  <string name="editquery-error-badtoken">Token incorreto</string>
   <string name="editquery-error-sessionexpired">Sessão expirada solicitando um novo login</string>
   <string name="editquery-request-ignore-suspended">Ignorar solicitação para processar a consulta suspensa</string>
   <string name="editquery-request-ignore-active">Ignorar solicitação para processar consulta que já está em execução</string>
@@ -753,7 +753,7 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="query-result-nodata">O resultado da consulta não contém dados</string>
   <string name="query-request-process">Processando pedido de api</string>
   <string name="query-request-noaction">Nenhuma ação fornecida para o pedido de api</string>
-  <string name="query-login-undefined">Login token requer um valor definido pelo usuário, ele não é armazenado na memória</string>
+  <string name="query-login-undefined">O token de login requer um valor definido pelo usuário, ele não é armazenado na memória</string>
   <string name="query-execute-drymode">Se eu não estava no modo seco eu executaria esta consulta (post=</string>
   <string name="query-protected-link">Link protegido</string>
 </resources>
