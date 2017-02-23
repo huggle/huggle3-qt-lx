@@ -144,7 +144,7 @@
   <string name="config-userspace">사용자 공간</string>
   <string name="config-talk">토론 문서</string>
   <string name="config-message-notification">당신의 토론 문서에 새로운 메시지를 받을 때 알림을 표시</string>
-  <string name="config-warning-api">API 쿼리 경고 표시</string>
+  <string name="config-warning-api">API 쿼리에 대한 경고 표시</string>
   <string name="config-updates">업데이트 확인</string>
   <string name="config-beta">베타 버전을 확인</string>
   <string name="config-html-messages">HAN은 HTML 메시지를 렌더링할 수 있습니다 (위험)</string>
@@ -324,7 +324,7 @@
   <string name="main-revision-next">다음</string>
   <string name="main-revision-latest">최신</string>
   <string name="main-tools">도구</string>
-  <string name="main-tools-sess">세션 정보 보이기</string>
+  <string name="main-tools-sess">세션 정보 표시</string>
   <string name="main-tools-il">현재 위키의 무시 목록 보기</string>
   <string name="main-page-next">다음</string>
   <string name="main-page-switchtotalk">토론 문서로 전환</string>
@@ -341,7 +341,7 @@
   <string name="main-page-unwatch">주시 해제</string>
   <string name="main-page-purge">새로 고침</string>
   <string name="main-page-curr-disp">현재 표시됨</string>
-  <string name="main-page-display">이 문서 보기</string>
+  <string name="main-page-display">이 문서 표시</string>
   <string name="main-page-patrol">점검한 것으로 표시</string>
   <string name="main-page-move">이동...</string>
   <string name="main-page-flag-suspicious-edit">의심스러운 편집으로 플래그 (이 동작은 사용자에게 +1점을 줍니다)</string>
@@ -376,9 +376,9 @@
   <string name="main-han-disconnect">연결 끊기</string>
   <string name="main-han-connect">연결</string>
   <string name="main-help">도움말</string>
-  <string name="main-han-display-bot-data">봇 데이터 보기</string>
-  <string name="main-han-display-user-messages">사용자 메시지 보기</string>
-  <string name="main-han-display-user-data">사용자 데이터 보기</string>
+  <string name="main-han-display-bot-data">봇 데이터 표시</string>
+  <string name="main-han-display-user-messages">사용자 메시지 표시</string>
+  <string name="main-han-display-user-data">사용자 데이터 표시</string>
   <string name="main-help-documentation">설명문서</string>
   <string name="main-help-feedback">피드백</string>
   <string name="main-help-about">허글 정보...</string>
@@ -387,7 +387,7 @@
   <string name="main-usermessageother">다른 메시지...</string>
   <string name="main-advanced">고급...</string>
   <string name="main-stats">분마다 편집 $1번, 분마다 되돌리기 $2번</string>
-  <string name="main-display-session-data">세션 데이터 보기</string>
+  <string name="main-display-session-data">세션 데이터 표시</string>
   <string name="main-display-whitelist">허용 목록 표시</string>
   <string name="main-revert-custom-reson">이 편집을 이전 판으로 되돌리려는 이유를 제공해주세요</string>
   <string name="main-log1">$1의 선택된 판을 되살리는 중</string>
@@ -547,7 +547,7 @@
   <string name="shortcut-good">현재 보이는 편집을 정상 편집으로 표시</string>
   <string name="shortcut-open-in-huggle">현재 표시된 문서 열기</string>
   <string name="shortcut-open">브라우저에서 현재 표시된 편집 열기</string>
-  <string name="shortcut-talk">이 변경을 한 사용자의 토론 문서를 보여줍니다</string>
+  <string name="shortcut-talk">이 변경을 한 사용자의 토론 문서를 표시합니다</string>
   <string name="shortcut-revert-agf-1">최신 판을 좋은 뜻으로 보지만 되돌리기</string>
   <string name="shortcut-browser-close-tab">브라우저 탭 닫기</string>
   <string name="shortcut-tab">새 탭 열기</string>

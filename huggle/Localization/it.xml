@@ -652,6 +652,7 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="editquery-success">$1 modificata con successo su $2</string>
   <string name="editquery-token">Recupero del token per modificare $1</string>
   <string name="editquery-token-error">Impossibile recuperare il token di modifica</string>
+  <string name="editquery-nocsrft">Nessun token CSRF</string>
   <string name="editquery-invalid-token">Impossibile modificare $1 perché il token che era in cache non è più valido. Per favore prova di nuovo a modificare la pagina</string>
   <string name="provider-failure">Errore del provider di feed $1 su $2, è in corso il tentativo di rintraccio di un provider alternativo</string>
   <string name="provider-primary-failure">Il provider del feed principale ha avuto un errore, passaggio al provider del wiki</string>
