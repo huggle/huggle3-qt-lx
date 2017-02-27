@@ -206,7 +206,7 @@
   <string name="main-page-history">Adtapout an istor</string>
   <string name="main-page-historypage">Diskouez pajenn an istor</string>
   <string name="main-page-edit">Aozañ ar bajenn er merdeer</string>
-  <string name="main-page-tag">Balizenn</string>
+  <string name="main-page-tag">Tikedenn</string>
   <string name="main-page-watch">Evezhiañ</string>
   <string name="main-page-unwatch">Paouez da evezhiañ</string>
   <string name="main-page-purge">Spurjañ</string>
@@ -271,7 +271,7 @@
   <string name="queue-filterreverts">Disteuler</string>
   <string name="queue-filternotifications">Kemennadenn</string>
   <string name="queue-filterwarnings">Diwallit</string>
-  <string name="queue-filtertags">Balizenn</string>
+  <string name="queue-filtertags">Tikedenn</string>
   <string name="queue-filterbot">Kemm robot</string>
   <string name="report-reason">Abeg :</string>
   <string name="report-message">Kemennadenn :</string>
@@ -286,9 +286,9 @@
   <string name="speedy-reason">Abeg :</string>
   <string name="speedy-parameters">Arventennoù :</string>
   <string name="speedy-notifycreator">Kemenn krouer ar bajenn</string>
-  <string name="tag-title">Balizenn $1</string>
-  <string name="tag-tagselector">Ouzhpennañ ur valizenn :</string>
-  <string name="tag-tags">Balizenn(où) :</string>
+  <string name="tag-title">Tikedenn $1</string>
+  <string name="tag-tagselector">Ouzhpennañ un dikedenn :</string>
+  <string name="tag-tags">Tikedenn(où) :</string>
   <string name="tag-parameter">Arventenn</string>
   <string name="tag-summary">Diverradur :</string>
   <string name="tag-insertatend">Ensoc\'hañ e traoñ ar bajenn</string>

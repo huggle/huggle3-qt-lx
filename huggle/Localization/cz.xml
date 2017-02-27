@@ -201,6 +201,7 @@
   <string name="irc-switch-rc">Přepnutí na wiki</string>
   <string name="login-old">Načítání uživatelských nastavení ze starého umístění</string>
   <string name="login-intro">Vyberte projekt a zadejte své uživatelské jméno a heslo. Kliknutím na tlačítko \"Projekty\" se můžete přihlásit k více projektům.</string>
+  <string name="login-tab-botp">Hesla pro bota</string>
   <string name="login-tab-login">Přihlásit</string>
   <string name="login-reload-tool-tip">Znovu načte seznam dostupných projektů, které mohou být použity v Huggle. To může být užitečné v případě, že chcete použít Huggle v projektu, na němž byl nedávno povolen Huggle.</string>
   <string name="login-language">Jazyk:</string>
