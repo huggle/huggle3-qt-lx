@@ -65,7 +65,7 @@
   <string name="block-duration">Duración:</string>
   <string name="block-message">Mensaje en página de discusión:</string>
   <string name="block-message-user">Enviar un mensaje a la cuenta de destino que explique el motivo del bloqueo</string>
-  <string name="block-anononly">Bloquear sólo los usuarios anónimos</string>
+  <string name="block-anononly">Bloquear solo los usuarios anónimos</string>
   <string name="block-creation">Impedir la creación de cuentas</string>
   <string name="block-autoblock">Activar bloqueos automáticos</string>
   <string name="block-email">Impedir que el usuario envíe correo electrónico.</string>

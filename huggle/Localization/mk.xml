@@ -19,7 +19,7 @@
   <string name="rename">Преименувај</string>
   <string name="reload">Превчитај</string>
   <string name="project">Проект</string>
-  <string name="result">Резултат</string>
+  <string name="result">Исход</string>
   <string name="save">Зачувај</string>
   <string name="show">Прикажи</string>
   <string name="no-instant">Моментните предупредувања не се овозможени на проектот $1. Затоа, не можам да ја испратам пораката на $2. Одберете друг степен на предупредување.</string>

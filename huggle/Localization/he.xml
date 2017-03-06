@@ -22,7 +22,7 @@
   <string name="result">תוצאה</string>
   <string name="save">שמירה</string>
   <string name="show">הצגה</string>
-  <string name="no-instant" fuzzy="true">אזהרות מידיות אינן מופעלות במיזם $1, לא נשלחה הודעה אל $2, יש לבחור רמת אזהרה שונה</string>
+  <string name="no-instant">אזהרות מידיות אינן מופעלות במיזם $1, אז הודעה אל $2 לא יכולה להישלח. נא לבחור רמת אזהרה אחרת.</string>
   <string name="undo">ביטול</string>
   <string name="yes">כן</string>
   <string name="editing-page">עריכת דף</string>
@@ -652,6 +652,13 @@
   <string name="editquery-success">ערך בהצלחה את $1 ב־$2</string>
   <string name="editquery-token">אחזור אסימון לערוך את $1</string>
   <string name="editquery-token-error">לא ניתן לאחזר אסימון עריכה</string>
+  <string name="editquery-nocsrft">אין אסימון CSRF</string>
+  <string name="editquery-error-retrieve-prev">לא ניתן לאחזר את התוכן הקודם של הדף: $1</string>
+  <string name="editquery-error-append">אין באפשרותך להשתמש בהוספה אחרי והוספה לפני לשם עריכת דף</string>
+  <string name="editquery-error-badtoken">אסימון מקולקל</string>
+  <string name="editquery-error-sessionexpired">השיחה פגה תוך כדי בקשת כניסה מחודשת</string>
+  <string name="editquery-request-ignore-suspended">התעלמות מהבקשה לעבד שאילתה מעוכבת</string>
+  <string name="editquery-request-ignore-active">התעלמות מהבקשה לעבד שאילתה שכבר רצה</string>
   <string name="editquery-invalid-token">לא ניתן לבטל את $1 כי האסימון שהיה לי במטמון כבר אינו תקף. נא לנסות לערוך את הדף ההוא עוד פעם</string>
   <string name="provider-failure">ספק ההזנה $1 ב־$2 נכשל, מתבצע ניסיון למצוא ספק חלופי</string>
   <string name="provider-primary-failure">ספק ההזנה העיקרי נכשל, מתבצע גיבוי לספק ויקי</string>
@@ -715,6 +722,7 @@ $1</string>
   <string name="about-python-with">, עם תמיכה בפייתון</string>
   <string name="about-python-without">ללא תמיכה בפייתון</string>
   <string name="about-qt">, מהודר באמצעות QT $1 רץ על QT $1</string>
+  <string name="about-info">, על בסיס $1, פלטפורמת יעד: $2</string>
   <string name="error-unknown-code">שגיאה בלתי ידועה: $1</string>
   <string name="relogin-fail">לא ניתן להיכנס לוויקי: $1</string>
   <string name="projects">מיזמים</string>
@@ -741,4 +749,10 @@ $1</string>
   <string name="main-revert-type-made-on-talk-page">בדף השיחה</string>
   <string name="main-revert-type-made-white-list">של משתמש ברשימה הלבנה</string>
   <string name="main-revert-warn">זאת עריכה $1, אז גם אם היא נראית כמו השחתה, אולי היא לא כזאת, האם באמת לשחזר אותה?</string>
+  <string name="query-result-nodata">תוצאות השאילתה אינן מכילות שום נתונים</string>
+  <string name="query-request-process">עיבוד בקשת API</string>
+  <string name="query-request-noaction">לא סופקה בקשה לבקשת API</string>
+  <string name="query-login-undefined">אסימון הכניסה דורש ערך מוגדר על־ידי משתמש, הוא לא מאוחסן בזיכרון</string>
+  <string name="query-execute-drymode">לולי הייתי במצב יבש, הייתי מבצע את השאילתה הזאת (post=</string>
+  <string name="query-protected-link">קישור מוגן</string>
 </resources>
