@@ -38,10 +38,11 @@ namespace Huggle
 
     enum MessageBoxStyle
     {
-        MessageBoxStyleNormal,
-        MessageBoxStyleQuestion,
-        MessageBoxStyleWarning,
-        MessageBoxStyleError
+        MessageBoxStyleNormal, // OK
+        MessageBoxStyleQuestion, // Yes No
+        MessageBoxStyleQuestionAbort, // Yes No Cancel
+        MessageBoxStyleWarning, // OK (warning)
+        MessageBoxStyleError // OK (error)
     };
 
     //! Generic C++ functions that are missing in standard libs

@@ -250,6 +250,12 @@ int Generic::MessageBox(QString title, QString text, MessageBoxStyle st, bool en
             mb->setDefaultButton(QMessageBox::Yes);
             return_value = mb->exec();
             break;
+        case MessageBoxStyleQuestionAbort:
+            mb->setIcon(QMessageBox::Question);
+            mb->setStandardButtons(QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
+            mb->setDefaultButton(QMessageBox::Cancel);
+            return_value = mb->exec();
+            break;
         case MessageBoxStyleNormal:
             mb->setIcon(QMessageBox::Information);
             goto exec;

@@ -973,7 +973,10 @@ Collectable_SmartPtr<RevertQuery> MainWindow::Revert(QString summary, bool next,
 bool MainWindow::PreflightCheck(WikiEdit *_e)
 {
     if (!Hooks::RevertPreflight(_e))
+    {
+        HUGGLE_DEBUG("Hook prevented revert of " + _e->Page->PageName, 2);
         return false;
+    }
     if (this->qNext != nullptr)
     {
         Generic::pMessageBox(this, _l("main-revert-already-pending-title"), _l("main-revert-already-pending-text"),
@@ -1823,6 +1826,7 @@ void MainWindow::_BlockUser()
 
 void MainWindow::DisplayNext(Query *q)
 {
+    HUGGLE_DEBUG("Showing next edit", 2);
     switch(Configuration::HuggleConfiguration->UserConfig->GoNext)
     {
         case Configuration_OnNext_Stay:
