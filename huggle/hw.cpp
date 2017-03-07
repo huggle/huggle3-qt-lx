@@ -35,9 +35,12 @@ HW::~HW()
         return;
     QFile *layout = new QFile(this->HW_Geometry);
     if (!layout->open(QIODevice::ReadWrite | QIODevice::Truncate))
-        throw new Huggle::Exception("Unable to write geometry to a config file for " + this->HW_Name, BOOST_CURRENT_FUNCTION);
-    else
+    {
+        HUGGLE_ERROR("Unable to write geometry to a config file for " + this->HW_Name + " @" + BOOST_CURRENT_FUNCTION);
+    } else
+    {
         layout->write(this->HW_Widget->saveGeometry());
+    }
     layout->close();
     delete layout;
 }
