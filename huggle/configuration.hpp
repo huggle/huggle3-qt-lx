@@ -316,6 +316,7 @@ namespace Huggle
             unsigned int    SystemConfig_ProxyPort = 0;
             QString         SystemConfig_ProxyUser;
             QString         SystemConfig_ProxyPass;
+            bool            SystemConfig_PlaySoundOnIRCUserMsg = true;
             //! This is index for login form so that we can remember which was last wiki user logged to
 
             //! We are storing index instead of wiki name, because in case it was a wiki that later

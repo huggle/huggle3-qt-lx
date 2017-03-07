@@ -23,6 +23,7 @@
 #include "mainwindow.hpp"
 #include "syslog.hpp"
 #include "ui_vandalnw.h"
+#include "resources.hpp"
 #include "ircchattextbox.hpp"
 #include "wikiedit.hpp"
 #include "wikipage.hpp"
@@ -681,6 +682,8 @@ void VandalNw::OnIRCChannelMessage(libircclient::Parser *px)
         {
             this->Insert(nick + ": " + message_, HAN::MessageType_UserTalk);
         }
+        if (hcfg->SystemConfig_PlaySoundOnIRCUserMsg)
+            Resources::PlayEmbeddedSoundFile("not1.wav");
     }
 }
 
