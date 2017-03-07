@@ -15,6 +15,7 @@
 #include <QFile>
 #ifndef HUGGLE_NOAUDIO
     #include <QMediaPlayer>
+    QMediaPlayer* Huggle::Resources::mediaPlayer = NULL;
 #endif
 
 QString Huggle::Resources::DiffFooter;
@@ -66,25 +67,34 @@ void Huggle::Resources::Init()
     Html_EmptyList = GetResource("/huggle/resources/Resources/html/empty.html");
     HtmlIncoming = GetResource("/huggle/resources/Resources/html/Message.html");
     CssRtl = GetResource("/huggle/resources/Resources/html/RTL.css");
+#ifndef HUGGLE_NOAUDIO
+    mediaPlayer = new QMediaPlayer();
+#endif
+}
+
+void Huggle::Resources::Uninit()
+{
+#ifndef HUGGLE_NOAUDIO
+    mediaPlayer->deleteLater();
+    mediaPlayer = NULL;
+#endif
 }
 
 void Huggle::Resources::PlayExternalSoundFile(QString path)
 {
 #ifndef HUGGLE_NOAUDIO
-    QMediaPlayer *player = new QMediaPlayer();
-    player->setMedia(QUrl::fromLocalFile(path));
-    player->setVolume(100);
-    player->play();
+    mediaPlayer->setMedia(QUrl::fromLocalFile(path));
+    mediaPlayer->setVolume(100);
+    mediaPlayer->play();
 #endif
 }
 
 void Huggle::Resources::PlayEmbeddedSoundFile(QString file)
 {
 #ifndef HUGGLE_NOAUDIO
-    QMediaPlayer *player = new QMediaPlayer();
-    player->setMedia(QUrl("qrc:/huggle/sounds/" + file));
-    player->setVolume(100);
-    player->play();
+    mediaPlayer->setMedia(QUrl("qrc:/huggle/sounds/" + file));
+    mediaPlayer->setVolume(100);
+    mediaPlayer->play();
 #endif
 }
 
