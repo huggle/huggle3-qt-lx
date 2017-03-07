@@ -94,6 +94,14 @@ namespace Huggle
         //! \obsolete RetrieveWikiPageContents(WikiPage *page, bool parse = false);
         HUGGLE_EX ApiQuery *RetrieveWikiPageContents(QString page, WikiSite *site, bool parse = false);
         HUGGLE_EX ApiQuery *RetrieveWikiPageContents(WikiPage *page, bool parse = false);
+        /*!
+         * \brief ShrinkText makes string fit to a size, if text is longer, the extra part is replaced with ".."
+         * \param text Text which is about to be made smaller
+         * \param size Desired size of string, this function will alter it only if string is longer, size must be longer than minimum size
+         * \param html if true spaces are replaced with html specials
+         * \param minimum size
+         * \return new string
+         */
         HUGGLE_EX QString ShrinkText(QString text, unsigned int size, bool html = true, unsigned int minimum = 2);
     }
 }

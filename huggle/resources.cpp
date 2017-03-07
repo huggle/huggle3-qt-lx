@@ -13,6 +13,10 @@
 #include "resources.hpp"
 #include "wikisite.hpp"
 #include <QFile>
+#ifndef HUGGLE_NOAUDIO
+    #include <QMediaPlayer>
+    QMediaPlayer* Huggle::Resources::mediaPlayer = NULL;
+#endif
 
 QString Huggle::Resources::DiffFooter;
 QString Huggle::Resources::DiffHeader;
@@ -38,6 +42,21 @@ QString Huggle::Resources::GetResource(QString path)
     return result;
 }
 
+QByteArray Huggle::Resources::GetResourceAsBinary(QString path)
+{
+    QFile *vf = new QFile(":" + path);
+    if (!vf->open(QIODevice::ReadOnly))
+    {
+        delete vf;
+        throw new Huggle::Exception("Unable to open internal resource: " + path, BOOST_CURRENT_FUNCTION);
+    }
+
+    QByteArray result = vf->readAll();
+    vf->close();
+    delete vf;
+    return result;
+}
+
 void Huggle::Resources::Init()
 {
     HtmlHeader = GetResource("/huggle/resources/Resources/html/Header.html");
@@ -48,6 +67,35 @@ void Huggle::Resources::Init()
     Html_EmptyList = GetResource("/huggle/resources/Resources/html/empty.html");
     HtmlIncoming = GetResource("/huggle/resources/Resources/html/Message.html");
     CssRtl = GetResource("/huggle/resources/Resources/html/RTL.css");
+#ifndef HUGGLE_NOAUDIO
+    mediaPlayer = new QMediaPlayer();
+#endif
+}
+
+void Huggle::Resources::Uninit()
+{
+#ifndef HUGGLE_NOAUDIO
+    mediaPlayer->deleteLater();
+    mediaPlayer = NULL;
+#endif
+}
+
+void Huggle::Resources::PlayExternalSoundFile(QString path)
+{
+#ifndef HUGGLE_NOAUDIO
+    mediaPlayer->setMedia(QUrl::fromLocalFile(path));
+    mediaPlayer->setVolume(100);
+    mediaPlayer->play();
+#endif
+}
+
+void Huggle::Resources::PlayEmbeddedSoundFile(QString file)
+{
+#ifndef HUGGLE_NOAUDIO
+    mediaPlayer->setMedia(QUrl("qrc:/huggle/sounds/" + file));
+    mediaPlayer->setVolume(100);
+    mediaPlayer->play();
+#endif
 }
 
 QString Huggle::Resources::GetHtmlHeader()

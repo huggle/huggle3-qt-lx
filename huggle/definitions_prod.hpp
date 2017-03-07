@@ -46,6 +46,9 @@ typedef long long revid_ht;
     #define HUGGLE_WIN
 #endif
 
+// uncomment to disable audio subsystem in huggle
+// #define HUGGLE_NOAUDIO
+
 // uncomment this out to disable updater
 // #define HUGGLE_NOUPDATER
 
@@ -100,6 +103,11 @@ namespace std { typedef decltype(nullptr) nullptr_t; }
 
 #if QT_VERSION >= 0x050000
     #define HUGGLE_QTV5
+#else
+    // we can't use audio in Qt4, it's too broken
+    #ifndef HUGGLE_NOAUDIO
+    #define HUGGLE_NOAUDIO
+    #endif
 #endif
 
 #define HUGGLE_SUCCESS                     1

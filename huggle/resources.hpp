@@ -15,6 +15,10 @@
 
 #include <QString>
 
+#ifndef HUGGLE_NOAUDIO
+class QMediaPlayer;
+#endif
+
 namespace Huggle
 {
     //! Embedded resource files
@@ -22,8 +26,12 @@ namespace Huggle
     {
         public:
             static void Init();
+            static void Uninit();
+            static void PlayExternalSoundFile(QString path);
+            static void PlayEmbeddedSoundFile(QString file);
             static QString GetHtmlHeader();
-            static QString GetResource(QString file);
+            static QString GetResource(QString path);
+            static QByteArray GetResourceAsBinary(QString path);
             static QString HtmlIncoming;
             //! This string contains a html header
             static QString HtmlHeader;
@@ -34,6 +42,10 @@ namespace Huggle
             static QString CssRtl;
             //! This string contains a html footer
             static QString HtmlFooter;
+        private:
+#ifndef HUGGLE_NOAUDIO
+            static QMediaPlayer* mediaPlayer;
+#endif
     };
 }
 

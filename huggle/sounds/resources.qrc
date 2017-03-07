@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="/huggle/sounds">
+      <file>not1.wav</file>
+  </qresource>
+</RCC>
+
