@@ -1477,14 +1477,10 @@ void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_trig
 {
     if (!this->EditingChecks() || !this->CheckRevertable())
         return;
-    Collectable_SmartPtr<RevertQuery> result = this->Revert("", false);
+    Collectable_SmartPtr<RevertQuery> result = this->Revert("");
     if (result != nullptr)
     {
         this->Warn("warning", result);
-        this->DisplayNext(result);
-    } else
-    {
-        this->DisplayNext(result);
     }
 }
 
@@ -1492,14 +1488,10 @@ void MainWindow::on_actionRevert_and_warn_triggered()
 {
     if (!this->EditingChecks() || !this->CheckRevertable())
         return;
-    Collectable_SmartPtr<RevertQuery> result = this->Revert("", false);
+    Collectable_SmartPtr<RevertQuery> result = this->Revert("");
     if (result != nullptr)
     {
         this->Warn("warning", result);
-        this->DisplayNext(result);
-    } else
-    {
-        this->DisplayNext(result);
     }
 }
 
