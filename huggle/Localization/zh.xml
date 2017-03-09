@@ -104,7 +104,7 @@
   <string name="config-startupmessage">显示启动讯息</string>
   <string name="config-shownewmessages">显示新消息提示栏</string>
   <string name="config-shortcutlist">键盘快捷方式</string>
-  <string name="config-shortcutaction">动作</string>
+  <string name="config-shortcutaction">操作</string>
   <string name="config-changeshortcut">修改$1的快捷方式</string>
   <string name="config-noshortcut">无</string>
   <string name="config-defaults">默认</string>
