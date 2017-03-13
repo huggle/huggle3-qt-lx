@@ -22,6 +22,7 @@
   <string name="result">Disoc\'h</string>
   <string name="save">Enrollañ</string>
   <string name="show">Diskouez</string>
+  <string name="no-instant">N\'eo ket gweredekaet ar c\'hemennoù prim er raktres $1, ha ne c\'haller ket kas ar c\'hemennadennoù $2 eta. Dibabit ul live kemenn all, mar plij.</string>
   <string name="undo">Dizober</string>
   <string name="yes">Ya</string>
   <string name="editing-page">Kemmañ ar bajenn</string>
@@ -50,6 +51,7 @@
   <string name="disable">Diweredekaat</string>
   <string name="no-token">Jedouer ebet</string>
   <string name="flags">Bannieloù</string>
+  <string name="gracetime">En engortoz a echuiñ goulennoù evit kemmañ...</string>
   <string name="browser-none">N\'eus diskwelet pajenn ebet bremañ</string>
   <string name="browser-load">Pellgargañ diff en ur implijout un deouez Web sikour, gortozit mar plij</string>
   <string name="browser-miss-summ">N\'eus bet pourchaset diverradur ebet</string>
@@ -100,9 +102,17 @@
   <string name="config-noshortcut">Hini ebet</string>
   <string name="config-defaults">Dre ziouer</string>
   <string name="config-watchlist">Ouzhpennañ d\'ar roll evezhiañ</string>
+  <string name="config-defaultsummary">Diverradenn dre ziouer evit an embannadurioù dorn.</string>
+  <string name="config-undosummary">Diverradenn evit nullañ e gemmoù dezhañ</string>
   <string name="config-confirm-wl">Goulenn kadarnaat evit nullañ ur c\'hemm graet gant un implijer el listenn wenn.</string>
+  <string name="config-welcome-empty-page">Kas kemennadennoù degemer mat d\'an implijerien gant ur bajenn gaozeal c\'houllo pa vez graet ur c\'hemm bras</string>
   <string name="config-revert">Disteuler</string>
+  <string name="config-change-all">Kemmañ holl arventennoù Huggle evit en em ren muioc\'h evel Huggle 2</string>
+  <string name="config-months-name">Implijout ar mizioù evel talbennoù e-lec\'h anv ar bajenn</string>
+  <string name="config-automatic-warning">Implijout seurtoù ha liveoù kemenn emgefre en arc\'hweladur « kas kemenn »</string>
   <string name="config-enable-irc">Gweredekaat IRC</string>
+  <string name="config-remove-reverted">Dilemel ar c\'heñchamantoù a oa bet nullet dija gant unan bennak all</string>
+  <string name="config-remove-old">Lemel ar c\'hemmoù kozh ma vez dielfennet ur c\'hemm neveso\'h er memes pajenn</string>
   <string name="config-nothing">Netra</string>
   <string name="config-reverts">Distaoladennoù</string>
   <string name="config-new-page">Pajenn nevez</string>

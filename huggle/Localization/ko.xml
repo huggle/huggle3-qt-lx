@@ -581,6 +581,7 @@
   <string name="blocklog-fail">$1님에 대한 차단 기록을 얻는 데 실패했습니다</string>
   <string name="blocklog-none">$1님에 대한 차단 기록이 없습니다</string>
   <string name="blocklog-progress">$1님에 대한 차단 기록을 얻는 중...</string>
+  <string name="blocknotify-fail">$1님에게 차단을 알리지 않음</string>
   <string name="blocknotify-progress">$1님에게 차단을 알리는 중...</string>
   <string name="delete-done">$1 문서를 삭제했습니다</string>
   <string name="delete-fail">$1 문서를 삭제하지 못했습니다</string>
