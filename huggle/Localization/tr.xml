@@ -745,5 +745,6 @@ $1</string>
   <string name="main-revert-type-made-white-list">beyaz listedeki bir kullanıcı tarafından yapıldı</string>
   <string name="main-revert-warn">Bu düzenleme $1, vandalizm gibi görünse bile olmayabilir geri döndürmek istediğinizden emin misiniz?$1$1</string>
   <string name="query-request-process">Api talebi işleniyor</string>
+  <string name="query-login-undefined">Oturum belirteci bir kullanıcı tanımlı değer gerektirir, hafızasında kayıtlı değil</string>
   <string name="query-protected-link">Korumalı bağlantı</string>
 </resources>
