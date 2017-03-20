@@ -585,7 +585,7 @@
   <string name="warning-warnlog">Попередження у цього користувача:</string>
   <string name="warning-submit">Надіслати</string>
   <string name="wikiedit-tp-fail">Неможливо завантажити $1. Інформація про попередження користувача не буде використана при підрахунку штрафних балів.</string>
-  <string name="missing-warning">Не існує шаблона-попередження $1</string>
+  <string name="missing-warning">Не існує шаблону-попередження $1</string>
   <string name="han-not">Антивандальна мережа (HAN) не дозволена в налаштуваннях</string>
   <string name="han-connecting">Підключення до антивандальної мережі Huggle (HAN)</string>
   <string name="han-already-connected">Підключення до антивандальної мережі Huggle (HAN) вже було проведено</string>
