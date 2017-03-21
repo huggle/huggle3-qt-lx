@@ -354,7 +354,7 @@ void ApiQuery::Process()
         this->reply = Query::NetworkManager->get(request);
     }
     if (!this->HiddenQuery)
-        HUGGLE_DEBUG(_l("query-request-process") + this->URL, 6);
+        HUGGLE_DEBUG("Processing api request " + this->URL, 6);
     QObject::connect(this->reply, SIGNAL(finished()), this, SLOT(Finished()));
     QObject::connect(this->reply, SIGNAL(readyRead()), this, SLOT(ReadData()));
 }
