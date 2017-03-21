@@ -655,9 +655,6 @@
   <string name="editquery-error-retrieve-prev">Unable to retrieve the previous content of page: $1</string>
   <string name="editquery-error-append">You can't use both Append and Prepend for edit of page</string>
   <string name="editquery-error-badtoken">Bad token</string>
-  <string name="editquery-error-sessionexpired">Session expired requesting a new login</string>
-  <string name="editquery-request-ignore-suspended">Ignoring request to process suspended query </string>
-  <string name="editquery-request-ignore-active">Ignoring request to process query that is already running </string>
   <string name="editquery-invalid-token">Unable to edit $1 because token I had in cache is no longer valid. Please try to edit that page once more</string>
   <string name="provider-failure">Failure of feed provider $1 on $2, trying to find some alternative provider</string>
   <string name="provider-primary-failure">Primary feed provider has failed, falling back to wiki provider</string>

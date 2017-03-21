@@ -62,13 +62,13 @@ void EditQuery::Process()
 {
     if (this->Status == StatusIsSuspended)
     {
-        HUGGLE_DEBUG1(_l("editquery-request-ignore-suspended") + QString::number(this->QueryID()) + " fix me");
+        HUGGLE_DEBUG1("Ignoring request to process suspended query " + QString::number(this->QueryID()) + " fix me");
         return;
     }
 
     if (this->Status == StatusProcessing)
     {
-        HUGGLE_DEBUG1(_l("editquery-request-ignore-active") + QString::number(this->QueryID()) + " fix me");
+        HUGGLE_DEBUG1("Ignoring request to process query that is already running " + QString::number(this->QueryID()) + " fix me");
         return;
     }
 
@@ -139,7 +139,7 @@ bool EditQuery::IsProcessed()
                     hec = HUGGLE_ENOTLOGGEDIN;
                     // this is some fine hacking here :)
                     // we use this later in main form
-                    HUGGLE_DEBUG1(_l("editquery-error-sessionexpired"));
+                    HUGGLE_DEBUG1("Session expired requesting a new login");
                     this->Suspend();
                     Configuration::Logout(this->Page->GetSite());
                 } else if (ec == "badtoken")
