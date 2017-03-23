@@ -654,7 +654,6 @@
   <string name="editquery-token-error">قادر به گرفتن توکن برای ویرایش نیستم.</string>
   <string name="editquery-error-retrieve-prev">ناتوان از بازیابی محتوای قبلی صفحه$1</string>
   <string name="editquery-error-append">شما نمی توانید ابتدا زالحاق برای ویرایش صفحه استفاده کنید</string>
-  <string name="editquery-error-sessionexpired">نیازمند ورود مجدد به سیستم بعلت اتمام دسترسی</string>
   <string name="editquery-invalid-token">ناتوان در ویرایش $1 زیرا رمزی که من در نهان‌گاه داشتم دیگر معتبر نیست، لطفاً یک بار دیگر آن صفحه را ویرایش کنید</string>
   <string name="provider-failure">ناکارائی ارائه‌دهندهٔ خوراک  $1 در $2، برای پیدا کردن مهیاکنندهٔ دیگر تلاش کنید</string>
   <string name="provider-primary-failure">ارائه‌دهندهٔ خوراک اصلی نافرجام ماند. در حال عقب‌گرد به ارائه‌دهندهٔ ویکی</string>

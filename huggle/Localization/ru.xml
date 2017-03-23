@@ -656,9 +656,6 @@
   <string name="editquery-error-retrieve-prev">Не удается получить предыдущее содержание страницы: $1</string>
   <string name="editquery-error-append">Для редактирования страницы вы не можете использовать вместе \"Добавить после\" и \"Добавить перед\"</string>
   <string name="editquery-error-badtoken">Неправильный токен</string>
-  <string name="editquery-error-sessionexpired">Сессия истекла. Запрашиваю новый логин</string>
-  <string name="editquery-request-ignore-suspended">Команда на обработку приостановленного запроса проигнорирована</string>
-  <string name="editquery-request-ignore-active">Команда на обработку уже запущенного запроса проигнорирована</string>
   <string name="editquery-invalid-token">Не удаётся отредактировать $1, поскольку токен, который был у меня в кэше, больше не действителен. Пожалуйста, попробуйте отредактировать страницу ещё раз</string>
   <string name="provider-failure">Отказ провайдера канала $1 на $2, попробуем найти альтернативного провайдера</string>
   <string name="provider-primary-failure">Основной провайдер потока дал сбой, переключаемся на вики-провайдер</string>
@@ -750,7 +747,6 @@
   <string name="main-revert-type-made-white-list">сделанный пользователем, который находится в белом списке</string>
   <string name="main-revert-warn">Это редактирование $1, Так что даже если это выглядит, как будто это вандализм, это не может быть, вы уверены, что хотите вернуть его?</string>
   <string name="query-result-nodata">Результат запроса не содержит данных</string>
-  <string name="query-request-process">Выполняю запрос API</string>
   <string name="query-request-noaction">Для запроса API не определены действия</string>
   <string name="query-login-undefined">Маркер входа требует значения определенного пользователем, он не хранится в памяти</string>
   <string name="query-execute-drymode">Если я не в \"сухом режиме\" я буду выполнять запрос (post=</string>

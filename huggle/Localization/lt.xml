@@ -620,6 +620,5 @@
   <string name="main-revert-type-made-on-talk-page">atlikta aptarimo puslapyje</string>
   <string name="main-revert-type-made-white-list">atlikta vartotojo, kuris yra baltajame sąraše</string>
   <string name="main-revert-warn">Šis keitimas yra $1, tad jei jis ir atrodo kaip vandalizmas gali toks ir nebūti, ar tikrai norite jį anuliuoti?</string>
-  <string name="query-request-process">Apdorojami api prašymai</string>
   <string name="query-protected-link">Apsaugota nuoroda</string>
 </resources>

@@ -656,9 +656,6 @@
   <string name="editquery-error-retrieve-prev">Не можев да ја добијам претходната содржина на страницата: $1</string>
   <string name="editquery-error-append">Не можете едновремено да користите вметнување пред и зад за уредување на страница</string>
   <string name="editquery-error-badtoken">Неправилна шифра</string>
-  <string name="editquery-error-sessionexpired">Седницата истече. Барам нова најава.</string>
-  <string name="editquery-request-ignore-suspended">Го занемарувам барањето за обработка на престанатото барање</string>
-  <string name="editquery-request-ignore-active">Го занемарувам барањето за обработка на барање веќе во тек</string>
   <string name="editquery-invalid-token">Не можам ја изменам $1 бидејќи шифрата во меѓускладот повеќе не е важечка. Обидете се повторно да ја измените</string>
   <string name="provider-failure">Не успеав со главниот каналски добавувач $1 на $2. Се обидувам да најдам друг добавувач</string>
   <string name="provider-primary-failure">Не успеав со главниот каналски добавувач. Префрлам на викидобавувачот.</string>
@@ -750,7 +747,6 @@
   <string name="main-revert-type-made-white-list">направено од корисник на кој е на белиот список</string>
   <string name="main-revert-warn">Ова уредување е $1, па затоа може да не е вандализам, дури и ако ви изгледа така. Дали сте сигурни дека сакате да го отповикате?</string>
   <string name="query-result-nodata">Исходот од барањето не содржи никакви податоци</string>
-  <string name="query-request-process">Обработка на барањето до извршникот</string>
   <string name="query-request-noaction">Немате укажано дејство за барањето до извршникот</string>
   <string name="query-login-undefined">Најавната шифра бара кориснички укажана вредност. Таква не е складирана помнилото.</string>
   <string name="query-execute-drymode">Да не бев во сув режим, ќе го извршев барањево (post=</string>

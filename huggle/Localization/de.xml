@@ -656,9 +656,6 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="editquery-error-retrieve-prev">Der vorherige Inhalt der Seite konnte nicht abgerufen werden: $1</string>
   <string name="editquery-error-append">Du kannst nicht gleichzeitig Append und Prepend zur Bearbeitung der Seite verwenden.</string>
   <string name="editquery-error-badtoken">Ungültiger Token</string>
-  <string name="editquery-error-sessionexpired">Sitzung abgelaufen. Eine neue Anmeldung anfragen.</string>
-  <string name="editquery-request-ignore-suspended">Ignoriere Anfrage zur Verarbeitung der unterbrochenen Abfrage</string>
-  <string name="editquery-request-ignore-active">Ignoriere Anfrage zur Verarbeitung der Abfrage, die bereits läuft.</string>
   <string name="editquery-invalid-token">$1 konnte nicht bearbeitet werden, da der cacachte Token nicht länger gültig ist. Bitte versuche, diese Seite erneut zu bearbeiten.</string>
   <string name="provider-failure">Fehler beim Feedprovider $1 auf $2. Versuche, einen alternativen Provider zu finden.</string>
   <string name="provider-primary-failure">Primärer Feedprovider ist ausgefallen. Rückgriff auf den Wikiprovider.</string>
@@ -750,7 +747,6 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="main-revert-type-made-white-list">von einem Benutzer durchgeführt, der auf der weißen Liste ist</string>
   <string name="main-revert-warn">Diese Bearbeitung ist $1. Auch wenn sie nach Vandalismus aussieht, kann sie in Wirklichkeit keiner sein. Bist du sicher, dass du sie zurücksetzen möchtest?</string>
   <string name="query-result-nodata">Das Abfrageergebnis enthält keine Daten</string>
-  <string name="query-request-process">Verarbeite API-Anfrage</string>
   <string name="query-request-noaction">Für die API-Anfrage wurde keine Aktion angegeben</string>
   <string name="query-login-undefined">Der Anmeldetoken erfordert einen benutzerdefinierten Wert. Er ist nicht im Speicher.</string>
   <string name="query-execute-drymode">Falls ich nicht im trockenen Modus war, würde ich diese Abfrage ausführen: (post=</string>

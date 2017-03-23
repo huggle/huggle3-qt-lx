@@ -656,9 +656,6 @@
   <string name="editquery-error-retrieve-prev">Не вдалося отримати попередній вміст сторінки: $1</string>
   <string name="editquery-error-append">Ви не можете використовувати одночасно Append і Prepend для редагування сторінки</string>
   <string name="editquery-error-badtoken">Поганий токен</string>
-  <string name="editquery-error-sessionexpired">Час сесії завершився запитом на новий вхід у систему</string>
-  <string name="editquery-request-ignore-suspended">Ігнорування запиту на опрацювання зупиненого запиту</string>
-  <string name="editquery-request-ignore-active">Ігнорування запиту на опрацювання запиту, що вже виконується</string>
   <string name="editquery-invalid-token">Не вдалося відредагувати $1, оскільки маркер, що було збережено в кеші, більше не дійсний. Будь ласка, спробуйте відредагувати сторінку ще раз.</string>
   <string name="provider-failure">Збій у роботі постачальника списку нових редагувань $1 для $2. Спробую знайти іншого постачальника.</string>
   <string name="provider-primary-failure">Збій у роботі основного постачальника списку нових редагувань. Переходжу на отримання списку через wiki.</string>
@@ -750,7 +747,6 @@ $1</string>
   <string name="main-revert-type-made-white-list">зроблено користувачем, який знаходиться в білому списку</string>
   <string name="main-revert-warn">Це редагування є $1, тому навіть якщо воно нагадує вандалізм, насправді це не так. Ви справді хочете повернути його?</string>
   <string name="query-result-nodata">Результат запиту не містить жодних даних</string>
-  <string name="query-request-process">Опрацювання запиту до API</string>
   <string name="query-request-noaction">Жодної дії не надано для запиту до API</string>
   <string name="query-login-undefined">Токен входу в систему вимагає значення, визначеного користувачем; воно не зберігається в пам\'яті</string>
   <string name="query-execute-drymode">Якби я не був у сухому режимі, я б виконав цей запит (post=</string>

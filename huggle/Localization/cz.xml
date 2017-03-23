@@ -683,6 +683,5 @@
   <string name="main-revert-type-made-on-talk-page">vytvořeno na diskusní stránce</string>
   <string name="main-revert-type-made-white-list">vytvořeno uživatelem, který je na white-listu</string>
   <string name="main-revert-warn">Tato editace je $1, takže i když to vypadá na vandalismus, nemusí tomu tak být. Jste si {{GENDER:|jist|jista|jist(a)}}, že tuto editaci chcete vrátit?</string>
-  <string name="query-request-process">Zpracování žádost api</string>
   <string name="query-protected-link">Chráněné odkaz</string>
 </resources>

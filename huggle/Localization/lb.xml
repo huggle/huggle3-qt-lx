@@ -421,6 +421,5 @@ Benotzerinformatioun konnt net ofgefrot ginn: $2</string>
   <string name="main-revert-type-unknown">onbekannt</string>
   <string name="main-revert-type-in-userspace">am Benotzerraum</string>
   <string name="main-revert-type-made-by-you">vun Iech gemaach</string>
-  <string name="query-request-process">API-Ufro gëtt verschafft</string>
   <string name="query-protected-link">Gespaarte Link</string>
 </resources>

@@ -656,9 +656,6 @@
   <string name="editquery-error-retrieve-prev">无法取得页面之前的内容：$1</string>
   <string name="editquery-error-append">您不能对页面编辑使用Append和Prepend</string>
   <string name="editquery-error-badtoken">错误令牌</string>
-  <string name="editquery-error-sessionexpired">会话过期，正在请求新登录</string>
-  <string name="editquery-request-ignore-suspended">忽略请求以执行暂停的查询</string>
-  <string name="editquery-request-ignore-active">忽略请求以执行已在运行的查询</string>
   <string name="editquery-invalid-token">无法编辑$1，因为我在缓存中持有的令牌已经失效。请再次尝试编辑此页面</string>
   <string name="provider-failure">$2上的订阅提供者$1失败，尝试找到一些提供商替代品</string>
   <string name="provider-primary-failure">首选订阅提供者失败，退回wiki提供</string>
@@ -750,7 +747,6 @@ $1</string>
   <string name="main-revert-type-made-white-list">由白名单上的一位用户做出</string>
   <string name="main-revert-warn">此编辑是$1，因此即便它看起来像是破坏，它可能不是，您确定要回退它么？</string>
   <string name="query-result-nodata">查询结果不包含任何数据</string>
-  <string name="query-request-process">正在处理api请求</string>
   <string name="query-request-noaction">没有为api请求提供操作</string>
   <string name="query-login-undefined">登录令牌需要用户定义值，它未存储于内存中</string>
   <string name="query-execute-drymode">如果我不在干运行模式，我会执行此查询（post=</string>
