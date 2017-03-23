@@ -12,6 +12,7 @@
 #include "huggleprofiler.hpp"
 #include "configuration.hpp"
 #include "generic.hpp"
+#include "userconfiguration.hpp"
 #include "projectconfiguration.hpp"
 #include "syslog.hpp"
 #include "wikisite.hpp"
@@ -51,14 +52,16 @@ bool HuggleParser::ConfigurationParseBool(QString key, QString content, bool mis
     return Generic::SafeBool(ConfigurationParse(key, content, Generic::Bool2String(missing)));
 }
 
-QString HuggleParser::GetSummaryOfWarningTypeFromWarningKey(QString key, ProjectConfiguration *project_conf)
+QString HuggleParser::GetSummaryOfWarningTypeFromWarningKey(QString key, ProjectConfiguration *project_conf, UserConfiguration *user_conf)
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     foreach (QString line, project_conf->RevertSummaries)
         if (line.startsWith(key + ";"))
             return HuggleParser::GetValueFromKey(line);
+    if (!user_conf)
+        return project_conf->DefaultSummary;
 
-    return project_conf->DefaultSummary;
+    return user_conf->DefaultSummary;
 }
 
 QString HuggleParser::GetNameOfWarningTypeFromWarningKey(QString key, ProjectConfiguration *project_conf)

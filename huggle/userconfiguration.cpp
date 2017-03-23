@@ -147,7 +147,9 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
     configuration_ += "confirm-whitelist:" + Bool2String(Project->ConfirmWL) + "\n";
     //configuration_ += "confirm-warned:" + Bool2String(HuggleConfiguration->ProjectConfig->ConfirmWarned) + "\n";
     // configuration_ += "confirm-range:" + Bool2String(HuggleConfiguration->ProjectConfig->ConfirmRange) + "\n";
-    configuration_ += "default-summary:" + Project->DefaultSummary + "\n";
+    // Save this only if it differs from project config so that project config can change in future and it's reflected
+    if (Project->DefaultSummary != this->DefaultSummary)
+        configuration_ += "default-summary:" + this->DefaultSummary + "\n";
     configuration_ += "// This option will change the behaviour of automatic resolution, be carefull\n";
     configuration_ += "revert-auto-multiple-edits:" + Bool2String(this->RevertOnMultipleEdits) + "\n";
     configuration_ += "automatically-resolve-conflicts:" + Bool2String(this->AutomaticallyResolveConflicts) + "\n";
@@ -312,6 +314,7 @@ bool UserConfiguration::ParseUserConfig(QString config, ProjectConfiguration *Pr
     if (ProjectConfig->WarningSummaries.contains(4))
         ProjectConfig->WarningSummaries[4] = this->SetOption("warn-summary-4", config, ProjectConfig->WarningSummaries[4]).toString();
     this->AutomaticallyResolveConflicts = SafeBool(ConfigurationParse("automatically-resolve-conflicts", config), false);
+    this->DefaultSummary = HuggleParser::ConfigurationParse("default-summary", config, ProjectConfig->DefaultSummary);
     ProjectConfig->TemplateAge = this->SetOption("template-age", config, ProjectConfig->TemplateAge).toInt();
     ProjectConfig->RevertSummaries = this->SetUserOptionList("template-summ", config, ProjectConfig->RevertSummaries);
     ProjectConfig->WarningTypes = this->SetUserOptionList("warning-types", config, ProjectConfig->WarningTypes);

@@ -1531,8 +1531,9 @@ void MainWindow::CustomRevert()
         return;
     QAction *revert = (QAction*) QObject::sender();
     ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
+    UserConfiguration *ucf = this->GetCurrentWikiSite()->GetUserConfig();
     QString key = HuggleParser::GetKeyOfWarningTypeFromWarningName(revert->text(), conf);
-    QString summary = HuggleParser::GetSummaryOfWarningTypeFromWarningKey(key, conf);
+    QString summary = HuggleParser::GetSummaryOfWarningTypeFromWarningKey(key, conf, ucf);
     summary = Huggle::Configuration::GenerateSuffix(summary, conf);
     this->Revert(summary);
 }
@@ -1543,8 +1544,9 @@ void MainWindow::CustomRevertWarn()
         return;
     QAction *revert = (QAction*) QObject::sender();
     ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
+    UserConfiguration *uconf = this->GetCurrentWikiSite()->GetUserConfig();
     QString key = HuggleParser::GetKeyOfWarningTypeFromWarningName(revert->text(), conf);
-    QString summary = HuggleParser::GetSummaryOfWarningTypeFromWarningKey(key, conf);
+    QString summary = HuggleParser::GetSummaryOfWarningTypeFromWarningKey(key, conf, uconf);
     summary = Huggle::Configuration::GenerateSuffix(summary, conf);
     Collectable_SmartPtr<RevertQuery> result = this->Revert(summary, false);
     if (result != nullptr)

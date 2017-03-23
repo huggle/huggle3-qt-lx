@@ -21,6 +21,7 @@
 namespace Huggle
 {
     class Configuration;
+    class UserConfiguration;
     class ProjectConfiguration;
     class HuggleQueueFilter;
     class WikiSite;
@@ -38,7 +39,7 @@ namespace Huggle
         HUGGLE_EX QString ConfigurationParse(QString key, QString content, QString missing = "");
         HUGGLE_EX bool ConfigurationParseBool(QString key, QString content, bool missing);
         //! \todo This function needs a unit test
-        HUGGLE_EX QString GetSummaryOfWarningTypeFromWarningKey(QString key, ProjectConfiguration *project_conf);
+        HUGGLE_EX QString GetSummaryOfWarningTypeFromWarningKey(QString key, ProjectConfiguration *project_conf, UserConfiguration *user_conf = nullptr);
         //! \todo This function needs a unit test
         HUGGLE_EX QString GetNameOfWarningTypeFromWarningKey(QString key, ProjectConfiguration *project_conf);
         //! \todo This function needs a unit test

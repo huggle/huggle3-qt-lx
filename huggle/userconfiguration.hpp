@@ -80,6 +80,8 @@ namespace Huggle
             bool            AutomaticReports = false;
             //! Resolve edit conflict without asking user
             bool            AutomaticallyResolveConflicts = true;
+            //! default-summary inherited from project config so there is no default here
+            QString         DefaultSummary;
             //! If this is true huggle will always use software rollback even if user has the rollback privileges
             bool            EnforceManualSoftwareRollback = false;
             bool            EnforceMonthsAsHeaders = true;
