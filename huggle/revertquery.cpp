@@ -516,7 +516,8 @@ bool RevertQuery::ProcessRevert()
             this->Result->SetError(this->eqSoftwareRollback->Result->ErrorMessage);
             this->Kill();
             this->ProcessFailure();
-            this->Status = StatusDone;
+            this->Status = StatusInError;
+            return true;
         }
         Syslog::HuggleLogs->DebugLog("Sucessful SR of page " + this->edit->Page->PageName);
         return true;
