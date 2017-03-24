@@ -690,7 +690,7 @@ void RevertQuery::Rollback()
     }
     this->RollingBack = true;
     if (this->Summary.isEmpty())
-        this->Summary = this->GetSite()->GetProjectConfig()->RollbackSummaryUnknownTarget;
+        this->Summary = this->GetSite()->GetUserConfig()->RollbackSummaryUnknownTarget;
     if (this->Summary.contains("$1"))
         this->Summary = this->Summary.replace("$1", edit->User->Username);
     // we need to make sure there is edit suffix in revert summary for huggle

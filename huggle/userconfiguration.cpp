@@ -150,6 +150,10 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
     // Save this only if it differs from project config so that project config can change in future and it's reflected
     if (Project->DefaultSummary != this->DefaultSummary)
         configuration_ += "default-summary:" + this->DefaultSummary + "\n";
+    if (Project->RollbackSummary != this->RollbackSummary)
+        configuration_ += "rollback-summary:" + this->RollbackSummary + "\n";
+    if (Project->RollbackSummaryUnknownTarget != this->RollbackSummaryUnknownTarget)
+        configuration_ += "rollback-summary-unknown:" + this->RollbackSummaryUnknownTarget + "\n";
     configuration_ += "// This option will change the behaviour of automatic resolution, be carefull\n";
     configuration_ += "revert-auto-multiple-edits:" + Bool2String(this->RevertOnMultipleEdits) + "\n";
     configuration_ += "automatically-resolve-conflicts:" + Bool2String(this->AutomaticallyResolveConflicts) + "\n";
@@ -315,6 +319,8 @@ bool UserConfiguration::ParseUserConfig(QString config, ProjectConfiguration *Pr
         ProjectConfig->WarningSummaries[4] = this->SetOption("warn-summary-4", config, ProjectConfig->WarningSummaries[4]).toString();
     this->AutomaticallyResolveConflicts = SafeBool(ConfigurationParse("automatically-resolve-conflicts", config), false);
     this->DefaultSummary = HuggleParser::ConfigurationParse("default-summary", config, ProjectConfig->DefaultSummary);
+    this->RollbackSummary = HuggleParser::ConfigurationParse("rollback-summary", config, ProjectConfig->RollbackSummary);
+    this->RollbackSummaryUnknownTarget = HuggleParser::ConfigurationParse("rollback-summary-unknown", config, ProjectConfig->RollbackSummaryUnknownTarget);
     ProjectConfig->TemplateAge = this->SetOption("template-age", config, ProjectConfig->TemplateAge).toInt();
     ProjectConfig->RevertSummaries = this->SetUserOptionList("template-summ", config, ProjectConfig->RevertSummaries);
     ProjectConfig->WarningTypes = this->SetUserOptionList("warning-types", config, ProjectConfig->WarningTypes);
