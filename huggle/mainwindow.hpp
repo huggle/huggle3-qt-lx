@@ -137,6 +137,8 @@ namespace Huggle
             void SuspiciousEdit();
             void PatrolEdit(WikiEdit *e = nullptr);
             void Localize();
+            //! Toggle whether interface buttons that edit wiki or displayed page are enabled or not
+            void EnableEditing(bool enabled);
             void _BlockUser();
             void DisplayNext(Query *q = nullptr);
             void ShowCat();

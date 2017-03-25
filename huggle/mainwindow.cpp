@@ -95,7 +95,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->LastTPRevID = WIKI_UNKNOWN_REVID;
     this->EditLoad = QDateTime::currentDateTime();
     this->Shutdown = ShutdownOpRunning;
-    this->EditablePage = false;
     this->ShuttingDown = false;
     this->ui->setupUi(this);
     if (Configuration::HuggleConfiguration->SystemConfig_Multiple)
@@ -290,6 +289,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     connect(this->tStatusBarRefreshTimer, SIGNAL(timeout()), this, SLOT(OnStatusBarRefreshTimerTick()));
     this->tCheck->start(20000);
     this->tStatusBarRefreshTimer->start(500);
+    this->EnableEditing(false);
 }
 
 MainWindow::~MainWindow()
@@ -383,6 +383,31 @@ void MainWindow::DisplayReportUserWindow(WikiUser *User)
     rf->show();
 }
 
+void MainWindow::EnableEditing(bool enabled)
+{
+    // In case we are in dry mode allow everything, for debugging ;)
+    if (hcfg->SystemConfig_DryMode)
+        enabled = true;
+
+    // This is just so that we can track it later
+    this->EditablePage = enabled;
+
+    this->ui->actionWarn->setEnabled(enabled);
+    this->ui->actionRevert->setEnabled(enabled);
+    this->ui->actionRevert_AGF->setEnabled(enabled);
+    this->ui->actionRevert_and_warn->setEnabled(enabled);
+    this->ui->actionRevert_currently_displayed_edit->setEnabled(enabled);
+    this->ui->actionRevert_currently_displayed_edit_and_warn_the_user->setEnabled(enabled);
+    this->ui->actionWelcome_user->setEnabled(enabled);
+    this->ui->actionRevert_currently_displayed_edit_and_stay_on_page->setEnabled(enabled);
+    this->ui->actionRevert_currently_displayed_edit_warn_user_and_stay_on_page->setEnabled(enabled);
+    this->ui->actionRevert_only_this_revision->setEnabled(enabled);
+    this->ui->actionRevert_only_this_revision_assuming_good_faith->setEnabled(enabled);
+
+    // Don't contain these yet - they are enabled / disabled based on other functions as well and we don't want to break that
+    //this->ui->actionDelete->setEnabled()
+}
+
 WikiEdit *MainWindow::GetCurrentWikiEdit()
 {
     return this->CurrentEdit.GetPtr();
@@ -442,13 +467,13 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
     }
     this->Queue1->ChangeSite(e->GetSite());
     e->User->Resync();
-    this->EditablePage = true;
     Configuration::HuggleConfiguration->ForcedNoEditJump = ForcedJump;
     this->CurrentEdit = e;
     this->EditLoad = QDateTime::currentDateTime();
     this->Browser->DisplayDiff(e);
     this->Render(KeepHistory, KeepUser);
     e->DecRef();
+    this->EnableEditing(!e->GetSite()->GetProjectConfig()->ReadOnly);
 }
 
 void MainWindow::Render(bool KeepHistory, bool KeepUser)
@@ -1850,7 +1875,7 @@ void MainWindow::DisplayNext(Query *q)
 void MainWindow::ShowCat()
 {
     this->Browser->RenderHtml(Resources::Html_EmptyList);
-    this->EditablePage = false;
+    this->EnableEditing(false);
 }
 
 void MainWindow::DeletePage()
@@ -1991,7 +2016,7 @@ WikiSite *MainWindow::GetCurrentWikiSite()
 
 void MainWindow::LockPage()
 {
-    this->EditablePage = false;
+    this->EnableEditing(false);
 }
 
 QString MainWindow::ProjectURL()
