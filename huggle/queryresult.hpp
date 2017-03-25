@@ -19,6 +19,7 @@
 #define HUGGLE_EUNKNOWN            1
 #define HUGGLE_ENOTLOGGEDIN        2
 #define HUGGLE_ETOKEN              4
+#define HUGGLE_EREADONLY           5
 
 namespace Huggle
 {

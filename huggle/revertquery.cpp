@@ -181,12 +181,7 @@ bool RevertQuery::IsProcessed()
         return true;
     if (!this->PreflightFinished)
         return false;
-    if (this->CheckRevert())
-    {
-        this->Status = StatusDone;
-        return true;
-    }
-    return false;
+    return this->CheckRevert();
 }
 
 void RevertQuery::SetUsingSR(bool software_rollback)
@@ -454,14 +449,22 @@ bool RevertQuery::CheckRevert()
 {
     if (this->UsingSR)
         return ProcessRevert();
+    if (this->Status == StatusIsSuspended)
+        return false;
     if (this->qRevert == nullptr || !this->qRevert->IsProcessed())
         return false;
     bool failed = false;
-    this->CustomStatus = this->getCustomRevertStatus(&failed);
-    if (this->Status == StatusIsSuspended)
-        return false;
+    if (this->qRevert->IsFailed())
+    {
+        failed = true;
+        this->CustomStatus = this->qRevert->GetFailureReason();
+    } else
+    {
+        this->CustomStatus = this->getCustomRevertStatus(&failed);
+    }
     if (failed)
     {
+        this->Status = StatusInError;
         Huggle::Syslog::HuggleLogs->Log(_l("revert-fail", this->qRevert->Target, this->CustomStatus));
         this->qRevert->Result->SetError(CustomStatus);
         this->Result = new QueryResult(true);
@@ -469,6 +472,7 @@ bool RevertQuery::CheckRevert()
         this->ProcessFailure();
     } else
     {
+        this->Status = StatusDone;
 #ifndef HUGGLE_SDK
         HistoryItem *item = new HistoryItem();
         this->HI = item;

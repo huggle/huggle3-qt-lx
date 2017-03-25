@@ -71,6 +71,7 @@ namespace Huggle
             //!       this value is loaded before the user config right now
             bool AutomaticallyResolveConflicts = false;
             QString ReportAutoSummary;
+            bool ReadOnly = false;
             bool IsSane = false;
             bool Approval = false;
             bool UserlistSync = false;

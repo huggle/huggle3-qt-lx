@@ -311,6 +311,18 @@ void ApiQuery::Process()
     }
     this->StartTime = QDateTime::currentDateTime();
     this->ThrowOnValidResult();
+    this->Result = new ApiQueryResult();
+
+    // Cancel if target project is read only and this API query edits wiki somehow
+    if (this->EditingQuery && this->GetSite()->GetProjectConfig()->ReadOnly)
+    {
+        this->FailureReason = "Unable to edit read-only wiki";
+        this->Result->SetError(HUGGLE_EREADONLY, this->FailureReason);
+        this->Status = StatusInError;
+        this->ProcessFailure();
+        return;
+    }
+
     this->temp.clear();
     foreach(QString value, this->params.values())
         this->Parameters += "&" + value + "=" + QUrl::toPercentEncoding(this->params[value]);
@@ -322,7 +334,6 @@ void ApiQuery::Process()
     if (!this->URL.size() && !this->UsingPOST)
         this->ConstructUrl();
     this->Status = StatusProcessing;
-    this->Result = new ApiQueryResult();
     QUrl url;
     if (this->UsingPOST)
     {
