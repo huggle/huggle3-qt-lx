@@ -385,12 +385,12 @@ void MainWindow::DisplayReportUserWindow(WikiUser *User)
 
 void MainWindow::EnableEditing(bool enabled)
 {
+    // This is just so that we can track it later
+    this->EditablePage = enabled;
+
     // In case we are in dry mode allow everything, for debugging ;)
     if (hcfg->SystemConfig_DryMode)
         enabled = true;
-
-    // This is just so that we can track it later
-    this->EditablePage = enabled;
 
     this->ui->actionWarn->setEnabled(enabled);
     this->ui->actionRevert->setEnabled(enabled);
