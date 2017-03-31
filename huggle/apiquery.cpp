@@ -352,7 +352,7 @@ void ApiQuery::Process()
         this->Result->Data = "DM (didn't run a query)";
         this->Status = StatusDone;
         this->ProcessCallback();
-        Syslog::HuggleLogs->Log(_l("query-execute-drymode") + Generic::Bool2String(this->UsingPOST) +
+        Syslog::HuggleLogs->Log("If I wasn't in dry mode I would execute this query (post=" + Generic::Bool2String(this->UsingPOST) +
                                 ") " + this->URL + "\ndata: " + QUrl::fromPercentEncoding(this->Parameters.toUtf8()));
         return;
     }
