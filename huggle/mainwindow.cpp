@@ -403,6 +403,9 @@ void MainWindow::EnableEditing(bool enabled)
     this->ui->actionRevert_currently_displayed_edit_warn_user_and_stay_on_page->setEnabled(enabled);
     this->ui->actionRevert_only_this_revision->setEnabled(enabled);
     this->ui->actionRevert_only_this_revision_assuming_good_faith->setEnabled(enabled);
+    this->ui->actionTag_2->setEnabled(enabled);
+    this->ui->actionWarn_the_user->setEnabled(enabled);
+    this->ui->actionPatrol->setEnabled(enabled);
 
     // Don't contain these yet - they are enabled / disabled based on other functions as well and we don't want to break that
     //this->ui->actionDelete->setEnabled()
