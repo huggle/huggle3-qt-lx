@@ -388,6 +388,9 @@ void Configuration::LoadSystemConfig(QString fn)
         }
         RCU(ProxyPort);
         RC(ProxyPass);
+        RCB(PlaySoundOnQueue);
+        RCB(PlaySoundOnIRCUserMsg);
+        RCN(PlaySoundQueueScore);
     }
     item = 0;
     while (item < e.count())
@@ -452,6 +455,9 @@ void Configuration::SaveSystemConfig()
     INSERT_CONFIG_B(NotifyBeta);
     INSERT_CONFIG_B(WarnUserSpaceRoll);
     INSERT_CONFIG_N(WikiRC);
+    INSERT_CONFIG_N(PlaySoundQueueScore);
+    INSERT_CONFIG_B(PlaySoundOnQueue);
+    INSERT_CONFIG_B(PlaySoundOnIRCUserMsg);
     InsertConfig("BotLogin", hcfg->SystemConfig_BotLogin, writer);
     InsertConfig("UserName", hcfg->SystemConfig_Username, writer);
     InsertConfig("IndexOfLastWiki", QString::number(hcfg->IndexOfLastWiki), writer);

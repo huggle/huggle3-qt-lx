@@ -183,7 +183,14 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     this->ui->checkBox_31->setText(_l("config-html-messages"));
     this->ui->checkBox_7->setText(_l("config-summary-present"));
     this->ui->pushButton_2->setText(_l("ok"));
+    this->ui->cbPlayOnNewItem->setText(_l("preferences-sounds-enable-queue"));
+    this->ui->cbPlayOnIRCMsg->setText(_l("preferences-sounds-enable-irc"));
     this->ui->pushButton->setText(_l("config-close-without"));
+    this->ui->label_minimal_score->setText(_l("preferences-sounds-minimal-score"));
+
+#ifndef HUGGLE_NOAUDIO
+    this->ui->label_NoAudio->setVisible(false);
+#endif
 
     // options
     this->ResetItems();
@@ -329,6 +336,9 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     hcfg->SystemConfig_EnableUpdates = this->ui->checkBox_notifyUpdate->isChecked();
     hcfg->SystemConfig_NotifyBeta = this->ui->checkBox_notifyBeta->isChecked();
     hcfg->UserConfig->HtmlAllowedInIrc = this->ui->checkBox_31->isChecked();
+    hcfg->SystemConfig_PlaySoundOnIRCUserMsg = this->ui->cbPlayOnIRCMsg->isChecked();
+    hcfg->SystemConfig_PlaySoundQueueScore = this->ui->ln_QueueSoundMinScore->text().toLong();
+    hcfg->SystemConfig_PlaySoundOnQueue = this->ui->cbPlayOnNewItem->isChecked();
     if (this->ui->checkBox_7->isChecked())
         hcfg->UserConfig->SummaryMode = 1;
     else
@@ -770,6 +780,14 @@ void Preferences::ResetItems()
     this->ui->checkBox_8->setChecked(hcfg->UserConfig->RetrieveFounder);
     this->ui->checkBox_notifyUpdate->setChecked(hcfg->SystemConfig_EnableUpdates);
     this->ui->checkBox_notifyBeta->setChecked(hcfg->SystemConfig_NotifyBeta);
+    this->ui->ln_QueueSoundMinScore->setText(QString::number(hcfg->SystemConfig_PlaySoundQueueScore));
+    this->ui->cbPlayOnNewItem->setChecked(hcfg->SystemConfig_PlaySoundOnQueue);
+    this->ui->cbPlayOnIRCMsg->setChecked(hcfg->SystemConfig_PlaySoundOnIRCUserMsg);
+#ifdef HUGGLE_NOAUDIO
+    this->ui->ln_QueueSoundMinScore->setEnabled(false);
+    this->ui->cbPlayOnNewItem->setEnabled(false);
+    this->ui->cbPlayOnIRCMsg->setEnabled(false);
+#endif
 }
 
 void Huggle::Preferences::on_pushButton_rs_clicked()

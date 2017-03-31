@@ -45,5 +45,7 @@
         <file>Resources/empty.jpg</file>
         <file>Resources/error.png</file>
         <file>Resources/hold_fire.png</file>
+        <file>Resources/warning_icon.png</file>
+        <file>Resources/warning_icon_micro.png</file>
     </qresource>
 </RCC>

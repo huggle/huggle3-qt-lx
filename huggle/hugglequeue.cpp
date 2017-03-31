@@ -18,6 +18,7 @@
 #include "vandalnw.hpp"
 #include "localization.hpp"
 #include "ui_hugglequeue.h"
+#include "resources.hpp"
 #include "syslog.hpp"
 #include "wikipage.hpp"
 #include "wikiuser.hpp"
@@ -144,8 +145,12 @@ void HuggleQueue::AddItem(WikiEdit *page)
         }
         this->ui->itemList->insertWidget(id, label);
     }
+
     this->Items.append(label);
     this->RedrawTitle();
+
+    if (hcfg->SystemConfig_PlaySoundOnQueue && page->Score >= hcfg->SystemConfig_PlaySoundQueueScore)
+        Resources::PlayEmbeddedSoundFile("not1.wav");
 }
 
 bool HuggleQueue::Next()
