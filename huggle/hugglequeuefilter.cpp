@@ -204,7 +204,10 @@ void HuggleQueueFilter::SetIgnoredTags_CommaSeparated(QString list)
     QList<QString> tags = list.split(",");
     foreach(QString x, tags)
     {
-        x = x.replace(" ", "").replace("\n", "");
+        if (x.at(0) == QLatin1Char(' ')) {
+            x = x.mid(1, x.length() - 1);
+        }
+        x = x.replace("\n", "");
         if (!x.isEmpty())
         {
             // only use tags that contain something
@@ -219,7 +222,10 @@ void HuggleQueueFilter::SetRequiredTags_CommaSeparated(QString list)
     QList<QString> tags = list.split(",");
     foreach(QString x, tags)
     {
-        x = x.replace(" ", "").replace("\n", "");
+        if (x.at(0) == QLatin1Char(' ')) {
+            x = x.mid(1, x.length() - 1);
+        }
+        x = x.replace("\n", "");
         if (!x.isEmpty())
         {
             // only use tags that contain something
