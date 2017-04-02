@@ -11,6 +11,7 @@
 #include "configuration.hpp"
 #include "hugglequeuefilter.hpp"
 #include "exception.hpp"
+#include "generic.hpp"
 #include "syslog.hpp"
 #include "wikiedit.hpp"
 #include "wikiuser.hpp"
@@ -200,38 +201,12 @@ QString HuggleQueueFilter::GetRequiredTags_CommaSeparated() const
 
 void HuggleQueueFilter::SetIgnoredTags_CommaSeparated(QString list)
 {
-    this->IgnoreTags.clear();
-    QList<QString> tags = list.split(",");
-    foreach(QString x, tags)
-    {
-        if (x.at(0) == QLatin1Char(' ')) {
-            x = x.mid(1, x.length() - 1);
-        }
-        x = x.replace("\n", "");
-        if (!x.isEmpty())
-        {
-            // only use tags that contain something
-            this->IgnoreTags.append(x);
-        }
-    }
+    this->IgnoreTags = Generic::CSV2QStringList(list);
 }
 
 void HuggleQueueFilter::SetRequiredTags_CommaSeparated(QString list)
 {
-    this->RequireTags.clear();
-    QList<QString> tags = list.split(",");
-    foreach(QString x, tags)
-    {
-        if (x.at(0) == QLatin1Char(' ')) {
-            x = x.mid(1, x.length() - 1);
-        }
-        x = x.replace("\n", "");
-        if (!x.isEmpty())
-        {
-            // only use tags that contain something
-            this->RequireTags.append(x);
-        }
-    }
+    this->RequireTags = Generic::CSV2QStringList(list);
 }
 
 bool HuggleQueueFilter::IgnoresNS(int ns)

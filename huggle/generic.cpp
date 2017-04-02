@@ -40,6 +40,24 @@ bool Generic::SafeBool(QString value, bool defaultvalue)
     return defaultvalue;
 }
 
+QStringList Generic::CSV2QStringList(QString CSV, QChar separator)
+{
+    QStringList result;
+    foreach(QString x, CSV.split(separator))
+    {
+        // Trim whitespace around the string, in case users used some extra spaces when separating CSV
+        x = x.trimmed();
+        // Remove the extra newline which could be present in last element
+        x = x.replace("\n", "");
+        if (!x.isEmpty())
+        {
+            // only use these items that contain something
+           result.append(x);
+        }
+    }
+    return result;
+}
+
 bool Generic::ReportPreFlightCheck()
 {
     if (!Configuration::HuggleConfiguration->AskUserBeforeReport)

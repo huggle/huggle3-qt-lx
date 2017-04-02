@@ -54,6 +54,7 @@ namespace Huggle
          * \return string
          */
         HUGGLE_EX QString Bool2String(bool b);
+        HUGGLE_EX QStringList CSV2QStringList(QString CSV, QChar separator = ',');
         HUGGLE_EX QString HtmlEncode(QString text);
         /*!
          * \brief Safely turn a QString into a bool value
