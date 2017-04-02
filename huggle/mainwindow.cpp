@@ -1149,7 +1149,7 @@ void MainWindow::TriggerWelcome()
 {
     ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
     QString message;
-    if (this->CurrentEdit->User->IsIP())
+    if (this->CurrentEdit->User->IsIP() && !conf->WelcomeAnon.isEmpty())
     {
         if (this->CurrentEdit->User->TalkPage_GetContents().isEmpty())
         {
@@ -1158,14 +1158,18 @@ void MainWindow::TriggerWelcome()
         }
         message = conf->WelcomeAnon + " ~~~~";
     }
-    if (message == nullptr) {
-        if (conf->WelcomeTypes.isEmpty())
+    if (message.isEmpty())
+    {
+        if (conf->Welcome.isEmpty() && conf->WelcomeTypes.isEmpty())
         {
             // This error should never happen so we don't need to localize this
             Syslog::HuggleLogs->ErrorLog("There are no welcome messages defined for this project");
             return;
         }
-        message = HuggleParser::GetValueFromKey(conf->WelcomeTypes.at(0));
+        if (!conf->Welcome.isEmpty())
+            message = conf->Welcome;
+        else
+           message = HuggleParser::GetValueFromKey(conf->WelcomeTypes.at(0));
     }
     this->Welcome(message);
 }
@@ -1580,8 +1584,10 @@ void MainWindow::on_actionBack_triggered()
 
 void MainWindow::CustomWelcome()
 {
-    QAction *revert = (QAction*) QObject::sender();
-    this->Welcome(HuggleParser::GetValueFromKey(revert->data().toString()));
+    if (!this->EditingChecks())
+        return;
+    QAction *welcome = (QAction*) QObject::sender();
+    this->Welcome(HuggleParser::GetValueFromKey(welcome->data().toString()));
 }
 
 void MainWindow::CustomRevert()

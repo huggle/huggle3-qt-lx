@@ -164,7 +164,10 @@ namespace Huggle
             QString         SingleRevert = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])";
             QString         UndoSummary = "Undid edit by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])";
             QString         ClearTalkPageTemp = "{{Huggle/Cleared}}";
-            QString         WelcomeAnon = "{{subst:Welcome-anon}}";
+            //! Template for anon users, leave empty if there is none for current wiki
+            QString         WelcomeAnon;
+            //! Welcome template
+            QString         Welcome;
             QString         WelcomeTitle = "Welcome";
 
             // Deleting
