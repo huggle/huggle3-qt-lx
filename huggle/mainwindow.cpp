@@ -1145,6 +1145,31 @@ void MainWindow::Title(QString name)
     this->ui->tabWidget->setTabText(this->ui->tabWidget->currentIndex(), Generic::ShrinkText(name, 20, false, 3));
 }
 
+void MainWindow::TriggerWelcome()
+{
+    ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
+    QString message;
+    if (this->CurrentEdit->User->IsIP())
+    {
+        if (this->CurrentEdit->User->TalkPage_GetContents().isEmpty())
+        {
+            // write something to talk page so that we don't welcome this user twice
+            this->CurrentEdit->User->TalkPage_SetContents(conf->WelcomeAnon);
+        }
+        message = conf->WelcomeAnon + " ~~~~";
+    }
+    if (message == nullptr) {
+        if (conf->WelcomeTypes.isEmpty())
+        {
+            // This error should never happen so we don't need to localize this
+            Syslog::HuggleLogs->ErrorLog("There are no welcome messages defined for this project");
+            return;
+        }
+        message = HuggleParser::GetValueFromKey(conf->WelcomeTypes.at(0));
+    }
+    this->Welcome(message);
+}
+
 void MainWindow::TriggerWarn()
 {
     if (!this->CheckExit() || !this->CheckEditableBrowserPage())
@@ -1551,6 +1576,12 @@ void MainWindow::on_actionBack_triggered()
     if (this->CurrentEdit == nullptr || this->CurrentEdit->Previous == nullptr)
         return;
     this->ProcessEdit(this->CurrentEdit->Previous, true);
+}
+
+void MainWindow::CustomWelcome()
+{
+    QAction *revert = (QAction*) QObject::sender();
+    this->Welcome(HuggleParser::GetValueFromKey(revert->data().toString()));
 }
 
 void MainWindow::CustomRevert()
@@ -1970,7 +2001,7 @@ void MainWindow::FlagGood()
     this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore() - 200);
     if (Configuration::HuggleConfiguration->UserConfig->WelcomeGood &&
             this->CurrentEdit->User->TalkPage_GetContents().isEmpty())
-        this->Welcome();
+        this->TriggerWelcome();
     this->DisplayNext();
 }
 
@@ -2051,7 +2082,7 @@ bool MainWindow::CheckRevertable()
     return true;
 }
 
-void MainWindow::Welcome()
+void MainWindow::Welcome(QString message)
 {
     if (!this->EditingChecks())
         return;
@@ -2069,24 +2100,6 @@ void MainWindow::Welcome()
         if (Generic::pMessageBox(this, "Welcome :o", _l("welcome-page-miss-fail"), MessageBoxStyleQuestion) == QMessageBox::No)
             return;
     }
-    if (this->CurrentEdit->User->IsIP())
-    {
-        if (this->CurrentEdit->User->TalkPage_GetContents().isEmpty())
-        {
-            // write something to talk page so that we don't welcome this user twice
-            this->CurrentEdit->User->TalkPage_SetContents(conf->WelcomeAnon);
-        }
-        WikiUtil::MessageUser(this->CurrentEdit->User, conf->WelcomeAnon + " ~~~~", conf->WelcomeTitle, conf->WelcomeSummary,
-                              false, nullptr, false, false, true, this->CurrentEdit->TPRevBaseTime, create_only);
-        return;
-    }
-    if (conf->WelcomeTypes.isEmpty())
-    {
-        // This error should never happen so we don't need to localize this
-        Syslog::HuggleLogs->ErrorLog("There are no welcome messages defined for this project");
-        return;
-    }
-    QString message = HuggleParser::GetValueFromKey(conf->WelcomeTypes.at(0));
     if (message.isEmpty())
     {
         // This error should never happen so we don't need to localize this
@@ -2217,10 +2230,27 @@ void MainWindow::ReloadInterface()
             connect(actionb, SIGNAL(triggered()), this, SLOT(CustomWarn()));
         }
     }
+
+    this->WelcomeMenu = new QMenu(this);
+
+    if (conf->WelcomeTypes.count() > 0) {
+        int r = 0;
+        while (r < conf->WelcomeTypes.count())
+        {
+            QAction *action = new QAction(HuggleParser::GetKeyFromValue(conf->WelcomeTypes.at(r)), this->WelcomeMenu);
+            QVariant qv(conf->WelcomeTypes.at(r));
+            action->setData(qv);
+            this->WelcomeMenu->addAction(action);
+            r++;
+            connect(action, SIGNAL(triggered()), this, SLOT(CustomWelcome()));
+        }
+    }
+
+    this->ui->actionWelcome_user->setMenu(this->WelcomeMenu);
     this->ui->actionWarn->setMenu(this->WarnMenu);
     this->ui->actionRevert->setMenu(this->RevertSummaries);
     this->ui->actionRevert_and_warn->setMenu(this->RevertWarn);
-    bool fr = (this->warnToolButtonMenu == nullptr || this->rtToolButtonMenu == nullptr);
+    bool fr = (this->warnToolButtonMenu == nullptr || this->rtToolButtonMenu == nullptr || this->welcomeToolButtonMenu == nullptr);
     // replace abstract QAction with QToolButton to be able to set PopupMode for nicer menu opening
     if (this->warnToolButtonMenu == nullptr)
         this->warnToolButtonMenu = new QToolButton(this);
@@ -2228,12 +2258,16 @@ void MainWindow::ReloadInterface()
         this->rtToolButtonMenu = new QToolButton(this);
     if (this->rwToolButtonMenu == nullptr)
         this->rwToolButtonMenu = new QToolButton(this);
+    if (this->welcomeToolButtonMenu == nullptr)
+        this->welcomeToolButtonMenu = new QToolButton(this);
     this->warnToolButtonMenu->setDefaultAction(this->ui->actionWarn);
     this->rtToolButtonMenu->setDefaultAction(this->ui->actionRevert);
     this->rwToolButtonMenu->setDefaultAction(this->ui->actionRevert_and_warn);
+    this->welcomeToolButtonMenu->setDefaultAction(this->ui->actionWelcome_user);
     this->warnToolButtonMenu->setPopupMode(QToolButton::MenuButtonPopup);
     this->rtToolButtonMenu->setPopupMode(QToolButton::MenuButtonPopup);
     this->rwToolButtonMenu->setPopupMode(QToolButton::MenuButtonPopup);
+    this->welcomeToolButtonMenu->setPopupMode(QToolButton::MenuButtonPopup);
     if (fr)
     {
         // insert them before their counterparts and then delete the counterpart
@@ -2243,6 +2277,8 @@ void MainWindow::ReloadInterface()
         this->ui->mainToolBar->removeAction(this->ui->actionRevert);
         this->ui->mainToolBar->insertWidget(this->ui->actionWarn, warnToolButtonMenu);
         this->ui->mainToolBar->removeAction(this->ui->actionWarn);
+        this->ui->mainToolBar->insertWidget(this->ui->actionWelcome_user, welcomeToolButtonMenu);
+        this->ui->mainToolBar->removeAction(this->ui->actionWelcome_user);
     }
     // button action depends on adminrights
     if (conf->Rights.contains("delete"))
@@ -2254,7 +2290,7 @@ void MainWindow::ReloadInterface()
 
 void MainWindow::on_actionWelcome_user_triggered()
 {
-    this->Welcome();
+    this->TriggerWelcome();
 }
 
 void MainWindow::on_actionOpen_in_a_browser_triggered()
@@ -2397,7 +2433,7 @@ void MainWindow::on_actionRevert_currently_displayed_edit_and_stay_on_page_trigg
 
 void MainWindow::on_actionWelcome_user_2_triggered()
 {
-    this->Welcome();
+    this->TriggerWelcome();
 }
 
 void MainWindow::on_actionReport_user_triggered()

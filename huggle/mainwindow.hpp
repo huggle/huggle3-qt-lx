@@ -197,6 +197,8 @@ namespace Huggle
             SessionForm *fSessionData = nullptr;
             //! This query is used to refresh white list
             QHash<WikiSite*,WLQuery*> WhitelistQueries;
+            //! Welcome menu
+            QMenu *WelcomeMenu = nullptr;
             //! Warning menu
             QMenu *WarnMenu = nullptr;
             //! Revert menu
@@ -243,6 +245,7 @@ namespace Huggle
             void on_actionShow_ignore_list_of_current_wiki_triggered();
             void on_actionForward_triggered();
             void on_actionBack_triggered();
+            void CustomWelcome();
             void CustomRevert();
             void CustomRevertWarn();
             void CustomWarn();
@@ -347,10 +350,12 @@ namespace Huggle
             void Title(QString name);
             //! When any button to warn current user is pressed it call this function
             void TriggerWarn();
+            //! When any button to welcome current user is pressed it call this function
+            void TriggerWelcome();
             //! Check if we can revert this edit
             bool PreflightCheck(WikiEdit *_e);
             //! Welcome user
-            void Welcome();
+            void Welcome(QString message);
             void ChangeProvider(WikiSite *site, HuggleFeed *provider);
             void ReloadInterface();
             //! Recreate interface, should be called everytime you do anything with main form
@@ -380,6 +385,7 @@ namespace Huggle
             QToolButton *warnToolButtonMenu = nullptr;
             QToolButton *rtToolButtonMenu = nullptr;
             QToolButton *rwToolButtonMenu = nullptr;
+            QToolButton *welcomeToolButtonMenu = nullptr;
             QDateTime EditLoad;
             QString RestoreEdit_RevertReason;
             ReloginForm *fRelogin = nullptr;
