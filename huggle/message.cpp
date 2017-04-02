@@ -130,12 +130,6 @@ void Message::Finish()
         // we really need to quit now because query is null
         return;
     }
-    // Check if we have a valid token
-    if (!this->HasValidEditToken())
-    {
-        this->Fail("No token!");
-        return;
-    }
     if (this->query == nullptr)
     {
         // we should never reach this code
@@ -153,6 +147,12 @@ void Message::Finish()
             this->Fail(_l("message-fail-retrieve-talk"));
             return;
         }
+        // Check if we have a valid token
+        if (!this->HasValidEditToken())
+        {
+            this->Fail("No token!");
+            return;
+        }
         this->ProcessTalk();
         this->query.Delete();
         // we should be able to finish sending now
@@ -167,13 +167,28 @@ void Message::Finish()
         {
             return;
         }
+
+        ApiQueryResultNode *e = this->query->GetApiQueryResult()->GetNode("error");
         if (this->query->IsFailed())
         {
+            if (e != nullptr)
+            {
+                // Check if reason why we failed wasn't time out
+                QString ec = e->GetAttribute("code", "no-ec");
+                if (ec == "badtoken")
+                {
+                    //this->query->Suspend();
+                    Configuration::Logout(this->query->GetSite());
+                    // We have to exit here for some weird reasons
+                    // this gets us to another session failure
+                    this->Fail(_l("editquery-invalid-token", this->User->GetTalk()));
+                    return;
+                }
+            }
             this->Fail(_l("message-fail"));
             return;
         }
         bool sent = false;
-        ApiQueryResultNode *e = this->query->GetApiQueryResult()->GetNode("error");
         if (e != nullptr)
         {
             QString ec = e->GetAttribute("code", "no-ec");
@@ -275,7 +290,7 @@ void Message::ProcessSend()
     this->query = new ApiQuery(ActionEdit, this->User->GetSite());
     // prevent message from being sent twice
     this->query->RetryOnTimeoutFailure = false;
-    this->query->Timeout = 600;
+    this->query->Timeout = 60;
     this->query->Target = "Writing " + this->User->GetTalk();
     this->query->UsingPOST = true;
     QString summary = this->Summary;

@@ -454,13 +454,14 @@ bool RevertQuery::CheckRevert()
     if (this->qRevert == nullptr || !this->qRevert->IsProcessed())
         return false;
     bool failed = false;
-    if (this->qRevert->IsFailed())
+    this->CustomStatus = this->getCustomRevertStatus(&failed);
+    // In case that we got suspended by the session logout, quit here
+    if (this->Status == StatusIsSuspended)
+        return false;
+    if (!failed && this->qRevert->IsFailed())
     {
         failed = true;
         this->CustomStatus = this->qRevert->GetFailureReason();
-    } else
-    {
-        this->CustomStatus = this->getCustomRevertStatus(&failed);
     }
     if (failed)
     {
