@@ -587,7 +587,7 @@ void Core::LoadLocalizations()
     }
     Localizations::HuggleLocalizations->LocalInit("ar"); // Arabic
     Localizations::HuggleLocalizations->LocalInit("bg"); // Bulgarian
-    //Localizations::HuggleLocalizations->LocalInit("bn"); // Bengali
+    Localizations::HuggleLocalizations->LocalInit("bn"); // Bengali
     Localizations::HuggleLocalizations->LocalInit("br"); // Brezhoneg
     Localizations::HuggleLocalizations->LocalInit("cz"); // Czech
     Localizations::HuggleLocalizations->LocalInit("de"); // Deutsch
