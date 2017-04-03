@@ -402,7 +402,7 @@
   <string name="main-tip-userreport">گزارش این کاربر</string>
   <string name="main-tip-userblock">بستن این کاربر</string>
   <string name="main-revision-acceptpend">پذیرفتن این نسخه در انتظار</string>
-  <string name="main-no-page">اقدام مورد درخواست شما نیاز به بارگیری یک صفحه دارد. لطفاُ پیش از تلاش دوباره یک صفحه را باربگیرید.</string>
+  <string name="main-no-page" fuzzy="true">اقدام مورد درخواست شما نیاز به بارگیری یک صفحه دارد. لطفاُ پیش از تلاش دوباره یک صفحه را باربگیرید.</string>
   <string name="main-revert-null">واگردانی ناموفق، ویرایش خالی است</string>
   <string name="main-revert-newpage-title">نمی‌توان این را واگردانی کرد</string>
   <string name="main-revert-newpage">این یک صفحهٔ تازه است، بنابراین نمی‌تواند واگردانی شود، شما می‌توانید به آن برچسب بزنید، یا حذفش کنید.</string>

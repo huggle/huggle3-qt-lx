@@ -402,7 +402,7 @@
   <string name="main-tip-userreport">Сообщить об участнике</string>
   <string name="main-tip-userblock">Блокировать участника</string>
   <string name="main-revision-acceptpend">Принять эту незаконченную версию</string>
-  <string name="main-no-page">Действие, которое вы запросили, требует наличия загруженной страницы. Пожалуйста, загрузите страницу, прежде чем пробовать снова.</string>
+  <string name="main-no-page">Действие, которое вы запросили, требует наличия загруженной страницы или недоступно, посколько страница находится в режиме только для чтения. Пожалуйста, загрузите редактируемую страницу, прежде чем пробовать снова.</string>
   <string name="main-revert-null">Невозможно откатить: правка пуста</string>
   <string name="main-revert-newpage-title">Не могу откатить это</string>
   <string name="main-revert-newpage">Это новая страница, поэтому правка не может быть отменена. Вы можете либо поставить метку, либо удалить страницу.</string>
@@ -749,6 +749,5 @@
   <string name="query-result-nodata">Результат запроса не содержит данных</string>
   <string name="query-request-noaction">Для запроса API не определены действия</string>
   <string name="query-login-undefined">Маркер входа требует значения определенного пользователем, он не хранится в памяти</string>
-  <string name="query-execute-drymode">Если я не в \"сухом режиме\" я буду выполнять запрос (post=</string>
   <string name="query-protected-link">Защищенная ссылка</string>
 </resources>

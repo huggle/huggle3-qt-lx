@@ -41,8 +41,11 @@
   <string name="status">状態</string>
   <string name="link">リンク</string>
   <string name="reason">理由</string>
+  <string name="whitelisted">$1（$3におけるスコア：$2）がホワイトリストに追加されました</string>
   <string name="expiry-time">有効期限</string>
   <string name="duration">期間</string>
+  <string name="enable">有効</string>
+  <string name="disable">無効</string>
   <string name="no-token">トークンなし</string>
   <string name="flags">フラグ</string>
   <string name="browser-none">現在、ページが表示されていません</string>
@@ -64,10 +67,15 @@
   <string name="block-sharedipwarning">注意: $1 は共有/可変IP とタグ付けされています</string>
   <string name="block-rangeblockwarning">$1 はすでにレンジブロック $2 の影響を受けています。
 ブロックするとレンジ・ブロックに重ねて二重で影響を与えます。実行しますか？</string>
+  <string name="block-token-1">$1をブロックするためのトークンを取得しています</string>
   <string name="block-fail">\'$1\' をブロックしませんでした</string>
+  <string name="block-token-e1">トークンを取得できませんでした：$1</string>
   <string name="block-type">ブロック / ブロック解除</string>
   <string name="config-description">説明</string>
   <string name="config-shortcut">ショートカット</string>
+  <string name="config-queue-filter-ignore">無視（フィルターの無効化）</string>
+  <string name="config-queue-filter-exclude">除外（一致した場合に編集をキューから除外）</string>
+  <string name="config-queue-filter-require">必要（一致した場合のみ編集をキューに入れる）</string>
   <string name="config-title">オプション</string>
   <string name="config-already-in-use">このショートカットは $1 で既に使用されています。別のショートカットを指定してください</string>
   <string name="config-openinbrowser">ブラウザーリンクを新しいウィンドウで開く</string>
@@ -90,8 +98,15 @@
   <string name="config-defaultsummary">手動編集のデフォルト要約</string>
   <string name="config-undosummary">自編集を差し戻すときのデフォルト要約</string>
   <string name="config-confirm-wl">ホワイトリストに登録された利用者による改編について承認を要求</string>
+  <string name="config-revert">リバート</string>
   <string name="config-enable-irc">IRCを可動</string>
+  <string name="config-display-text">次を表示</string>
+  <string name="config-bot-edits">ボットによる編集(b)</string>
+  <string name="config-own-edits">自分の編集</string>
+  <string name="config-reverts">リバート</string>
   <string name="config-new-page">新規ページ</string>
+  <string name="config-whitelisted">ホワイトリスト済</string>
+  <string name="config-friend">友達</string>
   <string name="config-userspace">ユーザー空間</string>
   <string name="config-talk">会話ページ</string>
   <string name="config-updates">更新を確認</string>
@@ -120,14 +135,19 @@
   <string name="config-blocktimeanon">IP利用者</string>
   <string name="config-blocktimereg">登録利用者</string>
   <string name="config-summaryprompt">要約を入力</string>
+  <string name="config-history">全記事の全履歴をダウンロード</string>
   <string name="config-defaultsprompt">デフォルト設定に戻しますか？</string>
   <string name="config-logbrowsetitle">ログファイルの場所</string>
   <string name="config-shortcutconflict">ショートカット \'$1\' は、既存のショートカット \'{1}\' とかぶっています。</string>
+  <string name="config-no-colon">キューの名前にコロン\':\'は使えません</string>
   <string name="config-notify-update">更新を確認</string>
   <string name="config-notify-beta">利用できる場合はベータ版を確認</string>
   <string name="delete-title">$1 を削除</string>
   <string name="delete-reason">理由:</string>
   <string name="delete-deletionlog">削除ログ:</string>
+  <string name="delete-rem-talk">関連ノートページを削除</string>
+  <string name="delete-notify">作成者に知らせる</string>
+  <string name="delete-error-token">エラー：削除用のトークンを取得できませんでした。原因：$1</string>
   <string name="delete-token02">クエリがトークンを返しませんでした</string>
   <string name="delete-e1">ページを削除できません: $1</string>
   <string name="delete-e2">ページを削除できません</string>
@@ -142,7 +162,7 @@
   <string name="irc-error">IRCの最近の更新フィード($1: $2)に接続できませんでした。より低速なAPIクエリを代わりに使用します</string>
   <string name="login-intro">プロジェクトを選択して、利用者名とパスワードを入力してください。「Projects」ボタンをクリックすることで、複数のプロジェクトにログインすることもできます。</string>
   <string name="login-tab-botp">ボット用パスワード</string>
-  <string name="login-tab-login" fuzzy="true">ログイン</string>
+  <string name="login-tab-login">レガシー</string>
   <string name="login-language">言語:</string>
   <string name="login-project">プロジェクト:</string>
   <string name="login-username">利用者名:</string>
@@ -153,10 +173,12 @@
   <string name="login-proxyport">ポート:</string>
   <string name="login-proxydomain">ドメイン:</string>
   <string name="login-fail-no-info">$1 へのログイン失敗: 利用者の情報を取得できません: $2</string>
+  <string name="login-bot">ボット用とレガシーログインの違いは？</string>
   <string name="login-fail-rollback-rights">$1 へのログイン失敗: あなたにはこのプロジェクトでの巻き戻しの権限がありません。</string>
   <string name="login-failed-autoconfirm-rights">$1 へのログイン失敗: あなたはこのプロジェクトで自動承認された利用者ではありません。</string>
   <string name="login-failed-edit">$1 へのログイン失敗: このプロジェクトでの編集回数が不足しています。</string>
   <string name="login-retrieving-info">$1 の利用者の情報を取得中</string>
+  <string name="login-password-empty">パスワードが空白です</string>
   <string name="login-api">エラー: api.php が不明な結果を返しました: $1</string>
   <string name="login-start">ログイン</string>
   <string name="login-oauth-notsupported">現在、この方法ではログインできません</string>

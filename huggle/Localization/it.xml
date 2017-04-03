@@ -402,7 +402,7 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="main-tip-userreport">Segnala questo utente</string>
   <string name="main-tip-userblock">Blocca questo utente</string>
   <string name="main-revision-acceptpend">Accetta questa revisione pendente</string>
-  <string name="main-no-page">L\'azione che hai richiesto necessita di una pagina da caricare. Per favore carica una pagina prima di riprovare.</string>
+  <string name="main-no-page">L\'azione che hai richiesto necessita di una pagina da caricare o non è disponibile poiché questa pagina è in sola lettura. Per favore carica una pagina modificabile prima di riprovare.</string>
   <string name="main-revert-null">Impossibile ripristinare: la modifica è nulla</string>
   <string name="main-revert-newpage-title">Non è possibile ripristinare questo</string>
   <string name="main-revert-newpage">Questa è una nuova pagina, quindi non può essere ripristinata. Puoi etichettarla, o eliminarla.</string>

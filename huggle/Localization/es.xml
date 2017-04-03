@@ -403,7 +403,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="main-tip-userreport">Denunciar a este usuario</string>
   <string name="main-tip-userblock">Bloquear a este usuario</string>
   <string name="main-revision-acceptpend">Aceptar esta revisión pendiente</string>
-  <string name="main-no-page">La acción que ha solicitado requiere que la página se cargue. Por favor, carga una página antes de volver a intentarlo.</string>
+  <string name="main-no-page" fuzzy="true">La acción que ha solicitado requiere que la página se cargue. Por favor, carga una página antes de volver a intentarlo.</string>
   <string name="main-revert-null">Imposible revertir, editar es null</string>
   <string name="main-revert-newpage-title">No se puede revertir esto</string>
   <string name="main-revert-newpage">Esta es una página nueva, por lo que no puede ser revertida. Puedes etiqueta o eliminarla.</string>

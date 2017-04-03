@@ -382,7 +382,7 @@
   <string name="main-tip-userreport">أخطر عن هذا المستخدم</string>
   <string name="main-tip-userblock">امنع هذا المستخدم</string>
   <string name="main-revision-acceptpend">قبول هذه المراجعة قيد الانتظار</string>
-  <string name="main-no-page">الفعل الذي طلبته يتطلب تحميل الصفحة; يرجى تحميل الصفحة قبل المحاولة مرة أخرى.</string>
+  <string name="main-no-page" fuzzy="true">الفعل الذي طلبته يتطلب تحميل الصفحة; يرجى تحميل الصفحة قبل المحاولة مرة أخرى.</string>
   <string name="main-revert-null">تعذر الاسترجاع: تعديل فاسد</string>
   <string name="main-revert-newpage-title">لا يمكن التراجع عن هذا</string>
   <string name="main-revert-newpage">هذه صفحة جديدة; لذلك لا يمكن أن تتراجع عن تعديل فيها; يمكنك مراجعتها أو حذفها.</string>

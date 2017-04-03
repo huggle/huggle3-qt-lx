@@ -402,7 +402,7 @@
   <string name="main-tip-userreport">回報此使用者</string>
   <string name="main-tip-userblock">封鎖此使用者</string>
   <string name="main-revision-acceptpend">接收此待定修改</string>
-  <string name="main-no-page">您的操作已請求須要讓頁面載入。請再重試之前載入一個頁面。</string>
+  <string name="main-no-page">您的操作已請求須要讓頁面載入；否則會因為此頁面為唯獨而將不可用。請再重試之前載入一個可編輯頁面。</string>
   <string name="main-revert-null">無法回退：零編輯</string>
   <string name="main-revert-newpage-title">無法還原此頁面</string>
   <string name="main-revert-newpage">此為新的頁面，所以不能被還原。您可以加入任何標籤或者刪除此頁面。</string>
@@ -692,6 +692,9 @@
   <string name="preferences-watchlist-unwatch">從監視清單中移除</string>
   <string name="preferences-watchlist-preferences">遵循您在wiki上的設置</string>
   <string name="preferences-watchlist-nochange">什麼都不做</string>
+  <string name="preferences-sounds-enable-queue">當新項目添加至佇列時播放音效</string>
+  <string name="preferences-sounds-enable-irc">當在 HAN 裡有訊息收到時播放音效</string>
+  <string name="preferences-sounds-minimal-score">通知的最小編輯分數</string>
   <string name="fail">失敗</string>
   <string name="request">請求</string>
   <string name="requesting">請求中</string>
@@ -749,6 +752,5 @@ $1</string>
   <string name="query-result-nodata">查詢結果未包含任何資料</string>
   <string name="query-request-noaction">沒有為api請求提供操作</string>
   <string name="query-login-undefined">登入令牌需要用戶定義內容，它並沒有儲存於記憶體中</string>
-  <string name="query-execute-drymode">如果我不處於枯燥模式情況下，我會執行此查詢 (post=</string>
   <string name="query-protected-link">已保護連結</string>
 </resources>

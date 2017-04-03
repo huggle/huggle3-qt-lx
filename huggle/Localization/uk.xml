@@ -402,7 +402,7 @@
   <string name="main-tip-userreport">Повідомити про користувача</string>
   <string name="main-tip-userblock">Заблокувати користувача</string>
   <string name="main-revision-acceptpend">Прийняти цю версію</string>
-  <string name="main-no-page">Для виконання цієї дії потрібно спочатку обрати редагування.</string>
+  <string name="main-no-page" fuzzy="true">Для виконання цієї дії потрібно спочатку обрати редагування.</string>
   <string name="main-revert-null">Неможливо скасувати: пусте редагування</string>
   <string name="main-revert-newpage-title">Неможливо це скасувати</string>
   <string name="main-revert-newpage">Це нова сторінка, тому редагування не може бути скасоване. Ви можете додати шаблон, номінувати сторінку на вилучення чи самостійно вилучити її (за наявності прав).</string>
@@ -749,6 +749,5 @@ $1</string>
   <string name="query-result-nodata">Результат запиту не містить жодних даних</string>
   <string name="query-request-noaction">Жодної дії не надано для запиту до API</string>
   <string name="query-login-undefined">Токен входу в систему вимагає значення, визначеного користувачем; воно не зберігається в пам\'яті</string>
-  <string name="query-execute-drymode">Якби я не був у сухому режимі, я б виконав цей запит (post=</string>
   <string name="query-protected-link">Захищене посилання</string>
 </resources>

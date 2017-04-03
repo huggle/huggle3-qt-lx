@@ -478,6 +478,9 @@ Denna blockering kommer att åsidosätta effekterna av intervallblockeringen. Fo
   <string name="welcome-show">Visa detta meddelande även nästa gång du startar huggle</string>
   <string name="welcome-tp-empty-fail">Denna användare har inte en tom diskussionssida, är du säker på att du vill skicka ett meddelande till hen?</string>
   <string name="welcome-page-miss-fail">Huggle kunde inte hämta innehållet i användarens diskussionssida, är du säker på att du vill skicka ett välkomstmeddelande till hen?</string>
+  <string name="preferences-sounds-enable-queue">Spela upp ljud när nya objekt köläggs</string>
+  <string name="preferences-sounds-enable-irc">Spela upp ljud när ett meddelande hämtas i HAN</string>
+  <string name="preferences-sounds-minimal-score">Minimala redigeringspoäng för notifikation</string>
   <string name="fail">Misslyckades</string>
   <string name="request">Begär</string>
   <string name="requesting">Begär</string>

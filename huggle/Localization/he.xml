@@ -402,7 +402,7 @@
   <string name="main-tip-userreport">דיווח על המשתמש</string>
   <string name="main-tip-userblock">חסימת משתמש זה</string>
   <string name="main-revision-acceptpend">קבלת הגרסה הממתינה הזאת</string>
-  <string name="main-no-page">הפעולה שביקשת דורשת שיהיה דף טעון. נא לטעון דף לפני ניסיון נוסף.</string>
+  <string name="main-no-page" fuzzy="true">הפעולה שביקשת דורשת שיהיה דף טעון. נא לטעון דף לפני ניסיון נוסף.</string>
   <string name="main-revert-null">לא ניתן לשחזר. זוהי עריכה אפסית.</string>
   <string name="main-revert-newpage-title">אי־אפשר לשחזר את זה</string>
   <string name="main-revert-newpage">זה דף חדש, אז אי־אפשר לשחזר אותו. אפשר לתייג אותו או למחוק אותו.</string>
@@ -749,6 +749,5 @@ $1</string>
   <string name="query-result-nodata">תוצאות השאילתה אינן מכילות שום נתונים</string>
   <string name="query-request-noaction">לא סופקה בקשה לבקשת API</string>
   <string name="query-login-undefined">אסימון הכניסה דורש ערך מוגדר על־ידי משתמש, הוא לא מאוחסן בזיכרון</string>
-  <string name="query-execute-drymode">לולי הייתי במצב יבש, הייתי מבצע את השאילתה הזאת (post=</string>
   <string name="query-protected-link">קישור מוגן</string>
 </resources>

@@ -398,7 +398,7 @@ Această blocare va lua locul efectului blocării gamei. Continuați?</string>
   <string name="main-tip-userreport">Reclamă acest utilizator</string>
   <string name="main-tip-userblock">Blochează acest utilizator</string>
   <string name="main-revision-acceptpend">Acceptă această revizie</string>
-  <string name="main-no-page">Acțiunea cerută necesită încărcarea unei pagini. Vă rog să încărcați o pagină înainte de a încerca din nou.</string>
+  <string name="main-no-page" fuzzy="true">Acțiunea cerută necesită încărcarea unei pagini. Vă rog să încărcați o pagină înainte de a încerca din nou.</string>
   <string name="main-revert-null">Nu pot refeni: editarea este null</string>
   <string name="main-revert-newpage-title">Nu pot reveni</string>
   <string name="main-revert-newpage">Aceasta este o pagină nouă, deci nu se poate reveni la altă versiune. Puteți doar să o etichetați sau să o ștergeți.</string>

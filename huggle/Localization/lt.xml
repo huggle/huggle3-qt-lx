@@ -346,7 +346,7 @@
   <string name="main-tip-pagedelete">Ištrinti šį puslapį</string>
   <string name="main-tip-userreport">Pranešti apie šį vartotoją</string>
   <string name="main-tip-userblock">Blokuoti šį vartotoją</string>
-  <string name="main-no-page">Veiksmui, kurį prašėte atlikti, reikalingas įkeltas puslapis. Prašome įkelti puslapį ir bandyti dar kartą.</string>
+  <string name="main-no-page" fuzzy="true">Veiksmui, kurį prašėte atlikti, reikalingas įkeltas puslapis. Prašome įkelti puslapį ir bandyti dar kartą.</string>
   <string name="main-revert-newpage-title">Nepavyko to anuliuoti</string>
   <string name="main-revert-newpage">Tai yra naujas puslapis, tad jis negali būti anuliuotas. Galite jį pažymėti arba ištrinti.</string>
   <string name="message-title">Pranešimas $1</string>

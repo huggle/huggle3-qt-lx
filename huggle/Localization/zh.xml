@@ -402,7 +402,7 @@
   <string name="main-tip-userreport">报告此用户</string>
   <string name="main-tip-userblock">封禁此用户</string>
   <string name="main-revision-acceptpend">接受该版本</string>
-  <string name="main-no-page">您请求的操作需要页面已加载。请在重试前加载一个页面。</string>
+  <string name="main-no-page">您请求的操作需要已经加载一个页面，或因为该页面处于只读状态而不可用。请在重试前加载一个可编辑的页面。</string>
   <string name="main-revert-null">无法回退：编辑为空</string>
   <string name="main-revert-newpage-title">不能回退这个</string>
   <string name="main-revert-newpage">这是一个新页面，所以它不能被恢复。您可以标记它，或者删除它。</string>
@@ -692,6 +692,9 @@
   <string name="preferences-watchlist-unwatch">从监视列表中移除</string>
   <string name="preferences-watchlist-preferences">关注您在wiki上的参数设置</string>
   <string name="preferences-watchlist-nochange">不做任何事</string>
+  <string name="preferences-sounds-enable-queue">当新项目添加到队列时播放声音</string>
+  <string name="preferences-sounds-enable-irc">当HAN收到新消息时播放声音</string>
+  <string name="preferences-sounds-minimal-score">最低通知编辑分数</string>
   <string name="fail">失败</string>
   <string name="request">请求</string>
   <string name="requesting">请求中</string>
@@ -749,6 +752,5 @@ $1</string>
   <string name="query-result-nodata">查询结果不包含任何数据</string>
   <string name="query-request-noaction">没有为api请求提供操作</string>
   <string name="query-login-undefined">登录令牌需要用户定义值，它未存储于内存中</string>
-  <string name="query-execute-drymode">如果我不在干运行模式，我会执行此查询（post=</string>
   <string name="query-protected-link">已保护链接</string>
 </resources>

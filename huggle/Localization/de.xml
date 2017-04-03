@@ -402,7 +402,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="main-tip-userreport">Benutzer melden</string>
   <string name="main-tip-userblock">Benutzer sperren</string>
   <string name="main-revision-acceptpend">Diese ausstehende Version akzeptieren</string>
-  <string name="main-no-page">Die angeforderte Aktion erfordert das Laden einer Seite. Bitte lade eine Seite, bevor du es erneut versuchst.</string>
+  <string name="main-no-page">Die angeforderte Aktion erfordert das Laden einer Seite oder sie ist nicht verfügbar, da diese Seite schreibgeschützt ist. Bitte lade eine bearbeitbare Seite, bevor du es erneut versuchst.</string>
   <string name="main-revert-null">Zurücksetzung konnte nicht ausgeführt werden</string>
   <string name="main-revert-newpage-title">Dies konnte nicht rückgängig gemacht werden</string>
   <string name="main-revert-newpage">Dies ist eine neue Seite. Sie kann nicht zurückgesetzt werden. Du kannst sie entweder markieren oder löschen.</string>
@@ -692,6 +692,9 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="preferences-watchlist-unwatch">Von der Beobachtungsliste entfernen</string>
   <string name="preferences-watchlist-preferences">Folge deinen Wiki-Einstellungen</string>
   <string name="preferences-watchlist-nochange">Nichts unternehmen</string>
+  <string name="preferences-sounds-enable-queue">Ton abspielen, wenn ein neues Objekt zur Warteschlange hinzugefügt wurde.</string>
+  <string name="preferences-sounds-enable-irc">Ton abspielen, wenn eine Nachricht in HAN empfangen wurde.</string>
+  <string name="preferences-sounds-minimal-score">Minimaler Bearbeitungsscore zur Benachrichtigung</string>
   <string name="fail">Fehlgeschlagen</string>
   <string name="request">Anfragen</string>
   <string name="requesting">Frage an …</string>
@@ -749,6 +752,5 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="query-result-nodata">Das Abfrageergebnis enthält keine Daten</string>
   <string name="query-request-noaction">Für die API-Anfrage wurde keine Aktion angegeben</string>
   <string name="query-login-undefined">Der Anmeldetoken erfordert einen benutzerdefinierten Wert. Er ist nicht im Speicher.</string>
-  <string name="query-execute-drymode">Falls ich nicht im trockenen Modus war, würde ich diese Abfrage ausführen: (post=</string>
   <string name="query-protected-link">Geschützter Link</string>
 </resources>

@@ -386,7 +386,7 @@ Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu d
   <string name="main-tip-userreport">Denunciar este utilizador</string>
   <string name="main-tip-userblock">Bloquear este utilizador</string>
   <string name="main-revision-acceptpend">Aceitar esta revisão pendente</string>
-  <string name="main-no-page">A ação que solicitou requer uma página para carregar. Por favor, carregue uma página antes de tentar novamente.</string>
+  <string name="main-no-page" fuzzy="true">A ação que solicitou requer uma página para carregar. Por favor, carregue uma página antes de tentar novamente.</string>
   <string name="main-revert-null">Impossível reverter, a edição é nula</string>
   <string name="main-revert-newpage-title">Não é possível desfazer</string>
   <string name="main-revert-newpage">Esta é uma página nova, portanto a edição não pode ser desfeita. Pode marcá-la ou eliminá-la.</string>

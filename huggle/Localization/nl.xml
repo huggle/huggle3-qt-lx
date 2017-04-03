@@ -402,7 +402,7 @@ Deze blokkade maakt het effect van de rangeblokkade ongedaan. Doorgaan?</string>
   <string name="main-tip-userreport">Gebruiker rapporteren</string>
   <string name="main-tip-userblock">Deze gebruiker blokkeren</string>
   <string name="main-revision-acceptpend">Deze versie goedkeuren</string>
-  <string name="main-no-page">Voor de handeling die u hebt geselecteerd moet een pagina geladen worden. Laad eerst een pagina voordat u het opnieuw probeert.</string>
+  <string name="main-no-page" fuzzy="true">Voor de handeling die u hebt geselecteerd moet een pagina geladen worden. Laad eerst een pagina voordat u het opnieuw probeert.</string>
   <string name="main-revert-null">Terugdraaien niet mogelijk: de bewerking is \"null\"</string>
   <string name="main-revert-newpage-title">Kan niet worden teruggedraaid</string>
   <string name="main-revert-newpage">Dit is een nieuwe pagina, dus er kan niet teruggedraaid worden. U kunt labelen of verwijderen.</string>

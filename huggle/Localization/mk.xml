@@ -402,7 +402,7 @@
   <string name="main-tip-userreport">Пријави го корисников</string>
   <string name="main-tip-userblock">Блокирај го корисников</string>
   <string name="main-revision-acceptpend">Прифати ја оваа преработка во исчекување</string>
-  <string name="main-no-page">На дејството што го побаравте му треба вчитана страница. Вчитајте страница и обидете се повторно.</string>
+  <string name="main-no-page">На дејството што го побаравте му треба страницата да биде вчитана, или пак е недостапно бидејќи страницата не е уредлива (т.е. само за читање). Вчитајте уредлива страница и обидете се повторно.</string>
   <string name="main-revert-null">Не можам да вратам. Уредувањето е ништовно.</string>
   <string name="main-revert-newpage-title">Не можам да го отповикам ова</string>
   <string name="main-revert-newpage">Ова е нова страница и затоа не може да се отповика. Можете само да ја означите или да ја избришете.</string>
@@ -692,6 +692,9 @@
   <string name="preferences-watchlist-unwatch">Отстрани набљудуваните</string>
   <string name="preferences-watchlist-preferences">Води се по моите нагодувања на викито</string>
   <string name="preferences-watchlist-nochange">Не прави ништо</string>
+  <string name="preferences-sounds-enable-queue">Пушти звук кога ќе се појави нова ставка во редицата</string>
+  <string name="preferences-sounds-enable-irc">Пушти звук кога ќе се прими нова порака во HAN</string>
+  <string name="preferences-sounds-minimal-score">Најмало уредување за известување</string>
   <string name="fail">Неуспех</string>
   <string name="request">Барање</string>
   <string name="requesting">Барање</string>
@@ -749,6 +752,5 @@
   <string name="query-result-nodata">Исходот од барањето не содржи никакви податоци</string>
   <string name="query-request-noaction">Немате укажано дејство за барањето до извршникот</string>
   <string name="query-login-undefined">Најавната шифра бара кориснички укажана вредност. Таква не е складирана помнилото.</string>
-  <string name="query-execute-drymode">Да не бев во сув режим, ќе го извршев барањево (post=</string>
   <string name="query-protected-link">Заштитена врска</string>
 </resources>
