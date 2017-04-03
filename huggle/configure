@@ -40,7 +40,9 @@ PYTHON=0
 _BUILD=0
 _Q=0
 QTPATH=''
-BUILD=huggle_release
+USEDEBUG=0
+BUILD='huggle_release'
+BUILD_CHANGED=0
 if [ x"$*" != x ];then
     echo "Options used: $*"
 fi
@@ -50,6 +52,7 @@ do
     if [ "$var" = "--help" ] || [ "$var" = "-h" ];then
         echo "Configure script for huggle, parameters:"
         echo "=========================================="
+        echo " --debug: build a debuggable huggle"
         echo " --disable-dependency-tracking: skip all package checks"
         echo " --extension: will build all extensions as well"
         echo " --qtpath: path to Qt (for example C:\\Qt\\5.4\\mingw\\"
@@ -75,6 +78,7 @@ do
     fi
     if [ "$_BUILD" = "1" ];then
 	BUILD="$var"
+	BUILD_CHANGED=1
         _BUILD=0
         continue
     fi
@@ -110,7 +114,7 @@ do
         continue
     fi
     if [ "$var" = "--version" ];then
-        echo "Huggle configure v 1.0"
+        echo "Huggle configure v 1.1"
         exit 0
     fi
     if [ "$var" = "--web-engine" ];then
@@ -119,6 +123,10 @@ do
     fi
     if [ "$var" = "--disable-dependency-tracking" ];then
         SKIPCHECKS=1
+        continue
+    fi
+    if [ "$var" = "--debug" ];then
+        USEDEBUG=1
         continue
     fi
 done
@@ -162,6 +170,15 @@ checkhf()
         exit 1
     fi
 } 
+
+if [ "$USEDEBUG" -eq 1 ];then
+    CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_BUILD_TYPE=Debug"
+    if [ "$BUILD_CHANGED" = "0" ];then
+        BUILD='huggle_debug'
+    fi
+else
+    CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_BUILD_TYPE=Release"
+fi
 
 echo "Checking all required packages..."
 text "Checking for cmake... "
