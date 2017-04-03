@@ -62,43 +62,52 @@ int main(int argc, char *argv[])
     Localizations::HuggleLocalizations->LocalInit("bg"); // Bulgarian
     Localizations::HuggleLocalizations->LocalInit("bn"); // Bengali
     Localizations::HuggleLocalizations->LocalInit("br"); // Brezhoneg
+    Localizations::HuggleLocalizations->LocalInit("ca"); // Catalan
     Localizations::HuggleLocalizations->LocalInit("cz"); // Czech
+    Localizations::HuggleLocalizations->LocalInit("da"); // Danish
     Localizations::HuggleLocalizations->LocalInit("de"); // Deutsch
     Localizations::HuggleLocalizations->LocalInit("es"); // Spanish
     Localizations::HuggleLocalizations->LocalInit("fa"); // Persian
+    Localizations::HuggleLocalizations->LocalInit("fi"); // Finnish
+    Localizations::HuggleLocalizations->LocalInit("fj"); // Fijian
     Localizations::HuggleLocalizations->LocalInit("fr"); // French
-    Localizations::HuggleLocalizations->LocalInit("gu");
+    Localizations::HuggleLocalizations->LocalInit("gu"); // Gujarati
     Localizations::HuggleLocalizations->LocalInit("he"); // Hebrew
     Localizations::HuggleLocalizations->LocalInit("hi"); // Hindi
+    Localizations::HuggleLocalizations->LocalInit("hu"); // Hungarian
+    Localizations::HuggleLocalizations->LocalInit("id"); // Indonesian
     Localizations::HuggleLocalizations->LocalInit("it"); // Italian
     Localizations::HuggleLocalizations->LocalInit("ja"); // Japanese
-    Localizations::HuggleLocalizations->LocalInit("ka"); // ?
-    Localizations::HuggleLocalizations->LocalInit("kk-cyrl");
+    Localizations::HuggleLocalizations->LocalInit("ka"); // Georgian
+    Localizations::HuggleLocalizations->LocalInit("kk-cyrl"); // Kazakh (Cyrillic)
     //Localizations::HuggleLocalizations->LocalInit("km"); // Khmer
     Localizations::HuggleLocalizations->LocalInit("kn"); // Kannada
     Localizations::HuggleLocalizations->LocalInit("ko"); // Korean
-    Localizations::HuggleLocalizations->LocalInit("ksh");
+    Localizations::HuggleLocalizations->LocalInit("ksh"); // Kölsch
     Localizations::HuggleLocalizations->LocalInit("lb"); // Lebanon
-    Localizations::HuggleLocalizations->LocalInit("lt");
+    Localizations::HuggleLocalizations->LocalInit("lt"); // Lithuanian
     Localizations::HuggleLocalizations->LocalInit("mk"); // Macedonian
     Localizations::HuggleLocalizations->LocalInit("ml"); // Malayalam
     Localizations::HuggleLocalizations->LocalInit("mr"); // Marathi
-    Localizations::HuggleLocalizations->LocalInit("ms");
+    Localizations::HuggleLocalizations->LocalInit("ms"); // Malay
     Localizations::HuggleLocalizations->LocalInit("nl"); // Dutch
     Localizations::HuggleLocalizations->LocalInit("no"); // Norwegian
     Localizations::HuggleLocalizations->LocalInit("oc"); // Occitan
     Localizations::HuggleLocalizations->LocalInit("or"); // Oriya
-    Localizations::HuggleLocalizations->LocalInit("pl");
+    Localizations::HuggleLocalizations->LocalInit("pl"); // Polish
     Localizations::HuggleLocalizations->LocalInit("pt"); // Portuguese
     Localizations::HuggleLocalizations->LocalInit("pt-BR"); // Portuguese (in Brazil)
     Localizations::HuggleLocalizations->LocalInit("ru"); // Russian
-    Localizations::HuggleLocalizations->LocalInit("ro");` 
-    Localizations::HuggleLocalizations->LocalInit("sa");
+    Localizations::HuggleLocalizations->LocalInit("ro");`// Romanian
+    Localizations::HuggleLocalizations->LocalInit("sa"); // Sanskrit
+    Localizations::HuggleLocalizations->LocalInit("en"); // Serbian
     Localizations::HuggleLocalizations->LocalInit("sv"); // Swedish
-    Localizations::HuggleLocalizations->LocalInit("ta");
+    Localizations::HuggleLocalizations->LocalInit("ta"); // Tamil
+    Localizations::HuggleLocalizations->LocalInit("th"); // Thai
     Localizations::HuggleLocalizations->LocalInit("tr"); // Turkish
-    Localizations::HuggleLocalizations->LocalInit("ur");
-    Localizations::HuggleLocalizations->LocalInit("uk"); 
+    Localizations::HuggleLocalizations->LocalInit("ur"); // Urdu
+    Localizations::HuggleLocalizations->LocalInit("uk"); // Ukrainian
+    Localizations::HuggleLocalizations->LocalInit("uz"); // Uzbek
     Localizations::HuggleLocalizations->LocalInit("zh-hant"); // Chinese
     Localizations::HuggleLocalizations->LocalInit("zh"); // Chinese
     HTML();
