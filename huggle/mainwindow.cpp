@@ -1041,20 +1041,20 @@ bool MainWindow::PreflightCheck(WikiEdit *_e)
     return true;
 }
 
-bool MainWindow::Warn(QString WarningType, RevertQuery *dependency)
+bool MainWindow::Warn(QString WarningType, RevertQuery *dependency, WikiEdit *related_edit)
 {
-    if (dependency->GetEdit() == nullptr)
+    if (related_edit == nullptr)
         return false;
     bool Report_ = false;
-    PendingWarning *ptr_Warning_ = Warnings::WarnUser(WarningType, dependency, dependency->GetEdit(), &Report_);
+    PendingWarning *ptr_Warning_ = Warnings::WarnUser(WarningType, dependency, related_edit, &Report_);
     if (Report_)
     {
         if (hcfg->UserConfig->AutomaticReports)
         {
-            ReportUser::SilentReport(dependency->GetEdit()->User);
+            ReportUser::SilentReport(related_edit->User);
         } else
         {
-            this->DisplayReportUserWindow(dependency->GetEdit()->User);
+            this->DisplayReportUserWindow(related_edit->User);
         }
     }
     if (ptr_Warning_ != nullptr)
@@ -1191,7 +1191,7 @@ void MainWindow::TriggerWarn()
         this->fWarningList->show();
         return;
     }
-    this->Warn("warning", nullptr);
+    this->Warn("warning", nullptr, this->CurrentEdit);
 }
 
 void MainWindow::on_actionPreferences_triggered()
@@ -1537,7 +1537,7 @@ void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_trig
     Collectable_SmartPtr<RevertQuery> result = this->Revert("");
     if (result != nullptr)
     {
-        this->Warn("warning", result);
+        this->Warn("warning", result, result->GetEdit());
     }
 }
 
@@ -1548,7 +1548,7 @@ void MainWindow::on_actionRevert_and_warn_triggered()
     Collectable_SmartPtr<RevertQuery> result = this->Revert("");
     if (result != nullptr)
     {
-        this->Warn("warning", result);
+        this->Warn("warning", result, result->GetEdit());
     }
 }
 
@@ -1616,7 +1616,7 @@ void MainWindow::CustomRevertWarn()
     Collectable_SmartPtr<RevertQuery> result = this->Revert(summary, false);
     if (result != nullptr)
     {
-        this->Warn(key, result);
+        this->Warn(key, result, result->GetEdit());
         this->DisplayNext(result);
     } else
     {
@@ -1631,7 +1631,7 @@ void MainWindow::CustomWarn()
     ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
     QAction *revert = (QAction*) QObject::sender();
     QString k = HuggleParser::GetKeyOfWarningTypeFromWarningName(revert->text(), conf);
-    this->Warn(k, nullptr);
+    this->Warn(k, nullptr, this->CurrentEdit);
 }
 
 void MainWindow::EnableDev()
@@ -2427,7 +2427,7 @@ void MainWindow::on_actionRevert_currently_displayed_edit_warn_user_and_stay_on_
         return;
     Collectable_SmartPtr<RevertQuery> result = this->Revert("", false);
     if (result != nullptr)
-        this->Warn("warning", result);
+        this->Warn("warning", result, result->GetEdit());
 }
 
 void MainWindow::on_actionRevert_currently_displayed_edit_and_stay_on_page_triggered()

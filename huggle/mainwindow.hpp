@@ -124,7 +124,7 @@ namespace Huggle
              */
             Collectable_SmartPtr<RevertQuery> Revert(QString summary = "", bool next = true, bool single_rv = false);
             //! Warn a current user
-            bool Warn(QString WarningType, RevertQuery *dependency);
+            bool Warn(QString WarningType, RevertQuery *dependency, WikiEdit *related_edit);
             void EnableDev();
             //! Send a template to user no matter if they can be messaged or not
             void ForceWarn(int level);
