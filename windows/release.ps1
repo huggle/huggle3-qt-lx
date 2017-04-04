@@ -33,7 +33,7 @@ param
 (
     [string]$msbuild_path = "C:\Program Files (x86)\MSBuild\12.0\Bin\MSBuild.exe",
     [string]$root_path = $PWD,
-    [string]$qt5_path = "C:\Qt\5.4\msvc2013\",
+    [string]$qt5_path = "C:\Qt\5.7\msvc2013\",
     [string]$nsis_path = "C:\Program Files (x86)\NSIS\makensis.exe",
     [string]$openssl_path = "C:\OpenSSL-Win32",
     [string]$cmake_generator = "Visual Studio 12 2013",
@@ -165,10 +165,10 @@ mkdir build | Out-Null
 cd build
 if ($python)
 {
-    cmake ..\..\huggle\ -G "$cmake_generator" -DPYTHON_BUILD=true -DCMAKE_PREFIX_PATH:STRING=$qt5_path -Wno-dev=true -DHUGGLE_EXT=true -DQT5_BUILD=true $cmake_param
+    cmake ..\..\huggle\ -G "$cmake_generator" -DWEB_ENGINE=true -DPYTHON_BUILD=true -DCMAKE_PREFIX_PATH:STRING=$qt5_path -Wno-dev=true -DHUGGLE_EXT=true -DQT5_BUILD=true $cmake_param
 } else
 {
-    cmake ..\..\huggle\ -G "$cmake_generator" -DPYTHON_BUILD=false -DCMAKE_PREFIX_PATH:STRING=$qt5_path -Wno-dev=true -DHUGGLE_EXT=true -DQT5_BUILD=true $cmake_param
+    cmake ..\..\huggle\ -G "$cmake_generator" -DWEB_ENGINE=true -DPYTHON_BUILD=false -DCMAKE_PREFIX_PATH:STRING=$qt5_path -Wno-dev=true -DHUGGLE_EXT=true -DQT5_BUILD=true $cmake_param
 }
 if ($mingw)
 {
@@ -194,15 +194,15 @@ if ($python)
 cp $qt5_path\plugins\platforms\qminimal.dll release\platforms
 cp $qt5_path\plugins\platforms\qoffscreen.dll release\platforms
 cp $qt5_path\plugins\platforms\qwindows.dll release\platforms
-cp $qt5_path\bin\Enginio.dll release\deps
-cp $qt5_path\bin\icudt53.dll release\deps
-cp $qt5_path\bin\icuin53.dll release\deps
+# cp $qt5_path\bin\Enginio.dll release\deps
+# cp $qt5_path\bin\icudt53.dll release\deps
+# cp $qt5_path\bin\icuin53.dll release\deps
 cp $qt5_path\bin\Qt5Bluetooth.dll release\deps
-cp $qt5_path\bin\icuuc53.dll release\deps
+# cp $qt5_path\bin\icuuc53.dll release\deps
 cp $qt5_path\bin\Qt5CLucene.dll release\deps
 cp $qt5_path\bin\Qt5Concurrent.dll release\deps
 cp $qt5_path\bin\Qt5Core.dll release\deps
-cp $qt5_path\bin\Qt5Declarative.dll release\deps
+# cp $qt5_path\bin\Qt5Declarative.dll release\deps
 cp $qt5_path\bin\Qt5Designer.dll release\deps
 cp $qt5_path\bin\Qt5DesignerComponents.dll release\deps
 cp $qt5_path\bin\Qt5Gui.dll release\deps
@@ -217,8 +217,9 @@ cp $qt5_path\bin\Qt5OpenGL.dll release\deps
 cp $qt5_path\bin\Qt5Positioning.dll release\deps
 cp $qt5_path\bin\Qt5PrintSupport.dll release\deps
 cp $qt5_path\bin\Qt5Widgets.dll release\deps
-cp $qt5_path\bin\Qt5WebKit.dll release\deps
-cp $qt5_path\bin\Qt5WebKitWidgets.dll release\deps
+cp $qt5_path\bin\Qt5WebEngine.dll release\deps
+cp $qt5_path\bin\Qt5WebEngineCore.dll release\deps
+cp $qt5_path\bin\Qt5WebEngineWidgets.dll release\deps
 cp $qt5_path\bin\Qt5Sensors.dll release\deps
 cp $qt5_path\bin\Qt5Quick.dll release\deps
 cp $qt5_path\bin\Qt5Script.dll release\deps
