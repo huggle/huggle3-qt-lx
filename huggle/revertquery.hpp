@@ -54,6 +54,7 @@ namespace Huggle
             void SetUsingSR(bool software_rollback);
             bool IsUsingSR();
             WikiSite *GetSite();
+            WikiEdit *GetEdit();
             //! Time when a query was issued (this is set externaly)
             QDateTime Date;
             QString Summary = "";

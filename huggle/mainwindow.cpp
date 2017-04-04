@@ -1043,18 +1043,18 @@ bool MainWindow::PreflightCheck(WikiEdit *_e)
 
 bool MainWindow::Warn(QString WarningType, RevertQuery *dependency)
 {
-    if (this->CurrentEdit == nullptr)
+    if (dependency->GetEdit() == nullptr)
         return false;
     bool Report_ = false;
-    PendingWarning *ptr_Warning_ = Warnings::WarnUser(WarningType, dependency, this->CurrentEdit, &Report_);
+    PendingWarning *ptr_Warning_ = Warnings::WarnUser(WarningType, dependency, dependency->GetEdit(), &Report_);
     if (Report_)
     {
         if (hcfg->UserConfig->AutomaticReports)
         {
-            ReportUser::SilentReport(this->CurrentEdit->User);
+            ReportUser::SilentReport(dependency->GetEdit()->User);
         } else
         {
-            this->DisplayReportUserWindow(this->CurrentEdit->User);
+            this->DisplayReportUserWindow(dependency->GetEdit()->User);
         }
     }
     if (ptr_Warning_ != nullptr)

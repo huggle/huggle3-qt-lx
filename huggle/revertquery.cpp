@@ -173,6 +173,11 @@ void RevertQuery::Kill()
     this->RollingBack = false;
 }
 
+WikiEdit *RevertQuery::GetEdit()
+{
+    return this->edit;
+}
+
 bool RevertQuery::IsProcessed()
 {
     if (this->Status == StatusIsSuspended)
