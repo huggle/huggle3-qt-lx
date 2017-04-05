@@ -13,6 +13,7 @@
 
 #include "definitions.hpp"
 
+#include <QStringList>
 #include <QString>
 #include "mediawikiobject.hpp"
 
