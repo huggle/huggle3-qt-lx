@@ -160,7 +160,7 @@ bool HuggleQueueFilter::Matches(WikiEdit *edit)
     }
     if (this->Type == "dynamic" && this->SourceType == "category")
     {
-        if (edit->Status == StatusPostProcessed && !edit->Page->GetCategories().contains(QString("Category:") + this->Source))
+        if (edit->Status == StatusPostProcessed && !edit->Page->GetCategories().contains(this->Source))
         {
             return false;
         }
