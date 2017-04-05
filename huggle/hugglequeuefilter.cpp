@@ -76,8 +76,6 @@ HuggleQueueFilter::HuggleQueueFilter()
     this->TalkPage = HuggleQueueFilterMatchExclude;
     this->UserSpace = HuggleQueueFilterMatchIgnore;
     this->Type = "default";
-    this->SourceType = nullptr;
-    this->Source = nullptr;
 }
 
 bool HuggleQueueFilter::Matches(WikiEdit *edit)
