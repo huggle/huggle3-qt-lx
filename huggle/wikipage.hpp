@@ -48,7 +48,10 @@ namespace Huggle
             QString Contents;
             //! Name of page
             QString PageName;
+            QStringList GetCategories();
+            void SetCategories(QStringList value);
         private:
+            QStringList Categories;
             WikiPageNS *NS;
             QString founder;
             bool founderKnown = false;
@@ -62,6 +65,16 @@ namespace Huggle
     inline WikiPageNS *WikiPage::GetNS()
     {
         return this->NS;
+    }
+
+    inline QStringList WikiPage::GetCategories()
+    {
+        return this->Categories;
+    }
+
+    inline void WikiPage::SetCategories(QStringList value)
+    {
+        this->Categories = value;
     }
 }
 

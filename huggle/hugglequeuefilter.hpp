@@ -99,6 +99,12 @@ namespace Huggle
             QString QueueName;
             bool ProjectSpecific;
             QHash<int,bool> Namespaces;
+            void SetType(QString value);
+            QString GetType() const;
+            void SetSourceType(QString value);
+            QString GetSourceType() const;
+            void SetSource(QString value);
+            QString GetSource() const;
         private:
             QStringList IgnoreTags;
             QStringList RequireTags;
@@ -113,6 +119,9 @@ namespace Huggle
             HuggleQueueFilterMatch Self;
             HuggleQueueFilterMatch UserSpace;
             HuggleQueueFilterMatch TalkPage;
+            QString Type;
+            QString SourceType;
+            QString Source;
     };
 
     inline HuggleQueueFilterMatch HuggleQueueFilter::getIgnoreMinor() const
@@ -233,6 +242,36 @@ namespace Huggle
     inline bool HuggleQueueFilter::IsChangeable() const
     {
         return !this->IsDefault() && !this->ProjectSpecific;
+    }
+
+    inline QString HuggleQueueFilter::GetType() const
+    {
+        return this->Type;
+    }
+
+    inline void HuggleQueueFilter::SetType(QString value)
+    {
+        this->Type = value;
+    }
+
+    inline QString HuggleQueueFilter::GetSourceType() const
+    {
+        return this->SourceType;
+    }
+
+    inline void HuggleQueueFilter::SetSourceType(QString value)
+    {
+        this->SourceType = value;
+    }
+
+    inline QString HuggleQueueFilter::GetSource() const
+    {
+        return this->Source;
+    }
+
+    inline void HuggleQueueFilter::SetSource(QString value)
+    {
+        this->Source = value;
     }
 }
 

@@ -75,6 +75,9 @@ HuggleQueueFilter::HuggleQueueFilter()
     this->Users = HuggleQueueFilterMatchIgnore;
     this->TalkPage = HuggleQueueFilterMatchExclude;
     this->UserSpace = HuggleQueueFilterMatchIgnore;
+    this->Type = "default";
+    this->SourceType = nullptr;
+    this->Source = nullptr;
 }
 
 bool HuggleQueueFilter::Matches(WikiEdit *edit)
@@ -156,6 +159,13 @@ bool HuggleQueueFilter::Matches(WikiEdit *edit)
             return false;
         if (this->Self == HuggleQueueFilterMatchRequire && edit->User->Username.toLower() == Configuration::HuggleConfiguration->SystemConfig_Username.toLower())
             return false;
+    }
+    if (this->Type == "dynamic" && this->SourceType == "category")
+    {
+        if (edit->Status == StatusPostProcessed && !edit->Page->GetCategories().contains(QString("Category:") + this->Source))
+        {
+            return false;
+        }
     }
     if (edit->IsPostProcessed())
     {

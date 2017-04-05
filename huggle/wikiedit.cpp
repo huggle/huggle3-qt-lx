@@ -106,6 +106,24 @@ bool WikiEdit::FinalizePostProcessing()
         return false;
     }
 
+    if (this->qCategories != nullptr && this->qCategories->IsProcessed())
+    {
+        if (this->qCategories->IsFailed())
+        {
+            Syslog::HuggleLogs->ErrorLog("Unable to fetch categories for page " + this->Page->PageName + ": " + this->qCategories->GetFailureReason());
+        } else
+        {
+            QList<ApiQueryResultNode*> categories = this->qCategories->GetApiQueryResult()->GetNodes("cl");
+            QStringList categoryStringList;
+            foreach (ApiQueryResultNode *cat, categories)
+            {
+                categoryStringList.append(cat->GetAttribute("title"));
+            }
+            this->Page->SetCategories(categoryStringList);
+        }
+        this->qCategories = nullptr;
+    }
+
     if (this->qFounder != nullptr && this->qFounder->IsProcessed())
     {
         if (this->qFounder->IsFailed())
@@ -329,7 +347,7 @@ bool WikiEdit::FinalizePostProcessing()
     }
 
     // check if everything was processed and clean up
-    if (this->ProcessingRevs || this->ProcessingDiff || this->qUser != nullptr || this->qText != nullptr || this->qFounder != nullptr)
+    if (this->ProcessingRevs || this->ProcessingDiff || this->qUser != nullptr || this->qText != nullptr || this->qFounder != nullptr || this->qCategories != nullptr)
         return false;
 
     this->qTalkpage = nullptr;
@@ -563,6 +581,13 @@ void WikiEdit::PostProcess()
         HUGGLE_QP_APPEND(this->qFounder);
         this->qFounder->Process();
     }
+
+    this->qCategories = new ApiQuery(ActionQuery, this->GetSite());
+    this->qCategories->Parameters = "prop=categories&titles=" + QUrl::toPercentEncoding(this->Page->PageName);
+    this->qCategories->Target = this->Page->PageName + " (retrieving categories)";
+    HUGGLE_QP_APPEND(this->qCategories);
+    this->qCategories->Process();
+
     this->ProcessingRevs = true;
     if (this->User->IsIP())
         return;

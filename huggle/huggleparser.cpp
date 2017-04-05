@@ -605,6 +605,21 @@ QList<HuggleQueueFilter*> HuggleParser::ConfigurationParseQueueList(QString cont
                     filter->SetIgnoredTags_CommaSeparated(val);
                     continue;
                 }
+                if (key == "type")
+                {
+                    filter->SetType(val);
+                    continue;
+                }
+                if (key == "source-type")
+                {
+                    filter->SetSourceType(val);
+                    continue;
+                }
+                if (key == "source")
+                {
+                    filter->SetSource(val);
+                    continue;
+                }
             }
         } else
         {
