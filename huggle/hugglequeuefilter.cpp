@@ -75,7 +75,6 @@ HuggleQueueFilter::HuggleQueueFilter()
     this->Users = HuggleQueueFilterMatchIgnore;
     this->TalkPage = HuggleQueueFilterMatchExclude;
     this->UserSpace = HuggleQueueFilterMatchIgnore;
-    this->Type = "default";
 }
 
 bool HuggleQueueFilter::Matches(WikiEdit *edit)
@@ -158,15 +157,23 @@ bool HuggleQueueFilter::Matches(WikiEdit *edit)
         if (this->Self == HuggleQueueFilterMatchRequire && edit->User->Username.toLower() == Configuration::HuggleConfiguration->SystemConfig_Username.toLower())
             return false;
     }
-    if (this->Type == "dynamic" && this->SourceType == "category")
-    {
-        if (edit->Status == StatusPostProcessed && !edit->Page->GetCategories().contains(this->Source))
-        {
-            return false;
-        }
-    }
     if (edit->IsPostProcessed())
     {
+        if (!edit->Page->GetCategories().isEmpty() && this->IgnoreCategories.count())
+        {
+            foreach (QString cat, edit->Page->GetCategories())
+            {
+                if (this->IgnoreCategories.contains(cat))
+                    return false;
+            }
+        }
+
+        foreach (QString rc, this->RequireCategories)
+        {
+            if (!edit->Page->GetCategories().contains(rc))
+                return false;
+        }
+
         if (!edit->Tags.isEmpty() && this->IgnoreTags.count())
         {
             foreach (QString tag, edit->Tags)
@@ -215,6 +222,37 @@ void HuggleQueueFilter::SetIgnoredTags_CommaSeparated(QString list)
 void HuggleQueueFilter::SetRequiredTags_CommaSeparated(QString list)
 {
     this->RequireTags = Generic::CSV2QStringList(list);
+}
+
+
+QString HuggleQueueFilter::GetIgnoredCategories_CommaSeparated() const
+{
+    QString result = "";
+    foreach (QString item, this->IgnoreCategories)
+        result += item + ",";
+    if (result.endsWith(","))
+        result = result.mid(0, result.size() - 1);
+    return result;
+}
+
+QString HuggleQueueFilter::GetRequiredCategories_CommaSeparated() const
+{
+    QString result = "";
+    foreach (QString item, this->RequireCategories)
+        result += item + ",";
+    if (result.endsWith(","))
+        result = result.mid(0, result.size() - 1);
+    return result;
+}
+
+void HuggleQueueFilter::SetIgnoredCategories_CommaSeparated(QString list)
+{
+    this->IgnoreCategories = Generic::CSV2QStringList(list);
+}
+
+void HuggleQueueFilter::SetRequiredCategories_CommaSeparated(QString list)
+{
+    this->RequireCategories = Generic::CSV2QStringList(list);
 }
 
 bool HuggleQueueFilter::IgnoresNS(int ns)
