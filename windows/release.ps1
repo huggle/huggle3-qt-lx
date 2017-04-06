@@ -41,7 +41,8 @@ param
     [string]$mingw_path = "C:\Qt\Tools\mingw491_32",
     [bool]$python = $true,
     [string]$vcredist = "vcredist_x86.exe",
-    [string]$cmake_param = ""
+    [string]$cmake_param = "",
+    [string]$vcinstall_path = "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\"
 )
 
 $ErrorActionPreference = "Stop"
@@ -191,47 +192,16 @@ if ($python)
     cp .\build\Release\py_hug.exe release
 }
 # get the qt
-cp $qt5_path\plugins\platforms\qminimal.dll release\platforms
-cp $qt5_path\plugins\platforms\qoffscreen.dll release\platforms
-cp $qt5_path\plugins\platforms\qwindows.dll release\platforms
-# cp $qt5_path\bin\Enginio.dll release\deps
-# cp $qt5_path\bin\icudt53.dll release\deps
-# cp $qt5_path\bin\icuin53.dll release\deps
-cp $qt5_path\bin\Qt5Bluetooth.dll release\deps
-# cp $qt5_path\bin\icuuc53.dll release\deps
-cp $qt5_path\bin\Qt5CLucene.dll release\deps
-cp $qt5_path\bin\Qt5Concurrent.dll release\deps
-cp $qt5_path\bin\Qt5Core.dll release\deps
-# cp $qt5_path\bin\Qt5Declarative.dll release\deps
-cp $qt5_path\bin\Qt5Designer.dll release\deps
-cp $qt5_path\bin\Qt5DesignerComponents.dll release\deps
-cp $qt5_path\bin\Qt5Gui.dll release\deps
-cp $qt5_path\bin\Qt5Help.dll release\deps
-cp $qt5_path\bin\Qt5Location.dll release\deps
-cp $qt5_path\bin\Qt5Multimedia.dll release\deps
-cp $qt5_path\bin\Qt5MultimediaQuick_p.dll release\deps
-cp $qt5_path\bin\Qt5MultimediaWidgets.dll release\deps
-cp $qt5_path\bin\Qt5Network.dll release\deps
-cp $qt5_path\bin\Qt5Nfc.dll release\deps
-cp $qt5_path\bin\Qt5OpenGL.dll release\deps
-cp $qt5_path\bin\Qt5Positioning.dll release\deps
-cp $qt5_path\bin\Qt5PrintSupport.dll release\deps
-cp $qt5_path\bin\Qt5Widgets.dll release\deps
-cp $qt5_path\bin\Qt5WebEngine.dll release\deps
-cp $qt5_path\bin\Qt5WebEngineCore.dll release\deps
-cp $qt5_path\bin\Qt5WebEngineWidgets.dll release\deps
-cp $qt5_path\bin\Qt5Sensors.dll release\deps
-cp $qt5_path\bin\Qt5Quick.dll release\deps
-cp $qt5_path\bin\Qt5Script.dll release\deps
-cp $qt5_path\bin\Qt5Qml.dll release\deps
-cp $qt5_path\bin\Qt5XmlPatterns.dll release\deps
-cp $qt5_path\bin\Qt5WebChannel.dll release\deps
-cp $qt5_path\bin\Qt5Sql.dll release\deps
-cp $qt5_path\bin\Qt5Xml.dll release\deps
 cp ..\huggle\Resources\huggle.ico huggle.ico
 cp ..\huggle\Resources\huggle.ico release
 cp $openssl_path\bin\ssleay32.dll release\deps
 cp $openssl_path\bin\libeay32.dll release\deps
+
+# Set the environment variable needed by windeployqt, todo: check if it's already set
+$env:VCINSTALLDIR = $vcinstall_path
+
+Invoke-Expression "$qt5_path\bin\windeployqt.exe release\huggle.exe"
+
 echo "Making package out of this"
 
 $nsis_file = "Huggle.nsi"
