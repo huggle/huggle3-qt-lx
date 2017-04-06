@@ -210,6 +210,7 @@
   <string name="main-tip-pagedelete">Lap törlése</string>
   <string name="main-tip-userreport">Felhasználó jelentése</string>
   <string name="main-tip-userblock">Felhasználó blokkolása</string>
+  <string name="main-no-page">A kért művelet egy lap betöltését igényli vagy nem érhető el, mert a lap csak olvasható. Tölts be egy szerkeszthető lapot az újrapróbálkozás előtt.</string>
   <string name="main-revert-newpage-title">Ezt nem lehet visszaállítani</string>
   <string name="main-restore-text-fail">A változat nem állítható vissza, mert nem tartozik hozzá szöveg</string>
   <string name="message-subject">Tárgy:</string>
@@ -280,6 +281,8 @@
   <string name="preferences-watchlist-watch">Hozzáadás a figyelőlistához</string>
   <string name="preferences-watchlist-unwatch">Eltávolítás a figyelőlistáról</string>
   <string name="preferences-watchlist-nochange">Ne csináljon semmit</string>
+  <string name="preferences-sounds-enable-queue">Hang lejátszása, amikor új elem kerül a sorba</string>
+  <string name="preferences-sounds-minimal-score">Minimális szerkesztéspontszám az értesítéshez</string>
   <string name="fail">Sikertelen</string>
   <string name="request">Kérelem</string>
   <string name="namespace">Névtér</string>
