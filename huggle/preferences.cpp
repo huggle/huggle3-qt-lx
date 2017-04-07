@@ -50,6 +50,7 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     SetDefaults(this->ui->cbqTp);
     SetDefaults(this->ui->cbqUserspace);
     SetDefaults(this->ui->cbqWl);
+    SetDefaults(this->ui->cbqWatched);
     this->ui->cbProviders->addItem("Wiki");
     this->ui->cbProviders->addItem("IRC");
     this->ui->cbProviders->addItem("XmlRcs");
@@ -187,7 +188,7 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     this->ui->cbPlayOnIRCMsg->setText(_l("preferences-sounds-enable-irc"));
     this->ui->pushButton->setText(_l("config-close-without"));
     this->ui->label_minimal_score->setText(_l("preferences-sounds-minimal-score"));
-    this->ui->cbCatScans->setText(_l("preferences-performance-catscans"));
+    this->ui->cbCatScansAndWatched->setText(_l("preferences-performance-catscansandwatched"));
 
 #ifndef HUGGLE_NOAUDIO
     this->ui->label_NoAudio->setVisible(false);
@@ -249,6 +250,7 @@ void Huggle::Preferences::on_listWidget_itemSelectionChanged()
     SetValue(f->getIgnoreFriends(), this->ui->cbqFrd);
     SetValue(f->getIgnoreReverts(), this->ui->cbqRevert);
     SetValue(f->getIgnoreSelf(), this->ui->cbqOwn);
+    SetValue(f->getIgnoreWatched(), this->ui->cbqWatched);
     this->ui->leIgnoredTags->setText(f->GetIgnoredTags_CommaSeparated());
     this->ui->leRequiredTags->setText(f->GetRequiredTags_CommaSeparated());
     this->ui->leIgnoredCategories->setText(f->GetIgnoredCategories_CommaSeparated());
@@ -265,6 +267,7 @@ void Preferences::Disable()
     this->ui->cbqMinor->setEnabled(false);
     this->ui->cbqNew->setEnabled(false);
     this->ui->cbqOwn->setEnabled(false);
+    this->ui->cbqWatched->setEnabled(false);
     this->ui->pushButton_4->setEnabled(false);
     this->ui->cbqRevert->setEnabled(false);
     this->ui->pushButton_5->setEnabled(false);
@@ -288,6 +291,7 @@ void Preferences::EnableQueues()
     this->ui->cbqMinor->setEnabled(true);
     this->ui->cbqNew->setEnabled(true);
     this->ui->cbqOwn->setEnabled(true);
+    this->ui->cbqWatched->setEnabled(true);
     this->ui->cbqRevert->setEnabled(true);
     this->ui->pushButton_4->setEnabled(true);
     this->ui->cbqTp->setEnabled(true);
@@ -346,7 +350,7 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     hcfg->SystemConfig_PlaySoundOnIRCUserMsg = this->ui->cbPlayOnIRCMsg->isChecked();
     hcfg->SystemConfig_PlaySoundQueueScore = this->ui->ln_QueueSoundMinScore->text().toLong();
     hcfg->SystemConfig_PlaySoundOnQueue = this->ui->cbPlayOnNewItem->isChecked();
-    hcfg->SystemConfig_CatScans = this->ui->cbCatScans->isChecked();
+    hcfg->SystemConfig_CatScansAndWatched = this->ui->cbCatScansAndWatched->isChecked();
     if (this->ui->checkBox_7->isChecked())
         hcfg->UserConfig->SummaryMode = 1;
     else
@@ -445,6 +449,7 @@ void Huggle::Preferences::on_pushButton_6_clicked()
     filter->setIgnoreTalk(Match(this->ui->cbqTp));
     filter->setIgnoreFriends(Match(this->ui->cbqFrd));
     filter->setIgnore_UserSpace(Match(this->ui->cbqUserspace));
+    filter->setIgnoreWatched(Match(this->ui->cbqWatched));
     int ns = 0;
     while (ns < this->ui->tableWidget_3->rowCount())
     {
@@ -793,7 +798,7 @@ void Preferences::ResetItems()
     this->ui->ln_QueueSoundMinScore->setText(QString::number(hcfg->SystemConfig_PlaySoundQueueScore));
     this->ui->cbPlayOnNewItem->setChecked(hcfg->SystemConfig_PlaySoundOnQueue);
     this->ui->cbPlayOnIRCMsg->setChecked(hcfg->SystemConfig_PlaySoundOnIRCUserMsg);
-    this->ui->cbCatScans->setChecked(hcfg->SystemConfig_CatScans);
+    this->ui->cbCatScansAndWatched->setChecked(hcfg->SystemConfig_CatScansAndWatched);
 #ifdef HUGGLE_NOAUDIO
     this->ui->ln_QueueSoundMinScore->setEnabled(false);
     this->ui->cbPlayOnNewItem->setEnabled(false);

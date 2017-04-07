@@ -106,22 +106,25 @@ bool WikiEdit::FinalizePostProcessing()
         return false;
     }
 
-    if (this->qCategories != nullptr && this->qCategories->IsProcessed())
+    if (this->qCategoriesAndWatched != nullptr && this->qCategoriesAndWatched->IsProcessed())
     {
-        if (this->qCategories->IsFailed())
+        if (this->qCategoriesAndWatched->IsFailed())
         {
-            Syslog::HuggleLogs->ErrorLog("Unable to fetch categories for page " + this->Page->PageName + ": " + this->qCategories->GetFailureReason());
+            Syslog::HuggleLogs->ErrorLog("Unable to fetch categories for page " + this->Page->PageName + ": " + this->qCategoriesAndWatched->GetFailureReason());
         } else
         {
-            QList<ApiQueryResultNode*> categories = this->qCategories->GetApiQueryResult()->GetNodes("cl");
+            QList<ApiQueryResultNode*> categories = this->qCategoriesAndWatched->GetApiQueryResult()->GetNodes("cl");
             QStringList categoryStringList;
             foreach (ApiQueryResultNode *cat, categories)
             {
                 categoryStringList.append(WikiPage(cat->GetAttribute("title")).RootName());
             }
             this->Page->SetCategories(categoryStringList);
+
+            ApiQueryResultNode *page = this->qCategoriesAndWatched->GetApiQueryResult()->GetNode("page");
+            this->Page->SetWatched(page->GetAttribute("watched", "false") != "false");
         }
-        this->qCategories = nullptr;
+        this->qCategoriesAndWatched = nullptr;
     }
 
     if (this->qFounder != nullptr && this->qFounder->IsProcessed())
@@ -347,7 +350,7 @@ bool WikiEdit::FinalizePostProcessing()
     }
 
     // check if everything was processed and clean up
-    if (this->ProcessingRevs || this->ProcessingDiff || this->qUser != nullptr || this->qText != nullptr || this->qFounder != nullptr || this->qCategories != nullptr)
+    if (this->ProcessingRevs || this->ProcessingDiff || this->qUser != nullptr || this->qText != nullptr || this->qFounder != nullptr || this->qCategoriesAndWatched != nullptr)
         return false;
 
     this->qTalkpage = nullptr;
@@ -582,13 +585,13 @@ void WikiEdit::PostProcess()
         this->qFounder->Process();
     }
 
-    if (hcfg->SystemConfig_CatScans)
+    if (hcfg->SystemConfig_CatScansAndWatched)
     {
-        this->qCategories = new ApiQuery(ActionQuery, this->GetSite());
-        this->qCategories->Parameters = "prop=categories&titles=" + QUrl::toPercentEncoding(this->Page->PageName);
-        this->qCategories->Target = this->Page->PageName + " (retrieving categories)";
-        HUGGLE_QP_APPEND(this->qCategories);
-        this->qCategories->Process();
+        this->qCategoriesAndWatched = new ApiQuery(ActionQuery, this->GetSite());
+        this->qCategoriesAndWatched->Parameters = "prop=" + QUrl::toPercentEncoding("categories|info") + "&titles=" + QUrl::toPercentEncoding(this->Page->PageName) + "&inprop=watched";
+        this->qCategoriesAndWatched->Target = this->Page->PageName + " (retrieving categories+watched)";
+        HUGGLE_QP_APPEND(this->qCategoriesAndWatched);
+        this->qCategoriesAndWatched->Process();
     }
 
     this->ProcessingRevs = true;
