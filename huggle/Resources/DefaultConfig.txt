@@ -516,7 +516,9 @@ queues:
         remove-viewed:false
 
     Candidates for speedy deletion:
-        require-cats:Candidates for speedy deletion
+        type:dynamic
+        source-type:category
+        source:Candidates for speedy deletion
 
 default-queue:Filtered edits
 default-queue-2:Filtered new pages
@@ -525,3 +527,6 @@ go:
     Wikipedia:Administrator intervention against vandalism;Administrator intervention against vandalism,
     Wikipedia:Huggle/Sandbox;Huggle sandbox,
     Template:Vandalism information;Vandalism information
+
+
+
