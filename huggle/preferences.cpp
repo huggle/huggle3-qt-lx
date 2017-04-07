@@ -187,6 +187,7 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     this->ui->cbPlayOnIRCMsg->setText(_l("preferences-sounds-enable-irc"));
     this->ui->pushButton->setText(_l("config-close-without"));
     this->ui->label_minimal_score->setText(_l("preferences-sounds-minimal-score"));
+    this->ui->cbCatScans->setText(_l("preferences-performance-catscans"));
 
 #ifndef HUGGLE_NOAUDIO
     this->ui->label_NoAudio->setVisible(false);
@@ -345,6 +346,7 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     hcfg->SystemConfig_PlaySoundOnIRCUserMsg = this->ui->cbPlayOnIRCMsg->isChecked();
     hcfg->SystemConfig_PlaySoundQueueScore = this->ui->ln_QueueSoundMinScore->text().toLong();
     hcfg->SystemConfig_PlaySoundOnQueue = this->ui->cbPlayOnNewItem->isChecked();
+    hcfg->SystemConfig_CatScans = this->ui->cbCatScans->isChecked();
     if (this->ui->checkBox_7->isChecked())
         hcfg->UserConfig->SummaryMode = 1;
     else
@@ -791,6 +793,7 @@ void Preferences::ResetItems()
     this->ui->ln_QueueSoundMinScore->setText(QString::number(hcfg->SystemConfig_PlaySoundQueueScore));
     this->ui->cbPlayOnNewItem->setChecked(hcfg->SystemConfig_PlaySoundOnQueue);
     this->ui->cbPlayOnIRCMsg->setChecked(hcfg->SystemConfig_PlaySoundOnIRCUserMsg);
+    this->ui->cbCatScans->setChecked(hcfg->SystemConfig_CatScans);
 #ifdef HUGGLE_NOAUDIO
     this->ui->ln_QueueSoundMinScore->setEnabled(false);
     this->ui->cbPlayOnNewItem->setEnabled(false);

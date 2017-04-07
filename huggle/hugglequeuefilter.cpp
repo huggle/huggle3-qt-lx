@@ -159,19 +159,22 @@ bool HuggleQueueFilter::Matches(WikiEdit *edit)
     }
     if (edit->IsPostProcessed())
     {
-        if (!edit->Page->GetCategories().isEmpty() && this->IgnoreCategories.count())
+        if (hcfg->SystemConfig_CatScans)
         {
-            foreach (QString cat, edit->Page->GetCategories())
+            if (!edit->Page->GetCategories().isEmpty() && this->IgnoreCategories.count())
             {
-                if (this->IgnoreCategories.contains(cat))
+                foreach (QString cat, edit->Page->GetCategories())
+                {
+                    if (this->IgnoreCategories.contains(cat))
+                        return false;
+                }
+            }
+
+            foreach (QString rc, this->RequireCategories)
+            {
+                if (!edit->Page->GetCategories().contains(rc))
                     return false;
             }
-        }
-
-        foreach (QString rc, this->RequireCategories)
-        {
-            if (!edit->Page->GetCategories().contains(rc))
-                return false;
         }
 
         if (!edit->Tags.isEmpty() && this->IgnoreTags.count())

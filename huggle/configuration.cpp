@@ -292,6 +292,7 @@ void Configuration::LoadSystemConfig(QString fn)
         }
         QString key = option.attribute("key");
         // Load properly named config using macros
+        RCB(CatScans);
         RCB(Multiple);
         RC(Font);
         RCN(FontSize);
@@ -455,6 +456,7 @@ void Configuration::SaveSystemConfig()
     INSERT_CONFIG_B(NotifyBeta);
     INSERT_CONFIG_B(WarnUserSpaceRoll);
     INSERT_CONFIG_N(WikiRC);
+    INSERT_CONFIG_B(CatScans);
     INSERT_CONFIG_N(PlaySoundQueueScore);
     INSERT_CONFIG_B(PlaySoundOnQueue);
     INSERT_CONFIG_B(PlaySoundOnIRCUserMsg);

@@ -582,11 +582,14 @@ void WikiEdit::PostProcess()
         this->qFounder->Process();
     }
 
-    this->qCategories = new ApiQuery(ActionQuery, this->GetSite());
-    this->qCategories->Parameters = "prop=categories&titles=" + QUrl::toPercentEncoding(this->Page->PageName);
-    this->qCategories->Target = this->Page->PageName + " (retrieving categories)";
-    HUGGLE_QP_APPEND(this->qCategories);
-    this->qCategories->Process();
+    if (hcfg->SystemConfig_CatScans)
+    {
+        this->qCategories = new ApiQuery(ActionQuery, this->GetSite());
+        this->qCategories->Parameters = "prop=categories&titles=" + QUrl::toPercentEncoding(this->Page->PageName);
+        this->qCategories->Target = this->Page->PageName + " (retrieving categories)";
+        HUGGLE_QP_APPEND(this->qCategories);
+        this->qCategories->Process();
+    }
 
     this->ProcessingRevs = true;
     if (this->User->IsIP())

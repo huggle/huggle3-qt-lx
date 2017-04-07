@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1106</width>
-    <height>718</height>
+    <height>730</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -485,6 +485,13 @@
         </widget>
        </item>
        <item>
+        <widget class="QCheckBox" name="cbCatScans">
+         <property name="text">
+          <string>Enable category scans</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <layout class="QHBoxLayout" name="horizontalLayout_6">
          <property name="spacing">
           <number>4</number>
@@ -718,7 +725,6 @@
            <item row="13" column="1">
             <widget class="QLineEdit" name="leRequiredTags"/>
            </item>
-
            <item row="14" column="0">
             <widget class="QLabel" name="lFilterIgnoredCategories">
              <property name="text">
@@ -739,7 +745,6 @@
            <item row="15" column="1">
             <widget class="QLineEdit" name="leRequiredCategories"/>
            </item>
-
           </layout>
          </item>
          <item>

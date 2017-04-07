@@ -239,6 +239,7 @@ namespace Huggle
             //! This is used in combination with --login option, so that huggle knows if it should
             //! login automatically or wait for user to fill in their user information
             bool            Login = false;
+            bool            SystemConfig_CatScans = true;
             bool            SystemConfig_DryMode = false;
             //! Maximum number of queue stuff
             int             SystemConfig_QueueSize = 200;
