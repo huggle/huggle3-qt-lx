@@ -99,9 +99,15 @@ namespace Huggle
             QString QueueName;
             bool ProjectSpecific;
             QHash<int,bool> Namespaces;
+            QString GetIgnoredCategories_CommaSeparated() const;
+            QString GetRequiredCategories_CommaSeparated() const;
+            void SetIgnoredCategories_CommaSeparated(QString list);
+            void SetRequiredCategories_CommaSeparated(QString list);
         private:
             QStringList IgnoreTags;
             QStringList RequireTags;
+            QStringList IgnoreCategories;
+            QStringList RequireCategories;
             HuggleQueueFilterMatch Minor;
             HuggleQueueFilterMatch Users;
             HuggleQueueFilterMatch WL;

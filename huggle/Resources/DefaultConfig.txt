@@ -516,9 +516,7 @@ queues:
         remove-viewed:false
 
     Candidates for speedy deletion:
-        type:dynamic
-        source-type:category
-        source:Candidates for speedy deletion
+        required-categories:Candidates for speedy deletion
 
 default-queue:Filtered edits
 default-queue-2:Filtered new pages

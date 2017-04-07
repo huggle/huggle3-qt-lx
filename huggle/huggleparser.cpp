@@ -605,6 +605,16 @@ QList<HuggleQueueFilter*> HuggleParser::ConfigurationParseQueueList(QString cont
                     filter->SetIgnoredTags_CommaSeparated(val);
                     continue;
                 }
+                if (key == "required-categories")
+                {
+                    filter->SetRequiredCategories_CommaSeparated(val);
+                    continue;
+                }
+                if (key == "ignored-categories")
+                {
+                    filter->SetIgnoredCategories_CommaSeparated(val);
+                    continue;
+                }
             }
         } else
         {

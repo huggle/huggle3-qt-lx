@@ -264,6 +264,8 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
             configuration_ += "        filter-talk:" + Bool2ExcludeRequire(fltr->getIgnoreTalk()) + "\n";
             configuration_ += "        ignored-tags:" + fltr->GetIgnoredTags_CommaSeparated() + "\n";
             configuration_ += "        required-tags:" + fltr->GetRequiredTags_CommaSeparated() + "\n";
+            configuration_ += "        ignored-categories:" + fltr->GetIgnoredCategories_CommaSeparated() + "\n";
+            configuration_ += "        required-categories:" + fltr->GetRequiredCategories_CommaSeparated() + "\n";
             QString ns = "";
             QList<int> filter_keys = fltr->Namespaces.keys();
             qSort(filter_keys);
