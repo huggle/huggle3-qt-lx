@@ -250,6 +250,8 @@ void Huggle::Preferences::on_listWidget_itemSelectionChanged()
     SetValue(f->getIgnoreSelf(), this->ui->cbqOwn);
     this->ui->leIgnoredTags->setText(f->GetIgnoredTags_CommaSeparated());
     this->ui->leRequiredTags->setText(f->GetRequiredTags_CommaSeparated());
+    this->ui->leIgnoredCategories->setText(f->GetIgnoredCategories_CommaSeparated());
+    this->ui->leRequiredCategories->setText(f->GetRequiredCategories_CommaSeparated());
     foreach (QCheckBox *cb, this->NamespaceBoxes.keys())
         cb->setChecked(f->IgnoresNS(this->NamespaceBoxes[cb]));
     this->ui->lineEdit->setText(f->QueueName);
@@ -271,6 +273,8 @@ void Preferences::Disable()
     this->ui->cbqUserspace->setEnabled(false);
     this->ui->leIgnoredTags->setEnabled(false);
     this->ui->leRequiredTags->setEnabled(false);
+    this->ui->leIgnoredCategories->setEnabled(false);
+    this->ui->leRequiredCategories->setEnabled(false);
     this->ui->lineEdit->setEnabled(false);
     this->ui->cbqWl->setEnabled(false);
 }
@@ -291,6 +295,8 @@ void Preferences::EnableQueues()
     this->ui->pushButton_6->setEnabled(true);
     this->ui->leIgnoredTags->setEnabled(true);
     this->ui->leRequiredTags->setEnabled(true);
+    this->ui->leIgnoredCategories->setEnabled(true);
+    this->ui->leRequiredCategories->setEnabled(true);
     this->ui->cbqUserspace->setEnabled(true);
     this->ui->cbqWl->setEnabled(true);
 }
@@ -427,6 +433,8 @@ void Huggle::Preferences::on_pushButton_6_clicked()
         throw new Huggle::Exception("Number of ns in config file differs", BOOST_CURRENT_FUNCTION);
     filter->SetIgnoredTags_CommaSeparated(this->ui->leIgnoredTags->text());
     filter->SetRequiredTags_CommaSeparated(this->ui->leRequiredTags->text());
+    filter->SetIgnoredCategories_CommaSeparated(this->ui->leIgnoredCategories->text());
+    filter->SetRequiredCategories_CommaSeparated(this->ui->leRequiredCategories->text());
     filter->setIgnoreBots(Match(this->ui->cbqBots));
     filter->setIgnoreNP(Match(this->ui->cbqNew));
     filter->setIgnoreWL(Match(this->ui->cbqWl));
