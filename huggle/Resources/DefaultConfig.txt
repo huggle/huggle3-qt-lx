@@ -274,6 +274,7 @@ prod-log:false
 prod-page:Special:MyPage/ProdLog
 vandal-report-reason:– vandalism, including
 uaa:Wikipedia:Usernames for administrator attention
+uaa-template:* {{user-uaa|1=$1}} $2 ~~~~
 rfpp-template:==== {{pagelinks|$title}} ====\n'''$protection:''' $reason ~~~~
 rfpp-template-user:==== {{lu|$title}} ====\n'''$protection:''' $reason ~~~~
 rfpp-mark:{{Wikipedia:Requests for page protection/PRheading}}
