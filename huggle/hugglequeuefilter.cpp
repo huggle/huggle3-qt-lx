@@ -163,9 +163,9 @@ bool HuggleQueueFilter::Matches(WikiEdit *edit)
         {
             if (this->Watched != HuggleQueueFilterMatchIgnore)
             {
-                if (this->Watched == HuggleQueueFilterMatchExclude && edit->Page->GetWatched())
+                if (this->Watched == HuggleQueueFilterMatchExclude && edit->Page->IsWatched())
                     return false;
-                if (this->Watched == HuggleQueueFilterMatchRequire && !edit->Page->GetWatched())
+                if (this->Watched == HuggleQueueFilterMatchRequire && !edit->Page->IsWatched())
                     return false;
             }
 
