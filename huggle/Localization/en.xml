@@ -401,7 +401,7 @@
   <string name="main-tip-userreport">Report this user</string>
   <string name="main-tip-userblock">Block this user</string>
   <string name="main-revision-acceptpend">Accept this pending revision</string>
-  <string name="main-no-page">The action you have requested requires a page to be loaded or it's not available because this page is read only. Please load a editable page before trying again.</string>
+  <string name="main-no-page">The action you have requested is not available because the page is not loaded or because it is read only. Please load an editable page before trying again.</string>
   <string name="main-revert-null">Unable to revert: edit is null</string>
   <string name="main-revert-newpage-title">Can&apos;t revert this</string>
   <string name="main-revert-newpage">This is a new page, so it can&apos;t be reverted. You can either tag it or delete it.</string>
