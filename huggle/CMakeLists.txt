@@ -1,5 +1,9 @@
 # This is a build file for huggle (used with cmake)
 cmake_minimum_required (VERSION 2.8.7)
+
+set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Choose the type of
+build, options are: Debug or Release (or any other documented for CMAKE_BUILD_TYPE")
+
 #set(CMAKE_CXX_STANDARD 11)
 project(huggle)
 execute_process(COMMAND "${CMAKE_SOURCE_DIR}/build/prepare_cmake.sh" WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
@@ -57,7 +61,6 @@ endif()
 set(QT_USE_QTNETWORK true)
 set(QT_USE_QTXML true)
 set(QT_USE_QTWEBKIT true)
-set(CMAKE_BUILD_TYPE Release)
 set(CMAKE_include_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 if(WIN32)
