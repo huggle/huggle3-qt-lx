@@ -75,6 +75,7 @@ HuggleQueueFilter::HuggleQueueFilter()
     this->Users = HuggleQueueFilterMatchIgnore;
     this->TalkPage = HuggleQueueFilterMatchExclude;
     this->UserSpace = HuggleQueueFilterMatchIgnore;
+    this->Watched = HuggleQueueFilterMatchIgnore;
 }
 
 bool HuggleQueueFilter::Matches(WikiEdit *edit)
