@@ -695,6 +695,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="preferences-sounds-enable-queue">Ton abspielen, wenn ein neues Objekt zur Warteschlange hinzugefügt wurde.</string>
   <string name="preferences-sounds-enable-irc">Ton abspielen, wenn eine Nachricht in HAN empfangen wurde.</string>
   <string name="preferences-sounds-minimal-score">Minimaler Bearbeitungsscore zur Benachrichtigung</string>
+  <string name="preferences-performance-catscans">Kategoriescans aktivieren (erfordert eine zusätzliche API-Anfrage für jede Bearbeitung)</string>
   <string name="fail">Fehlgeschlagen</string>
   <string name="request">Anfragen</string>
   <string name="requesting">Frage an …</string>

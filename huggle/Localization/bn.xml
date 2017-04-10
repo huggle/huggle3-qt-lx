@@ -695,6 +695,7 @@
   <string name="preferences-sounds-enable-queue">সারিতে নতুন আইটেম যোগ হলে শব্দ করুন</string>
   <string name="preferences-sounds-enable-irc">HAN-এ একটি বার্তা পেলে শব্দ করুন</string>
   <string name="preferences-sounds-minimal-score">বিজ্ঞপ্তির জন্য ন্যূনতম সম্পাদন স্কোর</string>
+  <string name="preferences-performance-catscans">বিষয়শ্রেণী স্ক্যান সক্রিয় করুন (প্রতিটি সম্পাদনর জন্য একটি অতিরিক্ত API কুয়েরির প্রয়োজন)</string>
   <string name="fail">ব্যর্থ হয়েছে</string>
   <string name="request">অনুরোধ করুন</string>
   <string name="requesting">অনুরোধ করা হচ্ছে</string>

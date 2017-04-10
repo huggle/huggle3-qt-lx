@@ -402,7 +402,7 @@
   <string name="main-tip-userreport">דיווח על המשתמש</string>
   <string name="main-tip-userblock">חסימת משתמש זה</string>
   <string name="main-revision-acceptpend">קבלת הגרסה הממתינה הזאת</string>
-  <string name="main-no-page" fuzzy="true">הפעולה שביקשת דורשת שיהיה דף טעון. נא לטעון דף לפני ניסיון נוסף.</string>
+  <string name="main-no-page">הפעולה שביקשת דורשת שהדף יהיה דף, או שאינה זמינה כי הדף לקריאה בלבד. נא לטעון דף שאפשר לערוך לפני ניסיון נוסף.</string>
   <string name="main-revert-null">לא ניתן לשחזר. זוהי עריכה אפסית.</string>
   <string name="main-revert-newpage-title">אי־אפשר לשחזר את זה</string>
   <string name="main-revert-newpage">זה דף חדש, אז אי־אפשר לשחזר אותו. אפשר לתייג אותו או למחוק אותו.</string>
@@ -692,6 +692,10 @@
   <string name="preferences-watchlist-unwatch">הסרה מרשימת המעקב</string>
   <string name="preferences-watchlist-preferences">כמו בהעדפות שלך בוויקי</string>
   <string name="preferences-watchlist-nochange">לא לעשות דבר</string>
+  <string name="preferences-sounds-enable-queue">לנגן צליל כשפריט חדש נוסף לתור</string>
+  <string name="preferences-sounds-enable-irc">לנגן צליל כשמתקבל מסר ב־HAN</string>
+  <string name="preferences-sounds-minimal-score">ציון עריכה מזערי להתראה</string>
+  <string name="preferences-performance-catscans">הפעלת סריקות קטגוריה (נדרשת בקשת API נוספת עבור כל עריכה)</string>
   <string name="fail">לא עבד</string>
   <string name="request">בקשה</string>
   <string name="requesting">שליחת בקשה</string>

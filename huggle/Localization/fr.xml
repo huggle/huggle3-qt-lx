@@ -695,6 +695,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="preferences-sounds-enable-queue">Emettre un son quand un nouvel élément est ajouté dans la file</string>
   <string name="preferences-sounds-enable-irc">Emettre un son quand le message est reçu dans HAN</string>
   <string name="preferences-sounds-minimal-score">Valeur minimale de modifications pour la notification</string>
+  <string name="preferences-performance-catscans">Autoriser l\'analyse des catégories (nécessite une requête d\'API supplémentaire par modification)</string>
   <string name="fail">Echec</string>
   <string name="request">Requête</string>
   <string name="requesting">En cours de requête</string>

@@ -379,7 +379,7 @@
   <string name="main-tip-userreport">Nahlásit tohoto uživatele správci</string>
   <string name="main-tip-userblock">Zablokovat</string>
   <string name="main-revision-acceptpend">Přijmout tuto revizi</string>
-  <string name="main-no-page" fuzzy="true">Akce, vyžaduje načtenou stránku.</string>
+  <string name="main-no-page">Požadovaný úkon vyžaduje načtenou stránku nebo není proveditelný, protože stránka je pouze ke čtení. Prosím načtěte stránku, kterou je možné upravit, než to zkusíte znovu.</string>
   <string name="main-revert-null">Nelze vrátit, edit je NULL</string>
   <string name="main-revert-newpage-title">Toto nelze revertovat</string>
   <string name="main-revert-newpage">Toto je nová stránka, není ji možné revertovat. Můžete ji buď označit nebo smazat.</string>

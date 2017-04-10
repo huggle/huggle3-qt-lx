@@ -695,6 +695,7 @@
   <string name="preferences-sounds-enable-queue">當新項目添加至佇列時播放音效</string>
   <string name="preferences-sounds-enable-irc">當在 HAN 裡有訊息收到時播放音效</string>
   <string name="preferences-sounds-minimal-score">通知的最小編輯分數</string>
+  <string name="preferences-performance-catscans">啟用分類掃描（各任一編輯需要一個額外 API 查詢）</string>
   <string name="fail">失敗</string>
   <string name="request">請求</string>
   <string name="requesting">請求中</string>

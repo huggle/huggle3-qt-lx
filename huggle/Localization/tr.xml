@@ -338,7 +338,7 @@
   <string name="main-page-viewlatest">Son sürümü göster</string>
   <string name="main-page-history">Geçmişi getir</string>
   <string name="main-page-historypage">Geçmiş sayfasını göster</string>
-  <string name="main-page-edit">Sayfayı tarayıcıda değiştir</string>
+  <string name="main-page-edit">Sayfayı tarayıcıda düzenle</string>
   <string name="main-page-tag">Etiketle</string>
   <string name="main-page-reqdeletion">Hızlı silme talep et</string>
   <string name="main-page-reqprotection">Sayfa koruma talep et</string>
@@ -451,7 +451,7 @@
   <string name="queue-pagefiltersgroup">Sayfa başlığı süzgeçleri</string>
   <string name="queue-pageregex">Başlık düzenli ifade ile eşleşiyor:</string>
   <string name="queue-namespaces">Ad alanı:</string>
-  <string name="queue-editfiltersgroup">Süzgeçleri değiştir</string>
+  <string name="queue-editfiltersgroup">Süzgeçleri düzenle</string>
   <string name="queue-userregex">Kullanıcı adı düzenli bir ifade ile eşleşiyor:</string>
   <string name="queue-summaryregex">Özet düzenli bir ifade ile eşleşiyor:</string>
   <string name="queue-filternewpage">Yeni sayfa</string>

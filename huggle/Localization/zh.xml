@@ -695,6 +695,7 @@
   <string name="preferences-sounds-enable-queue">当新项目添加到队列时播放声音</string>
   <string name="preferences-sounds-enable-irc">当HAN收到新消息时播放声音</string>
   <string name="preferences-sounds-minimal-score">最低通知编辑分数</string>
+  <string name="preferences-performance-catscans">启用分类扫描（需要为每次编辑进行额外的API查询）</string>
   <string name="fail">失败</string>
   <string name="request">请求</string>
   <string name="requesting">请求中</string>

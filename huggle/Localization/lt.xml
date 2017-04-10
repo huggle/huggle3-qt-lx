@@ -577,6 +577,8 @@
   <string name="preferences-watchlist-watch">Pridėti į stebimųjų sąrašą</string>
   <string name="preferences-watchlist-unwatch">Pašalinti iš stebimųjų sąrašo</string>
   <string name="preferences-watchlist-nochange">Nieko nedaryti</string>
+  <string name="preferences-sounds-enable-queue">Groti garsą, kai naujas elementas pridedamas į eilę</string>
+  <string name="preferences-sounds-enable-irc">Groti garsą, kai gaunama HAN žinutė</string>
   <string name="fail">Nepavyko</string>
   <string name="request">Prašymas</string>
   <string name="requesting">Prašoma</string>
