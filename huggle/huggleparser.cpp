@@ -590,6 +590,10 @@ QList<HuggleQueueFilter*> HuggleParser::ConfigurationParseQueueList(QString cont
                     filter->setIgnoreSelf(F2B(val));
                     continue;
                 }
+                if (key == "filter-watched")
+                {
+                    filter->setIgnoreWatched(F2B(val));
+                }
                 if (key == "nsfilter-user")
                 {
                     filter->setIgnore_UserSpace(F2B(val));

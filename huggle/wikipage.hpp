@@ -51,11 +51,14 @@ namespace Huggle
             QString PageName;
             QStringList GetCategories();
             void SetCategories(QStringList value);
+            bool GetWatched();
+            void SetWatched(bool value);
         private:
             QStringList Categories;
             WikiPageNS *NS;
             QString founder;
             bool founderKnown = false;
+            bool Watched;
     };
 
     inline QString WikiPage::SanitizedName()
@@ -76,6 +79,16 @@ namespace Huggle
     inline void WikiPage::SetCategories(QStringList value)
     {
         this->Categories = value;
+    }
+
+    inline bool WikiPage::GetWatched()
+    {
+        return this->Watched;
+    }
+
+    inline void WikiPage::SetWatched(bool value)
+    {
+        this->Watched = value;
     }
 }
 

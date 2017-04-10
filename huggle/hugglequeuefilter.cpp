@@ -159,8 +159,16 @@ bool HuggleQueueFilter::Matches(WikiEdit *edit)
     }
     if (edit->IsPostProcessed())
     {
-        if (hcfg->SystemConfig_CatScans)
+        if (hcfg->SystemConfig_CatScansAndWatched)
         {
+            if (this->Watched != HuggleQueueFilterMatchIgnore)
+            {
+                if (this->Watched == HuggleQueueFilterMatchExclude && edit->Page->GetWatched())
+                    return false;
+                if (this->Watched == HuggleQueueFilterMatchRequire && !edit->Page->GetWatched())
+                    return false;
+            }
+
             if (!edit->Page->GetCategories().isEmpty() && this->IgnoreCategories.count())
             {
                 foreach (QString cat, edit->Page->GetCategories())

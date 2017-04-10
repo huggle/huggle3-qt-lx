@@ -181,7 +181,7 @@ namespace Huggle
             Collectable_SmartPtr<ApiQuery> qDifference;
             Collectable_SmartPtr<ApiQuery> qFounder;
             Collectable_SmartPtr<ApiQuery> qText;
-            Collectable_SmartPtr<ApiQuery> qCategories;
+            Collectable_SmartPtr<ApiQuery> qCategoriesAndWatched;
             //! Size of change of edit
             long Size;
     };

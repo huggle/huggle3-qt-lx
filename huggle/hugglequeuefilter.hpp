@@ -90,6 +90,8 @@ namespace Huggle
             void setIgnoreReverts(HuggleQueueFilterMatch value);
             HuggleQueueFilterMatch getIgnore_UserSpace() const;
             void setIgnore_UserSpace(HuggleQueueFilterMatch value);
+            HuggleQueueFilterMatch getIgnoreWatched() const;
+            void setIgnoreWatched(HuggleQueueFilterMatch value);
             QString GetIgnoredTags_CommaSeparated() const;
             QString GetRequiredTags_CommaSeparated() const;
             void SetIgnoredTags_CommaSeparated(QString list);
@@ -119,6 +121,7 @@ namespace Huggle
             HuggleQueueFilterMatch Self;
             HuggleQueueFilterMatch UserSpace;
             HuggleQueueFilterMatch TalkPage;
+            HuggleQueueFilterMatch Watched;
     };
 
     inline HuggleQueueFilterMatch HuggleQueueFilter::getIgnoreMinor() const
@@ -229,6 +232,16 @@ namespace Huggle
     inline void HuggleQueueFilter::setIgnoreSelf(HuggleQueueFilterMatch value)
     {
         this->Self = value;
+    }
+
+    inline HuggleQueueFilterMatch HuggleQueueFilter::getIgnoreWatched() const
+    {
+        return this->Watched;
+    }
+
+    inline void HuggleQueueFilter::setIgnoreWatched(HuggleQueueFilterMatch value)
+    {
+        this->Watched = value;
     }
 
     inline bool HuggleQueueFilter::IsDefault() const
