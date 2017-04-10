@@ -186,6 +186,7 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
     this->TemplateAge = HuggleParser::ConfigurationParse("template-age", config, QString::number(this->TemplateAge)).toInt();
     // UAA
     this->UAAPath = HuggleParser::ConfigurationParse("uaa", config);
+    this->UAATemplate = HuggleParser::ConfigurationParse("uaa-template", config);
     this->TaggingSummary = HuggleParser::ConfigurationParse("tag-summary", config, "Tagging page");
     this->Tags = HuggleParser::ConfigurationParse_QL("tags", config, true);
     QStringList tags_copy(this->Tags);
