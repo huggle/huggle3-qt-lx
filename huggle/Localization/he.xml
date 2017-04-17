@@ -695,7 +695,6 @@
   <string name="preferences-sounds-enable-queue">לנגן צליל כשפריט חדש נוסף לתור</string>
   <string name="preferences-sounds-enable-irc">לנגן צליל כשמתקבל מסר ב־HAN</string>
   <string name="preferences-sounds-minimal-score">ציון עריכה מזערי להתראה</string>
-  <string name="preferences-performance-catscans">הפעלת סריקות קטגוריה (נדרשת בקשת API נוספת עבור כל עריכה)</string>
   <string name="fail">לא עבד</string>
   <string name="request">בקשה</string>
   <string name="requesting">שליחת בקשה</string>

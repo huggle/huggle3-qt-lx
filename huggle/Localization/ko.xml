@@ -396,7 +396,7 @@
   <string name="main-tip-userreport">이 사용자 보고</string>
   <string name="main-tip-userblock">이 사용자 차단</string>
   <string name="main-revision-acceptpend">보류 중인 판 승인</string>
-  <string name="main-no-page" fuzzy="true">요청한 동작은 문서를 불러오는 것이 필요합니다. 다시 시도하기 전에 문서를 불러오세요.</string>
+  <string name="main-no-page">문서를 불러오지 못했거나 읽기전용이기 때문에 요청하신 동작을 할 수 없습니다. 다시 시도하기 전에 편집가능한 페이지를 불러와 주세요.</string>
   <string name="main-revert-null">되돌릴 수 없으며, 편집이 비어 있습니다 (null)</string>
   <string name="main-revert-newpage-title">이것을 되돌릴 수 없습니다</string>
   <string name="main-revert-newpage">이것은 새 문서이므로 되돌릴 수 없습니다. 태그하거나 삭제할 수 있습니다.</string>
@@ -666,6 +666,7 @@
   <string name="preferences-watchlist-watch">주시문서 목록에 추가</string>
   <string name="preferences-watchlist-unwatch">주시문서 목록에서 제거</string>
   <string name="preferences-watchlist-nochange">아무 것도 안 함</string>
+  <string name="preferences-performance-catscansandwatched">분류 스캔 및 주시 상태 필터 기능 사용 (편집할 때마다 API 요청 수가 추가적으로 소모됩니다)</string>
   <string name="fail">실패</string>
   <string name="request">요청</string>
   <string name="requesting">요청 중</string>

@@ -692,6 +692,7 @@
   <string name="preferences-watchlist-unwatch">Удалить из списка наблюдения</string>
   <string name="preferences-watchlist-preferences">Следовать вашим настройкам в вики</string>
   <string name="preferences-watchlist-nochange">Ничего не делать</string>
+  <string name="preferences-performance-catscansandwatched">Включить сканирование категорий и фильтрацию статусов просмотра (требует дополнительный API-запрос на каждую правку)</string>
   <string name="fail">Сбой</string>
   <string name="request">Запрос</string>
   <string name="requesting">Запрос</string>

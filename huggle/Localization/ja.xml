@@ -188,6 +188,7 @@
   <string name="login-progress-language">メッセージ・ファイルを更新中...</string>
   <string name="login-progress-global">グローバル設定を確認中...</string>
   <string name="login-progress-config">設定ページを確認中...</string>
+  <string name="login-progress-local">$1のローカル設定を確認中...</string>
   <string name="login-progress-user-info">$1 の利用者の情報を確認中...</string>
   <string name="login-progress-whitelist">利用者ホワイトリストを取得中...</string>
   <string name="login-remember-password">パスワードを思い出す</string>

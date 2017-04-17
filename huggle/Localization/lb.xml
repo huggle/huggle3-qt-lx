@@ -259,6 +259,7 @@ Benotzerinformatioun konnt net ofgefrot ginn: $2</string>
   <string name="main-tip-pagedelete">Dës Säit läschen</string>
   <string name="main-tip-userreport">Dëse Benotzer mellen</string>
   <string name="main-tip-userblock">Dëse Benotzer spären</string>
+  <string name="main-no-page">D\'Aktioun déi Dir ugefrot hutt ass net disponibel well d\'Säit net geluede gouf oder well se just geliest ka ginn (read only). Lued w.e.g. eng Säit déi geännert gi kann ier Dir nach eng Kéier probéiert.</string>
   <string name="main-revert-null">Kann net zréckgesat ginn:Ännerung ass \'null\'</string>
   <string name="main-revert-newpage-title">Dëst konnt net zréckgesat ginn</string>
   <string name="main-revert-newpage">Dëst ass eng nei Säit dofir ka se net zréckgesat ginn. Dir kënnt se entweder markéieren oder läschen.</string>
