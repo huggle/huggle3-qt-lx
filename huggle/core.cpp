@@ -446,6 +446,7 @@ void Core::VersionRead()
     QFile *vf = new QFile(":/huggle/git/version.txt");
     vf->open(QIODevice::ReadOnly);
     QString version(vf->readAll());
+    version = version.replace("\r", "");
     version = version.replace("\n", "");
     Configuration::HuggleConfiguration->HuggleVersion += " " + version;
 #if PRODUCTION_BUILD
