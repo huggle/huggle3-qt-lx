@@ -15,6 +15,7 @@
 #ifdef HUGGLE_PROFILING
 #include <QDateTime>
 #include <QString>
+#include <QHash>
 
 #define HUGGLE_PROFILER_RESET Huggle::Profiler::Reset()
 #define HUGGLE_PROFILER_INCRCALL(function) Huggle::Profiler::IncrementCall(function)
