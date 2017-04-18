@@ -43,11 +43,16 @@ unsigned long long Profiler::GetCallsForFunction(QString function)
 QList<QString> Profiler::GetRegisteredCounterFunctions()
 {
     // sort the list by number of calls
-    QList<unsigned long long> Numbers = callCounter.values();
+    QHash<QString, unsigned long long> temp = callCounter;
+    QList<unsigned long long> Numbers = temp.values();
     qSort(Numbers);
     QList<QString> Functions;
     foreach(unsigned long long n, Numbers)
-        Functions.append(callCounter.key(n));
+    {
+        QString key = temp.key(n);
+        Functions.append(key);
+        temp.remove(key);
+    }
     return Functions;
 }
 #endif
