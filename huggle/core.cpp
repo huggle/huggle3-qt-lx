@@ -47,7 +47,7 @@ void Core::Init()
 {
     // We check if this isn't an attempt to start huggle core which was already started, this can cause serious hard to debug problems with network
     if (this->loaded)
-        throw new Huggle::Exception("Initializing huggle core that was already loaded", BOOST_CURRENT_FUNCTION)
+        throw new Huggle::Exception("Initializing huggle core that was already loaded", BOOST_CURRENT_FUNCTION);
     HUGGLE_PROFILER_RESET;
     this->loaded = true;
     // preload of config
