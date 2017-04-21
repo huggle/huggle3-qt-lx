@@ -11,9 +11,11 @@
 #include "projectconfiguration.hpp"
 #include "generic.hpp"
 #include "huggleparser.hpp"
+#include "localization.hpp"
 #include "syslog.hpp"
 #include "version.hpp"
 #include "wikipage.hpp"
+#include "wikisite.hpp"
 
 using namespace Huggle::Generic;
 using namespace Huggle;
@@ -90,6 +92,8 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
     this->RequireTime = HuggleParser::ConfigurationParse("require-time", config, "0").toInt();
     this->RequireRollback = SafeBool(HuggleParser::ConfigurationParse("require-rollback", config));
     this->ReadOnly = SafeBool(HuggleParser::ConfigurationParse("read-only", config), this->ReadOnly);
+    if (this->ReadOnly)
+        Syslog::HuggleLogs->WarningLog(_l("read-only", site->Name));
     this->LargeRemoval = HuggleParser::ConfigurationParse("large-removal", config, "400").toInt();
     // IRC
     this->UseIrc = SafeBool(HuggleParser::ConfigurationParse("irc", config));
@@ -131,7 +135,7 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
     this->RevertSummaries = HuggleParser::ConfigurationParse_QL("template-summ", config);
     if (!this->RevertSummaries.count())
     {
-        Syslog::HuggleLogs->WarningLog("RevertSummaries contain no data, default summary will be used for all of them, you need to fix project settings!!");
+        Syslog::HuggleLogs->WarningLog("RevertSummaries for " + site->Name + " contain no data, default summary will be used for all of them, you need to fix project settings!!");
     }
     this->RollbackSummary = HuggleParser::ConfigurationParse("rollback-summary", config,
               "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2");
