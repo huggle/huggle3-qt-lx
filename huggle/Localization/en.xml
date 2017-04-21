@@ -108,6 +108,7 @@
   <string name="config-noshortcut">None</string>
   <string name="config-defaults">Defaults</string>
   <string name="config-minor">Mark as minor</string>
+  <string name="config-ip">IP users</string>
   <string name="config-watchlist">Add to watchlist</string>
   <string name="config-defaultsummary">Default summary for manual edits</string>
   <string name="config-undosummary">Summary when undoing own edits</string>

@@ -37,8 +37,7 @@ namespace Huggle
         public:
             explicit Preferences(QWidget *parent = 0);
             ~Preferences();
-            void EnableQueues();
-            void Disable();
+            void EnableQueues(bool enabled);
         private slots:
             void on_pushButton_clicked();
             void on_pushButton_2_clicked();

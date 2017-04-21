@@ -51,6 +51,7 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     SetDefaults(this->ui->cbqUserspace);
     SetDefaults(this->ui->cbqWl);
     SetDefaults(this->ui->cbqWatched);
+    SetDefaults(this->ui->cbqIP);
     this->ui->cbProviders->addItem("Wiki");
     this->ui->cbProviders->addItem("IRC");
     this->ui->cbProviders->addItem("XmlRcs");
@@ -136,7 +137,7 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
         this->ui->tableWidget->setItem(0, 4, new QTableWidgetItem(script->GetVersion()));
     }
 #endif
-    this->Disable();
+    this->EnableQueues(false);
     this->ui->checkBox_AutoResolveConflicts->setText(_l("config-conflicts-revert"));
     this->ui->checkBox_ConfirmUserSpaceEditRevert->setText(_l("config-confirm-user"));
     this->ui->checkBox_ConfirmOwnEditRevert->setText(_l("config-confirmselfrevert"));
@@ -182,6 +183,7 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     this->ui->checkBox_notifyUpdate->setText(_l("config-updates"));
     this->ui->checkBox_notifyBeta->setText(_l("config-beta"));
     this->ui->checkBox_31->setText(_l("config-html-messages"));
+    this->ui->label_Unregistered->setText(_l("config-ip"));
     this->ui->checkBox_7->setText(_l("config-summary-present"));
     this->ui->pushButton_2->setText(_l("ok"));
     this->ui->cbPlayOnNewItem->setText(_l("preferences-sounds-enable-queue"));
@@ -236,10 +238,10 @@ void Huggle::Preferences::on_listWidget_itemSelectionChanged()
     }
     if (!HuggleQueueFilter::Filters[this->Site]->at(id)->IsChangeable())
     {
-        this->Disable();
+        this->EnableQueues(false);
     } else
     {
-        this->EnableQueues();
+        this->EnableQueues(true);
     }
     HuggleQueueFilter *f = HuggleQueueFilter::Filters[this->Site]->at(ui->listWidget->currentRow());
     SetValue(f->getIgnoreBots(), this->ui->cbqBots);
@@ -251,6 +253,7 @@ void Huggle::Preferences::on_listWidget_itemSelectionChanged()
     SetValue(f->getIgnoreReverts(), this->ui->cbqRevert);
     SetValue(f->getIgnoreSelf(), this->ui->cbqOwn);
     SetValue(f->getIgnoreWatched(), this->ui->cbqWatched);
+    SetValue(f->getIgnoreIP(), this->ui->cbqIP);
     this->ui->leIgnoredTags->setText(f->GetIgnoredTags_CommaSeparated());
     this->ui->leRequiredTags->setText(f->GetRequiredTags_CommaSeparated());
     this->ui->leIgnoredCategories->setText(f->GetIgnoredCategories_CommaSeparated());
@@ -260,50 +263,28 @@ void Huggle::Preferences::on_listWidget_itemSelectionChanged()
     this->ui->lineEdit->setText(f->QueueName);
 }
 
-void Preferences::Disable()
+void Preferences::EnableQueues(bool enabled)
 {
-    this->ui->cbqBots->setEnabled(false);
-    this->ui->cbqFrd->setEnabled(false);
-    this->ui->cbqMinor->setEnabled(false);
-    this->ui->cbqNew->setEnabled(false);
-    this->ui->cbqOwn->setEnabled(false);
-    this->ui->cbqWatched->setEnabled(false);
-    this->ui->pushButton_4->setEnabled(false);
-    this->ui->cbqRevert->setEnabled(false);
-    this->ui->pushButton_5->setEnabled(false);
-    this->ui->cbqTp->setEnabled(false);
-    this->ui->pushButton_6->setEnabled(false);
-    this->ui->tableWidget_3->setEnabled(false);
-    this->ui->cbqUserspace->setEnabled(false);
-    this->ui->leIgnoredTags->setEnabled(false);
-    this->ui->leRequiredTags->setEnabled(false);
-    this->ui->leIgnoredCategories->setEnabled(false);
-    this->ui->leRequiredCategories->setEnabled(false);
-    this->ui->lineEdit->setEnabled(false);
-    this->ui->cbqWl->setEnabled(false);
-}
-
-void Preferences::EnableQueues()
-{
-    this->ui->lineEdit->setEnabled(true);
-    this->ui->cbqBots->setEnabled(true);
-    this->ui->cbqFrd->setEnabled(true);
-    this->ui->cbqMinor->setEnabled(true);
-    this->ui->cbqNew->setEnabled(true);
-    this->ui->cbqOwn->setEnabled(true);
-    this->ui->cbqWatched->setEnabled(true);
-    this->ui->cbqRevert->setEnabled(true);
-    this->ui->pushButton_4->setEnabled(true);
-    this->ui->cbqTp->setEnabled(true);
-    this->ui->tableWidget_3->setEnabled(true);
-    this->ui->pushButton_5->setEnabled(true);
-    this->ui->pushButton_6->setEnabled(true);
-    this->ui->leIgnoredTags->setEnabled(true);
-    this->ui->leRequiredTags->setEnabled(true);
-    this->ui->leIgnoredCategories->setEnabled(true);
-    this->ui->leRequiredCategories->setEnabled(true);
-    this->ui->cbqUserspace->setEnabled(true);
-    this->ui->cbqWl->setEnabled(true);
+    this->ui->lineEdit->setEnabled(enabled);
+    this->ui->cbqBots->setEnabled(enabled);
+    this->ui->cbqFrd->setEnabled(enabled);
+    this->ui->cbqMinor->setEnabled(enabled);
+    this->ui->cbqNew->setEnabled(enabled);
+    this->ui->cbqOwn->setEnabled(enabled);
+    this->ui->cbqIP->setEnabled(enabled);
+    this->ui->cbqWatched->setEnabled(enabled);
+    this->ui->cbqRevert->setEnabled(enabled);
+    this->ui->pushButton_4->setEnabled(enabled);
+    this->ui->cbqTp->setEnabled(enabled);
+    this->ui->tableWidget_3->setEnabled(enabled);
+    this->ui->pushButton_5->setEnabled(enabled);
+    this->ui->pushButton_6->setEnabled(enabled);
+    this->ui->leIgnoredTags->setEnabled(enabled);
+    this->ui->leRequiredTags->setEnabled(enabled);
+    this->ui->leIgnoredCategories->setEnabled(enabled);
+    this->ui->leRequiredCategories->setEnabled(enabled);
+    this->ui->cbqUserspace->setEnabled(enabled);
+    this->ui->cbqWl->setEnabled(enabled);
 }
 
 void Preferences::on_pushButton_clicked()
@@ -443,6 +424,7 @@ void Huggle::Preferences::on_pushButton_6_clicked()
     filter->SetRequiredCategories_CommaSeparated(this->ui->leRequiredCategories->text());
     filter->setIgnoreBots(Match(this->ui->cbqBots));
     filter->setIgnoreNP(Match(this->ui->cbqNew));
+    filter->setIgnoreIP(Match(this->ui->cbqIP));
     filter->setIgnoreWL(Match(this->ui->cbqWl));
     filter->setIgnoreSelf(Match(this->ui->cbqOwn));
     filter->setIgnoreReverts(Match(this->ui->cbqRevert));
@@ -500,7 +482,7 @@ void Huggle::Preferences::on_pushButton_4_clicked()
     }
     HuggleQueueFilter::Filters[this->Site]->removeAll(filter);
     delete filter;
-    this->Disable();
+    this->EnableQueues(false);
     MainWindow::HuggleMain->Queue1->Filters();
     this->Reload();
 }

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1106</width>
-    <height>730</height>
+    <height>752</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -605,94 +605,94 @@
            <item row="3" column="1">
             <widget class="QComboBox" name="cbqBots"/>
            </item>
-           <item row="4" column="0">
+           <item row="5" column="0">
             <widget class="QLabel" name="label_ownEdits">
              <property name="text">
               <string>Own edits</string>
              </property>
             </widget>
            </item>
-           <item row="4" column="1">
+           <item row="5" column="1">
             <widget class="QComboBox" name="cbqOwn"/>
            </item>
-           <item row="5" column="0">
+           <item row="6" column="0">
             <widget class="QLabel" name="label_reverts">
              <property name="text">
               <string>Reverts</string>
              </property>
             </widget>
            </item>
-           <item row="5" column="1">
+           <item row="6" column="1">
             <widget class="QComboBox" name="cbqRevert"/>
            </item>
-           <item row="6" column="0">
+           <item row="7" column="0">
             <widget class="QLabel" name="label_8">
              <property name="text">
               <string>New page</string>
              </property>
             </widget>
            </item>
-           <item row="6" column="1">
+           <item row="7" column="1">
             <widget class="QComboBox" name="cbqNew"/>
            </item>
-           <item row="7" column="0">
+           <item row="8" column="0">
             <widget class="QLabel" name="label_minor">
              <property name="text">
               <string>Minor</string>
              </property>
             </widget>
            </item>
-           <item row="7" column="1">
+           <item row="8" column="1">
             <widget class="QComboBox" name="cbqMinor"/>
            </item>
-           <item row="8" column="0">
+           <item row="9" column="0">
             <widget class="QLabel" name="label_9">
              <property name="text">
               <string>Whitelisted</string>
              </property>
             </widget>
            </item>
-           <item row="8" column="1">
+           <item row="9" column="1">
             <widget class="QComboBox" name="cbqWl"/>
            </item>
-           <item row="9" column="0">
+           <item row="10" column="0">
             <widget class="QLabel" name="label_10">
              <property name="text">
               <string>Friend</string>
              </property>
             </widget>
            </item>
-           <item row="9" column="1">
+           <item row="10" column="1">
             <widget class="QComboBox" name="cbqFrd"/>
            </item>
-           <item row="10" column="0">
+           <item row="11" column="0">
             <widget class="QLabel" name="label_11">
              <property name="text">
               <string>Userspace</string>
              </property>
             </widget>
            </item>
-           <item row="10" column="1">
+           <item row="11" column="1">
             <widget class="QComboBox" name="cbqUserspace"/>
            </item>
-           <item row="11" column="0">
+           <item row="12" column="0">
             <widget class="QLabel" name="label_talk">
              <property name="text">
               <string>Talk page</string>
              </property>
             </widget>
            </item>
-           <item row="11" column="1">
+           <item row="12" column="1">
             <widget class="QComboBox" name="cbqTp"/>
            </item>
-           <item row="12" column="0">
+           <item row="13" column="0">
             <widget class="QLabel" name="label_watched">
              <property name="text">
               <string>Watched</string>
              </property>
             </widget>
            </item>
-           <item row="12" column="1">
+           <item row="13" column="1">
             <widget class="QComboBox" name="cbqWatched"/>
            </item>
            <item row="1" column="0">
@@ -715,45 +715,55 @@
              </property>
             </widget>
            </item>
-           <item row="13" column="0">
+           <item row="14" column="0">
             <widget class="QLabel" name="lFilterIgnoredTags">
              <property name="text">
               <string>Ignored tags</string>
              </property>
             </widget>
            </item>
-           <item row="14" column="0">
+           <item row="15" column="0">
             <widget class="QLabel" name="lRequiredTags">
              <property name="text">
               <string>Required tags</string>
              </property>
             </widget>
            </item>
-           <item row="13" column="1">
+           <item row="14" column="1">
             <widget class="QLineEdit" name="leIgnoredTags"/>
            </item>
-           <item row="14" column="1">
+           <item row="15" column="1">
             <widget class="QLineEdit" name="leRequiredTags"/>
            </item>
-           <item row="15" column="0">
+           <item row="16" column="0">
             <widget class="QLabel" name="lFilterIgnoredCategories">
              <property name="text">
               <string>Ignored categories</string>
              </property>
             </widget>
            </item>
-           <item row="16" column="0">
+           <item row="17" column="0">
             <widget class="QLabel" name="lRequiredCategories">
              <property name="text">
               <string>Required categories</string>
              </property>
             </widget>
            </item>
-           <item row="15" column="1">
+           <item row="16" column="1">
             <widget class="QLineEdit" name="leIgnoredCategories"/>
            </item>
-           <item row="16" column="1">
+           <item row="17" column="1">
             <widget class="QLineEdit" name="leRequiredCategories"/>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="label_Unregistered">
+             <property name="text">
+              <string>IP users</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QComboBox" name="cbqIP"/>
            </item>
           </layout>
          </item>

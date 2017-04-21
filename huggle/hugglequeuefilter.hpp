@@ -54,10 +54,6 @@ namespace Huggle
             HuggleQueueFilterMatch getIgnoreMinor() const;
             //! Changes if this filter is matching minor edits or not
             void setIgnoreMinor(HuggleQueueFilterMatch value);
-            //! Information if this filter is matching registered user edits or not
-            HuggleQueueFilterMatch getIgnoreUsers() const;
-            //! Changes if this filter is matching registered users or not
-            void setIgnoreUsers(HuggleQueueFilterMatch value);
             //! Information if this filter is matching edits of wl users or not
             HuggleQueueFilterMatch getIgnoreWL() const;
             //! Changes if this filter is matching edits of wl users or not
@@ -111,7 +107,6 @@ namespace Huggle
             QStringList IgnoreCategories;
             QStringList RequireCategories;
             HuggleQueueFilterMatch Minor;
-            HuggleQueueFilterMatch Users;
             HuggleQueueFilterMatch WL;
             HuggleQueueFilterMatch IP;
             HuggleQueueFilterMatch Reverts;
@@ -132,16 +127,6 @@ namespace Huggle
     inline void HuggleQueueFilter::setIgnoreMinor(HuggleQueueFilterMatch value)
     {
         this->Minor = value;
-    }
-
-    inline HuggleQueueFilterMatch HuggleQueueFilter::getIgnoreUsers() const
-    {
-        return this->Users;
-    }
-
-    inline void HuggleQueueFilter::setIgnoreUsers(HuggleQueueFilterMatch value)
-    {
-        this->Users = value;
     }
 
     inline HuggleQueueFilterMatch HuggleQueueFilter::getIgnoreWL() const

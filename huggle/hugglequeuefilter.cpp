@@ -72,7 +72,6 @@ HuggleQueueFilter::HuggleQueueFilter()
     this->NewPages = HuggleQueueFilterMatchIgnore;
     this->Self = HuggleQueueFilterMatchExclude;
     this->Reverts = HuggleQueueFilterMatchIgnore;
-    this->Users = HuggleQueueFilterMatchIgnore;
     this->TalkPage = HuggleQueueFilterMatchExclude;
     this->UserSpace = HuggleQueueFilterMatchIgnore;
     this->Watched = HuggleQueueFilterMatchIgnore;
@@ -121,6 +120,13 @@ bool HuggleQueueFilter::Matches(WikiEdit *edit)
         if (this->Friends == HuggleQueueFilterMatchExclude && edit->TrustworthEdit)
             return false;
         if (this->Friends == HuggleQueueFilterMatchRequire && edit->TrustworthEdit != true)
+            return false;
+    }
+    if (this->IP != HuggleQueueFilterMatchIgnore)
+    {
+        if (this->IP == HuggleQueueFilterMatchExclude && edit->User->IsIP())
+            return false;
+        if (this->IP == HuggleQueueFilterMatchRequire && !edit->User->IsIP())
             return false;
     }
     if (this->Minor != HuggleQueueFilterMatchIgnore)

@@ -511,7 +511,6 @@ QList<HuggleQueueFilter*> HuggleParser::ConfigurationParseQueueList(QString cont
             filter->setIgnoreReverts(HuggleQueueFilterMatchIgnore);
             filter->setIgnoreSelf(HuggleQueueFilterMatchIgnore);
             filter->setIgnore_UserSpace(HuggleQueueFilterMatchIgnore);
-            filter->setIgnoreUsers(HuggleQueueFilterMatchIgnore);
             filter->setIgnoreWL(HuggleQueueFilterMatchIgnore);
             ReturnValue.append(filter);
             filter->ProjectSpecific = locked;

@@ -259,7 +259,6 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
             configuration_ += "        filter-minor:" + Bool2ExcludeRequire(fltr->getIgnoreMinor()) + "\n";
             configuration_ += "        filter-new-pages:" + Bool2ExcludeRequire(fltr->getIgnoreNP()) + "\n";
             configuration_ += "        filter-me:" + Bool2ExcludeRequire(fltr->getIgnoreSelf()) + "\n";
-            configuration_ += "        filter-users:" + Bool2ExcludeRequire(fltr->getIgnoreUsers()) + "\n";
             configuration_ += "        nsfilter-user:" + Bool2ExcludeRequire(fltr->getIgnore_UserSpace()) + "\n";
             configuration_ += "        filter-talk:" + Bool2ExcludeRequire(fltr->getIgnoreTalk()) + "\n";
             configuration_ += "        filter-watched:" + Bool2ExcludeRequire(fltr->getIgnoreWatched()) + "\n";
