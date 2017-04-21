@@ -25,15 +25,14 @@
 #    pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
 #endif
 
-//! This function just read the parameters and return true if we can continue or not
+//! This function just reads console parameters and return true if we can continue or need to terminate
 bool TerminalParse(Huggle::TerminalParser *p)
 {
-    // if parser get an argument which requires app to exit (like --help or --version)
-    // we can terminate it now
-    bool require_exit = p->Parse();
+    // Parse() returns false in case program should terminate
+    bool require_exit = !p->Parse();
     delete p;
     // we can continue if we don't require exit
-    return !require_exit;
+    return require_exit;
 }
 
 int Fatal(Huggle::Exception *fail)
@@ -51,10 +50,10 @@ int main(int argc, char *argv[])
     Huggle::Exception::InitBreakpad();
     try
     {
-        // we need to create terminal parser now and rest later
+        // We need to create terminal parser now and rest later, because it depends on X11
+        // and that would result in weird errors on systems that don't have graphical frontend.
+        // Using huggle on such is not supported yet, but there are plans for headless version
         Huggle::TerminalParser *parser = new Huggle::TerminalParser(argc, argv);
-        // we need to do this before we init the qapp because otherwise it would not work on systems
-        // that don't have an X org
         if (parser->Init())
         {
             delete parser;
@@ -62,7 +61,7 @@ int main(int argc, char *argv[])
             return ReturnCode;
         }
         Huggle::HgApplication a(argc, argv);
-        // make it possible to select text from message boxens
+        // Make it possible to select text from message boxens
         a.setStyleSheet("QMessageBox { messagebox-text-interaction-flags: 5; }");
         QApplication::setApplicationName("Huggle");
         QApplication::setOrganizationName("Wikimedia");
@@ -71,7 +70,7 @@ int main(int argc, char *argv[])
             a.setAttribute(Qt::AA_UseHighDpiPixmaps);
         #endif
         Huggle::Configuration::HuggleConfiguration = new Huggle::Configuration();
-        // check if arguments don't need to exit program
+        // Check if arguments don't need to exit program
         if (!TerminalParse(parser))
         {
             Huggle::Exception::ExitBreakpad();
@@ -88,10 +87,10 @@ int main(int argc, char *argv[])
             delete update_form;
             return ReturnCode;
         }
-        // we load the core
+        // load the core
         Huggle::Core::HuggleCore = new Huggle::Core();
         Huggle::Core::HuggleCore->Init();
-        // now we can start the huggle :o
+        // start the huggle :o
         Huggle::Core::HuggleCore->fLogin = new Huggle::Login();
         Huggle::Core::HuggleCore->fLogin->show();
         ReturnCode = a.exec();

@@ -92,8 +92,8 @@ void Core::Init()
     HUGGLE_DEBUG1("Loading wikis");
     this->LoadDB();
     HUGGLE_DEBUG1("Loading queue");
-    // These are separators that we use to parse words, less we have, faster huggle will be,
-    // despite it will fail more to detect vandals. Keep it low but precise enough!!
+    // These are separators that we use to parse individual words, too many items will have negative impact on performance,
+    // so despite it would help us detect vandals, we need to keep it low, but precise enough!!
     Configuration::HuggleConfiguration->SystemConfig_WordSeparators << " " << "." << "," << "(" << ")" << ":" << ";" << "!"
                                                                     << "?" << "/" << "<" << ">" << "[" << "]";
     if (!Configuration::HuggleConfiguration->SystemConfig_SafeMode)
@@ -165,11 +165,8 @@ void Core::SdkInit(Configuration *huggle_conf)
     QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
 #endif
     this->Processor = new ProcessorThread();
-    // this->Processor->start();
-    // These are separators that we use to parse words, less we have, faster huggle will be,
-    // despite it will fail more to detect vandals. Keep it low but precise enough!!
     Configuration::HuggleConfiguration->SystemConfig_WordSeparators << " " << "." << "," << "(" << ")" << ":" << ";" << "!"
-        << "?" << "/" << "<" << ">" << "[" << "]";
+                                                                    << "?" << "/" << "<" << ">" << "[" << "]";
 }
 
 #endif

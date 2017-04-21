@@ -8,11 +8,12 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-//! This file exist only for compiler options that can be changed before you build huggle
+//! This file contains build configuration of huggle, these values will be hardcoded in resulting binary
 
 #ifndef DEFINITIONS_H
 #define DEFINITIONS_H
 
+// Byte-sizes of some huggle specific types
 typedef long long score_ht;
 typedef char byte_ht;
 typedef long long revid_ht;
@@ -24,10 +25,10 @@ typedef long long revid_ht;
 // format is 0xMAJOR(2)MINOR(2)RELEASE(2) so for 3.1.15 it's 0x03010F
 #define HUGGLE_BYTE_VERSION             0x030200
 
-// Version of mediawiki that we do support
+// Minimal version of mediawiki that we do support
 #define HUGGLE_SUPPORTED_MEDIAWIKI_VERSION "1.25"
 
-// How often the statistics get purged in seconds (smaller, more precise they will be)
+// How often do the statistics get purged (in seconds - smaller value results in more recent statistics)
 #define HUGGLE_STATISTICS_LIFETIME     200
 #define HUGGLE_STATISTICS_BLOCK_SIZE   20
 
@@ -37,7 +38,7 @@ typedef long long revid_ht;
     #define HUGGLE_WEB_ENGINE_NAME "WebKit"
 #endif
 
-// we are using translatewiki and if this is not defined there is a huge overhead of Qt code
+// We are using translatewiki and if this is not defined there is a huge overhead of Qt code
 #ifndef QT_NO_TRANSLATION
     #define QT_NO_TRANSLATION
 #endif
@@ -46,16 +47,20 @@ typedef long long revid_ht;
     #define HUGGLE_WIN
 #endif
 
-// uncomment to disable audio subsystem in huggle
+// Uncomment to disable audio subsystem in huggle
 // #define HUGGLE_NOAUDIO
 
-// uncomment this out to disable updater
+// Uncomment this to disable updater
 // #define HUGGLE_NOUPDATER
 
-// comment this out to disable multithreaded garbage collector
-// this can be useful for debugging as multithreaded GC is not able to delete Qt objects, so if your code
-// is crashing with it only, it means your code suck and need a fix in destructor :))
+// Comment this out to disable multithreaded garbage collector, this can be useful
+// for debugging as multithreaded GC is not allowed to delete Qt objects,
+// which should happen anyway, so if your code is crashing because of that,
+// it means it's broken. This will negatively hit performance on multicore systems.
 // #define HUGGLE_NO_MT_GC
+
+
+// MacOS related build-time settings
 #ifdef __APPLE__
     #include <cstddef>
     #include "TargetConditionals.h"
@@ -67,7 +72,8 @@ namespace std { typedef decltype(nullptr) nullptr_t; }
         #define HUGGLE_NO_MT_GC
     #endif
 #endif
-// this is a nasty hack that will disable multi threaded gc on MacOS as we had some report that
+
+// This is a nasty hack that will disable multi threaded gc on MacOS as we had some report that
 // it has problems there (need to be fixed though)
 #ifndef HUGGLE_NO_MT_GC
     #define HUGGLE_USE_MT_GC               "mt"
@@ -82,8 +88,9 @@ namespace std { typedef decltype(nullptr) nullptr_t; }
 #endif
 #endif
 
-// Uncomment this in order to disable breakpad, this is useful when you are having troubles
-// linking or building its libraries
+// Comment this out in order to enable google breakpad, this is useful when you are having troubles
+// linking or building its libraries, since we moved to C++11 it doesn't work anyway, this code
+// was left in for future times when google adapts their code for C++11
 #define DISABLE_BREAKPAD
 
 // this is a nasty workaround that exist because python is written by noobs
@@ -139,7 +146,7 @@ namespace std { typedef decltype(nullptr) nullptr_t; }
 //! Path where the extensions are located
 #define EXTENSION_PATH                  "extensions"
 //! Value that is used by default for timers that are used on various places
-//! lower this is, more your CPU will work but faster the huggle will be
+//! lower value will result in higher CPU usage, but faster performance of huggle 
 #ifndef HUGGLE_TIMER
     #define HUGGLE_TIMER                   200
 #endif
@@ -187,7 +194,7 @@ namespace std { typedef decltype(nullptr) nullptr_t; }
     #define HUGGLE_UPDATER_PLATFORM_TYPE            "unknown"
 #endif
 
-// This help us clear any qlist that contains pointers
+// This function help us clear any qlist that contains pointers
 #define HUGGLE_CLEAR_PQ_LIST(list) while(list.count())   { delete list.at(0); list.removeAt(0); }
 
 // stolen from boost/current_function.hpp
