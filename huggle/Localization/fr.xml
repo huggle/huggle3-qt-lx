@@ -109,6 +109,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="config-noshortcut">Aucun</string>
   <string name="config-defaults">Défauts</string>
   <string name="config-minor">Marquer comme mineur</string>
+  <string name="config-ip">utilisateurs internet</string>
   <string name="config-watchlist">Ajouter à la liste de suivi</string>
   <string name="config-defaultsummary">Résumé par défaut pour les éditions manuelles</string>
   <string name="config-undosummary">Résumé pour l\'annulation de ses propres modifications</string>
@@ -508,6 +509,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="uaa-g1">Obtention du contenu de UAA</string>
   <string name="uaa-e1">la requête pour le contenu de cette page n’a renvoyée aucune donnée.</string>
   <string name="uaa-e2">le contenu de la page n’était pas disponible.</string>
+  <string name="read-only">Le projet $1 est configuré en lecture seulement, les fonctions de modification seront restreintes</string>
   <string name="revert-confirm-multiple">Cela annulera les modifications multiples par $1. Continuer ?</string>
   <string name="revert-confirm-range">L’auteur de la version cible, $2, est dans la même plage que l’auteur de la version actuelle, $1, et pourrait être la même personne ; assurez-vous que la version cible est correcte avant de poursuivre. Continuer ?</string>
   <string name="revert-confirm-same">Cela retournera à une autre version par l’utilisateur qui a été annulée, $1. Continuer ?</string>

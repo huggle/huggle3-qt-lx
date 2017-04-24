@@ -109,6 +109,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="config-noshortcut">Kein Kürzel</string>
   <string name="config-defaults">Standardeinstellung</string>
   <string name="config-minor">Als geringfügige Änderung markieren</string>
+  <string name="config-ip">IP-Benutzer</string>
   <string name="config-watchlist">Zur Beobachtungsliste hinzufügen</string>
   <string name="config-defaultsummary">Standardzusammenfassung für manuelle Änderungen</string>
   <string name="config-undosummary">Zusammenfassung für das Widerrufen einer eigenen Änderung</string>
@@ -508,6 +509,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="uaa-g1">Inhalt von UAA abrufen</string>
   <string name="uaa-e1">die Abfrage für die Seiteninhalte hat keine Daten zurückgegeben.</string>
   <string name="uaa-e2">die Seiteninhalte waren nicht verfügbar.</string>
+  <string name="read-only">Das Projekt $1 ist als schreibgeschützt konfiguriert. Bearbeitungsfunktionen sind eingeschränkt.</string>
   <string name="revert-confirm-multiple">Dies wird mehrere Bearbeitungen von $1 zurücksetzen. Fortfahren?</string>
   <string name="revert-confirm-range">Der Autor der Zielversion $2 ist im gleichen Bereich als der Autor der aktuellen Version $1. Vielleicht ist es die gleiche Person. Stelle vor dem Fortfahren sicher, dass die Zielversion korrekt ist. Fortfahren?</string>
   <string name="revert-confirm-same">Dies wird auf eine andere Version des Benutzers $1 zurücksetzen, der zurückgesetzt wurde. Fortfahren?</string>

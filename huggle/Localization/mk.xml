@@ -109,6 +109,7 @@
   <string name="config-noshortcut">Нема</string>
   <string name="config-defaults">Основни</string>
   <string name="config-minor">Означи како ситно</string>
+  <string name="config-ip">IP-корисници</string>
   <string name="config-watchlist">Додај во набљудувани</string>
   <string name="config-defaultsummary">Стандарден опис за рачни уредувања</string>
   <string name="config-undosummary">Опис за враќање на свои уредувања</string>
@@ -508,6 +509,7 @@
   <string name="uaa-g1">Земам содржини од UAA</string>
   <string name="uaa-e1">барањето за содржините на страницата не даде податоци.</string>
   <string name="uaa-e2">содржините на страницата не беа достапни.</string>
+  <string name="read-only">Проектот $1 е наместен само на читање. Можностите за уредување ќе бидат ограничени</string>
   <string name="revert-confirm-multiple">Со ова ќе отповикате повеќе уредувања на $1. Да продолжам?</string>
   <string name="revert-confirm-range">Авторот на целната преработка ($2) е во истиот опсег со авторот на тековната ($1), и затоа може да се работи за истата личност. Проверете дали целната преработка ви е исправна пред да одите понатаму. Да продолжам?</string>
   <string name="revert-confirm-same">Со ова ќе вратите на друга преработка од истиот корисник ($1). Да продолжам?</string>

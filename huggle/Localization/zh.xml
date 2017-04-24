@@ -109,6 +109,7 @@
   <string name="config-noshortcut">无</string>
   <string name="config-defaults">默认</string>
   <string name="config-minor">标记为小编辑</string>
+  <string name="config-ip">IP用户</string>
   <string name="config-watchlist">添加到监视列表</string>
   <string name="config-defaultsummary">默认为手工编辑摘要</string>
   <string name="config-undosummary">撤销自己编辑时的摘要</string>
@@ -508,6 +509,7 @@
   <string name="uaa-g1">获取UAA内容</string>
   <string name="uaa-e1">对页面内容的查询未返回任何数据。</string>
   <string name="uaa-e2">页面内容不可用。</string>
+  <string name="read-only">项目$1被配置为只读，编辑功能将被限制</string>
   <string name="revert-confirm-multiple">这将回退$1的多笔编辑。确定继续？</string>
   <string name="revert-confirm-range">目标修订的作者$2，是和当前修订作者$1同一范围的，这可能是同一人（傀儡？！）；请确认目标版本是正确的。确定继续？</string>
   <string name="revert-confirm-same">将会回退到该用户的另一个版本$1。确定继续？</string>

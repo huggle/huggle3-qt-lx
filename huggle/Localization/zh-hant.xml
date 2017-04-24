@@ -18,11 +18,11 @@
   <string name="remove">移除</string>
   <string name="rename">重新命名</string>
   <string name="reload">重新載入</string>
-  <string name="project">專案</string>
+  <string name="project">項目</string>
   <string name="result">結果</string>
   <string name="save">儲存</string>
   <string name="show">顯示</string>
-  <string name="no-instant">即時警告未在專案$1上啟用，因此未向$2傳送訊息。請選擇一個不同的警告級別。</string>
+  <string name="no-instant">即時警告未在項目$1上啟用，因此未向$2傳送訊息。請選擇一個不同的警告級別。</string>
   <string name="undo">撤銷</string>
   <string name="yes">是</string>
   <string name="editing-page">正在編輯頁面</string>
@@ -109,6 +109,7 @@
   <string name="config-noshortcut">無</string>
   <string name="config-defaults">預設</string>
   <string name="config-minor">標記為小修改</string>
+  <string name="config-ip">IP 用戶</string>
   <string name="config-watchlist">增加至監視清單</string>
   <string name="config-defaultsummary">預設為手動編輯摘要</string>
   <string name="config-undosummary">撤銷自身編輯的默認編輯摘要</string>
@@ -212,7 +213,7 @@
   <string name="irc-nochannel">未找到$1IRC頻道；改採用較慢的API查詢</string>
   <string name="irc-error">無法連結至IRC最近訂閱更改($1：$2)。請改用較緩慢的API查詢</string>
   <string name="irc-stop">等待在$1的首要訂閱提供者停止</string>
-  <string name="irc-not">IRC訂閱被專案設定檔停用</string>
+  <string name="irc-not">IRC訂閱被項目設定檔停用</string>
   <string name="irc-failure">首要訂閱提供者失效。改退回成wiki提供者...</string>
   <string name="irc-wait">等待IRC訂閱提供者停止</string>
   <string name="irc-switch-rc">切換到wiki RC訂閱</string>
@@ -223,7 +224,7 @@
   <string name="login-tab-login">舊式</string>
   <string name="login-reload-tool-tip">重新載入Huggle的可使用項目清單。您想要在某個項目使用Huggle，而Huggle已啟用時很有用。</string>
   <string name="login-language">語言：</string>
-  <string name="login-project">專案：</string>
+  <string name="login-project">項目：</string>
   <string name="login-username">使用者名稱：</string>
   <string name="login-password">密碼：</string>
   <string name="login-proxygroup">代理設定</string>
@@ -240,7 +241,7 @@
   <string name="login-fail-parse-config">登入 $1 失敗：無法解析使用者設定。 請參考除錯日誌以了解詳細資訊。</string>
   <string name="login-fail-user-data">登入 $1 失敗：無法取得使用者資訊。 查詢 API 未回傳資料。</string>
   <string name="login-fail-rollback-rights">登入 $1 失敗：您於此項目沒有回退的權限。</string>
-  <string name="login-failed-autoconfirm-rights">登入 $1 失敗：您於此專案並非已自動確認的使用者。</string>
+  <string name="login-failed-autoconfirm-rights">登入 $1 失敗：您於此項目並非已自動確認的使用者。</string>
   <string name="login-failed-edit">登入 $1 失敗：您於此專案未有足夠的編輯數。</string>
   <string name="login-retrieving-info">取得使用者資訊於 $1</string>
   <string name="login-password-empty">您輸入的密碼為空白</string>
@@ -261,13 +262,13 @@
   <string name="login-remember-password">記住密碼</string>
   <string name="login-ssl">使用HTTPS加密連線（需要OpenSSL）</string>
   <string name="login-fail">在$1登入失敗</string>
-  <string name="login-error-admin">於此專案使用 Huggle 需要有管理員帳號。</string>
-  <string name="login-error-age">於此專案使用 Huggle 至少需註冊 $1 天以上。　</string>
-  <string name="login-error-alldisabled">Huggle 目前被所有專案關閉。</string>
+  <string name="login-error-admin">於此項目使用 Huggle 需要有管理員帳號。</string>
+  <string name="login-error-age">於此項目使用 Huggle 至少需註冊 $1 天以上。　</string>
+  <string name="login-error-alldisabled">Huggle 目前被所有項目關閉。</string>
   <string name="login-error-approval">於 $1 使用 Huggle 需要核准。</string>
   <string name="login-error-cancelled">已取消。</string>
   <string name="login-error-config">登入失敗，無法解析 $1 的本地設定：$2</string>
-  <string name="login-error-count">於此專案使用 Huggle 至少需編輯 $1 次以上。　</string>
+  <string name="login-error-count">於此項目使用 Huggle 至少需編輯 $1 次以上。　</string>
   <string name="login-error-disabled">Huggle 於 $1 尚未開啟供您的帳號使用。 檢查使用者設定頁面。</string>
   <string name="login-error-global">登入失敗：無法解析全域設定。 請參考除錯日誌以了解詳細資訊。</string>
   <string name="login-error-invalid">無效的使用者名稱</string>
@@ -508,6 +509,7 @@
   <string name="uaa-g1">獲取UAA內容</string>
   <string name="uaa-e1">此頁面內容的查詢沒有回傳資料。</string>
   <string name="uaa-e2">頁面內容不可用。</string>
+  <string name="read-only">項目$1被設置為唯獨，編輯功能將被限制</string>
   <string name="revert-confirm-multiple">這將會回退$1的多筆編輯。要繼續？</string>
   <string name="revert-confirm-range">目標修訂版本$2的作者，與目前修訂版本作者$1在同一範圍網段，因此有可能是同一人。在進行之前請確認目標修訂版本為正確的，要繼續？</string>
   <string name="revert-confirm-same">這將會回退到由用戶$1已經做出回退的修訂版本。要繼續？</string>

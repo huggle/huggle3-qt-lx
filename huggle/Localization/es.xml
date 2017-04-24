@@ -509,6 +509,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="uaa-g1">Obteniendo contenido de UAA</string>
   <string name="uaa-e1">la consulta para el contenido de la página no devuelve datos.</string>
   <string name="uaa-e2">el contenido de la página no estaba disponible.</string>
+  <string name="read-only">El proyecto $1 está configurado como de solo lectura. Se limitarán las funciones de edición.</string>
   <string name="revert-confirm-multiple">Esto revertirá múltiples ediciones de $1. ¿Continuar?</string>
   <string name="revert-confirm-range">El autor de la edición a la que quieres revertir, {1}, está en el mismo rango IP que el autor de la edición actual, $1, y pueden ser la misma persona; asegúrate de que estés revirtiendo a la edición correcta antes de proceder. ¿Continuar?</string>
   <string name="revert-confirm-same">Esto revertirá a otra edición del mismo usuario al que estás revirtiendo, $1. ¿Continuar?</string>

@@ -480,7 +480,7 @@ Ta blokada zniweluje efekt blokady zakresu. Kontynuować?</string>
   <string name="delete-done">Usunięto $1</string>
   <string name="delete-fail">Nie usunięto $1</string>
   <string name="delete-progress">Usuwanie $1...</string>
-  <string name="delete-user">Ta strona jest w przestrzeni użytkownika. Czy jesteś pewny, że chcesz ją usunąć?</string>
+  <string name="delete-user">Ta strona jest w przestrzeni użytkownika. Czy na pewno chcesz ją usunąć?</string>
   <string name="edit-progress">Edycja $1...</string>
   <string name="history-message-revert-title">Czy chcesz cofnąć tylko tą wiadomość?</string>
   <string name="history-already-done">To już zostało cofnięte</string>
