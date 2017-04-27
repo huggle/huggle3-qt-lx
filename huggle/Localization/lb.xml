@@ -79,6 +79,7 @@
   <string name="config-noshortcut">Keng</string>
   <string name="config-defaults">Standard</string>
   <string name="config-minor">Als \'Klengegkeet\' markéieren</string>
+  <string name="config-ip">IP-Benotzer</string>
   <string name="config-watchlist">Op d\'Iwwerwaachungslëscht derbäisetzen</string>
   <string name="config-defaultsummary">Standard-Resumé fir manuell Ännerungen</string>
   <string name="config-undosummary">Resumé beim Zrécksetze vun eegenen Ännerungen</string>

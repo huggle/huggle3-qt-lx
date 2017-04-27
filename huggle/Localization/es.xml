@@ -109,6 +109,7 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="config-noshortcut">Ninguno</string>
   <string name="config-defaults">Valores predeterminados</string>
   <string name="config-minor">Marcar como menor</string>
+  <string name="config-ip">Usuarios Dirección IP</string>
   <string name="config-watchlist">Añadir a la lista de seguimiento</string>
   <string name="config-defaultsummary">Resumen predeterminado para ediciones manuales</string>
   <string name="config-undosummary">Resumen cuando se deshacen ediciones propias</string>
