@@ -668,6 +668,8 @@
   <string name="preferences-watchlist-watch">주시문서 목록에 추가</string>
   <string name="preferences-watchlist-unwatch">주시문서 목록에서 제거</string>
   <string name="preferences-watchlist-nochange">아무 것도 안 함</string>
+  <string name="preferences-sounds-enable-queue">새로운 항목이 대기열에 추가되면 소리 재생</string>
+  <string name="preferences-sounds-enable-irc">메시지가 HAN에 수신되면 소리 재생</string>
   <string name="preferences-sounds-minimal-score">알림을 위한 최소한의 편집 점수</string>
   <string name="preferences-performance-catscansandwatched">분류 스캔 및 주시 상태 필터 기능 사용 (편집할 때마다 API 요청 수가 추가적으로 소모됩니다)</string>
   <string name="fail">실패</string>

@@ -109,6 +109,7 @@
   <string name="config-noshortcut">ללא</string>
   <string name="config-defaults">בררות מחדל</string>
   <string name="config-minor">סימון כמשנית</string>
+  <string name="config-ip">משתמשי IP</string>
   <string name="config-watchlist">הוספה לרשימת המעקב</string>
   <string name="config-defaultsummary">תקציר בררת מחדל לעריכות ידניות</string>
   <string name="config-undosummary">תקציר בעת ביטול עריכות עצמיות</string>
@@ -508,6 +509,7 @@
   <string name="uaa-g1">קבלת תוכן ה־UAA</string>
   <string name="uaa-e1">השאילתה לתוכן הדף לא החזירה נתונים.</string>
   <string name="uaa-e2">תוכן הדף לא היה זמין.</string>
+  <string name="read-only">המיזם $1 מוגדר לקריאה בלבד, פונקציות של עריכה תהיינה מוגבלות</string>
   <string name="revert-confirm-multiple">זה ישחזר מספר עריכות מאת $1. להמשיך?</string>
   <string name="revert-confirm-range">מחבר גרסת היעד, $2, באותו הטווח כמו מחבר הגרסה הנוכחית, $1, וייתכן שזה אותו האדם. נא לוודא שגרסת היעד נכונה לפני המשך העבודה. להמשיך?</string>
   <string name="revert-confirm-same">זה ישחזר לגרסה אחרת מאת משתמש שעריכתו משוחזרת עכשיו, $1. להמשיך?</string>
@@ -695,6 +697,7 @@
   <string name="preferences-sounds-enable-queue">לנגן צליל כשפריט חדש נוסף לתור</string>
   <string name="preferences-sounds-enable-irc">לנגן צליל כשמתקבל מסר ב־HAN</string>
   <string name="preferences-sounds-minimal-score">ציון עריכה מזערי להתראה</string>
+  <string name="preferences-performance-catscansandwatched">הפעלת סריקות קטגוריות ומעקב אחרי סינון מצב (נדרשת שאילתת API נוספת לכל עריכה)</string>
   <string name="fail">לא עבד</string>
   <string name="request">בקשה</string>
   <string name="requesting">שליחת בקשה</string>

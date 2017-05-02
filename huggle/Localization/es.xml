@@ -109,7 +109,7 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="config-noshortcut">Ninguno</string>
   <string name="config-defaults">Valores predeterminados</string>
   <string name="config-minor">Marcar como menor</string>
-  <string name="config-ip">Usuarios Dirección IP</string>
+  <string name="config-ip">Usuarios anónimos</string>
   <string name="config-watchlist">Añadir a la lista de seguimiento</string>
   <string name="config-defaultsummary">Resumen predeterminado para ediciones manuales</string>
   <string name="config-undosummary">Resumen cuando se deshacen ediciones propias</string>
@@ -314,7 +314,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="main-queue-clear">Limpiar actual</string>
   <string name="main-queue-count">$1 elementos</string>
   <string name="main-queue-query">Haciendo pedido...</string>
-  <string name="main-queue-reset">Reiniciar</string>
+  <string name="main-queue-reset">Restablecer</string>
   <string name="main-queue-clearall">Limpiar todo</string>
   <string name="main-queue-options">Administrar colas...</string>
   <string name="main-goto">Ir a</string>
@@ -446,8 +446,8 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="queue-listselector">Lista:</string>
   <string name="queue-listbuilder">Constructor de listas...</string>
   <string name="queue-sortorder">Ordenar por:</string>
-  <string name="queue-removeviewed">Remover ediciones cuando son vistas</string>
-  <string name="queue-removeold">Remover ediciones antiguas a la misma página</string>
+  <string name="queue-removeviewed">Quitar ediciones cuando son vistas</string>
+  <string name="queue-removeold">Quitar ediciones antiguas a la misma página</string>
   <string name="queue-ignorepages">Ignorar ediciones a páginas que están en la lista de páginas ignoradas</string>
   <string name="queue-traynotification">Mostrar notificación en la barra de tareas cuando se añada una edición a esta cola</string>
   <string name="queue-diffsgroup">Diffs</string>
@@ -610,7 +610,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="delete-done">\'$1\' fue borrado</string>
   <string name="delete-fail">No se pudo borrar \'$1\'</string>
   <string name="delete-progress">Borrando a $1...</string>
-  <string name="delete-user">Esta página está en el espacio del usuario. ¿Estás seguro de que quieres borrarla?</string>
+  <string name="delete-user">Esta página está en el espacio del usuario. ¿Confirmas que quieres borrarla?</string>
   <string name="deletelog-fail">No se pudo obtener el registro de borrados para \'$1\'</string>
   <string name="deletelog-none">No hay registro de borrados para \'$1\'</string>
   <string name="deletelog-progress">Obteniendo registro de borrados para \'$1\'...</string>
@@ -675,9 +675,9 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="welcome-show">También mostrar este mensaje la próxima vez que inicies Huggle</string>
   <string name="welcome-tp-empty-fail">Este usuario no tiene una página de discusión vacía, ¿estás seguro de que quieres enviarle un mensaje?</string>
   <string name="welcome-page-miss-fail">Huggle fue incapaz de recuperar el contenido de la página de discusión del usuario, está seguro de que desea enviar un mensaje de bienvenida para ellos?</string>
-  <string name="cr-newer-edits">El conflicto se resuelve: revertir todas las ediciones, incluyendo nuevas ediciones. Ediciones fueron por el mismo usuario: $1.</string>
+  <string name="cr-newer-edits">Conflicto solucionado: se revirtieron todas las ediciones, incluidas las nuevas. Las ediciones eran del mismo usuario: $1.</string>
   <string name="cr-resolved-same-user">El conflicto se resuelve: revertir todas las ediciones, incluyendo nuevas ediciones, hechas por los mismos usuarios - ediciones por el mismo usuario: $1</string>
-  <string name="cr-stop-new-edit">Conflicto resuelto: no realizar ninguna acción - hay nuevas ediciones a $1</string>
+  <string name="cr-stop-new-edit">Conflicto solucionado: no se realizó ninguna acción; hay ediciones nuevas en $1</string>
   <string name="cr-stop-multiple-same">Conflicto resuelto: no realizar ninguna acción - hay varias ediciones del mismo usuario a $1</string>
   <string name="cr-revert-same-user">El conflicto se resuelve: revertir todas las ediciones - hay varias ediciones del mismo usuario a $1</string>
   <string name="cr-message-same">Hay varias ediciones a $1 del mismo usuario, ¿seguro quieres revertirlas?</string>
@@ -716,8 +716,8 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
 
  $1</string>
   <string name="report-unable">No ha sido posible denunciar al usuario :(</string>
-  <string name="about-python-with">, con soporte para python</string>
-  <string name="about-python-without">sin soporte para python</string>
+  <string name="about-python-with">, con compatibilidad con Python</string>
+  <string name="about-python-without"> sin compatibilidad con Python</string>
   <string name="about-qt">, compilado usando QT $1 ejecutándose en QT $1</string>
   <string name="about-info">, basado en $1, plataforma de destino: $2</string>
   <string name="error-unknown-code">Error desconocido: $1</string>
