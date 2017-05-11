@@ -105,6 +105,7 @@
   <string name="config-noshortcut">कुछ नहीं</string>
   <string name="config-defaults">डिफ़ाल्ट</string>
   <string name="config-minor">लघु रूप में चिह्नित</string>
+  <string name="config-ip">आईपी सदस्य</string>
   <string name="config-watchlist">ध्यानसूची में जोड़ें</string>
   <string name="config-defaultsummary">व्यक्तिगत संपादनों के लिये डिफ्ल्ट सारांश</string>
   <string name="config-undosummary">अपने परिवर्तनों को पूर्ववत करते हुए का सारांश</string>

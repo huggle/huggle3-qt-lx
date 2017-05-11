@@ -106,6 +106,7 @@ Denna blockering kommer att åsidosätta effekterna av intervallblockeringen. Fo
   <string name="config-noshortcut">Inget</string>
   <string name="config-defaults">Standard</string>
   <string name="config-minor">Markera som mindre ändring</string>
+  <string name="config-ip">IP-användare</string>
   <string name="config-watchlist">Lägg till i bevakningslistan</string>
   <string name="config-defaultsummary">Standardsammanfattning för manuella redigeringar</string>
   <string name="config-undosummary">Sammanfattning när egna redigeringar ångras</string>

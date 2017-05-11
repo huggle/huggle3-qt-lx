@@ -404,7 +404,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="main-tip-userreport">Denunciar a este usuario</string>
   <string name="main-tip-userblock">Bloquear a este usuario</string>
   <string name="main-revision-acceptpend">Aceptar esta revisión pendiente</string>
-  <string name="main-no-page" fuzzy="true">La acción que ha solicitado requiere que la página se cargue. Por favor, carga una página antes de volver a intentarlo.</string>
+  <string name="main-no-page">La acción que ha solicitado no está disponible porque la página no está cargada o porque es de solo lectura. Cargue una página editable antes de intentarlo de nuevo.</string>
   <string name="main-revert-null">Imposible revertir, editar es null</string>
   <string name="main-revert-newpage-title">No se puede revertir esto</string>
   <string name="main-revert-newpage">Esta es una página nueva, por lo que no puede ser revertida. Puedes etiqueta o eliminarla.</string>
@@ -655,6 +655,9 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="editquery-success">Se editó con éxito $1 en $2</string>
   <string name="editquery-token">La recuperación de token para editar $1</string>
   <string name="editquery-token-error">No se puede recuperar editar token</string>
+  <string name="editquery-nocsrft">No hay un token CSRF</string>
+  <string name="editquery-error-retrieve-prev">No se puede recuperar el contenido anterior de la página: $1</string>
+  <string name="editquery-error-append">No se puede usar tanto Apéndices como Prependos para editar la página</string>
   <string name="editquery-error-badtoken">Clave incorrecta</string>
   <string name="editquery-invalid-token">No se puede editar de$1 porque token que yo tenía en caché no es válida. Por favor, intente editar esa página una vez más</string>
   <string name="provider-failure">Fallo de alimentación de proveedor de $1 a $2, tratando de encontrar alguna alternativa de proveedor</string>
@@ -692,6 +695,10 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="preferences-watchlist-unwatch">Quitar de la lista de seguimiento</string>
   <string name="preferences-watchlist-preferences">Seguir tus preferencias en el wiki</string>
   <string name="preferences-watchlist-nochange">No hacer nada</string>
+  <string name="preferences-sounds-enable-queue">Reproducir un sonido cuando se añade un nuevo elemento a la cola</string>
+  <string name="preferences-sounds-enable-irc">Reproducir un sonido cuando se recibe un mensaje en HAN</string>
+  <string name="preferences-sounds-minimal-score">Puntuación de edición mínima para la notificación</string>
+  <string name="preferences-performance-catscansandwatched">Habilitar las categorías y ver el filtrado de estado (requiere una consulta API adicional para cada edición)</string>
   <string name="fail">Fallo</string>
   <string name="request">Solicitud</string>
   <string name="requesting">Solicitando</string>
@@ -748,5 +755,6 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="main-revert-warn">Esta edición es $1. Incluso aunque parezca vandalismo, puede no serlo. ¿Estás seguro de que quieres revertirla?</string>
   <string name="query-result-nodata">El resultado de la consulta no contiene datos</string>
   <string name="query-request-noaction">No se ha proporcionado ninguna acción para la petición a la API</string>
+  <string name="query-login-undefined">El token de inicio de sesión requiere un valor definido por el usuario, no se almacena en la memoria</string>
   <string name="query-protected-link">Enlace protegido</string>
 </resources>
