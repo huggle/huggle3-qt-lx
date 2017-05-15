@@ -46,6 +46,7 @@ void HuggleWeb::DisplayPreFormattedPage(WikiPage *page)
     {
         throw new Huggle::NullPointerException("WikiPage *page", BOOST_CURRENT_FUNCTION);
     }
+    this->source.clear();
     this->ui->webView->history()->clear();
     this->ui->webView->load(QString(Configuration::GetProjectScriptURL(page->Site) + "index.php?title=" + page->PageName + "&action=render"));
     this->CurrentPage = page->PageName;
@@ -54,6 +55,7 @@ void HuggleWeb::DisplayPreFormattedPage(WikiPage *page)
 void HuggleWeb::DisplayPreFormattedPage(QString url)
 {
     this->ui->webView->history()->clear();
+    this->source.clear();
     url += "&action=render";
     this->ui->webView->load(url);
     this->CurrentPage = this->ui->webView->title();
@@ -160,6 +162,7 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
             this->ui->webView->load(QString(Configuration::GetProjectScriptURL(edit->Page->Site) + "index.php?title=" + edit->Page->PageName + "&diff="
                                         + QString::number(edit->Diff) + "&action=render"));
         }
+        this->source.clear();
         return;
     }
     QString HTML = Resources::GetHtmlHeader();
@@ -191,6 +194,7 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
     HTML += Summary + Extras(edit) + "</td></tr>" + edit->DiffText +
             Resources::DiffFooter + Resources::HtmlFooter;
     this->ui->webView->setHtml(HTML);
+    this->source = HTML;
 }
 
 void HuggleWeb::DisplayNewPageEdit(WikiEdit *edit)
@@ -212,9 +216,12 @@ void HuggleWeb::DisplayNewPageEdit(WikiEdit *edit)
     QString Summary = GenerateEditSumm(edit);
     HTML += Summary + Extras(edit) + "<br>" + edit->Page->Contents + Resources::HtmlFooter;
     this->ui->webView->setHtml(HTML);
+    this->source = HTML;
 }
 
 QString HuggleWeb::RetrieveHtml()
 {
+    if (!this->source.isEmpty())
+        return this->source;
     return "Retrieving of source code is not supported yet in Chromium library";
 }

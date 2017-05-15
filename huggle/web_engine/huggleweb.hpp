@@ -68,6 +68,7 @@ namespace Huggle
         private:
             QString GetShortcut();
             Ui::HuggleWeb *ui;
+            QString source;
             QString CurrentPage;
     };
 }
