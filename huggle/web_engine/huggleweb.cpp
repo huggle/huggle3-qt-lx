@@ -171,7 +171,7 @@ void HuggleWeb::DisplayDiff(WikiEdit *edit)
         // we display a notification that user received a new message
         HTML += this->GetShortcut();
     }
-    HTML += Resources::DiffHeader + "<tr></td colspan=2>";
+    HTML += Resources::DiffHeader + "<tr><td colspan=2>";
     if (Configuration::HuggleConfiguration->UserConfig->DisplayTitle)
     {
         HTML += "<p><font size=20px>" + Generic::HtmlEncode(edit->Page->PageName) + "</font></p>";

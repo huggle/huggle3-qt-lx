@@ -459,7 +459,7 @@ void ReportUser::On_DiffTick()
     else
         Summary = Generic::HtmlEncode(Summary);
 
-    this->webView->RenderHtml(Resources::GetHtmlHeader() + Resources::DiffHeader + "<tr></td colspan=2><b>" + _l("summary")
+    this->webView->RenderHtml(Resources::GetHtmlHeader() + Resources::DiffHeader + "<tr><td colspan=2><b>" + _l("summary")
                                + ":</b> " + Summary + "</td></tr>" + Diff + Resources::DiffFooter + Resources::HtmlFooter);
     this->tPageDiff->stop();
 }
