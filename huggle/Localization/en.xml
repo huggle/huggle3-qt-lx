@@ -278,6 +278,7 @@
   <string name="login-error-unknown">Unable to log to $1.</string>
   <string name="login-error-version">This version is out of date. Update to the latest version.</string>
   <string name="login-error-whitelist">Failed to load user whitelist for $1.</string>
+  <string name="main-stat">$1 edits per minute $2 reverts per minute, level $3</string>
   <string name="main-menu-provider-stop">Stop provider</string>
   <string name="main-menu-provider-resume">Resume provider</string>
   <string name="provider-up">Connecting to recent changes stream on $2 using provider: $1</string>

@@ -232,7 +232,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
             Syslog::HuggleLogs->ErrorLog(_l("main-config-state-fail"));
         else if (!this->restoreState(layout->readAll()))
             HUGGLE_DEBUG1("Failed to restore state");
-
         layout->close();
         delete layout;
     }
@@ -243,7 +242,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         if (!layout->open(QIODevice::ReadOnly))
             Syslog::HuggleLogs->ErrorLog(_l("main-config-geom-fail"));
         else if (!this->restoreGeometry(layout->readAll()))
-                HUGGLE_DEBUG1("Failed to restore layout");
+            HUGGLE_DEBUG1("Failed to restore layout");
         layout->close();
         delete layout;
     }
@@ -624,11 +623,13 @@ void MainWindow::UpdateStatusBarData()
         EditsPerMinute = ((double)qRound(EditsPerMinute * 100)) / 100;
         RevertsPerMinute = ((double)qRound(RevertsPerMinute * 100)) / 100;
         VandalismLevel = ((double)qRound(VandalismLevel * 100)) / 100;
-        statistics_ = " <font color=" + color + ">" + Generic::ShrinkText(QString::number(EditsPerMinute), 6) +
-             " edits per minute " + Generic::ShrinkText(QString::number(RevertsPerMinute), 6) +
-             " reverts per minute, level " + Generic::ShrinkText(QString::number(VandalismLevel), 8) + "</font>";
+        QStringList counter_params;
+        counter_params << Generic::ShrinkText(QString::number(EditsPerMinute), 6)
+               << Generic::ShrinkText(QString::number(RevertsPerMinute), 6)
+               << Generic::ShrinkText(QString::number(VandalismLevel), 8);
+        statistics_ = " <font color=" + color + ">" + _l("main-stat", counter_params) + "</font>";
     }
-    if (Configuration::HuggleConfiguration->Verbosity > 0)
+    if (hcfg->Verbosity > 0)
         statistics_ += " QGC: " + QString::number(GC::gc->list.count()) + " U: " + QString::number(WikiUser::ProblematicUsers.count());
     params << statistics_ << this->GetCurrentWikiSite()->Name;
     this->Status->setText(_l("main-status-bar", params));
