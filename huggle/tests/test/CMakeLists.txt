@@ -93,6 +93,7 @@ SET(tst_testmain_SOURCES ${srcx}
 ../../iextension.cpp
 ../../reloginform.cpp
 ../../huggletool.cpp
+../../genericbrowser.cpp
 ../../webkit/huggleweb.cpp
 ../../hugglequeueitemlabel.cpp
 ../../hugglequeuefilter.cpp

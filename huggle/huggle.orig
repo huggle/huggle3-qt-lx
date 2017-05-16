@@ -66,6 +66,7 @@ SOURCES += main.cpp\
     oauthlogin.cpp \
     oauthloginquery.cpp \
     aboutform.cpp \
+    genericbrowser.cpp \
     hugglequeue.cpp \
     hugglelog.cpp \
     huggletool.cpp \
@@ -159,6 +160,7 @@ HEADERS  += mainwindow.hpp \
     huggleprofiler.hpp \
     huggletool.hpp \
     huggleweb.hpp \
+    genericbrowser.hpp \
     terminalparser.hpp \
     wikiuser.hpp \
     wikipage.hpp \

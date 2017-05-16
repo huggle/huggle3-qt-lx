@@ -16,8 +16,7 @@
 #include <QFrame>
 #include <QWebHistory>
 #include <QWebFrame>
-#include "../collectable_smartptr.hpp"
-#include "../wikiedit.hpp"
+#include "../genericbrowser.hpp"
 
 namespace Ui
 {
@@ -26,28 +25,13 @@ namespace Ui
 
 namespace Huggle
 {
-    class WikiEdit;
-    class WikiPage;
-    class Resources;
-
     //! Web browser
-    class HUGGLE_EX HuggleWeb : public QFrame
+    class HUGGLE_EX HuggleWeb : public GenericBrowser
     {
             Q_OBJECT
         public:
             explicit HuggleWeb(QWidget *parent = nullptr);
             ~HuggleWeb();
-            QString CurrentPageName();
-            /*!
-             * \brief Retrieve a page in render mode on currently selected project
-             * \param page
-             */
-            void DisplayPreFormattedPage(WikiPage *page);
-            /*!
-             * \brief Open a page but append action=render to it
-             * \param url
-             */
-            void DisplayPreFormattedPage(QString url);
             void DisplayPage(const QString &url);
             /*!
              * \brief Display a html text in window of huggle
@@ -59,18 +43,13 @@ namespace Huggle
              * Either uses an api or in case that api fails, the page is downloaded using standard rendering
              * \param edit
              */
-            void DisplayDiff(WikiEdit *edit);
-            void DisplayNewPageEdit(WikiEdit *edit);
             QString RetrieveHtml();
-            Collectable_SmartPtr<WikiEdit> CurrentEdit;
 
         private slots:
             void Click(const QUrl &page);
 
         private:
-            QString GetShortcut();
             Ui::HuggleWeb *ui;
-            QString CurrentPage;
     };
 }
 
