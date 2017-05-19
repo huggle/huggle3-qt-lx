@@ -115,6 +115,15 @@ QList<ApiQueryResultNode*> ApiQueryResult::GetNodes(QString node_name)
     return result;
 }
 
+QString ApiQueryResult::GetNodeValue(QString node_name, QString default_value)
+{
+    ApiQueryResultNode *n = this->GetNode(node_name);
+    if (!n)
+        return default_value;
+
+    return n->Value;
+}
+
 bool ApiQueryResult::HasWarnings()
 {
     return !this->Warning.isEmpty();

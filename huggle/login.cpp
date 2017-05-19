@@ -1178,47 +1178,42 @@ bool Login::ProcessOutput(WikiSite *site)
 {
     ApiQuery *query = this->LoginQueries[site];
     // Check what the result was
-    QString Result = query->Result->Data;
-    if (!Result.contains(("<login result")))
+    ApiQueryResult *result = query->GetApiQueryResult();
+    ApiQueryResultNode *ln = result->GetNode("login");
+    QString result_code = ln->GetAttribute("result");
+    QString reason = ln->GetAttribute("reason");
+    if (result_code.isEmpty())
     {
-        Syslog::HuggleLogs->DebugLog(Result);
         this->DisplayError(_l("api.php-invalid-response"));
         return false;
     }
-
-    Result = Result.mid(Result.indexOf("result=\"") + 8);
-    if (!Result.contains("\""))
-    {
-        Syslog::HuggleLogs->DebugLog(Result);
-        this->DisplayError(_l("api.php-invalid-response"));
-        return false;
-    }
-    Result = Result.mid(0, Result.indexOf("\""));
-    if (Result == "Success")
+    if (result_code == "Success")
         return true;
-    if (Result == "EmptyPass")
+    if (result_code == "EmptyPass")
     {
         this->DisplayError(_l("login-password-empty"));
         return false;
     }
-    if (Result == "WrongPass")
+    if (result_code == "WrongPass")
     {
         /// \bug This sometimes doesn't work properly
         this->ui->lineEdit_password->setFocus();
         this->DisplayError(_l("login-error-password"));
         return false;
     }
-    if (Result == "NoName")
+    if (result_code == "NoName")
     {
         this->DisplayError(_l("login-fail-wrong-name"));
         return false;
     }
-    if (Result == "NotExists")
+    if (result_code == "NotExists")
     {
         this->DisplayError(_l("login-username-doesnt-exist"));
         return false;
     }
-    this->DisplayError(_l("login-api", Result));
+    if (reason.isEmpty())
+        reason = result_code;
+    this->DisplayError(_l("login-api", reason));
     return false;
 }
 

@@ -71,6 +71,7 @@ namespace Huggle
             * \return QList of pointers to found nodes
             */
             QList<ApiQueryResultNode*> GetNodes(QString node_name);
+            QString GetNodeValue(QString node_name, QString default_value = "");
             /*!
             * \brief HasWarnings Return if the API has returned any warnings
             * \return True if there are warnings, false otherwise
