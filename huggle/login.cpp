@@ -1434,3 +1434,12 @@ void Huggle::Login::on_label_2_linkActivated(const QString &link)
 {
     QDesktopServices::openUrl(link);
 }
+
+void Huggle::Login::on_tabWidget_currentChanged(int index)
+{
+    if (index == 0)
+    {
+        if (this->ui->lineEditBotUser->text().isEmpty() && !this->ui->lineEdit_username->text().isEmpty())
+            this->ui->lineEditBotUser->setText(this->ui->lineEdit_username->text() + "@huggle");
+    }
+}
