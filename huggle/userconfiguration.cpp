@@ -208,6 +208,7 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
     if (modified_)
         configuration_ += "ShortcutList:\n" + si + "\n";
     QStringList kl = this->UserOptions.keys();
+    kl.sort();
     foreach (QString item, kl)
     {
         HuggleOption *option = this->GetOption(item);
