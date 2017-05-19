@@ -91,6 +91,12 @@ namespace Huggle
             void RemoveQueries();
             //! Enable parts of interface
             void Enable(bool value = true);
+            /*!
+             * \brief ReadonlyFallback try to fallback into read-only mode
+             * \param site to switch to read-only mode
+             * \return true on success
+             */
+            bool ReadonlyFallback(WikiSite *site, QString why);
             void Reload();
             void DB();
             void Disable();

@@ -277,6 +277,21 @@ void Login::Enable(bool value)
     this->ui->ButtonOK->setEnabled(value);
 }
 
+bool Login::ReadonlyFallback(WikiSite *site, QString why)
+{
+    if (site->GetProjectConfig()->ReadOnly)
+        return true;
+
+    if (Generic::MessageBox(_l("login-ro-title"), _l("login-ro-question", site->Name, why), MessageBoxStyleQuestion, true, this) == QMessageBox::No)
+    {
+        return false;
+    }
+
+    Syslog::HuggleLogs->WarningLog(_l("login-ro-info", site->Name));
+    site->GetProjectConfig()->ReadOnly = true;
+    return true;
+}
+
 void Login::Disable()
 {
     this->Enable(false);
@@ -871,14 +886,22 @@ void Login::RetrieveUserInfo(WikiSite *site)
             }
             if (site->GetProjectConfig()->RequireRollback && !site->GetProjectConfig()->Rights.contains("rollback"))
             {
-                this->DisplayError(_l("login-fail-rollback-rights", site->Name));
-                return;
+                QString reason = _l("login-fail-rollback-rights", site->Name);
+                if (!this->ReadonlyFallback(site, reason))
+                {
+                    this->DisplayError(reason);
+                    return;
+                }
             }
             if (site->GetProjectConfig()->RequireAutoconfirmed && (!site->GetProjectConfig()->Rights.contains("autoconfirmed") &&
                                                                    !site->GetProjectConfig()->Rights.contains("confirmed")))
             {
-                this->DisplayError(_l("login-failed-autoconfirm-rights", site->Name));
-                return;
+                QString reason = _l("login-failed-autoconfirm-rights", site->Name);
+                if (!this->ReadonlyFallback(site, reason))
+                {
+                    this->DisplayError(reason);
+                    return;
+                }
             }
             // remove the query
             this->LoginQueries.remove(site);
@@ -895,26 +918,36 @@ void Login::RetrieveUserInfo(WikiSite *site)
                 QString registration_info = ui->GetAttribute("registrationdate");
                 if (registration_info.isEmpty())
                 {
-                    this->DisplayError(_l("login-invalid-register-date"));
-                    return;
+                    QString reason = _l("login-invalid-register-date");
+                    if (!this->ReadonlyFallback(site, reason))
+                    {
+                        this->DisplayError(reason);
+                        return;
+                    }
                 }
                 QDateTime registration_date = MediaWiki::FromMWTimestamp(registration_info);
                 if (registration_date.addDays(site->GetProjectConfig()->RequireTime) > QDateTime::currentDateTime())
                 {
-                    this->DisplayError(_l("login-error-age", QString::number(site->GetProjectConfig()->RequireTime)));
-                    return;
+                    QString reason = _l("login-error-age", QString::number(site->GetProjectConfig()->RequireTime));
+                    if (!this->ReadonlyFallback(site, reason))
+                    {
+                        this->DisplayError(reason);
+                        return;
+                    }
                 }
             }
             if (site->GetProjectConfig()->RequireEdits > editcount)
             {
-                this->DisplayError(_l("login-failed-edit", site->Name));
-                return;
+                QString reason = _l("login-failed-edit", site->Name);
+                if (!this->ReadonlyFallback(site, reason))
+                {
+                    this->DisplayError(reason);
+                    return;
+                }
             }
 
-            /// \todo Implement check for "require-time"
-
             // So now we passed all checks if we can use huggle, so let's update the user list in case we want that
-            if (site->GetProjectConfig()->UserlistSync || site->GetProjectConfig()->Approval)
+            if (!site->GetProjectConfig()->ReadOnly && (site->GetProjectConfig()->UserlistSync || site->GetProjectConfig()->Approval))
             {
                 this->qApproval.insert(site, Generic::RetrieveWikiPageContents(site->GetProjectConfig()->ApprovalPage, site));
                 this->qApproval[site]->IncRef();

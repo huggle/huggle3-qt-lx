@@ -278,6 +278,9 @@
   <string name="login-error-unknown">Unable to log to $1.</string>
   <string name="login-error-version">This version is out of date. Update to the latest version.</string>
   <string name="login-error-whitelist">Failed to load user whitelist for $1.</string>
+  <string name="login-ro-title">Switch to read-only</string>
+  <string name="login-ro-question">One or more projects ($1) do not allow you to login with edit permissions (reason: $2). Do you want to switch to read-only mode instead?</string>
+  <string name="login-ro-info">Project $1 switched to read-only mode</string>
   <string name="main-stat">$1 edits per minute $2 reverts per minute, level $3</string>
   <string name="main-menu-provider-stop">Stop provider</string>
   <string name="main-menu-provider-resume">Resume provider</string>
