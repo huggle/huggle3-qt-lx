@@ -178,6 +178,7 @@ void Login::Localize()
     this->ui->label_2->setText("<a href=\"https://www.mediawiki.org/wiki/Manual:Huggle/Bot_passwords\">" + _l("login-bot") + "</a>");
     this->ui->labelPassword->setText(_l("login-password"));
     this->ui->checkBox_2->setText(_l("login-remember-password"));
+    this->ui->checkBox_2->setToolTip(_l("login-remember-password-tooltip"));
     this->ui->labelIntro->setText(_l("login-intro"));
     this->ui->labelTranslate->setText(QString("<html><head/><body><p><a href=\"http://meta.wikimedia.org/wiki/Huggle/Localization\"><span style=\""\
                                               " text-decoration: underline; color:#0000ff;\">%1</span></a></p></body></html>").arg(_l("login-translate")));
