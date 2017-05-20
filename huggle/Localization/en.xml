@@ -236,7 +236,7 @@
   <string name="login-fail-css">Login failed on $1: Unable to retrieve user configuration. Special:MyPage/huggle3.css is missing. Did you create huggle3.css in your userspace?</string>
   <string name="login-fail-enable-true">Login failed on $1: You don&apos;t have enable:true in your personal config.</string>
   <string name="login-fail-no-info">Login failed on $1: Unable to retrieve user info: $2</string>
-  <string name="login-bot">What is a difference between Bot and Legacy login?</string>
+  <string name="login-bot">What is a difference between BotPassword and Legacy login?</string>
   <string name="login-fail-parse-config">Login failed on $1: Unable to parse the user configuration. See the debug log for more details.</string>
   <string name="login-fail-user-data">Login failed on $1: Unable to retrieve user info. The API query returned no data.</string>
   <string name="login-fail-rollback-rights">Login failed on $1: You don&apos;t have rollback permissions on this project.</string>
@@ -246,9 +246,11 @@
   <string name="login-password-empty">The password you entered was empty</string>
   <string name="login-fail-wrong-name">You provided no correct user name for login</string>
   <string name="login-api">ERROR: api.php responded with unknown result: $1</string>
+  <string name="login-abort">Abort</string>
   <string name="login-start">Login</string>
   <string name="login-oauth-notsupported">This method is not supported at this moment</string>
   <string name="login-translate">Translate Huggle</string>
+  <string name="login-progress-formtitle">Loading...</string>
   <string name="login-progress-start">Logging in to $1</string>
   <string name="login-progress-retrieve-mw">Retrieving information about MediaWiki for $1</string>
   <string name="login-progress-language">Updating message files...</string>
@@ -258,7 +260,9 @@
   <string name="login-progress-user">Checking user configuration for $1</string>
   <string name="login-progress-user-info">Checking user info for $1</string>
   <string name="login-progress-whitelist">Retrieving user whitelist...</string>
+  <string name="login-projets">Projects</string>
   <string name="login-remember-password">Remember password</string>
+  <string name="login-remember-password-tooltip">This option will store your password in a plaintext on your hard drive. Use it only if you are the only person with access to this computer.</string>
   <string name="login-ssl">Use HTTPS (requires OpenSSL)</string>
   <string name="login-fail">Login failed on $1</string>
   <string name="login-error-admin">Use of Huggle on this project requires an administrator account.</string>
@@ -412,6 +416,10 @@
   <string name="main-revert-newpage">This is a new page, so it can&apos;t be reverted. You can either tag it or delete it.</string>
   <string name="main-restore-text-fail">Unable to restore the revision, because there is no text available for it</string>
   <string name="main-restore-data-fail">Unable to restore the revision, because the wiki provided no data for selected version</string>
+  <string name="main-welcome-user">Welcome user</string>
+  <string name="main-report-username">Report username</string>
+  <string name="main-report-user">Report user</string>
+  <string name="main-edit-user-talk">Edit user talk</string>
   <string name="message-title">Message $1</string>
   <string name="message-help">Specify one or both of Subject and Summary. If no summary is given, the subject will be used; if no subject is given, no header will be added.</string>
   <string name="message-subject">Subject:</string>

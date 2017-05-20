@@ -43,6 +43,11 @@ void LoadingForm::Info(QString text)
     this->ui->label_2->setText(text);
 }
 
+void LoadingForm::AbortLabel(QString text)
+{
+    this->ui->pushButton->setText(text);
+}
+
 void LoadingForm::ModifyIcon(int row, LoadingForm_Icon it)
 {
     if (IsKilled)
