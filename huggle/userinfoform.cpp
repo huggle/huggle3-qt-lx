@@ -13,6 +13,7 @@
 #include "configuration.hpp"
 #include "editbar.hpp"
 #include "exception.hpp"
+#include "hooks.hpp"
 #include "localization.hpp"
 #ifdef HUGGLE_WEBEN
     #include "web_engine/huggleweb.hpp"
@@ -96,6 +97,8 @@ void UserinfoForm::ChangeUser(WikiUser *user)
 
 void UserinfoForm::Read()
 {
+    if (!Hooks::ContribBoxBeforeQuery(this->User, this))
+        return;
     this->qContributions = new ApiQuery(ActionQuery, this->User->GetSite());
     this->qContributions->Target = "Retrieving contributions of " + this->User->Username;
     this->qContributions->Parameters = "list=usercontribs&ucuser=" + QUrl::toPercentEncoding(this->User->Username) +
@@ -212,6 +215,7 @@ void UserinfoForm::OnTick()
         MainWindow::HuggleMain->wEditBar->RefreshUser();
         this->qContributions.Delete();
         this->timer->stop();
+        Hooks::ContribBoxAfterQuery(this->User, this);
     }
 }
 

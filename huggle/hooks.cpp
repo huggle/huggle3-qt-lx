@@ -20,6 +20,26 @@
 #include "exception.hpp"
 #include "wikipage.hpp"
 
+
+bool Huggle::Hooks::ContribBoxBeforeQuery(WikiUser *user, UserinfoForm *user_info)
+{
+    bool result = true;
+    foreach (Huggle::iExtension *extension, Huggle::Core::HuggleCore->Extensions)
+    {
+        if (extension->IsWorking())
+        {
+            if (!extension->Hook_ContribBoxBeforeQuery((void*)user, (void*)user_info))
+                result = false;
+        }
+    }
+    return result;
+}
+
+void Huggle::Hooks::ContribBoxAfterQuery(WikiUser *user, UserinfoForm *user_info)
+{
+
+}
+
 bool Huggle::Hooks::EditBeforeScore(Huggle::WikiEdit *Edit)
 {
     if (Edit == nullptr)

@@ -80,6 +80,8 @@ namespace Huggle
              * \param score New score of user
              */
             virtual void Hook_BadnessScore(void *user, int score) {}
+            virtual void Hook_ContribBoxAfterQuery(void *user, void *user_info) {}
+            virtual bool Hook_ContribBoxBeforeQuery(void *user, void *user_info) { return true; }
             /*!
              * \brief Hook_EditScore is called after edit score is calculated
              * \param edit

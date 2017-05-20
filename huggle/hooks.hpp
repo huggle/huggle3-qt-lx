@@ -17,6 +17,8 @@
 
 namespace Huggle
 {
+    class EditBar;
+    class UserinfoForm;
     class WikiUser;
     class WikiEdit;
     class Shortcut;
@@ -28,6 +30,21 @@ namespace Huggle
     class HUGGLE_EX Hooks
     {
         public:
+             /*!
+             * \brief Triggered when history of user is requested, usually right upon load of an edit in Main Window,
+             *        these contributions are either loaded automatically, or manually, but always AFTER edit is loaded.
+             *        They are retrieved using extra API query and this hook is triggered before the query is executed.
+             * \param Edit in question, the history is retrieved for user who made this edit
+             * \return If hook returns false, contrib query is not executed, use this if you want to provide own history
+             */
+            static bool ContribBoxBeforeQuery(WikiUser *user, UserinfoForm *user_info);
+            /*!
+            * \brief Triggered when history of user is requested, usually right upon load of an edit in Main Window,
+            *        these contributions are either loaded automatically, or manually, but always AFTER edit is loaded.
+            *        They are retrieved using extra API query and this hook is triggered before the query is executed.
+            * \param Edit in question, the history is retrieved for user who made this edit
+            */
+            static void ContribBoxAfterQuery(WikiUser *user, UserinfoForm *user_info);
             static bool EditBeforeScore(WikiEdit *Edit);
             /*!
              * \brief Event that is called after edit pre process
