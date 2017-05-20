@@ -1152,11 +1152,6 @@ void MainWindow::TriggerWelcome()
     QString message;
     if (this->CurrentEdit->User->IsIP() && !conf->WelcomeAnon.isEmpty())
     {
-        if (this->CurrentEdit->User->TalkPage_GetContents().isEmpty())
-        {
-            // write something to talk page so that we don't welcome this user twice
-            this->CurrentEdit->User->TalkPage_SetContents(conf->WelcomeAnon);
-        }
         message = conf->WelcomeAnon + " ~~~~";
     }
     if (message.isEmpty())
@@ -2006,8 +2001,7 @@ void MainWindow::FlagGood()
     Hooks::OnGood(this->CurrentEdit);
     this->PatrolEdit();
     this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore() - 200);
-    if (Configuration::HuggleConfiguration->UserConfig->WelcomeGood &&
-            this->CurrentEdit->User->TalkPage_GetContents().isEmpty())
+    if (Configuration::HuggleConfiguration->UserConfig->WelcomeGood && this->CurrentEdit->User->TalkPage_GetContents().isEmpty())
         this->TriggerWelcome();
     this->DisplayNext();
 }
