@@ -74,8 +74,7 @@
   <string name="block-blockloglabel">Block log:</string>
   <string name="block-warnloglabel">Warnings:</string>
   <string name="block-sharedipwarning">Note: $1 is tagged as a shared or dynamic IP address.</string>
-  <string name="block-rangeblockwarning">$1 is already affected by a rangeblock on $2.
-This block will override the effect of the rangeblock. Continue?</string>
+  <string name="block-rangeblockwarning">$1 is already affected by a rangeblock on $2.\nThis block will override the effect of the rangeblock. Continue?</string>
   <string name="block-token-1">Getting token to block $1</string>
   <string name="block-fail">Unable to block user, $1</string>
   <string name="block-token-e1">Token can\'t be retrieved: $1</string>
@@ -109,6 +108,7 @@ This block will override the effect of the rangeblock. Continue?</string>
   <string name="config-noshortcut">None</string>
   <string name="config-defaults">Defaults</string>
   <string name="config-minor">Mark as minor</string>
+  <string name="config-ip">IP users</string>
   <string name="config-watchlist">Add to watchlist</string>
   <string name="config-defaultsummary">Default summary for manual edits</string>
   <string name="config-undosummary">Summary when undoing own edits</string>
@@ -278,6 +278,7 @@ This block will override the effect of the rangeblock. Continue?</string>
   <string name="login-error-unknown">Unable to log to $1.</string>
   <string name="login-error-version">This version is out of date. Please update to the latest version.</string>
   <string name="login-error-whitelist">Failed to load user whitelist for $1.</string>
+  <string name="main-stat">$1 edits per minute $2 reverts per minute, level $3</string>
   <string name="main-menu-provider-stop">Stop provider</string>
   <string name="main-menu-provider-resume">Resume provider</string>
   <string name="provider-up">Connecting to recent changes stream on $2 using provider: $1</string>
@@ -402,7 +403,7 @@ This block will override the effect of the rangeblock. Continue?</string>
   <string name="main-tip-userreport">Report this user</string>
   <string name="main-tip-userblock">Block this user</string>
   <string name="main-revision-acceptpend">Accept this pending revision</string>
-  <string name="main-no-page" fuzzy="true">The action you have requested requires a page to be loaded. Please load a page before trying again.</string>
+  <string name="main-no-page">The action you have requested requires a page to be loaded. Please load a page before trying again.</string>
   <string name="main-revert-null">Unable to revert: edit is null</string>
   <string name="main-revert-newpage-title">Can\'t revert this</string>
   <string name="main-revert-newpage">This is a new page, so it can\'t be reverted, you can either tag it, or delete it.</string>
@@ -508,6 +509,7 @@ This block will override the effect of the rangeblock. Continue?</string>
   <string name="uaa-g1">Getting content of UAA</string>
   <string name="uaa-e1">the query for the page contents returned no data.</string>
   <string name="uaa-e2">the page contents weren\'t available.</string>
+  <string name="read-only">Project $1 is configured as read only, editing functions will be limited</string>
   <string name="revert-confirm-multiple">This will revert multiple edits by $1. Continue?</string>
   <string name="revert-confirm-range">The author of the target revision, $2, is in the same range as the author of the current revision, $1, and may be the same person. Ensure the target revision is correct before proceeding. Continue?</string>
   <string name="revert-confirm-same">This will revert to another revision by the user that is being reverted, $1. Continue?</string>
@@ -692,6 +694,10 @@ This block will override the effect of the rangeblock. Continue?</string>
   <string name="preferences-watchlist-unwatch">Remove from watchlist</string>
   <string name="preferences-watchlist-preferences">Follow your on-wiki preferences</string>
   <string name="preferences-watchlist-nochange">Do nothing</string>
+  <string name="preferences-sounds-enable-queue">Play sound when new item is added to queue</string>
+  <string name="preferences-sounds-enable-irc">Play sound when a message is received in HAN</string>
+  <string name="preferences-sounds-minimal-score">Minimal edit score for notification</string>
+  <string name="preferences-performance-catscansandwatched">Enable category scans and watch status filtering (requires an extra API query per each edit)</string>
   <string name="fail">Fail</string>
   <string name="request">Request</string>
   <string name="requesting">Requesting</string>
@@ -712,9 +718,7 @@ This block will override the effect of the rangeblock. Continue?</string>
   <string name="block-alreadyblocked">User is already blocked</string>
   <string name="report-fail">Failed to report user because: $1</string>
   <string name="report-page-fail">Error: unable to retrieve report page at $1</string>
-  <string name="report-page-fail-time">Unable to retrieve timestamp of current report page, api failure:
-
- $1</string>
+  <string name="report-page-fail-time">Unable to retrieve timestamp of current report page, api failure:\n\n $1</string>
   <string name="report-unable">Unable to report user.</string>
   <string name="about-python-with">with python support</string>
   <string name="about-python-without">without python support</string>

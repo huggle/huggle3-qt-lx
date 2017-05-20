@@ -65,8 +65,7 @@
   <string name="block-blockloglabel">ブロック・ログ:</string>
   <string name="block-warnloglabel">警告:</string>
   <string name="block-sharedipwarning">注意: $1 は共有/可変IP とタグ付けされています</string>
-  <string name="block-rangeblockwarning">$1 はすでにレンジブロック $2 の影響を受けています。
-ブロックするとレンジ・ブロックに重ねて二重で影響を与えます。実行しますか？</string>
+  <string name="block-rangeblockwarning">$1 はすでにレンジブロック $2 の影響を受けています。\nブロックするとレンジ・ブロックに重ねて二重で影響を与えます。実行しますか？</string>
   <string name="block-token-1">$1をブロックするためのトークンを取得しています</string>
   <string name="block-fail">\'$1\' をブロックしませんでした</string>
   <string name="block-token-e1">トークンを取得できませんでした：$1</string>

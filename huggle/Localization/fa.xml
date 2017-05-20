@@ -74,8 +74,7 @@
   <string name="block-blockloglabel">سیاههٔ بستن:</string>
   <string name="block-warnloglabel">هشدارها:</string>
   <string name="block-sharedipwarning">توجه: $1 به عنوان آی‌پی مشترک یا پویا برچسب خورده است.</string>
-  <string name="block-rangeblockwarning">$1 هم‌اکنون نیز تحت تاثیر بندایش بر گستره $2 قرار دارد.
-این بندایش تاثیر بندایش بر گستره را دور خواهد زد. ادامه خواهید داد؟</string>
+  <string name="block-rangeblockwarning">$1 هم‌اکنون نیز تحت تاثیر بندایش بر گستره $2 قرار دارد.\nاین بندایش تاثیر بندایش بر گستره را دور خواهد زد. ادامه خواهید داد؟</string>
   <string name="block-token-1">گرفتن توکن برای بستن $1</string>
   <string name="block-fail">ناتوان در مسدود کردن کاربر، $1</string>
   <string name="block-token-e1">توکن را نمی‌تواند بازیابی کند :$1</string>
@@ -710,9 +709,7 @@
   <string name="block-alreadyblocked">کاربر از پیش بسته شده‌است</string>
   <string name="report-fail">ناموفق در گزارش کاربر به دلیل: $1</string>
   <string name="report-page-fail">خطا: ناتوانی در دریافت صفحهٔ گزارش در $1</string>
-  <string name="report-page-fail-time">ناتوان در دریافت برچسب زمان صفحهٔ گزارش کنونی، شکست رابط برنامه نویسی:
-
-$1</string>
+  <string name="report-page-fail-time">ناتوان در دریافت برچسب زمان صفحهٔ گزارش کنونی، شکست رابط برنامه نویسی:\n\n$1</string>
   <string name="report-unable">ناتوان در گزارش دادن کاربر ):</string>
   <string name="about-python-with">، با پشتیبانی از پایتون</string>
   <string name="about-python-without">بدون پشتیبانی از پایتون</string>

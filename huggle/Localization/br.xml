@@ -122,6 +122,7 @@
   <string name="config-remove-old">Lemel ar c\'hemmoù kozh ma vez dielfennet ur c\'hemm neveso\'h er memes pajenn</string>
   <string name="config-auto-load-history">Kargit emgefreek an istor hag an titouroù implijer (ezhomm zo eus ur vandenn drafet eus ar rouedad)</string>
   <string name="config-display-text">Diskwel ar pezh zo war-lec\'h</string>
+  <string name="config-retrieve-edit">Adkavit ho cheñchamant</string>
   <string name="config-nothing">Netra</string>
   <string name="config-own-edits">Kemmoù an-unan</string>
   <string name="config-reverts">Distaoladennoù</string>
@@ -171,8 +172,10 @@
   <string name="history-failure">Ne c\'haller ket adtapout an istor.</string>
   <string name="userhistory-title">Istor ho kemmoù</string>
   <string name="irc-connected">$1 : Kevreet da wazh ar cheñchamantoù nevez war IRC</string>
+  <string name="invalid-bot-user-name">N\'eo ket un anv robod reizh. Anv robot reizh, da skouer :Jimbo@Huggle</string>
   <string name="login-tab-botp">Ger-tremen ar bot</string>
   <string name="login-tab-login">Normal</string>
+  <string name="login-reload-tool-tip">Adkargañ ur roll raktresoù a c\'haller kaout hag a c\'haller implijout en Huggle : gallout a ra bezañ talvoudus m\'ho peus c\'hoant da implijout Huggle en ur raktres zo bet gweredekaet Huggel evitañ nevez zo</string>
   <string name="login-language">Yezh :</string>
   <string name="login-project">Raktres :</string>
   <string name="login-username">Anv implijer :</string>
@@ -184,6 +187,11 @@
   <string name="login-proxyport">Porzh :</string>
   <string name="login-proxydomain">Domani :</string>
   <string name="login-retrieving-user-conf">Adtapout ar c\'hefluniadur implijer</string>
+  <string name="login-fail-css">Kevreadur c\'hwitet e $1 : ne c\'haller ket adtapour kefluniadur an implijer. Diank eo Special:MyPage/huggle3.css.\nHa krouet ho peus huggle3.css en ho takad implijer ?</string>
+  <string name="login-fail-enable-true">Kevreadur c\'hwitet e $1 : n\'ho peus ket enable:true en ho kefluniadur personel.</string>
+  <string name="login-fail-no-info">Kevreadur c\'hwitet e $1 : Ne c\'hallit ket adtapout an titouroù implijer : $2</string>
+  <string name="login-bot">Peseurt diforc\'h zo etre ur robod hag ur c\'hevreadur dre zorn ?</string>
+  <string name="login-fail-parse-config">Kevreadur c\'hwitet e $1 : Ne c\'haller ket dielfennañ ar c\'hefluniadur implijer. Gwelit roud ho tizreinadur evit gouzout hiroc\'h.</string>
   <string name="login-password-empty">Goullo e oa ar ger-tremen ho peus bizskrivet</string>
   <string name="login-fail-wrong-name">N\'ho peus roet anv implijer mat ebet evit kevreañ</string>
   <string name="login-api">FAZI : api.php en deus respontet gant un disoc\'h dianav : $1</string>

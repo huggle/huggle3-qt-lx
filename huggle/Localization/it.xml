@@ -232,8 +232,7 @@
   <string name="login-proxyport">Porta:</string>
   <string name="login-proxydomain">Dominio:</string>
   <string name="login-retrieving-user-conf">Recupero della configurazione utente</string>
-  <string name="login-fail-css">Acesso non riuscito a $1: Impossibile recuperare la configurazione utente.
-Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio utente?</string>
+  <string name="login-fail-css">Acesso non riuscito a $1: Impossibile recuperare la configurazione utente.\nSpecial:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio utente?</string>
   <string name="login-fail-enable-true">Accesso non riuscito a $1: Non hai enable:true nella tua configurazione personale.</string>
   <string name="login-fail-no-info">Accesso non riuscito a $1: Impossibile recuperare le informazioni dell\'utente: $2</string>
   <string name="login-bot">Qual è la differenza tra accesso bot e normale?</string>
@@ -278,6 +277,7 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="login-error-unknown">Impossibile accedere a $1.</string>
   <string name="login-error-version">Questa versione è obsoleta. Aggiorna all\'ultima versione.</string>
   <string name="login-error-whitelist">Impossibile caricare la lista bianca degli utenti per $1.</string>
+  <string name="main-stat">$1 modifiche al minuto, $2 annullamenti al minuto, livello $3</string>
   <string name="main-menu-provider-stop">Ferma il provider</string>
   <string name="main-menu-provider-resume">Riavvia il provider</string>
   <string name="provider-up">Collegamento a flusso di ultime modifiche su $2 utilizzando il provider: $1</string>
@@ -709,9 +709,7 @@ Special:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio ute
   <string name="block-alreadyblocked">L\'utente è già bloccato</string>
   <string name="report-fail">Impossibile segnalare l\'utente perché: $1</string>
   <string name="report-page-fail">Errore: impossibile recuperare la pagina di report in $1</string>
-  <string name="report-page-fail-time">Impossibile recuperare il timestamp della pagina attuale di report, errore dell\'api:
-
- $1</string>
+  <string name="report-page-fail-time">Impossibile recuperare il timestamp della pagina attuale di report, errore dell\'api:\n\n $1</string>
   <string name="report-unable">Impossibile segnalare l\'utente :(</string>
   <string name="about-python-with">, con supporto python</string>
   <string name="about-python-without">senza supporto python</string>

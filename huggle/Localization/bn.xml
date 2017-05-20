@@ -74,8 +74,7 @@
   <string name="block-blockloglabel">বাধা দান লগ:</string>
   <string name="block-warnloglabel">সতর্কীকরণ:</string>
   <string name="block-sharedipwarning">টীকা: $1 কে শেয়ারকৃত বা গতিশীল আইপি ঠিকানা হিসেবে ট্যাগ করা হয়েছে।</string>
-  <string name="block-rangeblockwarning">$2-এ $1 ইতিমধ্যে একটি পরিসীমাবাধা দ্বারা প্রভাবিত হয়েছে।
-এই বাধা পরিসীমাবাধার প্রভাবকে বাতিল করবে। চালিয়ে যেতে চান?</string>
+  <string name="block-rangeblockwarning">$2-এ $1 ইতিমধ্যে একটি পরিসীমাবাধা দ্বারা প্রভাবিত হয়েছে।\nএই বাধা পরিসীমাবাধার প্রভাবকে বাতিল করবে। চালিয়ে যেতে চান?</string>
   <string name="block-token-1">$1 কে বাধাদানের জন্য টোকেন নেয়া হচ্ছে</string>
   <string name="block-fail">ব্যবহারকারীকে বাধা দেয়া সম্ভব নয়, $1</string>
   <string name="block-token-e1">টোকেন সংগ্রহ করা যাবে না: $1</string>
@@ -716,9 +715,7 @@
   <string name="block-alreadyblocked">ব্যবহারকারী ইতিমধ্যে বাধাপ্রাপ্ত</string>
   <string name="report-fail">ব্যবহারকারী প্রতিবেদন করতে ব্যর্থ কারণ: $1</string>
   <string name="report-page-fail">ত্রুটি: $1-এ প্রতিবেদন পাতা সংগ্রহ করা যায়নি</string>
-  <string name="report-page-fail-time">বর্তমান প্রতিবেদন পৃষ্ঠার সময়তারিখ উদ্ধার করতে অক্ষম, api ত্রুটি:
-
- $1</string>
+  <string name="report-page-fail-time">বর্তমান প্রতিবেদন পৃষ্ঠার সময়তারিখ উদ্ধার করতে অক্ষম, api ত্রুটি:\n\n $1</string>
   <string name="report-unable">ব্যবহারকারী প্রতিবেদন করা যায়নি :(</string>
   <string name="about-python-with"> ,পাইথন সমর্থনসহ</string>
   <string name="about-python-without"> পাইথন সমর্থন ছাড়া</string>

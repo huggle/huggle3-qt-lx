@@ -72,8 +72,7 @@
   <string name="block-blockloglabel">Blockeringslogg:</string>
   <string name="block-warnloglabel">Varningar:</string>
   <string name="block-sharedipwarning">Obs: $1 är taggad som en delad eller dynamisk IP-adress.</string>
-  <string name="block-rangeblockwarning">$1 påverkas redan av en intervallblockering på $2.
-Denna blockering kommer att åsidosätta effekterna av intervallblockeringen. Fortsätt?</string>
+  <string name="block-rangeblockwarning">$1 påverkas redan av en intervallblockering på $2.\nDenna blockering kommer att åsidosätta effekterna av intervallblockeringen. Fortsätt?</string>
   <string name="block-token-1">Hämtar nyckel för att blockera $1</string>
   <string name="block-fail">Det gick inte att blockera användaren, $1</string>
   <string name="block-token-e1">Nyckeln kan inte hämtas: $1</string>

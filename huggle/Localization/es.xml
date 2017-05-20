@@ -74,8 +74,7 @@
   <string name="block-blockloglabel">Registro de bloqueos:</string>
   <string name="block-warnloglabel">Advertencias:</string>
   <string name="block-sharedipwarning">Nota: $1 está etiquetada como una IP compartida o dinámica.</string>
-  <string name="block-rangeblockwarning">$1 está afectado por el bloqueo del rango en {1}.
-Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de todos modos?</string>
+  <string name="block-rangeblockwarning">$1 está afectado por el bloqueo del rango en {1}.\nEste bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de todos modos?</string>
   <string name="block-token-1">Obteniendo ficha para bloquear a $1</string>
   <string name="block-fail">No se puede bloquear al usuario, $1</string>
   <string name="block-token-e1">No se puede recuperar la ficha: $1</string>
@@ -234,8 +233,7 @@ Este bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de
   <string name="login-proxyport">Puerto:</string>
   <string name="login-proxydomain">Dominio:</string>
   <string name="login-retrieving-user-conf">Consultando configuración de usuario</string>
-  <string name="login-fail-css">Falló el acceso a $1: no se pudo obtener la configuración de la cuenta.
-Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu espacio de usuario?</string>
+  <string name="login-fail-css">Falló el acceso a $1: no se pudo obtener la configuración de la cuenta.\nFalta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu espacio de usuario?</string>
   <string name="login-fail-enable-true">Falló el acceso a $1: falta la orden «enable:true» en tu configuración personal.</string>
   <string name="login-fail-no-info">Falló el acceso a $1: no se pudo obtener la información de la cuenta ($2)</string>
   <string name="login-bot">¿Cuál es la diferencia entre el inicio de sesión de bot y el normal?</string>
@@ -280,6 +278,10 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="login-error-unknown">No se puede acceder a $1.</string>
   <string name="login-error-version">Esta versión está desactualizada. Actualízala a la versión más reciente.</string>
   <string name="login-error-whitelist">No se pudo cargar la lista blanca de usuarios para $1.</string>
+  <string name="login-ro-title">Cambiar a solo lectura</string>
+  <string name="login-ro-question">Uno o más proyectos ($1) no te permiten acceder con permisos de edición (motivo: $2). ¿Quieres cambiar al modo de solo lectura?</string>
+  <string name="login-ro-info">El proyecto $1 cambió a modo de solo lectura</string>
+  <string name="main-stat">$1 ediciones por minuto $2 reversiones por minuto, nivel $3</string>
   <string name="main-menu-provider-stop">Detener proveedor</string>
   <string name="main-menu-provider-resume">Retomar proveedor</string>
   <string name="provider-up">La conexión a los recientes cambios de corriente en $2 el uso de proveedor de: $1</string>
@@ -719,9 +721,7 @@ Falta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu 
   <string name="block-alreadyblocked">La cuenta ya está bloqueada</string>
   <string name="report-fail">No se pudo denunciar al usuario porque $1</string>
   <string name="report-page-fail">Error: no se puede recuperar la página de denuncias en $1</string>
-  <string name="report-page-fail-time">No se puede recuperar la fecha de la página actual de denuncias. Fallo de API:
-
- $1</string>
+  <string name="report-page-fail-time">No se puede recuperar la fecha de la página actual de denuncias. Fallo de API:\n\n $1</string>
   <string name="report-unable">No ha sido posible denunciar al usuario :(</string>
   <string name="about-python-with">, con compatibilidad con Python</string>
   <string name="about-python-without"> sin compatibilidad con Python</string>

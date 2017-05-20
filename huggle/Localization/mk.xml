@@ -74,8 +74,7 @@
   <string name="block-blockloglabel">Записник на блокирања:</string>
   <string name="block-warnloglabel">Опомени:</string>
   <string name="block-sharedipwarning">Напомена: $1 е означена како споделена или динамичка IP-адреса.</string>
-  <string name="block-rangeblockwarning">$1 веќе е блокиран со опсегот $2.
-Овој блок ќе го замени. Да продолжам?</string>
+  <string name="block-rangeblockwarning">$1 веќе е блокиран со опсегот $2.\nОвој блок ќе го замени. Да продолжам?</string>
   <string name="block-token-1">Ја земам шифрата за блокирање на $1</string>
   <string name="block-fail">Не можам да го блокирам корисникот, $1</string>
   <string name="block-token-e1">Не можам да ја добијам шифрата: $1</string>
@@ -279,6 +278,7 @@
   <string name="login-error-unknown">Не можам да ве најавам на $1.</string>
   <string name="login-error-version">Верзијата ви е застарена. Подновете ја со најновата.</string>
   <string name="login-error-whitelist">Не можев да го вчитам белиот список на корисници за $1.</string>
+  <string name="main-stat">$1 уредувања во минута, $2 отповикувања во минута, степен $3</string>
   <string name="main-menu-provider-stop">Запри го добавувачот</string>
   <string name="main-menu-provider-resume">Продолжи со добавувачот</string>
   <string name="provider-up">Се поврзувам со каналот со скорешни промени на $2 користејќи го добавувачот: $1</string>
@@ -718,9 +718,7 @@
   <string name="block-alreadyblocked">Корисникот е веќе блокиран</string>
   <string name="report-fail">Не можам да го пријавам корисникот бидејќи: $1</string>
   <string name="report-page-fail">Грешка: не можам да ја добијам пријавната страница на $1</string>
-  <string name="report-page-fail-time">Не можам да го добијам времето и датумот на тековната пријавн страница. Извршникот не успеа:
-
- $1</string>
+  <string name="report-page-fail-time">Не можам да го добијам времето и датумот на тековната пријавн страница. Извршникот не успеа:\n\n $1</string>
   <string name="report-unable">Не можам да го пријавам корисникот  :(</string>
   <string name="about-python-with"> , со поддршка за Python</string>
   <string name="about-python-without"> без поддршка за Python</string>

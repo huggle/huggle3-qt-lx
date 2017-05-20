@@ -136,6 +136,9 @@
   <string name="login-error-password">Hibás jelszó</string>
   <string name="login-error-projdisabled">A Huggle le van tiltva a(z) $1 wikin.</string>
   <string name="login-error-unknown">Sikertelen belépés a következőbe: $1</string>
+  <string name="login-ro-title">Átváltás csak olvashatóra</string>
+  <string name="login-ro-question">Egy vagy több projekt ($1) nem engedélyezi, hogy jogosultságok szerkesztésével lépjen be (ok: $2). Szeretne inkább csak olvasható módra váltani?</string>
+  <string name="login-ro-info">A(z) $1 projekt csak olvasható módra váltott</string>
   <string name="main-page">Oldal</string>
   <string name="main-user">Felhasználó</string>
   <string name="main-contribs">Közreműködések</string>

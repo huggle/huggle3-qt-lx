@@ -74,8 +74,7 @@
   <string name="block-blockloglabel">封鎖日誌</string>
   <string name="block-warnloglabel">警告：</string>
   <string name="block-sharedipwarning">注意：$1 已被標記爲共享或動態 IP 位址。</string>
-  <string name="block-rangeblockwarning">$1已經受到了自動封禁$2的影響。
-這次封禁將會覆蓋自動封禁設置。是否繼續？</string>
+  <string name="block-rangeblockwarning">$1已經受到了自動封禁$2的影響。\n這次封禁將會覆蓋自動封禁設置。是否繼續？</string>
   <string name="block-token-1">獲取金鑰以封禁$1</string>
   <string name="block-fail">無法封禁使用者，$1</string>
   <string name="block-token-e1">無法檢索金鑰：$1</string>
@@ -279,6 +278,7 @@
   <string name="login-error-unknown">無法登入到 $1。</string>
   <string name="login-error-version">此版本已過舊，請更新至最新版本。</string>
   <string name="login-error-whitelist">載入使用者白名單失敗 $1。</string>
+  <string name="main-stat">每分鐘編輯$1次，每分鐘回退$2次，等級$3</string>
   <string name="main-menu-provider-stop">停止提供者</string>
   <string name="main-menu-provider-resume">繼續提供者</string>
   <string name="provider-up">連線至 $2 的近期變更串流使用提供者：$1</string>
@@ -718,9 +718,7 @@
   <string name="block-alreadyblocked">使用者已被封鎖</string>
   <string name="report-fail">回報使用者失敗，由於：$1</string>
   <string name="report-page-fail">錯誤：無法取得在$1的回告頁面</string>
-  <string name="report-page-fail-time">無法取得回告頁面的目前時間戳記，API錯誤：
-
-$1</string>
+  <string name="report-page-fail-time">無法取得回告頁面的目前時間戳記，API錯誤：\n\n$1</string>
   <string name="report-unable">無法回報使用者 ː(</string>
   <string name="about-python-with">，包含python支援</string>
   <string name="about-python-without">不包含python支援</string>

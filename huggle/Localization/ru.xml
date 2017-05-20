@@ -74,8 +74,7 @@
   <string name="block-blockloglabel">Журнал блокировок:</string>
   <string name="block-warnloglabel">Предупреждения:</string>
   <string name="block-sharedipwarning">Примечание: $1 помечен, как разделяемый или динамический IP-адрес.</string>
-  <string name="block-rangeblockwarning">$1 уже заблокирован вместе с диапазоном $2.
-Эта блокировка будет применена только к данному IP. Продолжить?</string>
+  <string name="block-rangeblockwarning">$1 уже заблокирован вместе с диапазоном $2.\nЭта блокировка будет применена только к данному IP. Продолжить?</string>
   <string name="block-token-1">Получение токена для блокировки $1</string>
   <string name="block-fail">Невозможно заблокировать участника, $1</string>
   <string name="block-token-e1">Токен не может быть получен: $1</string>
@@ -109,6 +108,7 @@
   <string name="config-noshortcut">Нет</string>
   <string name="config-defaults">По умолчанию</string>
   <string name="config-minor">Помечать правки, как малые</string>
+  <string name="config-ip">Анонимные участники</string>
   <string name="config-watchlist">Добавлять в список наблюдения</string>
   <string name="config-defaultsummary">Описание по умолчанию для ручных правок</string>
   <string name="config-undosummary">Описание правки при отмене собственных изменений</string>
@@ -508,6 +508,7 @@
   <string name="uaa-g1">Получение данных из UAA</string>
   <string name="uaa-e1">запрос содержимого страницы не возвращает никаких данных.</string>
   <string name="uaa-e2">содержимое страницы недоступно.</string>
+  <string name="read-only">Проект $1 сконфигурирован в режиме «только для чтения», функции редактирования будут ограничены</string>
   <string name="revert-confirm-multiple">Откатить несколько правок участника \'$1\'?</string>
   <string name="revert-confirm-range">Автор целевой версии $2 из того же CIDR-диапазона, что и автор текущей версии $1; пожалуйста, проверьте целевую версию перед продолжением. Продолжить?</string>
   <string name="revert-confirm-same">Это действие откатит правку участника $1 к его же версии. Продолжить?</string>
@@ -692,6 +693,9 @@
   <string name="preferences-watchlist-unwatch">Удалить из списка наблюдения</string>
   <string name="preferences-watchlist-preferences">Следовать вашим настройкам в вики</string>
   <string name="preferences-watchlist-nochange">Ничего не делать</string>
+  <string name="preferences-sounds-enable-queue">Проигрывать звуковое уведомление при добавлении нового элемента в очередь</string>
+  <string name="preferences-sounds-enable-irc">Проигрывать звуковое уведомление при получении нового сообщения в HAN</string>
+  <string name="preferences-sounds-minimal-score">Минимальное число правок для уведомления</string>
   <string name="preferences-performance-catscansandwatched">Включить сканирование категорий и фильтрацию статусов просмотра (требует дополнительный API-запрос на каждую правку)</string>
   <string name="fail">Сбой</string>
   <string name="request">Запрос</string>
@@ -713,9 +717,7 @@
   <string name="block-alreadyblocked">Участник уже заблокирован</string>
   <string name="report-fail">Не удалось известить пользователя потому что: $1</string>
   <string name="report-page-fail">Ошибка: не удалось получить страницу отчётов в $1</string>
-  <string name="report-page-fail-time">Не удалось получить дату/время текущей страницы сообщений о вандализме, сбой API:
-
- $1</string>
+  <string name="report-page-fail-time">Не удалось получить дату/время текущей страницы сообщений о вандализме, сбой API:\n\n $1</string>
   <string name="report-unable">Не удалось сообщить о пользователе :(</string>
   <string name="about-python-with"> ,с поддержкой python</string>
   <string name="about-python-without">без поддержки python</string>

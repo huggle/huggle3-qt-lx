@@ -73,8 +73,7 @@
   <string name="block-blockloglabel">سجل المنع:</string>
   <string name="block-warnloglabel">إنذارات:</string>
   <string name="block-sharedipwarning">ملاحظة:$1 تم وسمه كعنوان اي بي مشترك.</string>
-  <string name="block-rangeblockwarning">هذا المنع سيتجاوز الضرر الناتج في نطاق المنع. إستمر؟
- .تأثر $1 بالفعل من نطاق المنع على $2 ء</string>
+  <string name="block-rangeblockwarning">هذا المنع سيتجاوز الضرر الناتج في نطاق المنع. إستمر؟\n .تأثر $1 بالفعل من نطاق المنع على $2 ء</string>
   <string name="block-token-1">الحصول على رمز لمنع $1</string>
   <string name="block-fail">لم يتم المنع \'$1\'ء</string>
   <string name="block-error-no-info">ليست هناك معلومات عن المستخدم في الطلب (هل أنت إداري؟)</string>

@@ -597,9 +597,7 @@
   <string name="block-alreadyblocked">Vartotojas jau yra užblokuotas</string>
   <string name="report-fail">Nepavyko pranešti apie vartotoją, nes: $1</string>
   <string name="report-page-fail">Klaida: nepavyko gauti $1 pranešimo puslapio</string>
-  <string name="report-page-fail-time">Nepavyko gauti dabartinio pranešimo puslapio laiko žymės, api klaida:
-
- $1</string>
+  <string name="report-page-fail-time">Nepavyko gauti dabartinio pranešimo puslapio laiko žymės, api klaida:\n\n $1</string>
   <string name="report-unable">Nepavyko pranešti apie vartotoją :(</string>
   <string name="about-python-with"> ,su python palaikymu</string>
   <string name="about-python-without"> be python palaikymo</string>

@@ -74,8 +74,7 @@
   <string name="block-blockloglabel">Log pemblokiran:</string>
   <string name="block-warnloglabel">Peringatan:</string>
   <string name="block-sharedipwarning">Catatan: $1 ditandai sebagai alamat IP yang bersama atau dinamis.</string>
-  <string name="block-rangeblockwarning">$1 sudah terkena pemblokiran rentang pada $2.
-Pemblokiran ini akan menggantikan efek pemblokiran rentang. Lanjutkan?</string>
+  <string name="block-rangeblockwarning">$1 sudah terkena pemblokiran rentang pada $2.\nPemblokiran ini akan menggantikan efek pemblokiran rentang. Lanjutkan?</string>
   <string name="block-token-1">Mengambil token untuk memblokir $1</string>
   <string name="block-fail">Tidak dapat memblokir pengguna, $1</string>
   <string name="block-token-e1">Token tidak dapat diambil: $1</string>

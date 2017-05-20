@@ -74,8 +74,7 @@
   <string name="block-blockloglabel">Registro de bloqueios:</string>
   <string name="block-warnloglabel">Avisos:</string>
   <string name="block-sharedipwarning">Nota: $1 está marcado como sendo um endereço IP compartilhado ou dinâmico.</string>
-  <string name="block-rangeblockwarning">$1 já está afetado por um bloqueio de faixa em $2.
-Este bloqueio substituirá o efeito do bloqueio de faixa. Continuar?</string>
+  <string name="block-rangeblockwarning">$1 já está afetado por um bloqueio de faixa em $2.\nEste bloqueio substituirá o efeito do bloqueio de faixa. Continuar?</string>
   <string name="block-token-1">Obtendo chave para bloquear $1</string>
   <string name="block-fail">Impossível bloquear o(a) usuário(a), $1</string>
   <string name="block-token-e1">A chave não pôde ser obtida: $1</string>
@@ -233,8 +232,7 @@ Este bloqueio substituirá o efeito do bloqueio de faixa. Continuar?</string>
   <string name="login-proxyport">Porta:</string>
   <string name="login-proxydomain">Domínio:</string>
   <string name="login-retrieving-user-conf">Recuperando configuração do usuário</string>
-  <string name="login-fail-css">Início de sessão em $1 falhou: Não é possível recuperar a configuração de usuário. 
-Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no seu espaço de usuário?</string>
+  <string name="login-fail-css">Início de sessão em $1 falhou: Não é possível recuperar a configuração de usuário. \nEspecial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no seu espaço de usuário?</string>
   <string name="login-fail-enable-true">Início de sessão em $1 falhou: Você não tem a linha com o código \"enable:true\" na sua configuração pessoal.</string>
   <string name="login-fail-no-info">Início de sessão em $1 falhou: Não foi possível recuperar a informação de usuário: $2</string>
   <string name="login-bot">Qual é a diferença entre login normal e de bot?</string>
@@ -713,9 +711,7 @@ Especial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no
   <string name="block-alreadyblocked">O usuário já está bloqueado</string>
   <string name="report-fail">Falha ao denunciar o usuário porque: $1</string>
   <string name="report-page-fail">Erro: Não é possível recuperar a página de relatório em $1</string>
-  <string name="report-page-fail-time">Não foi possível recuperar data da página do relatório atual, falha da API:
-
- $1</string>
+  <string name="report-page-fail-time">Não foi possível recuperar data da página do relatório atual, falha da API:\n\n $1</string>
   <string name="report-unable">Não é possível reportar o usuário :(</string>
   <string name="about-python-with">,com suporte para python</string>
   <string name="about-python-without">sem suporte para python</string>

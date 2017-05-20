@@ -74,8 +74,7 @@
   <string name="block-blockloglabel">Rejestr blokad:</string>
   <string name="block-warnloglabel">Ostrzeżenia:</string>
   <string name="block-sharedipwarning">Uwaga: $1 jest otagowany jako udostępniony lub dynamiczny adres IP.</string>
-  <string name="block-rangeblockwarning">$1 jest zablokowany na podstawie blokady zakresu na $2.
-Ta blokada zniweluje efekt blokady zakresu. Kontynuować?</string>
+  <string name="block-rangeblockwarning">$1 jest zablokowany na podstawie blokady zakresu na $2.\nTa blokada zniweluje efekt blokady zakresu. Kontynuować?</string>
   <string name="block-token-1">Uzyskiwanie tokenu do blokady $1</string>
   <string name="block-fail">Nie udało się zablokować $1</string>
   <string name="block-token-e1">Token nie może zostać pobrany: $1</string>

@@ -71,8 +71,7 @@
   <string name="block-blockloglabel">अवरोधन लॉग:</string>
   <string name="block-warnloglabel">चेतावनी:</string>
   <string name="block-sharedipwarning">अवधान: $1 साझाकृत या गत्यात्मक आईपी पते के रूप में अंकित है।</string>
-  <string name="block-rangeblockwarning">$1 पहले से ही $2 पर श्रृंखला अवरोधन के कारण प्रभावित है।
-यह अवरोधन पिछले श्रृंखला अवरोधन के प्रभाव को अधिरोहित कर देगा। जारी रखें?</string>
+  <string name="block-rangeblockwarning">$1 पहले से ही $2 पर श्रृंखला अवरोधन के कारण प्रभावित है।\nयह अवरोधन पिछले श्रृंखला अवरोधन के प्रभाव को अधिरोहित कर देगा। जारी रखें?</string>
   <string name="block-token-1">प्रतिबन्ध $1 के लिए टोकन प्राप्त करें</string>
   <string name="block-fail">\'$1\' को अवरोधित नहीं किया</string>
   <string name="block-token-e1">टोकन पुनः प्राप्त नहीं हो सकता: $1</string>
@@ -165,7 +164,7 @@
   <string name="irc-error" fuzzy="true">आई आर सी हाल ही में परिवर्तन फीड  से जुडने में असमर्थ. धीमी ऐपीआई का प्रयोग</string>
   <string name="login-language">भाषा:</string>
   <string name="login-project">परियोजना:</string>
-  <string name="login-username">प्रयोक्तानाम:</string>
+  <string name="login-username">सदस्य का नाम:</string>
   <string name="login-password">पारशब्द:</string>
   <string name="login-proxygroup">छ्द्म समायोजन</string>
   <string name="login-proxy">छ्द्म सर्वर का उपयोग करें</string>
@@ -192,7 +191,7 @@
   <string name="login-error-count">इस परियोजना पर हूगल उपयोग के लिए कम से कम $1 सम्पादन होने चाहिए।</string>
   <string name="login-error-disabled">आपके खाते $1 के लिए हगल सक्षम नहीं किया गया है। प्रयोक्ता समाकृति पृष्ठ देखें।</string>
   <string name="login-error-global">लॉग-इन असफल: वैश्विक समाकृति पृष्ठ लोड करने में असफल। अधिक जानकारी के लिए त्रुटि लॉग देखें।</string>
-  <string name="login-error-invalid">अमान्य प्रयोक्तानाम।</string>
+  <string name="login-error-invalid">सदस्य नाम अमान्य है।</string>
   <string name="login-error-noconfig">$1 पर हगल संविन्यास पृष्ठ नहीं है।</string>
   <string name="login-error-nouser">यह सदस्य अस्तित्व में नहीं है</string>
   <string name="login-error-password">गलत पारशब्द।</string>

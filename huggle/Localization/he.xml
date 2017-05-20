@@ -74,8 +74,7 @@
   <string name="block-blockloglabel">יומן חסימות:</string>
   <string name="block-warnloglabel">אזהרות:</string>
   <string name="block-sharedipwarning">הערה: $1 מתויגת ככתובת IP משותפת או דינמית.</string>
-  <string name="block-rangeblockwarning">$1 כבר מושפע מחסימת טווח של $2.
-החסימה הזאת תעקוף את חסימת הטווח. האם להמשיך?</string>
+  <string name="block-rangeblockwarning">$1 כבר מושפע מחסימת טווח של $2.\nהחסימה הזאת תעקוף את חסימת הטווח. האם להמשיך?</string>
   <string name="block-token-1">קבלת אסימון לחסימת $1</string>
   <string name="block-fail">לא ניתן לחסום משתמש, $1</string>
   <string name="block-token-e1">לא ניתן לאחזור אסימון: $1</string>
@@ -718,9 +717,7 @@
   <string name="block-alreadyblocked">המשתש כבר חסום</string>
   <string name="report-fail">דיווח המשתמש נכשל כי: $1</string>
   <string name="report-page-fail">שגיאה: לא ניתן לאחזר דף דו״ח ב$1</string>
-  <string name="report-page-fail-time">לא ניתן לאחזר חותם־זמן של דף הדו״ח הנוכחי, שגיאת API:
-
-$1</string>
+  <string name="report-page-fail-time">לא ניתן לאחזר חותם־זמן של דף הדו״ח הנוכחי, שגיאת API:\n\n$1</string>
   <string name="report-unable">לא ניתן לדווח על המשתמש</string>
   <string name="about-python-with">, עם תמיכה בפייתון</string>
   <string name="about-python-without">ללא תמיכה בפייתון</string>

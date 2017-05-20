@@ -74,8 +74,7 @@
   <string name="block-blockloglabel">Blokkeerlogboek:</string>
   <string name="block-warnloglabel">Waarschuwingen:</string>
   <string name="block-sharedipwarning">Note: $1 is een gedeelde of dynamisch IP-adres</string>
-  <string name="block-rangeblockwarning">$1 wordt al getroffen door een rangeblokkade op $2.
-Deze blokkade maakt het effect van de rangeblokkade ongedaan. Doorgaan?</string>
+  <string name="block-rangeblockwarning">$1 wordt al getroffen door een rangeblokkade op $2.\nDeze blokkade maakt het effect van de rangeblokkade ongedaan. Doorgaan?</string>
   <string name="block-token-1">Token aan het ophalen om $1 te blokkeren</string>
   <string name="block-fail">De gebruiker kan niet geblokkeerd worden: $1</string>
   <string name="block-token-e1">Het token kan niet verkregen worden: $1</string>

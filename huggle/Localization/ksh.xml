@@ -85,8 +85,7 @@
   <string name="config-openinbrowser">Donn em Brauser de Lengks en enem neue Finster opmaache</string>
   <string name="config-shownewedits">Zeisch de neue Änderonge vun dä ußjewählte Sigg aan, sobald se jemaat woode sen</string>
   <string name="config-ircmode">Nämm dä &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Internet Relay Chat\"&gt;IRC&lt;/i&gt;-Kannahl för de neußte Änderonge, wann müjjelesch</string>
-  <string name="config-ircport">
-&lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Internet Relay Chat\"&gt;IRC&lt;/i&gt;_Pooz</string>
+  <string name="config-ircport">\n&lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Internet Relay Chat\"&gt;IRC&lt;/i&gt;_Pooz</string>
   <string name="config-difffontsize">De Schreffjrühße för de Ongerscheide</string>
   <string name="config-logfile">Logdatteij</string>
   <string name="config-viewlocalconfig">Belohr et Verzeijschneß met de Enschtällonge om eije Rääschner</string>
@@ -209,8 +208,7 @@
   <string name="main-system-options">Enschtällonge …</string>
   <string name="main-system-logout">Ußlogge</string>
   <string name="main-system-abort">Afbräsche</string>
-  <string name="main-system-change-provider-irc">
-&lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Internet Relay Chat\"&gt;IRC&lt;/i&gt;</string>
+  <string name="main-system-change-provider-irc">\n&lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Internet Relay Chat\"&gt;IRC&lt;/i&gt;</string>
   <string name="main-system-change-provider-wiki">Wikki</string>
   <string name="main-system-exit">Zohmaache</string>
   <string name="main-queue">Waadeschlang</string>

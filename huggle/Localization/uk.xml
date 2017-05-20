@@ -74,8 +74,7 @@
   <string name="block-blockloglabel">Журнал блокувань</string>
   <string name="block-warnloglabel">Попередження:</string>
   <string name="block-sharedipwarning">Зауваження: $1 позначено як спільна або динамічна IP-адреса.</string>
-  <string name="block-rangeblockwarning">$1 вже заблоковано раніше у складі діапазону $2.
-Дане переблокування змінить вказаний раніше термін?</string>
+  <string name="block-rangeblockwarning">$1 вже заблоковано раніше у складі діапазону $2.\nДане переблокування змінить вказаний раніше термін?</string>
   <string name="block-token-1">Отримання токена для блокування $1</string>
   <string name="block-fail">Неможливо заблокувати користувача, $1</string>
   <string name="block-token-e1">Токен не отримано: $1</string>
@@ -712,9 +711,7 @@
   <string name="block-alreadyblocked">Користувача вже заблоковано</string>
   <string name="report-fail">Не вдалося повідомити про користувача, оскільки: $1</string>
   <string name="report-page-fail">Помилка: не вдалося завантажити сторінку для повідомлення адміністраторів в $1</string>
-  <string name="report-page-fail-time">Не вдалося завантажити дату та час сторінки для повідомлення адміністраторів, збій API:
-
-$1</string>
+  <string name="report-page-fail-time">Не вдалося завантажити дату та час сторінки для повідомлення адміністраторів, збій API:\n\n$1</string>
   <string name="report-unable">Не вдалося повідомити про користувача :(</string>
   <string name="about-python-with">, з підтримкою python</string>
   <string name="about-python-without">без підтримки python</string>

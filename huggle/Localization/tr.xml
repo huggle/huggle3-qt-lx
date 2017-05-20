@@ -709,9 +709,7 @@
   <string name="block-alreadyblocked">Kullanıcı zaten engellenmiş.</string>
   <string name="report-fail">Rapor edilemedi çünkü: $1</string>
   <string name="report-page-fail">Hata: $1\'deki rapor sayfası getirilemedi.</string>
-  <string name="report-page-fail-time">Mevcut rapor sayfasının zaman damgası bulunamadı. API hatası:
-
-$1</string>
+  <string name="report-page-fail-time">Mevcut rapor sayfasının zaman damgası bulunamadı. API hatası:\n\n$1</string>
   <string name="report-unable">Kullanıcı rapor edilemiyor :(</string>
   <string name="about-python-with">,Python destekli</string>
   <string name="about-python-without">,Python desteği olmadan</string>

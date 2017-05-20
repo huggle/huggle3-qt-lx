@@ -74,8 +74,7 @@
   <string name="block-blockloglabel">封禁日志:</string>
   <string name="block-warnloglabel">警告：</string>
   <string name="block-sharedipwarning">提示：$1已被标记为共享或动态IP地址。</string>
-  <string name="block-rangeblockwarning">$1已经受到了自动封禁$2的影响。
-这次封禁将会覆盖自动封禁设置。是否继续？</string>
+  <string name="block-rangeblockwarning">$1已经受到了自动封禁$2的影响。\n这次封禁将会覆盖自动封禁设置。是否继续？</string>
   <string name="block-token-1">获取令牌以封禁$1</string>
   <string name="block-fail">无法封禁用户，$1</string>
   <string name="block-token-e1">无法检索令牌：$1</string>
@@ -279,6 +278,10 @@
   <string name="login-error-unknown">无法登录$1。</string>
   <string name="login-error-version">版本过期。请更新至最新版本。</string>
   <string name="login-error-whitelist">无法载入$1的白名单。</string>
+  <string name="login-ro-title">切换为只读</string>
+  <string name="login-ro-question">一个或多个项目（$1）不允许您使用编辑权限登录（原因：$2）。您是否要切换为只读模式？</string>
+  <string name="login-ro-info">项目$1已切换为只读模式</string>
+  <string name="main-stat">每分钟$1次编辑，每分钟$2次回退，等级$3</string>
   <string name="main-menu-provider-stop">停止提供</string>
   <string name="main-menu-provider-resume">摘要提供</string>
   <string name="provider-up">正在连接到$2上的最近更改流，使用提供者：$1</string>
@@ -718,9 +721,7 @@
   <string name="block-alreadyblocked">用户已被封禁</string>
   <string name="report-fail">无法提报用户，因为：$1</string>
   <string name="report-page-fail">错误：无法检索位于$1的报告页面</string>
-  <string name="report-page-fail-time">无法获取当前举报页面的时间戳，API错误：
-
-$1</string>
+  <string name="report-page-fail-time">无法获取当前举报页面的时间戳，API错误：\n\n$1</string>
   <string name="report-unable">无法提报用户 :(</string>
   <string name="about-python-with">，包含Python支持</string>
   <string name="about-python-without">无Python支持</string>

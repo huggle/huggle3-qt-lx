@@ -74,8 +74,7 @@
   <string name="block-blockloglabel">Journal des blocages :</string>
   <string name="block-warnloglabel">Avertissements :</string>
   <string name="block-sharedipwarning">Remarque : $1 est marqué comme une adresse IP dynamique ou partagée.</string>
-  <string name="block-rangeblockwarning">$1 est déjà affecté par un blocage de plage sur $2.
-Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
+  <string name="block-rangeblockwarning">$1 est déjà affecté par un blocage de plage sur $2.\nCe blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="block-token-1">Obtention du jeton pour bloquer $1</string>
   <string name="block-fail">Impossible de bloquer l\'utilisateur, $1</string>
   <string name="block-token-e1">Le jeton n’a pas pu être récupéré : $1</string>
@@ -279,6 +278,9 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="login-error-unknown">Impossible de se connecter à $1.</string>
   <string name="login-error-version">Cette version est obsolète. Mettre à jour avec la dernière version.</string>
   <string name="login-error-whitelist">Échec du chargement de la liste blanche des utilisateurs pour $1.</string>
+  <string name="login-ro-title">Basculer en mode lecture seule</string>
+  <string name="login-ro-info">Le projet $1 est passé en mode lecture seule</string>
+  <string name="main-stat">$1 modifications par minute $2 annulations par minute, niveau $3</string>
   <string name="main-menu-provider-stop">Arrêter le fournisseur</string>
   <string name="main-menu-provider-resume">Reprendre le fournisseur</string>
   <string name="provider-up">Connexion au flux des changements récents sur $2 à l\'aide du fournisseur: $1</string>
@@ -718,9 +720,7 @@ Ce blocage écrasera les effets du blocage de plage. Continuer ?</string>
   <string name="block-alreadyblocked">L\'utilisateur est déjà bloqué</string>
   <string name="report-fail">Erreur lors du signalement utilisateur, raison: $1</string>
   <string name="report-page-fail">Erreur : impossible de récupérer la page de rapport à $1</string>
-  <string name="report-page-fail-time">Impossible de récupérer la date pour la page de rapport en cours, échec de l\'api:
-
-$1</string>
+  <string name="report-page-fail-time">Impossible de récupérer la date pour la page de rapport en cours, échec de l\'api:\n\n$1</string>
   <string name="report-unable">Incapable de rapporter l\'utilisateur :(</string>
   <string name="about-python-with">,avec le support python</string>
   <string name="about-python-without">sans le support python</string>

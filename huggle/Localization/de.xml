@@ -74,8 +74,7 @@
   <string name="block-blockloglabel">Sperrlogbuch:</string>
   <string name="block-warnloglabel">Warnungen:</string>
   <string name="block-sharedipwarning">Hinweis: $1 wurde als gemeinschaftlich genutzte oder dynamische IP-Adresse markiert.</string>
-  <string name="block-rangeblockwarning">$1 ist bereits durch eine Bereichssperre auf $2 betroffen.
-Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
+  <string name="block-rangeblockwarning">$1 ist bereits durch eine Bereichssperre auf $2 betroffen.\nDiese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="block-token-1">Rufe Token zum Sperren von $1 ab</string>
   <string name="block-fail">Der Benutzer konnte nicht gesperrt werden. $1</string>
   <string name="block-token-e1">Der Token konnte nicht abgerufen werden: $1</string>
@@ -279,6 +278,10 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="login-error-unknown">Anmeldung bei $1 fehlgeschlagen.</string>
   <string name="login-error-version">Diese Version ist veraltet. Bitte aktualisiere auf die aktuelle Version.</string>
   <string name="login-error-whitelist">Konnte Positivliste zu Benutzern für $1 nicht laden.</string>
+  <string name="login-ro-title">Zu schreibgeschützt wechseln</string>
+  <string name="login-ro-question">Ein oder mehrere Projekte ($1) erlauben keine Anmeldung mit Bearbeitungsrechten (Grund: $2). Möchtest du stattdessen in den schreibgeschützten Modus wechseln?</string>
+  <string name="login-ro-info">Das Projekt $1 wurde in den schreibgeschützten Modus versetzt</string>
+  <string name="main-stat">$1 Bearbeitungen pro Minute, $2 Zurücksetzungen pro Minute, Stufe $3</string>
   <string name="main-menu-provider-stop">Provider anhalten</string>
   <string name="main-menu-provider-resume">Provider fortsetzen</string>
   <string name="provider-up">Verbinde mit dem Letzte-Änderungen-Stream auf $2 mithilfe des Providers: $1</string>
@@ -718,9 +721,7 @@ Diese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
   <string name="block-alreadyblocked">Benutzer ist bereits gesperrt</string>
   <string name="report-fail">Benutzer konnte nicht berichtet werden, da: $1</string>
   <string name="report-page-fail">Fehler: Berichtsseite unter $1 konnte nicht abgerufen werden.</string>
-  <string name="report-page-fail-time">Der Zeitstempel für die aktuelle Berichtsseite konnte nicht abgerufen werden. API-Fehler:
-
- $1</string>
+  <string name="report-page-fail-time">Der Zeitstempel für die aktuelle Berichtsseite konnte nicht abgerufen werden. API-Fehler:\n\n $1</string>
   <string name="report-unable">Benutzer konnte nicht berichtet werden :(</string>
   <string name="about-python-with"> , mit Python-Unterstützung</string>
   <string name="about-python-without">ohne Python-Unterstützung</string>

@@ -72,8 +72,7 @@
   <string name="block-blockloglabel">Registo de bloqueios:</string>
   <string name="block-warnloglabel">Avisos:</string>
   <string name="block-sharedipwarning">Nota: $1 está marcado como sendo um IP partilhado ou dinâmico.</string>
-  <string name="block-rangeblockwarning">$1 já é afetado por um bloqueio de gama em $2.
-Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
+  <string name="block-rangeblockwarning">$1 já é afetado por um bloqueio de gama em $2.\nEste bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="block-token-1">A obter código de verificação para bloquear $1</string>
   <string name="block-fail">Não é possível bloquear o(a) utilizador(a), $1</string>
   <string name="block-token-e1">O código de verificação não pôde ser obtido: $1</string>
@@ -219,8 +218,7 @@ Este bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="login-proxyport">Porta:</string>
   <string name="login-proxydomain">Domínio:</string>
   <string name="login-retrieving-user-conf">A aceder à configuração de utilizador</string>
-  <string name="login-fail-css">Início de sessão em $1 falhou: Não é possível recuperar a configuração de utilizador. 
-Especial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu domínio de utilizador?</string>
+  <string name="login-fail-css">Início de sessão em $1 falhou: Não é possível recuperar a configuração de utilizador. \nEspecial:MyPage/huggle3.css está em falta. Criou a página huggle3.css no seu domínio de utilizador?</string>
   <string name="login-fail-enable-true">Início de sessão em $1 falhou: Não tem a linha de código enable:true na sua configuração pessoal.</string>
   <string name="login-fail-no-info">Início de sessão em $1 falhou: Não foi possível aceder à informação de utilizador: $2</string>
   <string name="login-fail-parse-config">Início de sessão em $1 falhou: Não foi possível analisar a configuração de utilizador. Veja o registo de depuração para mais detalhes.</string>

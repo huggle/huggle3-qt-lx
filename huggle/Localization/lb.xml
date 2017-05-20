@@ -138,8 +138,7 @@
   <string name="login-proxyport">Port:</string>
   <string name="login-proxydomain">Domaine:</string>
   <string name="login-fail-enable-true">Aloggen op $1 huet net funktionéiert: An Äre perséinlechen Astellungen ass enable:true net dran.</string>
-  <string name="login-fail-no-info">Aloggen op $1 huet net funktionéiert.
-Benotzerinformatioun konnt net ofgefrot ginn: $2</string>
+  <string name="login-fail-no-info">Aloggen op $1 huet net funktionéiert.\nBenotzerinformatioun konnt net ofgefrot ginn: $2</string>
   <string name="login-bot">Wat ass den Ënnerscheed tëscht engem Bot -Login an engem traditionelle Login?</string>
   <string name="login-fail-user-data">Aloggen op $1 huet funktionéiert: Benotzerinformatioun konnt net ofgeruf ginn. D\'Api Ufro huet keng Daten zréckgeschéckt.</string>
   <string name="login-failed-edit">Aloggen op $1 huet net funktionéiert: Dir hutt net genuch Ännerungen op dësem Projet.</string>
@@ -171,6 +170,7 @@ Benotzerinformatioun konnt net ofgefrot ginn: $2</string>
   <string name="login-error-projdisabled">Huggle ass elo op dësem Projet ausgeschalt.</string>
   <string name="login-error-unknown">Aloggen op $1 huet net funktionéiert.</string>
   <string name="login-error-version">Dës Versioun ass vereelst. Aktualiséiert op déi lescht Versioun.</string>
+  <string name="login-ro-title">Op \'nëmme liesen\' wiesselen</string>
   <string name="main-no-reason">De Benotzer huet kee Grond uginn</string>
   <string name="main-restoring-slap">Ech restauréieren elo eng aner Ännerung, waart w.e.g....</string>
   <string name="main-page">Säit</string>

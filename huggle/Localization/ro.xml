@@ -74,8 +74,7 @@
   <string name="block-blockloglabel">Jurnal blocări:</string>
   <string name="block-warnloglabel">Avertizări:</string>
   <string name="block-sharedipwarning">Notă: $1 este marcată ca adresă IP dinamică sau partajată.</string>
-  <string name="block-rangeblockwarning">$1 este deja blocat, odată cu $2.
-Această blocare va lua locul efectului blocării gamei. Continuați?</string>
+  <string name="block-rangeblockwarning">$1 este deja blocat, odată cu $2.\nAceastă blocare va lua locul efectului blocării gamei. Continuați?</string>
   <string name="block-token-1">Primesc token pentru blocarea lui $1</string>
   <string name="block-fail">Nu pot bloca utilizatorul, $1</string>
   <string name="block-token-e1">Nu pot primi token: $1</string>
@@ -701,9 +700,7 @@ Această blocare va lua locul efectului blocării gamei. Continuați?</string>
   <string name="block-alreadyblocked">Utilizatorul este deja blocat</string>
   <string name="report-fail">Nu am putut reclama utilizatorul deoarece: $1</string>
   <string name="report-page-fail">Nu am putut obține pagina de reclamații de la $1</string>
-  <string name="report-page-fail-time">Nu am putut obține marca temporală a paginii actuale de reclamații, eroare de API:
-
-$1</string>
+  <string name="report-page-fail-time">Nu am putut obține marca temporală a paginii actuale de reclamații, eroare de API:\n\n$1</string>
   <string name="report-unable">Nu am putut reclama utilziatorul :(</string>
   <string name="about-python-with">, cu support python</string>
   <string name="about-python-without">fără suport python</string>

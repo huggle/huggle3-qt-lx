@@ -107,8 +107,7 @@
   <string name="login-proxy">پراکسی سرور استعمال کریں</string>
   <string name="login-proxyaddress">ایڈریس:</string>
   <string name="login-proxyport">پورٹ:</string>
-  <string name="login-fail-css">$1 میں لاگ ان ناکام: صارف کانفیگریشن نہیں مل سکی۔
-خاص:میرا_صفحہ/huggle3.css موجود نہیں ہے۔ کیا آپ نے اپنے صارف نام فضا میں huggle3.css بنا لیا ہے؟</string>
+  <string name="login-fail-css">$1 میں لاگ ان ناکام: صارف کانفیگریشن نہیں مل سکی۔\nخاص:میرا_صفحہ/huggle3.css موجود نہیں ہے۔ کیا آپ نے اپنے صارف نام فضا میں huggle3.css بنا لیا ہے؟</string>
   <string name="login-fail-no-info">$1 میں لاگ ان ناکام: صارف معلومات برائے $2 نہیں مل سکی</string>
   <string name="login-fail-user-data">$1 میں لاگ ان ناکام: صارف معلومات نہیں مل سکی۔ API کوئیری نے کوئی ڈیٹا ارسال نہیں کیا۔</string>
   <string name="login-failed-autoconfirm-rights">$1 میں لاگ ان ناکام: آپ اس منصوبہ میں خود توثیق شدہ صارف نہیں ہے، یعنی آپ کے کھاتہ کی اب تک خودکار طور پر تصدیق نہیں ہوئی ہے۔</string>
