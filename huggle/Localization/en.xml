@@ -249,6 +249,7 @@
   <string name="login-start">Login</string>
   <string name="login-oauth-notsupported">This method is not supported at this moment</string>
   <string name="login-translate">Translate Huggle</string>
+  <string name="login-progress-formtitle">Loading...</string>
   <string name="login-progress-start">Logging in to $1</string>
   <string name="login-progress-retrieve-mw">Retrieving information about MediaWiki for $1</string>
   <string name="login-progress-language">Updating message files...</string>
@@ -259,6 +260,7 @@
   <string name="login-progress-user-info">Checking user info for $1</string>
   <string name="login-progress-whitelist">Retrieving user whitelist...</string>
   <string name="login-remember-password">Remember password</string>
+  <string name="login-remember-password-tooltip">This option will store your password in a plaintext on your hard drive. Use it only if you are the only person with access to this computer.</string>
   <string name="login-ssl">Use HTTPS (requires OpenSSL)</string>
   <string name="login-fail">Login failed on $1</string>
   <string name="login-error-admin">Use of Huggle on this project requires an administrator account.</string>
