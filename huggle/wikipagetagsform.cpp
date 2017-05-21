@@ -68,7 +68,7 @@ void WikiPageTagsForm::ChangePage(WikiPage *wikipage)
         if (this->page->Contents.toLower().contains("{{" + key.toLower()))
             Item->setChecked(true);
         if (this->CheckBoxes.contains(key) || this->Arguments.contains(key))
-            throw new Huggle::Exception("Tag is already in hash list", BOOST_CURRENT_FUNCTION);
+            throw new Huggle::Exception("Tag \""+ key.toLower() + "\" is already in hash list, please check in the config page that it's not duplicated", BOOST_CURRENT_FUNCTION);
         this->CheckBoxes.insert(key, Item);
         QLineEdit *line = new QLineEdit(this);
         this->Arguments.insert(key, line);
