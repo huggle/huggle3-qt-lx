@@ -77,6 +77,8 @@ namespace Huggle
             void on_pushButton_clicked();
             void on_Language_currentIndexChanged(const QString &arg1);
             void on_labelTranslate_linkActivated(const QString &link);
+            void on_labelGithub_linkActivated(const QString &link);
+            void on_labelFeedback_linkActivated(const QString &link);
             void on_lineEdit_username_textChanged(const QString &arg1);
             void on_lineEdit_password_textChanged(const QString &arg1);
             void on_pushButton_2_clicked();
@@ -86,7 +88,7 @@ namespace Huggle
             void on_label_2_linkActivated(const QString &link);
             void on_tabWidget_currentChanged(int index);
 
-    private:
+        private:
             //! Reset the interface to default
             void Reset();
             void RemoveQueries();

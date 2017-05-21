@@ -183,6 +183,8 @@ void Login::Localize()
     this->ui->pushButton_2->setText(_l("login-projets"));
     this->ui->labelTranslate->setText(QString("<html><head/><body><p><a href=\"http://meta.wikimedia.org/wiki/Huggle/Localization\"><span style=\""\
                                               " text-decoration: underline; color:#0000ff;\">%1</span></a></p></body></html>").arg(_l("login-translate")));
+    this->ui->labelFeedback->setText(QString("<html><head/><body><p><a href=\"https://en.wikipedia.org/wiki/Wikipedia:Huggle/Feedback\"><span style=\""\
+                                           " text-decoration: underline; color:#0000ff;\">%1</span></a></p></body></html>").arg(_l("main-help-feedback")));
     // Change the layout based on preference
     if (Localizations::HuggleLocalizations->IsRTL())
         QApplication::setLayoutDirection(Qt::RightToLeft);
@@ -1356,6 +1358,16 @@ void Login::on_Language_currentIndexChanged(const QString &arg1)
 }
 
 void Huggle::Login::on_labelTranslate_linkActivated(const QString &link)
+{
+    QDesktopServices::openUrl(link);
+}
+
+void Huggle::Login::on_labelGithub_linkActivated(const QString &link)
+{
+    QDesktopServices::openUrl(link);
+}
+
+void Huggle::Login::on_labelFeedback_linkActivated(const QString &link)
 {
     QDesktopServices::openUrl(link);
 }
