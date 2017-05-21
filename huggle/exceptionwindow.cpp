@@ -25,10 +25,10 @@ ExceptionWindow::ExceptionWindow(Exception *e) : ui(new Ui::ExceptionWindow)
         hr = "not available (nullptr)";
     this->ui->textEdit->setText("Unfortunately Huggle has crashed. Please submit the following information "\
                           "together with details of what were you doing to https://phabricator.wikimedia.org/maniphest/task/create/?projects=Huggle"\
-                          "\n\nSystem log\n==================\n" + hr
-                          + "\n\n\n\nException details\n===========================\nError code: "
+                          "\n\n\n\nException details\n===========================\nError code: "
                           + QString::number(e->ErrorCode) + "\nReason: "
-                          + e->Message + "\nSource: " + e->Source + "\nStack trace:\n" + e->StackTrace);
+                          + e->Message + "\n\nSource: " + e->Source + "\nStack trace:\n" + e->StackTrace
+                          + "\n\n\n\n===========================\nSystem log\n=======\n" + hr);
 }
 
 ExceptionWindow::~ExceptionWindow()
