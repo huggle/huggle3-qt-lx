@@ -476,7 +476,6 @@ void Login::PressOK()
     this->Disable();
     this->loadingForm->show();
     this->loadingForm->setWindowTitle(_l("login-progress-formtitle"));
-    this->loadingForm->AbortLabel(_l("login-abort"));
     // we need to delete the filters here so that if previous login didn't finish we don't reuse the previous ones
     HuggleQueueFilter::Delete();
     // this is pretty tricky here

@@ -13,6 +13,7 @@
 #include "exception.hpp"
 #include "core.hpp"
 #include "ui_loadingform.h"
+#include "localization.hpp"
 
 using namespace Huggle;
 
@@ -36,16 +37,12 @@ LoadingForm::LoadingForm(QWidget *parent) : QDialog(parent), ui(new Ui::LoadingF
 #endif
     this->ui->tableWidget->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
     this->ui->tableWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
+    this->ui->pushButton->setText(_l("login-abort"));
 }
 
 void LoadingForm::Info(QString text)
 {
     this->ui->label_2->setText(text);
-}
-
-void LoadingForm::AbortLabel(QString text)
-{
-    this->ui->pushButton->setText(text);
 }
 
 void LoadingForm::ModifyIcon(int row, LoadingForm_Icon it)

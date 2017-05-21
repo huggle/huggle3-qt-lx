@@ -39,7 +39,6 @@ namespace Huggle
 
             explicit LoadingForm(QWidget *parent = nullptr);
             void Info(QString text);
-            void AbortLabel(QString text);
             void ModifyIcon(int row, LoadingForm_Icon it);
             void Insert(int row, QString text, LoadingForm_Icon icon);
             ~LoadingForm();
