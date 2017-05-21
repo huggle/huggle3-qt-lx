@@ -52,9 +52,9 @@
   <string name="disable">غیرفعال</string>
   <string name="no-token">بدون رمز</string>
   <string name="flags">پرچم‌ها</string>
-  <string name="gracetime">در انتظار پایان صف ویرایش‌ها</string>
+  <string name="gracetime" fuzzy="true">در انتظار پایان صف ویرایش‌ها</string>
   <string name="browser-none">هیچ صفحه‌ای نمایش داده نشد</string>
-  <string name="browser-load">بارگیری تفاوت با استفاده از رندر وب، لطفاً صبر کنید....</string>
+  <string name="browser-load" fuzzy="true">بارگیری تفاوت با استفاده از رندر وب، لطفاً صبر کنید....</string>
   <string name="browser-miss-summ">هیچ خلاصه‌ای ارائه نشده است</string>
   <string name="browser-diff">تفاوت صفحه:  $1  (امتیاز:  $2 )</string>
   <string name="browser-fail">ناتوان در بازیابی تفاوت: $1</string>
@@ -116,9 +116,9 @@
   <string name="config-confirm-talk">نیاز به تأیید برای واگردانی صفحهٔ بحث</string>
   <string name="config-use-rollback">استفاده از خنثی‌سازی نرم‌افزار</string>
   <string name="config-welcome-empty-page">ارسال پیام‌های خوش‌آمدگویی به کاربرانی با صفحه بحث خالی بابت ویرایش خوب</string>
-  <string name="config-conflicts-revert">خودکار رفع‌کردن ناسازگاری‌ها با دیگر کاربرانی که واگردانی می‌کنند یا صفحه را تغییر می‌دهند</string>
+  <string name="config-conflicts-revert" fuzzy="true">خودکار رفع‌کردن ناسازگاری‌ها با دیگر کاربرانی که واگردانی می‌کنند یا صفحه را تغییر می‌دهند</string>
   <string name="config-instant-reverts">استفاده از واگردانی‌های فوری (بسیار سریع، اما زمانی که اجرا شد نمی‌تواند لغو شود)</string>
-  <string name="config-revert-wait">انتظار واگردانی (به ثانیه)</string>
+  <string name="config-revert-wait" fuzzy="true">انتظار واگردانی (به ثانیه)</string>
   <string name="config-revert">واگردانی</string>
   <string name="config-revert-diff">واگردانی ویرایش‌های تازه‌تر صفحه نسبت به تفاوت نمایش داده‌شده در حالتی که توسط همان کاربر خرابکار صورت گرفته‌باشد</string>
   <string name="config-change-all">تغییر همه تنظیمات هاگل برای بیشتر شبیه هاگل ۲ رفتارکردن</string>
@@ -126,10 +126,10 @@
   <string name="config-months-name">استفاده از ماه‌ها به عنوان نام سربرگ جای نام صفحه</string>
   <string name="config-automatic-warning">استفادهٔ خودکار از نوع هشدار و سطح کارکرد «ارسال هشدار»</string>
   <string name="config-enable-irc">فعال کردن آی‌آرسی</string>
-  <string name="config-remove-reverted">حذف ویرایش‌هایی که از پیش توسط شخص دیگری واگردانی شده‌اند</string>
-  <string name="config-remove-old">حذف ویرایش‌های قدیمی اگر ویرایش تازه‌تری در همان صفحه صورت گرفته‌است</string>
+  <string name="config-remove-reverted" fuzzy="true">حذف ویرایش‌هایی که از پیش توسط شخص دیگری واگردانی شده‌اند</string>
+  <string name="config-remove-old" fuzzy="true">حذف ویرایش‌های قدیمی اگر ویرایش تازه‌تری در همان صفحه صورت گرفته‌است</string>
   <string name="config-auto-load-history">فراخوانی خودکار تاریخچه و اطلاعات کاربر (به مقدار زیادی پنهای شبکه نیاز دارد)</string>
-  <string name="config-last-revision">نمایش بازبینی آخر از صفحه در حالتی که ویرایش فراخوانی‌شدهٔ جاری بازبینی آخر نیست (پس از گذشتن از نهان‌گاه دریافتش می‌کند)</string>
+  <string name="config-last-revision" fuzzy="true">نمایش بازبینی آخر از صفحه در حالتی که ویرایش فراخوانی‌شدهٔ جاری بازبینی آخر نیست (پس از گذشتن از نهان‌گاه دریافتش می‌کند)</string>
   <string name="config-require-delay">به یک تأخیر پس از هر بارگیری از ویرایش بعدی نیاز است، به این دلیل که ممکن نیست از هر ویژگی نوشتن استفاده شود (کاربردی زمانی  که باید اشکال چند فشار صفحه کلید رفع شود)</string>
   <string name="config-wait-edit">زمانی که باید صبر کنید (به ثانیه) تا ویژگی‌های نوشتاری فعال شوند:</string>
   <string name="config-display-text">نمایش بعدی</string>

@@ -52,9 +52,9 @@
   <string name="disable">Dezactivează</string>
   <string name="no-token">Nu există token</string>
   <string name="flags">Flaguri</string>
-  <string name="gracetime">Aștept terminarea query-urilor de editare...</string>
+  <string name="gracetime" fuzzy="true">Aștept terminarea query-urilor de editare...</string>
   <string name="browser-none">Acum nu este afișată nicio pagină</string>
-  <string name="browser-load">Descarc diff folosind un mecanism de rezervă pentru redarea web, așteptați...</string>
+  <string name="browser-load" fuzzy="true">Descarc diff folosind un mecanism de rezervă pentru redarea web, așteptați...</string>
   <string name="browser-miss-summ">Nu a fost specificat un sumar</string>
   <string name="browser-diff">Diff al paginii: $1 (scor: $2)</string>
   <string name="browser-fail">Nu pot extrage difful: $1</string>
@@ -116,9 +116,9 @@
   <string name="config-confirm-talk">Cere confirmare pentru revenirea asupra unei pagini de discuții</string>
   <string name="config-use-rollback">Folosește rollback software</string>
   <string name="config-welcome-empty-page">Trimite mesaje de bun venit utilizatorilor cu pagină de discuții goală și care fac editări bune</string>
-  <string name="config-conflicts-revert">Rezolvă automat conflictele cu alți utilizatori care revin sau modifică pagina</string>
+  <string name="config-conflicts-revert" fuzzy="true">Rezolvă automat conflictele cu alți utilizatori care revin sau modifică pagina</string>
   <string name="config-instant-reverts">Folosește revenirile instant (foarte rapid, dar odată executat nu se poate anula)</string>
-  <string name="config-revert-wait">Așteptare înaintea revenirii (secunde)</string>
+  <string name="config-revert-wait" fuzzy="true">Așteptare înaintea revenirii (secunde)</string>
   <string name="config-revert">Revenire</string>
   <string name="config-revert-diff">Reveniți asupra modificărilor dintr-o pagină, dacă sunt mai noi decât difful afișat și dacă sunt făcute de același vandal</string>
   <string name="config-change-all">Schimbă toate setările huggle pentru a se comporta ca huggle 2</string>
@@ -126,10 +126,10 @@
   <string name="config-months-name">Folosește lunile anului ca antet în loc de numele paginii</string>
   <string name="config-automatic-warning">Folosește tipul și nivelul automate de avertizare la funcția „trimite avertizare”</string>
   <string name="config-enable-irc">Activează IRC</string>
-  <string name="config-remove-reverted">Înlătură editările asupra cărora a revenit deja altcineva</string>
-  <string name="config-remove-old">Înlătură editările vechi dacă este parsată o editare mai nouă în aceeași pagină</string>
+  <string name="config-remove-reverted" fuzzy="true">Înlătură editările asupra cărora a revenit deja altcineva</string>
+  <string name="config-remove-old" fuzzy="true">Înlătură editările vechi dacă este parsată o editare mai nouă în aceeași pagină</string>
   <string name="config-auto-load-history">Încarcă automat istorie și informații despre utilizator (consumă multă lățime de bandă)</string>
-  <string name="config-last-revision">Afișează ultima revizie a paginii dacă editarea încărcată acum nu este o ultimă revizie (o va post-descărca șuntând cache-ul)</string>
+  <string name="config-last-revision" fuzzy="true">Afișează ultima revizie a paginii dacă editarea încărcată acum nu este o ultimă revizie (o va post-descărca șuntând cache-ul)</string>
   <string name="config-require-delay">Impune o diferență de timp după fiecare încărcare a următoarei editări, timp în care nu se va putea utiliza nicio funcție care scrie (utilă pentru evitarea bugului cu multiple apăsări de taste)</string>
   <string name="config-wait-edit">Timpul, în secunde, până la reactivarea funcțiilor cu scriere:</string>
   <string name="config-display-text">Arată următorul</string>

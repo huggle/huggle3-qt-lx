@@ -52,9 +52,9 @@
   <string name="disable">Desabilitar</string>
   <string name="no-token">Sem chave</string>
   <string name="flags">Sinalizações</string>
-  <string name="gracetime">Aguardando consultas de edições terminarem...</string>
+  <string name="gracetime" fuzzy="true">Aguardando consultas de edições terminarem...</string>
   <string name="browser-none">Nenhuma página está sendo exibida agora</string>
-  <string name="browser-load">Baixando diff usando um renderizador web, por favor aguarde...</string>
+  <string name="browser-load" fuzzy="true">Baixando diff usando um renderizador web, por favor aguarde...</string>
   <string name="browser-miss-summ">Nenhum resumo fornecido.</string>
   <string name="browser-diff">Diff da página:$1 (pontuação: $2)</string>
   <string name="browser-fail">Não foi possível recuperar diff: $1</string>
@@ -116,9 +116,9 @@
   <string name="config-confirm-talk">Exigir confirmação para reversão de página de discussão</string>
   <string name="config-use-rollback">Usar software de reversão</string>
   <string name="config-welcome-empty-page">Enviar mensagens de boas-vindas a usuários com páginas de discussão vazias quando houver uma boa edição.</string>
-  <string name="config-conflicts-revert">Resolver automaticamente conflitos com outros usuários que revertem ou alteram a página</string>
+  <string name="config-conflicts-revert" fuzzy="true">Resolver automaticamente conflitos com outros usuários que revertem ou alteram a página</string>
   <string name="config-instant-reverts">Usar reversões instantâneas (muito rápido, mas não pode ser cancelado depois de iniciado)</string>
-  <string name="config-revert-wait">Espera para a reversão (segundos)</string>
+  <string name="config-revert-wait" fuzzy="true">Espera para a reversão (segundos)</string>
   <string name="config-revert">Reverter</string>
   <string name="config-revert-diff">Reverter as edições mais recentes que a da página diff sendo exibida no caso de terem sido feitas pelo mesmo usuário vândalo</string>
   <string name="config-change-all">Mudar todas as configurações do huggle para que funcionem como o huggle 2</string>
@@ -126,10 +126,10 @@
   <string name="config-months-name">Usar os meses como cabeçalhos em vez do nome da página</string>
   <string name="config-automatic-warning">Usar aviso com tipo e nível automáticos na função \"enviar aviso\"</string>
   <string name="config-enable-irc">Habilitar IRC</string>
-  <string name="config-remove-reverted">Remover edições que já tenham sido revertidas por alguém</string>
-  <string name="config-remove-old">Remover edições antigas se uma edição mais nova para a mesma página for analisada</string>
+  <string name="config-remove-reverted" fuzzy="true">Remover edições que já tenham sido revertidas por alguém</string>
+  <string name="config-remove-old" fuzzy="true">Remover edições antigas se uma edição mais nova para a mesma página for analisada</string>
   <string name="config-auto-load-history">Carregar automaticamente o histórico e as informações do usuário (requer muita conexão de rede)</string>
-  <string name="config-last-revision">Mostrar última revisão da página caso a edição carregada atualmente não seja a última revisão (divulgaremos ignorando cache)</string>
+  <string name="config-last-revision" fuzzy="true">Mostrar última revisão da página caso a edição carregada atualmente não seja a última revisão (divulgaremos ignorando cache)</string>
   <string name="config-require-delay">Requer um atraso após cada carregamento da próxima edição, para os quais não é possível usar qualquer recurso de gravação (útil quando você precisa evitar erros no teclado multifunções)</string>
   <string name="config-wait-edit">O tempo pelo qual você precisa esperar entre editar recursos estão habilitados (segundos):</string>
   <string name="config-display-text">Mostrar seguinte</string>

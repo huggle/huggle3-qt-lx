@@ -52,9 +52,9 @@
   <string name="disable">Отключить</string>
   <string name="no-token">Нет маркера</string>
   <string name="flags">Флаги</string>
-  <string name="gracetime">Ожидаем завершения запросов на редактирование...</string>
+  <string name="gracetime" fuzzy="true">Ожидаем завершения запросов на редактирование...</string>
   <string name="browser-none">Страница сейчас не отображается</string>
-  <string name="browser-load">Загружаем изменение с помощью веб-рендеринга, пожалуйста, подождите...</string>
+  <string name="browser-load" fuzzy="true">Загружаем изменение с помощью веб-рендеринга, пожалуйста, подождите...</string>
   <string name="browser-miss-summ">Описание правки отсутствует</string>
   <string name="browser-diff">Различие между версиями на странице: $1 (баллы: $2)</string>
   <string name="browser-fail">Не удалось получить различие между версиями: $1</string>
@@ -117,9 +117,9 @@
   <string name="config-confirm-talk">Требовать подтверждение для восстановления страницы обсуждения</string>
   <string name="config-use-rollback">Использование программные откаты Huggle</string>
   <string name="config-welcome-empty-page">Отправка приветственных сообщений для пользователей с пустыми страницами для обсуждений при правильном редактировании</string>
-  <string name="config-conflicts-revert">Автоматически разрешать конфликты с другими пользователями, которые отменили или изменили страницу</string>
+  <string name="config-conflicts-revert" fuzzy="true">Автоматически разрешать конфликты с другими пользователями, которые отменили или изменили страницу</string>
   <string name="config-instant-reverts">Использовать систему мгновенных откатов (очень быстро, но они не могут быть отменены после того, как запущены)</string>
-  <string name="config-revert-wait">Ожидание отката (секунд)</string>
+  <string name="config-revert-wait" fuzzy="true">Ожидание отката (секунд)</string>
   <string name="config-revert">Откатить</string>
   <string name="config-revert-diff">Откатить правки страницы, которые новее чем показанное изменение, в случае если если они сделаны тем же участником-вандалом</string>
   <string name="config-change-all">Изменить все настройки huggle так чтобы его поведение было ближе к huggle 2</string>
@@ -127,10 +127,10 @@
   <string name="config-months-name">Использовать месяцы в качестве заголовков вместо имён страниц</string>
   <string name="config-automatic-warning">Использовать автоматический тип и уровень предупреждения в функции «отправки предупреждения»</string>
   <string name="config-enable-irc">Включить IRC</string>
-  <string name="config-remove-reverted">Удалять изменения, которые уже были отменены кем-то другим</string>
-  <string name="config-remove-old">Удалять старые правки, если проанализирована новая правка к той же странице</string>
+  <string name="config-remove-reverted" fuzzy="true">Удалять изменения, которые уже были отменены кем-то другим</string>
+  <string name="config-remove-old" fuzzy="true">Удалять старые правки, если проанализирована новая правка к той же странице</string>
   <string name="config-auto-load-history">Автоматически загружать историю и информацию об участнике (требует много трафика)</string>
-  <string name="config-last-revision">Отображать последнюю версию страницы в случае, когда текущая загруженная правка не является последней (загрузка будет выполнена минуя кэш)</string>
+  <string name="config-last-revision" fuzzy="true">Отображать последнюю версию страницы в случае, когда текущая загруженная правка не является последней (загрузка будет выполнена минуя кэш)</string>
   <string name="config-require-delay">Установить задержку после каждой загрузки следующей правки, во время которой невозможно вносить изменения (полезно для разрешения проблем, возникающих из-за нажатия нескольких клавиш сразу)</string>
   <string name="config-wait-edit">Задержка (в секундах) до включения функций записи:</string>
   <string name="config-display-text">Показать следующий</string>

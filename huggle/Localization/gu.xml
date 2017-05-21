@@ -84,7 +84,7 @@
   <string name="config-minor">લઘુ તરીકે ચિહ્નિત કરો</string>
   <string name="config-watchlist">ધ્યાનસૂચિ માં ઉમેરો</string>
   <string name="config-defaultsummary">જાતે થતાં સંપાદનોમાટે મૂળભૂત સારાંશ</string>
-  <string name="config-revert-wait">પૂર્વવતમાટે રાહ (સેકંડ)</string>
+  <string name="config-revert-wait" fuzzy="true">પૂર્વવતમાટે રાહ (સેકંડ)</string>
   <string name="config-revert">પૂર્વવત</string>
   <string name="config-enable-irc">સક્રિય IRC</string>
   <string name="config-display-text">આગામી બતાવો</string>

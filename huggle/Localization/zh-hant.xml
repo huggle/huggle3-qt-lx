@@ -52,9 +52,9 @@
   <string name="disable">禁用</string>
   <string name="no-token">無標記</string>
   <string name="flags">標記</string>
-  <string name="gracetime">正在等待編輯查詢結束...</string>
+  <string name="gracetime" fuzzy="true">正在等待編輯查詢結束...</string>
   <string name="browser-none">現在無頁面可以顯示</string>
-  <string name="browser-load">通過web渲染備選下載版本差異中，請耐心等待…</string>
+  <string name="browser-load" fuzzy="true">通過web渲染備選下載版本差異中，請耐心等待…</string>
   <string name="browser-miss-summ">未提供摘要</string>
   <string name="browser-diff">頁面差異：$1（得分：$2）</string>
   <string name="browser-fail">無法檢索版本差異：$1</string>
@@ -117,9 +117,9 @@
   <string name="config-confirm-talk">回退在討論頁上做出的編輯時需要確認</string>
   <string name="config-use-rollback">使用軟體回退</string>
   <string name="config-welcome-empty-page">發送歡迎信息到作出了良好編輯的只有空討論頁的用戶</string>
-  <string name="config-conflicts-revert">自動解決與其他用戶恢復或者更改該頁面的衝突</string>
+  <string name="config-conflicts-revert" fuzzy="true">自動解決與其他用戶恢復或者更改該頁面的衝突</string>
   <string name="config-instant-reverts">使用立即回退（非常快，但執行後無法撤銷）</string>
-  <string name="config-revert-wait">還原等待 (秒)</string>
+  <string name="config-revert-wait" fuzzy="true">還原等待 (秒)</string>
   <string name="config-revert">還原</string>
   <string name="config-revert-diff">回退頁面上比顯示的差異更新的編輯，當他們是同一個用戶做出時</string>
   <string name="config-change-all">變更所有 huggle 設定以模擬 Huggle 2 的行為</string>
@@ -127,10 +127,10 @@
   <string name="config-months-name">使用月份而不是頁面名作為標題</string>
   <string name="config-automatic-warning">使用自動警告類型和級別在「寄送警告」功能</string>
   <string name="config-enable-irc">開啟 IRC</string>
-  <string name="config-remove-reverted">移除已被別人回退的編輯</string>
-  <string name="config-remove-old">如果頁面上的新編輯被解析，移除同一頁面上的舊編輯</string>
+  <string name="config-remove-reverted" fuzzy="true">移除已被別人回退的編輯</string>
+  <string name="config-remove-old" fuzzy="true">如果頁面上的新編輯被解析，移除同一頁面上的舊編輯</string>
   <string name="config-auto-load-history">自動載入歷史記錄和用戶訊息（需要較多的網路頻寬）</string>
-  <string name="config-last-revision">若目前已載入編輯並非最新版本，顯示頁面最新的修訂內容（這將會跳過快取來下載內容）</string>
+  <string name="config-last-revision" fuzzy="true">若目前已載入編輯並非最新版本，顯示頁面最新的修訂內容（這將會跳過快取來下載內容）</string>
   <string name="config-require-delay">在每次載入下一個編輯內容需要一些時間，在此期間任何寫入功能皆不可用（這在避免因鍵盤多次觸按，而產生程式錯誤時很有用）</string>
   <string name="config-wait-edit">直到寫入功能開啟所延遲的秒數：</string>
   <string name="config-display-text">顯示下一筆</string>
@@ -278,6 +278,9 @@
   <string name="login-error-unknown">無法登入到 $1。</string>
   <string name="login-error-version">此版本已過舊，請更新至最新版本。</string>
   <string name="login-error-whitelist">載入使用者白名單失敗 $1。</string>
+  <string name="login-ro-title">切換成唯讀</string>
+  <string name="login-ro-question">一個或多個項目（$1）不允許您以編輯權限登入（原因：$2）。您是否要改為切換成唯讀模式？</string>
+  <string name="login-ro-info">項目$1切換成唯讀模式</string>
   <string name="main-stat">每分鐘編輯$1次，每分鐘回退$2次，等級$3</string>
   <string name="main-menu-provider-stop">停止提供者</string>
   <string name="main-menu-provider-resume">繼續提供者</string>

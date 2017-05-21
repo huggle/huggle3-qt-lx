@@ -113,9 +113,9 @@
   <string name="config-confirm-talk">वार्ता पृष्ठ को पूर्ववत करने के लिए पुष्टीकरण चाहिए</string>
   <string name="config-use-rollback">सॉफ्टवेयर रोलबैक काम में लें</string>
   <string name="config-welcome-empty-page">अच्छे सम्पादन करने वाले सदस्यों के खाली वार्ता पृष्ठों पर स्वागत सन्देश भेजें</string>
-  <string name="config-conflicts-revert">पूर्ववत करने अथवा पृष्ठों में बदलाव करने वाले सदस्यों के संघर्ष का स्वचालित रूप समाधान करें</string>
+  <string name="config-conflicts-revert" fuzzy="true">पूर्ववत करने अथवा पृष्ठों में बदलाव करने वाले सदस्यों के संघर्ष का स्वचालित रूप समाधान करें</string>
   <string name="config-instant-reverts">तत्काल बदलाव काम में लें (बहुत तीव्र, लेकिन एक बार निष्पादित करने के बाद निरसित नहीं हो सकता)</string>
-  <string name="config-revert-wait">बदलाव के लिए प्रतीक्षा करें (सैकण्ड)</string>
+  <string name="config-revert-wait" fuzzy="true">बदलाव के लिए प्रतीक्षा करें (सैकण्ड)</string>
   <string name="config-revert">बदलें</string>
   <string name="config-change-all">हगल २ की तरह अधिक व्यवहार करने के लिए हगल की पसन्द बदलें</string>
   <string name="config-merge-messages">पहले से उपलब्ध अनुभाग में अपने सन्देशों का विलय करें</string>

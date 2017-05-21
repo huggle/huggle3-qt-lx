@@ -52,9 +52,9 @@
   <string name="disable">Wyłącz</string>
   <string name="no-token">Brak tokenu</string>
   <string name="flags">Flagi</string>
-  <string name="gracetime">Oczekiwanie na zakończenie żądań związanych z edycją...</string>
+  <string name="gracetime" fuzzy="true">Oczekiwanie na zakończenie żądań związanych z edycją...</string>
   <string name="browser-none">Strona nie wyświetli się teraz</string>
-  <string name="browser-load">Pobieranie różnic używając awaryjnego renderowania web, proszę czekać...</string>
+  <string name="browser-load" fuzzy="true">Pobieranie różnic używając awaryjnego renderowania web, proszę czekać...</string>
   <string name="browser-miss-summ">Nie podano opisu edycji</string>
   <string name="browser-diff">Porównanie strony: $1 (wynik: $2)</string>
   <string name="browser-fail">Nie można pobrać różnicy: $1</string>
@@ -116,9 +116,9 @@
   <string name="config-confirm-talk">Wymagaj potwierdzenia do wycofania edycji w dyskusji</string>
   <string name="config-use-rollback">Używaj rewertu programowego</string>
   <string name="config-welcome-empty-page">Wysyłaj wiadomość powitalną do użytkowników z pustą stroną dyskusji, gdy wykonają dobrą edycję</string>
-  <string name="config-conflicts-revert">Automatycznie rozwiązuj konflikty z innymi użytkownikami, którzy wycofują lub wykonują zmiany na stronie</string>
+  <string name="config-conflicts-revert" fuzzy="true">Automatycznie rozwiązuj konflikty z innymi użytkownikami, którzy wycofują lub wykonują zmiany na stronie</string>
   <string name="config-instant-reverts">Używaj natychmiastowego wycofywania zmian (bardzo szybko działa, ale nie można przerwać po wybraniu)</string>
-  <string name="config-revert-wait">Oczekiwanie przed wycofaniem (w sekundach)</string>
+  <string name="config-revert-wait" fuzzy="true">Oczekiwanie przed wycofaniem (w sekundach)</string>
   <string name="config-revert">Cofnij</string>
   <string name="config-revert-diff">Wycofuj zmiany nowsze niż aktualnie pokazywana, jeśli są wykonane przez tego samego użytkownika-wandala</string>
   <string name="config-change-all">Zmień wszystkie ustawienia Huggle, żeby zachowywał się podobnie do Huggle 2</string>
@@ -126,9 +126,9 @@
   <string name="config-months-name">Używaj miesięcy w tytułach zamiast nazwy strony</string>
   <string name="config-automatic-warning">Użyj automatycznie wybieranego typu ostrzeżenia i poziomu w funkcji \"wyślij ostrzeżenie\"</string>
   <string name="config-enable-irc">Włącz IRC</string>
-  <string name="config-remove-reverted">Usuń zmiany, które zostały już wycofane przez kogoś innego</string>
+  <string name="config-remove-reverted" fuzzy="true">Usuń zmiany, które zostały już wycofane przez kogoś innego</string>
   <string name="config-auto-load-history">Automatycznie pobieraj historię i informacje o użytkowniku (wymaga dobrego połączenia internetowego)</string>
-  <string name="config-last-revision">Wyświetl najnowszą wersję strony w przypadku gdy załadowana edycja nie jest ostatnią (zostanie pobrana później z ominięciem cache)</string>
+  <string name="config-last-revision" fuzzy="true">Wyświetl najnowszą wersję strony w przypadku gdy załadowana edycja nie jest ostatnią (zostanie pobrana później z ominięciem cache)</string>
   <string name="config-wait-edit">Opóźnienie w sekundach, zanim będzie można wprowadzać zmiany:</string>
   <string name="config-display-text">Pokaż następne</string>
   <string name="config-retrieve-edit">Przywróć swoją własną edycję</string>

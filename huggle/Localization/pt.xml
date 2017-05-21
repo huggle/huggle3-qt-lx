@@ -52,7 +52,7 @@
   <string name="no-token">Nenhum código de verificação</string>
   <string name="flags">Sinalizações</string>
   <string name="browser-none">Nenhuma página é exibida agora</string>
-  <string name="browser-load">A descarregar dif usando um renderizador web, por favor aguarde...</string>
+  <string name="browser-load" fuzzy="true">A descarregar dif usando um renderizador web, por favor aguarde...</string>
   <string name="browser-miss-summ">Não foi fornecido nenhum resumo</string>
   <string name="browser-diff">Diferença entre edições da página: $1 (pontuação $2)</string>
   <string name="browser-fail">Não foi possível obter a diferença entre edições: $1</string>
@@ -114,16 +114,16 @@
   <string name="config-confirm-talk">É necessária a confirmação para reverter a página de discussão</string>
   <string name="config-use-rollback">Usar software de reversão</string>
   <string name="config-welcome-empty-page">Enviar mensagens de boas-vindas, devido a uma uma boa edição, para utilizadores com uma página de discussão vazia</string>
-  <string name="config-conflicts-revert">Resolver automaticamente os conflitos com outros utilizadores que reverteram ou alteraram a página</string>
+  <string name="config-conflicts-revert" fuzzy="true">Resolver automaticamente os conflitos com outros utilizadores que reverteram ou alteraram a página</string>
   <string name="config-instant-reverts">Utilizar reversão instantânea (muito rápido, mas não pode ser cancelada)</string>
-  <string name="config-revert-wait">Espera para a reversão (segundos)</string>
+  <string name="config-revert-wait" fuzzy="true">Espera para a reversão (segundos)</string>
   <string name="config-revert">Reverter</string>
   <string name="config-revert-diff" fuzzy="true">Reverter edições mais recentes para a página do diff apresentado, caso tenham sido efectuados pelo mesmo utilizador (o mesmo do vândalo)</string>
   <string name="config-change-all">Alterar todas as configurações para um comportamento mais próximo do Huggle 2</string>
   <string name="config-merge-messages">Fundir as suas mensagens com outras em seções existentes</string>
   <string name="config-months-name">Usar meses como cabeçalhos em vez do nome da página</string>
   <string name="config-enable-irc">Ativar IRC</string>
-  <string name="config-remove-reverted">Remover edições que já foram revertidas por alguém</string>
+  <string name="config-remove-reverted" fuzzy="true">Remover edições que já foram revertidas por alguém</string>
   <string name="config-auto-load-history">Carregar automaticamente a história e informações do usuário (requer uma grande quantidade de largura de banda de rede)</string>
   <string name="config-require-delay">Exigem um atraso depois de cada carregamento da próxima edição, durante o qual não será possível o uso de qualquer recurso de gravação (útil para evitar teclado bug multi-toque)</string>
   <string name="config-display-text">Mostrar texto</string>

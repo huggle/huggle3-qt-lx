@@ -51,9 +51,9 @@
   <string name="disable">Vypnuto</string>
   <string name="no-token">Chybí token</string>
   <string name="flags">Flagy</string>
-  <string name="gracetime">Čekání na dokončení editačních dotazů...</string>
+  <string name="gracetime" fuzzy="true">Čekání na dokončení editačních dotazů...</string>
   <string name="browser-none">Žádná stránka nyní není zobrazena</string>
-  <string name="browser-load">Stahuji diff pomocí \"web rendering\", počkejte prosím...</string>
+  <string name="browser-load" fuzzy="true">Stahuji diff pomocí \"web rendering\", počkejte prosím...</string>
   <string name="browser-miss-summ">žádné shrnutí</string>
   <string name="browser-diff">Diff stránky: $1 (skóre: $2 )</string>
   <string name="browser-fail">Nepodařilo se načíst diff: $1</string>
@@ -114,14 +114,14 @@
   <string name="config-confirm-talk">Požadovat potvrzení pro vrácení na diskusní stránku</string>
   <string name="config-use-rollback">Použít softwarové vrácení změn</string>
   <string name="config-welcome-empty-page">Poslat uvítání uživatelům s prázdnou diskuzní stránkou za dobrou editaci</string>
-  <string name="config-conflicts-revert">Autoamticky vyřešit konflikty s ostatními uživateli, kteří revertují nebo mění tuto stránku</string>
+  <string name="config-conflicts-revert" fuzzy="true">Autoamticky vyřešit konflikty s ostatními uživateli, kteří revertují nebo mění tuto stránku</string>
   <string name="config-instant-reverts">Použít okamžité reverty (velmi rychlé, ale nemohou být zrušeny poté, co jsou povoleny)</string>
-  <string name="config-revert-wait">Revertační prodleva (v sekundách)</string>
+  <string name="config-revert-wait" fuzzy="true">Revertační prodleva (v sekundách)</string>
   <string name="config-revert">Vrátit zpět</string>
   <string name="config-months-name">Použít jako záhlaví aktuální měsíc místo názvu stránky</string>
   <string name="config-enable-irc">Povolit IRC</string>
-  <string name="config-remove-reverted">Odstranit editace, které již někdo dříve revertoval</string>
-  <string name="config-remove-old">Odstranit staré editace, pokud jsou parsovány na stránku novější editace</string>
+  <string name="config-remove-reverted" fuzzy="true">Odstranit editace, které již někdo dříve revertoval</string>
+  <string name="config-remove-old" fuzzy="true">Odstranit staré editace, pokud jsou parsovány na stránku novější editace</string>
   <string name="config-display-text">Zobrazit další</string>
   <string name="config-retrieve-edit">Zobrazit vaši vlastní editaci</string>
   <string name="config-nothing">Nic</string>

@@ -52,7 +52,7 @@
   <string name="disable">تعطيل</string>
   <string name="no-token">لا يوجد رمز مميز</string>
   <string name="flags">الأعلام</string>
-  <string name="gracetime">في انتظار إنهاء تعديل الاستعلامات...</string>
+  <string name="gracetime" fuzzy="true">في انتظار إنهاء تعديل الاستعلامات...</string>
   <string name="browser-none">ما من صفحات معروضة الآن</string>
   <string name="browser-miss-summ">لم يعطى أي ملخص</string>
   <string name="browser-diff">فرق الصفحة: $1 (النتيجة: $2)</string>
@@ -113,13 +113,13 @@
   <string name="config-confirm-wl">تحتاج إلى تأكيد لتتراجع عن تعديل تم إجراؤه بواسطة مستخدم في القائمة البيضاء</string>
   <string name="config-use-rollback">استخدم برنامج استرجاع</string>
   <string name="config-welcome-empty-page">إرسال رسائل ترحيب للمستخدمين بصفحة نقاش فارغة على تعديل جيد</string>
-  <string name="config-revert-wait">انتظار التراجع (ثوانٍ)</string>
+  <string name="config-revert-wait" fuzzy="true">انتظار التراجع (ثوانٍ)</string>
   <string name="config-revert">تراجع</string>
   <string name="config-change-all">تغيير جميع إعدادات هغل ليتصرف أشبه بهغل 2</string>
   <string name="config-merge-messages">دمج رسائلك مع الآخرين في الأقسام الموجودة</string>
   <string name="config-months-name">استخدام الأشهر كعناوين رئيسية بدلًا من اسم الصفحة</string>
   <string name="config-enable-irc">تمكين IRC (قناة دردشة ويكيبيديا)</string>
-  <string name="config-remove-old">إزالة التعديلات القديمة إذا تم تحليل أحدث تعديل لنفس الصفحة</string>
+  <string name="config-remove-old" fuzzy="true">إزالة التعديلات القديمة إذا تم تحليل أحدث تعديل لنفس الصفحة</string>
   <string name="config-auto-load-history">تحميل تاريخ ومعلومات المستخدم تلقائيًا (يتطلب الكثير من عرض النطاق الترددي للشبكة)</string>
   <string name="config-wait-edit">هناك تأخير، خلال ثوانٍ، حتى يتم تمكين ميزات الكتابة:</string>
   <string name="config-display-text">اعرض النص</string>

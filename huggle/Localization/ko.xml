@@ -52,9 +52,9 @@
   <string name="disable">비활성화</string>
   <string name="no-token">토큰 없음</string>
   <string name="flags">플래그</string>
-  <string name="gracetime">쿼리 편집이 끝나기를 기다리는 중...</string>
+  <string name="gracetime" fuzzy="true">쿼리 편집이 끝나기를 기다리는 중...</string>
   <string name="browser-none">지금 표시되는 문서가 없습니다</string>
-  <string name="browser-load">웹 렌더링 폴백을 사용하여 차이를 다운로드하고 있습니다, 기다려 주세요...</string>
+  <string name="browser-load" fuzzy="true">웹 렌더링 폴백을 사용하여 차이를 다운로드하고 있습니다, 기다려 주세요...</string>
   <string name="browser-miss-summ">제공된 요약이 없습니다</string>
   <string name="browser-diff">문서의 차이: $1 (점수: $2)</string>
   <string name="browser-fail">차이를 얻을 수 없습니다: $1</string>
@@ -117,9 +117,9 @@
   <string name="config-confirm-talk">토론 문서에 대한 편집을 되돌릴 때 권한 요청</string>
   <string name="config-use-rollback">소프트웨어 되돌리기 기능 사용</string>
   <string name="config-welcome-empty-page">좋은 편집을 한 빈 토론 문서를 가진 사용자에게 환영 메시지를 보내기</string>
-  <string name="config-conflicts-revert">자동으로 문서를 되돌리거나 바꾼 다른 사용자와의 충돌을 해결</string>
+  <string name="config-conflicts-revert" fuzzy="true">자동으로 문서를 되돌리거나 바꾼 다른 사용자와의 충돌을 해결</string>
   <string name="config-instant-reverts">즉시 되돌리기 사용 (매우 빠르지만, 실행되면 취소할 수 없습니다)</string>
-  <string name="config-revert-wait">되돌리기 대기 (초)</string>
+  <string name="config-revert-wait" fuzzy="true">되돌리기 대기 (초)</string>
   <string name="config-revert">되돌리기</string>
   <string name="config-revert-diff">같은 문서 훼손자에 의해 이루어진 이 편집보다 최근 편집 되돌리기</string>
   <string name="config-change-all">모든 huggle 옵션을 huggle 2와 비슷하게 하기</string>
@@ -127,10 +127,10 @@
   <string name="config-months-name">문서의 이름 대신 월을 머릿글로 사용</string>
   <string name="config-automatic-warning">\"경고 보내기\" 사용시 자동 경고 유형과 레벨 사용하기</string>
   <string name="config-enable-irc">IRC 활성화</string>
-  <string name="config-remove-reverted">다른 누군가가 이미 되돌린 편집을 제거</string>
-  <string name="config-remove-old">동일 문서에 더 새로운 편집의 구문이 분석되면 오래된 편집은 제거합니다</string>
+  <string name="config-remove-reverted" fuzzy="true">다른 누군가가 이미 되돌린 편집을 제거</string>
+  <string name="config-remove-old" fuzzy="true">동일 문서에 더 새로운 편집의 구문이 분석되면 오래된 편집은 제거합니다</string>
   <string name="config-auto-load-history">자동으로 역사와 사용자 정보를 불러오기 (많은 네트워크 대역폭 필요)</string>
-  <string name="config-last-revision">현재 불러들인 편집이 마지막 판이 아닌 경우 문서의 마지막 판을 표시합니다 (캐시를 우회하여 다운로드합니다)</string>
+  <string name="config-last-revision" fuzzy="true">현재 불러들인 편집이 마지막 판이 아닌 경우 문서의 마지막 판을 표시합니다 (캐시를 우회하여 다운로드합니다)</string>
   <string name="config-wait-edit">쓰기 기능이 활성활될 때까지의 지연 시간 (초 단위):</string>
   <string name="config-display-text">다음 표시</string>
   <string name="config-retrieve-edit">자신의 편집 가져오기</string>

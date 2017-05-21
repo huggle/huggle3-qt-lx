@@ -50,7 +50,7 @@
   <string name="disable">Išjungti</string>
   <string name="no-token">Nėra žetono</string>
   <string name="flags">Vėliavos</string>
-  <string name="gracetime">Laukiama redagavimo užklausų pabaigos...</string>
+  <string name="gracetime" fuzzy="true">Laukiama redagavimo užklausų pabaigos...</string>
   <string name="browser-none">Dabar nėra rodomas joks puslapis</string>
   <string name="browser-miss-summ">Santrauka nebuvo pateikta</string>
   <string name="about-contributors">Kūrėjai:</string>
@@ -104,15 +104,15 @@
   <string name="config-confirm-wl">Reikalauti patvirtinimo kai bandoma atsisakyti įnašo, kurį atliko baltojo sąrašo vartotojas</string>
   <string name="config-confirm-talk">Reikalauti patvirtinimo kai bandoma atsisakyti aptarimo puslapio įnašo</string>
   <string name="config-welcome-empty-page">Siųsti sveikinimo pranešimus vartotojams, kurių aptarimų puslapis yra tuščias, kai jie atlieka gerą pakeitimą</string>
-  <string name="config-conflicts-revert">Automatiškai išspręsti konfliktus su kitais vartotojais, kurie atsisakė pakeitimų ar pakeitė puslapį</string>
+  <string name="config-conflicts-revert" fuzzy="true">Automatiškai išspręsti konfliktus su kitais vartotojais, kurie atsisakė pakeitimų ar pakeitė puslapį</string>
   <string name="config-instant-reverts">Naudoti momentinius atsisakymus (labai greiti, bet negali būti atšaukti po įvykdymo)</string>
-  <string name="config-revert-wait">Atsisakymo laukimas (sekundėmis)</string>
+  <string name="config-revert-wait" fuzzy="true">Atsisakymo laukimas (sekundėmis)</string>
   <string name="config-revert">Grąžinti</string>
   <string name="config-merge-messages">Sujungti savo žinutes su kitomis, egzistuojančiose sekcijose</string>
   <string name="config-months-name">Naudoti mėnesius kaip antraštes, vietoj puslapio pavadinimo</string>
   <string name="config-automatic-warning">Naudoti automatinį įspėjimo tipą ir lygį funkcijai „siųsti įspėjimą“</string>
   <string name="config-enable-irc">Įgalinti IRC</string>
-  <string name="config-remove-reverted">Pašalina įnašus, kurių jau kažkas atsisakė</string>
+  <string name="config-remove-reverted" fuzzy="true">Pašalina įnašus, kurių jau kažkas atsisakė</string>
   <string name="config-auto-load-history">Automatiškai įkelti istoriją ir vartotojo informaciją (reikalauja daug tinklo pralaidumo)</string>
   <string name="config-display-text">Rodyti kitą</string>
   <string name="config-retrieve-edit">Gauti savo paties įnašą</string>

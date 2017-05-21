@@ -52,9 +52,9 @@
   <string name="disable">禁用</string>
   <string name="no-token">无标记</string>
   <string name="flags">标记</string>
-  <string name="gracetime">正在等待编辑查询结束...</string>
+  <string name="gracetime" fuzzy="true">正在等待编辑查询结束...</string>
   <string name="browser-none">现在没有页面可显示</string>
-  <string name="browser-load">通过web渲染备选下载版本差异中，请耐心等待…</string>
+  <string name="browser-load" fuzzy="true">通过web渲染备选下载版本差异中，请耐心等待…</string>
   <string name="browser-miss-summ">未提供摘要</string>
   <string name="browser-diff">页面差异：$1（分数：$2）</string>
   <string name="browser-fail">无法检索版本差异：$1</string>
@@ -117,9 +117,9 @@
   <string name="config-confirm-talk">回退在讨论页上做出的编辑时需要确认</string>
   <string name="config-use-rollback">使用软件回退</string>
   <string name="config-welcome-empty-page">发送欢迎信息到作出了良好编辑的只有空讨论页的用户</string>
-  <string name="config-conflicts-revert">自动解决与其他用户恢复或者更改该页面的冲突</string>
+  <string name="config-conflicts-revert" fuzzy="true">自动解决与其他用户恢复或者更改该页面的冲突</string>
   <string name="config-instant-reverts">使用立即回退（非常快，但执行后无法撤销）</string>
-  <string name="config-revert-wait">回退等待（秒）</string>
+  <string name="config-revert-wait" fuzzy="true">回退等待（秒）</string>
   <string name="config-revert">回退</string>
   <string name="config-revert-diff">回退页面上比显示的差异更新的编辑，当他们是同一个用户做出时</string>
   <string name="config-change-all">更改所有Huggle设置以尽量像Huggle 2那样运转</string>
@@ -127,10 +127,10 @@
   <string name="config-months-name">使用月份而不是页面名作为标题</string>
   <string name="config-automatic-warning">在“发送警告”功能中自动选择警告类型和级别</string>
   <string name="config-enable-irc">启用IRC</string>
-  <string name="config-remove-reverted">移除已经被别人恢复的编辑</string>
-  <string name="config-remove-old">如果对同一页面的新编辑被解析，就移除旧编辑</string>
+  <string name="config-remove-reverted" fuzzy="true">移除已经被别人恢复的编辑</string>
+  <string name="config-remove-old" fuzzy="true">如果对同一页面的新编辑被解析，就移除旧编辑</string>
   <string name="config-auto-load-history">自动加载历史记录和用户信息（需要很多网络带宽）</string>
-  <string name="config-last-revision">如果当前加载的编辑不是最近修订，就显示页面的最近修订（将跳过缓存传输-下载它）</string>
+  <string name="config-last-revision" fuzzy="true">如果当前加载的编辑不是最近修订，就显示页面的最近修订（将跳过缓存传输-下载它）</string>
   <string name="config-require-delay">每次载入下一次编辑前需要延迟一段时间，此时不可能使用任何写入功能（这在您需要解决键盘多次点按问题时很有用）</string>
   <string name="config-wait-edit">您需要等待编辑功能之间被开启的时间（秒）：</string>
   <string name="config-display-text">显示下一个</string>

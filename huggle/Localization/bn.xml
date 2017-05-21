@@ -52,9 +52,9 @@
   <string name="disable">নিস্ক্রিয়</string>
   <string name="no-token">কোনো কুপন নেই</string>
   <string name="flags">পতাকাসমূহ</string>
-  <string name="gracetime">সম্পাদনা কোয়েরি সমাপ্তির জন্য অপেক্ষা করা হচ্ছে...</string>
+  <string name="gracetime" fuzzy="true">সম্পাদনা কোয়েরি সমাপ্তির জন্য অপেক্ষা করা হচ্ছে...</string>
   <string name="browser-none">এখন কোনো পাতা প্রদর্শিত হয়নি</string>
-  <string name="browser-load">একটি ওয়েব রেন্ডারিং ফলব্যাক ব্যবহার করে পার্থক্য ডাউনলোড হচ্ছে, দয়া করে অপেক্ষা করুন...</string>
+  <string name="browser-load" fuzzy="true">একটি ওয়েব রেন্ডারিং ফলব্যাক ব্যবহার করে পার্থক্য ডাউনলোড হচ্ছে, দয়া করে অপেক্ষা করুন...</string>
   <string name="browser-miss-summ">কোন সারাংশ দেওয়া হয়নি</string>
   <string name="browser-diff">পাতার পার্থক্য: $1 (স্কোর: $2)</string>
   <string name="browser-fail">পার্থক্য আনতে অক্ষম: $1</string>
@@ -117,9 +117,9 @@
   <string name="config-confirm-talk">আলাপ পাতায় করা সম্পাদনা বাতিলের জন্য নিশ্চিতকরণ দরকার</string>
   <string name="config-use-rollback">সফটওয়ারের রোলব্যাক ব্যবহার করুন</string>
   <string name="config-welcome-empty-page">ভালো সম্পাদনা করলে আলাপ পাতা খালি থাকা ব্যবহারকারীদের স্বাগত বার্তা পাঠান</string>
-  <string name="config-conflicts-revert">অন্যান্য ব্যবহারকারী যারা পৃষ্ঠাটিতে পরিবর্তন বা বাতিল করে তাঁর সাথে স্বয়ংক্রিয়ভাবে সঙ্ঘাত সমাধান করুন</string>
+  <string name="config-conflicts-revert" fuzzy="true">অন্যান্য ব্যবহারকারী যারা পৃষ্ঠাটিতে পরিবর্তন বা বাতিল করে তাঁর সাথে স্বয়ংক্রিয়ভাবে সঙ্ঘাত সমাধান করুন</string>
   <string name="config-instant-reverts">তাত্ক্ষণিক বাতিল ব্যবহার করুন (খুব দ্রুত, কিন্তু একবার কার্যকর হলে বাতিল করা যাবে না)</string>
-  <string name="config-revert-wait">বাতিলের সময় (সেকেন্ড)</string>
+  <string name="config-revert-wait" fuzzy="true">বাতিলের সময় (সেকেন্ড)</string>
   <string name="config-revert">বাতিল করুন</string>
   <string name="config-revert-diff">পাতায় সম্পাদনা বাতিল করুন সেটি প্রদর্শিত পার্থক্যের চেয়ে নতুন ও যদি তা একই ধ্বংসপ্রবণ ব্যবহারকারী দ্বারা করা হয়</string>
   <string name="config-change-all">হাগল ২-এর মত আরো আচরণ করে সব হাগল সেটিংস পরিবর্তন করুন</string>
@@ -127,10 +127,10 @@
   <string name="config-months-name">পৃষ্ঠার নামের পরিবর্তে শিরোলেখ হিসাবে মাস ব্যবহার করুন</string>
   <string name="config-automatic-warning">\"সতর্ক বার্তা পাঠান\" ক্রিয়ায় স্বয়ংক্রিয় সতর্কবার্তার ধরন ও স্তর ব্যবহার করুন</string>
   <string name="config-enable-irc">IRC সক্রিয় করুন</string>
-  <string name="config-remove-reverted">সম্পাদনা সরান যা ইতিমধ্যে অন্য কেউ দ্বারা বাতিল করা হয়েছে</string>
-  <string name="config-remove-old">পুরান সম্পাদনা সরান যদি একই পাতায় নতুনতর একটি সম্পাদনা করা হয়</string>
+  <string name="config-remove-reverted" fuzzy="true">সম্পাদনা সরান যা ইতিমধ্যে অন্য কেউ দ্বারা বাতিল করা হয়েছে</string>
+  <string name="config-remove-old" fuzzy="true">পুরান সম্পাদনা সরান যদি একই পাতায় নতুনতর একটি সম্পাদনা করা হয়</string>
   <string name="config-auto-load-history">ইতিহাস ও ব্যবহারকারী তথ্য স্বয়ংক্রিয়ভাবে লোড করুন (প্রচুর নেটওয়ার্ক ব্যান্ডউইথের প্রয়োজন)</string>
-  <string name="config-last-revision">বর্তমান লোড করা সম্পাদনা শেষ সংস্করণ না হলে পাতার শেষ সংস্করণ দেখান (এটা ক্যাশে বাইপাসের মাধ্যমে পোস্ট-ডাউনলোড করবে)</string>
+  <string name="config-last-revision" fuzzy="true">বর্তমান লোড করা সম্পাদনা শেষ সংস্করণ না হলে পাতার শেষ সংস্করণ দেখান (এটা ক্যাশে বাইপাসের মাধ্যমে পোস্ট-ডাউনলোড করবে)</string>
   <string name="config-require-delay">পরবর্তী সম্পাদনায় প্রতিটি লোডের জন্য বিলম্ব প্রয়োজন, যে সময়ে কোনো লেখার বৈশিষ্ট্য ব্যবহার করা সম্ভব হবে না (কীবোর্ড বহু-প্রেস বাগ এড়ানো জন্য দরকারী)</string>
   <string name="config-wait-edit">লেখার বৈশিষ্ট্যগুলি সক্রিয় করা আগে, সেকেন্ডে, বিলম্ব:</string>
   <string name="config-display-text">পরবর্তী দেখান</string>

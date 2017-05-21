@@ -51,9 +51,9 @@
   <string name="disable">Diweredekaat</string>
   <string name="no-token">Jedouer ebet</string>
   <string name="flags">Bannieloù</string>
-  <string name="gracetime">En engortoz a echuiñ goulennoù evit kemmañ...</string>
+  <string name="gracetime" fuzzy="true">En engortoz a echuiñ goulennoù evit kemmañ...</string>
   <string name="browser-none">N\'eus diskwelet pajenn ebet bremañ</string>
-  <string name="browser-load">Pellgargañ diff en ur implijout un deouez Web sikour, gortozit mar plij</string>
+  <string name="browser-load" fuzzy="true">Pellgargañ diff en ur implijout un deouez Web sikour, gortozit mar plij</string>
   <string name="browser-miss-summ">N\'eus bet pourchaset diverradur ebet</string>
   <string name="browser-diff">Diff ar bajenn : $1 (skor : $2)</string>
   <string name="browser-fail">N\'haller ket adtapout an diff: $1</string>
@@ -118,8 +118,8 @@
   <string name="config-months-name">Implijout ar mizioù evel talbennoù e-lec\'h anv ar bajenn</string>
   <string name="config-automatic-warning">Implijout seurtoù ha liveoù kemenn emgefre en arc\'hweladur « kas kemenn »</string>
   <string name="config-enable-irc">Gweredekaat IRC</string>
-  <string name="config-remove-reverted">Dilemel ar c\'heñchamantoù a oa bet nullet dija gant unan bennak all</string>
-  <string name="config-remove-old">Lemel ar c\'hemmoù kozh ma vez dielfennet ur c\'hemm neveso\'h er memes pajenn</string>
+  <string name="config-remove-reverted" fuzzy="true">Dilemel ar c\'heñchamantoù a oa bet nullet dija gant unan bennak all</string>
+  <string name="config-remove-old" fuzzy="true">Lemel ar c\'hemmoù kozh ma vez dielfennet ur c\'hemm neveso\'h er memes pajenn</string>
   <string name="config-auto-load-history">Kargit emgefreek an istor hag an titouroù implijer (ezhomm zo eus ur vandenn drafet eus ar rouedad)</string>
   <string name="config-display-text">Diskwel ar pezh zo war-lec\'h</string>
   <string name="config-retrieve-edit">Adkavit ho cheñchamant</string>

@@ -52,9 +52,9 @@
   <string name="disable">Matikan</string>
   <string name="no-token">Tidak ada token</string>
   <string name="flags">Tanda</string>
-  <string name="gracetime">Menunggu untuk menyunting permintaan berakhir...</string>
+  <string name="gracetime" fuzzy="true">Menunggu untuk menyunting permintaan berakhir...</string>
   <string name="browser-none">Tidak ada halaman ditampilkan sekarang</string>
-  <string name="browser-load">Mengunduh diff menggunakan sebuah sistem pengambil web, mohon menunggu...</string>
+  <string name="browser-load" fuzzy="true">Mengunduh diff menggunakan sebuah sistem pengambil web, mohon menunggu...</string>
   <string name="browser-miss-summ">Tidak ada ringkasan</string>
   <string name="browser-diff">Perbedaan halaman: $1 (nilai: $2)</string>
   <string name="browser-fail">Tidak dapat mengambil perbedaan: $1</string>
@@ -116,9 +116,9 @@
   <string name="config-confirm-talk">Perlu konfirmasi untuk mengembalikan halaman pembicaraan</string>
   <string name="config-use-rollback">Gunakan pengembalian perangkat lunak</string>
   <string name="config-welcome-empty-page">Kirim ucapan selamat datang kepada pengguna dengan halaman pembicaraan kosong atas suntingan bagusnya</string>
-  <string name="config-conflicts-revert">Selesaikan konflik secara otomatis dengan pengguna-pengguna lain yang membalikkan atau mengedit halaman tersebut</string>
+  <string name="config-conflicts-revert" fuzzy="true">Selesaikan konflik secara otomatis dengan pengguna-pengguna lain yang membalikkan atau mengedit halaman tersebut</string>
   <string name="config-instant-reverts">Gunakan pengembalian segera (sangat cepat tetapi tidak bisa dibatalkan dalam sekali perlakuan)</string>
-  <string name="config-revert-wait">Waktu tunggu pembalikan (detik)</string>
+  <string name="config-revert-wait" fuzzy="true">Waktu tunggu pembalikan (detik)</string>
   <string name="config-revert">Batalkan</string>
   <string name="config-revert-diff">Batalkan suntingan ke halaman yang lebih baru daripada yang ditampilkan oleh perbedaan (diff) jika suntingan itu dibuat oleh pengguna vandalisme yang sama</string>
   <string name="config-change-all">Ubah semua pengaturan Huggle untuk bekerja seperti Huggle 2</string>
@@ -126,10 +126,10 @@
   <string name="config-months-name">Gunakan bulan sebagai judul kepada alih-alih nama halaman</string>
   <string name="config-automatic-warning">Gunakan jenis dan tingkat peringatan otomatis pada fungsi \"kirimkan peringatan\"</string>
   <string name="config-enable-irc">Aktifkan IRC</string>
-  <string name="config-remove-reverted">Hapus suntingan yang sudah dibalikkan oleh pengguna lain</string>
-  <string name="config-remove-old">Hapus suntingan lain jika suntingan baru pada halaman yang sama terurai</string>
+  <string name="config-remove-reverted" fuzzy="true">Hapus suntingan yang sudah dibalikkan oleh pengguna lain</string>
+  <string name="config-remove-old" fuzzy="true">Hapus suntingan lain jika suntingan baru pada halaman yang sama terurai</string>
   <string name="config-auto-load-history">Muat sejarah dan informasi pengguna secara otomatis (membutuhkan banyak bandwidth jaringan)</string>
-  <string name="config-last-revision">Tampilkan revisi terakhir halaman jika suntingan yang termuat saat ini bukan revisi terbaru (akan diunduh tanpa tembolok)</string>
+  <string name="config-last-revision" fuzzy="true">Tampilkan revisi terakhir halaman jika suntingan yang termuat saat ini bukan revisi terbaru (akan diunduh tanpa tembolok)</string>
   <string name="config-wait-edit">Penundaan, dalam detik, hingga fitus tulis diaktifkan:</string>
   <string name="config-display-text">Tampilkan setelahnya</string>
   <string name="config-retrieve-edit">Ambil suntingan sendiri</string>

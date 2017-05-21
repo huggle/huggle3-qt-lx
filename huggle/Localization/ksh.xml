@@ -107,10 +107,10 @@
   <string name="config-merge-messages">Donn Ding Nohreeschte met andere en de vörhande Afschnedde zersamme schmiiße</string>
   <string name="config-months-name">Nämm Mohnde als Övverchreffte un nit de Övverschrefte vun de Sigge</string>
   <string name="config-enable-irc">Donn der &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Internet Relay Chat\"&gt;IRC&lt;/i&gt; aanschallde</string>
-  <string name="config-remove-reverted">Donn di Änderonge fott lohße, di ene ander ald zerök jenumme hät</string>
-  <string name="config-remove-old">Donn de älldere Änderonge fott lohße, wann en neuere Änderong för desällve Sigg beärbeidt weed</string>
+  <string name="config-remove-reverted" fuzzy="true">Donn di Änderonge fott lohße, di ene ander ald zerök jenumme hät</string>
+  <string name="config-remove-old" fuzzy="true">Donn de älldere Änderonge fott lohße, wann en neuere Änderong för desällve Sigg beärbeidt weed</string>
   <string name="config-auto-load-history">Donn de Verjangeheid un de Dahte övver dä Metmaacher automttesch lahde — dat scheck ävver öhndlesch Dahte övver et Näzwärk.</string>
-  <string name="config-last-revision">Zeijsch de läzde Väsjohn vun dä Sigg wann de jelahde Änderong nit de läzde Väsjohn es — se weed spähder eronger jelahde, aam &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„Zwescheschpeijscher “\"&gt;cache&lt;/i&gt; vörbei.</string>
+  <string name="config-last-revision" fuzzy="true">Zeijsch de läzde Väsjohn vun dä Sigg wann de jelahde Änderong nit de läzde Väsjohn es — se weed spähder eronger jelahde, aam &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„Zwescheschpeijscher “\"&gt;cache&lt;/i&gt; vörbei.</string>
   <string name="config-display-text" fuzzy="true">Zeisch de Näxte aan</string>
   <string name="config-retrieve-edit">De eije Änderong holle</string>
   <string name="config-nothing">Nix</string>

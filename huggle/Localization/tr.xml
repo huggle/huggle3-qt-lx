@@ -52,9 +52,9 @@
   <string name="disable">Devre dışı bırak</string>
   <string name="no-token">Belirteç yok</string>
   <string name="flags">İşaretler</string>
-  <string name="gracetime">Düzenleme sorgularının sona ermesi bekleniyor...</string>
+  <string name="gracetime" fuzzy="true">Düzenleme sorgularının sona ermesi bekleniyor...</string>
   <string name="browser-none">Hiçbir sayfa görüntülenmiyor</string>
-  <string name="browser-load">Fark, web rendering geri dönüşü kullanılarak indiriliyor, lütfen bekleyin</string>
+  <string name="browser-load" fuzzy="true">Fark, web rendering geri dönüşü kullanılarak indiriliyor, lütfen bekleyin</string>
   <string name="browser-miss-summ">Özet girilmedi</string>
   <string name="browser-diff">Fark: $1 (puan: $2)</string>
   <string name="browser-fail">Fark: $1 getirilemiyor</string>
@@ -116,9 +116,9 @@
   <string name="config-confirm-talk">Mesaj sayfasının geri alınabilmesi için onay gerekli</string>
   <string name="config-use-rollback">Yazılım geri alma kullan</string>
   <string name="config-welcome-empty-page">İyi düzenleme yapan, boş mesaj sayfasına sahip kullanıcılara hoşgeldin mesajı gönder</string>
-  <string name="config-conflicts-revert">Geri alan veya sayfayı değiştiren diğer kullanıcılarla çatışmaları otomatik olarak kaldır</string>
+  <string name="config-conflicts-revert" fuzzy="true">Geri alan veya sayfayı değiştiren diğer kullanıcılarla çatışmaları otomatik olarak kaldır</string>
   <string name="config-instant-reverts">Ani geri alma kullan (çok hızlı, fakat başladıktan sonra durdurulamaz)</string>
-  <string name="config-revert-wait">Geri alma zamanı (saniye)</string>
+  <string name="config-revert-wait" fuzzy="true">Geri alma zamanı (saniye)</string>
   <string name="config-revert">Geri al</string>
   <string name="config-revert-diff">Eğer gösterilen değişiklerden daha yeni olan değişiklikler aynı vandal kullanıcı tarafından yapılmışsa söz konusu değişiklikleri geri al</string>
   <string name="config-change-all">Huggle\'ın tüm ayarlarını huggle 2 versiyonuna çevir</string>
@@ -126,10 +126,10 @@
   <string name="config-months-name">Başlık olarak sayfanın adı yerine ayları kullan</string>
   <string name="config-automatic-warning">\"Uyarı gönder\" fonksiyonunda otomatik uyarı türü ve seviyesini kullan</string>
   <string name="config-enable-irc">IRC\'i etkinleştir</string>
-  <string name="config-remove-reverted">Başkası tarafından geri alınmış değişiklikleri listeden çıkar</string>
-  <string name="config-remove-old">Eğer sayfada yeni değişiklikler yapılmışsa eskilerini kaldır</string>
+  <string name="config-remove-reverted" fuzzy="true">Başkası tarafından geri alınmış değişiklikleri listeden çıkar</string>
+  <string name="config-remove-old" fuzzy="true">Eğer sayfada yeni değişiklikler yapılmışsa eskilerini kaldır</string>
   <string name="config-auto-load-history">Geçmişi ve kullanıcı bilgisini otomatik yükle (çok fazla ağ kullanımı gerektirir)</string>
-  <string name="config-last-revision">Eğer şuan yüklü olan değişiklik son değişiklik değilse en yeni sürümünü göster (önbelleği atlayarak sonradan indirecektir)</string>
+  <string name="config-last-revision" fuzzy="true">Eğer şuan yüklü olan değişiklik son değişiklik değilse en yeni sürümünü göster (önbelleği atlayarak sonradan indirecektir)</string>
   <string name="config-require-delay">Her yeni değişikliği yüklerken geciktirme gereksin, herhangi bir yazma özelliği kullanılamasın (klavyede çoklu basma sorununu çözmeye çalışırken faydalıdır)</string>
   <string name="config-wait-edit">Düzenleme özelliklerinin etkinleştirilmesi için beklemeniz gereken süre (saniye):</string>
   <string name="config-display-text">Sonrakini göster</string>

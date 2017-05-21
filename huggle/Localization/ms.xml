@@ -51,7 +51,7 @@
   <string name="no-token">Tiada token</string>
   <string name="flags">Bendera</string>
   <string name="browser-none">Tiada laman sedang dipaparkan</string>
-  <string name="browser-load">Perbezaan sedang dimuat turun dengan sistem paparan web, sila tunggu...</string>
+  <string name="browser-load" fuzzy="true">Perbezaan sedang dimuat turun dengan sistem paparan web, sila tunggu...</string>
   <string name="browser-miss-summ">Tiada ringkasan diberikan</string>
   <string name="browser-diff">Perbezaan laman: $1 (markah: $2)</string>
   <string name="browser-fail">Tidak dapat mengambil perbezaan: $1</string>
@@ -112,9 +112,9 @@
   <string name="config-confirm-talk">Wajibkan pengesahan untuk pembalikan suntingan di laman perbincangan</string>
   <string name="config-use-rollback">Gunakan rollback perisian</string>
   <string name="config-welcome-empty-page">Hantar ucapan selamat datang kepada pengguna yang kosong laman perbincangannya atas suntingan bagus</string>
-  <string name="config-conflicts-revert">Selesaikan konflik secara automatik dengan pengguna-pengguna lain yang membalikkan atau menyunting laman berkenaan</string>
+  <string name="config-conflicts-revert" fuzzy="true">Selesaikan konflik secara automatik dengan pengguna-pengguna lain yang membalikkan atau menyunting laman berkenaan</string>
   <string name="config-instant-reverts">Gunakan pengunduran segera (sangat cepat tetapi tidak boleh dibatalkan sekali dilakukan)</string>
-  <string name="config-revert-wait">Masa tunggu pembalikan (saat)</string>
+  <string name="config-revert-wait" fuzzy="true">Masa tunggu pembalikan (saat)</string>
   <string name="config-revert">Undurkan</string>
   <string name="config-revert-diff" fuzzy="true">Balikkan suntingan yang lebih baru daripada perbezaan yang dipaparkan sekiranya ia dibuat oleh pengguna (pelaku musnah) yang sama</string>
   <string name="config-change-all">Tukarkan semua tetapan huggle supaya beragam seakan-akan huggle 2</string>
@@ -122,10 +122,10 @@
   <string name="config-months-name">Gunakan bulan tarikh sebagai pengepala dan bukan nama laman</string>
   <string name="config-automatic-warning">Gunakan jenis dan tahap amaran automatik pada fungsi \"hantar amaran\"</string>
   <string name="config-enable-irc">Bolehkan IRC</string>
-  <string name="config-remove-reverted">Singkirkan suntingan yang sudah dibalikkan oleh orang lain</string>
-  <string name="config-remove-old">Singkirkan suntingan lain jika suntingan baru pada laman yang sama terhurai</string>
+  <string name="config-remove-reverted" fuzzy="true">Singkirkan suntingan yang sudah dibalikkan oleh orang lain</string>
+  <string name="config-remove-old" fuzzy="true">Singkirkan suntingan lain jika suntingan baru pada laman yang sama terhurai</string>
   <string name="config-auto-load-history" fuzzy="true">Muatkan sejarah dan maklumat pengguna secara automatik (memerlukan sambungan rangkaian yang amat laju)</string>
-  <string name="config-last-revision">Paparkan semakan terakhir laman sekiranya suntingan yang termuat semasa bukan semakan terbaru (akan dimuat turun melampaui cache)</string>
+  <string name="config-last-revision" fuzzy="true">Paparkan semakan terakhir laman sekiranya suntingan yang termuat semasa bukan semakan terbaru (akan dimuat turun melampaui cache)</string>
   <string name="config-require-delay" fuzzy="true">Kehendaki penangguhan selepas setiap muatan suntingan seterusnya untuk melarang sebarang penggunaan ciri-ciri tulis (berguna jika perlu menyelesaikan pepijat dari berkali-kali menekan kekunci)</string>
   <string name="config-wait-edit" fuzzy="true">Tempoh perlu menunggu antara ciri-ciri sunting dibolehkan (saat):</string>
   <string name="config-display-text">Paparkan seterusnya</string>

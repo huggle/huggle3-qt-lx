@@ -78,7 +78,7 @@
   <string name="config-welcome-empty-page">კარგი რედაქტირებებისათვის მომხმარებლებისთვის მისალმების შეტყობინების გაგზავნა.</string>
   <string name="config-revert">გაუქმება</string>
   <string name="config-enable-irc">IRC-ის გააქტიურება</string>
-  <string name="config-remove-reverted">იმ ცვლილებების წაშლა, რომელიც ვიღაცამ უკვე გააუქმა</string>
+  <string name="config-remove-reverted" fuzzy="true">იმ ცვლილებების წაშლა, რომელიც ვიღაცამ უკვე გააუქმა</string>
   <string name="config-display-text">შემდეგის ჩვენება</string>
   <string name="config-nothing">არაფერი</string>
   <string name="config-bot-edits">ბოტის რედაქტირებები (b)</string>
