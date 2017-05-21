@@ -52,7 +52,7 @@
   <string name="no-token">Ingen nyckel</string>
   <string name="flags">Flaggor</string>
   <string name="browser-none">Ingen sida visas nu</string>
-  <string name="browser-load">Ladda ner skillnaden genom att använda en \"webb-rendering fallback\", vänligen vänta...</string>
+  <string name="browser-load" fuzzy="true">Ladda ner skillnaden genom att använda en \"webb-rendering fallback\", vänligen vänta...</string>
   <string name="browser-miss-summ">Ingen sammanfattning angavs</string>
   <string name="browser-diff">Skillnad på sida: $1 (poäng: $2)</string>
   <string name="browser-fail">Det gick inte att hämta skillnad:$1</string>

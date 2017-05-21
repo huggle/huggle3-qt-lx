@@ -52,9 +52,9 @@
   <string name="disable">Uitschakelen</string>
   <string name="no-token">Geen token</string>
   <string name="flags">Markeringen</string>
-  <string name="gracetime">Wacht tot de bewerkingen zijn afgerond...</string>
+  <string name="gracetime" fuzzy="true">Wacht tot de bewerkingen zijn afgerond...</string>
   <string name="browser-none">Er wordt geen pagina weergegeven</string>
-  <string name="browser-load">De verschillen worden geladen door terugvallen op webrenderen. Even geduld...</string>
+  <string name="browser-load" fuzzy="true">De verschillen worden geladen door terugvallen op webrenderen. Even geduld...</string>
   <string name="browser-miss-summ">Er werd geen samenvatting opgegeven</string>
   <string name="browser-diff">Verschillen in pagina: $1 (score: $2)</string>
   <string name="browser-fail">De verschillen kunnen niet weergegeven worden: $1</string>
@@ -116,9 +116,9 @@
   <string name="config-confirm-talk">Bevestiging vragen voor het terugdraaien van een bewerking op een overlegpagina</string>
   <string name="config-use-rollback">Terugdraaien via software</string>
   <string name="config-welcome-empty-page">Welkomstberichten plaatsen voor gebruikers met een lege overlegpagina na een goede bewerking</string>
-  <string name="config-conflicts-revert">Automatisch conflicten oplossen met andere gebruikers die op de pagina terugdraaien of bewerken</string>
+  <string name="config-conflicts-revert" fuzzy="true">Automatisch conflicten oplossen met andere gebruikers die op de pagina terugdraaien of bewerken</string>
   <string name="config-instant-reverts">Direct terugdraaien gebruiken (erg snel, maar kan niet geannuleerd worden als het wordt uitgevoerd)</string>
-  <string name="config-revert-wait">Wachten met terugdraaien (in seconden)</string>
+  <string name="config-revert-wait" fuzzy="true">Wachten met terugdraaien (in seconden)</string>
   <string name="config-revert">Terugdraaien</string>
   <string name="config-revert-diff">Bewerkingen aan pagina terugdraaien die nieuwer zijn dan de weergegeven diff, als ze zijn gemaakt door dezelfde vandaliserende gebruiker</string>
   <string name="config-change-all">Alle instellingen van Huggle zo maken dat ze zich meer als Huggle 2 gedragen</string>
@@ -126,10 +126,10 @@
   <string name="config-months-name">Maanden als kopteksten gebruiken in plaatsen van de paginanaam</string>
   <string name="config-automatic-warning">Automatische waarden voor type en niveau van de waarschuwing gebruiken voor de functie \"Waarschuwing sturen\"</string>
   <string name="config-enable-irc">IRC inschakelen</string>
-  <string name="config-remove-reverted">Bewerkingen verwijderen die al zijn teruggedraaid door iemand anders</string>
-  <string name="config-remove-old">Oude bewerkingen verwijderen als de nieuwere bewerking op dezelfde pagina verwerkt is</string>
+  <string name="config-remove-reverted" fuzzy="true">Bewerkingen verwijderen die al zijn teruggedraaid door iemand anders</string>
+  <string name="config-remove-old" fuzzy="true">Oude bewerkingen verwijderen als de nieuwere bewerking op dezelfde pagina verwerkt is</string>
   <string name="config-auto-load-history">Automatisch geschiedenis en gebruikersgegevens laden (vereist veel bandbreedte)</string>
-  <string name="config-last-revision">De laatste versie van pagina weergeven in het geval de huidige geladen bewerking niet de laatste versie is (wordt buiten de cache om geladen)</string>
+  <string name="config-last-revision" fuzzy="true">De laatste versie van pagina weergeven in het geval de huidige geladen bewerking niet de laatste versie is (wordt buiten de cache om geladen)</string>
   <string name="config-require-delay">Vereis een vertraging na het laden van iedere bewerking, gedurende welke tijd het niet mogelijk is om functies waar schrijven voor nodig is te gebruiken (handig voor het vermijden van meerdere toetsaanslagen)</string>
   <string name="config-wait-edit">De vertraging, in seconden, totdat schrijffuncties weer beschikbaar zijn:</string>
   <string name="config-display-text">Volgende weergeven</string>

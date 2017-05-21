@@ -52,9 +52,9 @@
   <string name="disable">Оневозможи</string>
   <string name="no-token">Нема шифра</string>
   <string name="flags">Бележници</string>
-  <string name="gracetime">Чекаме да се завршат барањата за уредување...</string>
+  <string name="gracetime" fuzzy="true">Чекаме да се завршат барањата за уредување...</string>
   <string name="browser-none">Сега не се прикажува ниедна страница</string>
-  <string name="browser-load">Ги преземам разликите користејќи резервен семрежен испис. Почекајте...</string>
+  <string name="browser-load" fuzzy="true">Ги преземам разликите користејќи резервен семрежен испис. Почекајте...</string>
   <string name="browser-miss-summ">Нема укажано опис</string>
   <string name="browser-diff">Разлики на страницата: $1 (оценка: $2)</string>
   <string name="browser-fail">Не можам да ја добијам разликата: $1</string>
@@ -117,9 +117,9 @@
   <string name="config-confirm-talk">Барај потврда за отповикување на страница за разговор</string>
   <string name="config-use-rollback">Користи отповикување преку програм</string>
   <string name="config-welcome-empty-page">Испрати добредојде на корисници со празни страници за разговор при извршено добро уредување</string>
-  <string name="config-conflicts-revert">Автоматски решавај спорови со други уредници кои ја отповикуваат или менуваат страницата</string>
+  <string name="config-conflicts-revert" fuzzy="true">Автоматски решавај спорови со други уредници кои ја отповикуваат или менуваат страницата</string>
   <string name="config-instant-reverts">Користи непосредни отповикувања (многу брзо, но штом ќе се направим не може да се поврати)</string>
-  <string name="config-revert-wait">Чекање за отповикување (секунди)</string>
+  <string name="config-revert-wait" fuzzy="true">Чекање за отповикување (секунди)</string>
   <string name="config-revert">Отповикај</string>
   <string name="config-revert-diff">Отповикај ги поновите уредувања наместо само прикажаните во разликата ако се направени од еден ист вандал</string>
   <string name="config-change-all">Смени ги сите поставки на Huggle за да се однесува повеќе како Huggle 2</string>
@@ -127,10 +127,10 @@
   <string name="config-months-name">Користи месеци како заглавија наместо имиња на страниците</string>
   <string name="config-automatic-warning">КОристи автоматски тип на опомена и степен во функцијата за испраќање опомена</string>
   <string name="config-enable-irc">Вклучи го IRC</string>
-  <string name="config-remove-reverted">Отстрани уредувања веќе отповикани од друг</string>
-  <string name="config-remove-old">Отстрани стари уредувања ако е расчленето поново уредување на истата страница</string>
+  <string name="config-remove-reverted" fuzzy="true">Отстрани уредувања веќе отповикани од друг</string>
+  <string name="config-remove-old" fuzzy="true">Отстрани стари уредувања ако е расчленето поново уредување на истата страница</string>
   <string name="config-auto-load-history">Атоматски вчитај ја историјата и корисничките информации (податочно обемно)</string>
-  <string name="config-last-revision">Прикажувај ја последната преработка на страница во случај тековно вчитаното уредување да не е последната верзиаја (се презема со заобиколување на меѓускладот)</string>
+  <string name="config-last-revision" fuzzy="true">Прикажувај ја последната преработка на страница во случај тековно вчитаното уредување да не е последната верзиаја (се презема со заобиколување на меѓускладот)</string>
   <string name="config-require-delay">Барај одложување по секое вчитување на следното уредување во чиј тек нема да може се употреби никаква записна функција (за избегнување на бубачката што се јавува при стискање на повеќе копчиња на тастатурата)</string>
   <string name="config-wait-edit">Одолжувањето, во секунди, до овозможувањето на записните функции:</string>
   <string name="config-display-text">Прикажи следно</string>
@@ -278,6 +278,9 @@
   <string name="login-error-unknown">Не можам да ве најавам на $1.</string>
   <string name="login-error-version">Верзијата ви е застарена. Подновете ја со најновата.</string>
   <string name="login-error-whitelist">Не можев да го вчитам белиот список на корисници за $1.</string>
+  <string name="login-ro-title">Префрли на само читање</string>
+  <string name="login-ro-question">Еден или повеќе проекти ($1) не ви даваат да се најавите со дозвола за уредување (причина: $2). Дали сакате да се префрлите само на читање?</string>
+  <string name="login-ro-info">Проектот $1 е префрлен само на читање</string>
   <string name="main-stat">$1 уредувања во минута, $2 отповикувања во минута, степен $3</string>
   <string name="main-menu-provider-stop">Запри го добавувачот</string>
   <string name="main-menu-provider-resume">Продолжи со добавувачот</string>

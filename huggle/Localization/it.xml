@@ -52,9 +52,9 @@
   <string name="disable">Disattiva</string>
   <string name="no-token">Nessun token</string>
   <string name="flags">Flag</string>
-  <string name="gracetime">Attendo che le query di modifica terminano...</string>
+  <string name="gracetime" fuzzy="true">Attendo che le query di modifica terminano...</string>
   <string name="browser-none">Non si sta visualizzando alcuna pagina</string>
-  <string name="browser-load">Scaricamento delle differenze usando un metodo alternativo basato sul web rendering, attendere prego...</string>
+  <string name="browser-load" fuzzy="true">Scaricamento delle differenze usando un metodo alternativo basato sul web rendering, attendere prego...</string>
   <string name="browser-miss-summ">Non è stato inserito alcun oggetto</string>
   <string name="browser-diff">Diff della pagina: $1 (punteggio: $2)</string>
   <string name="browser-fail">Impossibile caricare il diff: $1</string>
@@ -116,9 +116,9 @@
   <string name="config-confirm-talk">Richiesta di conferma per annullare una modifica in pagina di discussione</string>
   <string name="config-use-rollback">Usa rollback di software</string>
   <string name="config-welcome-empty-page">Invia un messaggio di benvenuto agli utenti con la pagina di discussione vuota quando effettuano una modifica corretta</string>
-  <string name="config-conflicts-revert">Risolvere automaticamente i conflitti con altri utenti che rollbaccano o modificano la pagina</string>
+  <string name="config-conflicts-revert" fuzzy="true">Risolvere automaticamente i conflitti con altri utenti che rollbaccano o modificano la pagina</string>
   <string name="config-instant-reverts">Usa ripristino istantaneo (molto veloce, ma non può essere annullato una volta eseguito)</string>
-  <string name="config-revert-wait">Ripristina attesa (in secondi)</string>
+  <string name="config-revert-wait" fuzzy="true">Ripristina attesa (in secondi)</string>
   <string name="config-revert">Ripristina</string>
   <string name="config-revert-diff">Ripristina le modifiche alla pagina che sono più recenti delle differenze visualizzate, se sono state fatte dallo stesso utente vandalo</string>
   <string name="config-change-all">Cambia tutte le impostazioni di huggle per ottenere un comportamento più simile a huggle 2</string>
@@ -126,10 +126,10 @@
   <string name="config-months-name">Usa i mesi come intestazioni al posto del nome della pagina</string>
   <string name="config-automatic-warning">Usa un tipo e un livello automatici di avviso quando usi la funzione \"invia avviso\"</string>
   <string name="config-enable-irc">Attiva IRC</string>
-  <string name="config-remove-reverted">Rimuovi modifiche che sono state già annullate da qualcun altro</string>
-  <string name="config-remove-old">Rimuovi vecchie modifiche se si sta esaminando una modifica più recente alla stessa pagina</string>
+  <string name="config-remove-reverted" fuzzy="true">Rimuovi modifiche che sono state già annullate da qualcun altro</string>
+  <string name="config-remove-old" fuzzy="true">Rimuovi vecchie modifiche se si sta esaminando una modifica più recente alla stessa pagina</string>
   <string name="config-auto-load-history">Carica automaticamente la cronologia e le informazioni dell\'utente (richiede molta larghezza di banda)</string>
-  <string name="config-last-revision">Mostra l\'ultima revisione della pagina nel caso in cui la modifica attualmente caricata non sia l\'ultima revisione (la scaricherà in seguito bypassando la cache)</string>
+  <string name="config-last-revision" fuzzy="true">Mostra l\'ultima revisione della pagina nel caso in cui la modifica attualmente caricata non sia l\'ultima revisione (la scaricherà in seguito bypassando la cache)</string>
   <string name="config-require-delay">Richiedere un ritardo dopo ogni caricamento della modifica successiva, durante il quale non sarà possibile usare alcuna funzionalità di scrittura (utile per evitare problemi da pressione multipla di pulsanti sulla tastiera)</string>
   <string name="config-wait-edit">Il ritardo, in secondi, prima che siano abilitate le funzioni di modifica:</string>
   <string name="config-display-text">Mostra il successivo</string>

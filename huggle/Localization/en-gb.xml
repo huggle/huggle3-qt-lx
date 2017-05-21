@@ -52,9 +52,9 @@
   <string name="disable">Disable</string>
   <string name="no-token">No token</string>
   <string name="flags">Flags</string>
-  <string name="gracetime">Waiting for editing queries to end...</string>
+  <string name="gracetime" fuzzy="true">Waiting for editing queries to end...</string>
   <string name="browser-none">No page is displayed now</string>
-  <string name="browser-load">Downloading diff using a web rendering fall-back, please wait...</string>
+  <string name="browser-load" fuzzy="true">Downloading diff using a web rendering fall-back, please wait...</string>
   <string name="browser-miss-summ">No summary was provided</string>
   <string name="browser-diff">Diff of page: $1 (score: $2)</string>
   <string name="browser-fail">Unable to retrieve diff: $1</string>
@@ -117,9 +117,9 @@
   <string name="config-confirm-talk">Require confirmation for revert carried out on a talk page</string>
   <string name="config-use-rollback">Use software rollback</string>
   <string name="config-welcome-empty-page">Send welcome messages to users with an empty talk page when they make a good edit</string>
-  <string name="config-conflicts-revert">Automatically resolve conflicts with other users who revert or change the page</string>
+  <string name="config-conflicts-revert" fuzzy="true">Automatically resolve conflicts with other users who revert or change the page</string>
   <string name="config-instant-reverts">Use instant reverts (very fast, but can\'t be cancelled once executed)</string>
-  <string name="config-revert-wait">Revert wait (seconds)</string>
+  <string name="config-revert-wait" fuzzy="true">Revert wait (seconds)</string>
   <string name="config-revert">Revert</string>
   <string name="config-revert-diff">Revert edits to page that are newer than the displayed diff if they were made by the same vandal user</string>
   <string name="config-change-all">Change all Huggle settings to behave more like Huggle 2</string>
@@ -127,10 +127,10 @@
   <string name="config-months-name">Use months as headers, instead of the name of the page</string>
   <string name="config-automatic-warning">Use automatic warning type and level on \"send warning\" function</string>
   <string name="config-enable-irc">Enable IRC</string>
-  <string name="config-remove-reverted">Remove edits that were already reverted by someone else</string>
-  <string name="config-remove-old">Remove old edits if newer edit to same page is parsed</string>
+  <string name="config-remove-reverted" fuzzy="true">Remove edits that were already reverted by someone else</string>
+  <string name="config-remove-old" fuzzy="true">Remove old edits if newer edit to same page is parsed</string>
   <string name="config-auto-load-history">Automatically load history and user info (requires a lot of network bandwidth)</string>
-  <string name="config-last-revision">Display last revision of page, in case the currently loaded edit is not the last revision (will post-download it, bypassing cache)</string>
+  <string name="config-last-revision" fuzzy="true">Display last revision of page, in case the currently loaded edit is not the last revision (will post-download it, bypassing cache)</string>
   <string name="config-require-delay">Require a delay after every load of next edit, during which it will not be possible to use any write feature (useful for avoiding keyboard multi-press bug)</string>
   <string name="config-wait-edit">The amount of time that you must wait between edit features being enabled (in seconds):</string>
   <string name="config-display-text">Display next</string>

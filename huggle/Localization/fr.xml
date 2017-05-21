@@ -52,9 +52,9 @@
   <string name="disable">Désactiver</string>
   <string name="no-token">Pas de jeton</string>
   <string name="flags">Indicateurs</string>
-  <string name="gracetime">En attente de la terminaison des requêtes de modification…</string>
+  <string name="gracetime" fuzzy="true">En attente de la terminaison des requêtes de modification…</string>
   <string name="browser-none">Aucune page n\'est affichée maintenant</string>
-  <string name="browser-load">Téléchargement de diff en utilisant un rendu Web de secours, veuillez patienter...</string>
+  <string name="browser-load" fuzzy="true">Téléchargement de diff en utilisant un rendu Web de secours, veuillez patienter...</string>
   <string name="browser-miss-summ">Aucun résumé n\'a été fourni</string>
   <string name="browser-diff">Diff de la page : $1 (pointage : $2)</string>
   <string name="browser-fail">Impossible de récupérer le diff : $1</string>
@@ -117,9 +117,9 @@
   <string name="config-confirm-talk">Demander une confirmation pour la révocation d\'une page de discussion</string>
   <string name="config-use-rollback">Utiliser un retour en arrière logiciel</string>
   <string name="config-welcome-empty-page">Envoyer des messages de bienvenue aux utilisateurs avec une page de discussion vide lors d’une bonne modification</string>
-  <string name="config-conflicts-revert">Résoudre automatiquement les conflits avec les autres utilisateurs qui reviennent en arrière ou modifient la page</string>
+  <string name="config-conflicts-revert" fuzzy="true">Résoudre automatiquement les conflits avec les autres utilisateurs qui reviennent en arrière ou modifient la page</string>
   <string name="config-instant-reverts">Utiliser les retours arrière instantanés (très rapide, mais impossible à annuler une fois exécuté)</string>
-  <string name="config-revert-wait">Attente de retour arrière (en secondes)</string>
+  <string name="config-revert-wait" fuzzy="true">Attente de retour arrière (en secondes)</string>
   <string name="config-revert">Rétablir</string>
   <string name="config-revert-diff">Revenir sur les modifications de la page qui sont plus récentes que la différence affichée, dans le cas où elles ont été faites par le même utilisateur vandale</string>
   <string name="config-change-all">Modifier tous les paramètres de Huggle pour se comporter davantage comme Huggle 2</string>
@@ -127,10 +127,10 @@
   <string name="config-months-name">Utiliser les mois comme entêtes au lieu du nom de la page</string>
   <string name="config-automatic-warning">Utiliser des types et niveaux d’avertissement automatiques dans la fonction « envoi d’avertissement »</string>
   <string name="config-enable-irc">Permettre l\'IRC</string>
-  <string name="config-remove-reverted">Supprimer les modifications qui étaient déjà annulées par quelqu’un d’autre</string>
-  <string name="config-remove-old">Supprimer les anciennes modifications si une modification plus récente sur la même page est analysée</string>
+  <string name="config-remove-reverted" fuzzy="true">Supprimer les modifications qui étaient déjà annulées par quelqu’un d’autre</string>
+  <string name="config-remove-old" fuzzy="true">Supprimer les anciennes modifications si une modification plus récente sur la même page est analysée</string>
   <string name="config-auto-load-history">Charger automatiquement l’historique et les informations utilisateur (nécessite une bonne bande passante du réseau)</string>
-  <string name="config-last-revision">Afficher la dernière révision de la page si la modification actuellement chargée n’est pas la dernière révision (sera téléchargé ensuite en contournant le cache)</string>
+  <string name="config-last-revision" fuzzy="true">Afficher la dernière révision de la page si la modification actuellement chargée n’est pas la dernière révision (sera téléchargé ensuite en contournant le cache)</string>
   <string name="config-require-delay">Nécessite un délai après chaque chargement de prochaine modification, pendant lequel il ne sera pas possible d’utiliser une fonctionnalité d’écriture (utile pour éviter un problème de frappe multiple sur le clavier)</string>
   <string name="config-wait-edit">Le délai, en secondes, avant que les fonctionnalités d’écriture soient activées :</string>
   <string name="config-display-text">Afficher la suite</string>
@@ -742,7 +742,7 @@
   <string name="unimplemented">Cette fonctionnalité n’est pas encore implémentée</string>
   <string name="unknown-item">Élément inconnu</string>
   <string name="title-multiple-projects">projets multiples ($1)</string>
-  <string name="title-on">en $1</string>
+  <string name="title-on">sur $1</string>
   <string name="main-revert-custom-reason-text">Aucun motif n’a été fourni / annulation personnalisée</string>
   <string name="main-revert-already-pending-title">Cette modification a déjà été annulée</string>
   <string name="main-revert-already-pending-text">Vous ne pouvez pas annuler cette modification, car elle l’a déjà été. Veuillez attendre !</string>

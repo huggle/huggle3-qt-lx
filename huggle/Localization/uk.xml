@@ -52,9 +52,9 @@
   <string name="disable">Вимкнено</string>
   <string name="no-token">Немає маркера</string>
   <string name="flags">Прапорці</string>
-  <string name="gracetime">Чекаю на виконання запитів на редагування…</string>
+  <string name="gracetime" fuzzy="true">Чекаю на виконання запитів на редагування…</string>
   <string name="browser-none">Зараз не відображається жодна сторінка</string>
-  <string name="browser-load">Редагування завантажується шляхом веб-рендерингу. Зачекайте, будь ласка…</string>
+  <string name="browser-load" fuzzy="true">Редагування завантажується шляхом веб-рендерингу. Зачекайте, будь ласка…</string>
   <string name="browser-miss-summ">Немає опису редагування</string>
   <string name="browser-diff">Різниця версій для $1 (бали: $2)</string>
   <string name="browser-fail">Не вдалося отримати редагування: $1</string>
@@ -116,9 +116,9 @@
   <string name="config-confirm-talk">Вимагати підтвердження для скасування редагувань на сторінках обговорень</string>
   <string name="config-use-rollback">Використовувати власний відкочувач Huggle</string>
   <string name="config-welcome-empty-page">За потреби залишати привітання на сторінках користувачів, чиї редагування позначені як добрі</string>
-  <string name="config-conflicts-revert">Автоматично вирішувати конфлікти редагувань</string>
+  <string name="config-conflicts-revert" fuzzy="true">Автоматично вирішувати конфлікти редагувань</string>
   <string name="config-instant-reverts">Використовувати миттєві відкоти (дуже швидко, проте неможливо скасувати)</string>
-  <string name="config-revert-wait">Перед відкотом зачекати (сек.)</string>
+  <string name="config-revert-wait" fuzzy="true">Перед відкотом зачекати (сек.)</string>
   <string name="config-revert">Відкотити</string>
   <string name="config-revert-diff">Відкотити редагування, новіші за показане зараз, якщо їх було зроблено тим самим вандалом</string>
   <string name="config-change-all">Застосувати налаштування максимально схожі до таких в Huggle 2</string>
@@ -126,10 +126,10 @@
   <string name="config-months-name">Для іменування нових тем використовувати місяці, а не назви сторінок, про які йдеться</string>
   <string name="config-automatic-warning">Використовувати автоматичне визначення типу та рівня попереджувального повідомлення в команді «Надіслати попередження»</string>
   <string name="config-enable-irc">Включити IRC</string>
-  <string name="config-remove-reverted">Прибирати редагування, що вже скасовані кимось іншим</string>
-  <string name="config-remove-old">Прибирати старіші редагування, якщо отримано нове редагування тієї ж сторінки</string>
+  <string name="config-remove-reverted" fuzzy="true">Прибирати редагування, що вже скасовані кимось іншим</string>
+  <string name="config-remove-old" fuzzy="true">Прибирати старіші редагування, якщо отримано нове редагування тієї ж сторінки</string>
   <string name="config-auto-load-history">Автоматично завантажувати історію редагувань та останні редагування користувача (потребує багато трафіку)</string>
-  <string name="config-last-revision">Показувати останню версію сторінки, якщо поточне редагування не є найновішим (завантаження буде виконано оминаючи кеш)</string>
+  <string name="config-last-revision" fuzzy="true">Показувати останню версію сторінки, якщо поточне редагування не є найновішим (завантаження буде виконано оминаючи кеш)</string>
   <string name="config-require-delay">Встановити затримку після кожного завантаження наступного редагування, під час якої неможливо внести зміни (корисно для вирішення проблеми з натисканням кількох клавіш одразу)</string>
   <string name="config-wait-edit">Скільки потрібно чекати до ввімкнення можливості редагування (в секундах):</string>
   <string name="config-display-text">Показати наступну</string>

@@ -52,9 +52,9 @@
   <string name="disable">לכבות</string>
   <string name="no-token">אין אסימון</string>
   <string name="flags">דגלים</string>
-  <string name="gracetime">ממתין לסיום שאילתות עריכה...</string>
+  <string name="gracetime" fuzzy="true">ממתין לסיום שאילתות עריכה...</string>
   <string name="browser-none">שום דף אינו מוצג עכשיו</string>
-  <string name="browser-load">הורדת השוואה באמצעות גיבוי תצוגת וב, נא להמתין...</string>
+  <string name="browser-load" fuzzy="true">הורדת השוואה באמצעות גיבוי תצוגת וב, נא להמתין...</string>
   <string name="browser-miss-summ">לא ניתן תקציר</string>
   <string name="browser-diff">השוואת גרסאות של הדף: $1 (ציון: $2)</string>
   <string name="browser-fail">לא ניתן לאחזר השוואה: $1</string>
@@ -117,9 +117,9 @@
   <string name="config-confirm-talk">לדרוש אישור לשחזר דף שיחה</string>
   <string name="config-use-rollback">שימוש בשחזור בתכנה</string>
   <string name="config-welcome-empty-page">שליחת מסר ברוך־בואך למשתמשים עם דף שיחה ריק בעריכה טובה</string>
-  <string name="config-conflicts-revert">לפתור אוטומטית התנגשויות עם משתמשים אחרים שמשחזרים או משנים את הדף</string>
+  <string name="config-conflicts-revert" fuzzy="true">לפתור אוטומטית התנגשויות עם משתמשים אחרים שמשחזרים או משנים את הדף</string>
   <string name="config-instant-reverts">להשתמש בשחזור מידי (מהיר מאוד, אבל לא ניתן לבטל אותם אחרי הביצוע)</string>
-  <string name="config-revert-wait">המתנה לשחזור (בשניות)</string>
+  <string name="config-revert-wait" fuzzy="true">המתנה לשחזור (בשניות)</string>
   <string name="config-revert">שחזור</string>
   <string name="config-revert-diff">שחזור עריכות לדף שחדשות יותר מההשוואה המוצגת אם הן נעשו על־ידי אותו משתמש משחית</string>
   <string name="config-change-all">לשנות את כל הגדרות האגל כדי להתנהג יותר כמו האגל 2</string>
@@ -127,10 +127,10 @@
   <string name="config-months-name">להשתמש בחודשים בתור כותרות במקום בשם הדף</string>
   <string name="config-automatic-warning">להשתמש בסוג ורמה אוטומטיים של אזהרה בפונקצייה \"שליחת אזהרה\"</string>
   <string name="config-enable-irc">הפעלת IRC</string>
-  <string name="config-remove-reverted">להסיר עריכות שכבר שוחזרו על־ידי מישהו אחר</string>
-  <string name="config-remove-old">להסיר עריכות ישנות אם עריכה חדשה יותר לאותו הדף מפוענחת</string>
+  <string name="config-remove-reverted" fuzzy="true">להסיר עריכות שכבר שוחזרו על־ידי מישהו אחר</string>
+  <string name="config-remove-old" fuzzy="true">להסיר עריכות ישנות אם עריכה חדשה יותר לאותו הדף מפוענחת</string>
   <string name="config-auto-load-history">לטעון אוטומטית היסטוריה ומידע על המשתמש (דורש רוחב פס רב)</string>
-  <string name="config-last-revision">להציג את הגרסה האחרונה של הדף במקרה שהעריכה הטעונה הנוכחית אינה הגרסה האחרונה (יוריד אותה אחרי־כן ויעקוף את המטמון)</string>
+  <string name="config-last-revision" fuzzy="true">להציג את הגרסה האחרונה של הדף במקרה שהעריכה הטעונה הנוכחית אינה הגרסה האחרונה (יוריד אותה אחרי־כן ויעקוף את המטמון)</string>
   <string name="config-require-delay">לדרוש עיכוב אחרי כל טעינה של העריכה הבאה, שבמהלכו לא ניתן להשתמש בשום אפשרות כתיבה (זה שימושי להימנעות מבאגים של לחיצה מרובה במקלדת)</string>
   <string name="config-wait-edit">זמן ההמתנה בשניות עד שאפשרויות הכתיבה מופעלות:</string>
   <string name="config-display-text">להציג את הבא</string>
