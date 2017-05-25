@@ -86,7 +86,7 @@ namespace Huggle
             void on_label_2_linkActivated(const QString &link);
             void on_tabWidget_currentChanged(int index);
 
-    private:
+        private:
             //! Reset the interface to default
             void Reset();
             void RemoveQueries();

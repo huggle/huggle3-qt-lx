@@ -1852,6 +1852,10 @@ void MainWindow::Localize()
     this->ui->actionWarn_the_user->setText(_l("main-user-warn"));
     this->ui->actionOpen_in_a_browser->setText(_l("main-browser-open"));
     this->ui->actionDisplay_this_page->setText(_l("main-page-display"));
+    this->ui->actionWelcome_user_2->setText(_l("main-welcome-user"));
+    this->ui->actionReport_username->setText(_l("main-report-username"));
+    this->ui->actionReport_user_2->setText(_l("main-report-user"));
+    this->ui->actionEdit_user_talk->setText(_l("main-edit-user-talk"));
 
     // arrows icons should be mirrored for RTL languages
     if (Localizations::HuggleLocalizations->IsRTL())
