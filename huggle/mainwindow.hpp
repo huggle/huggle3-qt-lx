@@ -141,7 +141,7 @@ namespace Huggle
             void EnableEditing(bool enabled);
             void _BlockUser();
             void DisplayNext(Query *q = nullptr);
-            void ShowCat();
+            void ShowEmptyQueuePage();
             void DeletePage();
             void DisplayTalk();
             /*!
