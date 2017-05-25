@@ -132,7 +132,7 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
     configuration_ += "report-summary:" + Project->ReportSummary + "\n";
     configuration_ += "prod-message-summary:Notification: Proposed deletion of [[$1]]\n";
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // huggle 2 options
+    // Huggle 2 options
     configuration_ += "auto-advance:false\n";
     configuration_ += "auto-whitelist:true\n";
     configuration_ += "username-listed:true\n";
@@ -184,6 +184,7 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
     configuration_ += "// Whether edits made by same user should be grouped up together in page\n";
     configuration_ += "AutomaticallyGroup:" + Bool2String(this->AutomaticallyGroup) + "\n";
     configuration_ += "QueueID:" + this->QueueID + "\n";
+    configuration_ += "emptyqueue-message-location:" + this->PageEmptyQueue + "\n";
     // shortcuts
     QStringList shortcuts = Configuration::HuggleConfiguration->Shortcuts.keys();
     // we need to do this otherwise huggle may sort the items differently every time and spam wiki
@@ -362,6 +363,7 @@ bool UserConfiguration::ParseUserConfig(QString config, ProjectConfiguration *Pr
     this->DeleteEditsAfterRevert = SafeBool(ConfigurationParse("DeleteEditsAfterRevert", config), this->DeleteEditsAfterRevert);
     this->WelcomeGood = this->SetOption("welcome-good", config, ProjectConfig->WelcomeGood).toBool();
     this->AutomaticReports = SafeBool(ConfigurationParse("AutomaticReports", config), this->AutomaticReports);
+    this->PageEmptyQueue = HuggleParser::ConfigurationParse("emptyqueue-message-location", config);
     delete this->Previous_Version;
     this->Previous_Version = new Version(ConfigurationParse("version", config, HUGGLE_VERSION));
     // for now we do this only for home wiki but later we need to make it for every wiki

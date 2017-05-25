@@ -130,6 +130,8 @@ namespace Huggle
             bool                    HAN_DisplayUserTalk = true;
             //! Welcome new users on a good edit
             bool                    WelcomeGood = true;
+
+            QString                 PageEmptyQueue;
             Version*                Previous_Version;
             WatchlistOption         Watchlist;
     };

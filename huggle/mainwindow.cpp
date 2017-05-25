@@ -1501,13 +1501,13 @@ void MainWindow::OnTimerTick0()
 void MainWindow::on_actionNext_triggered()
 {
     if (!this->Queue1->Next())
-        this->ShowCat();
+        this->ShowEmptyQueuePage();
 }
 
 void MainWindow::on_actionNext_2_triggered()
 {
     if (!this->Queue1->Next())
-        this->ShowCat();
+        this->ShowEmptyQueuePage();
 }
 
 void MainWindow::on_actionWarn_triggered()
@@ -1892,7 +1892,7 @@ void MainWindow::DisplayNext(Query *q)
             return;
         case Configuration_OnNext_Next:
             if (!this->Queue1->Next())
-                this->ShowCat();
+                this->ShowEmptyQueuePage();
             return;
         case Configuration_OnNext_Revert:
             //! \bug This doesn't seem to work
@@ -1901,7 +1901,7 @@ void MainWindow::DisplayNext(Query *q)
             if (q == nullptr)
             {
                 if (!this->Queue1->Next())
-                    this->ShowCat();
+                    this->ShowEmptyQueuePage();
                 return;
             }
             if (this->OnNext_EvPage != nullptr)
@@ -1912,10 +1912,19 @@ void MainWindow::DisplayNext(Query *q)
     }
 }
 
-void MainWindow::ShowCat()
+void MainWindow::ShowEmptyQueuePage()
 {
-    this->Browser->RenderHtml(Resources::Html_EmptyList);
-    this->EnableEditing(false);
+    if(!hcfg->UserConfig->PageEmptyQueue.isEmpty())
+    {
+        WikiPage *empty = new WikiPage(hcfg->UserConfig->PageEmptyQueue);
+        this->Browser->DisplayPreFormattedPage(empty);
+        this->LockPage();
+        delete empty;
+        this->EnableEditing(false);
+        this->Render();
+    }
+    else
+        this->Browser->RenderHtml(Resources::Html_Default_EmptyQueuePage);
 }
 
 void MainWindow::DeletePage()
