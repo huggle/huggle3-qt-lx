@@ -185,7 +185,7 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
     configuration_ += "AutomaticallyGroup:" + Bool2String(this->AutomaticallyGroup) + "\n";
     configuration_ += "QueueID:" + this->QueueID + "\n";
     configuration_ += "// Location of page (wiki page name, for example WP:Huggle) that should be displayed when you hit next and queue is empty. Leave empty for default page.\n";
-    configuration_ += "emptyqueue-message-location:" + this->PageEmptyQueue + "\n";
+    configuration_ += "PageEmptyQueue:" + this->PageEmptyQueue + "\n";
     // shortcuts
     QStringList shortcuts = Configuration::HuggleConfiguration->Shortcuts.keys();
     // we need to do this otherwise huggle may sort the items differently every time and spam wiki
@@ -364,7 +364,7 @@ bool UserConfiguration::ParseUserConfig(QString config, ProjectConfiguration *Pr
     this->DeleteEditsAfterRevert = SafeBool(ConfigurationParse("DeleteEditsAfterRevert", config), this->DeleteEditsAfterRevert);
     this->WelcomeGood = this->SetOption("welcome-good", config, ProjectConfig->WelcomeGood).toBool();
     this->AutomaticReports = SafeBool(ConfigurationParse("AutomaticReports", config), this->AutomaticReports);
-    this->PageEmptyQueue = HuggleParser::ConfigurationParse("emptyqueue-message-location", config);
+    this->PageEmptyQueue = HuggleParser::ConfigurationParse("PageEmptyQueue", config);
     delete this->Previous_Version;
     this->Previous_Version = new Version(ConfigurationParse("version", config, HUGGLE_VERSION));
     // for now we do this only for home wiki but later we need to make it for every wiki
