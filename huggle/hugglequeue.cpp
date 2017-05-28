@@ -55,6 +55,19 @@ void HuggleQueue::AddItem(WikiEdit *page)
         return;
     }
 
+    // Check if page matches the global score limits
+    if (hcfg->UserConfig->EnableMaxScore && (hcfg->UserConfig->MaxScore < page->Score))
+    {
+        HUGGLE_DEBUG("Queue: edit " + page->Page->PageName + " has higher score than MaxScore, ignoring", 2);
+        return;
+    }
+
+    if (hcfg->UserConfig->EnableMinScore && (hcfg->UserConfig->MinScore > page->Score))
+    {
+        HUGGLE_DEBUG("Queue: edit " + page->Page->PageName + " has lower score than MinScore, ignoring", 2);
+        return;
+    }
+
     page->RegisterConsumer(HUGGLECONSUMER_QUEUE);
     if (MainWindow::HuggleMain != nullptr)
     {
