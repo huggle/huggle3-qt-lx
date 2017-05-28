@@ -184,6 +184,7 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
     configuration_ += "// Whether edits made by same user should be grouped up together in page\n";
     configuration_ += "AutomaticallyGroup:" + Bool2String(this->AutomaticallyGroup) + "\n";
     configuration_ += "QueueID:" + this->QueueID + "\n";
+    configuration_ += "// Location of page (wiki page name, for example WP:Huggle) that should be displayed when you hit next and queue is empty. Leave empty for default page.\n";
     configuration_ += "emptyqueue-message-location:" + this->PageEmptyQueue + "\n";
     // shortcuts
     QStringList shortcuts = Configuration::HuggleConfiguration->Shortcuts.keys();

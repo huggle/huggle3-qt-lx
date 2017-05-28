@@ -1916,15 +1916,15 @@ void MainWindow::ShowEmptyQueuePage()
 {
     if(!hcfg->UserConfig->PageEmptyQueue.isEmpty())
     {
-        WikiPage *empty = new WikiPage(hcfg->UserConfig->PageEmptyQueue);
-        this->Browser->DisplayPreFormattedPage(empty);
-        this->LockPage();
-        delete empty;
-        this->EnableEditing(false);
-        this->Render();
+        WikiPage empty(hcfg->UserConfig->PageEmptyQueue);
+        this->Browser->DisplayPreFormattedPage(&empty);
+        //this->Render();
     }
     else
+    {
         this->Browser->RenderHtml(Resources::Html_Default_EmptyQueuePage);
+    }
+    this->LockPage();
 }
 
 void MainWindow::DeletePage()
