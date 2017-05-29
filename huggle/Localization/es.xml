@@ -52,9 +52,9 @@
   <string name="disable">Desactivar</string>
   <string name="no-token">Sin token</string>
   <string name="flags">Flags</string>
-  <string name="gracetime" fuzzy="true">Esperando que terminen las consultas de edición...</string>
+  <string name="gracetime">Esperando que terminen las consultas que hacen alguna edición...</string>
   <string name="browser-none">Ninguna página se muestra ahora</string>
-  <string name="browser-load" fuzzy="true">Descargando diferencia con un procesamiento web alternativo. Espera…</string>
+  <string name="browser-load">Descargando diferencia con un método alternativo basado en MW. Espera…</string>
   <string name="browser-miss-summ">No se proporcionó ningún resumen</string>
   <string name="browser-diff">Diferencia de página: $1 (puntuación: $2)</string>
   <string name="browser-fail">No se puede recuperar diff: $1</string>
@@ -117,20 +117,20 @@
   <string name="config-confirm-talk">Solicitar confirmación para revertir la edición en una página de discusión</string>
   <string name="config-use-rollback">Usar software de reversor</string>
   <string name="config-welcome-empty-page">Enviar mensajes de bienvenida a los usuarios con páginas discusión vacías cuando haga una buena edición</string>
-  <string name="config-conflicts-revert" fuzzy="true">Automáticamente resolver conflictos con otros usuarios que revirtieron cambios en la página</string>
+  <string name="config-conflicts-revert">Automáticamente resolver conflictos de edición con otros usuarios que revirtieron o cambiaron la misma página</string>
   <string name="config-instant-reverts">Usa reversiones instantáneas (muy rápido, pero una vez ejecutado no se puede cancelar)</string>
-  <string name="config-revert-wait" fuzzy="true">Espera para revertir (segundos)</string>
+  <string name="config-revert-wait">Espera para revertir (segundos)</string>
   <string name="config-revert">Revertir</string>
   <string name="config-revert-diff">Revertir nuevas ediciones a la página desplegada en el diff en caso de que fueran hechas por el mismo usuario (mismo vándalo)</string>
-  <string name="config-change-all">Cambiar todos los ajustes de Huggle para que se parezca más a Huggle 2</string>
+  <string name="config-change-all" fuzzy="true">Cambiar todos los ajustes de Huggle para que se parezca más a Huggle 2</string>
   <string name="config-merge-messages">Combinar tus mensajes con otros en las secciones existentes</string>
   <string name="config-months-name">Utilizar meses como titulares en lugar del nombre de la página</string>
   <string name="config-automatic-warning">Uso automático del tipo de advertencia y el nivel en la función \"enviar advertencia\"</string>
   <string name="config-enable-irc">Activar IRC</string>
-  <string name="config-remove-reverted" fuzzy="true">Borrar las ediciones que ya fueron revertidas por otra persona</string>
-  <string name="config-remove-old" fuzzy="true">Eliminar las ediciones anteriores si se analiza una edición más reciente a la misma página</string>
+  <string name="config-remove-reverted">Borrar las ediciones de la cola que ya fueron revertidas por otra persona</string>
+  <string name="config-remove-old">Eliminar las ediciones anteriores de la cola si se recibe una edición más reciente de la misma página</string>
   <string name="config-auto-load-history">Cargar automáticamente el historial y la información de usuario (requiere mucho ancho de banda de red)</string>
-  <string name="config-last-revision" fuzzy="true">Mostrar la última modificación de la página si la edición cargada no es la última (se descargará e invalidará la memoria intermedia)</string>
+  <string name="config-last-revision" fuzzy="true">Cambiar a la última modificación de la página si la edición cargada no es la última (se descargará a continuación, lo que ralentizará Huggle)</string>
   <string name="config-require-delay">Requieren un retraso después de cada carga de la próxima edición, durante los cuales no será posible el uso de cualquier escritura característica (muy útil para evitar teclado multi-prensa error)</string>
   <string name="config-wait-edit">Los segundos que debes esperar para que se activen las funcionalidades de edición:</string>
   <string name="config-display-text">Mostrar siguiente</string>
@@ -221,7 +221,7 @@
   <string name="invalid-bot-user-name">Esto no es un nombre de bot válido. Ejemplo de nombre válido: Jimbo@Huggle</string>
   <string name="login-tab-botp">Contraseña de bot</string>
   <string name="login-tab-login">Normal</string>
-  <string name="login-reload-tool-tip">Volver a cargar la lista de proyectos disponibles para su uso en Huggle. Esto es necesario si quieres usar Huggle con un proyecto en que recién se ha permitido su utilización.</string>
+  <string name="login-reload-tool-tip" fuzzy="true">Volver a cargar la lista de proyectos disponibles para su uso en Huggle. Esto es necesario si quieres usar Huggle con un proyecto en que recién se ha permitido su utilización.</string>
   <string name="login-language">Idioma:</string>
   <string name="login-project">Proyecto:</string>
   <string name="login-username">Usuario:</string>
@@ -236,7 +236,7 @@
   <string name="login-fail-css">Falló el acceso a $1: no se pudo obtener la configuración de la cuenta.\nFalta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu espacio de usuario?</string>
   <string name="login-fail-enable-true">Falló el acceso a $1: falta la orden «enable:true» en tu configuración personal.</string>
   <string name="login-fail-no-info">Falló el acceso a $1: no se pudo obtener la información de la cuenta ($2)</string>
-  <string name="login-bot">¿Cuál es la diferencia entre el inicio de sesión de bot y el normal?</string>
+  <string name="login-bot" fuzzy="true">¿Cuál es la diferencia entre el inicio de sesión de bot y el normal?</string>
   <string name="login-fail-parse-config">Error de inicio de sesión en $1: no se puede analizar la configuración de usuario. Ver el registro de depuración para obtener más detalles.</string>
   <string name="login-fail-user-data">Error de inicio de sesión en $1: no se puede recuperar la información de usuario. La API de consulta no devuelve datos.</string>
   <string name="login-fail-rollback-rights">Falló el acceso a $1: no tienes el permiso de reversor en este proyecto.</string>
@@ -677,7 +677,7 @@
   <string name="updating-wl">Actualizando lista blanca...</string>
   <string name="feature-nfru">Esta función es sólo para usuarios de IP</string>
   <string name="report-no-user">Ningún usuario ha sido seleccionado para denunciar. Selecciona un usuario primero</string>
-  <string name="welcome-show">También mostrar este mensaje la próxima vez que inicies Huggle</string>
+  <string name="welcome-show" fuzzy="true">También mostrar este mensaje la próxima vez que inicies Huggle</string>
   <string name="welcome-tp-empty-fail">Este usuario no tiene una página de discusión vacía, ¿estás seguro de que quieres enviarle un mensaje?</string>
   <string name="welcome-page-miss-fail">Huggle fue incapaz de recuperar el contenido de la página de discusión del usuario, está seguro de que desea enviar un mensaje de bienvenida para ellos?</string>
   <string name="cr-newer-edits">Conflicto solucionado: se revirtieron todas las ediciones, incluidas las nuevas. Las ediciones eran del mismo usuario: $1.</string>
@@ -689,10 +689,10 @@
   <string name="cr-message-new">Hay nuevas ediciones a $1. ¿Seguro quieres revertirlas?</string>
   <string name="cr-message-not-same">Hay nuevas ediciones a $1 de otro usuario. ¿Seguro quieres revertirlas todas? (De todas formas, probablemente falle por un \"token\" viejo)</string>
   <string name="preferences-delete-using-filter">No se puede eliminar un filtro que se está usando actualmente</string>
-  <string name="preferences-extension-disabled">Esta extensión ya está programada para deshabilitar el siguiente inicio de huggle</string>
-  <string name="preferences-extension-disabled-restart">La extensión se configuró para desactivarse en el siguiente inicio de Huggle</string>
-  <string name="preferences-extension-enabled">Esta extensión no está programado para deshabilitar el siguiente inicio de huggle</string>
-  <string name="preferences-extension-enabled-restart">La extensión se activó. Sin embargo, es necesario reiniciar huggle</string>
+  <string name="preferences-extension-disabled" fuzzy="true">Esta extensión ya está programada para deshabilitar el siguiente inicio de huggle</string>
+  <string name="preferences-extension-disabled-restart" fuzzy="true">La extensión se configuró para desactivarse en el siguiente inicio de Huggle</string>
+  <string name="preferences-extension-enabled" fuzzy="true">Esta extensión no está programado para deshabilitar el siguiente inicio de huggle</string>
+  <string name="preferences-extension-enabled-restart" fuzzy="true">La extensión se activó. Sin embargo, es necesario reiniciar huggle</string>
   <string name="preferences-watchlist-watch">Añadir a la lista de seguimiento</string>
   <string name="preferences-watchlist-unwatch">Quitar de la lista de seguimiento</string>
   <string name="preferences-watchlist-preferences">Seguir tus preferencias en el wiki</string>
@@ -735,7 +735,7 @@
   <string name="login-invalid-register-date">No válido registrationdate devuelto por mediawiki</string>
   <string name="login-site-info-query-failed">La información del sitio de consulta para $1 ha fallado: $2</string>
   <string name="login-no-site-info-returned">No hay información del sitio fue devuelto por este wiki</string>
-  <string name="loading-main-window">La carga principal de huggle ventana</string>
+  <string name="loading-main-window" fuzzy="true">La carga principal de huggle ventana</string>
   <string name="api.php-invalid-response">El api.php respondió con inválida texto (servidor web está abajo?), por favor, compruebe de registro de depuración para obtener una información precisa</string>
   <string name="login-username-doesnt-exist">Este nombre de usuario no existe</string>
   <string name="developer-mode-enter-title">Whee</string>

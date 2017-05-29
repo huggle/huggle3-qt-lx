@@ -119,10 +119,10 @@
   <string name="config-welcome-empty-page">ভালো সম্পাদনা করলে আলাপ পাতা খালি থাকা ব্যবহারকারীদের স্বাগত বার্তা পাঠান</string>
   <string name="config-conflicts-revert" fuzzy="true">অন্যান্য ব্যবহারকারী যারা পৃষ্ঠাটিতে পরিবর্তন বা বাতিল করে তাঁর সাথে স্বয়ংক্রিয়ভাবে সঙ্ঘাত সমাধান করুন</string>
   <string name="config-instant-reverts">তাত্ক্ষণিক বাতিল ব্যবহার করুন (খুব দ্রুত, কিন্তু একবার কার্যকর হলে বাতিল করা যাবে না)</string>
-  <string name="config-revert-wait" fuzzy="true">বাতিলের সময় (সেকেন্ড)</string>
+  <string name="config-revert-wait">বাতিলের বিলম্ব (সেকেন্ড)</string>
   <string name="config-revert">বাতিল করুন</string>
   <string name="config-revert-diff">পাতায় সম্পাদনা বাতিল করুন সেটি প্রদর্শিত পার্থক্যের চেয়ে নতুন ও যদি তা একই ধ্বংসপ্রবণ ব্যবহারকারী দ্বারা করা হয়</string>
-  <string name="config-change-all">হাগল ২-এর মত আরো আচরণ করে সব হাগল সেটিংস পরিবর্তন করুন</string>
+  <string name="config-change-all" fuzzy="true">হাগল ২-এর মত আরো আচরণ করে সব হাগল সেটিংস পরিবর্তন করুন</string>
   <string name="config-merge-messages">বিদ্যমান পরিচ্ছেদে অন্যদের সাথে আপনার বার্তা একত্রিত করুন</string>
   <string name="config-months-name">পৃষ্ঠার নামের পরিবর্তে শিরোলেখ হিসাবে মাস ব্যবহার করুন</string>
   <string name="config-automatic-warning">\"সতর্ক বার্তা পাঠান\" ক্রিয়ায় স্বয়ংক্রিয় সতর্কবার্তার ধরন ও স্তর ব্যবহার করুন</string>
@@ -221,7 +221,7 @@
   <string name="invalid-bot-user-name">এটি একটি বৈধ বট নাম নয়। সঠিক বট নামের উদাহরণ: Jimbo@Huggle</string>
   <string name="login-tab-botp">বট পাসওয়ার্ড</string>
   <string name="login-tab-login">উত্তরাধিকার</string>
-  <string name="login-reload-tool-tip">উপলব্ধ প্রকল্পের একটি তালিকা পুনঃলোড করে যা হাগলে ব্যবহার করা যেতে পারে। এটি সহায়ক হতে পারে যখন আপনি হাগল একটি প্রকল্পে ব্যবহার করতে চান যা সম্প্রতি সক্রিয় করা হয়েছে।</string>
+  <string name="login-reload-tool-tip" fuzzy="true">উপলব্ধ প্রকল্পের একটি তালিকা পুনঃলোড করে যা হাগলে ব্যবহার করা যেতে পারে। এটি সহায়ক হতে পারে যখন আপনি হাগল একটি প্রকল্পে ব্যবহার করতে চান যা সম্প্রতি সক্রিয় করা হয়েছে।</string>
   <string name="login-language">ভাষা:</string>
   <string name="login-project">প্রকল্প:</string>
   <string name="login-username">ব্যবহারকারী নাম:</string>
@@ -236,7 +236,7 @@
   <string name="login-fail-css">$1-এ প্রবেশকরণ ব্যর্থ হয়েছে: ব্যবহারকারী কনফিগারেশন পুনরুদ্ধার করা যায়নি। Special:MyPage/huggle3.css অনুপস্থিত। আপনি কি আপনার নামস্থানে huggle3.css তৈরি করেছেন?</string>
   <string name="login-fail-enable-true">$1-এ প্রবেশকরণ ব্যর্থ হয়েছে: আপনার ব্যক্তিগত কনফিগে enable:true নেই।</string>
   <string name="login-fail-no-info">$1-এ প্রবেশকরণ ব্যর্থ হয়েছে: ব্যবহারকারীর তথ্য সংগ্রহ করা যায়নি: $2</string>
-  <string name="login-bot">বট ও উত্তরাধিকার প্রবেশের মধ্যে পার্থক্য কি?</string>
+  <string name="login-bot" fuzzy="true">বট ও উত্তরাধিকার প্রবেশের মধ্যে পার্থক্য কি?</string>
   <string name="login-fail-parse-config">$1-এ প্রবেশকরণ ব্যর্থ হয়েছে: ব্যবহারকারীর কনফিগারেশন বিশ্লেষণ করতে অক্ষম। আরো বিস্তারিত জানার জন্য ডিবাগ লগ দেখুন।</string>
   <string name="login-fail-user-data">$1-এ প্রবেশকরণ ব্যর্থ হয়েছে: ব্যবহারকারীর তথ্য সংগ্রহ করা যায়নি। API কোয়েরি কোন উপাত্ত প্রদান করেনি।</string>
   <string name="login-fail-rollback-rights">$1-এ প্রবেশকরণ ব্যর্থ হয়েছে: এই প্রকল্পে আপনার রোলব্যাকের অনুমতি নেই।</string>
@@ -278,6 +278,7 @@
   <string name="login-error-unknown">$1-এ প্রবেশ করা যাচ্ছে না।</string>
   <string name="login-error-version">এই সংস্করণটি পুরনো। সর্বশেষ সংস্করণে হালনাগাদ করুন।</string>
   <string name="login-error-whitelist">$1-এর জন্য সাদাতালিকা লোড করতে ব্যর্থ হয়েছে।</string>
+  <string name="main-stat">মিনিট প্রতি $1টি সম্পাদনা মিনিট প্রতি $2টি বাতিল, স্তর $3</string>
   <string name="main-menu-provider-stop">প্রদানকারীকে থামান</string>
   <string name="main-menu-provider-resume">প্রদানকারীকে বিরতি দিন</string>
   <string name="provider-up">$2-এ $1 প্রদানকারী ব্যবহার করে সাম্প্রতিক পরিবর্তনের স্ট্রীমে সংযোগ করা হচ্ছে</string>
@@ -672,7 +673,7 @@
   <string name="updating-wl">সাদাতালিকা হালনাগাদ করা হচ্ছে...</string>
   <string name="feature-nfru">এই বৈশিষ্ট্যটি শুধুমাত্র আইপি ব্যবহারকারীদের জন্য</string>
   <string name="report-no-user">কোনো ব্যবহারকারীকে প্রতিবেদন করতে নির্বাচিত করা হয়নি, দয়া করে একজন ব্যবহারকারী প্রথমে নির্বাচন করুন</string>
-  <string name="welcome-show">এছাড়াও পরবর্তী সময় huggle চালু করার সময় এই বার্তা প্রদর্শন করান</string>
+  <string name="welcome-show" fuzzy="true">এছাড়াও পরবর্তী সময় huggle চালু করার সময় এই বার্তা প্রদর্শন করান</string>
   <string name="welcome-tp-empty-fail">এই ব্যবহারকারী একটি খালি আলাপ পাতা নেই, আপনি কি নিশ্চিত আপনি তাকে একটি বার্তা পাঠাতে চান?</string>
   <string name="welcome-page-miss-fail">Huggle ব্যবহারকারী আলাপ পাতায় বিষয়বস্তু পুনরুদ্ধার করতে অক্ষম ছিল, আপনি কি নিশ্চিত আপনি তাদেরকে একটি স্বাগতম বার্তা পাঠাতে চান?</string>
   <string name="cr-newer-edits">দ্বন্দ্ব সমাধান হয়েছে: নতুন সম্পাদনাসহ, সব সম্পাদনা বাতিল করা হয়েছে। সম্পাদনাগুলি একই ব্যবহারকারী করেছেন: $1।</string>
@@ -684,10 +685,10 @@
   <string name="cr-message-new">$1-এ নতুনতর সম্পাদনা আছে। আপনি কি নিশ্চিত আপনি সব বাতিল করতে চান?</string>
   <string name="cr-message-not-same">$1-এ ভিন্ন ব্যবহারকারীর করা নতুনতর সম্পাদনা আছে। আপনি কি নিশ্চিত আপনি সব বাতিল করতে চান? (তবে এটা সম্ভবত পুরাতন টোকেন থাকার কারণে ব্যর্থ হবে।)</string>
   <string name="preferences-delete-using-filter">বর্তমানে ব্যবহৃত হওয়া ছাঁকনি আপনি অপসারণ করতে পারবেন না</string>
-  <string name="preferences-extension-disabled">এই এক্সটেনশনটি ইতিমধ্যে পরবর্তী হাগল সূচনার সময় নিষ্ক্রিয় করতে নির্ধারিত হয়েছে</string>
-  <string name="preferences-extension-disabled-restart">পরবর্তী হাগল সূচনার সময় এক্সটেনশন নিষ্ক্রিয় করতে নির্ধারিত হয়েছিল</string>
-  <string name="preferences-extension-enabled">এই এক্সটেনশনটি পরবর্তী হাগল সূচনার সময় নিষ্ক্রিয় করতে নির্ধারিত হয়নি</string>
-  <string name="preferences-extension-enabled-restart">এক্সটেনশন সক্রিয় করা হয়েছে, কিন্তু এটি করতে আপনাকে হাগল পুনঃসূচনা করতে হবে</string>
+  <string name="preferences-extension-disabled" fuzzy="true">এই এক্সটেনশনটি ইতিমধ্যে পরবর্তী হাগল সূচনার সময় নিষ্ক্রিয় করতে নির্ধারিত হয়েছে</string>
+  <string name="preferences-extension-disabled-restart" fuzzy="true">পরবর্তী হাগল সূচনার সময় এক্সটেনশন নিষ্ক্রিয় করতে নির্ধারিত হয়েছিল</string>
+  <string name="preferences-extension-enabled" fuzzy="true">এই এক্সটেনশনটি পরবর্তী হাগল সূচনার সময় নিষ্ক্রিয় করতে নির্ধারিত হয়নি</string>
+  <string name="preferences-extension-enabled-restart" fuzzy="true">এক্সটেনশন সক্রিয় করা হয়েছে, কিন্তু এটি করতে আপনাকে হাগল পুনঃসূচনা করতে হবে</string>
   <string name="preferences-watchlist-watch">নজরতালিকায় যোগ করুন</string>
   <string name="preferences-watchlist-unwatch">নজরতালিকা থেকে অপসারণ করুন</string>
   <string name="preferences-watchlist-preferences">আপনার উইকির পছন্দগুলি অনুসরণ করে</string>
@@ -729,7 +730,7 @@
   <string name="login-invalid-register-date">মিডিয়াউইকি নিবন্ধনের তারিখ অবৈধ বলছে</string>
   <string name="login-site-info-query-failed">$1-এর জন্য সাইটের তথ্যের কোয়েরি ব্যর্থ হয়েছে: $2</string>
   <string name="login-no-site-info-returned">এই উইকি জন্য কোন সাইটের তথ্য ফেরত আসেনি</string>
-  <string name="loading-main-window">হাগলের প্রধান উইন্ডো লোড করা হচ্ছে</string>
+  <string name="loading-main-window" fuzzy="true">হাগলের প্রধান উইন্ডো লোড করা হচ্ছে</string>
   <string name="api.php-invalid-response">api.php অবৈধ পাঠ্যসহ সাড়া দিয়েছে (ওয়েবসার্ভার সক্রিয় নয়?), সুনির্দিষ্ট তথ্যের জন্য ডিবাগ লগ পরীক্ষা করুন</string>
   <string name="login-username-doesnt-exist">এই ব্যবহারকারী নাম বিদ্যমান নয়</string>
   <string name="developer-mode-enter-title">ওওওয়ে</string>

@@ -113,7 +113,7 @@
   <string name="config-welcome-empty-page">Kas kemennadennoù degemer mat d\'an implijerien gant ur bajenn gaozeal c\'houllo pa vez graet ur c\'hemm bras</string>
   <string name="config-revert">Disteuler</string>
   <string name="config-revert-diff">Distreiñ war kemmoù ar bajenn zo nevesoc\'h eget an diforc\'h diskwelet, m\'int bet graet gant ar memes implijer draster</string>
-  <string name="config-change-all">Kemmañ holl arventennoù Huggle evit en em ren muioc\'h evel Huggle 2</string>
+  <string name="config-change-all" fuzzy="true">Kemmañ holl arventennoù Huggle evit en em ren muioc\'h evel Huggle 2</string>
   <string name="config-merge-messages">Kendeuziñ ho kemennadennoù gant ar re all er rannskridoù zo anezho</string>
   <string name="config-months-name">Implijout ar mizioù evel talbennoù e-lec\'h anv ar bajenn</string>
   <string name="config-automatic-warning">Implijout seurtoù ha liveoù kemenn emgefre en arc\'hweladur « kas kemenn »</string>
@@ -175,7 +175,7 @@
   <string name="invalid-bot-user-name">N\'eo ket un anv robod reizh. Anv robot reizh, da skouer :Jimbo@Huggle</string>
   <string name="login-tab-botp">Ger-tremen ar bot</string>
   <string name="login-tab-login">Normal</string>
-  <string name="login-reload-tool-tip">Adkargañ ur roll raktresoù a c\'haller kaout hag a c\'haller implijout en Huggle : gallout a ra bezañ talvoudus m\'ho peus c\'hoant da implijout Huggle en ur raktres zo bet gweredekaet Huggel evitañ nevez zo</string>
+  <string name="login-reload-tool-tip" fuzzy="true">Adkargañ ur roll raktresoù a c\'haller kaout hag a c\'haller implijout en Huggle : gallout a ra bezañ talvoudus m\'ho peus c\'hoant da implijout Huggle en ur raktres zo bet gweredekaet Huggel evitañ nevez zo</string>
   <string name="login-language">Yezh :</string>
   <string name="login-project">Raktres :</string>
   <string name="login-username">Anv implijer :</string>
@@ -190,7 +190,7 @@
   <string name="login-fail-css">Kevreadur c\'hwitet e $1 : ne c\'haller ket adtapour kefluniadur an implijer. Diank eo Special:MyPage/huggle3.css.\nHa krouet ho peus huggle3.css en ho takad implijer ?</string>
   <string name="login-fail-enable-true">Kevreadur c\'hwitet e $1 : n\'ho peus ket enable:true en ho kefluniadur personel.</string>
   <string name="login-fail-no-info">Kevreadur c\'hwitet e $1 : Ne c\'hallit ket adtapout an titouroù implijer : $2</string>
-  <string name="login-bot">Peseurt diforc\'h zo etre ur robod hag ur c\'hevreadur dre zorn ?</string>
+  <string name="login-bot" fuzzy="true">Peseurt diforc\'h zo etre ur robod hag ur c\'hevreadur dre zorn ?</string>
   <string name="login-fail-parse-config">Kevreadur c\'hwitet e $1 : Ne c\'haller ket dielfennañ ar c\'hefluniadur implijer. Gwelit roud ho tizreinadur evit gouzout hiroc\'h.</string>
   <string name="login-password-empty">Goullo e oa ar ger-tremen ho peus bizskrivet</string>
   <string name="login-fail-wrong-name">N\'ho peus roet anv implijer mat ebet evit kevreañ</string>

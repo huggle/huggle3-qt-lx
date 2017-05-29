@@ -121,7 +121,7 @@
   <string name="config-revert-wait" fuzzy="true">انتظار واگردانی (به ثانیه)</string>
   <string name="config-revert">واگردانی</string>
   <string name="config-revert-diff">واگردانی ویرایش‌های تازه‌تر صفحه نسبت به تفاوت نمایش داده‌شده در حالتی که توسط همان کاربر خرابکار صورت گرفته‌باشد</string>
-  <string name="config-change-all">تغییر همه تنظیمات هاگل برای بیشتر شبیه هاگل ۲ رفتارکردن</string>
+  <string name="config-change-all" fuzzy="true">تغییر همه تنظیمات هاگل برای بیشتر شبیه هاگل ۲ رفتارکردن</string>
   <string name="config-merge-messages">ادغام‌کردن پیام‌های شما با دیگران در بخش‌های موجود</string>
   <string name="config-months-name">استفاده از ماه‌ها به عنوان نام سربرگ جای نام صفحه</string>
   <string name="config-automatic-warning">استفادهٔ خودکار از نوع هشدار و سطح کارکرد «ارسال هشدار»</string>
@@ -220,7 +220,7 @@
   <string name="invalid-bot-user-name">این ربات نیست. به عنوان مثال نام ربات درست: Jimbo@Huggle</string>
   <string name="login-tab-botp">گذرواژهٔ ربات</string>
   <string name="login-tab-login">میراث</string>
-  <string name="login-reload-tool-tip">بارگیری دوبارهٔ فهرست پروژه‌های موجود که می‌تواند مورد استفادهٔ هاگل قرار گیرد. در صورتی که هاگل در پروژه‌ای به تازگی فعال شده این گزینه می‌تواند مفید باشد.</string>
+  <string name="login-reload-tool-tip" fuzzy="true">بارگیری دوبارهٔ فهرست پروژه‌های موجود که می‌تواند مورد استفادهٔ هاگل قرار گیرد. در صورتی که هاگل در پروژه‌ای به تازگی فعال شده این گزینه می‌تواند مفید باشد.</string>
   <string name="login-language">زبان:</string>
   <string name="login-project">پروژه:</string>
   <string name="login-username">نام کاربری:</string>
@@ -235,7 +235,7 @@
   <string name="login-fail-css">ورود به سیستم انجام نشد. دریافت پیکربندی کاربر ناممکن بود. Special:MyPage/huggle3.css یافت نشد. آیا Huggle3.css را در فضای کاربری خودتان ساخته‌اید؟</string>
   <string name="login-fail-enable-true">ورود ناموفق در $1: شما مقدار enable:true را در پیکربندی شخصی خود ندارید.</string>
   <string name="login-fail-no-info">ورود ناموفق در $1: امکان دریافت اطلاعات کاربر نبود: $2</string>
-  <string name="login-bot">تفاوت بین ربات و ورود چیست؟</string>
+  <string name="login-bot" fuzzy="true">تفاوت بین ربات و ورود چیست؟</string>
   <string name="login-fail-parse-config">ورود ناموفق در $1: قادر به تجزیهٔ پیکربندی کاربر نبود. برای جزئیات بیشتر سیاههٔ اشکال‌زدایی را ببینید.</string>
   <string name="login-fail-user-data">ورود ناموفق در $1: قادر به دریافت اطلاعات کاربر نبود. پرس‌وجو از API هیچ داده‌ای را برنگرداند.</string>
   <string name="login-fail-rollback-rights">ورود ناموفق در $1: شما در این پروژه دسترسی واگردانی ندارید.</string>
@@ -669,7 +669,7 @@
   <string name="updating-wl">به‌روزرسانی فهرست سفید...</string>
   <string name="feature-nfru">این قابلیت تنها برای کاربران آی‌پی است</string>
   <string name="report-no-user">هیچ کاربر برای گزارش انتخاب نشده است، لطفا نخست برخی از کاربران را انتخاب نمایید.</string>
-  <string name="welcome-show">دفعه بعد که شما شروع به زبان این پیام مشاهده</string>
+  <string name="welcome-show" fuzzy="true">دفعه بعد که شما شروع به زبان این پیام مشاهده</string>
   <string name="welcome-tp-empty-fail">این کاربر، صفحه بحثی خالی دارد، آیا شما مطمئن هستید که می‌خواهید به وی پیامی بفرستید؟</string>
   <string name="welcome-page-miss-fail">هاگل نتوانست محتوای صفحه بحث کاربری را بازیابی کند، آیا مطمئن هستید که می‌خواهید پیام خوشامدگویی برایشان بفرستید؟</string>
   <string name="cr-newer-edits">درگیری حل و فصل شد: همه ویرایش‌های از جمله ویرایش‌های جدید را  واگردانی کن. ویرایش‌ها توسط همان کاربر: هستند.</string>
@@ -681,10 +681,10 @@
   <string name="cr-message-new">ویرایش‌های تازه‌ای  در $1 وجود دارد، آیا قصد واگردانی همه آن‌ها را دارید؟</string>
   <string name="cr-message-not-same">ویرایش‌های تازه‌ای  در $1 از سوی کاربران مختلف وجود دارد، آیا قصد واگردانی همه آن‌ها را دارید؟</string>
   <string name="preferences-delete-using-filter">شما نمی‌توانید فیلتری که در حال حاضر استفاده می‌شود را پاک کنید</string>
-  <string name="preferences-extension-disabled">این افزونه برای غیرفعال کردن راه‌اندازی مجدد هاگل برنامه‌ریزی شده است</string>
-  <string name="preferences-extension-disabled-restart">افزونه برای غیرفعال شدن در راه‌اندازی بعدی هاگل برنامه‌ریزی شده بود</string>
-  <string name="preferences-extension-enabled">این افزونه برای غیرفعال کردن راه‌اندازی مجدد هاگل برنامه‌ریزی نشده است</string>
-  <string name="preferences-extension-enabled-restart">افزونه فعال شده‌است، با این وجود برای به کار افتادن هاگل شما باید  آن را دوباره راه‌اندازی کنید</string>
+  <string name="preferences-extension-disabled" fuzzy="true">این افزونه برای غیرفعال کردن راه‌اندازی مجدد هاگل برنامه‌ریزی شده است</string>
+  <string name="preferences-extension-disabled-restart" fuzzy="true">افزونه برای غیرفعال شدن در راه‌اندازی بعدی هاگل برنامه‌ریزی شده بود</string>
+  <string name="preferences-extension-enabled" fuzzy="true">این افزونه برای غیرفعال کردن راه‌اندازی مجدد هاگل برنامه‌ریزی نشده است</string>
+  <string name="preferences-extension-enabled-restart" fuzzy="true">افزونه فعال شده‌است، با این وجود برای به کار افتادن هاگل شما باید  آن را دوباره راه‌اندازی کنید</string>
   <string name="preferences-watchlist-watch">افزودن به پی‌گیری‌ها</string>
   <string name="preferences-watchlist-unwatch">حذف از فهرست پی‌گیری</string>
   <string name="preferences-watchlist-preferences">از ترجیحات ویکی خود استفاده کنید</string>
@@ -722,7 +722,7 @@
   <string name="login-invalid-register-date">صفحه ثبت‌نام نامعتبر توسط مدیاویکی برگردانده شد</string>
   <string name="login-site-info-query-failed">کوئری اطلاعات سایت برای $1 شکست خورد: $2</string>
   <string name="login-no-site-info-returned">اطلاعات سایت برای این ویکی بازگردانی نشد</string>
-  <string name="loading-main-window">درحال بارگذاری پنجره اصلی</string>
+  <string name="loading-main-window" fuzzy="true">درحال بارگذاری پنجره اصلی</string>
   <string name="api.php-invalid-response">api.php پاسخ با متن نامعتبر داد (وبسرور مشکل دارد؟) لطفا لاگ دیباگ برای اطلاعات دقیق بررسی کنید.</string>
   <string name="login-username-doesnt-exist">این نام کاربری وجود ندارد</string>
   <string name="developer-mode-enter-title">زمان</string>

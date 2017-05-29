@@ -144,9 +144,11 @@
   <string name="login-failed-edit">Parameters:\n* $1 - sitename</string>
   <string name="login-retrieving-info">Parameters:\n* $1 - sitename</string>
   <string name="login-api">Used as error message. Parameters:\n* $1 - unknown result. Known results are: \"Success\", \"EmptyPass\", \"WrongPass\", \"NoName\"</string>
+  <string name="login-abort">{{Identical|Abort}}</string>
   <string name="login-start">{{Identical|Log in}}</string>
   <string name="login-oauth-notsupported">OAuth-notice on login-window.\n\n\"This method\" refers to \"OAuth authentication\".</string>
   <string name="login-translate">Used as link text for the link pointing to [[m:Huggle/Localization]].</string>
+  <string name="login-progress-formtitle">{{Identical|Loading}}</string>
   <string name="login-progress-start">Parameters:\n* $1 - project name. e.g. \"enwiki\"\n{{Related|Login-progress}}</string>
   <string name="login-progress-retrieve-mw">Parameters:\n* $1 - project name. e.g. \"enwiki\"\n{{Related|Login-progress}}</string>
   <string name="login-progress-language">{{Related|Login-progress}}</string>

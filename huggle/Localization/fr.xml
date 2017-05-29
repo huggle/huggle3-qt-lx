@@ -52,9 +52,9 @@
   <string name="disable">Désactiver</string>
   <string name="no-token">Pas de jeton</string>
   <string name="flags">Indicateurs</string>
-  <string name="gracetime" fuzzy="true">En attente de la terminaison des requêtes de modification…</string>
+  <string name="gracetime">En attente de la terminaison des requêtes effectuant une modification…</string>
   <string name="browser-none">Aucune page n\'est affichée maintenant</string>
-  <string name="browser-load" fuzzy="true">Téléchargement de diff en utilisant un rendu Web de secours, veuillez patienter...</string>
+  <string name="browser-load">Téléchargement de diff en utilisant un secours MW, veuillez patienter…</string>
   <string name="browser-miss-summ">Aucun résumé n\'a été fourni</string>
   <string name="browser-diff">Diff de la page : $1 (pointage : $2)</string>
   <string name="browser-fail">Impossible de récupérer le diff : $1</string>
@@ -117,9 +117,9 @@
   <string name="config-confirm-talk">Demander une confirmation pour la révocation d\'une page de discussion</string>
   <string name="config-use-rollback">Utiliser un retour en arrière logiciel</string>
   <string name="config-welcome-empty-page">Envoyer des messages de bienvenue aux utilisateurs avec une page de discussion vide lors d’une bonne modification</string>
-  <string name="config-conflicts-revert" fuzzy="true">Résoudre automatiquement les conflits avec les autres utilisateurs qui reviennent en arrière ou modifient la page</string>
+  <string name="config-conflicts-revert">Résoudre automatiquement les conflits d’édition avec les autres utilisateurs qui reviennent en arrière ou modifient la même page</string>
   <string name="config-instant-reverts">Utiliser les retours arrière instantanés (très rapide, mais impossible à annuler une fois exécuté)</string>
-  <string name="config-revert-wait" fuzzy="true">Attente de retour arrière (en secondes)</string>
+  <string name="config-revert-wait">Délai de retour arrière (en secondes)</string>
   <string name="config-revert">Rétablir</string>
   <string name="config-revert-diff">Revenir sur les modifications de la page qui sont plus récentes que la différence affichée, dans le cas où elles ont été faites par le même utilisateur vandale</string>
   <string name="config-change-all">Modifier tous les paramètres de Huggle pour se comporter davantage comme Huggle 2</string>
@@ -127,10 +127,10 @@
   <string name="config-months-name">Utiliser les mois comme entêtes au lieu du nom de la page</string>
   <string name="config-automatic-warning">Utiliser des types et niveaux d’avertissement automatiques dans la fonction « envoi d’avertissement »</string>
   <string name="config-enable-irc">Permettre l\'IRC</string>
-  <string name="config-remove-reverted" fuzzy="true">Supprimer les modifications qui étaient déjà annulées par quelqu’un d’autre</string>
-  <string name="config-remove-old" fuzzy="true">Supprimer les anciennes modifications si une modification plus récente sur la même page est analysée</string>
+  <string name="config-remove-reverted">Supprimer de la file les modifications qui étaient déjà annulées par quelqu’un d’autre</string>
+  <string name="config-remove-old">Supprimer les plus anciennes modifications de la file si une modification plus récente sur la même page est reçue</string>
   <string name="config-auto-load-history">Charger automatiquement l’historique et les informations utilisateur (nécessite une bonne bande passante du réseau)</string>
-  <string name="config-last-revision" fuzzy="true">Afficher la dernière révision de la page si la modification actuellement chargée n’est pas la dernière révision (sera téléchargé ensuite en contournant le cache)</string>
+  <string name="config-last-revision">Basculer vers la dernière révision de la page si la modification actuellement chargée n’est pas la dernière révision (sera téléchargé ensuite en contournant le cache, ralentissant Huggle)</string>
   <string name="config-require-delay">Nécessite un délai après chaque chargement de prochaine modification, pendant lequel il ne sera pas possible d’utiliser une fonctionnalité d’écriture (utile pour éviter un problème de frappe multiple sur le clavier)</string>
   <string name="config-wait-edit">Le délai, en secondes, avant que les fonctionnalités d’écriture soient activées :</string>
   <string name="config-display-text">Afficher la suite</string>
@@ -246,9 +246,11 @@
   <string name="login-password-empty">Le mot de passe que vous avez saisi était vide</string>
   <string name="login-fail-wrong-name">Vous n’avez pas fourni de nom d’utilisateur correct pour la connexion</string>
   <string name="login-api">ERREUR : api.php a répondu avec un résultat inconnu : $1</string>
+  <string name="login-abort">Abandonner</string>
   <string name="login-start">Connexion</string>
   <string name="login-oauth-notsupported">Cette méthode n’est pas prise en charge pour le moment</string>
   <string name="login-translate">Traduire Huggle</string>
+  <string name="login-progress-formtitle">Chargement en cours…</string>
   <string name="login-progress-start">Connexion à $1</string>
   <string name="login-progress-retrieve-mw">Récupération des informations sur MédiaWiki pour $1</string>
   <string name="login-progress-language">Updating message files...</string>
@@ -259,6 +261,7 @@
   <string name="login-progress-user-info">Vérification de l’information utilisateur pour $1</string>
   <string name="login-progress-whitelist">Retrieving user whitelist...</string>
   <string name="login-remember-password">Mémoriser le mot de passe</string>
+  <string name="login-remember-password-tooltip">Cette option stockera votre mot de passe en clair sur votre disque dur. À n\'utiliser que si vous êtes la seule personne à avoir accès à cet ordinateur.</string>
   <string name="login-ssl">Utiliser HTTPS (nécessite OpenSSL)</string>
   <string name="login-fail">Échec de la connexion sur $1</string>
   <string name="login-error-admin">Un compte d\'administrateur est nécessaire pour utiliser Huggle sur ce projet.</string>
@@ -279,6 +282,7 @@
   <string name="login-error-version">Cette version est obsolète. Mettre à jour avec la dernière version.</string>
   <string name="login-error-whitelist">Échec du chargement de la liste blanche des utilisateurs pour $1.</string>
   <string name="login-ro-title">Basculer en mode lecture seule</string>
+  <string name="login-ro-question">Au moins un projet ($1) ne vous permet pas de vous connecter avec des droits de modification (motif : $2). Voulez-vous basculer en mode lecture seule à la place ?</string>
   <string name="login-ro-info">Le projet $1 est passé en mode lecture seule</string>
   <string name="main-stat">$1 modifications par minute $2 annulations par minute, niveau $3</string>
   <string name="main-menu-provider-stop">Arrêter le fournisseur</string>
@@ -389,7 +393,7 @@
   <string name="main-han-display-user-messages">Afficher les messages utilisateur</string>
   <string name="main-han-display-user-data">Afficher les données utilisateur</string>
   <string name="main-help-documentation">Documentation</string>
-  <string name="main-help-feedback">Rétroaction</string>
+  <string name="main-help-feedback">Donner votre avis</string>
   <string name="main-help-about">À propos de Huggle...</string>
   <string name="main-addqueue">Ajouter...</string>
   <string name="main-savelogtitle">Enregistrer le journal</string>
@@ -411,6 +415,10 @@
   <string name="main-revert-newpage">Ceci est une nouvelle page, elle ne peut donc pas être restaurée. Vous pouvez soit la marquer soit la supprimer.</string>
   <string name="main-restore-text-fail">Impossible de restaurer cette version, car il n\'y a pas de texte disponible pour cela</string>
   <string name="main-restore-data-fail">Impossible de rétablir la révision, parce que le wiki n’a fourni aucune donnée pour la version sélectionnée</string>
+  <string name="main-welcome-user">Bienvenue utilisateur</string>
+  <string name="main-report-username">Rapport de nom d’utilisateur</string>
+  <string name="main-report-user">Signaliser l\'utilisateur</string>
+  <string name="main-edit-user-talk">Éditer la conversation de l\'utilisateur</string>
   <string name="message-title">Message $1</string>
   <string name="message-help">Spécifiez un ou les deux champs Objet et Résumé. Si aucun résumé n\'est donné,, l\'objet sera utilisé; si aucun objet n\'est donné, aucune entête ne sera ajoutée.</string>
   <string name="message-subject">Objet :</string>
@@ -688,9 +696,9 @@
   <string name="cr-message-new">Il y a des modifications plus récentes sur $1, êtes-vous sûr de vouloir vraiment les annuler ?</string>
   <string name="cr-message-not-same">Il y a des modifications plus récentes faites sur $1 par un autre utilisateur, êtes-vous sûr de vouloir les annuler toutes (cela échouera sans doute à cause d’un jeton ancien) ?</string>
   <string name="preferences-delete-using-filter">Vous ne pouvez pas supprimer un filtre qui est utilisé actuellement</string>
-  <string name="preferences-extension-disabled">Cette extension est déjà mémorisée pour désactiver le prochain démarrage de huggle</string>
-  <string name="preferences-extension-disabled-restart">L’extension a été positionnée pour être désactivée au prochain démarrage de huggle</string>
-  <string name="preferences-extension-enabled">Cette extension n\'est pas mémorisée pour désactiver le prochain démarrage de huggle</string>
+  <string name="preferences-extension-disabled">Cette extension est déjà mémorisée pour désactiver le prochain démarrage de Huggle</string>
+  <string name="preferences-extension-disabled-restart">L’extension a été positionnée pour être désactivée au prochain démarrage de Huggle</string>
+  <string name="preferences-extension-enabled">Cette extension n\'est pas mémorisée pour désactiver le prochain démarrage de Huggle</string>
   <string name="preferences-extension-enabled-restart">L’extension a été activée, cependant, vous devez redémarrer Huggle pour la mettre en œuvre</string>
   <string name="preferences-watchlist-watch">Ajouter à la liste de suivi</string>
   <string name="preferences-watchlist-unwatch">Supprimer de la liste de suivi</string>
@@ -722,8 +730,8 @@
   <string name="report-page-fail">Erreur : impossible de récupérer la page de rapport à $1</string>
   <string name="report-page-fail-time">Impossible de récupérer la date pour la page de rapport en cours, échec de l\'api:\n\n$1</string>
   <string name="report-unable">Incapable de rapporter l\'utilisateur :(</string>
-  <string name="about-python-with">,avec le support python</string>
-  <string name="about-python-without">sans le support python</string>
+  <string name="about-python-with">, avec la prise en charge Python</string>
+  <string name="about-python-without">sans prise en charge Python</string>
   <string name="about-qt">, compilé à l\'aide de QT $1 exécuté sur QT $1</string>
   <string name="about-info">, basé sur $1, plateforme cible : $2</string>
   <string name="error-unknown-code">Erreur inconnue: $1</string>
@@ -734,7 +742,7 @@
   <string name="login-invalid-register-date">registrationdate renvoyée par MédiaWiki non valide</string>
   <string name="login-site-info-query-failed">La demande d’information du site pour $1 a échouée : $2</string>
   <string name="login-no-site-info-returned">Aucune information de site n’a été renvoyée pour ce wiki</string>
-  <string name="loading-main-window">Chargement de la fenêtre principale de huggle</string>
+  <string name="loading-main-window">Chargement de la fenêtre principale de Huggle</string>
   <string name="api.php-invalid-response">api.php a répondu avec un texte non valide (serveur web HS ?), veuillez consulter le journal de débogage pour des informations plus précises</string>
   <string name="login-username-doesnt-exist">Ce nom d’utilisateur n’existe pas</string>
   <string name="developer-mode-enter-title">Waouh</string>

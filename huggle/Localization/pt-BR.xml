@@ -121,7 +121,7 @@
   <string name="config-revert-wait" fuzzy="true">Espera para a reversão (segundos)</string>
   <string name="config-revert">Reverter</string>
   <string name="config-revert-diff">Reverter as edições mais recentes que a da página diff sendo exibida no caso de terem sido feitas pelo mesmo usuário vândalo</string>
-  <string name="config-change-all">Mudar todas as configurações do huggle para que funcionem como o huggle 2</string>
+  <string name="config-change-all" fuzzy="true">Mudar todas as configurações do huggle para que funcionem como o huggle 2</string>
   <string name="config-merge-messages">Fundir suas mensagens com outras em seções existentes</string>
   <string name="config-months-name">Usar os meses como cabeçalhos em vez do nome da página</string>
   <string name="config-automatic-warning">Usar aviso com tipo e nível automáticos na função \"enviar aviso\"</string>
@@ -220,7 +220,7 @@
   <string name="invalid-bot-user-name">Este não é um nome de bot válido. Exemplo de nome válido para bot: Jimbo@Huggle</string>
   <string name="login-tab-botp">Senha do bot</string>
   <string name="login-tab-login">Normal</string>
-  <string name="login-reload-tool-tip">Recarregue uma lista de projetos disponíveis que podem ser usados com o Huggle. Isto pode ser útil no caso de desejar usar o Huggle em um projeto onde foi recentemente ativado.</string>
+  <string name="login-reload-tool-tip" fuzzy="true">Recarregue uma lista de projetos disponíveis que podem ser usados com o Huggle. Isto pode ser útil no caso de desejar usar o Huggle em um projeto onde foi recentemente ativado.</string>
   <string name="login-language">Língua:</string>
   <string name="login-project">Projeto:</string>
   <string name="login-username">Usuário:</string>
@@ -235,7 +235,7 @@
   <string name="login-fail-css">Início de sessão em $1 falhou: Não é possível recuperar a configuração de usuário. \nEspecial:MyPage/huggle3.css está em falta. Você criou a página huggle3.css no seu espaço de usuário?</string>
   <string name="login-fail-enable-true">Início de sessão em $1 falhou: Você não tem a linha com o código \"enable:true\" na sua configuração pessoal.</string>
   <string name="login-fail-no-info">Início de sessão em $1 falhou: Não foi possível recuperar a informação de usuário: $2</string>
-  <string name="login-bot">Qual é a diferença entre login normal e de bot?</string>
+  <string name="login-bot" fuzzy="true">Qual é a diferença entre login normal e de bot?</string>
   <string name="login-fail-parse-config">Início de sessão em $1 falhou: Não foi possível analisar a configuração de usuário. Veja o registo de depuração para mais detalhes.</string>
   <string name="login-fail-user-data">Início de sessão em $1 falhou: Não foi possível recuperar a informação de usuário, a consulta de API não retornou nenhum dado.</string>
   <string name="login-fail-rollback-rights">Autenticação falhou em $1: Você não tem a permissão de reversão neste projeto</string>
@@ -671,7 +671,7 @@
   <string name="updating-wl">Atualizando lista branca...</string>
   <string name="feature-nfru">Esta característica é somente para IP</string>
   <string name="report-no-user">Nenhum usuário foi selecionado para ser reportado, por favor selecione um usuário primeiro</string>
-  <string name="welcome-show">Mostrar essa mensagem da próxima vez que iniciar o Huggle</string>
+  <string name="welcome-show" fuzzy="true">Mostrar essa mensagem da próxima vez que iniciar o Huggle</string>
   <string name="welcome-tp-empty-fail">Este usuário não tem uma página de discussão vazia, tem certeza que quer mandar uma mensagem para ele?</string>
   <string name="welcome-page-miss-fail">Huggle não conseguiu recuperar o conteúdo da página de discussão do usuário, tem certeza que quer mandar uma mensagem de boas vindas para ele?</string>
   <string name="cr-newer-edits">Conflito resolvido: todas as edições revertidas, incluindo novas edições. Edições foram feitas pelo mesmo usuário: $1.</string>
@@ -683,10 +683,10 @@
   <string name="cr-message-new">Existem novas edições para $1, tem certeza que quer revertê-las?</string>
   <string name="cr-message-not-same">Existem novas edições feitas para $1 por um usuário diferente. Tem certeza que quer revertê-las? (é provável que falhe de qualquer jeito por causa da chave antiga)</string>
   <string name="preferences-delete-using-filter">Você não pode excluir um filtro que atualmente está sendo usado</string>
-  <string name="preferences-extension-disabled">Esta extensão já está programada para ser desabilitada na próxima inicialização do huggle</string>
-  <string name="preferences-extension-disabled-restart">Esta extensão foi programada para ser desabilitada na próxima inicialização do huggle</string>
-  <string name="preferences-extension-enabled">Esta extensão não está programada para ser desativada na próxima inicialização do huggle</string>
-  <string name="preferences-extension-enabled-restart">A extensão foi ativada, no entanto, você precisará reiniciar o Huggle para que isso aconteça</string>
+  <string name="preferences-extension-disabled" fuzzy="true">Esta extensão já está programada para ser desabilitada na próxima inicialização do huggle</string>
+  <string name="preferences-extension-disabled-restart" fuzzy="true">Esta extensão foi programada para ser desabilitada na próxima inicialização do huggle</string>
+  <string name="preferences-extension-enabled" fuzzy="true">Esta extensão não está programada para ser desativada na próxima inicialização do huggle</string>
+  <string name="preferences-extension-enabled-restart" fuzzy="true">A extensão foi ativada, no entanto, você precisará reiniciar o Huggle para que isso aconteça</string>
   <string name="preferences-watchlist-watch">Adicionar às páginas vigiadas</string>
   <string name="preferences-watchlist-unwatch">Remover das páginas vigiadas</string>
   <string name="preferences-watchlist-preferences">Seguir suas preferências na wiki</string>
@@ -725,7 +725,7 @@
   <string name="login-invalid-register-date">registrationdate inválida retornada pelo mediawiki</string>
   <string name="login-site-info-query-failed">Consulto por info no site para $1 falhou: $2</string>
   <string name="login-no-site-info-returned">Nenhuma site info foi retornada para essa wiki</string>
-  <string name="loading-main-window">Carregando janela principal do huggle</string>
+  <string name="loading-main-window" fuzzy="true">Carregando janela principal do huggle</string>
   <string name="api.php-invalid-response">api.php respondeu com texto inválido (webserver fora do ar?), por favor confira o debug log para informação precisa</string>
   <string name="login-username-doesnt-exist">Esse nome de usuário não existe</string>
   <string name="developer-mode-enter-title">Viva</string>

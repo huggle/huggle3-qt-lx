@@ -116,12 +116,12 @@
   <string name="config-confirm-talk">Wymagaj potwierdzenia do wycofania edycji w dyskusji</string>
   <string name="config-use-rollback">Używaj rewertu programowego</string>
   <string name="config-welcome-empty-page">Wysyłaj wiadomość powitalną do użytkowników z pustą stroną dyskusji, gdy wykonają dobrą edycję</string>
-  <string name="config-conflicts-revert" fuzzy="true">Automatycznie rozwiązuj konflikty z innymi użytkownikami, którzy wycofują lub wykonują zmiany na stronie</string>
+  <string name="config-conflicts-revert">Automatycznie rozwiązuj konflikty edycji z innymi użytkownikami, którzy wycofują lub wykonują zmiany na tej samej stronie</string>
   <string name="config-instant-reverts">Używaj natychmiastowego wycofywania zmian (bardzo szybko działa, ale nie można przerwać po wybraniu)</string>
-  <string name="config-revert-wait" fuzzy="true">Oczekiwanie przed wycofaniem (w sekundach)</string>
+  <string name="config-revert-wait">Opóźnienie przed wycofaniem (w sekundach)</string>
   <string name="config-revert">Cofnij</string>
   <string name="config-revert-diff">Wycofuj zmiany nowsze niż aktualnie pokazywana, jeśli są wykonane przez tego samego użytkownika-wandala</string>
-  <string name="config-change-all">Zmień wszystkie ustawienia Huggle, żeby zachowywał się podobnie do Huggle 2</string>
+  <string name="config-change-all" fuzzy="true">Zmień wszystkie ustawienia Huggle, żeby zachowywał się podobnie do Huggle 2</string>
   <string name="config-merge-messages">Połącz swoje wiadomości z innymi w istniejących sekcjach</string>
   <string name="config-months-name">Używaj miesięcy w tytułach zamiast nazwy strony</string>
   <string name="config-automatic-warning">Użyj automatycznie wybieranego typu ostrzeżenia i poziomu w funkcji \"wyślij ostrzeżenie\"</string>

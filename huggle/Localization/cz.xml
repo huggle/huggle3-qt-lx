@@ -203,7 +203,7 @@
   <string name="login-intro">Vyberte projekt a zadejte své uživatelské jméno a heslo. Kliknutím na tlačítko \"Projekty\" se můžete přihlásit k více projektům.</string>
   <string name="login-tab-botp">Hesla pro bota</string>
   <string name="login-tab-login">Přihlásit</string>
-  <string name="login-reload-tool-tip">Znovu načte seznam dostupných projektů, které mohou být použity v Huggle. To může být užitečné v případě, že chcete použít Huggle v projektu, na němž byl nedávno povolen Huggle.</string>
+  <string name="login-reload-tool-tip" fuzzy="true">Znovu načte seznam dostupných projektů, které mohou být použity v Huggle. To může být užitečné v případě, že chcete použít Huggle v projektu, na němž byl nedávno povolen Huggle.</string>
   <string name="login-language">Jazyk:</string>
   <string name="login-project">Projekt:</string>
   <string name="login-username">Uživatelské jméno:</string>
@@ -667,7 +667,7 @@
   <string name="relogin-fail">Nemohu se přihlásit na wiki: $1</string>
   <string name="projects">Projekty</string>
   <string name="unable-to-retrieve-user-list">Nelze načíst seznam uživatelů: $1</string>
-  <string name="loading-main-window">Načítání hlavního huggle okna</string>
+  <string name="loading-main-window" fuzzy="true">Načítání hlavního huggle okna</string>
   <string name="login-username-doesnt-exist">Toto uživatelské jméno neexistuje</string>
   <string name="developer-mode-enter-title">Jůůů</string>
   <string name="developer-mode-enter-message">{{GENDER:|Otevřel|Otevřela|Otevřel(a)}} jste režim pro vývojáře!</string>
