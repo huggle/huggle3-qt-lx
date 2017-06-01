@@ -121,7 +121,7 @@
   <string name="config-revert-wait" fuzzy="true">Geri alma zamanı (saniye)</string>
   <string name="config-revert">Geri al</string>
   <string name="config-revert-diff">Eğer gösterilen değişiklerden daha yeni olan değişiklikler aynı vandal kullanıcı tarafından yapılmışsa söz konusu değişiklikleri geri al</string>
-  <string name="config-change-all" fuzzy="true">Huggle\'ın tüm ayarlarını huggle 2 versiyonuna çevir</string>
+  <string name="config-change-all">Huggle\'ın tüm ayarlarını Huggle 2 versiyonuna çevir</string>
   <string name="config-merge-messages">Mevcut bölümlerdeki mesajlarını birleştir</string>
   <string name="config-months-name">Başlık olarak sayfanın adı yerine ayları kullan</string>
   <string name="config-automatic-warning">\"Uyarı gönder\" fonksiyonunda otomatik uyarı türü ve seviyesini kullan</string>
@@ -669,7 +669,7 @@
   <string name="updating-wl">Beyaz liste güncelleniyor...</string>
   <string name="feature-nfru">Bu özellik yalnızca IP kullanıcıları içindir.</string>
   <string name="report-no-user">Rapor etmek için kullanıcı seçilmedi, lütfen önce bir kullanıcı seçin</string>
-  <string name="welcome-show" fuzzy="true">Bu ileti bir dahaki sefere huggle ekranında başlatılacak</string>
+  <string name="welcome-show">Bu ileti bir dahaki sefere Huggle ekranında başlatılacak</string>
   <string name="welcome-tp-empty-fail">Kullanıcının mesaj sayfası boş değil, ona mesaj göndermek istediğinizden emin misiniz?</string>
   <string name="welcome-page-miss-fail">Huggle kullanıcı mesaj sayfasına ulaşamadı, hoş geldin mesajı göndermek istediğinize emin misiniz?</string>
   <string name="cr-newer-edits">Çakışma çözüldü: yenileri de dahil tüm değişiklikler geri alındı. Değişiklikler aynı kullanıcıya aitti: $1</string>
@@ -681,8 +681,8 @@
   <string name="cr-message-new">$1\'de yeni değişiklikler var. Gerçekten geri almak istiyor musunuz?</string>
   <string name="cr-message-not-same">$1 üzerinde farklı kullanıcılar tarafından yapılan yeni değişiklikler var. Hepsini geri almak istediğinize emin misiniz? (Eski belirteç yüzünden muhtemelen zaten başarısız olacaktır.)</string>
   <string name="preferences-delete-using-filter">Kullanılan bir süzgeci silemezsiniz</string>
-  <string name="preferences-extension-disabled" fuzzy="true">Bu uzantı zaten huggle yeniden başlarken devre dışı kalmak üzere planlanmış</string>
-  <string name="preferences-extension-disabled-restart" fuzzy="true">Bu uzantı Huggle yeniden başladığında devre dışı kalmak üzere ayarlanmış</string>
+  <string name="preferences-extension-disabled">Bu uzantı zaten Huggle yeniden başlarken devre dışı kalmak üzere planlanmış</string>
+  <string name="preferences-extension-disabled-restart">Bu uzantı Huggle yeniden başladığında devre dışı kalmak üzere ayarlanmış</string>
   <string name="preferences-extension-enabled" fuzzy="true">Bu uzantı Huggle yeniden başladığında devre dışı kalmak üzere ayarlanmamış</string>
   <string name="preferences-extension-enabled-restart" fuzzy="true">Uzantı etkinleştirildi ancak çalışması için Huggle\'ın yeniden başlatılması lazım.</string>
   <string name="preferences-watchlist-watch">İzleme listesine ekle</string>

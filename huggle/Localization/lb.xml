@@ -435,5 +435,6 @@
   <string name="main-revert-type-unknown">onbekannt</string>
   <string name="main-revert-type-in-userspace">am Benotzerraum</string>
   <string name="main-revert-type-made-by-you">vun Iech gemaach</string>
+  <string name="main-revert-type-made-on-talk-page">op enger Diskussiounssäit gemaach</string>
   <string name="query-protected-link">Gespaarte Link</string>
 </resources>

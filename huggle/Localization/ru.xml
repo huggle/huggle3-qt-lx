@@ -122,7 +122,7 @@
   <string name="config-revert-wait" fuzzy="true">Ожидание отката (секунд)</string>
   <string name="config-revert">Откатить</string>
   <string name="config-revert-diff">Откатить правки страницы, которые новее чем показанное изменение, в случае если если они сделаны тем же участником-вандалом</string>
-  <string name="config-change-all" fuzzy="true">Изменить все настройки huggle так чтобы его поведение было ближе к huggle 2</string>
+  <string name="config-change-all">Изменить все настройки Huggle так чтобы его поведение было ближе к Huggle 2</string>
   <string name="config-merge-messages">Объединять ваши сообщения с другими в существующих разделах</string>
   <string name="config-months-name">Использовать месяцы в качестве заголовков вместо имён страниц</string>
   <string name="config-automatic-warning">Использовать автоматический тип и уровень предупреждения в функции «отправки предупреждения»</string>
@@ -249,6 +249,7 @@
   <string name="login-start">Войти</string>
   <string name="login-oauth-notsupported">Этот метод в данный момент не поддерживается</string>
   <string name="login-translate">Перевести Huggle</string>
+  <string name="login-progress-formtitle">Загрузка…</string>
   <string name="login-progress-start">Входим в $1</string>
   <string name="login-progress-retrieve-mw">Получение информации о MediaWiki для $1</string>
   <string name="login-progress-language">Обновляю файлы сообщений...</string>
@@ -408,6 +409,8 @@
   <string name="main-revert-newpage">Это новая страница, поэтому правка не может быть отменена. Вы можете либо поставить метку, либо удалить страницу.</string>
   <string name="main-restore-text-fail">Невозможно восстановить эту версию, поскольку для неё недоступен текст</string>
   <string name="main-restore-data-fail">Невозможно восстановить эту версию, поскольку вики не предоставила данных о выбранной версии</string>
+  <string name="main-welcome-user">Добро пожаловать, пользователь</string>
+  <string name="main-report-user">Сообщить о нарушении</string>
   <string name="message-title">Сообщение $1</string>
   <string name="message-help">Укажите Заголовок и Текст сообщения. Если поле Описание изменений останется пустым, то в него подставится Заголовок сообщения. Если Заголовок сообщения останется пустым, то он не будет сгенерирован и останется пустым.</string>
   <string name="message-subject">Заголовок:</string>
@@ -673,7 +676,7 @@
   <string name="updating-wl">Обновляем белый список...</string>
   <string name="feature-nfru">Эта функция только для IP-участников</string>
   <string name="report-no-user">Получатель сообщения не выбран, пожалуйста, выберите одного из участников</string>
-  <string name="welcome-show" fuzzy="true">Показывать это сообщение и в следующий раз вы запустите на huggle</string>
+  <string name="welcome-show">Показывать это сообщение и в следующий раз вы запустите на Huggle</string>
   <string name="welcome-tp-empty-fail">У этого участника не пустая страница обсуждения. Вы уверены, что хотите отправить ему сообщение?</string>
   <string name="welcome-page-miss-fail">Huggle не удалось получить содержимое страницы обсуждения участника. Вы уверены, что хотите отправить ему приветственное сообщение?</string>
   <string name="cr-newer-edits">Конфликт разрешён: отменены все изменения, включая новые правки. Правки были от одного пользователя: $1.</string>
@@ -685,10 +688,10 @@
   <string name="cr-message-new">Есть более новые правки в $1. Вы уверены, что действительно хотите откатить их?</string>
   <string name="cr-message-not-same">Существуют более новые правки, внесенные в $1 другим участником. Вы уверены, что хотите откатить их все? (в любом случае, это, скорее всего, не получится сделать, из-за старого маркера.)</string>
   <string name="preferences-delete-using-filter">Вы не можете удалить фильтр, который сейчас используется</string>
-  <string name="preferences-extension-disabled" fuzzy="true">Это расширение уже запланировано к отключению во время следующей загрузки huggle</string>
-  <string name="preferences-extension-disabled-restart" fuzzy="true">Расширение будет отключено во время следующей загрузки huggle</string>
-  <string name="preferences-extension-enabled" fuzzy="true">Это расширение не запланировано к отключению во время следующей загрузки huggle</string>
-  <string name="preferences-extension-enabled-restart" fuzzy="true">Расширение будет включено, но нужно перезагрузить huggle чтобы оно включилось</string>
+  <string name="preferences-extension-disabled">Это расширение уже запланировано к отключению во время следующей загрузки Huggle</string>
+  <string name="preferences-extension-disabled-restart">Расширение будет отключено во время следующей загрузки Huggle</string>
+  <string name="preferences-extension-enabled">Это расширение не запланировано к отключению во время следующей загрузки Huggle</string>
+  <string name="preferences-extension-enabled-restart">Расширение будет включено, но для этого нужно перезагрузить Huggle</string>
   <string name="preferences-watchlist-watch">Добавить в список наблюдения</string>
   <string name="preferences-watchlist-unwatch">Удалить из списка наблюдения</string>
   <string name="preferences-watchlist-preferences">Следовать вашим настройкам в вики</string>
@@ -731,7 +734,7 @@
   <string name="login-invalid-register-date">MediaWiki вернула некорректную дату регистрации</string>
   <string name="login-site-info-query-failed">Запрос информации о сайте для $1 не сработал: $2</string>
   <string name="login-no-site-info-returned">Эта вики не вернула никакой информации о сайте</string>
-  <string name="loading-main-window" fuzzy="true">Загружается главное окно Huggle</string>
+  <string name="loading-main-window">Загружается главное окно Huggle</string>
   <string name="api.php-invalid-response">api.php вернул некорректный текст (сервер не работает?), проверьте журнал отладки для более точной информации</string>
   <string name="login-username-doesnt-exist">Это имя пользователя не существует</string>
   <string name="developer-mode-enter-title">Ура!</string>

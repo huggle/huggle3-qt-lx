@@ -121,14 +121,14 @@
   <string name="config-revert-wait">Opóźnienie przed wycofaniem (w sekundach)</string>
   <string name="config-revert">Cofnij</string>
   <string name="config-revert-diff">Wycofuj zmiany nowsze niż aktualnie pokazywana, jeśli są wykonane przez tego samego użytkownika-wandala</string>
-  <string name="config-change-all" fuzzy="true">Zmień wszystkie ustawienia Huggle, żeby zachowywał się podobnie do Huggle 2</string>
+  <string name="config-change-all">Zmień wszystkie ustawienia Huggle, żeby zachowywał się podobnie do Huggle 2</string>
   <string name="config-merge-messages">Połącz swoje wiadomości z innymi w istniejących sekcjach</string>
   <string name="config-months-name">Używaj miesięcy w tytułach zamiast nazwy strony</string>
   <string name="config-automatic-warning">Użyj automatycznie wybieranego typu ostrzeżenia i poziomu w funkcji \"wyślij ostrzeżenie\"</string>
   <string name="config-enable-irc">Włącz IRC</string>
   <string name="config-remove-reverted" fuzzy="true">Usuń zmiany, które zostały już wycofane przez kogoś innego</string>
   <string name="config-auto-load-history">Automatycznie pobieraj historię i informacje o użytkowniku (wymaga dobrego połączenia internetowego)</string>
-  <string name="config-last-revision" fuzzy="true">Wyświetl najnowszą wersję strony w przypadku gdy załadowana edycja nie jest ostatnią (zostanie pobrana później z ominięciem cache)</string>
+  <string name="config-last-revision">Przejdź do najnowszej wersji strony w przypadku gdy załadowana edycja nie jest ostatnią (zostanie pobrana później, spowalniając Huggle)</string>
   <string name="config-wait-edit">Opóźnienie w sekundach, zanim będzie można wprowadzać zmiany:</string>
   <string name="config-display-text">Pokaż następne</string>
   <string name="config-retrieve-edit">Przywróć swoją własną edycję</string>
@@ -229,9 +229,11 @@
   <string name="login-password-empty">Podane hasło było puste</string>
   <string name="login-fail-wrong-name">Podałeś niepoprawną nazwę użytkownika</string>
   <string name="login-api">BŁĄD: api.php zwrócił nieznany wynik: $1</string>
+  <string name="login-abort">Przerwij</string>
   <string name="login-start">Zaloguj się</string>
   <string name="login-oauth-notsupported">Ta metoda nie jest w tej chwili obsługiwana</string>
   <string name="login-translate">Przetłumacz Huggle</string>
+  <string name="login-progress-formtitle">Ładowanie...</string>
   <string name="login-progress-start">Logowanie do $1</string>
   <string name="login-progress-retrieve-mw">Uzyskiwanie informacji o MediaWiki dla $1</string>
   <string name="login-progress-language">Uaktualnianie plików wiadomości...</string>
@@ -375,6 +377,9 @@
   <string name="main-revert-null">Nie można wycofać: edycja jest pusta</string>
   <string name="main-revert-newpage-title">Nie można tego wycofać</string>
   <string name="main-revert-newpage">To jest nowa strona, więc nie może być wycofana. Możesz ją oznaczyć lub skasować.</string>
+  <string name="main-welcome-user">Przywitaj użytkownika</string>
+  <string name="main-report-username">Zgłoś nazwę użytkownika</string>
+  <string name="main-report-user">Zgłoś użytkownika</string>
   <string name="message-title">Wiadomość $1</string>
   <string name="message-subject">Temat:</string>
   <string name="message-message">Wiadomość:</string>

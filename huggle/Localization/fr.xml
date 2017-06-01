@@ -259,9 +259,9 @@
   <string name="login-progress-local">Vérification de la configuration locale pour $1</string>
   <string name="login-progress-user">Vérification de la configuration utilisateur pour $1</string>
   <string name="login-progress-user-info">Vérification de l’information utilisateur pour $1</string>
-  <string name="login-progress-whitelist">Retrieving user whitelist...</string>
+  <string name="login-progress-whitelist">Chargement de la liste blanche d’utilisateurs…</string>
   <string name="login-remember-password">Mémoriser le mot de passe</string>
-  <string name="login-remember-password-tooltip">Cette option stockera votre mot de passe en clair sur votre disque dur. À n\'utiliser que si vous êtes la seule personne à avoir accès à cet ordinateur.</string>
+  <string name="login-remember-password-tooltip">Cette option stockera votre mot de passe en clair sur votre disque dur. À n’utiliser que si vous êtes la seule personne à avoir accès à cet ordinateur.</string>
   <string name="login-ssl">Utiliser HTTPS (nécessite OpenSSL)</string>
   <string name="login-fail">Échec de la connexion sur $1</string>
   <string name="login-error-admin">Un compte d\'administrateur est nécessaire pour utiliser Huggle sur ce projet.</string>
@@ -279,7 +279,7 @@
   <string name="login-error-password">Mot de passe incorrect.</string>
   <string name="login-error-projdisabled">Huggle est actuellement désactivé sur ce projet.</string>
   <string name="login-error-unknown">Impossible de se connecter à $1.</string>
-  <string name="login-error-version">Cette version est obsolète. Mettre à jour avec la dernière version.</string>
+  <string name="login-error-version">Cette version est désuète. Mettre à jour avec la dernière version.</string>
   <string name="login-error-whitelist">Échec du chargement de la liste blanche des utilisateurs pour $1.</string>
   <string name="login-ro-title">Basculer en mode lecture seule</string>
   <string name="login-ro-question">Au moins un projet ($1) ne vous permet pas de vous connecter avec des droits de modification (motif : $2). Voulez-vous basculer en mode lecture seule à la place ?</string>
@@ -416,9 +416,9 @@
   <string name="main-restore-text-fail">Impossible de restaurer cette version, car il n\'y a pas de texte disponible pour cela</string>
   <string name="main-restore-data-fail">Impossible de rétablir la révision, parce que le wiki n’a fourni aucune donnée pour la version sélectionnée</string>
   <string name="main-welcome-user">Bienvenue utilisateur</string>
-  <string name="main-report-username">Rapport de nom d’utilisateur</string>
+  <string name="main-report-username">Signaler le nom d’utilisateur</string>
   <string name="main-report-user">Signaliser l\'utilisateur</string>
-  <string name="main-edit-user-talk">Éditer la conversation de l\'utilisateur</string>
+  <string name="main-edit-user-talk">Modifier la conversation de l’utilisateur</string>
   <string name="message-title">Message $1</string>
   <string name="message-help">Spécifiez un ou les deux champs Objet et Résumé. Si aucun résumé n\'est donné,, l\'objet sera utilisé; si aucun objet n\'est donné, aucune entête ne sera ajoutée.</string>
   <string name="message-subject">Objet :</string>
@@ -606,7 +606,7 @@
   <string name="error-loggedout">Le compte a été déconnecté, reconnexion...</string>
   <string name="error-noresponse">Aucun réponse</string>
   <string name="error-pagemissing">La page n\'existe pas</string>
-  <string name="error-reloginfail">Failed to log back in, try restarting Huggle</string>
+  <string name="error-reloginfail">Échec de la reconnexion : essayez un redémarrage de Huggle</string>
   <string name="error-timeout">Request timed out</string>
   <string name="error-unknown">Erreur inconnue</string>
   <string name="block-done">$1 bloqué</string>
@@ -696,9 +696,9 @@
   <string name="cr-message-new">Il y a des modifications plus récentes sur $1, êtes-vous sûr de vouloir vraiment les annuler ?</string>
   <string name="cr-message-not-same">Il y a des modifications plus récentes faites sur $1 par un autre utilisateur, êtes-vous sûr de vouloir les annuler toutes (cela échouera sans doute à cause d’un jeton ancien) ?</string>
   <string name="preferences-delete-using-filter">Vous ne pouvez pas supprimer un filtre qui est utilisé actuellement</string>
-  <string name="preferences-extension-disabled">Cette extension est déjà mémorisée pour désactiver le prochain démarrage de Huggle</string>
-  <string name="preferences-extension-disabled-restart">L’extension a été positionnée pour être désactivée au prochain démarrage de Huggle</string>
-  <string name="preferences-extension-enabled">Cette extension n\'est pas mémorisée pour désactiver le prochain démarrage de Huggle</string>
+  <string name="preferences-extension-disabled">Cette extension est déjà en attente de désactivation au prochain démarrage de Huggle</string>
+  <string name="preferences-extension-disabled-restart">L’extension était en attente de désactivation au prochain démarrage de Huggle</string>
+  <string name="preferences-extension-enabled">Cette extension ne sera pas désactivée lors du prochain démarrage de Huggle</string>
   <string name="preferences-extension-enabled-restart">L’extension a été activée, cependant, vous devez redémarrer Huggle pour la mettre en œuvre</string>
   <string name="preferences-watchlist-watch">Ajouter à la liste de suivi</string>
   <string name="preferences-watchlist-unwatch">Supprimer de la liste de suivi</string>

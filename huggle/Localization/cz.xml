@@ -53,7 +53,7 @@
   <string name="flags">Flagy</string>
   <string name="gracetime" fuzzy="true">Čekání na dokončení editačních dotazů...</string>
   <string name="browser-none">Žádná stránka nyní není zobrazena</string>
-  <string name="browser-load" fuzzy="true">Stahuji diff pomocí \"web rendering\", počkejte prosím...</string>
+  <string name="browser-load">Stahuji diff pomocí MW zálohy, počkejte prosím...</string>
   <string name="browser-miss-summ">žádné shrnutí</string>
   <string name="browser-diff">Diff stránky: $1 (skóre: $2 )</string>
   <string name="browser-fail">Nepodařilo se načíst diff: $1</string>
@@ -114,9 +114,9 @@
   <string name="config-confirm-talk">Požadovat potvrzení pro vrácení na diskusní stránku</string>
   <string name="config-use-rollback">Použít softwarové vrácení změn</string>
   <string name="config-welcome-empty-page">Poslat uvítání uživatelům s prázdnou diskuzní stránkou za dobrou editaci</string>
-  <string name="config-conflicts-revert" fuzzy="true">Autoamticky vyřešit konflikty s ostatními uživateli, kteří revertují nebo mění tuto stránku</string>
+  <string name="config-conflicts-revert">Autoamticky vyřešit editační konflikty s ostatními uživateli, kteří revertují nebo mění tuto stránku</string>
   <string name="config-instant-reverts">Použít okamžité reverty (velmi rychlé, ale nemohou být zrušeny poté, co jsou povoleny)</string>
-  <string name="config-revert-wait" fuzzy="true">Revertační prodleva (v sekundách)</string>
+  <string name="config-revert-wait">Revertační prodleva (v sekundách)</string>
   <string name="config-revert">Vrátit zpět</string>
   <string name="config-months-name">Použít jako záhlaví aktuální měsíc místo názvu stránky</string>
   <string name="config-enable-irc">Povolit IRC</string>
@@ -203,7 +203,7 @@
   <string name="login-intro">Vyberte projekt a zadejte své uživatelské jméno a heslo. Kliknutím na tlačítko \"Projekty\" se můžete přihlásit k více projektům.</string>
   <string name="login-tab-botp">Hesla pro bota</string>
   <string name="login-tab-login">Přihlásit</string>
-  <string name="login-reload-tool-tip" fuzzy="true">Znovu načte seznam dostupných projektů, které mohou být použity v Huggle. To může být užitečné v případě, že chcete použít Huggle v projektu, na němž byl nedávno povolen Huggle.</string>
+  <string name="login-reload-tool-tip">Znovu načte seznam dostupných projektů, které mohou být použity v Huggle. To může být užitečné v případě, že chcete použít Huggle v projektu, na němž byl nástroj nedávno povolen.</string>
   <string name="login-language">Jazyk:</string>
   <string name="login-project">Projekt:</string>
   <string name="login-username">Uživatelské jméno:</string>
@@ -667,7 +667,7 @@
   <string name="relogin-fail">Nemohu se přihlásit na wiki: $1</string>
   <string name="projects">Projekty</string>
   <string name="unable-to-retrieve-user-list">Nelze načíst seznam uživatelů: $1</string>
-  <string name="loading-main-window" fuzzy="true">Načítání hlavního huggle okna</string>
+  <string name="loading-main-window">Načítání hlavního Huggle okna</string>
   <string name="login-username-doesnt-exist">Toto uživatelské jméno neexistuje</string>
   <string name="developer-mode-enter-title">Jůůů</string>
   <string name="developer-mode-enter-message">{{GENDER:|Otevřel|Otevřela|Otevřel(a)}} jste režim pro vývojáře!</string>

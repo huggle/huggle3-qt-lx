@@ -121,7 +121,7 @@
   <string name="config-revert-wait" fuzzy="true">Перед відкотом зачекати (сек.)</string>
   <string name="config-revert">Відкотити</string>
   <string name="config-revert-diff">Відкотити редагування, новіші за показане зараз, якщо їх було зроблено тим самим вандалом</string>
-  <string name="config-change-all" fuzzy="true">Застосувати налаштування максимально схожі до таких в Huggle 2</string>
+  <string name="config-change-all">Застосувати налаштування максимально схожі до таких в Huggle 2</string>
   <string name="config-merge-messages">Об’єднувати Ваші попереджувальні повідомлення з іншими такими ж у вже існуючих темах</string>
   <string name="config-months-name">Для іменування нових тем використовувати місяці, а не назви сторінок, про які йдеться</string>
   <string name="config-automatic-warning">Використовувати автоматичне визначення типу та рівня попереджувального повідомлення в команді «Надіслати попередження»</string>
@@ -683,8 +683,8 @@
   <string name="cr-message-new">На сторінці $1 з’явилися нові редагування. Ви впевнені, що хочете відкинути їх?</string>
   <string name="cr-message-not-same">На сторінці $1 з’явилися нові редагування, зроблені різними користувачами. Ви впевнені, що хочете відкинути їх? (Це швидше за все все одно не спрацює через старий маркер сесії.)</string>
   <string name="preferences-delete-using-filter">Ви не можете видалити фільтр, що використовується в даний момент</string>
-  <string name="preferences-extension-disabled" fuzzy="true">Дане розширення вже планується вимкнути при наступному запуску Huggle</string>
-  <string name="preferences-extension-disabled-restart" fuzzy="true">Дане розширення вже планується вимкнути при наступному запуску Huggle</string>
+  <string name="preferences-extension-disabled">Дане розширення вже планується вимкнути при наступному запуску Huggle</string>
+  <string name="preferences-extension-disabled-restart">Дане розширення вже планується вимкнути при наступному запуску Huggle</string>
   <string name="preferences-extension-enabled" fuzzy="true">Дане розширення не планується вимкнути при наступному запуску Huggle</string>
   <string name="preferences-extension-enabled-restart" fuzzy="true">Розширення буде включено, але для цього потрібно перезапустити Huggle</string>
   <string name="preferences-watchlist-watch">Додати до списку спостереження</string>
@@ -725,7 +725,7 @@
   <string name="login-invalid-register-date">Медіавікі повернуло неправильну дату реєстрації</string>
   <string name="login-site-info-query-failed">Запит інформації про сайт для $1 був невдалим: $2</string>
   <string name="login-no-site-info-returned">Жодна інформація про сайт не повернулася для цього вікі</string>
-  <string name="loading-main-window" fuzzy="true">Завантаження головного вікна huggle</string>
+  <string name="loading-main-window">Завантаження головного вікна Huggle</string>
   <string name="api.php-invalid-response">api.php відповів із неправильним текстом (впав веб-сервер?). Будь ласка, перевірте журнал зневадження для точної інформації</string>
   <string name="login-username-doesnt-exist">Це ім\'я користувача не існує</string>
   <string name="developer-mode-enter-title">Ура</string>

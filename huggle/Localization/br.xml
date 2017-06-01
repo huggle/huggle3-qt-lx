@@ -113,7 +113,7 @@
   <string name="config-welcome-empty-page">Kas kemennadennoù degemer mat d\'an implijerien gant ur bajenn gaozeal c\'houllo pa vez graet ur c\'hemm bras</string>
   <string name="config-revert">Disteuler</string>
   <string name="config-revert-diff">Distreiñ war kemmoù ar bajenn zo nevesoc\'h eget an diforc\'h diskwelet, m\'int bet graet gant ar memes implijer draster</string>
-  <string name="config-change-all" fuzzy="true">Kemmañ holl arventennoù Huggle evit en em ren muioc\'h evel Huggle 2</string>
+  <string name="config-change-all">Kemmañ holl arventennoù Huggle evit en em ren muioc\'h evel Huggle 2</string>
   <string name="config-merge-messages">Kendeuziñ ho kemennadennoù gant ar re all er rannskridoù zo anezho</string>
   <string name="config-months-name">Implijout ar mizioù evel talbennoù e-lec\'h anv ar bajenn</string>
   <string name="config-automatic-warning">Implijout seurtoù ha liveoù kemenn emgefre en arc\'hweladur « kas kemenn »</string>

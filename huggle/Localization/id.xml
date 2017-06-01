@@ -121,7 +121,7 @@
   <string name="config-revert-wait" fuzzy="true">Waktu tunggu pembalikan (detik)</string>
   <string name="config-revert">Batalkan</string>
   <string name="config-revert-diff">Batalkan suntingan ke halaman yang lebih baru daripada yang ditampilkan oleh perbedaan (diff) jika suntingan itu dibuat oleh pengguna vandalisme yang sama</string>
-  <string name="config-change-all" fuzzy="true">Ubah semua pengaturan Huggle untuk bekerja seperti Huggle 2</string>
+  <string name="config-change-all">Ubah semua pengaturan Huggle untuk bekerja seperti Huggle 2</string>
   <string name="config-merge-messages">Gabungkan pesan-pesan Anda dengan pesan lain dalam bagian yang ada</string>
   <string name="config-months-name">Gunakan bulan sebagai judul kepada alih-alih nama halaman</string>
   <string name="config-automatic-warning">Gunakan jenis dan tingkat peringatan otomatis pada fungsi \"kirimkan peringatan\"</string>
@@ -338,7 +338,7 @@
   <string name="login-no-userinfo">Situs tidak mengembalikan setiap informasi pengguna</string>
   <string name="login-invalid-register-date">Tanggal pendaftaran tidak valid, dikembalikan oleh mediawiki</string>
   <string name="login-no-site-info-returned">Tidak ada situs Info dikembalikan untuk wiki ini</string>
-  <string name="loading-main-window" fuzzy="true">Memuat jendela huggle utama</string>
+  <string name="loading-main-window">Memuat jendela Huggle utama</string>
   <string name="login-username-doesnt-exist">Nama pengguna ini tidak ada</string>
   <string name="developer-mode-enter-title">Kapan</string>
   <string name="developer-mode-enter-message">anda memasuki mode pengembang!</string>

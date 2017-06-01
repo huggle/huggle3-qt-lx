@@ -121,7 +121,7 @@
   <string name="config-revert-wait" fuzzy="true">Wachten met terugdraaien (in seconden)</string>
   <string name="config-revert">Terugdraaien</string>
   <string name="config-revert-diff">Bewerkingen aan pagina terugdraaien die nieuwer zijn dan de weergegeven diff, als ze zijn gemaakt door dezelfde vandaliserende gebruiker</string>
-  <string name="config-change-all" fuzzy="true">Alle instellingen van Huggle zo maken dat ze zich meer als Huggle 2 gedragen</string>
+  <string name="config-change-all">Alle instellingen van Huggle zo maken dat ze zich meer als Huggle 2 gedragen</string>
   <string name="config-merge-messages">Uw berichten samenvoegen met anderen berichten in bestaande secties</string>
   <string name="config-months-name">Maanden als kopteksten gebruiken in plaatsen van de paginanaam</string>
   <string name="config-automatic-warning">Automatische waarden voor type en niveau van de waarschuwing gebruiken voor de functie \"Waarschuwing sturen\"</string>

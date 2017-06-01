@@ -97,6 +97,7 @@
   <string name="config-noshortcut">{{Identical|None}}</string>
   <string name="config-defaults">{{Identical|Default}}</string>
   <string name="config-revert">{{Identical|Revert}}</string>
+  <string name="config-last-revision">{{speedy|Not for translations}}\nPrzejdź do najnowszej wersji strony w przypadku gdy załadowana edycja nie jest ostatnią (zostanie pobrana później, tworząc Huggle wolniejszym)</string>
   <string name="config-bot-edits">The letter (b) is supposed to be the same as the \"bot\" abbreviation in RecentChanges - {{msg-mw|boteditletter}}.</string>
   <string name="config-reverts">{{Identical|Revert}}</string>
   <string name="config-new-page">{{Identical|New page}}</string>
