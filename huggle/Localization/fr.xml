@@ -89,7 +89,7 @@
   <string name="config-queue-filter-ignore">Ignorer (sans importance)</string>
   <string name="config-queue-filter-exclude">Exclure (ne doit pas exister)</string>
   <string name="config-queue-filter-require">Exiger (doit exister)</string>
-  <string name="config-summ">Résumé de revert personnalisés pour les modèles</string>
+  <string name="config-summ">Résumés personnalisés pour les révocations de modèles</string>
   <string name="config-title">Options</string>
   <string name="config-already-in-use">Ce raccourci est déjà utilisé par $1, veuillez en choisir un autre</string>
   <string name="config-openinbrowser">Ouvrir les liens du navigateur dans une nouvelle fenêtre</string>
@@ -128,8 +128,8 @@
   <string name="config-automatic-warning">Utiliser des types et niveaux d’avertissement automatiques dans la fonction « envoi d’avertissement »</string>
   <string name="config-enable-irc">Permettre l\'IRC</string>
   <string name="config-remove-reverted">Supprimer de la file les modifications qui étaient déjà annulées par quelqu’un d’autre</string>
-  <string name="config-remove-old">Supprimer les plus anciennes modifications de la file si une modification plus récente sur la même page est reçue</string>
-  <string name="config-auto-load-history">Charger automatiquement l’historique et les informations utilisateur (nécessite une bonne bande passante du réseau)</string>
+  <string name="config-remove-old">Supprimer de la file les plus anciennes modifications si une modification plus récente de la même page est reçue</string>
+  <string name="config-auto-load-history">Charger automatiquement l’historique et les informations utilisateur (nécessite une bande passante étendue du réseau)</string>
   <string name="config-last-revision">Basculer vers la dernière révision de la page si la modification actuellement chargée n’est pas la dernière révision (sera téléchargé ensuite en contournant le cache, ralentissant Huggle)</string>
   <string name="config-require-delay">Nécessite un délai après chaque chargement de prochaine modification, pendant lequel il ne sera pas possible d’utiliser une fonctionnalité d’écriture (utile pour éviter un problème de frappe multiple sur le clavier)</string>
   <string name="config-wait-edit">Le délai, en secondes, avant que les fonctionnalités d’écriture soient activées :</string>
@@ -221,13 +221,13 @@
   <string name="invalid-bot-user-name">Ce n’est pas un nom de robot valide. Exemple de nom de robot correct : Jimbo@Huggle</string>
   <string name="login-tab-botp">Mot de passe du robot</string>
   <string name="login-tab-login">Normal</string>
-  <string name="login-reload-tool-tip">Recharger une liste de projets disponibles qui peut être utilisée dans Huggle ; cela peut être utile si vous voulez utiliser Huggle sur un projet pour lequel Huggle a été récemment activé</string>
+  <string name="login-reload-tool-tip">Recharger une liste de projets disponibles qui peut être utilisée dans Huggle ; cela peut être utile si vous voulez utiliser Huggle sur un projet pour lequel Huggle a été récemment activé.</string>
   <string name="login-language">Langue :</string>
   <string name="login-project">Projet :</string>
   <string name="login-username">Nom d\'utilisateur :</string>
   <string name="login-password">Mot de passe :</string>
-  <string name="login-proxygroup">Paramètres de proxy</string>
-  <string name="login-proxy">Utiliser un serveur proxy</string>
+  <string name="login-proxygroup">Paramètres du mandataire</string>
+  <string name="login-proxy">Utiliser un serveur mandataire</string>
   <string name="login-proxyaddress">Adresse :</string>
   <string name="login-proxy-remember-this">Se souvenir de ce paramètre la prochaine fois</string>
   <string name="login-proxyport">Port :</string>
@@ -684,7 +684,7 @@
   <string name="updating-wl">Mise à jour de la liste blanche…</string>
   <string name="feature-nfru">Cette fonctionnalité concerne uniquement les utilisateurs IP</string>
   <string name="report-no-user">Aucun utilisateur n’a été sélectionné pour le rapporter, sélectionnez-en d’abord un</string>
-  <string name="welcome-show">Afficher aussi ce message la prochaine fois que vous lancez Huggle</string>
+  <string name="welcome-show">Afficher aussi ce message la prochaine fois que vous lancerez Huggle</string>
   <string name="welcome-tp-empty-fail">Cet utilisateur n’a pas de page de discussion vide, êtes-vous sûr de vouloir lui envoyer un message ?</string>
   <string name="welcome-page-miss-fail">Huggle n’a pas pu récupérer le contenu de la page de discussion de l’utilisateur, êtes-vous sûr de vouloir lui envoyer un message de bienvenue ?</string>
   <string name="cr-newer-edits">Conflit résolu : retour arrière sur toutes les modifications, y compris les nouvelles. Les modifications provenaient du même utilisateur : $1.</string>

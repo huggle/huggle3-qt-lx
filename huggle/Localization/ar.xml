@@ -388,6 +388,7 @@
   <string name="main-revert-newpage">هذه صفحة جديدة; لذلك لا يمكن أن تتراجع عن تعديل فيها; يمكنك مراجعتها أو حذفها.</string>
   <string name="main-restore-text-fail">لا يمكن استرجاع المراجعة; لأنه لا يوجد نص متاح لها</string>
   <string name="main-restore-data-fail">غير قادر على استرجاع المراجعة; لأن الويكي لم يقدم أي بيانات عن الإصدار المحدد</string>
+  <string name="main-report-username">أبلغ عن اسم المستخدم</string>
   <string name="message-title">رسالة $1</string>
   <string name="message-help">حدد العنوان أو الملخص او كلاهما. لدى انعدام الملخص سيتم استخدام العنوان؛ لدى انعدام العنوان لن تتم إضافة ترويسة</string>
   <string name="message-subject">العنوان:</string>
@@ -642,10 +643,10 @@
   <string name="cr-message-new">هناك تعديلات جديدة على $1. هل أنت متأكد من أنك تريد حقًا أن تسترجعها؟</string>
   <string name="cr-message-not-same">هناك تعديلات جديدة بواسطة مستخدم آخر على $1. هل أنت متأكد من أنك تريد حقًا أن تسترجعها؟(من المرجح أن تفشل على أي حال بسبب الرمز القديم).</string>
   <string name="preferences-delete-using-filter">لا يمكنك حذف مرشح مستخدم حاليًا</string>
-  <string name="preferences-extension-disabled" fuzzy="true">من المقرر تعطيل هذا التمديد بالفعل عند بدء التشغيل القادم لهغل</string>
+  <string name="preferences-extension-disabled">من المقرر تعطيل هذا الامتداد عند بدء التشغيل القادم لهغل</string>
   <string name="preferences-extension-disabled-restart" fuzzy="true">تم تعيين ملحق ليتم تعطيله عند بدء التشغيل القادم لهغل</string>
   <string name="preferences-extension-enabled" fuzzy="true">من غير المقرر تعطيل هذا التمديد عند بدء التشغيل القادم لهغل</string>
-  <string name="preferences-extension-enabled-restart" fuzzy="true">تم تمكين التمديد، ولكن تحتاج إلى إعادة تشغيل هغل ليحدث هذا</string>
+  <string name="preferences-extension-enabled-restart">الامتداد مُفعّل الآن، ولكن تحتاج إلى إعادة تشغيل هغل ليحدث هذا</string>
   <string name="preferences-watchlist-watch">أضف لقائمة مراقبتي</string>
   <string name="preferences-watchlist-unwatch">إزالة من قائمة المراقبة</string>
   <string name="preferences-watchlist-preferences">متابعتك على تفضيلات الويكي</string>

@@ -246,7 +246,7 @@
   <string name="login-password-empty">No se proporcionó la contraseña</string>
   <string name="login-fail-wrong-name">No se proporcionó un nombre de usuario correcto para acceder</string>
   <string name="login-api">ERROR: api.php respondió con resultado desconocido: $1</string>
-  <string name="login-abort">Abortar</string>
+  <string name="login-abort">Interrumpir</string>
   <string name="login-start">Ingresar</string>
   <string name="login-oauth-notsupported">En este momento no se admite este método</string>
   <string name="login-translate">Traducir Huggle</string>
@@ -696,7 +696,7 @@
   <string name="cr-message-new">Hay nuevas ediciones a $1. ¿Seguro quieres revertirlas?</string>
   <string name="cr-message-not-same">Hay nuevas ediciones a $1 de otro usuario. ¿Seguro quieres revertirlas todas? (De todas formas, probablemente falle por un \"token\" viejo)</string>
   <string name="preferences-delete-using-filter">No se puede eliminar un filtro que se está usando actualmente</string>
-  <string name="preferences-extension-disabled">Esta extensión ya está programada para deshabilitar el siguiente inicio de Huggle</string>
+  <string name="preferences-extension-disabled">Ya se ha programado esta extensión para su desactivación al próximo inicio de Huggle</string>
   <string name="preferences-extension-disabled-restart">La extensión se configuró para desactivarse en el siguiente inicio de Huggle</string>
   <string name="preferences-extension-enabled">Esta extensión no está programada para deshabilitar el siguiente inicio de Huggle</string>
   <string name="preferences-extension-enabled-restart">La extensión se activó. Sin embargo, es necesario reiniciar Huggle</string>
