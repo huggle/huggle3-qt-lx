@@ -54,10 +54,10 @@ Proxy::Proxy(QWidget *parent) : HW("proxy", this, parent), ui(new Ui::Proxy)
     this->ui->label_3->setText(_l("login-proxyport"));
     this->ui->checkBox->setText(_l("login-proxy-remember-this"));
     this->ui->comboBox->addItem(_l("protect-none"));
-    this->ui->comboBox->addItem("Socks 5");
-    this->ui->comboBox->addItem("Http");
-    this->ui->comboBox->addItem("Http (caching proxy)");
-    this->ui->comboBox->addItem("Ftp");
+    this->ui->comboBox->addItem(_l("proxy-socks-5"));
+    this->ui->comboBox->addItem(_l("proxy-http"));
+    this->ui->comboBox->addItem(_l("proxy-http-caching-proxy"));
+    this->ui->comboBox->addItem(_l("proxy-ftp"));
     this->ui->comboBox->setCurrentIndex(hcfg->SystemConfig_ProxyType);
     if (hcfg->SystemConfig_UseProxy)
     {
