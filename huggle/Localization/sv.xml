@@ -232,6 +232,7 @@
   <string name="login-ro-title">Byt till skrivskyddat</string>
   <string name="login-ro-question">En eller fler projekt ($1) låter dig inte logga in med redigeringsbehörigheter (anledning: $2). Vill du byta till skrivskyddat läge istället?</string>
   <string name="login-ro-info">Projektet $1 byte till skrivskyddat läge</string>
+  <string name="main-stat">$1 redigeringar per minut $2 tillbakarullningar per minut, nivå $3</string>
   <string name="main-menu-provider-stop">Stoppa leverantör</string>
   <string name="main-menu-provider-resume">Återuppta leverantör</string>
   <string name="main-no-reason">Ingen anledning angavs av användaren</string>

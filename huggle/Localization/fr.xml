@@ -684,7 +684,7 @@
   <string name="updating-wl">Mise à jour de la liste blanche…</string>
   <string name="feature-nfru">Cette fonctionnalité concerne uniquement les utilisateurs IP</string>
   <string name="report-no-user">Aucun utilisateur n’a été sélectionné pour le rapporter, sélectionnez-en d’abord un</string>
-  <string name="welcome-show">Afficher aussi ce message la prochaine fois que vous lancerez Huggle</string>
+  <string name="welcome-show">Afficher aussi ce message la prochaine fois que vous lancez Huggle</string>
   <string name="welcome-tp-empty-fail">Cet utilisateur n’a pas de page de discussion vide, êtes-vous sûr de vouloir lui envoyer un message ?</string>
   <string name="welcome-page-miss-fail">Huggle n’a pas pu récupérer le contenu de la page de discussion de l’utilisateur, êtes-vous sûr de vouloir lui envoyer un message de bienvenue ?</string>
   <string name="cr-newer-edits">Conflit résolu : retour arrière sur toutes les modifications, y compris les nouvelles. Les modifications provenaient du même utilisateur : $1.</string>
