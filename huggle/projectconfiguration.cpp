@@ -183,7 +183,7 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
     this->Patrolling = SafeBool(HuggleParser::ConfigurationParse("patrolling-enabled", config));
     this->PatrollingFlaggedRevs = SafeBool(HuggleParser::ConfigurationParse("patrolling-flaggedrevs", config, "false"));
     this->ReportSummary = HuggleParser::ConfigurationParse("report-summary", config);
-    this->ReportAutoSummary = HuggleParser::ConfigurationParse("report-auto-summary", config, "This user was automatically reported by huggle, please verify their"\
+    this->ReportAutoSummary = HuggleParser::ConfigurationParse("report-auto-summary", config, "This user was automatically reported by Huggle due to reverted vandalism after four warnings, please verify their"\
                                                                                               " contributions carefully, it may be a false positive");
     this->SpeedyTemplates = HuggleParser::ConfigurationParse_QL("speedy-options", config);
     // Parsing
