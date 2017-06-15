@@ -245,7 +245,7 @@
   <string name="login-abort">중단</string>
   <string name="login-start">로그인</string>
   <string name="login-oauth-notsupported">이 메서드는 이 순간에 지원하지 않습니다.</string>
-  <string name="login-translate">허글 번역하기</string>
+  <string name="login-translate">Huggle 번역하기</string>
   <string name="login-progress-formtitle">불러오는 중...</string>
   <string name="login-progress-start">$1 프로젝트에 로그인 중</string>
   <string name="login-progress-retrieve-mw">$1에 대해 미디어위키에 대한 정보를 얻는 중</string>
@@ -270,7 +270,7 @@
   <string name="login-error-disabled">$1에서 허글이 당신의 계정에서 활성화되어 있지 않습니다, 사용자 설정 문서를 확인하세요.</string>
   <string name="login-error-global">전역 설정을 구문 분석할 수 없어 로그인에 실패했습니다, 더 많은 자세한 사항은 디버그 기록을 확인하세요.</string>
   <string name="login-error-invalid">잘못된 사용자 이름</string>
-  <string name="login-error-noconfig">$1 프로젝트는 허글 설정 문서가 없습니다.</string>
+  <string name="login-error-noconfig">$1 프로젝트는 Huggle 구성 문서가 없습니다</string>
   <string name="login-error-nouser">사용자가 존재하지 않습니다</string>
   <string name="login-error-password">비밀번호가 잘못되었습니다</string>
   <string name="login-error-projdisabled">허글이 이 프로젝트에서 비활성화되어 있습니다.</string>
@@ -388,7 +388,7 @@
   <string name="main-han-display-user-data">사용자 데이터 표시</string>
   <string name="main-help-documentation">설명문서</string>
   <string name="main-help-feedback">피드백</string>
-  <string name="main-help-about">허글 정보...</string>
+  <string name="main-help-about">Huggle 정보...</string>
   <string name="main-addqueue">추가...</string>
   <string name="main-savelogtitle">기록 저장</string>
   <string name="main-usermessageother">다른 메시지...</string>
@@ -469,7 +469,7 @@
   <string name="queue-filtertags">태그</string>
   <string name="queue-filterbot">봇 편집</string>
   <string name="queue-filterassisted">보조된 편집</string>
-  <string name="queue-filterhuggle">허글 편집</string>
+  <string name="queue-filterhuggle">Huggle 편집</string>
   <string name="queue-filterme">내 편집</string>
   <string name="queue-examplelabel1">이 특성 필요</string>
   <string name="queue-examplelabel2">이 특성 제외</string>
