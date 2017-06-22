@@ -78,12 +78,7 @@ google_breakpad::ExceptionHandler *Exception::GoogleBP_handler = NULL;
 
 Exception::Exception(QString text, bool isRecoverable)
 {
-    std::cerr << "FATAL Exception thrown: " + text.toStdString() << std::endl;
-    this->Message = text;
-    this->ErrorCode = 2;
-    this->StackTrace = GetCurrentStackTrace();
-    this->Source = "{hidden}";
-    this->_IsRecoverable = isRecoverable;
+    this->construct(text, "{hidden}", isRecoverable);
 }
 
 Exception::Exception(QString text, QString source, bool isRecoverable)

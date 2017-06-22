@@ -1,8 +1,10 @@
 # This is a build file for huggle (used with cmake)
 cmake_minimum_required (VERSION 2.8.7)
 
-set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Choose the type of
-build, options are: Debug or Release (or any other documented for CMAKE_BUILD_TYPE")
+set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Choose the type of build, options are: Debug or Release (or any other documented for CMAKE_BUILD_TYPE")
+set(INSTALL_BIN_DIR bin CACHE PATH "Installation directory for executables")
+set(INSTALL_LIB_DIR lib CACHE PATH "Installation directory for libraries")
+set(INSTALL_DATA_DIR share/${PROJECT_NAME} CACHE PATH "Installation directory for data files")
 
 #set(CMAKE_CXX_STANDARD 11)
 project(huggle)
