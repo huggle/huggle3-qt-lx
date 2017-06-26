@@ -708,6 +708,8 @@
   <string name="preferences-sounds-enable-irc">Проигрывать звуковое уведомление при получении нового сообщения в HAN</string>
   <string name="preferences-sounds-minimal-score">Минимальное число правок для уведомления</string>
   <string name="preferences-performance-catscansandwatched">Включить сканирование категорий и фильтрацию статусов просмотра (требует дополнительный API-запрос на каждую правку)</string>
+  <string name="preferences-max-score">Включить максимальную оценку (правки с большей оценкой будут проигнорированы — полезно, если вы хотите видеть только хорошие правки)</string>
+  <string name="preferences-min-score">Включить минимальную оценку (правки с большей оценкой будут проигнорированы — полезно, если вы хотите видеть только плохие правки)</string>
   <string name="fail">Сбой</string>
   <string name="request">Запрос</string>
   <string name="requesting">Запрос</string>

@@ -708,6 +708,8 @@
   <string name="preferences-sounds-enable-irc">当HAN收到新消息时播放声音</string>
   <string name="preferences-sounds-minimal-score">最低通知编辑分数</string>
   <string name="preferences-performance-catscansandwatched">启用分类检查和监视状态过滤器（需要为每次编辑提供额外API查询）</string>
+  <string name="preferences-max-score">启用全域最高分（将忽略更高分数——在您只想查看好编辑时有用）</string>
+  <string name="preferences-min-score">启用全域最低分（将忽略更低分数——在您只想查看差编辑时有用）</string>
   <string name="fail">失败</string>
   <string name="request">请求</string>
   <string name="requesting">请求中</string>

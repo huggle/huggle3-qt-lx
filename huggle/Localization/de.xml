@@ -708,6 +708,8 @@
   <string name="preferences-sounds-enable-irc">Ton abspielen, wenn eine Nachricht in HAN empfangen wurde.</string>
   <string name="preferences-sounds-minimal-score">Minimaler Bearbeitungsscore zur Benachrichtigung</string>
   <string name="preferences-performance-catscansandwatched">Aktiviert Kategoriescans und die Filterung des Beobachtungsstatus (erfordert eine zusätzliche API-Anfrage für jede Bearbeitung)</string>
+  <string name="preferences-max-score">Globalen maximalen Score aktivieren (Bearbeitungen mit einem höheren Score werden ignoriert. Nützlich, falls du nur gute Bearbeitungen sehen möchtest.)</string>
+  <string name="preferences-min-score">Globalen minimalen Score aktivieren (Bearbeitungen mit einem niedrigeren Score werden ignoriert. Nützlich, falls du nur schlechte Bearbeitungen sehen möchtest.)</string>
   <string name="fail">Fehlgeschlagen</string>
   <string name="request">Anfragen</string>
   <string name="requesting">Frage an …</string>

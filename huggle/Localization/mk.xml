@@ -708,6 +708,8 @@
   <string name="preferences-sounds-enable-irc">Пушти звук кога ќе се прими нова порака во HAN</string>
   <string name="preferences-sounds-minimal-score">Најмало уредување за известување</string>
   <string name="preferences-performance-catscansandwatched">Овозможи отчитување категории и филтрирање на набљудувања (бара дополнително барање до приложникот за секое уредување)</string>
+  <string name="preferences-max-score">Овозможи глобална најголема оцена (уредувањата со повисока оцена ќе бидат занемарени — корисно ако сакате да ги видите само добрите уредувања)</string>
+  <string name="preferences-min-score">Овозможи глобална најниска оцена (уредувањата со пониска оцена ќе бидат занемарени — корисно ако сакате да ги видите само лошите уредувања)</string>
   <string name="fail">Неуспех</string>
   <string name="request">Барање</string>
   <string name="requesting">Барање</string>
