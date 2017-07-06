@@ -708,6 +708,8 @@
   <string name="preferences-sounds-enable-irc">Reproducir un sonido cuando se recibe un mensaje en HAN</string>
   <string name="preferences-sounds-minimal-score">Puntuación de edición mínima para la notificación</string>
   <string name="preferences-performance-catscansandwatched">Habilitar las categorías y ver el filtrado de estado (requiere una consulta API adicional para cada edición)</string>
+  <string name="preferences-max-score">Habilitar puntuación global máxima (las ediciones con puntuación superior, se ignorarán; útil si quieres ver sólo ediciones buenas)</string>
+  <string name="preferences-min-score">Habilitar puntuación global mínima (las ediciones con puntuación inferior, se ignorarán; útil si quieres ver sólo ediciones malas)</string>
   <string name="fail">Fallo</string>
   <string name="request">Solicitud</string>
   <string name="requesting">Solicitando</string>
