@@ -10,6 +10,9 @@ then
     exit 1
 fi
 
+cd "$source" || exit 1
+sh update.sh
+cd - || exit 1
 mkdir tmp || exit 1
 cd tmp || exit 1
 cp ../snapcraft.yaml .
@@ -29,8 +32,7 @@ cp src/build/huggle.desktop snap/gui/
 # Now this is a hack that fixes problem with lookup of Qt libraries, if you know about better one, improve it!!
 ln -s ../usr/lib/x86_64-linux-gnu/qt5/plugins/platforms prime/bin/platforms
 cd src || exit 1
-rm -rf version.txt definitions.hpp
+rm -rf definitions.hpp
 cp definitions_prod.hpp definitions.hpp
-sh update.sh
 cd .. || exit 1
 snapcraft
