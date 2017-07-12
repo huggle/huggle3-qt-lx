@@ -475,7 +475,6 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
     this->Browser->DisplayDiff(e);
     this->Render(KeepHistory, KeepUser);
     e->DecRef();
-    this->EnableEditing(!e->GetSite()->GetProjectConfig()->ReadOnly);
 }
 
 void MainWindow::Render(bool KeepHistory, bool KeepUser)
@@ -524,9 +523,11 @@ void MainWindow::Render(bool KeepHistory, bool KeepUser)
         QStringList params;
         params << this->CurrentEdit->Page->PageName << QString::number(this->CurrentEdit->Score) + word;
         this->tb->SetInfo(_l("browser-diff", params));
+        this->EnableEditing(!this->CurrentEdit->GetSite()->GetProjectConfig()->ReadOnly);
         Hooks::MainWindow_OnRender();
         return;
     }
+    this->EnableEditing(false);
     this->tb->SetTitle(this->Browser->CurrentPageName());
     Hooks::MainWindow_OnRender();
 }
