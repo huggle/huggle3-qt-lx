@@ -232,7 +232,7 @@ void HistoryForm::onTick01()
             }
         }
         bool selected = this->CurrentEdit->RevID == item->RevID.toInt();
-        if (x == 0)
+        if (selected && x == 0)
             IsLatest = true;
         item->IsCurrent = true;
         if (selected)

@@ -206,7 +206,7 @@
   <string name="login-old">A recuperar configuração de utilizador do local antigo.</string>
   <string name="login-intro">Por favor, escolha um projeto e digite o seu nome de utilizador(a) e palavra-passe. Pode iniciar a sessão em vários projetos ao clicar no botão \"Projetos\".</string>
   <string name="login-tab-login">Normal</string>
-  <string name="login-reload-tool-tip">Recarregue uma lista de projetos disponíveis que podem ser usados com o huggle, isto pode ser útil no caso de desejar usar o huggle num projeto onde foi recentemente ativado</string>
+  <string name="login-reload-tool-tip" fuzzy="true">Recarregue uma lista de projetos disponíveis que podem ser usados com o huggle, isto pode ser útil no caso de desejar usar o huggle num projeto onde foi recentemente ativado</string>
   <string name="login-language">Língua:</string>
   <string name="login-project">Projeto:</string>
   <string name="login-username">Nome de utilizador(a):</string>
@@ -645,10 +645,10 @@
   <string name="cr-message-same">Existem diversas edições em $1 feitas pelo mesmo utilizador. Tem a certeza de que pretende reverter todas?</string>
   <string name="cr-message-new">Existem edições mais recentes em $1. Tem certeza que pretende reverter?</string>
   <string name="cr-message-not-same">Existem edições mais recentes em $1 feitas por um utilizador diferente. Tem certeza que as pretende reverter a todas? (provavelmente, falhará devido ao código de verificação antigo)</string>
-  <string name="preferences-extension-disabled">Esta extensão já está agendada para ser desativada na próxima inicialização do huggle</string>
-  <string name="preferences-extension-disabled-restart">A extensão foi definida para ser desativada na próxima inicialização do huggle</string>
-  <string name="preferences-extension-enabled">Esta extensão não foi programada para ser desativada na próxima inicialização do huggle</string>
-  <string name="preferences-extension-enabled-restart">A extensão foi ativada, contudo você precisará reiniciar o huggle para que isso aconteça</string>
+  <string name="preferences-extension-disabled">Esta extensão já está agendada para ser desativada na próxima inicialização do Huggle</string>
+  <string name="preferences-extension-disabled-restart">A extensão foi definida para ser desativada na próxima inicialização do Huggle</string>
+  <string name="preferences-extension-enabled">Esta extensão não foi programada para ser desativada na próxima inicialização do Huggle</string>
+  <string name="preferences-extension-enabled-restart">A extensão foi ativada, contudo você precisará reiniciar o Huggle para que isso aconteça</string>
   <string name="preferences-watchlist-watch">Adicionar às páginas vigiadas</string>
   <string name="preferences-watchlist-unwatch">Remover das páginas vigiadas</string>
   <string name="preferences-watchlist-nochange">Não fazer nada</string>
@@ -675,7 +675,7 @@
   <string name="unable-to-retrieve-user-list">Não foi possível obter a lista de utilizador: $1</string>
   <string name="login-site-info-query-failed">Falhou a consulta de informação de sítio para $1: $2</string>
   <string name="login-no-site-info-returned">Não foi devolvida nenhuma informação do sítio para esta wiki</string>
-  <string name="loading-main-window">A carregar janela principal do Huggle</string>
+  <string name="loading-main-window" fuzzy="true">A carregar janela principal do Huggle</string>
   <string name="login-username-doesnt-exist">Este nome de utilizador(a) não existe</string>
   <string name="unimplemented">Esta funcionalidade não foi implementada ainda</string>
   <string name="unknown-item">Elemento desconhecido</string>

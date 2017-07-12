@@ -52,9 +52,9 @@
   <string name="disable">Deaktivieren</string>
   <string name="no-token">Kein Token</string>
   <string name="flags">Markierungen</string>
-  <string name="gracetime" fuzzy="true">Warte auf Beendigung der Bearbeitungsanfragen …</string>
+  <string name="gracetime">Warte auf Beendigung der Anfragen, die Bearbeitungen ausführen …</string>
   <string name="browser-none">Es wird aktuell keine Seite angezeigt</string>
-  <string name="browser-load" fuzzy="true">Lade Unterschied mithilfe eines sogenannten „Web-Rendering-Fallbacks“ herunter. Bitte warten …</string>
+  <string name="browser-load">Lade Unterschied mithilfe eines MW-Fallbacks herunter. Bitte warten …</string>
   <string name="browser-miss-summ">Es wurde keine Zusammenfassung angegeben</string>
   <string name="browser-diff">Unterschied der Seite: $1 (Wert: $2)</string>
   <string name="browser-fail">Unterschied konnte nicht abgerufen werden: $1</string>
@@ -127,10 +127,10 @@
   <string name="config-months-name">Monate anstelle des Seitennamens als Überschriften verwenden</string>
   <string name="config-automatic-warning">Automatischen Warntyp und -Level auf der Funktion „Warnung senden“ verwenden</string>
   <string name="config-enable-irc">IRC aktivieren</string>
-  <string name="config-remove-reverted" fuzzy="true">Bearbeitungen entfernen, die bereits von jemand anderem zurückgesetzt wurden.</string>
-  <string name="config-remove-old" fuzzy="true">Alte Bearbeitungen entfernen, falls neuere Bearbeitung an der gleichen Seite geparst ist.</string>
+  <string name="config-remove-reverted">Bearbeitungen aus der Warteschlange entfernen, die bereits von jemand anderem zurückgesetzt wurden.</string>
+  <string name="config-remove-old">Ältere Bearbeitungen aus der Warteschlange entfernen, falls eine neuere Bearbeitung an der gleichen Seite empfangen wird.</string>
   <string name="config-auto-load-history">Versionsgeschichte und Benutzerinformationen automatisch laden (erfordert eine hohe Internet-Bandbreite).</string>
-  <string name="config-last-revision" fuzzy="true">Letzte Seitenversion anzeigen, falls die derzeit geladene Bearbeitung nicht die letzte Version ist (wird mit dem Umgehen des Caches nachgeladen).</string>
+  <string name="config-last-revision">Auf die letzte Seitenversion wechseln, falls die derzeit geladene Bearbeitung nicht die letzte Version ist (wird nachgeladen, was Huggle langsamer macht).</string>
   <string name="config-require-delay">Eine Verzögerung nach jedem Laden der nächsten Bearbeitung anfordern, währenddessen es nicht möglich ist, Schreibfunktionen zu verwenden (nützlich zum Vermeiden von Tastatur-Mehrfachdrück-Fehlern).</string>
   <string name="config-wait-edit">Die Verzögerung in Sekunden, bis Schreibfunktionen aktiviert werden:</string>
   <string name="config-display-text">Nächste anzeigen</string>
@@ -236,7 +236,7 @@
   <string name="login-fail-css">Anmeldung auf $1 fehlgeschlagen: Die Benutzerkonfiguration konnte nicht abgerufen werden. Special:MyPage/huggle3.css fehlt. Hast du in deinem Benutzernamensraum huggle3.css erstellt?</string>
   <string name="login-fail-enable-true">Anmeldung auf $1 fehlgeschlagen: In deiner persönlichen Konfiguration wurde nicht enable:true festgelegt.</string>
   <string name="login-fail-no-info">Anmeldung auf $1 fehlgeschlagen: Benutzerinformation konnte nicht abgerufen werden: $2</string>
-  <string name="login-bot">Was ist der Unterschied zwischen der Bot- und veralteten Anmeldung?</string>
+  <string name="login-bot">Was ist der Unterschied zwischen der Botpasswort- und veralteten Anmeldung?</string>
   <string name="login-fail-parse-config">Anmeldung auf $1 fehlgeschlagen: Die Benutzerkonfiguration konnte nicht geparst werden. Siehe das Debug-Logbuch für weitere Einzelheiten.</string>
   <string name="login-fail-user-data">Anmeldung auf $1 fehlgeschlagen: Die Benutzerinformation konnte nicht abgerufen werden. Die API-Abfrage hat keine Daten zurückgegeben.</string>
   <string name="login-fail-rollback-rights">Anmeldung auf $1 fehlgeschlagen: Du hast keine Zurücksetzungsrechte auf diesem Projekt.</string>
@@ -246,9 +246,11 @@
   <string name="login-password-empty">Das eingegebene Passwort war leer</string>
   <string name="login-fail-wrong-name">Du hast zur Anmeldung keinen gültigen Benutzernamen angegeben</string>
   <string name="login-api">FEHLER: api.php hat mit einem unbekannten Ergebnis geantwortet: $1</string>
+  <string name="login-abort">Verwerfen</string>
   <string name="login-start">Anmelden</string>
   <string name="login-oauth-notsupported">Diese Methode wird derzeit nicht unterstützt.</string>
   <string name="login-translate">Huggle übersetzen</string>
+  <string name="login-progress-formtitle">Lade …</string>
   <string name="login-progress-start">Melde bei $1 an …</string>
   <string name="login-progress-retrieve-mw">Rufe Informationen zu MediaWiki für $1 ab</string>
   <string name="login-progress-language">Aktualisiere Nachrichtendateien...</string>
@@ -259,6 +261,7 @@
   <string name="login-progress-user-info">Prüfe Benutzerinformation für $1</string>
   <string name="login-progress-whitelist">Lade Positivliste zu Benutzern herunter ...</string>
   <string name="login-remember-password">Passwort speichern</string>
+  <string name="login-remember-password-tooltip">Diese Option speichert dein Passwort in Klartext auf deiner Festplatte. Nur verwenden, falls du die einzige Person bist, die auf diesen Computer zugreift.</string>
   <string name="login-ssl">HTTPS benutzen (erfordert OpenSSL)</string>
   <string name="login-fail">Anmeldung auf $1 fehlgeschlagen</string>
   <string name="login-error-admin">Die Verwendung von Huggle auf diesem Projekt erfordert die Administratorberechtigung.</string>
@@ -412,6 +415,10 @@
   <string name="main-revert-newpage">Dies ist eine neue Seite. Sie kann nicht zurückgesetzt werden. Du kannst sie entweder markieren oder löschen.</string>
   <string name="main-restore-text-fail">Die Version konnte nicht wiederhergestellt werden, da kein Text für die Version verfügbar ist.</string>
   <string name="main-restore-data-fail">Die Version konnte nicht wiederhergestellt werden, da das Wiki keine Daten für die ausgewählte Version bereitstellt.</string>
+  <string name="main-welcome-user">Willkommen Benutzer</string>
+  <string name="main-report-username">Benutzernamen melden</string>
+  <string name="main-report-user">Benutzer melden</string>
+  <string name="main-edit-user-talk">Benutzerdiskussion bearbeiten</string>
   <string name="message-title">Nachricht $1</string>
   <string name="message-help">Entweder Betreff und/oder Zusammenfassung angeben. Wenn keine Zusammenfassung angegeben wird, wird der Betreff verwendet; wenn kein Betreff angegeben wird, wird keine Überschrift hinzugefügt.</string>
   <string name="message-subject">Betreff:</string>
@@ -701,6 +708,8 @@
   <string name="preferences-sounds-enable-irc">Ton abspielen, wenn eine Nachricht in HAN empfangen wurde.</string>
   <string name="preferences-sounds-minimal-score">Minimaler Bearbeitungsscore zur Benachrichtigung</string>
   <string name="preferences-performance-catscansandwatched">Aktiviert Kategoriescans und die Filterung des Beobachtungsstatus (erfordert eine zusätzliche API-Anfrage für jede Bearbeitung)</string>
+  <string name="preferences-max-score">Globalen maximalen Score aktivieren (Bearbeitungen mit einem höheren Score werden ignoriert. Nützlich, falls du nur gute Bearbeitungen sehen möchtest.)</string>
+  <string name="preferences-min-score">Globalen minimalen Score aktivieren (Bearbeitungen mit einem niedrigeren Score werden ignoriert. Nützlich, falls du nur schlechte Bearbeitungen sehen möchtest.)</string>
   <string name="fail">Fehlgeschlagen</string>
   <string name="request">Anfragen</string>
   <string name="requesting">Frage an …</string>

@@ -182,7 +182,7 @@
   <string name="invalid-bot-user-name">Tai nėra galiojantis roboto vardas. Pavyzdinis roboto vardas: Jimbo@Huggle</string>
   <string name="login-tab-botp">Roboto slaptažodis</string>
   <string name="login-tab-login" fuzzy="true">Interaktyvus prisijungimas</string>
-  <string name="login-reload-tool-tip">Atnaujinti projektų, kuriuose Huggle gali būti naudojamas, sąrašą. Tai gali būti naudinga, jei norite naudoti Huggle projekte, kuriame Huggle buvo neseniai įgalintas.</string>
+  <string name="login-reload-tool-tip" fuzzy="true">Atnaujinti projektų, kuriuose Huggle gali būti naudojamas, sąrašą. Tai gali būti naudinga, jei norite naudoti Huggle projekte, kuriame Huggle buvo neseniai įgalintas.</string>
   <string name="login-language">Kalba:</string>
   <string name="login-project">Projektas:</string>
   <string name="login-username">Naudotojo vardas:</string>
@@ -570,10 +570,10 @@
   <string name="cr-message-same">Yra keli to paties vartotojo $1 keitimai, ar tikrai norite anuliuoti juos visus?</string>
   <string name="cr-message-new">Yra naujesnių $1 keitimų. Ar tikrai norite juos anuliuoti?</string>
   <string name="preferences-delete-using-filter">Negalite ištrinti filtro, kuris dabar yra naudojamas</string>
-  <string name="preferences-extension-disabled">Šis plėtinys jau yra numatytas išjungti per kitą huggle paleidimą</string>
-  <string name="preferences-extension-disabled-restart">Plėtinys buvo nustatyas būti išjungtas per kitą huggle paleidimą</string>
-  <string name="preferences-extension-enabled">Šis plėtinys nėra numatytas išjungti per kitą huggle paleidimą</string>
-  <string name="preferences-extension-enabled-restart">Plėtinys buvo įgalintas, tačiau dėl to jums reikia paleisti huggle iš naujo</string>
+  <string name="preferences-extension-disabled">Šis plėtinys jau yra numatytas išjungti per kitą Huggle paleidimą</string>
+  <string name="preferences-extension-disabled-restart">Plėtinys buvo nustatyas būti išjungtas per kitą Huggle paleidimą</string>
+  <string name="preferences-extension-enabled">Šis plėtinys nėra numatytas išjungti per kitą Huggle paleidimą</string>
+  <string name="preferences-extension-enabled-restart">Plėtinys buvo įgalintas, tačiau dėl to jums reikia paleisti Huggle iš naujo</string>
   <string name="preferences-watchlist-watch">Pridėti į stebimųjų sąrašą</string>
   <string name="preferences-watchlist-unwatch">Pašalinti iš stebimųjų sąrašo</string>
   <string name="preferences-watchlist-nochange">Nieko nedaryti</string>
@@ -608,7 +608,7 @@
   <string name="login-no-userinfo">Svetainėje negražino jokios userinfo informacijos</string>
   <string name="login-site-info-query-failed">Svetainės $1 informacijos užklausa nepavyko: $2</string>
   <string name="login-no-site-info-returned">Negražinta jokia viki svetainės informacija</string>
-  <string name="loading-main-window">Įkeliamas pagrindinis huggle langas</string>
+  <string name="loading-main-window">Įkeliamas pagrindinis Huggle langas</string>
   <string name="login-username-doesnt-exist">Šis vartotojo vardas neegzistuoja</string>
   <string name="unknown-item">Nežinomas objektas</string>
   <string name="title-multiple-projects">keli projektai ($1)</string>

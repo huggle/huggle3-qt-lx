@@ -52,9 +52,9 @@
   <string name="disable">禁用</string>
   <string name="no-token">無標記</string>
   <string name="flags">標記</string>
-  <string name="gracetime" fuzzy="true">正在等待編輯查詢結束...</string>
+  <string name="gracetime">正在等待一些編輯執行的查詢結束...</string>
   <string name="browser-none">現在無頁面可以顯示</string>
-  <string name="browser-load" fuzzy="true">通過web渲染備選下載版本差異中，請耐心等待…</string>
+  <string name="browser-load">通過 MW 備選下載版本差異中，請耐心等待…</string>
   <string name="browser-miss-summ">未提供摘要</string>
   <string name="browser-diff">頁面差異：$1（得分：$2）</string>
   <string name="browser-fail">無法檢索版本差異：$1</string>
@@ -117,20 +117,20 @@
   <string name="config-confirm-talk">回退在討論頁上做出的編輯時需要確認</string>
   <string name="config-use-rollback">使用軟體回退</string>
   <string name="config-welcome-empty-page">發送歡迎信息到作出了良好編輯的只有空討論頁的用戶</string>
-  <string name="config-conflicts-revert" fuzzy="true">自動解決與其他用戶恢復或者更改該頁面的衝突</string>
+  <string name="config-conflicts-revert">自動解決與其他用戶在同一頁面回退或更改的編輯衝突</string>
   <string name="config-instant-reverts">使用立即回退（非常快，但執行後無法撤銷）</string>
-  <string name="config-revert-wait" fuzzy="true">還原等待 (秒)</string>
+  <string name="config-revert-wait">還原延遲 (秒)</string>
   <string name="config-revert">還原</string>
   <string name="config-revert-diff">回退頁面上比顯示的差異更新的編輯，當他們是同一個用戶做出時</string>
-  <string name="config-change-all">變更所有 huggle 設定以模擬 Huggle 2 的行為</string>
+  <string name="config-change-all">變更所有 Huggle 設定以模擬 Huggle 2 的行為</string>
   <string name="config-merge-messages">將你的信息和其他人的一起合併到已有的段落中</string>
   <string name="config-months-name">使用月份而不是頁面名作為標題</string>
   <string name="config-automatic-warning">使用自動警告類型和級別在「寄送警告」功能</string>
   <string name="config-enable-irc">開啟 IRC</string>
-  <string name="config-remove-reverted" fuzzy="true">移除已被別人回退的編輯</string>
-  <string name="config-remove-old" fuzzy="true">如果頁面上的新編輯被解析，移除同一頁面上的舊編輯</string>
+  <string name="config-remove-reverted">從佇列來移除已被別人回退的編輯</string>
+  <string name="config-remove-old">如果收到同一頁面上的較新編輯時，自佇列來移除舊編輯</string>
   <string name="config-auto-load-history">自動載入歷史記錄和用戶訊息（需要較多的網路頻寬）</string>
-  <string name="config-last-revision" fuzzy="true">若目前已載入編輯並非最新版本，顯示頁面最新的修訂內容（這將會跳過快取來下載內容）</string>
+  <string name="config-last-revision">若目前已載入編輯並非最新版本，切換至頁面最新的修訂內容（這將會先讓 Huggle 運作緩慢來下載內容）</string>
   <string name="config-require-delay">在每次載入下一個編輯內容需要一些時間，在此期間任何寫入功能皆不可用（這在避免因鍵盤多次觸按，而產生程式錯誤時很有用）</string>
   <string name="config-wait-edit">直到寫入功能開啟所延遲的秒數：</string>
   <string name="config-display-text">顯示下一筆</string>
@@ -221,7 +221,7 @@
   <string name="invalid-bot-user-name">這不是一個有效機器人名稱。正確機器人名稱應像是：Jimbo@Huggle</string>
   <string name="login-tab-botp">機器人密碼</string>
   <string name="login-tab-login">舊式</string>
-  <string name="login-reload-tool-tip">重新載入Huggle的可使用項目清單。您想要在某個項目使用Huggle，而Huggle已啟用時很有用。</string>
+  <string name="login-reload-tool-tip">重新載入 Huggle 的可使用項目清單。該工具啟用時會在您想要於某個項目使用 Huggle 的情況下很有用。</string>
   <string name="login-language">語言：</string>
   <string name="login-project">項目：</string>
   <string name="login-username">使用者名稱：</string>
@@ -236,7 +236,7 @@
   <string name="login-fail-css">登入 $1 失敗：無法取得使用者設定。 Special:MyPage/huggle3.css 遺失。 您是否有建立 huggle3.css 於您的使用者空間？</string>
   <string name="login-fail-enable-true">登入 $1 失敗：您尚未於您的個人設定設定 enable:true</string>
   <string name="login-fail-no-info">登入 $1 失敗：無法取得使用者資訊：$2</string>
-  <string name="login-bot">機器人登入和舊式登入有何差異？</string>
+  <string name="login-bot">機器人密碼登入和舊式登入有何差異？</string>
   <string name="login-fail-parse-config">登入 $1 失敗：無法解析使用者設定。 請參考除錯日誌以了解詳細資訊。</string>
   <string name="login-fail-user-data">登入 $1 失敗：無法取得使用者資訊。 查詢 API 未回傳資料。</string>
   <string name="login-fail-rollback-rights">登入 $1 失敗：您於此項目沒有回退的權限。</string>
@@ -246,9 +246,11 @@
   <string name="login-password-empty">您輸入的密碼為空白</string>
   <string name="login-fail-wrong-name">您提供用來登入的使用者名稱不正確</string>
   <string name="login-api">錯誤：api.php 回應了不明的結果：$1</string>
+  <string name="login-abort">中止</string>
   <string name="login-start">登入</string>
   <string name="login-oauth-notsupported">此方法目前尚不支援</string>
   <string name="login-translate">翻譯Huggle</string>
+  <string name="login-progress-formtitle">載入中...</string>
   <string name="login-progress-start">正在登入至$1</string>
   <string name="login-progress-retrieve-mw">取得有關 $1 的 MediaWiki 資訊中</string>
   <string name="login-progress-language">正在更新訊息檔…</string>
@@ -259,6 +261,7 @@
   <string name="login-progress-user-info">檢查 $1 的使用者資訊中</string>
   <string name="login-progress-whitelist">取得使用者白名單...</string>
   <string name="login-remember-password">記住密碼</string>
+  <string name="login-remember-password-tooltip">此選項將會在您的硬碟上以純文字方式儲存您的密碼。僅在如果您是唯一可存取此電腦的人之情況下使用。</string>
   <string name="login-ssl">使用HTTPS加密連線（需要OpenSSL）</string>
   <string name="login-fail">在$1登入失敗</string>
   <string name="login-error-admin">於此項目使用 Huggle 需要有管理員帳號。</string>
@@ -412,6 +415,10 @@
   <string name="main-revert-newpage">此為新的頁面，所以不能被還原。您可以加入任何標籤或者刪除此頁面。</string>
   <string name="main-restore-text-fail">無法還原此修訂，因為沒有可用的文字內容</string>
   <string name="main-restore-data-fail">無法還原此修訂，因為wiki沒有提供該版本的資料</string>
+  <string name="main-welcome-user">歡迎使用者</string>
+  <string name="main-report-username">回報使用戶名稱</string>
+  <string name="main-report-user">回報使用者</string>
+  <string name="main-edit-user-talk">編輯使用者對話頁</string>
   <string name="message-title">訊息 $1</string>
   <string name="message-help">指定標題或摘要其一。如果沒有摘要，標題就必須使用；如果沒有標題，就不會有標頭加入。</string>
   <string name="message-subject">主旨：</string>
@@ -677,7 +684,7 @@
   <string name="updating-wl">正在更新白名單...</string>
   <string name="feature-nfru">此功能僅限IP用戶使用</string>
   <string name="report-no-user">沒有用戶被選擇回報，請先選擇一個用戶</string>
-  <string name="welcome-show">在下次您啟用huggle時顯示此訊息</string>
+  <string name="welcome-show">在下次您啟用 Huggle 時顯示此訊息</string>
   <string name="welcome-tp-empty-fail">此用戶沒有空的對話頁，您卻您要寄送訊息給對方？</string>
   <string name="welcome-page-miss-fail">Huggle無法檢索使用者討論頁內容，您卻要為他寄送歡迎訊息嗎？</string>
   <string name="cr-newer-edits">衝突解決：已回退包含新編輯的所有編輯。由同一位用戶：$1所編輯。</string>
@@ -689,10 +696,10 @@
   <string name="cr-message-new">這些是在$1較新的編輯。您確定您要回退它們？</string>
   <string name="cr-message-not-same">在$1上有其他用戶做出較新的編輯。您確定您要回退這些編輯嗎？（這可能會因為較舊的令牌而失敗）</string>
   <string name="preferences-delete-using-filter">您不能刪除一個正在使用的篩選條件</string>
-  <string name="preferences-extension-disabled">此擴充功能被設定在下一次啟動huggle時停用。</string>
-  <string name="preferences-extension-disabled-restart">擴充功能被設定在下一次啟動huggle時停用。</string>
-  <string name="preferences-extension-enabled">此擴充功能未被編排在下一次啟動huggle時停用。</string>
-  <string name="preferences-extension-enabled-restart">擴充功能已啟用，但您需要重新啟動huggle來生效。</string>
+  <string name="preferences-extension-disabled">此擴充功能被設定在下一次啟動 Huggle 時停用。</string>
+  <string name="preferences-extension-disabled-restart">擴充功能被設定在下一次啟動 Huggle 時停用。</string>
+  <string name="preferences-extension-enabled">此擴充功能未被編排在下一次啟動 Huggle 時停用。</string>
+  <string name="preferences-extension-enabled-restart">擴充功能已啟用，但您需要重新啟動 Huggle 來生效。</string>
   <string name="preferences-watchlist-watch">加入到監視清單</string>
   <string name="preferences-watchlist-unwatch">從監視清單中移除</string>
   <string name="preferences-watchlist-preferences">遵循您在wiki上的設置</string>
@@ -701,6 +708,8 @@
   <string name="preferences-sounds-enable-irc">當在 HAN 裡有訊息收到時播放音效</string>
   <string name="preferences-sounds-minimal-score">通知的最小編輯分數</string>
   <string name="preferences-performance-catscansandwatched">啟用分類掃描及狀態監視過濾（每次編輯需要額外的 API 查詢）</string>
+  <string name="preferences-max-score">啟用全域最高分數（帶有較高分數的編輯會被忽略 - 這在您只想查看良好的編輯時很有用）</string>
+  <string name="preferences-min-score">啟用全域最低分數（帶有較低分數的編輯會被忽略 - 這在您只想查看不佳的編輯時很有用）</string>
   <string name="fail">失敗</string>
   <string name="request">請求</string>
   <string name="requesting">請求中</string>
@@ -722,7 +731,7 @@
   <string name="report-fail">回報使用者失敗，由於：$1</string>
   <string name="report-page-fail">錯誤：無法取得在$1的回告頁面</string>
   <string name="report-page-fail-time">無法取得回告頁面的目前時間戳記，API錯誤：\n\n$1</string>
-  <string name="report-unable">無法回報使用者 ː(</string>
+  <string name="report-unable">無法回報使用者 :(</string>
   <string name="about-python-with">，包含python支援</string>
   <string name="about-python-without">不包含python支援</string>
   <string name="about-qt">，使用 QT $1 編譯，執行於 QT $1</string>
@@ -735,7 +744,7 @@
   <string name="login-invalid-register-date">Mediawiki回傳的註冊日期無效</string>
   <string name="login-site-info-query-failed">對於$1的站台查詢已失敗：$2</string>
   <string name="login-no-site-info-returned">沒有回傳給此wiki的站台資訊</string>
-  <string name="loading-main-window">載入huggle主視窗</string>
+  <string name="loading-main-window">載入 Huggle 主視窗</string>
   <string name="api.php-invalid-response">api.php檔案回應了無效文字（網頁伺服器當機？），請檢查除錯日誌檔以獲取精準訊息</string>
   <string name="login-username-doesnt-exist">此用戶名稱不存在</string>
   <string name="developer-mode-enter-title">喲呵</string>

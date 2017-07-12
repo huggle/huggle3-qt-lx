@@ -141,7 +141,7 @@ namespace Huggle
             void EnableEditing(bool enabled);
             void _BlockUser();
             void DisplayNext(Query *q = nullptr);
-            void ShowCat();
+            void ShowEmptyQueuePage();
             void DeletePage();
             void DisplayTalk();
             /*!
@@ -227,6 +227,7 @@ namespace Huggle
             QTimer *tCheck;
             //! Query that is used to check if talk page contains new messages
             Collectable_SmartPtr<ApiQuery> qTalkPage;
+
         private slots:
             void on_actionExit_triggered();
             void on_actionPreferences_triggered();
@@ -342,8 +343,11 @@ namespace Huggle
             void on_actionContribution_browser_triggered();
             void on_actionCheck_for_dups_triggered();
             void on_actionIntroduction_triggered();
+            void on_tabWidget_customContextMenuRequested(const QPoint &pos);
+            void on_tabWidget_tabCloseRequested(int index);
 
         private:
+            void CloseTab(int tab);
             void DisplayWelcomeMessage();
             void FinishRestore();
             void CreateBrowserTab(QString name, int index);

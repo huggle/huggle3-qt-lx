@@ -52,9 +52,9 @@
   <string name="disable">禁用</string>
   <string name="no-token">无标记</string>
   <string name="flags">标记</string>
-  <string name="gracetime" fuzzy="true">正在等待编辑查询结束...</string>
+  <string name="gracetime">正在等待执行一些编辑的查询结束...</string>
   <string name="browser-none">现在没有页面可显示</string>
-  <string name="browser-load" fuzzy="true">通过web渲染备选下载版本差异中，请耐心等待…</string>
+  <string name="browser-load">正在使用MW备选来下载差异，请稍等...</string>
   <string name="browser-miss-summ">未提供摘要</string>
   <string name="browser-diff">页面差异：$1（分数：$2）</string>
   <string name="browser-fail">无法检索版本差异：$1</string>
@@ -117,9 +117,9 @@
   <string name="config-confirm-talk">回退在讨论页上做出的编辑时需要确认</string>
   <string name="config-use-rollback">使用软件回退</string>
   <string name="config-welcome-empty-page">发送欢迎信息到作出了良好编辑的只有空讨论页的用户</string>
-  <string name="config-conflicts-revert" fuzzy="true">自动解决与其他用户恢复或者更改该页面的冲突</string>
+  <string name="config-conflicts-revert">自动解决与其他回退或更改相同页面的用户的编辑冲突</string>
   <string name="config-instant-reverts">使用立即回退（非常快，但执行后无法撤销）</string>
-  <string name="config-revert-wait" fuzzy="true">回退等待（秒）</string>
+  <string name="config-revert-wait">回退延迟（秒）</string>
   <string name="config-revert">回退</string>
   <string name="config-revert-diff">回退页面上比显示的差异更新的编辑，当他们是同一个用户做出时</string>
   <string name="config-change-all">更改所有Huggle设置以尽量像Huggle 2那样运转</string>
@@ -127,10 +127,10 @@
   <string name="config-months-name">使用月份而不是页面名作为标题</string>
   <string name="config-automatic-warning">在“发送警告”功能中自动选择警告类型和级别</string>
   <string name="config-enable-irc">启用IRC</string>
-  <string name="config-remove-reverted" fuzzy="true">移除已经被别人恢复的编辑</string>
-  <string name="config-remove-old" fuzzy="true">如果对同一页面的新编辑被解析，就移除旧编辑</string>
+  <string name="config-remove-reverted">从队列中移除已经被别人恢复的编辑</string>
+  <string name="config-remove-old">当收到对同一页面的新编辑时，从队列中移除旧编辑</string>
   <string name="config-auto-load-history">自动加载历史记录和用户信息（需要很多网络带宽）</string>
-  <string name="config-last-revision" fuzzy="true">如果当前加载的编辑不是最近修订，就显示页面的最近修订（将跳过缓存传输-下载它）</string>
+  <string name="config-last-revision">如果当前加载的编辑不是最近修订，就切换为页面的最近修订（将传输-下载它，这会使Huggle运行缓慢）</string>
   <string name="config-require-delay">每次载入下一次编辑前需要延迟一段时间，此时不可能使用任何写入功能（这在您需要解决键盘多次点按问题时很有用）</string>
   <string name="config-wait-edit">您需要等待编辑功能之间被开启的时间（秒）：</string>
   <string name="config-display-text">显示下一个</string>
@@ -221,7 +221,7 @@
   <string name="invalid-bot-user-name">这不是有效的机器人名称。正确的机器人名称例子：Jimbo@Huggle</string>
   <string name="login-tab-botp">机器人密码</string>
   <string name="login-tab-login">传统</string>
-  <string name="login-reload-tool-tip">重新加载可使用 Huggle 工具的项目的列表。这对您希望在已启用项目使用 Huggle 时非常有用。</string>
+  <string name="login-reload-tool-tip">重新加载可使用Huggle工具的项目的列表。这对您希望在已启用项目使用Huggle时非常有用。</string>
   <string name="login-language">语言：</string>
   <string name="login-project">项目：</string>
   <string name="login-username">用户名：</string>
@@ -236,7 +236,7 @@
   <string name="login-fail-css">登录$1失败：无法检索到用户配置。Special:MyPage/huggle3.css丢失。您在您的用户空间创建了huggle3.css吗？</string>
   <string name="login-fail-enable-true">登录$1失败：您没有在您个人的设置中设置enable:true。</string>
   <string name="login-fail-no-info">登录$1失败：无法检索用户信息：$2</string>
-  <string name="login-bot">机器人登录和传统登录之间有什么不同么？</string>
+  <string name="login-bot">机器人密码和传统登录之间有什么不同么？</string>
   <string name="login-fail-parse-config">登录$1失败：无法解析用户配置。请参见调试日志获取更多详细信息。</string>
   <string name="login-fail-user-data">登录$1失败：无法检索用户信息。API 查询未返回任何数据。</string>
   <string name="login-fail-rollback-rights">登录$1失败：您在这个wiki上没有回退权限。</string>
@@ -246,9 +246,11 @@
   <string name="login-password-empty">您输入了空的密码</string>
   <string name="login-fail-wrong-name">您提供了不正确的用户名来登录</string>
   <string name="login-api">错误：api.php回应了未知结果：$1</string>
+  <string name="login-abort">中止</string>
   <string name="login-start">登录</string>
   <string name="login-oauth-notsupported">此方法当前不支持</string>
   <string name="login-translate">翻译Huggle</string>
+  <string name="login-progress-formtitle">正在载入...</string>
   <string name="login-progress-start">登录到$1</string>
   <string name="login-progress-retrieve-mw">检索关于MediaWiki $1的信息</string>
   <string name="login-progress-language">更新消息文件...</string>
@@ -259,6 +261,7 @@
   <string name="login-progress-user-info">检查$1的用户信息</string>
   <string name="login-progress-whitelist">获取白名单...</string>
   <string name="login-remember-password">记住密码</string>
+  <string name="login-remember-password-tooltip">此选项将把您的密码以纯文本形式恢复在您的硬盘中。只当您是唯一可以访问该电脑的人时才可以使用。</string>
   <string name="login-ssl">使用 HTTPS（需要 OpenSSL）</string>
   <string name="login-fail">登录$1失败</string>
   <string name="login-error-admin">这个计划上需要管理员权限才能使用Huggle。</string>
@@ -412,6 +415,10 @@
   <string name="main-revert-newpage">这是一个新页面，所以它不能被恢复。您可以标记它，或者删除它。</string>
   <string name="main-restore-text-fail">无法还原该修订，因为它没有可用的文本。</string>
   <string name="main-restore-data-fail">无法还原该修订，因为该wiki没有提供选定版本的数据。</string>
+  <string name="main-welcome-user">欢迎用户</string>
+  <string name="main-report-username">报告用户名</string>
+  <string name="main-report-user">报告用户</string>
+  <string name="main-edit-user-talk">编辑用户讨论页</string>
   <string name="message-title">消息$1</string>
   <string name="message-help">指明标题和/或摘要。如果没有摘要，标题或被使用。如果没有标题，就不会插入标题头</string>
   <string name="message-subject">主题：</string>
@@ -677,7 +684,7 @@
   <string name="updating-wl">正在更新白名单…</string>
   <string name="feature-nfru">此功能仅限IP用户可用</string>
   <string name="report-no-user">没有选择用户报告，请先选择一些用户</string>
-  <string name="welcome-show">在下次您启用huggle时也显示此消息</string>
+  <string name="welcome-show">在下次您启用Huggle时也显示此消息</string>
   <string name="welcome-tp-empty-fail">此用户没有空的讨论页，您确信您要发送消息给他？</string>
   <string name="welcome-page-miss-fail">Huggle无法检索用户讨论页内容，您确信要给他发送欢迎信息？</string>
   <string name="cr-newer-edits">冲突已解决：回退了所有编辑，包括新编辑。编辑由同一用户做出：$1。</string>
@@ -689,10 +696,10 @@
   <string name="cr-message-new">有新的编辑需要$1，您希望回退它们？</string>
   <string name="cr-message-not-same">另外用户对$1做出新编辑，您确信希望回退它们么？（这很可能会因为使用旧令牌而失败）</string>
   <string name="preferences-delete-using-filter">您无法删除一个正在使用的过滤器</string>
-  <string name="preferences-extension-disabled">此扩展已计划于下次huggle启动时被禁用</string>
-  <string name="preferences-extension-disabled-restart">扩展将于下次huggle启动时禁用</string>
-  <string name="preferences-extension-enabled">此扩展未被计划于下次huggle启动时被禁用</string>
-  <string name="preferences-extension-enabled-restart">扩展已启用，但您需要重启huggle才能使它生效</string>
+  <string name="preferences-extension-disabled">此扩展已计划于下次Huggle启动时被禁用</string>
+  <string name="preferences-extension-disabled-restart">扩展将于下次Huggle启动时禁用</string>
+  <string name="preferences-extension-enabled">此扩展未被计划于下次Huggle启动时被禁用</string>
+  <string name="preferences-extension-enabled-restart">扩展已启用，但您需要重启Huggle才能使它生效</string>
   <string name="preferences-watchlist-watch">添加至监视列表</string>
   <string name="preferences-watchlist-unwatch">从监视列表中移除</string>
   <string name="preferences-watchlist-preferences">关注您在wiki上的参数设置</string>
@@ -701,6 +708,8 @@
   <string name="preferences-sounds-enable-irc">当HAN收到新消息时播放声音</string>
   <string name="preferences-sounds-minimal-score">最低通知编辑分数</string>
   <string name="preferences-performance-catscansandwatched">启用分类检查和监视状态过滤器（需要为每次编辑提供额外API查询）</string>
+  <string name="preferences-max-score">启用全域最高分（将忽略更高分数——在您只想查看好编辑时有用）</string>
+  <string name="preferences-min-score">启用全域最低分（将忽略更低分数——在您只想查看差编辑时有用）</string>
   <string name="fail">失败</string>
   <string name="request">请求</string>
   <string name="requesting">请求中</string>

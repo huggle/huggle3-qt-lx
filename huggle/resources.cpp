@@ -23,7 +23,7 @@ QString Huggle::Resources::DiffHeader;
 QString Huggle::Resources::HtmlFooter;
 QString Huggle::Resources::HtmlHeader;
 QString Huggle::Resources::HtmlIncoming;
-QString Huggle::Resources::Html_EmptyList;
+QString Huggle::Resources::Html_Default_EmptyQueuePage;
 QString Huggle::Resources::Html_StopFire;
 QString Huggle::Resources::CssRtl;
 
@@ -64,7 +64,7 @@ void Huggle::Resources::Init()
     Html_StopFire = GetResource("/huggle/resources/Resources/html/StopFire.html");
     HtmlFooter = GetResource("/huggle/resources/Resources/html/PageEnd.html");
     DiffFooter = GetResource("/huggle/resources/Resources/html/DiffEnd.html");
-    Html_EmptyList = GetResource("/huggle/resources/Resources/html/empty.html");
+    Html_Default_EmptyQueuePage = GetResource("/huggle/resources/Resources/html/empty.html");
     HtmlIncoming = GetResource("/huggle/resources/Resources/html/Message.html");
     CssRtl = GetResource("/huggle/resources/Resources/html/RTL.css");
 #ifndef HUGGLE_NOAUDIO

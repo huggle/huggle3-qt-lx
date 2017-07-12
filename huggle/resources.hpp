@@ -38,7 +38,7 @@ namespace Huggle
             static QString DiffHeader;
             static QString DiffFooter;
             static QString Html_StopFire;
-            static QString Html_EmptyList;
+            static QString Html_Default_EmptyQueuePage;
             static QString CssRtl;
             //! This string contains a html footer
             static QString HtmlFooter;

@@ -52,9 +52,9 @@
   <string name="disable">비활성화</string>
   <string name="no-token">토큰 없음</string>
   <string name="flags">플래그</string>
-  <string name="gracetime" fuzzy="true">쿼리 편집이 끝나기를 기다리는 중...</string>
+  <string name="gracetime">일부 편집을 수행하는 편집이 끝나기를 기다리는 중...</string>
   <string name="browser-none">지금 표시되는 문서가 없습니다</string>
-  <string name="browser-load" fuzzy="true">웹 렌더링 폴백을 사용하여 차이를 다운로드하고 있습니다, 기다려 주세요...</string>
+  <string name="browser-load">MW 폴백을 사용하여 차이를 다운로드하고 있습니다, 기다려 주세요...</string>
   <string name="browser-miss-summ">제공된 요약이 없습니다</string>
   <string name="browser-diff">문서의 차이: $1 (점수: $2)</string>
   <string name="browser-fail">차이를 얻을 수 없습니다: $1</string>
@@ -117,20 +117,20 @@
   <string name="config-confirm-talk">토론 문서에 대한 편집을 되돌릴 때 권한 요청</string>
   <string name="config-use-rollback">소프트웨어 되돌리기 기능 사용</string>
   <string name="config-welcome-empty-page">좋은 편집을 한 빈 토론 문서를 가진 사용자에게 환영 메시지를 보내기</string>
-  <string name="config-conflicts-revert" fuzzy="true">자동으로 문서를 되돌리거나 바꾼 다른 사용자와의 충돌을 해결</string>
+  <string name="config-conflicts-revert">자동으로 동일 문서를 되돌리거나 바꾼 다른 사용자와의 편집 충돌을 해결</string>
   <string name="config-instant-reverts">즉시 되돌리기 사용 (매우 빠르지만, 실행되면 취소할 수 없습니다)</string>
-  <string name="config-revert-wait" fuzzy="true">되돌리기 대기 (초)</string>
+  <string name="config-revert-wait">되돌리기 지연 (초)</string>
   <string name="config-revert">되돌리기</string>
   <string name="config-revert-diff">같은 문서 훼손자에 의해 이루어진 이 편집보다 최근 편집 되돌리기</string>
-  <string name="config-change-all">모든 huggle 옵션을 huggle 2와 비슷하게 하기</string>
+  <string name="config-change-all">모든 Huggle 옵션을 Huggle 2와 비슷하게 변경</string>
   <string name="config-merge-messages">자신의 메시지를 같은 부분에 있는 다른 메시지와 병합하기</string>
   <string name="config-months-name">문서의 이름 대신 월을 머릿글로 사용</string>
   <string name="config-automatic-warning">\"경고 보내기\" 사용시 자동 경고 유형과 레벨 사용하기</string>
   <string name="config-enable-irc">IRC 활성화</string>
-  <string name="config-remove-reverted" fuzzy="true">다른 누군가가 이미 되돌린 편집을 제거</string>
-  <string name="config-remove-old" fuzzy="true">동일 문서에 더 새로운 편집의 구문이 분석되면 오래된 편집은 제거합니다</string>
+  <string name="config-remove-reverted">다른 누군가가 대기열에서 이미 되돌린 편집을 제거</string>
+  <string name="config-remove-old">동일 문서에 더 새로운 편집이 들어오면 더 오래된 편집은 대기열에서 제거합니다</string>
   <string name="config-auto-load-history">자동으로 역사와 사용자 정보를 불러오기 (많은 네트워크 대역폭 필요)</string>
-  <string name="config-last-revision" fuzzy="true">현재 불러들인 편집이 마지막 판이 아닌 경우 문서의 마지막 판을 표시합니다 (캐시를 우회하여 다운로드합니다)</string>
+  <string name="config-last-revision">현재 불러들인 편집이 마지막 판이 아닌 경우 문서의 마지막 판으로 전환합니다. (다운로드할\n 때 Huggle이 느려집니다)</string>
   <string name="config-wait-edit">쓰기 기능이 활성활될 때까지의 지연 시간 (초 단위):</string>
   <string name="config-display-text">다음 표시</string>
   <string name="config-retrieve-edit">자신의 편집 가져오기</string>
@@ -217,6 +217,7 @@
   <string name="invalid-bot-user-name">유효한 봇 이름이 아닙니다. 유효한 봇 이름의 예: Jimbo@Huggle</string>
   <string name="login-tab-botp">봇 비밀번호</string>
   <string name="login-tab-login">레거시</string>
+  <string name="login-reload-tool-tip">Huggle에서 사용할 수 있는 프로젝트의 목록을 다시 불러옵니다. 도구를 최근에 활성화한 프로젝트에 Huggle을 사용할 경우 유용할 수 있습니다.</string>
   <string name="login-language">언어:</string>
   <string name="login-project">프로젝트:</string>
   <string name="login-username">사용자 이름:</string>
@@ -231,7 +232,7 @@
   <string name="login-fail-css">사용자 설정을 얻을 수 없어 $1에 로그인에 실패했습니다. 당신의 사용자 공간에 huggle3.css를 만들었습니까? (Special:MyPage/huggle3.css가 없습니다)</string>
   <string name="login-fail-enable-true">당신의 개인 설정에 enable:true가 없기 때문에 $1에 로그인에 실패했습니다</string>
   <string name="login-fail-no-info">사용자 정보를 얻을 수 없어 $1에 로그인에 실패했습니다: $2</string>
-  <string name="login-bot">봇과 레거시 로그인 간에 차이가 있나요?</string>
+  <string name="login-bot">BotPassword와 레거시 로그인 간에 차이가 있나요?</string>
   <string name="login-fail-parse-config">사용자 설정을 구문 분석할 수 없어 $1에 로그인에 실패했습니다, 더 많은 자세한 사항은 디버그 기록을 보세요</string>
   <string name="login-fail-user-data">사용자 정보를 얻을 수 없어 $1에 로그인에 실패했으며, api 쿼리는 반환한 데이터가 없습니다</string>
   <string name="login-fail-rollback-rights">당신은 이 프로젝트에 되돌리기 권한이 없기 때문에 $1에 로그인에 실패했습니다</string>
@@ -241,9 +242,11 @@
   <string name="login-password-empty">입력한 비밀번호가 비어 있습니다</string>
   <string name="login-fail-wrong-name">로그인에 제공한 사용자 이름이 올바르지 않습니다</string>
   <string name="login-api">오류: api.php가 알 수 없는 결과로 응답했습니다: $1</string>
+  <string name="login-abort">중단</string>
   <string name="login-start">로그인</string>
   <string name="login-oauth-notsupported">이 메서드는 이 순간에 지원하지 않습니다.</string>
-  <string name="login-translate">허글 번역하기</string>
+  <string name="login-translate">Huggle 번역하기</string>
+  <string name="login-progress-formtitle">불러오는 중...</string>
   <string name="login-progress-start">$1 프로젝트에 로그인 중</string>
   <string name="login-progress-retrieve-mw">$1에 대해 미디어위키에 대한 정보를 얻는 중</string>
   <string name="login-progress-language">메시지 파일을 업데이트 중...</string>
@@ -254,6 +257,7 @@
   <string name="login-progress-user-info">$1에 대한 사용자 정보를 확인하는 중</string>
   <string name="login-progress-whitelist">사용자 허용 목록을 얻는 중...</string>
   <string name="login-remember-password">비밀번호 기억</string>
+  <string name="login-remember-password-tooltip">이 옵션은 하드 드라이브에 암호를 플레인텍스트로 저장합니다. 이 컴퓨터에 접근하는 유일한 사용자인 경우에만 사용하십시오.</string>
   <string name="login-ssl">HTTPS 사용 (OpenSSL 필요)</string>
   <string name="login-fail">$1에 로그인을 실패했습니다</string>
   <string name="login-error-admin">이 프로젝트에서 허글을 사용하려면 관리자 계정이 필요합니다.</string>
@@ -266,7 +270,7 @@
   <string name="login-error-disabled">$1에서 허글이 당신의 계정에서 활성화되어 있지 않습니다, 사용자 설정 문서를 확인하세요.</string>
   <string name="login-error-global">전역 설정을 구문 분석할 수 없어 로그인에 실패했습니다, 더 많은 자세한 사항은 디버그 기록을 확인하세요.</string>
   <string name="login-error-invalid">잘못된 사용자 이름</string>
-  <string name="login-error-noconfig">$1 프로젝트는 허글 설정 문서가 없습니다.</string>
+  <string name="login-error-noconfig">$1 프로젝트는 Huggle 구성 문서가 없습니다</string>
   <string name="login-error-nouser">사용자가 존재하지 않습니다</string>
   <string name="login-error-password">비밀번호가 잘못되었습니다</string>
   <string name="login-error-projdisabled">허글이 이 프로젝트에서 비활성화되어 있습니다.</string>
@@ -384,7 +388,7 @@
   <string name="main-han-display-user-data">사용자 데이터 표시</string>
   <string name="main-help-documentation">설명문서</string>
   <string name="main-help-feedback">피드백</string>
-  <string name="main-help-about">허글 정보...</string>
+  <string name="main-help-about">Huggle 정보...</string>
   <string name="main-addqueue">추가...</string>
   <string name="main-savelogtitle">기록 저장</string>
   <string name="main-usermessageother">다른 메시지...</string>
@@ -405,6 +409,10 @@
   <string name="main-revert-newpage">이것은 새 문서이므로 되돌릴 수 없습니다. 태그하거나 삭제할 수 있습니다.</string>
   <string name="main-restore-text-fail">사용 가능한 텍스트가 없기 때문에 이 판을 복원할 수 없습니다</string>
   <string name="main-restore-data-fail">위키가 선택한 판에 대한 데이터를 제공하지 않았기 때문에 이 판을 복원할 수 없습니다.</string>
+  <string name="main-welcome-user">사용자 환영</string>
+  <string name="main-report-username">사용자 이름 보고</string>
+  <string name="main-report-user">사용자 보고</string>
+  <string name="main-edit-user-talk">사용자 토론 편집</string>
   <string name="message-title">$1에게 메시지 보내기</string>
   <string name="message-subject">제목:</string>
   <string name="message-message">메시지:</string>
@@ -461,7 +469,7 @@
   <string name="queue-filtertags">태그</string>
   <string name="queue-filterbot">봇 편집</string>
   <string name="queue-filterassisted">보조된 편집</string>
-  <string name="queue-filterhuggle">허글 편집</string>
+  <string name="queue-filterhuggle">Huggle 편집</string>
   <string name="queue-filterme">내 편집</string>
   <string name="queue-examplelabel1">이 특성 필요</string>
   <string name="queue-examplelabel2">이 특성 제외</string>
@@ -666,7 +674,7 @@
   <string name="preferences-extension-disabled">이 확장 기능은 Huggle을 다음에 시작할 때 사용하지 않도록 이미 예약되어 있습니다</string>
   <string name="preferences-extension-disabled-restart">다음 Huggle 시작 시 확장 기능을 비활성화하는 것으로 설정되었습니다</string>
   <string name="preferences-extension-enabled">이 확장 기능은 Huggle을 다음에 시작할 때 사용하지 않도록 예약되어 있지 않습니다</string>
-  <string name="preferences-extension-enabled-restart">확장 기능을 활성화하였으나 적용하려면 Huggle을 다시 시작해야 합니다.</string>
+  <string name="preferences-extension-enabled-restart">확장 기능을 활성화하였으나 적용하려면 Huggle을 다시 시작해야 합니다</string>
   <string name="preferences-watchlist-watch">주시문서 목록에 추가</string>
   <string name="preferences-watchlist-unwatch">주시문서 목록에서 제거</string>
   <string name="preferences-watchlist-nochange">아무 것도 안 함</string>
@@ -720,6 +728,7 @@
   <string name="main-revert-type-in-userspace">사용자 공간에서</string>
   <string name="main-revert-type-made-by-you">당신에 의해 만들어짐</string>
   <string name="main-revert-type-made-on-talk-page">토론 문서에서 생성됨</string>
+  <string name="main-revert-type-made-white-list">화이트리스트에 있는 사용자가 수행함</string>
   <string name="main-revert-warn">이 편집은 $1이므로 문서 훼손으로 보이더라도 그렇지 않을 수 있습니다. 정말 되돌리시겠습니까?</string>
   <string name="query-result-nodata">쿼리 결과에 어떠한 데이터도 포함되어 있지 않습니다</string>
   <string name="query-login-undefined">로그인 토큰에는 사용자 정의 값이 필요하지만, 메모리에 저장되어 있지 않습니다</string>

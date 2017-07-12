@@ -52,9 +52,9 @@
   <string name="disable">Оневозможи</string>
   <string name="no-token">Нема шифра</string>
   <string name="flags">Бележници</string>
-  <string name="gracetime" fuzzy="true">Чекаме да се завршат барањата за уредување...</string>
+  <string name="gracetime">Чекам да се завршат барањата што вршат извесно уредување...</string>
   <string name="browser-none">Сега не се прикажува ниедна страница</string>
-  <string name="browser-load" fuzzy="true">Ги преземам разликите користејќи резервен семрежен испис. Почекајте...</string>
+  <string name="browser-load">Ги преземам разликите користејќи резервен семрежен испис. Почекајте...</string>
   <string name="browser-miss-summ">Нема укажано опис</string>
   <string name="browser-diff">Разлики на страницата: $1 (оценка: $2)</string>
   <string name="browser-fail">Не можам да ја добијам разликата: $1</string>
@@ -117,9 +117,9 @@
   <string name="config-confirm-talk">Барај потврда за отповикување на страница за разговор</string>
   <string name="config-use-rollback">Користи отповикување преку програм</string>
   <string name="config-welcome-empty-page">Испрати добредојде на корисници со празни страници за разговор при извршено добро уредување</string>
-  <string name="config-conflicts-revert" fuzzy="true">Автоматски решавај спорови со други уредници кои ја отповикуваат или менуваат страницата</string>
+  <string name="config-conflicts-revert">Автоматски решавај спорови со други уредници кои  отповикуваат или менуваат една иста страница</string>
   <string name="config-instant-reverts">Користи непосредни отповикувања (многу брзо, но штом ќе се направим не може да се поврати)</string>
-  <string name="config-revert-wait" fuzzy="true">Чекање за отповикување (секунди)</string>
+  <string name="config-revert-wait">Задршка за отповикување (секунди)</string>
   <string name="config-revert">Отповикај</string>
   <string name="config-revert-diff">Отповикај ги поновите уредувања наместо само прикажаните во разликата ако се направени од еден ист вандал</string>
   <string name="config-change-all">Смени ги сите поставки на Huggle за да се однесува повеќе како Huggle 2</string>
@@ -127,10 +127,10 @@
   <string name="config-months-name">Користи месеци како заглавија наместо имиња на страниците</string>
   <string name="config-automatic-warning">КОристи автоматски тип на опомена и степен во функцијата за испраќање опомена</string>
   <string name="config-enable-irc">Вклучи го IRC</string>
-  <string name="config-remove-reverted" fuzzy="true">Отстрани уредувања веќе отповикани од друг</string>
-  <string name="config-remove-old" fuzzy="true">Отстрани стари уредувања ако е расчленето поново уредување на истата страница</string>
+  <string name="config-remove-reverted">Отстрани уредувања веќе отповикани од друг во редицата</string>
+  <string name="config-remove-old">Отстрани постари стари уредувања од редицата ако е добиено поново уредување на истата страница</string>
   <string name="config-auto-load-history">Атоматски вчитај ја историјата и корисничките информации (податочно обемно)</string>
-  <string name="config-last-revision" fuzzy="true">Прикажувај ја последната преработка на страница во случај тековно вчитаното уредување да не е последната верзиаја (се презема со заобиколување на меѓускладот)</string>
+  <string name="config-last-revision">Префрли на последната преработка на страница во случај тековно вчитаното уредување да не е последната верзија (се презема отпосле, забавувајќи го Huggle)</string>
   <string name="config-require-delay">Барај одложување по секое вчитување на следното уредување во чиј тек нема да може се употреби никаква записна функција (за избегнување на бубачката што се јавува при стискање на повеќе копчиња на тастатурата)</string>
   <string name="config-wait-edit">Одолжувањето, во секунди, до овозможувањето на записните функции:</string>
   <string name="config-display-text">Прикажи следно</string>
@@ -221,7 +221,7 @@
   <string name="invalid-bot-user-name">Ова не е важечко име за бот. Пример за правилно име: Jimbo@Huggle</string>
   <string name="login-tab-botp">Ботовска лозинка</string>
   <string name="login-tab-login">Наследствено</string>
-  <string name="login-reload-tool-tip">Превчитајте список на расположиви проекти што може да се користат во Huggle. Ова може да е корисно ако сакате да го користите на проект каде Huggle е неодамна овозможен.</string>
+  <string name="login-reload-tool-tip">Превчитајте список на расположиви проекти што може да се користат во Huggle. Ова може да е корисно ако сакате да го користите на проект каде алатката е неодамна овозможена.</string>
   <string name="login-language">Јазик:</string>
   <string name="login-project">Проект:</string>
   <string name="login-username">Корисничко име:</string>
@@ -236,7 +236,7 @@
   <string name="login-fail-css">Најавата не успеа на $1: Не можам да ги преземам корисничките поставки од старото место. Дали создадовте huggle3.css во вашиот кориснички простор? (недостасува Special:MyPage/huggle3.css)</string>
   <string name="login-fail-enable-true">Најавата не успеа на $1: Немате enable:true во вашите лични поставки.</string>
   <string name="login-fail-no-info">Најавате не успеа на $1: Не можам да ги добијам корисничките информации: $2</string>
-  <string name="login-bot">Која е разликата помеѓу ботовската и наследствената најава?</string>
+  <string name="login-bot">Која е разликата помеѓу ботовската (BotPassword) и наследствената најава?</string>
   <string name="login-fail-parse-config">Најавате не успеа на $1: Не можам да ги расчленам корисничките поставки. Повеќе информации ќе најдете во дневникот на грешки.</string>
   <string name="login-fail-user-data">Најавате не успеа на $1: Не можам да ги добијам корисничките информации. Извршникот не даде податоци по зададеното барање.</string>
   <string name="login-fail-rollback-rights">Најавате не успеа на $1: Немате дозвола за отповикување на проектов.</string>
@@ -246,9 +246,11 @@
   <string name="login-password-empty">Внесената лозинка е празна.</string>
   <string name="login-fail-wrong-name">Не укажавте исправно корисничко име за најава.</string>
   <string name="login-api">ГРЕШКА: api.php одговори со непознат исход: $1</string>
+  <string name="login-abort">Напушти</string>
   <string name="login-start">Најава</string>
   <string name="login-oauth-notsupported">Овој метод засега не е поддржан.</string>
   <string name="login-translate">Преведи го Huggle</string>
+  <string name="login-progress-formtitle">Вчитувам...</string>
   <string name="login-progress-start">Ве најавувам на $1</string>
   <string name="login-progress-retrieve-mw">Преземам информации за МедијаВики за $1</string>
   <string name="login-progress-language">Ги обновувам податотеките на пораките...</string>
@@ -259,6 +261,7 @@
   <string name="login-progress-user-info">Ги проверувам корисничките информации за $1</string>
   <string name="login-progress-whitelist">Го вчитувам белиот список на корисници...</string>
   <string name="login-remember-password">Запомни ја лозинката</string>
+  <string name="login-remember-password-tooltip">Оваа можност ви ја складира лозинката во прост текст на вашиот сметач. Користете ја само ако вие сте единственото лице со пристап до сметачот.</string>
   <string name="login-ssl">Користи HTTPS (бара OpenSSL)</string>
   <string name="login-fail">Најавата не успеа на $1</string>
   <string name="login-error-admin">За да користите Huggle на овој проект ќе ви треба администраторска сметка.</string>
@@ -412,6 +415,10 @@
   <string name="main-revert-newpage">Ова е нова страница и затоа не може да се отповика. Можете само да ја означите или да ја избришете.</string>
   <string name="main-restore-text-fail">Не можам да ја повратам преработката бидејќи за неа нема текст.</string>
   <string name="main-restore-data-fail">Не можам да ја повратам преработката бидејќи викито не даде податоци за избраната верзија.</string>
+  <string name="main-welcome-user">Добре дојде, кориснику</string>
+  <string name="main-report-username">Пријави корисничко име</string>
+  <string name="main-report-user">Пријави корисник</string>
+  <string name="main-edit-user-talk">Уреди разг. со корисникот</string>
   <string name="message-title">Порака $1</string>
   <string name="message-help">Укажете Наслов или Опис (може и обете). Ако нема опис, ќе се искористи насловот. Ако нема наслов, нема да има заглавие.</string>
   <string name="message-subject">Наслов:</string>
@@ -701,6 +708,8 @@
   <string name="preferences-sounds-enable-irc">Пушти звук кога ќе се прими нова порака во HAN</string>
   <string name="preferences-sounds-minimal-score">Најмало уредување за известување</string>
   <string name="preferences-performance-catscansandwatched">Овозможи отчитување категории и филтрирање на набљудувања (бара дополнително барање до приложникот за секое уредување)</string>
+  <string name="preferences-max-score">Овозможи глобална најголема оцена (уредувањата со повисока оцена ќе бидат занемарени — корисно ако сакате да ги видите само добрите уредувања)</string>
+  <string name="preferences-min-score">Овозможи глобална најниска оцена (уредувањата со пониска оцена ќе бидат занемарени — корисно ако сакате да ги видите само лошите уредувања)</string>
   <string name="fail">Неуспех</string>
   <string name="request">Барање</string>
   <string name="requesting">Барање</string>

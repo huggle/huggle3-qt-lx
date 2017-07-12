@@ -74,6 +74,7 @@
   <string name="config-queue-filter-exclude">Ausschléissen (muss net sinn)</string>
   <string name="config-queue-filter-require">Verlaangen (muss sinn)</string>
   <string name="config-title">Optiounen</string>
+  <string name="config-already-in-use">Dëse Shortcut gëtt scho vu(n) $1 benotzt, sicht Iech w.e.g. een Aneren eraus</string>
   <string name="config-logfile">Lobuch-Fichier</string>
   <string name="config-shortcutaction">Aktioun</string>
   <string name="config-noshortcut">Keng</string>
@@ -83,7 +84,9 @@
   <string name="config-watchlist">Op d\'Iwwerwaachungslëscht derbäisetzen</string>
   <string name="config-defaultsummary">Standard-Resumé fir manuell Ännerungen</string>
   <string name="config-undosummary">Resumé beim Zrécksetze vun eegenen Ännerungen</string>
+  <string name="config-welcome-empty-page">E Begréissungsmessage u Benotzer schécken déi eng eidel Diskussiounssäit hunn an eng gutt Ännerung gemaach hunn</string>
   <string name="config-revert">Zrécksetzen</string>
+  <string name="config-months-name">Méint als Iwwerschrëft benotzen aplaz vum Numm vun enger Säit</string>
   <string name="config-enable-irc">IRC aktivéieren</string>
   <string name="config-display-text">Nächst weisen</string>
   <string name="config-retrieve-edit">Är eegen Ännerungen ofruffen</string>
@@ -139,21 +142,24 @@
   <string name="login-proxydomain">Domaine:</string>
   <string name="login-fail-enable-true">Aloggen op $1 huet net funktionéiert: An Äre perséinlechen Astellungen ass enable:true net dran.</string>
   <string name="login-fail-no-info">Aloggen op $1 huet net funktionéiert.\nBenotzerinformatioun konnt net ofgefrot ginn: $2</string>
-  <string name="login-bot">Wat ass den Ënnerscheed tëscht engem Bot -Login an engem traditionelle Login?</string>
+  <string name="login-bot">Wat ass den Ënnerscheed tëscht engem BotPassword -Login an engem traditionelle Login?</string>
   <string name="login-fail-user-data">Aloggen op $1 huet funktionéiert: Benotzerinformatioun konnt net ofgeruf ginn. D\'Api Ufro huet keng Daten zréckgeschéckt.</string>
   <string name="login-failed-edit">Aloggen op $1 huet net funktionéiert: Dir hutt net genuch Ännerungen op dësem Projet.</string>
   <string name="login-retrieving-info">Benotzerinformatioun iwwer $1 offroen</string>
   <string name="login-password-empty">D\'Passwuert dat Dir aginn hutt war eidel</string>
   <string name="login-fail-wrong-name">Dir hutt kee korrekte Benotzernumm agi fir Iech anzeloggen</string>
+  <string name="login-abort">Ofbriechen</string>
   <string name="login-start">Aloggen</string>
   <string name="login-oauth-notsupported">Dës Method gëtt elo net ënnerstëtzt</string>
   <string name="login-translate">Huggle iwwersetzen</string>
+  <string name="login-progress-formtitle">Lueden...</string>
   <string name="login-progress-start">Bäi $1 aloggen</string>
   <string name="login-progress-language">Fichiere mat de Messagen aktualiséieren...</string>
   <string name="login-progress-global">Global Astellungen nokucken...</string>
   <string name="login-progress-config">Astellugssäiten nokucken...</string>
   <string name="login-progress-user">Benotzerastellung fir $1 nokucken</string>
   <string name="login-remember-password">Passwuert verhalen</string>
+  <string name="login-remember-password-tooltip">Dës Optioun späichert Äert Passwuert am Kloertext op Ärem Hard-Disk. Benotzt se nëmme wann Dir déi eenzeg Persoun sidd déi Zougang op dëse Computer huet.</string>
   <string name="login-ssl">HTTPS benotzen (brauch OpenSSL)</string>
   <string name="login-fail">Aloggen op $1 huet net funktionéiert</string>
   <string name="login-error-admin">Fir Huggle op dësem Projet ze benotze musst Dir Administrateur sinn.</string>
@@ -171,6 +177,7 @@
   <string name="login-error-unknown">Aloggen op $1 huet net funktionéiert.</string>
   <string name="login-error-version">Dës Versioun ass vereelst. Aktualiséiert op déi lescht Versioun.</string>
   <string name="login-ro-title">Op \'nëmme liesen\' wiesselen</string>
+  <string name="main-stat">$1 Ännerunge pro Minutt $2 Zrécksetzunge pro Minutt, Niveau $3</string>
   <string name="main-no-reason">De Benotzer huet kee Grond uginn</string>
   <string name="main-restoring-slap">Ech restauréieren elo eng aner Ännerung, waart w.e.g....</string>
   <string name="main-page">Säit</string>
@@ -264,6 +271,10 @@
   <string name="main-revert-null">Kann net zréckgesat ginn:Ännerung ass \'null\'</string>
   <string name="main-revert-newpage-title">Dëst konnt net zréckgesat ginn</string>
   <string name="main-revert-newpage">Dëst ass eng nei Säit dofir ka se net zréckgesat ginn. Dir kënnt se entweder markéieren oder läschen.</string>
+  <string name="main-welcome-user">Wëllkomm Benotzer</string>
+  <string name="main-report-username">Benotzernumm mellen</string>
+  <string name="main-report-user">Benotzer mellen</string>
+  <string name="main-edit-user-talk">Benotzerdiskussioun änneren</string>
   <string name="message-title">Message $1</string>
   <string name="message-subject">Sujet:</string>
   <string name="message-message">Message:</string>
@@ -396,6 +407,7 @@
   <string name="welcome-tp-empty-fail">Dëse Benotzer huet keng eidel Diskussiounssäit, sidd Dir sécher datt Dir him e Message schécke wëllt?</string>
   <string name="cr-newer-edits">Konflikt geléist: all Ännerunge goufen zréckgesat, inklusiv nei Ännerungen. D\'Ännerunge ware vum selwechte Benotzer: $1.</string>
   <string name="cr-message-new">Et gëtt méi nei Ännerunge vu(n) $1, sidd Dir sécher datt Dir se wierklech zrécksetze wëllt?</string>
+  <string name="preferences-extension-enabled-restart">D\'Erweiderung gouf aktivéiert. Dir musst Huggle nei starte fir datt eppes geschitt.</string>
   <string name="preferences-watchlist-watch">Op d\'Iwwerwaachungslëscht derbäisetzen</string>
   <string name="preferences-watchlist-unwatch">Vun der Iwwerwaachungslëscht erofhuelen</string>
   <string name="preferences-watchlist-preferences">Iwwerwaacht Är Wiki-Astellungen</string>
@@ -423,5 +435,6 @@
   <string name="main-revert-type-unknown">onbekannt</string>
   <string name="main-revert-type-in-userspace">am Benotzerraum</string>
   <string name="main-revert-type-made-by-you">vun Iech gemaach</string>
+  <string name="main-revert-type-made-on-talk-page">op enger Diskussiounssäit gemaach</string>
   <string name="query-protected-link">Gespaarte Link</string>
 </resources>

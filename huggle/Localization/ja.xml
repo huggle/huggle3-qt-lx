@@ -172,7 +172,7 @@
   <string name="login-proxyport">ポート:</string>
   <string name="login-proxydomain">ドメイン:</string>
   <string name="login-fail-no-info">$1 へのログイン失敗: 利用者の情報を取得できません: $2</string>
-  <string name="login-bot">ボット用とレガシーログインの違いは？</string>
+  <string name="login-bot" fuzzy="true">ボット用とレガシーログインの違いは？</string>
   <string name="login-fail-rollback-rights">$1 へのログイン失敗: あなたにはこのプロジェクトでの巻き戻しの権限がありません。</string>
   <string name="login-failed-autoconfirm-rights">$1 へのログイン失敗: あなたはこのプロジェクトで自動承認された利用者ではありません。</string>
   <string name="login-failed-edit">$1 へのログイン失敗: このプロジェクトでの編集回数が不足しています。</string>

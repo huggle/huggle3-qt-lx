@@ -22,7 +22,7 @@
   <string name="result">Hasil</string>
   <string name="save">Simpan</string>
   <string name="show">Tampilkan</string>
-  <string name="no-instant" fuzzy="true">Peringatan instan tidak diaktifkan di proyek $1, tidak mengirim pesan kepada $2, pilih tingkat peringatan berbeda</string>
+  <string name="no-instant">Peringatan instan tidak diaktifkan di proyek $1, jadi pesan ke $2 tidak terkirim. Silakan pilih tingkat peringatan berbeda</string>
   <string name="undo">Balikkan</string>
   <string name="yes">Ya</string>
   <string name="editing-page">Menyunting halaman</string>
@@ -52,7 +52,7 @@
   <string name="disable">Matikan</string>
   <string name="no-token">Tidak ada token</string>
   <string name="flags">Tanda</string>
-  <string name="gracetime" fuzzy="true">Menunggu untuk menyunting permintaan berakhir...</string>
+  <string name="gracetime">Menunggu untuk permintaan yang melakukan beberapa penyuntingan berakhir...</string>
   <string name="browser-none">Tidak ada halaman ditampilkan sekarang</string>
   <string name="browser-load" fuzzy="true">Mengunduh diff menggunakan sebuah sistem pengambil web, mohon menunggu...</string>
   <string name="browser-miss-summ">Tidak ada ringkasan</string>
@@ -338,7 +338,7 @@
   <string name="login-no-userinfo">Situs tidak mengembalikan setiap informasi pengguna</string>
   <string name="login-invalid-register-date">Tanggal pendaftaran tidak valid, dikembalikan oleh mediawiki</string>
   <string name="login-no-site-info-returned">Tidak ada situs Info dikembalikan untuk wiki ini</string>
-  <string name="loading-main-window">Memuat jendela huggle utama</string>
+  <string name="loading-main-window">Memuat jendela Huggle utama</string>
   <string name="login-username-doesnt-exist">Nama pengguna ini tidak ada</string>
   <string name="developer-mode-enter-title">Kapan</string>
   <string name="developer-mode-enter-message">anda memasuki mode pengembang!</string>

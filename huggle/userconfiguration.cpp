@@ -132,7 +132,7 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
     configuration_ += "report-summary:" + Project->ReportSummary + "\n";
     configuration_ += "prod-message-summary:Notification: Proposed deletion of [[$1]]\n";
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // huggle 2 options
+    // Huggle 2 options
     configuration_ += "auto-advance:false\n";
     configuration_ += "auto-whitelist:true\n";
     configuration_ += "username-listed:true\n";
@@ -184,6 +184,12 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
     configuration_ += "// Whether edits made by same user should be grouped up together in page\n";
     configuration_ += "AutomaticallyGroup:" + Bool2String(this->AutomaticallyGroup) + "\n";
     configuration_ += "QueueID:" + this->QueueID + "\n";
+    configuration_ += "// Location of page (wiki page name, for example WP:Huggle) that should be displayed when you hit next and queue is empty. Leave empty for default page.\n";
+    configuration_ += "PageEmptyQueue:" + this->PageEmptyQueue + "\n";
+    configuration_ += "EnableMaxScore:" + Bool2String(this->EnableMaxScore) + "\n";
+    configuration_ += "MaxScore:" + QString::number(this->MaxScore) + "\n";
+    configuration_ += "EnableMinScore:" + Bool2String(this->EnableMinScore) + "\n";
+    configuration_ += "MinScore:" + QString::number(this->MinScore) + "\n";
     // shortcuts
     QStringList shortcuts = Configuration::HuggleConfiguration->Shortcuts.keys();
     // we need to do this otherwise huggle may sort the items differently every time and spam wiki
@@ -362,8 +368,14 @@ bool UserConfiguration::ParseUserConfig(QString config, ProjectConfiguration *Pr
     this->DeleteEditsAfterRevert = SafeBool(ConfigurationParse("DeleteEditsAfterRevert", config), this->DeleteEditsAfterRevert);
     this->WelcomeGood = this->SetOption("welcome-good", config, ProjectConfig->WelcomeGood).toBool();
     this->AutomaticReports = SafeBool(ConfigurationParse("AutomaticReports", config), this->AutomaticReports);
+    this->PageEmptyQueue = HuggleParser::ConfigurationParse("PageEmptyQueue", config);
     delete this->Previous_Version;
     this->Previous_Version = new Version(ConfigurationParse("version", config, HUGGLE_VERSION));
+    // Score range
+    this->EnableMaxScore = SafeBool(ConfigurationParse("EnableMaxScore", config));
+    this->MinScore = ConfigurationParse("MinScore", config, "0").toLongLong();
+    this->MaxScore = ConfigurationParse("MaxScore", config, "0").toLongLong();
+    this->EnableMinScore = SafeBool(ConfigurationParse("EnableMinScore", config));
     // for now we do this only for home wiki but later we need to make it for every wiki
     if (IsHome)
     {

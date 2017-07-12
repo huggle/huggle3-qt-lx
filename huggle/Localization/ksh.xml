@@ -103,7 +103,7 @@
   <string name="config-undosummary">Zosammefaßong beim Retuhr_Nämme vun de eije Änderonge</string>
   <string name="config-confirm-talk">Bruch en Beschtähtejong för et Retuhrnämme vun ene Änderong obb ene Klaafsigg</string>
   <string name="config-revert">Retuhr_Nämme</string>
-  <string name="config-change-all">Donn alle Enschtällonge esu änndere, dat se mih zoh dä Projramm_Väsjohn 2 paße</string>
+  <string name="config-change-all" fuzzy="true">Donn alle Enschtällonge esu änndere, dat se mih zoh dä Projramm_Väsjohn 2 paße</string>
   <string name="config-merge-messages">Donn Ding Nohreeschte met andere en de vörhande Afschnedde zersamme schmiiße</string>
   <string name="config-months-name">Nämm Mohnde als Övverchreffte un nit de Övverschrefte vun de Sigge</string>
   <string name="config-enable-irc">Donn der &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Internet Relay Chat\"&gt;IRC&lt;/i&gt; aanschallde</string>

@@ -100,7 +100,7 @@
   <string name="config-trayicon">أظهر أيقونة لوحة النظام</string>
   <string name="config-startupmessage">أظهر رسالة بدء التشغيل</string>
   <string name="config-shownewmessages">اعرض شريط الرسائل الجديدة</string>
-  <string name="config-shortcutlist">مفاتيخ الاختصار</string>
+  <string name="config-shortcutlist">مفاتيح الاختصار</string>
   <string name="config-shortcutaction">إجراء</string>
   <string name="config-changeshortcut">غير الاختصار لـ $1ء</string>
   <string name="config-noshortcut">لا شيء</string>
@@ -115,7 +115,7 @@
   <string name="config-welcome-empty-page">إرسال رسائل ترحيب للمستخدمين بصفحة نقاش فارغة على تعديل جيد</string>
   <string name="config-revert-wait" fuzzy="true">انتظار التراجع (ثوانٍ)</string>
   <string name="config-revert">تراجع</string>
-  <string name="config-change-all">تغيير جميع إعدادات هغل ليتصرف أشبه بهغل 2</string>
+  <string name="config-change-all" fuzzy="true">تغيير جميع إعدادات هغل ليتصرف أشبه بهغل 2</string>
   <string name="config-merge-messages">دمج رسائلك مع الآخرين في الأقسام الموجودة</string>
   <string name="config-months-name">استخدام الأشهر كعناوين رئيسية بدلًا من اسم الصفحة</string>
   <string name="config-enable-irc">تمكين IRC (قناة دردشة ويكيبيديا)</string>
@@ -204,7 +204,7 @@
   <string name="invalid-bot-user-name">هذا ليس اسم بوت صالح. مثال على اسم بوت الصحيح: Jimbo@Huggle</string>
   <string name="login-tab-botp">كلمة مرور البوت</string>
   <string name="login-tab-login">الخروج من التاريخ</string>
-  <string name="login-reload-tool-tip">تحديث قائمة المشروعات المتاحة التي يمكن استخدامها في هغل. هذا يمكن أن يكون مفيدًا في حال كنت ترغب في استخدام هغل في المشروع الذي تم تمكين هغل فيه مؤخرًا.</string>
+  <string name="login-reload-tool-tip" fuzzy="true">تحديث قائمة المشروعات المتاحة التي يمكن استخدامها في هغل. هذا يمكن أن يكون مفيدًا في حال كنت ترغب في استخدام هغل في المشروع الذي تم تمكين هغل فيه مؤخرًا.</string>
   <string name="login-language">اللغة:</string>
   <string name="login-project">المشروع:</string>
   <string name="login-username">اسم المستخدم:</string>
@@ -219,7 +219,7 @@
   <string name="login-fail-css">فشل تسجيل الدخول على $1: غير قادر على استرجاع تهيئة المستخدم. خاص:صفحتي/huggle3.css مفقودة.هل أنشأت huggle3.css في نطاقك؟</string>
   <string name="login-fail-enable-true">فشل تسجيل الدخول على $1: ليس لديك تمكين: صحيح في التهيئة الشخصية الخاص بك.</string>
   <string name="login-fail-no-info">فشل تسجيل الدخول على $1: غير قادر على استرجاع معلومات المستخدم: $2</string>
-  <string name="login-bot">ما الفرق بين البوت وتسجيل الدخول القديم؟</string>
+  <string name="login-bot" fuzzy="true">ما الفرق بين البوت وتسجيل الدخول القديم؟</string>
   <string name="login-fail-parse-config">فشل تسجيل الدخول على $1: غير قادر على تحليل تكوين المستخدم. راجع سجل التصحيح لمزيد من التفاصيل.</string>
   <string name="login-fail-user-data">فشل تسجيل الدخول على $1: غير قادر على تحليل مساهمات المستخدم.الاستعلام API لم يأت بأي بيانات.</string>
   <string name="login-fail-rollback-rights">فشل تسجيل الدخول على $1: ليست لديك صلاحية المسترجع في هذا المشروع.</string>
@@ -232,6 +232,7 @@
   <string name="login-start">ولوج</string>
   <string name="login-oauth-notsupported">لم يتم اعتماد هذه الطريقة في هذه اللحظة</string>
   <string name="login-translate">ترجم هجل</string>
+  <string name="login-progress-formtitle">جارٍ التحميل...</string>
   <string name="login-progress-start">تسجيل الدخول إلى $1</string>
   <string name="login-progress-retrieve-mw">استرجاع المعلومات حول ميدياويكي ل $1</string>
   <string name="login-progress-language">ملفات الرسائل قيد التحديث...</string>
@@ -387,6 +388,7 @@
   <string name="main-revert-newpage">هذه صفحة جديدة; لذلك لا يمكن أن تتراجع عن تعديل فيها; يمكنك مراجعتها أو حذفها.</string>
   <string name="main-restore-text-fail">لا يمكن استرجاع المراجعة; لأنه لا يوجد نص متاح لها</string>
   <string name="main-restore-data-fail">غير قادر على استرجاع المراجعة; لأن الويكي لم يقدم أي بيانات عن الإصدار المحدد</string>
+  <string name="main-report-username">أبلغ عن اسم المستخدم</string>
   <string name="message-title">رسالة $1</string>
   <string name="message-help">حدد العنوان أو الملخص او كلاهما. لدى انعدام الملخص سيتم استخدام العنوان؛ لدى انعدام العنوان لن تتم إضافة ترويسة</string>
   <string name="message-subject">العنوان:</string>
@@ -508,7 +510,7 @@
   <string name="tag-summary">تعديل:</string>
   <string name="tag-insertatend">أضف في نهاية الصفحة</string>
   <string name="update-title">يوجد إصدار جديد</string>
-  <string name="update-progress">جاري تنزيل الاصدار الجديد. . .</string>
+  <string name="update-progress">جارٍ تنزيل الاصدار الجديد...</string>
   <string name="update-error">فشل تنزيل الاصدار الجديد</string>
   <string name="updater-title">إصدار جديد من هغل متاح</string>
   <string name="updater-update">حدِّث</string>
@@ -630,7 +632,7 @@
   <string name="updating-wl">تحديث القائمة البيضاء...</string>
   <string name="feature-nfru">هذه الميزة للمستخدمين المجهولين فقط</string>
   <string name="report-no-user">لم يتم اختيار اسم مستخدم للإبلاغ، يرجى تحديد المستخدم أولًا</string>
-  <string name="welcome-show">عرض هذه الرسالة أيضًا في المرة القادمة التي تقوم فيها بتشغيل هغل</string>
+  <string name="welcome-show" fuzzy="true">عرض هذه الرسالة أيضًا في المرة القادمة التي تقوم فيها بتشغيل هغل</string>
   <string name="welcome-tp-empty-fail">هذا المستخدم ليست لديه صفحة نقاش فارغة، هل أنت متأكد من أنك تريد إرسال رسالة له؟</string>
   <string name="welcome-page-miss-fail">كان هغل غير قادر على استرجاع محتويات صفحة نقاش المستخدم، هل أنت متأكد من أنك تريد أن ترسل رسالة ترحيب لهم؟</string>
   <string name="cr-newer-edits">الصراع تم حله: استرجعت كل التعديلات، بما في ذلك التعديلات الجديدة التي أجراها نفس المستخدم: $1.</string>
@@ -641,10 +643,10 @@
   <string name="cr-message-new">هناك تعديلات جديدة على $1. هل أنت متأكد من أنك تريد حقًا أن تسترجعها؟</string>
   <string name="cr-message-not-same">هناك تعديلات جديدة بواسطة مستخدم آخر على $1. هل أنت متأكد من أنك تريد حقًا أن تسترجعها؟(من المرجح أن تفشل على أي حال بسبب الرمز القديم).</string>
   <string name="preferences-delete-using-filter">لا يمكنك حذف مرشح مستخدم حاليًا</string>
-  <string name="preferences-extension-disabled">من المقرر تعطيل هذا التمديد بالفعل عند بدء التشغيل القادم لهغل</string>
-  <string name="preferences-extension-disabled-restart">تم تعيين ملحق ليتم تعطيله عند بدء التشغيل القادم لهغل</string>
-  <string name="preferences-extension-enabled">من غير المقرر تعطيل هذا التمديد عند بدء التشغيل القادم لهغل</string>
-  <string name="preferences-extension-enabled-restart">تم تمكين التمديد، ولكن تحتاج إلى إعادة تشغيل هغل ليحدث هذا</string>
+  <string name="preferences-extension-disabled">من المقرر تعطيل هذا الامتداد عند بدء التشغيل القادم لهغل</string>
+  <string name="preferences-extension-disabled-restart" fuzzy="true">تم تعيين ملحق ليتم تعطيله عند بدء التشغيل القادم لهغل</string>
+  <string name="preferences-extension-enabled" fuzzy="true">من غير المقرر تعطيل هذا التمديد عند بدء التشغيل القادم لهغل</string>
+  <string name="preferences-extension-enabled-restart">الامتداد مُفعّل الآن، ولكن تحتاج إلى إعادة تشغيل هغل ليحدث هذا</string>
   <string name="preferences-watchlist-watch">أضف لقائمة مراقبتي</string>
   <string name="preferences-watchlist-unwatch">إزالة من قائمة المراقبة</string>
   <string name="preferences-watchlist-preferences">متابعتك على تفضيلات الويكي</string>
@@ -680,7 +682,7 @@
   <string name="login-invalid-register-date">تاريخ التسجيل غير صالح وتم إرجاعه بواسطة ميدياويكي</string>
   <string name="login-site-info-query-failed">المعلومات عن استعلام الموقع $1 فشلت: $2</string>
   <string name="login-no-site-info-returned">لم يتم إرجاع أية معلومات لهذا الويكي</string>
-  <string name="loading-main-window">تحميل نافذة هغل الرئيسية</string>
+  <string name="loading-main-window" fuzzy="true">تحميل نافذة هغل الرئيسية</string>
   <string name="api.php-invalid-response">رد api.php بنص غير صالح (خادم الويب بالأأسفل؟)، يرجى مراجعة سجل التصحيح للحصول على معلومات دقيقة</string>
   <string name="login-username-doesnt-exist">اسم المستخدم غير موجود</string>
   <string name="developer-mode-enter-message">لقد أدخلت وضع المطور!</string>

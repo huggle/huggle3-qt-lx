@@ -3,23 +3,52 @@ version: "3.2.0"
 summary: Diff browser for MediaWiki based websites intended to deal with vandalism
 description: Diff browser for MediaWiki based websites intended to deal with vandalism
 confinement: strict
+icon: src/Resources/huggle3_newlogo.png
+epoch: 0
+grade: stable
 
 apps:
   huggle:
-    command: huggle
+    command: desktop-launch huggle
     plugs:
         - unity7
+        - x11
         - network
         - home
+        - opengl
+        - pulseaudio
+        - browser-support
 
 parts:
   application:
     plugin: cmake
     configflags:
+      - -DQT5_BUILD=true
       - -DLINUX_SNAP=true
       - -DHUGGLE_EXT=true
     source: src/
     stage-packages:
-      - libqtgui4
-      - libqtwebkit4
-    after: [qt4conf]
+      - libqt5gui5
+      - libqt5core5a
+      - libqt5webkit5
+      - libqt5concurrent5
+      - libqt5quickparticles5
+      - libqt5widgets5
+      - libqt5declarative5
+      - libqt5quickwidgets5
+      - libqt5network5
+      - libqt5multimediaquick-p5
+      - libqt5multimediawidgets5
+    build-packages:
+      - libgtk2.0-0
+      - libdrm-dev
+      - libegl1-mesa-dev
+      - qtbase5-dev
+      - libgl1-mesa-dev
+      - libglu1-mesa-dev
+      - libqt5opengl5-dev
+      - libwayland-dev
+      - libx11-dev
+      - qtmultimedia5-dev
+      - libqt5webkit5-dev
+    after: [desktop-qt5]

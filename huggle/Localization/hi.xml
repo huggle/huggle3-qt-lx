@@ -117,7 +117,7 @@
   <string name="config-instant-reverts">तत्काल बदलाव काम में लें (बहुत तीव्र, लेकिन एक बार निष्पादित करने के बाद निरसित नहीं हो सकता)</string>
   <string name="config-revert-wait" fuzzy="true">बदलाव के लिए प्रतीक्षा करें (सैकण्ड)</string>
   <string name="config-revert">बदलें</string>
-  <string name="config-change-all">हगल २ की तरह अधिक व्यवहार करने के लिए हगल की पसन्द बदलें</string>
+  <string name="config-change-all" fuzzy="true">हगल २ की तरह अधिक व्यवहार करने के लिए हगल की पसन्द बदलें</string>
   <string name="config-merge-messages">पहले से उपलब्ध अनुभाग में अपने सन्देशों का विलय करें</string>
   <string name="config-months-name">शीर्षणी में पृष्ठ के नाम के स्थान पर माह का उपयोग करें</string>
   <string name="config-enable-irc">आईआरसी सक्रिय करें</string>

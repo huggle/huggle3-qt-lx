@@ -113,6 +113,7 @@
   <string name="config-use-rollback">Använd programvara för tillbakarullning</string>
   <string name="config-welcome-empty-page">Skicka välkomstmeddelanden till användare med tomma diskussionssidor för en bra redigering</string>
   <string name="config-revert">Återställ</string>
+  <string name="config-change-all">Ändra alla Huggle-inställningar för att bete sig mer som Huggle 2</string>
   <string name="config-merge-messages">Sammanfoga dina meddelanden med andras i befintliga avsnitt</string>
   <string name="config-enable-irc">Aktivera IRC</string>
   <string name="config-wait-edit" fuzzy="true">Tiden du behöver vänta när redigeringsfunktioner aktiveras (sekunder):</string>
@@ -201,9 +202,11 @@
   <string name="login-retrieving-info">Hämtar användarinformation på $1</string>
   <string name="login-password-empty">Lösenordet du angav var tomt</string>
   <string name="login-fail-wrong-name">Du gav inte ett korrekt användarnamn för att logga in</string>
+  <string name="login-abort">Avbryt</string>
   <string name="login-start">Logga in</string>
   <string name="login-oauth-notsupported">Metoden stöds inte för närvarande</string>
   <string name="login-translate">Översätt Huggle</string>
+  <string name="login-progress-formtitle">Läser in...</string>
   <string name="login-progress-start">Loggar in på $1</string>
   <string name="login-progress-retrieve-mw">Hämtar information om MediaWiki för $1</string>
   <string name="login-progress-language">Uppdaterar meddelandefiler...</string>
@@ -226,6 +229,10 @@
   <string name="login-error-projdisabled">Huggle är för närvarande inaktiverad på $1.</string>
   <string name="login-error-unknown">Kan inte logga in på $1.</string>
   <string name="login-error-version">Denna version är för gammal. Uppdatera till den senaste versionen.</string>
+  <string name="login-ro-title">Byt till skrivskyddat</string>
+  <string name="login-ro-question">En eller fler projekt ($1) låter dig inte logga in med redigeringsbehörigheter (anledning: $2). Vill du byta till skrivskyddat läge istället?</string>
+  <string name="login-ro-info">Projektet $1 byte till skrivskyddat läge</string>
+  <string name="main-stat">$1 redigeringar per minut $2 tillbakarullningar per minut, nivå $3</string>
   <string name="main-menu-provider-stop">Stoppa leverantör</string>
   <string name="main-menu-provider-resume">Återuppta leverantör</string>
   <string name="main-no-reason">Ingen anledning angavs av användaren</string>
@@ -328,6 +335,10 @@
   <string name="main-revision-acceptpend">Acceptera denna väntande sidversion</string>
   <string name="main-revert-newpage-title">Kan inte återställa detta</string>
   <string name="main-revert-newpage" fuzzy="true">Detta är en ny sida, då den kan inte återställas. Du kan antingen märka eller radera den.</string>
+  <string name="main-welcome-user">Välkommen användare</string>
+  <string name="main-report-username">Rapportera användarnamn</string>
+  <string name="main-report-user">Rapportera användare</string>
+  <string name="main-edit-user-talk">Redigera användardiskussion</string>
   <string name="message-title">Meddelande $1</string>
   <string name="message-subject">Ämne:</string>
   <string name="message-message">Meddelande:</string>
@@ -475,9 +486,11 @@
   <string name="updating-wl">Uppdaterar vitlista...</string>
   <string name="feature-nfru">Den här funktionen är endast för IP-användare</string>
   <string name="report-no-user">Ingen användare har valts för att rapportera, vänligen välj en användare först</string>
-  <string name="welcome-show">Visa detta meddelande även nästa gång du startar huggle</string>
+  <string name="welcome-show">Visa detta meddelande även nästa gång du startar Huggle</string>
   <string name="welcome-tp-empty-fail">Denna användare har inte en tom diskussionssida, är du säker på att du vill skicka ett meddelande till hen?</string>
   <string name="welcome-page-miss-fail">Huggle kunde inte hämta innehållet i användarens diskussionssida, är du säker på att du vill skicka ett välkomstmeddelande till hen?</string>
+  <string name="preferences-extension-disabled">Detta tillägg har redan schemalagts för inaktivering vid nästa uppstart av Huggle</string>
+  <string name="preferences-extension-enabled-restart">Tillägget aktiverades, men du måste starta om Huggle för att verkställa den</string>
   <string name="preferences-sounds-enable-queue">Spela upp ljud när nya objekt köläggs</string>
   <string name="preferences-sounds-enable-irc">Spela upp ljud när ett meddelande hämtas i HAN</string>
   <string name="preferences-sounds-minimal-score">Minimala redigeringspoäng för notifikation</string>
@@ -498,6 +511,7 @@
   <string name="projects">Projekt</string>
   <string name="unable-to-retrieve-user-list">Kunde inte hämta listan över användare: $1</string>
   <string name="login-no-userinfo">Sidan gav inte att någon användarinformation</string>
+  <string name="loading-main-window">Läser in Huggles huvudfönster</string>
   <string name="unknown-item">Okänt objekt</string>
   <string name="title-multiple-projects">flera projekt ($1)</string>
   <string name="title-on" fuzzy="true">på</string>

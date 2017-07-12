@@ -130,6 +130,12 @@ namespace Huggle
             bool                    HAN_DisplayUserTalk = true;
             //! Welcome new users on a good edit
             bool                    WelcomeGood = true;
+            //! Set to true if you want to ignore queue edits that are higher than specific score (useful to filter only good edits)
+            bool                    EnableMaxScore = false;
+            score_ht                MaxScore = 0;
+            bool                    EnableMinScore = false;
+            score_ht                MinScore = 0;
+            QString                 PageEmptyQueue;
             Version*                Previous_Version;
             WatchlistOption         Watchlist;
     };

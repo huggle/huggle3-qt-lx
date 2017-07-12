@@ -121,7 +121,7 @@
   <string name="config-revert-wait" fuzzy="true">Așteptare înaintea revenirii (secunde)</string>
   <string name="config-revert">Revenire</string>
   <string name="config-revert-diff">Reveniți asupra modificărilor dintr-o pagină, dacă sunt mai noi decât difful afișat și dacă sunt făcute de același vandal</string>
-  <string name="config-change-all">Schimbă toate setările huggle pentru a se comporta ca huggle 2</string>
+  <string name="config-change-all">Schimbă toate setările Huggle pentru a se comporta ca Huggle 2</string>
   <string name="config-merge-messages">Unește mesajele cu altele din secțiunile existente</string>
   <string name="config-months-name">Folosește lunile anului ca antet în loc de numele paginii</string>
   <string name="config-automatic-warning">Folosește tipul și nivelul automate de avertizare la funcția „trimite avertizare”</string>
@@ -218,7 +218,7 @@
   <string name="login-old">Citesc configurația utilizatorului din vechea locație</string>
   <string name="login-intro">Vă rog să alegeți un proiect și să vă introduceți numele de utilizator și parola. Vă puteți și autentifica la proiecte multiple, prin click pe butonul „Proiecte”</string>
   <string name="login-tab-login" fuzzy="true">Autentificare</string>
-  <string name="login-reload-tool-tip">Încarcă o listă de proiecte disponibile pentru a fi folosite de Huggle. Aceasta poate fi utilă în caz că doriți să folosiți Huggle într-un proiect în care Huggle a fost recent activat.</string>
+  <string name="login-reload-tool-tip" fuzzy="true">Încarcă o listă de proiecte disponibile pentru a fi folosite de Huggle. Aceasta poate fi utilă în caz că doriți să folosiți Huggle într-un proiect în care Huggle a fost recent activat.</string>
   <string name="login-language">Limba:</string>
   <string name="login-project">Proiect:</string>
   <string name="login-username">Nume de utilizator:</string>
@@ -674,8 +674,8 @@
   <string name="preferences-delete-using-filter">Nu puteți șterge un filtru care este utilizat</string>
   <string name="preferences-extension-disabled">Această extensie este deja planificată pentru dezactivare la următoarea repornire de Huggle</string>
   <string name="preferences-extension-disabled-restart">Extensia urmează a fi dezactivată la următoarea pornire de Huggle</string>
-  <string name="preferences-extension-enabled">Această extensie nu este planificată a fi dezactivată la următoarea pornire a lui Huggle</string>
-  <string name="preferences-extension-enabled-restart">Extensia a fost activată, dar va trebui să reporniți Huggle</string>
+  <string name="preferences-extension-enabled" fuzzy="true">Această extensie nu este planificată a fi dezactivată la următoarea pornire a lui Huggle</string>
+  <string name="preferences-extension-enabled-restart" fuzzy="true">Extensia a fost activată, dar va trebui să reporniți Huggle</string>
   <string name="preferences-watchlist-watch">Adaugă la lista de urmărit</string>
   <string name="preferences-watchlist-unwatch">Scoate din lista de urmărit</string>
   <string name="preferences-watchlist-preferences">Urmărește preferințele de pe wiki</string>

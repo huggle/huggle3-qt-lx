@@ -475,7 +475,6 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
     this->Browser->DisplayDiff(e);
     this->Render(KeepHistory, KeepUser);
     e->DecRef();
-    this->EnableEditing(!e->GetSite()->GetProjectConfig()->ReadOnly);
 }
 
 void MainWindow::Render(bool KeepHistory, bool KeepUser)
@@ -524,9 +523,11 @@ void MainWindow::Render(bool KeepHistory, bool KeepUser)
         QStringList params;
         params << this->CurrentEdit->Page->PageName << QString::number(this->CurrentEdit->Score) + word;
         this->tb->SetInfo(_l("browser-diff", params));
+        this->EnableEditing(!this->CurrentEdit->GetSite()->GetProjectConfig()->ReadOnly);
         Hooks::MainWindow_OnRender();
         return;
     }
+    this->EnableEditing(false);
     this->tb->SetTitle(this->Browser->CurrentPageName());
     Hooks::MainWindow_OnRender();
 }
@@ -1139,6 +1140,8 @@ void MainWindow::CreateBrowserTab(QString name, int index)
     this->ui->tabWidget->insertTab(index, tab, name);
     this->ui->tabWidget->setCurrentIndex(index);
     this->Browser = web;
+    if (this->Browsers.count() > 1)
+        this->ui->tabWidget->setTabsClosable(true);
 }
 
 void MainWindow::Title(QString name)
@@ -1501,13 +1504,13 @@ void MainWindow::OnTimerTick0()
 void MainWindow::on_actionNext_triggered()
 {
     if (!this->Queue1->Next())
-        this->ShowCat();
+        this->ShowEmptyQueuePage();
 }
 
 void MainWindow::on_actionNext_2_triggered()
 {
     if (!this->Queue1->Next())
-        this->ShowCat();
+        this->ShowEmptyQueuePage();
 }
 
 void MainWindow::on_actionWarn_triggered()
@@ -1892,7 +1895,7 @@ void MainWindow::DisplayNext(Query *q)
             return;
         case Configuration_OnNext_Next:
             if (!this->Queue1->Next())
-                this->ShowCat();
+                this->ShowEmptyQueuePage();
             return;
         case Configuration_OnNext_Revert:
             //! \bug This doesn't seem to work
@@ -1901,7 +1904,7 @@ void MainWindow::DisplayNext(Query *q)
             if (q == nullptr)
             {
                 if (!this->Queue1->Next())
-                    this->ShowCat();
+                    this->ShowEmptyQueuePage();
                 return;
             }
             if (this->OnNext_EvPage != nullptr)
@@ -1912,10 +1915,19 @@ void MainWindow::DisplayNext(Query *q)
     }
 }
 
-void MainWindow::ShowCat()
+void MainWindow::ShowEmptyQueuePage()
 {
-    this->Browser->RenderHtml(Resources::Html_EmptyList);
-    this->EnableEditing(false);
+    if(!hcfg->UserConfig->PageEmptyQueue.isEmpty())
+    {
+        WikiPage empty(hcfg->UserConfig->PageEmptyQueue);
+        this->Browser->DisplayPreFormattedPage(&empty);
+        //this->Render();
+    }
+    else
+    {
+        this->Browser->RenderHtml(Resources::Html_Default_EmptyQueuePage);
+    }
+    this->LockPage();
 }
 
 void MainWindow::DeletePage()
@@ -3008,31 +3020,7 @@ void MainWindow::on_tabWidget_currentChanged(int index)
 
 void MainWindow::on_actionClose_current_tab_triggered()
 {
-    if (this->Browsers.count() < 2)
-    {
-        Syslog::HuggleLogs->ErrorLog(_l("main-browser-lasttab"));
-        return;
-    }
-
-    // first kill the tab
-    HuggleWeb *br = this->Browser;
-    // we need to store the id of current tab because we must switch to index 0 before
-    // deleting it, otherwise it could jump on + tab which would immediatelly open
-    // new tab
-    int cu = this->ui->tabWidget->currentIndex();
-    this->ui->tabWidget->setCurrentIndex(0);
-    this->ui->tabWidget->removeTab(cu);
-    int index = 0;
-    while (index < this->Browsers.count())
-    {
-        if (this->Browsers.at(index) == br)
-        {
-            this->Browsers.removeAt(index);
-            break;
-        }
-        index++;
-    }
-    delete br;
+    this->CloseTab(this->ui->tabWidget->currentIndex());
 }
 
 void MainWindow::on_actionOpen_new_tab_triggered()
@@ -3162,4 +3150,62 @@ void Huggle::MainWindow::on_actionIntroduction_triggered()
     w->setAttribute(Qt::WA_DeleteOnClose);
     w->DisableFirst();
     w->show();
+}
+
+void Huggle::MainWindow::on_tabWidget_customContextMenuRequested(const QPoint &pos)
+{
+    Q_UNUSED(pos);
+    // finish me
+}
+
+void Huggle::MainWindow::on_tabWidget_tabCloseRequested(int index)
+{
+    this->CloseTab(index);
+}
+
+void MainWindow::CloseTab(int tab)
+{
+    if (tab == (this->ui->tabWidget->count() - 1))
+    {
+        // Someone wants to close + tab
+        // ignore that
+        return;
+    }
+    if (this->Browsers.count() < 2)
+    {
+        Syslog::HuggleLogs->ErrorLog(_l("main-browser-lasttab"));
+        return;
+    }
+
+    // Get the pointer to web browser
+    HuggleWeb *browser_to_close = (HuggleWeb*)this->ui->tabWidget->widget(tab)->layout()->itemAt(0)->widget();
+
+    if (browser_to_close == this->Browser)
+    {
+        // We want to close the browser that is currently open, which means, we need to switch to another one, most easy, although a bit ugly
+        // is to switch to tab with id 0, because that guarantees it's not the last tab, opening last tab would be a problem because that one
+        // opens a new tab
+        this->ui->tabWidget->setCurrentIndex(0);
+    }
+
+    this->ui->tabWidget->removeTab(tab);
+
+    // Now we need to find and remove the browser object, we got the pointer but we don't know the actual position in list, which doesn't need
+    // to be same as position of tab
+    int index = 0;
+    while (index < this->Browsers.count())
+    {
+        if (this->Browsers.at(index) == browser_to_close)
+        {
+            this->Browsers.removeAt(index);
+            break;
+        }
+        index++;
+    }
+    delete browser_to_close;
+    if (this->Browsers.count() < 2)
+    {
+        // Since we closed last closable tab, we can disable the X buttons
+        this->ui->tabWidget->setTabsClosable(false);
+    }
 }

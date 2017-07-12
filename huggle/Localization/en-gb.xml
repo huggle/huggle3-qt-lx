@@ -52,9 +52,9 @@
   <string name="disable">Disable</string>
   <string name="no-token">No token</string>
   <string name="flags">Flags</string>
-  <string name="gracetime" fuzzy="true">Waiting for editing queries to end...</string>
+  <string name="gracetime">Waiting for queries that perform some editing to end...</string>
   <string name="browser-none">No page is displayed now</string>
-  <string name="browser-load" fuzzy="true">Downloading diff using a web rendering fall-back, please wait...</string>
+  <string name="browser-load">Downloading diff using a MW rendering fall-back, please wait...</string>
   <string name="browser-miss-summ">No summary was provided</string>
   <string name="browser-diff">Diff of page: $1 (score: $2)</string>
   <string name="browser-fail">Unable to retrieve diff: $1</string>
@@ -117,9 +117,9 @@
   <string name="config-confirm-talk">Require confirmation for revert carried out on a talk page</string>
   <string name="config-use-rollback">Use software rollback</string>
   <string name="config-welcome-empty-page">Send welcome messages to users with an empty talk page when they make a good edit</string>
-  <string name="config-conflicts-revert" fuzzy="true">Automatically resolve conflicts with other users who revert or change the page</string>
+  <string name="config-conflicts-revert">Automatically resolve conflicts with other users who revert or change the same page</string>
   <string name="config-instant-reverts">Use instant reverts (very fast, but can\'t be cancelled once executed)</string>
-  <string name="config-revert-wait" fuzzy="true">Revert wait (seconds)</string>
+  <string name="config-revert-wait">Revert delay (seconds)</string>
   <string name="config-revert">Revert</string>
   <string name="config-revert-diff">Revert edits to page that are newer than the displayed diff if they were made by the same vandal user</string>
   <string name="config-change-all">Change all Huggle settings to behave more like Huggle 2</string>
@@ -127,10 +127,10 @@
   <string name="config-months-name">Use months as headers, instead of the name of the page</string>
   <string name="config-automatic-warning">Use automatic warning type and level on \"send warning\" function</string>
   <string name="config-enable-irc">Enable IRC</string>
-  <string name="config-remove-reverted" fuzzy="true">Remove edits that were already reverted by someone else</string>
-  <string name="config-remove-old" fuzzy="true">Remove old edits if newer edit to same page is parsed</string>
+  <string name="config-remove-reverted">Remove edits that were already reverted by someone else from the queue</string>
+  <string name="config-remove-old">Remove older edits from the queue if a newer edit to same page is received</string>
   <string name="config-auto-load-history">Automatically load history and user info (requires a lot of network bandwidth)</string>
-  <string name="config-last-revision" fuzzy="true">Display last revision of page, in case the currently loaded edit is not the last revision (will post-download it, bypassing cache)</string>
+  <string name="config-last-revision">Switch to the last revision of page in case currently loaded edit is not a last revision (will post-download it, making Huggle slower)</string>
   <string name="config-require-delay">Require a delay after every load of next edit, during which it will not be possible to use any write feature (useful for avoiding keyboard multi-press bug)</string>
   <string name="config-wait-edit">The amount of time that you must wait between edit features being enabled (in seconds):</string>
   <string name="config-display-text">Display next</string>
@@ -221,7 +221,7 @@
   <string name="invalid-bot-user-name">This is not a valid bot name. Example of right bot name: Jimbo@Huggle</string>
   <string name="login-tab-botp">Bot password</string>
   <string name="login-tab-login">Legacy</string>
-  <string name="login-reload-tool-tip">Reload a list of available projects that can be used in Huggle. This can be useful in case you want to use Huggle in a project in which Huggle was recently enabled.</string>
+  <string name="login-reload-tool-tip">Reload a list of available projects that can be used in Huggle. This can be useful in case you want to use Huggle in a project in which the tool was recently enabled.</string>
   <string name="login-language">Language:</string>
   <string name="login-project">Project:</string>
   <string name="login-username">Username:</string>
@@ -236,7 +236,7 @@
   <string name="login-fail-css">Login failed on $1: Unable to retrieve user configuration. Special:MyPage/huggle3.css is missing. Did you create huggle3.css in your userspace?</string>
   <string name="login-fail-enable-true">Login failed on $1: You don\'t have enable:true in your personal config.</string>
   <string name="login-fail-no-info">Login failed on $1: Unable to retrieve user info: $2</string>
-  <string name="login-bot">What is a difference between Bot and Legacy login?</string>
+  <string name="login-bot">What is a difference between BotPassword and Legacy login?</string>
   <string name="login-fail-parse-config">Login failed on $1: Unable to parse the user configuration. See the debug log for more details.</string>
   <string name="login-fail-user-data">Login failed on $1: Unable to retrieve user info. The API query returned no data.</string>
   <string name="login-fail-rollback-rights">Login failed on $1: You don\'t have rollback permissions on this project.</string>
@@ -246,9 +246,11 @@
   <string name="login-password-empty">The password you entered was empty</string>
   <string name="login-fail-wrong-name">You provided an incorrect username for this login</string>
   <string name="login-api">ERROR: api.php responded with unknown result: $1</string>
+  <string name="login-abort">Abort</string>
   <string name="login-start">Login</string>
   <string name="login-oauth-notsupported">This method is not supported at this moment</string>
   <string name="login-translate">Translate Huggle</string>
+  <string name="login-progress-formtitle">Loading...</string>
   <string name="login-progress-start">Logging in to $1</string>
   <string name="login-progress-retrieve-mw">Retrieving information about MediaWiki for $1</string>
   <string name="login-progress-language">Updating message files...</string>
@@ -259,6 +261,7 @@
   <string name="login-progress-user-info">Checking user info for $1</string>
   <string name="login-progress-whitelist">Retrieving user whitelist...</string>
   <string name="login-remember-password">Remember password</string>
+  <string name="login-remember-password-tooltip">This option will store your password in a plaintext on your hard drive. Use it only if you are the only person with access to this computer.</string>
   <string name="login-ssl">Use HTTPS (requires OpenSSL)</string>
   <string name="login-fail">Login failed on $1</string>
   <string name="login-error-admin">Use of Huggle on this project requires an administrator account.</string>
@@ -278,6 +281,9 @@
   <string name="login-error-unknown">Unable to log to $1.</string>
   <string name="login-error-version">This version is out of date. Please update to the latest version.</string>
   <string name="login-error-whitelist">Failed to load user whitelist for $1.</string>
+  <string name="login-ro-title">Switch to read-only</string>
+  <string name="login-ro-question">One or more projects ($1) do not allow you to login with edit permissions (reason: $2). Do you want to switch to read-only mode instead?</string>
+  <string name="login-ro-info">Project $1 switched to read-only mode</string>
   <string name="main-stat">$1 edits per minute $2 reverts per minute, level $3</string>
   <string name="main-menu-provider-stop">Stop provider</string>
   <string name="main-menu-provider-resume">Resume provider</string>
@@ -409,6 +415,10 @@
   <string name="main-revert-newpage">This is a new page, so it can\'t be reverted, you can either tag it, or delete it.</string>
   <string name="main-restore-text-fail">Unable to restore the revision, because there is no text available for it</string>
   <string name="main-restore-data-fail">Unable to restore the revision, because the wiki provided no data for selected version</string>
+  <string name="main-welcome-user">Welcome user</string>
+  <string name="main-report-username">Report username</string>
+  <string name="main-report-user">Report user</string>
+  <string name="main-edit-user-talk">Edit user talk</string>
   <string name="message-title">Message $1</string>
   <string name="message-help">Specify one or both of Subject and Summary. If no summary is given, the subject will be used; if no subject is given, no header will be added.</string>
   <string name="message-subject">Subject:</string>
@@ -674,7 +684,7 @@
   <string name="updating-wl">Updating whitelist...</string>
   <string name="feature-nfru">This feature is for IP users only</string>
   <string name="report-no-user">No user has been selected to report, please select a user first</string>
-  <string name="welcome-show">Display this message next time you launch Huggle</string>
+  <string name="welcome-show">Display this message also next time you launch Huggle</string>
   <string name="welcome-tp-empty-fail">This user does not have an empty talk page, are you sure you want to send a message to him?</string>
   <string name="welcome-page-miss-fail">Huggle was unable to retrieve the contents of user talk page, are you sure you want to send a welcome message to them?</string>
   <string name="cr-newer-edits">Conflict resolved: reverted all edits, including new edits. Edits were by same user: $1.</string>
@@ -688,8 +698,8 @@
   <string name="preferences-delete-using-filter">You can\'t delete a filter that is currently being used</string>
   <string name="preferences-extension-disabled">This extension is already scheduled for disabling the next startup of Huggle</string>
   <string name="preferences-extension-disabled-restart">This extension is already scheduled to be disabled on the next startup of Huggle</string>
-  <string name="preferences-extension-enabled">This extension is not scheduled for disabling the next startup of Huggle</string>
-  <string name="preferences-extension-enabled-restart">The extension was enabled, however you need to restart Huggle for it to happen</string>
+  <string name="preferences-extension-enabled">This extension is not scheduled for disabling at the next startup of Huggle</string>
+  <string name="preferences-extension-enabled-restart">The extension was enabled, however you need to restart Huggle for it to start working</string>
   <string name="preferences-watchlist-watch">Add to watchlist</string>
   <string name="preferences-watchlist-unwatch">Remove from watchlist</string>
   <string name="preferences-watchlist-preferences">Follow your on-wiki preferences</string>

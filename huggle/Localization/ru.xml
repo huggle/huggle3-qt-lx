@@ -52,9 +52,9 @@
   <string name="disable">Отключить</string>
   <string name="no-token">Нет маркера</string>
   <string name="flags">Флаги</string>
-  <string name="gracetime" fuzzy="true">Ожидаем завершения запросов на редактирование...</string>
+  <string name="gracetime">Ожидаем завершения запросов на редактирование…</string>
   <string name="browser-none">Страница сейчас не отображается</string>
-  <string name="browser-load" fuzzy="true">Загружаем изменение с помощью веб-рендеринга, пожалуйста, подождите...</string>
+  <string name="browser-load">Загружаем изменение с помощью резерва MW, пожалуйста, подождите…</string>
   <string name="browser-miss-summ">Описание правки отсутствует</string>
   <string name="browser-diff">Различие между версиями на странице: $1 (баллы: $2)</string>
   <string name="browser-fail">Не удалось получить различие между версиями: $1</string>
@@ -117,20 +117,20 @@
   <string name="config-confirm-talk">Требовать подтверждение для восстановления страницы обсуждения</string>
   <string name="config-use-rollback">Использование программные откаты Huggle</string>
   <string name="config-welcome-empty-page">Отправка приветственных сообщений для пользователей с пустыми страницами для обсуждений при правильном редактировании</string>
-  <string name="config-conflicts-revert" fuzzy="true">Автоматически разрешать конфликты с другими пользователями, которые отменили или изменили страницу</string>
+  <string name="config-conflicts-revert">Автоматически разрешать конфликты редактирования с другими пользователями, которые отменили или изменили ту же страницу</string>
   <string name="config-instant-reverts">Использовать систему мгновенных откатов (очень быстро, но они не могут быть отменены после того, как запущены)</string>
-  <string name="config-revert-wait" fuzzy="true">Ожидание отката (секунд)</string>
+  <string name="config-revert-wait">Задержка отката (в секундах)</string>
   <string name="config-revert">Откатить</string>
   <string name="config-revert-diff">Откатить правки страницы, которые новее чем показанное изменение, в случае если если они сделаны тем же участником-вандалом</string>
-  <string name="config-change-all">Изменить все настройки huggle так чтобы его поведение было ближе к huggle 2</string>
+  <string name="config-change-all">Изменить все настройки Huggle так чтобы его поведение было ближе к Huggle 2</string>
   <string name="config-merge-messages">Объединять ваши сообщения с другими в существующих разделах</string>
   <string name="config-months-name">Использовать месяцы в качестве заголовков вместо имён страниц</string>
   <string name="config-automatic-warning">Использовать автоматический тип и уровень предупреждения в функции «отправки предупреждения»</string>
   <string name="config-enable-irc">Включить IRC</string>
-  <string name="config-remove-reverted" fuzzy="true">Удалять изменения, которые уже были отменены кем-то другим</string>
-  <string name="config-remove-old" fuzzy="true">Удалять старые правки, если проанализирована новая правка к той же странице</string>
+  <string name="config-remove-reverted">Удалять из очереди изменения, которые уже были отменены кем-то другим</string>
+  <string name="config-remove-old">Удалять более старые правки из очереди, если проанализирована новая правка к той же странице</string>
   <string name="config-auto-load-history">Автоматически загружать историю и информацию об участнике (требует много трафика)</string>
-  <string name="config-last-revision" fuzzy="true">Отображать последнюю версию страницы в случае, когда текущая загруженная правка не является последней (загрузка будет выполнена минуя кэш)</string>
+  <string name="config-last-revision">Переключить на последнюю версию страницы в случае, когда текущая загруженная правка не является последней (будет выполнена дозагрузка, что замедлит Huggle)</string>
   <string name="config-require-delay">Установить задержку после каждой загрузки следующей правки, во время которой невозможно вносить изменения (полезно для разрешения проблем, возникающих из-за нажатия нескольких клавиш сразу)</string>
   <string name="config-wait-edit">Задержка (в секундах) до включения функций записи:</string>
   <string name="config-display-text">Показать следующий</string>
@@ -221,7 +221,7 @@
   <string name="invalid-bot-user-name">Это не допустимое имя бота. Пример правильное название бота: Jimbo@Huggle</string>
   <string name="login-tab-botp">Пароли ботов</string>
   <string name="login-tab-login">Наследие</string>
-  <string name="login-reload-tool-tip">Перезагрузить список проектов, которые могут быть использованы в Huggle. Это может быть полезно в случае, если вы хотите использовать Huggle в проекте, для которого Huggle был включен недавно.</string>
+  <string name="login-reload-tool-tip">Перезагрузить список проектов, которые могут быть использованы в Huggle. Это может быть полезно в случае, если вы хотите использовать Huggle в проекте, для которого инструмент был включен недавно.</string>
   <string name="login-language">Язык:</string>
   <string name="login-project">Проект:</string>
   <string name="login-username">Логин:</string>
@@ -236,7 +236,7 @@
   <string name="login-fail-css">Ошибка входа на $1: Не удалось получить настройки пользователя. Страница Special:MyPage/huggle3.css отсутствует. Вы создали подстраницу huggle3.css в своём пространстве?</string>
   <string name="login-fail-enable-true">Ошибка входа на $1: Отсутствует enable:true в настройках.</string>
   <string name="login-fail-no-info">Ошибка входа на $1: Не удалось получить информацию о пользователе: $2</string>
-  <string name="login-bot">Какая разница между ботом и Наследие логин?</string>
+  <string name="login-bot">В чём разница между авторизациями BotPasword и Legacy?</string>
   <string name="login-fail-parse-config">Ошибка входа на $1: Не удалось разобрать настройки пользователя. Смотрите отладочный журнал для получения дополнительных сведений.</string>
   <string name="login-fail-user-data">Ошибка входа на $1: Не удалось получить информацию о пользователе. API-запрос не возвращает данных.</string>
   <string name="login-fail-rollback-rights">Ошибка входа на $1: у вас нет флага откатывающего на этом проекте.</string>
@@ -246,9 +246,11 @@
   <string name="login-password-empty">Введённый вами пароль был пустым</string>
   <string name="login-fail-wrong-name">Не указано правильное имя пользователя для входа</string>
   <string name="login-api">ОШИБКА: api.php ответил с неизвестным результатом: $1</string>
+  <string name="login-abort">Прервать</string>
   <string name="login-start">Войти</string>
   <string name="login-oauth-notsupported">Этот метод в данный момент не поддерживается</string>
   <string name="login-translate">Перевести Huggle</string>
+  <string name="login-progress-formtitle">Загрузка…</string>
   <string name="login-progress-start">Входим в $1</string>
   <string name="login-progress-retrieve-mw">Получение информации о MediaWiki для $1</string>
   <string name="login-progress-language">Обновляю файлы сообщений...</string>
@@ -259,6 +261,7 @@
   <string name="login-progress-user-info">Проверка информации об участнике $1</string>
   <string name="login-progress-whitelist">Обновляю белый список участников...</string>
   <string name="login-remember-password">Напомнить пароль</string>
+  <string name="login-remember-password-tooltip">Эта опция сохранит ваш пароль в открытом виде на вашем жёстком диске. Используйте её только если вы единственный человек, имеющий доступ к этому компьютеру.</string>
   <string name="login-ssl">Использовать HTTPS (требуется OpenSSL)</string>
   <string name="login-fail">Ошибка входа на $1</string>
   <string name="login-error-admin">Использование Huggle в этом проекте требует учётной записи администратора.</string>
@@ -278,6 +281,10 @@
   <string name="login-error-unknown">Невозможно войти в $1.</string>
   <string name="login-error-version">Эта версия устарела. Обновитесь до последней версии.</string>
   <string name="login-error-whitelist">Ошибка при загрузке «белого списка» пользователей в $1.</string>
+  <string name="login-ro-title">Переключить в режим только для чения</string>
+  <string name="login-ro-question">Один или более проектов ($1) не позволяют вам авторизоваться с правами на редактирования (причина: $2). Желаете переключиться в режим только для чтения?</string>
+  <string name="login-ro-info">Проект $1 переключен в режим только для чтения</string>
+  <string name="main-stat">$1 правок в минуту, $2 откатов в минуту, уровень $3</string>
   <string name="main-menu-provider-stop">Остановить провайдера</string>
   <string name="main-menu-provider-resume">Возобновить работу провайдера</string>
   <string name="provider-up">Подключаемся к потоку последних изменений на $2 через провайдера: $1</string>
@@ -408,6 +415,10 @@
   <string name="main-revert-newpage">Это новая страница, поэтому правка не может быть отменена. Вы можете либо поставить метку, либо удалить страницу.</string>
   <string name="main-restore-text-fail">Невозможно восстановить эту версию, поскольку для неё недоступен текст</string>
   <string name="main-restore-data-fail">Невозможно восстановить эту версию, поскольку вики не предоставила данных о выбранной версии</string>
+  <string name="main-welcome-user">Добро пожаловать, пользователь</string>
+  <string name="main-report-username">Пожаловаться на имя участника</string>
+  <string name="main-report-user">Сообщить о нарушении</string>
+  <string name="main-edit-user-talk">Править страницу обсуждения участника</string>
   <string name="message-title">Сообщение $1</string>
   <string name="message-help">Укажите Заголовок и Текст сообщения. Если поле Описание изменений останется пустым, то в него подставится Заголовок сообщения. Если Заголовок сообщения останется пустым, то он не будет сгенерирован и останется пустым.</string>
   <string name="message-subject">Заголовок:</string>
@@ -673,7 +684,7 @@
   <string name="updating-wl">Обновляем белый список...</string>
   <string name="feature-nfru">Эта функция только для IP-участников</string>
   <string name="report-no-user">Получатель сообщения не выбран, пожалуйста, выберите одного из участников</string>
-  <string name="welcome-show">Показывать это сообщение и в следующий раз вы запустите на huggle</string>
+  <string name="welcome-show">Показывать это сообщение и в следующий раз вы запустите на Huggle</string>
   <string name="welcome-tp-empty-fail">У этого участника не пустая страница обсуждения. Вы уверены, что хотите отправить ему сообщение?</string>
   <string name="welcome-page-miss-fail">Huggle не удалось получить содержимое страницы обсуждения участника. Вы уверены, что хотите отправить ему приветственное сообщение?</string>
   <string name="cr-newer-edits">Конфликт разрешён: отменены все изменения, включая новые правки. Правки были от одного пользователя: $1.</string>
@@ -685,10 +696,10 @@
   <string name="cr-message-new">Есть более новые правки в $1. Вы уверены, что действительно хотите откатить их?</string>
   <string name="cr-message-not-same">Существуют более новые правки, внесенные в $1 другим участником. Вы уверены, что хотите откатить их все? (в любом случае, это, скорее всего, не получится сделать, из-за старого маркера.)</string>
   <string name="preferences-delete-using-filter">Вы не можете удалить фильтр, который сейчас используется</string>
-  <string name="preferences-extension-disabled">Это расширение уже запланировано к отключению во время следующей загрузки huggle</string>
-  <string name="preferences-extension-disabled-restart">Расширение будет отключено во время следующей загрузки huggle</string>
-  <string name="preferences-extension-enabled">Это расширение не запланировано к отключению во время следующей загрузки huggle</string>
-  <string name="preferences-extension-enabled-restart">Расширение будет включено, но нужно перезагрузить huggle чтобы оно включилось</string>
+  <string name="preferences-extension-disabled">Это расширение уже запланировано к отключению во время следующей загрузки Huggle</string>
+  <string name="preferences-extension-disabled-restart">Расширение будет отключено во время следующей загрузки Huggle</string>
+  <string name="preferences-extension-enabled">Это расширение не запланировано к отключению во время следующей загрузки Huggle</string>
+  <string name="preferences-extension-enabled-restart">Расширение будет включено, но для этого нужно перезагрузить Huggle</string>
   <string name="preferences-watchlist-watch">Добавить в список наблюдения</string>
   <string name="preferences-watchlist-unwatch">Удалить из списка наблюдения</string>
   <string name="preferences-watchlist-preferences">Следовать вашим настройкам в вики</string>
@@ -697,6 +708,8 @@
   <string name="preferences-sounds-enable-irc">Проигрывать звуковое уведомление при получении нового сообщения в HAN</string>
   <string name="preferences-sounds-minimal-score">Минимальное число правок для уведомления</string>
   <string name="preferences-performance-catscansandwatched">Включить сканирование категорий и фильтрацию статусов просмотра (требует дополнительный API-запрос на каждую правку)</string>
+  <string name="preferences-max-score">Включить максимальную оценку (правки с большей оценкой будут проигнорированы — полезно, если вы хотите видеть только хорошие правки)</string>
+  <string name="preferences-min-score">Включить минимальную оценку (правки с большей оценкой будут проигнорированы — полезно, если вы хотите видеть только плохие правки)</string>
   <string name="fail">Сбой</string>
   <string name="request">Запрос</string>
   <string name="requesting">Запрос</string>

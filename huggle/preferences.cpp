@@ -191,6 +191,8 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     this->ui->pushButton->setText(_l("config-close-without"));
     this->ui->label_minimal_score->setText(_l("preferences-sounds-minimal-score"));
     this->ui->cbCatScansAndWatched->setText(_l("preferences-performance-catscansandwatched"));
+    this->ui->cbMaxScore->setText(_l("preferences-max-score"));
+    this->ui->cbMinScore->setText(_l("preferences-min-score"));
 
 #ifndef HUGGLE_NOAUDIO
     this->ui->label_NoAudio->setVisible(false);
@@ -328,6 +330,10 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     hcfg->SystemConfig_EnableUpdates = this->ui->checkBox_notifyUpdate->isChecked();
     hcfg->SystemConfig_NotifyBeta = this->ui->checkBox_notifyBeta->isChecked();
     hcfg->UserConfig->HtmlAllowedInIrc = this->ui->checkBox_31->isChecked();
+    hcfg->UserConfig->EnableMinScore = this->ui->cbMinScore->isChecked();
+    hcfg->UserConfig->MinScore = this->ui->leMinScore->text().toLongLong();
+    hcfg->UserConfig->MaxScore = this->ui->leMaxScore->text().toLongLong();
+    hcfg->UserConfig->EnableMaxScore = this->ui->cbMaxScore->isChecked();
     hcfg->SystemConfig_PlaySoundOnIRCUserMsg = this->ui->cbPlayOnIRCMsg->isChecked();
     hcfg->SystemConfig_PlaySoundQueueScore = this->ui->ln_QueueSoundMinScore->text().toLong();
     hcfg->SystemConfig_PlaySoundOnQueue = this->ui->cbPlayOnNewItem->isChecked();
@@ -775,6 +781,10 @@ void Preferences::ResetItems()
     this->ui->lineEdit_5->setText(hcfg->SystemConfig_Font);
     this->ui->sxFontSize->setValue(hcfg->SystemConfig_FontSize);
     this->ui->checkBox_8->setChecked(hcfg->UserConfig->RetrieveFounder);
+    this->ui->cbMaxScore->setChecked(hcfg->UserConfig->EnableMaxScore);
+    this->ui->cbMinScore->setChecked(hcfg->UserConfig->EnableMinScore);
+    this->ui->leMaxScore->setText(QString::number(hcfg->UserConfig->MaxScore));
+    this->ui->leMinScore->setText(QString::number(hcfg->UserConfig->MinScore));
     this->ui->checkBox_notifyUpdate->setChecked(hcfg->SystemConfig_EnableUpdates);
     this->ui->checkBox_notifyBeta->setChecked(hcfg->SystemConfig_NotifyBeta);
     this->ui->ln_QueueSoundMinScore->setText(QString::number(hcfg->SystemConfig_PlaySoundQueueScore));
