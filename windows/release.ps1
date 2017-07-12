@@ -181,10 +181,10 @@ if ($mingw)
 cd $root_path
 echo "Preparing the package structure"
 mkdir release | Out-Null
-mkdir release\deps | Out-Null
 mkdir release\platforms | Out-Null
+mkdir release\extensions | Out-Null
 cp .\build\Release\*.dll release
-cp .\build\Release\extensions\*.dll release
+cp .\build\Release\extensions\*.dll release\extensions
 cp .\build\Release\*.lib release
 cp .\build\Release\huggle.exe release
 if ($python)
@@ -194,8 +194,8 @@ if ($python)
 # get the qt
 cp ..\huggle\Resources\huggle.ico huggle.ico
 cp ..\huggle\Resources\huggle.ico release
-cp $openssl_path\bin\ssleay32.dll release\deps
-cp $openssl_path\bin\libeay32.dll release\deps
+cp $openssl_path\bin\ssleay32.dll release
+cp $openssl_path\bin\libeay32.dll release
 
 # Set the environment variable needed by windeployqt, todo: check if it's already set
 $env:VCINSTALLDIR = $vcinstall_path
