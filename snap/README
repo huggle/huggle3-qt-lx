@@ -1,0 +1,5 @@
+http://snapcraft.io/
+
+This script currently works only with Ubuntu 16.04 you are welcome to adapt it to other distros as well.
+
+To package huggle just type "snapcraft"
