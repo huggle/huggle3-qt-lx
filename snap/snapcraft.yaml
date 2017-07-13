@@ -3,7 +3,6 @@ version: "3.2.1"
 summary: Diff browser for MediaWiki based websites intended to deal with vandalism
 description: Diff browser for MediaWiki based websites intended to deal with vandalism
 confinement: strict
-icon: ../huggle/Resources/huggle3_newlogo.png
 epoch: 0
 grade: stable
 
