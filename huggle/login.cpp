@@ -148,7 +148,9 @@ Login::Login(QWidget *parent) : HW("login", this, parent), ui(new Ui::Login)
         this->ui->tabWidget->setCurrentIndex(0);
     else
         this->ui->tabWidget->setCurrentIndex(1);
+#ifdef HUGGLE_QTV5
     HUGGLE_DEBUG1("SSL library: " + QSslSocket::sslLibraryBuildVersionString());
+#endif
 }
 
 Login::~Login()
