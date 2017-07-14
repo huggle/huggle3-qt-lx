@@ -194,6 +194,7 @@ void ApiQuery::SetToken(Token token, QString name, QString value)
                 name = "rltoken";
                 break;
             case TokenWatch:
+            case TokenCsrf:
                 name = "token";
                 break;
             case TokenPatrol:
