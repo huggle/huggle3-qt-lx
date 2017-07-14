@@ -26,7 +26,7 @@ parts:
       - -DQT5_BUILD=true
       - -DLINUX_SNAP=true
       - -DHUGGLE_EXT=true
-    source: ../huggle/
+    source: huggle/
     stage-packages:
       - libqt5gui5
       - libqt5core5a
