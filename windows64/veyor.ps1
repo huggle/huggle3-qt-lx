@@ -192,14 +192,3 @@ $env:VCINSTALLDIR = $vcinstall_path
 
 Invoke-Expression "$qt5_path\bin\windeployqt.exe release\huggle.exe"
 
-echo "Making package out of this"
-
-$nsis_file = "Huggle.nsi"
-if ($mingw)
-{
-    $nsis_file = "HuggleMinGW.nsi"
-}
-
-& $nsis_path $nsis_file
-
-Read-Host -Prompt "Press Enter to continue"
