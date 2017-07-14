@@ -583,7 +583,7 @@ void Huggle::ReportUser::on_pushButton_6_clicked()
 
 bool ReportUser::CheckUser()
 {
-    if (this->ReportContent.contains(this->ReportedUser->Username))
+    if (this->ReportContent.contains(this->ReportedUser->Username, Qt::CaseInsensitive))
     {
         return false;
     }
