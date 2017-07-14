@@ -148,7 +148,9 @@ Login::Login(QWidget *parent) : HW("login", this, parent), ui(new Ui::Login)
         this->ui->tabWidget->setCurrentIndex(0);
     else
         this->ui->tabWidget->setCurrentIndex(1);
+#ifdef HUGGLE_QTV5
     HUGGLE_DEBUG1("SSL library: " + QSslSocket::sslLibraryBuildVersionString());
+#endif
 }
 
 Login::~Login()
@@ -1374,13 +1376,13 @@ void Huggle::Login::on_lineEdit_password_textChanged(const QString &arg1)
 
 void Login::VerifyLogin()
 {
-    if(((this->ui->lineEditBotUser->text().size() == 0 && this->ui->lineEdit_username->text().size() == 0) ||
-        (this->ui->lineEdit_password->text().size() == 0) && this->ui->lineEditBotP->text().size() == 0 ) &&
+    if((((this->ui->lineEditBotUser->text().size() == 0 && this->ui->lineEdit_username->text().size() == 0) ||
+        (this->ui->lineEdit_password->text().size() == 0 && this->ui->lineEditBotP->text().size() == 0))) &&
        (this->ui->lineEdit_username->text() != "Developer Mode" &&
         this->ui->lineEdit_username->text() != "Developer_Mode"))
-        this->ui->ButtonOK->setEnabled( false );
+        this->ui->ButtonOK->setEnabled(false);
     else
-        this->ui->ButtonOK->setEnabled( true );
+        this->ui->ButtonOK->setEnabled(true);
 }
 
 int Login::RegisterLoadingFormRow(WikiSite *site, int row)

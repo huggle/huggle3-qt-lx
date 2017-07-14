@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Huggle
+GenericName=Huggle
+Comment=Huggle is an anti-vandalism tool for use on Wikipedia and related projects
+Exec=huggle
+Icon=${SNAP}/meta/gui/icon.png
+StartupNotify=true
+Terminal=false
+Type=Application
+Categories=Network;
+

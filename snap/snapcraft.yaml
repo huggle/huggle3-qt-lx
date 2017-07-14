@@ -1,9 +1,8 @@
 name: huggle
-version: "3.2.0"
+version: "3.2.1"
 summary: Diff browser for MediaWiki based websites intended to deal with vandalism
 description: Diff browser for MediaWiki based websites intended to deal with vandalism
 confinement: strict
-icon: src/Resources/huggle3_newlogo.png
 epoch: 0
 grade: stable
 
@@ -21,12 +20,13 @@ apps:
 
 parts:
   application:
+    prepare: ./build/prepare_snap.sh
     plugin: cmake
     configflags:
       - -DQT5_BUILD=true
       - -DLINUX_SNAP=true
       - -DHUGGLE_EXT=true
-    source: src/
+    source: huggle/
     stage-packages:
       - libqt5gui5
       - libqt5core5a
