@@ -38,7 +38,7 @@ param
     [string]$cmake_generator = "Visual Studio 12 2013 Win64",
     [bool]$mingw = $false,
     [string]$mingw_path = "C:\Qt\Tools\mingw491_32",
-    [bool]$python = $true,
+    [bool]$python = $false,
     [string]$cmake_param = "",
     [string]$vcinstall_path = "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\"
 )
