@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>468</width>
-    <height>129</height>
+    <height>166</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -31,10 +31,17 @@
    <item>
     <widget class="QLineEdit" name="lineEdit">
      <property name="inputMethodHints">
-      <set>Qt::ImhHiddenText|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText</set>
+      <set>Qt::ImhHiddenText|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData</set>
      </property>
      <property name="echoMode">
       <enum>QLineEdit::Password</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="checkBox">
+     <property name="text">
+      <string>[[autorelog]]</string>
      </property>
     </widget>
    </item>

@@ -43,6 +43,7 @@ namespace Huggle
 
         private:
             void Fail(QString why);
+            void Localize();
             void reject();
             WikiSite *Site;
             //! This is just a timer, it's called little and cute because I was bored when writing this piece of code

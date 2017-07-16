@@ -392,6 +392,7 @@ void Configuration::LoadSystemConfig(QString fn)
         RCB(PlaySoundOnQueue);
         RCB(PlaySoundOnIRCUserMsg);
         RCN(PlaySoundQueueScore);
+        RCB(Autorelog);
     }
     item = 0;
     while (item < e.count())
@@ -432,6 +433,7 @@ void Configuration::SaveSystemConfig()
     writer->writeStartElement("huggle");
     INSERT_CONFIG_B(FirstRun);
     INSERT_CONFIG_B(ShowStartupInfo);
+    INSERT_CONFIG_B(Autorelog);
     INSERT_CONFIG_N(DelayVal);
     INSERT_CONFIG_B(RequestDelay);
     INSERT_CONFIG_N(RevertDelay);
