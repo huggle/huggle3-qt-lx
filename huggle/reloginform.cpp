@@ -28,11 +28,16 @@ ReloginForm::ReloginForm(WikiSite *site, QWidget *parent) : QDialog(parent), ui(
     this->little_cute_timer = new QTimer();
     if (hcfg->SystemConfig_StorePassword)
         this->ui->lineEdit->setText(hcfg->SystemConfig_RememberedPassword);
+    this->ui->checkBox->setChecked(hcfg->SystemConfig_Autorelog);
+    this->Localize();
     connect(this->little_cute_timer, SIGNAL(timeout()), this, SLOT(LittleTick()));
+    if (hcfg->SystemConfig_Autorelog)
+        this->ui->pushButton_2->click();
 }
 
 ReloginForm::~ReloginForm()
 {
+    hcfg->SystemConfig_Autorelog = this->ui->checkBox->isChecked();
     delete this->little_cute_timer;
     delete this->ui;
 }
@@ -162,6 +167,11 @@ void ReloginForm::Fail(QString why)
     Generic::MessageBox(_l("fail"), _l("relogin-fail", why),
                         MessageBoxStyleWarning, true);
     this->ui->pushButton_2->setEnabled(true);
+}
+
+void ReloginForm::Localize()
+{
+    this->ui->checkBox->setText(_l("autorelog"));
 }
 
 void ReloginForm::reject()

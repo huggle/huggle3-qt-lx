@@ -239,6 +239,8 @@ namespace Huggle
             //! This is used in combination with --login option, so that huggle knows if it should
             //! login automatically or wait for user to fill in their user information
             bool            Login = false;
+            //! If this is true we execute login automatically for expired session
+            bool            SystemConfig_Autorelog = true;
             bool            SystemConfig_CatScansAndWatched = true;
             bool            SystemConfig_DryMode = false;
             //! Maximum number of queue stuff
