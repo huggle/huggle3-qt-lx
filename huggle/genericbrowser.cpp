@@ -67,7 +67,7 @@ static QString Extras(WikiEdit *e)
     QString result = "";
     if (e->MetaLabels.count() || e->Tags.count())
     {
-        result += "<br><small><b>Meta information:</b><br>";
+        result += "<br><small><b>Meta information -</b> ";
         if (e->MetaLabels.count() > 0)
         {
             foreach (QString label, e->MetaLabels.keys())
