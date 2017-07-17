@@ -98,7 +98,12 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
         return nullptr;
     }
 
-    MessageText_ = MessageText_.replace("$2", Edit->GetFullUrl()).replace("$1", Edit->Page->PageName);
+    // Fixes https://phabricator.wikimedia.org/T170449
+    QString page_name = Edit->Page->PageName;
+    if (page_name.startsWith("/"))
+        page_name = ":" + page_name;
+
+    MessageText_ = MessageText_.replace("$2", Edit->GetFullUrl()).replace("$1", page_name);
     QString Summary_;
     if (!Edit->GetSite()->GetProjectConfig()->WarningSummaries.contains(Edit->User->GetWarningLevel()))
     {
