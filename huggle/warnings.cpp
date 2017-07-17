@@ -45,6 +45,14 @@ PendingWarning::~PendingWarning()
     this->Warning->UnregisterConsumer(HUGGLECONSUMER_CORE_MESSAGE);
 }
 
+// Fixes https://phabricator.wikimedia.org/T170449
+QString sanitize_page_name(QString page_name)
+{
+    if (page_name.startsWith("/"))
+        return ":" + page_name;
+    return page_name;
+}
+
 PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency, WikiEdit *Edit, bool *Report)
 {
     *Report = false;
@@ -98,12 +106,7 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
         return nullptr;
     }
 
-    // Fixes https://phabricator.wikimedia.org/T170449
-    QString page_name = Edit->Page->PageName;
-    if (page_name.startsWith("/"))
-        page_name = ":" + page_name;
-
-    MessageText_ = MessageText_.replace("$2", Edit->GetFullUrl()).replace("$1", page_name);
+    MessageText_ = MessageText_.replace("$2", Edit->GetFullUrl()).replace("$1", sanitize_page_name(Edit->Page->PageName));
     QString Summary_;
     if (!Edit->GetSite()->GetProjectConfig()->WarningSummaries.contains(Edit->User->GetWarningLevel()))
     {
@@ -339,7 +342,7 @@ void Warnings::ForceWarn(int Level, WikiEdit *Edit)
         return;
     }
 
-    MessageText_ = MessageText_.replace("$2", Edit->GetFullUrl()).replace("$1", Edit->Page->PageName);
+    MessageText_ = MessageText_.replace("$2", Edit->GetFullUrl()).replace("$1", sanitize_page_name(Edit->Page->PageName));
     QString Summary_;
     if (!Edit->GetSite()->GetProjectConfig()->WarningSummaries.contains(Edit->User->GetWarningLevel()))
     {
