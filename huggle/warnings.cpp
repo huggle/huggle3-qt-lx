@@ -49,7 +49,10 @@ PendingWarning::~PendingWarning()
 QString sanitize_page_name(QString page_name)
 {
     if (page_name.startsWith("/"))
+    {
+        HUGGLE_LOG("meh");
         return ":" + page_name;
+    }
     return page_name;
 }
 
@@ -106,7 +109,7 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
         return nullptr;
     }
 
-    MessageText_ = MessageText_.replace("$2", Edit->GetFullUrl()).replace("$1", sanitize_page_name(Edit->Page->PageName));
+    MessageText_ = MessageText_.replace("$2", Edit->GetFullUrl()).replace("$1", Edit->Page->PageName);
     QString Summary_;
     if (!Edit->GetSite()->GetProjectConfig()->WarningSummaries.contains(Edit->User->GetWarningLevel()))
     {
@@ -115,9 +118,9 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
     {
         Summary_ = Edit->GetSite()->GetProjectConfig()->WarningSummaries[Edit->User->GetWarningLevel()];
     }
-    Summary_ = Summary_.replace("$1", Edit->Page->PageName);
+    Summary_ = Summary_.replace("$1", sanitize_page_name(Edit->Page->PageName));
     QString HeadingText_ = Edit->GetSite()->GetProjectConfig()->TemplateHeader;
-    HeadingText_ = HeadingText_.replace("$1", Edit->Page->PageName);
+    HeadingText_ = HeadingText_.replace("$1", sanitize_page_name(Edit->Page->PageName));
     if (Edit->GetSite()->GetProjectConfig()->MessageHeadings == HeadingsStandard)
     {
         QDateTime d = Edit->GetSite()->GetProjectConfig()->ServerTime();
@@ -342,7 +345,7 @@ void Warnings::ForceWarn(int Level, WikiEdit *Edit)
         return;
     }
 
-    MessageText_ = MessageText_.replace("$2", Edit->GetFullUrl()).replace("$1", sanitize_page_name(Edit->Page->PageName));
+    MessageText_ = MessageText_.replace("$2", Edit->GetFullUrl()).replace("$1", Edit->Page->PageName);
     QString Summary_;
     if (!Edit->GetSite()->GetProjectConfig()->WarningSummaries.contains(Edit->User->GetWarningLevel()))
     {
@@ -351,9 +354,9 @@ void Warnings::ForceWarn(int Level, WikiEdit *Edit)
     {
         Summary_ = Edit->GetSite()->GetProjectConfig()->WarningSummaries[Edit->User->GetWarningLevel()];
     }
-    Summary_ = Summary_.replace("$1", Edit->Page->PageName);
+    Summary_ = Summary_.replace("$1", sanitize_page_name(Edit->Page->PageName));
     QString id = Edit->GetSite()->GetProjectConfig()->TemplateHeader;
-    id = id.replace("$1", Edit->Page->PageName);
+    id = id.replace("$1", sanitize_page_name(Edit->Page->PageName));
     if (Configuration::HuggleConfiguration->UserConfig->EnforceMonthsAsHeaders)
     {
         QDateTime date_ = Edit->GetSite()->GetProjectConfig()->ServerTime();
