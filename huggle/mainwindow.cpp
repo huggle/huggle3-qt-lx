@@ -405,6 +405,7 @@ void MainWindow::EnableEditing(bool enabled)
     this->ui->actionTag_2->setEnabled(enabled);
     this->ui->actionWarn_the_user->setEnabled(enabled);
     this->ui->actionPatrol->setEnabled(enabled);
+    this->ui->actionRevert_edit_using_custom_reason->setEnabled(enabled);
 
     // Don't contain these yet - they are enabled / disabled based on other functions as well and we don't want to break that
     //this->ui->actionDelete->setEnabled()
@@ -904,6 +905,9 @@ void MainWindow::ReloadShort(QString id)
             break;
         case HUGGLE_ACCEL_MAIN_PATROL:
             q = this->ui->actionPatrol;
+            break;
+        case HUGGLE_ACCEL_MAIN_C_REVERT:
+            q = this->ui->actionRevert_edit_using_custom_reason;
             break;
     }
 
@@ -1859,6 +1863,7 @@ void MainWindow::Localize()
     this->ui->actionReport_username->setText(_l("main-report-username"));
     this->ui->actionReport_user_2->setText(_l("main-report-user"));
     this->ui->actionEdit_user_talk->setText(_l("main-edit-user-talk"));
+    this->ui->actionRevert_edit_using_custom_reason->setText(_l("main-custom-reason-title"));
 
     // arrows icons should be mirrored for RTL languages
     if (Localizations::HuggleLocalizations->IsRTL())
@@ -3208,4 +3213,27 @@ void MainWindow::CloseTab(int tab)
         // Since we closed last closable tab, we can disable the X buttons
         this->ui->tabWidget->setTabsClosable(false);
     }
+}
+
+void Huggle::MainWindow::on_actionRevert_edit_using_custom_reason_triggered()
+{
+    if (!this->CheckExit() || this->CurrentEdit == nullptr)
+        return;
+
+    if (Configuration::HuggleConfiguration->Restricted)
+    {
+        Generic::DeveloperError();
+        return;
+    }
+    bool ok;
+    QString reason = QInputDialog::getText(this, _l("main-custom-reason-title"), _l("main-custom-reason-text"), QLineEdit::Normal,
+                                           this->GetCurrentWikiSite()->GetProjectConfig()->DefaultSummary, &ok);
+    if (!ok)
+        return;
+    if (reason.isEmpty())
+    {
+        Syslog::HuggleLogs->ErrorLog(_l("main-custom-reason-fail"));
+        return;
+    }
+    this->Revert(reason);
 }

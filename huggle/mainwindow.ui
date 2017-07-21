@@ -151,6 +151,7 @@
     <addaction name="actionRevert_AGF"/>
     <addaction name="actionRevert_only_this_revision"/>
     <addaction name="actionRevert_only_this_revision_assuming_good_faith"/>
+    <addaction name="actionRevert_edit_using_custom_reason"/>
     <addaction name="actionWarn_the_user"/>
     <addaction name="separator"/>
     <addaction name="actionPatrol"/>
@@ -1113,6 +1114,11 @@
   <action name="actionIntroduction">
    <property name="text">
     <string>Introduction</string>
+   </property>
+  </action>
+  <action name="actionRevert_edit_using_custom_reason">
+   <property name="text">
+    <string>Revert edit using custom reason</string>
    </property>
   </action>
  </widget>

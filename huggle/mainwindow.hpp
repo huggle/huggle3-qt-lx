@@ -345,6 +345,7 @@ namespace Huggle
             void on_actionIntroduction_triggered();
             void on_tabWidget_customContextMenuRequested(const QPoint &pos);
             void on_tabWidget_tabCloseRequested(int index);
+            void on_actionRevert_edit_using_custom_reason_triggered();
 
         private:
             void CloseTab(int tab);

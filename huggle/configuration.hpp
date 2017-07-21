@@ -76,6 +76,7 @@ class QXmlStreamWriter;
 #define HUGGLE_ACCEL_MAIN_REVERT_12             20112
 #define HUGGLE_ACCEL_MAIN_REVERT_13             20113
 #define HUGGLE_ACCEL_MAIN_REVERT_14             20114
+#define HUGGLE_ACCEL_MAIN_C_REVERT              20200
 #define HUGGLE_ACCEL_MAIN_TALK                  38
 #define HUGGLE_ACCEL_REVERT_STAY                39
 #define HUGGLE_ACCEL_MAIN_OPEN_IN_BROWSER       40

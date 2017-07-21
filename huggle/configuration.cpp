@@ -101,6 +101,7 @@ Configuration::Configuration()
     this->MakeShortcut("main-revert-12", "shortcut-x-revert");
     this->MakeShortcut("main-revert-13", "shortcut-x-revert");
     this->MakeShortcut("main-revert-14", "shortcut-x-revert");
+    this->MakeShortcut("main-custom-reason", "shortcut-custom-reason");
     this->MakeShortcut("main-talk", "shortcut-talk", "T");
     this->MakeShortcut("main-mytalk", "shortcut-my-talk", "Alt+M");
     this->MakeShortcut("main-open-in-browser", "shortcut-open", "O");
@@ -653,6 +654,8 @@ Shortcut::Shortcut(QString name, QString description)
         this->ID = HUGGLE_ACCEL_MAIN_USER_CONTRIBUTIONS;
     else if (name == "main-user-contribs-browser")
         this->ID = HUGGLE_ACCEL_MAIN_CONTRIB_BROWSER;
+    else if (name == "main-custom-reason")
+        this->ID = HUGGLE_ACCEL_MAIN_C_REVERT;
     else if (name == "main-page-patrol-edit")
         this->ID = HUGGLE_ACCEL_MAIN_PATROL;
     else if (name.startsWith("main-revert-and-warn-"))

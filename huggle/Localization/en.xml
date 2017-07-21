@@ -417,6 +417,9 @@
   <string name="main-restore-text-fail">Unable to restore the revision, because there is no text available for it</string>
   <string name="main-restore-data-fail">Unable to restore the revision, because the wiki provided no data for selected version</string>
   <string name="main-welcome-user">Welcome user</string>
+  <string name="main-custom-reason-title">Revert edit using custom reason</string>
+  <string name="main-custom-reason-text">Please provide a reason why you want to revert this edit</string>
+  <string name="main-custom-reason-fail">You didn't provide valid reason</string>
   <string name="main-report-username">Report username</string>
   <string name="main-report-user">Report user</string>
   <string name="main-edit-user-talk">Edit user talk</string>
@@ -586,6 +589,7 @@
   <string name="shortcut-tab">Opens a new tab</string>
   <string name="shortcut-rw-stay">Revert current edit, warns a user and stay on page</string>
   <string name="shortcut-revert-and-stay">Revert current edit and stay on page</string>
+  <string name="shortcut-custom-reason">Revert edit using custom edit summary reason</string>
   <string name="shortcut-user-contribs-browser">Open user's contributions in a browser</string>
   <string name="warning-title">Warn $1</string>
   <string name="warning-levelgroup">Warning level</string>
