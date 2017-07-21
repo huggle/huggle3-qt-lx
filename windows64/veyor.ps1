@@ -111,7 +111,7 @@ if ($mingw)
     PackageTest "MSBuild" "$msbuild_path" "msbuild_path"
 }
 PackageTest "Qt5" "$qt5_path" "qt5_path"
-PackageTest "OpenSSL" "$openssl_path" "openssl_path"
+#PackageTest "OpenSSL" "$openssl_path" "openssl_path"
 $git_enabled = $true
 Write-Host "Looking for git...    " -NoNewline
 if (!(Get-Command git -errorAction SilentlyContinue))
@@ -184,8 +184,8 @@ if ($python)
 # get the qt
 cp ..\huggle\Resources\huggle.ico huggle.ico
 cp ..\huggle\Resources\huggle.ico release
-cp $openssl_path\bin\ssleay32.dll release
-cp $openssl_path\bin\libeay32.dll release
+#cp $openssl_path\bin\ssleay32.dll release
+#cp $openssl_path\bin\libeay32.dll release
 
 # Set the environment variable needed by windeployqt, todo: check if it's already set
 $env:VCINSTALLDIR = $vcinstall_path
