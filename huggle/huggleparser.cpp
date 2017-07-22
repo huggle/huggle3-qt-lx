@@ -8,6 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
+#include "exception.hpp"
 #include "huggleparser.hpp"
 #include "huggleprofiler.hpp"
 #include "configuration.hpp"
@@ -16,6 +17,7 @@
 #include "projectconfiguration.hpp"
 #include "syslog.hpp"
 #include "wikisite.hpp"
+#include <yaml-cpp/yaml.h>
 
 using namespace Huggle;
 
@@ -647,4 +649,53 @@ byte_ht HuggleParser::GetIDOfMonth(QString month, WikiSite *site)
         i++;
     }
     return -6;
+}
+
+QString HuggleParser::FetchYAML(QString source, bool *failed)
+{
+    if (!source.contains("---"))
+    {
+        if (failed)
+            *failed = true;
+        return "";
+    }
+
+    if (failed)
+        *failed = false;
+
+    if (source.contains(HUGGLE_BOC))
+    {
+        source = source.mid(source.indexOf(HUGGLE_BOC) + QString(HUGGLE_BOC).length());
+    }
+
+    source.replace("\n<syntaxhighlight lang=yaml>", "");
+    source.replace("\n</syntaxhighlight>", "");
+
+    return source;
+}
+
+bool HuggleParser::YAML2Bool(QString key, YAML::Node &node, bool missing)
+{
+    if (!node)
+        throw new Huggle::NullPointerException("YAML::Node *node", BOOST_CURRENT_FUNCTION);
+
+    return node[key.toStdString()].as<bool>(missing);
+}
+
+QString HuggleParser::YAML2String(QString key, YAML::Node &node, QString missing)
+{
+    if (!node)
+        throw new Huggle::NullPointerException("YAML::Node *node", BOOST_CURRENT_FUNCTION);
+
+    return QString::fromStdString(node[key.toStdString()].as<std::string>(missing.toStdString()));
+}
+
+int HuggleParser::YAML2Int(QString key, YAML::Node &node, int missing)
+{
+    return node[key.toStdString()].as<int>(missing);
+}
+
+double HuggleParser::YAML2Double(QString key, YAML::Node &node, double missing)
+{
+    return node[key.toStdString()].as<double>(missing);
 }

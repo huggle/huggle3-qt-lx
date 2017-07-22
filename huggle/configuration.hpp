@@ -287,7 +287,7 @@ namespace Huggle
             QStringList     SystemConfig_WordSeparators;
             //! This is affecting if columns are auto-sized or not
             bool            SystemConfig_DynamicColsInList = false;
-            QString         SystemConfig_GlobalConfig = "Huggle/Config";
+            QString         SystemConfig_GlobalConfigYAML = "Huggle/Config.yaml";
             QString         SystemConfig_GlobalConfigWikiList = "Project:Huggle/List";
             //! Changing this to true will make the Syslog write all data to a file
             bool            SystemConfig_Log2File = false;

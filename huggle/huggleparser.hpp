@@ -18,6 +18,11 @@
 #include <QList>
 #include "hugglequeuefilter.hpp"
 
+namespace YAML
+{
+    class Node;
+}
+
 namespace Huggle
 {
     class Configuration;
@@ -38,6 +43,11 @@ namespace Huggle
          */
         HUGGLE_EX QString ConfigurationParse(QString key, QString content, QString missing = "");
         HUGGLE_EX bool ConfigurationParseBool(QString key, QString content, bool missing);
+        HUGGLE_EX bool YAML2Bool(QString key, YAML::Node &node, bool missing = false);
+        HUGGLE_EX QString YAML2String(QString key, YAML::Node &node, QString missing = "");
+        HUGGLE_EX int YAML2Int(QString key, YAML::Node &node, int missing = 0);
+        HUGGLE_EX double YAML2Double(QString key, YAML::Node &node, double missing = 0);
+        HUGGLE_EX QString FetchYAML(QString source, bool *failed = nullptr);
         //! \todo This function needs a unit test
         HUGGLE_EX QString GetSummaryOfWarningTypeFromWarningKey(QString key, ProjectConfiguration *project_conf, UserConfiguration *user_conf = nullptr);
         //! \todo This function needs a unit test

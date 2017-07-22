@@ -42,6 +42,11 @@ if(NOT MINGW AND WIN32)
 endif()
 add_subdirectory(libs/libirc/libirc libirc)
 add_subdirectory(libs/libirc/libircclient libircclient)
+
+# YAML
+option(YAML_CPP_BUILD_TOOLS "Disable tests" OFF)
+include_directories("libs/yaml-cpp/include/")
+add_subdirectory(libs/yaml-cpp)
 if (HUGGLE_EXT)
     if(NOT MINGW AND WIN32)
         set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_CURRENT_BINARY_DIR}/Release/extensions)
@@ -168,10 +173,10 @@ if (WIN32)
     endif()
 endif()
 
-target_link_libraries(huggle irc ircclient)
+target_link_libraries(huggle irc ircclient yaml-cpp)
 
 if (LIBCORE OR HUGGLE_EXT)
-    target_link_libraries(core irc ircclient)
+    target_link_libraries(core irc ircclient yaml-cpp)
 endif()
 
 if (QT5_BUILD)

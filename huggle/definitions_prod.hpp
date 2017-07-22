@@ -38,6 +38,9 @@ typedef long long revid_ht;
     #define HUGGLE_WEB_ENGINE_NAME "WebKit"
 #endif
 
+// This is signature we can use to find Huggle yml config inside of wiki text
+#define HUGGLE_BOC "<!-- HUGGLE:BOC -->"
+
 // We are using translatewiki and if this is not defined there is a huge overhead of Qt code
 #ifndef QT_NO_TRANSLATION
     #define QT_NO_TRANSLATION

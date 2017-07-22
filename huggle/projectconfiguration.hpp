@@ -70,6 +70,8 @@ namespace Huggle
             //! \todo This needs to be later used as a default value for user config, however it's not being ensured
             //!       this value is loaded before the user config right now
             bool AutomaticallyResolveConflicts = false;
+            //! If true, parsing will be done using YAML parser
+            bool UsingYAML = false;
             QString ReportAutoSummary;
             bool ReadOnly = false;
             bool IsSane = false;
