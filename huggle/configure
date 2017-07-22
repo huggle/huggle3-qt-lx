@@ -204,6 +204,13 @@ if [ ! -d "libs/libirc/libirc" ];then
     cd - || exit 1
 fi
 
+if [ ! -d "libs/yaml-cpp" ];then
+    echo "The yaml-cpp directory is missing! Fixing by using a backup file..."
+    cd "libs" || exit 1
+    unzip yaml-cpp.zip || exit 1
+    cd - || exit 1
+fi
+
 if [ "$QT5" -eq 10 ];then
     QT5=0
     echo $WARN"WARNING: No version of QT was explicitly specified, assuming you want to use QT4 (use --qt5 if not)"$NORMAL
