@@ -71,7 +71,7 @@ function PackageTest
     echo ("OK");
 }
 
-function wget
+function local_wget
 {
     param
     (
@@ -197,8 +197,8 @@ if ($python)
     cp .\build\Release\py_hug.exe release
 }
 # get openssl packs
-wget "http://petr.insw.cz/devel/ssl/ssleay32.dll" "ssleay32.dll"
-wget "http://petr.insw.cz/devel/ssl/libeay32.dll" "libeay32.dll"
+local_wget "http://petr.insw.cz/devel/ssl/ssleay32.dll" "ssleay32.dll"
+local_wget "http://petr.insw.cz/devel/ssl/libeay32.dll" "libeay32.dll"
 
 # get the qt
 cp ..\huggle\Resources\huggle.ico huggle.ico
