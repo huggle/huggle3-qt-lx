@@ -204,7 +204,7 @@ if [ ! -d "libs/libirc/libirc" ];then
     cd - || exit 1
 fi
 
-if [ ! -d "libs/yaml-cpp" ];then
+if [ ! -d "libs/yaml-cpp/src" ];then
     echo "The yaml-cpp directory is missing! Fixing by using a backup file..."
     cd "libs" || exit 1
     unzip yaml-cpp.zip || exit 1
