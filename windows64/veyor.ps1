@@ -71,6 +71,21 @@ function PackageTest
     echo ("OK");
 }
 
+function local_wget
+{
+    param
+    (
+        [parameter(Mandatory=$true)]
+        [ValidateNotNullOrEmpty()]
+        [string] $url,
+        [parameter(Mandatory=$true)]
+        [ValidateNotNullOrEmpty()]
+        [string] $output
+    )
+    $wc = New-Object System.Net.WebClient
+    $wc.DownloadFile($url, $output)
+}
+
 Write-Host "Checking paths...     " -NoNewline
 
 if (!(Test-Path "gpl.txt"))
@@ -181,11 +196,15 @@ if ($python)
 {
     cp .\build\Release\py_hug.exe release
 }
+# get openssl packs
+local_wget "http://petr.insw.cz/devel/ssl/ssleay32.dll" "ssleay32.dll"
+local_wget "http://petr.insw.cz/devel/ssl/libeay32.dll" "libeay32.dll"
+
 # get the qt
 cp ..\huggle\Resources\huggle.ico huggle.ico
 cp ..\huggle\Resources\huggle.ico release
-#cp $openssl_path\bin\ssleay32.dll release
-#cp $openssl_path\bin\libeay32.dll release
+cp ssleay32.dll release
+cp libeay32.dll release
 
 # Set the environment variable needed by windeployqt, todo: check if it's already set
 $env:VCINSTALLDIR = $vcinstall_path
