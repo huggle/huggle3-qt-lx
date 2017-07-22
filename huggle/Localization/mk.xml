@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">Македонски</string>
+  <string name="autorelog">Прави го ова без да ме прашуваш</string>
   <string name="isrtl">false</string>
   <string name="add">Додај</string>
   <string name="cancel">Откажи</string>
@@ -416,6 +417,9 @@
   <string name="main-restore-text-fail">Не можам да ја повратам преработката бидејќи за неа нема текст.</string>
   <string name="main-restore-data-fail">Не можам да ја повратам преработката бидејќи викито не даде податоци за избраната верзија.</string>
   <string name="main-welcome-user">Добре дојде, кориснику</string>
+  <string name="main-custom-reason-title">Отповикај уредување со прилагодена причина</string>
+  <string name="main-custom-reason-text">Укажете причина за отповикувањето</string>
+  <string name="main-custom-reason-fail">Не ујажавте важечка причина</string>
   <string name="main-report-username">Пријави корисничко име</string>
   <string name="main-report-user">Пријави корисник</string>
   <string name="main-edit-user-talk">Уреди разг. со корисникот</string>
@@ -585,6 +589,7 @@
   <string name="shortcut-tab">Отвора ново јазиче</string>
   <string name="shortcut-rw-stay">Отповикај го тековното уредување, опомени го корисникот и остани на страницата.</string>
   <string name="shortcut-revert-and-stay">Отповикај го тековното уредување и остани на страницата</string>
+  <string name="shortcut-custom-reason">Отповикај уредување со прилагодена причина во описот на уредувањето</string>
   <string name="shortcut-user-contribs-browser">Отвори кориснички придонеси во прелистувач</string>
   <string name="warning-title">Опомени го $1</string>
   <string name="warning-levelgroup">Степен на опомена</string>

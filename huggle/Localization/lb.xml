@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">Lëtzebuergesch</string>
+  <string name="autorelog">Dëst déi nächste Kéier maachen ouni ze froen</string>
   <string name="isrtl">false</string>
   <string name="add">Derbäisetzen</string>
   <string name="cancel">Ofbriechen</string>
@@ -272,6 +273,8 @@
   <string name="main-revert-newpage-title">Dëst konnt net zréckgesat ginn</string>
   <string name="main-revert-newpage">Dëst ass eng nei Säit dofir ka se net zréckgesat ginn. Dir kënnt se entweder markéieren oder läschen.</string>
   <string name="main-welcome-user">Wëllkomm Benotzer</string>
+  <string name="main-custom-reason-text">Gitt w.e.g. e Grond u firwat Dir dës Ännerung zrécksetze wëllt</string>
+  <string name="main-custom-reason-fail">Dir hutt kee valabele Grond uginn</string>
   <string name="main-report-username">Benotzernumm mellen</string>
   <string name="main-report-user">Benotzer mellen</string>
   <string name="main-edit-user-talk">Benotzerdiskussioun änneren</string>
