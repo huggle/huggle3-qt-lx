@@ -524,7 +524,15 @@ void Configuration::SaveSystemConfig()
 bool Configuration::ParseGlobalConfig(QString config)
 {
     std::string config_std = FetchYAML(config).toStdString();
-    YAML::Node yaml = YAML::Load(config_std);
+    YAML::Node yaml;
+    try
+    {
+        yaml = YAML::Load(config_std);
+    } catch (YAML::Exception exception)
+    {
+        HUGGLE_ERROR("YAML: " + QString(exception.what()));
+        return false;
+    }
     if (yaml.IsNull())
     {
         HUGGLE_ERROR("Unable to read global configuration: yml node is NULL");
@@ -534,6 +542,8 @@ bool Configuration::ParseGlobalConfig(QString config)
     this->GlobalConfig_EnableAll = HuggleParser::YAML2Bool("enable-all", yaml, false);
     this->GlobalConfig_DocumentationPath = HuggleParser::YAML2String("documentation", yaml, this->GlobalConfig_DocumentationPath);
     this->GlobalConfig_FeedbackPath = HuggleParser::YAML2String("feedback", yaml, this->GlobalConfig_FeedbackPath);
+    this->GlobalConfig_LocalConfigYAMLPath = HuggleParser::YAML2String("config-yml", yaml, this->GlobalConfig_LocalConfigYAMLPath);
+    this->GlobalConfig_LocalConfigWikiPath = HuggleParser::YAML2String("config", yaml, this->GlobalConfig_LocalConfigWikiPath);
     // Sanitize page titles (huggle2 done sth. similiar at Page.SanitizeTitle before requesting them)
     this->GlobalConfig_UserConf = ReplaceSpecialUserPage(HuggleParser::YAML2String("user-config-hg3", yaml));
     this->GlobalConfig_UserConf_old = ReplaceSpecialUserPage(HuggleParser::YAML2String("user-config", yaml));

@@ -340,9 +340,10 @@ namespace Huggle
 
             bool        GlobalConfig_EnableAll = true;
             QString     GlobalConfig_MinVersion = HUGGLE_VERSION;
-            QString     GlobalConfig_LocalConfigWikiPath = "Project:Huggle/Config";
             QString     GlobalConfig_DocumentationPath = "https://www.mediawiki.org/wiki/Manual:Huggle";
             QString     GlobalConfig_FeedbackPath = "http://en.wikipedia.org/wiki/Wikipedia:Huggle/Feedback";
+            QString     GlobalConfig_LocalConfigWikiPath = "Project:Huggle/Config";
+            QString     GlobalConfig_LocalConfigYAMLPath = "Project:Huggle/Config.yaml";
             QString     GlobalConfig_UserConf = "User:$1/huggle3.css";
             QString     GlobalConfig_UserConf_old = "User:$1/huggle.css";
             QString     GlobalConfig_Whitelist = "http://huggle.wmflabs.org/data/";

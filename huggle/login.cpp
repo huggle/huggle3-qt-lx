@@ -40,6 +40,7 @@
 #define LOGINFORM_LOCALCONFIG 4
 #define LOGINFORM_USERCONFIG 5
 #define LOGINFORM_USERINFO 6
+#define LOGINFORM_YAMLCONFIG 7
 
 using namespace Huggle;
 
@@ -490,6 +491,7 @@ void Login::PressOK()
         this->loadingForm->Insert(this->RegisterLoadingFormRow(wiki, LOGINFORM_LOGIN), _l("login-progress-start", wiki->Name), LoadingForm_Icon_Loading);
         this->loadingForm->Insert(this->RegisterLoadingFormRow(wiki, LOGINFORM_SITEINFO), _l("login-progress-retrieve-mw", wiki->Name), LoadingForm_Icon_Waiting);
         this->loadingForm->Insert(this->RegisterLoadingFormRow(wiki, LOGINFORM_WHITELIST), _l("login-progress-whitelist", wiki->Name), LoadingForm_Icon_Waiting);
+        this->loadingForm->Insert(this->RegisterLoadingFormRow(wiki, LOGINFORM_YAMLCONFIG), _l("login-progress-yaml", wiki->Name), LoadingForm_Icon_Waiting);
         this->loadingForm->Insert(this->RegisterLoadingFormRow(wiki, LOGINFORM_LOCALCONFIG), _l("login-progress-local", wiki->Name), LoadingForm_Icon_Waiting);
         this->loadingForm->Insert(this->RegisterLoadingFormRow(wiki, LOGINFORM_USERCONFIG), _l("login-progress-user", wiki->Name), LoadingForm_Icon_Waiting);
         this->loadingForm->Insert(this->RegisterLoadingFormRow(wiki, LOGINFORM_USERINFO), _l("login-progress-user-info", wiki->Name), LoadingForm_Icon_Waiting);
@@ -629,7 +631,7 @@ void Login::FinishLogin(WikiSite *site)
         qr->IncRef();
         qr->Parameters = "meta=tokens&type=" + QUrl::toPercentEncoding("csrf|patrol|rollback|watch");
         qr->Process();
-        this->Statuses[site] = RetrievingProjectConfig;
+        this->Statuses[site] = RetrievingProjectYAMLConfig;
     }
 }
 
@@ -678,6 +680,70 @@ void Login::RetrieveWhitelist(WikiSite *site)
     query->Process();
 }
 
+void Login::RetrieveProjectYamlConfig(WikiSite *site)
+{
+    if (this->LoginQueries.contains(site))
+    {
+        ApiQuery *query = this->LoginQueries[site];
+        if (query->IsProcessed())
+        {
+            if (query->IsFailed())
+            {
+                HUGGLE_DEBUG1("YAML for " + site->Name + " failed to load: " + query->Result->ErrorMessage);
+                this->FallbackToLegacyConfig(site);
+                return;
+            }
+            ApiQueryResultNode *data = query->GetApiQueryResult()->GetNode("rev");
+            if (data == nullptr)
+            {
+                HUGGLE_DEBUG1("YAML for " + site->Name + " is missing");
+                this->FallbackToLegacyConfig(site);
+                return;
+            }
+            QString value = data->Value;
+            this->LoginQueries.remove(site);
+            query->DecRef();
+            if (site->ProjectConfig == nullptr)
+                throw new Huggle::NullPointerException("site->ProjectConfig", BOOST_CURRENT_FUNCTION);
+            QString reason;
+            if (site->GetProjectConfig()->ParseYAML(value, &reason, site))
+            {
+                if (!site->GetProjectConfig()->EnableAll)
+                {
+                    this->DisplayError(_l("login-error-projdisabled", site->Name));
+                    return;
+                }
+                this->loadingForm->ModifyIcon(this->GetRowIDForSite(site, LOGINFORM_YAMLCONFIG), LoadingForm_Icon_Success);
+                this->loadingForm->ModifyIcon(this->GetRowIDForSite(site, LOGINFORM_LOCALCONFIG), LoadingForm_Icon_Success);
+                this->Statuses[site] = RetrievingUserConfig;
+                return;
+            } else
+            {
+                this->DisplayError(_l("login-error-config", site->Name, reason));
+                return;
+            }
+        }
+        return;
+    }
+    this->loadingForm->ModifyIcon(this->GetRowIDForSite(site, LOGINFORM_YAMLCONFIG), LoadingForm_Icon_Loading);
+    ApiQuery *query = new ApiQuery(ActionQuery, site);
+    query->IncRef();
+    query->Parameters = "prop=revisions&rvprop=content&rvlimit=1&titles=" + hcfg->GlobalConfig_LocalConfigYAMLPath;
+    query->Process();
+    this->LoginQueries.insert(site, query);
+}
+
+void Login::FallbackToLegacyConfig(WikiSite *site)
+{
+    ApiQuery *query = this->LoginQueries[site];
+    query->DecRef();
+    Syslog::HuggleLogs->WarningLog(site->Name + " - YAML configuration not found, falling back to deprecated config page");
+    this->LoginQueries.remove(site);
+    this->Statuses[site] = RetrievingProjectOldConfig;
+    this->loadingForm->ModifyIcon(this->GetRowIDForSite(site, LOGINFORM_YAMLCONFIG), LoadingForm_Icon_Failed);
+    this->RetrieveProjectConfig(site);
+}
+
 void Login::RetrieveProjectConfig(WikiSite *site)
 {
     if (this->LoginQueries.contains(site))
@@ -724,7 +790,7 @@ void Login::RetrieveProjectConfig(WikiSite *site)
     this->loadingForm->ModifyIcon(this->GetRowIDForSite(site, LOGINFORM_LOCALCONFIG), LoadingForm_Icon_Loading);
     ApiQuery *query = new ApiQuery(ActionQuery, site);
     query->IncRef();
-    query->Parameters = "prop=revisions&rvprop=content&rvlimit=1&titles=Project:Huggle/Config";
+    query->Parameters = "prop=revisions&rvprop=content&rvlimit=1&titles=" + hcfg->GlobalConfig_LocalConfigWikiPath;
     query->Process();
     this->LoginQueries.insert(site, query);
 }
@@ -1274,7 +1340,8 @@ void Login::OnTimerTick()
                 case WaitingForLoginQuery:
                 case WaitingForToken:
                     break;
-                case RetrievingProjectConfig:
+                case RetrievingProjectYAMLConfig:
+                case RetrievingProjectOldConfig:
                 case RetrievingUserConfig:
                 case RetrievingUser:
                     continue;
@@ -1291,8 +1358,11 @@ void Login::OnTimerTick()
             case WaitingForToken:
                 this->FinishLogin(site);
                 break;
-            case RetrievingProjectConfig:
+            case RetrievingProjectOldConfig:
                 this->RetrieveProjectConfig(site);
+                break;
+            case RetrievingProjectYAMLConfig:
+                this->RetrieveProjectYamlConfig(site);
                 break;
             case RetrievingUserConfig:
                 this->RetrieveUserConfig(site);

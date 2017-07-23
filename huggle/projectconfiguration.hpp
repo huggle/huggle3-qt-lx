@@ -65,6 +65,7 @@ namespace Huggle
             QDateTime ServerTime();
             //! Parse all information from local config, this function is used in login
             bool Parse(QString config, QString *reason, WikiSite *site);
+            bool ParseYAML(QString config, QString *reason, WikiSite *site);
             void RequestLogin();
             QString GetConfig(QString key, QString dv = "");
             //! \todo This needs to be later used as a default value for user config, however it's not being ensured

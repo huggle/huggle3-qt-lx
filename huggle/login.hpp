@@ -35,7 +35,8 @@ namespace Huggle
     enum Status
     {
         RetrievingUserConfig,
-        RetrievingProjectConfig,
+        RetrievingProjectYAMLConfig,
+        RetrievingProjectOldConfig,
         LoggingIn,
         WaitingForLoginQuery,
         WaitingForToken,
@@ -106,6 +107,8 @@ namespace Huggle
             void PerformLoginPart2(WikiSite *site);
             void FinishLogin(WikiSite *site);
             void RetrieveWhitelist(WikiSite *site);
+            void RetrieveProjectYamlConfig(WikiSite *site);
+            void FallbackToLegacyConfig(WikiSite *site);
             void RetrieveProjectConfig(WikiSite *site);
             bool RetrieveGlobalConfig();
             void RetrieveUserConfig(WikiSite *site);
