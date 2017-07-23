@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">한국어</string>
+  <string name="autorelog">다음에는 물어보지 않고 이것을 수행</string>
   <string name="isrtl">false</string>
   <string name="add">추가</string>
   <string name="cancel">취소</string>
@@ -410,6 +411,9 @@
   <string name="main-restore-text-fail">사용 가능한 텍스트가 없기 때문에 이 판을 복원할 수 없습니다</string>
   <string name="main-restore-data-fail">위키가 선택한 판에 대한 데이터를 제공하지 않았기 때문에 이 판을 복원할 수 없습니다.</string>
   <string name="main-welcome-user">사용자 환영</string>
+  <string name="main-custom-reason-title">사용자 지정 이유를 사용하여 편집을 되돌리기</string>
+  <string name="main-custom-reason-text">이 편집을 되돌리는 이유를 지정해 주십시오</string>
+  <string name="main-custom-reason-fail">유효한 이유를 지정하지 않으셨습니다</string>
   <string name="main-report-username">사용자 이름 보고</string>
   <string name="main-report-user">사용자 보고</string>
   <string name="main-edit-user-talk">사용자 토론 편집</string>
@@ -565,6 +569,7 @@
   <string name="shortcut-tab">새 탭 열기</string>
   <string name="shortcut-rw-stay">현재 편집을 되돌리고, 사용자를 경고하고 문서에 머물기</string>
   <string name="shortcut-revert-and-stay">현재 편집을 되돌리고 문서에 머물기</string>
+  <string name="shortcut-custom-reason">사용자 지정 편집 요약 이유를 사용하여 편집을 되돌리기</string>
   <string name="shortcut-user-contribs-browser">브라우저에서 사용자 기여 열기</string>
   <string name="warning-title">$1에게 경고</string>
   <string name="warning-levelgroup">경고 수준</string>

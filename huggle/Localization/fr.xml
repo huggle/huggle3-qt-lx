@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">Français</string>
+  <string name="autorelog">Faire ceci sans le demander la prochaine fois</string>
   <string name="isrtl">false</string>
   <string name="add">Ajouter</string>
   <string name="cancel">Annuler</string>
@@ -416,6 +417,8 @@
   <string name="main-restore-text-fail">Impossible de restaurer cette version, car il n\'y a pas de texte disponible pour cela</string>
   <string name="main-restore-data-fail">Impossible de rétablir la révision, parce que le wiki n’a fourni aucune donnée pour la version sélectionnée</string>
   <string name="main-welcome-user">Bienvenue utilisateur</string>
+  <string name="main-custom-reason-title">Annuler les modifications en utilisant le motif fourni par l\'utilisateur</string>
+  <string name="main-custom-reason-fail">Vous n\'avez pas fourni de raison valide</string>
   <string name="main-report-username">Signaler le nom d’utilisateur</string>
   <string name="main-report-user">Signaliser l\'utilisateur</string>
   <string name="main-edit-user-talk">Modifier la conversation de l’utilisateur</string>

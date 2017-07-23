@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">Deutsch</string>
+  <string name="autorelog">Dies tun, ohne das nächste Mal zu fragen.</string>
   <string name="isrtl">false</string>
   <string name="add">Hinzufügen</string>
   <string name="cancel">Abbrechen</string>
@@ -416,6 +417,9 @@
   <string name="main-restore-text-fail">Die Version konnte nicht wiederhergestellt werden, da kein Text für die Version verfügbar ist.</string>
   <string name="main-restore-data-fail">Die Version konnte nicht wiederhergestellt werden, da das Wiki keine Daten für die ausgewählte Version bereitstellt.</string>
   <string name="main-welcome-user">Willkommen Benutzer</string>
+  <string name="main-custom-reason-title">Bearbeitung mit einer benutzerdefinierten Begründung zurücksetzen</string>
+  <string name="main-custom-reason-text">Bitte gib eine Begründung an, warum du diese Bearbeitung zurücksetzen möchtest.</string>
+  <string name="main-custom-reason-fail">Du hast keine gültige Begründung angegeben</string>
   <string name="main-report-username">Benutzernamen melden</string>
   <string name="main-report-user">Benutzer melden</string>
   <string name="main-edit-user-talk">Benutzerdiskussion bearbeiten</string>
@@ -585,6 +589,7 @@
   <string name="shortcut-tab">Öffnet eine neue Registerkarte</string>
   <string name="shortcut-rw-stay">Aktuelle Bearbeitung zurücksetzen, warnt einen Benutzer und bleibt auf der Seite.</string>
   <string name="shortcut-revert-and-stay">Aktuelle Bearbeitung zurücksetzen und auf Seite bleiben</string>
+  <string name="shortcut-custom-reason">Bearbeitung mit einer benutzerdefinierten Begründung in der Bearbeitungszusammenfassung zurücksetzen</string>
   <string name="shortcut-user-contribs-browser">Benutzerbeiträge in einem Browser öffnen</string>
   <string name="warning-title">$1 warnen</string>
   <string name="warning-levelgroup">Warnungs-Stufe</string>

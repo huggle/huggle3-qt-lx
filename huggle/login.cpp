@@ -246,7 +246,10 @@ void Login::CancelLogin()
         this->loadingForm = nullptr;
     }
     this->ui->labelIntro->setText(_l("login-intro"));
-    this->ui->lineEdit_password->setText("");
+    if (hcfg->SystemConfig_StorePassword)
+        this->ui->lineEdit_password->setText(hcfg->SystemConfig_RememberedPassword);
+    else
+        this->ui->lineEdit_password->setText("");
     this->ui->ButtonOK->setText(_l("login-start"));
     this->RemoveQueries();
 }

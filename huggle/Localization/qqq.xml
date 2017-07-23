@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">{{doc-important|Please change this word to the autonym of language that you are translating to, not directly translate \"English\".}}\nThis is a name of the language as shown on the login form.\n{{Identical|English}}</string>
-  <string name="isrtl">{{doc-important|This is a magic key that huggle uses to determine if localization is right to left or not.}}\n* write \"true\" if your localization is right to left\n* otherwise write \"false\" or nothing there\n{{Identical|False}}</string>
+  <string name="isrtl">{{doc-important|DO NOT literely translating this message, otherwise Huggle will be broken in your language. This is a magic key that huggle uses to determine if localization is right to left or not.}}\n* write \"true\" if your localization is right to left\n* otherwise write \"false\" or nothing there\n{{Identical|False}}</string>
   <string name="add">{{Identical|Add}}</string>
   <string name="cancel">{{Identical|Cancel}}</string>
   <string name="clear">{{Identical|Clear}}</string>
@@ -125,6 +125,7 @@
   <string name="irc-failure">Used as error log entry.</string>
   <string name="irc-switch-rc">Used as log entry. RC = Recent Changes</string>
   <string name="login-intro">Used in Login window.\n\nThe button label \"Projects &gt;&gt;\" is untranslatable at this time.</string>
+  <string name="invalid-bot-user-name">Acesta nu este un nume valid pentru bot. Exemplu de un bot drept nume: Jumbo@Huggle</string>
   <string name="login-tab-botp">Tab name on login form that allows you to login using bot passwords</string>
   <string name="login-tab-login">name of tab at login window for normal username and password login.\n{{Identical|Legacy}}</string>
   <string name="login-reload-tool-tip">Used as tooltip for the button which is labeled {{msg-huggle|Reload}}.</string>
@@ -375,6 +376,7 @@
   <string name="namespace">{{Identical|Namespace}}</string>
   <string name="relogin-fail">Used in error message box. Parameters:\n* $1 - reason of failure</string>
   <string name="projects">{{Identical|Project}}</string>
+  <string name="developer-mode-enter-title">Whee it\'s not a word | Whee nu este un cuvant</string>
   <string name="title-on">{{Identical|On}}</string>
   <string name="main-revert-type-unknown">{{Identical|Unknown}}</string>
 </resources>

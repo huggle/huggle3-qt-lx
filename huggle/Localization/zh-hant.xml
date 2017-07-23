@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">繁體中文</string>
+  <string name="autorelog">下次執行此操作不再詢問</string>
   <string name="isrtl">false</string>
   <string name="add">新增</string>
   <string name="cancel">取消</string>
@@ -119,7 +120,7 @@
   <string name="config-welcome-empty-page">發送歡迎信息到作出了良好編輯的只有空討論頁的用戶</string>
   <string name="config-conflicts-revert">自動解決與其他用戶在同一頁面回退或更改的編輯衝突</string>
   <string name="config-instant-reverts">使用立即回退（非常快，但執行後無法撤銷）</string>
-  <string name="config-revert-wait">還原延遲 (秒)</string>
+  <string name="config-revert-wait">回退延遲 (秒)</string>
   <string name="config-revert">還原</string>
   <string name="config-revert-diff">回退頁面上比顯示的差異更新的編輯，當他們是同一個用戶做出時</string>
   <string name="config-change-all">變更所有 Huggle 設定以模擬 Huggle 2 的行為</string>
@@ -138,7 +139,7 @@
   <string name="config-nothing">無</string>
   <string name="config-bot-edits">機器人的編輯 (b)</string>
   <string name="config-own-edits">自己的編輯</string>
-  <string name="config-reverts">還原</string>
+  <string name="config-reverts">回退</string>
   <string name="config-new-page">新頁面</string>
   <string name="config-whitelisted">白名單</string>
   <string name="config-friend">好友</string>
@@ -416,6 +417,9 @@
   <string name="main-restore-text-fail">無法還原此修訂，因為沒有可用的文字內容</string>
   <string name="main-restore-data-fail">無法還原此修訂，因為wiki沒有提供該版本的資料</string>
   <string name="main-welcome-user">歡迎使用者</string>
+  <string name="main-custom-reason-title">使用自訂理由回退編輯</string>
+  <string name="main-custom-reason-text">請提供為何您回退此編輯的理由</string>
+  <string name="main-custom-reason-fail">您沒有提供有效的理由</string>
   <string name="main-report-username">回報使用戶名稱</string>
   <string name="main-report-user">回報使用者</string>
   <string name="main-edit-user-talk">編輯使用者對話頁</string>
@@ -470,7 +474,7 @@
   <string name="queue-filterownuserspace">用戶擁有的用戶空間</string>
   <string name="queue-filteranonymous">匿名使用者</string>
   <string name="queue-filterignored">已忽略使用者</string>
-  <string name="queue-filterreverts">還原</string>
+  <string name="queue-filterreverts">回退</string>
   <string name="queue-filternotifications">通知</string>
   <string name="queue-filterwarnings">警告</string>
   <string name="queue-filtertags">標籤</string>
@@ -569,7 +573,7 @@
   <string name="shortcut-suspicious">標記編輯為可疑</string>
   <string name="shortcut-back">前往先前顯示的編輯</string>
   <string name="shortcut-forward">前往一個過去您曾載入但之後被移回的編輯</string>
-  <string name="shortcut-warn">向使用者傳送一則警告訊息，但不還原其編輯</string>
+  <string name="shortcut-warn">向使用者傳送一則警告訊息，但不回退其編輯</string>
   <string name="shortcut-revert">還原編輯</string>
   <string name="shortcut-x-raw">觸發了N個項目在回退和告警選單</string>
   <string name="shortcut-x-revert">觸發了N個項目在回退選單</string>
@@ -585,6 +589,7 @@
   <string name="shortcut-tab">開啟新頁籤</string>
   <string name="shortcut-rw-stay">回退目前編輯，警告一名用戶並停留在頁面</string>
   <string name="shortcut-revert-and-stay">回退目前編輯並停留在頁面</string>
+  <string name="shortcut-custom-reason">使用自訂理由摘要來回退編輯</string>
   <string name="shortcut-user-contribs-browser">在瀏覽器裡開啟使用者的貢獻</string>
   <string name="warning-title">警告 $1</string>
   <string name="warning-levelgroup">警告等級</string>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">Español</string>
+  <string name="autorelog">Hacer esto sin preguntarme la próxima vez</string>
   <string name="isrtl">false</string>
   <string name="add">Añadir</string>
   <string name="cancel">Cancelar</string>
@@ -416,6 +417,9 @@
   <string name="main-restore-text-fail">No se puede restaurar la revisión, porque no hay texto disponible para ello</string>
   <string name="main-restore-data-fail">No se puede restaurar la revisión, debido a que la wiki no aportan datos para la versión seleccionada</string>
   <string name="main-welcome-user">Bienvenida al usuario</string>
+  <string name="main-custom-reason-title">Revertir la edición con un motivo personalizado</string>
+  <string name="main-custom-reason-text">Proporciona un motivo por el que quieres revertir esta edición</string>
+  <string name="main-custom-reason-fail">No proporcionaste un motivo válido</string>
   <string name="main-report-username">Denunciar nombre de usuario</string>
   <string name="main-report-user">Denunciar usuario</string>
   <string name="main-edit-user-talk">Editar discusión de usuario</string>
@@ -585,6 +589,7 @@
   <string name="shortcut-tab">Abre una pestaña nueva</string>
   <string name="shortcut-rw-stay">Revertir edición actual, avisar al usuario y permanecer en la página</string>
   <string name="shortcut-revert-and-stay">Revertir la edición actual y quedarse en la página</string>
+  <string name="shortcut-custom-reason">Revertir la edición con un motivo personalizado como resumen de edición</string>
   <string name="shortcut-user-contribs-browser">Mostrar las contribuciones del usuario en un navegador</string>
   <string name="warning-title">Advertir a $1</string>
   <string name="warning-levelgroup">Nivel de advertencia</string>

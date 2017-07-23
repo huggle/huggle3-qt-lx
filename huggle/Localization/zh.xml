@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">简体中文</string>
+  <string name="autorelog">下次无需确认进行操作</string>
   <string name="isrtl">false</string>
   <string name="add">添加</string>
   <string name="cancel">取消</string>
@@ -416,6 +417,9 @@
   <string name="main-restore-text-fail">无法还原该修订，因为它没有可用的文本。</string>
   <string name="main-restore-data-fail">无法还原该修订，因为该wiki没有提供选定版本的数据。</string>
   <string name="main-welcome-user">欢迎用户</string>
+  <string name="main-custom-reason-title">使用自定义原因回退编辑</string>
+  <string name="main-custom-reason-text">请提供您为何要回退此编辑的原因</string>
+  <string name="main-custom-reason-fail">您并未提供有效原因</string>
   <string name="main-report-username">报告用户名</string>
   <string name="main-report-user">报告用户</string>
   <string name="main-edit-user-talk">编辑用户讨论页</string>
@@ -585,6 +589,7 @@
   <string name="shortcut-tab">打开新标签</string>
   <string name="shortcut-rw-stay">回退最近编辑，警告用户并留在此页</string>
   <string name="shortcut-revert-and-stay">回退当前编辑并留在页面</string>
+  <string name="shortcut-custom-reason">使用自定义的编辑摘要原因回退编辑</string>
   <string name="shortcut-user-contribs-browser">在浏览器中打开用户贡献</string>
   <string name="warning-title">警告$1</string>
   <string name="warning-levelgroup">警告层级</string>
