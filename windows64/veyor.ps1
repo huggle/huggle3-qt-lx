@@ -35,7 +35,7 @@ param
     [string]$root_path = $PWD,
     [string]$qt5_path = "C:\Qt\5.7\msvc2013_64\",
     [string]$openssl_path = "C:\OpenSSL-Win64",
-    [string]$cmake_generator = "Visual Studio 12 2013 Win64",
+    [string]$cmake_generator = "Visual Studio 14 2015 Win64",
     [bool]$mingw = $false,
     [string]$mingw_path = "C:\Qt\Tools\mingw491_32",
     [bool]$python = $false,
