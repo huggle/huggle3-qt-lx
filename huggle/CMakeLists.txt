@@ -45,6 +45,7 @@ add_subdirectory(libs/libirc/libircclient libircclient)
 
 # YAML
 option(YAML_CPP_BUILD_TOOLS "Disable tests" OFF)
+option(BUILD_SHARED_LIBS "Build as shared" ON)
 include_directories("libs/yaml-cpp/include/")
 add_subdirectory(libs/yaml-cpp)
 if (HUGGLE_EXT)
