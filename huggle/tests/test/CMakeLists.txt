@@ -49,6 +49,12 @@ file (GLOB uixx
 add_subdirectory(../../libs/libirc/libirc libirc)
 add_subdirectory(../../libs/libirc/libircclient libircclient)
 
+# YAML
+option(YAML_CPP_BUILD_TOOLS "Disable tests" OFF)
+option(BUILD_SHARED_LIBS "Build as shared" ON)
+add_subdirectory(../../libs/yaml-cpp yaml-cpp)
+include_directories("../../libs/yaml-cpp/include/")
+
 SET(tst_testmain_SOURCES ${srcx}
 ../../aboutform.cpp
 ../../apiqueryresult.cpp
