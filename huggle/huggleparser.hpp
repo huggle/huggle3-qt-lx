@@ -16,6 +16,7 @@
 #include <QString>
 #include <QDateTime>
 #include <QList>
+#include <QVariant>
 #include "hugglequeuefilter.hpp"
 
 namespace YAML
@@ -47,6 +48,10 @@ namespace Huggle
         HUGGLE_EX QString YAML2String(QString key, YAML::Node &node, QString missing = "");
         HUGGLE_EX int YAML2Int(QString key, YAML::Node &node, int missing = 0);
         HUGGLE_EX double YAML2Double(QString key, YAML::Node &node, double missing = 0);
+        HUGGLE_EX QStringList YAML2QStringList(QString key, YAML::Node &node, bool *ok = nullptr);
+        HUGGLE_EX QStringList YAML2QStringList(QString key, YAML::Node &node, QStringList missing, bool *ok = nullptr);
+        HUGGLE_EX QHash<QString, QString> YAML2QHash(QString key, YAML::Node &node, bool *ok = nullptr);
+        HUGGLE_EX QHash<QString, QString> YAML2QHash(QString key, YAML::Node &node, QHash<QString, QString> missing, bool *ok = nullptr);
         HUGGLE_EX QString FetchYAML(QString source, bool *failed = nullptr);
         //! \todo This function needs a unit test
         HUGGLE_EX QString GetSummaryOfWarningTypeFromWarningKey(QString key, ProjectConfiguration *project_conf, UserConfiguration *user_conf = nullptr);
