@@ -27,6 +27,11 @@
 //    are being used)
 #define                 ProjectConfig_IPScore_Key "score-ip"
 
+namespace YAML
+{
+    class Node;
+}
+
 namespace Huggle
 {
     class WikiPage;
@@ -60,6 +65,8 @@ namespace Huggle
     class HUGGLE_EX ProjectConfiguration
     {
         public:
+            static QStringList Yaml_FetchSpeedyOptions(YAML::Node &node);
+
             ProjectConfiguration(QString project_name);
             ~ProjectConfiguration();
             QDateTime ServerTime();

@@ -10,6 +10,7 @@
 
 #include "projectconfiguration.hpp"
 #include "generic.hpp"
+#include "exception.hpp"
 #include "huggleparser.hpp"
 #include "localization.hpp"
 #include "syslog.hpp"
@@ -20,6 +21,35 @@
 
 using namespace Huggle::Generic;
 using namespace Huggle;
+
+QStringList ProjectConfiguration::Yaml_FetchSpeedyOptions(YAML::Node &node)
+{
+    // this is just temporary hack
+    try
+    {
+        if (!node)
+            throw new Huggle::NullPointerException("YAML::Node *node", BOOST_CURRENT_FUNCTION);
+
+        if (!node["speedy-options"])
+            return QStringList();
+
+        QStringList results;
+        YAML::Node seq = node["speedy-options"];
+
+        for (YAML::const_iterator it = seq.begin(); it != seq.end(); ++it)
+        {
+            QString tag = QString::fromStdString(it->first.as<std::string>());
+            YAML::Node s = it->second;
+            QStringList options = HuggleParser::YAML2QStringList(s);
+            results.append(tag + ";" + options.join(';'));
+        }
+        return results;
+    } catch (YAML::Exception exception)
+    {
+        HUGGLE_ERROR("YAML Parsing error (speedy-options): " + QString(exception.what()));
+    }
+    return QStringList();
+}
 
 ProjectConfiguration::ProjectConfiguration(QString project_name)
 {
@@ -498,7 +528,7 @@ bool ProjectConfiguration::ParseYAML(QString config, QString *reason, WikiSite *
     this->EditSuffixOfHuggle = HuggleParser::YAML2String("summary", yaml, "[[Project:Huggle|HG]]") + " (" + HUGGLE_VERSION + ")";
     this->Goto = HuggleParser::YAML2QStringList("go", yaml);
     this->InstantWarnings = HuggleParser::YAML2Bool("warning-im", yaml);
-    this->RevertSummaries = HuggleParser::YAML2QStringList("template-summ", yaml);
+    this->RevertSummaries = temp_compat_hash2list(HuggleParser::YAML2QHash("template-summ", yaml));
     if (!this->RevertSummaries.count())
     {
         Syslog::HuggleLogs->WarningLog("RevertSummaries for " + site->Name + " contain no data, default summary will be used for all of them, you need to fix project settings!!");
@@ -547,7 +577,7 @@ bool ProjectConfiguration::ParseYAML(QString config, QString *reason, WikiSite *
     this->ReportSummary = HuggleParser::YAML2String("report-summary", yaml);
     this->ReportAutoSummary = HuggleParser::YAML2String("report-auto-summary", yaml, "This user was automatically reported by Huggle due to reverted vandalism after four warnings, please verify their"\
                                                                                               " contributions carefully, it may be a false positive");
-    this->SpeedyTemplates = HuggleParser::YAML2QStringList("speedy-options", yaml);
+    this->SpeedyTemplates = Yaml_FetchSpeedyOptions(yaml);
     // Parsing
     this->TemplateAge = HuggleParser::YAML2Int("template-age", yaml, this->TemplateAge);
     // UAA

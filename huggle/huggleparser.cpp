@@ -748,10 +748,45 @@ double HuggleParser::YAML2Double(QString key, YAML::Node &node, double missing)
     return missing;
 }
 
+QStringList HuggleParser::YAML2QStringList(YAML::Node &node, bool *ok)
+{
+    QStringList missing;
+    return YAML2QStringList(node, missing, ok);
+}
+
+QStringList HuggleParser::YAML2QStringList(YAML::Node &node, QStringList missing, bool *ok)
+{
+    if (ok)
+        *ok = false;
+    try
+    {
+        if (!node)
+            return missing;
+
+        QStringList results;
+        if (!node.IsSequence())
+            return missing;
+
+        // Even if it's empty, we are good to go
+        if (ok)
+            *ok = true;
+
+        for (std::size_t i=0;i<node.size();i++)
+        {
+            results << QString::fromStdString(node[i].as<std::string>());
+        }
+        return results;
+    } catch (YAML::Exception exception)
+    {
+        HUGGLE_ERROR("YAML Parsing error (node to QStringList): " + QString(exception.what()));
+    }
+    return missing;
+}
+
 QStringList HuggleParser::YAML2QStringList(QString key, YAML::Node &node, bool *ok)
 {
     QStringList missing;
-    return YAML2QStringList(key, node, missing, ok);
+    return YAML2QStringList(node, missing, ok);
 }
 
 QStringList HuggleParser::YAML2QStringList(QString key, YAML::Node &node, QStringList missing, bool *ok)
@@ -766,20 +801,8 @@ QStringList HuggleParser::YAML2QStringList(QString key, YAML::Node &node, QStrin
         if (!node[key.toStdString()])
             return missing;
 
-        QStringList results;
-        YAML::Node seq = node[key.toStdString()];
-        if (!seq.IsSequence())
-            return missing;
+        return YAML2QStringList(node[key.toStdString()], missing, ok);
 
-        // Even if it's empty, we are good to go
-        if (ok)
-            *ok = true;
-
-        for (std::size_t i=0;i<seq.size();i++)
-        {
-            results << QString::fromStdString(seq[i].as<std::string>());
-        }
-        return results;
     } catch (YAML::Exception exception)
     {
         HUGGLE_ERROR("YAML Parsing error (" + key + "): " + QString(exception.what()));
@@ -807,8 +830,6 @@ QHash<QString, QString> HuggleParser::YAML2QHash(QString key, YAML::Node &node, 
 
         QHash<QString, QString> results;
         YAML::Node seq = node[key.toStdString()];
-        /*if (!seq.IsSequence())
-            return missing; */
 
         // Even if it's empty, we are good to go
         if (ok)
@@ -816,13 +837,6 @@ QHash<QString, QString> HuggleParser::YAML2QHash(QString key, YAML::Node &node, 
 
         for (YAML::const_iterator it=seq.begin();it!=seq.end();++it)
         {
-            /*if (!current_node.IsMap())
-            {
-                if (ok)
-                    *ok = false;
-                HUGGLE_ERROR("YAML Parsing error (" + key + "): expected a map element");
-                return missing;
-            }*/
             results.insert(QString::fromStdString(it->first.as<std::string>()), QString::fromStdString(it->second.as<std::string>()));
         }
         return results;
