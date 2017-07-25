@@ -13,11 +13,11 @@ if [ "$QTTYPE" = "4" ]; then
 fi
 
 if [ "$QTTYPE" = "5" ]; then
-    ./configure --qt5 --extension --web-engine
+    ./configure --qt5 --extension --web-engine --qtpath /usr/local/opt/qt/
     cd huggle_release
     make || exit 1
     cd ..
 	cd tests/test
-    cmake . -DQT5_BUILD=true
+    cmake . -DCMAKE_PREFIX_PATH=/usr/local/opt/qt/ -DQT5_BUILD=true
     make || exit 1
 fi
