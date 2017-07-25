@@ -33,14 +33,15 @@ param
 (
     [string]$msbuild_path = "C:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild.exe",
     [string]$root_path = $PWD,
-    [string]$qt5_path = "C:\Qt\5.7\msvc2013_64\",
+    [string]$qt5_path = "C:\Qt\5.8\msvc2015_64\",
+    #[string]$qt5_path = "D:\libs\Qt\5.9.1\msvc2015_64\",
     [string]$openssl_path = "C:\OpenSSL-Win64",
     [string]$cmake_generator = "Visual Studio 14 2015 Win64",
     [bool]$mingw = $false,
     [string]$mingw_path = "C:\Qt\Tools\mingw491_32",
     [bool]$python = $false,
     [string]$cmake_param = "",
-    [string]$vcinstall_path = "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\"
+    [string]$vcinstall_path = "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\"
 )
 
 $ErrorActionPreference = "Stop"
@@ -169,6 +170,10 @@ cd $root_path
 echo "Running cmake"
 mkdir build | Out-Null
 cd build
+
+# Hack to fix crappy new cmake
+$ErrorActionPreference = "Continue"
+
 if ($python)
 {
     cmake ..\..\huggle\ -G "$cmake_generator" -DWEB_ENGINE=true -DPYTHON_BUILD=true -DCMAKE_PREFIX_PATH:STRING=$qt5_path -Wno-dev=true -DHUGGLE_EXT=true -DQT5_BUILD=true $cmake_param
@@ -176,6 +181,9 @@ if ($python)
 {
     cmake ..\..\huggle\ -G "$cmake_generator" -DWEB_ENGINE=true -DPYTHON_BUILD=false -DCMAKE_PREFIX_PATH:STRING=$qt5_path -Wno-dev=true -DHUGGLE_EXT=true -DQT5_BUILD=true $cmake_param
 }
+
+$ErrorActionPreference = "Stop"
+
 if ($mingw)
 {
     & mingw32-make.exe
