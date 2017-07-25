@@ -1,10 +1,12 @@
 # See http://docs.travis-ci.com/user/customizing-the-build/
 # See ./travis/* for the actual scripts that get run
 
-os:
-    - linux
-    - osx
 language: cpp
+
+os:
+  - linux
+  - osx
+
 sudo: required
 
 env:
@@ -13,14 +15,14 @@ env:
 branches:
   except:
     - debian
-    - nightly/debian
-    - nightly/ubuntu
     - ubuntu
 
 matrix:
   include:
-    - env: QTTYPE=4
-#    - env: QTTYPE=5
+    - os: osx
+      env: QTTYPE=5
+    - os: linux
+      env: QTTYPE=4
   exclude:
     - env: THENEEDFORTHIS=FAIL
 
