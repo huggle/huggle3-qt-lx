@@ -1,6 +1,9 @@
 # See http://docs.travis-ci.com/user/customizing-the-build/
 # See ./travis/* for the actual scripts that get run
 
+os:
+    - linux
+    - osx
 language: cpp
 sudo: required
 
@@ -21,11 +24,21 @@ matrix:
   exclude:
     - env: THENEEDFORTHIS=FAIL
 
-before_install: bash -x ./travis/before_install.sh
-install: bash -x ./travis/install.sh
+before_install:
+    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then bash -x ./travis/before_install.sh
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then bash -x ./travis/before_install_osx.sh
 
-before_script: bash -x ./travis/before_script.sh
-script: bash -x ./travis/script.sh
+install:
+    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then bash -x ./travis/install.sh
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then bash -x ./travis/install_osx.sh
+
+before_script:
+    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then bash -x ./travis/before_script.sh
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then bash -x ./travis/before_script_osx.sh
+
+script:
+    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then bash -x ./travis/script.sh
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then bash -x ./travis/script_osx.sh
 
 notifications: 
   irc: 
