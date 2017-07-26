@@ -41,7 +41,7 @@ QStringList ProjectConfiguration::Yaml_FetchSpeedyOptions(YAML::Node &node)
             QString tag = QString::fromStdString(it->first.as<std::string>());
             YAML::Node s = it->second;
             QStringList options = HuggleParser::YAML2QStringList(s);
-            results.append(tag + ";" + options.join(';'));
+            results.append(tag + ";" + options.join(QString(";")));
         }
         return results;
     } catch (YAML::Exception exception)

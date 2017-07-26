@@ -801,7 +801,8 @@ QStringList HuggleParser::YAML2QStringList(QString key, YAML::Node &node, QStrin
         if (!node[key.toStdString()])
             return missing;
 
-        return YAML2QStringList(node[key.toStdString()], missing, ok);
+        YAML::Node temp = node[key.toStdString()];
+        return YAML2QStringList(temp, missing, ok);
 
     } catch (YAML::Exception exception)
     {
