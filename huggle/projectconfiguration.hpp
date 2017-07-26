@@ -66,6 +66,7 @@ namespace Huggle
     {
         public:
             static QStringList Yaml_FetchSpeedyOptions(YAML::Node &node);
+            static QHash<QString, int> Yaml_FetchScoreTags(YAML::Node &node);
 
             ProjectConfiguration(QString project_name);
             ~ProjectConfiguration();

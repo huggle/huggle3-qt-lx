@@ -55,6 +55,38 @@ QStringList ProjectConfiguration::Yaml_FetchSpeedyOptions(YAML::Node &node)
     return QStringList();
 }
 
+QHash<QString, int> ProjectConfiguration::Yaml_FetchScoreTags(YAML::Node &node)
+{
+    try
+    {
+        if (!node)
+            throw new Huggle::NullPointerException("YAML::Node *node", BOOST_CURRENT_FUNCTION);
+
+        if (!node["score-tags"])
+            return QHash<QString, int>();
+
+        QHash<QString, int> results;
+        YAML::Node seq = node["score-tags"];
+
+        for (YAML::const_iterator it = seq.begin(); it != seq.end(); ++it)
+        {
+            QString tag = QString::fromStdString(it->first.as<std::string>());
+            int score = it->second.as<int>();
+            if (results.contains(tag))
+            {
+                Syslog::HuggleLogs->DebugLog("Multiple definitions of score-tag: " + tag);
+                continue;
+            }
+            results.insert(tag, score);
+        }
+        return results;
+    } catch (YAML::Exception exception)
+    {
+        HUGGLE_ERROR("YAML Parsing error (score-tags): " + QString(exception.what()));
+    }
+    return QHash<QString, int>();
+}
+
 ProjectConfiguration::ProjectConfiguration(QString project_name)
 {
     // these headers are parsed by project config so don't change them
@@ -502,6 +534,11 @@ bool ProjectConfiguration::ParseYAML(QString config, QString *reason, WikiSite *
     // Ignoring
     this->Ignores = HuggleParser::YAML2QStringList("ignore", yaml);
     this->IgnorePatterns = HuggleParser::YAML2QStringList("ignore-patterns", yaml);
+
+    /////////////////////////////////////////////
+    // Prediction
+    /////////////////////////////////////////////
+
     // Scoring
     this->IPScore = HuggleParser::YAML2Int(ProjectConfig_IPScore_Key, yaml, 800);
     this->ScoreFlag = HuggleParser::YAML2Int("score-flag", yaml);
@@ -510,22 +547,7 @@ bool ProjectConfiguration::ParseYAML(QString config, QString *reason, WikiSite *
     this->ScoreUser = HuggleParser::YAML2Int("score-user", yaml, -200);
     this->ScoreTalk = HuggleParser::YAML2Int("score-talk", yaml, -800);
     this->ScoreRemoval = HuggleParser::YAML2Int("score-remove", yaml, 800);
-    QStringList tags = HuggleParser::YAML2QStringList("score-tags", yaml);
-    foreach (QString tx, tags)
-    {
-        QStringList parts = tx.split(";");
-        if (parts.count() != 2)
-        {
-            Syslog::HuggleLogs->DebugLog("Ignoring malformed score-tag: " + tx);
-            continue;
-        }
-        if (this->ScoreTags.contains(parts[0]))
-        {
-            Syslog::HuggleLogs->DebugLog("Multiple definitions of score-tag " + parts[0]);
-            continue;
-        }
-        this->ScoreTags.insert(parts[0], parts[1].toInt());
-    }
+    this->ScoreTags = ProjectConfiguration::Yaml_FetchScoreTags(yaml);
     this->DefaultSummary = HuggleParser::YAML2String("default-summary", yaml, "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2");
     this->WelcomeSummary = HuggleParser::YAML2String("welcome-summary", yaml, this->WelcomeSummary);
     this->AgfRevert = HuggleParser::YAML2String("agf", yaml, "Reverted good faith edits by [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]]): $1");
