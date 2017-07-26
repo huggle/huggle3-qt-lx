@@ -18,6 +18,6 @@ if [ "$QTTYPE" = "5" ]; then
     make || exit 1
     cd ..
 	cd tests/test
-    cmake . -DCMAKE_PREFIX_PATH=/usr/local/opt/qt/ -DQT5_BUILD=true
+    cmake . -DCMAKE_PREFIX_PATH=/usr/local/opt/qt/ -DQT5_BUILD=true -DWEB_ENGINE=true
     make || exit 1
 fi
