@@ -17,6 +17,10 @@
 #include "version.hpp"
 #include "wikipage.hpp"
 #include "wikisite.hpp"
+
+// Nasty hack to get yaml-cpp to work on OSX
+#undef _l
+
 #include <yaml-cpp/yaml.h>
 
 using namespace Huggle::Generic;
@@ -135,7 +139,7 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
     this->RequireRollback = SafeBool(HuggleParser::ConfigurationParse("require-rollback", config));
     this->ReadOnly = SafeBool(HuggleParser::ConfigurationParse("read-only", config), this->ReadOnly);
     if (this->ReadOnly)
-        Syslog::HuggleLogs->WarningLog(_l("read-only", site->Name));
+        Syslog::HuggleLogs->WarningLog(Huggle::Localizations::HuggleLocalizations->Localize("read-only", site->Name));
     this->LargeRemoval = HuggleParser::ConfigurationParse("large-removal", config, "400").toInt();
     // IRC
     this->UseIrc = SafeBool(HuggleParser::ConfigurationParse("irc", config));
@@ -473,7 +477,7 @@ bool ProjectConfiguration::ParseYAML(QString config, QString *reason, WikiSite *
     this->RequireRollback = HuggleParser::YAML2Bool("require-rollback", yaml, this->RequireRollback);
     this->ReadOnly = HuggleParser::YAML2Bool("read-only", yaml, this->ReadOnly);
     if (this->ReadOnly)
-        Syslog::HuggleLogs->WarningLog(_l("read-only", site->Name));
+        Syslog::HuggleLogs->WarningLog(Huggle::Localizations::HuggleLocalizations->Localize("read-only", site->Name));
 
     //AIV
     this->AIV = HuggleParser::YAML2Bool("aiv-reports", yaml);
