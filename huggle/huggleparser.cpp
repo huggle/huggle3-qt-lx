@@ -847,3 +847,40 @@ QHash<QString, QString> HuggleParser::YAML2QHash(QString key, YAML::Node &node, 
     }
     return missing;
 }
+
+QHash<QString, QHash<QString, QString>> HuggleParser::YAML2QHashOfHash(QString key, YAML::Node &node, bool *ok)
+{
+    QHash<QString, QHash<QString, QString>> results;
+    if (ok)
+        *ok = false;
+    try
+    {
+        if (!node)
+            throw new Huggle::NullPointerException("YAML::Node *node", BOOST_CURRENT_FUNCTION);
+
+        if (!node[key.toStdString()])
+            return results;
+
+        YAML::Node seq = node[key.toStdString()];
+
+        // Even if it's empty, we are good to go
+        if (ok)
+            *ok = true;
+
+        for (YAML::const_iterator it=seq.begin();it!=seq.end();++it)
+        {
+            QHash<QString, QString> hash;
+            YAML::Node yaml_n = it->second;
+            for (YAML::const_iterator it2=yaml_n.begin();it2!=yaml_n.end();++it2)
+            {
+                hash.insert(QString::fromStdString(it2->first.as<std::string>()), QString::fromStdString(it2->second.as<std::string>()));
+            }
+            results.insert(QString::fromStdString(it->first.as<std::string>()), hash);
+        }
+        return results;
+    } catch (YAML::Exception exception)
+    {
+        HUGGLE_ERROR("YAML Parsing error (" + key + "): " + QString(exception.what()));
+    }
+    return QHash<QString, QHash<QString, QString>>();
+}

@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "projectconfiguration.hpp"
+#include "configuration.hpp"
 #include "generic.hpp"
 #include "exception.hpp"
 #include "huggleparser.hpp"
@@ -533,7 +534,11 @@ bool ProjectConfiguration::ParseYAML(QString config, QString *reason, WikiSite *
     this->UseIrc = HuggleParser::YAML2Bool("irc", yaml, this->UseIrc);
     // Ignoring
     this->Ignores = HuggleParser::YAML2QStringList("ignore", yaml);
+    if (!this->Ignores.count())
+        HUGGLE_DEBUG1(this->ProjectName + " conf: 0 records for ignore");
     this->IgnorePatterns = HuggleParser::YAML2QStringList("ignore-patterns", yaml);
+    if (!this->IgnorePatterns.count())
+        HUGGLE_DEBUG1(this->ProjectName + " conf: 0 records for ignore-patterns");
 
     /////////////////////////////////////////////
     // Prediction
@@ -594,7 +599,7 @@ bool ProjectConfiguration::ParseYAML(QString config, QString *reason, WikiSite *
     this->WelcomeMP = HuggleParser::YAML2String("startup-message-location", yaml, "Project:Huggle/Message");
     this->WelcomeGood = HuggleParser::YAML2Bool("welcome-on-good-edit", yaml, true);
     this->WelcomeAnon = HuggleParser::YAML2String("welcome-anon", yaml, "{{subst:welcome-anon}}");
-    this->WelcomeTypes = HuggleParser::YAML2QStringList("welcome-messages", yaml);
+    this->WelcomeTypes = temp_compat_hash2list(HuggleParser::YAML2QHash("welcome-messages", yaml));
     // Reporting
     this->SpeedyEditSummary = HuggleParser::YAML2String("speedy-summary", yaml, "Tagging page for deletion");
     this->SpeedyWarningSummary = HuggleParser::YAML2String("speedy-message-summary", yaml, "Notification: [[$1]] has been listed for deletion");
@@ -627,27 +632,23 @@ bool ProjectConfiguration::ParseYAML(QString config, QString *reason, WikiSite *
                 this->TagsArgs.insert(key, pm);
         }
     }
-    QStringList TagsInfo = HuggleParser::YAML2QStringList("tags-info", yaml);
-    foreach (QString tag, TagsInfo)
+    QHash<QString,QHash<QString, QString>> TagsInfo = HuggleParser::YAML2QHashOfHash("tags-info", yaml);
+    foreach (QString tag, TagsInfo.keys())
     {
-        if (tag.endsWith(","))
-            tag = tag.mid(0, tag.size() - 1);
-        QStringList info = tag.split(QChar(';'));
-        if (info.count() < 2)
-        {
-            Syslog::HuggleLogs->DebugLog("Ignoring invalid tag info: " + tag);
-            continue;
-        }
-        if (this->TagsDesc.contains(info[0]))
+        if (this->TagsDesc.contains(tag))
         {
             Syslog::HuggleLogs->DebugLog("Multiple taginfo: " + tag);
             continue;
         }
-        if (!this->Tags.contains(info[0]))
-            this->Tags.append(info[0]);
-        if (!this->TagsArgs.contains(info[0]))
-            this->TagsArgs.insert(info[0],info[1]);
-        this->TagsDesc.insert(info[0],info[2]);
+        if (!this->Tags.contains(tag))
+            this->Tags.append(tag);
+        if (TagsInfo[tag].contains("args"))
+        {
+            if (!this->TagsArgs.contains(tag))
+                this->TagsArgs.insert(tag, TagsInfo[tag]["args"]);
+        }
+        if (TagsInfo[tag].contains("info"))
+            this->TagsDesc.insert(tag, TagsInfo[tag]["info"]);
     }
     // Blocking
     this->WhitelistScore = HuggleParser::YAML2Int("score-wl", yaml, -800);
