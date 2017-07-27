@@ -420,7 +420,7 @@
   <string name="main-custom-reason-title">使用自訂理由回退編輯</string>
   <string name="main-custom-reason-text">請提供為何您回退此編輯的理由</string>
   <string name="main-custom-reason-fail">您沒有提供有效的理由</string>
-  <string name="main-report-username">回報使用戶名稱</string>
+  <string name="main-report-username">回報使用者名稱</string>
   <string name="main-report-user">回報使用者</string>
   <string name="main-edit-user-talk">編輯使用者對話頁</string>
   <string name="message-title">訊息 $1</string>
@@ -563,7 +563,7 @@
   <string name="userinfo-generic">使用者資訊</string>
   <string name="userinfo-retrieve">取得資訊</string>
   <string name="shortcut-page-patrol-edit">巡查編輯</string>
-  <string name="shortcut-report-username">回告用戶名稱</string>
+  <string name="shortcut-report-username">回報使用者名稱</string>
   <string name="shortcut-report-user">回報使用者</string>
   <string name="shortcut-my-talk">我的對話頁面</string>
   <string name="shortcut-raw">還原編輯並警告使用者</string>

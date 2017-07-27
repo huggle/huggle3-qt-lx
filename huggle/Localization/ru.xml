@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">Русский</string>
+  <string name="autorelog">Сделайте это в следующий раз, не спрашивая</string>
   <string name="isrtl">false</string>
   <string name="add">Добавить</string>
   <string name="cancel">Отмена</string>
@@ -416,6 +417,8 @@
   <string name="main-restore-text-fail">Невозможно восстановить эту версию, поскольку для неё недоступен текст</string>
   <string name="main-restore-data-fail">Невозможно восстановить эту версию, поскольку вики не предоставила данных о выбранной версии</string>
   <string name="main-welcome-user">Добро пожаловать, пользователь</string>
+  <string name="main-custom-reason-text">Укажите причину, по которой вы хотите отменить эту правку</string>
+  <string name="main-custom-reason-fail">Вы не указали подходящую причину</string>
   <string name="main-report-username">Пожаловаться на имя участника</string>
   <string name="main-report-user">Сообщить о нарушении</string>
   <string name="main-edit-user-talk">Править страницу обсуждения участника</string>

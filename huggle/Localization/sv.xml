@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">Svenska</string>
+  <string name="autorelog">Gör detta utan att fråga mig nästa gång</string>
   <string name="isrtl">false</string>
   <string name="add">Lägg till</string>
   <string name="cancel">Avbryt</string>
@@ -80,6 +81,7 @@
   <string name="block-type">Blockera / avblockera</string>
   <string name="block-admin">Blockerande administratör</string>
   <string name="block-none">Det finns ingen användare att blockera.</string>
+  <string name="contribution-browser-user-info">Visar nyliga bidrag av användaren $1</string>
   <string name="config-function">Funktion</string>
   <string name="config-description">Beskrivning</string>
   <string name="config-shortcut">Genväg</string>
@@ -132,6 +134,7 @@
   <string name="config-warning-api">Visa varningar för API-frågor</string>
   <string name="config-updates">Sök efter uppdateringar</string>
   <string name="config-beta">Kolla efter beta-versioner</string>
+  <string name="config-html-messages">HAN kan rendera HTML-meddelanden (farligt)</string>
   <string name="config-close-without">Stäng utan att spara</string>
   <string name="config-confirmmultiple">Bekräfta flera revideringar av en ändring av samma användare</string>
   <string name="config-userollback">Använd tillbakarullning om det finns</string>
@@ -300,6 +303,7 @@
   <string name="main-user-contribs">Visa användarbidrag i en webbläsare</string>
   <string name="main-user-clear-talk">Töm användarens diskussionssida</string>
   <string name="main-user-talk">Visa diskussionssidan</string>
+  <string name="main-user-message">Meddelande...</string>
   <string name="main-user-warn">Varna...</string>
   <string name="main-user-report">Rapportera</string>
   <string name="main-user-clear-tp">Töm användarens diskussionssida</string>
@@ -336,6 +340,9 @@
   <string name="main-revert-newpage-title">Kan inte återställa detta</string>
   <string name="main-revert-newpage" fuzzy="true">Detta är en ny sida, då den kan inte återställas. Du kan antingen märka eller radera den.</string>
   <string name="main-welcome-user">Välkommen användare</string>
+  <string name="main-custom-reason-title">Återställ redigering med anpassad anledning</string>
+  <string name="main-custom-reason-text">Ange en anledning till varför du vill återställa denna redigering</string>
+  <string name="main-custom-reason-fail">Du angav inte en giltig anledning</string>
   <string name="main-report-username">Rapportera användarnamn</string>
   <string name="main-report-user">Rapportera användare</string>
   <string name="main-edit-user-talk">Redigera användardiskussion</string>
@@ -363,7 +370,11 @@
   <string name="queue-queues">Köer:</string>
   <string name="queue-typegroup">Kötyp</string>
   <string name="queue-listselector">Lista:</string>
+  <string name="queue-listbuilder">Listbyggare...</string>
   <string name="queue-sortorder">Sorteringsordning:</string>
+  <string name="queue-removeviewed">Ta bort redigeringar när de visas</string>
+  <string name="queue-removeold">Ta bort gamla redigeringar på samma sida</string>
+  <string name="queue-ignorepages">Ignorera redigeringar på sidor i listan över ignorerade sidor</string>
   <string name="queue-diffsgroup">Diffar</string>
   <string name="queue-namespaces">Namnrymder:</string>
   <string name="queue-editfiltersgroup">Redigeringsfilter</string>
@@ -387,6 +398,7 @@
   <string name="report-message">Meddelande:</string>
   <string name="report-log">Varningar för denna användare:</string>
   <string name="report-include">Inkludera i rapporten</string>
+  <string name="report-write">Skriver</string>
   <string name="reportuser-not">Denna användare har inte rapporterats nu</string>
   <string name="report-duplicate">Denna användare har redan rapporterats</string>
   <string name="report-progress">Rapporterar $1...</string>
@@ -437,6 +449,7 @@
   <string name="shortcut-suspicious">Märk redigering som misstänkt</string>
   <string name="shortcut-browser-close-tab">Stäng en webbläsarflik</string>
   <string name="shortcut-tab">Öppnar en ny flik</string>
+  <string name="shortcut-custom-reason">Återställ redigering med en anpassad redigeringssammanfattning</string>
   <string name="warning-title">Varna $</string>
   <string name="warning-levelgroup">Varningsnivå</string>
   <string name="warning-levelauto">Automatisk</string>
@@ -448,8 +461,11 @@
   <string name="warning-warnlog">Varningar för denna användare:</string>
   <string name="warning-submit">Sänd</string>
   <string name="missing-warning">Det finns ingen varningsmall som heter $1</string>
+  <string name="han-already-connecting">Var god vänta, jag ansluter redan till HAN</string>
+  <string name="han-disconnected">Du blev frånkopplad från HAN</string>
   <string name="error-noresponse">Inget svar</string>
   <string name="error-pagemissing">Sidan finns inte</string>
+  <string name="error-timeout">Begäran tog för lång tid</string>
   <string name="error-unknown">Okänt fel</string>
   <string name="block-done">Blockerade $1</string>
   <string name="block-progress">Blockerar $1...</string>
@@ -459,6 +475,7 @@
   <string name="delete-done">Raderade $1</string>
   <string name="delete-fail">Raderade inte $1</string>
   <string name="delete-progress">Raderar $1...</string>
+  <string name="delete-user">Denna sida är i användarrymden. Är du säker på att du vill radera den?</string>
   <string name="deletelog-none">Ingen raderingslogg för $1</string>
   <string name="deletelog-progress">Hämtar raderingslogg för $1...</string>
   <string name="edit-fail">Redigerade inte $1</string>
@@ -491,6 +508,9 @@
   <string name="welcome-page-miss-fail">Huggle kunde inte hämta innehållet i användarens diskussionssida, är du säker på att du vill skicka ett välkomstmeddelande till hen?</string>
   <string name="preferences-extension-disabled">Detta tillägg har redan schemalagts för inaktivering vid nästa uppstart av Huggle</string>
   <string name="preferences-extension-enabled-restart">Tillägget aktiverades, men du måste starta om Huggle för att verkställa den</string>
+  <string name="preferences-watchlist-watch">Lägg till i bevakningslistan</string>
+  <string name="preferences-watchlist-unwatch">Ta bort från bevakningslistan</string>
+  <string name="preferences-watchlist-nochange">Gör ingenting</string>
   <string name="preferences-sounds-enable-queue">Spela upp ljud när nya objekt köläggs</string>
   <string name="preferences-sounds-enable-irc">Spela upp ljud när ett meddelande hämtas i HAN</string>
   <string name="preferences-sounds-minimal-score">Minimala redigeringspoäng för notifikation</string>
@@ -499,6 +519,7 @@
   <string name="requesting">Begär</string>
   <string name="requested">Begärd</string>
   <string name="protect-request-fail">Kunde inte hämta aktuell rapportsida: $1</string>
+  <string name="message-fail">Misslyckades att leverera meddelandet</string>
   <string name="edit-conflict">Redigeringskonflikt</string>
   <string name="page-unknown">Okänd sida</string>
   <string name="namespace">Namnrymd</string>
@@ -506,6 +527,8 @@
   <string name="report-unable">Kunde inte rapportera användare :(</string>
   <string name="about-python-with">, med Python-stöd</string>
   <string name="about-python-without">utan Python-stöd</string>
+  <string name="about-qt">, kompilerades med QT $1 Körs på QT $1</string>
+  <string name="about-info">, baserat på $1, målplattform: $2</string>
   <string name="error-unknown-code">Okänt fel: $1</string>
   <string name="relogin-fail">Kunde inte logga in på wiki: $1</string>
   <string name="projects">Projekt</string>
@@ -514,7 +537,7 @@
   <string name="loading-main-window">Läser in Huggles huvudfönster</string>
   <string name="unknown-item">Okänt objekt</string>
   <string name="title-multiple-projects">flera projekt ($1)</string>
-  <string name="title-on" fuzzy="true">på</string>
+  <string name="title-on">på $1</string>
   <string name="main-revert-already-pending-title">Denna redigering är redan återställd</string>
   <string name="main-revert-already-pending-text">Du kan inte återställa denna redigering eftersom det redan håller på att återställas. Vänligen vänta!</string>
   <string name="main-revert-type-unknown">okänd</string>

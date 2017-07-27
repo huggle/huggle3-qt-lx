@@ -418,6 +418,7 @@
   <string name="main-restore-data-fail">Impossible de rétablir la révision, parce que le wiki n’a fourni aucune donnée pour la version sélectionnée</string>
   <string name="main-welcome-user">Bienvenue utilisateur</string>
   <string name="main-custom-reason-title">Annuler les modifications en utilisant le motif fourni par l\'utilisateur</string>
+  <string name="main-custom-reason-text">Veuillez fournir un motif indiquant pourquoi vous voulez annuler cette modification</string>
   <string name="main-custom-reason-fail">Vous n\'avez pas fourni de raison valide</string>
   <string name="main-report-username">Signaler le nom d’utilisateur</string>
   <string name="main-report-user">Signaliser l\'utilisateur</string>
@@ -588,6 +589,7 @@
   <string name="shortcut-tab">Ouvre un nouvel onglet</string>
   <string name="shortcut-rw-stay">Revenir à la modification actuelle, avertir un utilisateur et rester sur la page</string>
   <string name="shortcut-revert-and-stay">Annuler la modification courante et rester sur la page</string>
+  <string name="shortcut-custom-reason">Annuler la modification en utilisant un motif de résumé der modification personnalisé</string>
   <string name="shortcut-user-contribs-browser">Afficher les contributions de l’utilisateur dans un navigateur</string>
   <string name="warning-title">Avertir $1</string>
   <string name="warning-levelgroup">Niveau d\'avertissement</string>
