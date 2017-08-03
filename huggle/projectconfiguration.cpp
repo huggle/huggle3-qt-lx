@@ -462,14 +462,14 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
     return true;
 }
 
-bool ProjectConfiguration::ParseYAML(QString config, QString *reason, WikiSite *site)
+bool ProjectConfiguration::ParseYAML(QString yaml_src, QString *reason, WikiSite *site)
 {
-    this->configurationBuffer = config;
+    this->configurationBuffer = yaml_src;
     this->cache.clear();
     this->Site = site;
 
     // Fetch the YAML
-    std::string config_std = HuggleParser::FetchYAML(config).toStdString();
+    std::string config_std = HuggleParser::FetchYAML(yaml_src).toStdString();
     YAML::Node yaml;
     try
     {
@@ -777,7 +777,7 @@ bool ProjectConfiguration::ParseYAML(QString config, QString *reason, WikiSite *
         int CurrentWarning = 1;
         while (CurrentWarning <= 4)
         {
-            QString xx = HuggleParser::ConfigurationParse(type + QString::number(CurrentWarning), config);
+            QString xx = HuggleParser::YAML2String(type + QString::number(CurrentWarning), yaml);
             if (!xx.isEmpty())
             {
                 this->WarningTemplates.append(type + QString::number(CurrentWarning) + ";" + xx);
