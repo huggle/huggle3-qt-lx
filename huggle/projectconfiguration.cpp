@@ -429,8 +429,8 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
     if (this->AIVP != nullptr)
         delete this->AIVP;
     this->AIVP = new WikiPage(this->ReportAIV);
-    HuggleParser::ParsePats(config, site);
-    HuggleParser::ParseNoTalkPats(config, site);
+    HuggleParser::ParsePatterns(config, site);
+    HuggleParser::ParseNoTalkPatterns(config, site);
     HuggleParser::ParseNoTalkWords(config, site);
     HuggleParser::ParseWords(config, site);
     if (this->UAAP != nullptr)
@@ -762,10 +762,10 @@ bool ProjectConfiguration::ParseYAML(QString config, QString *reason, WikiSite *
     if (this->AIVP != nullptr)
         delete this->AIVP;
     this->AIVP = new WikiPage(this->ReportAIV);
-    HuggleParser::ParsePats(config, site);
-    HuggleParser::ParseNoTalkPats(config, site);
-    HuggleParser::ParseNoTalkWords(config, site);
-    HuggleParser::ParseWords(config, site);
+    HuggleParser::ParsePatterns_yaml(yaml, site);
+    HuggleParser::ParseNoTalkPatterns_yaml(yaml, site);
+    HuggleParser::ParseNoTalkWords_yaml(yaml, site);
+    HuggleParser::ParseWords_yaml(yaml, site);
     if (this->UAAP != nullptr)
         delete this->UAAP;
     this->UAAP = new WikiPage(this->UAAPath);

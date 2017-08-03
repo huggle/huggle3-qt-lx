@@ -139,13 +139,13 @@ void HuggleParser::ParseNoTalkWords(QString text, WikiSite *site)
     site->ProjectConfig->NoTalkScoreWords = ParseScoreWords(text, "score-words-no-talk");
 }
 
-void HuggleParser::ParseNoTalkPats(QString text, WikiSite *site)
+void HuggleParser::ParseNoTalkPatterns(QString text, WikiSite *site)
 {
     site->ProjectConfig->NoTalkScoreParts.clear();
     site->ProjectConfig->NoTalkScoreParts = ParseScoreWords(text, "score-parts-no-talk");
 }
 
-void HuggleParser::ParsePats(QString text, WikiSite *site)
+void HuggleParser::ParsePatterns(QString text, WikiSite *site)
 {
     site->ProjectConfig->ScoreParts.clear();
     site->ProjectConfig->ScoreParts = ParseScoreWords(text, "score-parts");
@@ -928,7 +928,6 @@ QHash<QString, QVariant> HuggleParser::YAML2QHash(QString key, YAML::Node &node,
                 case YAML::NodeType::Undefined:
                     break;
             }
-            results.insert(QString::fromStdString(it->first.as<std::string>()), QString::fromStdString(it->second.as<std::string>()));
         }
         return results;
     } catch (YAML::Exception exception)
@@ -1125,4 +1124,44 @@ QList<HuggleQueueFilter *> HuggleParser::ConfigurationParseQueueList_YAML(YAML::
             }
         }
     }
+}
+
+static QList<ScoreWord> ParseScoreWords_YAML(YAML::Node &node, QString key)
+{
+    QList<ScoreWord> results;
+    QHash<QString, QVariant> score_words = HuggleParser::YAML2QHash(key, node, QHash<QString, QVariant>());
+    foreach (QString score_str, score_words.keys())
+    {
+        int score = score_str.toInt();
+        QStringList words = score_words[score_str].toStringList();
+        foreach (QString w, words)
+        {
+            results.append(ScoreWord(w, score));
+        }
+    }
+    return results;
+}
+
+void HuggleParser::ParsePatterns_yaml(YAML::Node &node, WikiSite *site)
+{
+    site->ProjectConfig->ScoreParts.clear();
+    site->ProjectConfig->ScoreParts = ParseScoreWords_YAML(node, "score-parts");
+}
+
+void HuggleParser::ParseWords_yaml(YAML::Node &node, WikiSite *site)
+{
+    site->ProjectConfig->ScoreWords.clear();
+    site->ProjectConfig->ScoreWords = ParseScoreWords_YAML(node, "score-words");
+}
+
+void HuggleParser::ParseNoTalkWords_yaml(YAML::Node &node, WikiSite *site)
+{
+    site->ProjectConfig->NoTalkScoreWords.clear();
+    site->ProjectConfig->NoTalkScoreWords = ParseScoreWords_YAML(node, "score-words-no-talk");
+}
+
+void HuggleParser::ParseNoTalkPatterns_yaml(YAML::Node &node, WikiSite *site)
+{
+    site->ProjectConfig->NoTalkScoreParts.clear();
+    site->ProjectConfig->NoTalkScoreParts = ParseScoreWords_YAML(node, "score-parts-no-talk");
 }

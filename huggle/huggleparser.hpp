@@ -92,11 +92,16 @@ namespace Huggle
         HUGGLE_EX byte_ht GetIDOfMonth(QString month, WikiSite *site);
         //! \todo This function needs a unit test
         //! Parse a part patterns for score words
-        HUGGLE_EX void ParsePats(QString text, WikiSite *site);
+        HUGGLE_EX void ParsePatterns(QString text, WikiSite *site);
         //! \todo This function needs a unit test
         HUGGLE_EX void ParseWords(QString text, WikiSite *site);
         HUGGLE_EX void ParseNoTalkWords(QString text, WikiSite *site);
-        HUGGLE_EX void ParseNoTalkPats(QString text, WikiSite *site);
+        HUGGLE_EX void ParseNoTalkPatterns(QString text, WikiSite *site);
+        //! Parse a part patterns for score words
+        HUGGLE_EX void ParsePatterns_yaml(YAML::Node &node, WikiSite *site);
+        HUGGLE_EX void ParseWords_yaml(YAML::Node &node, WikiSite *site);
+        HUGGLE_EX void ParseNoTalkWords_yaml(YAML::Node &node, WikiSite *site);
+        HUGGLE_EX void ParseNoTalkPatterns_yaml(YAML::Node &node, WikiSite *site);
         //! \todo This function needs a unit test
         HUGGLE_EX QString GetValueFromKey(QString item);
         //! \todo This function needs a unit test
