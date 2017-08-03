@@ -560,7 +560,7 @@ bool ProjectConfiguration::ParseYAML(QString yaml_src, QString *reason, WikiSite
     this->EditSuffixOfHuggle = HuggleParser::YAML2String("summary", yaml, "[[Project:Huggle|HG]]") + " (" + HUGGLE_VERSION + ")";
     this->Goto = temp_compat_hash2list(HuggleParser::YAML2QStringHash("go", yaml));
     this->InstantWarnings = HuggleParser::YAML2Bool("warning-im", yaml);
-    this->RevertSummaries = temp_compat_hash2list(HuggleParser::YAML2QStringHash("template-summ", yaml));
+    this->RevertSummaries = temp_compat_hash2list(HuggleParser::YAML2QStringHash("revert-summaries", yaml));
     if (!this->RevertSummaries.count())
     {
         Syslog::HuggleLogs->WarningLog("RevertSummaries for " + site->Name + " contain no data, default summary will be used for all of them, you need to fix project settings!!");
