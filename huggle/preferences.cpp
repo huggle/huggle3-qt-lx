@@ -193,6 +193,7 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     this->ui->cbCatScansAndWatched->setText(_l("preferences-performance-catscansandwatched"));
     this->ui->cbMaxScore->setText(_l("preferences-max-score"));
     this->ui->cbMinScore->setText(_l("preferences-min-score"));
+    this->ui->l_QueueSize->setText(_l("preferences-queue-size"));
 
 #ifndef HUGGLE_NOAUDIO
     this->ui->label_NoAudio->setVisible(false);
@@ -334,6 +335,9 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     hcfg->UserConfig->MinScore = this->ui->leMinScore->text().toLongLong();
     hcfg->UserConfig->MaxScore = this->ui->leMaxScore->text().toLongLong();
     hcfg->UserConfig->EnableMaxScore = this->ui->cbMaxScore->isChecked();
+    hcfg->SystemConfig_QueueSize = this->ui->le_QueueSize->text().toInt();
+    if (hcfg->SystemConfig_QueueSize < 10)
+        hcfg->SystemConfig_QueueSize = 10;
     hcfg->SystemConfig_PlaySoundOnIRCUserMsg = this->ui->cbPlayOnIRCMsg->isChecked();
     hcfg->SystemConfig_PlaySoundQueueScore = this->ui->ln_QueueSoundMinScore->text().toLong();
     hcfg->SystemConfig_PlaySoundOnQueue = this->ui->cbPlayOnNewItem->isChecked();
@@ -783,6 +787,7 @@ void Preferences::ResetItems()
     this->ui->checkBox_8->setChecked(hcfg->UserConfig->RetrieveFounder);
     this->ui->cbMaxScore->setChecked(hcfg->UserConfig->EnableMaxScore);
     this->ui->cbMinScore->setChecked(hcfg->UserConfig->EnableMinScore);
+    this->ui->le_QueueSize->setText(QString::number(hcfg->SystemConfig_QueueSize));
     this->ui->leMaxScore->setText(QString::number(hcfg->UserConfig->MaxScore));
     this->ui->leMinScore->setText(QString::number(hcfg->UserConfig->MinScore));
     this->ui->checkBox_notifyUpdate->setChecked(hcfg->SystemConfig_EnableUpdates);
