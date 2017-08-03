@@ -563,7 +563,7 @@ bool ProjectConfiguration::ParseYAML(QString yaml_src, QString *reason, WikiSite
     this->RevertSummaries = temp_compat_hash2list(HuggleParser::YAML2QStringHash("revert-summaries", yaml));
     if (!this->RevertSummaries.count())
     {
-        Syslog::HuggleLogs->WarningLog("RevertSummaries for " + site->Name + " contain no data, default summary will be used for all of them, you need to fix project settings!!");
+        Syslog::HuggleLogs->WarningLog("revert-summaries for " + site->Name + " contain no data, default summary will be used for all of them, you need to fix project settings!!");
     }
     this->RollbackSummary = HuggleParser::YAML2String("rollback-summary", yaml,
                                                       "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2");
@@ -688,7 +688,7 @@ bool ProjectConfiguration::ParseYAML(QString yaml_src, QString *reason, WikiSite
     this->SharedIPTemplateTags = HuggleParser::YAML2String("shared-ip-template-tag", yaml);
     this->SharedIPTemplate = HuggleParser::YAML2String("shared-ip-template", yaml);
     this->ProtectReason =  HuggleParser::YAML2String("protection-reason", yaml, "Excessive [[Wikipedia:Vandalism|vandalism]]");
-    this->RevertingEnabled = HuggleParser::YAML2Bool("reverting-enabled", yaml);
+    this->RevertingEnabled = HuggleParser::YAML2Bool("reverting-enabled", yaml, this->RevertingEnabled);
     this->RFPP_PlaceTop = HuggleParser::YAML2Bool("protection-request-top", yaml);
     this->RFPP_Regex = HuggleParser::YAML2String("rfpp-verify", yaml);
     this->RFPP_Section = (unsigned int)HuggleParser::YAML2Int("rfpp-section", yaml, 0);
