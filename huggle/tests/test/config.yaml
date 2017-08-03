@@ -1,0 +1,557 @@
+<syntaxhighlight lang="yaml">
+---
+# This is the project configuration page for [[w:Wikipedia:Huggle|Huggle]].
+
+##############################################################################
+# Access control
+##############################################################################
+enable-all: true
+min-version: 3.1.0
+version: 3.2.0
+irc: false
+approval: false
+require-admin: false
+require-config: false
+require-time: 0
+require-edits: 0
+require-rollback: false
+read-only: false
+pending-changes-supported: false
+
+##############################################################################
+# Reporting
+##############################################################################
+rfpp-template: > 
+    ==== {{la|$title}} ====\n'''$protection:''' $reason ~~~~
+# This is a regex used to check if the page is already in a list
+rfpp-verify: >
+    .*\{\{\s*l[au]\s*\|\s*$title\s*\}\}.*
+rfpp-section: 1
+protection-request-page: "Wikipedia:Requests for page protection"
+protection-request-reason: "Persistent vandalism."
+protection-request-summary: 'Requesting $1 of [[$2]]'
+protection-requests: true
+report: auto
+report-summary: 'Reporting [[Special:Contributions/$1|$1]]'
+
+aiv-reports: true
+aiv: "Wikipedia:Administrator intervention against vandalism"
+aivbot: "Wikipedia:Administrator intervention against vandalism/TB2"
+aiv-extend: true
+aiv-extend-summary: 'Extending report for [[Special:Contributions/$1|$1]]'
+aiv-link-diffs: true
+aiv-single-note: "Note: this user has only received one recent warning (level 4im)"
+aiv-ip: '* {{IPVandal|$1}} $2$3 ~~~~'
+aiv-user: '* {{Vandal|$1}} $2$3 ~~~~'
+report-extend-summary: "Extending report for [[Special:Contributions/$1|$1]]"
+report-link-diffs: true
+aiv-section: 2
+prod-log: false
+prod-page: "Special:MyPage/ProdLog"
+vandal-report-reason: vandalism
+uaa: "Wikipedia:Usernames for administrator attention"
+
+##############################################################################
+# Deletion requests
+##############################################################################
+prod: true
+prod-message: '{{subst:Huggle/prod|1=$1|2=$2}}'
+prod-message-summary: 'Notification: Proposed deletion of [[$1]]'
+prod-message-title:
+prod-summary: 'Tagging page for [[WP:PRD|proposed deletion]], $1'
+talk-associated-summary: 'G8. Page dependent on a non-existent or deleted page.'
+
+speedy: true
+speedy-delete-summary: "Speedy deleted, $1."
+speedy-message-summary: "Notification: Speedy deletion of [[$1]]"
+speedy-message-title:
+speedy-summary: "Tagging page for [[WP:SD|speedy deletion]], $1"
+
+speedy-options:
+    G1: ["patent nonsense", db-g1, '{{subst:huggle/db-notice|1=$1|2=it is nonsense or gibberish.}}', notify]
+    P1: ["portal that would be deleted as an article", db-p1, '{{subst:huggle/db-notice|1=$1|2=it would be subject to speedy deletion as an article.}}', notify]
+    P2: ["underpopulated portal", db-p2, '{{subst:huggle/db-notice|1=$1|2=[[Wikipedia:Portal|portals]] must be of sufficient scope to encompass at least four non-stub articles.}}', notify]
+
+xfd-discussion-summary: 'Nominating [[$1]] for deletion'
+xfd-log-summary: 'Adding [[$1]]'
+xfd-message: '{{subst:huggle/xfd|1=$1|2=$2}}'
+xfd-message-summary: 'Notification: [[$1]] has been listed for deletion'
+xfd-message-title: "'$1' listed for deletion"
+xfd-summary: 'Nominating page for deletion, see [[$1|discussion]]'
+
+afd: "Wikipedia:Articles for deletion"
+cfd: "Wikipedia:Categories for discussion"
+mfd: "Wikipedia:Miscellany for deletion"
+rfd: "Wikipedia:Redirects for discussion"
+tfd: "Wikipedia:Templates for deletion"
+
+##############################################################################
+# Prediction
+##############################################################################
+
+# ip addresses are more likely to be vandals
+score-ip: 20
+# flagged bots are likely not vandals, even if they add swear words
+score-bot: -20000
+# people with high amount of flags are trusted even if not whitelisted
+score-flag: -200
+# userpages are frequently used to test stuff
+score-user: -250
+# userpages edited by other user than owner are typically vandalism
+score-foreign-user: 100
+# talk pages are often false positives, let's put them low
+score-talk: -200
+# users with score lower than this are inserted to wl
+score-wl: -2000
+# ORES see meta.wikimedia.org/wiki/Objective_Revision_Evaluation_Service
+ores-enabled: true
+ores-supported: true
+ores-url: https://ores.wikimedia.org/scores/
+ores-amplifier: 600
+
+# The list below is called "score words" it contains words presence of increase the score of edit by value in brackets,
+# you can define as many score words as you want, these words must be lowercase, otherwise ignored (they are compared with diff text which
+# is lowercase so that it's case insensitive)
+
+# score-parts are parts of a word, they can be even in a middle of a word, so be careful here or you create too many false positives
+
+score-parts:
+#  Score     List of words
+    200: [haha, fuuuu, '!!!!!!', '??????', '--------------', Special:Contributions]
+    # suck and fuck are not contained in any normal words at least not according English dictionary: http://www.morewords.com/contains/fuck/
+    600: [faggot, hihi, hahaha, suck, fuck, fag, retard, shemale]
+
+# score-words are separate words, they don't even actually need to be words, they can be short phrases as well, but must not contain
+# comma (fuck off - is valid word)
+
+# no-talk score words are ignored on talk pages (huggle 3.1.10+)
+score-words-no-talk:
+    800: [hey, heya, hi, hello]
+    1000: [':)', ':-)', ':P', ':D', lol, rofl]
+
+score-words:
+    100: [cool, stupid, rape, raping, bla, sex, tits, porn, yeah, yea, yee, balls, weed, arse, stupid, homosexual, dicks, ugly, fart]
+    200: [crackhead, bieber, porn, bold text, italic text, crap, p3n1s, omg, lmao, rofl, blabla, swag]
+    800: [pr0n, p0rn, sh1t, bullshit, wank, peace be upon him]
+    1000: [shit, gay, bitch, penis, piss, awesome, gays, faggots, suck, sucks, boobs, dick, pussy, cunt, poop, poo, lesbo, dyke, queer, whore, cockass]
+    2000: [pen1s, b1tch, p1ss, fuck, asshole, retard, '=)', '(:', asshat, fucknugget, motherfucker, fucktard, arsehole, swag, ass, butt, '-.-', dipshit, dipstick, asswipe, cunt, twat, yolo, fuckoff, fuck you, wanker, sucks dick, boobs, masturbate, fucking, nigger, niga, nigga, wiener, weiner, derp, derpy, weiner, butthole, tit, bum]
+
+# This is a list of all edit tags that affect the score somehow, available since Huggle 3.1.17
+score-tags:
+    bad external: 100
+    Huggle: -2000
+    Twinkle: -2000
+    Possible vandalism: 800
+
+##############################################################################
+# Reverting
+##############################################################################
+tags: [advert, autobiography, BLP PROD, cleanup, coi, confusing, context, copyedit, disputed, essay-like, expand, expert, hoax, in-universe, internallinks, introrewrite, nofootnotes, non-free, notability, 'notenglish|INSERT LANGUAGE NAME', npov, original research, orphan, plot, primarysources, prose, refimprove, sections, tone, tooshort, totally-disputed, uncategorized, underconstruction, unencyclopedic, unreferenced, update, wikify]
+
+tags-info:
+    advert: info='Looks like advertisement' param=test
+    autobiography: info='Looks like an auto-bio'
+    cleanup: info="Needs cleanup <obsolete don't use>"
+    coi: info='Conflict of interest'
+    context: info='Page is missing context'
+
+confirm-ignored: true
+confirm-multiple: false
+confirm-page: true
+confirm-range: true
+confirm-same: true
+confirm-self-revert: true
+confirm-warned: true
+
+manual-revert-summary: 'Reverted edits by [[Special:Contributions/$1|$1]] to last revision by $2'
+multiple-revert-summary-parts: "Reverted,edit by,edits by,and,other users,to last revision by,to an older version by"
+
+revert-summaries:
+    - 'Reverted unexplained removal of content'
+    - 'Reverted addition of [[WP:BLP|unsourced negative content]] to a biographical article'
+    - 'Reverted addition of dubious unsourced content'
+    - 'Reverted addition of unsourced content and/or unexplained removal of content'
+
+template-summ:
+    delete: 'Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]): unexplained content removal'
+    bio: 'Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]): addition of [[WP:BLP|negative unsourced content]] to a biographical article'
+    unsor: 'Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]): addition of [[WP:CITE|unsourced content]]'
+    eh: 'Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]): addition of [[WP:CITE|unsourced content]] and/or unexplained content removal'
+    blank: 'Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]): unexplained page blanking'
+    warning: 'Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]): nonconstructive edits'
+    spam: "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]): violates [[WP:EL|external links]] policy"
+    test: "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]): [[WP:SANDBOX|editing tests]]"
+    npov: "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]): not adhering to [[WP:NPOV|neutral point of view]]"
+    attack: "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]): [[WP:NPA|personal attack]] toward another user"
+    speedy: "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]): unexplained [[WP:CSD|speedy deletion]] template removal"
+    afd: "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]): unexplained [[WP:AFD|AFD]] template removal"
+    error: "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]): [[WP:DISPUTED|factual errors]]"
+
+rollback: true
+rollback-summary: "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2"
+default-summary: "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2"
+rollback-summary-unknown: "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])"
+single-revert-summary: "Undid edit by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])"
+undo-summary: "Undoing own edit"
+warn-summary: "Message re. [[$1]]"
+warn-summary-2: "Level 2 warning re. [[$1]]"
+warn-summary-3: "Level 3 warning re. [[$1]]"
+warn-summary-4: "Level 4 warning re. [[$1]]"
+
+warning-template-tags:
+    - '1;<!-- Template:uw-vandalism1 -->'
+    - '1;<!-- Template:uw-spam1 -->'
+    - '1;<!-- Template:uw-advert1 -->'
+    - '1;<!-- Template:uw-biog1 -->'
+    - '1;<!-- Template:uw-npa1 -->'
+    - '1;<!-- Template:uw-error1 -->'
+    - '1;<!-- Template:uw-disruptive1 -->'
+    - '1;<!-- Template:uw-test1 -->'
+    - '1;<!-- Template:uw-huggleafd1 -->'
+    - '1;<!-- Template:Huggle/warn-1 -->'
+    - '1;<!-- Template:Huggle/warn-blank-1 -->'
+    - '1;<!-- Template:Huggle/warn-bio-1 -->'
+    - '1;<!-- Template:Huggle/warn-unsor-1 -->'
+    - '1;<!-- Template:Huggle/warn-test-1 -->'
+    - '1;<!-- Template:uw-delete1 -->'
+    - '1;<!-- Template:uw-nor1 -->'
+    - '1;<!-- Template:uw-unsourced1 -->'
+    - '1;<!-- Template:uw-npov1 -->'
+    - '1;<!-- Template:uw-speedy1 -->'
+    - '2;<!-- Template:uw-vandalism2 -->'
+    - '2;<!-- Template:uw-huggleafd2 -->'
+    - '2;<!-- Template:Huggle/warn-2 -->'
+    - '2;<!-- Template:Huggle/warn-blank-2 -->'
+    - '2;<!-- Template:Huggle/warn-bio-2 -->'
+    - '2;<!-- Template:uw-spam2 -->'
+    - '2;<!-- Template:uw-advert2 -->'
+    - '2;<!-- Template:uw-error2 -->'
+    - '2;<!-- Template:uw-biog2 -->'
+    - '2;<!-- Template:uw-npov2 -->'
+    - '2;<!-- Template:uw-disruptive2 -->'
+    - '2;<!-- Template:uw-test2 -->'
+    - '2;<!-- Template:Huggle/warn-unsor-2 -->'
+    - '2;<!-- Template:Huggle/warn-test-2 -->'
+    - '2;<!-- Template:uw-nor2 -->'
+    - '2;<!-- Template:uw-npa2 -->'
+    - '2;<!-- Template:uw-delete2 -->'
+    - '2;<!-- Template:uw-unsourced2 -->'
+    - '2;<!-- Template:uw-attempt2 -->'
+    - '2;<!-- Template:uw-speedy2 -->'
+    - '3;<!-- Template:uw-vandalism3 -->'
+    - '3;<!-- Template:uw-biog3 -->'
+    - '3;<!-- Template:uw-huggleafd3 -->'
+    - '3;<!-- Template:uw-nor3 -->'
+    - '3;<!-- Template:Huggle/warn-3 -->'
+    - '3;<!-- Template:Huggle/warn-blank-3 -->'
+    - '3;<!-- Template:Huggle/warn-bio-3 -->'
+    - '3;<!-- Template:uw-spam3 -->'
+    - '3;<!-- Template:uw-advert3 -->'
+    - '3;<!-- Template:uw-npa3 -->'
+    - '3;<!-- Template:uw-npov3 -->'
+    - '3;<!-- Template:uw-disruptive3 -->'
+    - '3;<!-- Template:uw-test3 -->'
+    - '3;<!-- Template:Huggle/warn-unsor-3 -->'
+    - '3;<!-- Template:Huggle/warn-test-3 -->'
+    - '3;<!-- Template:uw-delete3 -->'
+    - '3;<!-- Template:uw-unsourced3 -->'
+    - '3;<!-- Template:uw-error3 -->'
+    - '3;<!-- Template:uw-attempt3 -->'
+    - '3;<!-- Template:uw-speedy3 -->'
+    - '4;<!-- Template:uw-vandalism4 -->'
+    - '4;<!-- Template:Huggle/warn-4 -->'
+    - '4;<!-- Template:uw-spam4 -->'
+    - '4;<!-- Template:uw-spam4im -->'
+    - '4;<!-- Template:uw-advert4 -->'
+    - '4;<!-- Template:uw-advert4im -->'
+    - '4;<!-- Template:uw-huggleafd4 -->'
+    - '4;<!-- Template:Huggle/warn-blank-4 -->'
+    - '4;<!-- Template:Huggle/warn-bio-4 -->'
+    - '4;<!-- Template:Huggle/warn-unsor-4 -->'
+    - '4;<!-- Template:Huggle/warn-test-4 -->'
+    - '4;<!-- Template:uw-biog4 -->'
+    - '4;<!-- Template:uw-disruptive4 -->'
+    - '4;<!-- Template:uw-npov4 -->'
+    - '4;<!-- Template:uw-test4 -->'
+    - '4;<!-- Template:uw-vandalism4im -->'
+    - '4;<!-- Template:Huggle/warn-4im -->'
+    - '4;<!-- Template:Huggle/warn-blank-4im -->'
+    - '4;<!-- Template:Huggle/warn-bio-4im -->'
+    - '4;<!-- Template:Huggle/warn-unsor-4im -->'
+    - '4;<!-- Template:Huggle/warn-test-4im -->'
+    - '4;<!-- Template:uw-npa4 -->'
+    - '4;<!-- Template:uw-error4 -->'
+    - '4;<!-- Template:uw-nor4 -->'
+    - '4;<!-- Template:uw-delete4 -->'
+    - '4;<!-- Template:uw-unsourced4 -->'
+    - '4;<!-- Template:uw-generic4 -->'
+    - '4;<!-- Template:uw-attempt4 -->'
+    - '4;{{stop}}'
+    - '4;<!-- Template:uw-speedy -->'
+
+warning-im: true
+warning-mode: 4
+warning-month-headings: true
+warning-series: [warning,spam,attack,test,delete,npov,error,bio,unsor]
+
+warning-types:
+    warning: Vandalism
+    spam: Spam
+    attack: Personal attacks
+    test: Editing tests
+    delete: Removal of content
+    blank: Blanking pages
+    npov: Biased content
+    error: Factual errors
+    bio: Inappropriate biographical content
+    speedy: Removal of speedy deletion template
+    afd: Removal of an AFD template
+    unsor: Failing to cite a verifiable reliable source
+
+warning1: '{{subst:huggle/warn-1|1=$1|2=$2}}'
+warning2: '{{subst:huggle/warn-2|1=$1|2=$2}}'
+warning3: '{{subst:huggle/warn-3|1=$1|2=$2}}'
+warning4: '{{subst:huggle/warn-4|1=$1|2=$2}}'
+warning4im: '{{subst:huggle/warn-4im|1=$1|2=$2}}'
+
+attack1: '{{subst:huggle/warn-attack-1|1=$1|2=$2}}'
+attack2: '{{subst:huggle/warn-attack-2|1=$1|2=$2}}'
+attack3: '{{subst:huggle/warn-attack-3|1=$1|2=$2}}'
+attack4: '{{subst:huggle/warn-attack-4|1=$1|2=$2}}'
+attack4im: '{{subst:huggle/warn-attack-4im|1=$1|2=$2}}'
+
+welcomes-user: true
+
+welcome-messages:
+    "Welcome with menu": '{{subst:WelcomeMenu}}'
+    "Welcome personal": '{{subst:Huggle/Welcome-pers}}'
+    "Welcome vandal :)": '{{subst:Huggle/welcomevandal}}'
+
+welcome: '{{subst:welcome}}'
+welcome-anon: '{{subst:welcome-anon}}'
+welcome-summary: 'Welcoming user'
+
+##############################################################################
+# Administrator functions
+##############################################################################
+admin: true
+
+block: true
+block-expiry-options: [15 minutes,3 hours,12 hours,24 hours,31 hours,48 hours,55 hours,72 hours,1 week,2 weeks,1 month,3 months,6 months,1 year,indefinite]
+blocktime: indefinite
+blocktime-anon: "24 hours"
+block-message: '{{subst:huggle/block|1=$1|2=$2}}'
+block-message-default: true
+block-message-indef: '{{subst:huggle/block-indef|1=$1}}'
+block-prompt: true
+block-reason: "[[Wikipedia:Vandalism|Vandalism]]"
+block-summary: "Notification: Blocked"
+
+delete: true
+protect: true
+protection-reason: 'Excessive [[Wikipedia:Vandalism|vandalism]]'
+
+##############################################################################
+# Classification
+##############################################################################
+
+months:
+  - January
+  - February
+  - March
+  - April
+  - May
+  - June
+  - July
+  - August
+  - September
+  - October
+  - November
+  - December
+
+# these are needed especially for wikis where months in signatures are not same as these in months
+# every line is a YAML array for 1 month, the alternative names are separated by a colon, for example:
+# - ['January','Jan','J.','1.']
+# every line needs to be terminated with comma, except for last one, which shouldn't be
+alternative-months:
+  - [1.,Jan]
+  - [2.,Feb]
+  - [3.,Mar]
+  - [4.,Apr]
+  - [5.,May]
+  - [6.,Jun]
+  - [7.,Jul]
+  - [8.,Aug]
+  - [9.,Sep]
+  - [10.,Oct]
+  - [11.,Nov]
+  - [12.,Dec]
+
+assisted-summaries:
+    - 'using [[Project:AutoWikiBrowser|AWB]]'
+    - 'using [[User:Dispenser/Checklinks|checklinks tool]]'
+    - '(using [[WP:HOTCAT|HotCat]])'
+    - 'using [[User:MichaelBillington/MWT|MWT]]'
+    - 'using [[:en:Wikipedia:Tools/Navigation_popups|popups]]'
+    - '[[User:Lightmouse/monobook.js/script.js|script]]-assisted'
+    - 'using [[User:S/tags|tags]]'
+    - 'using [[Wikipedia:STiki||STiki]]'
+    - '([[User:AmeIiorate/TINA|TINA]])'
+    - 'Using [[WP:TWINKLE|Twinkle]]'
+    - 'using [[WP:TW|TW]]'
+    - 'using [[WP:TWINKLE|TW]]'
+    - '([[WP:TW|TW]])'
+    - '([[User:Ale jrb/scripts/igloo|GLOO]])'
+
+page-blanked-pattern: '(\[\[(Wikipedia|WP):(AES|Automatic edit summaries)|(?|Automatic summary)\]\])?(:|?)? ?(Page was blanked|(Blank(ed|ing) the page))\.?'
+page-created-pattern: '(\[\[(Wikipedia|WP):(AES|Automatic edit summaries)|(?|Automatic summary)\]\])?(:|?)? ?Created page with .*'
+page-redirected-pattern: '(\[\[(Wikipedia|WP):(AES|Automatic edit summaries)|(?|Automatic summary)\]\])?(:|?)? ?(Created page as redirect|Redirect(ed|ing)) to .*'
+page-replaced-pattern: '(\[\[(Wikipedia|WP):(AES|Automatic edit summaries)|(?|Automatic summary)\]\])?(:|?)? ?(Page was replaced|Replac(ed|ing) (page|content)) with .*'
+
+revert-patterns:
+    - 'automatically reverting .*'
+    - 'bot - (rv|revert) .*'
+    - 'bot--revert.*'
+    - 'js: revert .*'
+    - '^[rR]evert.*'
+    - '.*\[\[Help:Reverting\|Reverted\]\] edits by.*'
+    - '^rv .*'
+    - '^[Uu]ndid .*'
+    - '^[Uu]ndo .*'
+    - '.* [Uu]ndid revision [\d]+ by .*'
+
+shared-ip-templates:
+    - aberwebcacheipaddress
+    - ipedu
+    - ipowner
+    - isp
+    - publicip
+    - schoolip
+    - school ip
+    - shared ip
+    - sharedip
+    - sharedip us military
+    - sharedipcert
+    - sharedipedu
+    - sharedippublic
+    - sharedunknownedu
+    - singnet
+    - vandalip
+
+tag-summaries:
+    - '^prod$'
+    - 'prod .'
+    - '[\{:]prod'
+    - 'prod[\}\-:2]'
+    - '(nominated|prodding|proposed) for deletion'
+    - 'proposed deletion'
+    - '^db$'
+    - 'db-'
+    - 'db tag$'
+    - '(marked for|tagged for|tagging for|requesting) speedy deletion'
+    - 'speedy deletion request'
+    - 'adding \{\{.+\}\} to article'
+    - '^afd$'
+    - '[\{:]afd'
+    - 'afd[ \}]'
+    - '^orfud$'
+    - '^non-free reduce$'
+    - 'orphaned fair use image tagging'
+    - 'tagging orphaned page for deletion'
+    - 'image has no (rationale|valid rationale|source|license|source or license)'
+    - 'marking newly uploaded untagged file'
+    - '^tag$'
+
+##############################################################################
+# Queue list
+##############################################################################
+
+queues:
+    'Filtered edits':
+        filter-ignored: exclude
+        filter-notifications: exclude
+        filter-own-userspace: exclude
+        filter-reverts: exclude
+        filter-tags: exclude
+        filter-warnings: exclude
+
+    'Filtered new pages':
+        filter-ignored: exclude
+        filter-new-pages: require
+
+    'All edits':
+
+    'All new pages':
+        filter-new-pages: require
+
+    'Assisted edits':
+        filter-assisted: require
+        filter-bot: exclude
+
+    'Huggle edits':
+        filter-huggle: require
+
+    'My edits':
+        filter-me: require
+
+    'Candidates for speedy deletion':
+        type: dynamic
+        source-type: category
+        source: 'Candidates for speedy deletion'
+
+default-queue: 'Filtered edits'
+
+# Everything in this list will be ignored if it fully matches the string
+ignore:
+    - 'Wikipedia:Articles for creation/Today'
+    - 'Wikipedia:Sandbox'
+    - 'Wikipedia talk:Sandbox'
+
+# Everything in this list will be ignored if it partially matches the name
+ignore-patterns:
+    - 'Wikipedia:Articles for creation'
+    - '/sandbox'
+    - '/common.js'
+    - '/common.css'
+    - 'Wikipedia talk:Articles for creation'
+    - 'Wikipedia:Teahouse'
+    - 'User:OberMegaTrans'
+    - 'User:Mobrovac-WMF'
+
+##############################################################################
+# Other
+##############################################################################
+
+irc-port: 6667
+irc-channel: '#test.wikipedia'
+anonymous: true
+auto-advance: false
+auto-whitelist: true
+config-summary: 'Updating configuration'
+diff-font-size: 8
+go:
+    "Wikipedia:Administrator intervention against vandalism": "Administrator intervention against vandalism"
+    "Wikipedia:Huggle/Sandbox": "Huggle sandbox"
+irc-port: 6667
+minor: reverts
+namespaces: article
+new-pages: false
+preload: 2
+show-log: true
+patrolling-enabled: true
+show-new-edits: true
+show-queue: true
+show-tool-tips: true
+summary: HG
+tray-icon: true
+startup-message-location: "Wikipedia:Huggle"
+update-whitelist: true
+userlist: "Wikipedia:Huggle/Users"
+userlist-update-summary: "Adding [[Special:Contributions/$1|$1]]"
+watchlist: none
+whitelist: "Wikipedia:Huggle/Whitelist"
+whitelist-edit-count: 500
+whitelist-enabled: true
+whitelist-update-summary: "Automatically updating whitelist"
+</syntaxhighlight>
+
