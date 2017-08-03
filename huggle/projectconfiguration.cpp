@@ -120,6 +120,7 @@ ProjectConfiguration::~ProjectConfiguration()
 {
     delete this->AIVP;
     delete this->UAAP;
+    delete this->yaml_node;
 }
 
 //! This is just a compatibility hack, to be removed ASAP!!
@@ -142,6 +143,7 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
 {
     this->configurationBuffer = config;
     this->cache.clear();
+    this->UsingYAML = false;
     Version version(HuggleParser::ConfigurationParse("min-version", config, "3.0.0"));
     Version huggle_version(HUGGLE_VERSION);
     this->Site = site;
@@ -469,6 +471,7 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
 
 bool ProjectConfiguration::ParseYAML(QString yaml_src, QString *reason, WikiSite *site)
 {
+    this->UsingYAML = true;
     this->configurationBuffer = yaml_src;
     this->cache.clear();
     this->Site = site;
@@ -489,6 +492,10 @@ bool ProjectConfiguration::ParseYAML(QString yaml_src, QString *reason, WikiSite
         *reason = "document is NULL";
         return false;
     }
+
+    // Make a copy of YAML node so that we can fetch keys later without need to reparse whole config file
+    delete this->yaml_node;
+    this->yaml_node = new YAML::Node(yaml);
 
     // Check if version of Huggle is allowed on this wiki
     Version version(HuggleParser::YAML2String("min-version", yaml, "3.0.0"));
@@ -806,7 +813,15 @@ QString ProjectConfiguration::GetConfig(QString key, QString dv)
     if (this->cache.contains(key))
         return this->cache[key];
 
-    QString value = HuggleParser::ConfigurationParse(key, this->configurationBuffer, dv);
+    QString value;
+
+    if (!this->UsingYAML)
+    {
+        value = HuggleParser::ConfigurationParse(key, this->configurationBuffer, dv);
+    } else
+    {
+        value = HuggleParser::YAML2String(key, *this->yaml_node, dv);
+    }
     this->cache.insert(key, value);
     return value;
 }

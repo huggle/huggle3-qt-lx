@@ -271,6 +271,7 @@ namespace Huggle
             QHash<QString, QString> cache;
             // We keep the config cached here just in case we needed to ever access it later
             QString                 configurationBuffer;
+            YAML::Node              *yaml_node = nullptr;
     };
 
     inline void ProjectConfiguration::RequestLogin()
