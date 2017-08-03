@@ -22,3 +22,6 @@
 [submodule "libs/libirc"]
 	path = huggle/libs/libirc
 	url = http://github.com/grumpy-irc/libirc
+[submodule "huggle/libs/yaml-cpp"]
+	path = huggle/libs/yaml-cpp
+	url = http://github.com/jbeder/yaml-cpp

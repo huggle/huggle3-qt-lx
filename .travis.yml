@@ -2,6 +2,11 @@
 # See ./travis/* for the actual scripts that get run
 
 language: cpp
+
+os:
+  - linux
+  - osx
+
 sudo: required
 
 env:
@@ -10,22 +15,32 @@ env:
 branches:
   except:
     - debian
-    - nightly/debian
-    - nightly/ubuntu
     - ubuntu
 
 matrix:
   include:
-    - env: QTTYPE=4
-#    - env: QTTYPE=5
+    - os: osx
+      env: QTTYPE=5
+    - os: linux
+      env: QTTYPE=4
   exclude:
     - env: THENEEDFORTHIS=FAIL
 
-before_install: bash -x ./travis/before_install.sh
-install: bash -x ./travis/install.sh
+before_install:
+    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then bash -x ./travis/before_install.sh; fi
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then bash -x ./travis/before_install_osx.sh; fi
 
-before_script: bash -x ./travis/before_script.sh
-script: bash -x ./travis/script.sh
+install:
+    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then bash -x ./travis/install.sh; fi
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then bash -x ./travis/install_osx.sh; fi
+
+before_script:
+    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then bash -x ./travis/before_script.sh; fi
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then bash -x ./travis/before_script_osx.sh; fi
+
+script:
+    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then bash -x ./travis/script.sh; fi
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then bash -x ./travis/script_osx.sh; fi
 
 notifications: 
   irc: 

@@ -257,6 +257,7 @@
   <string name="login-progress-language">Updating message files...</string>
   <string name="login-progress-global">Checking global configuration...</string>
   <string name="login-progress-config">Checking configuration pages...</string>
+  <string name="login-progress-yaml">Checking local YAML configuration for $1</string>
   <string name="login-progress-local">Checking local configuration for $1</string>
   <string name="login-progress-user">Checking user configuration for $1</string>
   <string name="login-progress-user-info">Checking user info for $1</string>

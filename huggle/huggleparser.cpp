@@ -8,6 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
+#include "exception.hpp"
 #include "huggleparser.hpp"
 #include "huggleprofiler.hpp"
 #include "configuration.hpp"
@@ -16,6 +17,7 @@
 #include "projectconfiguration.hpp"
 #include "syslog.hpp"
 #include "wikisite.hpp"
+#include <yaml-cpp/yaml.h>
 
 using namespace Huggle;
 
@@ -137,13 +139,13 @@ void HuggleParser::ParseNoTalkWords(QString text, WikiSite *site)
     site->ProjectConfig->NoTalkScoreWords = ParseScoreWords(text, "score-words-no-talk");
 }
 
-void HuggleParser::ParseNoTalkPats(QString text, WikiSite *site)
+void HuggleParser::ParseNoTalkPatterns(QString text, WikiSite *site)
 {
     site->ProjectConfig->NoTalkScoreParts.clear();
     site->ProjectConfig->NoTalkScoreParts = ParseScoreWords(text, "score-parts-no-talk");
 }
 
-void HuggleParser::ParsePats(QString text, WikiSite *site)
+void HuggleParser::ParsePatterns(QString text, WikiSite *site)
 {
     site->ProjectConfig->ScoreParts.clear();
     site->ProjectConfig->ScoreParts = ParseScoreWords(text, "score-parts");
@@ -647,4 +649,519 @@ byte_ht HuggleParser::GetIDOfMonth(QString month, WikiSite *site)
         i++;
     }
     return -6;
+}
+
+QString HuggleParser::FetchYAML(QString source, bool *failed)
+{
+    if (!source.contains("---"))
+    {
+        if (failed)
+            *failed = true;
+        return "";
+    }
+
+    if (failed)
+        *failed = false;
+
+    if (source.contains(HUGGLE_BOC))
+    {
+        source = source.mid(source.indexOf(HUGGLE_BOC) + QString(HUGGLE_BOC).length());
+    }
+
+    source.replace("<syntaxhighlight lang='yaml'>", "");
+    source.replace("<syntaxhighlight lang=\"yaml\">", "");
+    source.replace("<syntaxhighlight lang=yaml>", "");
+    source.replace("</syntaxhighlight>", "");
+
+    return source;
+}
+
+bool HuggleParser::YAML2Bool(QString key, YAML::Node &node, bool missing)
+{
+    try
+    {
+        if (!node)
+            throw new Huggle::NullPointerException("YAML::Node *node", BOOST_CURRENT_FUNCTION);
+
+        if (!node[key.toStdString()])
+            return missing;
+
+        return node[key.toStdString()].as<bool>(missing);
+    } catch (YAML::Exception exception)
+    {
+        HUGGLE_ERROR("YAML Parsing error (" + key + "): " + QString(exception.what()));
+    }
+    return missing;
+}
+
+QString HuggleParser::YAML2String(QString key, YAML::Node &node, QString missing)
+{
+    try
+    {
+        if (!node)
+            throw new Huggle::NullPointerException("YAML::Node *node", BOOST_CURRENT_FUNCTION);
+
+        if (!node[key.toStdString()])
+            return missing;
+
+        return QString::fromStdString(node[key.toStdString()].as<std::string>(missing.toStdString()));
+    } catch (YAML::Exception exception)
+    {
+        HUGGLE_ERROR("YAML Parsing error (" + key + "): " + QString(exception.what()));
+    }
+    return missing;
+}
+
+int HuggleParser::YAML2Int(QString key, YAML::Node &node, int missing)
+{
+    try
+    {
+        if (!node)
+            throw new Huggle::NullPointerException("YAML::Node *node", BOOST_CURRENT_FUNCTION);
+
+        if (!node[key.toStdString()])
+            return missing;
+
+        return node[key.toStdString()].as<int>(missing);
+    } catch (YAML::Exception exception)
+    {
+        HUGGLE_ERROR("YAML Parsing error (" + key + "): " + QString(exception.what()));
+    }
+    return missing;
+}
+
+double HuggleParser::YAML2Double(QString key, YAML::Node &node, double missing)
+{
+    try
+    {
+        if (!node)
+            throw new Huggle::NullPointerException("YAML::Node *node", BOOST_CURRENT_FUNCTION);
+
+        if (!node[key.toStdString()])
+            return missing;
+
+        return node[key.toStdString()].as<double>(missing);
+    } catch (YAML::Exception exception)
+    {
+        HUGGLE_ERROR("YAML Parsing error (" + key + "): " + QString(exception.what()));
+    }
+    return missing;
+}
+
+QStringList HuggleParser::YAML2QStringList(YAML::Node &node, bool *ok)
+{
+    QStringList missing;
+    return YAML2QStringList(node, missing, ok);
+}
+
+QStringList HuggleParser::YAML2QStringList(YAML::Node &node, QStringList missing, bool *ok)
+{
+    if (ok)
+        *ok = false;
+    try
+    {
+        if (!node)
+            return missing;
+
+        QStringList results;
+        if (!node.IsSequence())
+            return missing;
+
+        // Even if it's empty, we are good to go
+        if (ok)
+            *ok = true;
+
+        for (std::size_t i=0;i<node.size();i++)
+        {
+            results << QString::fromStdString(node[i].as<std::string>());
+        }
+        return results;
+    } catch (YAML::Exception exception)
+    {
+        HUGGLE_ERROR("YAML Parsing error (node to QStringList): " + QString(exception.what()));
+    }
+    return missing;
+}
+
+QStringList HuggleParser::YAML2QStringList(QString key, YAML::Node &node, bool *ok)
+{
+    QStringList missing;
+    return YAML2QStringList(key, node, missing, ok);
+}
+
+QStringList HuggleParser::YAML2QStringList(QString key, YAML::Node &node, QStringList missing, bool *ok)
+{
+    if (ok)
+        *ok = false;
+    try
+    {
+        if (!node)
+            throw new Huggle::NullPointerException("YAML::Node *node", BOOST_CURRENT_FUNCTION);
+
+        if (!node[key.toStdString()])
+            return missing;
+
+        YAML::Node temp = node[key.toStdString()];
+        return YAML2QStringList(temp, missing, ok);
+
+    } catch (YAML::Exception exception)
+    {
+        HUGGLE_ERROR("YAML Parsing error (" + key + "): " + QString(exception.what()));
+    }
+    return missing;
+}
+
+QList<QStringList> HuggleParser::YAML2QListOfQStringList(QString key, YAML::Node &node, bool *ok)
+{
+    QList<QStringList> results;
+    if (ok)
+        *ok = false;
+    try
+    {
+        if (!node)
+            return results;
+
+        if (!node[key.toStdString()])
+            return results;
+
+        YAML::Node seq = node[key.toStdString()];
+
+        if (!seq.IsSequence())
+            return results;
+
+        // Even if it's empty, we are good to go
+        if (ok)
+            *ok = true;
+
+        for (std::size_t i=0;i<seq.size();i++)
+        {
+            YAML::Node temp = seq[i];
+            results << YAML2QStringList(temp, ok);
+            if (ok && !*ok)
+            {
+                HUGGLE_ERROR("Failed parsing list of string lists: " + key);
+                return results;
+            }
+        }
+        return results;
+    } catch (YAML::Exception exception)
+    {
+        HUGGLE_ERROR("YAML Parsing error " + key + " (node to List of QStringLists): " + QString(exception.what()));
+    }
+    return results;
+}
+
+QHash<QString, QString> HuggleParser::YAML2QStringHash(YAML::Node &node, bool *ok)
+{
+    QHash<QString, QString> results;
+    if (ok)
+        *ok = false;
+    try
+    {
+        if (!node)
+            throw new Huggle::NullPointerException("YAML::Node *node", BOOST_CURRENT_FUNCTION);
+
+        // Even if it's empty, we are good to go
+        if (ok)
+            *ok = true;
+
+        for (YAML::const_iterator it=node.begin();it!=node.end();++it)
+        {
+            results.insert(QString::fromStdString(it->first.as<std::string>()), QString::fromStdString(it->second.as<std::string>()));
+        }
+        return results;
+    } catch (YAML::Exception exception)
+    {
+        HUGGLE_ERROR("YAML Parsing error: " + QString(exception.what()));
+    }
+    return results;
+}
+
+QHash<QString, QString> HuggleParser::YAML2QStringHash(QString key, YAML::Node &node, bool *ok)
+{
+    QHash<QString, QString> missing;
+    return YAML2QStringHash(key, node, missing, ok);
+}
+
+QHash<QString, QVariant> HuggleParser::YAML2QHash(QString key, YAML::Node &node, QHash<QString, QVariant> missing, bool *ok)
+{
+    if (ok)
+        *ok = false;
+    try
+    {
+        if (!node)
+            throw new Huggle::NullPointerException("YAML::Node *node", BOOST_CURRENT_FUNCTION);
+
+        if (!node[key.toStdString()])
+            return missing;
+
+        QHash<QString, QVariant> results;
+        YAML::Node seq = node[key.toStdString()];
+
+        // Even if it's empty, we are good to go
+        if (ok)
+            *ok = true;
+
+        for (YAML::const_iterator it=seq.begin();it!=seq.end();++it)
+        {
+            switch(it->second.Type())
+            {
+                case YAML::NodeType::Null:
+                    results.insert(QString::fromStdString(it->first.as<std::string>()), QVariant());
+                    break;
+                case YAML::NodeType::Scalar:
+                    results.insert(QString::fromStdString(it->first.as<std::string>()), QString::fromStdString(it->second.as<std::string>()));
+                    break;
+                case YAML::NodeType::Sequence:
+                {
+                    YAML::Node second = it->second;
+                    results.insert(QString::fromStdString(it->first.as<std::string>()), YAML2QStringList(second, ok));
+                }
+                    break;
+                case YAML::NodeType::Map:
+                {
+                    *ok = false;
+                    HUGGLE_ERROR("YAML Parsing error (" + key + "): It's not possible to convert QHash to QVariant");
+                    return missing;
+                }
+                    break;
+                case YAML::NodeType::Undefined:
+                    break;
+            }
+        }
+        return results;
+    } catch (YAML::Exception exception)
+    {
+        HUGGLE_ERROR("YAML Parsing error (" + key + "): " + QString(exception.what()));
+    }
+    return missing;
+}
+
+QHash<QString, QString> HuggleParser::YAML2QStringHash(QString key, YAML::Node &node, QHash<QString, QString> missing, bool *ok)
+{
+    if (ok)
+        *ok = false;
+    try
+    {
+        if (!node)
+            throw new Huggle::NullPointerException("YAML::Node *node", BOOST_CURRENT_FUNCTION);
+
+        if (!node[key.toStdString()])
+            return missing;
+
+        QHash<QString, QString> results;
+        YAML::Node seq = node[key.toStdString()];
+
+        // Even if it's empty, we are good to go
+        if (ok)
+            *ok = true;
+
+        for (YAML::const_iterator it=seq.begin();it!=seq.end();++it)
+        {
+            results.insert(QString::fromStdString(it->first.as<std::string>()), QString::fromStdString(it->second.as<std::string>()));
+        }
+        return results;
+    } catch (YAML::Exception exception)
+    {
+        HUGGLE_ERROR("YAML Parsing error (" + key + "): " + QString(exception.what()));
+    }
+    return missing;
+}
+
+QHash<QString, QHash<QString, QString>> HuggleParser::YAML2QHashOfHash(QString key, YAML::Node &node, bool *ok)
+{
+    QHash<QString, QHash<QString, QString>> results;
+    if (ok)
+        *ok = false;
+    try
+    {
+        if (!node)
+            throw new Huggle::NullPointerException("YAML::Node *node", BOOST_CURRENT_FUNCTION);
+
+        if (!node[key.toStdString()])
+            return results;
+
+        YAML::Node seq = node[key.toStdString()];
+
+        // Even if it's empty, we are good to go
+        if (ok)
+            *ok = true;
+
+        for (YAML::const_iterator it=seq.begin();it!=seq.end();++it)
+        {
+            QHash<QString, QString> hash;
+            YAML::Node yaml_n = it->second;
+            for (YAML::const_iterator it2=yaml_n.begin();it2!=yaml_n.end();++it2)
+            {
+                hash.insert(QString::fromStdString(it2->first.as<std::string>()), QString::fromStdString(it2->second.as<std::string>()));
+            }
+            results.insert(QString::fromStdString(it->first.as<std::string>()), hash);
+        }
+        return results;
+    } catch (YAML::Exception exception)
+    {
+        HUGGLE_ERROR("YAML Parsing error (" + key + "): " + QString(exception.what()));
+    }
+    return QHash<QString, QHash<QString, QString>>();
+}
+
+QList<HuggleQueueFilter *> HuggleParser::ConfigurationParseQueueList_YAML(YAML::Node &node, bool locked)
+{
+    QList<HuggleQueueFilter*> ReturnValue;
+
+    if (!node)
+        throw new Huggle::NullPointerException("YAML::Node *node", BOOST_CURRENT_FUNCTION);
+
+    if (!node["queues"])
+        return ReturnValue;
+
+    YAML::Node seq = node["queues"];
+
+    for (YAML::const_iterator it=seq.begin();it!=seq.end();++it)
+    {
+        HuggleQueueFilter *filter = new HuggleQueueFilter();
+        filter->QueueName = QString::fromStdString(it->first.as<std::string>());
+        YAML::Node queue_n = it->second;
+        QHash<QString, QString> queue_data = HuggleParser::YAML2QStringHash(queue_n);
+        filter->ProjectSpecific = locked;
+        filter->setIgnoreBots(HuggleQueueFilterMatchIgnore);
+        filter->setIgnoreFriends(HuggleQueueFilterMatchIgnore);
+        filter->setIgnoreIP(HuggleQueueFilterMatchIgnore);
+        filter->setIgnoreMinor(HuggleQueueFilterMatchIgnore);
+        filter->setIgnoreNP(HuggleQueueFilterMatchIgnore);
+        filter->setIgnoreTalk(HuggleQueueFilterMatchIgnore);
+        filter->setIgnoreReverts(HuggleQueueFilterMatchIgnore);
+        filter->setIgnoreSelf(HuggleQueueFilterMatchIgnore);
+        filter->setIgnore_UserSpace(HuggleQueueFilterMatchIgnore);
+        filter->setIgnoreWL(HuggleQueueFilterMatchIgnore);
+        ReturnValue.append(filter);
+        foreach (QString key, queue_data.keys())
+        {
+            QString val = queue_data[key];
+            if (key == "filter-ignored")
+            {
+                filter->setIgnoreWL(F2B(val));
+                continue;
+            }
+            if (key == "filter-bots")
+            {
+                filter->setIgnoreBots(F2B(val));
+                continue;
+            }
+            if (key == "filtered-ns")
+            {
+                QStringList ns = val.split(",");
+                foreach (QString namespace_id, ns)
+                {
+                    if (namespace_id.isEmpty())
+                        continue;
+                    int nsid = namespace_id.toInt();
+                    if (filter->Namespaces.contains(nsid))
+                        filter->Namespaces[nsid] = true;
+                    else
+                        filter->Namespaces.insert(nsid, true);
+                }
+                continue;
+            }
+            if (key == "filter-assisted")
+            {
+                filter->setIgnoreFriends(F2B(val));
+                continue;
+            }
+            if (key == "filter-talk")
+            {
+                filter->setIgnoreTalk(F2B(val));
+                continue;
+            }
+            if (key == "filter-ip")
+            {
+                filter->setIgnoreIP(F2B(val));
+                continue;
+            }
+            if (key == "filter-reverts")
+            {
+                filter->setIgnoreReverts(F2B(val));
+                continue;
+            }
+            if (key == "filter-new-pages")
+            {
+                filter->setIgnoreNP(F2B(val));
+                continue;
+            }
+            if (key == "filter-me")
+            {
+                filter->setIgnoreSelf(F2B(val));
+                continue;
+            }
+            if (key == "filter-watched")
+            {
+                filter->setIgnoreWatched(F2B(val));
+            }
+            if (key == "nsfilter-user")
+            {
+                filter->setIgnore_UserSpace(F2B(val));
+                continue;
+            }
+            if (key == "required-tags")
+            {
+                filter->SetRequiredTags_CommaSeparated(val);
+                continue;
+            }
+            if (key == "ignored-tags")
+            {
+                filter->SetIgnoredTags_CommaSeparated(val);
+                continue;
+            }
+            if (key == "required-categories")
+            {
+                filter->SetRequiredCategories_CommaSeparated(val);
+                continue;
+            }
+            if (key == "ignored-categories")
+            {
+                filter->SetIgnoredCategories_CommaSeparated(val);
+                continue;
+            }
+        }
+    }
+}
+
+static QList<ScoreWord> ParseScoreWords_YAML(YAML::Node &node, QString key)
+{
+    QList<ScoreWord> results;
+    QHash<QString, QVariant> score_words = HuggleParser::YAML2QHash(key, node, QHash<QString, QVariant>());
+    foreach (QString score_str, score_words.keys())
+    {
+        int score = score_str.toInt();
+        QStringList words = score_words[score_str].toStringList();
+        foreach (QString w, words)
+        {
+            results.append(ScoreWord(w, score));
+        }
+    }
+    return results;
+}
+
+void HuggleParser::ParsePatterns_yaml(YAML::Node &node, WikiSite *site)
+{
+    site->ProjectConfig->ScoreParts.clear();
+    site->ProjectConfig->ScoreParts = ParseScoreWords_YAML(node, "score-parts");
+}
+
+void HuggleParser::ParseWords_yaml(YAML::Node &node, WikiSite *site)
+{
+    site->ProjectConfig->ScoreWords.clear();
+    site->ProjectConfig->ScoreWords = ParseScoreWords_YAML(node, "score-words");
+}
+
+void HuggleParser::ParseNoTalkWords_yaml(YAML::Node &node, WikiSite *site)
+{
+    site->ProjectConfig->NoTalkScoreWords.clear();
+    site->ProjectConfig->NoTalkScoreWords = ParseScoreWords_YAML(node, "score-words-no-talk");
+}
+
+void HuggleParser::ParseNoTalkPatterns_yaml(YAML::Node &node, WikiSite *site)
+{
+    site->ProjectConfig->NoTalkScoreParts.clear();
+    site->ProjectConfig->NoTalkScoreParts = ParseScoreWords_YAML(node, "score-parts-no-talk");
 }

@@ -50,6 +50,7 @@ class HuggleTest : public QObject
         //! Test if IsIP returns true for users who are IP's
         void testCaseWikiUserCheckIP();
         void testCaseTerminalParser();
+        void testCaseConfigurationParse_YAML();
         void testCaseConfigurationParse_QL();
         void testCaseScores();
         void testCaseVersionComparison();
@@ -71,6 +72,23 @@ HuggleTest::HuggleTest()
 HuggleTest::~HuggleTest()
 {
     delete Huggle::Configuration::HuggleConfiguration;
+}
+
+void HuggleTest::testCaseConfigurationParse_YAML()
+{
+    QFile f(":/test/wikipage/config.yaml");
+    f.open(QIODevice::ReadOnly);
+    Huggle::WikiSite *temp = new Huggle::WikiSite("test", "test.wikipedia");
+    Huggle::Configuration::HuggleConfiguration->Projects << temp;
+    temp->ProjectConfig = new Huggle::ProjectConfiguration("test");
+    QString error;
+    temp->ProjectConfig->ParseYAML(f.readAll(), &error, temp);
+    f.close();
+    QVERIFY2(error.isEmpty(), QString(QString("Failed to parse configuration, error was: ") + error).toUtf8().data());
+    QVERIFY2(temp->ProjectConfig->Ignores.count() == 3, "Invalid number of ignores");
+    QVERIFY2(temp->ProjectConfig->WarningTypes.count() == 12, "Invalid number of warning types");
+    QVERIFY2(temp->ProjectConfig->AlternativeMonths.count() == 12, "Invalid number of months");
+    QVERIFY2(temp->ProjectConfig->Months.count() == 12, "Invalid number of months");
 }
 
 void HuggleTest::testCaseConfigurationParse_QL()

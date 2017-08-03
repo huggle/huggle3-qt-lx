@@ -27,6 +27,11 @@
 //    are being used)
 #define                 ProjectConfig_IPScore_Key "score-ip"
 
+namespace YAML
+{
+    class Node;
+}
+
 namespace Huggle
 {
     class WikiPage;
@@ -60,16 +65,22 @@ namespace Huggle
     class HUGGLE_EX ProjectConfiguration
     {
         public:
+            static QStringList Yaml_FetchSpeedyOptions(YAML::Node &node);
+            static QHash<QString, int> Yaml_FetchScoreTags(YAML::Node &node);
+
             ProjectConfiguration(QString project_name);
             ~ProjectConfiguration();
             QDateTime ServerTime();
             //! Parse all information from local config, this function is used in login
             bool Parse(QString config, QString *reason, WikiSite *site);
+            bool ParseYAML(QString yaml_src, QString *reason, WikiSite *site);
             void RequestLogin();
             QString GetConfig(QString key, QString dv = "");
             //! \todo This needs to be later used as a default value for user config, however it's not being ensured
             //!       this value is loaded before the user config right now
             bool AutomaticallyResolveConflicts = false;
+            //! If true, parsing will be done using YAML parser
+            bool UsingYAML = false;
             QString ReportAutoSummary;
             bool ReadOnly = false;
             bool IsSane = false;
@@ -172,7 +183,7 @@ namespace Huggle
 
             // Deleting
             QString         DeletionTitle;
-            QStringList     DeletionSummaries;
+            QStringList     DeletionReasons;
             QString         AssociatedDelete = "G8. Page dependent on a non-existent or deleted page.";
             // Warnings
             QString         AgfRevert = "Reverted good faith edits";

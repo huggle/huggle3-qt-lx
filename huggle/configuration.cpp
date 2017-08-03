@@ -13,6 +13,7 @@
 #include <QtXml>
 #include <QKeySequence>
 #include <QDesktopServices>
+#include <yaml-cpp/yaml.h>
 #include "syslog.hpp"
 #include "exception.hpp"
 #include "generic.hpp"
@@ -351,7 +352,7 @@ void Configuration::LoadSystemConfig(QString fn)
             continue;
         }
         RCN(RingLogMaxSize);
-        RC(GlobalConfig);
+        RC(GlobalConfigYAML);
         RCB(DynamicColsInList);
         RCB(WarnUserSpaceRoll);
         RCB(EnableUpdates);
@@ -441,7 +442,7 @@ void Configuration::SaveSystemConfig()
     INSERT_CONFIG_B(InstantReverts);
     INSERT_CONFIG_B(UsingSSL);
     INSERT_CONFIG_N(QueueSize);
-    INSERT_CONFIG(GlobalConfig);
+    INSERT_CONFIG(GlobalConfigYAML);
     InsertConfig("GlobalConfigurationWikiAddress", hcfg->GlobalConfigurationWikiAddress, writer);
     InsertConfig("IRCIdent", hcfg->IRCIdent, writer);
     InsertConfig("IRCNick", hcfg->IRCNick, writer);
@@ -522,17 +523,35 @@ void Configuration::SaveSystemConfig()
 
 bool Configuration::ParseGlobalConfig(QString config)
 {
-    this->GlobalConfig_EnableAll = SafeBool(ConfigurationParse("enable-all", config));
-    this->GlobalConfig_DocumentationPath = ConfigurationParse("documentation", config, this->GlobalConfig_DocumentationPath);
-    this->GlobalConfig_FeedbackPath = ConfigurationParse("feedback", config, this->GlobalConfig_FeedbackPath);
+    std::string config_std = FetchYAML(config).toStdString();
+    YAML::Node yaml;
+    try
+    {
+        yaml = YAML::Load(config_std);
+    } catch (YAML::Exception exception)
+    {
+        HUGGLE_ERROR("YAML: " + QString(exception.what()));
+        return false;
+    }
+    if (yaml.IsNull())
+    {
+        HUGGLE_ERROR("Unable to read global configuration: yml node is NULL");
+        return false;
+    }
+
+    this->GlobalConfig_EnableAll = HuggleParser::YAML2Bool("enable-all", yaml, false);
+    this->GlobalConfig_DocumentationPath = HuggleParser::YAML2String("documentation", yaml, this->GlobalConfig_DocumentationPath);
+    this->GlobalConfig_FeedbackPath = HuggleParser::YAML2String("feedback", yaml, this->GlobalConfig_FeedbackPath);
+    this->GlobalConfig_LocalConfigYAMLPath = HuggleParser::YAML2String("config-yml", yaml, this->GlobalConfig_LocalConfigYAMLPath);
+    this->GlobalConfig_LocalConfigWikiPath = HuggleParser::YAML2String("config", yaml, this->GlobalConfig_LocalConfigWikiPath);
     // Sanitize page titles (huggle2 done sth. similiar at Page.SanitizeTitle before requesting them)
-    this->GlobalConfig_UserConf = ReplaceSpecialUserPage(ConfigurationParse("user-config-hg3", config));
-    this->GlobalConfig_UserConf_old = ReplaceSpecialUserPage(ConfigurationParse("user-config", config));
-    this->GlobalConfig_Xmlrcs = ConfigurationParse("xmlrcs", config, "huggle-rc.wmflabs.org");
-    this->GlobalConfig_XmlrcsPort = ConfigurationParse("xmlrcs-port", config, "8822").toInt();
-    this->HANMask = ConfigurationParse("han-mask", config, this->HANMask);
-    this->GlobalConfig_Whitelist = ConfigurationParse("whitelist-server", config);
-    QString Webquery_ = ConfigurationParse("user-agent", config, "Huggle/$1 http://en.wikipedia.org/wiki/Wikipedia:Huggle");
+    this->GlobalConfig_UserConf = ReplaceSpecialUserPage(HuggleParser::YAML2String("user-config-hg3", yaml));
+    this->GlobalConfig_UserConf_old = ReplaceSpecialUserPage(HuggleParser::YAML2String("user-config", yaml));
+    this->GlobalConfig_Xmlrcs = HuggleParser::YAML2String("xmlrcs", yaml, "huggle-rc.wmflabs.org");
+    this->GlobalConfig_XmlrcsPort = HuggleParser::YAML2Int("xmlrcs-port", yaml, 8822);
+    this->HANMask = HuggleParser::YAML2String("han-mask", yaml, this->HANMask);
+    this->GlobalConfig_Whitelist = HuggleParser::YAML2String("whitelist-server", yaml);
+    QString Webquery_ = HuggleParser::YAML2String("user-agent", yaml, "Huggle/$1 http://en.wikipedia.org/wiki/Wikipedia:Huggle");
     Webquery_.replace("$1", this->SystemConfig_Username);
     this->WebqueryAgent = Webquery_.toUtf8();
     this->GlobalConfigWasLoaded = true;

@@ -38,6 +38,9 @@ typedef long long revid_ht;
     #define HUGGLE_WEB_ENGINE_NAME "WebKit"
 #endif
 
+// This is signature we can use to find Huggle yml config inside of wiki text
+#define HUGGLE_BOC "<!-- HUGGLE:BOC -->"
+
 // We are using translatewiki and if this is not defined there is a huge overhead of Qt code
 #ifndef QT_NO_TRANSLATION
     #define QT_NO_TRANSLATION
@@ -179,6 +182,8 @@ namespace std { typedef decltype(nullptr) nullptr_t; }
     #define HUGGLE_UPDATER_PLATFORM_TYPE            "linux"
     #define HUGGLE_GLOBAL_EXTENSION_PATH            "/usr/share/huggle/extensions"
 #elif defined HUGGLE_WIN
+    // This is needed by yaml cpp library, otherwise it won't build with MSVC
+    #define YAML_CPP_DLL
     #ifdef _WIN64
         #define HUGGLE_UPDATER_PLATFORM_TYPE            "windows/msvc/64"
     #elif defined __GNUC__

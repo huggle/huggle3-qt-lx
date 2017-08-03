@@ -9,7 +9,9 @@
 //GNU General Public License for more details.
 
 #include "projectconfiguration.hpp"
+#include "configuration.hpp"
 #include "generic.hpp"
+#include "exception.hpp"
 #include "huggleparser.hpp"
 #include "localization.hpp"
 #include "syslog.hpp"
@@ -17,8 +19,74 @@
 #include "wikipage.hpp"
 #include "wikisite.hpp"
 
+// Nasty hack to get yaml-cpp to work on OSX
+#undef _l
+
+#include <yaml-cpp/yaml.h>
+
 using namespace Huggle::Generic;
 using namespace Huggle;
+
+QStringList ProjectConfiguration::Yaml_FetchSpeedyOptions(YAML::Node &node)
+{
+    // this is just temporary hack
+    try
+    {
+        if (!node)
+            throw new Huggle::NullPointerException("YAML::Node *node", BOOST_CURRENT_FUNCTION);
+
+        if (!node["speedy-options"])
+            return QStringList();
+
+        QStringList results;
+        YAML::Node seq = node["speedy-options"];
+
+        for (YAML::const_iterator it = seq.begin(); it != seq.end(); ++it)
+        {
+            QString tag = QString::fromStdString(it->first.as<std::string>());
+            YAML::Node s = it->second;
+            QStringList options = HuggleParser::YAML2QStringList(s);
+            results.append(tag + ";" + options.join(QString(";")));
+        }
+        return results;
+    } catch (YAML::Exception exception)
+    {
+        HUGGLE_ERROR("YAML Parsing error (speedy-options): " + QString(exception.what()));
+    }
+    return QStringList();
+}
+
+QHash<QString, int> ProjectConfiguration::Yaml_FetchScoreTags(YAML::Node &node)
+{
+    try
+    {
+        if (!node)
+            throw new Huggle::NullPointerException("YAML::Node *node", BOOST_CURRENT_FUNCTION);
+
+        if (!node["score-tags"])
+            return QHash<QString, int>();
+
+        QHash<QString, int> results;
+        YAML::Node seq = node["score-tags"];
+
+        for (YAML::const_iterator it = seq.begin(); it != seq.end(); ++it)
+        {
+            QString tag = QString::fromStdString(it->first.as<std::string>());
+            int score = it->second.as<int>();
+            if (results.contains(tag))
+            {
+                Syslog::HuggleLogs->DebugLog("Multiple definitions of score-tag: " + tag);
+                continue;
+            }
+            results.insert(tag, score);
+        }
+        return results;
+    } catch (YAML::Exception exception)
+    {
+        HUGGLE_ERROR("YAML Parsing error (score-tags): " + QString(exception.what()));
+    }
+    return QHash<QString, int>();
+}
 
 ProjectConfiguration::ProjectConfiguration(QString project_name)
 {
@@ -42,7 +110,7 @@ ProjectConfiguration::ProjectConfiguration(QString project_name)
     // defaults
     this->ProtectReason = "Persistent [[WP:VAND|vandalism]]";
     this->BlockExpiryOptions.append("indefinite");
-    this->DeletionSummaries << "Deleted page using Huggle";
+    this->DeletionReasons << "Deleted page using Huggle";
     this->ProjectName = project_name;
     this->SoftwareRevertDefaultSummary = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to"\
             " last revision by $2 using huggle software rollback (reverted by $3 revisions to revision $4)";
@@ -52,6 +120,22 @@ ProjectConfiguration::~ProjectConfiguration()
 {
     delete this->AIVP;
     delete this->UAAP;
+}
+
+//! This is just a compatibility hack, to be removed ASAP!!
+QStringList temp_compat_hash2list(QHash<QString, QString> hash, bool sort = false)
+{
+    QStringList result;
+    QStringList keys = hash.keys();
+    if (sort)
+    {
+        keys.sort();
+    }
+    foreach (QString k, keys)
+    {
+        result.append(k + ";" + hash[k]);
+    }
+    return result;
 }
 
 bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site)
@@ -93,7 +177,7 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
     this->RequireRollback = SafeBool(HuggleParser::ConfigurationParse("require-rollback", config));
     this->ReadOnly = SafeBool(HuggleParser::ConfigurationParse("read-only", config), this->ReadOnly);
     if (this->ReadOnly)
-        Syslog::HuggleLogs->WarningLog(_l("read-only", site->Name));
+        Syslog::HuggleLogs->WarningLog(Huggle::Localizations::HuggleLocalizations->Localize("read-only", site->Name));
     this->LargeRemoval = HuggleParser::ConfigurationParse("large-removal", config, "400").toInt();
     // IRC
     this->UseIrc = SafeBool(HuggleParser::ConfigurationParse("irc", config));
@@ -260,7 +344,7 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
         list.removeAt(0);
     }
     this->Tag = HuggleParser::ConfigurationParse("tag", config);
-    this->DeletionSummaries = HuggleParser::ConfigurationParseTrimmed_QL("deletion-reasons", config, false);
+    this->DeletionReasons = HuggleParser::ConfigurationParseTrimmed_QL("deletion-reasons", config, false);
     this->BlockSummary = HuggleParser::ConfigurationParse("block-summary", config, "Notification: Blocked");
     this->BlockTime = HuggleParser::ConfigurationParse("blocktime", config, "indef");
     this->ClearTalkPageTemp = HuggleParser::ConfigurationParse("template-clear-talk-page", config, "{{Huggle/Cleared}}");
@@ -350,8 +434,8 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
     if (this->AIVP != nullptr)
         delete this->AIVP;
     this->AIVP = new WikiPage(this->ReportAIV);
-    HuggleParser::ParsePats(config, site);
-    HuggleParser::ParseNoTalkPats(config, site);
+    HuggleParser::ParsePatterns(config, site);
+    HuggleParser::ParseNoTalkPatterns(config, site);
     HuggleParser::ParseNoTalkWords(config, site);
     HuggleParser::ParseWords(config, site);
     if (this->UAAP != nullptr)
@@ -366,6 +450,340 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
         while (CurrentWarning <= 4)
         {
             QString xx = HuggleParser::ConfigurationParse(type + QString::number(CurrentWarning), config);
+            if (!xx.isEmpty())
+            {
+                this->WarningTemplates.append(type + QString::number(CurrentWarning) + ";" + xx);
+            }
+            CurrentWarning++;
+        }
+        CurrentTemplate++;
+    }
+    // sanitize
+    if (this->ReportAIV.size() == 0)
+        this->AIV = false;
+    // Do the same for UAA as well
+    this->UAAavailable = this->UAAPath.size() > 0;
+    this->IsSane = true;
+    return true;
+}
+
+bool ProjectConfiguration::ParseYAML(QString yaml_src, QString *reason, WikiSite *site)
+{
+    this->configurationBuffer = yaml_src;
+    this->cache.clear();
+    this->Site = site;
+
+    // Fetch the YAML
+    std::string config_std = HuggleParser::FetchYAML(yaml_src).toStdString();
+    YAML::Node yaml;
+    try
+    {
+        yaml = YAML::Load(config_std);
+    } catch (YAML::Exception exception)
+    {
+        *reason = QString(exception.what());
+        return false;
+    }
+    if (yaml.IsNull())
+    {
+        *reason = "document is NULL";
+        return false;
+    }
+
+    // Check if version of Huggle is allowed on this wiki
+    Version version(HuggleParser::YAML2String("min-version", yaml, "3.0.0"));
+    Version huggle_version(HUGGLE_VERSION);
+
+    if (huggle_version < version)
+    {
+        if (reason)
+            *reason = "your huggle is too old, " + this->ProjectName + " supports only " + version.ToString() + " or newer.";
+        return false;
+    }
+
+    /////////////////////////////////////////////
+    // Access control
+    /////////////////////////////////////////////
+    this->Approval = HuggleParser::YAML2Bool("approval", yaml, false);
+    this->ApprovalPage = HuggleParser::YAML2String("userlist", yaml, this->ApprovalPage);
+    this->EnableAll = HuggleParser::YAML2Bool("enable-all", yaml, false);
+    this->RequireAdmin = HuggleParser::YAML2Bool("require-admin", yaml, this->RequireAdmin);
+    this->RequireAutoconfirmed = HuggleParser::YAML2Bool("require-autoconfirmed", yaml, this->RequireAutoconfirmed);
+    this->RequireConfig = HuggleParser::YAML2Bool("require-config", yaml, false);
+    this->RequireEdits = HuggleParser::YAML2Int("require-edits", yaml);
+    this->RequireTime = HuggleParser::YAML2Int("require-time", yaml, this->RequireTime);
+    this->RequireRollback = HuggleParser::YAML2Bool("require-rollback", yaml, this->RequireRollback);
+    this->ReadOnly = HuggleParser::YAML2Bool("read-only", yaml, this->ReadOnly);
+    if (this->ReadOnly)
+        Syslog::HuggleLogs->WarningLog(Huggle::Localizations::HuggleLocalizations->Localize("read-only", site->Name));
+
+    //AIV
+    this->AIV = HuggleParser::YAML2Bool("aiv-reports", yaml);
+    this->AIVExtend = HuggleParser::YAML2Bool("aiv-extend", yaml);
+
+    this->ReportAIV = HuggleParser::YAML2String("aiv", yaml);
+    this->ReportSt = HuggleParser::YAML2Int("aiv-section", yaml);
+
+    // we use these to understand which format they use on a wiki for dates
+    this->Parser_Date_Suffix = HuggleParser::YAML2QStringList("parser-date-suffix", yaml, this->Parser_Date_Suffix);
+    this->Parser_Date_Prefix = HuggleParser::YAML2String("parser-date-prefix", yaml, this->Parser_Date_Prefix);
+    this->UserlistUpdateSummary = HuggleParser::YAML2String("userlist-update-summary", yaml, this->UserlistUpdateSummary);
+    this->UserlistSync = HuggleParser::YAML2Bool("userlistsync", yaml, false);
+    this->IPVTemplateReport = HuggleParser::YAML2String("aiv-ip", yaml, "User $1: $2$3 ~~~~");
+    this->RUTemplateReport = HuggleParser::YAML2String("aiv-user", yaml, "User $1: $2$3 ~~~~");
+    this->ReportDefaultReason = HuggleParser::YAML2String("vandal-report-reason", yaml, "Persistent vandalism and/or "\
+                                                                 "unconstructive edits found with [[WP:HG|Huggle 3]].");
+
+    this->LargeRemoval = HuggleParser::YAML2Int("large-removal", yaml, 400);
+    // IRC
+    this->UseIrc = HuggleParser::YAML2Bool("irc", yaml, this->UseIrc);
+    // Ignoring
+    this->Ignores = HuggleParser::YAML2QStringList("ignore", yaml);
+    if (!this->Ignores.count())
+        HUGGLE_DEBUG1(this->ProjectName + " conf: 0 records for ignore");
+    this->IgnorePatterns = HuggleParser::YAML2QStringList("ignore-patterns", yaml);
+    if (!this->IgnorePatterns.count())
+        HUGGLE_DEBUG1(this->ProjectName + " conf: 0 records for ignore-patterns");
+
+    /////////////////////////////////////////////
+    // Prediction
+    /////////////////////////////////////////////
+
+    // Scoring
+    this->WhitelistScore = HuggleParser::YAML2Int("score-wl", yaml, -800);
+    this->IPScore = HuggleParser::YAML2Int(ProjectConfig_IPScore_Key, yaml, 800);
+    this->ScoreFlag = HuggleParser::YAML2Int("score-flag", yaml);
+    this->ForeignUser = HuggleParser::YAML2Int("score-foreign-user", yaml, 200);
+    this->BotScore = HuggleParser::YAML2Int("score-bot", yaml, -200000);
+    this->ScoreUser = HuggleParser::YAML2Int("score-user", yaml, -200);
+    this->ScoreTalk = HuggleParser::YAML2Int("score-talk", yaml, -800);
+    this->ScoreRemoval = HuggleParser::YAML2Int("score-remove", yaml, 800);
+    this->ScoreTags = ProjectConfiguration::Yaml_FetchScoreTags(yaml);
+    this->DefaultSummary = HuggleParser::YAML2String("default-summary", yaml, "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2");
+    this->WelcomeSummary = HuggleParser::YAML2String("welcome-summary", yaml, this->WelcomeSummary);
+    this->AgfRevert = HuggleParser::YAML2String("agf", yaml, "Reverted good faith edits by [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]]): $1");
+    this->EditSuffixOfHuggle = HuggleParser::YAML2String("summary", yaml, "[[Project:Huggle|HG]]") + " (" + HUGGLE_VERSION + ")";
+    this->Goto = temp_compat_hash2list(HuggleParser::YAML2QStringHash("go", yaml));
+    this->InstantWarnings = HuggleParser::YAML2Bool("warning-im", yaml);
+    this->RevertSummaries = temp_compat_hash2list(HuggleParser::YAML2QStringHash("revert-summaries", yaml));
+    if (!this->RevertSummaries.count())
+    {
+        Syslog::HuggleLogs->WarningLog("revert-summaries for " + site->Name + " contain no data, default summary will be used for all of them, you need to fix project settings!!");
+    }
+    this->RollbackSummary = HuggleParser::YAML2String("rollback-summary", yaml,
+                                                      "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2");
+    this->SingleRevert = HuggleParser::YAML2String("single-revert-summary", yaml, "Undid edit by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])");
+    this->UndoSummary = HuggleParser::YAML2String("undo-summary", yaml);
+    this->SoftwareRevertDefaultSummary = HuggleParser::YAML2String("manual-revert-summary", yaml, "Reverted edits by [[Special:Contributions/$1|$1]] to last revision by $2");
+    this->MultipleRevertSummary = HuggleParser::YAML2String("multiple-revert-summary-parts", yaml, "Reverted,edit by,edits by,and,other users,to last revision by,to an older version by");
+    this->RollbackSummaryUnknownTarget = HuggleParser::YAML2String("rollback-summary-unknown", yaml, "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])");
+    // Warning types
+    this->WarningTypes = temp_compat_hash2list(HuggleParser::YAML2QStringHash("warning-types", yaml), true);
+    if (!this->WarningTypes.count())
+    {
+        if (reason)
+            *reason = "warning-types contains no data (no revert summaries)";
+
+        return false;
+    }
+    this->WarningLevel = (byte_ht)HuggleParser::YAML2Int("warning-mode", yaml, 4);
+    this->WarningDefs = HuggleParser::YAML2QStringList("warning-template-tags", yaml);
+    if (this->WarningDefs.count() == 0)
+        Syslog::HuggleLogs->WarningLog("There are no warning tags defined for " + this->ProjectName + " warning parser will not work");
+    // Reverting
+    this->ConfirmWL = HuggleParser::YAML2Bool("confirm-ignored", yaml, true);
+    this->ConfirmMultipleEdits = HuggleParser::YAML2Bool("confirm-multiple", yaml, false);
+    this->ConfirmTalk = HuggleParser::YAML2Bool("confirm-talk", yaml, true);
+    // this->ConfirmRange = HuggleParser::YAML2Bool("confirm-range", yaml, true);
+    // this->ConfirmPage = HuggleParser::YAML2Bool("confirm-page", yaml, "true"));
+    // this->ConfirmSame = HuggleParser::YAML2Bool("confirm-same", yaml, "true"));
+    this->ConfirmOnSelfRevs = HuggleParser::YAML2Bool("confirm-self-revert", yaml, true);
+    // this->ProjectConfig->ConfirmWarned = SafeBool(ConfigurationParse("confirm-warned", config, "true"));
+    this->AutomaticallyResolveConflicts = HuggleParser::YAML2Bool("automatically-resolve-conflicts", yaml, false);
+    // Welcoming
+    this->Welcome = HuggleParser::YAML2String("welcome", yaml);
+    this->WelcomeMP = HuggleParser::YAML2String("startup-message-location", yaml, "Project:Huggle/Message");
+    this->WelcomeGood = HuggleParser::YAML2Bool("welcome-on-good-edit", yaml, true);
+    this->WelcomeAnon = HuggleParser::YAML2String("welcome-anon", yaml, "{{subst:welcome-anon}}");
+    this->WelcomeTypes = temp_compat_hash2list(HuggleParser::YAML2QStringHash("welcome-messages", yaml));
+    // Reporting
+    this->SpeedyEditSummary = HuggleParser::YAML2String("speedy-summary", yaml, "Tagging page for deletion");
+    this->SpeedyWarningSummary = HuggleParser::YAML2String("speedy-message-summary", yaml, "Notification: [[$1]] has been listed for deletion");
+    this->Patrolling = HuggleParser::YAML2Bool("patrolling-enabled", yaml);
+    this->PatrollingFlaggedRevs = HuggleParser::YAML2Bool("patrolling-flaggedrevs", yaml, false);
+    this->ReportSummary = HuggleParser::YAML2String("report-summary", yaml);
+    this->ReportAutoSummary = HuggleParser::YAML2String("report-auto-summary", yaml, "This user was automatically reported by Huggle due to reverted vandalism after four warnings, please verify their"\
+                                                                                              " contributions carefully, it may be a false positive");
+    this->SpeedyTemplates = Yaml_FetchSpeedyOptions(yaml);
+    // Parsing
+    this->TemplateAge = HuggleParser::YAML2Int("template-age", yaml, this->TemplateAge);
+    // UAA
+    this->UAAPath = HuggleParser::YAML2String("uaa", yaml);
+    this->UAATemplate = HuggleParser::YAML2String("uaa-template", yaml);
+    this->TaggingSummary = HuggleParser::YAML2String("tag-summary", yaml, "Tagging page");
+    this->Tags.clear();
+    QStringList tags_temp = HuggleParser::YAML2QStringList("tags", yaml);
+    this->TagsArgs.clear();
+    this->TagsDesc.clear();
+    foreach (QString item, tags_temp)
+    {
+        if (item.contains("|"))
+        {
+            QString pm = item.mid(item.indexOf("|") + 1);
+            QString key = item.mid(0, item.indexOf("|"));
+            this->Tags.append(key);
+            if (!this->TagsArgs.contains(key))
+                this->TagsArgs.insert(key, pm);
+        } else
+        {
+            this->Tags.append(item);
+        }
+    }
+    QHash<QString,QHash<QString, QString>> TagsInfo = HuggleParser::YAML2QHashOfHash("tags-info", yaml);
+    foreach (QString tag, TagsInfo.keys())
+    {
+        if (this->TagsDesc.contains(tag))
+        {
+            Syslog::HuggleLogs->DebugLog("Multiple taginfo: " + tag);
+            continue;
+        }
+        if (!this->Tags.contains(tag))
+            this->Tags.append(tag);
+        if (TagsInfo[tag].contains("args"))
+        {
+            if (!this->TagsArgs.contains(tag))
+                this->TagsArgs.insert(tag, TagsInfo[tag]["args"]);
+        }
+        if (TagsInfo[tag].contains("info"))
+            this->TagsDesc.insert(tag, TagsInfo[tag]["info"]);
+    }
+    // Blocking
+    this->BlockMessage = HuggleParser::YAML2String("block-message", yaml);
+    this->BlockReason = HuggleParser::YAML2String("block-reason", yaml);
+    this->BlockExpiryOptions.clear();
+    // Feedback
+    this->Feedback = HuggleParser::YAML2String("feedback", yaml);
+    // Templates
+    this->MessageHeadings = HeadingsStandard;
+    QString headings = HuggleParser::YAML2String("headings", yaml, "standard");
+    if (headings == "page")
+    {
+        this->MessageHeadings = HeadingsPageName;
+        //this->UserConfig->EnforceMonthsAsHeaders = false;
+    } else if(headings == "none")
+    {
+        this->MessageHeadings = HeadingsNone;
+        //this->UserConfig->EnforceMonthsAsHeaders = false;
+    }
+    QString Options = HuggleParser::YAML2String("block-expiry-options", yaml);
+    QStringList list = Options.split(",");
+    while (list.count() > 0)
+    {
+        QString item = list.at(0);
+        item = item.trimmed();
+        this->BlockExpiryOptions.append(item);
+        list.removeAt(0);
+    }
+    this->Tag = HuggleParser::YAML2String("tag", yaml);
+    this->DeletionReasons = HuggleParser::YAML2QStringList("deletion-reasons", yaml);
+    this->BlockSummary = HuggleParser::YAML2String("block-summary", yaml, "Notification: Blocked");
+    this->BlockTime = HuggleParser::YAML2String("blocktime", yaml, "indef");
+    this->ClearTalkPageTemp = HuggleParser::YAML2String("template-clear-talk-page", yaml, "{{Huggle/Cleared}}");
+    this->Assisted = HuggleParser::YAML2QStringList("assisted-summaries", yaml);
+    this->SharedIPTemplateTags = HuggleParser::YAML2String("shared-ip-template-tag", yaml);
+    this->SharedIPTemplate = HuggleParser::YAML2String("shared-ip-template", yaml);
+    this->ProtectReason =  HuggleParser::YAML2String("protection-reason", yaml, "Excessive [[Wikipedia:Vandalism|vandalism]]");
+    this->RevertingEnabled = HuggleParser::YAML2Bool("reverting-enabled", yaml, this->RevertingEnabled);
+    this->RFPP_PlaceTop = HuggleParser::YAML2Bool("protection-request-top", yaml);
+    this->RFPP_Regex = HuggleParser::YAML2String("rfpp-verify", yaml);
+    this->RFPP_Section = (unsigned int)HuggleParser::YAML2Int("rfpp-section", yaml, 0);
+    this->RFPP_Page = HuggleParser::YAML2String("protection-request-page", yaml);
+    this->RFPP_Template = HuggleParser::YAML2String("rfpp-template", yaml);
+    this->TemplateHeader = HuggleParser::YAML2String("template-header", yaml, "Your edits to $1");
+    this->RFPP_Mark = HuggleParser::YAML2String("rfpp-mark", yaml);
+    this->RFPP_Summary = HuggleParser::YAML2String("protection-request-summary", yaml, "Request to protect page");
+    this->RFPP = (this->RFPP_Template.length() && this->RFPP_Regex.length());
+    this->RFPP_TemplateUser = HuggleParser::YAML2String("rfpp-template-user", yaml);
+    this->WarningSummaries.clear();
+    this->WarningSummaries.insert(1, HuggleParser::YAML2String("warn-summary", yaml, "Message re. [[$1]]"));
+    this->WarningSummaries.insert(2, HuggleParser::YAML2String("warn-summary-2", yaml, "Level 2 re. [[$1]]"));
+    this->WarningSummaries.insert(3, HuggleParser::YAML2String("warn-summary-3", yaml, "Level 3 re. [[$1]]"));
+    this->WarningSummaries.insert(4, HuggleParser::YAML2String("warn-summary-4", yaml, "Level 4 re. [[$1]]"));
+
+    // Month headers
+    QStringList MonthsHeaders_ = HuggleParser::YAML2QStringList("months", yaml);
+    if (MonthsHeaders_.count() == 0)
+    {
+        Syslog::HuggleLogs->WarningLog("Configuration for " + this->ProjectName + " contains 0 months, falling back to English month names!");
+    } else if (MonthsHeaders_.count() != 12)
+    {
+        Syslog::HuggleLogs->WarningLog("Configuration for " + this->ProjectName + " contains " + QString::number(MonthsHeaders_.count()) +
+                                       " months, which is weird and I will not use them");
+    } else
+    {
+        this->Months = MonthsHeaders_;
+    }
+
+    this->AlternativeMonths.clear();
+    QList<QStringList> AMH_ = HuggleParser::YAML2QListOfQStringList("alternative-months", yaml);
+    if (!AMH_.count())
+    {
+        HUGGLE_DEBUG1("Configuration for " + this->ProjectName + " contains 0 alternative months, falling back to English month names!");
+    } else if (AMH_.count() != 12)
+    {
+        Syslog::HuggleLogs->WarningLog("Configuration for " + this->ProjectName + " contains " + QString::number(MonthsHeaders_.count()) +
+                                       " alternative month signatures, which is weird and I will not use them");
+    } else
+    {
+        int month_ = 1;
+        foreach (QStringList months, AMH_)
+        {
+            this->AlternativeMonths.insert(month_, months);
+            month_++;
+        }
+    }
+
+    this->RevertPatterns = HuggleParser::YAML2QStringList("revert-patterns", yaml);
+    this->_revertPatterns.clear();
+    int xx = 0;
+    while (xx < this->RevertPatterns.count())
+    {
+        this->_revertPatterns.append(QRegExp(this->RevertPatterns.at(xx)));
+        xx++;
+    }
+    if (!HuggleQueueFilter::Filters.contains(site))
+    {
+        HuggleQueueFilter::Filters.insert(site, new QList<HuggleQueueFilter*>());
+    } else
+    {
+        // we need to delete these
+        foreach (HuggleQueueFilter* filter_p, *HuggleQueueFilter::Filters[site])
+            delete filter_p;
+        // flush
+        HuggleQueueFilter::Filters[site]->clear();
+    }
+    HuggleQueueFilter::Filters[site]->clear();
+    HuggleQueueFilter::Filters[site]->append(HuggleQueueFilter::DefaultFilter);
+    (*HuggleQueueFilter::Filters[site]) += HuggleParser::ConfigurationParseQueueList_YAML(yaml, true);
+    if (this->AIVP != nullptr)
+        delete this->AIVP;
+    this->AIVP = new WikiPage(this->ReportAIV);
+    HuggleParser::ParsePatterns_yaml(yaml, site);
+    HuggleParser::ParseNoTalkPatterns_yaml(yaml, site);
+    HuggleParser::ParseNoTalkWords_yaml(yaml, site);
+    HuggleParser::ParseWords_yaml(yaml, site);
+    if (this->UAAP != nullptr)
+        delete this->UAAP;
+    this->UAAP = new WikiPage(this->UAAPath);
+    // templates
+    int CurrentTemplate=0;
+    while (CurrentTemplate<this->WarningTypes.count())
+    {
+        QString type = HuggleParser::GetKeyFromValue(this->WarningTypes.at(CurrentTemplate));
+        int CurrentWarning = 1;
+        while (CurrentWarning <= 4)
+        {
+            QString xx = HuggleParser::YAML2String(type + QString::number(CurrentWarning), yaml);
             if (!xx.isEmpty())
             {
                 this->WarningTemplates.append(type + QString::number(CurrentWarning) + ";" + xx);

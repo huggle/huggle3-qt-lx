@@ -286,14 +286,14 @@ void History::Tick()
                     MessageBoxStyleQuestion);
             if (message == QMessageBox::Yes)
             {
-                if (Configuration::HuggleConfiguration->ProjectConfig->WelcomeTypes.count() == 0)
+                if (edit->GetSite()->ProjectConfig->WelcomeTypes.count() == 0)
                 {
                     // This error should never happen so we don't need to localize this
                     Syslog::HuggleLogs->Log("There are no welcome messages defined for this project");
                     this->Fail();
                     return;
                 }
-                QString message = HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->ProjectConfig->WelcomeTypes.at(0));
+                QString message = HuggleParser::GetValueFromKey(edit->GetSite()->ProjectConfig->WelcomeTypes.at(0));
                 if (!message.size())
                 {
                     // This error should never happen so we don't need to localize this
@@ -301,7 +301,7 @@ void History::Tick()
                     this->Fail();
                     return;
                 }
-                this->qTalk = WikiUtil::EditPage(edit->Page, message, Configuration::HuggleConfiguration->ProjectConfig->WelcomeSummary, true);
+                this->qTalk = WikiUtil::EditPage(edit->Page, message, edit->GetSite()->ProjectConfig->WelcomeSummary, true);
                 return;
             } else
             {
@@ -311,7 +311,7 @@ void History::Tick()
             }
         }
         // so now we have likely everything we need, let's revert that page :D
-        this->qSelf = WikiUtil::RevertEdit(edit, "Undoing own edit");
+        this->qSelf = WikiUtil::RevertEdit(edit, edit->GetSite()->ProjectConfig->UndoSummary);
         // set it to undo only a last edit
         this->qSelf->SetLast();
         // revert it!!
