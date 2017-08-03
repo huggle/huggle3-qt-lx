@@ -110,7 +110,7 @@ ProjectConfiguration::ProjectConfiguration(QString project_name)
     // defaults
     this->ProtectReason = "Persistent [[WP:VAND|vandalism]]";
     this->BlockExpiryOptions.append("indefinite");
-    this->DeletionSummaries << "Deleted page using Huggle";
+    this->DeletionReasons << "Deleted page using Huggle";
     this->ProjectName = project_name;
     this->SoftwareRevertDefaultSummary = "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to"\
             " last revision by $2 using huggle software rollback (reverted by $3 revisions to revision $4)";
@@ -339,7 +339,7 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
         list.removeAt(0);
     }
     this->Tag = HuggleParser::ConfigurationParse("tag", config);
-    this->DeletionSummaries = HuggleParser::ConfigurationParseTrimmed_QL("deletion-reasons", config, false);
+    this->DeletionReasons = HuggleParser::ConfigurationParseTrimmed_QL("deletion-reasons", config, false);
     this->BlockSummary = HuggleParser::ConfigurationParse("block-summary", config, "Notification: Blocked");
     this->BlockTime = HuggleParser::ConfigurationParse("blocktime", config, "indef");
     this->ClearTalkPageTemp = HuggleParser::ConfigurationParse("template-clear-talk-page", config, "{{Huggle/Cleared}}");
@@ -545,6 +545,7 @@ bool ProjectConfiguration::ParseYAML(QString config, QString *reason, WikiSite *
     /////////////////////////////////////////////
 
     // Scoring
+    this->WhitelistScore = HuggleParser::YAML2Int("score-wl", yaml, -800);
     this->IPScore = HuggleParser::YAML2Int(ProjectConfig_IPScore_Key, yaml, 800);
     this->ScoreFlag = HuggleParser::YAML2Int("score-flag", yaml);
     this->ForeignUser = HuggleParser::YAML2Int("score-foreign-user", yaml, 200);
@@ -557,9 +558,9 @@ bool ProjectConfiguration::ParseYAML(QString config, QString *reason, WikiSite *
     this->WelcomeSummary = HuggleParser::YAML2String("welcome-summary", yaml, this->WelcomeSummary);
     this->AgfRevert = HuggleParser::YAML2String("agf", yaml, "Reverted good faith edits by [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]]): $1");
     this->EditSuffixOfHuggle = HuggleParser::YAML2String("summary", yaml, "[[Project:Huggle|HG]]") + " (" + HUGGLE_VERSION + ")";
-    this->Goto = HuggleParser::YAML2QStringList("go", yaml);
+    this->Goto = temp_compat_hash2list(HuggleParser::YAML2QStringHash("go", yaml));
     this->InstantWarnings = HuggleParser::YAML2Bool("warning-im", yaml);
-    this->RevertSummaries = temp_compat_hash2list(HuggleParser::YAML2QHash("template-summ", yaml));
+    this->RevertSummaries = temp_compat_hash2list(HuggleParser::YAML2QStringHash("template-summ", yaml));
     if (!this->RevertSummaries.count())
     {
         Syslog::HuggleLogs->WarningLog("RevertSummaries for " + site->Name + " contain no data, default summary will be used for all of them, you need to fix project settings!!");
@@ -572,7 +573,7 @@ bool ProjectConfiguration::ParseYAML(QString config, QString *reason, WikiSite *
     this->MultipleRevertSummary = HuggleParser::YAML2String("multiple-revert-summary-parts", yaml, "Reverted,edit by,edits by,and,other users,to last revision by,to an older version by");
     this->RollbackSummaryUnknownTarget = HuggleParser::YAML2String("rollback-summary-unknown", yaml, "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])");
     // Warning types
-    this->WarningTypes = temp_compat_hash2list(HuggleParser::YAML2QHash("warning-types", yaml));
+    this->WarningTypes = temp_compat_hash2list(HuggleParser::YAML2QStringHash("warning-types", yaml));
     if (!this->WarningTypes.count())
     {
         if (reason)
@@ -599,7 +600,7 @@ bool ProjectConfiguration::ParseYAML(QString config, QString *reason, WikiSite *
     this->WelcomeMP = HuggleParser::YAML2String("startup-message-location", yaml, "Project:Huggle/Message");
     this->WelcomeGood = HuggleParser::YAML2Bool("welcome-on-good-edit", yaml, true);
     this->WelcomeAnon = HuggleParser::YAML2String("welcome-anon", yaml, "{{subst:welcome-anon}}");
-    this->WelcomeTypes = temp_compat_hash2list(HuggleParser::YAML2QHash("welcome-messages", yaml));
+    this->WelcomeTypes = temp_compat_hash2list(HuggleParser::YAML2QStringHash("welcome-messages", yaml));
     // Reporting
     this->SpeedyEditSummary = HuggleParser::YAML2String("speedy-summary", yaml, "Tagging page for deletion");
     this->SpeedyWarningSummary = HuggleParser::YAML2String("speedy-message-summary", yaml, "Notification: [[$1]] has been listed for deletion");
@@ -651,7 +652,6 @@ bool ProjectConfiguration::ParseYAML(QString config, QString *reason, WikiSite *
             this->TagsDesc.insert(tag, TagsInfo[tag]["info"]);
     }
     // Blocking
-    this->WhitelistScore = HuggleParser::YAML2Int("score-wl", yaml, -800);
     this->BlockMessage = HuggleParser::YAML2String("block-message", yaml);
     this->BlockReason = HuggleParser::YAML2String("block-reason", yaml);
     this->BlockExpiryOptions.clear();
@@ -679,7 +679,7 @@ bool ProjectConfiguration::ParseYAML(QString config, QString *reason, WikiSite *
         list.removeAt(0);
     }
     this->Tag = HuggleParser::YAML2String("tag", yaml);
-    this->DeletionSummaries = HuggleParser::YAML2QStringList("deletion-reasons", yaml);
+    this->DeletionReasons = HuggleParser::YAML2QStringList("deletion-reasons", yaml);
     this->BlockSummary = HuggleParser::YAML2String("block-summary", yaml, "Notification: Blocked");
     this->BlockTime = HuggleParser::YAML2String("blocktime", yaml, "indef");
     this->ClearTalkPageTemp = HuggleParser::YAML2String("template-clear-talk-page", yaml, "{{Huggle/Cleared}}");
@@ -711,22 +711,7 @@ bool ProjectConfiguration::ParseYAML(QString config, QString *reason, WikiSite *
                                        " months, which is weird and I will not use them");
     } else
     {
-        this->Months.clear();
-        int i = 0;
-        while (i < 12)
-        {
-            QString month_ = MonthsHeaders_.at(i);
-            if (month_.contains(";"))
-            {
-                month_ = month_.mid(month_.indexOf(";") + 1);
-            }
-            if (month_.endsWith(','))
-            {
-                month_ = month_.mid(0, month_.length() - 1);
-            }
-            this->Months.append(month_);
-            i++;
-        }
+        this->Months = MonthsHeaders_;
     }
     this->AlternativeMonths.clear();
     QStringList AMH_ = HuggleParser::YAML2QStringList("alternative-months", yaml);
@@ -765,7 +750,7 @@ bool ProjectConfiguration::ParseYAML(QString config, QString *reason, WikiSite *
     }
     HuggleQueueFilter::Filters[site]->clear();
     HuggleQueueFilter::Filters[site]->append(HuggleQueueFilter::DefaultFilter);
-    (*HuggleQueueFilter::Filters[site]) += HuggleParser::ConfigurationParseQueueList(config, true);
+    (*HuggleQueueFilter::Filters[site]) += HuggleParser::ConfigurationParseQueueList_YAML(yaml, true);
     if (this->AIVP != nullptr)
         delete this->AIVP;
     this->AIVP = new WikiPage(this->ReportAIV);

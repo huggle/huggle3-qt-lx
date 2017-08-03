@@ -183,7 +183,7 @@ namespace Huggle
 
             // Deleting
             QString         DeletionTitle;
-            QStringList     DeletionSummaries;
+            QStringList     DeletionReasons;
             QString         AssociatedDelete = "G8. Page dependent on a non-existent or deleted page.";
             // Warnings
             QString         AgfRevert = "Reverted good faith edits";

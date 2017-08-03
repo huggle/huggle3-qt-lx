@@ -811,13 +811,94 @@ QStringList HuggleParser::YAML2QStringList(QString key, YAML::Node &node, QStrin
     return missing;
 }
 
-QHash<QString, QString> HuggleParser::YAML2QHash(QString key, YAML::Node &node, bool *ok)
+QHash<QString, QString> HuggleParser::YAML2QStringHash(YAML::Node &node, bool *ok)
 {
-    QHash<QString, QString> missing;
-    return YAML2QHash(key, node, missing, ok);
+    QHash<QString, QString> results;
+    if (ok)
+        *ok = false;
+    try
+    {
+        if (!node)
+            throw new Huggle::NullPointerException("YAML::Node *node", BOOST_CURRENT_FUNCTION);
+
+        // Even if it's empty, we are good to go
+        if (ok)
+            *ok = true;
+
+        for (YAML::const_iterator it=node.begin();it!=node.end();++it)
+        {
+            results.insert(QString::fromStdString(it->first.as<std::string>()), QString::fromStdString(it->second.as<std::string>()));
+        }
+        return results;
+    } catch (YAML::Exception exception)
+    {
+        HUGGLE_ERROR("YAML Parsing error: " + QString(exception.what()));
+    }
+    return results;
 }
 
-QHash<QString, QString> HuggleParser::YAML2QHash(QString key, YAML::Node &node, QHash<QString, QString> missing, bool *ok)
+QHash<QString, QString> HuggleParser::YAML2QStringHash(QString key, YAML::Node &node, bool *ok)
+{
+    QHash<QString, QString> missing;
+    return YAML2QStringHash(key, node, missing, ok);
+}
+
+QHash<QString, QVariant> HuggleParser::YAML2QHash(QString key, YAML::Node &node, QHash<QString, QVariant> missing, bool *ok)
+{
+    if (ok)
+        *ok = false;
+    try
+    {
+        if (!node)
+            throw new Huggle::NullPointerException("YAML::Node *node", BOOST_CURRENT_FUNCTION);
+
+        if (!node[key.toStdString()])
+            return missing;
+
+        QHash<QString, QVariant> results;
+        YAML::Node seq = node[key.toStdString()];
+
+        // Even if it's empty, we are good to go
+        if (ok)
+            *ok = true;
+
+        for (YAML::const_iterator it=seq.begin();it!=seq.end();++it)
+        {
+            switch(it->second.Type())
+            {
+                case YAML::NodeType::Null:
+                    results.insert(QString::fromStdString(it->first.as<std::string>()), QVariant());
+                    break;
+                case YAML::NodeType::Scalar:
+                    results.insert(QString::fromStdString(it->first.as<std::string>()), QString::fromStdString(it->second.as<std::string>()));
+                    break;
+                case YAML::NodeType::Sequence:
+                {
+                    YAML::Node second = it->second;
+                    results.insert(QString::fromStdString(it->first.as<std::string>()), YAML2QStringList(second, ok));
+                }
+                    break;
+                case YAML::NodeType::Map:
+                {
+                    *ok = false;
+                    HUGGLE_ERROR("YAML Parsing error (" + key + "): It's not possible to convert QHash to QVariant");
+                    return missing;
+                }
+                    break;
+                case YAML::NodeType::Undefined:
+                    break;
+            }
+            results.insert(QString::fromStdString(it->first.as<std::string>()), QString::fromStdString(it->second.as<std::string>()));
+        }
+        return results;
+    } catch (YAML::Exception exception)
+    {
+        HUGGLE_ERROR("YAML Parsing error (" + key + "): " + QString(exception.what()));
+    }
+    return missing;
+}
+
+QHash<QString, QString> HuggleParser::YAML2QStringHash(QString key, YAML::Node &node, QHash<QString, QString> missing, bool *ok)
 {
     if (ok)
         *ok = false;
@@ -883,4 +964,125 @@ QHash<QString, QHash<QString, QString>> HuggleParser::YAML2QHashOfHash(QString k
         HUGGLE_ERROR("YAML Parsing error (" + key + "): " + QString(exception.what()));
     }
     return QHash<QString, QHash<QString, QString>>();
+}
+
+QList<HuggleQueueFilter *> HuggleParser::ConfigurationParseQueueList_YAML(YAML::Node &node, bool locked)
+{
+    QList<HuggleQueueFilter*> ReturnValue;
+
+    if (!node)
+        throw new Huggle::NullPointerException("YAML::Node *node", BOOST_CURRENT_FUNCTION);
+
+    if (!node["queues"])
+        return ReturnValue;
+
+    YAML::Node seq = node["queues"];
+
+    for (YAML::const_iterator it=seq.begin();it!=seq.end();++it)
+    {
+        HuggleQueueFilter *filter = new HuggleQueueFilter();
+        filter->QueueName = QString::fromStdString(it->first.as<std::string>());
+        YAML::Node queue_n = it->second;
+        QHash<QString, QString> queue_data = HuggleParser::YAML2QStringHash(queue_n);
+        filter->ProjectSpecific = locked;
+        filter->setIgnoreBots(HuggleQueueFilterMatchIgnore);
+        filter->setIgnoreFriends(HuggleQueueFilterMatchIgnore);
+        filter->setIgnoreIP(HuggleQueueFilterMatchIgnore);
+        filter->setIgnoreMinor(HuggleQueueFilterMatchIgnore);
+        filter->setIgnoreNP(HuggleQueueFilterMatchIgnore);
+        filter->setIgnoreTalk(HuggleQueueFilterMatchIgnore);
+        filter->setIgnoreReverts(HuggleQueueFilterMatchIgnore);
+        filter->setIgnoreSelf(HuggleQueueFilterMatchIgnore);
+        filter->setIgnore_UserSpace(HuggleQueueFilterMatchIgnore);
+        filter->setIgnoreWL(HuggleQueueFilterMatchIgnore);
+        ReturnValue.append(filter);
+        foreach (QString key, queue_data.keys())
+        {
+            QString val = queue_data[key];
+            if (key == "filter-ignored")
+            {
+                filter->setIgnoreWL(F2B(val));
+                continue;
+            }
+            if (key == "filter-bots")
+            {
+                filter->setIgnoreBots(F2B(val));
+                continue;
+            }
+            if (key == "filtered-ns")
+            {
+                QStringList ns = val.split(",");
+                foreach (QString namespace_id, ns)
+                {
+                    if (namespace_id.isEmpty())
+                        continue;
+                    int nsid = namespace_id.toInt();
+                    if (filter->Namespaces.contains(nsid))
+                        filter->Namespaces[nsid] = true;
+                    else
+                        filter->Namespaces.insert(nsid, true);
+                }
+                continue;
+            }
+            if (key == "filter-assisted")
+            {
+                filter->setIgnoreFriends(F2B(val));
+                continue;
+            }
+            if (key == "filter-talk")
+            {
+                filter->setIgnoreTalk(F2B(val));
+                continue;
+            }
+            if (key == "filter-ip")
+            {
+                filter->setIgnoreIP(F2B(val));
+                continue;
+            }
+            if (key == "filter-reverts")
+            {
+                filter->setIgnoreReverts(F2B(val));
+                continue;
+            }
+            if (key == "filter-new-pages")
+            {
+                filter->setIgnoreNP(F2B(val));
+                continue;
+            }
+            if (key == "filter-me")
+            {
+                filter->setIgnoreSelf(F2B(val));
+                continue;
+            }
+            if (key == "filter-watched")
+            {
+                filter->setIgnoreWatched(F2B(val));
+            }
+            if (key == "nsfilter-user")
+            {
+                filter->setIgnore_UserSpace(F2B(val));
+                continue;
+            }
+            if (key == "required-tags")
+            {
+                filter->SetRequiredTags_CommaSeparated(val);
+                continue;
+            }
+            if (key == "ignored-tags")
+            {
+                filter->SetIgnoredTags_CommaSeparated(val);
+                continue;
+            }
+            if (key == "required-categories")
+            {
+                filter->SetRequiredCategories_CommaSeparated(val);
+                continue;
+            }
+            if (key == "ignored-categories")
+            {
+                filter->SetIgnoredCategories_CommaSeparated(val);
+                continue;
+            }
+        }
+    }
 }

@@ -48,12 +48,14 @@ namespace Huggle
         HUGGLE_EX QString YAML2String(QString key, YAML::Node &node, QString missing = "");
         HUGGLE_EX int YAML2Int(QString key, YAML::Node &node, int missing = 0);
         HUGGLE_EX double YAML2Double(QString key, YAML::Node &node, double missing = 0);
+        HUGGLE_EX QHash<QString, QVariant> YAML2QHash(QString key, YAML::Node &node, QHash<QString, QVariant> missing, bool *ok = nullptr);
         HUGGLE_EX QStringList YAML2QStringList(YAML::Node &node, bool *ok = nullptr);
         HUGGLE_EX QStringList YAML2QStringList(YAML::Node &node, QStringList missing, bool *ok = nullptr);
         HUGGLE_EX QStringList YAML2QStringList(QString key, YAML::Node &node, bool *ok = nullptr);
         HUGGLE_EX QStringList YAML2QStringList(QString key, YAML::Node &node, QStringList missing, bool *ok = nullptr);
-        HUGGLE_EX QHash<QString, QString> YAML2QHash(QString key, YAML::Node &node, bool *ok = nullptr);
-        HUGGLE_EX QHash<QString, QString> YAML2QHash(QString key, YAML::Node &node, QHash<QString, QString> missing, bool *ok = nullptr);
+        HUGGLE_EX QHash<QString, QString> YAML2QStringHash(YAML::Node &node, bool *ok = nullptr);
+        HUGGLE_EX QHash<QString, QString> YAML2QStringHash(QString key, YAML::Node &node, bool *ok = nullptr);
+        HUGGLE_EX QHash<QString, QString> YAML2QStringHash(QString key, YAML::Node &node, QHash<QString, QString> missing, bool *ok = nullptr);
         HUGGLE_EX QHash<QString, QHash<QString, QString>> YAML2QHashOfHash(QString key, YAML::Node &node, bool *ok = nullptr);
         HUGGLE_EX QString FetchYAML(QString source, bool *failed = nullptr);
         //! \todo This function needs a unit test
@@ -78,6 +80,7 @@ namespace Huggle
         //! \todo This function needs a unit test
         //! Provides a QList from a value that has items separated by commas, each item on a line. The trailing comma will be trimmed.
         HUGGLE_EX QStringList ConfigurationParseTrimmed_QL(QString key, QString content, bool CS = false, bool RemoveNull = false);
+        HUGGLE_EX QList<HuggleQueueFilter*> ConfigurationParseQueueList_YAML(YAML::Node &node, bool locked = false);
         //! \todo This function needs a unit test
         HUGGLE_EX QList<HuggleQueueFilter*> ConfigurationParseQueueList(QString content, bool locked = false);
         /*!

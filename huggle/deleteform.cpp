@@ -55,7 +55,7 @@ void DeleteForm::SetPage(WikiPage *Page, WikiUser *User)
         throw new Huggle::NullPointerException("WikiPage *Page", BOOST_CURRENT_FUNCTION);
     }
     this->page = new WikiPage(Page);
-    foreach(QString summary, Page->GetSite()->GetProjectConfig()->DeletionSummaries)
+    foreach(QString summary, Page->GetSite()->GetProjectConfig()->DeletionReasons)
     {
         this->ui->comboBox->addItem(summary);
     }
