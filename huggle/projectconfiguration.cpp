@@ -616,21 +616,22 @@ bool ProjectConfiguration::ParseYAML(QString yaml_src, QString *reason, WikiSite
     this->UAAPath = HuggleParser::YAML2String("uaa", yaml);
     this->UAATemplate = HuggleParser::YAML2String("uaa-template", yaml);
     this->TaggingSummary = HuggleParser::YAML2String("tag-summary", yaml, "Tagging page");
-    this->Tags = HuggleParser::YAML2QStringList("tags", yaml);
-    QStringList tags_copy(this->Tags);
+    this->Tags.clear();
+    QStringList tags_temp = HuggleParser::YAML2QStringList("tags", yaml);
     this->TagsArgs.clear();
     this->TagsDesc.clear();
-    foreach (QString item, tags_copy)
+    foreach (QString item, tags_temp)
     {
         if (item.contains("|"))
         {
             QString pm = item.mid(item.indexOf("|") + 1);
             QString key = item.mid(0, item.indexOf("|"));
-            int index = this->Tags.indexOf(item);
-            this->Tags.removeAt(index);
-            this->Tags.insert(index, key);
+            this->Tags.append(key);
             if (!this->TagsArgs.contains(key))
                 this->TagsArgs.insert(key, pm);
+        } else
+        {
+            this->Tags.append(item);
         }
     }
     QHash<QString,QHash<QString, QString>> TagsInfo = HuggleParser::YAML2QHashOfHash("tags-info", yaml);

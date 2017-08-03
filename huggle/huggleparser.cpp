@@ -786,7 +786,7 @@ QStringList HuggleParser::YAML2QStringList(YAML::Node &node, QStringList missing
 QStringList HuggleParser::YAML2QStringList(QString key, YAML::Node &node, bool *ok)
 {
     QStringList missing;
-    return YAML2QStringList(node, missing, ok);
+    return YAML2QStringList(key, node, missing, ok);
 }
 
 QStringList HuggleParser::YAML2QStringList(QString key, YAML::Node &node, QStringList missing, bool *ok)
