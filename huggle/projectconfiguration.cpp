@@ -123,10 +123,15 @@ ProjectConfiguration::~ProjectConfiguration()
 }
 
 //! This is just a compatibility hack, to be removed ASAP!!
-QStringList temp_compat_hash2list(QHash<QString, QString> hash)
+QStringList temp_compat_hash2list(QHash<QString, QString> hash, bool sort = false)
 {
     QStringList result;
-    foreach (QString k, hash.keys())
+    QStringList keys = hash.keys();
+    if (sort)
+    {
+        keys.sort();
+    }
+    foreach (QString k, keys)
     {
         result.append(k + ";" + hash[k]);
     }
@@ -573,7 +578,7 @@ bool ProjectConfiguration::ParseYAML(QString yaml_src, QString *reason, WikiSite
     this->MultipleRevertSummary = HuggleParser::YAML2String("multiple-revert-summary-parts", yaml, "Reverted,edit by,edits by,and,other users,to last revision by,to an older version by");
     this->RollbackSummaryUnknownTarget = HuggleParser::YAML2String("rollback-summary-unknown", yaml, "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])");
     // Warning types
-    this->WarningTypes = temp_compat_hash2list(HuggleParser::YAML2QStringHash("warning-types", yaml));
+    this->WarningTypes = temp_compat_hash2list(HuggleParser::YAML2QStringHash("warning-types", yaml), true);
     if (!this->WarningTypes.count())
     {
         if (reason)
