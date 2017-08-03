@@ -811,6 +811,46 @@ QStringList HuggleParser::YAML2QStringList(QString key, YAML::Node &node, QStrin
     return missing;
 }
 
+QList<QStringList> HuggleParser::YAML2QListOfQStringList(QString key, YAML::Node &node, bool *ok)
+{
+    QList<QStringList> results;
+    if (ok)
+        *ok = false;
+    try
+    {
+        if (!node)
+            return results;
+
+        if (!node[key.toStdString()])
+            return results;
+
+        YAML::Node seq = node[key.toStdString()];
+
+        if (!seq.IsSequence())
+            return results;
+
+        // Even if it's empty, we are good to go
+        if (ok)
+            *ok = true;
+
+        for (std::size_t i=0;i<seq.size();i++)
+        {
+            YAML::Node temp = seq[i];
+            results << YAML2QStringList(temp, ok);
+            if (ok && !*ok)
+            {
+                HUGGLE_ERROR("Failed parsing list of string lists: " + key);
+                return results;
+            }
+        }
+        return results;
+    } catch (YAML::Exception exception)
+    {
+        HUGGLE_ERROR("YAML Parsing error " + key + " (node to List of QStringLists): " + QString(exception.what()));
+    }
+    return results;
+}
+
 QHash<QString, QString> HuggleParser::YAML2QStringHash(YAML::Node &node, bool *ok)
 {
     QHash<QString, QString> results;

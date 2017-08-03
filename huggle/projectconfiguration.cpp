@@ -687,7 +687,6 @@ bool ProjectConfiguration::ParseYAML(QString config, QString *reason, WikiSite *
     this->SharedIPTemplateTags = HuggleParser::YAML2String("shared-ip-template-tag", yaml);
     this->SharedIPTemplate = HuggleParser::YAML2String("shared-ip-template", yaml);
     this->ProtectReason =  HuggleParser::YAML2String("protection-reason", yaml, "Excessive [[Wikipedia:Vandalism|vandalism]]");
-    this->RevertPatterns = HuggleParser::YAML2QStringList("revert-patterns", yaml);
     this->RevertingEnabled = HuggleParser::YAML2Bool("reverting-enabled", yaml);
     this->RFPP_PlaceTop = HuggleParser::YAML2Bool("protection-request-top", yaml);
     this->RFPP_Regex = HuggleParser::YAML2String("rfpp-verify", yaml);
@@ -704,32 +703,41 @@ bool ProjectConfiguration::ParseYAML(QString config, QString *reason, WikiSite *
     this->WarningSummaries.insert(2, HuggleParser::YAML2String("warn-summary-2", yaml, "Level 2 re. [[$1]]"));
     this->WarningSummaries.insert(3, HuggleParser::YAML2String("warn-summary-3", yaml, "Level 3 re. [[$1]]"));
     this->WarningSummaries.insert(4, HuggleParser::YAML2String("warn-summary-4", yaml, "Level 4 re. [[$1]]"));
+
+    // Month headers
     QStringList MonthsHeaders_ = HuggleParser::YAML2QStringList("months", yaml);
-    if (MonthsHeaders_.count() != 12)
+    if (MonthsHeaders_.count() == 0)
     {
-        Syslog::HuggleLogs->WarningLog("Configuration for this project contains " + QString::number(MonthsHeaders_.count()) +
+        Syslog::HuggleLogs->WarningLog("Configuration for " + this->ProjectName + " contains 0 months, falling back to English month names!");
+    } else if (MonthsHeaders_.count() != 12)
+    {
+        Syslog::HuggleLogs->WarningLog("Configuration for " + this->ProjectName + " contains " + QString::number(MonthsHeaders_.count()) +
                                        " months, which is weird and I will not use them");
     } else
     {
         this->Months = MonthsHeaders_;
     }
+
     this->AlternativeMonths.clear();
-    QStringList AMH_ = HuggleParser::YAML2QStringList("alternative-months", yaml);
-    int month_ = 1;
-    foreach (QString months, AMH_)
+    QList<QStringList> AMH_ = HuggleParser::YAML2QListOfQStringList("alternative-months", yaml);
+    if (!AMH_.count())
     {
-        if (months.endsWith(","))
-            months = months.mid(0, months.size() - 1);
-        this->AlternativeMonths.insert(month_, months.split(';'));
-        month_++;
-    }
-    while (month_ < 13)
+        HUGGLE_DEBUG1("Configuration for " + this->ProjectName + " contains 0 alternative months, falling back to English month names!");
+    } else if (AMH_.count() != 12)
     {
-        Syslog::HuggleLogs->WarningLog("Project config for " + this->ProjectName + " is missing alternative month names for month "
-                                       + QString::number(month_) + " the warning parser may not work properly");
-        this->AlternativeMonths.insert(month_, QStringList());
-        month_++;
+        Syslog::HuggleLogs->WarningLog("Configuration for " + this->ProjectName + " contains " + QString::number(MonthsHeaders_.count()) +
+                                       " alternative month signatures, which is weird and I will not use them");
+    } else
+    {
+        int month_ = 1;
+        foreach (QStringList months, AMH_)
+        {
+            this->AlternativeMonths.insert(month_, months);
+            month_++;
+        }
     }
+
+    this->RevertPatterns = HuggleParser::YAML2QStringList("revert-patterns", yaml);
     this->_revertPatterns.clear();
     int xx = 0;
     while (xx < this->RevertPatterns.count())

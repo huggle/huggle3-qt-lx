@@ -57,6 +57,7 @@ namespace Huggle
         HUGGLE_EX QHash<QString, QString> YAML2QStringHash(QString key, YAML::Node &node, bool *ok = nullptr);
         HUGGLE_EX QHash<QString, QString> YAML2QStringHash(QString key, YAML::Node &node, QHash<QString, QString> missing, bool *ok = nullptr);
         HUGGLE_EX QHash<QString, QHash<QString, QString>> YAML2QHashOfHash(QString key, YAML::Node &node, bool *ok = nullptr);
+        HUGGLE_EX QList<QStringList> YAML2QListOfQStringList(QString key, YAML::Node &node, bool *ok = nullptr);
         HUGGLE_EX QString FetchYAML(QString source, bool *failed = nullptr);
         //! \todo This function needs a unit test
         HUGGLE_EX QString GetSummaryOfWarningTypeFromWarningKey(QString key, ProjectConfiguration *project_conf, UserConfiguration *user_conf = nullptr);
