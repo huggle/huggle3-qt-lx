@@ -435,6 +435,7 @@
   <string name="warn-alreadyblocked">यह प्रयोक्ता पहले ही अवरोधित किया जा चुका है</string>
   <string name="wait">कृपया प्रतीक्षा करें...</string>
   <string name="feature-nfru">यह विशेषता केवल आईपी सदस्यों के लिए है</string>
+  <string name="preferences-queue-size">पंक्ति का आकार</string>
   <string name="page-unknown">अज्ञात पृष्ठ</string>
   <string name="namespace">नामस्थान</string>
   <string name="report-fail">सदस्य की शिकायत नहीं हो पायी: $1</string>

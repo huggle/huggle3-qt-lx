@@ -257,6 +257,7 @@
   <string name="login-progress-language">Actualizando archivos de mensaje...</string>
   <string name="login-progress-global">Revisando configuración global...</string>
   <string name="login-progress-config">Revisando páginas de configuración...</string>
+  <string name="login-progress-yaml">Revisando la configuración YAML local para $1</string>
   <string name="login-progress-local">Revisando la configuración local de $1</string>
   <string name="login-progress-user">Revisando la configuración de usuario de $1</string>
   <string name="login-progress-user-info">Comprobando la información del usuario en $1</string>
@@ -715,6 +716,7 @@
   <string name="preferences-performance-catscansandwatched">Habilitar las categorías y ver el filtrado de estado (requiere una consulta API adicional para cada edición)</string>
   <string name="preferences-max-score">Habilitar puntuación global máxima (las ediciones con puntuación superior, se ignorarán; útil si quieres ver sólo ediciones buenas)</string>
   <string name="preferences-min-score">Habilitar puntuación global mínima (las ediciones con puntuación inferior, se ignorarán; útil si quieres ver sólo ediciones malas)</string>
+  <string name="preferences-queue-size">Tamaño de la cola</string>
   <string name="fail">Fallo</string>
   <string name="request">Solicitud</string>
   <string name="requesting">Solicitando</string>

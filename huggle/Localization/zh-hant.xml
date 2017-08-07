@@ -257,6 +257,7 @@
   <string name="login-progress-language">正在更新訊息檔…</string>
   <string name="login-progress-global">正在檢查全域設定</string>
   <string name="login-progress-config">正在檢查設定頁面…</string>
+  <string name="login-progress-yaml">檢查 $1 的本地 YAML 設定</string>
   <string name="login-progress-local">檢查 $1 的本地設定中</string>
   <string name="login-progress-user">檢查 $1 的使用者設定中</string>
   <string name="login-progress-user-info">檢查 $1 的使用者資訊中</string>
@@ -715,6 +716,7 @@
   <string name="preferences-performance-catscansandwatched">啟用分類掃描及狀態監視過濾（每次編輯需要額外的 API 查詢）</string>
   <string name="preferences-max-score">啟用全域最高分數（帶有較高分數的編輯會被忽略 - 這在您只想查看良好的編輯時很有用）</string>
   <string name="preferences-min-score">啟用全域最低分數（帶有較低分數的編輯會被忽略 - 這在您只想查看不佳的編輯時很有用）</string>
+  <string name="preferences-queue-size">佇列長度</string>
   <string name="fail">失敗</string>
   <string name="request">請求</string>
   <string name="requesting">請求中</string>

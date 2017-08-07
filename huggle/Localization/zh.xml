@@ -257,6 +257,7 @@
   <string name="login-progress-language">更新消息文件...</string>
   <string name="login-progress-global">检查全域设置...</string>
   <string name="login-progress-config">检查设置页面...</string>
+  <string name="login-progress-yaml">检查$1的本地YAML配置</string>
   <string name="login-progress-local">检查$1的本地配置</string>
   <string name="login-progress-user">检查$1的用户配置</string>
   <string name="login-progress-user-info">检查$1的用户信息</string>
@@ -715,6 +716,7 @@
   <string name="preferences-performance-catscansandwatched">启用分类检查和监视状态过滤器（需要为每次编辑提供额外API查询）</string>
   <string name="preferences-max-score">启用全域最高分（将忽略更高分数——在您只想查看好编辑时有用）</string>
   <string name="preferences-min-score">启用全域最低分（将忽略更低分数——在您只想查看差编辑时有用）</string>
+  <string name="preferences-queue-size">队列大小</string>
   <string name="fail">失败</string>
   <string name="request">请求</string>
   <string name="requesting">请求中</string>

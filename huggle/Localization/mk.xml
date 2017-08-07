@@ -257,6 +257,7 @@
   <string name="login-progress-language">Ги обновувам податотеките на пораките...</string>
   <string name="login-progress-global">Ги проверувам глобалните поставки...</string>
   <string name="login-progress-config">Ги проверувам страниците со поставки...</string>
+  <string name="login-progress-yaml">Ги проверувам месните YAML-поставки за $1</string>
   <string name="login-progress-local">Ги проверувам месните поставки за $1</string>
   <string name="login-progress-user">Ги проверувам корисничките поставки за $1</string>
   <string name="login-progress-user-info">Ги проверувам корисничките информации за $1</string>
@@ -715,6 +716,7 @@
   <string name="preferences-performance-catscansandwatched">Овозможи отчитување категории и филтрирање на набљудувања (бара дополнително барање до приложникот за секое уредување)</string>
   <string name="preferences-max-score">Овозможи глобална најголема оцена (уредувањата со повисока оцена ќе бидат занемарени — корисно ако сакате да ги видите само добрите уредувања)</string>
   <string name="preferences-min-score">Овозможи глобална најниска оцена (уредувањата со пониска оцена ќе бидат занемарени — корисно ако сакате да ги видите само лошите уредувања)</string>
+  <string name="preferences-queue-size">Големина на редицата</string>
   <string name="fail">Неуспех</string>
   <string name="request">Барање</string>
   <string name="requesting">Барање</string>

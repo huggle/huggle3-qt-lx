@@ -253,6 +253,7 @@
   <string name="login-progress-language">메시지 파일을 업데이트 중...</string>
   <string name="login-progress-global">전역 설정을 확인하는 중...</string>
   <string name="login-progress-config">설정 문서를 확인하는 중...</string>
+  <string name="login-progress-yaml">$1에 대한 로컬 YAML 설정을 확인하는 중</string>
   <string name="login-progress-local">$1에 대한 로컬 설정을 확인하는 중</string>
   <string name="login-progress-user">$1에 대한 사용자 설정을 확인하는 중</string>
   <string name="login-progress-user-info">$1에 대한 사용자 정보를 확인하는 중</string>

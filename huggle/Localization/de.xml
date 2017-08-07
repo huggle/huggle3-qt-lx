@@ -257,6 +257,7 @@
   <string name="login-progress-language">Aktualisiere Nachrichtendateien...</string>
   <string name="login-progress-global">Überprüfe globale Konfiguration ...</string>
   <string name="login-progress-config">Überprüfe Konfigurationsseiten ...</string>
+  <string name="login-progress-yaml">Prüfe lokale YAML-Konfiguration für $1</string>
   <string name="login-progress-local">Prüfe lokale Konfiguration für $1</string>
   <string name="login-progress-user">Prüfe Benutzerkonfiguration für $1</string>
   <string name="login-progress-user-info">Prüfe Benutzerinformation für $1</string>
@@ -715,6 +716,7 @@
   <string name="preferences-performance-catscansandwatched">Aktiviert Kategoriescans und die Filterung des Beobachtungsstatus (erfordert eine zusätzliche API-Anfrage für jede Bearbeitung)</string>
   <string name="preferences-max-score">Globalen maximalen Score aktivieren (Bearbeitungen mit einem höheren Score werden ignoriert. Nützlich, falls du nur gute Bearbeitungen sehen möchtest.)</string>
   <string name="preferences-min-score">Globalen minimalen Score aktivieren (Bearbeitungen mit einem niedrigeren Score werden ignoriert. Nützlich, falls du nur schlechte Bearbeitungen sehen möchtest.)</string>
+  <string name="preferences-queue-size">Größe der Warteschlange</string>
   <string name="fail">Fehlgeschlagen</string>
   <string name="request">Anfragen</string>
   <string name="requesting">Frage an …</string>

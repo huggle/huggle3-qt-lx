@@ -257,6 +257,7 @@
   <string name="login-progress-language">Updating message files...</string>
   <string name="login-progress-global">Vérification des configurations globales...</string>
   <string name="login-progress-config">Vérification des pages de configuration...</string>
+  <string name="login-progress-yaml">Vérification de votre configuration YAML locale pour $1</string>
   <string name="login-progress-local">Vérification de la configuration locale pour $1</string>
   <string name="login-progress-user">Vérification de la configuration utilisateur pour $1</string>
   <string name="login-progress-user-info">Vérification de l’information utilisateur pour $1</string>
@@ -715,6 +716,7 @@
   <string name="preferences-performance-catscansandwatched">Activer les analyses de catégorie et le filtrage d’état de suivi (nécessite une requête API supplémentaire pour chaque modification)</string>
   <string name="preferences-max-score">Activer le score maximal global (les modifications avec un score supérieur seront ignorées — utile si vous ne voulez voir que les bonnes modifications)</string>
   <string name="preferences-min-score">Activer le score minimal global (les modifications avec un score inférieur seront ignorées — utile si vous voulez ne voir que les mauvaises modifications)</string>
+  <string name="preferences-queue-size">Taille de la file</string>
   <string name="fail">Echec</string>
   <string name="request">Requête</string>
   <string name="requesting">En cours de requête</string>
