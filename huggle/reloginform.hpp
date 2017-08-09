@@ -41,7 +41,9 @@ namespace Huggle
             void on_pushButton_2_clicked();
             void LittleTick();
 
-        private:
+            void on_checkBox_RemeberPw_toggled(bool checked);
+
+    private:
             void Fail(QString why);
             void Localize();
             void reject();

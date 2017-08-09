@@ -29,14 +29,19 @@ ReloginForm::ReloginForm(WikiSite *site, QWidget *parent) : QDialog(parent), ui(
     if (hcfg->SystemConfig_StorePassword)
         this->ui->lineEdit->setText(hcfg->SystemConfig_RememberedPassword);
     this->ui->checkBox->setChecked(hcfg->SystemConfig_Autorelog);
+    this->ui->checkBox_RemeberPw->setChecked(hcfg->SystemConfig_StorePassword);
+    if (!hcfg->SystemConfig_StorePassword)
+        this->ui->checkBox->setEnabled(false);
     this->Localize();
     connect(this->little_cute_timer, SIGNAL(timeout()), this, SLOT(LittleTick()));
-    if (hcfg->SystemConfig_Autorelog)
+    if (hcfg->SystemConfig_Autorelog && hcfg->SystemConfig_StorePassword)
         this->ui->pushButton_2->click();
 }
 
 ReloginForm::~ReloginForm()
 {
+    // We store it when we destroy the window because sometimes user wants to cancel the login and also prevent it
+    // from auto-relogging you (especially if stored pw is wrong). So this way it's possible.
     hcfg->SystemConfig_Autorelog = this->ui->checkBox->isChecked();
     delete this->little_cute_timer;
     delete this->ui;
@@ -49,6 +54,7 @@ void Huggle::ReloginForm::on_pushButton_clicked()
 
 void Huggle::ReloginForm::on_pushButton_2_clicked()
 {
+    hcfg->SystemConfig_StorePassword = this->ui->checkBox_RemeberPw->isChecked();
     this->ui->pushButton_2->setEnabled(false);
     this->ui->lineEdit->setEnabled(false);
     this->qReloginTokenReq = new ApiQuery(ActionLogin, this->Site);
@@ -171,6 +177,7 @@ void ReloginForm::Fail(QString why)
 
 void ReloginForm::Localize()
 {
+    this->ui->checkBox_RemeberPw->setText(_l("login-remember-password"));
     this->ui->checkBox->setText(_l("autorelog"));
 }
 
@@ -180,4 +187,9 @@ void ReloginForm::reject()
         Core::HuggleCore->Shutdown();
     else
         QDialog::reject();
+}
+
+void Huggle::ReloginForm::on_checkBox_RemeberPw_toggled(bool checked)
+{
+    this->ui->checkBox->setEnabled(checked);
 }
