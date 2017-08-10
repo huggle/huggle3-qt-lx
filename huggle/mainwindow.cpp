@@ -1930,7 +1930,7 @@ void MainWindow::ShowEmptyQueuePage()
     }
     else
     {
-        this->Browser->RenderHtml(Resources::Html_Default_EmptyQueuePage);
+        this->Browser->RenderHtml(Resources::GetEmptyQueueHTML());
     }
     this->LockPage();
 }
