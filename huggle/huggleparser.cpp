@@ -704,7 +704,9 @@ QString HuggleParser::YAML2String(QString key, YAML::Node &node, QString missing
         if (!node[key.toStdString()])
             return missing;
 
-        return QString::fromStdString(node[key.toStdString()].as<std::string>(missing.toStdString()));
+        // This is needed for some really weird OSX related bug that randomly segfaults, if we don't make a copy of strings
+        std::string temp = node[key.toStdString()].as<std::string>(missing.toStdString());
+        return QString::fromStdString(temp);
     } catch (YAML::Exception exception)
     {
         HUGGLE_ERROR("YAML Parsing error (" + key + "): " + QString(exception.what()));
@@ -868,7 +870,10 @@ QHash<QString, QString> HuggleParser::YAML2QStringHash(YAML::Node &node, bool *o
 
         for (YAML::const_iterator it=node.begin();it!=node.end();++it)
         {
-            results.insert(QString::fromStdString(it->first.as<std::string>()), QString::fromStdString(it->second.as<std::string>()));
+            // This is needed for some really weird OSX related bug that randomly segfaults, if we don't make a copy of strings
+            std::string temp1 = it->first.as<std::string>();
+            std::string temp2 = it->second.as<std::string>();
+            results.insert(QString::fromStdString(temp1), QString::fromStdString(temp2));
         }
         return results;
     } catch (YAML::Exception exception)
@@ -994,9 +999,14 @@ QHash<QString, QHash<QString, QString>> HuggleParser::YAML2QHashOfHash(QString k
             YAML::Node yaml_n = it->second;
             for (YAML::const_iterator it2=yaml_n.begin();it2!=yaml_n.end();++it2)
             {
-                hash.insert(QString::fromStdString(it2->first.as<std::string>()), QString::fromStdString(it2->second.as<std::string>()));
+                // This is needed for some really weird OSX related bug that randomly segfaults, if we don't make a copy of strings
+                std::string temp1 = it2->first.as<std::string>();
+                std::string temp2 = it2->second.as<std::string>();
+                hash.insert(QString::fromStdString(temp1), QString::fromStdString(temp2));
             }
-            results.insert(QString::fromStdString(it->first.as<std::string>()), hash);
+            // This is needed for some really weird OSX related bug that randomly segfaults, if we don't make a copy of strings
+            std::string temp = it->first.as<std::string>();
+            results.insert(QString::fromStdString(temp), hash);
         }
         return results;
     } catch (YAML::Exception exception)
@@ -1125,6 +1135,7 @@ QList<HuggleQueueFilter *> HuggleParser::ConfigurationParseQueueList_YAML(YAML::
             }
         }
     }
+    return ReturnValue;
 }
 
 static QList<ScoreWord> ParseScoreWords_YAML(YAML::Node &node, QString key)
