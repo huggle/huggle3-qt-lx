@@ -155,7 +155,9 @@ namespace Huggle
             //! Link to next edit in huggle history
             WikiEdit *Next;
             //! Badness score of this edit
-            long Score;
+            long Score = 0;
+            //! This score is used to determine if edit was done in good faith, even if it wasn't OK
+            long GoodfaithScore = 0;
             QHash<QString, QVariant> PropertyBag;
             //! You can insert special properties for this edit here that are displayed in huggle interface
             QHash<QString, QString> MetaLabels;

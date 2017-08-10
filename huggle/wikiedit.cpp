@@ -52,7 +52,6 @@ WikiEdit::WikiEdit()
     this->ProcessingRevs = false;
     this->DiffText = "";
     this->Priority = 20;
-    this->Score = 0;
     this->IsRevert = false;
     this->TPRevBaseTime = "";
     this->Previous = nullptr;
