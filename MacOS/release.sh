@@ -1,12 +1,28 @@
 #!/bin/sh
+
+# Point to the Qt clang_64 directory, for example ~/Qt/5.9.1/clang_64/
 if [ x"$1" != x ];then
   QTDIR="$1"
 else
   QTDIR=~/Qt5.4.1/5.4/clang_64/
 fi
-qtver="--qt5"
-if [ "$2" = "--qt4" ];then
-   qtver="--qt4"
+
+# Get Qt version and split on dots.
+# TODO: Perhaps we can do this in configure instead?
+QTVERSION=`${QTDIR}/bin/qtpaths --qt-version`
+version_array=( ${QTVERSION//./ } )
+EXTRA_FLAGS=""
+if [ ${version_array[0]} -eq 4 ]; then
+    EXTRA_FLAGS="--qt4"
+elif [ ${version_array[0]} -eq 5 ]; then
+    EXTRA_FLAGS="--qt5"
+    # Qt >= 5.9 requires this special flag
+    if [ ${version_array[1]} -ge 9 ]; then
+        EXTRA_FLAGS="${EXTRA_FLAGS} --web-engine"
+    fi
+else
+    echo "Unsupported Qt version ${QTVERSION}, must be 4.x or 5.x"
+    exit 1
 fi
 echo "Checking sanity of system..."
 of=`pwd`
@@ -15,7 +31,7 @@ if [ -d huggle_release ];then
     exit 1
 fi
 cd ../huggle || exit 1
-./configure --qtpath "$QTDIR" "$qtver" --extension || exit 1
+./configure ${EXTRA_FLAGS} --qtpath "$QTDIR" --extension || exit 1
 cd huggle_release || exit 1
 make || exit 1
 cd "$of"
