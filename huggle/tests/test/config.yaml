@@ -167,12 +167,6 @@ manual-revert-summary: 'Reverted edits by [[Special:Contributions/$1|$1]] to las
 multiple-revert-summary-parts: "Reverted,edit by,edits by,and,other users,to last revision by,to an older version by"
 
 revert-summaries:
-    - 'Reverted unexplained removal of content'
-    - 'Reverted addition of [[WP:BLP|unsourced negative content]] to a biographical article'
-    - 'Reverted addition of dubious unsourced content'
-    - 'Reverted addition of unsourced content and/or unexplained removal of content'
-
-template-summ:
     delete: 'Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]): unexplained content removal'
     bio: 'Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]): addition of [[WP:BLP|negative unsourced content]] to a biographical article'
     unsor: 'Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]): addition of [[WP:CITE|unsourced content]]'

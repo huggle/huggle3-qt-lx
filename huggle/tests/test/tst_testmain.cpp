@@ -89,7 +89,7 @@ void HuggleTest::testCaseConfigurationParse_YAML()
     QVERIFY2(temp->ProjectConfig->WarningTypes.count() == 12, "Invalid number of warning types");
     QVERIFY2(temp->ProjectConfig->AlternativeMonths.count() == 12, "Invalid number of months");
     QVERIFY2(temp->ProjectConfig->Months.count() == 12, "Invalid number of months");
-    QVERIFY2(temp->ProjectConfig->RevertSummaries.count() == 4, "Invalid number of revert-summaries");
+    QVERIFY2(temp->ProjectConfig->RevertSummaries.count() == 13, "Invalid number of revert-summaries");
 }
 
 void HuggleTest::testCaseConfigurationParse_QL()
