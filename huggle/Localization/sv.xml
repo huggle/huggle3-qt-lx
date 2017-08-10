@@ -514,6 +514,7 @@
   <string name="preferences-sounds-enable-queue">Spela upp ljud när nya objekt köläggs</string>
   <string name="preferences-sounds-enable-irc">Spela upp ljud när ett meddelande hämtas i HAN</string>
   <string name="preferences-sounds-minimal-score">Minimala redigeringspoäng för notifikation</string>
+  <string name="preferences-queue-size">Köstorlek</string>
   <string name="fail">Misslyckades</string>
   <string name="request">Begär</string>
   <string name="requesting">Begär</string>
