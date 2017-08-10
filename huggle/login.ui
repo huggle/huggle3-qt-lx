@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>388</width>
-    <height>425</height>
+    <height>462</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -371,7 +371,7 @@
        <property name="text">
         <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;http://meta.wikimedia.org/wiki/Huggle/Localization&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Translate Huggle&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
-        <property name="alignment">
+       <property name="alignment">
         <set>Qt::AlignCenter</set>
        </property>
       </widget>
