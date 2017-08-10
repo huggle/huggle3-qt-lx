@@ -771,9 +771,10 @@ QStringList HuggleParser::YAML2QStringList(YAML::Node &node, QStringList missing
         if (ok)
             *ok = true;
 
-        for (std::size_t i=0;i<node.size();i++)
+        for (auto list_item : node)
         {
-            results << QString::fromStdString(node[i].as<std::string>());
+            std::string value = list_item.as<std::string>();
+            results << QString::fromStdString(value);
         }
         return results;
     } catch (YAML::Exception exception)
