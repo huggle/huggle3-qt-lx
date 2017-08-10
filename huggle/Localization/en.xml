@@ -83,6 +83,9 @@
   <string name="block-type">Block / unblock</string>
   <string name="block-admin">Blocking sysop</string>
   <string name="block-none">There is no user to block.</string>
+  <string name="color-green">green</string>
+  <string name="color-orange">orange</string>
+  <string name="color-red">red</string>
   <string name="contribution-browser-user-info">Showing recent contributions of user $1</string>
   <string name="config-function">Function</string>
   <string name="config-description">Description</string>
@@ -730,6 +733,10 @@
   <string name="page-tag-fail">Failed to tag page</string>
   <string name="page-tag-error">Unable to tag the page, error was: $1</string>
   <string name="page-unknown">Unknown page</string>
+  <string name="proxy-ftp">Ftp</string>
+  <string name="proxy-http">Http</string>
+  <string name="proxy-http-caching-proxy">Http (caching proxy)</string>
+  <string name="proxy-socks-5">Socks 5</string>
   <string name="summary-edit-range">Showing a range diff from revid $1 to $2</string>
   <string name="speedy-csd-invalid">Invalid CSD tag, there is no message and wiki tag to use</string>
   <string name="speedy-csd-existing">There is already a CSD tag on the page.</string>

@@ -55,15 +55,15 @@ QString HuggleLog::Format(HuggleLog_Line line)
     switch (line.Type)
     {
         case HuggleLogType_Debug:
-            color = "green";
+            color = _l("green");
             break;
         case HuggleLogType_Warn:
-            color = "orange";
+            color = _l("orange");
             break;
         case HuggleLogType_Normal:
             break;
         case HuggleLogType_Error:
-            color = "red";
+            color = _l("red");
             break;
     }
 
