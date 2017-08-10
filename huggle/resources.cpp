@@ -13,6 +13,7 @@
 #include "resources.hpp"
 #include "wikisite.hpp"
 #include <QFile>
+#include "localization.hpp"
 #ifndef HUGGLE_NOAUDIO
     #include <QMediaPlayer>
     QMediaPlayer* Huggle::Resources::mediaPlayer = NULL;
@@ -113,4 +114,11 @@ QString Huggle::Resources::GetHtmlHeader()
     return QString(Resources::HtmlHeader).replace("<<<CUSTOM-CSS>>>", Css)
             .replace("<<<FONT-FAMILY>>>", hcfg->SystemConfig_Font)
             .replace("<<<FONT-SIZE>>>", QString::number(hcfg->SystemConfig_FontSize));
+}
+
+QString Huggle::Resources::GetEmptyQueueHTML()
+{
+    return QString(Resources::Html_Default_EmptyQueuePage)
+            .replace("<<<TITLE>>>", _l("queue-empty-title"))
+            .replace("<<<TEXT>>>", _l("queue-empty-text"));
 }

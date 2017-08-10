@@ -773,4 +773,6 @@
   <string name="query-request-noaction">No action provided for api request</string>
   <string name="query-login-undefined">Login token requires a user defined value, it's not stored in memory</string>
   <string name="query-protected-link">Protected link</string>
+  <string name="queue-empty-title">It's empty</string>
+  <string name="queue-empty-text">There is nothing else in the queue...</string>
 </resources>
