@@ -29,7 +29,7 @@ WelcomeInfo::WelcomeInfo(QWidget *parent) : QDialog(parent), ui(new Ui::WelcomeI
         }
         localization_ix++;
     }
-    QString title = "Huggle 3 QT-LX";
+    QString title = "Huggle " + Configuration::HuggleConfiguration->HuggleVersion;
     if (hcfg->Verbosity > 0)
     {
         // add debug lang "qqx" last

@@ -71,7 +71,7 @@ void Core::Init()
 #else
     QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
 #endif
-    Syslog::HuggleLogs->Log("Huggle 3 QT-LX, version " + Configuration::HuggleConfiguration->HuggleVersion);
+    Syslog::HuggleLogs->Log("Huggle version " + Configuration::HuggleConfiguration->HuggleVersion);
     Resources::Init();
     Syslog::HuggleLogs->Log("Loading configuration");
     this->Processor = new ProcessorThread();
