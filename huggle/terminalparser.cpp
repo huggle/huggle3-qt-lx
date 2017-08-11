@@ -53,7 +53,7 @@ static void DisplayVersion()
 {
     // version is stored in built in resource which we need to extract using call to core here
     Core::VersionRead();
-    cout << QString("Huggle3 QT-LX " + hcfg->HuggleVersion).toStdString() << endl;
+    cout << QString("Huggle " + hcfg->HuggleVersion).toStdString() << endl;
 }
 
 bool TerminalParser::Parse()
@@ -236,7 +236,7 @@ void TerminalParser::DisplayHelp()
     {
         return;
     }
-    cout << "Huggle 3 QT-LX\n\n"\
+    cout << "Huggle 3\n\n"\
             "You can use following arguments to change the runtime settings:\n"\
             "  -v:              Increases verbosity\n"\
             "  --fuzzy:         Enable fuzzy localizations (these which were translated in past\n"\

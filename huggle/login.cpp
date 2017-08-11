@@ -75,7 +75,7 @@ Login::Login(QWidget *parent) : HW("login", this, parent), ui(new Ui::Login)
         }
         localization_ix++;
     }
-    QString title = "Huggle 3 QT-LX";
+    QString title = "Huggle " + Configuration::HuggleConfiguration->HuggleVersion;
     if (hcfg->Verbosity > 0)
     {
         // add debug lang "qqx" last

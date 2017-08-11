@@ -65,7 +65,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Version 3 QT-LX</string>
+      <string>Version 3</string>
      </property>
      <property name="textFormat">
       <enum>Qt::AutoText</enum>
