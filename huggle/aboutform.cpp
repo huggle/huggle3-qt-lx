@@ -121,3 +121,8 @@ void Huggle::AboutForm::on_label_4_linkHovered(const QString &link)
     last_dev = 2;
     check_dev();
 }
+
+void Huggle::AboutForm::on_label_14_linkActivated(const QString &link)
+{
+    QDesktopServices::openUrl(link);
+}
