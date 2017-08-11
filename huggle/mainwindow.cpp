@@ -164,9 +164,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         projects = hcfg->Project->Name;
     }
     if (!hcfg->SystemConfig_Multiple)
-        this->setWindowTitle("Huggle " + Configuration::HuggleConfiguration->HuggleVersion + " " + _l("title-on", projects));
+        this->setWindowTitle("Huggle 3 " + _l("title-on", projects));
     else
-        this->setWindowTitle("Huggle " + Configuration::HuggleConfiguration->HuggleVersion + " " + _l("title-on", _l("title-multiple-projects", projects)));
+        this->setWindowTitle("Huggle 3 " + _l("title-on", _l("title-multiple-projects", projects)));
     HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@layout");
     this->DisplayWelcomeMessage();
     HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@welcome");
