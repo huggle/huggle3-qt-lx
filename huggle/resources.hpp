@@ -33,6 +33,8 @@ namespace Huggle
             static QString GetEmptyQueueHTML();
             static QString GetResource(QString path);
             static QByteArray GetResourceAsBinary(QString path);
+            static QString GetRandomProTip();
+            static int GetRandom(int low, int high);
             static QString HtmlIncoming;
             //! This string contains a html header
             static QString HtmlHeader;
@@ -44,6 +46,7 @@ namespace Huggle
             //! This string contains a html footer
             static QString HtmlFooter;
         private:
+            static QStringList protips;
 #ifndef HUGGLE_NOAUDIO
             static QMediaPlayer* mediaPlayer;
 #endif

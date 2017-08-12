@@ -27,6 +27,9 @@ QString Huggle::Resources::HtmlIncoming;
 QString Huggle::Resources::Html_Default_EmptyQueuePage;
 QString Huggle::Resources::Html_StopFire;
 QString Huggle::Resources::CssRtl;
+QStringList Huggle::Resources::protips;
+
+int last_tip = -1;
 
 QString Huggle::Resources::GetResource(QString path)
 {
@@ -56,6 +59,26 @@ QByteArray Huggle::Resources::GetResourceAsBinary(QString path)
     vf->close();
     delete vf;
     return result;
+}
+
+QString Huggle::Resources::GetRandomProTip()
+{
+    if (protips.isEmpty())
+    {
+        QString tips = GetResource("/huggle/resources/Resources/huggle_tips.txt");
+        protips = tips.split("\n", ::QString::SkipEmptyParts);
+    }
+
+    if (protips.isEmpty() || protips.count() == 1)
+        return "Inform whoever packaged this Huggle that they did it wrong. There is no tips db.";
+
+    int random = GetRandom(0, protips.count() - 1);
+    while (last_tip == random)
+        random = GetRandom(0, protips.count() - 1);
+
+    last_tip = random;
+
+    return protips[last_tip];
 }
 
 void Huggle::Resources::Init()
@@ -101,11 +124,7 @@ void Huggle::Resources::PlayEmbeddedSoundFile(QString file)
 
 QString Huggle::Resources::GetHtmlHeader()
 {
-    QString Css = "";
-    //if( Huggle::Configuration::HuggleConfiguration->Project->Name == "fawiki" )
-    //    Css.append( Resources::CssRtl );
-    //if( Huggle::Configuration::HuggleConfiguration->Project->Name == "arwiki" )
-    //    Css.append( Resources::CssRtl );
+    QString Css;
     if (Configuration::HuggleConfiguration->Project->IsRightToLeft)
     {
         Css.append(Resources::CssRtl);
@@ -120,5 +139,18 @@ QString Huggle::Resources::GetEmptyQueueHTML()
 {
     return QString(Resources::Html_Default_EmptyQueuePage)
             .replace("<<<TITLE>>>", _l("queue-empty-title"))
+            .replace("<<<PROTIP>>>", GetRandomProTip())
             .replace("<<<TEXT>>>", _l("queue-empty-text"));
+}
+
+int Huggle::Resources::GetRandom(int low, int high)
+{
+    static bool init = false;
+    if (!init)
+    {
+        init = true;
+        QTime time = QTime::currentTime();
+        qsrand((uint)time.msec());
+    }
+    return qrand() % ((high + 1) - low) + low;
 }
