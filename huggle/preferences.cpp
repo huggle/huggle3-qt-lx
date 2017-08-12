@@ -18,9 +18,11 @@
 #include "localization.hpp"
 #include "wikisite.hpp"
 #include "syslog.hpp"
+#include "resources.hpp"
 #include "mainwindow.hpp"
 #include "ui_preferences.h"
 #include <QMessageBox>
+#include <QLabel>
 #include <QSpinBox>
 #include <QFile>
 #include <QDir>
@@ -204,6 +206,7 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     this->on_checkBox_26_clicked();
     this->on_checkBox_27_clicked();
 
+    this->ui->label_pt->setText("<b>ProTip: </b>" + Resources::GetRandomProTip());
     this->RestoreWindow();
 }
 
