@@ -73,7 +73,7 @@ QString Huggle::Resources::GetRandomProTip()
         return "Inform whoever packaged this Huggle that they did it wrong. There is no tips db.";
 
     int random = GetRandom(0, protips.count() - 1);
-    while (last_tip != -1 && last_tip == random)
+    while (last_tip == random)
         random = GetRandom(0, protips.count() - 1);
 
     last_tip = random;
