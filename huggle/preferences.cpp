@@ -196,6 +196,7 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     this->ui->cbMaxScore->setText(_l("preferences-max-score"));
     this->ui->cbMinScore->setText(_l("preferences-min-score"));
     this->ui->l_QueueSize->setText(_l("preferences-queue-size"));
+    this->ui->l_EmptyQueuePage->setText(_l("preferences-empty-queue-page"));
 
 #ifndef HUGGLE_NOAUDIO
     this->ui->label_NoAudio->setVisible(false);

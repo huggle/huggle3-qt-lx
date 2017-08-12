@@ -717,6 +717,7 @@
   <string name="preferences-max-score">Enable global max score (edits with higher score will be ignored - useful if you want to see only good edits)</string>
   <string name="preferences-min-score">Enable global min score (edits with lower score will be ignored - useful if you want to see only bad edits)</string>
   <string name="preferences-queue-size">Queue size</string>
+  <string name="preferences-empty-queue-page">Empty queue page:</string>
   <string name="fail">Fail</string>
   <string name="request">Request</string>
   <string name="requesting">Requesting</string>
