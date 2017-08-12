@@ -312,7 +312,7 @@ namespace Huggle
             //! gets written only to terminal and not syslog widget
             bool            SystemConfig_Dot = false;
             bool            SystemConfig_InstantReverts = false;
-            int             SystemConfig_RevertDelay = 6;
+            int             SystemConfig_RevertDelay = 2;
             //! If you set this to true the proxy settings will be applied next time you start huggle
             bool            SystemConfig_UseProxy = false;
             int             SystemConfig_ProxyType = 0;

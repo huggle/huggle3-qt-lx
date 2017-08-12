@@ -123,7 +123,6 @@ namespace Huggle
             bool            EnableAll = false;
             byte_ht         WarningLevel = 4;
             bool            AIV = false;
-            bool            AIVExtend = true;
             bool            RFPP = false;
             unsigned int    RFPP_Section;
             QString         RFPP_Template = "";
@@ -137,7 +136,7 @@ namespace Huggle
             QString         ReportAIV = "";
             QString         Feedback = "";
             //! Section of report page to append template to
-            int             ReportSt = 0;
+            int             ReportSection = 0;
             //! User flags on current project, this may be empty if you fail to login
             QStringList     Rights;
             //! IP vandals

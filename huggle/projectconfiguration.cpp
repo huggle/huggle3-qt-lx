@@ -156,10 +156,9 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
     this->Approval = SafeBool(HuggleParser::ConfigurationParse("approval", config, "false"));
     //AIV
     this->AIV = SafeBool(HuggleParser::ConfigurationParse("aiv-reports", config));
-    this->AIVExtend = SafeBool(HuggleParser::ConfigurationParse("aiv-extend", config));
     this->ApprovalPage = HuggleParser::ConfigurationParse("userlist", config, this->ApprovalPage);
     this->ReportAIV = HuggleParser::ConfigurationParse("aiv", config);
-    this->ReportSt = HuggleParser::ConfigurationParse("aiv-section", config).toInt();
+    this->ReportSection = HuggleParser::ConfigurationParse("aiv-section", config).toInt();
     // we use these to understand which format they use on a wiki for dates
     this->Parser_Date_Suffix = HuggleParser::ConfigurationParse_QL("parser-date-suffix", config, this->Parser_Date_Suffix, true);
     this->Parser_Date_Prefix = HuggleParser::ConfigurationParse("parser-date-prefix", config, this->Parser_Date_Prefix);
@@ -526,10 +525,8 @@ bool ProjectConfiguration::ParseYAML(QString yaml_src, QString *reason, WikiSite
 
     //AIV
     this->AIV = HuggleParser::YAML2Bool("aiv-reports", yaml);
-    this->AIVExtend = HuggleParser::YAML2Bool("aiv-extend", yaml);
-
     this->ReportAIV = HuggleParser::YAML2String("aiv", yaml);
-    this->ReportSt = HuggleParser::YAML2Int("aiv-section", yaml);
+    this->ReportSection = HuggleParser::YAML2Int("aiv-section", yaml);
 
     // we use these to understand which format they use on a wiki for dates
     this->Parser_Date_Suffix = HuggleParser::YAML2QStringList("parser-date-suffix", yaml, this->Parser_Date_Suffix);
