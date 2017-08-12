@@ -10,6 +10,5 @@
         <file>Resources/html/RTL.css</file>
         <file>Resources/DefaultConfig.txt</file>
         <file>Resources/html/empty.html</file>
-        <file>Resources/huggle_tips.txt</file>
     </qresource>
 </RCC>

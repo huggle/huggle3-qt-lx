@@ -1,4 +1,0 @@
-Huggle contains an "edit bar" a little widget that contains both User and Page history in a neat way. It's not enabled by default though. If you are on a small screen, you can replace user and page history widgets with it!
-Most preferences are stored on wiki in [[Special:MyPage/huggle3.css]], you can also change them there!
-Almost every widget on screen can be safely closed (except for the navigation bar).
-Huggle supports tabs just like any other browser! If you are on some edit and you want to keep it for later, you can simply open new tab and continue checking the queue there. Queue is shared amongst all tabs.

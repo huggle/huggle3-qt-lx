@@ -27,7 +27,6 @@ QString Huggle::Resources::HtmlIncoming;
 QString Huggle::Resources::Html_Default_EmptyQueuePage;
 QString Huggle::Resources::Html_StopFire;
 QString Huggle::Resources::CssRtl;
-QStringList Huggle::Resources::protips;
 
 int last_tip = -1;
 
@@ -61,24 +60,16 @@ QByteArray Huggle::Resources::GetResourceAsBinary(QString path)
     return result;
 }
 
+#define HUGGLE_PROTIP_COUNT 4
 QString Huggle::Resources::GetRandomProTip()
 {
-    if (protips.isEmpty())
-    {
-        QString tips = GetResource("/huggle/resources/Resources/huggle_tips.txt");
-        protips = tips.split("\n", ::QString::SkipEmptyParts);
-    }
-
-    if (protips.isEmpty() || protips.count() == 1)
-        return "Inform whoever packaged this Huggle that they did it wrong. There is no tips db.";
-
-    int random = GetRandom(0, protips.count() - 1);
+    int random = GetRandom(0, HUGGLE_PROTIP_COUNT);
     while (last_tip == random)
-        random = GetRandom(0, protips.count() - 1);
+        random = GetRandom(0, HUGGLE_PROTIP_COUNT);
 
     last_tip = random;
 
-    return protips[last_tip];
+    return _l("tip" + QString::number(last_tip));
 }
 
 void Huggle::Resources::Init()
