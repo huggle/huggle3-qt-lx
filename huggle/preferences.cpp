@@ -339,6 +339,7 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     hcfg->UserConfig->MaxScore = this->ui->leMaxScore->text().toLongLong();
     hcfg->UserConfig->EnableMaxScore = this->ui->cbMaxScore->isChecked();
     hcfg->SystemConfig_QueueSize = this->ui->le_QueueSize->text().toInt();
+    hcfg->UserConfig->PageEmptyQueue = this->ui->le_EmptyQueuePage->text();
     if (hcfg->SystemConfig_QueueSize < 10)
         hcfg->SystemConfig_QueueSize = 10;
     hcfg->SystemConfig_PlaySoundOnIRCUserMsg = this->ui->cbPlayOnIRCMsg->isChecked();
@@ -791,6 +792,7 @@ void Preferences::ResetItems()
     this->ui->cbMaxScore->setChecked(hcfg->UserConfig->EnableMaxScore);
     this->ui->cbMinScore->setChecked(hcfg->UserConfig->EnableMinScore);
     this->ui->le_QueueSize->setText(QString::number(hcfg->SystemConfig_QueueSize));
+    this->ui->le_EmptyQueuePage->setText(hcfg->UserConfig->PageEmptyQueue);
     this->ui->leMaxScore->setText(QString::number(hcfg->UserConfig->MaxScore));
     this->ui->leMinScore->setText(QString::number(hcfg->UserConfig->MinScore));
     this->ui->checkBox_notifyUpdate->setChecked(hcfg->SystemConfig_EnableUpdates);
