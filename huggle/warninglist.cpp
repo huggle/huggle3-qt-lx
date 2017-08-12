@@ -74,7 +74,7 @@ void WarningList::on_pushButton_clicked()
     PendingWarning *ptr_Warning_ = Warnings::WarnUser(wt, nullptr, this->wikiEdit, &Report_);
     if (Report_)
     {
-        if (hcfg->UserConfig->AutomaticReports)
+        if ((hcfg->UserConfig->AutomaticReports && this->wikiEdit->GetSite()->GetProjectConfig()->ReportMode != ReportType_StrictManual) || this->wikiEdit->GetSite()->GetProjectConfig()->ReportMode == ReportType_StrictAuto)
         {
             ReportUser::SilentReport(this->wikiEdit->User);
         } else

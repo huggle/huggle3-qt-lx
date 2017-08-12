@@ -618,6 +618,25 @@ bool ProjectConfiguration::ParseYAML(QString yaml_src, QString *reason, WikiSite
     this->SpeedyWarningSummary = HuggleParser::YAML2String("speedy-message-summary", yaml, "Notification: [[$1]] has been listed for deletion");
     this->Patrolling = HuggleParser::YAML2Bool("patrolling-enabled", yaml);
     this->PatrollingFlaggedRevs = HuggleParser::YAML2Bool("patrolling-flaggedrevs", yaml, false);
+    // Get report mode
+    QString report = HuggleParser::YAML2String("report", yaml);
+    if (report.isEmpty())
+    {
+        HUGGLE_WARNING("Project " + this->Site->Name + " doesn't contain report mode (report), falling back to default");
+    } else
+    {
+        report = report.toLower();
+        if (report == "defaultauto")
+            this->ReportMode = ReportType_DefaultAuto;
+        else if (report == "strictauto")
+            this->ReportMode = ReportType_StrictAuto;
+        else if (report == "strictmanual")
+            this->ReportMode = ReportType_StrictManual;
+        else if (report == "defaultmanual")
+            this->ReportMode = ReportType_DefaultManual;
+        else
+            HUGGLE_WARNING("Uknown report mode, falling back to default");
+    }
     this->ReportSummary = HuggleParser::YAML2String("report-summary", yaml);
     this->ReportAutoSummary = HuggleParser::YAML2String("report-auto-summary", yaml, "This user was automatically reported by Huggle due to reverted vandalism after four warnings, please verify their"\
                                                                                               " contributions carefully, it may be a false positive");

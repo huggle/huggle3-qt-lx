@@ -44,6 +44,14 @@ namespace Huggle
         HeadingsNone
     };
 
+    enum ReportType
+    {
+        ReportType_DefaultManual,
+        ReportType_DefaultAuto,
+        ReportType_StrictManual,
+        ReportType_StrictAuto
+    };
+
     /*!
      * \brief The ScoreWord class
      *
@@ -125,6 +133,7 @@ namespace Huggle
             QString         RFPP_Mark = "";
             QString         RFPP_Regex = "";
             QString         RFPP_Page = "";
+            ReportType      ReportMode = ReportType_DefaultAuto;
             QString         ReportAIV = "";
             QString         Feedback = "";
             //! Section of report page to append template to
@@ -194,6 +203,7 @@ namespace Huggle
             //! Data of wl (list of users)
             QStringList     WhiteList;
             QStringList     NewWhitelist;
+
             QString         ReportSummary;
             QString         RestoreSummary = "Restored revision $1 made by $2";
             bool            WelcomeGood = true;

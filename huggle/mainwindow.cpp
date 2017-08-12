@@ -1055,7 +1055,7 @@ bool MainWindow::Warn(QString WarningType, RevertQuery *dependency, WikiEdit *re
     PendingWarning *ptr_Warning_ = Warnings::WarnUser(WarningType, dependency, related_edit, &Report_);
     if (Report_)
     {
-        if (hcfg->UserConfig->AutomaticReports)
+        if ((hcfg->UserConfig->AutomaticReports && related_edit->GetSite()->GetProjectConfig()->ReportMode != ReportType_StrictManual) || related_edit->GetSite()->GetProjectConfig()->ReportMode == ReportType_StrictAuto)
         {
             ReportUser::SilentReport(related_edit->User);
         } else
