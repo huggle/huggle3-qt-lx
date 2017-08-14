@@ -45,14 +45,14 @@
   <string name="link">Länk</string>
   <string name="reason">Anledning</string>
   <string name="diffid">DiffID</string>
-  <string name="whitelisted">$1 med poängen $2 på $3 har lagts till i vitlistan</string>
+  <string name="whitelisted" fuzzy="true">$1 med poängen $2 på $3 har lagts till i vitlistan</string>
   <string name="expiry-time">Förfallotid</string>
   <string name="duration">Längd</string>
   <string name="enable">Aktivera</string>
   <string name="disable">Inaktivera</string>
   <string name="no-token">Ingen nyckel</string>
   <string name="flags">Flaggor</string>
-  <string name="browser-none">Ingen sida visas nu</string>
+  <string name="browser-none" fuzzy="true">Ingen sida visas nu</string>
   <string name="browser-load" fuzzy="true">Ladda ner skillnaden genom att använda en \"webb-rendering fallback\", vänligen vänta...</string>
   <string name="browser-miss-summ">Ingen sammanfattning angavs</string>
   <string name="browser-diff">Skillnad på sida: $1 (poäng: $2)</string>
@@ -77,10 +77,10 @@
   <string name="block-token-1">Hämtar nyckel för att blockera $1</string>
   <string name="block-fail">Det gick inte att blockera användaren, $1</string>
   <string name="block-token-e1">Nyckeln kan inte hämtas: $1</string>
-  <string name="block-error-no-info">Ingen användarinformation var närvarande i frågan (är du sysop?)</string>
+  <string name="block-error-no-info" fuzzy="true">Ingen användarinformation var närvarande i frågan (är du sysop?)</string>
   <string name="block-type">Blockera / avblockera</string>
-  <string name="block-admin">Blockerande administratör</string>
-  <string name="block-none">Det finns ingen användare att blockera.</string>
+  <string name="block-admin" fuzzy="true">Blockerande administratör</string>
+  <string name="block-none" fuzzy="true">Det finns ingen användare att blockera.</string>
   <string name="contribution-browser-user-info">Visar nyliga bidrag av användaren $1</string>
   <string name="config-function">Funktion</string>
   <string name="config-description">Beskrivning</string>
@@ -143,7 +143,7 @@
   <string name="config-templatetext">Visa text</string>
   <string name="config-template">Mall</string>
   <string name="config-blockreason">Standardanledning för blockering</string>
-  <string name="config-blocktime">Standardblockeringslängd för</string>
+  <string name="config-blocktime" fuzzy="true">Standardblockeringslängd för</string>
   <string name="config-blocktimeanon">anonyma användare</string>
   <string name="config-blocktimereg">registrerade användare</string>
   <string name="config-summaryprompt">Ange sammanfattning</string>
@@ -151,7 +151,7 @@
   <string name="config-defaultsprompt">Återställ standardvärden?</string>
   <string name="config-logbrowsetitle">Loggfilens plats</string>
   <string name="config-shortcutconflict">Genvägen \'$1\' sammandrabbar med den befintliga genvägen för \'$1\'.</string>
-  <string name="config-no-colon">Du kan inte använda : i namn av kön</string>
+  <string name="config-no-colon" fuzzy="true">Du kan inte använda : i namn av kön</string>
   <string name="config-notify-update">Sök efter uppdateringar</string>
   <string name="config-notify-beta">Kontrollera om en beta-version finns tillgänglig</string>
   <string name="delete-title">Radera $1</string>
@@ -165,7 +165,7 @@
   <string name="delete-e1">Sidan kan inte raderas: $1</string>
   <string name="delete-e2">Det går inte att ta bort sida</string>
   <string name="delete-edsc">Det går inte att radera sidan eftersom $1</string>
-  <string name="delete-failed-no-info">Ingen sidinfo fanns i frågan (är du sysop?)</string>
+  <string name="delete-failed-no-info" fuzzy="true">Ingen sidinfo fanns i frågan (är du sysop?)</string>
   <string name="extension-kl">Körs inte</string>
   <string name="historyform-no-info">Ingen redigeringsinformation</string>
   <string name="historyform-title">Historik</string>
@@ -173,7 +173,7 @@
   <string name="historyform-retrieving-history">Hämtar historia</string>
   <string name="historyform-not-latest-tip">Detta är inte en senaste versionen av denna sida. Se till att du granskat de nya versionerna också. Kom också ihåg att tillbakarullning eventuellt inte är möjligt längre.</string>
   <string name="history-error-message-title">Det gick inte att ångra</string>
-  <string name="history-error">Objektet kan inte ångras. Sidan kan ha ändrats eller tagits bort under tiden och Huggle är oförmögen att genomföra ångra från denna punkt. Om du verkligen vill ångra det, kommer att du behöva göra det för hand i MediaWiki-gränssnittet.</string>
+  <string name="history-error" fuzzy="true">Objektet kan inte ångras. Sidan kan ha ändrats eller tagits bort under tiden och Huggle är oförmögen att genomföra ångra från denna punkt. Om du verkligen vill ångra det, kommer att du behöva göra det för hand i MediaWiki-gränssnittet.</string>
   <string name="history-failure">Gick inte att hämta historik</string>
   <string name="userhistory-title">Historik över dina ändringar</string>
   <string name="irc-nochannel">IRC-kanalen för $1 kunde inte hittas, använder långsammare API-köer istället</string>
@@ -204,7 +204,7 @@
   <string name="login-failed-edit">Inloggningen misslyckades på $1: Du har inte tillräckligt med redigeringar på detta projekt.</string>
   <string name="login-retrieving-info">Hämtar användarinformation på $1</string>
   <string name="login-password-empty">Lösenordet du angav var tomt</string>
-  <string name="login-fail-wrong-name">Du gav inte ett korrekt användarnamn för att logga in</string>
+  <string name="login-fail-wrong-name" fuzzy="true">Du gav inte ett korrekt användarnamn för att logga in</string>
   <string name="login-abort">Avbryt</string>
   <string name="login-start">Logga in</string>
   <string name="login-oauth-notsupported">Metoden stöds inte för närvarande</string>
@@ -220,31 +220,31 @@
   <string name="login-ssl">Använd HTTPS (kräver OpenSSL)</string>
   <string name="login-fail">Inloggningen misslyckades på $1</string>
   <string name="login-error-admin">Ett administratörskonto krävs för att använda Huggle på detta projekt.</string>
-  <string name="login-error-age">Ett konto som är minst $1 dagar gammalt krävs för att använda Huggle på detta projekt.</string>
+  <string name="login-error-age" fuzzy="true">Ett konto som är minst $1 dagar gammalt krävs för att använda Huggle på detta projekt.</string>
   <string name="login-error-alldisabled">Huggle är för tillfället inaktiverat på alla projekt.</string>
   <string name="login-error-approval">Användning av Huggle på $1 kräver godkännande.</string>
   <string name="login-error-cancelled">Avbruten.</string>
   <string name="login-error-count">Minst $1 redigeringar krävs för att använda Huggle på detta projekt.</string>
-  <string name="login-error-disabled">Huggle är inte aktiverat för ditt konto på $1. Kontrollera sidan för användarkonfiguration.</string>
+  <string name="login-error-disabled" fuzzy="true">Huggle är inte aktiverat för ditt konto på $1. Kontrollera sidan för användarkonfiguration.</string>
   <string name="login-error-invalid">Ogiltigt användarnamn</string>
   <string name="login-error-nouser">Användaren finns inte</string>
   <string name="login-error-password">Felaktigt lösenord</string>
   <string name="login-error-projdisabled">Huggle är för närvarande inaktiverad på $1.</string>
-  <string name="login-error-unknown">Kan inte logga in på $1.</string>
+  <string name="login-error-unknown" fuzzy="true">Kan inte logga in på $1.</string>
   <string name="login-error-version">Denna version är för gammal. Uppdatera till den senaste versionen.</string>
   <string name="login-ro-title">Byt till skrivskyddat</string>
   <string name="login-ro-question">En eller fler projekt ($1) låter dig inte logga in med redigeringsbehörigheter (anledning: $2). Vill du byta till skrivskyddat läge istället?</string>
   <string name="login-ro-info">Projektet $1 byte till skrivskyddat läge</string>
-  <string name="main-stat">$1 redigeringar per minut $2 tillbakarullningar per minut, nivå $3</string>
+  <string name="main-stat" fuzzy="true">$1 redigeringar per minut $2 tillbakarullningar per minut, nivå $3</string>
   <string name="main-menu-provider-stop">Stoppa leverantör</string>
   <string name="main-menu-provider-resume">Återuppta leverantör</string>
   <string name="main-no-reason">Ingen anledning angavs av användaren</string>
-  <string name="main-restoring-slap">Jag återställer för närvarande en annan redigering, var god vänta...</string>
+  <string name="main-restoring-slap" fuzzy="true">Jag återställer för närvarande en annan redigering, var god vänta...</string>
   <string name="main-page">Sida</string>
   <string name="main-user">Användare</string>
   <string name="main-contribs">Bidrag</string>
   <string name="main-history">Historik</string>
-  <string name="main-new-messages">Du har nya meddelanden. Välj System -&gt; Visa nya meddelanden eller tryck M för att visa dem.</string>
+  <string name="main-new-messages" fuzzy="true">Du har nya meddelanden. Välj System -&gt; Visa nya meddelanden eller tryck M för att visa dem.</string>
   <string name="main-system">System</string>
   <string name="main-system-messages">Visa nya meddelanden</string>
   <string name="main-system-reconnectirc">Återanslut IRC-flödet</string>
@@ -449,7 +449,7 @@
   <string name="shortcut-suspicious">Märk redigering som misstänkt</string>
   <string name="shortcut-browser-close-tab">Stäng en webbläsarflik</string>
   <string name="shortcut-tab">Öppnar en ny flik</string>
-  <string name="shortcut-custom-reason">Återställ redigering med en anpassad redigeringssammanfattning</string>
+  <string name="shortcut-custom-reason" fuzzy="true">Återställ redigering med en anpassad redigeringssammanfattning</string>
   <string name="warning-title">Varna $</string>
   <string name="warning-levelgroup">Varningsnivå</string>
   <string name="warning-levelauto">Automatisk</string>
@@ -504,14 +504,14 @@
   <string name="feature-nfru">Den här funktionen är endast för IP-användare</string>
   <string name="report-no-user">Ingen användare har valts för att rapportera, vänligen välj en användare först</string>
   <string name="welcome-show">Visa detta meddelande även nästa gång du startar Huggle</string>
-  <string name="welcome-tp-empty-fail">Denna användare har inte en tom diskussionssida, är du säker på att du vill skicka ett meddelande till hen?</string>
+  <string name="welcome-tp-empty-fail" fuzzy="true">Denna användare har inte en tom diskussionssida, är du säker på att du vill skicka ett meddelande till hen?</string>
   <string name="welcome-page-miss-fail">Huggle kunde inte hämta innehållet i användarens diskussionssida, är du säker på att du vill skicka ett välkomstmeddelande till hen?</string>
-  <string name="preferences-extension-disabled">Detta tillägg har redan schemalagts för inaktivering vid nästa uppstart av Huggle</string>
-  <string name="preferences-extension-enabled-restart">Tillägget aktiverades, men du måste starta om Huggle för att verkställa den</string>
+  <string name="preferences-extension-disabled" fuzzy="true">Detta tillägg har redan schemalagts för inaktivering vid nästa uppstart av Huggle</string>
+  <string name="preferences-extension-enabled-restart" fuzzy="true">Tillägget aktiverades, men du måste starta om Huggle för att verkställa den</string>
   <string name="preferences-watchlist-watch">Lägg till i bevakningslistan</string>
   <string name="preferences-watchlist-unwatch">Ta bort från bevakningslistan</string>
   <string name="preferences-watchlist-nochange">Gör ingenting</string>
-  <string name="preferences-sounds-enable-queue">Spela upp ljud när nya objekt köläggs</string>
+  <string name="preferences-sounds-enable-queue" fuzzy="true">Spela upp ljud när nya objekt köläggs</string>
   <string name="preferences-sounds-enable-irc">Spela upp ljud när ett meddelande hämtas i HAN</string>
   <string name="preferences-sounds-minimal-score">Minimala redigeringspoäng för notifikation</string>
   <string name="preferences-queue-size">Köstorlek</string>
@@ -525,8 +525,8 @@
   <string name="page-unknown">Okänd sida</string>
   <string name="namespace">Namnrymd</string>
   <string name="block-alreadyblocked">Användaren är redan blockerad</string>
-  <string name="report-unable">Kunde inte rapportera användare :(</string>
-  <string name="about-python-with">, med Python-stöd</string>
+  <string name="report-unable" fuzzy="true">Kunde inte rapportera användare :(</string>
+  <string name="about-python-with" fuzzy="true">, med Python-stöd</string>
   <string name="about-python-without">utan Python-stöd</string>
   <string name="about-qt">, kompilerades med QT $1 Körs på QT $1</string>
   <string name="about-info">, baserat på $1, målplattform: $2</string>

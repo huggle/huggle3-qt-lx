@@ -48,7 +48,7 @@
   <string name="enable">Enschallde</string>
   <string name="disable">Ußschallde</string>
   <string name="flags">Fähnsche</string>
-  <string name="browser-none">Kein Sigg weed em Momang aanjezeisch</string>
+  <string name="browser-none" fuzzy="true">Kein Sigg weed em Momang aanjezeisch</string>
   <string name="browser-miss-summ">Kein Zosammefaßong</string>
   <string name="browser-fail">Kann keine Ongerscheid afrohfe: $1</string>
   <string name="about-contributors">Äntweckler:</string>
@@ -68,10 +68,10 @@
   <string name="block-warnloglabel">Warnonge:</string>
   <string name="block-sharedipwarning">Opjepaß: $ es als en vun ville jenözde udder dünahmesche &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Internet Protocol\"&gt;IP&lt;/i&gt;-Adräß amkkehrt.</string>
   <string name="block-fail">Dä Metmaacher $1 löht sesch nit schpärre.</string>
-  <string name="block-error-no-info">Keine Metmaacher wohr en dä Affrohch — beß De ene Wikki_Köhbeß?</string>
+  <string name="block-error-no-info" fuzzy="true">Keine Metmaacher wohr en dä Affrohch — beß De ene Wikki_Köhbeß?</string>
   <string name="block-type">Schärre / Freijävve</string>
-  <string name="block-admin">Dä Wikki_Köhbeß, dä jeschpächt hät</string>
-  <string name="block-none">Mer han keine Metmaacher zum Schpärre.</string>
+  <string name="block-admin" fuzzy="true">Dä Wikki_Köhbeß, dä jeschpächt hät</string>
+  <string name="block-none" fuzzy="true">Mer han keine Metmaacher zum Schpärre.</string>
   <string name="contribution-browser-user-info">Mer zeije de neujere Beijdrähsch vum Metmaacher $1 aan</string>
   <string name="config-function">Funxjuhn</string>
   <string name="config-description">Beschrevve!!FUZZYY!!</string>
@@ -133,14 +133,14 @@
   <string name="config-templatetext">Zeijsch dä Täx</string>
   <string name="config-template">Schablohn</string>
   <string name="config-blockreason">Der Schtandattjrond för et Schpärre</string>
-  <string name="config-blocktime">De Schtandattzigg för et Schpärre</string>
+  <string name="config-blocktime" fuzzy="true">De Schtandattzigg för et Schpärre</string>
   <string name="config-blocktimeanon">Nahmeloose Metmaacher</string>
   <string name="config-blocktimereg">Ennjelogg Metmaacher</string>
   <string name="config-summaryprompt">Jivv en Zosammefaßong en</string>
   <string name="config-history">Donn de jannze Verjangeheid vun alle Sigge lahde</string>
   <string name="config-defaultsprompt">De Schtandatt_Enschtällonge widder holle?</string>
   <string name="config-logbrowsetitle">Der Paz för de Logdatteij</string>
-  <string name="config-no-colon">mer kann nen Dubbelpongk (:) nid em Nahme vun ene Wahdeschlang bruche</string>
+  <string name="config-no-colon" fuzzy="true">mer kann nen Dubbelpongk (:) nid em Nahme vun ene Wahdeschlang bruche</string>
   <string name="config-notify-update">Op neu Väsohne pröhve</string>
   <string name="config-notify-beta">Noh Pröhv_Väsjohne lohre, wann müjjelesch</string>
   <string name="delete-title">Schmiiß $1 fott</string>
@@ -173,7 +173,7 @@
   <string name="login-retrieving-user-conf">Ben dem Metmaacher sing Enschtällonge aam holle</string>
   <string name="login-retrieving-info">Ben de Aanjahbe övver dä metmaacher $1 aam holle</string>
   <string name="login-password-empty">Do häs e läddesch Paßwood enjejovve</string>
-  <string name="login-fail-wrong-name">Do häs keine reeschtejje Metmaacher_Nahme för zom Enlogge enjejovve</string>
+  <string name="login-fail-wrong-name" fuzzy="true">Do häs keine reeschtejje Metmaacher_Nahme för zom Enlogge enjejovve</string>
   <string name="login-start">Enlogge</string>
   <string name="login-oauth-notsupported">Di Metohd es em Momang nit ongerschtöz</string>
   <string name="login-translate">Huggle övversäze</string>
@@ -196,7 +196,7 @@
   <string name="login-error-nouser">Dä Metmaacher-Nahme jidd_et nit</string>
   <string name="login-error-password">Dat paßwood es verkihrt</string>
   <string name="login-error-projdisabled">Huggle es em Momang op $1 affjeschalldt.</string>
-  <string name="login-error-unknown">Mer künne op $1 nit enlogge.</string>
+  <string name="login-error-unknown" fuzzy="true">Mer künne op $1 nit enlogge.</string>
   <string name="main-page">Sigg</string>
   <string name="main-user">Metmaacher</string>
   <string name="main-contribs">Beijdrähsch</string>
@@ -296,7 +296,7 @@
   <string name="message-message">Nohreesch:</string>
   <string name="message-summary">Zosammefaßong:</string>
   <string name="message-autosign">„Ongerschreff“ automattesch aanhänge</string>
-  <string name="message-fail-retrieve-talk">mer künne däm Metmaacher sing Klaafsigg nit holle.</string>
+  <string name="message-fail-retrieve-talk" fuzzy="true">mer künne däm Metmaacher sing Klaafsigg nit holle.</string>
   <string name="protect-reason">Jrond:</string>
   <string name="protect-expiry">Leuf aff:</string>
   <string name="protect-log">Et Logbohch vum Sigge_Schötze:</string>
@@ -342,9 +342,9 @@
   <string name="score-only-whole-word">Treff blohß jannze Wöht</string>
   <string name="score-take-any-word">Treff jehdes Woot, met dä Zeijsche em Zosammehang dren</string>
   <string name="ssl-is-not-supported">Do wullts &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Secure Sockets Layer\"&gt;SSL&lt;/i&gt; han, ävver $1 kann dat nit.</string>
-  <string name="ssl-required">{{ucfirst:{{GRAMMAR: Genitive s m |{{ucfirst:{{$1}}}}}}}} Wäßööver bruch &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Secure Sockets Layer\"&gt;SSL&lt;/i&gt;. Donn dat ennschallde un ersöhg et norr_ens. Wann De dat it kanns, för e Beijschpell, weil dat Käßje för e Höhksche eren ze maache op jrau jeschtalld es, dann moß De velleijsch de Projramme vum &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Open Secure Sockets Layer\"&gt;OpenSSL&lt;/i&gt; op Dingem Rääscher enschtallehre.</string>
+  <string name="ssl-required" fuzzy="true">{{ucfirst:{{GRAMMAR: Genitive s m |{{ucfirst:{{$1}}}}}}}} Wäßööver bruch &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Secure Sockets Layer\"&gt;SSL&lt;/i&gt;. Donn dat ennschallde un ersöhg et norr_ens. Wann De dat it kanns, för e Beijschpell, weil dat Käßje för e Höhksche eren ze maache op jrau jeschtalld es, dann moß De velleijsch de Projramme vum &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Open Secure Sockets Layer\"&gt;OpenSSL&lt;/i&gt; op Dingem Rääscher enschtallehre.</string>
   <string name="uaa-nr">Keine Jrond wohd aanjejovve</string>
-  <string name="revert-only">Heh di Änderong es de einzejje Änderong aan dä Sigg</string>
+  <string name="revert-only" fuzzy="true">Heh di Änderong es de einzejje Änderong aan dä Sigg</string>
   <string name="revert-creator">Heh di Änderong wood vom Aanlähjer vun dä Sigg jemaat, $1</string>
   <string name="revert-conflict">Heh di Änderong wood von enem Metmaacher op de „wiiße Leß“ jemaat, $1</string>
   <string name="speedy-reason">Jrond:</string>
@@ -363,7 +363,7 @@
   <string name="updater-update-available" fuzzy="true">En neujer Väsjohn $1 vum Huggle es verföhschbaar.</string>
   <string name="updater-open-manualdownloadpage">De Sigg zom eronger Lahde opmaache</string>
   <string name="updater-close">Zohmaache</string>
-  <string name="user-history-fail">kann de verjangeheid vum Metmaacher $1 nit affrohfe</string>
+  <string name="user-history-fail" fuzzy="true">kann de verjangeheid vum Metmaacher $1 nit affrohfe</string>
   <string name="userinfo-generic">Aanjahbe zom Metmaacher</string>
   <string name="userinfo-retrieve">Aanjahbe holle</string>
   <string name="shortcut-page-patrol-edit">Ännderonge nohlohre</string>
@@ -375,8 +375,8 @@
   <string name="shortcut-exit" fuzzy="true">Donn Huggle om nommahle Wääsch be\'ände.</string>
   <string name="shortcut-next">Jangk op de nähxte Änderong</string>
   <string name="shortcut-revert">Donn de Änderong zeröknämme</string>
-  <string name="shortcut-watch">Donn en aanjezescijschte Sigg en en Oppaßleß eren</string>
-  <string name="shortcut-unwatch">Donn en aanjezescijschte Sigg uss_en Oppaßleß eruß nämme</string>
+  <string name="shortcut-watch" fuzzy="true">Donn en aanjezescijschte Sigg en en Oppaßleß eren</string>
+  <string name="shortcut-unwatch" fuzzy="true">Donn en aanjezescijschte Sigg uss_en Oppaßleß eruß nämme</string>
   <string name="warning-title">Donn dä Metmaacher $1 warne</string>
   <string name="warning-levelgroup">Et Nivoh vun de Warnonge</string>
   <string name="warning-levelauto">Automattesch</string>
@@ -396,8 +396,8 @@
   <string name="page-unknown">Onbikannte Sigg</string>
   <string name="summary-edit-range">De Ongerscheide zwesche de Väsjohne $1 bes $2</string>
   <string name="namespace">Appachtemang</string>
-  <string name="report-unable">Mer künne dä Metmaacher nit mällde.</string>
-  <string name="about-python-with"> met &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"en freije hühtere Projrammehr_Schprohch\"&gt;Python&lt;/i&gt; -Ongerschtözong</string>
+  <string name="report-unable" fuzzy="true">Mer künne dä Metmaacher nit mällde.</string>
+  <string name="about-python-with" fuzzy="true"> met &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"en freije hühtere Projrammehr_Schprohch\"&gt;Python&lt;/i&gt; -Ongerschtözong</string>
   <string name="about-python-without">der ohne Ongerschtözong för &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"en freije hühtere Projrammehr_Schprohch\"&gt;Python&lt;/i&gt;</string>
   <string name="about-qt">, övversaz met QT $1 un leuf op QT $1</string>
   <string name="error-unknown-code">Ene onbikannte Fähler es opjetrodde: $1</string>

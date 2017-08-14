@@ -47,7 +47,7 @@
   <string name="enable">Aschalten</string>
   <string name="disable">Ausschalten</string>
   <string name="flags">Markéierungen</string>
-  <string name="browser-none">Elo gëtt keng Säit gewisen</string>
+  <string name="browser-none">Elo gëtt et nach keng Säit fir ze weisen.</string>
   <string name="browser-miss-summ">Et gouf kee Resumé uginn</string>
   <string name="browser-diff">Ënnerscheed vun der Säit: $1 (Score: $2)</string>
   <string name="about-contributors">Entwéckler:</string>
@@ -67,7 +67,7 @@
   <string name="block-fail">De Benotzer konnt net gespaart ginn. $1</string>
   <string name="block-type">Spären / Spär ophiewen</string>
   <string name="block-admin">Administrateur dee gespaart huet</string>
-  <string name="block-none">Et gëtt kee Benotzer fir ze spären.</string>
+  <string name="block-none">Et ass kee Benotzer erausgesicht fir ze spären.</string>
   <string name="contribution-browser-user-info">Rezent Kontributioune vum Benotzer $1</string>
   <string name="config-function">Funktioun</string>
   <string name="config-description">Beschreiwung</string>
@@ -105,12 +105,12 @@
   <string name="config-confirmmultiple">Méi Zrécksetzunge vun enger Ännerung vum selweschte Benotzer confirméieren</string>
   <string name="config-confirmsame">Zrécksetze confirméieren wann ob eng Ännerung zréckgesat gëtt déi vum selwechte Benotzer ass</string>
   <string name="config-confirmwarned">Zrécksetzen op eng Ännerung vun engem verwarnte Benotzer confirméieren</string>
-  <string name="config-confirmpage">Zrécksetze vun ignoréierte Säite confirméieren</string>
+  <string name="config-confirmpage">Zrécksetzen op ignoréierte Säite confirméieren</string>
   <string name="config-reportnone">Näischt maachen</string>
   <string name="config-templatetext">Text weisen</string>
   <string name="config-template">Schabloun</string>
   <string name="config-blockreason">Standard Spärgrond</string>
-  <string name="config-blocktime">Standard-Dauer vun der Spär fir</string>
+  <string name="config-blocktime">Standard-Dauer vun der Spär</string>
   <string name="config-blocktimeanon">Anonym Benotzer</string>
   <string name="config-blocktimereg">registréiert Benotzer</string>
   <string name="config-summaryprompt">Resumé aginn</string>
@@ -148,7 +148,7 @@
   <string name="login-failed-edit">Aloggen op $1 huet net funktionéiert: Dir hutt net genuch Ännerungen op dësem Projet.</string>
   <string name="login-retrieving-info">Benotzerinformatioun iwwer $1 offroen</string>
   <string name="login-password-empty">D\'Passwuert dat Dir aginn hutt war eidel</string>
-  <string name="login-fail-wrong-name">Dir hutt kee korrekte Benotzernumm agi fir Iech anzeloggen</string>
+  <string name="login-fail-wrong-name">Dir hutt kee Benotzernumm agi fir Iech anzeloggen</string>
   <string name="login-abort">Ofbriechen</string>
   <string name="login-start">Aloggen</string>
   <string name="login-oauth-notsupported">Dës Method gëtt elo net ënnerstëtzt</string>
@@ -178,9 +178,9 @@
   <string name="login-error-unknown">Aloggen op $1 huet net funktionéiert.</string>
   <string name="login-error-version">Dës Versioun ass vereelst. Aktualiséiert op déi lescht Versioun.</string>
   <string name="login-ro-title">Op \'nëmme liesen\' wiesselen</string>
-  <string name="main-stat">$1 Ännerunge pro Minutt $2 Zrécksetzunge pro Minutt, Niveau $3</string>
+  <string name="main-stat">$1 Ännerunge pro Minutt $2, Zrécksetzunge pro Minutt, Niveau $3</string>
   <string name="main-no-reason">De Benotzer huet kee Grond uginn</string>
-  <string name="main-restoring-slap">Ech restauréieren elo eng aner Ännerung, waart w.e.g....</string>
+  <string name="main-restoring-slap">Eng aner Ännerung gëtt elo restauréiert, waart w.e.g....</string>
   <string name="main-page">Säit</string>
   <string name="main-user">Benotzer</string>
   <string name="main-contribs">Kontributiounen</string>
@@ -262,7 +262,7 @@
   <string name="main-usermessageother">Anere Message...</string>
   <string name="main-advanced">Erweidert...</string>
   <string name="main-stats">$1 Ännerunge pro Minutt, $1 Zrécksetzunge pro Minutt</string>
-  <string name="main-revert-custom-reson">Gitt w.e.g. e Grond u firwat Dir dës Ännerung op déi vireg Versioun zrécksetze wëllt</string>
+  <string name="main-revert-custom-reson">Gitt w.e.g. u firwat Dir dës Ännerung op déi vireg Versioun zrécksetzt</string>
   <string name="main-log1">Déi erausgesicht Versioun vu(n) $1 restauréieren</string>
   <string name="main-tip-pagetagdelete">Dës Säit markéiere fir ze läschen</string>
   <string name="main-tip-pagedelete">Dës Säit läschen</string>
@@ -358,8 +358,8 @@
   <string name="shortcut-back">Op déi virdru gewisen Ännerung goen</string>
   <string name="shortcut-warn">Dem Benotzer eng Warnung schécken ouni d\'Ännerung zréckzesetzen</string>
   <string name="shortcut-revert">Ännerung zurécksetzen</string>
-  <string name="shortcut-watch">Setzt eng gewise Säit op eng Iwwerwaachungslëscht derbäi</string>
-  <string name="shortcut-unwatch">Hëlt eng gewise Säit erof vun enger Iwwerwaachungslëscht</string>
+  <string name="shortcut-watch">Setzt eng gewise Säit op Är Iwwerwaachungslëscht derbäi</string>
+  <string name="shortcut-unwatch">Hëlt eng gewise Säit vun Ärer Iwwerwaachungslëscht erof</string>
   <string name="shortcut-good">Déi elo gewisen Ännerung als gutt markéieren</string>
   <string name="shortcut-open-in-huggle">Déi Säit déi elo gewise gët opmaachen</string>
   <string name="shortcut-tab">Mécht en neien Tab op</string>
@@ -410,7 +410,7 @@
   <string name="welcome-tp-empty-fail">Dëse Benotzer huet keng eidel Diskussiounssäit, sidd Dir sécher datt Dir him e Message schécke wëllt?</string>
   <string name="cr-newer-edits">Konflikt geléist: all Ännerunge goufen zréckgesat, inklusiv nei Ännerungen. D\'Ännerunge ware vum selwechte Benotzer: $1.</string>
   <string name="cr-message-new">Et gëtt méi nei Ännerunge vu(n) $1, sidd Dir sécher datt Dir se wierklech zrécksetze wëllt?</string>
-  <string name="preferences-extension-enabled-restart">D\'Erweiderung gouf aktivéiert. Dir musst Huggle nei starte fir datt eppes geschitt.</string>
+  <string name="preferences-extension-enabled-restart">D\'Erweiderung gouf aktivéiert. Dir musst Huggle nei starte fir datt dat wierksam gëtt.</string>
   <string name="preferences-watchlist-watch">Op d\'Iwwerwaachungslëscht derbäisetzen</string>
   <string name="preferences-watchlist-unwatch">Vun der Iwwerwaachungslëscht erofhuelen</string>
   <string name="preferences-watchlist-preferences">Iwwerwaacht Är Wiki-Astellungen</string>
@@ -419,7 +419,7 @@
   <string name="requesting">Ufroen</string>
   <string name="requested">Ugefrot</string>
   <string name="edit-conflict">Ännerungskonflikt</string>
-  <string name="page-tag-nodescription">et gëtt keng Beschreiwung fir dësen Tag :/</string>
+  <string name="page-tag-nodescription">Et gëtt keng Beschreiwung fir dësen Tag</string>
   <string name="page-unknown">Onbekannt Säit</string>
   <string name="namespace">Nummraum</string>
   <string name="block-alreadyblocked">Benotzer ass scho gespaart</string>
@@ -440,4 +440,5 @@
   <string name="main-revert-type-made-by-you">vun Iech gemaach</string>
   <string name="main-revert-type-made-on-talk-page">op enger Diskussiounssäit gemaach</string>
   <string name="query-protected-link">Gespaarte Link</string>
+  <string name="queue-empty-title">Se ass eidel</string>
 </resources>

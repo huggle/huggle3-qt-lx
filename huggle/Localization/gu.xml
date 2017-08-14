@@ -67,8 +67,8 @@
   <string name="block-fail">આ સભ્યને પ્રતિબંધિત કરવા અસમર્થ, $1</string>
   <string name="block-token-e1">ટોકન લાવી ન શકાઈ : $1</string>
   <string name="block-type">પ્રતિબંધિત / અપ્રતિબંધિત</string>
-  <string name="block-admin">પ્રબંધક ને પ્રતિબંધિત કરે છે</string>
-  <string name="block-none">ત્યાં કોઈ સભ્ય પ્રતિબંધતિ કરવામાટે નથી.</string>
+  <string name="block-admin" fuzzy="true">પ્રબંધક ને પ્રતિબંધિત કરે છે</string>
+  <string name="block-none" fuzzy="true">ત્યાં કોઈ સભ્ય પ્રતિબંધતિ કરવામાટે નથી.</string>
   <string name="config-function">ફંક્શન</string>
   <string name="config-description">વિવરણ</string>
   <string name="config-shortcut">નાનો માર્ગ</string>
@@ -279,7 +279,7 @@
   <string name="updater-open-manualdownloadpage">ડાઉનલોડ કરેલ પાનું ખોલો</string>
   <string name="updater-close">બંધ કરો</string>
   <string name="updater-disable-notify">અદ્યનીકરણ અસક્રિય</string>
-  <string name="user-history-fail">$1 આ સભ્યમાટે ઇતિહાસ ન મળ્યો.</string>
+  <string name="user-history-fail" fuzzy="true">$1 આ સભ્યમાટે ઇતિહાસ ન મળ્યો.</string>
   <string name="userinfo-generic">સભ્યમાહિતી</string>
   <string name="shortcut-my-talk">મારું ચર્ચાનું પાનું</string>
   <string name="shortcut-raw">સંપાદન પૂર્વવત કરો અને યોગદાનકર્તાને ચેતવો</string>

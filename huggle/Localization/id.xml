@@ -22,7 +22,7 @@
   <string name="result">Hasil</string>
   <string name="save">Simpan</string>
   <string name="show">Tampilkan</string>
-  <string name="no-instant">Peringatan instan tidak diaktifkan di proyek $1, jadi pesan ke $2 tidak terkirim. Silakan pilih tingkat peringatan berbeda</string>
+  <string name="no-instant" fuzzy="true">Peringatan instan tidak diaktifkan di proyek $1, jadi pesan ke $2 tidak terkirim. Silakan pilih tingkat peringatan berbeda</string>
   <string name="undo">Balikkan</string>
   <string name="yes">Ya</string>
   <string name="editing-page">Menyunting halaman</string>
@@ -45,15 +45,15 @@
   <string name="link">Pranala</string>
   <string name="reason">Alasan</string>
   <string name="diffid">DiffID</string>
-  <string name="whitelisted">$1 dengan skor $2 pada $3 telah disisipkan ke daftar pentauan</string>
+  <string name="whitelisted" fuzzy="true">$1 dengan skor $2 pada $3 telah disisipkan ke daftar pentauan</string>
   <string name="expiry-time">Waktu kedaluwarsa</string>
   <string name="duration">Durasi</string>
   <string name="enable">Aktif</string>
   <string name="disable">Matikan</string>
   <string name="no-token">Tidak ada token</string>
   <string name="flags">Tanda</string>
-  <string name="gracetime">Menunggu untuk permintaan yang melakukan beberapa penyuntingan berakhir...</string>
-  <string name="browser-none">Tidak ada halaman ditampilkan sekarang</string>
+  <string name="gracetime" fuzzy="true">Menunggu untuk permintaan yang melakukan beberapa penyuntingan berakhir...</string>
+  <string name="browser-none" fuzzy="true">Tidak ada halaman ditampilkan sekarang</string>
   <string name="browser-load" fuzzy="true">Mengunduh diff menggunakan sebuah sistem pengambil web, mohon menunggu...</string>
   <string name="browser-miss-summ">Tidak ada ringkasan</string>
   <string name="browser-diff">Perbedaan halaman: $1 (nilai: $2)</string>
@@ -78,10 +78,10 @@
   <string name="block-token-1">Mengambil token untuk memblokir $1</string>
   <string name="block-fail">Tidak dapat memblokir pengguna, $1</string>
   <string name="block-token-e1">Token tidak dapat diambil: $1</string>
-  <string name="block-error-no-info">Tidak informasi pengguna dalam permintaan (apakah anda pengurus?)</string>
+  <string name="block-error-no-info" fuzzy="true">Tidak informasi pengguna dalam permintaan (apakah anda pengurus?)</string>
   <string name="block-type">Memblokir/membuka blokir</string>
-  <string name="block-admin">Pengurus pemblokir</string>
-  <string name="block-none">Tidak pengguna untuk diblokir.</string>
+  <string name="block-admin" fuzzy="true">Pengurus pemblokir</string>
+  <string name="block-none" fuzzy="true">Tidak pengguna untuk diblokir.</string>
   <string name="contribution-browser-user-info">Menampilkan kontribusi terkini pengguna $1</string>
   <string name="config-function">Fungsi</string>
   <string name="config-description">Deskripsi</string>
@@ -153,7 +153,7 @@
   <string name="config-templatetext">Tampilkan teks</string>
   <string name="config-template">Templat</string>
   <string name="config-blockreason">Alasan pemblokiran baku</string>
-  <string name="config-blocktime">Durasi pemblokiran baku selama</string>
+  <string name="config-blocktime" fuzzy="true">Durasi pemblokiran baku selama</string>
   <string name="config-blocktimeanon">pengguna anonim</string>
   <string name="config-blocktimereg">pengguna terdaftar</string>
   <string name="config-summaryprompt">Masukan ringkasan</string>
@@ -166,7 +166,7 @@
   <string name="delete-deletionlog">Log penghapusan:</string>
   <string name="delete-rem-talk">Hapus pembicaraan terkait</string>
   <string name="delete-notify">Beri tahu pembuat</string>
-  <string name="delete-failed-no-info">Tidak ada informasi pengguna dalam permintaan (apakah anda pengurus?)</string>
+  <string name="delete-failed-no-info" fuzzy="true">Tidak ada informasi pengguna dalam permintaan (apakah anda pengurus?)</string>
   <string name="extension-kl">Tidak bekerja</string>
   <string name="extension-ok">Memuat tidak bekerja</string>
   <string name="historyform-no-info">Tidak ada info suntingan</string>
@@ -336,7 +336,7 @@
   <string name="shortcut-tab">Buka tab baru</string>
   <string name="projects">Proyek</string>
   <string name="login-no-userinfo">Situs tidak mengembalikan setiap informasi pengguna</string>
-  <string name="login-invalid-register-date">Tanggal pendaftaran tidak valid, dikembalikan oleh mediawiki</string>
+  <string name="login-invalid-register-date" fuzzy="true">Tanggal pendaftaran tidak valid, dikembalikan oleh mediawiki</string>
   <string name="login-no-site-info-returned">Tidak ada situs Info dikembalikan untuk wiki ini</string>
   <string name="loading-main-window">Memuat jendela Huggle utama</string>
   <string name="login-username-doesnt-exist">Nama pengguna ini tidak ada</string>

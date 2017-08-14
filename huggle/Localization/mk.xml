@@ -23,7 +23,7 @@
   <string name="result">Исход</string>
   <string name="save">Зачувај</string>
   <string name="show">Прикажи</string>
-  <string name="no-instant">Моментните предупредувања не се овозможени на проектот $1. Затоа, не можам да ја испратам пораката на $2. Одберете друг степен на предупредување.</string>
+  <string name="no-instant" fuzzy="true">Моментните предупредувања не се овозможени на проектот $1. Затоа, не можам да ја испратам пораката на $2. Одберете друг степен на предупредување.</string>
   <string name="undo">Врати</string>
   <string name="yes">Да</string>
   <string name="editing-page">Уредување на страница</string>
@@ -46,15 +46,15 @@
   <string name="link">Врска</string>
   <string name="reason">Причина</string>
   <string name="diffid">Назнака на разликата</string>
-  <string name="whitelisted">$1 со оценка $2 на $3 е ставен на белиот список</string>
+  <string name="whitelisted" fuzzy="true">$1 со оценка $2 на $3 е ставен на белиот список</string>
   <string name="expiry-time">Истек</string>
   <string name="duration">Траење</string>
   <string name="enable">Овозможи</string>
   <string name="disable">Оневозможи</string>
   <string name="no-token">Нема шифра</string>
   <string name="flags">Бележници</string>
-  <string name="gracetime">Чекам да се завршат барањата што вршат извесно уредување...</string>
-  <string name="browser-none">Сега не се прикажува ниедна страница</string>
+  <string name="gracetime" fuzzy="true">Чекам да се завршат барањата што вршат извесно уредување...</string>
+  <string name="browser-none" fuzzy="true">Сега не се прикажува ниедна страница</string>
   <string name="browser-load">Ги преземам разликите користејќи резервен семрежен испис. Почекајте...</string>
   <string name="browser-miss-summ">Нема укажано опис</string>
   <string name="browser-diff">Разлики на страницата: $1 (оценка: $2)</string>
@@ -79,10 +79,10 @@
   <string name="block-token-1">Ја земам шифрата за блокирање на $1</string>
   <string name="block-fail">Не можам да го блокирам корисникот, $1</string>
   <string name="block-token-e1">Не можам да ја добијам шифрата: $1</string>
-  <string name="block-error-no-info">Во барањето немаше кориснички информации (Дали сте администратор?)</string>
+  <string name="block-error-no-info" fuzzy="true">Во барањето немаше кориснички информации (Дали сте администратор?)</string>
   <string name="block-type">Блокирај / одблокирај</string>
-  <string name="block-admin">Администратор што блокирал</string>
-  <string name="block-none">Нема корисник за блокирање.</string>
+  <string name="block-admin" fuzzy="true">Администратор што блокирал</string>
+  <string name="block-none" fuzzy="true">Нема корисник за блокирање.</string>
   <string name="contribution-browser-user-info">Приказ на скорешни придонеси на корисникот $1</string>
   <string name="config-function">Функција</string>
   <string name="config-description">Опис</string>
@@ -131,7 +131,7 @@
   <string name="config-remove-reverted">Отстрани уредувања веќе отповикани од друг во редицата</string>
   <string name="config-remove-old">Отстрани постари стари уредувања од редицата ако е добиено поново уредување на истата страница</string>
   <string name="config-auto-load-history">Атоматски вчитај ја историјата и корисничките информации (податочно обемно)</string>
-  <string name="config-last-revision">Префрли на последната преработка на страница во случај тековно вчитаното уредување да не е последната верзија (се презема отпосле, забавувајќи го Huggle)</string>
+  <string name="config-last-revision" fuzzy="true">Префрли на последната преработка на страница во случај тековно вчитаното уредување да не е последната верзија (се презема отпосле, забавувајќи го Huggle)</string>
   <string name="config-require-delay">Барај одложување по секое вчитување на следното уредување во чиј тек нема да може се употреби никаква записна функција (за избегнување на бубачката што се јавува при стискање на повеќе копчиња на тастатурата)</string>
   <string name="config-wait-edit">Одолжувањето, во секунди, до овозможувањето на записните функции:</string>
   <string name="config-display-text">Прикажи следно</string>
@@ -158,8 +158,8 @@
   <string name="config-confirmsame">Потврдувај преработки на уредување од корисник, кое се отповикува</string>
   <string name="config-confirmselfrevert">Потврдувај отповикувања на сопствени уредувања (освен враќања)</string>
   <string name="config-confirmwarned">Потврдувај отповикувања на уредување на опоменат корисник</string>
-  <string name="config-confirmrange">Преработката е на анонимен корисник од истиот опсег што го отповикувате. Да продолжам?</string>
-  <string name="config-confirmpage">Потврди преработка на занемарени страници</string>
+  <string name="config-confirmrange" fuzzy="true">Преработката е на анонимен корисник од истиот опсег што го отповикувате. Да продолжам?</string>
+  <string name="config-confirmpage" fuzzy="true">Потврди преработка на занемарени страници</string>
   <string name="config-autoadvance">По отповикувањето, веднаш прејди на следното уредување во редицата</string>
   <string name="config-userollback">Користи функција за отповикување, ако е достапна</string>
   <string name="config-revertsummaries">Описите на отповикувањата се достапни во менито</string>
@@ -173,7 +173,7 @@
   <string name="config-template">Шаблон</string>
   <string name="config-promptforblock">Прашај за блок ако се побара последна опомена на корисникот</string>
   <string name="config-blockreason">Стандардна причина за блокирање</string>
-  <string name="config-blocktime">Стадардното времетраење на блокот за</string>
+  <string name="config-blocktime" fuzzy="true">Стадардното времетраење на блокот за</string>
   <string name="config-blocktimeanon">анонимни корисници</string>
   <string name="config-blocktimereg">регистрирани корисници</string>
   <string name="config-summaryprompt">Опис на уредувањето</string>
@@ -181,7 +181,7 @@
   <string name="config-defaultsprompt">Да ги вратам работите по основно?</string>
   <string name="config-logbrowsetitle">Наоѓалиште на записничката податотека</string>
   <string name="config-shortcutconflict">Кратенката „$1“ се коси со друга кратенка („$1“).</string>
-  <string name="config-no-colon">Не можете да користите : во името на редицата</string>
+  <string name="config-no-colon" fuzzy="true">Не можете да користите : во името на редицата</string>
   <string name="config-notify-update">Провери поднови</string>
   <string name="config-notify-beta">Провери дали има бета-верзии</string>
   <string name="delete-title">Избриши го $1</string>
@@ -195,7 +195,7 @@
   <string name="delete-e1">Страницата не може да се избриши: $1</string>
   <string name="delete-e2">Не можам да ја избришам страницата</string>
   <string name="delete-edsc">Не можам да ја избришам страницата бидејќи $1</string>
-  <string name="delete-failed-no-info">Во барањето немаше информации за страницата (Дали сте администратор?)</string>
+  <string name="delete-failed-no-info" fuzzy="true">Во барањето немаше информации за страницата (Дали сте администратор?)</string>
   <string name="extension-kl">Не работи</string>
   <string name="extension-ok">Вчитано и работи</string>
   <string name="historyform-no-info">Нема информации за уредувањето</string>
@@ -204,7 +204,7 @@
   <string name="historyform-retrieving-history">Ја преземам историјата</string>
   <string name="historyform-not-latest-tip">Ова не е најновата преработка на страницава — не заборавајте да ја разгледате и нејзе. Исто така, имајте на ум дека одовде може да нема можност за враќање.</string>
   <string name="history-error-message-title">Не можам да отповикам</string>
-  <string name="history-error">Овој предмет не може да се отповика, бидејќи страницата може да е изменета или избришана во меѓувреме, а Huggle не може да отповикува од таму. Ако навистина сакате да ја отповикате, ќе треба тоа да го сторите рачно, преку посредникот на МедијаВики.</string>
+  <string name="history-error" fuzzy="true">Овој предмет не може да се отповика, бидејќи страницата може да е изменета или избришана во меѓувреме, а Huggle не може да отповикува од таму. Ако навистина сакате да ја отповикате, ќе треба тоа да го сторите рачно, преку посредникот на МедијаВики.</string>
   <string name="history-failure">Не можев да ја добијам историјата</string>
   <string name="userhistory-title">Историја на вашите промени</string>
   <string name="irc-connected">$1: Поврзани сте со IRC-каналот за скорешни промени</string>
@@ -237,7 +237,7 @@
   <string name="login-fail-css">Најавата не успеа на $1: Не можам да ги преземам корисничките поставки од старото место. Дали создадовте huggle3.css во вашиот кориснички простор? (недостасува Special:MyPage/huggle3.css)</string>
   <string name="login-fail-enable-true">Најавата не успеа на $1: Немате enable:true во вашите лични поставки.</string>
   <string name="login-fail-no-info">Најавате не успеа на $1: Не можам да ги добијам корисничките информации: $2</string>
-  <string name="login-bot">Која е разликата помеѓу ботовската (BotPassword) и наследствената најава?</string>
+  <string name="login-bot" fuzzy="true">Која е разликата помеѓу ботовската (BotPassword) и наследствената најава?</string>
   <string name="login-fail-parse-config">Најавате не успеа на $1: Не можам да ги расчленам корисничките поставки. Повеќе информации ќе најдете во дневникот на грешки.</string>
   <string name="login-fail-user-data">Најавате не успеа на $1: Не можам да ги добијам корисничките информации. Извршникот не даде податоци по зададеното барање.</string>
   <string name="login-fail-rollback-rights">Најавате не успеа на $1: Немате дозвола за отповикување на проектов.</string>
@@ -245,7 +245,7 @@
   <string name="login-failed-edit">Најавате не успеа на $1: Немате направено доволно уредувања на проектов.</string>
   <string name="login-retrieving-info">Ги преземам корисничките информации на $1</string>
   <string name="login-password-empty">Внесената лозинка е празна.</string>
-  <string name="login-fail-wrong-name">Не укажавте исправно корисничко име за најава.</string>
+  <string name="login-fail-wrong-name" fuzzy="true">Не укажавте исправно корисничко име за најава.</string>
   <string name="login-api">ГРЕШКА: api.php одговори со непознат исход: $1</string>
   <string name="login-abort">Напушти</string>
   <string name="login-start">Најава</string>
@@ -263,40 +263,40 @@
   <string name="login-progress-user-info">Ги проверувам корисничките информации за $1</string>
   <string name="login-progress-whitelist">Го вчитувам белиот список на корисници...</string>
   <string name="login-remember-password">Запомни ја лозинката</string>
-  <string name="login-remember-password-tooltip">Оваа можност ви ја складира лозинката во прост текст на вашиот сметач. Користете ја само ако вие сте единственото лице со пристап до сметачот.</string>
+  <string name="login-remember-password-tooltip" fuzzy="true">Оваа можност ви ја складира лозинката во прост текст на вашиот сметач. Користете ја само ако вие сте единственото лице со пристап до сметачот.</string>
   <string name="login-ssl">Користи HTTPS (бара OpenSSL)</string>
   <string name="login-fail">Најавата не успеа на $1</string>
   <string name="login-error-admin">За да користите Huggle на овој проект ќе ви треба администраторска сметка.</string>
-  <string name="login-error-age">За да користите Huggle на овој проект ќе треба сметката да ви е стара барем $1 дена.</string>
+  <string name="login-error-age" fuzzy="true">За да користите Huggle на овој проект ќе треба сметката да ви е стара барем $1 дена.</string>
   <string name="login-error-alldisabled">Huggle во моментов е исклучен на сите проекти.</string>
   <string name="login-error-approval">Потребно ви е одобрение да го користите Huggle на $1.</string>
   <string name="login-error-cancelled">Откажано.</string>
   <string name="login-error-config">Најавата не успеа. Не можам да ги расчленам месните поставки за $1: $2</string>
   <string name="login-error-count">Употребата на Huggle на овој проект бара најмалку $1 уредувања.</string>
-  <string name="login-error-disabled">Huggle на ви е овозможен за вашата сметка на $1. Проверете во корисничките поставки.</string>
+  <string name="login-error-disabled" fuzzy="true">Huggle на ви е овозможен за вашата сметка на $1. Проверете во корисничките поставки.</string>
   <string name="login-error-global">Најавата не успеа: Не можам да ги расчленам глобалните поставки. Повеќе ќе дознаете во записникот со грешки.</string>
   <string name="login-error-invalid">Неправилно корисничко име</string>
   <string name="login-error-noconfig">$1 нема страница за поставување на Huggle</string>
   <string name="login-error-nouser">Корисникот не постои</string>
   <string name="login-error-password">Неисправна лозинка</string>
   <string name="login-error-projdisabled">Во моментов Huggle е оневозможен на проектов.</string>
-  <string name="login-error-unknown">Не можам да ве најавам на $1.</string>
+  <string name="login-error-unknown" fuzzy="true">Не можам да ве најавам на $1.</string>
   <string name="login-error-version">Верзијата ви е застарена. Подновете ја со најновата.</string>
   <string name="login-error-whitelist">Не можев да го вчитам белиот список на корисници за $1.</string>
   <string name="login-ro-title">Префрли на само читање</string>
   <string name="login-ro-question">Еден или повеќе проекти ($1) не ви даваат да се најавите со дозвола за уредување (причина: $2). Дали сакате да се префрлите само на читање?</string>
   <string name="login-ro-info">Проектот $1 е префрлен само на читање</string>
-  <string name="main-stat">$1 уредувања во минута, $2 отповикувања во минута, степен $3</string>
+  <string name="main-stat" fuzzy="true">$1 уредувања во минута, $2 отповикувања во минута, степен $3</string>
   <string name="main-menu-provider-stop">Запри го добавувачот</string>
   <string name="main-menu-provider-resume">Продолжи со добавувачот</string>
   <string name="provider-up">Се поврзувам со каналот со скорешни промени на $2 користејќи го добавувачот: $1</string>
   <string name="main-no-reason">Корисникот нема укажано причина</string>
-  <string name="main-restoring-slap">Во моментов повраќам друго уредување. Почекајте...</string>
+  <string name="main-restoring-slap" fuzzy="true">Во моментов повраќам друго уредување. Почекајте...</string>
   <string name="main-page">Страница</string>
   <string name="main-user">Корисник</string>
   <string name="main-contribs">Придонеси</string>
   <string name="main-history">Историја</string>
-  <string name="main-new-messages">Имате нови пораки. Одберете &lt;code&gt;Систем -&gt; Прикажи нови пораки&lt;/code&gt; или пак стиснете на M за да ги видите.</string>
+  <string name="main-new-messages" fuzzy="true">Имате нови пораки. Одберете &lt;code&gt;Систем -&gt; Прикажи нови пораки&lt;/code&gt; или пак стиснете на M за да ги видите.</string>
   <string name="main-space">Името на страницата не може да завршува со празно место. Исправете го.</string>
   <string name="main-system">Систем</string>
   <string name="main-status-bar">Обработувам &lt;b&gt;$1&lt;/b&gt;уредувања и &lt;b&gt;$2&lt;/b&gt;барања. Корисници ставени на белиот список: &lt;b&gt;$3&lt;/b&gt; Големина на редицата: &lt;b&gt;$4&lt;/b&gt; Статистики за $6: $5</string>
@@ -404,7 +404,7 @@
   <string name="main-stats">$1 уредувања во минута, $2 враќања во минута</string>
   <string name="main-display-session-data">Прикажувај податоци за седницата</string>
   <string name="main-display-whitelist">Прикажувај бел список</string>
-  <string name="main-revert-custom-reson">Наведете ја причината зошто сакате да го вратите уреденото на претходна преработка</string>
+  <string name="main-revert-custom-reson" fuzzy="true">Наведете ја причината зошто сакате да го вратите уреденото на претходна преработка</string>
   <string name="main-log1">Ја повраќам одбраната преработка на $1</string>
   <string name="main-tip-pagetagdelete">Означи ја страницава за бришење</string>
   <string name="main-tip-pagedelete">Избриши ја страницава</string>
@@ -416,7 +416,7 @@
   <string name="main-revert-newpage-title">Не можам да го отповикам ова</string>
   <string name="main-revert-newpage">Ова е нова страница и затоа не може да се отповика. Можете само да ја означите или да ја избришете.</string>
   <string name="main-restore-text-fail">Не можам да ја повратам преработката бидејќи за неа нема текст.</string>
-  <string name="main-restore-data-fail">Не можам да ја повратам преработката бидејќи викито не даде податоци за избраната верзија.</string>
+  <string name="main-restore-data-fail" fuzzy="true">Не можам да ја повратам преработката бидејќи викито не даде податоци за избраната верзија.</string>
   <string name="main-welcome-user">Добре дојде, кориснику</string>
   <string name="main-custom-reason-title">Отповикај уредување со прилагодена причина</string>
   <string name="main-custom-reason-text">Укажете причина за отповикувањето</string>
@@ -434,10 +434,10 @@
   <string name="message-fail-re-user-tp">Не можам да го добијам „$1“. Ја запирам доставата на пораката за тој корисник</string>
   <string name="message-er">Не можам да ја доставам пораката на $1: $2</string>
   <string name="message-error">Не успеав да ја доставам пораката за $1! Погледајте во дневниците!</string>
-  <string name="message-fail-retrieve-talk">не можам да ја добијам корисничката страница за разговор</string>
+  <string name="message-fail-retrieve-talk" fuzzy="true">не можам да ја добијам корисничката страница за разговор</string>
   <string name="message-done">Успешно доставена пораката за: $1</string>
-  <string name="message-fail-token-1">не можам да ја добијам шифрата на уредувањето</string>
-  <string name="message-fail-token-2">барањето не даде шифра</string>
+  <string name="message-fail-token-1" fuzzy="true">не можам да ја добијам шифрата на уредувањето</string>
+  <string name="message-fail-token-2" fuzzy="true">барањето не даде шифра</string>
   <string name="protect-request-title">Побарај заштита на $1</string>
   <string name="protect-reason">Причина:</string>
   <string name="protect-expiry">Истек:</string>
@@ -488,7 +488,7 @@
   <string name="queue-examplelabel3">Не го проверувај овој атрибут</string>
   <string name="queue-usergroup">Прикажувај уредувања само од овие корисници</string>
   <string name="report-title">Пријави го $1</string>
-  <string name="report-warn">Овој корисик веќе е опоменат на IV степен, па затоа веќе нема да добива шаблони. Можете да го пријавите сега, но секогаш проверувајте дали е опоменат доволен број пати во достатно краток период! Ова можете да го направите стискајќи на копчето „страница за разговор“ во следниот образец. Имајте на ум дека овој образец и опомена се прикажува без оглед на тоа дали вашето отповикување успеало, па затоа тука може да се јави спротиставеност со други корисници (секогаш проверувајте дали некој веќе го пријавил корисникот). Дали сакате да го пријавите корисников?</string>
+  <string name="report-warn" fuzzy="true">Овој корисик веќе е опоменат на IV степен, па затоа веќе нема да добива шаблони. Можете да го пријавите сега, но секогаш проверувајте дали е опоменат доволен број пати во достатно краток период! Ова можете да го направите стискајќи на копчето „страница за разговор“ во следниот образец. Имајте на ум дека овој образец и опомена се прикажува без оглед на тоа дали вашето отповикување успеало, па затоа тука може да се јави спротиставеност со други корисници (секогаш проверувајте дали некој веќе го пријавил корисникот). Дали сакате да го пријавите корисников?</string>
   <string name="report-tu">Пријави корисник</string>
   <string name="report-reason">Причина:</string>
   <string name="report-auto">Пријавено $1</string>
@@ -501,7 +501,7 @@
   <string name="reportuser-not">Корисникот сега не е пријавен</string>
   <string name="report-evidence-none-provid">Нема претставено разлики како доказ, што значи дека ќе им биде многу тешко на администраторите да уврдат дали корисникот е вандал.</string>
   <string name="report-duplicate">Корисникот е веќе пријавен.</string>
-  <string name="report-fail2">Грешка: не можам да ја добијам пријавната страница на $1</string>
+  <string name="report-fail2" fuzzy="true">Грешка: не можам да ја добијам пријавната страница на $1</string>
   <string name="report-progress">Го пријавувам $1...</string>
   <string name="report-retrieving">Ја преземам тековната пријавна страница...</string>
   <string name="report-done">Пријавено</string>
@@ -514,7 +514,7 @@
   <string name="score-only-whole-word">Најди само цели зборови</string>
   <string name="score-take-any-word">Најди било кој збор што ја содржи низава</string>
   <string name="ssl-is-not-supported">Побаравте да користите SSL, но $1 не го поддржува.</string>
-  <string name="ssl-required">Опслужувачот на $1 бара SSL да биде овозможен. Вклучете го SSL и обидете се повторно. Ако не можете да го вклучите (т.е. ако можноста е посивена) можеби ќе треба да воспоставите отворени SSL-библиотеки во вашиот систем.</string>
+  <string name="ssl-required" fuzzy="true">Опслужувачот на $1 бара SSL да биде овозможен. Вклучете го SSL и обидете се повторно. Ако не можете да го вклучите (т.е. ако можноста е посивена) можеби ќе треба да воспоставите отворени SSL-библиотеки во вашиот систем.</string>
   <string name="uaa-not-supported">UAA е недостапен</string>
   <string name="uaa-not-supported-text">Корисничките имиња за таблата за администраторско внимание не се достапни на вашето вики.</string>
   <string name="uaa-reporting">Го пријавувам $1 кај UAA</string>
@@ -522,15 +522,15 @@
   <string name="uaa-no-reason-warn">Не укажавте причина зошто корисничкото име ги крши правилата. Наведете причина.</string>
   <string name="uaa-nr">Нема наведено причина</string>
   <string name="uaa-g1">Земам содржини од UAA</string>
-  <string name="uaa-e1">барањето за содржините на страницата не даде податоци.</string>
-  <string name="uaa-e2">содржините на страницата не беа достапни.</string>
+  <string name="uaa-e1" fuzzy="true">барањето за содржините на страницата не даде податоци.</string>
+  <string name="uaa-e2" fuzzy="true">содржините на страницата не беа достапни.</string>
   <string name="read-only">Проектот $1 е наместен само на читање. Можностите за уредување ќе бидат ограничени</string>
   <string name="revert-confirm-multiple">Со ова ќе отповикате повеќе уредувања на $1. Да продолжам?</string>
   <string name="revert-confirm-range">Авторот на целната преработка ($2) е во истиот опсег со авторот на тековната ($1), и затоа може да се работи за истата личност. Проверете дали целната преработка ви е исправна пред да одите понатаму. Да продолжам?</string>
   <string name="revert-confirm-same">Со ова ќе вратите на друга преработка од истиот корисник ($1). Да продолжам?</string>
   <string name="revert-confirm-warned">Со ова ќе вратите на преработка на $1. Овој корисник веќе бил опоменат? Да продолжам?</string>
   <string name="revert-error-first">Уредувањево е прво на страницата и затоа не може да се отповика.</string>
-  <string name="revert-only">Ова е единственото уредување на страницава.</string>
+  <string name="revert-only" fuzzy="true">Ова е единственото уредување на страницава.</string>
   <string name="revert-creator">Последното уредување на страницата го направи нејзиниот создавач — $1.</string>
   <string name="revert-preflightcheck">Подготвителна проверка</string>
   <string name="revert-delete-instead">А да ја избришам страницата?</string>
@@ -560,7 +560,7 @@
   <string name="updater-open-manualdownloadpage">Отвори страница за преземање</string>
   <string name="updater-close">Затвори</string>
   <string name="updater-disable-notify">Оневозможи подновувања</string>
-  <string name="user-history-fail">не можам да ја добијам историјата на корисникот: $1</string>
+  <string name="user-history-fail" fuzzy="true">не можам да ја добијам историјата на корисникот: $1</string>
   <string name="userinfo-generic">Кориснички информации</string>
   <string name="userinfo-retrieve">Повикај се на информациите</string>
   <string name="shortcut-page-patrol-edit">Означи како проверено</string>
@@ -573,13 +573,13 @@
   <string name="shortcut-next">Прејди на следното уредување</string>
   <string name="shortcut-suspicious">Означи го уредувањето како сомнително</string>
   <string name="shortcut-back">Прејди на претходно прикажаното уредување</string>
-  <string name="shortcut-forward">Прејди на уредување што е некогаш вчитано, но преместено</string>
-  <string name="shortcut-warn">Испрати му опомена на корисникот, без да го отповикаш уредувањето</string>
+  <string name="shortcut-forward" fuzzy="true">Прејди на уредување што е некогаш вчитано, но преместено</string>
+  <string name="shortcut-warn" fuzzy="true">Испрати му опомена на корисникот, без да го отповикаш уредувањето</string>
   <string name="shortcut-revert">Отповикај уредување</string>
   <string name="shortcut-x-raw">Повикај N-та ставка во менито за отповикување и опомена</string>
   <string name="shortcut-x-revert">Повикај N-та ставка во менито за отповикување</string>
-  <string name="shortcut-watch">Става прикажана страница набљудувани.</string>
-  <string name="shortcut-unwatch">Отстранува прикажана страница од набљудувани</string>
+  <string name="shortcut-watch" fuzzy="true">Става прикажана страница набљудувани.</string>
+  <string name="shortcut-unwatch" fuzzy="true">Отстранува прикажана страница од набљудувани</string>
   <string name="shortcut-x-warn">Повикај N-та ставка во менито за опомена</string>
   <string name="shortcut-good">Обележи го тековно прикажаното уредување како добро</string>
   <string name="shortcut-open-in-huggle">Отвори ја тековно прикажаната страница</string>
@@ -588,9 +588,9 @@
   <string name="shortcut-revert-agf-1">Отповикај ја последната преработка, претпоставувајќи добронамерност</string>
   <string name="shortcut-browser-close-tab">Затвори јазиче од прелистувачот</string>
   <string name="shortcut-tab">Отвора ново јазиче</string>
-  <string name="shortcut-rw-stay">Отповикај го тековното уредување, опомени го корисникот и остани на страницата.</string>
-  <string name="shortcut-revert-and-stay">Отповикај го тековното уредување и остани на страницата</string>
-  <string name="shortcut-custom-reason">Отповикај уредување со прилагодена причина во описот на уредувањето</string>
+  <string name="shortcut-rw-stay" fuzzy="true">Отповикај го тековното уредување, опомени го корисникот и остани на страницата.</string>
+  <string name="shortcut-revert-and-stay" fuzzy="true">Отповикај го тековното уредување и остани на страницата</string>
+  <string name="shortcut-custom-reason" fuzzy="true">Отповикај уредување со прилагодена причина во описот на уредувањето</string>
   <string name="shortcut-user-contribs-browser">Отвори кориснички придонеси во прелистувач</string>
   <string name="warning-title">Опомени го $1</string>
   <string name="warning-levelgroup">Степен на опомена</string>
@@ -637,7 +637,7 @@
   <string name="history-work">Откажување на сопствено уредување направено на $1</string>
   <string name="history-no-item-selected">Нњмате избрано ставка од елементот за историја</string>
   <string name="history-message-revert-title">Навистина сакате да ја откажете само оваа порака?</string>
-  <string name="history-another-edit">Веќе отповикувам друго уредување. Почекајте.</string>
+  <string name="history-another-edit" fuzzy="true">Веќе отповикувам друго уредување. Почекајте.</string>
   <string name="history-not-found">Не најдов ништо за откажување</string>
   <string name="history-already-done">Ова е веќе откажано</string>
   <string name="history-message-revert-body">Ова е порака која се споменува отповикувањето. Дали сигурно сакате да го откажете само шаблонот, а дури не ни вашето уредување на страницата? (ќе треба да го поништите отковикувањето доколку сакате да ги откажете обете споменати)</string>
@@ -672,7 +672,7 @@
   <string name="editquery-token-error">Не можев да ја добијам шифрата на уредувањето</string>
   <string name="editquery-nocsrft">Нема CSRF-шифра</string>
   <string name="editquery-error-retrieve-prev">Не можев да ја добијам претходната содржина на страницата: $1</string>
-  <string name="editquery-error-append">Не можете едновремено да користите вметнување пред и зад за уредување на страница</string>
+  <string name="editquery-error-append" fuzzy="true">Не можете едновремено да користите вметнување пред и зад за уредување на страница</string>
   <string name="editquery-error-badtoken">Неправилна шифра</string>
   <string name="editquery-invalid-token">Не можам ја изменам $1 бидејќи шифрата во меѓускладот повеќе не е важечка. Обидете се повторно да ја измените</string>
   <string name="provider-failure">Не успеав со главниот каналски добавувач $1 на $2. Се обидувам да најдам друг добавувач</string>
@@ -691,29 +691,29 @@
   <string name="feature-nfru">Оваа функција се однесува само на корисници од IP-адреси</string>
   <string name="report-no-user">Немате одбрано корисник за пријавување. Прво укажете корисник</string>
   <string name="welcome-show">Прикажи ја поракава и следен пат кога ќе го пуштам Huggle</string>
-  <string name="welcome-tp-empty-fail">Корисников нема празна страница за разговор. Дали сте сигурни дека сакате да му испратите порака?</string>
+  <string name="welcome-tp-empty-fail" fuzzy="true">Корисников нема празна страница за разговор. Дали сте сигурни дека сакате да му испратите порака?</string>
   <string name="welcome-page-miss-fail">Huggle не можеше да ја добие содржината на корисничката страница за разговор. Дали сте сигурни дека сакате да испратите порака за добредојде?</string>
-  <string name="cr-newer-edits">Спротиставеноста е решена: отповикани се сите уредувања, вклучувајќи ги новите. Беа направени од ист корисник: $1.</string>
-  <string name="cr-resolved-same-user">Спротиставеноста е решена: отповикани сите уредувања (вклучувајќи ги новите) направени од исти корисници —  уредувањата се од ист корисник: $1</string>
+  <string name="cr-newer-edits" fuzzy="true">Спротиставеноста е решена: отповикани се сите уредувања, вклучувајќи ги новите. Беа направени од ист корисник: $1.</string>
+  <string name="cr-resolved-same-user" fuzzy="true">Спротиставеноста е решена: отповикани сите уредувања (вклучувајќи ги новите) направени од исти корисници —  уредувањата се од ист корисник: $1</string>
   <string name="cr-stop-new-edit">Спротиставеноста е решена: не направив ништо — има понови уредувања за $1</string>
-  <string name="cr-stop-multiple-same">Спротиставеноста е решена: не правете ништо — $1 има повеќе уредувања од ист корисник</string>
-  <string name="cr-revert-same-user">Спротиставеноста е решена: отповикајте ги сите уредувања — истиот корисник има направено повеќе уредувања на $1</string>
-  <string name="cr-message-same">$1 има повеќе уредувања од еден ист корисник. Дали сте сигурни дека сакате да ги отповикате?</string>
+  <string name="cr-stop-multiple-same" fuzzy="true">Спротиставеноста е решена: не правете ништо — $1 има повеќе уредувања од ист корисник</string>
+  <string name="cr-revert-same-user" fuzzy="true">Спротиставеноста е решена: отповикајте ги сите уредувања — истиот корисник има направено повеќе уредувања на $1</string>
+  <string name="cr-message-same" fuzzy="true">$1 има повеќе уредувања од еден ист корисник. Дали сте сигурни дека сакате да ги отповикате?</string>
   <string name="cr-message-new">$1 има понови уредувања. Дали сте сигурни дека навистина сакате да ги отповикате?</string>
   <string name="cr-message-not-same">$1 има понови уредувања од различен корисник. Дали сте сигурни дека навистина сакате да ги отповикате сите нив? (веројатно бездруго нема да успеете поради старата шифра)</string>
   <string name="preferences-delete-using-filter">Не можете да избришете филтер кој е во тековна употреба</string>
-  <string name="preferences-extension-disabled">Овој додаток е веќе предвиден да го оневозможи следното пуштање на Huggle</string>
-  <string name="preferences-extension-disabled-restart">Додатокот е оневозможен почнувајќи од следново вклучување на Huggle</string>
-  <string name="preferences-extension-enabled">Овој додаток не е предвиден да го оневозможи следното пуштање на Huggle</string>
-  <string name="preferences-extension-enabled-restart">Додатокот е оневозможен. Меѓутоа, ќе треба да го превклучите Higgle одново за да се доврши оневозможувањето.</string>
+  <string name="preferences-extension-disabled" fuzzy="true">Овој додаток е веќе предвиден да го оневозможи следното пуштање на Huggle</string>
+  <string name="preferences-extension-disabled-restart" fuzzy="true">Додатокот е оневозможен почнувајќи од следново вклучување на Huggle</string>
+  <string name="preferences-extension-enabled" fuzzy="true">Овој додаток не е предвиден да го оневозможи следното пуштање на Huggle</string>
+  <string name="preferences-extension-enabled-restart" fuzzy="true">Додатокот е оневозможен. Меѓутоа, ќе треба да го превклучите Higgle одново за да се доврши оневозможувањето.</string>
   <string name="preferences-watchlist-watch">Додај во набљудувани</string>
   <string name="preferences-watchlist-unwatch">Отстрани набљудуваните</string>
   <string name="preferences-watchlist-preferences">Води се по моите нагодувања на викито</string>
   <string name="preferences-watchlist-nochange">Не прави ништо</string>
-  <string name="preferences-sounds-enable-queue">Пушти звук кога ќе се појави нова ставка во редицата</string>
+  <string name="preferences-sounds-enable-queue" fuzzy="true">Пушти звук кога ќе се појави нова ставка во редицата</string>
   <string name="preferences-sounds-enable-irc">Пушти звук кога ќе се прими нова порака во HAN</string>
   <string name="preferences-sounds-minimal-score">Најмало уредување за известување</string>
-  <string name="preferences-performance-catscansandwatched">Овозможи отчитување категории и филтрирање на набљудувања (бара дополнително барање до приложникот за секое уредување)</string>
+  <string name="preferences-performance-catscansandwatched" fuzzy="true">Овозможи отчитување категории и филтрирање на набљудувања (бара дополнително барање до приложникот за секое уредување)</string>
   <string name="preferences-max-score">Овозможи глобална најголема оцена (уредувањата со повисока оцена ќе бидат занемарени — корисно ако сакате да ги видите само добрите уредувања)</string>
   <string name="preferences-min-score">Овозможи глобална најниска оцена (уредувањата со пониска оцена ќе бидат занемарени — корисно ако сакате да ги видите само лошите уредувања)</string>
   <string name="preferences-queue-size">Големина на редицата</string>
@@ -726,7 +726,7 @@
   <string name="protect-request-fail-notime">Барањето не даде никакакво време и датум. Ова може да е грешка во МедијаВики. Запирам со барањето.</string>
   <string name="message-fail">Не успеав да ја доставам пораката</string>
   <string name="edit-conflict">Спротиставеност во уредувањето.</string>
-  <string name="page-tag-nodescription">нема опис за оваа ознака :/</string>
+  <string name="page-tag-nodescription" fuzzy="true">нема опис за оваа ознака :/</string>
   <string name="page-tag-fail">Не успеав да ја означам страницата</string>
   <string name="page-tag-error">Не можам да ја означам страницата. Грешката гласи: $1</string>
   <string name="page-unknown">Непозната страница</string>
@@ -737,9 +737,9 @@
   <string name="block-alreadyblocked">Корисникот е веќе блокиран</string>
   <string name="report-fail">Не можам да го пријавам корисникот бидејќи: $1</string>
   <string name="report-page-fail">Грешка: не можам да ја добијам пријавната страница на $1</string>
-  <string name="report-page-fail-time">Не можам да го добијам времето и датумот на тековната пријавн страница. Извршникот не успеа:\n\n $1</string>
-  <string name="report-unable">Не можам да го пријавам корисникот  :(</string>
-  <string name="about-python-with"> , со поддршка за Python</string>
+  <string name="report-page-fail-time" fuzzy="true">Не можам да го добијам времето и датумот на тековната пријавн страница. Извршникот не успеа:\n\n $1</string>
+  <string name="report-unable" fuzzy="true">Не можам да го пријавам корисникот  :(</string>
+  <string name="about-python-with" fuzzy="true"> , со поддршка за Python</string>
   <string name="about-python-without"> без поддршка за Python</string>
   <string name="about-qt">, составен користејќи QT $1 Работи на QT $1</string>
   <string name="about-info">, на основа на $1, целна подлога: $2</string>
@@ -748,11 +748,11 @@
   <string name="projects">Проекти</string>
   <string name="unable-to-retrieve-user-list">Не можам да го добијам корисничкиот список: $1</string>
   <string name="login-no-userinfo">Мрежното место не даде никакви кориснички информации</string>
-  <string name="login-invalid-register-date">МедијаВики даде неважечки датум на регистрација</string>
+  <string name="login-invalid-register-date" fuzzy="true">МедијаВики даде неважечки датум на регистрација</string>
   <string name="login-site-info-query-failed">Барањето за информации од мрежното место $1 на успеа: $2</string>
   <string name="login-no-site-info-returned">Нема информации за ова вики</string>
   <string name="loading-main-window">Го вчитувам главниот прозорец</string>
-  <string name="api.php-invalid-response">api.php одговори со неважечки текст (мрежниот опслужувач не работи?). Погледајте во дневникот на отстранување грешки за поточни информации</string>
+  <string name="api.php-invalid-response" fuzzy="true">api.php одговори со неважечки текст (мрежниот опслужувач не работи?). Погледајте во дневникот на отстранување грешки за поточни информации</string>
   <string name="login-username-doesnt-exist">Не постои такво корисничко име.</string>
   <string name="developer-mode-enter-title">Одлично!</string>
   <string name="developer-mode-enter-message">Влеговте во развоен режим!</string>

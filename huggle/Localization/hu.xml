@@ -49,7 +49,7 @@
   <string name="disable">Letiltás</string>
   <string name="no-token">Nincs token</string>
   <string name="flags">Címkék</string>
-  <string name="browser-none">Nincs megjeleníthető lap</string>
+  <string name="browser-none" fuzzy="true">Nincs megjeleníthető lap</string>
   <string name="browser-miss-summ">Nincs megadva összefoglaló</string>
   <string name="about-contributors">Fejlesztők:</string>
   <string name="block-not">A felhasználó nincs blokkolva</string>
@@ -65,8 +65,8 @@
   <string name="block-warnloglabel">Figyelmeztetések:</string>
   <string name="block-fail">Nem sikerült a felhasználó blokkolása a következő miatt: $1</string>
   <string name="block-type">Blokkolás / feloldás</string>
-  <string name="block-admin">Blokkoló adminisztrátor</string>
-  <string name="block-none">Nincs blokkolható felhasználó.</string>
+  <string name="block-admin" fuzzy="true">Blokkoló adminisztrátor</string>
+  <string name="block-none" fuzzy="true">Nincs blokkolható felhasználó.</string>
   <string name="config-function">Függvény</string>
   <string name="config-description">Leírás</string>
   <string name="config-shortcut">Rövidítés</string>
@@ -135,7 +135,7 @@
   <string name="login-error-nouser">A felhasználó nem létezik</string>
   <string name="login-error-password">Hibás jelszó</string>
   <string name="login-error-projdisabled">A Huggle le van tiltva a(z) $1 wikin.</string>
-  <string name="login-error-unknown">Sikertelen belépés a következőbe: $1</string>
+  <string name="login-error-unknown" fuzzy="true">Sikertelen belépés a következőbe: $1</string>
   <string name="login-ro-title">Átváltás csak olvashatóra</string>
   <string name="login-ro-question">Egy vagy több projekt ($1) nem engedélyezi, hogy jogosultságok szerkesztésével lépjen be (ok: $2). Szeretne inkább csak olvasható módra váltani?</string>
   <string name="login-ro-info">A(z) $1 projekt csak olvasható módra váltott</string>
@@ -143,7 +143,7 @@
   <string name="main-user">Felhasználó</string>
   <string name="main-contribs">Közreműködések</string>
   <string name="main-history">Laptörténet</string>
-  <string name="main-new-messages">Új üzeneteid vannak. Kattints a Rendszer -&gt; Új üzenetek mutatása gombra, vagy nyomd meg az M billentyűt.</string>
+  <string name="main-new-messages" fuzzy="true">Új üzeneteid vannak. Kattints a Rendszer -&gt; Új üzenetek mutatása gombra, vagy nyomd meg az M billentyűt.</string>
   <string name="main-system">Rendszer</string>
   <string name="main-system-savelog">Napló mentése...</string>
   <string name="main-system-statistics">Statisztikák...</string>
@@ -284,14 +284,14 @@
   <string name="preferences-watchlist-watch">Hozzáadás a figyelőlistához</string>
   <string name="preferences-watchlist-unwatch">Eltávolítás a figyelőlistáról</string>
   <string name="preferences-watchlist-nochange">Ne csináljon semmit</string>
-  <string name="preferences-sounds-enable-queue">Hang lejátszása, amikor új elem kerül a sorba</string>
+  <string name="preferences-sounds-enable-queue" fuzzy="true">Hang lejátszása, amikor új elem kerül a sorba</string>
   <string name="preferences-sounds-minimal-score">Minimális szerkesztéspontszám az értesítéshez</string>
   <string name="fail">Sikertelen</string>
   <string name="request">Kérelem</string>
   <string name="namespace">Névtér</string>
   <string name="block-alreadyblocked">Felhasználó már blokkolva van</string>
-  <string name="report-unable">Nem sikerült jelenteni a felhasználót :(</string>
-  <string name="about-python-with">, python támogatással</string>
+  <string name="report-unable" fuzzy="true">Nem sikerült jelenteni a felhasználót :(</string>
+  <string name="about-python-with" fuzzy="true">, python támogatással</string>
   <string name="about-python-without">python támogatás nélkül</string>
   <string name="error-unknown-code">Ismeretlen hiba: $1</string>
   <string name="relogin-fail">Nem sikerült bejelentkezni a wikibe: $1</string>

@@ -58,7 +58,7 @@
   <string name="block-blockloglabel">დაბლოკვის ჟურნალი:</string>
   <string name="block-warnloglabel">გაფრთხილებები:</string>
   <string name="block-type">დაბლოკვა / განბლოკვა</string>
-  <string name="block-admin">ადმინისტრატორის დაბლოკვა</string>
+  <string name="block-admin" fuzzy="true">ადმინისტრატორის დაბლოკვა</string>
   <string name="config-function">ფუნქცია</string>
   <string name="config-description">აღწერა</string>
   <string name="config-shortcut">მალსახმობი</string>
@@ -95,7 +95,7 @@
   <string name="config-templatetext">ნაჩვენები ტექსტი</string>
   <string name="config-template">თარგი</string>
   <string name="config-blockreason">Причина блокировки по умолчанию</string>
-  <string name="config-blocktime">Срок блокировки по умолчанию</string>
+  <string name="config-blocktime" fuzzy="true">Срок блокировки по умолчанию</string>
   <string name="config-blocktimeanon">анонимные участники</string>
   <string name="config-blocktimereg">зарегистрированные участники</string>
   <string name="config-summaryprompt">Enter summary</string>
@@ -139,13 +139,13 @@
   <string name="login-error-nouser">მომხმარებელი არ არსებობს</string>
   <string name="login-error-password">არასწორი პაროლი</string>
   <string name="login-error-projdisabled">საიტზე $1 Huggle ამჟამად გამორთულია.</string>
-  <string name="login-error-unknown">საიტზე $1 შესვლა შეუძლებელია.</string>
+  <string name="login-error-unknown" fuzzy="true">საიტზე $1 შესვლა შეუძლებელია.</string>
   <string name="login-error-version">ეს ვერსია მოძველდა. განაახლეთ ბოლო ვერსიამდე.</string>
   <string name="main-page">Страница</string>
   <string name="main-user">Участник</string>
   <string name="main-contribs">Вклад</string>
   <string name="main-history">История</string>
-  <string name="main-new-messages">თქვენ გაქვთ ახალი შეტყობინებები. აირჩიეთ სისტემა -&gt; ახალი შეტყობინებების ჩვენება ან მათ სანახავად დააჭირეთ M-ს.</string>
+  <string name="main-new-messages" fuzzy="true">თქვენ გაქვთ ახალი შეტყობინებები. აირჩიეთ სისტემა -&gt; ახალი შეტყობინებების ჩვენება ან მათ სანახავად დააჭირეთ M-ს.</string>
   <string name="main-system">Система</string>
   <string name="main-system-messages">Показать новые сообщения</string>
   <string name="main-system-reconnectirc">Переподключиться к ленте IRC</string>
@@ -294,7 +294,7 @@
   <string name="shortcut-revert">რედაქტირების გაუქმება</string>
   <string name="shortcut-browser-close-tab">ბრაუზერის ჩანართის დახურვა</string>
   <string name="shortcut-tab">ხსნის ახალ ჩანართს</string>
-  <string name="shortcut-revert-and-stay">მიმდინარე რედაქტირების უარყოფა და გვერდზე დარჩენა</string>
+  <string name="shortcut-revert-and-stay" fuzzy="true">მიმდინარე რედაქტირების უარყოფა და გვერდზე დარჩენა</string>
   <string name="warning-title">გაფრთხილება $1</string>
   <string name="warning-levelgroup">გაფრთხილების დონე</string>
   <string name="warning-levelauto">ავტომატური</string>
@@ -330,8 +330,8 @@
   <string name="speedy-csd-existing">გვერდზე უკვე არის CSD ტეგი.</string>
   <string name="namespace">სახელთა სივრცე</string>
   <string name="block-alreadyblocked">მომხმარებელი უკვე დაბლოკილია</string>
-  <string name="report-page-fail-time">$1</string>
-  <string name="about-python-with"> ,python-ის მხარდაჭერით</string>
+  <string name="report-page-fail-time" fuzzy="true">$1</string>
+  <string name="about-python-with" fuzzy="true"> ,python-ის მხარდაჭერით</string>
   <string name="about-python-without"> python-ის მხარდაჭერის გარეშე</string>
   <string name="error-unknown-code">უცნობი შეცდომა: $1</string>
   <string name="relogin-fail">ვიკიში ავტორიზაციის გავლა შეუძლებელია: $1</string>

@@ -50,7 +50,7 @@
   <string name="disable">Өшіру</string>
   <string name="no-token">Токен жоқ</string>
   <string name="flags">Жалаушалары</string>
-  <string name="browser-none">Қазір бет көрсетілмейді</string>
+  <string name="browser-none" fuzzy="true">Қазір бет көрсетілмейді</string>
   <string name="browser-diff">Мына беттегі нұсқалар арасындағы айырмашылық: $1 (ұпай: $2)</string>
   <string name="browser-fail">Нұсқалар арасындағы айырмашылық алынбады: $1</string>
   <string name="about-contributors">Жасақтаушылар:</string>
@@ -70,8 +70,8 @@
   <string name="block-fail">Қатысушыны бұғаттау мүмкін емес, $1</string>
   <string name="block-token-e1">Токен алынынбайды: $1</string>
   <string name="block-type">Бұғаттау / Бұғаттауын болдырмау</string>
-  <string name="block-admin">Бұғаттаушы жүйе әкімшісі</string>
-  <string name="block-none">Бұғаттауға қатысушы жоқ.</string>
+  <string name="block-admin" fuzzy="true">Бұғаттаушы жүйе әкімшісі</string>
+  <string name="block-none" fuzzy="true">Бұғаттауға қатысушы жоқ.</string>
   <string name="config-function">Функция</string>
   <string name="config-description">Сипаттамасы</string>
   <string name="config-shortcut">Лақап</string>
@@ -122,7 +122,7 @@
   <string name="config-confirmsame">Қатысушы бұрыңғы қалпына қайтарған өңдемесін құптау</string>
   <string name="config-confirmselfrevert">Өз өңдемелерімнің нұсқасын құптау (жоққа шығаруды қоспағанда)</string>
   <string name="config-confirmwarned">Ескерту жасалған қатысушы өңдемесінің нұсқасын құптау</string>
-  <string name="config-confirmpage">Елнбеген беттер нұсқасын құптау</string>
+  <string name="config-confirmpage" fuzzy="true">Елнбеген беттер нұсқасын құптау</string>
   <string name="config-userollback">Егер қолжетімді болса шегіндіруді қолдану</string>
   <string name="config-revertsummaries">Мәзірде қайтару түйіндемелері қолжетімді</string>
   <string name="config-extendreports">Қосымша вандализмнен кейін кеңейтіп хабарлау</string>
@@ -186,7 +186,7 @@
   <string name="login-ssl">HTTPS қолдану (OpenSSL қажет етеді)</string>
   <string name="login-fail">$1 сайтында кіру сәтсіз болды</string>
   <string name="login-error-admin">Бұл жобада Huggle бағадарламасын қолдану әкімші тіркелгісін қажет етеді.</string>
-  <string name="login-error-age">Бұл жобада Huggle бағадарламасын қолдану тіркелгеніне $1 күн болуын қажет етеді.</string>
+  <string name="login-error-age" fuzzy="true">Бұл жобада Huggle бағадарламасын қолдану тіркелгеніне $1 күн болуын қажет етеді.</string>
   <string name="login-error-alldisabled">Huggle қазіргі уақытта барлық жобаларда өшірілген.</string>
   <string name="login-error-cancelled">Болдырылмады.</string>
   <string name="login-error-invalid">Жарамсыз қатысушы есімі</string>
@@ -194,17 +194,17 @@
   <string name="login-error-nouser">Қатысушы жоқ</string>
   <string name="login-error-password">Дұрыс емес құпия сөз</string>
   <string name="login-error-projdisabled">$1 сайтында Huggle қазіргі уақытта өшірілген.</string>
-  <string name="login-error-unknown">$1 сайтына кірілмеді.</string>
+  <string name="login-error-unknown" fuzzy="true">$1 сайтына кірілмеді.</string>
   <string name="login-error-version">Бұл нұсқасы ескірген. Ең соңғы нұсқасын жаңартыңыз.</string>
   <string name="main-menu-provider-stop">Провайдерді тоқтату</string>
   <string name="main-menu-provider-resume">Провайдерді жалғастыру</string>
   <string name="main-no-reason">Қатысушы себебін көрсетпеген</string>
-  <string name="main-restoring-slap">Мен міне басқа өңдемені қалпына келтірудемемін, күте тұрыңыз...</string>
+  <string name="main-restoring-slap" fuzzy="true">Мен міне басқа өңдемені қалпына келтірудемемін, күте тұрыңыз...</string>
   <string name="main-page">Бет</string>
   <string name="main-user">Қатысушы</string>
   <string name="main-contribs">Үлестер</string>
   <string name="main-history">Тарихы</string>
-  <string name="main-new-messages">Сізге жаңа хабарламалар келді. Жүйені таңдаңыз → Жаңа хабарламаларды көрсету не оны қарау үшін M пернесін басыңыз</string>
+  <string name="main-new-messages" fuzzy="true">Сізге жаңа хабарламалар келді. Жүйені таңдаңыз → Жаңа хабарламаларды көрсету не оны қарау үшін M пернесін басыңыз</string>
   <string name="main-space">Бет атауы бос орындармен аяқталмайды, бет атауын түзетіңіз</string>
   <string name="main-system">Жүйе</string>
   <string name="main-shutting-down">Huggle өшті, елемеді</string>
@@ -308,7 +308,7 @@
   <string name="main-revert-newpage-title">Бұл қайтарылмайды</string>
   <string name="main-revert-newpage" fuzzy="true">Бұл жаңа бет, сондықтан ол қайтарылмайды, сіз не белгілей аласыз не жойыңыз.</string>
   <string name="main-restore-text-fail">Нұсқаны қалпына келтіре алмайсыз, себебі оның мәтіні қолжетімді емес</string>
-  <string name="main-restore-data-fail">Нұсқаны қалпына келтіре алмайсыз, себебі таңдалған нұсқа үшін уики дерек жоқ деп көрсетті</string>
+  <string name="main-restore-data-fail" fuzzy="true">Нұсқаны қалпына келтіре алмайсыз, себебі таңдалған нұсқа үшін уики дерек жоқ деп көрсетті</string>
   <string name="message-title">Хабарлама $1</string>
   <string name="message-subject">Тақырыбы:</string>
   <string name="message-message">Хабарлама:</string>
@@ -378,7 +378,7 @@
   <string name="score-take-any-word">Бұл жолда қамтылған кез келген сөз сәйкес</string>
   <string name="uaa-reported">Хабарланды</string>
   <string name="uaa-nr">Себебі көрсетілмеген</string>
-  <string name="uaa-e2">бет контенті қолжетімді болмаған</string>
+  <string name="uaa-e2" fuzzy="true">бет контенті қолжетімді болмаған</string>
   <string name="revert-confirm-multiple">Бұл $1 істеген бірнеше өңдемені жоққа шығарады. Жалғастырасыз ба?</string>
   <string name="revert-cannotundo">Өңдемелер арасында қақтығысқандықтан жоққа шығара алмайсыз</string>
   <string name="revert-conflict">Бетті өңдеген \'$1\' есімді қатысушы ақ тізімде</string>
@@ -407,18 +407,18 @@
   <string name="shortcut-next">Келесі өңдемеге өту</string>
   <string name="shortcut-suspicious">Күдікті деп белгілеу</string>
   <string name="shortcut-back">Алында көрсетілген өңдемеге өту</string>
-  <string name="shortcut-warn">Өңдемені қайтармай, қатысушыға ескерту жіберу</string>
+  <string name="shortcut-warn" fuzzy="true">Өңдемені қайтармай, қатысушыға ескерту жіберу</string>
   <string name="shortcut-revert">Өңдемені қайтару</string>
-  <string name="shortcut-watch">Бақылау тізіміне көрсетілген бетті кірістіру</string>
-  <string name="shortcut-unwatch">Бақылау тізімінен көрсетілген бетті аластау</string>
+  <string name="shortcut-watch" fuzzy="true">Бақылау тізіміне көрсетілген бетті кірістіру</string>
+  <string name="shortcut-unwatch" fuzzy="true">Бақылау тізімінен көрсетілген бетті аластау</string>
   <string name="shortcut-good">Қазіргі көрсетілген өңдемені жақсы деп жалауша қою</string>
   <string name="shortcut-open-in-huggle">Қазіргі көрсетілген бетті ашу</string>
   <string name="shortcut-open">Қазіргі көрсетілген бетті броузерде ашу</string>
   <string name="shortcut-talk">Бұл өңдемені жасаған қатысушының талқылау бетін көрсету</string>
   <string name="shortcut-browser-close-tab">Броузер қойындысын жабу</string>
   <string name="shortcut-tab">Жаңа қойынды ашу</string>
-  <string name="shortcut-rw-stay">Бұл өңдемені қайтару, қатысушыға ескерту және осы бетте қалу</string>
-  <string name="shortcut-revert-and-stay">Бұл өңдемені қайтару және осы бетте қалу</string>
+  <string name="shortcut-rw-stay" fuzzy="true">Бұл өңдемені қайтару, қатысушыға ескерту және осы бетте қалу</string>
+  <string name="shortcut-revert-and-stay" fuzzy="true">Бұл өңдемені қайтару және осы бетте қалу</string>
   <string name="warning-title">$1 дегенге ескерту</string>
   <string name="warning-levelgroup">Ескерту деңгейі</string>
   <string name="warning-levelauto">Автоматты</string>
@@ -453,7 +453,7 @@
   <string name="edit-fail">$1 беті өңделмейді</string>
   <string name="edit-progress">$1 беті өңделуде:</string>
   <string name="history-message-revert-title">Бұл хабарламаны шынымен жоққа шығарғыңыз келе ме?</string>
-  <string name="history-another-edit">Мен басқа өңдемені жоққа шығарудамын, күте тұрыңыз</string>
+  <string name="history-another-edit" fuzzy="true">Мен басқа өңдемені жоққа шығарудамын, күте тұрыңыз</string>
   <string name="history-not-found">Жоққа шыару үшін ештеңе табылмады</string>
   <string name="history-already-done">Бұл әлдеқашан жоққа шығарылған</string>
   <string name="history-undone">$1 бетіндегі өңдеме сәтті жоққа шығарылды</string>

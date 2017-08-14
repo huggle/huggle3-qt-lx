@@ -53,8 +53,8 @@
   <string name="config-confirmsame">Bekreft tilbakestilling til en redigering gjort av brukeren som blir tilbakestilt</string>
   <string name="config-confirmselfrevert">Bekreft tilbakestilling av egne redigeringer (Unntatt angre)</string>
   <string name="config-confirmwarned">Bekreft tilbakestilling til en redigering gjort av en advart bruker</string>
-  <string name="config-confirmrange">Bekreft tilbakestilling til en redigering gjort av anonym bruker i samme /16 IP-range som brukeren som ble tilbakestilt</string>
-  <string name="config-confirmpage">Bekreft tilbakestilling av ignorerte sider</string>
+  <string name="config-confirmrange" fuzzy="true">Bekreft tilbakestilling til en redigering gjort av anonym bruker i samme /16 IP-range som brukeren som ble tilbakestilt</string>
+  <string name="config-confirmpage" fuzzy="true">Bekreft tilbakestilling av ignorerte sider</string>
   <string name="config-autoadvance">Etter tilbakestilling, gå til neste redigering i køen</string>
   <string name="config-userollback">Bruk rollback hvis tilgjengelig</string>
   <string name="config-revertsummaries">Tilbakestillings sammendrag tilgjengelig i menyen</string>
@@ -68,7 +68,7 @@
   <string name="config-template">Mal</string>
   <string name="config-promptforblock">Spør om blokkering hvis advarsel går til bruker som har fått siste advarsel</string>
   <string name="config-blockreason">Standard blokkeringsgrunn</string>
-  <string name="config-blocktime">Standard blokkeringslengde for</string>
+  <string name="config-blocktime" fuzzy="true">Standard blokkeringslengde for</string>
   <string name="config-blocktimeanon">anonyme brukere</string>
   <string name="config-blocktimereg">registrerte brukere</string>
   <string name="config-summaryprompt">Skriv sammendrag</string>
@@ -100,26 +100,26 @@
   <string name="login-progress-config">Sjekker konfigurasjonssider...</string>
   <string name="login-progress-whitelist">Retrieving user whitelist...</string>
   <string name="login-error-admin">Bruk av Huggle på dette prosjektet krever en administratorkonto.</string>
-  <string name="login-error-age">Bruk av Huggle på dette prosjektet krever en konto som er minst $1 dager gammel.</string>
+  <string name="login-error-age" fuzzy="true">Bruk av Huggle på dette prosjektet krever en konto som er minst $1 dager gammel.</string>
   <string name="login-error-alldisabled">Huggle er for øyeblikket utilgjengelig på alle prosjekter.</string>
   <string name="login-error-approval">Bruk av Huggle på $1 krever godkjenning.</string>
   <string name="login-error-cancelled">Avbrutt.</string>
   <string name="login-error-config">Innlogging var mislykket, kunne ikke laste konfigurasjonssider for $1: $2</string>
   <string name="login-error-count">Bruk av Huggle på dette prosjektet krever minst $1 redigeringer.</string>
-  <string name="login-error-disabled">Huggle er ikke skrudd på for din konto på $1. Sjekk instillingene for din brukerprofil.</string>
+  <string name="login-error-disabled" fuzzy="true">Huggle er ikke skrudd på for din konto på $1. Sjekk instillingene for din brukerprofil.</string>
   <string name="login-error-global">Innlogging var mislykket. Kunne ikke laste global konfigurasjonsside. Se logg for ytterligere detaljer.</string>
   <string name="login-error-invalid">Ugyldig brukernavn.</string>
   <string name="login-error-noconfig">$1 har ikke en konfigurasjonsside for Huggle.</string>
   <string name="login-error-nouser">Brukeren eksisterer ikke.</string>
   <string name="login-error-password">Feil passord.</string>
   <string name="login-error-projdisabled">Huggle er for øyeblikket skrudd av på dette prosjektet.</string>
-  <string name="login-error-unknown">Kunne ikke logge inn på $1.</string>
+  <string name="login-error-unknown" fuzzy="true">Kunne ikke logge inn på $1.</string>
   <string name="login-error-version">Utdatert versjon. Vennligst oppdater til nyeste versjon.</string>
   <string name="main-page">Side</string>
   <string name="main-user">Bruker</string>
   <string name="main-contribs">Bidrag</string>
   <string name="main-history">Historikk</string>
-  <string name="main-new-messages">Du har nye meldinger; Gå til System -&gt; Vis nye meldinger eller trykk M for å vise dem.</string>
+  <string name="main-new-messages" fuzzy="true">Du har nye meldinger; Gå til System -&gt; Vis nye meldinger eller trykk M for å vise dem.</string>
   <string name="main-system">System</string>
   <string name="main-system-messages">Vis nye meldinger</string>
   <string name="main-system-reconnectirc">Koble til IRC-strøm på nytt</string>
@@ -250,7 +250,7 @@
   <string name="revert-confirm-same">Dette vil tilbakestille til en annen revisjon gjort av brukeren som blir tilbakestilt, $1. Fortsett?</string>
   <string name="revert-confirm-warned">Dette vil tilbakestille til en revisjon av $1, som har blitt gitt advarsler. Forsett?</string>
   <string name="revert-error-first">Redigeringen er den første som ble gjort på siden, og kan ikke tilbakestilles.</string>
-  <string name="revert-only">Redigeringen er den eneste som er gjort på siden.</string>
+  <string name="revert-only" fuzzy="true">Redigeringen er den eneste som er gjort på siden.</string>
   <string name="revert-creator">Siste redigering var av sidens opprinnelige forfatter, $1.</string>
   <string name="revert-delete-instead">Slett siden istedet?</string>
   <string name="revert-speedy-instead">Tagg for hurtig sletting istedet?</string>
@@ -320,6 +320,6 @@
   <string name="speedy-fail">Kunne ikke tagge $1 for hurtigsletting</string>
   <string name="speedy-progress">Tagger \'$1\' for hurtigsletting...</string>
   <string name="warn-alreadyblocked">Brukeren har allerede blitt blokkert</string>
-  <string name="preferences-extension-disabled-restart">Utvidelsen var satt til å bli deaktivert neste gang Huggle starter</string>
+  <string name="preferences-extension-disabled-restart" fuzzy="true">Utvidelsen var satt til å bli deaktivert neste gang Huggle starter</string>
   <string name="report-fail">Kunne ikke rapportere bruker fordi: \'$1\'</string>
 </resources>

@@ -23,7 +23,7 @@
   <string name="result">Ergebnis</string>
   <string name="save">Speichern</string>
   <string name="show">Anzeigen</string>
-  <string name="no-instant">Sofortwarnungen sind auf dem Projekt $1 nicht aktiviert, so dass die Nachricht nicht an $2 versandt werden konnte. Bitte wähle eine andere Warnstufe.</string>
+  <string name="no-instant">Die Nachricht an $2 konnte nicht versandt werden, da Sofortwarnungen auf dem Projekt $1 nicht aktiviert sind. Bitte wähle eine andere Warnstufe aus.</string>
   <string name="undo">Rückgängig</string>
   <string name="yes">Ja</string>
   <string name="editing-page">Bearbeite Seite</string>
@@ -46,7 +46,7 @@
   <string name="link">Link</string>
   <string name="reason">Grund</string>
   <string name="diffid">Kennung des Unterschieds</string>
-  <string name="whitelisted">$1 wurde mit dem Wert $2 auf $3 der Positivliste hinzugefügt</string>
+  <string name="whitelisted">$1 wurde mit dem Wert $2 auf $3 weißgelistet</string>
   <string name="expiry-time">Ablaufzeitpunkt</string>
   <string name="duration">Dauer</string>
   <string name="enable">Aktivieren</string>
@@ -54,7 +54,7 @@
   <string name="no-token">Kein Token</string>
   <string name="flags">Markierungen</string>
   <string name="gracetime">Warte auf Beendigung der Anfragen, die Bearbeitungen ausführen …</string>
-  <string name="browser-none">Es wird aktuell keine Seite angezeigt</string>
+  <string name="browser-none">Es gibt noch keine Seite zum Anzeigen.</string>
   <string name="browser-load">Lade Unterschied mithilfe eines MW-Fallbacks herunter. Bitte warten …</string>
   <string name="browser-miss-summ">Es wurde keine Zusammenfassung angegeben</string>
   <string name="browser-diff">Unterschied der Seite: $1 (Wert: $2)</string>
@@ -82,7 +82,7 @@
   <string name="block-error-no-info">Es sind keine Benutzerinformationen in der Abfrage vorhanden. Bist du ein Administrator?</string>
   <string name="block-type">Sperren / Freigeben</string>
   <string name="block-admin">Sperrender Administrator</string>
-  <string name="block-none">Es gibt keinen Benutzer zum Sperren.</string>
+  <string name="block-none">Es gibt keinen ausgewählten Benutzer zum Sperren.</string>
   <string name="contribution-browser-user-info">Die letzten Beiträge des Benutzers $1</string>
   <string name="config-function">Funktion</string>
   <string name="config-description">Beschreibung</string>
@@ -131,7 +131,7 @@
   <string name="config-remove-reverted">Bearbeitungen aus der Warteschlange entfernen, die bereits von jemand anderem zurückgesetzt wurden.</string>
   <string name="config-remove-old">Ältere Bearbeitungen aus der Warteschlange entfernen, falls eine neuere Bearbeitung an der gleichen Seite empfangen wird.</string>
   <string name="config-auto-load-history">Versionsgeschichte und Benutzerinformationen automatisch laden (erfordert eine hohe Internet-Bandbreite).</string>
-  <string name="config-last-revision">Auf die letzte Seitenversion wechseln, falls die derzeit geladene Bearbeitung nicht die letzte Version ist (wird nachgeladen, was Huggle langsamer macht).</string>
+  <string name="config-last-revision">Auf die aktuellste Seitenversion wechseln, falls die derzeit geladene Bearbeitung nicht die aktuellste Version ist (wird nachgeladen, was Huggle langsamer macht).</string>
   <string name="config-require-delay">Eine Verzögerung nach jedem Laden der nächsten Bearbeitung anfordern, währenddessen es nicht möglich ist, Schreibfunktionen zu verwenden (nützlich zum Vermeiden von Tastatur-Mehrfachdrück-Fehlern).</string>
   <string name="config-wait-edit">Die Verzögerung in Sekunden, bis Schreibfunktionen aktiviert werden:</string>
   <string name="config-display-text">Nächste anzeigen</string>
@@ -158,7 +158,7 @@
   <string name="config-confirmsame">Verlange Bestätigung, wenn die Änderung auf einer Version die dieser Benutzer bearbeitet hat, zurückgesetzt wird</string>
   <string name="config-confirmselfrevert">Verlange Bestätigung für das Widerrufen eigener Änderungen (außer Entfernen)</string>
   <string name="config-confirmwarned">Zurücksetzen der Bearbeitung eines verwarnten Benutzers bestätigen</string>
-  <string name="config-confirmrange">Zurücksetzen der Bearbeitung eines anonymen Benutzers im selben „/16“-Bereich wie der des zurückzusetzenden Benutzers bestätigen</string>
+  <string name="config-confirmrange">Zurücksetzen der Bearbeitungen von anonymen Benutzern im selben „/16“-Bereich wie dem des zurückzusetzenden Benutzers bestätigen</string>
   <string name="config-confirmpage">Zurücksetzen ignorierter Seiten bestätigen</string>
   <string name="config-autoadvance">Nach Zurücksetzen die nächste Seite in der Warteschleife aufrufen</string>
   <string name="config-userollback">Verwende \"rollback\" (Zurücksetzen), wenn möglich</string>
@@ -173,7 +173,7 @@
   <string name="config-template">Vorlage</string>
   <string name="config-promptforblock">Sperrung anbieten, falls ein Benutzer gewarnt werden soll, der schon die letzte Warnung bekommen hat</string>
   <string name="config-blockreason">Standardsperrgrund</string>
-  <string name="config-blocktime">Standardsperrdauer für</string>
+  <string name="config-blocktime">Standardsperrdauer</string>
   <string name="config-blocktimeanon">anonyme Benutzer</string>
   <string name="config-blocktimereg">registrierte Benutzer</string>
   <string name="config-summaryprompt">Zusammenfassung eingeben</string>
@@ -181,7 +181,7 @@
   <string name="config-defaultsprompt">Standardeinstellungen wiederherstellen?</string>
   <string name="config-logbrowsetitle">Pfad zur Logdatei</string>
   <string name="config-shortcutconflict">Das Kürzel $1 überschneidet sich mit dem vorhandenen Kürzel für $1.</string>
-  <string name="config-no-colon">Du kannst keinen Doppelpunkt im Namen der Warteschlange benutzen</string>
+  <string name="config-no-colon">Du kannst keinen Doppelpunkt im Namen einer Warteschlange benutzen</string>
   <string name="config-notify-update">Nach Aktualisierungen suchen</string>
   <string name="config-notify-beta">Nach Beta-Versionen suchen, falls verfügbar.</string>
   <string name="delete-title">$1 löschen</string>
@@ -245,7 +245,7 @@
   <string name="login-failed-edit">Anmeldung auf $1 fehlgeschlagen: Du hast auf diesem Projekt nicht genügend Bearbeitungen.</string>
   <string name="login-retrieving-info">Rufe Benutzerinformation auf $1 ab</string>
   <string name="login-password-empty">Das eingegebene Passwort war leer</string>
-  <string name="login-fail-wrong-name">Du hast zur Anmeldung keinen gültigen Benutzernamen angegeben</string>
+  <string name="login-fail-wrong-name">Du hast zur Anmeldung keinen Benutzernamen angegeben</string>
   <string name="login-api">FEHLER: api.php hat mit einem unbekannten Ergebnis geantwortet: $1</string>
   <string name="login-abort">Verwerfen</string>
   <string name="login-start">Anmelden</string>
@@ -267,13 +267,13 @@
   <string name="login-ssl">HTTPS benutzen (erfordert OpenSSL)</string>
   <string name="login-fail">Anmeldung auf $1 fehlgeschlagen</string>
   <string name="login-error-admin">Die Verwendung von Huggle auf diesem Projekt erfordert die Administratorberechtigung.</string>
-  <string name="login-error-age">Die Verwendung von Huggle auf diesem Projekt erfordert ein Benutzerkonto, das mindestens $1 Tage alt ist.</string>
+  <string name="login-error-age">Die Verwendung von Huggle auf diesem Projekt erfordert dein Benutzerkonto, das mindestens $1 Tage alt ist.</string>
   <string name="login-error-alldisabled">Huggle ist im Moment auf allen Projekten deaktiviert.</string>
   <string name="login-error-approval">Die Verwendung von Huggle auf $1 erfordert eine Berechtigung.</string>
   <string name="login-error-cancelled">Abgebrochen.</string>
   <string name="login-error-config">Anmeldung fehlgeschlagen. Die lokale Konfiguration für $1 konnte nicht geparst werden: $2</string>
   <string name="login-error-count">Die Verwendung von Huggle auf diesem Projekt erfordert mindestens $1 Bearbeitungen.</string>
-  <string name="login-error-disabled">Huggle ist für diesen Account auf $1 nicht aktiviert. Überprüfe deine Benutzer-Konfigurationsseite.</string>
+  <string name="login-error-disabled">Huggle ist für dieses Benutzerkonto auf $1 nicht aktiviert. Überprüfe deine Benutzerkonfigurationsseite.</string>
   <string name="login-error-global">Anmeldung fehlgeschlagen: Die globale Konfiguration konnte nicht geparst werden. Siehe das Debug-Logbuch für weitere Einzelheiten.</string>
   <string name="login-error-invalid">Ungültiger Benutzername</string>
   <string name="login-error-noconfig">$1 hat keine Huggle-Konfigurationsseite</string>
@@ -291,7 +291,7 @@
   <string name="main-menu-provider-resume">Provider fortsetzen</string>
   <string name="provider-up">Verbinde mit dem Letzte-Änderungen-Stream auf $2 mithilfe des Providers: $1</string>
   <string name="main-no-reason">Vom Benutzer wurde keine Begründung angegeben</string>
-  <string name="main-restoring-slap">Ich stelle derzeit eine andere Bearbeitung wieder her. Bitte warten …</string>
+  <string name="main-restoring-slap">Es wird derzeit eine andere Bearbeitung wiederhergestellt. Bitte warten …</string>
   <string name="main-page">Seite</string>
   <string name="main-user">Benutzer</string>
   <string name="main-contribs">Beiträge</string>
@@ -404,7 +404,7 @@
   <string name="main-stats">$1 Bearbeitungen pro Minute, $2 Zurücksetzungen pro Minute</string>
   <string name="main-display-session-data">Sitzungsdaten anzeigen</string>
   <string name="main-display-whitelist">Whitelist anzeigen</string>
-  <string name="main-revert-custom-reson">Bitte gib einen Grund an, warum du diese Bearbeitung auf eine frühere Version zurücksetzen willst.</string>
+  <string name="main-revert-custom-reson">Bitte begründe das Zurücksetzen dieser Bearbeitung auf die vorherige Version</string>
   <string name="main-log1">Ausgewählte Version von $1 wiederherstellen</string>
   <string name="main-tip-pagetagdelete">Seite zum Löschen markieren</string>
   <string name="main-tip-pagedelete">Seite löschen</string>
@@ -488,7 +488,7 @@
   <string name="queue-examplelabel3">Diese Eigenschaft nicht prüfen</string>
   <string name="queue-usergroup">Nur Änderungen dieser Benutzer anzeigen</string>
   <string name="report-title">$1 berichten</string>
-  <string name="report-warn">Dieser Benutzer hat bereits die Warnstufe 4 erreicht, so dass keine weiteren Vorlagen an ihn versandt werden. Du kannst ihn jetzt melden, aber  stelle bitte sicher, dass er bereits die angemessene Anzahl an Warnungen erreicht hat! Du kannst es überprüfen, indem du auf den Diskussionsseiten-Link im folgenden Formular klickst. Vergiss nicht, dass dieses Formular und diese Warnung angezeigt wird, unabhängig davon, ob dein Revert erfolgreich war oder nicht. Du könntest hier mit anderen Benutzern in Konflikt geraten (doppelte Überprüfung, ob der Benutzer noch nicht bereits gemeldet wurde). Möchtest du diesen Benutzer melden?</string>
+  <string name="report-warn">Dieser Benutzer hat bereits die Warnstufe 4 erreicht, so dass keine weiteren Vorlagen an ihn versandt werden. Du kannst ihn jetzt melden, aber stelle bitte sicher, dass er bereits die angemessene Anzahl an Warnungen erreicht hat! Du kannst dies überprüfen, indem du auf den Link zur Diskussionsseite im folgenden Formular klickst. Vergiss nicht, dass dieses Formular und diese Warnung angezeigt werden, unabhängig davon, ob dein Revert erfolgreich war oder nicht. Du könntest hier mit anderen Benutzern in Konflikt geraten (doppelte Überprüfung, ob der Benutzer noch nicht bereits gemeldet wurde). Möchtest du diesen Benutzer melden?</string>
   <string name="report-tu">Benutzer melden</string>
   <string name="report-reason">Grund:</string>
   <string name="report-auto">$1 gemeldet</string>
@@ -514,7 +514,7 @@
   <string name="score-only-whole-word">Nur ganze Wörter finden</string>
   <string name="score-take-any-word">Jedes Wort finden, das diese Zeichenfolge enthält.</string>
   <string name="ssl-is-not-supported">Du hast die Verwendung von SSL angefordert, aber $1 unterstützt es nicht.</string>
-  <string name="ssl-required">Der Webserver von $1 erfordert aktiviertes SSL. Bitte schalte SSL an und versuche es erneut. Falls du SSL nicht aktivieren kannst (die Option ist ausgegraut), musst du eventuell offene SSL-Bibliotheken auf deinem System installieren.</string>
+  <string name="ssl-required">Der Webserver von $1 erfordert aktiviertes SSL. Bitte schalte SSL an und versuche es erneut. Falls du SSL nicht aktivieren kannst (die Option ist ausgegraut), musst du eventuell OpenSSL-Bibliotheken auf deinem System installieren.</string>
   <string name="uaa-not-supported">UAA nicht verfügbar</string>
   <string name="uaa-not-supported-text">Die Pinnwand „Benutzernamen für die Administratorbeachtung“ ist auf deinem Wiki nicht verfügbar.</string>
   <string name="uaa-reporting">Melde $1 an UAA</string>
@@ -522,15 +522,15 @@
   <string name="uaa-no-reason-warn">Du hast keine Begründung angegeben, warum dieser Benutzername ein Verstoß gegen die Richtlinien ist. Bitte eine Begründung angeben.</string>
   <string name="uaa-nr">Es wurde keine Begründung angegeben</string>
   <string name="uaa-g1">Inhalt von UAA abrufen</string>
-  <string name="uaa-e1">die Abfrage für die Seiteninhalte hat keine Daten zurückgegeben.</string>
-  <string name="uaa-e2">die Seiteninhalte waren nicht verfügbar.</string>
+  <string name="uaa-e1">Die Abfrage für die Seiteninhalte hat keine Daten zurückgegeben.</string>
+  <string name="uaa-e2">Die Seiteninhalte waren nicht verfügbar.</string>
   <string name="read-only">Das Projekt $1 ist als schreibgeschützt konfiguriert. Bearbeitungsfunktionen sind eingeschränkt.</string>
   <string name="revert-confirm-multiple">Dies wird mehrere Bearbeitungen von $1 zurücksetzen. Fortfahren?</string>
   <string name="revert-confirm-range">Der Autor der Zielversion $2 ist im gleichen Bereich als der Autor der aktuellen Version $1. Vielleicht ist es die gleiche Person. Stelle vor dem Fortfahren sicher, dass die Zielversion korrekt ist. Fortfahren?</string>
   <string name="revert-confirm-same">Dies wird auf eine andere Version des Benutzers $1 zurücksetzen, der zurückgesetzt wurde. Fortfahren?</string>
   <string name="revert-confirm-warned">Dies wird auf eine Version von $1 zurücksetzen. Dieser Benutzer wurde kürzlich gewarnt. Fortfahren?</string>
   <string name="revert-error-first">Diese Bearbeitung ist die erste dieser Seite und kann nicht zurückgesetzt werden.</string>
-  <string name="revert-only">Änderung ist die Einzige an dieser Seite.</string>
+  <string name="revert-only">Diese Bearbeitung ist die einzige an der Seite.</string>
   <string name="revert-creator">Die letzte Bearbeitung wurde von dem Seitenersteller $1 durchgeführt.</string>
   <string name="revert-preflightcheck">Vorflugkontrolle</string>
   <string name="revert-delete-instead">Seite stattdessen löschen?</string>
@@ -578,8 +578,8 @@
   <string name="shortcut-revert">Bearbeitung zurücksetzen</string>
   <string name="shortcut-x-raw">Objekt „N th“ im Zurücksetzungs- und Warnmenü auslösen</string>
   <string name="shortcut-x-revert">Objekt „N th“ im Zurücksetzungsmenü auslösen</string>
-  <string name="shortcut-watch">Fügt eine angezeigte Seite zu einer Beobachtungsliste ein</string>
-  <string name="shortcut-unwatch">Entfernt eine angezeigte Seite von einer Beobachtungsliste</string>
+  <string name="shortcut-watch">Fügt eine angezeigte Seite zu deiner Beobachtungsliste hinzu</string>
+  <string name="shortcut-unwatch">Entfernt eine angezeigte Seite von deiner Beobachtungsliste</string>
   <string name="shortcut-x-warn">Objekt „N th“ im Warnmenü auslösen</string>
   <string name="shortcut-good">Die derzeit angezeigte Bearbeitung als gut markieren</string>
   <string name="shortcut-open-in-huggle">Derzeit angezeigte Seite öffnen</string>
@@ -588,9 +588,9 @@
   <string name="shortcut-revert-agf-1">Letzte Version als gutgläubig zurücksetzen</string>
   <string name="shortcut-browser-close-tab">Eine Browser-Registerkarte schließen</string>
   <string name="shortcut-tab">Öffnet eine neue Registerkarte</string>
-  <string name="shortcut-rw-stay">Aktuelle Bearbeitung zurücksetzen, warnt einen Benutzer und bleibt auf der Seite.</string>
-  <string name="shortcut-revert-and-stay">Aktuelle Bearbeitung zurücksetzen und auf Seite bleiben</string>
-  <string name="shortcut-custom-reason">Bearbeitung mit einer benutzerdefinierten Begründung in der Bearbeitungszusammenfassung zurücksetzen</string>
+  <string name="shortcut-rw-stay">Setzt die aktuelle Bearbeitung zurück, warnt den Autor und bleibt auf der Seite.</string>
+  <string name="shortcut-revert-and-stay">Setzt die aktuelle Bearbeitung zurück und bleibt auf der Seite</string>
+  <string name="shortcut-custom-reason">Die Bearbeitung mit einer benutzerdefinierten Begründung in der Bearbeitungszusammenfassung zurücksetzen</string>
   <string name="shortcut-user-contribs-browser">Benutzerbeiträge in einem Browser öffnen</string>
   <string name="warning-title">$1 warnen</string>
   <string name="warning-levelgroup">Warnungs-Stufe</string>
@@ -637,7 +637,7 @@
   <string name="history-work">Mache eigene Bearbeitung auf $1 rückgängig</string>
   <string name="history-no-item-selected">Es wurde kein Element im Versionsgeschichtenwidget ausgewählt</string>
   <string name="history-message-revert-title">Möchtest du wirklich nur diese Nachricht rückgängig machen?</string>
-  <string name="history-another-edit">Ich mache bereits eine andere Bearbeitung rückgängig. Bitte warten.</string>
+  <string name="history-another-edit">Es wird bereits eine andere Bearbeitung rückgängig gemacht. Bitte warten.</string>
   <string name="history-not-found">Nichts zum Rückgängigmachen gefunden</string>
   <string name="history-already-done">Dies wurde bereits rückgängig gemacht</string>
   <string name="history-message-revert-body">Dies war eine Nachricht, die sich auf eine Zurücksetzung bezieht. Bist du sicher, dass du nur die Vorlage und nicht deine Bearbeitung an der Seite rückgängig machen willst? Du musst die Zurücksetzung in dem Fall rückgängig machen, wo du beide zurücksetzen willst.</string>
@@ -672,7 +672,7 @@
   <string name="editquery-token-error">Bearbeitungs-Token konnte nicht abgerufen werden</string>
   <string name="editquery-nocsrft">Kein CSRF-Token</string>
   <string name="editquery-error-retrieve-prev">Der vorherige Inhalt der Seite konnte nicht abgerufen werden: $1</string>
-  <string name="editquery-error-append">Du kannst nicht gleichzeitig Append und Prepend zur Bearbeitung der Seite verwenden.</string>
+  <string name="editquery-error-append">Du kannst nicht gleichzeitig Append und Prepend zum Bearbeiten einer Seite verwenden.</string>
   <string name="editquery-error-badtoken">Ungültiger Token</string>
   <string name="editquery-invalid-token">$1 konnte nicht bearbeitet werden, da der cacachte Token nicht länger gültig ist. Bitte versuche, diese Seite erneut zu bearbeiten.</string>
   <string name="provider-failure">Fehler beim Feedprovider $1 auf $2. Versuche, einen alternativen Provider zu finden.</string>
@@ -694,7 +694,7 @@
   <string name="welcome-tp-empty-fail">Dieser Benutzer hat keine leere Diskussionsseite. Bist du sicher, dass du eine Nachricht an ihn senden willst?</string>
   <string name="welcome-page-miss-fail">Huggle konnte die Inhalte der Benutzerdiskussionsseite nicht abrufen. Bist du sicher, dass du eine Willkommensnachricht senden willst?</string>
   <string name="cr-newer-edits">Konflikt gelöst: Alle Bearbeitungen inklusive neuer Bearbeitungen zurückgesetzt. Bearbeitungen waren vom gleichen Benutzer: $1.</string>
-  <string name="cr-resolved-same-user">Konflikt gelöst: Alle Bearbeitungen inklusive neuer Bearbeitungen zurückgesetzt, durchgeführt von den gleichen Benutzern. Bearbeitungen sind vom gleichen Benutzer $1.</string>
+  <string name="cr-resolved-same-user">Konflikt gelöst: Alle Bearbeitungen inklusive neuer Bearbeitungen zurückgesetzt, durchgeführt von den gleichen Benutzern: $1.</string>
   <string name="cr-stop-new-edit">Konflikt gelöst: Keine Aktion ausgeführt – Es gibt neuere Bearbeitungen an $1</string>
   <string name="cr-stop-multiple-same">Konflikt gelöst: Führe keine Aktion aus. Es gibt mehrere Bearbeitungen vom gleichen Benutzer an $1</string>
   <string name="cr-revert-same-user">Konflikt gelöst: Alle Bearbeitungen zurückgesetzt. Es gibt mehrere Bearbeitungen vom gleichen Benutzer an $1</string>
@@ -705,7 +705,7 @@
   <string name="preferences-extension-disabled">Diese Erweiterung wurde bereits zur Deaktivierung beim nächsten Huggle-Start geplant</string>
   <string name="preferences-extension-disabled-restart">Die Erweiterung wurde so eingestellt, dass sie beim nächsten Start von Huggle deaktiviert wird.</string>
   <string name="preferences-extension-enabled">Diese Erweiterung wurde nicht zur Deaktivierung beim nächsten Huggle-Start geplant</string>
-  <string name="preferences-extension-enabled-restart">Die Erweiterung wurde aktiviert. Vielleicht musst du Huggle neu starten, damit etwas geschieht.</string>
+  <string name="preferences-extension-enabled-restart">Die Erweiterung wurde aktiviert. Vielleicht musst du Huggle neu starten, damit sie wirksam wird.</string>
   <string name="preferences-watchlist-watch">Zur Beobachtungsliste hinzufügen</string>
   <string name="preferences-watchlist-unwatch">Von der Beobachtungsliste entfernen</string>
   <string name="preferences-watchlist-preferences">Folge deinen Wiki-Einstellungen</string>
@@ -713,10 +713,11 @@
   <string name="preferences-sounds-enable-queue">Ton abspielen, wenn ein neues Objekt zur Warteschlange hinzugefügt wurde.</string>
   <string name="preferences-sounds-enable-irc">Ton abspielen, wenn eine Nachricht in HAN empfangen wurde.</string>
   <string name="preferences-sounds-minimal-score">Minimaler Bearbeitungsscore zur Benachrichtigung</string>
-  <string name="preferences-performance-catscansandwatched">Aktiviert Kategoriescans und die Filterung des Beobachtungsstatus (erfordert eine zusätzliche API-Anfrage für jede Bearbeitung)</string>
+  <string name="preferences-performance-catscansandwatched">Aktiviert Kategoriescans und die Filterung des Beobachtungsstatus (erfordert eine zusätzliche API-Anfrage pro Bearbeitung)</string>
   <string name="preferences-max-score">Globalen maximalen Score aktivieren (Bearbeitungen mit einem höheren Score werden ignoriert. Nützlich, falls du nur gute Bearbeitungen sehen möchtest.)</string>
   <string name="preferences-min-score">Globalen minimalen Score aktivieren (Bearbeitungen mit einem niedrigeren Score werden ignoriert. Nützlich, falls du nur schlechte Bearbeitungen sehen möchtest.)</string>
   <string name="preferences-queue-size">Größe der Warteschlange</string>
+  <string name="preferences-empty-queue-page">Leere Warteschlangenseite:</string>
   <string name="fail">Fehlgeschlagen</string>
   <string name="request">Anfragen</string>
   <string name="requesting">Frage an …</string>
@@ -726,7 +727,7 @@
   <string name="protect-request-fail-notime">Die Anfrage hat keinen Zeitstempel zurückgegeben. Dies könnte ein MediaWiki-Fehler sein. Anfrage wird verworfen.</string>
   <string name="message-fail">Nachricht konnte nicht versandt werden</string>
   <string name="edit-conflict">Bearbeitungskonflikt</string>
-  <string name="page-tag-nodescription">Für diese Markierung gibt es keine Beschreibung :/</string>
+  <string name="page-tag-nodescription">Für diese Markierung gibt es keine Beschreibung</string>
   <string name="page-tag-fail">Seite konnte nicht markiert werden</string>
   <string name="page-tag-error">Seite konnte nicht markiert werden. Der Fehler war: $1</string>
   <string name="page-unknown">Unbekannte Seite</string>
@@ -738,8 +739,8 @@
   <string name="report-fail">Benutzer konnte nicht berichtet werden, da: $1</string>
   <string name="report-page-fail">Fehler: Berichtsseite unter $1 konnte nicht abgerufen werden.</string>
   <string name="report-page-fail-time">Der Zeitstempel für die aktuelle Berichtsseite konnte nicht abgerufen werden. API-Fehler:\n\n $1</string>
-  <string name="report-unable">Benutzer konnte nicht berichtet werden :(</string>
-  <string name="about-python-with"> , mit Python-Unterstützung</string>
+  <string name="report-unable">Der Benutzer konnte nicht gemeldet werden</string>
+  <string name="about-python-with">, mit Python-Unterstützung</string>
   <string name="about-python-without">ohne Python-Unterstützung</string>
   <string name="about-qt">, kompiliert mithilfe QT $1 Läuft auf QT $1</string>
   <string name="about-info">, basierend auf $1, Ziel-Plattform: $2</string>
@@ -773,4 +774,10 @@
   <string name="query-request-noaction">Für die API-Anfrage wurde keine Aktion angegeben</string>
   <string name="query-login-undefined">Der Anmeldetoken erfordert einen benutzerdefinierten Wert. Er ist nicht im Speicher.</string>
   <string name="query-protected-link">Geschützter Link</string>
+  <string name="queue-empty-title">Sie ist leer</string>
+  <string name="queue-empty-text">Es gibt nichts mehr in der Warteschlange …</string>
+  <string name="tip1">Huggle unterstützt Registerkarten wie jeder andere Browser! Falls du bei einer Bearbeitung bist, die du für später aufheben möchtest, kannst du einfach einen neuen Reiter öffnen und dort mit der Überprüfung der Warteschlange fortfahren. Die Warteschlange ist unter allen Registerkarten verfügbar.</string>
+  <string name="tip2">Huggle enthält eine „Bearbeitungsleiste“, ein kleines Widget, das sowohl den Benutzer- als auch den Seitenverlauf in gepflegter Weise enthält. Es ist jedoch nicht standardmäßig aktiviert. Falls du einen kleinen Bildschirm hast, kannst du die Benutzer- und Seitenverlaufwidgets durch dieses Widget ersetzen!</string>
+  <string name="tip3">Die meisten Einstellungen werden auf dem Wiki in [[Special:MyPage/huggle3.css]] gespeichert. Du kannst sie auch dort ändern!</string>
+  <string name="tip4">Fast jedes Widget auf dem Bildschirm kann sicher geschlossen werden (außer die Navigationsleiste).</string>
 </resources>

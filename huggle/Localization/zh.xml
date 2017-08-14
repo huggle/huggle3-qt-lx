@@ -23,7 +23,7 @@
   <string name="result">结果</string>
   <string name="save">保存</string>
   <string name="show">显示</string>
-  <string name="no-instant">即时警告未在项目$1上启用，并因此不能向$2发送消息。请选择一个不同的警告级别。</string>
+  <string name="no-instant">由于即时警告未在项目$1上启用，准备发送到$2的消息无法发送。请选择一个不同的警告级别。</string>
   <string name="undo">撤销</string>
   <string name="yes">是</string>
   <string name="editing-page">编辑页面</string>
@@ -46,15 +46,15 @@
   <string name="link">链接</string>
   <string name="reason">原因</string>
   <string name="diffid">版本差异ID</string>
-  <string name="whitelisted">$1（在$3的分数为$2）已加入白名单</string>
+  <string name="whitelisted">$1（在$3的分数为$2）已入白名单</string>
   <string name="expiry-time">终止时间</string>
   <string name="duration">期限</string>
   <string name="enable">启用</string>
   <string name="disable">禁用</string>
   <string name="no-token">无标记</string>
   <string name="flags">标记</string>
-  <string name="gracetime">正在等待执行一些编辑的查询结束...</string>
-  <string name="browser-none">现在没有页面可显示</string>
+  <string name="gracetime">正在等待执行编辑的查询结束...</string>
+  <string name="browser-none">目前没有可显示的页面。</string>
   <string name="browser-load">正在使用MW备选来下载差异，请稍等...</string>
   <string name="browser-miss-summ">未提供摘要</string>
   <string name="browser-diff">页面差异：$1（分数：$2）</string>
@@ -82,7 +82,7 @@
   <string name="block-error-no-info">目前查询中没有用户信息（您是管理员么？）</string>
   <string name="block-type">封禁/解封</string>
   <string name="block-admin">做出封禁的管理员</string>
-  <string name="block-none">没有用户可封禁。</string>
+  <string name="block-none">没有选择要封禁的用户。</string>
   <string name="contribution-browser-user-info">显示用户$1的最近贡献</string>
   <string name="config-function">函数</string>
   <string name="config-description">说明</string>
@@ -158,8 +158,8 @@
   <string name="config-confirmsame">回退用户的编辑时确认历史版本</string>
   <string name="config-confirmselfrevert">回退自身编辑时确认历史版本</string>
   <string name="config-confirmwarned">回退被警告用户编辑时确认历史版本</string>
-  <string name="config-confirmrange">回退在同一/16范围内的匿名用户编辑时确认历史版本</string>
-  <string name="config-confirmpage">忽略页面时确认历史版本</string>
+  <string name="config-confirmrange">回退在同一/16范围内的匿名用户编辑时确认修订版本</string>
+  <string name="config-confirmpage">忽略页面时确认修订版本</string>
   <string name="config-autoadvance">回退之后将下一个编辑移入队列</string>
   <string name="config-userollback">如果可用则使用回退功能</string>
   <string name="config-revertsummaries">回退摘要在菜单中可编辑</string>
@@ -245,7 +245,7 @@
   <string name="login-failed-edit">登录$1失败：在此项目上您没有足够的编辑次数。</string>
   <string name="login-retrieving-info">在$1获取用户信息</string>
   <string name="login-password-empty">您输入了空的密码</string>
-  <string name="login-fail-wrong-name">您提供了不正确的用户名来登录</string>
+  <string name="login-fail-wrong-name">您没有提供登录用的用户名</string>
   <string name="login-api">错误：api.php回应了未知结果：$1</string>
   <string name="login-abort">中止</string>
   <string name="login-start">登录</string>
@@ -267,13 +267,13 @@
   <string name="login-ssl">使用 HTTPS（需要 OpenSSL）</string>
   <string name="login-fail">登录$1失败</string>
   <string name="login-error-admin">这个计划上需要管理员权限才能使用Huggle。</string>
-  <string name="login-error-age">这个计划上要求你的账户注册至少$1天才能使用Huggle。</string>
+  <string name="login-error-age">在此项目上使用Huggle前，您的账户需要至少已注册$1天。</string>
   <string name="login-error-alldisabled">Huggle目前被所有项目禁用。</string>
   <string name="login-error-approval">在$1需要批准方可使用Huggle。</string>
   <string name="login-error-cancelled">取消.</string>
   <string name="login-error-config">登录失败，无法解析用于$1的本地配置：$2</string>
   <string name="login-error-count">这个计划要求你至少有$1次编辑</string>
-  <string name="login-error-disabled">Huggle未对$1上您的账户启用。检查用户配置页。</string>
+  <string name="login-error-disabled">Huggle未对$1上您的账户启用。检查您的用户配置页。</string>
   <string name="login-error-global">登录失败：无法载入全域配置。参见调试日志获取详细信息。</string>
   <string name="login-error-invalid">无效的用户名</string>
   <string name="login-error-noconfig">$1没有Huggle配置页</string>
@@ -291,12 +291,12 @@
   <string name="main-menu-provider-resume">摘要提供</string>
   <string name="provider-up">正在连接到$2上的最近更改流，使用提供者：$1</string>
   <string name="main-no-reason">没有用户提供理由</string>
-  <string name="main-restoring-slap">我正在恢复另一编辑，请等待…</string>
+  <string name="main-restoring-slap">正在等待恢复另一个编辑，请等待...</string>
   <string name="main-page">页面</string>
   <string name="main-user">用户</string>
   <string name="main-contribs">贡献</string>
   <string name="main-history">历史</string>
-  <string name="main-new-messages">您有新消息。选择系统-&gt;显示新消息或者按M查看。</string>
+  <string name="main-new-messages">您有新消息。选择系统-&gt;显示新消息，或者按M查看。</string>
   <string name="main-space">页面名不能以空格结尾，请修正页面名</string>
   <string name="main-system">系统</string>
   <string name="main-status-bar">处理&lt;b&gt;$1&lt;/b&gt;次编辑和&lt;b&gt;$2&lt;/b&gt;次查询中。白名单用户：&lt;b&gt;$3&lt;/b&gt; 队列大小：&lt;b&gt;$4&lt;/b&gt; $6的统计：$5</string>
@@ -404,7 +404,7 @@
   <string name="main-stats">每分钟$1次编辑，每分钟$2次回退</string>
   <string name="main-display-session-data">显示会话数据</string>
   <string name="main-display-whitelist">显示白名单</string>
-  <string name="main-revert-custom-reson">请提供为什么您想要将恢复到以前的修订版本的理由</string>
+  <string name="main-revert-custom-reson">请证明回退该编辑至上一修订版本是合规的</string>
   <string name="main-log1">正在恢复$1的选定修订版本</string>
   <string name="main-tip-pagetagdelete">提删此页面</string>
   <string name="main-tip-pagedelete">删除此页面</string>
@@ -416,7 +416,7 @@
   <string name="main-revert-newpage-title">不能回退这个</string>
   <string name="main-revert-newpage">这是一个新页面，所以它不能被恢复。您可以标记它，或者删除它。</string>
   <string name="main-restore-text-fail">无法还原该修订，因为它没有可用的文本。</string>
-  <string name="main-restore-data-fail">无法还原该修订，因为该wiki没有提供选定版本的数据。</string>
+  <string name="main-restore-data-fail">无法还原该修订，因为该wiki没有提供选定版本的数据</string>
   <string name="main-welcome-user">欢迎用户</string>
   <string name="main-custom-reason-title">使用自定义原因回退编辑</string>
   <string name="main-custom-reason-text">请提供您为何要回退此编辑的原因</string>
@@ -501,7 +501,7 @@
   <string name="reportuser-not">此用户现在没有报告</string>
   <string name="report-evidence-none-provid">没有提供差异作为证据。这将使管理员很难找出做出破坏行为的用户。您确定要继续么？</string>
   <string name="report-duplicate">用户已被提交</string>
-  <string name="report-fail2">错误无法检索，请在$1汇报</string>
+  <string name="report-fail2">错误：无法检索在$1的报告页面</string>
   <string name="report-progress">提报$1…</string>
   <string name="report-retrieving">正在检索当前报告页…</string>
   <string name="report-done">已报告</string>
@@ -514,7 +514,7 @@
   <string name="score-only-whole-word">只匹配整个单词</string>
   <string name="score-take-any-word">匹配此字符串的任何单词</string>
   <string name="ssl-is-not-supported">您请求使用SSL，但$1不支持它。</string>
-  <string name="ssl-required">$1的网络服务器需要SSL被启用。请启用SSL并重试。如果您不能启用SSL（选项变灰），您可能需要安装Open SSL库至您的系统。</string>
+  <string name="ssl-required">$1的网络服务器需要SSL被启用。请启用SSL并重试。如果您不能启用SSL（选项变灰），您可能需要安装OpenSSL库至您的系统。</string>
   <string name="uaa-not-supported">UAA不可用</string>
   <string name="uaa-not-supported-text">管理员布告板的用户名在您的wiki不可用。</string>
   <string name="uaa-reporting">报告$1至UAA</string>
@@ -578,8 +578,8 @@
   <string name="shortcut-revert">回退编辑</string>
   <string name="shortcut-x-raw">触发了N次回退和警告菜单</string>
   <string name="shortcut-x-revert">触发了N次回退菜单</string>
-  <string name="shortcut-watch">插入显示页面至监视列表</string>
-  <string name="shortcut-unwatch">从监视列表移除显示的页面</string>
+  <string name="shortcut-watch">插入显示的页面至您的监视列表</string>
+  <string name="shortcut-unwatch">从您的监视列表移除显示的页面</string>
   <string name="shortcut-x-warn">触发了N次警告菜单</string>
   <string name="shortcut-good">标记当前显示的编辑为好</string>
   <string name="shortcut-open-in-huggle">打开当前显示的页面</string>
@@ -588,7 +588,7 @@
   <string name="shortcut-revert-agf-1">善意推定回退最近修订</string>
   <string name="shortcut-browser-close-tab">关闭浏览器标签</string>
   <string name="shortcut-tab">打开新标签</string>
-  <string name="shortcut-rw-stay">回退最近编辑，警告用户并留在此页</string>
+  <string name="shortcut-rw-stay">回退当前编辑，警告编辑者并留在页面上</string>
   <string name="shortcut-revert-and-stay">回退当前编辑并留在页面</string>
   <string name="shortcut-custom-reason">使用自定义的编辑摘要原因回退编辑</string>
   <string name="shortcut-user-contribs-browser">在浏览器中打开用户贡献</string>
@@ -637,7 +637,7 @@
   <string name="history-work">撤销自己对$1的编辑</string>
   <string name="history-no-item-selected">没有在历史记录组件中选中项目</string>
   <string name="history-message-revert-title">您真的希望只撤销此消息么？</string>
-  <string name="history-another-edit">我已经正在撤销另一个编辑，请稍候</string>
+  <string name="history-another-edit">另一次编辑已在撤销中，请等待</string>
   <string name="history-not-found">没有可以撤销的</string>
   <string name="history-already-done">这已被撤销过</string>
   <string name="history-message-revert-body">这是一条引用自回退操作的消息，您确信您只希望撤销模板甚至不编辑页面么？（您需要在您希望纠正错误回退时才撤销回退）</string>
@@ -672,7 +672,7 @@
   <string name="editquery-token-error">无法检索编辑令牌</string>
   <string name="editquery-nocsrft">没有CSRF令牌</string>
   <string name="editquery-error-retrieve-prev">无法取得页面之前的内容：$1</string>
-  <string name="editquery-error-append">您不能对页面编辑使用Append和Prepend</string>
+  <string name="editquery-error-append">您不能同时使用Append和Prepend来编辑页面</string>
   <string name="editquery-error-badtoken">错误令牌</string>
   <string name="editquery-invalid-token">无法编辑$1，因为我在缓存中持有的令牌已经失效。请再次尝试编辑此页面</string>
   <string name="provider-failure">$2上的订阅提供者$1失败，尝试找到一些提供商替代品</string>
@@ -702,9 +702,9 @@
   <string name="cr-message-new">有新的编辑需要$1，您希望回退它们？</string>
   <string name="cr-message-not-same">另外用户对$1做出新编辑，您确信希望回退它们么？（这很可能会因为使用旧令牌而失败）</string>
   <string name="preferences-delete-using-filter">您无法删除一个正在使用的过滤器</string>
-  <string name="preferences-extension-disabled">此扩展已计划于下次Huggle启动时被禁用</string>
-  <string name="preferences-extension-disabled-restart">扩展将于下次Huggle启动时禁用</string>
-  <string name="preferences-extension-enabled">此扩展未被计划于下次Huggle启动时被禁用</string>
+  <string name="preferences-extension-disabled">此扩展已计划在下次启动Huggle时被禁用</string>
+  <string name="preferences-extension-disabled-restart">扩展已设置为将在下次启动Huggle时禁用</string>
+  <string name="preferences-extension-enabled">此扩展未计划在下次启动Huggle时被禁用</string>
   <string name="preferences-extension-enabled-restart">扩展已启用，但您需要重启Huggle才能使它生效</string>
   <string name="preferences-watchlist-watch">添加至监视列表</string>
   <string name="preferences-watchlist-unwatch">从监视列表中移除</string>
@@ -717,6 +717,7 @@
   <string name="preferences-max-score">启用全域最高分（将忽略更高分数——在您只想查看好编辑时有用）</string>
   <string name="preferences-min-score">启用全域最低分（将忽略更低分数——在您只想查看差编辑时有用）</string>
   <string name="preferences-queue-size">队列大小</string>
+  <string name="preferences-empty-queue-page">空队列页面：</string>
   <string name="fail">失败</string>
   <string name="request">请求</string>
   <string name="requesting">请求中</string>
@@ -726,7 +727,7 @@
   <string name="protect-request-fail-notime">查询未返回任何时间戳。这可能是MediaWiki的错误。正在中止查询</string>
   <string name="message-fail">发送信息失败</string>
   <string name="edit-conflict">编辑冲突</string>
-  <string name="page-tag-nodescription">这个标记没有说明 :/</string>
+  <string name="page-tag-nodescription">没有用于此标签的描述</string>
   <string name="page-tag-fail">无法标记页面</string>
   <string name="page-tag-error">无法标记页面，错误是:$1</string>
   <string name="page-unknown">未知页面</string>
@@ -738,8 +739,8 @@
   <string name="report-fail">无法提报用户，因为：$1</string>
   <string name="report-page-fail">错误：无法检索位于$1的报告页面</string>
   <string name="report-page-fail-time">无法获取当前举报页面的时间戳，API错误：\n\n$1</string>
-  <string name="report-unable">无法提报用户 :(</string>
-  <string name="about-python-with">，包含Python支持</string>
+  <string name="report-unable">无法提报用户</string>
+  <string name="about-python-with">，包含python支持</string>
   <string name="about-python-without">无Python支持</string>
   <string name="about-qt">，使用QT $1编译 正在用QT $1运行</string>
   <string name="about-info">，基于$1，目标平台：$2</string>
@@ -748,11 +749,11 @@
   <string name="projects">项目</string>
   <string name="unable-to-retrieve-user-list">无法检索用户列表：$1</string>
   <string name="login-no-userinfo">网站未返回任何用户信息</string>
-  <string name="login-invalid-register-date">由MediaWiki返回的注册日期无效</string>
+  <string name="login-invalid-register-date">由mediawiki返回的注册日期无效</string>
   <string name="login-site-info-query-failed">对$1的网站信息查询已失败：$2</string>
   <string name="login-no-site-info-returned">没有返回此wiki的网站信息</string>
   <string name="loading-main-window">正在加载主Huggle窗口</string>
-  <string name="api.php-invalid-response">api.php响应了无效文字（web服务器当机了？），请检查调试日志以获取精确信息</string>
+  <string name="api.php-invalid-response">API响应了无效文字（web服务器当机了？），请检查调试日志以获取精确信息</string>
   <string name="login-username-doesnt-exist">此用户名不存在</string>
   <string name="developer-mode-enter-title">啊</string>
   <string name="developer-mode-enter-message">您进入了开发者模式！</string>
@@ -773,4 +774,7 @@
   <string name="query-request-noaction">没有为api请求提供操作</string>
   <string name="query-login-undefined">登录令牌需要用户定义值，它未存储于内存中</string>
   <string name="query-protected-link">已保护链接</string>
+  <string name="queue-empty-title">这是空的</string>
+  <string name="queue-empty-text">队列中没有别的东西...</string>
+  <string name="tip1">就像其他浏览器那样，Huggle支持标签！如果您正在做一些编辑，并且您希望稍后保持它，您完全可以打开新标签，并在这里继续检查队列。队列在所有标签中分享。</string>
 </resources>

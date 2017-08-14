@@ -22,7 +22,7 @@
   <string name="result">Disoc\'h</string>
   <string name="save">Enrollañ</string>
   <string name="show">Diskouez</string>
-  <string name="no-instant">N\'eo ket gweredekaet ar c\'hemennoù prim er raktres $1, ha ne c\'haller ket kas ar c\'hemennadennoù $2 eta. Dibabit ul live kemenn all, mar plij.</string>
+  <string name="no-instant" fuzzy="true">N\'eo ket gweredekaet ar c\'hemennoù prim er raktres $1, ha ne c\'haller ket kas ar c\'hemennadennoù $2 eta. Dibabit ul live kemenn all, mar plij.</string>
   <string name="undo">Dizober</string>
   <string name="yes">Ya</string>
   <string name="editing-page">Kemmañ ar bajenn</string>
@@ -44,7 +44,7 @@
   <string name="link">Liamm</string>
   <string name="reason">Abeg</string>
   <string name="diffid">Anavezer Diff</string>
-  <string name="whitelisted">$1 en deus ur skor $2 war $3 a zo bet enlakaet el listenn wenn</string>
+  <string name="whitelisted" fuzzy="true">$1 en deus ur skor $2 war $3 a zo bet enlakaet el listenn wenn</string>
   <string name="expiry-time">Amzer termen</string>
   <string name="duration">Pad</string>
   <string name="enable">Gweredekaat</string>
@@ -52,7 +52,7 @@
   <string name="no-token">Jedouer ebet</string>
   <string name="flags">Bannieloù</string>
   <string name="gracetime" fuzzy="true">En engortoz a echuiñ goulennoù evit kemmañ...</string>
-  <string name="browser-none">N\'eus diskwelet pajenn ebet bremañ</string>
+  <string name="browser-none" fuzzy="true">N\'eus diskwelet pajenn ebet bremañ</string>
   <string name="browser-load" fuzzy="true">Pellgargañ diff en ur implijout un deouez Web sikour, gortozit mar plij</string>
   <string name="browser-miss-summ">N\'eus bet pourchaset diverradur ebet</string>
   <string name="browser-diff">Diff ar bajenn : $1 (skor : $2)</string>
@@ -75,9 +75,9 @@
   <string name="block-token-1">O tapout ur jadouer evit stankañ $1</string>
   <string name="block-fail">N\'haller ket stankañ an implijer, $1</string>
   <string name="block-token-e1">Ne c\'haller ket adtapout ar jedouer : $1</string>
-  <string name="block-error-no-info">Ne oa titour implijer ebet er goulenn (hag oberataer reizhiad oc\'h ?)</string>
+  <string name="block-error-no-info" fuzzy="true">Ne oa titour implijer ebet er goulenn (hag oberataer reizhiad oc\'h ?)</string>
   <string name="block-type">Stankañ / distankañ</string>
-  <string name="block-none">N\'eus implijer ebet da stankañ.</string>
+  <string name="block-none" fuzzy="true">N\'eus implijer ebet da stankañ.</string>
   <string name="contribution-browser-user-info">Diskwel degasadennoù nevez an implijer $1</string>
   <string name="config-function">Arc\'hwel</string>
   <string name="config-description">Deskrivadur</string>
@@ -139,7 +139,7 @@
   <string name="config-close-without">Serriñ hep enrollañ</string>
   <string name="config-confirmmultiple">Kadanaat eo bet nullet lies a cheñchamañtoù gant ar memes implijer</string>
   <string name="config-confirmwarned">Kadarnaat nulladur ur c\'hemm gant un implijer arroutet</string>
-  <string name="config-confirmpage">Kadarnaat nulladur ar pajennoù dianavezet</string>
+  <string name="config-confirmpage" fuzzy="true">Kadarnaat nulladur ar pajennoù dianavezet</string>
   <string name="config-userollback">Implijout ar souzañ m\'eo hegerz</string>
   <string name="config-reportnone">Ober netra</string>
   <string name="config-reportprompt">Kinnig disklêriañ</string>
@@ -153,7 +153,7 @@
   <string name="config-history">Pellgargañ roll-istor klok an holl bennadoù</string>
   <string name="config-defaultsprompt"> Adsevel an arventennoù dre ziouer ?</string>
   <string name="config-logbrowsetitle">Lec\'h ar restr varilh</string>
-  <string name="config-no-colon">N\'hallit ket implijout \":\" en anv ar steudad c\'hortoz</string>
+  <string name="config-no-colon" fuzzy="true">N\'hallit ket implijout \":\" en anv ar steudad c\'hortoz</string>
   <string name="config-notify-update">Gwiriañ hag-eñ ez eus hizivadennoù</string>
   <string name="config-notify-beta">Gwiriañ ma c\'haller kaout ar stummoù bêta</string>
   <string name="delete-title">Dilemel $1</string>
@@ -193,7 +193,7 @@
   <string name="login-bot" fuzzy="true">Peseurt diforc\'h zo etre ur robod hag ur c\'hevreadur dre zorn ?</string>
   <string name="login-fail-parse-config">Kevreadur c\'hwitet e $1 : Ne c\'haller ket dielfennañ ar c\'hefluniadur implijer. Gwelit roud ho tizreinadur evit gouzout hiroc\'h.</string>
   <string name="login-password-empty">Goullo e oa ar ger-tremen ho peus bizskrivet</string>
-  <string name="login-fail-wrong-name">N\'ho peus roet anv implijer mat ebet evit kevreañ</string>
+  <string name="login-fail-wrong-name" fuzzy="true">N\'ho peus roet anv implijer mat ebet evit kevreañ</string>
   <string name="login-api">FAZI : api.php en deus respontet gant un disoc\'h dianav : $1</string>
   <string name="login-start">Kevreañ</string>
   <string name="login-oauth-notsupported">Ne c\'haller ket implijout an doare-ober-mañ evit bremañ</string>
@@ -210,21 +210,21 @@
   <string name="login-ssl">Implijout HTTPS (ezhomm en deus eus OpenSSL)</string>
   <string name="login-fail">C\'hwitet kevreañ ouzh $1</string>
   <string name="login-error-admin">Ezhomm zo eus ur gont merour evit implijout Huggle war ar raktres-mañ.</string>
-  <string name="login-error-age">Evit implijout Huggle war ar raktres-mañ ez eus ezhomm eus $1 devezh da nebeutañ.</string>
+  <string name="login-error-age" fuzzy="true">Evit implijout Huggle war ar raktres-mañ ez eus ezhomm eus $1 devezh da nebeutañ.</string>
   <string name="login-error-alldisabled">Diweredekaet eo Huggle war an holl raktresoù evit bremañ.</string>
   <string name="login-error-cancelled">Nullet.</string>
   <string name="login-error-invalid">Anv implijer direizh</string>
   <string name="login-error-noconfig">$1 n\'en deus pajenn gefluniañ Huggle ebet.</string>
   <string name="login-error-nouser">N\'eus ket eus an implijer</string>
   <string name="login-error-password">Ger-tremen direizh</string>
-  <string name="login-error-unknown">Ne c\'haller ket kevreañ da $1.</string>
+  <string name="login-error-unknown" fuzzy="true">Ne c\'haller ket kevreañ da $1.</string>
   <string name="login-error-version">Diamzeret eo ar stumm-mañ. Hizivaat gant ar stumm diwezhañ.</string>
   <string name="main-no-reason">N\'eus bet roet abeg ebet gant an implijer</string>
   <string name="main-page">Pajenn</string>
   <string name="main-user">Implijer</string>
   <string name="main-contribs">Degasadennoù</string>
   <string name="main-history">Istor</string>
-  <string name="main-new-messages">Kemennadennoù ho peus. Dibabit Reizhiad-&gt;Diskwel ar c\'hemennadennoù nevez pe pouezañ war M evit diskwel anezho.</string>
+  <string name="main-new-messages" fuzzy="true">Kemennadennoù ho peus. Dibabit Reizhiad-&gt;Diskwel ar c\'hemennadennoù nevez pe pouezañ war M evit diskwel anezho.</string>
   <string name="main-space">Ne c\'haller ket echuiñ anv ar bajenn gant un esaouenn. Reizhit anezhañ, mar plij.</string>
   <string name="main-system">Reizhiad</string>
   <string name="main-system-messages">Diskouez ar c\'hemennadennoù nevez</string>
@@ -314,7 +314,7 @@
   <string name="message-summary">Diverradur :</string>
   <string name="message-autosign">Lakaat ar sinadur ent emgefre</string>
   <string name="message-retrieve-new-token">Oc\'h adtapout ar jedouer evit aozañ $1</string>
-  <string name="message-fail-token-1">ne c\'haller ket adtapout ar jedouer aozañ</string>
+  <string name="message-fail-token-1" fuzzy="true">ne c\'haller ket adtapout ar jedouer aozañ</string>
   <string name="protect-reason">Abeg :</string>
   <string name="protect-expiry">Termen :</string>
   <string name="protect-type">Seurt gwarez :</string>

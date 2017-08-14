@@ -43,7 +43,7 @@
   <string name="status">Būklė</string>
   <string name="link">Nuoroda</string>
   <string name="reason">Priežastis</string>
-  <string name="whitelisted">$1 su $2 balais buvo įtrauktas į $3 baltąjį sąrašą</string>
+  <string name="whitelisted" fuzzy="true">$1 su $2 balais buvo įtrauktas į $3 baltąjį sąrašą</string>
   <string name="expiry-time">Galiojimo laikas</string>
   <string name="duration">Trukmė</string>
   <string name="enable">Įgalinti</string>
@@ -51,7 +51,7 @@
   <string name="no-token">Nėra žetono</string>
   <string name="flags">Vėliavos</string>
   <string name="gracetime" fuzzy="true">Laukiama redagavimo užklausų pabaigos...</string>
-  <string name="browser-none">Dabar nėra rodomas joks puslapis</string>
+  <string name="browser-none" fuzzy="true">Dabar nėra rodomas joks puslapis</string>
   <string name="browser-miss-summ">Santrauka nebuvo pateikta</string>
   <string name="about-contributors">Kūrėjai:</string>
   <string name="block-not">Vartotojų nėra užblokuotas</string>
@@ -72,10 +72,10 @@
   <string name="block-token-1">Gaunamas raktas $1 blokavimui</string>
   <string name="block-fail">Nepavyko užblokuoti vartotojo $1</string>
   <string name="block-token-e1">Nepavyko gauti rakto: $1</string>
-  <string name="block-error-no-info">Nėra vartotojo informacijos užklausoje (ar esate sysop?)</string>
+  <string name="block-error-no-info" fuzzy="true">Nėra vartotojo informacijos užklausoje (ar esate sysop?)</string>
   <string name="block-type">Blokuoti / atblokuoti</string>
-  <string name="block-admin">Blokavimą atlikęs sysop</string>
-  <string name="block-none">Nėra vartotojo blokavimui.</string>
+  <string name="block-admin" fuzzy="true">Blokavimą atlikęs sysop</string>
+  <string name="block-none" fuzzy="true">Nėra vartotojo blokavimui.</string>
   <string name="contribution-browser-user-info">Rodomi naujausiai vartotojo $1 įnašai</string>
   <string name="config-function">Funkcija</string>
   <string name="config-description">Aprašymas</string>
@@ -139,7 +139,7 @@
   <string name="config-templatetext">Rodyti tekstą</string>
   <string name="config-template">Šablonas</string>
   <string name="config-blockreason">Numatytoji blokavimo priežastis</string>
-  <string name="config-blocktime">Numatytoji blokavimo trukmė</string>
+  <string name="config-blocktime" fuzzy="true">Numatytoji blokavimo trukmė</string>
   <string name="config-blocktimeanon">anoniminiai vartotojai</string>
   <string name="config-blocktimereg">registruoti vartotojai</string>
   <string name="config-summaryprompt">Įveskite santrauką</string>
@@ -147,7 +147,7 @@
   <string name="config-defaultsprompt">Atkurti numatytuosius?</string>
   <string name="config-logbrowsetitle">Žurnalo failo vieta</string>
   <string name="config-shortcutconflict">Santrumpa „$1“ konfliktuoja su egzistuojančia santrumpa „$1“.</string>
-  <string name="config-no-colon">Negali naudoti : eilės pavadinime</string>
+  <string name="config-no-colon" fuzzy="true">Negali naudoti : eilės pavadinime</string>
   <string name="config-notify-update">Tikrinti, ar yra naujinių</string>
   <string name="config-notify-beta">Jei galime tikrinti ar yra beta versijų</string>
   <string name="delete-title">Trinti $1</string>
@@ -158,7 +158,7 @@
   <string name="delete-e1">Puslapis negali būti ištrintas: $1</string>
   <string name="delete-e2">Negalima ištrinti puslapio</string>
   <string name="delete-edsc">Negalima ištrinti puslapio, nes $1</string>
-  <string name="delete-failed-no-info">Nėra puslapio informacijos užklausoje (ar esate sysop?)</string>
+  <string name="delete-failed-no-info" fuzzy="true">Nėra puslapio informacijos užklausoje (ar esate sysop?)</string>
   <string name="extension-kl">Neveikia</string>
   <string name="extension-ok">Įkeltas ir veikia</string>
   <string name="historyform-no-info">Nėra redagavimo informacijos</string>
@@ -201,7 +201,7 @@
   <string name="login-failed-edit">Prisijungti prie $1 nepavyko: Neturite pakankamai įnašų šiame projekte.</string>
   <string name="login-retrieving-info">Gaunama vartotojo informacija iš $1</string>
   <string name="login-password-empty">Jūsų įvestas slaptažodis buvo tuščias</string>
-  <string name="login-fail-wrong-name">Jūs nepateikėte teisingo vartotojo vardo prisijungimui</string>
+  <string name="login-fail-wrong-name" fuzzy="true">Jūs nepateikėte teisingo vartotojo vardo prisijungimui</string>
   <string name="login-api">KLAIDA: api.php atsakė su nežinomu rezultatu: $1</string>
   <string name="login-start">Prisijungti</string>
   <string name="login-oauth-notsupported">Šis metodas šiuo metu nėra palaikomas</string>
@@ -219,30 +219,30 @@
   <string name="login-ssl">Naudoti HTTPS (reikia OpenSSL)</string>
   <string name="login-fail">Nepavyko prisijungti prie $</string>
   <string name="login-error-admin">Huggle naudojimas šiame projekte reikalauja administratorius paskyros.</string>
-  <string name="login-error-age">Huggle naudojimas šiame projekte reikalauja paskyros, kuri būti bent $1 dienų senumo.</string>
+  <string name="login-error-age" fuzzy="true">Huggle naudojimas šiame projekte reikalauja paskyros, kuri būti bent $1 dienų senumo.</string>
   <string name="login-error-alldisabled">Huggle šiuo metu yra išjungta visuose projektuose.</string>
   <string name="login-error-approval">Huggle naudojimas $1 reikalauja patvirtinimo.</string>
   <string name="login-error-cancelled">Atšauktas.</string>
   <string name="login-error-count">Huggle naudojimas šiame projekte reikalauja bent $1 pakeitimų.</string>
-  <string name="login-error-disabled">Huggle nėra įgalintas jūsų $1 paskyroje. Patikrinkite vartotojo konfigūracijos puslapį.</string>
+  <string name="login-error-disabled" fuzzy="true">Huggle nėra įgalintas jūsų $1 paskyroje. Patikrinkite vartotojo konfigūracijos puslapį.</string>
   <string name="login-error-invalid">Negalimas naudotojo vardas</string>
   <string name="login-error-noconfig">$1 neturi Huggle konfigūracijos puslapio</string>
   <string name="login-error-nouser">Vartotojas neegzistuoja</string>
   <string name="login-error-password">Neteisingas slaptažodis</string>
   <string name="login-error-projdisabled">Huggle šiuo metu yra išjungta šiame projekte.</string>
-  <string name="login-error-unknown">Nepavyko prisijungti prie $1.</string>
+  <string name="login-error-unknown" fuzzy="true">Nepavyko prisijungti prie $1.</string>
   <string name="login-error-version">Ši versija yra pasenusi. Atnaujinkite į naujausią versiją.</string>
   <string name="login-error-whitelist">Nepavyko įkelti $1 vartotojų baltojo sąrašo.</string>
   <string name="main-menu-provider-stop">Sustabdyti tiekėją</string>
   <string name="main-menu-provider-resume">Pratęsti tiekėją</string>
   <string name="provider-up">Prisijungia prie $2 naujausių pakeitimų srauto, naudojant tiekėją: $1</string>
   <string name="main-no-reason">Vartotojas nenurodė priežasties</string>
-  <string name="main-restoring-slap">Šiuo metu atkuriu kitą pakeitimą, prašome palaukti...</string>
+  <string name="main-restoring-slap" fuzzy="true">Šiuo metu atkuriu kitą pakeitimą, prašome palaukti...</string>
   <string name="main-page">Puslapis</string>
   <string name="main-user">Vartotojas</string>
   <string name="main-contribs">Įnašai</string>
   <string name="main-history">Istorija</string>
-  <string name="main-new-messages">Turite naujų pranešimų. Pasirinkite Sistema -&gt; Rodyti naujas žinutes ar paspauskite M, kad jas peržiūrėtumėte.</string>
+  <string name="main-new-messages" fuzzy="true">Turite naujų pranešimų. Pasirinkite Sistema -&gt; Rodyti naujas žinutes ar paspauskite M, kad jas peržiūrėtumėte.</string>
   <string name="main-space">Puslapio pavadinimas negali pasibaigti tarpu, prašome pataisyti puslapio pavadinimą</string>
   <string name="main-system">Sistema</string>
   <string name="main-status-bar">Apdorojama &lt;b&gt;$1&lt;/b&gt; pataisymų ir &lt;b&gt;$2&lt;/b&gt; užklausų. Vartotojai baltajame sąraše: &lt;b&gt;$3&lt;/b&gt; Eilės dydis: &lt;b&gt;$4&lt;/b&gt; Statistika $6: $5</string>
@@ -357,7 +357,7 @@
   <string name="message-fail-re-user-tp">Nepavyko gauti $1. Žinutės siuntimas šiam vartotojui stabdomas</string>
   <string name="message-er">Nepavyko pristatyti žinutės $1: $2</string>
   <string name="message-error">Nepavyko pristatyti žinutės $1! Prašome peržiūrėti žurnalus!</string>
-  <string name="message-fail-retrieve-talk">nepavyko gauti vartotojo aptarimo puslapio</string>
+  <string name="message-fail-retrieve-talk" fuzzy="true">nepavyko gauti vartotojo aptarimo puslapio</string>
   <string name="message-done">$2 žinutė sėkmingai pristatyta: $1</string>
   <string name="protect-request-title">Prašyti $1 apsaugos</string>
   <string name="protect-reason">Priežastis:</string>
@@ -412,7 +412,7 @@
   <string name="report-write">Rašymas</string>
   <string name="reportuser-not">Dabar apie šį vartotoją nėra pranešta</string>
   <string name="report-duplicate">Apie vartotoją jau buvo pranešta</string>
-  <string name="report-fail2">Klaida, nepavyko gauti $1 pranešimo puslapio</string>
+  <string name="report-fail2" fuzzy="true">Klaida, nepavyko gauti $1 pranešimo puslapio</string>
   <string name="report-progress">Pranešama $1...</string>
   <string name="report-retrieving">Gaunamas dabartinis pranešimo puslapis...</string>
   <string name="report-done">Pranešta</string>
@@ -427,11 +427,11 @@
   <string name="uaa-reported">Pranešta</string>
   <string name="uaa-no-reason-warn">Jūs nenurodėte priežasties, kodėl vartotojo vardas yra taisyklių pažeidimas. Prašome nurodyti priežastį.</string>
   <string name="uaa-nr">Nebuvo nurodyta jokio priežastis</string>
-  <string name="uaa-e1">puslapio turinio užklausa negražino jokių duomenų.</string>
-  <string name="uaa-e2">puslapio turinys nebuvo prieinamas.</string>
+  <string name="uaa-e1" fuzzy="true">puslapio turinio užklausa negražino jokių duomenų.</string>
+  <string name="uaa-e2" fuzzy="true">puslapio turinys nebuvo prieinamas.</string>
   <string name="revert-confirm-multiple">Tai anuliuos kelis $1 keitimus. Tęsti?</string>
   <string name="revert-error-first">Šis keitimas yra pirmasis puslapio keitimas, todėl negali būti anuliuotas.</string>
-  <string name="revert-only">Keitimas yra vienintelis puslapio keitimas.</string>
+  <string name="revert-only" fuzzy="true">Keitimas yra vienintelis puslapio keitimas.</string>
   <string name="revert-creator">Paskutinis keitimas buvo atliktas puslapio kūrėjo, $1.</string>
   <string name="revert-delete-instead">Vietoj to ištrinti puslapį?</string>
   <string name="revert-speedy-instead">Vietoj to pažymėti greitam trynimui?</string>
@@ -454,7 +454,7 @@
   <string name="updater-open-manualdownloadpage">Atidaryti atsisiuntimo puslapį</string>
   <string name="updater-close">Uždaryti</string>
   <string name="updater-disable-notify">Išjungti atnaujinimus</string>
-  <string name="user-history-fail">nepavyko gauti vartotojo informacijos: $1</string>
+  <string name="user-history-fail" fuzzy="true">nepavyko gauti vartotojo informacijos: $1</string>
   <string name="userinfo-generic">Vartotojo informacija</string>
   <string name="userinfo-retrieve">Gauti informaciją</string>
   <string name="shortcut-report-username">Pranešti apie vartotoją</string>
@@ -465,18 +465,18 @@
   <string name="shortcut-next">Eiti prie kito keitimo</string>
   <string name="shortcut-suspicious">Žymėti keitimą kaip įtartiną</string>
   <string name="shortcut-back">Grįžti prie ankščiau rodyto keitimo</string>
-  <string name="shortcut-warn">Nusiųsti įspėjimą vartotojui, neanuliuojant keitimo</string>
+  <string name="shortcut-warn" fuzzy="true">Nusiųsti įspėjimą vartotojui, neanuliuojant keitimo</string>
   <string name="shortcut-revert">Anuliuoti keitimą</string>
-  <string name="shortcut-watch">Įterpia rodomą puslapį į stebimųjų sąrašą</string>
-  <string name="shortcut-unwatch">Pašalina rodomą puslapį iš stebimųjų sąrašo</string>
+  <string name="shortcut-watch" fuzzy="true">Įterpia rodomą puslapį į stebimųjų sąrašą</string>
+  <string name="shortcut-unwatch" fuzzy="true">Pašalina rodomą puslapį iš stebimųjų sąrašo</string>
   <string name="shortcut-good">Žymėti dabar rodomą keitimą kaip gerą</string>
   <string name="shortcut-open-in-huggle">Atidaryti dabar rodomą puslapį</string>
   <string name="shortcut-open">Atidaryti dabar rodomą keitimą naršyklėje</string>
   <string name="shortcut-talk">Rodyti vartotojo, kuris atliko šį keitimą, aptarimo puslapį</string>
   <string name="shortcut-browser-close-tab">Užverti naršyklės skirtuką</string>
   <string name="shortcut-tab">Atveria naują skirtuką</string>
-  <string name="shortcut-rw-stay">Anuliuoti dabartinį keitimą, perspėja vartotoją ir pasilikti puslapyje</string>
-  <string name="shortcut-revert-and-stay">Anuliuoti dabartinį keitimą ir likti puslapyje</string>
+  <string name="shortcut-rw-stay" fuzzy="true">Anuliuoti dabartinį keitimą, perspėja vartotoją ir pasilikti puslapyje</string>
+  <string name="shortcut-revert-and-stay" fuzzy="true">Anuliuoti dabartinį keitimą ir likti puslapyje</string>
   <string name="shortcut-user-contribs-browser">Atveria vartotojo įnašus naršyklėje</string>
   <string name="warning-title">Įspėti $1</string>
   <string name="warning-levelgroup">Įspėjimo lygis</string>
@@ -516,7 +516,7 @@
   <string name="history-progress">Gaunama $1 ($2) istorija...</string>
   <string name="history-work">Anuliuojamas paties $1 patekimas</string>
   <string name="history-message-revert-title">Ar tikrai norite anuliuoti tik ši pranešimą?</string>
-  <string name="history-another-edit">Aš jau anuliuoju kitą keitimą, prašome palaukti</string>
+  <string name="history-another-edit" fuzzy="true">Aš jau anuliuoju kitą keitimą, prašome palaukti</string>
   <string name="history-not-found">Nieko nerasta anuliavimui</string>
   <string name="history-already-done">Tai jau anuliuota</string>
   <string name="history-revert-fail">Nepavyko anuliuoti jūsų $1 pakeitimo, nes susidurta su šia klaida: $2</string>
@@ -561,23 +561,23 @@
   <string name="updating-wl">Baltasis sąrašas atnaujinimas...</string>
   <string name="feature-nfru">Ši funkcija skirta IP tik vartotojams</string>
   <string name="report-no-user">Nepasirinktas joks vartotojas pranešimui, prašome pirma pasirinkti vartotoją</string>
-  <string name="welcome-tp-empty-fail">Šis vartotojas neturi tuščio aptarimo puslapio, ar tikrai norite jam siųsti šią žinutę?</string>
+  <string name="welcome-tp-empty-fail" fuzzy="true">Šis vartotojas neturi tuščio aptarimo puslapio, ar tikrai norite jam siųsti šią žinutę?</string>
   <string name="welcome-page-miss-fail">Huggle nepavyko gauti vartotojo aptarimo puslapio turinio, ar tikrai norite siųsti sveikinimo žinutę?</string>
-  <string name="cr-newer-edits">Konfliktas išspręstas: visi keitimai anuliuoti, įskaitant naujus keitimus. Keitimai buvo atlikti to paties vartotojo: $1.</string>
-  <string name="cr-resolved-same-user">Konfliktas išspręstas: visi keitimai anuliuoti, įskaitant naujus keitimus, atliktus tų pačių vartotojų - keitimai yra to paties vartotojo: $1</string>
+  <string name="cr-newer-edits" fuzzy="true">Konfliktas išspręstas: visi keitimai anuliuoti, įskaitant naujus keitimus. Keitimai buvo atlikti to paties vartotojo: $1.</string>
+  <string name="cr-resolved-same-user" fuzzy="true">Konfliktas išspręstas: visi keitimai anuliuoti, įskaitant naujus keitimus, atliktus tų pačių vartotojų - keitimai yra to paties vartotojo: $1</string>
   <string name="cr-stop-new-edit">Konfliktas išspręstas: neatlikti jokie veiksmai - yra naujesnių $1 keitimų</string>
-  <string name="cr-stop-multiple-same">Konfliktas išspręstas: neatlikti jokie veiksmai - yra keli to paties vartotojo $1 keitimai</string>
-  <string name="cr-message-same">Yra keli to paties vartotojo $1 keitimai, ar tikrai norite anuliuoti juos visus?</string>
+  <string name="cr-stop-multiple-same" fuzzy="true">Konfliktas išspręstas: neatlikti jokie veiksmai - yra keli to paties vartotojo $1 keitimai</string>
+  <string name="cr-message-same" fuzzy="true">Yra keli to paties vartotojo $1 keitimai, ar tikrai norite anuliuoti juos visus?</string>
   <string name="cr-message-new">Yra naujesnių $1 keitimų. Ar tikrai norite juos anuliuoti?</string>
   <string name="preferences-delete-using-filter">Negalite ištrinti filtro, kuris dabar yra naudojamas</string>
-  <string name="preferences-extension-disabled">Šis plėtinys jau yra numatytas išjungti per kitą Huggle paleidimą</string>
-  <string name="preferences-extension-disabled-restart">Plėtinys buvo nustatyas būti išjungtas per kitą Huggle paleidimą</string>
-  <string name="preferences-extension-enabled">Šis plėtinys nėra numatytas išjungti per kitą Huggle paleidimą</string>
-  <string name="preferences-extension-enabled-restart">Plėtinys buvo įgalintas, tačiau dėl to jums reikia paleisti Huggle iš naujo</string>
+  <string name="preferences-extension-disabled" fuzzy="true">Šis plėtinys jau yra numatytas išjungti per kitą Huggle paleidimą</string>
+  <string name="preferences-extension-disabled-restart" fuzzy="true">Plėtinys buvo nustatyas būti išjungtas per kitą Huggle paleidimą</string>
+  <string name="preferences-extension-enabled" fuzzy="true">Šis plėtinys nėra numatytas išjungti per kitą Huggle paleidimą</string>
+  <string name="preferences-extension-enabled-restart" fuzzy="true">Plėtinys buvo įgalintas, tačiau dėl to jums reikia paleisti Huggle iš naujo</string>
   <string name="preferences-watchlist-watch">Pridėti į stebimųjų sąrašą</string>
   <string name="preferences-watchlist-unwatch">Pašalinti iš stebimųjų sąrašo</string>
   <string name="preferences-watchlist-nochange">Nieko nedaryti</string>
-  <string name="preferences-sounds-enable-queue">Groti garsą, kai naujas elementas pridedamas į eilę</string>
+  <string name="preferences-sounds-enable-queue" fuzzy="true">Groti garsą, kai naujas elementas pridedamas į eilę</string>
   <string name="preferences-sounds-enable-irc">Groti garsą, kai gaunama HAN žinutė</string>
   <string name="fail">Nepavyko</string>
   <string name="request">Prašymas</string>
@@ -588,7 +588,7 @@
   <string name="protect-request-fail-notime">Užklausa negražino jokios laiko žymės. Tai gali būti MediaWiki klaida. Užklausa nutraukiama</string>
   <string name="message-fail">Nepavyko pristatyti žinutės</string>
   <string name="edit-conflict">Redagavimo konfliktas</string>
-  <string name="page-tag-nodescription">nėra aprašymo šiai žymei :/</string>
+  <string name="page-tag-nodescription" fuzzy="true">nėra aprašymo šiai žymei :/</string>
   <string name="page-tag-fail">Nepavyko pažymėti puslapio</string>
   <string name="page-tag-error">Nepavyko pažymėti puslapio, klaida: $1</string>
   <string name="page-unknown">Nežinomas puslapis</string>
@@ -597,9 +597,9 @@
   <string name="block-alreadyblocked">Vartotojas jau yra užblokuotas</string>
   <string name="report-fail">Nepavyko pranešti apie vartotoją, nes: $1</string>
   <string name="report-page-fail">Klaida: nepavyko gauti $1 pranešimo puslapio</string>
-  <string name="report-page-fail-time">Nepavyko gauti dabartinio pranešimo puslapio laiko žymės, api klaida:\n\n $1</string>
-  <string name="report-unable">Nepavyko pranešti apie vartotoją :(</string>
-  <string name="about-python-with"> ,su python palaikymu</string>
+  <string name="report-page-fail-time" fuzzy="true">Nepavyko gauti dabartinio pranešimo puslapio laiko žymės, api klaida:\n\n $1</string>
+  <string name="report-unable" fuzzy="true">Nepavyko pranešti apie vartotoją :(</string>
+  <string name="about-python-with" fuzzy="true"> ,su python palaikymu</string>
   <string name="about-python-without"> be python palaikymo</string>
   <string name="error-unknown-code">Nežinoma Klaida: $1</string>
   <string name="relogin-fail">Nepavyko prisijungti prie viki: $1</string>

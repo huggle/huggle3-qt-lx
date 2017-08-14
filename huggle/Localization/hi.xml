@@ -44,14 +44,14 @@
   <string name="link">कड़ी</string>
   <string name="reason">कारण</string>
   <string name="diffid">अन्तर पता</string>
-  <string name="whitelisted">$3 पर $2 स्कोर के साथ $1 को श्वेत सूची में समाहित किया</string>
+  <string name="whitelisted" fuzzy="true">$3 पर $2 स्कोर के साथ $1 को श्वेत सूची में समाहित किया</string>
   <string name="expiry-time">समाप्ति समय</string>
   <string name="duration">अवधि</string>
   <string name="enable">सक्षम करें</string>
   <string name="disable">अक्षम करें</string>
   <string name="no-token">कोई संकेत नहीं</string>
   <string name="flags">चिह्न</string>
-  <string name="browser-none">अभी कोई पृष्ठ प्रदर्शित नहीं हुआ</string>
+  <string name="browser-none" fuzzy="true">अभी कोई पृष्ठ प्रदर्शित नहीं हुआ</string>
   <string name="browser-miss-summ">कोई सारांश नहीं दिया गया</string>
   <string name="browser-diff">पृष्ठों में अन्तर: $1 (स्कोर: $2)</string>
   <string name="browser-fail">अन्तर प्राप्त करने में अक्षम: $1</string>
@@ -75,10 +75,10 @@
   <string name="block-token-1">प्रतिबन्ध $1 के लिए टोकन प्राप्त करें</string>
   <string name="block-fail">\'$1\' को अवरोधित नहीं किया</string>
   <string name="block-token-e1">टोकन पुनः प्राप्त नहीं हो सकता: $1</string>
-  <string name="block-error-no-info">जाँच में कोई सदस्य सूचना उपलब्ध नहीं है (क्या आप प्रबन्धक हो?)</string>
+  <string name="block-error-no-info" fuzzy="true">जाँच में कोई सदस्य सूचना उपलब्ध नहीं है (क्या आप प्रबन्धक हो?)</string>
   <string name="block-type">प्रतिबन्धित करें/प्रतिबन्ध हटायें</string>
-  <string name="block-admin">प्रतिबन्धित करने वाला प्रबन्धक</string>
-  <string name="block-none">कोई भी सदस्य प्रतिबन्धित करने के लिए नहीं है।</string>
+  <string name="block-admin" fuzzy="true">प्रतिबन्धित करने वाला प्रबन्धक</string>
+  <string name="block-none" fuzzy="true">कोई भी सदस्य प्रतिबन्धित करने के लिए नहीं है।</string>
   <string name="config-function">फलन</string>
   <string name="config-description">विवरण</string>
   <string name="config-shortcut">लघुपथ</string>
@@ -128,8 +128,8 @@
   <string name="config-confirmsame">एक सदस्य द्वारा किये गये संपादन की आवृति पूर्ववत किये जाने की पुष्टि करें</string>
   <string name="config-confirmselfrevert">स्वयं के संपादन आवृति संस्करण की पुष्टि करें</string>
   <string name="config-confirmwarned">किसी चेताये हुए सदस्य द्वारा किये संपादन के पुनरावृति संस्करण की पुष्टि करें</string>
-  <string name="config-confirmrange">किसी आईपी रेंज में अनामक सदस्य द्वारा किये गये पुनरावृति संपादन की पुष्टि करें</string>
-  <string name="config-confirmpage">उपेक्षा पृष्ठों के प्रत्यावर्तन की पुष्टि करें</string>
+  <string name="config-confirmrange" fuzzy="true">किसी आईपी रेंज में अनामक सदस्य द्वारा किये गये पुनरावृति संपादन की पुष्टि करें</string>
+  <string name="config-confirmpage" fuzzy="true">उपेक्षा पृष्ठों के प्रत्यावर्तन की पुष्टि करें</string>
   <string name="config-autoadvance">संपादन पूर्ववत करने के बाद, पंक्ति में अगले संपादन पर जायें</string>
   <string name="config-userollback">रोलबैक प्रयोग करें अगर उपलब्ध है तों</string>
   <string name="config-revertsummaries">मैन्यु में उपलब्ध सारांश को पूर्ववत करें</string>
@@ -143,7 +143,7 @@
   <string name="config-template">साँचा</string>
   <string name="config-promptforblock">अगर किसी सदस्य को अंतिम चेतावनी देने के लिये पूछा जाये तो ब्लाक के लिये संकेत देवें</string>
   <string name="config-blockreason">डिफ़ाल्ट अवरोधन कारण</string>
-  <string name="config-blocktime">की डिफ़ाल्ट अवरोधन अवधि</string>
+  <string name="config-blocktime" fuzzy="true">की डिफ़ाल्ट अवरोधन अवधि</string>
   <string name="config-blocktimeanon">अनाम प्रयोक्ता</string>
   <string name="config-blocktimereg">पञ्जीकृत प्रयोक्ता</string>
   <string name="config-summaryprompt">सारान्श प्रविष्ट करें</string>
@@ -183,27 +183,27 @@
   <string name="login-progress-local">$1 की स्थानीय विन्यास की जाँच</string>
   <string name="login-progress-whitelist">श्वेतसूची पुनः प्राप्त कर रहा है...</string>
   <string name="login-error-admin">इस परियोजना पर हूगल का उपयोग करने के लिए प्रशासक खाते की आवश्यकता है।</string>
-  <string name="login-error-age">इस परियोजना पर हूगल का उपयोग करने के लिए खाता कम से कम $1 दिन पुराना होना चाहिए।</string>
+  <string name="login-error-age" fuzzy="true">इस परियोजना पर हूगल का उपयोग करने के लिए खाता कम से कम $1 दिन पुराना होना चाहिए।</string>
   <string name="login-error-alldisabled">वर्तमान में हूगल सभी परियोजनाओं के लिए अक्षम किया हुआ है।</string>
   <string name="login-error-approval">$1 पर हगल का उपयोग करने के लिए स्वीकृति चाहिए।</string>
   <string name="login-error-cancelled">रद्द किया गया।</string>
   <string name="login-error-config">लॉग-इन असफल रहा, $1 के समाकृति पृष्ठों को लोड नहीं कर पाया: $2</string>
   <string name="login-error-count">इस परियोजना पर हूगल उपयोग के लिए कम से कम $1 सम्पादन होने चाहिए।</string>
-  <string name="login-error-disabled">आपके खाते $1 के लिए हगल सक्षम नहीं किया गया है। प्रयोक्ता समाकृति पृष्ठ देखें।</string>
+  <string name="login-error-disabled" fuzzy="true">आपके खाते $1 के लिए हगल सक्षम नहीं किया गया है। प्रयोक्ता समाकृति पृष्ठ देखें।</string>
   <string name="login-error-global">लॉग-इन असफल: वैश्विक समाकृति पृष्ठ लोड करने में असफल। अधिक जानकारी के लिए त्रुटि लॉग देखें।</string>
   <string name="login-error-invalid">सदस्य नाम अमान्य है।</string>
   <string name="login-error-noconfig">$1 पर हगल संविन्यास पृष्ठ नहीं है।</string>
   <string name="login-error-nouser">यह सदस्य अस्तित्व में नहीं है</string>
   <string name="login-error-password">गलत पारशब्द।</string>
   <string name="login-error-projdisabled">अभी इस परियोजना पर हूगल अक्षम किया हुआ है।</string>
-  <string name="login-error-unknown">$1 पर लॉग इन करने में असमर्थ।</string>
+  <string name="login-error-unknown" fuzzy="true">$1 पर लॉग इन करने में असमर्थ।</string>
   <string name="login-error-version">यह संस्करण अप्रचलित है। नवीनतम संस्करण के साथ अद्यतन करें।</string>
   <string name="login-error-whitelist">$1 के लिए श्वेतसूची सदस्य लोड करने में असफल।</string>
   <string name="main-page">पृष्ठ</string>
   <string name="main-user">प्रयोक्ता</string>
   <string name="main-contribs">योगदान</string>
   <string name="main-history">इतिहास</string>
-  <string name="main-new-messages">आपके लिये नया संदेश। व्यवस्था चुने -&gt; नये संदेश दिखाये या उन्हे देखने के लिये M दबायें।</string>
+  <string name="main-new-messages" fuzzy="true">आपके लिये नया संदेश। व्यवस्था चुने -&gt; नये संदेश दिखाये या उन्हे देखने के लिये M दबायें।</string>
   <string name="main-system">प्रणाली</string>
   <string name="main-system-messages">नए सन्देश दिखाएँ</string>
   <string name="main-system-reconnectirc">आई आर सी फीड पर फीर से जुडे़</string>
@@ -289,8 +289,8 @@
   <string name="message-message">सन्देश:</string>
   <string name="message-summary">सारान्श:</string>
   <string name="message-autosign">स्वचालित रूप से हस्ताक्षर जोड़ें</string>
-  <string name="message-fail-token-1">सम्पादन टोकन प्राप्त करने में अक्षम</string>
-  <string name="message-fail-token-2">निवेदन पर कोई टोकन नहीं मिला</string>
+  <string name="message-fail-token-1" fuzzy="true">सम्पादन टोकन प्राप्त करने में अक्षम</string>
+  <string name="message-fail-token-2" fuzzy="true">निवेदन पर कोई टोकन नहीं मिला</string>
   <string name="protect-request-title">$1 के लिए सुरक्षा अनुरोध करें</string>
   <string name="protect-reason">कारण:</string>
   <string name="protect-expiry">समाप्ति:</string>
@@ -351,7 +351,7 @@
   <string name="revert-confirm-same">ये वापस ले हुए सदस्य, $1, के अन्य संशोधन को वापस ले लेगा। जारी रखे?</string>
   <string name="revert-confirm-warned">ये $1 द्वारा संशोधन को वापस ले लेगा, जो की पहले सचेत किए जा चुके है। जारी रखे?</string>
   <string name="revert-error-first">यह सम्पादन इस पृष्ठ का प्रथम सम्पादन है और यह पूर्ववत नहीं किया जा सकता।</string>
-  <string name="revert-only">संपादन पृष्ठ का एकलोता संपादन है।</string>
+  <string name="revert-only" fuzzy="true">संपादन पृष्ठ का एकलोता संपादन है।</string>
   <string name="revert-creator">आखरी संपादन पृष्ठ निर्माता, $1, द्वारा बनाया गया था</string>
   <string name="revert-delete-instead">पृष्ठ को हटा दे?</string>
   <string name="revert-speedy-instead">शीघ्र हटाय जाने के लिए टैग करे?</string>
@@ -446,4 +446,8 @@
   <string name="login-username-doesnt-exist">यह सदस्य नाम उपस्थित नहीं है।</string>
   <string name="title-multiple-projects">कई परियोजनाएं ($1)</string>
   <string name="title-on">अन $1</string>
+  <string name="tip1">किसी भी अन्य ब्राउज़र की तरह ही हगल टैब को समर्थन देता है! यदि आप कुछ संपादन पर हैं और आप इसे बाद के लिए रखना चाहते हैं, तो आप बस नए टैब खोल सकते हैं और वहां कतार की जांच करना जारी रख सकते हैं। कतार सभी टैब के बीच साझा किया जाता है।</string>
+  <string name="tip2">हगल में एक \"संशोधन पट्टी\" का एक छोटा विजेट होता है जिसमें उपयोगकर्ता और पृष्ठ इतिहास दोनों एक व्यवस्थित तरीके से शामिल होते हैं।\nहालांकि यह डिफ़ॉल्ट रूप से सक्षम नहीं किया जाता है। यदि आप एक छोटी स्क्रीन पर हैं, तो आप इसके साथ उपयोगकर्ता और पृष्ठ इतिहास विजेट को बदल सकते हैं!</string>
+  <string name="tip3">अधिकांश प्राथमिकताओं को [[Special:MyPage/huggle3.css]],में विकी पर संग्रहीत किया जाता है, आप उन्हें वहां भी बदल सकते हैं!</string>
+  <string name="tip4">स्क्रीन पर लगभग हर विजेट को सुरक्षित रूप से बंद किया जा सकता है (दिशाज्ञान पट्टी को छोड़कर)</string>
 </resources>

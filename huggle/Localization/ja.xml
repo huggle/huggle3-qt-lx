@@ -41,14 +41,14 @@
   <string name="status">状態</string>
   <string name="link">リンク</string>
   <string name="reason">理由</string>
-  <string name="whitelisted">$1（$3におけるスコア：$2）がホワイトリストに追加されました</string>
+  <string name="whitelisted" fuzzy="true">$1（$3におけるスコア：$2）がホワイトリストに追加されました</string>
   <string name="expiry-time">有効期限</string>
   <string name="duration">期間</string>
   <string name="enable">有効</string>
   <string name="disable">無効</string>
   <string name="no-token">トークンなし</string>
   <string name="flags">フラグ</string>
-  <string name="browser-none">現在、ページが表示されていません</string>
+  <string name="browser-none" fuzzy="true">現在、ページが表示されていません</string>
   <string name="browser-fail">差分を取得できません: $1</string>
   <string name="about-contributors">開発者:</string>
   <string name="block-not">利用者はブロックされていません</string>
@@ -115,8 +115,8 @@
   <string name="config-confirmsame">リバートを受けている利用者による版へ差し戻す時は確認する</string>
   <string name="config-confirmselfrevert">自分の編集を差し戻す時は確認する (アンドゥの場合をのぞく)</string>
   <string name="config-confirmwarned">警告を受けている利用者による版へ差し戻す時は確認する</string>
-  <string name="config-confirmrange">リバートを受けているIPと同じ(/16)範囲のIPによる版へ差し戻す時は確認する</string>
-  <string name="config-confirmpage">無視ページを差し戻す時は確認する</string>
+  <string name="config-confirmrange" fuzzy="true">リバートを受けているIPと同じ(/16)範囲のIPによる版へ差し戻す時は確認する</string>
+  <string name="config-confirmpage" fuzzy="true">無視ページを差し戻す時は確認する</string>
   <string name="config-autoadvance">リバートした後、キュー内の次の編集に移動する</string>
   <string name="config-userollback">もし可能な場合、ロールバック機能を使用する</string>
   <string name="config-revertsummaries">メニュー内で利用可能な要約</string>
@@ -130,7 +130,7 @@
   <string name="config-template">テンプレート</string>
   <string name="config-promptforblock">最終警告を行うときに、ブロックするかどうか聞く</string>
   <string name="config-blockreason">デフォルトのブロック理由</string>
-  <string name="config-blocktime">デフォルトのブロック期間</string>
+  <string name="config-blocktime" fuzzy="true">デフォルトのブロック期間</string>
   <string name="config-blocktimeanon">IP利用者</string>
   <string name="config-blocktimereg">登録利用者</string>
   <string name="config-summaryprompt">要約を入力</string>
@@ -138,7 +138,7 @@
   <string name="config-defaultsprompt">デフォルト設定に戻しますか？</string>
   <string name="config-logbrowsetitle">ログファイルの場所</string>
   <string name="config-shortcutconflict">ショートカット \'$1\' は、既存のショートカット \'{1}\' とかぶっています。</string>
-  <string name="config-no-colon">キューの名前にコロン\':\'は使えません</string>
+  <string name="config-no-colon" fuzzy="true">キューの名前にコロン\':\'は使えません</string>
   <string name="config-notify-update">更新を確認</string>
   <string name="config-notify-beta">利用できる場合はベータ版を確認</string>
   <string name="delete-title">$1 を削除</string>
@@ -194,20 +194,20 @@
   <string name="login-ssl">HTTP を使用 (OpenSSL が必要)</string>
   <string name="login-fail">$1 にログインできませんでした</string>
   <string name="login-error-admin">このプロジェクトでハグルを使用するには管理者権限が必要です。</string>
-  <string name="login-error-age">このプロジェクトでハグルを使用するにはアカウント作成後 $1 日以上が経過している必要があります。</string>
+  <string name="login-error-age" fuzzy="true">このプロジェクトでハグルを使用するにはアカウント作成後 $1 日以上が経過している必要があります。</string>
   <string name="login-error-alldisabled">現在すべてのプロジェクトでハグルの使用ができません。</string>
   <string name="login-error-approval">$1 でハグルを使用するには承認が必要です。</string>
   <string name="login-error-cancelled">キャンセルしました。</string>
   <string name="login-error-config">$1 のローカル設定を構文解析できなかったため、ログインできませんでした: $2</string>
   <string name="login-error-count">このプロジェクトでハグルを使用するには最低でも編集回数が $1 回以上ある必要があります。</string>
-  <string name="login-error-disabled">$1 上のあなたのアカウントではハグルを使用可能に設定していません。利用者設定ページを確認してください。</string>
+  <string name="login-error-disabled" fuzzy="true">$1 上のあなたのアカウントではハグルを使用可能に設定していません。利用者設定ページを確認してください。</string>
   <string name="login-error-global">グローバル設定ページのロードに失敗しました。詳しくはデバッグログをご覧ください。</string>
   <string name="login-error-invalid">利用者名が無効です</string>
   <string name="login-error-noconfig">$1 にはハグルの設定ページがありません</string>
   <string name="login-error-nouser">利用者が存在しません</string>
   <string name="login-error-password">パスワードが無効です</string>
   <string name="login-error-projdisabled">現在 $1 ではハグルが無効になっています。</string>
-  <string name="login-error-unknown">$1 にログインできません。</string>
+  <string name="login-error-unknown" fuzzy="true">$1 にログインできません。</string>
   <string name="login-error-version">このバージョンは古いバージョンです。最新版にアップデートしてください。</string>
   <string name="login-error-whitelist">$1 の利用者ホワイトリストを読み込めませんでした。</string>
   <string name="main-menu-provider-stop">提供元を停止</string>
@@ -216,7 +216,7 @@
   <string name="main-user">利用者</string>
   <string name="main-contribs">投稿記録</string>
   <string name="main-history">履歴</string>
-  <string name="main-new-messages">新しいメッセージが来ています。新着メッセージを見るには 「システム」から「新着メッセージを表示」を選択するか、キーボードの M を押してください。</string>
+  <string name="main-new-messages" fuzzy="true">新しいメッセージが来ています。新着メッセージを見るには 「システム」から「新着メッセージを表示」を選択するか、キーボードの M を押してください。</string>
   <string name="main-space">ページ名の末尾は空白にはできません。ページ名を修正してください。</string>
   <string name="main-system">システム</string>
   <string name="main-system-messages">新着メッセージを表示</string>
@@ -319,7 +319,7 @@
   <string name="message-autosign">署名を自動で付記</string>
   <string name="message-fail-re-user-tp">$1 を取得できません。この利用者へのメッセージの配信を停止します</string>
   <string name="message-error">$1 にメッセージを配信できませんでした! ログを確認してください!</string>
-  <string name="message-fail-token-1">編集トークンを取得できません</string>
+  <string name="message-fail-token-1" fuzzy="true">編集トークンを取得できません</string>
   <string name="protect-request-title">$1 の保護依頼</string>
   <string name="protect-reason">理由:</string>
   <string name="protect-expiry">期間:</string>
@@ -388,7 +388,7 @@
   <string name="revert-confirm-same">このリバートは同じ利用者のすでにリバートされた版 $1 に差し戻すことになります。実行しますか？</string>
   <string name="revert-confirm-warned">このリバートは $1 が編集した版に戻すことになります; この利用者は過去に警告を受けています。実行しますか？</string>
   <string name="revert-error-first">この編集はページの最初の版であるため、差し戻せません。</string>
-  <string name="revert-only">この編集はこのページの唯一の編集です。</string>
+  <string name="revert-only" fuzzy="true">この編集はこのページの唯一の編集です。</string>
   <string name="revert-creator">最終編集はページ作成者 $1 による編集でした</string>
   <string name="revert-delete-instead">代わりにページを削除しますか?</string>
   <string name="revert-speedy-instead">代わりに即時削除タグを貼り付けますか？</string>
@@ -415,7 +415,7 @@
   <string name="updater-open-manualdownloadpage">ダウンロード ページを開く</string>
   <string name="updater-close">閉じる</string>
   <string name="updater-disable-notify">更新を無効にする</string>
-  <string name="user-history-fail">利用者の履歴を取得できません: $1</string>
+  <string name="user-history-fail" fuzzy="true">利用者の履歴を取得できません: $1</string>
   <string name="userinfo-generic">利用者の情報</string>
   <string name="userinfo-retrieve">情報を取得</string>
   <string name="shortcut-report-username">利用者名を報告</string>
@@ -493,9 +493,9 @@
   <string name="missing-page">Wiki上にページ $1 がありません</string>
   <string name="updating-wl">ホワイトリストを更新中...</string>
   <string name="feature-nfru">この機能はIPユーザー専用</string>
-  <string name="welcome-tp-empty-fail">この利用者のトークページは空ではありませんが、メッセージを本当に送信しますか?</string>
-  <string name="cr-revert-same-user">解決済みの問題：全ての編集を復帰-$1について、同じ利用者による複数の編集があります。</string>
-  <string name="cr-message-same">$1 には同じ利用者による複数の編集がありますが、それらを本当に差し戻しますか?</string>
+  <string name="welcome-tp-empty-fail" fuzzy="true">この利用者のトークページは空ではありませんが、メッセージを本当に送信しますか?</string>
+  <string name="cr-revert-same-user" fuzzy="true">解決済みの問題：全ての編集を復帰-$1について、同じ利用者による複数の編集があります。</string>
+  <string name="cr-message-same" fuzzy="true">$1 には同じ利用者による複数の編集がありますが、それらを本当に差し戻しますか?</string>
   <string name="cr-message-new">$1 には新しい編集があります。それらを本当に差し戻しますか?</string>
   <string name="preferences-watchlist-preferences">あなたのwiki上の好みに従ってください</string>
   <string name="preferences-watchlist-nochange">何もしない</string>

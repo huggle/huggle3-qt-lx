@@ -50,7 +50,7 @@
   <string name="disable">غیر فعال کریں</string>
   <string name="no-token">کوئی ٹوکن نہیں</string>
   <string name="flags">پرچم</string>
-  <string name="browser-none">کوئی صفحہ ظاہر نہیں ہوا</string>
+  <string name="browser-none" fuzzy="true">کوئی صفحہ ظاہر نہیں ہوا</string>
   <string name="browser-miss-summ">کوئی خلاصہ ترمیم نہیں درج کیا گیا</string>
   <string name="browser-diff">صفحہ کا فرق: $1 (فرق: $2)</string>
   <string name="about-contributors">ترقی دہندگان:</string>
@@ -66,7 +66,7 @@
   <string name="block-sharedipwarning">اطلاع: $1 کو مشترکہ یا ڈائنامک آئی پی پتہ کے طور ٹیگ کیا گیا ہے۔</string>
   <string name="block-fail">بوجہ $1 صارف پر پابندی عائد نہیں کی جا سکتی</string>
   <string name="block-type">پابندی لگائیں/پابندی ختم کریں</string>
-  <string name="block-admin">منتظم پابندی</string>
+  <string name="block-admin" fuzzy="true">منتظم پابندی</string>
   <string name="contribution-browser-user-info">صارف $1 کی حالیہ شراکتیں ظاہر ہو رہی ہیں</string>
   <string name="config-function">فنکشن</string>
   <string name="config-description">وضاحت</string>
@@ -86,7 +86,7 @@
   <string name="config-talk">تبادلۂ خیال صفحہ</string>
   <string name="config-templatetext">متن دکھائیں</string>
   <string name="config-template">سانچہ</string>
-  <string name="config-blocktime">ابتدائی مدت پابندی برائے</string>
+  <string name="config-blocktime" fuzzy="true">ابتدائی مدت پابندی برائے</string>
   <string name="config-blocktimeanon">گمنام صارفین</string>
   <string name="config-blocktimereg">مندرج صارفین</string>
   <string name="config-summaryprompt">خلاصہ ترمیم درج کریں</string>
@@ -112,7 +112,7 @@
   <string name="login-fail-user-data">$1 میں لاگ ان ناکام: صارف معلومات نہیں مل سکی۔ API کوئیری نے کوئی ڈیٹا ارسال نہیں کیا۔</string>
   <string name="login-failed-autoconfirm-rights">$1 میں لاگ ان ناکام: آپ اس منصوبہ میں خود توثیق شدہ صارف نہیں ہے، یعنی آپ کے کھاتہ کی اب تک خودکار طور پر تصدیق نہیں ہوئی ہے۔</string>
   <string name="login-password-empty">آپ کا درج کردہ پاسورڈ خالی تھا</string>
-  <string name="login-fail-wrong-name">لاگ ان ہونے کے لیے آپ نے غلط صارف نام درج کیا ہے</string>
+  <string name="login-fail-wrong-name" fuzzy="true">لاگ ان ہونے کے لیے آپ نے غلط صارف نام درج کیا ہے</string>
   <string name="login-start">لاگ ان</string>
   <string name="login-translate">ہگل کا ترجمہ کریں</string>
   <string name="login-progress-start">$1 میں لاگ ان ہو رہے ہیں</string>
@@ -134,7 +134,7 @@
   <string name="main-user">صارف</string>
   <string name="main-contribs">شراکتیں</string>
   <string name="main-history">تاریخچہ</string>
-  <string name="main-new-messages">آپ کے لیے نئے پیغامات۔ انھیں دیکھنے کے لیے نظام -&gt; نئے پیغامات دکھائیں منتخب کریں یا M پر کلک کریں۔</string>
+  <string name="main-new-messages" fuzzy="true">آپ کے لیے نئے پیغامات۔ انھیں دیکھنے کے لیے نظام -&gt; نئے پیغامات دکھائیں منتخب کریں یا M پر کلک کریں۔</string>
   <string name="main-system">نظام</string>
   <string name="main-shutting-down">ہگل بند ہو رہا ہے، نظر انداز</string>
   <string name="main-system-messages">نئے پیغامات دکھائیں</string>
@@ -198,7 +198,7 @@
   <string name="main-stats">$1 ترامیم فی منٹ، $2 استرجعات فی منٹ</string>
   <string name="main-display-session-data">نشست ڈیٹا دکھائیں</string>
   <string name="main-display-whitelist">فہرست سفید دکھائیں</string>
-  <string name="main-revert-custom-reson">آپ اس ترمیم کو واپس سابقہ ترمیم کی جانب کیوں پھیرنا چاہتے ہیں، براہ کرم اس کی وجہ درج کریں</string>
+  <string name="main-revert-custom-reson" fuzzy="true">آپ اس ترمیم کو واپس سابقہ ترمیم کی جانب کیوں پھیرنا چاہتے ہیں، براہ کرم اس کی وجہ درج کریں</string>
   <string name="main-log1">$1 کا منتخب اعادہ بحال ہو رہا ہے</string>
   <string name="main-tip-pagetagdelete">اس صفحہ میں حذف کا ٹیگ لگائیں</string>
   <string name="main-tip-pagedelete">یہ صفحہ حذف کریں</string>
@@ -252,7 +252,7 @@
   <string name="updater-open-manualdownloadpage">ڈاؤنلوڈ صفحہ کھولیں</string>
   <string name="updater-close">منسوخ</string>
   <string name="updater-disable-notify">تجدید غیر فعال کریں</string>
-  <string name="user-history-fail">صارف: $1 کا تاریخچہ نہیں مل سکا</string>
+  <string name="user-history-fail" fuzzy="true">صارف: $1 کا تاریخچہ نہیں مل سکا</string>
   <string name="userinfo-generic">صارف معلومات</string>
   <string name="shortcut-report-username">صارف نام کی شکایت درج کریں</string>
   <string name="shortcut-report-user">صارف کی شکایت کریں</string>
@@ -260,7 +260,7 @@
   <string name="shortcut-raw">ترمیم کا استرجع کریں اور صارف کو انتباہ دیں</string>
   <string name="shortcut-next">اگلی ترمیم دیکھیں</string>
   <string name="shortcut-suspicious">بطور مشکوک ترمیم نشان زد کریں</string>
-  <string name="shortcut-warn">ترمیم کا استرجع کیے بغیر صارف کو انتباہ دیں</string>
+  <string name="shortcut-warn" fuzzy="true">ترمیم کا استرجع کیے بغیر صارف کو انتباہ دیں</string>
   <string name="shortcut-revert">ترمیم کا استرجع کریں</string>
   <string name="warning-title">انتباہ $1</string>
   <string name="warning-levelgroup">سطح انتباہ</string>
@@ -280,7 +280,7 @@
   <string name="logs-widget-name">نوشتہ ہائے نظام</string>
   <string name="wait">براہ مہربانی انتظار کریں...</string>
   <string name="report-no-user">شکایت کے لیے کوئی صارف منتخب نہیں کیا گیا ہے، براہ کرم پہلے کسی صارف کو منتخب کریں</string>
-  <string name="welcome-tp-empty-fail">اس صارف کا تبادلۂ خیال صفحہ خالی نہیں ہے، کیا آپ واقعی اسے پیغام ارسال کرنا چاہتے ہیں؟</string>
+  <string name="welcome-tp-empty-fail" fuzzy="true">اس صارف کا تبادلۂ خیال صفحہ خالی نہیں ہے، کیا آپ واقعی اسے پیغام ارسال کرنا چاہتے ہیں؟</string>
   <string name="preferences-watchlist-watch">زیر نظر فہرست میں شامل کریں</string>
   <string name="preferences-watchlist-preferences">اپنی ویکی ترجیحات کی پیروی کریں</string>
   <string name="preferences-watchlist-nochange">کچھ نہ کریں</string>
@@ -291,7 +291,7 @@
   <string name="namespace">نام فضا</string>
   <string name="block-alreadyblocked">صارف پہلے ہی سے ممنوع ہے</string>
   <string name="report-fail">بوجہ $1 صارف کی شکایت درج کرنے میں ناکامی ہوئی</string>
-  <string name="report-unable">صارف کی شکایت درج نہیں کی جا سکتی :(</string>
+  <string name="report-unable" fuzzy="true">صارف کی شکایت درج نہیں کی جا سکتی :(</string>
   <string name="error-unknown-code">نامعلوم خطا: $1</string>
   <string name="relogin-fail">$1 میں لاگ ان نہیں ہو سکتے</string>
 </resources>

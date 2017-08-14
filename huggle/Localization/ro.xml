@@ -23,7 +23,7 @@
   <string name="result">Rezultat</string>
   <string name="save">Salvează</string>
   <string name="show">Arată</string>
-  <string name="no-instant">Mesajele instante nu sunt activate pe proiectul $1, nu se trimite mesaj către $2, alegeți un alt nivel de avertizare.</string>
+  <string name="no-instant" fuzzy="true">Mesajele instante nu sunt activate pe proiectul $1, nu se trimite mesaj către $2, alegeți un alt nivel de avertizare.</string>
   <string name="undo">Anulează</string>
   <string name="yes">Da</string>
   <string name="editing-page">Editarea paginii</string>
@@ -46,15 +46,15 @@
   <string name="link">Legătură</string>
   <string name="reason">Motiv</string>
   <string name="diffid">DiffID</string>
-  <string name="whitelisted">$1 cu scorul $2 pe $3 a fost introdus în whitelist</string>
+  <string name="whitelisted" fuzzy="true">$1 cu scorul $2 pe $3 a fost introdus în whitelist</string>
   <string name="expiry-time">Ora expirării</string>
   <string name="duration">Durată</string>
   <string name="enable">Activează</string>
   <string name="disable">Dezactivează</string>
   <string name="no-token">Nu există token</string>
   <string name="flags">Steaguri</string>
-  <string name="gracetime">Aștept terminarea query-urilor de editare...</string>
-  <string name="browser-none">Acum nu este afișată nicio pagină</string>
+  <string name="gracetime" fuzzy="true">Aștept terminarea query-urilor de editare...</string>
+  <string name="browser-none" fuzzy="true">Acum nu este afișată nicio pagină</string>
   <string name="browser-load">Descarc diff folosind un mecanism de rezervă pentru redarea web (MW), așteptați...</string>
   <string name="browser-miss-summ">Nu a fost specificat un sumar</string>
   <string name="browser-diff">Diff al paginii: $1 (scor: $2)</string>
@@ -79,10 +79,10 @@
   <string name="block-token-1">Obțin un token pentru blocarea lui $1</string>
   <string name="block-fail">Nu pot bloca utilizatorul, $1</string>
   <string name="block-token-e1">Nu pot primi token: $1</string>
-  <string name="block-error-no-info">În query nu este prezentă informația utilizatorului (sunteți sysop?)</string>
+  <string name="block-error-no-info" fuzzy="true">În query nu este prezentă informația utilizatorului (sunteți sysop?)</string>
   <string name="block-type">Blocare / deblocare</string>
-  <string name="block-admin">Sysop care blochează</string>
-  <string name="block-none">Nu există utilizator de blocat.</string>
+  <string name="block-admin" fuzzy="true">Sysop care blochează</string>
+  <string name="block-none" fuzzy="true">Nu există utilizator de blocat.</string>
   <string name="contribution-browser-user-info">Arăt contribuțiile recente ale utilizatorului $1</string>
   <string name="config-function">Funcție</string>
   <string name="config-description">Descriere</string>
@@ -131,7 +131,7 @@
   <string name="config-remove-reverted">Înlătură editările asupra cărora a revenit deja altcineva de pe queue</string>
   <string name="config-remove-old">Elimină editările vechi dacă este parsată o editare mai nouă în aceeași pagină</string>
   <string name="config-auto-load-history">Încarcă automat istorie și informații despre utilizator (consumă multă lățime de bandă)</string>
-  <string name="config-last-revision">Afișează ultima revizie a paginii dacă editarea încărcată acum nu este o ultimă revizie (o va post-descărca, facănd Huggle lent)</string>
+  <string name="config-last-revision" fuzzy="true">Afișează ultima revizie a paginii dacă editarea încărcată acum nu este o ultimă revizie (o va post-descărca, facănd Huggle lent)</string>
   <string name="config-require-delay">Impune o diferență de timp după fiecare încărcare a următoarei editări, timp în care nu se va putea utiliza nicio funcție care scrie (utilă pentru evitarea bugului cu multiple apăsări de taste)</string>
   <string name="config-wait-edit">Timpul, în secunde, până la reactivarea funcțiilor cu scriere:</string>
   <string name="config-display-text">Arată următorul</string>
@@ -158,8 +158,8 @@
   <string name="config-confirmsame">Confirmă revenirea la o altă editare a aceluiași utilizator</string>
   <string name="config-confirmselfrevert">Confirmă revenirea asupra propriilor editări (cu excepția anulării)</string>
   <string name="config-confirmwarned">Confirmă revenirea la o editare a unui utilizator avertizat</string>
-  <string name="config-confirmrange">Confirmă revenirea la o editare a unui utilizator anonim în aceeași gamă /16 cu utilizatorul</string>
-  <string name="config-confirmpage">Confirmă revenirea în paginile ignorate</string>
+  <string name="config-confirmrange" fuzzy="true">Confirmă revenirea la o editare a unui utilizator anonim în aceeași gamă /16 cu utilizatorul</string>
+  <string name="config-confirmpage" fuzzy="true">Confirmă revenirea în paginile ignorate</string>
   <string name="config-autoadvance">După revenire, treci la următoarea editare din coadă</string>
   <string name="config-userollback">Folosește rollback dacă este disponibil</string>
   <string name="config-revertsummaries">Sumare pentru revenire disponibile în meniu</string>
@@ -173,7 +173,7 @@
   <string name="config-template">Format</string>
   <string name="config-promptforblock">Cere permisiunea de a bloca dacă se cere avertizarea unui utilizator care deja a primit avertismentul final</string>
   <string name="config-blockreason">Motiv implicit de blocare</string>
-  <string name="config-blocktime">Durată implicită de blocare pentru</string>
+  <string name="config-blocktime" fuzzy="true">Durată implicită de blocare pentru</string>
   <string name="config-blocktimeanon">utilizatori anonimi</string>
   <string name="config-blocktimereg">utilizatori înregistrați</string>
   <string name="config-summaryprompt">Introduceți sumarul</string>
@@ -181,7 +181,7 @@
   <string name="config-defaultsprompt">Restaurez valorile implicite?</string>
   <string name="config-logbrowsetitle">Locația fișierului de log</string>
   <string name="config-shortcutconflict">Scurtătura \'$1\' intră în conflict cu scurtătura deja existentă pentru \'$1\'</string>
-  <string name="config-no-colon">Nu puteți folosi : în numele cozii</string>
+  <string name="config-no-colon" fuzzy="true">Nu puteți folosi : în numele cozii</string>
   <string name="config-notify-update">Verifică actualizări</string>
   <string name="config-notify-beta">Verifică dacă sunt disponibile versiuni beta</string>
   <string name="delete-title">Șterge $1</string>
@@ -195,7 +195,7 @@
   <string name="delete-e1">Pagina nu poate fi ștearsă: $1</string>
   <string name="delete-e2">Nu se poate șterge pagina</string>
   <string name="delete-edsc">Nu se poate șterge pagina deoarece $1</string>
-  <string name="delete-failed-no-info">Nu a fost prezentă în query nicio informație despre pagină (sunteți sysop?)</string>
+  <string name="delete-failed-no-info" fuzzy="true">Nu a fost prezentă în query nicio informație despre pagină (sunteți sysop?)</string>
   <string name="extension-kl">Nu rulează</string>
   <string name="extension-ok">Încărcat și rulează</string>
   <string name="historyform-no-info">Nu există informații de editare</string>
@@ -204,7 +204,7 @@
   <string name="historyform-retrieving-history">Încarc istoricul</string>
   <string name="historyform-not-latest-tip">Aceasta nu este ultima revizie a paginii. Asigurați-vă că ați revizuit și versiunile mai recente. Vă rog să rețineți că din acest punct s-ar putea să nu se poată face rollback.</string>
   <string name="history-error-message-title">Nu se poate anula</string>
-  <string name="history-error">Acest element nu poate fi anulat. E posibil ca pagina să fi fost modificată sau ștearsă între timp, iar Huggle nu poate face anularea din acest punct. Dacă chiar doriți să faceți anularea, va trebui să faceți aceasta manual din interfața MediaWiki.</string>
+  <string name="history-error" fuzzy="true">Acest element nu poate fi anulat. E posibil ca pagina să fi fost modificată sau ștearsă între timp, iar Huggle nu poate face anularea din acest punct. Dacă chiar doriți să faceți anularea, va trebui să faceți aceasta manual din interfața MediaWiki.</string>
   <string name="history-failure">Nu pot încărca istoricul</string>
   <string name="userhistory-title">Istoricul schimbărilor dumneavoastră</string>
   <string name="irc-connected">$1: Conectat la feedul IRC cu schimbări recente</string>
@@ -237,7 +237,7 @@
   <string name="login-fail-css">Autentificare eșuată la $1: Nu pot citi configurația utilizatorului. Special:MyPage/huggle3.css lipsește. Ați creat huggle3.css în spațiul dumneavoastră de utilizator?</string>
   <string name="login-fail-enable-true">Autentificare eșuată la $1: Nu aveți enable:true în configurația personală.</string>
   <string name="login-fail-no-info">Autentificare eșuată la $1: Nu pot citi informațiile de utilizator: $2</string>
-  <string name="login-bot">Care este diferența dintre datele de conectare BotPassword și autentificare?</string>
+  <string name="login-bot" fuzzy="true">Care este diferența dintre datele de conectare BotPassword și autentificare?</string>
   <string name="login-fail-parse-config">Autentificare eșuată la $1: Nu pot parsa configurația utilizatorului. Vedeți logul de debug pentru detalii suplimentare.</string>
   <string name="login-fail-user-data">Autentificare eșuată la $1: Nu se poate citi informația utilizatorului. Query-ul API nu a returnat date.</string>
   <string name="login-fail-rollback-rights">Autentificare eșuată la $1: Nu aveți permisiuni de rollback pe acest proiect.</string>
@@ -245,7 +245,7 @@
   <string name="login-failed-edit">Autentificare eșuată la $1: Nu aveți suficiente editări pe acest proiect.</string>
   <string name="login-retrieving-info">Citesc informații pentru utilizator pe $1</string>
   <string name="login-password-empty">Parola introdusă este vidă</string>
-  <string name="login-fail-wrong-name">Nu ați dat un nume corect de utilizator la autentificare</string>
+  <string name="login-fail-wrong-name" fuzzy="true">Nu ați dat un nume corect de utilizator la autentificare</string>
   <string name="login-api">EROARE: api.php a răspuns cu un rezultat necunoscut: $1</string>
   <string name="login-abort">Abandonează</string>
   <string name="login-start">Autentificare</string>
@@ -262,40 +262,40 @@
   <string name="login-progress-user-info">Verific informațiile de utilizator pentru $1</string>
   <string name="login-progress-whitelist">Citesc whitelistul utilizatorului...</string>
   <string name="login-remember-password">Reține parola</string>
-  <string name="login-remember-password-tooltip">Această opțiune va stoca parola într-un text simplu de pe hard disk. Utilizați-l numai dacă sunteți singura persoană care are acces la acest computer.</string>
+  <string name="login-remember-password-tooltip" fuzzy="true">Această opțiune va stoca parola într-un text simplu de pe hard disk. Utilizați-l numai dacă sunteți singura persoană care are acces la acest computer.</string>
   <string name="login-ssl">Folosește HTTPS (necesită OpenSSL)</string>
   <string name="login-fail">Autentificare eșuată la $1</string>
   <string name="login-error-admin">Utilizarea lui Huggle pe acest proiect necesită cont de administrator.</string>
-  <string name="login-error-age">Utilizarea lui Huggle pe acest proiect necesită un cont vechi de cel puțin $1 zile.</string>
+  <string name="login-error-age" fuzzy="true">Utilizarea lui Huggle pe acest proiect necesită un cont vechi de cel puțin $1 zile.</string>
   <string name="login-error-alldisabled">Huggle este actualmente dezactivat pe toate proiectele.</string>
   <string name="login-error-approval">Utilizarea lui Huggle la $1 necesită aprobare.</string>
   <string name="login-error-cancelled">Anulat.</string>
   <string name="login-error-config">Autentificare eșuată, nu pot parsa configurația locală pentru $1: $2</string>
   <string name="login-error-count">Utilizarea lui Huggle în acest proiect necesită cel puțin $1 editări.</string>
-  <string name="login-error-disabled">Huggle nu este activat pentru contul dumneavoastră la $1. Verificați pagina de configurații a utilizatorului.</string>
+  <string name="login-error-disabled" fuzzy="true">Huggle nu este activat pentru contul dumneavoastră la $1. Verificați pagina de configurații a utilizatorului.</string>
   <string name="login-error-global">Autentificare eșuată: Nu pot parsa configurația globală. Vedeți logul de debug pentru mai multe detalii.</string>
   <string name="login-error-invalid">Nume de utilizator invalid</string>
   <string name="login-error-noconfig">$1 nu are o pagină de configurare Huggle</string>
   <string name="login-error-nouser">Utilizatorul nu există</string>
   <string name="login-error-password">Parolă incorectă</string>
   <string name="login-error-projdisabled">Huggle este actualmente dezactivat pe $1.</string>
-  <string name="login-error-unknown">Nu pot loga în $1.</string>
+  <string name="login-error-unknown" fuzzy="true">Nu pot loga în $1.</string>
   <string name="login-error-version">Această versiune este depășită. Actualizați la cea mai recentă versiune.</string>
   <string name="login-error-whitelist">Nu pot încărca whitelistul utilizatorului pentru $1.</string>
   <string name="login-ro-title">schimbă pentru modul de citire</string>
   <string name="login-ro-question">Unul sau mai multe proiecte ($1) nu vă permit să vă conectați cu permisiuni de editare (motiv: $2). Doriți să treceți la modul de citire?</string>
   <string name="login-ro-info">Proiectul $1 a fost schimbat în modul de citire</string>
-  <string name="main-stat">$1 modificare pe minut $2 reviniri pe minut, nivelul $3</string>
+  <string name="main-stat" fuzzy="true">$1 modificare pe minut $2 reviniri pe minut, nivelul $3</string>
   <string name="main-menu-provider-stop">Oprește provider</string>
   <string name="main-menu-provider-resume">Reia provider</string>
   <string name="provider-up">Mă conectez la streamul de schimbări recente de pe $2 folosind providerul: $1</string>
   <string name="main-no-reason">Utilizatorul nu a furnizat un motiv</string>
-  <string name="main-restoring-slap">Acum restaurez altă editare, vă rog să așteptați...</string>
+  <string name="main-restoring-slap" fuzzy="true">Acum restaurez altă editare, vă rog să așteptați...</string>
   <string name="main-page">Pagină</string>
   <string name="main-user">Utilizator</string>
   <string name="main-contribs">Contribuții</string>
   <string name="main-history">Istoric</string>
-  <string name="main-new-messages">Aveți mesaje noi. Alegeți Sistem -&gt; Arată mesaje noi sau apăsați M pentru a le vedea.</string>
+  <string name="main-new-messages" fuzzy="true">Aveți mesaje noi. Alegeți Sistem -&gt; Arată mesaje noi sau apăsați M pentru a le vedea.</string>
   <string name="main-space">Titlul paginii nu se poate termina cu spațiu, vă rog să corectați titlul paginii</string>
   <string name="main-system">Sistem</string>
   <string name="main-status-bar">Prelucrez &lt;b&gt;$1&lt;/b&gt; editări și &lt;b&gt;$2&lt;/b&gt; query-uri. Utilizatori în whitelist: &lt;b&gt;$3&lt;/b&gt; Dimensiunea cozii: &lt;b&gt;$4&lt;/b&gt; Statistici pentru $6: $5</string>
@@ -403,7 +403,7 @@
   <string name="main-stats">$1 modificări pe minut, $2 reveniri pe minut</string>
   <string name="main-display-session-data">Afișează datele sesiunii</string>
   <string name="main-display-whitelist">Afișează whitelist</string>
-  <string name="main-revert-custom-reson">Vă rog să dați un motiv pentru care doriți revenirea asupra acestei revizii la cea precedentă</string>
+  <string name="main-revert-custom-reson" fuzzy="true">Vă rog să dați un motiv pentru care doriți revenirea asupra acestei revizii la cea precedentă</string>
   <string name="main-log1">Restaurez revizia selectată la $1</string>
   <string name="main-tip-pagetagdelete">Etichetează pagina pentru ștergere</string>
   <string name="main-tip-pagedelete">Șterge această pagină</string>
@@ -415,7 +415,7 @@
   <string name="main-revert-newpage-title">Nu pot reveni</string>
   <string name="main-revert-newpage">Aceasta este o pagină nouă, deci nu se poate reveni la altă versiune. Puteți doar să o etichetați sau să o ștergeți.</string>
   <string name="main-restore-text-fail">Nu pot restaura revizia, deoarece nu este text disponibil pentru ea</string>
-  <string name="main-restore-data-fail">Nu pot restaura versiunea deoarece wikiul nu a furnizat date pentru versiunea selectată</string>
+  <string name="main-restore-data-fail" fuzzy="true">Nu pot restaura versiunea deoarece wikiul nu a furnizat date pentru versiunea selectată</string>
   <string name="main-welcome-user">Bun venit utilizatorule</string>
   <string name="main-report-username">Reclamați numele de utilizator</string>
   <string name="main-report-user">Reclamați utilizatorul</string>
@@ -430,10 +430,10 @@
   <string name="message-fail-re-user-tp">Nu pot citi $1. Opresc trimiterea mesajului către acel utilizator</string>
   <string name="message-er">Nu pot trimite mesaj lui $1: $2</string>
   <string name="message-error">Nu am reușit să dau mesaj lui $1! Verificați logurile!</string>
-  <string name="message-fail-retrieve-talk">nu pot citi pagina de discuție a utilizatorului</string>
+  <string name="message-fail-retrieve-talk" fuzzy="true">nu pot citi pagina de discuție a utilizatorului</string>
   <string name="message-done">Am reușit să trimit mesajul despre $2 lui: $1</string>
-  <string name="message-fail-token-1">nu pot citi tokenul de editare</string>
-  <string name="message-fail-token-2">nu s-a returnat niciun token la cerere</string>
+  <string name="message-fail-token-1" fuzzy="true">nu pot citi tokenul de editare</string>
+  <string name="message-fail-token-2" fuzzy="true">nu s-a returnat niciun token la cerere</string>
   <string name="protect-request-title">Cere protejarea paginii $1</string>
   <string name="protect-reason">Motiv:</string>
   <string name="protect-expiry">Expirare:</string>
@@ -484,7 +484,7 @@
   <string name="queue-examplelabel3">Nu verifica acest atribut</string>
   <string name="queue-usergroup">Arată doar editări de la acești utilizatori</string>
   <string name="report-title">Reclamă $1</string>
-  <string name="report-warn">Acest utilizator deja a ajuns la nivelul 4 de avertizare, așa că nu i se vor mai pune alte formate de avertizare. Puteți să-l reclamați acum, dar vă rog să vă asigurați că numărul de avertismente recente este cel potrivit! Puteți face aceasta prin click pe butonul „Pagină de discuție” din formularul următor. Rețineți că acest formular și acest avertisment sunt afișate indiferent dacă revenirea a fost sau nu reușită, deci s-ar putea să aveți conflict cu alți utilizatori aici (verificați încă o dată dacă utilizatorul nu este deja reclamat). Doriți să reclamați utilizatorul?</string>
+  <string name="report-warn" fuzzy="true">Acest utilizator deja a ajuns la nivelul 4 de avertizare, așa că nu i se vor mai pune alte formate de avertizare. Puteți să-l reclamați acum, dar vă rog să vă asigurați că numărul de avertismente recente este cel potrivit! Puteți face aceasta prin click pe butonul „Pagină de discuție” din formularul următor. Rețineți că acest formular și acest avertisment sunt afișate indiferent dacă revenirea a fost sau nu reușită, deci s-ar putea să aveți conflict cu alți utilizatori aici (verificați încă o dată dacă utilizatorul nu este deja reclamat). Doriți să reclamați utilizatorul?</string>
   <string name="report-tu">Reclamă utilizatorul</string>
   <string name="report-reason">Motiv:</string>
   <string name="report-auto">Reclamat $1</string>
@@ -497,7 +497,7 @@
   <string name="reportuser-not">Utilizatorul a fost reclamat</string>
   <string name="report-evidence-none-provid">Nu s-au dat diffuri ca dovadă. Administratorilor le va fi greu să-și dea seama dacă utilizatorul este sau nu vandal. Sigur doriți să continuați?</string>
   <string name="report-duplicate">Utilizatorul a fost deja reclamat</string>
-  <string name="report-fail2">Eroare la încercarea de a reclama pagina la $1</string>
+  <string name="report-fail2" fuzzy="true">Eroare la încercarea de a reclama pagina la $1</string>
   <string name="report-progress">Reclam $1...</string>
   <string name="report-retrieving">Citesc pagina actuală de reclamații...</string>
   <string name="report-done">Reclamat</string>
@@ -510,7 +510,7 @@
   <string name="score-only-whole-word">Se potrivește doar cu cuvinte întregi</string>
   <string name="score-take-any-word">Se potrivește cu orice cuvânt ce conține acest șir</string>
   <string name="ssl-is-not-supported">Ați cerut utilizarea de SSL dar $1 nu o suportă.</string>
-  <string name="ssl-required">Serverul web al $1 necesită activarea SSL. Vă rog să porniți SSL și să mai încercați. Dacă nu puteți activa SSL (opțiunea este grizată) s-ar putea să trebuiască să vă instalați biblioteca OpenSSL în sistem.</string>
+  <string name="ssl-required" fuzzy="true">Serverul web al $1 necesită activarea SSL. Vă rog să porniți SSL și să mai încercați. Dacă nu puteți activa SSL (opțiunea este grizată) s-ar putea să trebuiască să vă instalați biblioteca OpenSSL în sistem.</string>
   <string name="uaa-not-supported">UAA nu este disponibil</string>
   <string name="uaa-not-supported-text">Avizierul de nume de utilizator nu este disponibil pe wikiul dumneavoastră.</string>
   <string name="uaa-reporting">Reclam $1 la UAA</string>
@@ -518,15 +518,15 @@
   <string name="uaa-no-reason-warn">Nu ați specificat un motiv pentru care numele de utilizator încalcă politica. Vă rog să dați un motiv.</string>
   <string name="uaa-nr">Nu s-a dat niciun motiv</string>
   <string name="uaa-g1">Citire a conținutului UAA</string>
-  <string name="uaa-e1">query-ul pentru conținutul paginii nu a returnat date.</string>
-  <string name="uaa-e2">conținutul paginii nu era disponibil.</string>
+  <string name="uaa-e1" fuzzy="true">query-ul pentru conținutul paginii nu a returnat date.</string>
+  <string name="uaa-e2" fuzzy="true">conținutul paginii nu era disponibil.</string>
   <string name="read-only">Proiectul $1 este configurat ca modul de citire, funcțiile de editare vor fi limitate</string>
   <string name="revert-confirm-multiple">Se va reveni asupra mai multor editări ale lui $1. Continuați?</string>
   <string name="revert-confirm-range">Autorul reviziei, $2, este în aceeași gamă de adrese ca și autorul reviziei curente, $1, și s-ar putea să fie aceeași persoană. Asigurați-vă că revizia este corectă înainte de a merge mai departe. Continuăm?</string>
   <string name="revert-confirm-same">Se va reveni la o altă revizie a aceluiași utilizator, $1. Continuăm?</string>
   <string name="revert-confirm-warned">Se va reveni la o revizie a lui $1, care a mai fost avertizat. Continuăm?</string>
   <string name="revert-error-first">Această editare este prima din pagină, și nu se poate reveni asupra ei.</string>
-  <string name="revert-only">Editarea este singura de la pagină.</string>
+  <string name="revert-only" fuzzy="true">Editarea este singura de la pagină.</string>
   <string name="revert-creator">Ultima editare aparține creatorului paginii, $1.</string>
   <string name="revert-preflightcheck">Preverificare</string>
   <string name="revert-delete-instead">Ștergem pagina mai bine?</string>
@@ -556,7 +556,7 @@
   <string name="updater-open-manualdownloadpage">Deschide pagina de descărcare</string>
   <string name="updater-close">Închide</string>
   <string name="updater-disable-notify">Dezactivează actualizările</string>
-  <string name="user-history-fail">nu am putut citi istoricul utilizatorului: $1</string>
+  <string name="user-history-fail" fuzzy="true">nu am putut citi istoricul utilizatorului: $1</string>
   <string name="userinfo-generic">Informațiile utilizatorului</string>
   <string name="userinfo-retrieve">Citește informații</string>
   <string name="shortcut-page-patrol-edit">Editare patrol</string>
@@ -569,13 +569,13 @@
   <string name="shortcut-next">Mergi la editarea următoare</string>
   <string name="shortcut-suspicious">Marchează editarea ca suspectă</string>
   <string name="shortcut-back">Mergi la editarea afișată anterior</string>
-  <string name="shortcut-forward">Mergi la o editare încărcată în trecut dar de la care s-a mers înapoi</string>
-  <string name="shortcut-warn">Trimite un avertisment utilizatorului, fără a reveni asupra editării</string>
+  <string name="shortcut-forward" fuzzy="true">Mergi la o editare încărcată în trecut dar de la care s-a mers înapoi</string>
+  <string name="shortcut-warn" fuzzy="true">Trimite un avertisment utilizatorului, fără a reveni asupra editării</string>
   <string name="shortcut-revert">Revino asupra editării</string>
   <string name="shortcut-x-raw">Declanșează al N-lea element din meniul de revenire și avertizare</string>
   <string name="shortcut-x-revert">Declanșează al N-lea element din meniul de revenire</string>
-  <string name="shortcut-watch">Inserează o pagină afișată într-o listă de urmărire</string>
-  <string name="shortcut-unwatch">Șterge o pagină afișată dintr-o listă de urmărire</string>
+  <string name="shortcut-watch" fuzzy="true">Inserează o pagină afișată într-o listă de urmărire</string>
+  <string name="shortcut-unwatch" fuzzy="true">Șterge o pagină afișată dintr-o listă de urmărire</string>
   <string name="shortcut-x-warn">Declanșează al N-lea element din meniul de avertizare</string>
   <string name="shortcut-good">Marchează editarea afișată actualmente drept bună</string>
   <string name="shortcut-open-in-huggle">Deschide pagina afișată actualmente</string>
@@ -584,8 +584,8 @@
   <string name="shortcut-revert-agf-1">Revino asupra reviziei presupunând buna credință</string>
   <string name="shortcut-browser-close-tab">Închide un tab de browser</string>
   <string name="shortcut-tab">Deschide un tab nou</string>
-  <string name="shortcut-rw-stay">Revino asupra editării curente, avertizează utilizatorul și rămâi pe pagină</string>
-  <string name="shortcut-revert-and-stay">Revino asupra modificării curente și rămâi pe pagină</string>
+  <string name="shortcut-rw-stay" fuzzy="true">Revino asupra editării curente, avertizează utilizatorul și rămâi pe pagină</string>
+  <string name="shortcut-revert-and-stay" fuzzy="true">Revino asupra modificării curente și rămâi pe pagină</string>
   <string name="shortcut-user-contribs-browser">deschideți contribuțiile utilizatorului pe un browser</string>
   <string name="warning-title">Avertizează $1</string>
   <string name="warning-levelgroup">Nivelul avertismentului</string>
@@ -632,7 +632,7 @@
   <string name="history-work">Anulez propria editare efectuată pe $1</string>
   <string name="history-no-item-selected">Nu a fost selectat niciun element în widgetul de istoric</string>
   <string name="history-message-revert-title">Sigur doriți să utilizați acest mesaj?</string>
-  <string name="history-another-edit">Deja anulez altă editare, vă rog să așteptați</string>
+  <string name="history-another-edit" fuzzy="true">Deja anulez altă editare, vă rog să așteptați</string>
   <string name="history-not-found">Nu am găsit nimic de anulat</string>
   <string name="history-already-done">Aceasta a fost deja anulată</string>
   <string name="history-message-revert-body">Acesta a fost un mesaj referențiat de un rollback, sunteți sigur că doriți să anulați doar formatul și nu și editarea din pagină? (trebuie să anulați și rollbackul în caz că doriți să reveniți asupra ambelor)</string>
@@ -667,7 +667,7 @@
   <string name="editquery-token-error">Nu pot citi token de editare</string>
   <string name="editquery-nocsrft">Nu CSRF token</string>
   <string name="editquery-error-retrieve-prev">Incapabil de recuperat conținutul anterior al paginii: $1</string>
-  <string name="editquery-error-append">Nu puteți utiliza atât Adăugare, cât și punăndul pentru editarea paginii</string>
+  <string name="editquery-error-append" fuzzy="true">Nu puteți utiliza atât Adăugare, cât și punăndul pentru editarea paginii</string>
   <string name="editquery-error-badtoken">Token rău</string>
   <string name="editquery-invalid-token">Nu pot edita $1 deoarece tokenul pe care îl aveam în cache nu mai este valid. Vă rog să încercați să mai editați o dată pagina</string>
   <string name="provider-failure">Cădere a providerului de feeduri $1 de la $2, încerc să găsesc un provider alternativ</string>
@@ -686,29 +686,29 @@
   <string name="feature-nfru">Această funcționalitate este doar pentru utilizatorii IP</string>
   <string name="report-no-user">Nu s-a selectat niciun utilizator pentru reclamație, vă rog să selectați un utilizator mai întâi</string>
   <string name="welcome-show">Afișați acest mesaj, de asemenea, și când lansați Huggle</string>
-  <string name="welcome-tp-empty-fail">Acest utilizator nu are pagina de discuții goală, sigur doriți să-i trimiteți un mesaj?</string>
+  <string name="welcome-tp-empty-fail" fuzzy="true">Acest utilizator nu are pagina de discuții goală, sigur doriți să-i trimiteți un mesaj?</string>
   <string name="welcome-page-miss-fail">Huggle nu a reușit să citească conținutul paginii de discuție a utilizatorului, sigur doriți să-i trimiteți un mesaj de bun venit?</string>
-  <string name="cr-newer-edits">Conflict rezolvat: revenit asupra tuturor editărilor, inclusiv asupra celor noi. Editările proveneau de la același utilizator: $1.</string>
-  <string name="cr-resolved-same-user">Conflict rezolvat: revenit asupra tuturor editărilor, inclusiv asupra celor noi, făcute de aceiași utilizatori - editările sunt de la același utilizator: $1</string>
+  <string name="cr-newer-edits" fuzzy="true">Conflict rezolvat: revenit asupra tuturor editărilor, inclusiv asupra celor noi. Editările proveneau de la același utilizator: $1.</string>
+  <string name="cr-resolved-same-user" fuzzy="true">Conflict rezolvat: revenit asupra tuturor editărilor, inclusiv asupra celor noi, făcute de aceiași utilizatori - editările sunt de la același utilizator: $1</string>
   <string name="cr-stop-new-edit">Conflict rezolvat: nu am efectuat nicio acțiune - există și editări mai noi la $1</string>
-  <string name="cr-stop-multiple-same">Conflict rezolvat: nu efectuează nicio acțiune - sunt mai multe editări de la același utilizator la $1</string>
-  <string name="cr-revert-same-user">Conflict rezolvat: revenit asupra tuturor editărilor - sunt mai multe editări de la același utilizator la $1</string>
-  <string name="cr-message-same">Există mai multe editări la $1 de la același utilizator, sigur doriți să revenim asupra tuturor?</string>
+  <string name="cr-stop-multiple-same" fuzzy="true">Conflict rezolvat: nu efectuează nicio acțiune - sunt mai multe editări de la același utilizator la $1</string>
+  <string name="cr-revert-same-user" fuzzy="true">Conflict rezolvat: revenit asupra tuturor editărilor - sunt mai multe editări de la același utilizator la $1</string>
+  <string name="cr-message-same" fuzzy="true">Există mai multe editări la $1 de la același utilizator, sigur doriți să revenim asupra tuturor?</string>
   <string name="cr-message-new">Sunt și editări mai noi la $1. Sigur doriți să revenim asupra lor?</string>
   <string name="cr-message-not-same">Sunt editări mai noi la $1 de la un alt utilizator. Sigur doriți să reveniți asupra tuturor? (s-ar putea oricum să nu se poată din cauza învechirii tokenului.)</string>
   <string name="preferences-delete-using-filter">Nu puteți șterge un filtru care este utilizat</string>
-  <string name="preferences-extension-disabled">Această extensie este deja planificată pentru dezactivare la următoarea repornire de Huggle</string>
-  <string name="preferences-extension-disabled-restart">Extensia urmează a fi dezactivată la următoarea pornire de Huggle</string>
-  <string name="preferences-extension-enabled">Această extensie nu este planificată pentru a fi dezactivată la următoarea pornire a lui Huggle</string>
-  <string name="preferences-extension-enabled-restart">Extensia a fost activată, dar va trebui să reporniți Huggle</string>
+  <string name="preferences-extension-disabled" fuzzy="true">Această extensie este deja planificată pentru dezactivare la următoarea repornire de Huggle</string>
+  <string name="preferences-extension-disabled-restart" fuzzy="true">Extensia urmează a fi dezactivată la următoarea pornire de Huggle</string>
+  <string name="preferences-extension-enabled" fuzzy="true">Această extensie nu este planificată pentru a fi dezactivată la următoarea pornire a lui Huggle</string>
+  <string name="preferences-extension-enabled-restart" fuzzy="true">Extensia a fost activată, dar va trebui să reporniți Huggle</string>
   <string name="preferences-watchlist-watch">Adaugă la lista de urmărit</string>
   <string name="preferences-watchlist-unwatch">Scoate din lista de urmărit</string>
   <string name="preferences-watchlist-preferences">Urmărește preferințele de pe wiki</string>
   <string name="preferences-watchlist-nochange">Nu fă nimic</string>
-  <string name="preferences-sounds-enable-queue">Redați sunet când un element nou este adăugat la coadă</string>
+  <string name="preferences-sounds-enable-queue" fuzzy="true">Redați sunet când un element nou este adăugat la coadă</string>
   <string name="preferences-sounds-enable-irc">Redați sunetul când este recepționat un mesaj în HAN</string>
   <string name="preferences-sounds-minimal-score">Scor minim de editare pentru notificare</string>
-  <string name="preferences-performance-catscansandwatched">Activați filtrarea categoriilor și filtrarea starii de stare (necesită o interogare API suplimentară pentru fiecare editare)</string>
+  <string name="preferences-performance-catscansandwatched" fuzzy="true">Activați filtrarea categoriilor și filtrarea starii de stare (necesită o interogare API suplimentară pentru fiecare editare)</string>
   <string name="preferences-max-score">Activați scorul maxim global (modificările cu scor mai mare vor fi ignorate - utile dacă doriți să vedeți numai modificări bune)</string>
   <string name="preferences-min-score">Activați scorul minim la nivel mondial (modificările cu scorul mai mic vor fi ignorate - utile dacă doriți să vedeți numai modificări proaste)</string>
   <string name="fail">Eșuează</string>
@@ -720,7 +720,7 @@
   <string name="protect-request-fail-notime">Query-ul nu a returnat nicio marcă temporală. S-ar putea să fie un bug de MediaWiki. Renunț la query</string>
   <string name="message-fail">Nu am putut da mesajul</string>
   <string name="edit-conflict">Conflict de editare</string>
-  <string name="page-tag-nodescription">nu există descriere pentru acest tag :/</string>
+  <string name="page-tag-nodescription" fuzzy="true">nu există descriere pentru acest tag :/</string>
   <string name="page-tag-fail">Nu am putut eticheta pagina</string>
   <string name="page-tag-error">Nu am putut eticheta pagina, eroarea a fost: $1</string>
   <string name="page-unknown">Pagină necunoscută</string>
@@ -731,9 +731,9 @@
   <string name="block-alreadyblocked">Utilizatorul este deja blocat</string>
   <string name="report-fail">Nu am putut reclama utilizatorul deoarece: $1</string>
   <string name="report-page-fail">Nu am putut obține pagina de reclamații de la $1</string>
-  <string name="report-page-fail-time">Nu am putut obține marca temporală a paginii actuale de reclamații, eroare de API:\n\n$1</string>
-  <string name="report-unable">Nu am putut reclama utilziatorul :(</string>
-  <string name="about-python-with">, cu support python</string>
+  <string name="report-page-fail-time" fuzzy="true">Nu am putut obține marca temporală a paginii actuale de reclamații, eroare de API:\n\n$1</string>
+  <string name="report-unable" fuzzy="true">Nu am putut reclama utilziatorul :(</string>
+  <string name="about-python-with" fuzzy="true">, cu support python</string>
   <string name="about-python-without">fără suport python</string>
   <string name="about-qt">, compilat folosind QT $1 rulând pe QT $1</string>
   <string name="about-info">Bazat pe $1, platforma: $2</string>
@@ -742,11 +742,11 @@
   <string name="projects">Proiecte</string>
   <string name="unable-to-retrieve-user-list">Nu se poate recupera lista de utilizatori: $1</string>
   <string name="login-no-userinfo">Site-ul nu a returnat nicio informație despre utilizator</string>
-  <string name="login-invalid-register-date">Data înregistrării nevalidă întors de mediawiki</string>
+  <string name="login-invalid-register-date" fuzzy="true">Data înregistrării nevalidă întors de mediawiki</string>
   <string name="login-site-info-query-failed">Site-ul info Query pentru $1 a eșuat: $2</string>
   <string name="login-no-site-info-returned">Site-ul a reîntors informațiile spre wiki</string>
   <string name="loading-main-window">Încărcarea fereastra principală Huggle</string>
-  <string name="api.php-invalid-response">Api.php a răspuns cu text nevalid (serverul web este în jos?), Verificați jurnalul de depanare pentru informații exacte</string>
+  <string name="api.php-invalid-response" fuzzy="true">Api.php a răspuns cu text nevalid (serverul web este în jos?), Verificați jurnalul de depanare pentru informații exacte</string>
   <string name="login-username-doesnt-exist">Acest nume de utilizator nu există</string>
   <string name="developer-mode-enter-message">Ați intrat în modul de dezvoltator!</string>
   <string name="unimplemented">Această caracteristică nu a fost încă implementată</string>

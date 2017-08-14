@@ -23,7 +23,7 @@
   <string name="result">Result</string>
   <string name="save">Save</string>
   <string name="show">Show</string>
-  <string name="no-instant">Instant warnings are not enabled on project $1, so the message to $2 cannot be sent. Please pick a different warning level.</string>
+  <string name="no-instant" fuzzy="true">Instant warnings are not enabled on project $1, so the message to $2 cannot be sent. Please pick a different warning level.</string>
   <string name="undo">Undo</string>
   <string name="yes">Yes</string>
   <string name="editing-page">Editing page</string>
@@ -46,15 +46,15 @@
   <string name="link">Link</string>
   <string name="reason">Reason</string>
   <string name="diffid">DiffID</string>
-  <string name="whitelisted">$1 with score $2 on $3 has been placed onto the whitelist</string>
+  <string name="whitelisted" fuzzy="true">$1 with score $2 on $3 has been placed onto the whitelist</string>
   <string name="expiry-time">Expiry time</string>
   <string name="duration">Duration</string>
   <string name="enable">Enable</string>
   <string name="disable">Disable</string>
   <string name="no-token">No token</string>
   <string name="flags">Flags</string>
-  <string name="gracetime">Waiting for queries that perform some editing to end...</string>
-  <string name="browser-none">No page is displayed now</string>
+  <string name="gracetime" fuzzy="true">Waiting for queries that perform some editing to end...</string>
+  <string name="browser-none" fuzzy="true">No page is displayed now</string>
   <string name="browser-load">Downloading diff using a MW rendering fall-back, please wait...</string>
   <string name="browser-miss-summ">No summary was provided</string>
   <string name="browser-diff">Diff of page: $1 (score: $2)</string>
@@ -79,10 +79,10 @@
   <string name="block-token-1">Getting token to block $1</string>
   <string name="block-fail">Unable to block user, $1</string>
   <string name="block-token-e1">Token can\'t be retrieved: $1</string>
-  <string name="block-error-no-info">No user info was present in the query (are you a sysop?)</string>
+  <string name="block-error-no-info" fuzzy="true">No user info was present in the query (are you a sysop?)</string>
   <string name="block-type">Block/unblock</string>
-  <string name="block-admin">Blocking sysop</string>
-  <string name="block-none">There is no user to block.</string>
+  <string name="block-admin" fuzzy="true">Blocking sysop</string>
+  <string name="block-none" fuzzy="true">There is no user to block.</string>
   <string name="contribution-browser-user-info">Showing recent contributions of user $1</string>
   <string name="config-function">Function</string>
   <string name="config-description">Description</string>
@@ -131,7 +131,7 @@
   <string name="config-remove-reverted">Remove edits that were already reverted by someone else from the queue</string>
   <string name="config-remove-old">Remove older edits from the queue if a newer edit to same page is received</string>
   <string name="config-auto-load-history">Automatically load history and user info (requires a lot of network bandwidth)</string>
-  <string name="config-last-revision">Switch to the last revision of page in case currently loaded edit is not a last revision (will post-download it, making Huggle slower)</string>
+  <string name="config-last-revision" fuzzy="true">Switch to the last revision of page in case currently loaded edit is not a last revision (will post-download it, making Huggle slower)</string>
   <string name="config-require-delay">Require a delay after every load of next edit, during which it will not be possible to use any write feature (useful for avoiding keyboard multi-press bug)</string>
   <string name="config-wait-edit">The amount of time that you must wait between edit features being enabled (in seconds):</string>
   <string name="config-display-text">Display next</string>
@@ -158,8 +158,8 @@
   <string name="config-confirmsame">Confirm reversion to an edit by the user being reverted</string>
   <string name="config-confirmselfrevert">Confirm reversion of own edits (except undo)</string>
   <string name="config-confirmwarned">Confirm reversion to an edit by a warned user</string>
-  <string name="config-confirmrange">Confirm reversion to edit by an IP user in the same /16 range as the user being reverted</string>
-  <string name="config-confirmpage">Confirm reversion of ignored pages</string>
+  <string name="config-confirmrange" fuzzy="true">Confirm reversion to edit by an IP user in the same /16 range as the user being reverted</string>
+  <string name="config-confirmpage" fuzzy="true">Confirm reversion of ignored pages</string>
   <string name="config-autoadvance">After reverting, move to next edit in the queue</string>
   <string name="config-userollback">Use rollback if available</string>
   <string name="config-revertsummaries">Revert summaries available in menu</string>
@@ -173,7 +173,7 @@
   <string name="config-template">Template</string>
   <string name="config-promptforblock">Prompt for block if asked to warn a user with a final warning</string>
   <string name="config-blockreason">Default block reason</string>
-  <string name="config-blocktime">Default block duration for</string>
+  <string name="config-blocktime" fuzzy="true">Default block duration for</string>
   <string name="config-blocktimeanon">anonymous users</string>
   <string name="config-blocktimereg">registered users</string>
   <string name="config-summaryprompt">Enter summary</string>
@@ -181,7 +181,7 @@
   <string name="config-defaultsprompt">Restore defaults?</string>
   <string name="config-logbrowsetitle">Log file location</string>
   <string name="config-shortcutconflict">Shortcut \'$1\' conflicts with the existing shortcut for \'$1\'.</string>
-  <string name="config-no-colon">You can\'t use : in name of the queue</string>
+  <string name="config-no-colon" fuzzy="true">You can\'t use : in name of the queue</string>
   <string name="config-notify-update">Check for updates</string>
   <string name="config-notify-beta">Check for beta versions if available</string>
   <string name="delete-title">Delete $1</string>
@@ -195,7 +195,7 @@
   <string name="delete-e1">The page can\'t be deleted: $1</string>
   <string name="delete-e2">Unable to delete page</string>
   <string name="delete-edsc">Unable to delete page because $1</string>
-  <string name="delete-failed-no-info">No page info was present in query (are you a sysop?)</string>
+  <string name="delete-failed-no-info" fuzzy="true">No page info was present in query (are you a sysop?)</string>
   <string name="extension-kl">Not running</string>
   <string name="extension-ok">Loaded and running</string>
   <string name="historyform-no-info">No edit info</string>
@@ -204,7 +204,7 @@
   <string name="historyform-retrieving-history">Retrieving history</string>
   <string name="historyform-not-latest-tip">This is not the latest revision of this page. Please make sure that you have reviewed the newer versions as well. Please also keep in mind that rollback may not be possible from this point.</string>
   <string name="history-error-message-title">Unable to undo</string>
-  <string name="history-error">This item can\'t be undone. The page might have been changed or deleted in the meantime, and Huggle is unable to perform an \"undo\" from this point. If you really want to undo it, you will need to do it by hand using the MediaWiki interface.</string>
+  <string name="history-error" fuzzy="true">This item can\'t be undone. The page might have been changed or deleted in the meantime, and Huggle is unable to perform an \"undo\" from this point. If you really want to undo it, you will need to do it by hand using the MediaWiki interface.</string>
   <string name="history-failure">Unable to retrieve history</string>
   <string name="userhistory-title">History of your changes</string>
   <string name="irc-connected">$1: Connected to IRC recent changes feed</string>
@@ -237,7 +237,7 @@
   <string name="login-fail-css">Login failed on $1: Unable to retrieve user configuration. Special:MyPage/huggle3.css is missing. Did you create huggle3.css in your userspace?</string>
   <string name="login-fail-enable-true">Login failed on $1: You don\'t have enable:true in your personal config.</string>
   <string name="login-fail-no-info">Login failed on $1: Unable to retrieve user info: $2</string>
-  <string name="login-bot">What is a difference between BotPassword and Legacy login?</string>
+  <string name="login-bot" fuzzy="true">What is a difference between BotPassword and Legacy login?</string>
   <string name="login-fail-parse-config">Login failed on $1: Unable to parse the user configuration. See the debug log for more details.</string>
   <string name="login-fail-user-data">Login failed on $1: Unable to retrieve user info. The API query returned no data.</string>
   <string name="login-fail-rollback-rights">Login failed on $1: You don\'t have rollback permissions on this project.</string>
@@ -245,7 +245,7 @@
   <string name="login-failed-edit">Login failed on $1: You don\'t have enough edits on this project.</string>
   <string name="login-retrieving-info">Retrieving user info on $1</string>
   <string name="login-password-empty">The password you entered was empty</string>
-  <string name="login-fail-wrong-name">You provided an incorrect username for this login</string>
+  <string name="login-fail-wrong-name" fuzzy="true">You provided an incorrect username for this login</string>
   <string name="login-api">ERROR: api.php responded with unknown result: $1</string>
   <string name="login-abort">Abort</string>
   <string name="login-start">Login</string>
@@ -262,40 +262,40 @@
   <string name="login-progress-user-info">Checking user info for $1</string>
   <string name="login-progress-whitelist">Retrieving user whitelist...</string>
   <string name="login-remember-password">Remember password</string>
-  <string name="login-remember-password-tooltip">This option will store your password in a plaintext on your hard drive. Use it only if you are the only person with access to this computer.</string>
+  <string name="login-remember-password-tooltip" fuzzy="true">This option will store your password in a plaintext on your hard drive. Use it only if you are the only person with access to this computer.</string>
   <string name="login-ssl">Use HTTPS (requires OpenSSL)</string>
   <string name="login-fail">Login failed on $1</string>
   <string name="login-error-admin">Use of Huggle on this project requires an administrator account.</string>
-  <string name="login-error-age">Use of Huggle on this project requires an account at least $1 days old.</string>
+  <string name="login-error-age" fuzzy="true">Use of Huggle on this project requires an account at least $1 days old.</string>
   <string name="login-error-alldisabled">Huggle is currently disabled on all projects.</string>
   <string name="login-error-approval">Use of Huggle on $1 requires approval.</string>
   <string name="login-error-cancelled">Cancelled.</string>
   <string name="login-error-config">Login failed, unable to parse local config for $1: $2</string>
   <string name="login-error-count">Use of Huggle on this project requires at least $1 edits.</string>
-  <string name="login-error-disabled">Huggle is not enabled for your account on $1. Check user configuration page.</string>
+  <string name="login-error-disabled" fuzzy="true">Huggle is not enabled for your account on $1. Check user configuration page.</string>
   <string name="login-error-global">Login failed: Unable to parse the global configuration. See debug log for more details.</string>
   <string name="login-error-invalid">Invalid username</string>
   <string name="login-error-noconfig">$1 does not have a Huggle configuration page</string>
   <string name="login-error-nouser">The user does not exist</string>
   <string name="login-error-password">Incorrect password</string>
   <string name="login-error-projdisabled">Huggle is currently disabled on $1.</string>
-  <string name="login-error-unknown">Unable to log to $1.</string>
+  <string name="login-error-unknown" fuzzy="true">Unable to log to $1.</string>
   <string name="login-error-version">This version is out of date. Please update to the latest version.</string>
   <string name="login-error-whitelist">Failed to load user whitelist for $1.</string>
   <string name="login-ro-title">Switch to read-only</string>
   <string name="login-ro-question">One or more projects ($1) do not allow you to login with edit permissions (reason: $2). Do you want to switch to read-only mode instead?</string>
   <string name="login-ro-info">Project $1 switched to read-only mode</string>
-  <string name="main-stat">$1 edits per minute $2 reverts per minute, level $3</string>
+  <string name="main-stat" fuzzy="true">$1 edits per minute $2 reverts per minute, level $3</string>
   <string name="main-menu-provider-stop">Stop provider</string>
   <string name="main-menu-provider-resume">Resume provider</string>
   <string name="provider-up">Connecting to recent changes stream on $2 using provider: $1</string>
   <string name="main-no-reason">No reason was provided by user</string>
-  <string name="main-restoring-slap">Currently restoring another edit, please wait...</string>
+  <string name="main-restoring-slap" fuzzy="true">Currently restoring another edit, please wait...</string>
   <string name="main-page">Page</string>
   <string name="main-user">User</string>
   <string name="main-contribs">Contribs</string>
   <string name="main-history">History</string>
-  <string name="main-new-messages">You have new messages. Select \"System\" -&gt; \"Show new messages\" or press M to view them.</string>
+  <string name="main-new-messages" fuzzy="true">You have new messages. Select \"System\" -&gt; \"Show new messages\" or press M to view them.</string>
   <string name="main-space">The page name can\'t end with a space, please correct the page name</string>
   <string name="main-system">System</string>
   <string name="main-status-bar">Processing &lt;b&gt;$1&lt;/b&gt; edits and &lt;b&gt;$2&lt;/b&gt; queries. Whitelisted users: &lt;b&gt;$3&lt;/b&gt; Queue size: &lt;b&gt;$4&lt;/b&gt; Statistics for $6: $5</string>
@@ -403,7 +403,7 @@
   <string name="main-stats">$1 edits per minute, $2 reverts per minute</string>
   <string name="main-display-session-data">Display session data</string>
   <string name="main-display-whitelist">Display whitelist</string>
-  <string name="main-revert-custom-reson">Please provide a reason why you want to revert this edit to the previous revision</string>
+  <string name="main-revert-custom-reson" fuzzy="true">Please provide a reason why you want to revert this edit to the previous revision</string>
   <string name="main-log1">Restoring the selected revision of $1</string>
   <string name="main-tip-pagetagdelete">Tag this page for deletion</string>
   <string name="main-tip-pagedelete">Delete this page</string>
@@ -415,7 +415,7 @@
   <string name="main-revert-newpage-title">Can\'t revert this</string>
   <string name="main-revert-newpage">This is a new page, so it can\'t be reverted, you can either tag it, or delete it.</string>
   <string name="main-restore-text-fail">Unable to restore the revision, because there is no text available for it</string>
-  <string name="main-restore-data-fail">Unable to restore the revision, because the wiki provided no data for selected version</string>
+  <string name="main-restore-data-fail" fuzzy="true">Unable to restore the revision, because the wiki provided no data for selected version</string>
   <string name="main-welcome-user">Welcome user</string>
   <string name="main-custom-reason-title">Revert edit using custom reason</string>
   <string name="main-custom-reason-text">Please provide a reason why you want to revert this edit</string>
@@ -433,10 +433,10 @@
   <string name="message-fail-re-user-tp">Unable to retrieve $1. Stopping message delivery to that user</string>
   <string name="message-er">Unable to deliver the message to $1: $2</string>
   <string name="message-error">Failed to deliver a message to $1! Please check the logs!</string>
-  <string name="message-fail-retrieve-talk">unable to retrieve the user talk page</string>
+  <string name="message-fail-retrieve-talk" fuzzy="true">unable to retrieve the user talk page</string>
   <string name="message-done">Successfully delivered message on $2 to: $1</string>
-  <string name="message-fail-token-1">unable to retrieve the edit token</string>
-  <string name="message-fail-token-2">no token was returned by the request</string>
+  <string name="message-fail-token-1" fuzzy="true">unable to retrieve the edit token</string>
+  <string name="message-fail-token-2" fuzzy="true">no token was returned by the request</string>
   <string name="protect-request-title">Request protection of $1</string>
   <string name="protect-reason">Reason:</string>
   <string name="protect-expiry">Expiry:</string>
@@ -487,7 +487,7 @@
   <string name="queue-examplelabel3">Don\'t check this attribute</string>
   <string name="queue-usergroup">Show only edits from these users</string>
   <string name="report-title">Report $1</string>
-  <string name="report-warn">This user has already reached warning level 4, so no further templates will be delivered to them. You can report them now, but please, make sure that they already reached the proper number of recent warnings! You can do so by clicking the \"talk page\" button in the following form. Keep in mind that this form and this warning are displayed whether your revert was successful or not, so you might conflict with other users here (double check if the user isn\'t already reported). Do you want to report this user?</string>
+  <string name="report-warn" fuzzy="true">This user has already reached warning level 4, so no further templates will be delivered to them. You can report them now, but please, make sure that they already reached the proper number of recent warnings! You can do so by clicking the \"talk page\" button in the following form. Keep in mind that this form and this warning are displayed whether your revert was successful or not, so you might conflict with other users here (double check if the user isn\'t already reported). Do you want to report this user?</string>
   <string name="report-tu">Report user</string>
   <string name="report-reason">Reason:</string>
   <string name="report-auto">Reported $1</string>
@@ -500,7 +500,7 @@
   <string name="reportuser-not">This user is not reported now</string>
   <string name="report-evidence-none-provid">No diffs were provided as evidence. This will make it very hard for administrators to figure out whether the user is a vandal or not. Are you sure you want to continue?</string>
   <string name="report-duplicate">The user has already been reported</string>
-  <string name="report-fail2">Error unable to retrieve report page at $1</string>
+  <string name="report-fail2" fuzzy="true">Error unable to retrieve report page at $1</string>
   <string name="report-progress">Reporting $1...</string>
   <string name="report-retrieving">Retrieving current report page...</string>
   <string name="report-done">Reported</string>
@@ -513,7 +513,7 @@
   <string name="score-only-whole-word">Matches only whole words</string>
   <string name="score-take-any-word">Matches any word that contains this string</string>
   <string name="ssl-is-not-supported">You requested to use SSL but $1 doesn\'t support it.</string>
-  <string name="ssl-required">Webserver of $1 requires SSL to be enabled. Please turn SSL on and try again. If you can\'t enable SSL (option is grayed out) you may need to install openssl libraries to your system.</string>
+  <string name="ssl-required" fuzzy="true">Webserver of $1 requires SSL to be enabled. Please turn SSL on and try again. If you can\'t enable SSL (option is grayed out) you may need to install openssl libraries to your system.</string>
   <string name="uaa-not-supported">UAA not available</string>
   <string name="uaa-not-supported-text">The \"Usernames for administrator attention\" noticeboard is not available on your wiki.</string>
   <string name="uaa-reporting">Reporting $1 to UAA</string>
@@ -521,15 +521,15 @@
   <string name="uaa-no-reason-warn">You didn\'t specify a reason as to why the username is a policy violation. Please specify a reason.</string>
   <string name="uaa-nr">No reason was provided</string>
   <string name="uaa-g1">Getting content of UAA</string>
-  <string name="uaa-e1">the query for the page contents returned no data.</string>
-  <string name="uaa-e2">the page contents weren\'t available.</string>
+  <string name="uaa-e1" fuzzy="true">the query for the page contents returned no data.</string>
+  <string name="uaa-e2" fuzzy="true">the page contents weren\'t available.</string>
   <string name="read-only">Project $1 is configured as read only, editing functions will be limited</string>
   <string name="revert-confirm-multiple">This will revert multiple edits by $1. Continue?</string>
   <string name="revert-confirm-range">The author of the target revision, $2, is in the same range as the author of the current revision, $1, and may be the same person. Ensure the target revision is correct before proceeding. Continue?</string>
   <string name="revert-confirm-same">This will revert to another revision by the user that is being reverted, $1. Continue?</string>
   <string name="revert-confirm-warned">This will revert to a revision by $1, who has previously been warned. Continue?</string>
   <string name="revert-error-first">This edit is the first edit to the page, and it cannot be reverted.</string>
-  <string name="revert-only">Edit is the only edit to the page.</string>
+  <string name="revert-only" fuzzy="true">Edit is the only edit to the page.</string>
   <string name="revert-creator">Last edit was made by page creator, $1.</string>
   <string name="revert-preflightcheck">Preflight check</string>
   <string name="revert-delete-instead">Delete the page instead?</string>
@@ -559,7 +559,7 @@
   <string name="updater-open-manualdownloadpage">Open the download page</string>
   <string name="updater-close">Close</string>
   <string name="updater-disable-notify">Disable updates</string>
-  <string name="user-history-fail">unable to retrieve history for user: $1</string>
+  <string name="user-history-fail" fuzzy="true">unable to retrieve history for user: $1</string>
   <string name="userinfo-generic">User info</string>
   <string name="userinfo-retrieve">Retrieve info</string>
   <string name="shortcut-page-patrol-edit">Patrol edit</string>
@@ -572,13 +572,13 @@
   <string name="shortcut-next">Go to the next edit</string>
   <string name="shortcut-suspicious">Mark edit as suspicious</string>
   <string name="shortcut-back">Go to the previously displayed edit</string>
-  <string name="shortcut-forward">Go to an edit that you loaded in past but moved back from</string>
-  <string name="shortcut-warn">Send a warning to the user, without reverting the edit</string>
+  <string name="shortcut-forward" fuzzy="true">Go to an edit that you loaded in past but moved back from</string>
+  <string name="shortcut-warn" fuzzy="true">Send a warning to the user, without reverting the edit</string>
   <string name="shortcut-revert">Revert edit</string>
   <string name="shortcut-x-raw">Trigger N th item in revert and warn menu</string>
   <string name="shortcut-x-revert">Trigger N th item in revert menu</string>
-  <string name="shortcut-watch">Inserts a displayed page to a watchlist</string>
-  <string name="shortcut-unwatch">Removes a displayed page from a watchlist</string>
+  <string name="shortcut-watch" fuzzy="true">Inserts a displayed page to a watchlist</string>
+  <string name="shortcut-unwatch" fuzzy="true">Removes a displayed page from a watchlist</string>
   <string name="shortcut-x-warn">Trigger N th item in warn menu</string>
   <string name="shortcut-good">Flag the currently displayed edit as good</string>
   <string name="shortcut-open-in-huggle">Open currently displayed page</string>
@@ -587,9 +587,9 @@
   <string name="shortcut-revert-agf-1">Revert last revision assuming good faith</string>
   <string name="shortcut-browser-close-tab">Close a browser tab</string>
   <string name="shortcut-tab">Opens a new tab</string>
-  <string name="shortcut-rw-stay">Reverts current edit, warns user and stays on page</string>
-  <string name="shortcut-revert-and-stay">Revert current edit and stay on page</string>
-  <string name="shortcut-custom-reason">Revert edit using custom edit summary reason</string>
+  <string name="shortcut-rw-stay" fuzzy="true">Reverts current edit, warns user and stays on page</string>
+  <string name="shortcut-revert-and-stay" fuzzy="true">Revert current edit and stay on page</string>
+  <string name="shortcut-custom-reason" fuzzy="true">Revert edit using custom edit summary reason</string>
   <string name="shortcut-user-contribs-browser">Open user\'s contributions in a browser</string>
   <string name="warning-title">Warn $1</string>
   <string name="warning-levelgroup">Warning level</string>
@@ -636,7 +636,7 @@
   <string name="history-work">Undoing own edit made to $1</string>
   <string name="history-no-item-selected">No item is selected in history widget</string>
   <string name="history-message-revert-title">Do you really want to undo just this message?</string>
-  <string name="history-another-edit">I am already undoing another edit, please wait</string>
+  <string name="history-another-edit" fuzzy="true">I am already undoing another edit, please wait</string>
   <string name="history-not-found">Nothing was found to undo</string>
   <string name="history-already-done">This was already undone</string>
   <string name="history-message-revert-body">This was a message that is referenced by a rollback: are you sure you want to undo only the template, not your edit to page? You will need to undo the rollback if you want to revert both of these.</string>
@@ -671,7 +671,7 @@
   <string name="editquery-token-error">Unable to retrieve edit token</string>
   <string name="editquery-nocsrft">No CSRF token</string>
   <string name="editquery-error-retrieve-prev">Unable to retrieve the previous content of page $1</string>
-  <string name="editquery-error-append">You cannot use both \'append\' and \'prepend\' to edit the page</string>
+  <string name="editquery-error-append" fuzzy="true">You cannot use both \'append\' and \'prepend\' to edit the page</string>
   <string name="editquery-error-badtoken">Bad token</string>
   <string name="editquery-invalid-token">Unable to edit $1 because the token in the cache is no longer valid. Try to edit the page again.</string>
   <string name="provider-failure">Failure of feed provider $1 on $2, trying to find an alternative provider</string>
@@ -690,29 +690,29 @@
   <string name="feature-nfru">This feature is for IP users only</string>
   <string name="report-no-user">No user has been selected to report, please select a user first</string>
   <string name="welcome-show">Display this message also next time you launch Huggle</string>
-  <string name="welcome-tp-empty-fail">This user does not have an empty talk page, are you sure you want to send a message to him?</string>
+  <string name="welcome-tp-empty-fail" fuzzy="true">This user does not have an empty talk page, are you sure you want to send a message to him?</string>
   <string name="welcome-page-miss-fail">Huggle was unable to retrieve the contents of user talk page, are you sure you want to send a welcome message to them?</string>
-  <string name="cr-newer-edits">Conflict resolved: reverted all edits, including new edits. Edits were by same user: $1.</string>
-  <string name="cr-resolved-same-user">Conflict resolved: reverted all edits including new edits, made by same users - edits are by same user: $1</string>
+  <string name="cr-newer-edits" fuzzy="true">Conflict resolved: reverted all edits, including new edits. Edits were by same user: $1.</string>
+  <string name="cr-resolved-same-user" fuzzy="true">Conflict resolved: reverted all edits including new edits, made by same users - edits are by same user: $1</string>
   <string name="cr-stop-new-edit">Conflict resolved: did not perform any action - there are newer edits to $1</string>
-  <string name="cr-stop-multiple-same">Conflict resolved: do not perform any action - there are multiple edits by same user to $1</string>
-  <string name="cr-revert-same-user">Conflict resolved: revert all edits - there are multiple edits by same user to $1</string>
-  <string name="cr-message-same">There are multiple edits to $1 by same user, are you sure you want to revert them?</string>
+  <string name="cr-stop-multiple-same" fuzzy="true">Conflict resolved: do not perform any action - there are multiple edits by same user to $1</string>
+  <string name="cr-revert-same-user" fuzzy="true">Conflict resolved: revert all edits - there are multiple edits by same user to $1</string>
+  <string name="cr-message-same" fuzzy="true">There are multiple edits to $1 by same user, are you sure you want to revert them?</string>
   <string name="cr-message-new">There are newer edits to $1. Are you sure you really want to revert them?</string>
   <string name="cr-message-not-same">There are newer edits made to $1 by a different user. Are you sure you want to revert them all? (It will likely fail anyway because of an old token.)</string>
   <string name="preferences-delete-using-filter">You can\'t delete a filter that is currently being used</string>
-  <string name="preferences-extension-disabled">This extension is already scheduled for disabling the next startup of Huggle</string>
-  <string name="preferences-extension-disabled-restart">This extension is already scheduled to be disabled on the next startup of Huggle</string>
-  <string name="preferences-extension-enabled">This extension is not scheduled for disabling at the next startup of Huggle</string>
-  <string name="preferences-extension-enabled-restart">The extension was enabled, however you need to restart Huggle for it to start working</string>
+  <string name="preferences-extension-disabled" fuzzy="true">This extension is already scheduled for disabling the next startup of Huggle</string>
+  <string name="preferences-extension-disabled-restart" fuzzy="true">This extension is already scheduled to be disabled on the next startup of Huggle</string>
+  <string name="preferences-extension-enabled" fuzzy="true">This extension is not scheduled for disabling at the next startup of Huggle</string>
+  <string name="preferences-extension-enabled-restart" fuzzy="true">The extension was enabled, however you need to restart Huggle for it to start working</string>
   <string name="preferences-watchlist-watch">Add to watchlist</string>
   <string name="preferences-watchlist-unwatch">Remove from watchlist</string>
   <string name="preferences-watchlist-preferences">Follow your on-wiki preferences</string>
   <string name="preferences-watchlist-nochange">Do nothing</string>
-  <string name="preferences-sounds-enable-queue">Play sound when new item is added to queue</string>
+  <string name="preferences-sounds-enable-queue" fuzzy="true">Play sound when new item is added to queue</string>
   <string name="preferences-sounds-enable-irc">Play sound when a message is received in HAN</string>
   <string name="preferences-sounds-minimal-score">Minimal edit score for notification</string>
-  <string name="preferences-performance-catscansandwatched">Enable category scans and watch status filtering (requires an extra API query per each edit)</string>
+  <string name="preferences-performance-catscansandwatched" fuzzy="true">Enable category scans and watch status filtering (requires an extra API query per each edit)</string>
   <string name="preferences-max-score">Enable global max score (edits with higher score will be ignored - useful if you want to see only good edits)</string>
   <string name="preferences-min-score">Enable global min score (edits with lower score will be ignored - useful if you want to see only bad edits)</string>
   <string name="fail">Fail</string>
@@ -724,7 +724,7 @@
   <string name="protect-request-fail-notime">The query didn\'t return a timestamp. This may be a MediaWiki bug. Aborting the query</string>
   <string name="message-fail">Failed to deliver the message</string>
   <string name="edit-conflict">Edit conflict</string>
-  <string name="page-tag-nodescription">there is no description for this tag</string>
+  <string name="page-tag-nodescription" fuzzy="true">there is no description for this tag</string>
   <string name="page-tag-fail">Failed to tag page</string>
   <string name="page-tag-error">Unable to tag the page, error was: $1</string>
   <string name="page-unknown">Unknown page</string>
@@ -735,9 +735,9 @@
   <string name="block-alreadyblocked">User is already blocked</string>
   <string name="report-fail">Failed to report user because: $1</string>
   <string name="report-page-fail">Error: unable to retrieve report page at $1</string>
-  <string name="report-page-fail-time">Unable to retrieve timestamp of current report page, api failure:\n\n $1</string>
-  <string name="report-unable">Unable to report user.</string>
-  <string name="about-python-with">with python support</string>
+  <string name="report-page-fail-time" fuzzy="true">Unable to retrieve timestamp of current report page, api failure:\n\n $1</string>
+  <string name="report-unable" fuzzy="true">Unable to report user.</string>
+  <string name="about-python-with" fuzzy="true">with python support</string>
   <string name="about-python-without">without python support</string>
   <string name="about-qt">, compiled using QT $1 Running on QT $1</string>
   <string name="about-info">, based on $1, target platform: $2</string>
@@ -746,11 +746,11 @@
   <string name="projects">Projects</string>
   <string name="unable-to-retrieve-user-list">Unable to retrieve user list: $1</string>
   <string name="login-no-userinfo">Site didn\'t return any userinfo information</string>
-  <string name="login-invalid-register-date">Invalid registrationdate returned by mediawiki</string>
+  <string name="login-invalid-register-date" fuzzy="true">Invalid registrationdate returned by mediawiki</string>
   <string name="login-site-info-query-failed">Site info query for $1 has failed: $2</string>
   <string name="login-no-site-info-returned">No site info was returned for this wiki</string>
   <string name="loading-main-window">Loading main Huggle window</string>
-  <string name="api.php-invalid-response">The api.php responded with invalid text (webserver is down?), please check debug log for precise information</string>
+  <string name="api.php-invalid-response" fuzzy="true">The api.php responded with invalid text (webserver is down?), please check debug log for precise information</string>
   <string name="login-username-doesnt-exist">This username doesn\'t exist</string>
   <string name="developer-mode-enter-title">Whee</string>
   <string name="developer-mode-enter-message">You entered a developer mode!</string>

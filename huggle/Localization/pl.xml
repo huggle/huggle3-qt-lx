@@ -45,7 +45,7 @@
   <string name="link">Link</string>
   <string name="reason">Powód</string>
   <string name="diffid">DiffID</string>
-  <string name="whitelisted">$1 z wynikiem $2 na $3 został dodany do białej listy</string>
+  <string name="whitelisted" fuzzy="true">$1 z wynikiem $2 na $3 został dodany do białej listy</string>
   <string name="expiry-time">Czas wygaśnięcia</string>
   <string name="duration">Czas trwania</string>
   <string name="enable">Włącz</string>
@@ -53,7 +53,7 @@
   <string name="no-token">Brak tokenu</string>
   <string name="flags">Flagi</string>
   <string name="gracetime" fuzzy="true">Oczekiwanie na zakończenie żądań związanych z edycją...</string>
-  <string name="browser-none">Strona nie wyświetli się teraz</string>
+  <string name="browser-none" fuzzy="true">Strona nie wyświetli się teraz</string>
   <string name="browser-load" fuzzy="true">Pobieranie różnic używając awaryjnego renderowania web, proszę czekać...</string>
   <string name="browser-miss-summ">Nie podano opisu edycji</string>
   <string name="browser-diff">Porównanie strony: $1 (wynik: $2)</string>
@@ -78,10 +78,10 @@
   <string name="block-token-1">Uzyskiwanie tokenu do blokady $1</string>
   <string name="block-fail">Nie udało się zablokować $1</string>
   <string name="block-token-e1">Token nie może zostać pobrany: $1</string>
-  <string name="block-error-no-info">Brak informacji o użytkowniku w zapytaniu (jesteś administratorem?)</string>
+  <string name="block-error-no-info" fuzzy="true">Brak informacji o użytkowniku w zapytaniu (jesteś administratorem?)</string>
   <string name="block-type">Zablokuj / odblokuj</string>
-  <string name="block-admin">Blokujący administrator</string>
-  <string name="block-none">Brak użytkowników do zablokowania.</string>
+  <string name="block-admin" fuzzy="true">Blokujący administrator</string>
+  <string name="block-none" fuzzy="true">Brak użytkowników do zablokowania.</string>
   <string name="contribution-browser-user-info">Pokazywanie ostatnich edycji przez użytkownika $1</string>
   <string name="config-function">Funkcja</string>
   <string name="config-description">Opis</string>
@@ -128,7 +128,7 @@
   <string name="config-enable-irc">Włącz IRC</string>
   <string name="config-remove-reverted" fuzzy="true">Usuń zmiany, które zostały już wycofane przez kogoś innego</string>
   <string name="config-auto-load-history">Automatycznie pobieraj historię i informacje o użytkowniku (wymaga dobrego połączenia internetowego)</string>
-  <string name="config-last-revision">Przejdź do najnowszej wersji strony w przypadku gdy załadowana edycja nie jest ostatnią (zostanie pobrana później, spowalniając Huggle)</string>
+  <string name="config-last-revision" fuzzy="true">Przejdź do najnowszej wersji strony w przypadku gdy załadowana edycja nie jest ostatnią (zostanie pobrana później, spowalniając Huggle)</string>
   <string name="config-wait-edit">Opóźnienie w sekundach, zanim będzie można wprowadzać zmiany:</string>
   <string name="config-display-text">Pokaż następne</string>
   <string name="config-retrieve-edit">Przywróć swoją własną edycję</string>
@@ -154,8 +154,8 @@
   <string name="config-confirmsame">Potwierdź rewersję do edycji przez użytkownika będącego rewertowanym</string>
   <string name="config-confirmselfrevert">Potwierdź rewersję własnych edycji (z wyjątkiem cofania)</string>
   <string name="config-confirmwarned">Potwierdź rewersję edycji przez użytkownika, który jest ostrzeżony</string>
-  <string name="config-confirmrange">Potwierdź rewersję edycji przez anonimowego użytkownika będącego w tym samym zakresie /16 co użytkownik będący rewertowanym</string>
-  <string name="config-confirmpage">Potwierdź rewersję ignorowanych stron</string>
+  <string name="config-confirmrange" fuzzy="true">Potwierdź rewersję edycji przez anonimowego użytkownika będącego w tym samym zakresie /16 co użytkownik będący rewertowanym</string>
+  <string name="config-confirmpage" fuzzy="true">Potwierdź rewersję ignorowanych stron</string>
   <string name="config-autoadvance">Po rewerowaniu, przejdź do następnej edycji w kolejce</string>
   <string name="config-userollback">Korzystaj z funkcji cofnięcia, jeśli jest dostępna</string>
   <string name="config-revertsummaries">Rewertuj opisy dostępne w menu</string>
@@ -167,7 +167,7 @@
   <string name="config-template">Szablon</string>
   <string name="config-promptforblock">Zapytaj o blokadę podczas pytania o danie użytkownikowi ostatecznego ostrzeżenia</string>
   <string name="config-blockreason">Domyślny opis blokady</string>
-  <string name="config-blocktime">Domyślna długość blokady</string>
+  <string name="config-blocktime" fuzzy="true">Domyślna długość blokady</string>
   <string name="config-blocktimeanon">anonimowi użytkownicy</string>
   <string name="config-blocktimereg">zarejestrowani użytkownicy</string>
   <string name="config-summaryprompt">Wpisz opis edycji</string>
@@ -175,7 +175,7 @@
   <string name="config-defaultsprompt">Przywrócić ustawienia domyślne?</string>
   <string name="config-logbrowsetitle">Lokalizacja pliku dziennika</string>
   <string name="config-shortcutconflict">Skrót \'$1\' jest konfliktowy dla istniejącego skrótu dla \'$1\'.</string>
-  <string name="config-no-colon">Nie możesz używać : w nazwie kolejki</string>
+  <string name="config-no-colon" fuzzy="true">Nie możesz używać : w nazwie kolejki</string>
   <string name="config-notify-update">Sprawdź aktualizacje</string>
   <string name="config-notify-beta">Sprawdzaj dostępność wersji beta</string>
   <string name="delete-title">Usuń $1</string>
@@ -189,7 +189,7 @@
   <string name="delete-e1">Strona nie może zostać usunięta: $1</string>
   <string name="delete-e2">Nie można usunąć strony</string>
   <string name="delete-edsc">Nie można usunąć strony, ponieważ $1</string>
-  <string name="delete-failed-no-info">Brak informacji o użytkowniku w zapytaniu (jesteś administratorem?)</string>
+  <string name="delete-failed-no-info" fuzzy="true">Brak informacji o użytkowniku w zapytaniu (jesteś administratorem?)</string>
   <string name="extension-kl">Nie działa</string>
   <string name="extension-ok">Załadowany i działa</string>
   <string name="historyform-no-info">Brak informacji o edycji</string>
@@ -198,7 +198,7 @@
   <string name="historyform-retrieving-history">Uzyskiwanie historii</string>
   <string name="historyform-not-latest-tip">To nie jest najnowsza wersja tej strony. Upewnij się, że przejrzałeś też nowsze wersję. Miej na uwadze, że wycofanie zmian z tego punktu może być niemożliwe.</string>
   <string name="history-error-message-title">Nie można cofnąć</string>
-  <string name="history-error">Ta edycja nie może zostać wycofana. Być może ta strona została w międzyczasie zmieniona lub usunięta i Huggle nie może wycofać z tego punktu. Jeżeli naprawdę chcesz ją wycofać, musisz to zrobić z interfejsu MediaWiki.</string>
+  <string name="history-error" fuzzy="true">Ta edycja nie może zostać wycofana. Być może ta strona została w międzyczasie zmieniona lub usunięta i Huggle nie może wycofać z tego punktu. Jeżeli naprawdę chcesz ją wycofać, musisz to zrobić z interfejsu MediaWiki.</string>
   <string name="history-failure">Nie udało się uzyskać historii</string>
   <string name="userhistory-title">Historia twoich zmian</string>
   <string name="irc-connected">$1: Połączono z kanałem IRC ostatnich zmian</string>
@@ -227,7 +227,7 @@
   <string name="login-failed-edit">Logowanie na $1 nie powiodło się, ponieważ dokonałeś wystarczająco dużo zmian w tym projekcie</string>
   <string name="login-retrieving-info">Pobieranie informacji o użytkowniku na $1</string>
   <string name="login-password-empty">Podane hasło było puste</string>
-  <string name="login-fail-wrong-name">Podałeś niepoprawną nazwę użytkownika</string>
+  <string name="login-fail-wrong-name" fuzzy="true">Podałeś niepoprawną nazwę użytkownika</string>
   <string name="login-api">BŁĄD: api.php zwrócił nieznany wynik: $1</string>
   <string name="login-abort">Przerwij</string>
   <string name="login-start">Zaloguj się</string>
@@ -247,29 +247,29 @@
   <string name="login-ssl">Używaj HTTPS (wymagane OpenSSL)</string>
   <string name="login-fail">Logowanie na $1 nie powiodło się</string>
   <string name="login-error-admin">Użycie Huggle w tym projekcie wymaga konta administratora.</string>
-  <string name="login-error-age">Korzystanie z Huggle w tym projekcie wymaga co najmniej $1 dni uczestnictwa.</string>
+  <string name="login-error-age" fuzzy="true">Korzystanie z Huggle w tym projekcie wymaga co najmniej $1 dni uczestnictwa.</string>
   <string name="login-error-alldisabled">Huggle jest obecnie wyłączone we wszystkich projektach.</string>
   <string name="login-error-approval">Użycie Huggle\'a na $1 wymaga zatwierdzenia wniosku.</string>
   <string name="login-error-cancelled">Anulowano.</string>
   <string name="login-error-config">Nie udało się zalogować, nie można przetworzyć lokalnych ustawień dla $1: $2</string>
   <string name="login-error-count">Korzystanie z Huggle w tym projekcie wymaga co najmniej $1 edycji.</string>
-  <string name="login-error-disabled">Huggle nie jest włączony dla twojego konta na $1. Sprawdź stronę konfiguracji użytkownika.</string>
+  <string name="login-error-disabled" fuzzy="true">Huggle nie jest włączony dla twojego konta na $1. Sprawdź stronę konfiguracji użytkownika.</string>
   <string name="login-error-global">Logowanie nie udało się: nie można przetworzyć globalnych ustawień. Zobacz log debugowania, aby uzyskać więcej informacji.</string>
   <string name="login-error-invalid">Nieprawidłowa nazwa użytkownika</string>
   <string name="login-error-noconfig">$1 nie ma strony konfiguracyjnej Huggle\'a</string>
   <string name="login-error-nouser">Użytkownik nie istnieje</string>
   <string name="login-error-password">Nieprawidłowe hasło</string>
   <string name="login-error-projdisabled">Huggle jest obecnie wyłączony na $1.</string>
-  <string name="login-error-unknown">Nie można zalogować się do $1.</string>
+  <string name="login-error-unknown" fuzzy="true">Nie można zalogować się do $1.</string>
   <string name="login-error-version">Ta wersja jest nieaktualna. Aktualizuj do najnowszej wersji.</string>
   <string name="login-error-whitelist">Nie udało się załadować białej listy użytkowników dla $1.</string>
   <string name="main-no-reason">Użytkownik nie podał powodu</string>
-  <string name="main-restoring-slap">Przywracam inną edycję, proszę czekać...</string>
+  <string name="main-restoring-slap" fuzzy="true">Przywracam inną edycję, proszę czekać...</string>
   <string name="main-page">Strona</string>
   <string name="main-user">Użytkownik</string>
   <string name="main-contribs">Wkład</string>
   <string name="main-history">Historia</string>
-  <string name="main-new-messages">Masz nowe wiadomości. Wybierz System -&gt; pokaż nowe wiadomości lub naciśnij M, aby je zobaczyć.</string>
+  <string name="main-new-messages" fuzzy="true">Masz nowe wiadomości. Wybierz System -&gt; pokaż nowe wiadomości lub naciśnij M, aby je zobaczyć.</string>
   <string name="main-space">Nazwa strony nie może kończyć się spacją, proszę poprawić nazwę strony</string>
   <string name="main-system">System</string>
   <string name="main-status-bar">Przetwarzanie &lt;b&gt;$1&lt;/b&gt; edycji i &lt;b&gt;$2&lt;/b&gt; zapytań. Użytkownicy w białej liście: &lt;b&gt;$3&lt;/b&gt; Rozmiar kolejki: &lt;b&gt;$4&lt;/b&gt; Statystyki dla $6: $5</string>
@@ -368,7 +368,7 @@
   <string name="main-stats">$1 edycji na minutę, $2 wycofań na minutę</string>
   <string name="main-display-session-data">Zobacz informacje o sesji</string>
   <string name="main-display-whitelist">Wyświetl białą listę</string>
-  <string name="main-revert-custom-reson">Proszę podać powód wycofania tej edycji do poprzedniej wersji</string>
+  <string name="main-revert-custom-reson" fuzzy="true">Proszę podać powód wycofania tej edycji do poprzedniej wersji</string>
   <string name="main-log1">Przywracanie wybranej wersji $1</string>
   <string name="main-tip-pagetagdelete">Oznacz tę stronę do usunięcia</string>
   <string name="main-tip-pagedelete">Usuń tę stronę</string>
@@ -434,7 +434,7 @@
   <string name="uaa-reported">Zgłoszono</string>
   <string name="uaa-nr">Powód nie został podany</string>
   <string name="uaa-g1">Pobieranie zawartości UAA</string>
-  <string name="uaa-e2">zawartość strony nie była dostępna.</string>
+  <string name="uaa-e2" fuzzy="true">zawartość strony nie była dostępna.</string>
   <string name="revert-conflict">Ta strona była edytowana przez użytkownika „$1”, który znajduje się na białej liście.</string>
   <string name="speedy-reason">Powód:</string>
   <string name="speedy-parameters">Parametry</string>
@@ -463,8 +463,8 @@
   <string name="shortcut-suspicious">Oznacz edycję jako podejrzaną</string>
   <string name="shortcut-back">Idź do poprzednio pokazywanej edycji</string>
   <string name="shortcut-revert">Wycofaj edycję</string>
-  <string name="shortcut-watch">Wstawia wyświetlaną stronę do listy obserwowanych</string>
-  <string name="shortcut-unwatch">Usuwa wyświetlaną stronę z listy obserwowanych</string>
+  <string name="shortcut-watch" fuzzy="true">Wstawia wyświetlaną stronę do listy obserwowanych</string>
+  <string name="shortcut-unwatch" fuzzy="true">Usuwa wyświetlaną stronę z listy obserwowanych</string>
   <string name="shortcut-browser-close-tab">Zamknij kartę przeglądarki</string>
   <string name="shortcut-tab">Otwiera nową kartę.</string>
   <string name="warning-title">Ostrzeż $1</string>

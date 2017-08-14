@@ -23,7 +23,7 @@
   <string name="result">Resultado</string>
   <string name="save">Guardar</string>
   <string name="show">Mostrar</string>
-  <string name="no-instant">Las advertencias instantáneas no están habilitadas en el proyecto $1, así que no se puede enviar el mensaje a $2. Elige un nivel de advertencia diferente.</string>
+  <string name="no-instant" fuzzy="true">Las advertencias instantáneas no están habilitadas en el proyecto $1, así que no se puede enviar el mensaje a $2. Elige un nivel de advertencia diferente.</string>
   <string name="undo">Deshacer</string>
   <string name="yes">Sí</string>
   <string name="editing-page">Editando página</string>
@@ -46,15 +46,15 @@
   <string name="link">Enlace</string>
   <string name="reason">Motivo</string>
   <string name="diffid">Id. de dif.</string>
-  <string name="whitelisted">Se agregó a $1 con puntuación $2 en $3 en la lista blanca</string>
+  <string name="whitelisted" fuzzy="true">Se agregó a $1 con puntuación $2 en $3 en la lista blanca</string>
   <string name="expiry-time">Tiempo de expiración</string>
   <string name="duration">Duración</string>
   <string name="enable">Activar</string>
   <string name="disable">Desactivar</string>
   <string name="no-token">Sin token</string>
   <string name="flags">Flags</string>
-  <string name="gracetime">Esperando que terminen las consultas que hacen alguna edición...</string>
-  <string name="browser-none">Ninguna página se muestra ahora</string>
+  <string name="gracetime" fuzzy="true">Esperando que terminen las consultas que hacen alguna edición...</string>
+  <string name="browser-none" fuzzy="true">Ninguna página se muestra ahora</string>
   <string name="browser-load">Descargando diferencia con un método alternativo basado en MW. Espera…</string>
   <string name="browser-miss-summ">No se proporcionó ningún resumen</string>
   <string name="browser-diff">Diferencia de página: $1 (puntuación: $2)</string>
@@ -79,10 +79,10 @@
   <string name="block-token-1">Obteniendo ficha para bloquear a $1</string>
   <string name="block-fail">No se puede bloquear al usuario, $1</string>
   <string name="block-token-e1">No se puede recuperar la ficha: $1</string>
-  <string name="block-error-no-info">La consulta no contiene información de cuenta de usuario (¿tienes permisos administrativos?)</string>
+  <string name="block-error-no-info" fuzzy="true">La consulta no contiene información de cuenta de usuario (¿tienes permisos administrativos?)</string>
   <string name="block-type">Bloquear/desbloquear</string>
-  <string name="block-admin">Administrador que ha hecho el bloqueo</string>
-  <string name="block-none">No hay ningún usuario que bloquear.</string>
+  <string name="block-admin" fuzzy="true">Administrador que ha hecho el bloqueo</string>
+  <string name="block-none" fuzzy="true">No hay ningún usuario que bloquear.</string>
   <string name="contribution-browser-user-info">Se muestran las contribuciones recientes del usuario $1</string>
   <string name="config-function">Función</string>
   <string name="config-description">Descripción</string>
@@ -131,7 +131,7 @@
   <string name="config-remove-reverted">Borrar las ediciones de la cola que ya fueron revertidas por otra persona</string>
   <string name="config-remove-old">Eliminar las ediciones anteriores de la cola si se recibe una edición más reciente de la misma página</string>
   <string name="config-auto-load-history">Cargar automáticamente el historial y la información de usuario (requiere mucho ancho de banda de red)</string>
-  <string name="config-last-revision">Cambiar a la última modificación de la página si la edición cargada no es la última (se descargará a continuación, lo que ralentizará Huggle)</string>
+  <string name="config-last-revision" fuzzy="true">Cambiar a la última modificación de la página si la edición cargada no es la última (se descargará a continuación, lo que ralentizará Huggle)</string>
   <string name="config-require-delay">Requieren un retraso después de cada carga de la próxima edición, durante los cuales no será posible el uso de cualquier escritura característica (muy útil para evitar teclado multi-prensa error)</string>
   <string name="config-wait-edit">Los segundos que debes esperar para que se activen las funcionalidades de edición:</string>
   <string name="config-display-text">Mostrar siguiente</string>
@@ -158,8 +158,8 @@
   <string name="config-confirmsame">Confirmar reversión a la edición del usuario al que se revierte</string>
   <string name="config-confirmselfrevert">Confirmar reversión de ediciones propias (excepto deshacer)</string>
   <string name="config-confirmwarned">Confirmar reversión a la edición de un usuario advertido</string>
-  <string name="config-confirmrange">Confirmar reversión a la edición de un usuario anónimo en el mismo rango /16 que el usuario al que se revierte</string>
-  <string name="config-confirmpage">Confirmar reversión de páginas ignoradas</string>
+  <string name="config-confirmrange" fuzzy="true">Confirmar reversión a la edición de un usuario anónimo en el mismo rango /16 que el usuario al que se revierte</string>
+  <string name="config-confirmpage" fuzzy="true">Confirmar reversión de páginas ignoradas</string>
   <string name="config-autoadvance">Después de revertir, pasar a la siguiente edición en cola</string>
   <string name="config-userollback">Usar Rollback si se puede</string>
   <string name="config-revertsummaries">Resúmenes de reversión disponibles en menú</string>
@@ -173,7 +173,7 @@
   <string name="config-template">Plantilla</string>
   <string name="config-promptforblock">Preguntar si se quiere bloquear cuando se advierte a un usuario con advertencia final</string>
   <string name="config-blockreason">Razón de bloqueo por defecto</string>
-  <string name="config-blocktime">Duración de bloqueo para</string>
+  <string name="config-blocktime" fuzzy="true">Duración de bloqueo para</string>
   <string name="config-blocktimeanon">usuarios anónimos</string>
   <string name="config-blocktimereg">usuarios registrados</string>
   <string name="config-summaryprompt">Escribir resumen</string>
@@ -181,7 +181,7 @@
   <string name="config-defaultsprompt">¿Restaurar los predeterminados?</string>
   <string name="config-logbrowsetitle">Ubicación del archivo de registro</string>
   <string name="config-shortcutconflict">El atajo \'$1\' coincide con el atajo existente para \'$1\'.</string>
-  <string name="config-no-colon">No puedes utilizar : en nombre de la cola</string>
+  <string name="config-no-colon" fuzzy="true">No puedes utilizar : en nombre de la cola</string>
   <string name="config-notify-update">Buscar actualizaciones</string>
   <string name="config-notify-beta">Buscar versiones beta si las hay</string>
   <string name="delete-title">Borrar $1</string>
@@ -195,7 +195,7 @@
   <string name="delete-e1">La página no se puede eliminar: $1</string>
   <string name="delete-e2">No se puede eliminar la página</string>
   <string name="delete-edsc">No se puede eliminar la página porque $1</string>
-  <string name="delete-failed-no-info">La consulta no contiene información de la página (¿tienes permisos administrativos?)</string>
+  <string name="delete-failed-no-info" fuzzy="true">La consulta no contiene información de la página (¿tienes permisos administrativos?)</string>
   <string name="extension-kl">No está ejecutándose</string>
   <string name="extension-ok">Cargada y funcionando</string>
   <string name="historyform-no-info">No hay información de edición</string>
@@ -204,7 +204,7 @@
   <string name="historyform-retrieving-history">Recuperando historial</string>
   <string name="historyform-not-latest-tip">Esta no es la última revisión de esta página. Asegúrese de revisar las versiones más recientes también. Por favor, también tenga en cuenta que la reversión no puede ser posible a partir de este punto.</string>
   <string name="history-error-message-title">No se puede deshacer</string>
-  <string name="history-error">Este elemento no se puede deshacer. La página puede haber sido modificado o eliminado por mientras tanto, y Huggle es incapaz de realizar deshacer a partir de este punto. Si usted realmente quiere deshacer de él, tendrá que hacerlo a mano, usando la interfaz MediaWiki.</string>
+  <string name="history-error" fuzzy="true">Este elemento no se puede deshacer. La página puede haber sido modificado o eliminado por mientras tanto, y Huggle es incapaz de realizar deshacer a partir de este punto. Si usted realmente quiere deshacer de él, tendrá que hacerlo a mano, usando la interfaz MediaWiki.</string>
   <string name="history-failure">No ha sido posible obtener el historial</string>
   <string name="userhistory-title">Historial de tus cambios</string>
   <string name="irc-connected">$1: conectado con el canal IRC de cambios recientes</string>
@@ -237,7 +237,7 @@
   <string name="login-fail-css">Falló el acceso a $1: no se pudo obtener la configuración de la cuenta.\nFalta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu espacio de usuario?</string>
   <string name="login-fail-enable-true">Falló el acceso a $1: falta la orden «enable:true» en tu configuración personal.</string>
   <string name="login-fail-no-info">Falló el acceso a $1: no se pudo obtener la información de la cuenta ($2)</string>
-  <string name="login-bot">¿Cuál es la diferencia entre el inicio de sesión de BotPassword y el normal?</string>
+  <string name="login-bot" fuzzy="true">¿Cuál es la diferencia entre el inicio de sesión de BotPassword y el normal?</string>
   <string name="login-fail-parse-config">Error de inicio de sesión en $1: no se puede analizar la configuración de usuario. Ver el registro de depuración para obtener más detalles.</string>
   <string name="login-fail-user-data">Error de inicio de sesión en $1: no se puede recuperar la información de usuario. La API de consulta no devuelve datos.</string>
   <string name="login-fail-rollback-rights">Falló el acceso a $1: no tienes el permiso de reversor en este proyecto.</string>
@@ -245,7 +245,7 @@
   <string name="login-failed-edit">Falló el acceso a $1: no tienes la cantidad mínima de ediciones en este proyecto.</string>
   <string name="login-retrieving-info">Obteniendo la información del usuario en $1</string>
   <string name="login-password-empty">No se proporcionó la contraseña</string>
-  <string name="login-fail-wrong-name">No se proporcionó un nombre de usuario correcto para acceder</string>
+  <string name="login-fail-wrong-name" fuzzy="true">No se proporcionó un nombre de usuario correcto para acceder</string>
   <string name="login-api">ERROR: api.php respondió con resultado desconocido: $1</string>
   <string name="login-abort">Interrumpir</string>
   <string name="login-start">Ingresar</string>
@@ -263,40 +263,40 @@
   <string name="login-progress-user-info">Comprobando la información del usuario en $1</string>
   <string name="login-progress-whitelist">Obteniendo lista blanca de usuarios...</string>
   <string name="login-remember-password">Recordar contraseña</string>
-  <string name="login-remember-password-tooltip">Esta opción almacenará tu contraseña en texto plano en tu disco duro. Úsala sólo si eres la única persona que accede a esta computadora.</string>
+  <string name="login-remember-password-tooltip" fuzzy="true">Esta opción almacenará tu contraseña en texto plano en tu disco duro. Úsala sólo si eres la única persona que accede a esta computadora.</string>
   <string name="login-ssl">Utilizar HTTPS (requiere OpenSSL)</string>
   <string name="login-fail">Falló el inicio de sesión en $1</string>
   <string name="login-error-admin">Se necesita cuenta de administrador para usar Huggle en este proyecto.</string>
-  <string name="login-error-age">Se necesita una cuenta con al menos $1 días de antigüedad para usar Huggle en este proyecto.</string>
+  <string name="login-error-age" fuzzy="true">Se necesita una cuenta con al menos $1 días de antigüedad para usar Huggle en este proyecto.</string>
   <string name="login-error-alldisabled">Huggle está actualmente desactivado en todos los proyectos.</string>
   <string name="login-error-approval">En $1 se necesita aprobación antes de utilizar Huggle.</string>
   <string name="login-error-cancelled">Cancelado.</string>
   <string name="login-error-config">Falló el inicio de sesión. No se pudo cargar la configuración local para $1: $2</string>
   <string name="login-error-count">Se necesita al menos $1 ediciones para usar Huggle en este proyecto.</string>
-  <string name="login-error-disabled">No es posible iniciar Huggle con tu cuenta en $1, revisa tu página de configuración.</string>
+  <string name="login-error-disabled" fuzzy="true">No es posible iniciar Huggle con tu cuenta en $1, revisa tu página de configuración.</string>
   <string name="login-error-global">Falló el acceso: no se puede analizar la configuración global. Consulta el registro de depuración para ver más detalles.</string>
   <string name="login-error-invalid">Nombre de usuario no válido.</string>
   <string name="login-error-noconfig">$1 no tiene una página de configuración de Huggle</string>
   <string name="login-error-nouser">El usuario no existe</string>
   <string name="login-error-password">Contraseña incorrecta</string>
   <string name="login-error-projdisabled">Huggle está actualmente desactivado en este proyecto.</string>
-  <string name="login-error-unknown">No se puede acceder a $1.</string>
+  <string name="login-error-unknown" fuzzy="true">No se puede acceder a $1.</string>
   <string name="login-error-version">Esta versión está desactualizada. Actualízala a la versión más reciente.</string>
   <string name="login-error-whitelist">No se pudo cargar la lista blanca de usuarios para $1.</string>
   <string name="login-ro-title">Cambiar a solo lectura</string>
   <string name="login-ro-question">Uno o más proyectos ($1) no te permiten acceder con permisos de edición (motivo: $2). ¿Quieres cambiar al modo de solo lectura?</string>
   <string name="login-ro-info">El proyecto $1 cambió a modo de solo lectura</string>
-  <string name="main-stat">$1 ediciones por minuto $2 reversiones por minuto, nivel $3</string>
+  <string name="main-stat" fuzzy="true">$1 ediciones por minuto $2 reversiones por minuto, nivel $3</string>
   <string name="main-menu-provider-stop">Detener proveedor</string>
   <string name="main-menu-provider-resume">Retomar proveedor</string>
   <string name="provider-up">La conexión a los recientes cambios de corriente en $2 el uso de proveedor de: $1</string>
   <string name="main-no-reason">El usuario no proporcionó ningún motivo</string>
-  <string name="main-restoring-slap">Actualmente estoy restaurando otra edición, por favor espere...</string>
+  <string name="main-restoring-slap" fuzzy="true">Actualmente estoy restaurando otra edición, por favor espere...</string>
   <string name="main-page">Página</string>
   <string name="main-user">Usuario</string>
   <string name="main-contribs">Contribuciones</string>
   <string name="main-history">Historial</string>
-  <string name="main-new-messages">Tienes mensajes nuevos. Selecciona Sistema -&gt; Mostrar nuevos mensajes o presiona M para verlos.</string>
+  <string name="main-new-messages" fuzzy="true">Tienes mensajes nuevos. Selecciona Sistema -&gt; Mostrar nuevos mensajes o presiona M para verlos.</string>
   <string name="main-space">El nombre de la página no puede terminar con un espacio. Corrígelo</string>
   <string name="main-system">Sistema</string>
   <string name="main-status-bar">Procesamiento de &lt;b&gt;$1&lt;/b&gt; ediciones y &lt;b&gt;$2&lt;/b&gt; consultas. Incluido en la lista blanca de usuarios: &lt;b&gt;$3&lt;/b&gt; tamaño de la Cola: &lt;b&gt;$4&lt;/b&gt; Estadísticas de $6: $5</string>
@@ -404,7 +404,7 @@
   <string name="main-stats">$1 ediciones por minuto, $2 reversiones por minuto</string>
   <string name="main-display-session-data">Mostrar datos de la sesión</string>
   <string name="main-display-whitelist">Mostrar lista blanca</string>
-  <string name="main-revert-custom-reson">Proporciona una razón por la que quieres revertir esta edición a la revisión anterior</string>
+  <string name="main-revert-custom-reson" fuzzy="true">Proporciona una razón por la que quieres revertir esta edición a la revisión anterior</string>
   <string name="main-log1">Restaurando la revisión seleccionada de $1</string>
   <string name="main-tip-pagetagdelete">Etiquetar esta página para su borrado</string>
   <string name="main-tip-pagedelete">Borrar esta página</string>
@@ -416,7 +416,7 @@
   <string name="main-revert-newpage-title">No se puede revertir esto</string>
   <string name="main-revert-newpage">Esta es una página nueva, por lo que no puede ser revertida. Puedes etiqueta o eliminarla.</string>
   <string name="main-restore-text-fail">No se puede restaurar la revisión, porque no hay texto disponible para ello</string>
-  <string name="main-restore-data-fail">No se puede restaurar la revisión, debido a que la wiki no aportan datos para la versión seleccionada</string>
+  <string name="main-restore-data-fail" fuzzy="true">No se puede restaurar la revisión, debido a que la wiki no aportan datos para la versión seleccionada</string>
   <string name="main-welcome-user">Bienvenida al usuario</string>
   <string name="main-custom-reason-title">Revertir la edición con un motivo personalizado</string>
   <string name="main-custom-reason-text">Proporciona un motivo por el que quieres revertir esta edición</string>
@@ -434,10 +434,10 @@
   <string name="message-fail-re-user-tp">Incapaz de recuperar los $1. Detener la entrega de mensajes para que el usuario</string>
   <string name="message-er">No se puede entregar el mensaje a $1: $2</string>
   <string name="message-error">Falló la entrega de un mensaje a $1. Revisa los registros.</string>
-  <string name="message-fail-retrieve-talk">no se puede recuperar la página de discusión del usuario</string>
+  <string name="message-fail-retrieve-talk" fuzzy="true">no se puede recuperar la página de discusión del usuario</string>
   <string name="message-done">Mensaje entregado correctamente en $2 a: $1</string>
-  <string name="message-fail-token-1">no se puede recuperar la edición de token</string>
-  <string name="message-fail-token-2">no token devuelto por la solicitud</string>
+  <string name="message-fail-token-1" fuzzy="true">no se puede recuperar la edición de token</string>
+  <string name="message-fail-token-2" fuzzy="true">no token devuelto por la solicitud</string>
   <string name="protect-request-title">Pedir protección de $1</string>
   <string name="protect-reason">Razón:</string>
   <string name="protect-expiry">Caducidad:</string>
@@ -488,7 +488,7 @@
   <string name="queue-examplelabel3">No revisar este atributo</string>
   <string name="queue-usergroup">Mostrar sólo ediciones de estos usuarios</string>
   <string name="report-title">Denunciar a $1</string>
-  <string name="report-warn">Este usuario ha alcanzado el nivel 4 de aviso, así que no se le enviarán más plantillas. Puedes denunciarlo ahora, pero por favor verifica que en efecto el usuario haya sido suficientemente avisado. Puedes hacerlo pulsando en el botón \"página de discusión\" en el siguiente formulario.Recuerda que este aviso y el formulario que ahora se presentan, se muestran independientemente de si tu reversión ha sido procesada correctamente como si no. Es posible, además, que el usuario ya haya sido denunciado (por favor verifica que el usuario no esté ya denunciado). ¿Quieres denunciar a este usuario?</string>
+  <string name="report-warn" fuzzy="true">Este usuario ha alcanzado el nivel 4 de aviso, así que no se le enviarán más plantillas. Puedes denunciarlo ahora, pero por favor verifica que en efecto el usuario haya sido suficientemente avisado. Puedes hacerlo pulsando en el botón \"página de discusión\" en el siguiente formulario.Recuerda que este aviso y el formulario que ahora se presentan, se muestran independientemente de si tu reversión ha sido procesada correctamente como si no. Es posible, además, que el usuario ya haya sido denunciado (por favor verifica que el usuario no esté ya denunciado). ¿Quieres denunciar a este usuario?</string>
   <string name="report-tu">Denunciar al usuario</string>
   <string name="report-reason">Motivo:</string>
   <string name="report-auto">Denunciado $1</string>
@@ -501,7 +501,7 @@
   <string name="reportuser-not">Este usuario no se encuentra denunciado actualmente</string>
   <string name="report-evidence-none-provid">No se han proporcionado \"diffs\" como prueba. Esto hará que a los administradores les resulte más difícil averigüar si el usuario es en realidad un vándalo. ¿Deseas continuar de todos modos?</string>
   <string name="report-duplicate">El usuario ya ha sido denunciado</string>
-  <string name="report-fail2">Error: no se puede recuperar la página de la denuncia en $1</string>
+  <string name="report-fail2" fuzzy="true">Error: no se puede recuperar la página de la denuncia en $1</string>
   <string name="report-progress">Denunciando a $1...</string>
   <string name="report-retrieving">Recuperando la página actual de denuncias...</string>
   <string name="report-done">Denunciado</string>
@@ -514,7 +514,7 @@
   <string name="score-only-whole-word">Coincidir solo con palabras completas</string>
   <string name="score-take-any-word">Coincide con cualquier palabra que contenga esta cadena</string>
   <string name="ssl-is-not-supported">Has solicitado el uso de SSL, pero $1 no lo admite.</string>
-  <string name="ssl-required">Webserver de $1 requiere SSL para ser habilitado. Por favor activar SSL e inténtelo de nuevo. Si no se puede habilitar el SSL (opción está en gris) puede que necesite instalar open ssl bibliotecas para su sistema.</string>
+  <string name="ssl-required" fuzzy="true">Webserver de $1 requiere SSL para ser habilitado. Por favor activar SSL e inténtelo de nuevo. Si no se puede habilitar el SSL (opción está en gris) puede que necesite instalar open ssl bibliotecas para su sistema.</string>
   <string name="uaa-not-supported">UAA no está disponible</string>
   <string name="uaa-not-supported-text">Esta función no está disponible en tu proyecto.</string>
   <string name="uaa-reporting">Denunciando a $1 en UAA</string>
@@ -522,15 +522,15 @@
   <string name="uaa-no-reason-warn">No has especificado una razón de por qué el nombre de usuario supone una infracción a las políticas vigentes. Por favor especifica una razón.</string>
   <string name="uaa-nr">No se proporcionó ningún motivo</string>
   <string name="uaa-g1">Obteniendo contenido de UAA</string>
-  <string name="uaa-e1">la consulta para el contenido de la página no devuelve datos.</string>
-  <string name="uaa-e2">el contenido de la página no estaba disponible.</string>
+  <string name="uaa-e1" fuzzy="true">la consulta para el contenido de la página no devuelve datos.</string>
+  <string name="uaa-e2" fuzzy="true">el contenido de la página no estaba disponible.</string>
   <string name="read-only">El proyecto $1 está configurado como de solo lectura. Se limitarán las funciones de edición.</string>
   <string name="revert-confirm-multiple">Esto revertirá múltiples ediciones de $1. ¿Continuar?</string>
   <string name="revert-confirm-range">El autor de la edición a la que quieres revertir, {1}, está en el mismo rango IP que el autor de la edición actual, $1, y pueden ser la misma persona; asegúrate de que estés revirtiendo a la edición correcta antes de proceder. ¿Continuar?</string>
   <string name="revert-confirm-same">Esto revertirá a otra edición del mismo usuario al que estás revirtiendo, $1. ¿Continuar?</string>
   <string name="revert-confirm-warned">Esto revertirá a una edición de $1; este usuario ha sido advertido antes. ¿Continuar?</string>
   <string name="revert-error-first">Esta edición es la primera de la página y no se puede revertir.</string>
-  <string name="revert-only">Esta edición es la única de la página.</string>
+  <string name="revert-only" fuzzy="true">Esta edición es la única de la página.</string>
   <string name="revert-creator">La última edición fue hecha por el creador de la página, $1.</string>
   <string name="revert-preflightcheck">Comprobación</string>
   <string name="revert-delete-instead">¿Borrar página en vez de revertir?</string>
@@ -560,7 +560,7 @@
   <string name="updater-open-manualdownloadpage">Abrir la página de descarga</string>
   <string name="updater-close">Cerrar</string>
   <string name="updater-disable-notify">Deshabilitar las actualizaciones</string>
-  <string name="user-history-fail">no se pudo recuperar el historial del usuario: $1</string>
+  <string name="user-history-fail" fuzzy="true">no se pudo recuperar el historial del usuario: $1</string>
   <string name="userinfo-generic">Información del usuario</string>
   <string name="userinfo-retrieve">Recuperar información</string>
   <string name="shortcut-page-patrol-edit">Edición de verificación</string>
@@ -573,13 +573,13 @@
   <string name="shortcut-next">Ir a la próxima edición</string>
   <string name="shortcut-suspicious">Marcar edición como sospechosa</string>
   <string name="shortcut-back">Ir a la edición mostrada con anterioridad</string>
-  <string name="shortcut-forward">Ir a una edición cargado en el pasado pero que se trasladó de nuevo a partir</string>
-  <string name="shortcut-warn">Advertir al usuario pero sin revertir la edición</string>
+  <string name="shortcut-forward" fuzzy="true">Ir a una edición cargado en el pasado pero que se trasladó de nuevo a partir</string>
+  <string name="shortcut-warn" fuzzy="true">Advertir al usuario pero sin revertir la edición</string>
   <string name="shortcut-revert">Revertir edición</string>
   <string name="shortcut-x-raw">Gatillo N-ésimo elemento en volver y advertir menú</string>
   <string name="shortcut-x-revert">Gatillo N-ésimo elemento de menú volver</string>
-  <string name="shortcut-watch">Inserta una página que se muestra a una lista de seguimiento</string>
-  <string name="shortcut-unwatch">Elimina una página que se muestra a partir de una lista de seguimiento</string>
+  <string name="shortcut-watch" fuzzy="true">Inserta una página que se muestra a una lista de seguimiento</string>
+  <string name="shortcut-unwatch" fuzzy="true">Elimina una página que se muestra a partir de una lista de seguimiento</string>
   <string name="shortcut-x-warn">Gatillo N-ésimo elemento en advertir menú</string>
   <string name="shortcut-good">Marcar como buena la edición que se muestra actualmente</string>
   <string name="shortcut-open-in-huggle">Abrir la página que se muestra actualmente</string>
@@ -588,9 +588,9 @@
   <string name="shortcut-revert-agf-1">Revertir la última revisión asumiendo buena fe</string>
   <string name="shortcut-browser-close-tab">Cerrar una pestaña del navegador</string>
   <string name="shortcut-tab">Abre una pestaña nueva</string>
-  <string name="shortcut-rw-stay">Revertir edición actual, avisar al usuario y permanecer en la página</string>
-  <string name="shortcut-revert-and-stay">Revertir la edición actual y quedarse en la página</string>
-  <string name="shortcut-custom-reason">Revertir la edición con un motivo personalizado como resumen de edición</string>
+  <string name="shortcut-rw-stay" fuzzy="true">Revertir edición actual, avisar al usuario y permanecer en la página</string>
+  <string name="shortcut-revert-and-stay" fuzzy="true">Revertir la edición actual y quedarse en la página</string>
+  <string name="shortcut-custom-reason" fuzzy="true">Revertir la edición con un motivo personalizado como resumen de edición</string>
   <string name="shortcut-user-contribs-browser">Mostrar las contribuciones del usuario en un navegador</string>
   <string name="warning-title">Advertir a $1</string>
   <string name="warning-levelgroup">Nivel de advertencia</string>
@@ -637,7 +637,7 @@
   <string name="history-work">Deshaciendo edición propia hecha en $1</string>
   <string name="history-no-item-selected">No se selecciona ningún elemento en la historia widget</string>
   <string name="history-message-revert-title">¿Realmente quieres deshacer solo este mensaje?</string>
-  <string name="history-another-edit">Estoy deshaciendo otra edición. Espera</string>
+  <string name="history-another-edit" fuzzy="true">Estoy deshaciendo otra edición. Espera</string>
   <string name="history-not-found">No hay nada que deshacer</string>
   <string name="history-already-done">Esto ya se deshizo</string>
   <string name="history-message-revert-body">Este fue un mensaje que se hace referencia por un rollback, son usted seguro de que quiere deshacer de plantilla sólo y ni siquiera su edición a la página? (usted necesita para deshacer la operación de deshacer en caso de querer revertir tanto de estos)</string>
@@ -672,7 +672,7 @@
   <string name="editquery-token-error">No se puede recuperar editar token</string>
   <string name="editquery-nocsrft">No hay un token CSRF</string>
   <string name="editquery-error-retrieve-prev">No se puede recuperar el contenido anterior de la página: $1</string>
-  <string name="editquery-error-append">No se puede usar tanto Apéndices como Prependos para editar la página</string>
+  <string name="editquery-error-append" fuzzy="true">No se puede usar tanto Apéndices como Prependos para editar la página</string>
   <string name="editquery-error-badtoken">Clave incorrecta</string>
   <string name="editquery-invalid-token">No se puede editar de$1 porque token que yo tenía en caché no es válida. Por favor, intente editar esa página una vez más</string>
   <string name="provider-failure">Fallo de alimentación de proveedor de $1 a $2, tratando de encontrar alguna alternativa de proveedor</string>
@@ -691,29 +691,29 @@
   <string name="feature-nfru">Esta función es sólo para usuarios de IP</string>
   <string name="report-no-user">Ningún usuario ha sido seleccionado para denunciar. Selecciona un usuario primero</string>
   <string name="welcome-show">También mostrar este mensaje la próxima vez que inicies Huggle</string>
-  <string name="welcome-tp-empty-fail">Este usuario no tiene una página de discusión vacía, ¿estás seguro de que quieres enviarle un mensaje?</string>
+  <string name="welcome-tp-empty-fail" fuzzy="true">Este usuario no tiene una página de discusión vacía, ¿estás seguro de que quieres enviarle un mensaje?</string>
   <string name="welcome-page-miss-fail">Huggle fue incapaz de recuperar el contenido de la página de discusión del usuario, está seguro de que desea enviar un mensaje de bienvenida para ellos?</string>
-  <string name="cr-newer-edits">Conflicto solucionado: se revirtieron todas las ediciones, incluidas las nuevas. Las ediciones eran del mismo usuario: $1.</string>
-  <string name="cr-resolved-same-user">El conflicto se resuelve: revertir todas las ediciones, incluyendo nuevas ediciones, hechas por los mismos usuarios - ediciones por el mismo usuario: $1</string>
+  <string name="cr-newer-edits" fuzzy="true">Conflicto solucionado: se revirtieron todas las ediciones, incluidas las nuevas. Las ediciones eran del mismo usuario: $1.</string>
+  <string name="cr-resolved-same-user" fuzzy="true">El conflicto se resuelve: revertir todas las ediciones, incluyendo nuevas ediciones, hechas por los mismos usuarios - ediciones por el mismo usuario: $1</string>
   <string name="cr-stop-new-edit">Conflicto solucionado: no se realizó ninguna acción; hay ediciones nuevas en $1</string>
-  <string name="cr-stop-multiple-same">Conflicto resuelto: no realizar ninguna acción - hay varias ediciones del mismo usuario a $1</string>
-  <string name="cr-revert-same-user">El conflicto se resuelve: revertir todas las ediciones - hay varias ediciones del mismo usuario a $1</string>
-  <string name="cr-message-same">Hay varias ediciones a $1 del mismo usuario, ¿seguro quieres revertirlas?</string>
+  <string name="cr-stop-multiple-same" fuzzy="true">Conflicto resuelto: no realizar ninguna acción - hay varias ediciones del mismo usuario a $1</string>
+  <string name="cr-revert-same-user" fuzzy="true">El conflicto se resuelve: revertir todas las ediciones - hay varias ediciones del mismo usuario a $1</string>
+  <string name="cr-message-same" fuzzy="true">Hay varias ediciones a $1 del mismo usuario, ¿seguro quieres revertirlas?</string>
   <string name="cr-message-new">Hay nuevas ediciones a $1. ¿Seguro quieres revertirlas?</string>
   <string name="cr-message-not-same">Hay nuevas ediciones a $1 de otro usuario. ¿Seguro quieres revertirlas todas? (De todas formas, probablemente falle por un \"token\" viejo)</string>
   <string name="preferences-delete-using-filter">No se puede eliminar un filtro que se está usando actualmente</string>
-  <string name="preferences-extension-disabled">Ya se ha programado esta extensión para su desactivación al próximo inicio de Huggle</string>
-  <string name="preferences-extension-disabled-restart">La extensión se configuró para desactivarse en el siguiente inicio de Huggle</string>
-  <string name="preferences-extension-enabled">Esta extensión no está programada para deshabilitar el siguiente inicio de Huggle</string>
-  <string name="preferences-extension-enabled-restart">La extensión se activó. Sin embargo, es necesario reiniciar Huggle</string>
+  <string name="preferences-extension-disabled" fuzzy="true">Ya se ha programado esta extensión para su desactivación al próximo inicio de Huggle</string>
+  <string name="preferences-extension-disabled-restart" fuzzy="true">La extensión se configuró para desactivarse en el siguiente inicio de Huggle</string>
+  <string name="preferences-extension-enabled" fuzzy="true">Esta extensión no está programada para deshabilitar el siguiente inicio de Huggle</string>
+  <string name="preferences-extension-enabled-restart" fuzzy="true">La extensión se activó. Sin embargo, es necesario reiniciar Huggle</string>
   <string name="preferences-watchlist-watch">Añadir a la lista de seguimiento</string>
   <string name="preferences-watchlist-unwatch">Quitar de la lista de seguimiento</string>
   <string name="preferences-watchlist-preferences">Seguir tus preferencias en el wiki</string>
   <string name="preferences-watchlist-nochange">No hacer nada</string>
-  <string name="preferences-sounds-enable-queue">Reproducir un sonido cuando se añade un nuevo elemento a la cola</string>
+  <string name="preferences-sounds-enable-queue" fuzzy="true">Reproducir un sonido cuando se añade un nuevo elemento a la cola</string>
   <string name="preferences-sounds-enable-irc">Reproducir un sonido cuando se recibe un mensaje en HAN</string>
   <string name="preferences-sounds-minimal-score">Puntuación de edición mínima para la notificación</string>
-  <string name="preferences-performance-catscansandwatched">Habilitar las categorías y ver el filtrado de estado (requiere una consulta API adicional para cada edición)</string>
+  <string name="preferences-performance-catscansandwatched" fuzzy="true">Habilitar las categorías y ver el filtrado de estado (requiere una consulta API adicional para cada edición)</string>
   <string name="preferences-max-score">Habilitar puntuación global máxima (las ediciones con puntuación superior, se ignorarán; útil si quieres ver sólo ediciones buenas)</string>
   <string name="preferences-min-score">Habilitar puntuación global mínima (las ediciones con puntuación inferior, se ignorarán; útil si quieres ver sólo ediciones malas)</string>
   <string name="preferences-queue-size">Tamaño de la cola</string>
@@ -726,7 +726,7 @@
   <string name="protect-request-fail-notime">La consulta no devolvió ninguna marca de tiempo. Puede ser un error de MediaWiki. Se anula la consulta</string>
   <string name="message-fail">No se pudo entregar el mensaje</string>
   <string name="edit-conflict">Conflicto de edición</string>
-  <string name="page-tag-nodescription">no hay descripción para esta etiqueta :/</string>
+  <string name="page-tag-nodescription" fuzzy="true">no hay descripción para esta etiqueta :/</string>
   <string name="page-tag-fail">Falló al etiquetar la página</string>
   <string name="page-tag-error">Imposible marcar la página, el error fue $1</string>
   <string name="page-unknown">Página desconocida</string>
@@ -737,9 +737,9 @@
   <string name="block-alreadyblocked">La cuenta ya está bloqueada</string>
   <string name="report-fail">No se pudo denunciar al usuario porque $1</string>
   <string name="report-page-fail">Error: no se puede recuperar la página de denuncias en $1</string>
-  <string name="report-page-fail-time">No se puede recuperar la fecha de la página actual de denuncias. Fallo de API:\n\n $1</string>
-  <string name="report-unable">No ha sido posible denunciar al usuario :(</string>
-  <string name="about-python-with">, con compatibilidad con Python</string>
+  <string name="report-page-fail-time" fuzzy="true">No se puede recuperar la fecha de la página actual de denuncias. Fallo de API:\n\n $1</string>
+  <string name="report-unable" fuzzy="true">No ha sido posible denunciar al usuario :(</string>
+  <string name="about-python-with" fuzzy="true">, con compatibilidad con Python</string>
   <string name="about-python-without"> sin compatibilidad con Python</string>
   <string name="about-qt">, compilado usando QT $1 ejecutándose en QT $1</string>
   <string name="about-info">, basado en $1, plataforma de destino: $2</string>
@@ -748,11 +748,11 @@
   <string name="projects">Proyectos</string>
   <string name="unable-to-retrieve-user-list">No se ha podido recuperar la lista de usuario: $1</string>
   <string name="login-no-userinfo">Sitio no devolver cualquier userinfo información</string>
-  <string name="login-invalid-register-date">No válido registrationdate devuelto por mediawiki</string>
+  <string name="login-invalid-register-date" fuzzy="true">No válido registrationdate devuelto por mediawiki</string>
   <string name="login-site-info-query-failed">La información del sitio de consulta para $1 ha fallado: $2</string>
   <string name="login-no-site-info-returned">No hay información del sitio fue devuelto por este wiki</string>
   <string name="loading-main-window">Cargando la ventana principal de Huggle</string>
-  <string name="api.php-invalid-response">El api.php respondió con inválida texto (servidor web está abajo?), por favor, compruebe de registro de depuración para obtener una información precisa</string>
+  <string name="api.php-invalid-response" fuzzy="true">El api.php respondió con inválida texto (servidor web está abajo?), por favor, compruebe de registro de depuración para obtener una información precisa</string>
   <string name="login-username-doesnt-exist">Este nombre de usuario no existe</string>
   <string name="developer-mode-enter-title">Whee</string>
   <string name="developer-mode-enter-message">¡Ingresaste a un modo de desarrollador!</string>
