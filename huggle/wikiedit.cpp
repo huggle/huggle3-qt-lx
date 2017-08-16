@@ -274,7 +274,7 @@ bool WikiEdit::FinalizePostProcessing()
         if (this->qDifference->IsFailed())
         {
             // whoa it ended in error, we need to get rid of this edit somehow now
-            Huggle::Syslog::HuggleLogs->WarningLog("Failed to obtain diff for " + this->Page->PageName + " the error was: Unknown error");
+            Huggle::Syslog::HuggleLogs->WarningLog("Failed to obtain diff for " + this->Page->PageName + " the error was: " + this->qDifference->Result->ErrorMessage);
             this->qDifference = nullptr;
             this->PostProcessing = false;
             return true;
@@ -323,8 +323,7 @@ bool WikiEdit::FinalizePostProcessing()
             this->DiffText = temp->Value;
         } else
         {
-            Huggle::Syslog::HuggleLogs->WarningLog("Failed to obtain diff for " + this->Page->PageName + " the error was: "
-                                                 + this->qDifference->Result->Data);
+            Huggle::Syslog::HuggleLogs->WarningLog("Failed to obtain diff for " + this->Page->PageName + " the error was: " + this->qDifference->Result->ErrorMessage);
         }
         this->qDifference = nullptr;
         // we are done processing the diff
