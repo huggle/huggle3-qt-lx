@@ -173,7 +173,7 @@
   <string name="config-template">Шаблон</string>
   <string name="config-promptforblock">Запрашивать блокировку, если участнику выдаётся последнее предупреждение</string>
   <string name="config-blockreason">Причина блокировки по умолчанию</string>
-  <string name="config-blocktime" fuzzy="true">Срок блокировки по умолчанию</string>
+  <string name="config-blocktime">Срок блокировки по умолчанию</string>
   <string name="config-blocktimeanon">анонимные участники</string>
   <string name="config-blocktimereg">зарегистрированные участники</string>
   <string name="config-summaryprompt">Введите описание правки</string>
@@ -279,7 +279,7 @@
   <string name="login-error-nouser">Пользователь не существует</string>
   <string name="login-error-password">Неправильный пароль</string>
   <string name="login-error-projdisabled">В настоящее время Huggle отключен в $1.</string>
-  <string name="login-error-unknown" fuzzy="true">Невозможно войти в $1.</string>
+  <string name="login-error-unknown">Невозможно войти в $1.</string>
   <string name="login-error-version">Эта версия устарела. Обновитесь до последней версии.</string>
   <string name="login-error-whitelist">Ошибка при загрузке «белого списка» пользователей в $1.</string>
   <string name="login-ro-title">Переключить в режим только для чения</string>
@@ -558,7 +558,7 @@
   <string name="updater-open-manualdownloadpage">Открыть страницу загрузки</string>
   <string name="updater-close">Закрыть</string>
   <string name="updater-disable-notify">Отключить обновления</string>
-  <string name="user-history-fail" fuzzy="true">не удалось получить историю для участника: $1</string>
+  <string name="user-history-fail">Не удалось получить историю для участника: $1</string>
   <string name="userinfo-generic">Информация об участнике</string>
   <string name="userinfo-retrieve">Получить информацию</string>
   <string name="shortcut-page-patrol-edit">Отпатрулировать правку</string>

@@ -685,7 +685,7 @@
   <string name="logs-widget-name">系统日志</string>
   <string name="wait">请稍候…</string>
   <string name="function-miss">函数目前不可用</string>
-  <string name="missing-aiv">此项目不适用AIV</string>
+  <string name="missing-aiv">此项目不使用AIV</string>
   <string name="missing-page">此wiki没有页面$1</string>
   <string name="updating-wl">正在更新白名单…</string>
   <string name="feature-nfru">此功能仅限IP用户可用</string>
@@ -777,4 +777,7 @@
   <string name="queue-empty-title">这是空的</string>
   <string name="queue-empty-text">队列中没有别的东西...</string>
   <string name="tip1">就像其他浏览器那样，Huggle支持标签！如果您正在做一些编辑，并且您希望稍后保持它，您完全可以打开新标签，并在这里继续检查队列。队列在所有标签中分享。</string>
+  <string name="tip2">Huggle包含“编辑栏”，这是包含拥有简洁界面的用户和页面历史的小部件。当然它默认不启用。如果您使用小屏幕设备，您可以将用户和页面历史部件替换成它！</string>
+  <string name="tip3">多数参数设置都在wiki页面[[Special:MyPage/huggle3.css]]存储，您也可以在此更改它们！</string>
+  <string name="tip4">屏幕上几乎所有小工具都可以安全关闭（除了导航栏）。</string>
 </resources>

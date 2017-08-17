@@ -81,7 +81,7 @@
   <string name="block-token-e1">No se puede recuperar la ficha: $1</string>
   <string name="block-error-no-info" fuzzy="true">La consulta no contiene información de cuenta de usuario (¿tienes permisos administrativos?)</string>
   <string name="block-type">Bloquear/desbloquear</string>
-  <string name="block-admin" fuzzy="true">Administrador que ha hecho el bloqueo</string>
+  <string name="block-admin">Administrador que ha hecho el bloqueo</string>
   <string name="block-none" fuzzy="true">No hay ningún usuario que bloquear.</string>
   <string name="contribution-browser-user-info">Se muestran las contribuciones recientes del usuario $1</string>
   <string name="config-function">Función</string>
