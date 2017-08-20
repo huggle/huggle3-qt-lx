@@ -113,7 +113,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->tb = new HuggleTool();
     this->Queries = new ProcessList(this);
     this->SystemLog = new HuggleLog(this);
-    this->CreateBrowserTab("Welcome page", 0);
+    this->CreateBrowserTab(_l("main-tab-welcome-title"), 0);
     this->TrayIcon.setIcon(this->windowIcon());
     this->TrayIcon.show();
     this->TrayIcon.setToolTip("Huggle");
@@ -595,18 +595,17 @@ void MainWindow::UpdateStatusBarData()
            << QString::number(this->GetCurrentWikiSite()->GetProjectConfig()->WhiteList.size())
            << Generic::ShrinkText(QString::number(this->Queue1->Items.count()), 4);
     QString statistics_;
-    //! \todo Localize me
     // calculate stats, but not if huggle uptime is lower than 50 seconds
     double Uptime = this->GetCurrentWikiSite()->Provider->GetUptime();
     if (this->ShuttingDown)
     {
-        statistics_ = "none";
+        statistics_ = _l("main-statistics-none");
     } else if (Uptime < 50)
     {
-        statistics_ = "waiting for more edits";
+        statistics_ = _l("main-statistics-waiting");
     } else if (this->GetCurrentWikiSite()->Provider->IsPaused())
     {
-        statistics_ = "paused";
+        statistics_ = _l("main-statistics-paused");
     } else
     {
         double EditsPerMinute = this->GetCurrentWikiSite()->Provider->GetEditsPerMinute();
@@ -1864,6 +1863,12 @@ void MainWindow::Localize()
     this->ui->actionReport_user_2->setText(_l("main-report-user"));
     this->ui->actionEdit_user_talk->setText(_l("main-edit-user-talk"));
     this->ui->actionRevert_edit_using_custom_reason->setText(_l("main-custom-reason-title"));
+    this->ui->actionIntroduction->setText(_l("main-help-introduction"));
+    this->ui->actionContents->setText(_l("main-help-contents"));
+    this->ui->actionQueue_legend->setText(_l("main-help-queuelegend"));
+    this->ui->actionTalk_page->setText(_l("main-user-talk"));
+    this->ui->actionUser_page->setText(_l("main-user-page"));
+    this->ui->menuManual_template->setTitle(_l("main-user-manualtemplate"));
 
     // arrows icons should be mirrored for RTL languages
     if (Localizations::HuggleLocalizations->IsRTL())

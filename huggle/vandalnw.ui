@@ -75,7 +75,7 @@
       <item>
        <widget class="QPushButton" name="pushButton">
         <property name="text">
-         <string>send</string>
+         <string>Send</string>
         </property>
         <property name="default">
          <bool>true</bool>

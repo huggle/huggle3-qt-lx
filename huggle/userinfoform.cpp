@@ -38,6 +38,7 @@ UserinfoForm::UserinfoForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::Us
     connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTick()));
     QStringList header;
     this->setWindowTitle(_l("userinfo-generic"));
+    this->ui->pushButton->setText(_l("userinfo-no-user"));
     this->ui->tableWidget->setColumnCount(3);
     header << _l("page") << _l("time") << _l("id");
     this->ui->tableWidget->setHorizontalHeaderLabels(header);
