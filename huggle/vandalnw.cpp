@@ -135,6 +135,7 @@ VandalNw::VandalNw(QWidget *parent) : QDockWidget(parent), ui(new Ui::VandalNw)
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
     this->ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     this->ui->tableWidget->setShowGrid(false);
+    this->ui->pushButton->setEnabled(false);
 }
 
 VandalNw::~VandalNw()
@@ -695,6 +696,7 @@ void VandalNw::OnIRCChannelQuit(libircclient::Parser *px, libircclient::Channel 
 void VandalNw::OnIRCLoggedIn(libircclient::Parser *px)
 {
     this->JoinedMain = true;
+    /// \todo LOCALIZE ME
     this->Insert("You are now connected to huggle antivandalism network", HAN::MessageType_Info);
     foreach(QString channel, this->Site2Channel.values())
     {
@@ -706,10 +708,12 @@ void VandalNw::OnIRCLoggedIn(libircclient::Parser *px)
 void VandalNw::OnConnected()
 {
     this->UsersModified = true;
+    this->ui->pushButton->setEnabled(true);
 }
 
 void VandalNw::OnDisconnected()
 {
     /// \todo LOCALIZE ME
     this->Insert("Lost connection to antivandalism network", HAN::MessageType_Info);
+    this->ui->pushButton->setEnabled(false);
 }
