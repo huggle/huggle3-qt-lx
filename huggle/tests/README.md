@@ -1,7 +1,7 @@
 Unit tests
 ===========
 
-This folder contains unit test for huggle, it is using QTest library.
+This folder contains unit test for Huggle, it is using QTest library.
 
 Basically the unit test contains of extra project that uses the source code in root
 

@@ -1,4 +1,4 @@
-# This is a build file for huggle (used with cmake)
+# This is a build file for Huggle (used with cmake)
 cmake_minimum_required (VERSION 2.8.7)
 
 set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Choose the type of build, options are: Debug or Release (or any other documented for CMAKE_BUILD_TYPE")
@@ -17,9 +17,9 @@ execute_process(COMMAND "${CMAKE_SOURCE_DIR}/update.sh" WORKING_DIRECTORY ${CMAK
 #  cmake <folder> -DQT5_BUILD=true
 option(LIBCORE "Build core library" false)
 option(LINUX_SNAP "Enable support for snap, use this option only if you are building snapshotable version" false)
-option(PYTHON_BUILD "Build huggle with python" false)
-option(QT5_BUILD "Build huggle using the Qt5 framework" false)
-option(HUGGLE_EXT "Build huggle extensions" false)
+option(PYTHON_BUILD "Build Huggle with python" false)
+option(QT5_BUILD "Build Huggle using the Qt5 framework" false)
+option(HUGGLE_EXT "Build Huggle extensions" false)
 option(WEB_ENGINE "Use Qt WebEngine instead of WebKit library" false)
 option(AUDIO "Enable audio backend" true)
 
