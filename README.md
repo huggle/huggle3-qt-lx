@@ -54,7 +54,7 @@ WebKit vs Chromium
 -------------------
 Qt4 - Qt5.4 supports WebKit, which is a default backend for Huggle. Newer Qt support only Chromium backend (code named WebEngine)
 
-If you want to build huggle with Qt newer than 5.4 you will have to enable it like this:
+If you want to build Huggle with Qt newer than 5.4 you will have to enable it like this:
 
 ```
 ./configure --qt5 --web-engine
