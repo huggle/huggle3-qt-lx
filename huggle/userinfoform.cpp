@@ -132,6 +132,13 @@ void UserinfoForm::OnTick()
     }
     if (this->qContributions->IsProcessed())
     {
+        if (this->qContributions->Result == 0)
+        {
+            Syslog::HuggleLogs->ErrorLog("user-history-fail");
+            this->timer->stop();
+            this->qContributions.Delete();
+            return;
+        }
         if (this->qContributions->Result->IsFailed())
         {
             Syslog::HuggleLogs->ErrorLog(_l("user-history-fail", this->User->Username));
