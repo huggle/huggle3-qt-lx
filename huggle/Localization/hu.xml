@@ -65,7 +65,7 @@
   <string name="block-warnloglabel">Figyelmeztetések:</string>
   <string name="block-fail">Nem sikerült a felhasználó blokkolása a következő miatt: $1</string>
   <string name="block-type">Blokkolás / feloldás</string>
-  <string name="block-admin" fuzzy="true">Blokkoló adminisztrátor</string>
+  <string name="block-admin">Blokkoló adminisztrátor</string>
   <string name="block-none" fuzzy="true">Nincs blokkolható felhasználó.</string>
   <string name="config-function">Függvény</string>
   <string name="config-description">Leírás</string>

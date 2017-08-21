@@ -52,8 +52,8 @@
   <string name="disable">Disattiva</string>
   <string name="no-token">Nessun token</string>
   <string name="flags">Flag</string>
-  <string name="gracetime" fuzzy="true">Attendi che le query che eseguono alcune modifiche terminano...</string>
-  <string name="browser-none" fuzzy="true">Non si sta visualizzando alcuna pagina</string>
+  <string name="gracetime">Attendi che le query che eseguono le modifiche terminino...</string>
+  <string name="browser-none">Non ci sono pagine da visualizzare ancora.</string>
   <string name="browser-load">Scaricamento delle differenze usando un metodo alternativo basato su MW, attendi prego...</string>
   <string name="browser-miss-summ">Non è stato inserito alcun oggetto</string>
   <string name="browser-diff">Diff della pagina: $1 (punteggio: $2)</string>
@@ -78,10 +78,10 @@
   <string name="block-token-1">Acquisizione del token per bloccare $1</string>
   <string name="block-fail">Impossibile bloccare l\'utente, $1</string>
   <string name="block-token-e1">Il token non può essere recuperato: $1</string>
-  <string name="block-error-no-info" fuzzy="true">Nell\'interrogazione non era presente alcuna informazione dell\'utente (sei un amministratore?)</string>
+  <string name="block-error-no-info">Nell\'interrogazione non era presente alcuna informazione dell\'utente (sei un amministratore?)</string>
   <string name="block-type">Blocca / sblocca</string>
-  <string name="block-admin" fuzzy="true">L\'amministratore che ha fatto il blocco</string>
-  <string name="block-none" fuzzy="true">Non c\'è nessun utente da bloccare.</string>
+  <string name="block-admin">Amministratore che ha bloccato</string>
+  <string name="block-none">Non c\'è nessun utente selezionato da bloccare.</string>
   <string name="contribution-browser-user-info">Mostrando i contributi recenti dell\'utente $1</string>
   <string name="config-function">Funzione</string>
   <string name="config-description">Descrizione</string>
@@ -129,7 +129,7 @@
   <string name="config-remove-reverted">Rimuovi dalla coda le modifiche che sono state già annullate da qualcun altro</string>
   <string name="config-remove-old">Rimuovi dalla coda le modifiche più vecchie se è stata ricevuta una modifica più recente alla stessa pagina</string>
   <string name="config-auto-load-history">Carica automaticamente la cronologia e le informazioni dell\'utente (richiede molta larghezza di banda)</string>
-  <string name="config-last-revision" fuzzy="true">Passa all\'ultima versione della pagina nel caso in cui la modifica attualmente caricata non sia l\'ultima versione (la scaricherà, rendendo Huggle più lento)</string>
+  <string name="config-last-revision">Passa all\'ultima versione della pagina nel caso in cui la modifica attualmente caricata non sia l\'ultima versione (la scaricherà, rendendo Huggle più lento)</string>
   <string name="config-require-delay">Richiedere un ritardo dopo ogni caricamento della modifica successiva, durante il quale non sarà possibile usare alcuna funzionalità di scrittura (utile per evitare problemi da pressione multipla di pulsanti sulla tastiera)</string>
   <string name="config-wait-edit">Il ritardo, in secondi, prima che siano abilitate le funzioni di modifica:</string>
   <string name="config-display-text">Mostra il successivo</string>
@@ -156,8 +156,8 @@
   <string name="config-confirmsame">Conferma il ritorno ad una modifica dello stesso utente</string>
   <string name="config-confirmselfrevert">Conferma il revert delle proprie modifiche (tranne annulla)</string>
   <string name="config-confirmwarned">Confermare il ritorno ad una modifica da parte di un utente ammonito</string>
-  <string name="config-confirmrange" fuzzy="true">Conferma il ritorno ad una modifica di un utente anonimo nello stesso range /16 dell\'utente a cui è stata annullata.</string>
-  <string name="config-confirmpage" fuzzy="true">Conferma il ripristino di pagine ignorate</string>
+  <string name="config-confirmrange">Conferma il ritorno ad una modifica di un utente anonimo nello stesso range /16 dell\'utente a cui è stata annullata.</string>
+  <string name="config-confirmpage">Conferma il ripristino per le pagine ignorate</string>
   <string name="config-autoadvance">Dopo il ripristino, passa alla prossima modifica in lista</string>
   <string name="config-userollback">Utilizza rollback, se disponibile</string>
   <string name="config-revertsummaries">Riassunti dei ripristini disponibili nel menu</string>
@@ -171,7 +171,7 @@
   <string name="config-template">Template</string>
   <string name="config-promptforblock">Proponi un blocco se viene chiesto di avvisare un utente con un ultimo avvertimento</string>
   <string name="config-blockreason">Motivo di blocco predefinito</string>
-  <string name="config-blocktime" fuzzy="true">Durata predefinita del blocco per</string>
+  <string name="config-blocktime">Durata del blocco predefinita</string>
   <string name="config-blocktimeanon">utenti anonimi</string>
   <string name="config-blocktimereg">utenti registrati</string>
   <string name="config-summaryprompt">Inserisci oggetto</string>
@@ -179,7 +179,7 @@
   <string name="config-defaultsprompt">Ripristinare le impostazioni predefinite?</string>
   <string name="config-logbrowsetitle">Percorso dei file di registro</string>
   <string name="config-shortcutconflict">Il collegamento \'$1\' è in conflitto con il collegamento esistente per \'$1\'.</string>
-  <string name="config-no-colon" fuzzy="true">Non puoi usare : al posto della coda</string>
+  <string name="config-no-colon">Non puoi usare : nel nome di una coda</string>
   <string name="config-notify-update">Controlla aggiornamenti</string>
   <string name="config-notify-beta">Controlla la presenza di versioni beta se disponibili</string>
   <string name="delete-title">Cancella $1</string>
@@ -193,7 +193,7 @@
   <string name="delete-e1">La pagina non può essere cancellata: $1</string>
   <string name="delete-e2">Impossibile cancellare la pagina</string>
   <string name="delete-edsc">Impossibile cancellare la pagina poiché $1</string>
-  <string name="delete-failed-no-info" fuzzy="true">Nell\'interrogazione non era presente alcuna informazione della pagina (sei un amministratore?)</string>
+  <string name="delete-failed-no-info">Nell\'interrogazione non era presente alcuna informazione della pagina (sei un amministratore?)</string>
   <string name="extension-kl">Non in esecuzione</string>
   <string name="extension-ok">Caricato e in esecuzione</string>
   <string name="historyform-no-info">Nessuna informazione di modifica</string>
@@ -202,7 +202,7 @@
   <string name="historyform-retrieving-history">Recupero della cronologia</string>
   <string name="historyform-not-latest-tip">Questa non è l\'ultima versione di questa pagina. Assicurati di controllare anche le versioni più recenti. Per favore ricorda anche che il rollback potrebbe non essere possibile da questo punto in poi.</string>
   <string name="history-error-message-title">Impossibile annullare</string>
-  <string name="history-error" fuzzy="true">L\'elemento non può essere annullato. La pagina può essere stata modificata o cancellata nel frattempo, e Huggle non è in grado di effettuare un annullamento da questo punto. Se vuoi veramente annullarlo, dovrai farlo a mano usando l\'interfaccia di MediaWiki.</string>
+  <string name="history-error">L\'elemento non può essere annullato. La pagina può essere stata modificata o cancellata nel frattempo, e Huggle non è in grado di effettuare un annullamento da questo punto. Se vuoi veramente annullarlo, dovrai farlo a mano usando l\'interfaccia di MediaWiki.</string>
   <string name="history-failure">Impossibile recuperare la cronologia</string>
   <string name="userhistory-title">Cronologia dei tuoi cambiamenti</string>
   <string name="irc-connected">$1: Connesso al feed IRC delle ultime modifiche</string>
@@ -235,7 +235,7 @@
   <string name="login-fail-css">Acesso non riuscito a $1: Impossibile recuperare la configurazione utente.\nSpecial:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio utente?</string>
   <string name="login-fail-enable-true">Accesso non riuscito a $1: Non hai enable:true nella tua configurazione personale.</string>
   <string name="login-fail-no-info">Accesso non riuscito a $1: Impossibile recuperare le informazioni dell\'utente: $2</string>
-  <string name="login-bot" fuzzy="true">Qual è la differenza tra accesso BotPassword e tradizionale?</string>
+  <string name="login-bot">Qual è la differenza tra accesso BotPassword e tradizionale?</string>
   <string name="login-fail-parse-config">Accesso non riuscito a $1: Impossibile analizzare la configurazione dell\'utente. Vedi il registro di debug per ulteriori dettagli.</string>
   <string name="login-fail-user-data">Accesso non riuscito a $1: Impossibile recuperare le informazioni dell\'utente. L\'interrogazione API non ha restituito dati.</string>
   <string name="login-fail-rollback-rights">Accesso non riuscito a $1: Non hai i permessi di rollback su questo progetto.</string>
@@ -263,20 +263,20 @@
   <string name="login-ssl">Usa HTTPS (richiede OpenSSL)</string>
   <string name="login-fail">Accesso non riuscito su $1</string>
   <string name="login-error-admin">L\'uso di Huggle su questo progetto richiede un\'utenza di amministratore.</string>
-  <string name="login-error-age" fuzzy="true">Per usare Huggle in questo progetto devi essere iscritto da almeno $1 giorni</string>
+  <string name="login-error-age">Per usare Huggle in questo progetto devi essere iscritto da almeno $1 giorni.</string>
   <string name="login-error-alldisabled">Huggle è attualmente disattivato in tutti i progetti.</string>
   <string name="login-error-approval">L\'uso di Huggle su $1 richiede un\'approvazione.</string>
   <string name="login-error-cancelled">Annullato.</string>
   <string name="login-error-config">Accesso non riuscito, impossibile analizzare la configurazione locale per $1: $2</string>
   <string name="login-error-count">L\'uso di Huggle su questo progetto richiede almeno $1 modifiche.</string>
-  <string name="login-error-disabled" fuzzy="true">Huggle non è attivato per la tua utenza su $1. Controlla la pagina della configurazione utente.</string>
+  <string name="login-error-disabled">Huggle non è attivato per la tua utenza su $1. Controlla la pagina della tua configurazione utente.</string>
   <string name="login-error-global">Accesso non riuscito: Impossibile analizzare la configurazione globale. Vedi il registro di debug per ulteriori dettagli.</string>
   <string name="login-error-invalid">Nome utente non valido</string>
   <string name="login-error-noconfig">$1 non ha una pagina di configurazione di Huggle</string>
   <string name="login-error-nouser">L\'utente non esiste</string>
   <string name="login-error-password">Password non corretta</string>
   <string name="login-error-projdisabled">Huggle è attualmente disabilitato su $1.</string>
-  <string name="login-error-unknown" fuzzy="true">Impossibile accedere a $1.</string>
+  <string name="login-error-unknown">Impossibile accedere a $1.</string>
   <string name="login-error-version">Questa versione è obsoleta. Aggiorna all\'ultima versione.</string>
   <string name="login-error-whitelist">Impossibile caricare la lista bianca degli utenti per $1.</string>
   <string name="main-stat">$1 modifiche al minuto, $2 annullamenti al minuto, livello $3</string>
@@ -397,7 +397,7 @@
   <string name="main-stats">$1 modifiche al minuto, $2 annullamenti al minuto</string>
   <string name="main-display-session-data">Mostra i dati di sessione</string>
   <string name="main-display-whitelist">Mostra la lista bianca</string>
-  <string name="main-revert-custom-reson" fuzzy="true">Per favore fornisci una motivazione del perché vuoi ripristinare questa modifica alla versione precedente</string>
+  <string name="main-revert-custom-reson">Giustifica il ripristino di questa modifica alla versione precedente</string>
   <string name="main-log1">Ripristino della revisione selezionata di $1</string>
   <string name="main-tip-pagetagdelete">Proponi questa pagina per la cancellazione</string>
   <string name="main-tip-pagedelete">Cancella questa pagina</string>
@@ -426,8 +426,8 @@
   <string name="message-error">Impossibile inviare un messaggio a $1! per favore consultare i registri!</string>
   <string name="message-fail-retrieve-talk">Impossibile recuperare la pagina di discussione dell\'utente</string>
   <string name="message-done">Messaggio inviato con successo su $2 a: $1</string>
-  <string name="message-fail-token-1" fuzzy="true">impossibile recuperare il token di modifica</string>
-  <string name="message-fail-token-2" fuzzy="true">nessun token è stato restituito dalla richiesta</string>
+  <string name="message-fail-token-1">Impossibile recuperare il token di modifica</string>
+  <string name="message-fail-token-2">Nessun token è stato restituito dalla richiesta</string>
   <string name="protect-request-title">Richiedi protezione di $1</string>
   <string name="protect-reason">Motivo:</string>
   <string name="protect-expiry">Scadenza:</string>
@@ -478,7 +478,7 @@
   <string name="queue-examplelabel3">Non controllare questo attributo</string>
   <string name="queue-usergroup">Mostra solamente le modifiche di questi utenti</string>
   <string name="report-title">Segnala $1</string>
-  <string name="report-warn" fuzzy="true">Questo utente ha già raggiunto il livello di avviso 4, quindi non gli verranno inviati ulteriori template. Puoi segnalarlo ora, ma per favore, assicurati che abbia già raggiunto il corretto numero di avvertimenti recenti! Puoi farlo cliccando sul pulsante della \"pagina di discussione\" nel form seguente. Ricorda che questo form e questo avvertimento vengono mostrati sia nel caso in cui il tuo ripristino abbia avuto successo che nel caso contrario, quindi potresti entrare in conflitto con altri utenti (controlla di nuovo che l\'utente non sia già stato segnalato). Vuoi segnalare questo utente?</string>
+  <string name="report-warn">Questo utente ha già raggiunto il livello di avviso 4, quindi non gli verranno inviati ulteriori template. Puoi segnalarlo ora, ma per favore, assicurati che abbia già raggiunto il corretto numero di avvertimenti recenti! Puoi farlo cliccando sul pulsante della \"pagina di discussione\" nel form seguente. Ricorda che questo form e questo avvertimento vengono mostrati sia nel caso in cui il tuo ripristino abbia avuto successo che nel caso contrario, quindi potresti entrare in conflitto con altri utenti (controlla di nuovo che l\'utente non sia già stato segnalato). Vuoi segnalare questo utente?</string>
   <string name="report-tu">Segnala l\'utente</string>
   <string name="report-reason">Motivo:</string>
   <string name="report-auto">Segnalato $1</string>
@@ -504,7 +504,7 @@
   <string name="score-only-whole-word">Corrisponde solo a parole intere</string>
   <string name="score-take-any-word">Corrisponde a qualsiasi parola che contiene questa stringa</string>
   <string name="ssl-is-not-supported">È richiesto per l\'utilizzo di SSL, ma $1 non lo supporta.</string>
-  <string name="ssl-required" fuzzy="true">Il Webserver di $1 richiede che l\'SSL sia abilitato. Si prega di attivare l\'SSL e di riprovare. Se non è possibile abilitare l\'SSL (opzione non è disponibile), potrebbe essere necessario installare le librerie di \"Open SSL\" nel tuo sistema.</string>
+  <string name="ssl-required">Il Webserver di $1 richiede che l\'SSL sia abilitato. Si prega di attivare l\'SSL e di riprovare. Se non è possibile abilitare l\'SSL (opzione non è disponibile), potrebbe essere necessario installare le librerie di OpenSSL nel tuo sistema.</string>
   <string name="uaa-not-supported">UAA non disponibile</string>
   <string name="uaa-not-supported-text">La bacheca \"Usernames for administrator attention\" non è disponibile sulla tua wiki.</string>
   <string name="uaa-reporting">Segnalazione di $1 su UAA</string>
@@ -512,7 +512,7 @@
   <string name="uaa-no-reason-warn">Non hai specificato una motivazione sul perché il nome utente costituisca una violazione della politica. Per favore specifica una motivazione.</string>
   <string name="uaa-nr">Non è stato fornito alcun motivo</string>
   <string name="uaa-g1">Recupero del contenuto di UAA</string>
-  <string name="uaa-e1" fuzzy="true">l\'interrogazione per i contenuti della pagina non ha restituito dati.</string>
+  <string name="uaa-e1">L\'interrogazione per i contenuti della pagina non ha restituito dati.</string>
   <string name="uaa-e2">I contenuti della pagina non erano disponibili.</string>
   <string name="revert-confirm-multiple">In questo modo verranno annullate molteplici modifiche di $1. Continuare?</string>
   <string name="revert-confirm-range">L\'autore della revisione in oggetto, $2, è nello stesso range dell\'autore dell\'attuale revisione, $1, e potrebbe essere la stessa persona. Assicurati che la revisione in oggetto sia corretta prima di procedere. Continuare?</string>
@@ -562,13 +562,13 @@
   <string name="shortcut-next">Vai alla prossima modifica</string>
   <string name="shortcut-suspicious">Marca la modifica come sospetta</string>
   <string name="shortcut-back">Vai alla modifica precedentemente mostrata</string>
-  <string name="shortcut-forward" fuzzy="true">Vai ad una modifica già caricata in passato ma da cui ti sei allontanato</string>
-  <string name="shortcut-warn" fuzzy="true">Invia un\'avvertimento all\'utente, senza annullare la modifica</string>
+  <string name="shortcut-forward">Vai ad una modifica già caricata nel passato ma da cui ti sei allontanato</string>
+  <string name="shortcut-warn">Invia un\'avvertimento all\'utente, senza annullare la modifica</string>
   <string name="shortcut-revert">Annulla la modifica</string>
   <string name="shortcut-x-raw">Avvia l\'elemento N del menu di ripristino e di avvertimento</string>
   <string name="shortcut-x-revert">Avvia l\'elemento N nel menu di ripristino</string>
-  <string name="shortcut-watch" fuzzy="true">Inserisce una pagina visualizzata nella lista degli osservati speciali</string>
-  <string name="shortcut-unwatch" fuzzy="true">Rimuove una pagina visualizzata dalla lista degli osservati speciali</string>
+  <string name="shortcut-watch">Inserisce una pagina visualizzata nella tua lista degli osservati speciali</string>
+  <string name="shortcut-unwatch">Rimuove una pagina visualizzata dalla tua lista degli osservati speciali</string>
   <string name="shortcut-x-warn">Avvia l\'elemento N del menu di avvertimento</string>
   <string name="shortcut-good">Marca come buona la modifica attualmente mostrata</string>
   <string name="shortcut-open-in-huggle">Apri la pagina attualmente mostrata</string>
@@ -577,7 +577,7 @@
   <string name="shortcut-revert-agf-1">Annulla l\'ultima revisione, presupponendo la buona fede</string>
   <string name="shortcut-browser-close-tab">Chiudi una scheda del browser</string>
   <string name="shortcut-tab">Apre una nuova scheda</string>
-  <string name="shortcut-rw-stay" fuzzy="true">Annulla la modifica attuale, avverte un utente e rimane sulla pagina</string>
+  <string name="shortcut-rw-stay">Annulla la modifica attuale, avverti l\'utente e rimani nella pagina</string>
   <string name="shortcut-revert-and-stay">Ripristina la versione attuale e rimani sulla pagina</string>
   <string name="shortcut-user-contribs-browser">Apre i contributi dell\'utente in un browser</string>
   <string name="warning-title">Avverti $1</string>
@@ -676,21 +676,21 @@
   <string name="feature-nfru">Questa funzionalità è solo per gli utenti IP</string>
   <string name="report-no-user">Nessun utente è stato scelto per la segnalazione, per favore prima scegli un utente</string>
   <string name="welcome-show">Visualizza questo messaggio anche la prossima volta che si avvia Huggle</string>
-  <string name="welcome-tp-empty-fail" fuzzy="true">Questo utente non ha una pagina di discussione vuota, sei sicuro di volergli inviare un messaggio?</string>
+  <string name="welcome-tp-empty-fail">Questo utente non ha una pagina di discussione vuota, sei sicuro di volergli inviare un messaggio?</string>
   <string name="welcome-page-miss-fail">Huggle non è riuscito a recuperare il contenuto della pagina di discussione dell\'utente, sei sicuro di volergli inviare un messaggio di benvenuto?</string>
-  <string name="cr-newer-edits" fuzzy="true">Confitto risolto: ripristinate tutte le modifiche, incluse le nuove modifiche. Le modifiche provenivano dallo stesso utente: $1.</string>
+  <string name="cr-newer-edits">Confitto risolto: ripristinate tutte le modifiche, incluse le nuove modifiche. Le modifiche provenivano dallo stesso utente: $1.</string>
   <string name="cr-resolved-same-user">Conflitto risolto: ripristinate tutte le modifiche incluse le nuove modifiche, fatte dagli stessi utenti: $1</string>
   <string name="cr-stop-new-edit">Conflitto risolto: nessuna azione è stata eseguita - ci sono nuove modifiche a $1</string>
-  <string name="cr-stop-multiple-same" fuzzy="true">Conflitto risolto: non effettuare alcuna azione - ci sono modifiche multiple dello stesso utente a $1</string>
-  <string name="cr-revert-same-user" fuzzy="true">Conflitto risolto: annullare tutte le modifiche - ci sono modifiche multiple da parte dello stesso utente a $1</string>
-  <string name="cr-message-same" fuzzy="true">Ci sono modifiche multiple a $1 da parte dello stesso utente, sei sicuro di volerle annullare?</string>
+  <string name="cr-stop-multiple-same">Conflitto risolto: non effettuare alcuna azione - ci sono modifiche multiple dello stesso utente a $1</string>
+  <string name="cr-revert-same-user">Conflitto risolto: annullate tutte le modifiche - ci sono modifiche multiple da parte dello stesso utente a $1</string>
+  <string name="cr-message-same">Ci sono modifiche multiple a $1 da parte dello stesso utente, sei sicuro di volerle annullare?</string>
   <string name="cr-message-new">Ci sono nuove modifiche a $1. Sei sicuro di volerle veramente annullare?</string>
   <string name="cr-message-not-same">Ci sono nuove modifiche fatte a $1 da diversi utenti. Sei sicuro di volerle annullare tutte? (probabilmente non riuscirà in ogni caso a causa di un token vecchio.)</string>
   <string name="preferences-delete-using-filter">Non puoi cancellare un filtro attualmente in uso</string>
-  <string name="preferences-extension-disabled" fuzzy="true">La disattivazione di questa estensione è già prevista al prossimo avvio di Huggle</string>
-  <string name="preferences-extension-disabled-restart" fuzzy="true">La disattivazione di questa estensione è già prevista al prossimo avvio di Huggle</string>
-  <string name="preferences-extension-enabled" fuzzy="true">La disattivazione di questa estensione non è prevista al prossimo avvio di Huggle</string>
-  <string name="preferences-extension-enabled-restart" fuzzy="true">L\'estensione è stata attivata, tuttavia, è necessario riavviare Huggle per farla partire</string>
+  <string name="preferences-extension-disabled">La disattivazione di questa estensione è già prevista al prossimo avvio di Huggle</string>
+  <string name="preferences-extension-disabled-restart">La disattivazione di questa estensione è già prevista al prossimo avvio di Huggle</string>
+  <string name="preferences-extension-enabled">La disattivazione di questa estensione non è prevista al prossimo avvio di Huggle</string>
+  <string name="preferences-extension-enabled-restart">L\'estensione è stata attivata, tuttavia, è necessario riavviare Huggle per renderla effettiva</string>
   <string name="preferences-watchlist-watch">Aggiungi agli osservati speciali</string>
   <string name="preferences-watchlist-unwatch">Rimuovi dagli osservati speciali</string>
   <string name="preferences-watchlist-preferences">Segui le tue preferenze su wiki</string>
@@ -704,7 +704,7 @@
   <string name="protect-request-fail-notime">La query non ha restituito alcun timestamp. Potrebbe essere un bug di mediawiki. Interruzione della query</string>
   <string name="message-fail">Impossibile recapitare il messaggio</string>
   <string name="edit-conflict">Conflitto di edizione</string>
-  <string name="page-tag-nodescription" fuzzy="true">non vi è alcuna descrizione per questo tag :/</string>
+  <string name="page-tag-nodescription">Non c\'è alcuna descrizione per questo tag</string>
   <string name="page-tag-fail">Impossibile taggare la pagina</string>
   <string name="page-tag-error">Impossibile taggare la pagina, l\'errore è: $1</string>
   <string name="page-unknown">Pagina sconosciuta</string>
@@ -715,9 +715,9 @@
   <string name="block-alreadyblocked">L\'utente è già bloccato</string>
   <string name="report-fail">Impossibile segnalare l\'utente perché: $1</string>
   <string name="report-page-fail">Errore: impossibile recuperare la pagina di report in $1</string>
-  <string name="report-page-fail-time" fuzzy="true">Impossibile recuperare il timestamp della pagina attuale di report, errore dell\'api:\n\n $1</string>
+  <string name="report-page-fail-time">Impossibile recuperare il timestamp della pagina attuale di report, errore dell\'API:\n\n $1</string>
   <string name="report-unable">Impossibile segnalare l\'utente</string>
-  <string name="about-python-with" fuzzy="true">, con supporto python</string>
+  <string name="about-python-with">, con supporto python</string>
   <string name="about-python-without">senza supporto python</string>
   <string name="about-qt">, compilato usando QT $1 In esecuzione su QT $1</string>
   <string name="about-info">, basato su $1, piattaforma di destinazione: $2</string>
@@ -726,7 +726,7 @@
   <string name="projects">Progetti</string>
   <string name="unable-to-retrieve-user-list">Impossibile recuperare elenco utenti: $1</string>
   <string name="login-no-userinfo">Il sito non ha restituito alcuna informazione sull\'utente</string>
-  <string name="login-invalid-register-date" fuzzy="true">Data di registrazione restituita da MediaWiki non valida</string>
+  <string name="login-invalid-register-date">Data di registrazione restituita da MediaWiki non valida</string>
   <string name="login-site-info-query-failed">Query di informazioni sul sito per $1 non è riuscita: $2</string>
   <string name="login-no-site-info-returned">Nessun informazione sul sito è stata restituita per questo wiki</string>
   <string name="loading-main-window">Caricamento finestra principale Huggle</string>

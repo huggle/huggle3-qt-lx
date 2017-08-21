@@ -143,7 +143,7 @@
   <string name="config-templatetext">Visa text</string>
   <string name="config-template">Mall</string>
   <string name="config-blockreason">Standardanledning för blockering</string>
-  <string name="config-blocktime" fuzzy="true">Standardblockeringslängd för</string>
+  <string name="config-blocktime">Standardlängd för blockering</string>
   <string name="config-blocktimeanon">anonyma användare</string>
   <string name="config-blocktimereg">registrerade användare</string>
   <string name="config-summaryprompt">Ange sammanfattning</string>
@@ -204,7 +204,7 @@
   <string name="login-failed-edit">Inloggningen misslyckades på $1: Du har inte tillräckligt med redigeringar på detta projekt.</string>
   <string name="login-retrieving-info">Hämtar användarinformation på $1</string>
   <string name="login-password-empty">Lösenordet du angav var tomt</string>
-  <string name="login-fail-wrong-name" fuzzy="true">Du gav inte ett korrekt användarnamn för att logga in</string>
+  <string name="login-fail-wrong-name">Du gav ingen användarnamn för inloggningen</string>
   <string name="login-abort">Avbryt</string>
   <string name="login-start">Logga in</string>
   <string name="login-oauth-notsupported">Metoden stöds inte för närvarande</string>
@@ -230,12 +230,12 @@
   <string name="login-error-nouser">Användaren finns inte</string>
   <string name="login-error-password">Felaktigt lösenord</string>
   <string name="login-error-projdisabled">Huggle är för närvarande inaktiverad på $1.</string>
-  <string name="login-error-unknown" fuzzy="true">Kan inte logga in på $1.</string>
+  <string name="login-error-unknown">Kan inte logga in på $1.</string>
   <string name="login-error-version">Denna version är för gammal. Uppdatera till den senaste versionen.</string>
   <string name="login-ro-title">Byt till skrivskyddat</string>
   <string name="login-ro-question">En eller fler projekt ($1) låter dig inte logga in med redigeringsbehörigheter (anledning: $2). Vill du byta till skrivskyddat läge istället?</string>
   <string name="login-ro-info">Projektet $1 byte till skrivskyddat läge</string>
-  <string name="main-stat" fuzzy="true">$1 redigeringar per minut $2 tillbakarullningar per minut, nivå $3</string>
+  <string name="main-stat">$1 redigeringar per minut, $2 tillbakarullningar per minut, nivå $3</string>
   <string name="main-menu-provider-stop">Stoppa leverantör</string>
   <string name="main-menu-provider-resume">Återuppta leverantör</string>
   <string name="main-no-reason">Ingen anledning angavs av användaren</string>
@@ -515,6 +515,7 @@
   <string name="preferences-sounds-enable-irc">Spela upp ljud när ett meddelande hämtas i HAN</string>
   <string name="preferences-sounds-minimal-score">Minimala redigeringspoäng för notifikation</string>
   <string name="preferences-queue-size">Köstorlek</string>
+  <string name="preferences-empty-queue-page">Tom kösida:</string>
   <string name="fail">Misslyckades</string>
   <string name="request">Begär</string>
   <string name="requesting">Begär</string>
@@ -525,7 +526,7 @@
   <string name="page-unknown">Okänd sida</string>
   <string name="namespace">Namnrymd</string>
   <string name="block-alreadyblocked">Användaren är redan blockerad</string>
-  <string name="report-unable" fuzzy="true">Kunde inte rapportera användare :(</string>
+  <string name="report-unable">Kunde inte rapportera användare</string>
   <string name="about-python-with" fuzzy="true">, med Python-stöd</string>
   <string name="about-python-without">utan Python-stöd</string>
   <string name="about-qt">, kompilerades med QT $1 Körs på QT $1</string>
@@ -548,4 +549,6 @@
   <string name="main-revert-type-made-white-list">gjord av en användare som är vitlistad</string>
   <string name="main-revert-warn">Denna redigering är $1, så även om det ser ut som det är vandalism kanske det inte är det, är du säker på att du vill återställa den?</string>
   <string name="query-protected-link">Skyddad länk</string>
+  <string name="queue-empty-title">Den är tom</string>
+  <string name="queue-empty-text">Det finns ingenting annat i kön...</string>
 </resources>

@@ -260,7 +260,7 @@
   <string name="login-error-nouser">Użytkownik nie istnieje</string>
   <string name="login-error-password">Nieprawidłowe hasło</string>
   <string name="login-error-projdisabled">Huggle jest obecnie wyłączony na $1.</string>
-  <string name="login-error-unknown" fuzzy="true">Nie można zalogować się do $1.</string>
+  <string name="login-error-unknown">Nie można zalogować się do $1.</string>
   <string name="login-error-version">Ta wersja jest nieaktualna. Aktualizuj do najnowszej wersji.</string>
   <string name="login-error-whitelist">Nie udało się załadować białej listy użytkowników dla $1.</string>
   <string name="main-no-reason">Użytkownik nie podał powodu</string>

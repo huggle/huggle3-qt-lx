@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">বাংলা</string>
+  <string name="autorelog">পরের বার জিজ্ঞাসা না করে এটি করুন</string>
   <string name="isrtl">false</string>
   <string name="add">যোগ</string>
   <string name="cancel">বাতিল</string>
@@ -80,7 +81,7 @@
   <string name="block-token-e1">টোকেন সংগ্রহ করা যাবে না: $1</string>
   <string name="block-error-no-info">কোনো ব্যবহারকারী তথ্য কোয়েরিটিতে উপস্থিত নেই (আপনি কি প্রশাসক?)</string>
   <string name="block-type">বাধা দিন / মুক্ত করুন</string>
-  <string name="block-admin" fuzzy="true">বাধাদানের প্রশাসক</string>
+  <string name="block-admin">বাধাদানের প্রশাসক</string>
   <string name="block-none">বাধা দানের জন্য কোনো ব্যবহারকারী নেই</string>
   <string name="contribution-browser-user-info">$1 ব্যবহারকারীর সাম্প্রতিক অবদানসমূহ দেখানো হচ্ছে</string>
   <string name="config-function">ক্রিয়া</string>
@@ -236,7 +237,7 @@
   <string name="login-fail-css">$1-এ প্রবেশকরণ ব্যর্থ হয়েছে: ব্যবহারকারী কনফিগারেশন পুনরুদ্ধার করা যায়নি। Special:MyPage/huggle3.css অনুপস্থিত। আপনি কি আপনার নামস্থানে huggle3.css তৈরি করেছেন?</string>
   <string name="login-fail-enable-true">$1-এ প্রবেশকরণ ব্যর্থ হয়েছে: আপনার ব্যক্তিগত কনফিগে enable:true নেই।</string>
   <string name="login-fail-no-info">$1-এ প্রবেশকরণ ব্যর্থ হয়েছে: ব্যবহারকারীর তথ্য সংগ্রহ করা যায়নি: $2</string>
-  <string name="login-bot" fuzzy="true">BotPassword ও উত্তরাধিকার প্রবেশের মধ্যে পার্থক্য কি?</string>
+  <string name="login-bot">BotPassword ও উত্তরাধিকার প্রবেশের মধ্যে পার্থক্য কি?</string>
   <string name="login-fail-parse-config">$1-এ প্রবেশকরণ ব্যর্থ হয়েছে: ব্যবহারকারীর কনফিগারেশন বিশ্লেষণ করতে অক্ষম। আরো বিস্তারিত জানার জন্য ডিবাগ লগ দেখুন।</string>
   <string name="login-fail-user-data">$1-এ প্রবেশকরণ ব্যর্থ হয়েছে: ব্যবহারকারীর তথ্য সংগ্রহ করা যায়নি। API কোয়েরি কোন উপাত্ত প্রদান করেনি।</string>
   <string name="login-fail-rollback-rights">$1-এ প্রবেশকরণ ব্যর্থ হয়েছে: এই প্রকল্পে আপনার রোলব্যাকের অনুমতি নেই।</string>
@@ -256,6 +257,7 @@
   <string name="login-progress-language">বার্তার ফাইল হালনাগাদ করা হচ্ছে...</string>
   <string name="login-progress-global">বৈশ্বিক কনফিগারেশন পরীক্ষা করা হচ্ছে...</string>
   <string name="login-progress-config">কনফিগারেশনের পাতাগুলি পরীক্ষা করা হচ্ছে...</string>
+  <string name="login-progress-yaml">$1-এর জন্য স্থানীয় YAML কনফিগারেশন পরীক্ষা করা হচ্ছে</string>
   <string name="login-progress-local">$1-এর জন্য স্থানীয় কনফিগারেশন পরীক্ষা করা হচ্ছে</string>
   <string name="login-progress-user">$1-এর জন্য ব্যবহারকারী কনফিগারেশন পরীক্ষা করা হচ্ছে</string>
   <string name="login-progress-user-info">$1-এর জন্য ব্যবহারকারী তথ্য পরীক্ষা করা হচ্ছে</string>
@@ -280,6 +282,7 @@
   <string name="login-error-unknown">$1-এ প্রবেশ করা যাচ্ছে না।</string>
   <string name="login-error-version">এই সংস্করণটি পুরনো। সর্বশেষ সংস্করণে হালনাগাদ করুন।</string>
   <string name="login-error-whitelist">$1-এর জন্য সাদাতালিকা লোড করতে ব্যর্থ হয়েছে।</string>
+  <string name="login-ro-title">শুধু-পঠনে যান</string>
   <string name="main-stat">মিনিট প্রতি $1টি সম্পাদনা মিনিট প্রতি $2টি বাতিল, স্তর $3</string>
   <string name="main-menu-provider-stop">প্রদানকারীকে থামান</string>
   <string name="main-menu-provider-resume">প্রদানকারীকে বিরতি দিন</string>
@@ -410,9 +413,11 @@
   <string name="main-revert-newpage-title">এটি বাতিল করা যাবে না</string>
   <string name="main-revert-newpage">এটি একটি নতুন পাতা, তাই এটি বাতিল করা যাবে না। আপনি এটিকে ট্যাগ করতে অথবা অপসারণ করতে পারেন।</string>
   <string name="main-restore-text-fail">সংস্করণ পুনরুদ্ধার করতে অক্ষম, কারণ এটা জন্য কোন লেখা উপলব্ধ নেই</string>
-  <string name="main-restore-data-fail" fuzzy="true">সংস্করণ পুনরুদ্ধার করতে অক্ষম, কারণ উইকি নির্বাচিত সংস্করণটির জন্য কোন উপাত্ত প্রদান করেনি</string>
+  <string name="main-restore-data-fail">সংস্করণ পুনরুদ্ধার করতে অক্ষম, কারণ উইকি নির্বাচিত সংস্করণটির জন্য কোন উপাত্ত প্রদান করেনি</string>
   <string name="main-welcome-user">স্বাগতম ব্যবহারকারী</string>
+  <string name="main-custom-reason-fail">আপনি বৈধ কারণ প্রদান করেননি</string>
   <string name="main-report-username">ব্যবহারকারী নাম প্রতিবেদন করুন</string>
+  <string name="main-report-user">ব্যবহারকারীকে প্রতিবেদন করুন</string>
   <string name="main-edit-user-talk">ব্যবহারকারী আলাপ সম্পাদনা করুন</string>
   <string name="message-title">বার্তা $1</string>
   <string name="message-help">এক বা উভয় বিষয় এবং সারাংশ উল্লেখ করে। যদি কোন সারাংস দেয়া না হয়, বিষয়টি ব্যবহৃত হবে, যদি কোন বিষয় দেয়া না হয়, তাহলে কোন শীর্ষ যোগ করা হবে না।</string>
@@ -426,7 +431,7 @@
   <string name="message-error">$1 কে বার্তা দিতে ব্যর্থ! দয়া করে লগ পরীক্ষা করুন!</string>
   <string name="message-fail-retrieve-talk">ব্যবহারকারীর আলাপ পাতাটি সংগ্রহ করা সম্ভব নয়</string>
   <string name="message-done">$2-এ $1 কে সফলভাবে বার্তা দেয়া হয়েছে</string>
-  <string name="message-fail-token-1" fuzzy="true">সম্পাদনা টোকেনটি সংগ্রহ করা যায়নি</string>
+  <string name="message-fail-token-1">সম্পাদনা টোকেনটি সংগ্রহ করা যায়নি</string>
   <string name="message-fail-token-2">কোন টোকেন অনুরোধ দ্বারা ফেরত আসে নি</string>
   <string name="protect-request-title">$1-এর সুরক্ষার অনুরোধ করুন</string>
   <string name="protect-reason">কারণ:</string>
@@ -504,7 +509,7 @@
   <string name="score-only-whole-word">শুধুমাত্র পূর্ণ শব্দ মেলায়</string>
   <string name="score-take-any-word">যেকোন শব্দ মেলায় যাতে এই স্ট্রিং আছে</string>
   <string name="ssl-is-not-supported">আপনি SSL ব্যবহার করার জন্য অনুরোধ করেছেন কিন্তু $1 এটি সমর্থন করে না।</string>
-  <string name="ssl-required" fuzzy="true">$1 ওয়েবসার্ভারের SSL সক্রিয় থাকা প্রয়োজন। দয়া করে SSL চালু করুন এবং আবার চেষ্টা করুন। আপনি যদি এটি সক্রিয় করতে না পারেন, তাহলে আপনাকে আপনার সিস্টেমের জন্য উন্মুক্ত SSL লাইব্রেরি ইনস্টল করতে হতে পারে।</string>
+  <string name="ssl-required">$1 ওয়েবসার্ভারের SSL সক্রিয় থাকা প্রয়োজন। দয়া করে SSL চালু করুন এবং আবার চেষ্টা করুন। আপনি যদি এটি সক্রিয় করতে না পারেন, তাহলে আপনাকে আপনার সিস্টেমের জন্য OpenSSL লাইব্রেরি ইনস্টল করতে হতে পারে।</string>
   <string name="uaa-not-supported">UAA উপলব্ধ নয়</string>
   <string name="uaa-not-supported-text">\"প্রশাসকের দৃষ্টি আকর্ষণের জন্য ব্যবহারকারী নাম\" নোটিশবোর্ড আপনার উইকিতে উপলব্ধ নয়।</string>
   <string name="uaa-reporting">$1 কে UAAতে প্রতিবেদন করুন</string>
@@ -519,7 +524,7 @@
   <string name="revert-confirm-same">এটি একই ব্যবহারকারী $1-এর করা অন্য সংস্করণে ফেরত নিবে। অব্যাহত রাখবেন?</string>
   <string name="revert-confirm-warned">এটি $1-এর করা একটি সংস্করণে ফেরত নিবে, যাকে আগে সতর্ক করা হয়েছিল। অব্যাহত রাখবেন?</string>
   <string name="revert-error-first">এই সম্পাদনা এই পাতার প্রথম সম্পাদনা, এবং এটা বাতিল করা যাবে না।</string>
-  <string name="revert-only" fuzzy="true">সম্পাদনাটি এই পাতায় করা একমাত্র সম্পাদনা।</string>
+  <string name="revert-only">এই সম্পাদনাটি এই পাতায় করা একমাত্র সম্পাদনা।</string>
   <string name="revert-creator">পাতার প্রণেতা দ্বারা করা শেষ সম্পাদনাটি ছিল, $1</string>
   <string name="revert-preflightcheck">Preflight পরীক্ষা</string>
   <string name="revert-delete-instead">এর পরিবর্তে পাতাটি অপসারণ করবেন?</string>
@@ -562,7 +567,7 @@
   <string name="shortcut-next">পরের সম্পাদনায় যান</string>
   <string name="shortcut-suspicious">সন্দেহজনক হিসাবে সম্পাদনা চিহ্নিত করে</string>
   <string name="shortcut-back">পূর্বে প্রদর্শিত সম্পাদনাটিতে যায়</string>
-  <string name="shortcut-forward" fuzzy="true">একটি সম্পাদনা যেটি আপনি পূর্বে লোড করেছিলেন কিন্তু পরে ফেরত এসেছেন তাতে যায়</string>
+  <string name="shortcut-forward">একটি সম্পাদনা যেটি আপনি পূর্বে লোড করেছিলেন কিন্তু পরে ফেরত এসেছেন তাতে যায়</string>
   <string name="shortcut-warn">সম্পাদনা বাতিল করা ছাড়া, ব্যবহারকারীকে সতর্ক পাঠায়</string>
   <string name="shortcut-revert">সম্পাদনা বাতিল করে</string>
   <string name="shortcut-x-raw">বাতিল ও সতর্কতা মেনুতে N তম আইটেম চালু করে</string>
@@ -578,7 +583,7 @@
   <string name="shortcut-browser-close-tab">ব্রাউজারের একটি ট্যাব বন্ধ করে</string>
   <string name="shortcut-tab">ব্রাউজারের একটি ট্যাব খোলে</string>
   <string name="shortcut-rw-stay" fuzzy="true">বর্তমান সম্পাদনা বাতিল করে, ব্যবহারকারীকে সতর্ক করে ও পাতায় অবস্থান করে</string>
-  <string name="shortcut-revert-and-stay" fuzzy="true">বর্তমান সম্পাদনা বাতিল করে ও পাতায় অবস্থান করে</string>
+  <string name="shortcut-revert-and-stay">বর্তমান সম্পাদনা বাতিল করে ও পাতায় অবস্থান করে</string>
   <string name="shortcut-user-contribs-browser">ব্রাউজারে ব্যবহারকারী অবদান খোলে</string>
   <string name="warning-title">$1 কে সতর্ক করুন</string>
   <string name="warning-levelgroup">সতর্কতা স্তর</string>
@@ -660,7 +665,7 @@
   <string name="editquery-token-error">সম্পাদনা টোকেনটি সংগ্রহ করা যায়নি</string>
   <string name="editquery-nocsrft">কোন CSRF টোকেন নেই</string>
   <string name="editquery-error-retrieve-prev">পৃষ্ঠার পূর্বের বিষয়বস্তু সংগ্রহ করা যায়নি: $1</string>
-  <string name="editquery-error-append" fuzzy="true">আপনি পৃষ্ঠার সম্পাদনার জন্য উভয় পরিশেষে এবং শুরুতে যোগ ব্যবহার করতে পারবেন না</string>
+  <string name="editquery-error-append">আপনি একটি পৃষ্ঠার সম্পাদনার জন্য পরিশেষে এবং শুরুতে যোগ উভয় ব্যবহার করতে পারবেন না</string>
   <string name="editquery-error-badtoken">খারাপ টোকেন</string>
   <string name="editquery-invalid-token">$1 সম্পাদনা করা যায়নি কারণ আমার ক্যাশের মধ্যে যে টোকেন ছিল তা আর বৈধ নয়। দয়া করে আরো একবার পাতাটি সম্পাদনা করার চেষ্টা করুন</string>
   <string name="provider-failure">$2-এ ফিড প্রদানকারী $1 ব্যর্থ হয়েছে, কিছু বিকল্প প্রদানকারী খুঁজে বের করার চেষ্টা হচ্ছে</string>
@@ -681,8 +686,8 @@
   <string name="welcome-show">এছাড়াও পরবর্তী সময় Huggle চালু করার সময় এই বার্তা প্রদর্শন করান</string>
   <string name="welcome-tp-empty-fail">এই ব্যবহারকারী একটি খালি আলাপ পাতা নেই, আপনি কি নিশ্চিত আপনি তাকে একটি বার্তা পাঠাতে চান?</string>
   <string name="welcome-page-miss-fail">Huggle ব্যবহারকারী আলাপ পাতায় বিষয়বস্তু পুনরুদ্ধার করতে অক্ষম ছিল, আপনি কি নিশ্চিত আপনি তাদেরকে একটি স্বাগতম বার্তা পাঠাতে চান?</string>
-  <string name="cr-newer-edits" fuzzy="true">দ্বন্দ্ব সমাধান হয়েছে: নতুন সম্পাদনাসহ, সব সম্পাদনা বাতিল করা হয়েছে। সম্পাদনাগুলি একই ব্যবহারকারী করেছেন: $1।</string>
-  <string name="cr-resolved-same-user" fuzzy="true">দ্বন্দ্ব সমাধান হয়েছে: একই ব্যবহারকারীর করা নতুন সম্পাদনাসহ, সব সম্পাদনা বাতিল করা হয়েছে। সম্পাদনাগুলি একই ব্যবহারকারী করেছেন: $1</string>
+  <string name="cr-newer-edits">দ্বন্দ্ব সমাধান হয়েছে: নতুন সম্পাদনাসহ, সব সম্পাদনা বাতিল করা হয়েছে। সম্পাদনাগুলি একই ব্যবহারকারী করেছেন: $1।</string>
+  <string name="cr-resolved-same-user">দ্বন্দ্ব সমাধান হয়েছে: একই ব্যবহারকারীর করা নতুন সম্পাদনাসহ, সব সম্পাদনা বাতিল করা হয়েছে: $1</string>
   <string name="cr-stop-new-edit">দ্বন্দ্ব সমাধান হয়েছে: কোন পদক্ষেপ সঞ্চালন করা হয়নি - $1-এ নতুন সম্পাদনা ছিল</string>
   <string name="cr-stop-multiple-same">দ্বন্দ্ব সমাধান হয়েছে: কোন পদক্ষেপ সঞ্চালন করা হয়নি - $1-এ একই ব্যবহারকারীর একাধিক সম্পাদনা ছিল</string>
   <string name="cr-revert-same-user">দ্বন্দ্ব সমাধান হয়েছে: সব সম্পাদনা বাতিল করা হয়েছে - $1-এ একই ব্যবহারকারীর একাধিক সম্পাদনা ছিল</string>
@@ -690,9 +695,9 @@
   <string name="cr-message-new">$1-এ নতুনতর সম্পাদনা আছে। আপনি কি নিশ্চিত আপনি সব বাতিল করতে চান?</string>
   <string name="cr-message-not-same">$1-এ ভিন্ন ব্যবহারকারীর করা নতুনতর সম্পাদনা আছে। আপনি কি নিশ্চিত আপনি সব বাতিল করতে চান? (তবে এটা সম্ভবত পুরাতন টোকেন থাকার কারণে ব্যর্থ হবে।)</string>
   <string name="preferences-delete-using-filter">বর্তমানে ব্যবহৃত হওয়া ছাঁকনি আপনি অপসারণ করতে পারবেন না</string>
-  <string name="preferences-extension-disabled" fuzzy="true">এই এক্সটেনশনটি ইতিমধ্যে পরবর্তী হাগল সূচনার সময় নিষ্ক্রিয় করতে নির্ধারিত হয়েছে</string>
+  <string name="preferences-extension-disabled">এই এক্সটেনশনটি ইতিমধ্যে পরবর্তী হাগল সূচনার সময় নিষ্ক্রিয় করতে নির্ধারিত হয়েছে</string>
   <string name="preferences-extension-disabled-restart">পরবর্তী হাগল সূচনার সময় এক্সটেনশন নিষ্ক্রিয় করতে নির্ধারিত হয়েছিল</string>
-  <string name="preferences-extension-enabled" fuzzy="true">এই এক্সটেনশনটি পরবর্তী হাগল সূচনার সময় নিষ্ক্রিয় করতে নির্ধারিত হয়নি</string>
+  <string name="preferences-extension-enabled">এই এক্সটেনশনটি পরবর্তী হাগল সূচনার সময় নিষ্ক্রিয় করতে নির্ধারিত হয়নি</string>
   <string name="preferences-extension-enabled-restart">এক্সটেনশন সক্রিয় করা হয়েছে, কিন্তু এটি করতে আপনাকে হাগল পুনঃসূচনা করতে হবে</string>
   <string name="preferences-watchlist-watch">নজরতালিকায় যোগ করুন</string>
   <string name="preferences-watchlist-unwatch">নজরতালিকা থেকে অপসারণ করুন</string>
@@ -701,6 +706,8 @@
   <string name="preferences-sounds-enable-queue">সারিতে নতুন আইটেম যোগ হলে শব্দ করুন</string>
   <string name="preferences-sounds-enable-irc">HAN-এ একটি বার্তা পেলে শব্দ করুন</string>
   <string name="preferences-sounds-minimal-score">বিজ্ঞপ্তির জন্য ন্যূনতম সম্পাদন স্কোর</string>
+  <string name="preferences-queue-size">সারির আকার</string>
+  <string name="preferences-empty-queue-page">সারির পাতা খালি:</string>
   <string name="fail">ব্যর্থ হয়েছে</string>
   <string name="request">অনুরোধ করুন</string>
   <string name="requesting">অনুরোধ করা হচ্ছে</string>
@@ -757,4 +764,7 @@
   <string name="query-request-noaction">API অনুরোধের জন্য কোনো পদক্ষেপ প্রদান করা হয়নি</string>
   <string name="query-login-undefined">প্রবেশ টোকেনের একটি ব্যবহারকারী সংজ্ঞায়িত মান প্রয়োজন, এটি মেমরির মধ্যে সংরক্ষিত নয়</string>
   <string name="query-protected-link">সুরক্ষিত সংযোগ</string>
+  <string name="queue-empty-title">এটি খালি</string>
+  <string name="queue-empty-text">সারিটিতে আর অন্য কিছু নেই...</string>
+  <string name="tip3">অধিকাংশ পছন্দ উইকির [[Special:MyPage/huggle3.css]]-এ সংরক্ষণ করা হয়, আপনি তাদের সেখানে পরিবর্তন করতে পারেন!</string>
 </resources>

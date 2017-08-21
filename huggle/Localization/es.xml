@@ -173,7 +173,7 @@
   <string name="config-template">Plantilla</string>
   <string name="config-promptforblock">Preguntar si se quiere bloquear cuando se advierte a un usuario con advertencia final</string>
   <string name="config-blockreason">Razón de bloqueo por defecto</string>
-  <string name="config-blocktime" fuzzy="true">Duración de bloqueo para</string>
+  <string name="config-blocktime">Duración de bloqueo predeterminada</string>
   <string name="config-blocktimeanon">usuarios anónimos</string>
   <string name="config-blocktimereg">usuarios registrados</string>
   <string name="config-summaryprompt">Escribir resumen</string>
@@ -280,7 +280,7 @@
   <string name="login-error-nouser">El usuario no existe</string>
   <string name="login-error-password">Contraseña incorrecta</string>
   <string name="login-error-projdisabled">Huggle está actualmente desactivado en este proyecto.</string>
-  <string name="login-error-unknown" fuzzy="true">No se puede acceder a $1.</string>
+  <string name="login-error-unknown">No se puede acceder a $1.</string>
   <string name="login-error-version">Esta versión está desactualizada. Actualízala a la versión más reciente.</string>
   <string name="login-error-whitelist">No se pudo cargar la lista blanca de usuarios para $1.</string>
   <string name="login-ro-title">Cambiar a solo lectura</string>
@@ -739,7 +739,7 @@
   <string name="report-page-fail">Error: no se puede recuperar la página de denuncias en $1</string>
   <string name="report-page-fail-time" fuzzy="true">No se puede recuperar la fecha de la página actual de denuncias. Fallo de API:\n\n $1</string>
   <string name="report-unable" fuzzy="true">No ha sido posible denunciar al usuario :(</string>
-  <string name="about-python-with" fuzzy="true">, con compatibilidad con Python</string>
+  <string name="about-python-with">, con compatibilidad con Python</string>
   <string name="about-python-without"> sin compatibilidad con Python</string>
   <string name="about-qt">, compilado usando QT $1 ejecutándose en QT $1</string>
   <string name="about-info">, basado en $1, plataforma de destino: $2</string>

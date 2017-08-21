@@ -561,6 +561,7 @@
   <string name="shortcut-back">이전에 표시된 편집으로 이동</string>
   <string name="shortcut-warn">편집을 되돌리지 않고 사용자에게 경고 보내기</string>
   <string name="shortcut-revert">편집 되돌리기</string>
+  <string name="shortcut-unwatch">표시되는 문서를 주시문서 목록에서 제거합니다</string>
   <string name="shortcut-good">현재 보이는 편집을 정상 편집으로 표시</string>
   <string name="shortcut-open-in-huggle">현재 표시된 문서 열기</string>
   <string name="shortcut-open">브라우저에서 현재 표시된 편집 열기</string>
@@ -740,4 +741,8 @@
   <string name="query-login-undefined">로그인 토큰에는 사용자 정의 값이 필요하지만, 메모리에 저장되어 있지 않습니다</string>
   <string name="query-protected-link">보호된 링크</string>
   <string name="queue-empty-title">비어 있습니다</string>
+  <string name="queue-empty-text">그 밖의 항목이 대기열에 없습니다...</string>
+  <string name="tip1">Huggle은 마치 다른 모든 브라우저처럼 탭을 지원합니다! 편집을 하다가 나중에 이를 유지하고 싶으면 새 탭을 열어서 대기열을 확인해 나가시면 됩니다. 대기열은 모든 탭끼리 공유됩니다.</string>
+  <string name="tip3">대부분의 환경 설정은 위키의 [[Special:MyPage/huggle3.css]]에 저장되어 있으므로 해당 장소에서도 변경이 가능합니다!</string>
+  <string name="tip4">화면 상의 거의 모든 소도구는 안전하게 닫을 수 있습니다. (둘러보기 표시줄 제외)</string>
 </resources>
