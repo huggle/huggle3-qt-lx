@@ -323,6 +323,8 @@ void VandalNw::Rescore(WikiEdit *edit)
 
 void VandalNw::Message()
 {
+    if (this->ui->lineEdit->text().isEmpty())
+        return;
     if (this->Irc->IsConnected())
     {
         this->Irc->SendMessage(this->ui->lineEdit->text(), this->Site2Channel[Configuration::HuggleConfiguration->Project]);
