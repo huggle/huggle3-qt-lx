@@ -1,6 +1,9 @@
 #! /bin/bash
 
 g++ --version
+cmake --version
+
+apt-get install cmake
 
 cd ./huggle
 
