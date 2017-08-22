@@ -176,7 +176,7 @@ QString Generic::EvaluateWikiPageContents(ApiQuery *query, bool *failed, QString
     {
         if (reason) { *reason = EvaluatePageErrorReason_Unknown; }
         *failed = true;
-        return query->Result->ErrorMessage;
+        return query->GetFailureReason();
     }
     ApiQueryResultNode *rev = query->GetApiQueryResult()->GetNode("rev");
     ApiQueryResultNode *page = query->GetApiQueryResult()->GetNode("page");

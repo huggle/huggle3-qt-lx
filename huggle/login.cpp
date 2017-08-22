@@ -568,7 +568,7 @@ bool Login::RetrieveGlobalConfig()
         {
             if (this->qConfig->Result->IsFailed())
             {
-                this->DisplayError(_l("[[login-error-global]]") + ": " + this->qConfig->Result->ErrorMessage);
+                this->DisplayError(_l("[[login-error-global]]") + ": " + this->qConfig->GetFailureReason());
                 return false;
             }
             ApiQueryResultNode *data = this->qConfig->GetApiQueryResult()->GetNode("rev");
@@ -692,7 +692,7 @@ void Login::RetrieveProjectYamlConfig(WikiSite *site)
         {
             if (query->IsFailed())
             {
-                HUGGLE_DEBUG1("YAML for " + site->Name + " failed to load: " + query->Result->ErrorMessage);
+                HUGGLE_DEBUG1("YAML for " + site->Name + " failed to load: " + query->GetFailureReason());
                 this->FallbackToLegacyConfig(site);
                 return;
             }
@@ -756,7 +756,7 @@ void Login::RetrieveProjectConfig(WikiSite *site)
         {
             if (query->IsFailed())
             {
-                this->DisplayError(_l("login-error-config", site->Name, query->Result->ErrorMessage));
+                this->DisplayError(_l("login-error-config", site->Name, query->GetFailureReason()));
                 return;
             }
             ApiQueryResultNode *data = query->GetApiQueryResult()->GetNode("rev");
@@ -807,7 +807,7 @@ void Login::RetrieveUserConfig(WikiSite *site)
         {
             if (q->IsFailed())
             {
-                this->DisplayError("Login failed unable to retrieve user config: " + q->Result->ErrorMessage);
+                this->DisplayError("Login failed unable to retrieve user config: " + q->GetFailureReason());
                 return;
             }
             ApiQueryResultNode *data = q->GetApiQueryResult()->GetNode("rev");

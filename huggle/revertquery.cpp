@@ -346,7 +346,7 @@ void RevertQuery::CheckPreflight()
         return;
     if (this->qPreflight->IsFailed())
     {
-        Huggle::Syslog::HuggleLogs->Log(_l("revert-fail-pre-flight", this->qPreflight->Result->ErrorMessage));
+        Huggle::Syslog::HuggleLogs->Log(_l("revert-fail-pre-flight", this->qPreflight->GetFailureReason()));
         this->Kill();
         this->Result = new QueryResult();
         this->Status = StatusDone;
@@ -523,7 +523,7 @@ bool RevertQuery::ProcessRevert()
         {
             // failure during revert
             Syslog::HuggleLogs->ErrorLog(_l("revert-fail", this->edit->Page->PageName, "edit failed"));
-            this->Result->SetError(this->eqSoftwareRollback->Result->ErrorMessage);
+            this->Result->SetError(this->eqSoftwareRollback->GetFailureReason());
             this->Kill();
             this->ProcessFailure();
             this->Status = StatusInError;
@@ -590,7 +590,7 @@ bool RevertQuery::ProcessRevert()
         return false;
     if (this->qHistoryInfo->IsFailed())
     {
-        this->DisplayError("Failed to retrieve a list of edits made to this page: " + this->qHistoryInfo->Result->ErrorMessage);
+        this->DisplayError("Failed to retrieve a list of edits made to this page: " + this->qHistoryInfo->GetFailureReason());
         return true;
     }
     QList<ApiQueryResultNode *> revs = this->qHistoryInfo->GetApiQueryResult()->GetNodes("rev");

@@ -99,7 +99,7 @@ bool EditQuery::IsProcessed()
     {
         if (this->qRetrieve->IsFailed())
         {
-            this->SetError(_l("editquery-error-retrieve-prev", this->qRetrieve->Result->ErrorMessage));
+            this->SetError(_l("editquery-error-retrieve-prev", this->qRetrieve->GetFailureReason()));
             this->qRetrieve.Delete();
             return true;
         }

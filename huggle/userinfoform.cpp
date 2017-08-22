@@ -132,7 +132,7 @@ void UserinfoForm::OnTick()
     }
     if (this->qContributions->IsProcessed())
     {
-        if (this->qContributions->Result->IsFailed())
+        if (this->qContributions->IsFailed())
         {
             Syslog::HuggleLogs->ErrorLog(_l("user-history-fail", this->User->Username));
             this->timer->stop();

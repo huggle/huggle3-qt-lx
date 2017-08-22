@@ -194,7 +194,7 @@ void SpeedyForm::OnTick()
         {
             if(this->Template->IsFailed())
             {
-                this->Fail(_l("speedy-fail", this->Template->Result->ErrorMessage));
+                this->Fail(_l("speedy-fail", this->Template->GetFailureReason()));
                 return;
             }
             this->Template = nullptr;

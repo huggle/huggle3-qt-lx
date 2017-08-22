@@ -155,8 +155,7 @@ void QueryPool::CheckQueries()
                     continue;
                 }
             }
-            Syslog::HuggleLogs->ErrorLog("Unable to (un)watchlist " + query->Target + " on " + query->GetSite()->Name +
-                                         " because of: " + query->Result->ErrorMessage);
+            Syslog::HuggleLogs->ErrorLog("Unable to (un)watchlist " + query->Target + " on " + query->GetSite()->Name + " because of: " + query->GetFailureReason());
         } else
         {
             //! \todo The error checks should be implemented to make sure it really did this

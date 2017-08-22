@@ -74,7 +74,7 @@ void ReloginForm::LittleTick()
 
         if (this->qReloginPw->IsFailed())
         {
-            this->Fail(this->qReloginPw->Result->ErrorMessage);
+            this->Fail(this->qReloginPw->GetFailureReason());
             return;
         }
         ApiQueryResultNode *login_ = this->qReloginPw->GetApiQueryResult()->GetNode("login");
@@ -124,7 +124,7 @@ void ReloginForm::LittleTick()
     {
         if (this->qReloginTokenReq->IsFailed())
         {
-            this->Fail(this->qReloginTokenReq->Result->ErrorMessage);
+            this->Fail(this->qReloginTokenReq->GetFailureReason());
             return;
         }
         ApiQueryResultNode *login_ = this->qReloginTokenReq->GetApiQueryResult()->GetNode("login");

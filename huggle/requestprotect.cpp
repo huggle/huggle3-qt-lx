@@ -47,7 +47,7 @@ void RequestProtect::Tick()
         // we are reading the request page let's see if we got it
         if (this->qRFPPage->IsFailed())
         {
-            this->Fail(_l("protect-request-fail", this->qRFPPage->Result->ErrorMessage));
+            this->Fail(_l("protect-request-fail", this->qRFPPage->GetFailureReason()));
             return;
         }
         QDomDocument d;
@@ -132,7 +132,7 @@ void RequestProtect::Tick()
     {
         if (this->qEditRFP->IsFailed())
         {
-            this->Fail("Unable to process: " + this->qEditRFP->Result->ErrorMessage);
+            this->Fail("Unable to process: " + this->qEditRFP->GetFailureReason());
             return;
         }
         this->ui->pushButton->setText(_l("requested"));

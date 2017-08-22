@@ -423,7 +423,7 @@ void ReportUser::On_DiffTick()
 
     if (this->qDiff->Result->IsFailed())
     {
-        this->webView->RenderHtml(_l("browser-fail", this->qDiff->Result->ErrorMessage));
+        this->webView->RenderHtml(_l("browser-fail", this->qDiff->GetFailureReason()));
         this->tPageDiff->stop();
         return;
     }

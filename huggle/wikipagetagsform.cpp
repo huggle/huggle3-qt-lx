@@ -103,7 +103,7 @@ static void Fail(Query *result)
 {
     QMessageBox mb;
     mb.setWindowTitle(_l("page-tag-fail"));
-    mb.setText(_l("page-tag-error", result->Result->ErrorMessage));
+    mb.setText(_l("page-tag-error", result->GetFailureReason()));
     mb.exec();
     result->DecRef();
     result->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);

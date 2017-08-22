@@ -105,7 +105,7 @@ void ProtectPage::Protect()
     }
     if (this->qProtection->Result->IsFailed())
     {
-        Failed("The API query failed. Reason supplied was: " + qProtection->Result->ErrorMessage);
+        Failed("The API query failed. Reason supplied was: " + qProtection->GetFailureReason());
         return;
     }
     Huggle::Syslog::HuggleLogs->DebugLog("The page " + PageToProtect->PageName + " has successfully been protected");

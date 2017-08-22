@@ -220,13 +220,13 @@ void History::Tick()
     {
         if (this->qSelf != nullptr && this->qSelf->IsFailed())
         {
-            Syslog::HuggleLogs->ErrorLog(_l("history-revert-fail", this->RevertingItem->Target, this->qSelf->Result->ErrorMessage));
+            Syslog::HuggleLogs->ErrorLog(_l("history-revert-fail", this->RevertingItem->Target, this->qSelf->GetFailureReason()));
             this->Fail();
             return;
         }
         if (this->qTalk != nullptr && this->qTalk->IsFailed())
         {
-            Syslog::HuggleLogs->ErrorLog(_l("history-revert-fail", this->RevertingItem->Target, this->qTalk->Result->ErrorMessage));
+            Syslog::HuggleLogs->ErrorLog(_l("history-revert-fail", this->RevertingItem->Target, this->qTalk->GetFailureReason()));
             this->Fail();
             return;
         }
