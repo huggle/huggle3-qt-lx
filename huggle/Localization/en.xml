@@ -790,6 +790,7 @@
   <string name="query-protected-link">Protected link</string>
   <string name="queue-empty-title">It's empty</string>
   <string name="queue-empty-text">There is nothing else in the queue...</string>
+  <string name="protip">ProTip</string>
   <string name="tip1">Huggle supports tabs just like any other web browser! If you are on some edit and you want to keep it for later, you can simply open new tab and continue checking the queue there. Queue is shared amongst all tabs.</string>
   <string name="tip2">Huggle contains an "edit bar", a little widget that contains both User and Page history in a neat way. It's not enabled by default though. If you are on a small screen, you can replace user and page history widgets with it!</string>
   <string name="tip3">Most preferences are stored on wiki in [[Special:MyPage/huggle3.css]], you can also manually change them there!</string>

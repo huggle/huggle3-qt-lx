@@ -207,7 +207,7 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     this->on_checkBox_26_clicked();
     this->on_checkBox_27_clicked();
 
-    this->ui->label_pt->setText("<b>ProTip: </b>" + Resources::GetRandomProTip());
+    this->ui->label_pt->setText("<b>" + _l("protip") + ":</b> " + Resources::GetRandomProTip());
     this->RestoreWindow();
 }
 
