@@ -23,6 +23,7 @@ using namespace Huggle;
 ProcessList::ProcessList(QWidget *parent) : QDockWidget(parent), ui(new Ui::ProcessList)
 {
     this->ui->setupUi(this);
+    this->setWindowTitle(_l("processes-widget-name"));
     QStringList header;
     this->IsDebuged = hcfg->Verbosity > 0;
     header << _l("id") << _l("type") << _l("target") << _l("status");

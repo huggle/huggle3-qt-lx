@@ -30,6 +30,7 @@ using namespace Huggle;
 HuggleTool::HuggleTool(QWidget *parent) : QDockWidget(parent), ui(new Ui::HuggleTool)
 {
     this->ui->setupUi(this);
+    this->setWindowTitle(_l("main-tools"));
     if (Configuration::HuggleConfiguration->SystemConfig_Multiple)
     {
         this->ui->label_4->setText(_l("project"));

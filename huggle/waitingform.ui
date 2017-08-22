@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>Waiting</string>
+   <string>Waiting...</string>
   </property>
   <property name="windowIcon">
    <iconset resource="pictures.qrc">

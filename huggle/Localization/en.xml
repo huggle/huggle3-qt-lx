@@ -695,11 +695,13 @@
   <string name="rc-title-missing">RC Feed: Item was missing title attribute: $1</string>
   <string name="whitelist-download">Downloading new whitelist</string>
   <string name="logs-widget-name">System logs</string>
+  <string name="processes-widget-name">Processes</string>
   <string name="wait">Please wait...</string>
   <string name="function-miss">Function is not available now</string>
   <string name="missing-aiv">This project does not use AIV</string>
   <string name="missing-page">There is no page $1 on this wiki</string>
   <string name="updating-wl">Updating whitelist...</string>
+  <string name="waiting">Waiting...</string>
   <string name="feature-nfru">This feature is for IP users only</string>
   <string name="report-no-user">No user has been selected to report, please select a user first</string>
   <string name="welcome-show">Display this message also next time you launch Huggle</string>

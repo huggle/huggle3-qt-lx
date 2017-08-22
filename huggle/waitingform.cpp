@@ -10,12 +10,14 @@
 
 #include "waitingform.hpp"
 #include "ui_waitingform.h"
+#include "localization.hpp"
 using namespace Huggle;
 
 WaitingForm::WaitingForm(QWidget *parent) : QDialog(parent), ui(new Ui::WaitingForm)
 {
     this->ui->setupUi(this);
     this->ui->progressBar->setValue(0);
+    this->setWindowTitle(_l("waiting"));
 }
 
 WaitingForm::~WaitingForm()
