@@ -228,7 +228,7 @@
   <string name="login-username">Username:</string>
   <string name="login-password">Password:</string>
   <string name="login-proxygroup">Proxy settings</string>
-  <string name="login-proxy">Use a proxy server</string>
+  <string name="login-proxy">Use a proxy</string>
   <string name="login-proxyaddress">Address:</string>
   <string name="login-proxy-remember-this">Remember this setting for next time</string>
   <string name="login-proxyport">Port:</string>
@@ -372,6 +372,7 @@
   <string name="main-user-contribs">Show user contributions in a browser</string>
   <string name="main-user-clear-talk">Clear talk page of user</string>
   <string name="main-user-talk">View talk page</string>
+  <string name="main-user-page">View user page</string>
   <string name="main-user-message">Message...</string>
   <string name="main-user-warn">Warn...</string>
   <string name="main-user-db">Decrease badness score of user</string>
@@ -380,6 +381,7 @@
   <string name="main-user-clear-tp">Clear talk page of user</string>
   <string name="main-user-retrieving-tp">Retrieving Talk Page of $1</string>
   <string name="main-user-block">Block...</string>
+  <string name="main-user-manualtemplate">Manual template</string>
   <string name="main-browser-back">Back</string>
   <string name="main-browser-forward">Forward</string>
   <string name="main-browser-open">View this in an external browser</string>
@@ -397,6 +399,9 @@
   <string name="main-help-documentation">Documentation</string>
   <string name="main-help-feedback">Feedback</string>
   <string name="main-help-about">About Huggle...</string>
+  <string name="main-help-introduction">Introduction</string>
+  <string name="main-help-contents">Contents</string>
+  <string name="main-help-queuelegend">Queue legend</string>
   <string name="main-addqueue">Add...</string>
   <string name="main-savelogtitle">Save log</string>
   <string name="main-usermessageother">Other message...</string>
@@ -424,6 +429,10 @@
   <string name="main-report-username">Report username</string>
   <string name="main-report-user">Report user</string>
   <string name="main-edit-user-talk">Edit user talk</string>
+  <string name="main-statistics-paused">paused</string>
+  <string name="main-statistics-waiting">waiting for more edits</string>
+  <string name="main-statistics-none">none</string>
+  <string name="main-tab-welcome-title">Welcome page</string>
   <string name="message-title">Message $1</string>
   <string name="message-help">Specify one or both of Subject and Summary. If no summary is given, the subject will be used; if no subject is given, no header will be added.</string>
   <string name="message-subject">Subject:</string>
@@ -563,6 +572,7 @@
   <string name="user-history-fail">Unable to retrieve history for user: $1</string>
   <string name="userinfo-generic">User info</string>
   <string name="userinfo-retrieve">Retrieve info</string>
+  <string name="userinfo-no-user">No user</string>
   <string name="shortcut-page-patrol-edit">Patrol edit</string>
   <string name="shortcut-report-username">Report username</string>
   <string name="shortcut-report-user">Report user</string>
@@ -609,6 +619,8 @@
   <string name="han-already-connected">Not connecting to HAN because it&apos;s already connected</string>
   <string name="han-already-connecting">Please wait, I am already connecting to HAN</string>
   <string name="han-disconnected">You were disconnected from HAN</string>
+  <string name="han-network">Network</string>
+  <string name="han-send">Send</string>
   <string name="error-loggedout">Account has been logged out, logging back in...</string>
   <string name="error-noresponse">No response</string>
   <string name="error-pagemissing">The page does not exist</string>

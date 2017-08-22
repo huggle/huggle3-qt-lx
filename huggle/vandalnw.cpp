@@ -136,6 +136,7 @@ VandalNw::VandalNw(QWidget *parent) : QDockWidget(parent), ui(new Ui::VandalNw)
     this->ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     this->ui->tableWidget->setShowGrid(false);
     this->ui->pushButton->setEnabled(false);
+    this->ui->pushButton->setText(_l("han-send"));
 }
 
 VandalNw::~VandalNw()
@@ -377,7 +378,7 @@ void VandalNw::UpdateHeader()
     }
     if (!this->Irc->IsConnected())
     {
-        this->setWindowTitle("Network");
+        this->setWindowTitle(_l("han-network"));
         this->UsersModified = false;
     } else
     {
@@ -385,7 +386,7 @@ void VandalNw::UpdateHeader()
         libircclient::Channel *channel_ = this->Irc->GetChannel(this->Site2Channel[Configuration::HuggleConfiguration->Project]);
         if (channel_ != nullptr)
         {
-            this->setWindowTitle(QString("Network - " + this->Irc->GetNick() + " (" + QString::number(channel_->GetUserCount()) + ")"));
+            this->setWindowTitle(QString(_l("han-network") + " - " + this->Irc->GetNick() + " (" + QString::number(channel_->GetUserCount()) + ")"));
             users = channel_->GetUsers().values();
         }
         if (users.count() > 0)
