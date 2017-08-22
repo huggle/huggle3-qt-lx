@@ -3,8 +3,6 @@
 g++ --version
 cmake --version
 
-apt-get install cmake
-
 cd ./huggle
 
 if [ "$QTTYPE" = "4" ]; then
