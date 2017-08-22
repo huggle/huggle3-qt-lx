@@ -130,7 +130,7 @@ QString Huggle::Resources::GetEmptyQueueHTML()
 {
     return QString(Resources::Html_Default_EmptyQueuePage)
             .replace("<<<TITLE>>>", _l("queue-empty-title"))
-            .replace("<<<PROTIP>>>", GetRandomProTip())
+            .replace("<<<PROTIP>>>", "<b>" + _l("protip") + ":</b> " + GetRandomProTip())
             .replace("<<<TEXT>>>", _l("queue-empty-text"));
 }
 
