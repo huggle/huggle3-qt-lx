@@ -120,8 +120,10 @@
   <string name="config-welcome-empty-page">Send welcome message to users who have empty talk page on good edit</string>
   <string name="config-conflicts-revert">Automatically resolve edit conflicts with other users who revert or change the same page</string>
   <string name="config-instant-reverts">Use instant reverts (very fast, but can&apos;t be cancelled once executed)</string>
+  <string name="config-reverts-multiple">On revert of multiple edits by same user:</string>
   <string name="config-revert-wait">Revert delay (seconds)</string>
   <string name="config-revert">Revert</string>
+  <string name="config-skip">Skip</string>
   <string name="config-revert-diff">Revert edits to page that are newer than the displayed diff if they were made by the same vandal user</string>
   <string name="config-change-all">Change all Huggle settings to behave more like Huggle 2</string>
   <string name="config-merge-messages">Merge your messages with others in existing sections</string>
@@ -324,6 +326,11 @@
   <string name="main-queue-reset">Reset</string>
   <string name="main-queue-clearall">Clear all</string>
   <string name="main-queue-options">Manage queues...</string>
+  <string name="main-queue-when-full">When queue is full</string>
+  <string name="main-queue-when-full-stop">Stop feed</string>
+  <string name="main-queue-when-full-remove">Remove old edits</string>
+  <string name="main-queue-remove-whitelisted">Remove edits made by whitelisted users</strings>
+  <string name="main-queue-remove-200">Remove edits with score lower than -200</strings>
   <string name="main-goto">Go to</string>
   <string name="main-goto-mytalk">My talk page</string>
   <string name="main-goto-mycontribs">My contributions</string>
@@ -366,6 +373,10 @@
   <string name="main-page-load">Load</string>
   <string name="main-patrol-not-enabled">Patrolling is not enabled on $1</string>
   <string name="main-page-restore">Restore this revision</string>
+  <string name="main-page-watchlist-add">Insert page to a watchlist</string>
+  <string name="main-page-tab-close">Close current tab</string>
+  <string name="main-page-tab-open">Open new tab</string>
+  <string name="main-page-watchlist-remove">Remove page from a watchlist</string>
   <string name="main-user-info">Show user info</string>
   <string name="main-user-ignore">Ignore</string>
   <string name="main-user-unignore">Unignore</string>

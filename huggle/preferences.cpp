@@ -148,6 +148,8 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     this->ui->checkBox_UseRollback->setText(_l("config-use-rollback"));
     this->ui->checkBox_WelcomeEmptyPage->setText(_l("config-welcome-empty-page"));
     this->ui->checkBox_27->setText(_l("config-instant-reverts"));
+    this->ui->groupBox->setTitle(_l("config-reverts-multiple"));
+    this->ui->radioButton->setText(_l("config-skip"));
     this->ui->label_3->setText(_l("config-revert-wait"));
     this->ui->radioButton_2->setText(_l("config-revert"));
     this->ui->checkBox_20->setText(_l("config-revert-diff"));
