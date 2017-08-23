@@ -329,8 +329,8 @@
   <string name="main-queue-when-full">When queue is full</string>
   <string name="main-queue-when-full-stop">Stop feed</string>
   <string name="main-queue-when-full-remove">Remove old edits</string>
-  <string name="main-queue-remove-whitelisted">Remove edits made by whitelisted users</strings>
-  <string name="main-queue-remove-200">Remove edits with score lower than -200</strings>
+  <string name="main-queue-remove-whitelisted">Remove edits made by whitelisted users</string>
+  <string name="main-queue-remove-200">Remove edits with score lower than -200</string>
   <string name="main-goto">Go to</string>
   <string name="main-goto-mytalk">My talk page</string>
   <string name="main-goto-mycontribs">My contributions</string>
