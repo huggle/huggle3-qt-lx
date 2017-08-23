@@ -29,7 +29,7 @@ this style has huge advantage that brackets match vertically, so that you can
 easily see if starting bracket matches the ending one.  On other hand it
 consumes more line than, for example K and R style.
 
-Note: it's perfectly OK to omit brackets if they aren't needed, eg:
+Note: it's perfectly OK to omit brackets if they aren't needed to save space, eg:
 if (blah == 6935340)
     return true;
 
@@ -107,13 +107,34 @@ class Foo
 You MUST NOT suffix any variable or function that is not local to ensure these names
 will be available for local scope.
 
+Prefixing with underscore is not recommended, it may lead to collisions with
+standard headers or other C++ headers, keep in mind that underscore followed
+by capital letter is reserved name in C / C++ and should never be used.
+
 === CamelCase ===
 
-Every variable and function should be named using camel case, for example:
+Every variable and function should be named using camel case, in case it
+consists of multiple names, they are separated with underscore as well, for example:
+
+enum SomeEnum
+{
+    SomeEnum_First
+};
 
 int SomeLocalVariable;
+int Test = SomeEnum_First;
 void ThisFunctionDoesALotOfStuff();
 void *ptr_SomePointer;
+
+class TC
+{
+    public:
+        // Capital - it's a public function
+        int Number;
+    private:
+        // Lower - it's a private function
+        void foo();
+};
 
 IMPORTANT: leading character is capital for public variables and functions,
            it's lowercase for private functions and variables.
@@ -159,3 +180,22 @@ Huggle::Exception.
 You need to keep in mind that any code that throw an exception will make
 huggle crash, so use them really only when you know that you need to crash it
 at some point (dangerous situation happens that could damage something).
+
+== Libraries ==
+
+In order to make Huggle easy to build, we try to use as small amount of 3rd
+libraries as possible. If it's inevitable to use some, make sure that it:
+
+* Works on Linux, Mac and Windows with no issues, preferably as well as iOS
+  and Android OS.
+* Is maintained
+* Supports C++11 and C++14
+* Is open source
+* Works with Qt4 and Qt5
+
+Each library is packed both as git submodule and static zip file that contains
+the content of library as a fallback in case that user isn't able to download
+all submodules. The configure script is responsible for automatic check if
+submodules are available and if they aren't, then it needs to unpack zip file.
+
+If there is no huge need to use that 3rd library, then try to avoid it.
