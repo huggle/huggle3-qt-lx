@@ -1813,6 +1813,11 @@ void MainWindow::Localize()
     this->ui->menuTools->setTitle(_l("main-tools"));
     this->ui->actionShow_ignore_list_of_current_wiki->setText(_l("main-tools-il"));
     this->ui->actionDisplay_a_session_data->setText(_l("main-tools-sess"));
+    this->ui->menuWhen_queue_is_full->setTitle(_l("main-queue-when-full"));
+    this->ui->actionStop_feed->setText(_l("main-queue-when-full-stop"));
+    this->ui->actionRemove_old_edits->setText(_l("main-queue-when-full-remove"));
+    this->ui->actionRemove_edits_made_by_whitelisted_users->setText(_l("main-queue-remove-whitelisted"));
+    this->ui->actionDelete_all_edits_with_score_lower_than_200->setText(_l("main-queue-remove-200"));
     this->ui->actionClear->setText(_l("main-queue-clear"));
     this->ui->actionClear_talk_page_of_user->setText(_l("main-user-clear-tp"));
     this->ui->actionDecrease_badness_score_by_20->setText(_l("main-user-db"));
@@ -1821,11 +1826,16 @@ void MainWindow::Localize()
     this->ui->actionEdit_page_in_browser->setText(_l("main-page-edit"));
     this->ui->actionFlag_as_suspicious_edit->setText(_l("main-page-flag-suspicious-edit"));
     this->ui->actionFlag_as_a_good_edit->setText(_l("main-page-flag-good-edit"));
+    this->ui->actionTag_2->setText(_l("main-page-tag"));
     this->ui->actionRequest_speedy_deletion->setText(_l("main-page-reqdeletion"));
     this->ui->actionDelete->setText(_l("main-page-delete"));
     this->ui->actionRequest_protection->setText(_l("main-page-reqprotection"));
     this->ui->actionProtect->setText(_l("main-page-protect"));
     this->ui->actionRestore_this_revision->setText(_l("main-page-restore"));
+    this->ui->actionInsert_page_to_a_watchlist->setText(_l("main-page-watchlist-add"));
+    this->ui->actionRemove_page_from_a_watchlist->setText(_l("main-page-watchlist-remove"));
+    this->ui->actionClose_current_tab->setText(_l("main-page-tab-close"));
+    this->ui->actionOpen_new_tab->setText(_l("main-page-tab-open"));
     this->ui->actionDisplay_a_session_data->setText(_l("main-display-session-data"));
     this->ui->actionDisplay_whitelist->setText(_l("main-display-whitelist"));
     this->ui->actionDisplay_history_in_browser->setText(_l("main-page-historypage"));
