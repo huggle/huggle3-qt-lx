@@ -239,7 +239,7 @@ void Login::CancelLogin()
     this->Processing = false;
     LoadingForm::IsKilled = true;
     this->timer->stop();
-    this->Enable();
+    this->EnableForm();
     if (this->loadingForm != nullptr)
     {
         this->loadingForm->close();
@@ -266,7 +266,7 @@ int Login::GetRowIDForSite(WikiSite *site, int row)
     return this->LoadingFormRows[site][row];
 }
 
-void Login::Enable(bool value)
+void Login::EnableForm(bool value)
 {
     this->ui->checkBox_2->setEnabled(value);
     this->ui->lineEditBotP->setEnabled(value);
@@ -304,7 +304,7 @@ bool Login::ReadonlyFallback(WikiSite *site, QString why)
 
 void Login::Disable()
 {
-    this->Enable(false);
+    this->EnableForm(false);
 }
 
 void Login::Reload()
@@ -347,7 +347,7 @@ void Login::DB()
     {
         this->DisplayError("Unable to download a db of wikis: " + this->qDatabase->GetFailureReason());
         this->timer->stop();
-        this->Enable();
+        this->EnableForm();
         this->Refreshing = false;
         return;
     }
@@ -367,7 +367,7 @@ void Login::DB()
         this->Reload();
     }
     this->timer->stop();
-    this->Enable();
+    this->EnableForm();
     this->Localize();
     this->Refreshing = false;
 }
@@ -376,6 +376,15 @@ void Login::PressOK()
 {
     this->GlobalConfig = false;
     hcfg->SystemConfig_BotPassword = this->ui->tab_oauth->isVisible();
+    // Simple hack - some users are aware of bot passwords but not that you need to explicitly specify if you use them in Huggle
+    if (!hcfg->SystemConfig_BotPassword && this->ui->lineEdit_username->text().contains("@"))
+    {
+        // toggle to bot passwords
+        this->ui->tabWidget->setCurrentIndex(0);
+        this->ui->lineEditBotUser->setText(this->ui->lineEdit_username->text());
+        this->ui->lineEditBotP->setText(this->ui->lineEdit_password->text());
+        hcfg->SystemConfig_BotPassword = true;
+    }
     if (this->ui->Project->count() == 0)
     {
         // there are no projects in login form
@@ -1390,7 +1399,7 @@ void Login::OnTimerTick()
         }
         if (this->Statuses[site] == LoginFailed)
         {
-            this->Enable();
+            this->EnableForm();
             this->timer->stop();
             this->ui->ButtonOK->setText("Login");
         }

@@ -92,7 +92,7 @@ namespace Huggle
             void Reset();
             void RemoveQueries();
             //! Enable parts of interface
-            void Enable(bool value = true);
+            void EnableForm(bool value = true);
             /*!
              * \brief ReadonlyFallback try to fallback into read-only mode
              * \param site to switch to read-only mode
