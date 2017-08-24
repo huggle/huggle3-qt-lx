@@ -908,6 +908,9 @@ void MainWindow::ReloadShort(QString id)
         case HUGGLE_ACCEL_MAIN_C_REVERT:
             q = this->ui->actionRevert_edit_using_custom_reason;
             break;
+        case HUGGLE_ACCEL_MAIN_REFRESH:
+            q = this->ui->actionRefresh;
+            break;
     }
 
     if (q != nullptr)
@@ -3251,4 +3254,13 @@ void Huggle::MainWindow::on_actionRevert_edit_using_custom_reason_triggered()
         return;
     }
     this->Revert(reason);
+}
+
+void Huggle::MainWindow::on_actionRefresh_triggered()
+{
+    if (!this->CheckExit() || this->CurrentEdit == nullptr)
+        return;
+
+    this->tb->SetPage(this->CurrentEdit->Page);
+    this->tb->RenderEdit();
 }
