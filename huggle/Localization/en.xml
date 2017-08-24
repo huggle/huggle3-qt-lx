@@ -584,6 +584,7 @@
   <string name="userinfo-generic">User info</string>
   <string name="userinfo-retrieve">Retrieve info</string>
   <string name="userinfo-no-user">No user</string>
+  <string name="shortcut-refresh">Refresh currently displayed page (reload history and jump to last edit)</string>
   <string name="shortcut-page-patrol-edit">Patrol edit</string>
   <string name="shortcut-report-username">Report username</string>
   <string name="shortcut-report-user">Report user</string>

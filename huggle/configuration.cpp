@@ -120,6 +120,7 @@ Configuration::Configuration()
     this->MakeShortcut("main-user-display-contribs", "shortcut-contrib", "C");
     this->MakeShortcut("main-user-contribs-browser", "shortcut-user-contribs-browser", "Shift+C");
     this->MakeShortcut("main-page-patrol-edit", "shortcut-page-patrol-edit");
+    this->MakeShortcut("main-page-refresh", "shortcut-refresh", "F5");
 }
 
 Configuration::~Configuration()
@@ -677,6 +678,8 @@ Shortcut::Shortcut(QString name, QString description)
         this->ID = HUGGLE_ACCEL_MAIN_C_REVERT;
     else if (name == "main-page-patrol-edit")
         this->ID = HUGGLE_ACCEL_MAIN_PATROL;
+    else if (name == "main-page-refresh")
+        this->ID = HUGGLE_ACCEL_MAIN_REFRESH;
     else if (name.startsWith("main-revert-and-warn-"))
     {
         if (name == "main-revert-and-warn-0")

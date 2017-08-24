@@ -81,7 +81,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>21</height>
+     <height>19</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -142,6 +142,7 @@
     <property name="title">
      <string>Page</string>
     </property>
+    <addaction name="actionRefresh"/>
     <addaction name="actionNext_2"/>
     <addaction name="separator"/>
     <addaction name="actionRevert_currently_displayed_edit"/>
@@ -1119,6 +1120,11 @@
   <action name="actionRevert_edit_using_custom_reason">
    <property name="text">
     <string>Revert edit using custom reason</string>
+   </property>
+  </action>
+  <action name="actionRefresh">
+   <property name="text">
+    <string>Refresh</string>
    </property>
   </action>
  </widget>
