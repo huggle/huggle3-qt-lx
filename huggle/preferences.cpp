@@ -168,7 +168,7 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     this->ui->checkBox_21->setText(_l("config-last-revision"));
     this->ui->checkBox_26->setText(_l("config-require-delay"));
     this->ui->label_2->setText(_l("config-wait-edit"));
-    this->ui->radioButton_3->setText(_l("config-display-text"));
+    this->ui->radioButton_3->setText(_l("config-display-next"));
     this->ui->radioButton_4->setText(_l("config-retrieve-edit"));
     this->ui->radioButton_5->setText(_l("config-nothing"));
     this->ui->label_botEdits->setText(_l("config-bot-edits"));

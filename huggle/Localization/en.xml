@@ -136,7 +136,7 @@
   <string name="config-last-revision">Switch to latest revision of page in case currently loaded edit is not the latest revision (will post-download it, making Huggle slower)</string>
   <string name="config-require-delay">Require a delay after every load of next edit, during which it will not be possible to use any write feature (useful for avoiding keyboard multi-press bug)</string>
   <string name="config-wait-edit">The delay, in seconds, until write features are enabled:</string>
-  <string name="config-display-text">Display next</string>
+  <string name="config-display-next">Display next</string>
   <string name="config-retrieve-edit">Retrieve your own edit</string>
   <string name="config-nothing">Nothing</string>
   <string name="config-bot-edits">Bot edits (b)</string>
