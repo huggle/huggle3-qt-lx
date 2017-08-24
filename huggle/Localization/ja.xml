@@ -99,7 +99,6 @@
   <string name="config-confirm-wl">ホワイトリストに登録された利用者による改編について承認を要求</string>
   <string name="config-revert">リバート</string>
   <string name="config-enable-irc">IRCを可動</string>
-  <string name="config-display-text">次を表示</string>
   <string name="config-bot-edits">ボットによる編集(b)</string>
   <string name="config-own-edits">自分の編集</string>
   <string name="config-reverts">リバート</string>
@@ -167,7 +166,7 @@
   <string name="login-username">利用者名:</string>
   <string name="login-password">パスワード:</string>
   <string name="login-proxygroup">プロキシ設定</string>
-  <string name="login-proxy">プロキシ・サーバーを使用する</string>
+  <string name="login-proxy" fuzzy="true">プロキシ・サーバーを使用する</string>
   <string name="login-proxyaddress">アドレス:</string>
   <string name="login-proxyport">ポート:</string>
   <string name="login-proxydomain">ドメイン:</string>

@@ -132,7 +132,6 @@
   <string name="config-last-revision" fuzzy="true">Eğer şuan yüklü olan değişiklik son değişiklik değilse en yeni sürümünü göster (önbelleği atlayarak sonradan indirecektir)</string>
   <string name="config-require-delay">Her yeni değişikliği yüklerken geciktirme gereksin, herhangi bir yazma özelliği kullanılamasın (klavyede çoklu basma sorununu çözmeye çalışırken faydalıdır)</string>
   <string name="config-wait-edit">Düzenleme özelliklerinin etkinleştirilmesi için beklemeniz gereken süre (saniye):</string>
-  <string name="config-display-text">Sonrakini göster</string>
   <string name="config-retrieve-edit">Düzenlemenizi geri alın</string>
   <string name="config-nothing">Hiçbir şey</string>
   <string name="config-bot-edits">Bot düzenlemeleri (b)</string>
@@ -226,7 +225,7 @@
   <string name="login-username">Kullanıcı adı:</string>
   <string name="login-password">Parola:</string>
   <string name="login-proxygroup">Proxy ayarları</string>
-  <string name="login-proxy">Bir proxy sunucusu kullan</string>
+  <string name="login-proxy" fuzzy="true">Bir proxy sunucusu kullan</string>
   <string name="login-proxyaddress">Adres:</string>
   <string name="login-proxy-remember-this">Bir dahaki sefere bu ayarı hatırla</string>
   <string name="login-proxyport">Bağlantı noktası:</string>

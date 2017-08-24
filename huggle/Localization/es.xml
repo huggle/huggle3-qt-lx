@@ -53,8 +53,8 @@
   <string name="disable">Desactivar</string>
   <string name="no-token">Sin token</string>
   <string name="flags">Flags</string>
-  <string name="gracetime" fuzzy="true">Esperando que terminen las consultas que hacen alguna edición...</string>
-  <string name="browser-none" fuzzy="true">Ninguna página se muestra ahora</string>
+  <string name="gracetime">Esperando que terminen las consultas que hacen ediciones...</string>
+  <string name="browser-none">Todavía no hay una página que mostrar.</string>
   <string name="browser-load">Descargando diferencia con un método alternativo basado en MW. Espera…</string>
   <string name="browser-miss-summ">No se proporcionó ningún resumen</string>
   <string name="browser-diff">Diferencia de página: $1 (puntuación: $2)</string>
@@ -79,10 +79,10 @@
   <string name="block-token-1">Obteniendo ficha para bloquear a $1</string>
   <string name="block-fail">No se puede bloquear al usuario, $1</string>
   <string name="block-token-e1">No se puede recuperar la ficha: $1</string>
-  <string name="block-error-no-info" fuzzy="true">La consulta no contiene información de cuenta de usuario (¿tienes permisos administrativos?)</string>
+  <string name="block-error-no-info">La consulta no contiene información de cuenta de usuario (¿eres un administrador?)</string>
   <string name="block-type">Bloquear/desbloquear</string>
   <string name="block-admin">Administrador que ha hecho el bloqueo</string>
-  <string name="block-none" fuzzy="true">No hay ningún usuario que bloquear.</string>
+  <string name="block-none">No hay ningún usuario seleccionado que bloquear.</string>
   <string name="contribution-browser-user-info">Se muestran las contribuciones recientes del usuario $1</string>
   <string name="config-function">Función</string>
   <string name="config-description">Descripción</string>
@@ -134,7 +134,6 @@
   <string name="config-last-revision" fuzzy="true">Cambiar a la última modificación de la página si la edición cargada no es la última (se descargará a continuación, lo que ralentizará Huggle)</string>
   <string name="config-require-delay">Requieren un retraso después de cada carga de la próxima edición, durante los cuales no será posible el uso de cualquier escritura característica (muy útil para evitar teclado multi-prensa error)</string>
   <string name="config-wait-edit">Los segundos que debes esperar para que se activen las funcionalidades de edición:</string>
-  <string name="config-display-text">Mostrar siguiente</string>
   <string name="config-retrieve-edit">Recuperar tu propia edición</string>
   <string name="config-nothing">Nada</string>
   <string name="config-bot-edits">Ediciones de bots (b)</string>
@@ -181,7 +180,7 @@
   <string name="config-defaultsprompt">¿Restaurar los predeterminados?</string>
   <string name="config-logbrowsetitle">Ubicación del archivo de registro</string>
   <string name="config-shortcutconflict">El atajo \'$1\' coincide con el atajo existente para \'$1\'.</string>
-  <string name="config-no-colon" fuzzy="true">No puedes utilizar : en nombre de la cola</string>
+  <string name="config-no-colon">No puedes utilizar : en el nombre de una cola</string>
   <string name="config-notify-update">Buscar actualizaciones</string>
   <string name="config-notify-beta">Buscar versiones beta si las hay</string>
   <string name="delete-title">Borrar $1</string>
@@ -195,7 +194,7 @@
   <string name="delete-e1">La página no se puede eliminar: $1</string>
   <string name="delete-e2">No se puede eliminar la página</string>
   <string name="delete-edsc">No se puede eliminar la página porque $1</string>
-  <string name="delete-failed-no-info" fuzzy="true">La consulta no contiene información de la página (¿tienes permisos administrativos?)</string>
+  <string name="delete-failed-no-info">La consulta no contiene información de la página (¿eres un administrador?)</string>
   <string name="extension-kl">No está ejecutándose</string>
   <string name="extension-ok">Cargada y funcionando</string>
   <string name="historyform-no-info">No hay información de edición</string>
@@ -228,7 +227,7 @@
   <string name="login-username">Usuario:</string>
   <string name="login-password">Contraseña:</string>
   <string name="login-proxygroup">Configuración de proxy</string>
-  <string name="login-proxy">Usar servidor proxy</string>
+  <string name="login-proxy">Usar un servidor proxy</string>
   <string name="login-proxyaddress">Dirección:</string>
   <string name="login-proxy-remember-this">Recordar esta configuración para la próxima vez</string>
   <string name="login-proxyport">Puerto:</string>
@@ -245,7 +244,7 @@
   <string name="login-failed-edit">Falló el acceso a $1: no tienes la cantidad mínima de ediciones en este proyecto.</string>
   <string name="login-retrieving-info">Obteniendo la información del usuario en $1</string>
   <string name="login-password-empty">No se proporcionó la contraseña</string>
-  <string name="login-fail-wrong-name" fuzzy="true">No se proporcionó un nombre de usuario correcto para acceder</string>
+  <string name="login-fail-wrong-name">No se proporcionó ningún nombre de usuario para acceder</string>
   <string name="login-api">ERROR: api.php respondió con resultado desconocido: $1</string>
   <string name="login-abort">Interrumpir</string>
   <string name="login-start">Ingresar</string>
@@ -263,7 +262,7 @@
   <string name="login-progress-user-info">Comprobando la información del usuario en $1</string>
   <string name="login-progress-whitelist">Obteniendo lista blanca de usuarios...</string>
   <string name="login-remember-password">Recordar contraseña</string>
-  <string name="login-remember-password-tooltip" fuzzy="true">Esta opción almacenará tu contraseña en texto plano en tu disco duro. Úsala sólo si eres la única persona que accede a esta computadora.</string>
+  <string name="login-remember-password-tooltip">Esta opción almacenará tu contraseña en texto plano en tu disco duro. Úsala sólo si eres la única persona que accede a esta computadora.</string>
   <string name="login-ssl">Utilizar HTTPS (requiere OpenSSL)</string>
   <string name="login-fail">Falló el inicio de sesión en $1</string>
   <string name="login-error-admin">Se necesita cuenta de administrador para usar Huggle en este proyecto.</string>
@@ -372,6 +371,7 @@
   <string name="main-user-contribs">Mostrar las contribuciones del usuario en un navegador</string>
   <string name="main-user-clear-talk">Limpiar la página de discusión de usuario</string>
   <string name="main-user-talk">Ver página de discusión</string>
+  <string name="main-user-page">Ver página de usuario</string>
   <string name="main-user-message">Enviar mensaje...</string>
   <string name="main-user-warn">Advertir...</string>
   <string name="main-user-db">Disminuir la puntuacion de maldad del usuario</string>
@@ -380,6 +380,7 @@
   <string name="main-user-clear-tp">Vaciar página de discusión del usuario</string>
   <string name="main-user-retrieving-tp">Consultando página de discusión de $1</string>
   <string name="main-user-block">Bloquear...</string>
+  <string name="main-user-manualtemplate">Plantilla manual</string>
   <string name="main-browser-back">Atrás</string>
   <string name="main-browser-forward">Adelante</string>
   <string name="main-browser-open">Ver esto en un navegador externo</string>
@@ -397,6 +398,8 @@
   <string name="main-help-documentation">Documentación</string>
   <string name="main-help-feedback">Comentarios</string>
   <string name="main-help-about">Acerca de Huggle...</string>
+  <string name="main-help-introduction">Introducción</string>
+  <string name="main-help-contents">Contenido</string>
   <string name="main-addqueue">Añadir...</string>
   <string name="main-savelogtitle">Guardar registro</string>
   <string name="main-usermessageother">Otro mensaje...</string>
@@ -424,6 +427,10 @@
   <string name="main-report-username">Denunciar nombre de usuario</string>
   <string name="main-report-user">Denunciar usuario</string>
   <string name="main-edit-user-talk">Editar discusión de usuario</string>
+  <string name="main-statistics-paused">en pausa</string>
+  <string name="main-statistics-waiting">esperando por más ediciones</string>
+  <string name="main-statistics-none">ninguno</string>
+  <string name="main-tab-welcome-title">Página de bienvenida</string>
   <string name="message-title">Enviar mensaje a $1</string>
   <string name="message-help">Especifica uno o ambos de los espacios Asunto y Resumen. Si no especificas un resumen, se usará al asunto como tal; si no especificas un asunto, tu mensaje no tendrá título.</string>
   <string name="message-subject">Asunto:</string>
@@ -563,6 +570,7 @@
   <string name="user-history-fail" fuzzy="true">no se pudo recuperar el historial del usuario: $1</string>
   <string name="userinfo-generic">Información del usuario</string>
   <string name="userinfo-retrieve">Recuperar información</string>
+  <string name="userinfo-no-user">Ningún usuario</string>
   <string name="shortcut-page-patrol-edit">Edición de verificación</string>
   <string name="shortcut-report-username">Denunciar nombre de usuario</string>
   <string name="shortcut-report-user">Denunciar usuario</string>
@@ -609,6 +617,8 @@
   <string name="han-already-connected">No se conecta a HAN, porque ya está conectado</string>
   <string name="han-already-connecting">Por favor espera, ya estoy intentando conectarme a la HAN</string>
   <string name="han-disconnected">Has sido desconectado de la HAN</string>
+  <string name="han-network">Red</string>
+  <string name="han-send">Enviar</string>
   <string name="error-loggedout">La cuenta se ha deslogueado, volviendo a iniciar sesión...</string>
   <string name="error-noresponse">Sin respuesta</string>
   <string name="error-pagemissing">La página no existe</string>
@@ -773,4 +783,5 @@
   <string name="query-request-noaction">No se ha proporcionado ninguna acción para la petición a la API</string>
   <string name="query-login-undefined">El token de inicio de sesión requiere un valor definido por el usuario, no se almacena en la memoria</string>
   <string name="query-protected-link">Enlace protegido</string>
+  <string name="queue-empty-title">Está vacío</string>
 </resources>

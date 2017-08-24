@@ -120,8 +120,10 @@
   <string name="config-welcome-empty-page">Bei guten Bearbeitungen Willkommensnachrichten an Benutzer mit leerer Diskussionsseite senden</string>
   <string name="config-conflicts-revert">Bearbeitungskonflikte mit anderen Benutzern, die die gleiche Seite zurücksetzen oder ändern, automatisch beheben.</string>
   <string name="config-instant-reverts">Sofortiges Zurücksetzen verwenden (sehr schnell; kann jedoch, sobald ausgeführt, nicht abgebrochen werden).</string>
+  <string name="config-reverts-multiple">Beim Zurücksetzen mehrerer Bearbeitungen des gleichen Benutzers:</string>
   <string name="config-revert-wait">Zurücksetzungsverzögerung (in Sekunden)</string>
   <string name="config-revert">Zurücksetzen</string>
+  <string name="config-skip">Überspringen</string>
   <string name="config-revert-diff">Bearbeitungen an der Seite zurücksetzen, die neuer sind als der angezeigte Unterschied, falls sie vom gleichen Vandalen durchgeführt wurden.</string>
   <string name="config-change-all">Alle Huggle-Einstellungen auf das Verhalten von Huggle 2 ändern</string>
   <string name="config-merge-messages">Deine Nachrichten mit anderen in vorhandenen Abschnitten zusammenführen</string>
@@ -134,7 +136,6 @@
   <string name="config-last-revision">Auf die aktuellste Seitenversion wechseln, falls die derzeit geladene Bearbeitung nicht die aktuellste Version ist (wird nachgeladen, was Huggle langsamer macht).</string>
   <string name="config-require-delay">Eine Verzögerung nach jedem Laden der nächsten Bearbeitung anfordern, währenddessen es nicht möglich ist, Schreibfunktionen zu verwenden (nützlich zum Vermeiden von Tastatur-Mehrfachdrück-Fehlern).</string>
   <string name="config-wait-edit">Die Verzögerung in Sekunden, bis Schreibfunktionen aktiviert werden:</string>
-  <string name="config-display-text">Nächste anzeigen</string>
   <string name="config-retrieve-edit">Eigene Bearbeitung abrufen</string>
   <string name="config-nothing">Nichts</string>
   <string name="config-bot-edits">Bot-Bearbeitungen (b)</string>
@@ -228,7 +229,7 @@
   <string name="login-username">Benutzer:</string>
   <string name="login-password">Passwort:</string>
   <string name="login-proxygroup">Proxy-Einstellungen</string>
-  <string name="login-proxy">Verwende Proxy-Server</string>
+  <string name="login-proxy">Einen Proxy verwenden</string>
   <string name="login-proxyaddress">Proxy-Adresse:</string>
   <string name="login-proxy-remember-this">Diese Einstellung für das nächste Mal speichern</string>
   <string name="login-proxyport">Proxy-Port:</string>
@@ -324,6 +325,11 @@
   <string name="main-queue-reset">Zurücksetzen</string>
   <string name="main-queue-clearall">Alle leeren</string>
   <string name="main-queue-options">Warteschlange verwalten ...</string>
+  <string name="main-queue-when-full">Wenn die Warteschlange voll ist</string>
+  <string name="main-queue-when-full-stop">Feed stoppen</string>
+  <string name="main-queue-when-full-remove">Alte Bearbeitungen entfernen</string>
+  <string name="main-queue-remove-whitelisted">Bearbeitungen von weißgelisteten Benutzern entfernen</string>
+  <string name="main-queue-remove-200">Bearbeitungen mit einem Score von weniger als −200 entfernen</string>
   <string name="main-goto">Gehe zu</string>
   <string name="main-goto-mytalk">Meine Diskussionsseite</string>
   <string name="main-goto-mycontribs">Meine Benutzerbeiträge</string>
@@ -366,12 +372,17 @@
   <string name="main-page-load">Laden</string>
   <string name="main-patrol-not-enabled">Das Überprüfen auf $1 ist nicht aktiviert</string>
   <string name="main-page-restore">Diese Artikelversion wiederherstellen</string>
+  <string name="main-page-watchlist-add">Seite einer Beobachtungsliste hinzufügen</string>
+  <string name="main-page-tab-close">Aktuelle Registerkarte schließen</string>
+  <string name="main-page-tab-open">Neue Registerkarte öffnen</string>
+  <string name="main-page-watchlist-remove">Seite von der Beobachtungsliste entfernen</string>
   <string name="main-user-info">Benutzerinformation anzeigen</string>
   <string name="main-user-ignore">Ignoriere</string>
   <string name="main-user-unignore">Nicht mehr ignorieren</string>
   <string name="main-user-contribs">Benutzerbeiträge in einem Browser anzeigen</string>
   <string name="main-user-clear-talk">Diskussionsseite des Benutzers leeren</string>
   <string name="main-user-talk">Diskussionsseite anzeigen</string>
+  <string name="main-user-page">Benutzerseite ansehen</string>
   <string name="main-user-message">Nachricht...</string>
   <string name="main-user-warn">Verwarne...</string>
   <string name="main-user-db">Schlechtheits-Score des Benutzers verringern</string>
@@ -380,6 +391,7 @@
   <string name="main-user-clear-tp">Diskussionsseite des Benutzers leeren</string>
   <string name="main-user-retrieving-tp">Rufe Diskussionsseite von $1 ab</string>
   <string name="main-user-block">Sperre Benutzer...</string>
+  <string name="main-user-manualtemplate">Manuelle Vorlage</string>
   <string name="main-browser-back">Zurück</string>
   <string name="main-browser-forward">Vorwärts</string>
   <string name="main-browser-open">In externem Browser laden</string>
@@ -397,6 +409,9 @@
   <string name="main-help-documentation">Dokumentation</string>
   <string name="main-help-feedback">Rückmeldung</string>
   <string name="main-help-about">Über Huggle...</string>
+  <string name="main-help-introduction">Einführung</string>
+  <string name="main-help-contents">Inhalte</string>
+  <string name="main-help-queuelegend">Warteschlangenlegende</string>
   <string name="main-addqueue">Hinzufügen...</string>
   <string name="main-savelogtitle">Log speichern</string>
   <string name="main-usermessageother">Andere Nachricht...</string>
@@ -424,6 +439,10 @@
   <string name="main-report-username">Benutzernamen melden</string>
   <string name="main-report-user">Benutzer melden</string>
   <string name="main-edit-user-talk">Benutzerdiskussion bearbeiten</string>
+  <string name="main-statistics-paused">pausiert</string>
+  <string name="main-statistics-waiting">Warte auf weitere Bearbeitungen</string>
+  <string name="main-statistics-none">keine</string>
+  <string name="main-tab-welcome-title">Willkommensseite</string>
   <string name="message-title">Nachricht $1</string>
   <string name="message-help">Entweder Betreff und/oder Zusammenfassung angeben. Wenn keine Zusammenfassung angegeben wird, wird der Betreff verwendet; wenn kein Betreff angegeben wird, wird keine Überschrift hinzugefügt.</string>
   <string name="message-subject">Betreff:</string>
@@ -563,6 +582,7 @@
   <string name="user-history-fail">Der Verlauf für den Benutzer konnte nicht abgerufen werden: $1</string>
   <string name="userinfo-generic">Benutzerinformation</string>
   <string name="userinfo-retrieve">Rufe Informationen ab</string>
+  <string name="userinfo-no-user">Kein Benutzer</string>
   <string name="shortcut-page-patrol-edit">Bearbeitung als kontrolliert markieren</string>
   <string name="shortcut-report-username">Benutzernamen melden</string>
   <string name="shortcut-report-user">Benutzer melden</string>
@@ -609,6 +629,8 @@
   <string name="han-already-connected">Verbindung mit HAN wurde nicht hergestellt, da es bereits verbunden ist.</string>
   <string name="han-already-connecting">Bitte warten. Ich verbinde bereits mit HAN</string>
   <string name="han-disconnected">Du wurdest von HAN getrennt</string>
+  <string name="han-network">Netzwerk</string>
+  <string name="han-send">Senden</string>
   <string name="error-loggedout">Benutzer wurde abgemeldet, logge wieder ein...</string>
   <string name="error-noresponse">Keine Rückmeldung</string>
   <string name="error-pagemissing">Seite existiert nicht</string>
@@ -683,11 +705,13 @@
   <string name="rc-title-missing">RC-Feed: Im Element fehlt das Titel-Attribut: $1</string>
   <string name="whitelist-download">Lade neue Whitelist herunter</string>
   <string name="logs-widget-name">System-Logbücher</string>
+  <string name="processes-widget-name">Prozesse</string>
   <string name="wait">Bitte warten …</string>
   <string name="function-miss">Funktion ist jetzt nicht verfügbar</string>
   <string name="missing-aiv">Dieses Projekt verwendet kein AIV</string>
   <string name="missing-page">Es gibt keine Seite „$1“ auf diesem Wiki</string>
   <string name="updating-wl">Aktualisiere Whitelist …</string>
+  <string name="waiting">Warten …</string>
   <string name="feature-nfru">Diese Funktion ist nur für IP-Benutzer</string>
   <string name="report-no-user">Es wurde kein Benutzer für den Bericht ausgewählt. Bitte zuerst einen auswählen.</string>
   <string name="welcome-show">Diese Nachricht auch beim nächsten Huggle-Start anzeigen</string>
@@ -776,8 +800,9 @@
   <string name="query-protected-link">Geschützter Link</string>
   <string name="queue-empty-title">Sie ist leer</string>
   <string name="queue-empty-text">Es gibt nichts mehr in der Warteschlange …</string>
-  <string name="tip1">Huggle unterstützt Registerkarten wie jeder andere Browser! Falls du bei einer Bearbeitung bist, die du für später aufheben möchtest, kannst du einfach einen neuen Reiter öffnen und dort mit der Überprüfung der Warteschlange fortfahren. Die Warteschlange ist unter allen Registerkarten verfügbar.</string>
+  <string name="protip">ProTip</string>
+  <string name="tip1">Huggle unterstützt Registerkarten wie jeder andere Webbrowser! Falls du bei einer Bearbeitung bist, die du für später aufheben möchtest, kannst du einfach einen neuen Reiter öffnen und dort mit der Überprüfung der Warteschlange fortfahren. Die Warteschlange ist unter allen Registerkarten verfügbar.</string>
   <string name="tip2">Huggle enthält eine „Bearbeitungsleiste“, ein kleines Widget, das sowohl den Benutzer- als auch den Seitenverlauf in gepflegter Weise enthält. Es ist jedoch nicht standardmäßig aktiviert. Falls du einen kleinen Bildschirm hast, kannst du die Benutzer- und Seitenverlaufwidgets durch dieses Widget ersetzen!</string>
-  <string name="tip3">Die meisten Einstellungen werden auf dem Wiki in [[Special:MyPage/huggle3.css]] gespeichert. Du kannst sie auch dort ändern!</string>
+  <string name="tip3">Die meisten Einstellungen werden auf dem Wiki in [[Special:MyPage/huggle3.css]] gespeichert. Du kannst sie auch dort manuell ändern!</string>
   <string name="tip4">Fast jedes Widget auf dem Bildschirm kann sicher geschlossen werden (außer die Navigationsleiste).</string>
 </resources>

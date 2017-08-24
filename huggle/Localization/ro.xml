@@ -134,7 +134,6 @@
   <string name="config-last-revision" fuzzy="true">Afișează ultima revizie a paginii dacă editarea încărcată acum nu este o ultimă revizie (o va post-descărca, facănd Huggle lent)</string>
   <string name="config-require-delay">Impune o diferență de timp după fiecare încărcare a următoarei editări, timp în care nu se va putea utiliza nicio funcție care scrie (utilă pentru evitarea bugului cu multiple apăsări de taste)</string>
   <string name="config-wait-edit">Timpul, în secunde, până la reactivarea funcțiilor cu scriere:</string>
-  <string name="config-display-text">Arată următorul</string>
   <string name="config-retrieve-edit">Aducerea editărilor proprii</string>
   <string name="config-nothing">Nimic</string>
   <string name="config-bot-edits">Editări bot-ului (b)</string>
@@ -228,7 +227,7 @@
   <string name="login-username">Nume de utilizator:</string>
   <string name="login-password">Parolă:</string>
   <string name="login-proxygroup">Setări proxy</string>
-  <string name="login-proxy">Utilizați server proxy</string>
+  <string name="login-proxy" fuzzy="true">Utilizați server proxy</string>
   <string name="login-proxyaddress">Adresă:</string>
   <string name="login-proxy-remember-this">Rețineți această setare pentru data viitoare</string>
   <string name="login-proxyport">Port:</string>

@@ -130,7 +130,6 @@
   <string name="config-auto-load-history">Automatycznie pobieraj historię i informacje o użytkowniku (wymaga dobrego połączenia internetowego)</string>
   <string name="config-last-revision" fuzzy="true">Przejdź do najnowszej wersji strony w przypadku gdy załadowana edycja nie jest ostatnią (zostanie pobrana później, spowalniając Huggle)</string>
   <string name="config-wait-edit">Opóźnienie w sekundach, zanim będzie można wprowadzać zmiany:</string>
-  <string name="config-display-text">Pokaż następne</string>
   <string name="config-retrieve-edit">Przywróć swoją własną edycję</string>
   <string name="config-nothing">Nic</string>
   <string name="config-bot-edits">Edycje bota (b)</string>
@@ -215,7 +214,7 @@
   <string name="login-username">Nazwa użytkownika:</string>
   <string name="login-password">Hasło:</string>
   <string name="login-proxygroup">Ustawienia serwera proxy</string>
-  <string name="login-proxy">Użyj serwera proxy</string>
+  <string name="login-proxy" fuzzy="true">Użyj serwera proxy</string>
   <string name="login-proxyaddress">Adres:</string>
   <string name="login-proxy-remember-this">Zapamiętaj to ustawienie na następny raz</string>
   <string name="login-proxyport">Port:</string>

@@ -121,7 +121,6 @@
   <string name="config-remove-reverted" fuzzy="true">Dilemel ar c\'heñchamantoù a oa bet nullet dija gant unan bennak all</string>
   <string name="config-remove-old" fuzzy="true">Lemel ar c\'hemmoù kozh ma vez dielfennet ur c\'hemm neveso\'h er memes pajenn</string>
   <string name="config-auto-load-history">Kargit emgefreek an istor hag an titouroù implijer (ezhomm zo eus ur vandenn drafet eus ar rouedad)</string>
-  <string name="config-display-text">Diskwel ar pezh zo war-lec\'h</string>
   <string name="config-retrieve-edit">Adkavit ho cheñchamant</string>
   <string name="config-nothing">Netra</string>
   <string name="config-own-edits">Kemmoù an-unan</string>
@@ -181,7 +180,7 @@
   <string name="login-username">Anv implijer :</string>
   <string name="login-password">Ger-tremen :</string>
   <string name="login-proxygroup">Arventennoù proksi</string>
-  <string name="login-proxy">Implijout ur servijer proksi</string>
+  <string name="login-proxy" fuzzy="true">Implijout ur servijer proksi</string>
   <string name="login-proxyaddress">Chomlecʼh :</string>
   <string name="login-proxy-remember-this">Derc\'hel soñj eus an arventenn-mañ ar wech kentañ</string>
   <string name="login-proxyport">Porzh :</string>

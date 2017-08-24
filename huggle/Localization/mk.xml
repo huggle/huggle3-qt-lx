@@ -134,7 +134,6 @@
   <string name="config-last-revision" fuzzy="true">Префрли на последната преработка на страница во случај тековно вчитаното уредување да не е последната верзија (се презема отпосле, забавувајќи го Huggle)</string>
   <string name="config-require-delay">Барај одложување по секое вчитување на следното уредување во чиј тек нема да може се употреби никаква записна функција (за избегнување на бубачката што се јавува при стискање на повеќе копчиња на тастатурата)</string>
   <string name="config-wait-edit">Одолжувањето, во секунди, до овозможувањето на записните функции:</string>
-  <string name="config-display-text">Прикажи следно</string>
   <string name="config-retrieve-edit">Дај мое уредување</string>
   <string name="config-nothing">Ништо</string>
   <string name="config-bot-edits">Ботски уредувања (b)</string>
@@ -228,7 +227,7 @@
   <string name="login-username">Корисничко име:</string>
   <string name="login-password">Лозинка:</string>
   <string name="login-proxygroup">Поставки на застапникот</string>
-  <string name="login-proxy">Користи застапнички опслужувач</string>
+  <string name="login-proxy" fuzzy="true">Користи застапнички опслужувач</string>
   <string name="login-proxyaddress">Адреса:</string>
   <string name="login-proxy-remember-this">Запомни ја поставкава за понатаму</string>
   <string name="login-proxyport">Порта:</string>

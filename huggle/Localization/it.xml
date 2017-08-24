@@ -132,7 +132,6 @@
   <string name="config-last-revision">Passa all\'ultima versione della pagina nel caso in cui la modifica attualmente caricata non sia l\'ultima versione (la scaricherà, rendendo Huggle più lento)</string>
   <string name="config-require-delay">Richiedere un ritardo dopo ogni caricamento della modifica successiva, durante il quale non sarà possibile usare alcuna funzionalità di scrittura (utile per evitare problemi da pressione multipla di pulsanti sulla tastiera)</string>
   <string name="config-wait-edit">Il ritardo, in secondi, prima che siano abilitate le funzioni di modifica:</string>
-  <string name="config-display-text">Mostra il successivo</string>
   <string name="config-retrieve-edit">Recupera le tue modifiche</string>
   <string name="config-nothing">Niente</string>
   <string name="config-bot-edits">Modifiche di Bot (b)</string>
@@ -226,7 +225,7 @@
   <string name="login-username">Nome utente:</string>
   <string name="login-password">Password:</string>
   <string name="login-proxygroup">Impostazioni proxy</string>
-  <string name="login-proxy">Utilizza un server proxy</string>
+  <string name="login-proxy">Utilizza un proxy</string>
   <string name="login-proxyaddress">Indirizzo:</string>
   <string name="login-proxy-remember-this">Ricorda questa impostazione per la prossima volta</string>
   <string name="login-proxyport">Porta:</string>
@@ -365,6 +364,7 @@
   <string name="main-user-contribs">Mostra i contributi dell\'utente in un browser</string>
   <string name="main-user-clear-talk">Pulisci la pagina di discussione dell\'utente</string>
   <string name="main-user-talk">Visualizza la pagina di discussione</string>
+  <string name="main-user-page">Visualizza la pagina utente</string>
   <string name="main-user-message">Invia un messaggio...</string>
   <string name="main-user-warn">Avverti...</string>
   <string name="main-user-db">Riduci il punteggio di cattiveria dell\'utente</string>
@@ -390,6 +390,7 @@
   <string name="main-help-documentation">Documentazione</string>
   <string name="main-help-feedback">Feedback</string>
   <string name="main-help-about">A proposito di Huggle...</string>
+  <string name="main-help-introduction">Introduzione</string>
   <string name="main-addqueue">Aggiungi...</string>
   <string name="main-savelogtitle">Salva registro</string>
   <string name="main-usermessageother">Altro messaggio...</string>
@@ -414,6 +415,9 @@
   <string name="main-report-username">Segnala il nome utente</string>
   <string name="main-report-user">Segnala l\'utente</string>
   <string name="main-edit-user-talk">Modifica discussioni utente</string>
+  <string name="main-statistics-paused">in pausa</string>
+  <string name="main-statistics-none">nessuno</string>
+  <string name="main-tab-welcome-title">Pagina di benvenuto</string>
   <string name="message-title">Messaggio $1</string>
   <string name="message-help">Specifica uno o entrambi tra Oggetto e Riassunto. Se non viene fornito un riassunto, verrà usato l\'oggetto; se non viene fornito l\'oggetto, non verrà aggiunta alcuna intestazione.</string>
   <string name="message-subject">Oggetto:</string>
@@ -552,6 +556,7 @@
   <string name="user-history-fail">Impossibile recuperare la cronologia per l\'utente: $1</string>
   <string name="userinfo-generic">Informazioni utente</string>
   <string name="userinfo-retrieve">Recupera le informazioni</string>
+  <string name="userinfo-no-user">Nessun utente</string>
   <string name="shortcut-page-patrol-edit">Verifica modifica</string>
   <string name="shortcut-report-username">Segnala il nome utente</string>
   <string name="shortcut-report-user">Segnala l\'utente</string>
@@ -597,6 +602,8 @@
   <string name="han-already-connected">Non ci si connette con HAN perchè è già collegato</string>
   <string name="han-already-connecting">Si prega di attendere con pazienza, sto già allestendo la connessione a HAN</string>
   <string name="han-disconnected">Sei stato disconnesso da HAN</string>
+  <string name="han-network">Rete</string>
+  <string name="han-send">Invia</string>
   <string name="error-loggedout">L\'utenza è stata disconnessa, riconnessione...</string>
   <string name="error-noresponse">Nessuna risposta</string>
   <string name="error-pagemissing">La pagina non esiste</string>
@@ -747,6 +754,6 @@
   <string name="main-revert-type-made-on-talk-page">fatto sulla pagina di discussione</string>
   <string name="main-revert-type-made-white-list">fatto da un utente che è nella lista bianca</string>
   <string name="main-revert-warn">Questa modifica è $1, quindi, anche se sembra che sia un vandalismo, potrebbe non esserlo, sei sicuro di volerla annullare?</string>
-  <string name="tip3">La maggior parte delle preferenze sono conservate su wiki in [[SPecial:MyPage/huggle3.css]], puoi anche cambiarle direttamente lì!</string>
+  <string name="tip3">La maggior parte delle preferenze sono memorizzate su wiki in [[SPecial:MyPage/huggle3.css]], puoi anche cambiarle manualmente direttamente lì!</string>
   <string name="tip4">Praticamente ogni oggetto sullo schermo può essere chiuso in sicurezza (eccetto la barra di navigazione).</string>
 </resources>

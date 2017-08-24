@@ -87,7 +87,6 @@
   <string name="config-revert-wait" fuzzy="true">પૂર્વવતમાટે રાહ (સેકંડ)</string>
   <string name="config-revert">પૂર્વવત</string>
   <string name="config-enable-irc">સક્રિય IRC</string>
-  <string name="config-display-text">આગામી બતાવો</string>
   <string name="config-nothing">કંઈ નહિં</string>
   <string name="config-bot-edits">બૉટ્ સંપાદન (બૉ)</string>
   <string name="config-own-edits">પોતાનાં સંપાદન</string>
@@ -124,7 +123,7 @@
   <string name="login-username">સભ્યનામ:</string>
   <string name="login-password">ગુપ્ત સંજ્ઞા:</string>
   <string name="login-proxygroup">પ્રતિનિધિ ગોઠવણો</string>
-  <string name="login-proxy">પ્રતિનિધિ વિતરકનો ઉપયોગ કરો</string>
+  <string name="login-proxy" fuzzy="true">પ્રતિનિધિ વિતરકનો ઉપયોગ કરો</string>
   <string name="login-proxyaddress">સરનામું</string>
   <string name="login-proxyport">પોર્ટ</string>
   <string name="login-proxydomain">ડોમેઈન:</string>

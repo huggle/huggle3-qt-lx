@@ -122,7 +122,6 @@
   <string name="config-enable-irc">Povolit IRC</string>
   <string name="config-remove-reverted" fuzzy="true">Odstranit editace, které již někdo dříve revertoval</string>
   <string name="config-remove-old" fuzzy="true">Odstranit staré editace, pokud jsou parsovány na stránku novější editace</string>
-  <string name="config-display-text">Zobrazit další</string>
   <string name="config-retrieve-edit">Zobrazit vaši vlastní editaci</string>
   <string name="config-nothing">Nic</string>
   <string name="config-bot-edits">Úpravy robota (b)</string>
@@ -209,7 +208,7 @@
   <string name="login-username">Uživatelské jméno:</string>
   <string name="login-password">Heslo:</string>
   <string name="login-proxygroup">Nastavení proxy</string>
-  <string name="login-proxy">Použít proxy server</string>
+  <string name="login-proxy" fuzzy="true">Použít proxy server</string>
   <string name="login-proxyaddress">Adresa:</string>
   <string name="login-proxy-remember-this">Pamatovat toto nastavení pro příště</string>
   <string name="login-proxyport">Port:</string>

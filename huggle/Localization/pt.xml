@@ -126,7 +126,6 @@
   <string name="config-remove-reverted" fuzzy="true">Remover edições que já foram revertidas por alguém</string>
   <string name="config-auto-load-history">Carregar automaticamente a história e informações do usuário (requer uma grande quantidade de largura de banda de rede)</string>
   <string name="config-require-delay">Exigem um atraso depois de cada carregamento da próxima edição, durante o qual não será possível o uso de qualquer recurso de gravação (útil para evitar teclado bug multi-toque)</string>
-  <string name="config-display-text">Mostrar texto</string>
   <string name="config-retrieve-edit">Recuperar minha edição</string>
   <string name="config-nothing">Nada</string>
   <string name="config-bot-edits">Edições de robô (b)</string>
@@ -212,7 +211,7 @@
   <string name="login-username">Nome de utilizador(a):</string>
   <string name="login-password">Palavra-passe:</string>
   <string name="login-proxygroup">Definições de proxy</string>
-  <string name="login-proxy">Usar um servidor proxy</string>
+  <string name="login-proxy" fuzzy="true">Usar um servidor proxy</string>
   <string name="login-proxyaddress">Endereço:</string>
   <string name="login-proxy-remember-this">Lembrar esta definição na próxima vez</string>
   <string name="login-proxyport">Porta:</string>

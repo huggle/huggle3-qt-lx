@@ -104,7 +104,6 @@
   <string name="config-conflicts-revert" fuzzy="true">Бетті өзгерткен немесе жоққа шығарған басқа қатысушылар арасындағы қақтығыстарды автоматты шешу</string>
   <string name="config-revert-wait" fuzzy="true">Жоққа шығаруды күтіңіз (бірнеше секунд)</string>
   <string name="config-revert">Қайтару</string>
-  <string name="config-display-text">Келесісін көрсету</string>
   <string name="config-retrieve-edit">Өзіңіздің өңдемеңізді қайтып алу</string>
   <string name="config-nothing">Ештеңе</string>
   <string name="config-bot-edits">Бот өңдемелері (б)</string>
@@ -167,7 +166,7 @@
   <string name="login-username">Қатысушы есімі</string>
   <string name="login-password">Құпия сөз:</string>
   <string name="login-proxygroup">Прокси баптаулары</string>
-  <string name="login-proxy">Прокси серверді қолдану</string>
+  <string name="login-proxy" fuzzy="true">Прокси серверді қолдану</string>
   <string name="login-proxyaddress">Мекенжай</string>
   <string name="login-proxyport">Порт:</string>
   <string name="login-proxydomain">Домен:</string>

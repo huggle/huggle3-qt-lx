@@ -114,7 +114,6 @@
   <string name="config-enable-irc">Įgalinti IRC</string>
   <string name="config-remove-reverted" fuzzy="true">Pašalina įnašus, kurių jau kažkas atsisakė</string>
   <string name="config-auto-load-history">Automatiškai įkelti istoriją ir vartotojo informaciją (reikalauja daug tinklo pralaidumo)</string>
-  <string name="config-display-text">Rodyti kitą</string>
   <string name="config-retrieve-edit">Gauti savo paties įnašą</string>
   <string name="config-nothing">Nieko</string>
   <string name="config-bot-edits">Robotų įnašai (r)</string>
@@ -188,7 +187,7 @@
   <string name="login-username">Naudotojo vardas:</string>
   <string name="login-password">Slaptažodis:</string>
   <string name="login-proxygroup">Proxy nustatymai</string>
-  <string name="login-proxy">Naudoti proxy serverį</string>
+  <string name="login-proxy" fuzzy="true">Naudoti proxy serverį</string>
   <string name="login-proxyaddress">Adresas:</string>
   <string name="login-proxy-remember-this">Atsiminti šį nustatymą kitam kartui</string>
   <string name="login-proxyport">Prievadas:</string>

@@ -134,7 +134,6 @@
   <string name="config-last-revision">若目前已載入編輯並非最新版本，切換至頁面最新的修訂內容（這將會先讓 Huggle 運作緩慢來下載內容）</string>
   <string name="config-require-delay">在每次載入下一個編輯內容需要一些時間，在此期間任何寫入功能皆不可用（這在避免因鍵盤多次觸按，而產生程式錯誤時很有用）</string>
   <string name="config-wait-edit">直到寫入功能開啟所延遲的秒數：</string>
-  <string name="config-display-text">顯示下一筆</string>
   <string name="config-retrieve-edit">取得您自己的編輯</string>
   <string name="config-nothing">無</string>
   <string name="config-bot-edits">機器人的編輯 (b)</string>
@@ -228,7 +227,7 @@
   <string name="login-username">使用者名稱：</string>
   <string name="login-password">密碼：</string>
   <string name="login-proxygroup">代理設定</string>
-  <string name="login-proxy">使用代理伺服器</string>
+  <string name="login-proxy">使用代理</string>
   <string name="login-proxyaddress">位址：</string>
   <string name="login-proxy-remember-this">記住此次設定讓下次使用</string>
   <string name="login-proxyport">埠：</string>
@@ -372,6 +371,7 @@
   <string name="main-user-contribs">在瀏覽器中顯示使用者貢獻</string>
   <string name="main-user-clear-talk">清除使用者討論頁</string>
   <string name="main-user-talk">檢視討論頁</string>
+  <string name="main-user-page">檢視使用者頁面</string>
   <string name="main-user-message">訊息…</string>
   <string name="main-user-warn">警告...</string>
   <string name="main-user-db">降低使用者的不良分數</string>
@@ -380,6 +380,7 @@
   <string name="main-user-clear-tp">清除使用者的對話頁</string>
   <string name="main-user-retrieving-tp">取得 $1 的對話頁面</string>
   <string name="main-user-block">封禁...</string>
+  <string name="main-user-manualtemplate">手動模板</string>
   <string name="main-browser-back">返回</string>
   <string name="main-browser-forward">前進</string>
   <string name="main-browser-open">在外部瀏覽器檢視</string>
@@ -397,6 +398,9 @@
   <string name="main-help-documentation">說明文件</string>
   <string name="main-help-feedback">意見回饋</string>
   <string name="main-help-about">關於Huggle…</string>
+  <string name="main-help-introduction">介紹</string>
+  <string name="main-help-contents">內容</string>
+  <string name="main-help-queuelegend">佇列說明</string>
   <string name="main-addqueue">增加…</string>
   <string name="main-savelogtitle">儲存日誌</string>
   <string name="main-usermessageother">其他訊息…</string>
@@ -424,6 +428,10 @@
   <string name="main-report-username">回報使用者名稱</string>
   <string name="main-report-user">回報使用者</string>
   <string name="main-edit-user-talk">編輯使用者對話頁</string>
+  <string name="main-statistics-paused">暫停</string>
+  <string name="main-statistics-waiting">等待更多編輯</string>
+  <string name="main-statistics-none">無</string>
+  <string name="main-tab-welcome-title">歡迎頁面</string>
   <string name="message-title">訊息 $1</string>
   <string name="message-help">指定標題或摘要其一。如果沒有摘要，標題就必須使用；如果沒有標題，就不會有標頭加入。</string>
   <string name="message-subject">主旨：</string>
@@ -563,6 +571,7 @@
   <string name="user-history-fail">無法索取用戶：$1的歷史</string>
   <string name="userinfo-generic">使用者資訊</string>
   <string name="userinfo-retrieve">取得資訊</string>
+  <string name="userinfo-no-user">沒有使用者</string>
   <string name="shortcut-page-patrol-edit">巡查編輯</string>
   <string name="shortcut-report-username">回報使用者名稱</string>
   <string name="shortcut-report-user">回報使用者</string>
@@ -609,6 +618,8 @@
   <string name="han-already-connected">因已連線至HAN，故沒有進行連線</string>
   <string name="han-already-connecting">請稍後，我正在連線至HAN</string>
   <string name="han-disconnected">您已從HAN失去連結</string>
+  <string name="han-network">網路</string>
+  <string name="han-send">傳送</string>
   <string name="error-loggedout">帳號已登出，重新登入中…</string>
   <string name="error-noresponse">無回應</string>
   <string name="error-pagemissing">此頁面不存在</string>
@@ -776,8 +787,8 @@
   <string name="query-protected-link">已保護連結</string>
   <string name="queue-empty-title">空的</string>
   <string name="queue-empty-text">佇列裡沒有東西...</string>
-  <string name="tip1">Huggle 如同其它任何瀏覽器般支援頁籤！如果您作了一些編輯並希望能維持在事後使用，您可直接開啟新頁籤來繼續檢查佇列。佇列在所有頁籤裡可互相共享。</string>
+  <string name="tip1">Huggle 如同其它任何網路瀏覽器般支援頁籤！如果您作了一些編輯並希望能維持在事後使用，您可直接開啟新頁籤來繼續檢查佇列。佇列在所有頁籤裡可互相共享。</string>
   <string name="tip2">雖然預設上並不啟用；但 Huggle 擁有以簡潔方式來保存使用者與頁面歷史的小工具「編輯列」。若您是使用較小的螢幕，您可以此來替換目前的使用者與頁面歷史小工具！</string>
-  <string name="tip3">多數個人設置儲存在 wiki 裡的[[Special:MyPage/huggle3.css]]，您可以在那更改它們！</string>
+  <string name="tip3">多數個人設置儲存在 wiki 裡的[[Special:MyPage/huggle3.css]]，您可以在那手動更改它們！</string>
   <string name="tip4">在螢幕上的小工具幾乎都可安全地關閉（用於導覽列上的除外）。</string>
 </resources>

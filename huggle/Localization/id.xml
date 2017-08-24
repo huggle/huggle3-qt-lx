@@ -131,7 +131,6 @@
   <string name="config-auto-load-history">Muat sejarah dan informasi pengguna secara otomatis (membutuhkan banyak bandwidth jaringan)</string>
   <string name="config-last-revision" fuzzy="true">Tampilkan revisi terakhir halaman jika suntingan yang termuat saat ini bukan revisi terbaru (akan diunduh tanpa tembolok)</string>
   <string name="config-wait-edit">Penundaan, dalam detik, hingga fitus tulis diaktifkan:</string>
-  <string name="config-display-text">Tampilkan setelahnya</string>
   <string name="config-retrieve-edit">Ambil suntingan sendiri</string>
   <string name="config-nothing">Tidak ada</string>
   <string name="config-bot-edits">Suntingan bot (b)</string>
@@ -182,7 +181,7 @@
   <string name="login-username">Nama pengguna:</string>
   <string name="login-password">Kata sandi:</string>
   <string name="login-proxygroup">Pengaturan proxy</string>
-  <string name="login-proxy">Gunakan proksi peladen</string>
+  <string name="login-proxy" fuzzy="true">Gunakan proksi peladen</string>
   <string name="login-proxyaddress">Alamat:</string>
   <string name="login-proxy-remember-this">Ingat pengaturan ini untuk waktu yang akan datang</string>
   <string name="login-proxyport">Port:</string>

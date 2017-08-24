@@ -111,7 +111,6 @@
   <string name="config-remove-old" fuzzy="true">Donn de älldere Änderonge fott lohße, wann en neuere Änderong för desällve Sigg beärbeidt weed</string>
   <string name="config-auto-load-history">Donn de Verjangeheid un de Dahte övver dä Metmaacher automttesch lahde — dat scheck ävver öhndlesch Dahte övver et Näzwärk.</string>
   <string name="config-last-revision" fuzzy="true">Zeijsch de läzde Väsjohn vun dä Sigg wann de jelahde Änderong nit de läzde Väsjohn es — se weed spähder eronger jelahde, aam &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„Zwescheschpeijscher “\"&gt;cache&lt;/i&gt; vörbei.</string>
-  <string name="config-display-text" fuzzy="true">Zeisch de Näxte aan</string>
   <string name="config-retrieve-edit">De eije Änderong holle</string>
   <string name="config-nothing">Nix</string>
   <string name="config-bot-edits">De Bots iehr Änderonge (b)</string>
@@ -166,7 +165,7 @@
   <string name="login-username">Dä Metmaacher_Nahme:</string>
   <string name="login-password">Et Paßwoot:</string>
   <string name="login-proxygroup">Enschtällonge för der &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„ene ẞööver en de Nohberschaff, ene Zweschedrääjer udder Zwescheschpeijscher, ene Vermeddelongsrääschner“\"&gt;proxy&lt;/i&gt;</string>
-  <string name="login-proxy">Donn ene &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„ene ẞööver en de Nohberschaff, ene Zweschedrääjer udder Zwescheschpeijscher, ene Vermeddelongsrääschner“\"&gt;proxy&lt;/i&gt;-ẞööver bruche</string>
+  <string name="login-proxy" fuzzy="true">Donn ene &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„ene ẞööver en de Nohberschaff, ene Zweschedrääjer udder Zwescheschpeijscher, ene Vermeddelongsrääschner“\"&gt;proxy&lt;/i&gt;-ẞööver bruche</string>
   <string name="login-proxyaddress">Adräß:</string>
   <string name="login-proxyport">Pooz (&lt;i lang=\"en\"&gt;port&lt;/i&gt;)</string>
   <string name="login-proxydomain">Domähn:</string>

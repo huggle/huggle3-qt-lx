@@ -120,8 +120,10 @@
   <string name="config-welcome-empty-page">发送欢迎信息到作出了良好编辑的只有空讨论页的用户</string>
   <string name="config-conflicts-revert">自动解决与其他回退或更改相同页面的用户的编辑冲突</string>
   <string name="config-instant-reverts">使用立即回退（非常快，但执行后无法撤销）</string>
+  <string name="config-reverts-multiple">由同一用户对多个编辑做出的回退：</string>
   <string name="config-revert-wait">回退延迟（秒）</string>
   <string name="config-revert">回退</string>
+  <string name="config-skip">跳过</string>
   <string name="config-revert-diff">回退页面上比显示的差异更新的编辑，当他们是同一个用户做出时</string>
   <string name="config-change-all">更改所有Huggle设置以尽量像Huggle 2那样运转</string>
   <string name="config-merge-messages">将你的信息和其他人的一起合并到已有的段落中</string>
@@ -134,7 +136,6 @@
   <string name="config-last-revision">如果当前加载的编辑不是最近修订，就切换为页面的最近修订（将传输-下载它，这会使Huggle运行缓慢）</string>
   <string name="config-require-delay">每次载入下一次编辑前需要延迟一段时间，此时不可能使用任何写入功能（这在您需要解决键盘多次点按问题时很有用）</string>
   <string name="config-wait-edit">您需要等待编辑功能之间被开启的时间（秒）：</string>
-  <string name="config-display-text">显示下一个</string>
   <string name="config-retrieve-edit">取得自己的编辑</string>
   <string name="config-nothing">什么都没有</string>
   <string name="config-bot-edits">机器人编辑（b）</string>
@@ -324,6 +325,11 @@
   <string name="main-queue-reset">重置</string>
   <string name="main-queue-clearall">全部清除</string>
   <string name="main-queue-options">管理队列...</string>
+  <string name="main-queue-when-full">当队列已满时</string>
+  <string name="main-queue-when-full-stop">停止订阅源</string>
+  <string name="main-queue-when-full-remove">移除旧编辑</string>
+  <string name="main-queue-remove-whitelisted">移除白名单用户做出的编辑</string>
+  <string name="main-queue-remove-200">移除分数小于-200的编辑</string>
   <string name="main-goto">转到</string>
   <string name="main-goto-mytalk">我的讨论页</string>
   <string name="main-goto-mycontribs">我的贡献</string>
@@ -366,12 +372,17 @@
   <string name="main-page-load">载入</string>
   <string name="main-patrol-not-enabled">在$1没有启用巡查</string>
   <string name="main-page-restore">恢复这个版本</string>
+  <string name="main-page-watchlist-add">插入页面至监视列表</string>
+  <string name="main-page-tab-close">关闭当前标签</string>
+  <string name="main-page-tab-open">打开新标签</string>
+  <string name="main-page-watchlist-remove">从监视列表移除页面</string>
   <string name="main-user-info">查看用户信息</string>
   <string name="main-user-ignore">忽略</string>
   <string name="main-user-unignore">取消忽略</string>
   <string name="main-user-contribs">浏览器中显示用户贡献</string>
   <string name="main-user-clear-talk">清空用户讨论页</string>
   <string name="main-user-talk">查看对话页</string>
+  <string name="main-user-page">查看用户页面</string>
   <string name="main-user-message">消息...</string>
   <string name="main-user-warn">警告...</string>
   <string name="main-user-db">减少用户的不良评分</string>
@@ -380,6 +391,7 @@
   <string name="main-user-clear-tp">清空用户讨论页</string>
   <string name="main-user-retrieving-tp">检索$1的讨论页中</string>
   <string name="main-user-block">封禁...</string>
+  <string name="main-user-manualtemplate">手动模板</string>
   <string name="main-browser-back">后退</string>
   <string name="main-browser-forward">前进</string>
   <string name="main-browser-open">用外部浏览器查看</string>
@@ -397,6 +409,9 @@
   <string name="main-help-documentation">文档</string>
   <string name="main-help-feedback">反馈</string>
   <string name="main-help-about">关于Huggle...</string>
+  <string name="main-help-introduction">介绍</string>
+  <string name="main-help-contents">内容</string>
+  <string name="main-help-queuelegend">队列图例</string>
   <string name="main-addqueue">添加……</string>
   <string name="main-savelogtitle">保存日志</string>
   <string name="main-usermessageother">其他消息...</string>
@@ -424,6 +439,10 @@
   <string name="main-report-username">报告用户名</string>
   <string name="main-report-user">报告用户</string>
   <string name="main-edit-user-talk">编辑用户讨论页</string>
+  <string name="main-statistics-paused">已暂停</string>
+  <string name="main-statistics-waiting">等待更多编辑</string>
+  <string name="main-statistics-none">无</string>
+  <string name="main-tab-welcome-title">欢迎页面</string>
   <string name="message-title">消息$1</string>
   <string name="message-help">指明标题和/或摘要。如果没有摘要，标题或被使用。如果没有标题，就不会插入标题头</string>
   <string name="message-subject">主题：</string>
@@ -563,6 +582,7 @@
   <string name="user-history-fail">无法检索用户$1的历史</string>
   <string name="userinfo-generic">用户信息</string>
   <string name="userinfo-retrieve">检索信息</string>
+  <string name="userinfo-no-user">没有用户</string>
   <string name="shortcut-page-patrol-edit">巡查编辑</string>
   <string name="shortcut-report-username">报告用户名</string>
   <string name="shortcut-report-user">报告用户</string>
@@ -609,6 +629,8 @@
   <string name="han-already-connected">没有连接到HAN，因为它已经连接</string>
   <string name="han-already-connecting">请稍候，我正在连接HAN</string>
   <string name="han-disconnected">您已从HAN断开</string>
+  <string name="han-network">网络</string>
+  <string name="han-send">发送</string>
   <string name="error-loggedout">账户已退出，重新登入中…</string>
   <string name="error-noresponse">无反应</string>
   <string name="error-pagemissing">页面不存在</string>
@@ -683,11 +705,13 @@
   <string name="rc-title-missing">RC订阅：项目缺少标题属性：$1</string>
   <string name="whitelist-download">正在下载新白名单</string>
   <string name="logs-widget-name">系统日志</string>
+  <string name="processes-widget-name">处理</string>
   <string name="wait">请稍候…</string>
   <string name="function-miss">函数目前不可用</string>
   <string name="missing-aiv">此项目不使用AIV</string>
   <string name="missing-page">此wiki没有页面$1</string>
   <string name="updating-wl">正在更新白名单…</string>
+  <string name="waiting">正在等待...</string>
   <string name="feature-nfru">此功能仅限IP用户可用</string>
   <string name="report-no-user">没有选择用户报告，请先选择一些用户</string>
   <string name="welcome-show">在下次您启用Huggle时也显示此消息</string>
@@ -776,8 +800,9 @@
   <string name="query-protected-link">已保护链接</string>
   <string name="queue-empty-title">这是空的</string>
   <string name="queue-empty-text">队列中没有别的东西...</string>
+  <string name="protip">重要提示</string>
   <string name="tip1">就像其他浏览器那样，Huggle支持标签！如果您正在做一些编辑，并且您希望稍后保持它，您完全可以打开新标签，并在这里继续检查队列。队列在所有标签中分享。</string>
   <string name="tip2">Huggle包含“编辑栏”，这是包含拥有简洁界面的用户和页面历史的小部件。当然它默认不启用。如果您使用小屏幕设备，您可以将用户和页面历史部件替换成它！</string>
-  <string name="tip3">多数参数设置都在wiki页面[[Special:MyPage/huggle3.css]]存储，您也可以在此更改它们！</string>
+  <string name="tip3">多数参数设置都在wiki页面[[Special:MyPage/huggle3.css]]存储，您也可以在此手动更改它们！</string>
   <string name="tip4">屏幕上几乎所有小工具都可以安全关闭（除了导航栏）。</string>
 </resources>

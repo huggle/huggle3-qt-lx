@@ -134,7 +134,6 @@
   <string name="config-last-revision" fuzzy="true">Switch to the last revision of page in case currently loaded edit is not a last revision (will post-download it, making Huggle slower)</string>
   <string name="config-require-delay">Require a delay after every load of next edit, during which it will not be possible to use any write feature (useful for avoiding keyboard multi-press bug)</string>
   <string name="config-wait-edit">The amount of time that you must wait between edit features being enabled (in seconds):</string>
-  <string name="config-display-text">Display next</string>
   <string name="config-retrieve-edit">Retrieve your own edit</string>
   <string name="config-nothing">Nothing</string>
   <string name="config-bot-edits">Bot edits (b)</string>
@@ -228,7 +227,7 @@
   <string name="login-username">Username:</string>
   <string name="login-password">Password:</string>
   <string name="login-proxygroup">Proxy settings</string>
-  <string name="login-proxy">Use a proxy server</string>
+  <string name="login-proxy" fuzzy="true">Use a proxy server</string>
   <string name="login-proxyaddress">Address:</string>
   <string name="login-proxy-remember-this">Remember this setting for next time</string>
   <string name="login-proxyport">Port:</string>

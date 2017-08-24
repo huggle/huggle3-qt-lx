@@ -122,7 +122,6 @@
   <string name="config-remove-old" fuzzy="true">إزالة التعديلات القديمة إذا تم تحليل أحدث تعديل لنفس الصفحة</string>
   <string name="config-auto-load-history">تحميل تاريخ ومعلومات المستخدم تلقائيًا (يتطلب الكثير من عرض النطاق الترددي للشبكة)</string>
   <string name="config-wait-edit">هناك تأخير، خلال ثوانٍ، حتى يتم تمكين ميزات الكتابة:</string>
-  <string name="config-display-text">اعرض النص</string>
   <string name="config-retrieve-edit">استرجاع تعديلك</string>
   <string name="config-nothing">لا شيء</string>
   <string name="config-bot-edits">تعديلات البوت (ب)</string>
@@ -210,7 +209,7 @@
   <string name="login-username">اسم المستخدم:</string>
   <string name="login-password">كلمة السر:</string>
   <string name="login-proxygroup">إعدادات الوسيط</string>
-  <string name="login-proxy">استخدم خادوما وسيطا</string>
+  <string name="login-proxy" fuzzy="true">استخدم خادوما وسيطا</string>
   <string name="login-proxyaddress">عنوان:</string>
   <string name="login-proxy-remember-this">تذكر هذا الإعداد في المرة القادمة</string>
   <string name="login-proxyport">منفذ:</string>

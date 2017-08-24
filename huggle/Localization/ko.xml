@@ -133,7 +133,6 @@
   <string name="config-auto-load-history">자동으로 역사와 사용자 정보를 불러오기 (많은 네트워크 대역폭 필요)</string>
   <string name="config-last-revision">현재 불러들인 편집이 최신판이 아닌 경우 문서의 최신판으로 전환합니다. (다운로드할 때 Huggle이 느려집니다)</string>
   <string name="config-wait-edit">쓰기 기능이 활성활될 때까지의 지연 시간 (초 단위):</string>
-  <string name="config-display-text">다음 표시</string>
   <string name="config-retrieve-edit">자신의 편집 가져오기</string>
   <string name="config-nothing">아무 것도 하지 않음</string>
   <string name="config-bot-edits">봇 편집 (b)</string>
@@ -224,7 +223,7 @@
   <string name="login-username">사용자 이름:</string>
   <string name="login-password">비밀번호:</string>
   <string name="login-proxygroup">프록시 설정</string>
-  <string name="login-proxy">프록시 서버를 사용합니다</string>
+  <string name="login-proxy">프록시를 사용합니다</string>
   <string name="login-proxyaddress">주소:</string>
   <string name="login-proxy-remember-this">다음을 위해 이 설정 기억하기</string>
   <string name="login-proxyport">포트:</string>
@@ -366,6 +365,7 @@
   <string name="main-user-contribs">브라우저에서 사용자 기여 보기</string>
   <string name="main-user-clear-talk">사용자의 토론 문서 지우기</string>
   <string name="main-user-talk">토론 문서 보기</string>
+  <string name="main-user-page">사용자 문서 보기</string>
   <string name="main-user-message">메시지...</string>
   <string name="main-user-warn">경고...</string>
   <string name="main-user-db">사용자의 나쁜 점수 내리기</string>
@@ -391,6 +391,7 @@
   <string name="main-help-documentation">설명문서</string>
   <string name="main-help-feedback">피드백</string>
   <string name="main-help-about">Huggle 정보...</string>
+  <string name="main-help-introduction">소개</string>
   <string name="main-addqueue">추가...</string>
   <string name="main-savelogtitle">기록 저장</string>
   <string name="main-usermessageother">다른 메시지...</string>
@@ -418,6 +419,7 @@
   <string name="main-report-username">사용자 이름 보고</string>
   <string name="main-report-user">사용자 보고</string>
   <string name="main-edit-user-talk">사용자 토론 편집</string>
+  <string name="main-statistics-none">없음</string>
   <string name="message-title">$1에게 메시지 보내기</string>
   <string name="message-subject">제목:</string>
   <string name="message-message">메시지:</string>
@@ -550,6 +552,7 @@
   <string name="user-history-fail">사용자의 역사를 검색하지 못했습니다: $1</string>
   <string name="userinfo-generic">사용자 정보</string>
   <string name="userinfo-retrieve">정보 얻기</string>
+  <string name="userinfo-no-user">사용자 없음</string>
   <string name="shortcut-page-patrol-edit">편집 점검</string>
   <string name="shortcut-report-username">사용자 이름 보고</string>
   <string name="shortcut-report-user">사용자 보고</string>
@@ -589,6 +592,8 @@
   <string name="han-already-connected">이미 연결되어 있으므로 HAN에 연결하지 않습니다</string>
   <string name="han-already-connecting">기다려 주십시오. HAN에 이미 연결 중입니다</string>
   <string name="han-disconnected">HAN으로부터 접속이 끊어졌습니다</string>
+  <string name="han-network">네트워크</string>
+  <string name="han-send">보내기</string>
   <string name="error-loggedout">계정이 로그아웃되어 있습니다. 다시 로그인하는 중...</string>
   <string name="error-noresponse">응답 없음</string>
   <string name="error-pagemissing">문서가 존재하지 않습니다</string>
@@ -742,7 +747,7 @@
   <string name="query-protected-link">보호된 링크</string>
   <string name="queue-empty-title">비어 있습니다</string>
   <string name="queue-empty-text">그 밖의 항목이 대기열에 없습니다...</string>
-  <string name="tip1">Huggle은 마치 다른 모든 브라우저처럼 탭을 지원합니다! 편집을 하다가 나중에 이를 유지하고 싶으면 새 탭을 열어서 대기열을 확인해 나가시면 됩니다. 대기열은 모든 탭끼리 공유됩니다.</string>
-  <string name="tip3">대부분의 환경 설정은 위키의 [[Special:MyPage/huggle3.css]]에 저장되어 있으므로 해당 장소에서도 변경이 가능합니다!</string>
+  <string name="tip1" fuzzy="true">Huggle은 마치 다른 모든 브라우저처럼 탭을 지원합니다! 편집을 하다가 나중에 이를 유지하고 싶으면 새 탭을 열어서 대기열을 확인해 나가시면 됩니다. 대기열은 모든 탭끼리 공유됩니다.</string>
+  <string name="tip3" fuzzy="true">대부분의 환경 설정은 위키의 [[Special:MyPage/huggle3.css]]에 저장되어 있으므로 해당 장소에서도 변경이 가능합니다!</string>
   <string name="tip4">화면 상의 거의 모든 소도구는 안전하게 닫을 수 있습니다. (둘러보기 표시줄 제외)</string>
 </resources>

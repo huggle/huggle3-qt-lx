@@ -119,7 +119,6 @@
   <string name="config-merge-messages">Sammanfoga dina meddelanden med andras i befintliga avsnitt</string>
   <string name="config-enable-irc">Aktivera IRC</string>
   <string name="config-wait-edit" fuzzy="true">Tiden du behöver vänta när redigeringsfunktioner aktiveras (sekunder):</string>
-  <string name="config-display-text">Visa nästa</string>
   <string name="config-retrieve-edit">Hämta din egen redigering</string>
   <string name="config-nothing">Ingenting</string>
   <string name="config-bot-edits">Robotredigeringar (b)</string>
@@ -191,7 +190,7 @@
   <string name="login-username">Användarnamn:</string>
   <string name="login-password">Lösenord:</string>
   <string name="login-proxygroup">Proxyinställningar</string>
-  <string name="login-proxy">Använd en proxyserver</string>
+  <string name="login-proxy" fuzzy="true">Använd en proxyserver</string>
   <string name="login-proxyaddress">Adress:</string>
   <string name="login-proxyport">Port:</string>
   <string name="login-proxydomain">Domän:</string>

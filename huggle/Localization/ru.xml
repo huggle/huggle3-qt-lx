@@ -134,7 +134,6 @@
   <string name="config-last-revision" fuzzy="true">Переключить на последнюю версию страницы в случае, когда текущая загруженная правка не является последней (будет выполнена дозагрузка, что замедлит Huggle)</string>
   <string name="config-require-delay">Установить задержку после каждой загрузки следующей правки, во время которой невозможно вносить изменения (полезно для разрешения проблем, возникающих из-за нажатия нескольких клавиш сразу)</string>
   <string name="config-wait-edit">Задержка (в секундах) до включения функций записи:</string>
-  <string name="config-display-text">Показать следующий</string>
   <string name="config-retrieve-edit">Получать свои собственные правки</string>
   <string name="config-nothing">Ничего</string>
   <string name="config-bot-edits">Правки бота (b)</string>
@@ -228,7 +227,7 @@
   <string name="login-username">Логин:</string>
   <string name="login-password">Пароль:</string>
   <string name="login-proxygroup">Настройки прокси</string>
-  <string name="login-proxy">Использовать прокси</string>
+  <string name="login-proxy" fuzzy="true">Использовать прокси</string>
   <string name="login-proxyaddress">Адрес:</string>
   <string name="login-proxy-remember-this">Запомнить эту настройку на будущее</string>
   <string name="login-proxyport">Порт:</string>

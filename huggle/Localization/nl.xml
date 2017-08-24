@@ -132,7 +132,6 @@
   <string name="config-last-revision" fuzzy="true">De laatste versie van pagina weergeven in het geval de huidige geladen bewerking niet de laatste versie is (wordt buiten de cache om geladen)</string>
   <string name="config-require-delay">Vereis een vertraging na het laden van iedere bewerking, gedurende welke tijd het niet mogelijk is om functies waar schrijven voor nodig is te gebruiken (handig voor het vermijden van meerdere toetsaanslagen)</string>
   <string name="config-wait-edit">De vertraging, in seconden, totdat schrijffuncties weer beschikbaar zijn:</string>
-  <string name="config-display-text">Volgende weergeven</string>
   <string name="config-retrieve-edit">Uw eigen bewerking ophalen</string>
   <string name="config-nothing">Niets</string>
   <string name="config-bot-edits">Bot-bewerkingen (b)</string>
@@ -226,7 +225,7 @@
   <string name="login-username">Gebruikersnaam:</string>
   <string name="login-password">Wachtwoord:</string>
   <string name="login-proxygroup">Proxy-instellingen</string>
-  <string name="login-proxy">Een proxyserver gebruiken</string>
+  <string name="login-proxy" fuzzy="true">Een proxyserver gebruiken</string>
   <string name="login-proxyaddress">Adres:</string>
   <string name="login-proxy-remember-this">Instellingen onthouden voor de volgende keer</string>
   <string name="login-proxyport">Poort:</string>

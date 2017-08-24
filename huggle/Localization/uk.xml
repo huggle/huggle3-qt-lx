@@ -132,7 +132,6 @@
   <string name="config-last-revision" fuzzy="true">Показувати останню версію сторінки, якщо поточне редагування не є найновішим (завантаження буде виконано оминаючи кеш)</string>
   <string name="config-require-delay">Встановити затримку після кожного завантаження наступного редагування, під час якої неможливо внести зміни (корисно для вирішення проблеми з натисканням кількох клавіш одразу)</string>
   <string name="config-wait-edit">Скільки потрібно чекати до ввімкнення можливості редагування (в секундах):</string>
-  <string name="config-display-text">Показати наступну</string>
   <string name="config-retrieve-edit">Показувати Ваше редагування</string>
   <string name="config-nothing">Нічого</string>
   <string name="config-bot-edits">Редагування бота (б)</string>
@@ -226,7 +225,7 @@
   <string name="login-username">Ім’я користувача:</string>
   <string name="login-password">Пароль:</string>
   <string name="login-proxygroup">Налаштування проксі</string>
-  <string name="login-proxy">Використовувати проксі</string>
+  <string name="login-proxy" fuzzy="true">Використовувати проксі</string>
   <string name="login-proxyaddress">Адреса:</string>
   <string name="login-proxy-remember-this">Запам\'ятати це налаштування на наступний раз</string>
   <string name="login-proxyport">Порт:</string>

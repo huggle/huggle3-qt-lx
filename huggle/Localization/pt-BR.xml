@@ -132,7 +132,6 @@
   <string name="config-last-revision" fuzzy="true">Mostrar última revisão da página caso a edição carregada atualmente não seja a última revisão (divulgaremos ignorando cache)</string>
   <string name="config-require-delay">Requer um atraso após cada carregamento da próxima edição, para os quais não é possível usar qualquer recurso de gravação (útil quando você precisa evitar erros no teclado multifunções)</string>
   <string name="config-wait-edit">O tempo pelo qual você precisa esperar entre editar recursos estão habilitados (segundos):</string>
-  <string name="config-display-text">Mostrar seguinte</string>
   <string name="config-retrieve-edit">Recuperar sua própria edição</string>
   <string name="config-nothing">Nada</string>
   <string name="config-bot-edits">Edições de robô (b)</string>
@@ -226,7 +225,7 @@
   <string name="login-username">Usuário:</string>
   <string name="login-password">Senha:</string>
   <string name="login-proxygroup">Configurações de proxy</string>
-  <string name="login-proxy">Usar um servidor proxy</string>
+  <string name="login-proxy" fuzzy="true">Usar um servidor proxy</string>
   <string name="login-proxyaddress">Endereço:</string>
   <string name="login-proxy-remember-this">Lembrar desta configuração</string>
   <string name="login-proxyport">Porta:</string>

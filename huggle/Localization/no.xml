@@ -88,7 +88,7 @@
   <string name="login-username">Brukernavn:</string>
   <string name="login-password">Passord:</string>
   <string name="login-proxygroup">Mellomtjener innstillinger</string>
-  <string name="login-proxy">Bruk en mellomtjener</string>
+  <string name="login-proxy" fuzzy="true">Bruk en mellomtjener</string>
   <string name="login-proxyaddress">Addresse:</string>
   <string name="login-proxyport">Port:</string>
   <string name="login-proxydomain">Domene:</string>

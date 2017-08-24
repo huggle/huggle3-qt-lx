@@ -133,7 +133,6 @@
   <string name="config-last-revision" fuzzy="true">להציג את הגרסה האחרונה של הדף במקרה שהעריכה הטעונה הנוכחית אינה הגרסה האחרונה (יוריד אותה אחרי־כן ויעקוף את המטמון)</string>
   <string name="config-require-delay">לדרוש עיכוב אחרי כל טעינה של העריכה הבאה, שבמהלכו לא ניתן להשתמש בשום אפשרות כתיבה (זה שימושי להימנעות מבאגים של לחיצה מרובה במקלדת)</string>
   <string name="config-wait-edit">זמן ההמתנה בשניות עד שאפשרויות הכתיבה מופעלות:</string>
-  <string name="config-display-text">להציג את הבא</string>
   <string name="config-retrieve-edit">שחזור עריכה של עצמך</string>
   <string name="config-nothing">שום דבר</string>
   <string name="config-bot-edits">עריכות בוט (b)</string>
@@ -227,7 +226,7 @@
   <string name="login-username">שם משתמש:</string>
   <string name="login-password">סיסמה:</string>
   <string name="login-proxygroup">הגדרות שרת מתווך</string>
-  <string name="login-proxy">שימוש בשרת מתווך</string>
+  <string name="login-proxy" fuzzy="true">שימוש בשרת מתווך</string>
   <string name="login-proxyaddress">כתובת:</string>
   <string name="login-proxy-remember-this">שמירת הגדרה זו עבור הפעם הבאה</string>
   <string name="login-proxyport">פורט:</string>

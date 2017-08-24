@@ -132,7 +132,6 @@
   <string name="config-last-revision" fuzzy="true">نمایش بازبینی آخر از صفحه در حالتی که ویرایش فراخوانی‌شدهٔ جاری بازبینی آخر نیست (پس از گذشتن از نهان‌گاه دریافتش می‌کند)</string>
   <string name="config-require-delay">به یک تأخیر پس از هر بارگیری از ویرایش بعدی نیاز است، به این دلیل که ممکن نیست از هر ویژگی نوشتن استفاده شود (کاربردی زمانی  که باید اشکال چند فشار صفحه کلید رفع شود)</string>
   <string name="config-wait-edit">زمانی که باید صبر کنید (به ثانیه) تا ویژگی‌های نوشتاری فعال شوند:</string>
-  <string name="config-display-text">نمایش بعدی</string>
   <string name="config-retrieve-edit">بازیابی ویرایش خودتان</string>
   <string name="config-nothing">هیچ‌چیز</string>
   <string name="config-bot-edits">ویرایش‌های ربات (ر)</string>
@@ -226,7 +225,7 @@
   <string name="login-username">نام کاربری:</string>
   <string name="login-password">گذرواژه:</string>
   <string name="login-proxygroup">تنظیمات پراکسی</string>
-  <string name="login-proxy">استفاده از سرور پراکسی</string>
+  <string name="login-proxy" fuzzy="true">استفاده از سرور پراکسی</string>
   <string name="login-proxyaddress">نشانی:</string>
   <string name="login-proxy-remember-this">این تنظیمات را برای دفعه بعدی به یاد نگه‌دار</string>
   <string name="login-proxyport">درگاه:</string>

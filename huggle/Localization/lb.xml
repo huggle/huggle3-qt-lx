@@ -87,9 +87,9 @@
   <string name="config-undosummary">Resumé beim Zrécksetze vun eegenen Ännerungen</string>
   <string name="config-welcome-empty-page">E Begréissungsmessage u Benotzer schécken déi eng eidel Diskussiounssäit hunn an eng gutt Ännerung gemaach hunn</string>
   <string name="config-revert">Zrécksetzen</string>
+  <string name="config-skip">Iwwersprangen</string>
   <string name="config-months-name">Méint als Iwwerschrëft benotzen aplaz vum Numm vun enger Säit</string>
   <string name="config-enable-irc">IRC aktivéieren</string>
-  <string name="config-display-text">Nächst weisen</string>
   <string name="config-retrieve-edit">Är eegen Ännerungen ofruffen</string>
   <string name="config-nothing">Näischt</string>
   <string name="config-bot-edits">Bot-Ännerungen (b)</string>
@@ -137,7 +137,7 @@
   <string name="login-username">Benotzernumm:</string>
   <string name="login-password">Passwuert:</string>
   <string name="login-proxygroup">Proxy-Astellungen</string>
-  <string name="login-proxy">E Proxy-Server benotzen</string>
+  <string name="login-proxy">E Proxy benotzen</string>
   <string name="login-proxyaddress">Adress:</string>
   <string name="login-proxyport">Port:</string>
   <string name="login-proxydomain">Domaine:</string>
@@ -185,6 +185,7 @@
   <string name="main-user">Benotzer</string>
   <string name="main-contribs">Kontributiounen</string>
   <string name="main-history">Versiounen</string>
+  <string name="main-new-messages">Dir hutt nei Messagen. Wielt de System -&gt; Nei Message weisen oder M drécke fir se ze gesinn.</string>
   <string name="main-space">Den Numm vun der Säit däerf net mat engem Espace ophalen, verbessert w.e.g. den Numm vun der Säit</string>
   <string name="main-system">System</string>
   <string name="main-system-messages">Nei Message weisen</string>
@@ -202,6 +203,7 @@
   <string name="main-queue-count">$1 Elementer</string>
   <string name="main-queue-reset">Zrécksetzen</string>
   <string name="main-queue-clearall">All eidelmaachen</string>
+  <string name="main-queue-when-full-remove">Al Ännerungen ewechhuelen</string>
   <string name="main-goto-mytalk">Meng Diskussiounssäit</string>
   <string name="main-goto-mycontribs">Meng Kontributiounen</string>
   <string name="main-revision-decline">Versioun refuséieren</string>
@@ -234,11 +236,15 @@
   <string name="main-page-load">Lueden</string>
   <string name="main-patrol-not-enabled">D\'Nokucken ass op $1 net aktivéiert</string>
   <string name="main-page-restore">Dës Versioun restauréieren</string>
+  <string name="main-page-watchlist-add">Säit op eng Iwwerwaachungslëscht derbäisetzen</string>
+  <string name="main-page-tab-open">Neien Tab opmaachen</string>
+  <string name="main-page-watchlist-remove">Säit vun enger Iwwerwaachungslëscht erofhuelen</string>
   <string name="main-user-info">Informatioun vum Benotzer weisen</string>
   <string name="main-user-ignore">Ignoréieren</string>
   <string name="main-user-contribs">Benotzerkontributiounen an engem Browser weisen</string>
   <string name="main-user-clear-talk">Diskussiounssäit vum Benotzer eidelmaachen</string>
   <string name="main-user-talk">Diskussiounssäit weisen</string>
+  <string name="main-user-page">Benotzersäit wäisen</string>
   <string name="main-user-message">Message...</string>
   <string name="main-user-warn">Warnen...</string>
   <string name="main-user-clear-tp">Diskussiounssäit vum Benotzer eidelmaachen</string>
@@ -257,6 +263,8 @@
   <string name="main-help-documentation">Dokumentatioun</string>
   <string name="main-help-feedback">Feedback</string>
   <string name="main-help-about">Iwwer Huggle...</string>
+  <string name="main-help-introduction">Aféierung</string>
+  <string name="main-help-contents">Inhalter</string>
   <string name="main-addqueue">Derbäisetzen...</string>
   <string name="main-savelogtitle">Logbuch späicheren</string>
   <string name="main-usermessageother">Anere Message...</string>
@@ -278,6 +286,8 @@
   <string name="main-report-username">Benotzernumm mellen</string>
   <string name="main-report-user">Benotzer mellen</string>
   <string name="main-edit-user-talk">Benotzerdiskussioun änneren</string>
+  <string name="main-statistics-none">keng</string>
+  <string name="main-tab-welcome-title">Wëllkomm-Säit</string>
   <string name="message-title">Message $1</string>
   <string name="message-subject">Sujet:</string>
   <string name="message-message">Message:</string>
@@ -320,6 +330,7 @@
   <string name="ssl-is-not-supported">Dir hutt gefrot fir SSL ze benotzen awer $1 ënnerstëtzt dat net.</string>
   <string name="uaa-not-supported">UAA net disponibel</string>
   <string name="uaa-nr">Et gouf kee Grond uginn</string>
+  <string name="uaa-e2">D\'Inhalter vun der Säit waren net disponibel.</string>
   <string name="revert-confirm-multiple">Heimat ginn eng Rei Ännerunge vum $1 zréckgesat. Virufueren?</string>
   <string name="revert-confirm-range">Den Auteur vun der Ziversioun $2 ass am selwechte Beräich wéi den Auteur vun der aktueller Versioun $1 a kéint déi selwecht Persoun sinn. Vergewëssert Iech datt d\'Zilversioun korrekt ass ier Dir weidermaacht. Virufueren?</string>
   <string name="revert-error-first">Dës Ännerung ass déi éischt Ännerung vun der Säit a kann net zréckgesat ginn.</string>
@@ -347,6 +358,7 @@
   <string name="updater-disable-notify">Aktualisatiounen desaktivéieren</string>
   <string name="userinfo-generic">Benotzerinformatioun</string>
   <string name="userinfo-retrieve">Informatiounen ofruffen</string>
+  <string name="userinfo-no-user">Kee Benotzer</string>
   <string name="shortcut-page-patrol-edit">Ännerung kontrolléiert</string>
   <string name="shortcut-report-username">Benotzernumm mellen</string>
   <string name="shortcut-report-user">Benotzer mellen</string>
@@ -374,6 +386,8 @@
   <string name="warning-warnlog">Warnunge fir dëse Benotzer:</string>
   <string name="warning-submit">Schécken</string>
   <string name="missing-warning">De Modell fir ze warnen $1 gëtt et net.</string>
+  <string name="han-network">Reseau</string>
+  <string name="han-send">Schécken</string>
   <string name="error-noresponse">Keng Äntwert</string>
   <string name="error-pagemissing">D\'Säit gëtt et net</string>
   <string name="error-unknown">Onbekannt Feeler</string>
@@ -404,6 +418,7 @@
   <string name="function-miss">Funktioun ass elo net disponibel</string>
   <string name="missing-aiv">Dëse Projet benotzt AIV net</string>
   <string name="missing-page">Et gëtt keng Säit $1 op dëser Wiki</string>
+  <string name="waiting">Waarden...</string>
   <string name="feature-nfru">Dës Funktioun ass nëmme fir anonym (IP) Benotzer</string>
   <string name="report-no-user">Et gouf kee Benotzer erausgesicht fir de Rapport, sicht w.e.g. fir d\'éischt e Benotzer eraus</string>
   <string name="welcome-show">Dëse Message och beim nächste Start vun Huggle weisen</string>

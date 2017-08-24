@@ -79,7 +79,6 @@
   <string name="config-revert">გაუქმება</string>
   <string name="config-enable-irc">IRC-ის გააქტიურება</string>
   <string name="config-remove-reverted" fuzzy="true">იმ ცვლილებების წაშლა, რომელიც ვიღაცამ უკვე გააუქმა</string>
-  <string name="config-display-text">შემდეგის ჩვენება</string>
   <string name="config-nothing">არაფერი</string>
   <string name="config-bot-edits">ბოტის რედაქტირებები (b)</string>
   <string name="config-own-edits">საკუთარი რედაქტირებები</string>
@@ -120,7 +119,7 @@
   <string name="login-username">Логин:</string>
   <string name="login-password">Пароль:</string>
   <string name="login-proxygroup">Настройки прокси</string>
-  <string name="login-proxy">Использовать прокси</string>
+  <string name="login-proxy" fuzzy="true">Использовать прокси</string>
   <string name="login-proxyaddress">Адрес:</string>
   <string name="login-proxyport">Порт:</string>
   <string name="login-proxydomain">Домен:</string>
