@@ -165,6 +165,7 @@
   <string name="config-autoadvance">After reverting, move to next edit in the queue</string>
   <string name="config-userollback">Use rollback if available</string>
   <string name="config-revertsummaries">Revert summaries available in menu</string>
+  <string name="config-auto-refresh">Automatically refresh page in case there was another edit made to it</string>
   <string name="config-extendreports">Extend reports after additional vandalism</string>
   <string name="config-autoreport">When asked to warn a user with a final warning</string>
   <string name="config-reportnone">Do nothing</string>

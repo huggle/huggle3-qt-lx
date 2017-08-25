@@ -344,6 +344,13 @@
           </widget>
          </item>
          <item>
+          <widget class="QCheckBox" name="cb_AutoRefresh">
+           <property name="text">
+            <string>Automatically refresh current page in case there was another edit made to it</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <layout class="QHBoxLayout" name="horizontalLayout_9">
            <item>
             <widget class="QLabel" name="label_14">

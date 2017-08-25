@@ -1349,7 +1349,7 @@ void MainWindow::OnMainTimerTick()
     if (this->OnNext_EvPage != nullptr && this->qNext != nullptr && this->qNext->IsProcessed())
     {
         this->tb->SetPage(this->OnNext_EvPage);
-        this->tb->RenderEdit();
+        this->tb->DownloadEdit();
         delete this->OnNext_EvPage;
         this->OnNext_EvPage = nullptr;
         this->qNext = nullptr;
@@ -2071,7 +2071,7 @@ void MainWindow::RenderPage(QString Page)
     page->Site = this->GetCurrentWikiSite();
     this->tb->SetPage(page);
     delete page;
-    this->tb->RenderEdit();
+    this->tb->DownloadEdit();
 }
 
 WikiSite *MainWindow::GetCurrentWikiSite()
@@ -2082,6 +2082,15 @@ WikiSite *MainWindow::GetCurrentWikiSite()
     }
 
     return this->CurrentEdit->GetSite();
+}
+
+void MainWindow::RefreshPage()
+{
+    if (!this->CheckExit() || this->CurrentEdit == nullptr)
+        return;
+
+    this->tb->SetPage(this->CurrentEdit->Page);
+    this->tb->DownloadEdit();
 }
 
 void MainWindow::LockPage()
@@ -3254,9 +3263,5 @@ void Huggle::MainWindow::on_actionRevert_edit_using_custom_reason_triggered()
 
 void Huggle::MainWindow::on_actionRefresh_triggered()
 {
-    if (!this->CheckExit() || this->CurrentEdit == nullptr)
-        return;
-
-    this->tb->SetPage(this->CurrentEdit->Page);
-    this->tb->RenderEdit();
+    this->RefreshPage();
 }
