@@ -114,7 +114,7 @@ WikiSite *HuggleTool::GetSite()
     return Configuration::HuggleConfiguration->Projects.at(this->ui->comboBox->currentIndex());
 }
 
-void HuggleTool::RenderEdit()
+void HuggleTool::DownloadEdit()
 {
     if (!this->ui->pushButton->isEnabled() || !this->ui->lineEdit_3->text().length())
         return;
@@ -134,7 +134,7 @@ void HuggleTool::RenderEdit()
 
 void Huggle::HuggleTool::on_pushButton_clicked()
 {
-    this->RenderEdit();
+    this->DownloadEdit();
 }
 
 void HuggleTool::onTick()
@@ -237,7 +237,7 @@ QString HuggleTool::GenerateColor(QString color)
 
 void Huggle::HuggleTool::on_lineEdit_3_returnPressed()
 {
-    this->RenderEdit();
+    this->DownloadEdit();
 }
 
 void Huggle::HuggleTool::on_lineEdit_2_returnPressed()

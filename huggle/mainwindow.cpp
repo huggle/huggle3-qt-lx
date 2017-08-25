@@ -1349,7 +1349,7 @@ void MainWindow::OnMainTimerTick()
     if (this->OnNext_EvPage != nullptr && this->qNext != nullptr && this->qNext->IsProcessed())
     {
         this->tb->SetPage(this->OnNext_EvPage);
-        this->tb->RenderEdit();
+        this->tb->DownloadEdit();
         delete this->OnNext_EvPage;
         this->OnNext_EvPage = nullptr;
         this->qNext = nullptr;
@@ -2071,7 +2071,7 @@ void MainWindow::RenderPage(QString Page)
     page->Site = this->GetCurrentWikiSite();
     this->tb->SetPage(page);
     delete page;
-    this->tb->RenderEdit();
+    this->tb->DownloadEdit();
 }
 
 WikiSite *MainWindow::GetCurrentWikiSite()
@@ -2090,7 +2090,7 @@ void MainWindow::RefreshPage()
         return;
 
     this->tb->SetPage(this->CurrentEdit->Page);
-    this->tb->RenderEdit();
+    this->tb->DownloadEdit();
 }
 
 void MainWindow::LockPage()
