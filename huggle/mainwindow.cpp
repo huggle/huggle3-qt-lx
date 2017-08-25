@@ -2084,6 +2084,15 @@ WikiSite *MainWindow::GetCurrentWikiSite()
     return this->CurrentEdit->GetSite();
 }
 
+void MainWindow::RefreshPage()
+{
+    if (!this->CheckExit() || this->CurrentEdit == nullptr)
+        return;
+
+    this->tb->SetPage(this->CurrentEdit->Page);
+    this->tb->RenderEdit();
+}
+
 void MainWindow::LockPage()
 {
     this->EnableEditing(false);
@@ -3254,9 +3263,5 @@ void Huggle::MainWindow::on_actionRevert_edit_using_custom_reason_triggered()
 
 void Huggle::MainWindow::on_actionRefresh_triggered()
 {
-    if (!this->CheckExit() || this->CurrentEdit == nullptr)
-        return;
-
-    this->tb->SetPage(this->CurrentEdit->Page);
-    this->tb->RenderEdit();
+    this->RefreshPage();
 }

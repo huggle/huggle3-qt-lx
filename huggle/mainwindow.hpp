@@ -160,6 +160,7 @@ namespace Huggle
             //! Try to load a page
             void RenderPage(QString Page);
             WikiSite *GetCurrentWikiSite();
+            void RefreshPage();
             //! Make currently displayed page unchangeable (useful when you render non-diff pages where rollback wouldn't work)
             void LockPage();
             //! List of edits that are being saved

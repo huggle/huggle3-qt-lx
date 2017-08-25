@@ -190,6 +190,7 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
     configuration_ += "MaxScore:" + QString::number(this->MaxScore) + "\n";
     configuration_ += "EnableMinScore:" + Bool2String(this->EnableMinScore) + "\n";
     configuration_ += "MinScore:" + QString::number(this->MinScore) + "\n";
+    configuration_ += "AutomaticRefresh:" + Bool2String(this->AutomaticRefresh) + "\n";
     // shortcuts
     QStringList shortcuts = Configuration::HuggleConfiguration->Shortcuts.keys();
     // we need to do this otherwise huggle may sort the items differently every time and spam wiki
@@ -376,6 +377,7 @@ bool UserConfiguration::ParseUserConfig(QString config, ProjectConfiguration *Pr
     this->MinScore = ConfigurationParse("MinScore", config, "0").toLongLong();
     this->MaxScore = ConfigurationParse("MaxScore", config, "0").toLongLong();
     this->EnableMinScore = SafeBool(ConfigurationParse("EnableMinScore", config));
+    this->AutomaticRefresh = SafeBool(ConfigurationParse("AutomaticRefresh", config), this->AutomaticRefresh);
     // for now we do this only for home wiki but later we need to make it for every wiki
     if (IsHome)
     {
