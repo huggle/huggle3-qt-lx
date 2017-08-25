@@ -132,7 +132,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->addDockWidget(Qt::BottomDockWidgetArea, this->VandalDock);
     this->addDockWidget(Qt::TopDockWidgetArea, this->wEditBar);
     this->wEditBar->hide();
-    this->preferencesForm = nullptr;
     this->aboutForm = nullptr;
     this->ui->actionDisplay_bot_data->setChecked(hcfg->UserConfig->HAN_DisplayBots);
     this->ui->actionDisplay_user_data->setChecked(hcfg->UserConfig->HAN_DisplayUser);
@@ -327,7 +326,6 @@ MainWindow::~MainWindow()
     delete this->tStatusBarRefreshTimer;
     delete this->RevertSummaries;
     delete this->Queries;
-    delete this->preferencesForm;
     delete this->aboutForm;
     delete this->fSessionData;
     delete this->fScoreWord;
@@ -1201,10 +1199,8 @@ void MainWindow::TriggerWarn()
 
 void MainWindow::on_actionPreferences_triggered()
 {
-    if (this->preferencesForm == nullptr)
-        this->preferencesForm = new Preferences(this);
-
-    this->preferencesForm->show();
+    Preferences preferencesForm;
+    preferencesForm.exec();
 }
 
 void MainWindow::on_actionContents_triggered()

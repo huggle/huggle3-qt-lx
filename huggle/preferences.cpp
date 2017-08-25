@@ -298,8 +298,7 @@ void Preferences::EnableQueues(bool enabled)
 
 void Preferences::on_pushButton_clicked()
 {
-    this->ResetItems();
-    this->hide();
+    this->close();
 }
 
 void Huggle::Preferences::on_pushButton_2_clicked()

@@ -807,4 +807,12 @@
   <string name="tip2">Huggle contains an "edit bar", a little widget that contains both User and Page history in a neat way. It's not enabled by default though. If you are on a small screen, you can replace user and page history widgets with it!</string>
   <string name="tip3">Most preferences are stored on wiki in [[Special:MyPage/huggle3.css]], you can also manually change them there!</string>
   <string name="tip4">Almost every widget on screen can be safely closed (except for the navigation bar).</string>
+  <string name="tip5">You can use Huggle simultaneously on multiple projects, just click the "Projects" button on login form.</string>
+  <string name="tip6">Huggle's reverting can be made much faster if you are experienced user who never make mistakes ;) open preferences and check "Instant Reverts"</string>
+  <string name="tip7">You can create your own custom Queue filters in preferences, they are stored in your on-wiki config page.</string>
+  <string name="tip8">Pressing G will flag edit as "good edit", this will notify others that edit can be ignored, decreases user badness score and optionally sends them a welcome message.</string>
+  <string name="tip9">Pressing S will flag edit as "suspicious edit", this will notify others that edit needs attention and add it to queue of suspicious edits for later review by experts.</string>
+  <string name="tip10">Most of the shortcuts can be changed in preferences.</string>
+  <string name="tip11">Moving a widget on Huggle screen over another widget will merge them into one, separated with tabs.</string>
+  <string name="tip12">Made a mistake? No problem, right clicking any edit you made in "History of your edits" opens a popup which offers Undo of your own change.</string>
 </resources>

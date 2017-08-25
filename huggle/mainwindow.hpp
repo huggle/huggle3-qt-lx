@@ -176,8 +176,6 @@ namespace Huggle
             //! Pointer to toolbar
             HuggleTool *tb;
             EditBar *wEditBar;
-            //! Pointer to options
-            Preferences *preferencesForm = nullptr;
             //! Pointer to ignore list (see ignorelist.h)
             IgnoreList *Ignore = nullptr;
             //! Pointer to about dialog (see aboutform.h)
