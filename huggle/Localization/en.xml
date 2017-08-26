@@ -615,6 +615,7 @@
   <string name="shortcut-revert-and-stay">Revert the current edit and stay on the page</string>
   <string name="shortcut-custom-reason">Revert the edit using custom edit summary reason</string>
   <string name="shortcut-user-contribs-browser">Open user's contributions in a browser</string>
+  <string name="shortcut-user-clear-talk">Clear a talk page of current user</string>
   <string name="warning-title">Warn $1</string>
   <string name="warning-levelgroup">Warning level</string>
   <string name="warning-levelauto">Automatic</string>

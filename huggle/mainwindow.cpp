@@ -909,6 +909,9 @@ void MainWindow::ReloadShort(QString id)
         case HUGGLE_ACCEL_MAIN_REFRESH:
             q = this->ui->actionRefresh;
             break;
+        case HUGGLE_ACCEL_MAIN_USER_CLEAR_TALK:
+            q = this->ui->actionClear_talk_page_of_user;
+            break;
     }
 
     if (q != nullptr)
