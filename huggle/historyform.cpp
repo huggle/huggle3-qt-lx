@@ -263,7 +263,7 @@ void HistoryForm::onTick01()
     this->ui->tableWidget->resizeRowsToContents();
     this->query = nullptr;
     this->t1->stop();
-    if (!this->CurrentEdit->NewPage && !Configuration::HuggleConfiguration->ForcedNoEditJump && !IsLatest)
+    if (!this->CurrentEdit->NewPage && !Configuration::HuggleConfiguration->ForceNoEditJump && !IsLatest)
     {
         if (Configuration::HuggleConfiguration->UserConfig->LastEdit)
         {

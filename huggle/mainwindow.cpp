@@ -468,7 +468,7 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
     }
     this->Queue1->ChangeSite(e->GetSite());
     e->User->Resync();
-    Configuration::HuggleConfiguration->ForcedNoEditJump = ForcedJump;
+    Configuration::HuggleConfiguration->ForceNoEditJump = ForcedJump;
     this->CurrentEdit = e;
     this->EditLoad = QDateTime::currentDateTime();
     this->Browser->DisplayDiff(e);

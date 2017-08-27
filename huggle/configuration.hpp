@@ -402,7 +402,7 @@ namespace Huggle
             //! Typical usage for this is when you want to display a diff that may not be
             //! latest revision and you want to force huggle to not load a latest version
             //! even if user wants that (used by toolbar when user info is loaded).
-            bool        ForcedNoEditJump = false;
+            bool        ForceNoEditJump = false;
             //! Warn you in case you want to revert a user page
             bool        SystemConfig_WarnUserSpaceRoll = true;
             //! Send a message to user on good edit

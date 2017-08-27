@@ -40,7 +40,7 @@ void EditBarItem::mousePressEvent(QMouseEvent *event)
     {
         if (this->IsUser)
         {
-            Huggle::MainWindow::HuggleMain->wUserInfo->Render(this->RevID.toLong(), this->Page);
+            Huggle::MainWindow::HuggleMain->wUserInfo->JumpToSpecificContrib(this->RevID.toLong(), this->Page);
         } else
         {
             if (this->RowId < 0)

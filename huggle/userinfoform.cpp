@@ -121,7 +121,7 @@ void UserinfoForm::OnTick()
     {
         if (this->edit->IsPostProcessed())
         {
-            MainWindow::HuggleMain->ProcessEdit(this->edit, false, false, true);
+            MainWindow::HuggleMain->ProcessEdit(this->edit, false, false, true, true);
             this->edit.Delete();
         }
         return;
@@ -220,7 +220,7 @@ void UserinfoForm::OnTick()
     }
 }
 
-void UserinfoForm::Render(long revid, QString page)
+void UserinfoForm::JumpToSpecificContrib(long revid, QString page)
 {
     // in case there are no edits we can safely quit here, there is also check because
     // we must not retrieve edit until previous operation did finish
@@ -260,6 +260,6 @@ void UserinfoForm::Render(long revid, QString page)
 
 void UserinfoForm::on_tableWidget_clicked(const QModelIndex &index)
 {
-    this->Render(this->ui->tableWidget->item(index.row(), 2)->text().toLong(),
+    this->JumpToSpecificContrib(this->ui->tableWidget->item(index.row(), 2)->text().toLong(),
                  this->ui->tableWidget->item(index.row(), 0)->text());
 }
