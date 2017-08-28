@@ -3268,3 +3268,13 @@ void Huggle::MainWindow::on_actionRefresh_triggered()
 {
     this->RefreshPage();
 }
+
+void Huggle::MainWindow::on_actionUser_page_triggered()
+{
+    if (this->CurrentEdit == nullptr)
+        return;
+
+    WikiPage *page = new WikiPage(this->CurrentEdit->User->GetUserPage());
+    this->Browser->DisplayPreFormattedPage(page);
+    delete page;
+}

@@ -390,6 +390,17 @@ bool WikiUser::IsWhitelisted()
     }
 }
 
+QString WikiUser::GetUserPage()
+{
+    // get a userspace prefix for this site
+    WikiPageNS *ns = this->GetSite()->RetrieveNSByCanonicalName("User");
+    QString prefix = ns->GetName();
+    if (!prefix.size())
+        prefix = "User";
+    prefix += ":";
+    return prefix + this->Username;
+}
+
 QString WikiUser::Flags()
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);

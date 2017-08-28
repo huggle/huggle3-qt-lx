@@ -106,6 +106,7 @@ namespace Huggle
             //! Returns true if this user is wl
             bool IsWhitelisted();
             QDateTime TalkPage_RetrievalTime();
+            QString GetUserPage();
             /*!
              * \brief Retrieve a badness score for current user, see WikiUser::BadnessScore for more
              * \param _resync If true the user will be resynced before the score is returned
