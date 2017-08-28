@@ -106,6 +106,7 @@
   <string name="config-confirmsame">Zrécksetze confirméieren wann ob eng Ännerung zréckgesat gëtt déi vum selwechte Benotzer ass</string>
   <string name="config-confirmwarned">Zrécksetzen op eng Ännerung vun engem verwarnte Benotzer confirméieren</string>
   <string name="config-confirmpage">Zrécksetzen op ignoréierte Säite confirméieren</string>
+  <string name="config-auto-refresh">Säit automatesch aktualiséiere wann eng aner Ännerung drop gemaach gouf</string>
   <string name="config-reportnone">Näischt maachen</string>
   <string name="config-templatetext">Text weisen</string>
   <string name="config-template">Schabloun</string>
@@ -237,6 +238,7 @@
   <string name="main-patrol-not-enabled">D\'Nokucken ass op $1 net aktivéiert</string>
   <string name="main-page-restore">Dës Versioun restauréieren</string>
   <string name="main-page-watchlist-add">Säit op eng Iwwerwaachungslëscht derbäisetzen</string>
+  <string name="main-page-tab-close">Aktuellen Tab zoumaachen</string>
   <string name="main-page-tab-open">Neien Tab opmaachen</string>
   <string name="main-page-watchlist-remove">Säit vun enger Iwwerwaachungslëscht erofhuelen</string>
   <string name="main-user-info">Informatioun vum Benotzer weisen</string>
@@ -250,6 +252,7 @@
   <string name="main-user-clear-tp">Diskussiounssäit vum Benotzer eidelmaachen</string>
   <string name="main-user-retrieving-tp">Diskussiounssäit vu(n) $1 ofruffen</string>
   <string name="main-user-block">Spären...</string>
+  <string name="main-user-manualtemplate">Manuell Schabloun</string>
   <string name="main-browser-back">Zréck</string>
   <string name="main-browser-forward">Virun</string>
   <string name="main-browser-open">An engem externe Browser kucken</string>
@@ -286,6 +289,8 @@
   <string name="main-report-username">Benotzernumm mellen</string>
   <string name="main-report-user">Benotzer mellen</string>
   <string name="main-edit-user-talk">Benotzerdiskussioun änneren</string>
+  <string name="main-statistics-paused">ënnerbrach</string>
+  <string name="main-statistics-waiting">op méi Ännerunge waarden</string>
   <string name="main-statistics-none">keng</string>
   <string name="main-tab-welcome-title">Wëllkomm-Säit</string>
   <string name="message-title">Message $1</string>
@@ -376,6 +381,7 @@
   <string name="shortcut-open-in-huggle">Déi Säit déi elo gewise gët opmaachen</string>
   <string name="shortcut-tab">Mécht en neien Tab op</string>
   <string name="shortcut-revert-and-stay">Aktuell Ännerung zrécksetzen an op der Säit bleiwen</string>
+  <string name="shortcut-user-clear-talk">Eng Diskussiounssäit vum aktuelle Benotzer eidelmaachen</string>
   <string name="warning-title">$1 warnen</string>
   <string name="warning-levelauto">Automatesch</string>
   <string name="warning-level1">Niveau 1</string>

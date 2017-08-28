@@ -81,7 +81,9 @@
   <string name="config-watchlist">Hozzáadás a figyelőlistához</string>
   <string name="config-defaultsummary">Alapértelmezett összefoglaló a kézi szerkesztésekhez</string>
   <string name="config-revert">Visszaállítás</string>
+  <string name="config-skip">Kihagyás</string>
   <string name="config-enable-irc">IRC engedélyezése</string>
+  <string name="config-display-next">Következő mutatása</string>
   <string name="config-nothing">Semmi</string>
   <string name="config-bot-edits">Bot szerkesztések (b)</string>
   <string name="config-own-edits">Saját szerkesztések</string>
@@ -116,7 +118,7 @@
   <string name="login-username">Felhasználónév:</string>
   <string name="login-password">Jelszó:</string>
   <string name="login-proxygroup">Proxy-beállítások</string>
-  <string name="login-proxy" fuzzy="true">A proxykiszolgáló használata</string>
+  <string name="login-proxy">Proxy használata</string>
   <string name="login-proxyaddress">Cím:</string>
   <string name="login-proxyport">Port:</string>
   <string name="login-proxydomain">Tartomány:</string>
@@ -186,6 +188,8 @@
   <string name="main-page-protect">Lapvédelem</string>
   <string name="main-page-delete">Törlés</string>
   <string name="main-page-load">Betöltés</string>
+  <string name="main-page-tab-close">Jelenlegi fül bezárása</string>
+  <string name="main-page-tab-open">Új fül megnyitása</string>
   <string name="main-user-info">Szerkesztőinformáció megjelenítése</string>
   <string name="main-user-ignore">Figyelmen kívül hagyás</string>
   <string name="main-user-message">Üzenet...</string>
@@ -280,6 +284,7 @@
   <string name="editquery-success">Sikeres szerkesztés a(z) $2 wiki $1 lapján</string>
   <string name="wait">Kérjük, várj...</string>
   <string name="function-miss">A funkció jelenleg nem érhető el</string>
+  <string name="waiting">Várakozás...</string>
   <string name="preferences-watchlist-watch">Hozzáadás a figyelőlistához</string>
   <string name="preferences-watchlist-unwatch">Eltávolítás a figyelőlistáról</string>
   <string name="preferences-watchlist-nochange">Ne csináljon semmit</string>
