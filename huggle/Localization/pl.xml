@@ -166,7 +166,7 @@
   <string name="config-template">Szablon</string>
   <string name="config-promptforblock">Zapytaj o blokadę podczas pytania o danie użytkownikowi ostatecznego ostrzeżenia</string>
   <string name="config-blockreason">Domyślny opis blokady</string>
-  <string name="config-blocktime" fuzzy="true">Domyślna długość blokady</string>
+  <string name="config-blocktime">Domyślna długość blokady</string>
   <string name="config-blocktimeanon">anonimowi użytkownicy</string>
   <string name="config-blocktimereg">zarejestrowani użytkownicy</string>
   <string name="config-summaryprompt">Wpisz opis edycji</string>

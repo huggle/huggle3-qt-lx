@@ -428,7 +428,7 @@
   <string name="main-report-user">Denunciar usuario</string>
   <string name="main-edit-user-talk">Editar discusión de usuario</string>
   <string name="main-statistics-paused">en pausa</string>
-  <string name="main-statistics-waiting">esperando por más ediciones</string>
+  <string name="main-statistics-waiting">en espera de más ediciones</string>
   <string name="main-statistics-none">ninguno</string>
   <string name="main-tab-welcome-title">Página de bienvenida</string>
   <string name="message-title">Enviar mensaje a $1</string>

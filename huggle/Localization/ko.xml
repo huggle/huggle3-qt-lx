@@ -122,6 +122,7 @@
   <string name="config-instant-reverts">즉시 되돌리기 사용 (매우 빠르지만, 실행되면 취소할 수 없습니다)</string>
   <string name="config-revert-wait">되돌리기 지연 (초)</string>
   <string name="config-revert">되돌리기</string>
+  <string name="config-skip">건너뛰기</string>
   <string name="config-revert-diff">같은 문서 훼손자에 의해 이루어진 이 편집보다 최근 편집 되돌리기</string>
   <string name="config-change-all">모든 Huggle 옵션을 Huggle 2와 비슷하게 변경</string>
   <string name="config-merge-messages">자신의 메시지를 같은 부분에 있는 다른 메시지와 병합하기</string>
@@ -133,6 +134,7 @@
   <string name="config-auto-load-history">자동으로 역사와 사용자 정보를 불러오기 (많은 네트워크 대역폭 필요)</string>
   <string name="config-last-revision">현재 불러들인 편집이 최신판이 아닌 경우 문서의 최신판으로 전환합니다. (다운로드할 때 Huggle이 느려집니다)</string>
   <string name="config-wait-edit">쓰기 기능이 활성활될 때까지의 지연 시간 (초 단위):</string>
+  <string name="config-display-next">다음 표시</string>
   <string name="config-retrieve-edit">자신의 편집 가져오기</string>
   <string name="config-nothing">아무 것도 하지 않음</string>
   <string name="config-bot-edits">봇 편집 (b)</string>
@@ -158,6 +160,7 @@
   <string name="config-autoadvance">얻고 나서, 큐에서 다음 편집으로 움직입니다</string>
   <string name="config-userollback">가능할 경우 되돌리기 권한을 사용합니다</string>
   <string name="config-revertsummaries">메뉴에서 사용할 수 있는 되돌리기 요약</string>
+  <string name="config-auto-refresh">다른 편집이 있을 경우 문서를 자동으로 새로 고칩니다</string>
   <string name="config-extendreports">추가 훼손하고 나서 확장 보고</string>
   <string name="config-autoreport">사용자에게 마지막 경고를 할 것인지 물었을 때</string>
   <string name="config-reportnone">아무 행위도 없음</string>
@@ -317,6 +320,9 @@
   <string name="main-queue-reset">초기화</string>
   <string name="main-queue-clearall">모두 지우기</string>
   <string name="main-queue-options">대기열 관리...</string>
+  <string name="main-queue-when-full">대기열이 꽉찰 때</string>
+  <string name="main-queue-when-full-remove">오래된 편집 제거</string>
+  <string name="main-queue-remove-200">-200점 미만의 편집 제거</string>
   <string name="main-goto">가기</string>
   <string name="main-goto-mytalk">내 토론 문서</string>
   <string name="main-goto-mycontribs">내 기여</string>
@@ -359,6 +365,10 @@
   <string name="main-page-load">불러오기</string>
   <string name="main-patrol-not-enabled">점검은 $1에 사용되지 않습니다</string>
   <string name="main-page-restore">이 판을 되살리기</string>
+  <string name="main-page-watchlist-add">문서를 주시문서 목록에 추가</string>
+  <string name="main-page-tab-close">현재 탭 닫기</string>
+  <string name="main-page-tab-open">새 탭 열기</string>
+  <string name="main-page-watchlist-remove">문서를 주시문서 목록에서 제거하기</string>
   <string name="main-user-info">사용자 정보 보기</string>
   <string name="main-user-ignore">무시</string>
   <string name="main-user-unignore">무시 해제</string>
@@ -419,7 +429,9 @@
   <string name="main-report-username">사용자 이름 보고</string>
   <string name="main-report-user">사용자 보고</string>
   <string name="main-edit-user-talk">사용자 토론 편집</string>
+  <string name="main-statistics-waiting">더 많은 편집을 기다리는 중</string>
   <string name="main-statistics-none">없음</string>
+  <string name="main-tab-welcome-title">환영 페이지</string>
   <string name="message-title">$1에게 메시지 보내기</string>
   <string name="message-subject">제목:</string>
   <string name="message-message">메시지:</string>
@@ -576,6 +588,7 @@
   <string name="shortcut-revert-and-stay">현재 편집을 되돌리고 문서에 머물기</string>
   <string name="shortcut-custom-reason">사용자 지정 편집 요약 이유를 사용하여 편집을 되돌리기</string>
   <string name="shortcut-user-contribs-browser">브라우저에서 사용자 기여 열기</string>
+  <string name="shortcut-user-clear-talk">현재 사용자의 토론 문서를 지우기</string>
   <string name="warning-title">$1에게 경고</string>
   <string name="warning-levelgroup">경고 수준</string>
   <string name="warning-levelauto">자동</string>
@@ -669,6 +682,7 @@
   <string name="missing-aiv">이 프로젝트는 AIV를 사용하지 않습니다</string>
   <string name="missing-page">이 위키에 $1 문서가 없습니다</string>
   <string name="updating-wl">허용 목록을 업데이트 중...</string>
+  <string name="waiting">기다리는 중...</string>
   <string name="feature-nfru">이 기능은 IP 사용자만입니다</string>
   <string name="report-no-user">보고서에 선택된 사용자가 없습니다. 먼저 사용자를 선택해 주십시오</string>
   <string name="welcome-show">다음에 Huggle을 시작할 때에도 이 메시지를 표시</string>
@@ -747,7 +761,9 @@
   <string name="query-protected-link">보호된 링크</string>
   <string name="queue-empty-title">비어 있습니다</string>
   <string name="queue-empty-text">그 밖의 항목이 대기열에 없습니다...</string>
-  <string name="tip1" fuzzy="true">Huggle은 마치 다른 모든 브라우저처럼 탭을 지원합니다! 편집을 하다가 나중에 이를 유지하고 싶으면 새 탭을 열어서 대기열을 확인해 나가시면 됩니다. 대기열은 모든 탭끼리 공유됩니다.</string>
-  <string name="tip3" fuzzy="true">대부분의 환경 설정은 위키의 [[Special:MyPage/huggle3.css]]에 저장되어 있으므로 해당 장소에서도 변경이 가능합니다!</string>
+  <string name="tip1">Huggle은 마치 다른 모든 웹 브라우저처럼 탭을 지원합니다! 편집을 하다가 나중에 이를 유지하고 싶으면 새 탭을 열어서 대기열을 확인해 나가시면 됩니다. 대기열은 모든 탭끼리 공유됩니다.</string>
+  <string name="tip3">대부분의 환경 설정은 위키의 [[Special:MyPage/huggle3.css]]에 저장되어 있으므로 해당 장소에서도 수동으로 변경이 가능합니다!</string>
   <string name="tip4">화면 상의 거의 모든 소도구는 안전하게 닫을 수 있습니다. (둘러보기 표시줄 제외)</string>
+  <string name="tip5">여러 프로젝트에서 Huggle을 동시에 사용할 수 있습니다. 로그인 양식에서 \"프로젝트\" 버튼을 클릭하시면 됩니다.</string>
+  <string name="tip10">대부분의 바로 가기는 환경 설정에서 변경할 수 있습니다.</string>
 </resources>

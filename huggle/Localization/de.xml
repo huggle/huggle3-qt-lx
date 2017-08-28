@@ -136,6 +136,7 @@
   <string name="config-last-revision">Auf die aktuellste Seitenversion wechseln, falls die derzeit geladene Bearbeitung nicht die aktuellste Version ist (wird nachgeladen, was Huggle langsamer macht).</string>
   <string name="config-require-delay">Eine Verzögerung nach jedem Laden der nächsten Bearbeitung anfordern, währenddessen es nicht möglich ist, Schreibfunktionen zu verwenden (nützlich zum Vermeiden von Tastatur-Mehrfachdrück-Fehlern).</string>
   <string name="config-wait-edit">Die Verzögerung in Sekunden, bis Schreibfunktionen aktiviert werden:</string>
+  <string name="config-display-next">Nächstes anzeigen</string>
   <string name="config-retrieve-edit">Eigene Bearbeitung abrufen</string>
   <string name="config-nothing">Nichts</string>
   <string name="config-bot-edits">Bot-Bearbeitungen (b)</string>
@@ -164,6 +165,7 @@
   <string name="config-autoadvance">Nach Zurücksetzen die nächste Seite in der Warteschleife aufrufen</string>
   <string name="config-userollback">Verwende \"rollback\" (Zurücksetzen), wenn möglich</string>
   <string name="config-revertsummaries">Im Menü verfügbare Zusammenfassungen für das Zurücksetzen</string>
+  <string name="config-auto-refresh">Die Seite automatisch aktualisieren, falls es eine weitere Bearbeitung an der Seite gab.</string>
   <string name="config-extendreports">Erweitere Meldung, nachdem mehr Vandalismus geschehen ist</string>
   <string name="config-autoreport">Wenn ein Benutzer gewarnt werden soll, der schon die letzte Warnung bekommen hat</string>
   <string name="config-reportnone">Nichts tun</string>
@@ -583,6 +585,7 @@
   <string name="userinfo-generic">Benutzerinformation</string>
   <string name="userinfo-retrieve">Rufe Informationen ab</string>
   <string name="userinfo-no-user">Kein Benutzer</string>
+  <string name="shortcut-refresh">Die derzeit angezeigte Seite aktualisieren (lädt die Versionsgeschichte neu und springt zur letzten Bearbeitung)</string>
   <string name="shortcut-page-patrol-edit">Bearbeitung als kontrolliert markieren</string>
   <string name="shortcut-report-username">Benutzernamen melden</string>
   <string name="shortcut-report-user">Benutzer melden</string>
@@ -612,6 +615,7 @@
   <string name="shortcut-revert-and-stay">Setzt die aktuelle Bearbeitung zurück und bleibt auf der Seite</string>
   <string name="shortcut-custom-reason">Die Bearbeitung mit einer benutzerdefinierten Begründung in der Bearbeitungszusammenfassung zurücksetzen</string>
   <string name="shortcut-user-contribs-browser">Benutzerbeiträge in einem Browser öffnen</string>
+  <string name="shortcut-user-clear-talk">Leert die Diskussionsseite des aktuellen Benutzers</string>
   <string name="warning-title">$1 warnen</string>
   <string name="warning-levelgroup">Warnungs-Stufe</string>
   <string name="warning-levelauto">Automatisch</string>
@@ -805,4 +809,12 @@
   <string name="tip2">Huggle enthält eine „Bearbeitungsleiste“, ein kleines Widget, das sowohl den Benutzer- als auch den Seitenverlauf in gepflegter Weise enthält. Es ist jedoch nicht standardmäßig aktiviert. Falls du einen kleinen Bildschirm hast, kannst du die Benutzer- und Seitenverlaufwidgets durch dieses Widget ersetzen!</string>
   <string name="tip3">Die meisten Einstellungen werden auf dem Wiki in [[Special:MyPage/huggle3.css]] gespeichert. Du kannst sie auch dort manuell ändern!</string>
   <string name="tip4">Fast jedes Widget auf dem Bildschirm kann sicher geschlossen werden (außer die Navigationsleiste).</string>
+  <string name="tip5">Du kannst Huggle gleichzeitig auf mehreren Projekten verwenden. Klicke einfach im Anmeldeformular auf die Schaltfläche „Projekte“.</string>
+  <string name="tip6">Huggle’s Zurücksetzungen können viel schneller durchgeführt werden, wenn du ein erfahrener Benutzer bist, der niemals Fehler macht ;) Öffne die Einstellungen und setze ein Häkchen bei „Sofortige Zurücksetzungen“.</string>
+  <string name="tip7">Du kannst deine eigenen Warteschlangenfilter in den Einstellungen erstellen. Sie werden in deiner Wiki-Konfigurationsseite gespeichert.</string>
+  <string name="tip8">Das Drücken der Taste G markiert die Bearbeitung als „gut“, benachrichtigt andere Benutzer, dass diese Bearbeitung ignoriert werden kann, verringert den Schlechtheitswert des Benutzers und sendet an ihn optional eine Willkommensnachricht.</string>
+  <string name="tip9">Das Drücken der Taste S markiert die Bearbeitung als „verdächtig“, benachrichtigt andere Benutzer, dass diese Bearbeitung Aufmerksamkeit benötigt und fügt sie für eine spätere Überprüfung durch Experten zur Warteschlange der verdächtigen Bearbeitungen hinzu.</string>
+  <string name="tip10">Die meisten Tastaturkürzel können in den Einstellungen geändert werden.</string>
+  <string name="tip11">Das Verschieben eines Widgets auf dem Huggle-Bildschirm über ein anderes Widget führt sie in eines zusammen, getrennt durch Registerkarten.</string>
+  <string name="tip12">Hast du einen Fehler gemacht? Kein Problem. Klicke mit der rechten Maustaste auf eine deiner Bearbeitungen im „Verlauf deiner Bearbeitungen“ und es öffnet sich ein Popup-Fenster, das dir das Rückgängigmachen deiner eigenen Änderung ermöglicht.</string>
 </resources>

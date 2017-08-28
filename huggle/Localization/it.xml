@@ -120,6 +120,7 @@
   <string name="config-instant-reverts">Usa ripristino istantaneo (molto veloce, ma non può essere annullato una volta eseguito)</string>
   <string name="config-revert-wait">Ritardo ripristino (in secondi)</string>
   <string name="config-revert">Ripristina</string>
+  <string name="config-skip">Salta</string>
   <string name="config-revert-diff">Ripristina le modifiche alla pagina che sono più recenti delle differenze visualizzate, se sono state fatte dallo stesso utente vandalo</string>
   <string name="config-change-all">Cambia tutte le impostazioni di Huggle per ottenere un comportamento più simile a Huggle 2</string>
   <string name="config-merge-messages">Unisci i tuoi messaggi con gli altri nelle sezioni esistenti</string>
@@ -132,6 +133,7 @@
   <string name="config-last-revision">Passa all\'ultima versione della pagina nel caso in cui la modifica attualmente caricata non sia l\'ultima versione (la scaricherà, rendendo Huggle più lento)</string>
   <string name="config-require-delay">Richiedere un ritardo dopo ogni caricamento della modifica successiva, durante il quale non sarà possibile usare alcuna funzionalità di scrittura (utile per evitare problemi da pressione multipla di pulsanti sulla tastiera)</string>
   <string name="config-wait-edit">Il ritardo, in secondi, prima che siano abilitate le funzioni di modifica:</string>
+  <string name="config-display-next">Mostra il successivo</string>
   <string name="config-retrieve-edit">Recupera le tue modifiche</string>
   <string name="config-nothing">Niente</string>
   <string name="config-bot-edits">Modifiche di Bot (b)</string>
@@ -358,6 +360,7 @@
   <string name="main-page-load">Carica</string>
   <string name="main-patrol-not-enabled">Il patrolling non è abilitato su  $1</string>
   <string name="main-page-restore">Ripristina questa versione</string>
+  <string name="main-page-tab-open">Apri nuova scheda</string>
   <string name="main-user-info">Mostra le informazioni dell\'utente</string>
   <string name="main-user-ignore">Ignora</string>
   <string name="main-user-unignore">Non ignorare</string>
@@ -680,6 +683,7 @@
   <string name="missing-aiv">Questo progetto non usa AIV</string>
   <string name="missing-page">Non c\'è una pagina $1 su questo wiki</string>
   <string name="updating-wl">Aggiornamento della lista bianca...</string>
+  <string name="waiting">Attendi...</string>
   <string name="feature-nfru">Questa funzionalità è solo per gli utenti IP</string>
   <string name="report-no-user">Nessun utente è stato scelto per la segnalazione, per favore prima scegli un utente</string>
   <string name="welcome-show">Visualizza questo messaggio anche la prossima volta che si avvia Huggle</string>
