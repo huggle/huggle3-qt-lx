@@ -1975,6 +1975,7 @@ void MainWindow::DisplayTalk()
     // display a talk page
     WikiPage *page = new WikiPage(this->CurrentEdit->User->GetTalk());
     this->Browser->DisplayPreFormattedPage(page);
+    this->LockPage();
     delete page;
 }
 
@@ -3276,5 +3277,6 @@ void Huggle::MainWindow::on_actionUser_page_triggered()
 
     WikiPage *page = new WikiPage(this->CurrentEdit->User->GetUserPage());
     this->Browser->DisplayPreFormattedPage(page);
+    this->LockPage();
     delete page;
 }
