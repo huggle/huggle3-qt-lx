@@ -368,12 +368,7 @@ void MainWindow::DisplayReportUserWindow(WikiUser *User)
         Generic::pMessageBox(this, _l("missing-aiv"), _l("function-miss"));
         return;
     }
-    // we don't need to do this because report form gets deleted on close
-    //if (this->fReportForm != nullptr)
-    //{
-    //    delete this->fReportForm;
-    //    this->fReportForm = nullptr;
-    //}
+
     ReportUser *rf = new ReportUser(this);
     rf->SetUser(User);
     rf->setAttribute(Qt::WA_DeleteOnClose);
@@ -403,10 +398,19 @@ void MainWindow::EnableEditing(bool enabled)
     this->ui->actionTag_2->setEnabled(enabled);
     this->ui->actionWarn_the_user->setEnabled(enabled);
     this->ui->actionPatrol->setEnabled(enabled);
+    this->ui->actionDelete_page->setEnabled(enabled);
     this->ui->actionRevert_edit_using_custom_reason->setEnabled(enabled);
+    this->ui->actionReport_user_2->setEnabled(enabled);
+    this->ui->actionRequest_speedy_deletion->setEnabled(enabled);
+    this->ui->actionReport_user->setEnabled(enabled);
 
-    // Don't contain these yet - they are enabled / disabled based on other functions as well and we don't want to break that
-    //this->ui->actionDelete->setEnabled()
+    if (enabled == false)
+    {
+        this->ui->actionDelete->setEnabled(false);
+    } else if (this->CurrentEdit != nullptr)
+    {
+        this->ui->actionDelete->setEnabled(this->GetCurrentWikiSite()->GetProjectConfig()->Rights.contains("delete"));
+    }
 }
 
 WikiEdit *MainWindow::GetCurrentWikiEdit()
