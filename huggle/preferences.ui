@@ -581,13 +581,6 @@
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="cbCatScansAndWatched">
-         <property name="text">
-          <string>Enable category scans and watchlist filtering</string>
-         </property>
-        </widget>
-       </item>
-       <item>
         <layout class="QHBoxLayout" name="horizontalLayout_6">
          <property name="spacing">
           <number>4</number>
@@ -603,6 +596,13 @@
           <widget class="QLineEdit" name="lineEdit_2"/>
          </item>
         </layout>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbCatScansAndWatched">
+         <property name="text">
+          <string>Enable category scans and watchlist filtering</string>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QGroupBox" name="groupBox_2">
