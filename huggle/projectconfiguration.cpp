@@ -459,12 +459,8 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
         }
         CurrentTemplate++;
     }
-    // sanitize
-    if (this->ReportAIV.size() == 0)
-        this->AIV = false;
-    // Do the same for UAA as well
-    this->UAAavailable = this->UAAPath.size() > 0;
-    this->IsSane = true;
+
+    this->Sanitize();
     return true;
 }
 
@@ -581,6 +577,15 @@ bool ProjectConfiguration::ParseYAML(QString yaml_src, QString *reason, WikiSite
     this->SoftwareRevertDefaultSummary = HuggleParser::YAML2String("manual-revert-summary", yaml, "Reverted edits by [[Special:Contributions/$1|$1]] to last revision by $2");
     this->MultipleRevertSummary = HuggleParser::YAML2String("multiple-revert-summary-parts", yaml, "Reverted,edit by,edits by,and,other users,to last revision by,to an older version by");
     this->RollbackSummaryUnknownTarget = HuggleParser::YAML2String("rollback-summary-unknown", yaml, "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])");
+    QHash<QString, QString> score_level = HuggleParser::YAML2QStringHash("score-level", yaml);
+    if (!score_level.isEmpty())
+    {
+        foreach (QString level, score_level.keys())
+        {
+            this->ScoreLevel.insert(level.toInt(), score_level[level].toLongLong());
+        }
+    }
+
     // Warning types
     this->WarningTypes = temp_compat_hash2list(HuggleParser::YAML2QStringHash("warning-types", yaml), true);
     if (!this->WarningTypes.count())
@@ -815,12 +820,8 @@ bool ProjectConfiguration::ParseYAML(QString yaml_src, QString *reason, WikiSite
         }
         CurrentTemplate++;
     }
-    // sanitize
-    if (this->ReportAIV.size() == 0)
-        this->AIV = false;
-    // Do the same for UAA as well
-    this->UAAavailable = this->UAAPath.size() > 0;
-    this->IsSane = true;
+
+    this->Sanitize();
     return true;
 }
 
@@ -840,6 +841,22 @@ QString ProjectConfiguration::GetConfig(QString key, QString dv)
     }
     this->cache.insert(key, value);
     return value;
+}
+
+void ProjectConfiguration::Sanitize()
+{
+    if (this->ReportAIV.size() == 0)
+        this->AIV = false;
+    if (this->ScoreLevel.isEmpty())
+    {
+        this->ScoreLevel.insert(1, 200);
+        this->ScoreLevel.insert(2, 400);
+        this->ScoreLevel.insert(3, 600);
+        this->ScoreLevel.insert(4, 800);
+    }
+    // Do the same for UAA as well
+    this->UAAavailable = this->UAAPath.size() > 0;
+    this->IsSane = true;
 }
 
 QDateTime ProjectConfiguration::ServerTime()

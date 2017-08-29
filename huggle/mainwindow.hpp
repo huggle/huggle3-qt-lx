@@ -207,7 +207,6 @@ namespace Huggle
             bool ShuttingDown;
             //! If system is shutting down this is displaying which part of shutdown is currently being executed
             ShutdownOp Shutdown;
-            //ReportUser *fReportForm = nullptr;
             //! Pointer to a form to block user
             BlockUser *fBlockForm = nullptr;
             //! Pointer to a form to delete a page

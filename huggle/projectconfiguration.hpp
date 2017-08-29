@@ -227,6 +227,8 @@ namespace Huggle
             QHash<QString, int>     ScoreTags;
             QList<ScoreWord>        ScoreParts;
             QList<ScoreWord>        ScoreWords;
+            //! Score for warning level
+            QHash<int, score_ht>    ScoreLevel;
             QList<ScoreWord>        NoTalkScoreWords;
             QList<ScoreWord>        NoTalkScoreParts;
             score_ht                ScoreFlag = -60;
@@ -277,6 +279,7 @@ namespace Huggle
             QStringList             EditRegexOfTools;
 
         private:
+            void Sanitize();
             QHash<QString, QString> cache;
             // We keep the config cached here just in case we needed to ever access it later
             QString                 configurationBuffer;

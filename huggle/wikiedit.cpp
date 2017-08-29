@@ -719,11 +719,13 @@ void ProcessorThread::Process(WikiEdit *edit)
     {
 #endif
         bool IgnoreWords = false;
+        ProjectConfiguration *conf = edit->GetSite()->GetProjectConfig();
         if (edit->IsRevert)
         {
             if (edit->User->IsIP())
             {
-                edit->Score += 200;
+                // Reverts made by anons are very likely reverts to vandalism
+                edit->Score += conf->IPScore * 10;
             } else
             {
                 if (!edit->DiffText_IsSplit)
@@ -734,7 +736,6 @@ void ProcessorThread::Process(WikiEdit *edit)
             }
         }
         // score
-        ProjectConfiguration *conf = edit->GetSite()->GetProjectConfig();
         if (edit->User->IsIP())
         {
             edit->Score += conf->IPScore;
@@ -766,24 +767,29 @@ void ProcessorThread::Process(WikiEdit *edit)
         edit->User->ParseTP(QDate::currentDate());
         if (edit->Summary.size() == 0)
             edit->Score += 10;
-        switch(edit->User->GetWarningLevel())
+        int warning_level = edit->User->GetWarningLevel();
+        if (warning_level > 0)
+        {
+            if (!conf->ScoreLevel.contains(warning_level))
+            {
+                HUGGLE_WARNING("No score present for warning level " + QString::number(warning_level) + " of user " + edit->User->Username + " site " + edit->GetSite()->Name);
+            } else
+            {
+                edit->Score += conf->ScoreLevel[warning_level];
+            }
+        }
+        switch(warning_level)
         {
             case 1:
-                edit->Score += 200;
                 edit->CurrentUserWarningLevel = WarningLevel1;
                 break;
             case 2:
-                edit->Score += 1000;
                 edit->CurrentUserWarningLevel = WarningLevel2;
                 break;
             case 3:
-                edit->Score += 2000;
                 edit->CurrentUserWarningLevel = WarningLevel3;
                 break;
             case 4:
-                // people with 4 warnings are so much watched that someone probably revert them
-                // faster than you notice, let's put them lower than unattended vandals
-                edit->Score += 1000;
                 edit->CurrentUserWarningLevel = WarningLevel4;
                 break;
         }
