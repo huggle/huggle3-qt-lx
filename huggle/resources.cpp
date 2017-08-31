@@ -26,6 +26,7 @@ QString Huggle::Resources::HtmlHeader;
 QString Huggle::Resources::HtmlIncoming;
 QString Huggle::Resources::Html_Default_EmptyQueuePage;
 QString Huggle::Resources::Html_StopFire;
+QString Huggle::Resources::Html_NewTab;
 QString Huggle::Resources::CssRtl;
 
 int last_tip = -1;
@@ -81,6 +82,7 @@ void Huggle::Resources::Init()
     DiffFooter = GetResource("/huggle/resources/Resources/html/DiffEnd.html");
     Html_Default_EmptyQueuePage = GetResource("/huggle/resources/Resources/html/empty.html");
     HtmlIncoming = GetResource("/huggle/resources/Resources/html/Message.html");
+    Html_NewTab = GetResource("/huggle/resources/Resources/html/empty_tab.html");
     CssRtl = GetResource("/huggle/resources/Resources/html/RTL.css");
 #ifndef HUGGLE_NOAUDIO
     mediaPlayer = new QMediaPlayer();
@@ -124,6 +126,13 @@ QString Huggle::Resources::GetHtmlHeader()
     return QString(Resources::HtmlHeader).replace("<<<CUSTOM-CSS>>>", Css)
             .replace("<<<FONT-FAMILY>>>", hcfg->SystemConfig_Font)
             .replace("<<<FONT-SIZE>>>", QString::number(hcfg->SystemConfig_FontSize));
+}
+
+QString Huggle::Resources::GetNewTabHTML()
+{
+    return QString(Resources::Html_NewTab).replace("<<<TITLE>>>", _l("newtab-title"))
+                                          .replace("<<<PROTIP>>>", "<b>" + _l("protip") + ":</b> " + GetRandomProTip())
+                                          .replace("<<<TEXT>>>", _l("newtab-text"));
 }
 
 QString Huggle::Resources::GetEmptyQueueHTML()

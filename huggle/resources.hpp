@@ -31,6 +31,7 @@ namespace Huggle
             static void PlayEmbeddedSoundFile(QString file);
             static QString GetHtmlHeader();
             static QString GetEmptyQueueHTML();
+            static QString GetNewTabHTML();
             static QString GetResource(QString path);
             static QByteArray GetResourceAsBinary(QString path);
             static QString GetRandomProTip();
@@ -42,6 +43,7 @@ namespace Huggle
             static QString DiffFooter;
             static QString Html_StopFire;
             static QString Html_Default_EmptyQueuePage;
+            static QString Html_NewTab;
             static QString CssRtl;
             //! This string contains a html footer
             static QString HtmlFooter;

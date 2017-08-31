@@ -1153,6 +1153,7 @@ void MainWindow::CreateBrowserTab(QString name, int index)
     this->Browser = web;
     if (this->Browsers.count() > 1)
         this->ui->tabWidget->setTabsClosable(true);
+    this->Browser->RenderHtml(Resources::GetNewTabHTML());
 }
 
 void MainWindow::Title(QString name)
