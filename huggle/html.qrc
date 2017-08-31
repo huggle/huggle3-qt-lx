@@ -8,6 +8,7 @@
         <file>Resources/html/StopFire.html</file>
         <file>Resources/html/DiffEnd.html</file>
         <file>Resources/html/RTL.css</file>
+        <file>Resources/html/empty_tab.html</file>
         <file>Resources/DefaultConfig.txt</file>
         <file>Resources/html/empty.html</file>
     </qresource>
