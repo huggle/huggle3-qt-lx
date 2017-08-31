@@ -165,6 +165,7 @@
   <string name="config-autoadvance">在回退之後，下一個編輯移入佇列。</string>
   <string name="config-userollback">如果可用則使用回退功能</string>
   <string name="config-revertsummaries">回退在選單的可用摘要</string>
+  <string name="config-auto-refresh">當有人做出其它編輯時自動重整頁面</string>
   <string name="config-extendreports">有額外破壞出現後擴充回報</string>
   <string name="config-autoreport">在要求以「最後一次警告」來警告用戶</string>
   <string name="config-reportnone">不做任何事</string>
@@ -584,6 +585,7 @@
   <string name="userinfo-generic">使用者資訊</string>
   <string name="userinfo-retrieve">取得資訊</string>
   <string name="userinfo-no-user">沒有使用者</string>
+  <string name="shortcut-refresh">重整目前顯示的頁面（重新載入歷史記錄並跳到最近編輯裡）</string>
   <string name="shortcut-page-patrol-edit">巡查編輯</string>
   <string name="shortcut-report-username">回報使用者名稱</string>
   <string name="shortcut-report-user">回報使用者</string>
@@ -613,6 +615,7 @@
   <string name="shortcut-revert-and-stay">回退目前編輯並停留在頁面</string>
   <string name="shortcut-custom-reason">使用自訂理由摘要來回退編輯</string>
   <string name="shortcut-user-contribs-browser">在瀏覽器裡開啟使用者的貢獻</string>
+  <string name="shortcut-user-clear-talk">清除目前使用者的對話頁</string>
   <string name="warning-title">警告 $1</string>
   <string name="warning-levelgroup">警告等級</string>
   <string name="warning-levelauto">自動</string>
@@ -806,4 +809,12 @@
   <string name="tip2">雖然預設上並不啟用；但 Huggle 擁有以簡潔方式來保存使用者與頁面歷史的小工具「編輯列」。若您是使用較小的螢幕，您可以此來替換目前的使用者與頁面歷史小工具！</string>
   <string name="tip3">多數個人設置儲存在 wiki 裡的[[Special:MyPage/huggle3.css]]，您可以在那手動更改它們！</string>
   <string name="tip4">在螢幕上的小工具幾乎都可安全地關閉（用於導覽列上的除外）。</string>
+  <string name="tip5">您可在多個項目上同時使用 Huggle，僅需在登入表單裡點擊「項目」按鍵即可。</string>
+  <string name="tip6">若您是有經驗且未出錯過的使用者，可以試著開啟個人設置裡勾選「即時回退」來讓 Huggle 的回退動作更快速 ;)</string>
+  <string name="tip7">您可以在個人設置裡創建您自己的佇列篩選，它們會儲放在您 wiki 的設定頁面裡。</string>
+  <string name="tip8">按下「G」將會標記為「良好編輯」，這會通知其他人該編輯內容可以忽略，和減少使用者不良記分以及可選擇來發送歡迎訊息給他們。</string>
+  <string name="tip9">按下「S」將會標記為「可疑編輯」，這會通知其他人該編輯內容需要注意，並添加至可疑編輯佇列裡來讓較精通的使用者事後檢閱。</string>
+  <string name="tip10">多數捷徑方式可在個人設置裡更改。</string>
+  <string name="tip11">在 Huggle 螢幕上移動小工具到另一小工具情況下會將兩者合併為一；並且以頁籤來分隔。</string>
+  <string name="tip12">不小心出錯了？沒關係，請在「您的編輯歷史」裡的任一編輯按下右鍵；將會跳出用來撤銷您所作出更改內容的視窗。</string>
 </resources>

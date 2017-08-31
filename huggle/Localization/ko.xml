@@ -565,6 +565,7 @@
   <string name="userinfo-generic">사용자 정보</string>
   <string name="userinfo-retrieve">정보 얻기</string>
   <string name="userinfo-no-user">사용자 없음</string>
+  <string name="shortcut-refresh">현재 표시된 문서 새로 고침 (역사를 다시 불러온 후 마지막 편집으로 이동)</string>
   <string name="shortcut-page-patrol-edit">편집 점검</string>
   <string name="shortcut-report-username">사용자 이름 보고</string>
   <string name="shortcut-report-user">사용자 보고</string>
@@ -576,6 +577,7 @@
   <string name="shortcut-back">이전에 표시된 편집으로 이동</string>
   <string name="shortcut-warn">편집을 되돌리지 않고 사용자에게 경고 보내기</string>
   <string name="shortcut-revert">편집 되돌리기</string>
+  <string name="shortcut-watch">표시되는 문서를 주시문서 목록에 추가합니다</string>
   <string name="shortcut-unwatch">표시되는 문서를 주시문서 목록에서 제거합니다</string>
   <string name="shortcut-good">현재 보이는 편집을 정상 편집으로 표시</string>
   <string name="shortcut-open-in-huggle">현재 표시된 문서 열기</string>
@@ -766,4 +768,5 @@
   <string name="tip4">화면 상의 거의 모든 소도구는 안전하게 닫을 수 있습니다. (둘러보기 표시줄 제외)</string>
   <string name="tip5">여러 프로젝트에서 Huggle을 동시에 사용할 수 있습니다. 로그인 양식에서 \"프로젝트\" 버튼을 클릭하시면 됩니다.</string>
   <string name="tip10">대부분의 바로 가기는 환경 설정에서 변경할 수 있습니다.</string>
+  <string name="tip12">실수하셨나요? 괜찮습니다. \"내 편집 역사\"에서 편집에 마우스 오른쪽 버튼을 클릭하면 변경사항의 취소를 제공하는 팝업이 열립니다.</string>
 </resources>

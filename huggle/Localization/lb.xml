@@ -90,6 +90,7 @@
   <string name="config-skip">Iwwersprangen</string>
   <string name="config-months-name">Méint als Iwwerschrëft benotzen aplaz vum Numm vun enger Säit</string>
   <string name="config-enable-irc">IRC aktivéieren</string>
+  <string name="config-display-next">Nächst weisen</string>
   <string name="config-retrieve-edit">Är eegen Ännerungen ofruffen</string>
   <string name="config-nothing">Näischt</string>
   <string name="config-bot-edits">Bot-Ännerungen (b)</string>

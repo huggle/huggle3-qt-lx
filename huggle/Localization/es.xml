@@ -493,7 +493,7 @@
   <string name="queue-examplelabel1">Requerir este atributo</string>
   <string name="queue-examplelabel2">Excluir este atributo</string>
   <string name="queue-examplelabel3">No revisar este atributo</string>
-  <string name="queue-usergroup">Mostrar sólo ediciones de estos usuarios</string>
+  <string name="queue-usergroup">Mostrar solo ediciones de estos usuarios</string>
   <string name="report-title">Denunciar a $1</string>
   <string name="report-warn" fuzzy="true">Este usuario ha alcanzado el nivel 4 de aviso, así que no se le enviarán más plantillas. Puedes denunciarlo ahora, pero por favor verifica que en efecto el usuario haya sido suficientemente avisado. Puedes hacerlo pulsando en el botón \"página de discusión\" en el siguiente formulario.Recuerda que este aviso y el formulario que ahora se presentan, se muestran independientemente de si tu reversión ha sido procesada correctamente como si no. Es posible, además, que el usuario ya haya sido denunciado (por favor verifica que el usuario no esté ya denunciado). ¿Quieres denunciar a este usuario?</string>
   <string name="report-tu">Denunciar al usuario</string>
