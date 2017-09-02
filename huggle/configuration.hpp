@@ -257,6 +257,8 @@ namespace Huggle
             int             SystemConfig_RingLogMaxSize = 2000;
             //! Path where huggle contains its data, known as $huggle_home in manual
             QString         HomePath;
+            //! If true Huggle will collect debug info from internal and external scoring feeds
+            bool            SystemConfig_ScoreDebug = true;
             bool            SystemConfig_ShowStartupInfo = false;
             bool            SystemConfig_FirstRun = true;
             //! Path to a file where information about wikis are stored

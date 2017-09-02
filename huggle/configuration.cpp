@@ -373,6 +373,7 @@ void Configuration::LoadSystemConfig(QString fn)
         RCB(BotPassword);
         RCU(RevertDelay);
         RCB(FirstRun);
+        RCB(ScoreDebug);
         RCB(ShowStartupInfo);
         RCB(InstantReverts);
         if (key == "Projects")
@@ -443,6 +444,7 @@ void Configuration::SaveSystemConfig()
     INSERT_CONFIG_N(RevertDelay);
     INSERT_CONFIG_B(InstantReverts);
     INSERT_CONFIG_B(UsingSSL);
+    INSERT_CONFIG_B(ScoreDebug);
     INSERT_CONFIG_N(QueueSize);
     INSERT_CONFIG(GlobalConfigYAML);
     InsertConfig("GlobalConfigurationWikiAddress", hcfg->GlobalConfigurationWikiAddress, writer);

@@ -129,6 +129,7 @@
      <addaction name="actionLog_out"/>
      <addaction name="actionPrint_API_for_diff"/>
      <addaction name="actionCheck_for_dups"/>
+     <addaction name="actionShow_score_debug"/>
     </widget>
     <addaction name="actionIntroduction"/>
     <addaction name="actionContents"/>
@@ -1125,6 +1126,11 @@
   <action name="actionRefresh">
    <property name="text">
     <string>Refresh</string>
+   </property>
+  </action>
+  <action name="actionShow_score_debug">
+   <property name="text">
+    <string>Show score debug</string>
    </property>
   </action>
  </widget>

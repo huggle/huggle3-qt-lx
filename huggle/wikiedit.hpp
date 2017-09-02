@@ -166,6 +166,7 @@ namespace Huggle
             QStringList ScoreWords;
             QDateTime Time;
         private:
+            void RecordScore(QString name, score_ht score);
             //! This function is called by core
             bool FinalizePostProcessing();
             friend class ProcessorThread;

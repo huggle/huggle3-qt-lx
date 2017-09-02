@@ -177,7 +177,7 @@ bool WikiEdit::FinalizePostProcessing()
                 {
                     this->User->EditCount = user_info_->GetAttribute("editcount").toLong();
                     // users with high number of edits aren't vandals
-                    this->Score += this->User->EditCount * this->GetSite()->ProjectConfig->EditScore;
+                    this->RecordScore("EditScore", this->User->EditCount * this->GetSite()->ProjectConfig->EditScore);
                 }
                 else
                 {
@@ -201,11 +201,11 @@ bool WikiEdit::FinalizePostProcessing()
                 this->User->Groups.append(gn);
                 ++x;
             }
-            this->Score += (this->GetSite()->ProjectConfig->ScoreFlag * this->User->Groups.count());
+            this->RecordScore("ScoreFlag", this->GetSite()->ProjectConfig->ScoreFlag * this->User->Groups.count());
             if (this->User->Groups.contains("bot"))
             {
                 // if it's a flagged bot we likely don't need to watch them
-                this->Score += this->GetSite()->ProjectConfig->BotScore;
+                this->RecordScore("BotScore", this->GetSite()->ProjectConfig->BotScore);
             }
             // let's delete it now
             this->qUser = nullptr;
@@ -487,11 +487,11 @@ void WikiEdit::ProcessWords()
     ProjectConfiguration *conf = this->GetSite()->GetProjectConfig();
     if (!this->Page->IsTalk())
     {
-        this->Score += ProcessPartsInWikiText(&this->ScoreWords, text, &conf->NoTalkScoreParts);
-        this->Score += ProcessWordsInWikiText(&this->ScoreWords, text, &conf->NoTalkScoreWords);
+        this->RecordScore("PartsInWikiText_NoTalk", ProcessPartsInWikiText(&this->ScoreWords, text, &conf->NoTalkScoreParts));
+        this->RecordScore("WordsInWikiText_NoTalk", ProcessWordsInWikiText(&this->ScoreWords, text, &conf->NoTalkScoreWords));
     }
-    this->Score += ProcessWordsInWikiText(&this->ScoreWords, text, &conf->ScoreWords);
-    this->Score += ProcessPartsInWikiText(&this->ScoreWords, text, &conf->ScoreParts);
+    this->RecordScore("WordsInWikiText", ProcessWordsInWikiText(&this->ScoreWords, text, &conf->ScoreWords));
+    this->RecordScore("PartsInWikiText", ProcessPartsInWikiText(&this->ScoreWords, text, &conf->ScoreParts));
 }
 
 void WikiEdit::RemoveFromHistoryChain()
@@ -516,6 +516,23 @@ void WikiEdit::RemoveFromHistoryChain()
         this->Next->Previous = nullptr;
         this->Next = nullptr;
     }
+}
+
+void WikiEdit::RecordScore(QString name, score_ht score)
+{
+    this->Score += score;
+    if (hcfg->SystemConfig_ScoreDebug)
+    {
+        QString score_name = QString("score_huggle_") + name;
+        if (!this->PropertyBag.contains(score_name))
+        {
+            this->PropertyBag.insert(score_name, score);
+        } else
+        {
+            HUGGLE_DEBUG1("Edit: " + QString::number(this->RevID) + ": multiple scores with name " + name);
+            this->PropertyBag[score_name] = score;
+        }
+     }
 }
 
 void WikiEdit::PostProcess()
@@ -725,7 +742,7 @@ void ProcessorThread::Process(WikiEdit *edit)
             if (edit->User->IsIP())
             {
                 // Reverts made by anons are very likely reverts to vandalism
-                edit->Score += conf->IPScore * 10;
+                edit->RecordScore("IPScore_talk", conf->IPScore * 10);
             } else
             {
                 if (!edit->DiffText_IsSplit)
@@ -738,35 +755,35 @@ void ProcessorThread::Process(WikiEdit *edit)
         // score
         if (edit->User->IsIP())
         {
-            edit->Score += conf->IPScore;
+            edit->RecordScore("IPScore", conf->IPScore);
         }
         if (edit->Bot)
-            edit->Score += conf->BotScore;
+            edit->RecordScore("BotScore", conf->BotScore);
         if (edit->Page->IsUserpage() && !edit->Page->SanitizedName().contains(edit->User->Username))
-            edit->Score += conf->ForeignUser;
+            edit->RecordScore("ForeignUser", conf->ForeignUser);
         else if (edit->Page->IsUserpage())
-            edit->Score += conf->ScoreUser;
+            edit->RecordScore("UserPage", conf->ScoreUser);
         if (edit->Page->IsTalk())
-            edit->Score += conf->ScoreTalk;
+            edit->RecordScore("ScoreTalk", conf->ScoreTalk);
         if (edit->Size > 1200 || edit->Size < -1200)
-            edit->Score += conf->ScoreChange;
+            edit->RecordScore("ScoreChange", conf->ScoreChange);
         if (edit->Page->IsUserpage())
             IgnoreWords = true;
         if (edit->User->IsWhitelisted())
-            edit->Score += conf->WhitelistScore;
-        edit->Score += edit->User->GetBadnessScore();
+            edit->RecordScore("WhitelistScore", conf->WhitelistScore);
+        edit->RecordScore("User_BadnessScore", edit->User->GetBadnessScore());
         if (!IgnoreWords)
             edit->ProcessWords();
         foreach (QString tx, edit->Tags)
         {
             if (conf->ScoreTags.contains(tx))
-                edit->Score += conf->ScoreTags[tx];
+                edit->RecordScore("tag_" + tx, conf->ScoreTags[tx]);
         }
         if (edit->SizeIsKnown && edit->Size < (-1 * conf->LargeRemoval))
-            edit->Score += conf->ScoreRemoval;
+            edit->RecordScore("ScoreRemoval", conf->ScoreRemoval);
         edit->User->ParseTP(QDate::currentDate());
         if (edit->Summary.size() == 0)
-            edit->Score += 10;
+            edit->RecordScore("NoSummary", 10);
         int warning_level = edit->User->GetWarningLevel();
         if (warning_level > 0)
         {
@@ -775,7 +792,7 @@ void ProcessorThread::Process(WikiEdit *edit)
                 HUGGLE_WARNING("No score present for warning level " + QString::number(warning_level) + " of user " + edit->User->Username + " site " + edit->GetSite()->Name);
             } else
             {
-                edit->Score += conf->ScoreLevel[warning_level];
+                edit->RecordScore("WarningLevel", conf->ScoreLevel[warning_level]);
             }
         }
         switch(warning_level)

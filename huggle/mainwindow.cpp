@@ -3285,3 +3285,22 @@ void Huggle::MainWindow::on_actionUser_page_triggered()
     this->LockPage();
     delete page;
 }
+
+void Huggle::MainWindow::on_actionShow_score_debug_triggered()
+{
+    if (this->CurrentEdit == nullptr)
+        return;
+
+    QString debug_info = this->CurrentEdit->Page->PageName + ": " + QString::number(this->CurrentEdit->Score) + " ";
+
+    foreach (QString key, this->CurrentEdit->PropertyBag.keys())
+    {
+        if (key.startsWith("score_") && this->CurrentEdit->PropertyBag[key].toLongLong() != 0)
+            debug_info += QString(key).replace("score_", "") + ": " + QString::number(this->CurrentEdit->PropertyBag[key].toLongLong()) + ", ";
+    }
+
+    if (debug_info.endsWith(", "))
+        debug_info = debug_info.mid(0, debug_info.size() - 2);
+
+    HUGGLE_DEBUG1(debug_info);
+}

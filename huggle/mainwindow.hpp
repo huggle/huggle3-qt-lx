@@ -346,7 +346,7 @@ namespace Huggle
             void on_actionRevert_edit_using_custom_reason_triggered();
             void on_actionRefresh_triggered();
             void on_actionUser_page_triggered();
-
+            void on_actionShow_score_debug_triggered();
         private:
             void CloseTab(int tab);
             void DisplayWelcomeMessage();
