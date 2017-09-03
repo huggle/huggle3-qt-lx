@@ -57,51 +57,6 @@ Configuration::Configuration()
     this->MakeShortcut("main-forward", "shortcut-forward", "]");
     this->MakeShortcut("main-warn", "shortcut-warn", "W");
     this->MakeShortcut("main-revert", "shortcut-revert", "R");
-    this->MakeShortcut("main-revert-and-warn-0", "shortcut-x-raw");
-    this->MakeShortcut("main-revert-and-warn-1", "shortcut-x-raw");
-    this->MakeShortcut("main-revert-and-warn-2", "shortcut-x-raw");
-    this->MakeShortcut("main-revert-and-warn-3", "shortcut-x-raw");
-    this->MakeShortcut("main-revert-and-warn-4", "shortcut-x-raw");
-    this->MakeShortcut("main-revert-and-warn-5", "shortcut-x-raw");
-    this->MakeShortcut("main-revert-and-warn-6", "shortcut-x-raw");
-    this->MakeShortcut("main-revert-and-warn-7", "shortcut-x-raw");
-    this->MakeShortcut("main-revert-and-warn-8", "shortcut-x-raw");
-    this->MakeShortcut("main-revert-and-warn-9", "shortcut-x-raw");
-    this->MakeShortcut("main-revert-and-warn-10", "shortcut-x-raw");
-    this->MakeShortcut("main-revert-and-warn-11", "shortcut-x-raw");
-    this->MakeShortcut("main-revert-and-warn-12", "shortcut-x-raw");
-    this->MakeShortcut("main-revert-and-warn-13", "shortcut-x-raw");
-    this->MakeShortcut("main-revert-and-warn-14", "shortcut-x-raw");
-    this->MakeShortcut("main-warn-0", "shortcut-x-warn");
-    this->MakeShortcut("main-warn-1", "shortcut-x-warn");
-    this->MakeShortcut("main-warn-2", "shortcut-x-warn");
-    this->MakeShortcut("main-warn-3", "shortcut-x-warn");
-    this->MakeShortcut("main-warn-4", "shortcut-x-warn");
-    this->MakeShortcut("main-warn-5", "shortcut-x-warn");
-    this->MakeShortcut("main-warn-6", "shortcut-x-warn");
-    this->MakeShortcut("main-warn-7", "shortcut-x-warn");
-    this->MakeShortcut("main-warn-8", "shortcut-x-warn");
-    this->MakeShortcut("main-warn-9", "shortcut-x-warn");
-    this->MakeShortcut("main-warn-10", "shortcut-x-warn");
-    this->MakeShortcut("main-warn-11", "shortcut-x-warn");
-    this->MakeShortcut("main-warn-12", "shortcut-x-warn");
-    this->MakeShortcut("main-warn-13", "shortcut-x-warn");
-    this->MakeShortcut("main-warn-14", "shortcut-x-warn");
-    this->MakeShortcut("main-revert-0", "shortcut-x-revert");
-    this->MakeShortcut("main-revert-1", "shortcut-x-revert");
-    this->MakeShortcut("main-revert-2", "shortcut-x-revert");
-    this->MakeShortcut("main-revert-3", "shortcut-x-revert");
-    this->MakeShortcut("main-revert-4", "shortcut-x-revert");
-    this->MakeShortcut("main-revert-5", "shortcut-x-revert");
-    this->MakeShortcut("main-revert-6", "shortcut-x-revert");
-    this->MakeShortcut("main-revert-7", "shortcut-x-revert");
-    this->MakeShortcut("main-revert-8", "shortcut-x-revert");
-    this->MakeShortcut("main-revert-9", "shortcut-x-revert");
-    this->MakeShortcut("main-revert-10", "shortcut-x-revert");
-    this->MakeShortcut("main-revert-11", "shortcut-x-revert");
-    this->MakeShortcut("main-revert-12", "shortcut-x-revert");
-    this->MakeShortcut("main-revert-13", "shortcut-x-revert");
-    this->MakeShortcut("main-revert-14", "shortcut-x-revert");
     this->MakeShortcut("main-custom-reason", "shortcut-custom-reason");
     this->MakeShortcut("main-talk", "shortcut-talk", "T");
     this->MakeShortcut("main-mytalk", "shortcut-my-talk", "Alt+M");
@@ -122,6 +77,7 @@ Configuration::Configuration()
     this->MakeShortcut("main-page-patrol-edit", "shortcut-page-patrol-edit");
     this->MakeShortcut("main-page-refresh", "shortcut-refresh", "F5");
     this->MakeShortcut("main-user-clear-tp", "shortcut-user-clear-talk");
+    this->ResetMenuShortcuts();
 }
 
 Configuration::~Configuration()
@@ -567,6 +523,36 @@ QString Configuration::GetExtensionConfig(QString extension, QString name, QStri
     if (!this->ExtensionData.contains(extension))
         return default_value;
     return this->ExtensionData[extension]->GetOption(name, default_value);
+}
+
+void Configuration::ResetMenuShortcuts()
+{
+    int i = 0;
+    while (i <= HUGGLE_MAX_DROPDOWN_SHORTCUTS)
+    {
+        QString key = "main-revert-and-warn-" + QString::number(i++);
+        if (this->Shortcuts.contains(key))
+            this->Shortcuts.remove(key);
+        this->MakeShortcut(key, "shortcut-x-raw");
+    }
+
+    i = 0;
+    while (i <= HUGGLE_MAX_DROPDOWN_SHORTCUTS)
+    {
+        QString key = "main-warn-" + QString::number(i++);
+        if (this->Shortcuts.contains(key))
+            this->Shortcuts.remove(key);
+        this->MakeShortcut(key, "shortcut-x-warn");
+    }
+
+    i = 0;
+    while (i <= HUGGLE_MAX_DROPDOWN_SHORTCUTS)
+    {
+        QString key = "main-revert-" + QString::number(i++);
+        if (this->Shortcuts.contains(key))
+            this->Shortcuts.remove(key);
+        this->MakeShortcut(key, "shortcut-x-revert");
+    }
 }
 
 void Configuration::SetExtensionConfig(QString extension, QString name, QString value)

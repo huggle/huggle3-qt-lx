@@ -15,6 +15,7 @@
 #include "huggleoption.hpp"
 #include "huggleparser.hpp"
 #include "syslog.hpp"
+#include "localization.hpp"
 #include "projectconfiguration.hpp"
 #include "version.hpp"
 #include <QKeySequence>
@@ -191,6 +192,7 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
     configuration_ += "EnableMinScore:" + Bool2String(this->EnableMinScore) + "\n";
     configuration_ += "MinScore:" + QString::number(this->MinScore) + "\n";
     configuration_ += "AutomaticRefresh:" + Bool2String(this->AutomaticRefresh) + "\n";
+    configuration_ += "ShortcutHash:" + this->ShortcutHash + "\n";
     // shortcuts
     QStringList shortcuts = Configuration::HuggleConfiguration->Shortcuts.keys();
     // we need to do this otherwise huggle may sort the items differently every time and spam wiki
@@ -378,9 +380,26 @@ bool UserConfiguration::ParseUserConfig(QString config, ProjectConfiguration *Pr
     this->MaxScore = ConfigurationParse("MaxScore", config, "0").toLongLong();
     this->EnableMinScore = SafeBool(ConfigurationParse("EnableMinScore", config));
     this->AutomaticRefresh = SafeBool(ConfigurationParse("AutomaticRefresh", config), this->AutomaticRefresh);
+    this->ShortcutHash = ConfigurationParse("ShortcutHash", config, "null");
     // for now we do this only for home wiki but later we need to make it for every wiki
     if (IsHome)
     {
+        // Verify a shortcut hash first
+        QString types = "";
+        QStringList sorted_types = ProjectConfig->WarningTypes;
+        sorted_types.sort();
+        foreach (QString t, sorted_types)
+            types += t + ",";
+        QString hash = Generic::MD5(types);
+        if (hash != this->ShortcutHash)
+        {
+            // Suppress this warning in case there is no record yet, this is first run of Huggle by new user
+            if (this->ShortcutHash != "null")
+                Generic::MessageBox(_l("warning"), _l("config-reset-menu"), MessageBoxStyleWarning, true);
+            hcfg->ResetMenuShortcuts();
+            this->ShortcutHash = hash;
+            return true;
+        }
         QStringList shortcuts = HuggleParser::ConfigurationParse_QL("ShortcutList", config, true);
         foreach (QString line, shortcuts)
         {

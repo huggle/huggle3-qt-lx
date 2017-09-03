@@ -11,6 +11,7 @@
 #include "generic.hpp"
 #include <QMessageBox>
 #include <QUrl>
+#include <QCryptographicHash>
 #include "apiquery.hpp"
 #include "apiqueryresult.hpp"
 #include "configuration.hpp"
@@ -324,4 +325,9 @@ QString Generic::HtmlEncode(QString text)
     encoded = encoded.replace("<", "&lt;");
     encoded = encoded.replace(">", "&gt;");
     return encoded;
+}
+
+QString Generic::MD5(QString data)
+{
+    return QString(QCryptographicHash::hash(data.toUtf8(), QCryptographicHash::Md5).toHex());
 }

@@ -210,6 +210,8 @@ namespace Huggle
             //! Parse all information from global config on meta
             bool ParseGlobalConfig(QString config);
             QString GetExtensionConfig(QString extension, QString name, QString default_value);
+            //! This will reset shortcuts of dropdown menus that are dynamic
+            void ResetMenuShortcuts();
             void SetExtensionConfig(QString extension, QString name, QString value);
 
             ////////////////////////////////////////////

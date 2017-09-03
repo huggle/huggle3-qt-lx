@@ -101,6 +101,7 @@ namespace Huggle
             //! Removes the edit from queue in case that some trusted user edited the same page
             bool            RemoveAfterTrustedEdit = true;
             bool            HuggleSuffix = true;
+            QString         ShortcutHash;
             //! If history and user info should be automatically loaded for every edit
             bool                    HistoryLoad = true;
             //! Defines what should be done on next edit

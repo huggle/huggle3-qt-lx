@@ -66,6 +66,7 @@ namespace Huggle
         HUGGLE_EX bool ReportPreFlightCheck();
         HUGGLE_EX int pMessageBox(QWidget *parent, QString title, QString text, MessageBoxStyle st = MessageBoxStyleNormal, bool enforce_stop = false);
         HUGGLE_EX QString SanitizePath(QString name);
+        HUGGLE_EX QString MD5(QString data);
         /*!
          * \brief MessageBox Display a message box
          * \param title Title of message box
