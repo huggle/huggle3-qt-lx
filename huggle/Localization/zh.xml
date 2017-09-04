@@ -672,6 +672,8 @@
   <string name="history-retrieve-fail">无法检索我们想要撤销的自己编辑的页面内容，错误：$1</string>
   <string name="history-welcome-msg-title">改为发送欢迎消息？</string>
   <string name="history-welcome-msg">您已经创建了此讨论页，因此它无法被撤销。您是否想用一个欢迎模板替换它？</string>
+  <string name="newtab-title">这是一个新标签！</string>
+  <string name="newtab-text">Huggle中的标签与其他任何浏览器一样都有相似的工作方式。所有Huggle中的标签分享相同的队列，但它们在您希望专注于特定页面，或当您希望日后检查一些编辑时有用。</string>
   <string name="notify-fail">未告知$1的创建者</string>
   <string name="notify-unknowncreator">无法找到页面创建者</string>
   <string name="protect-done">已更改$1的保护级别</string>

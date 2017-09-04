@@ -645,6 +645,7 @@
   <string name="history-retrieve-fail">편집을 취소할 문서의 내용을 검색하지 못했습니다. 오류는 다음과 같습니다: $1</string>
   <string name="history-welcome-msg-title">환영 메시지를 대신 보내시겠습니까?</string>
   <string name="history-welcome-msg">이 토론 문서를 만들었으나 이 동작을 취소할 수 없습니다. 환영 틀로 대체하시겠습니까?</string>
+  <string name="newtab-title">이것은 새 탭입니다!</string>
   <string name="notify-unknowncreator">문서 작성자를 찾을 수 없습니다</string>
   <string name="protect-done">$1 문서의 보호 설정을 바꿨습니다</string>
   <string name="protect-fail">$1의 보호 수준을 변경하지 못했습니다</string>

@@ -20,6 +20,7 @@
   <string name="rename">Renommer</string>
   <string name="reload">Recharger</string>
   <string name="project">Projet</string>
+  <string name="warning">Avertissement</string>
   <string name="result">Résultat</string>
   <string name="save">Enregistrer</string>
   <string name="show">Afficher</string>
@@ -152,6 +153,7 @@
   <string name="config-warning-api">Afficher les avertissements pour les requêtes de l’API</string>
   <string name="config-title-diff">Titre de page dans chaque différence (texte en gros qui affiche uniquement le titre de la page en haut de chaque différence)</string>
   <string name="config-updates">Vérifier les mises à jour</string>
+  <string name="config-reset-menu">La configuration du projet (liste des types d’avertissement) a été modifiée depuis votre dernière visite, les raccourcis pour les menus déroulants (annulation et avertissement, etc.) ont été réinitialisés.</string>
   <string name="config-beta">Vérifier les versions bêta</string>
   <string name="config-html-messages">HAN peut utiliser le HTML inclus dans les messages pour les formater (dangereux)</string>
   <string name="config-summary-present">Mettre en évidence le résumé quand il est présent plutôt que quand il est absent</string>
@@ -672,6 +674,8 @@
   <string name="history-retrieve-fail">Impossible de récupérer le contenu de la page pour laquelle nous voulons annuler notre propre modification, l’erreur était : $1</string>
   <string name="history-welcome-msg-title">Envoyer un message de bienvenue à la place ?</string>
   <string name="history-welcome-msg">Vous avez créé cette page de discussion, donc elle ne peut pas être annulée. Voulez-vous la remplacer par un modèle de mot de bienvenue ?</string>
+  <string name="newtab-title">Ceci est un nouvel onglet !</string>
+  <string name="newtab-text">Les onglets dans Huggle fonctionnent d\'une manière similaire aux autres navigateurs internet. Tous les onglets dans Huggle partagent la même file d\'attente, mais ils sont utiles si vous voulez garder un oeil sur certaines pages, ou si vous voulez vérifier des modifications ultérieurement.</string>
   <string name="notify-fail">Ne pas notifier le créateur de $1</string>
   <string name="notify-unknowncreator">Incapable de trouver le créateur de la page</string>
   <string name="protect-done">Niveau de protection modifié pour $1</string>

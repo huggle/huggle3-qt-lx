@@ -672,6 +672,8 @@
   <string name="history-retrieve-fail">Der Inhalt für die Seite, für die die eigene Bearbeitung zurückgesetzt werden soll, konnte nicht abgerufen werden. Der Fehler war: $1</string>
   <string name="history-welcome-msg-title">Stattdessen Willkommensnachricht senden?</string>
   <string name="history-welcome-msg">Du hast diese Diskussionsseite erstellt, so dass sie nicht zurückgesetzt werden kann. Möchtest du sie durch eine Willkommensvorlage ersetzen?</string>
+  <string name="newtab-title">Dies ist eine neue Registerkarte!</string>
+  <string name="newtab-text">Registerkarten in Huggle funktionieren ähnlich wie in jedem anderen Webbrowser. Alle Reiter innerhalb Huggle teilen sich die gleiche Warteschlange, sie sind jedoch nützlich, falls du ein Auge auf eine bestimmte Seite behalten oder eine Bearbeitung später überprüfen möchtest.</string>
   <string name="notify-fail">Der Ersteller von $1 wurde nicht benachrichtigt</string>
   <string name="notify-unknowncreator">Seiten-Ersteller unbekannt</string>
   <string name="protect-done">Schutzstatus für $1 geändert</string>

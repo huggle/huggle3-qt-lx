@@ -208,7 +208,7 @@
   <string name="login-username">Uživatelské jméno:</string>
   <string name="login-password">Heslo:</string>
   <string name="login-proxygroup">Nastavení proxy</string>
-  <string name="login-proxy" fuzzy="true">Použít proxy server</string>
+  <string name="login-proxy">Použít proxy</string>
   <string name="login-proxyaddress">Adresa:</string>
   <string name="login-proxy-remember-this">Pamatovat toto nastavení pro příště</string>
   <string name="login-proxyport">Port:</string>
