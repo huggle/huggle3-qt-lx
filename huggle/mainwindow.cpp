@@ -2805,6 +2805,7 @@ void Huggle::MainWindow::on_actionHtml_dump_triggered()
     }
     f->write(this->Browser->RetrieveHtml().toUtf8());
     f->close();
+    Syslog::HuggleLogs->Log("Current page dumped as " + QFileInfo(f->fileName()).absoluteFilePath());
     delete f;
     QDesktopServices::openUrl(QDir().absoluteFilePath(name));
 }
