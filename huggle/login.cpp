@@ -1064,7 +1064,7 @@ void Login::DeveloperMode()
     vf->close();
     delete vf;
     foreach (WikiSite *site, hcfg->Projects)
-        site->GetProjectConfig()->Parse(pref, nullptr, site);
+        site->GetProjectConfig()->ParseYAML(pref, nullptr, site);
     hcfg->Restricted = true;
     MainWindow::HuggleMain = new MainWindow();
     MainWindow::HuggleMain->show();
