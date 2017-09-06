@@ -260,6 +260,7 @@ else
   mkdir "$BUILD" || exit 1
 fi
 cd "$BUILD" || exit 1
+echo "$*" > configure_args
 cmake .. $CMAKE_ARGS || exit 1
 echo "Everything is ready, you can build huggle by entering "$BUILD" and typing"
 echo "make"
