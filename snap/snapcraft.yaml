@@ -29,6 +29,7 @@ parts:
       - -DHUGGLE_EXT=true
     source: huggle/
     stage-packages:
+      - snapd-xdg-open # This is needed so that we can click links
       - libpython3.5
       - libqt5gui5
       - libqt5core5a
