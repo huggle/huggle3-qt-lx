@@ -20,6 +20,7 @@
   <string name="rename">Umbenennen</string>
   <string name="reload">Neu laden</string>
   <string name="project">Projekt</string>
+  <string name="warning">Warnung</string>
   <string name="result">Ergebnis</string>
   <string name="save">Speichern</string>
   <string name="show">Anzeigen</string>
@@ -152,6 +153,7 @@
   <string name="config-warning-api">Warnungen für API-Anfragen anzeigen</string>
   <string name="config-title-diff">Seitentitel in jedem Unterschied (langer Text, der nur den Seitentitel am Anfang jeden Unterschieds anzeigt).</string>
   <string name="config-updates">Nach Aktualisierungen suchen</string>
+  <string name="config-reset-menu">Die Projektkonfiguration (die Liste der Warntypen) wurde seit deinem letzten Besuch verändert, die Tastaturkürzel für die Dropdown-Menüs (zurücksetzen und warnen etc.) wurden zurückgesetzt.</string>
   <string name="config-beta">Nach Beta-Versionen suchen</string>
   <string name="config-html-messages">HAN kann HTML-Nachrichten anzeigen (gefährlich)</string>
   <string name="config-summary-present">Vorhandene statt fehlende Zusammenfassung hervorheben</string>

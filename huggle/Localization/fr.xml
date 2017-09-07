@@ -675,7 +675,7 @@
   <string name="history-welcome-msg-title">Envoyer un message de bienvenue à la place ?</string>
   <string name="history-welcome-msg">Vous avez créé cette page de discussion, donc elle ne peut pas être annulée. Voulez-vous la remplacer par un modèle de mot de bienvenue ?</string>
   <string name="newtab-title">Ceci est un nouvel onglet !</string>
-  <string name="newtab-text">Les onglets dans Huggle fonctionnent d\'une manière similaire aux autres navigateurs internet. Tous les onglets dans Huggle partagent la même file d\'attente, mais ils sont utiles si vous voulez garder un oeil sur certaines pages, ou si vous voulez vérifier des modifications ultérieurement.</string>
+  <string name="newtab-text">Les onglets dans Huggle fonctionnent d’une manière similaire aux autres navigateurs internet. Tous les onglets dans Huggle partagent la même file d’attente, mais ils sont utiles si vous voulez garder un œil sur certaines pages ou si vous voulez vérifier ultérieurement certaines modifications.</string>
   <string name="notify-fail">Ne pas notifier le créateur de $1</string>
   <string name="notify-unknowncreator">Incapable de trouver le créateur de la page</string>
   <string name="protect-done">Niveau de protection modifié pour $1</string>

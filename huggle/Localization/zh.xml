@@ -20,6 +20,7 @@
   <string name="rename">重命名</string>
   <string name="reload">重新加载</string>
   <string name="project">项目</string>
+  <string name="warning">警告</string>
   <string name="result">结果</string>
   <string name="save">保存</string>
   <string name="show">显示</string>
@@ -152,6 +153,7 @@
   <string name="config-warning-api">显示API查询的警告</string>
   <string name="config-title-diff">每个差异中的页面标题（在每个差异的顶端显示页面标题的大文本）</string>
   <string name="config-updates">检查更新</string>
+  <string name="config-reset-menu">自您上次访问以来，项目配置（警告类型列表）已更改，下拉菜单的快捷方式（回退与警告等）已重置。</string>
   <string name="config-beta">检查测试版本</string>
   <string name="config-html-messages">HAN可以渲染HTML消息（危险）</string>
   <string name="config-summary-present">当摘要存在而非缺失时将其高亮</string>

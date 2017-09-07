@@ -20,6 +20,7 @@
   <string name="rename">이름 바꾸기</string>
   <string name="reload">다시 불러오기</string>
   <string name="project">프로젝트</string>
+  <string name="warning">경고</string>
   <string name="result">결과</string>
   <string name="save">저장</string>
   <string name="show">보이기</string>

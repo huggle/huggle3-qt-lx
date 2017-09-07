@@ -20,6 +20,7 @@
   <string name="rename">重新命名</string>
   <string name="reload">重新載入</string>
   <string name="project">項目</string>
+  <string name="warning">警告</string>
   <string name="result">結果</string>
   <string name="save">儲存</string>
   <string name="show">顯示</string>
@@ -152,6 +153,7 @@
   <string name="config-warning-api">顯示用於API查詢的警告</string>
   <string name="config-title-diff">在每個差異的頁面標題（在每個差異的頂端，顯示頁面標題大量文本內容）</string>
   <string name="config-updates">檢查更新</string>
+  <string name="config-reset-menu">自您上次訪問後項目設置（警告類型清單）已更改，下單選單的捷徑（回退和警告等等）已重新設定。</string>
   <string name="config-beta">檢查是否有測試版本</string>
   <string name="config-html-messages">HAN 可以顯示 HTML 訊息 (危險)</string>
   <string name="config-summary-present">當摘要存在而未遺失時突顯強調內容</string>
@@ -672,6 +674,8 @@
   <string name="history-retrieve-fail">無法取得我們想要撤銷自己編輯的頁面內容，錯誤：$1</string>
   <string name="history-welcome-msg-title">是否傳送歡迎辭？</string>
   <string name="history-welcome-msg">您已建立了此對話頁，因此不能被撤銷。您是否想改以一個歡迎模板來替換呢？</string>
+  <string name="newtab-title">這是一個新頁籤！</string>
+  <string name="newtab-text">Huggle 上的頁籤如同其它瀏覽器；採用類似的運作方式。所有在 Huggle 的頁籤分享同一佇列，它們在您想要專注於特定頁面、或是您想事後要檢查同一編輯時很有用。</string>
   <string name="notify-fail">未通知$1的創建者</string>
   <string name="notify-unknowncreator">找不到頁面創建者</string>
   <string name="protect-done">已變更$1的保護層級</string>

@@ -19,6 +19,7 @@
   <string name="rename">Rinomina</string>
   <string name="reload">Ricarica</string>
   <string name="project">Progetto</string>
+  <string name="warning">Attenzione</string>
   <string name="result">Risultato</string>
   <string name="save">Salva</string>
   <string name="show">Mostra</string>
@@ -644,6 +645,7 @@
   <string name="history-retrieve-fail">Impossibile recuperare il contenuto della pagina di cui si voleva annullare la propria modifica, poiché si è verificato il seguente errore: $1</string>
   <string name="history-welcome-msg-title">Vuoi inviare il messaggio di benvenuto, invece?</string>
   <string name="history-welcome-msg">Questa pagina di discussione l\'hai creata tu, quindi la modifica non può essere annullata. Vuoi sostituirla con un template di benvenuto?</string>
+  <string name="newtab-title">Questa è una nuova scheda!</string>
   <string name="notify-fail">Impossibile inviare una notifica al creatore di $1</string>
   <string name="notify-unknowncreator">Impossibile trovare il creatore della pagina</string>
   <string name="protect-done">Cambiato il livello di protezione per $1</string>
