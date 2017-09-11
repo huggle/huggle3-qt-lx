@@ -95,7 +95,7 @@
   <string name="config-title">Options</string>
   <string name="config-already-in-use">Ce raccourci est déjà utilisé par $1, veuillez en choisir un autre</string>
   <string name="config-openinbrowser">Ouvrir les liens du navigateur dans une nouvelle fenêtre</string>
-  <string name="config-shownewedits">Afficher les nouvelles modifications à la page sélectionnée dès qu’elles sont faites</string>
+  <string name="config-shownewedits">Afficher les nouvelles modifications de la page sélectionnée dès qu’elles sont faites</string>
   <string name="config-ircmode">Utiliser si possible le flux IRC pour les changements récents</string>
   <string name="config-ircport">Port IRC</string>
   <string name="config-difffontsize">Taille de police du diff</string>
@@ -161,7 +161,7 @@
   <string name="config-confirmmultiple">Confirmer les annulations multiples d’une modification par le même utilisateur</string>
   <string name="config-confirmsame">Confirmer le retour à une modification par l’utilisateur ayant été ramené</string>
   <string name="config-confirmselfrevert">Confirmer la réversion de modifications propres (sauf annulation)</string>
-  <string name="config-confirmwarned">Confirmer l’annulation d’une modification par un utilisateur averti</string>
+  <string name="config-confirmwarned">Confirmer l’annulation d’une modification faite par un utilisateur averti</string>
   <string name="config-confirmrange">Confirmer le retour aux modifications par les utilisateurs anonymes dans la même plage /16 que l’utilisateur ayant été ramené</string>
   <string name="config-confirmpage">Confirmer l’annulation sur les pages ignorées</string>
   <string name="config-autoadvance">Passer à la modification suivante dans la file d’attente après une annulation</string>
@@ -304,7 +304,7 @@
   <string name="main-new-messages">Vous avez de nouveaux messages. Sélectionnez Système -&gt; Afficher les nouveaux messages, ou appuyez sur M pour les afficher.</string>
   <string name="main-space">Le nom de la page ne peut pas se terminer par un espace, veuillez le corriger.</string>
   <string name="main-system">Système</string>
-  <string name="main-status-bar">Traitement de &lt;b&gt;$1&lt;/b&gt; modifications et &lt;b&gt;$2&lt;/b&gt; requêtes. Utilisateurs en liste blanche : &lt;b&gt;$3&lt;/b&gt;. Taille de la file d’attente : &lt;b&gt;$4&lt;/b&gt;. Statistiques pour $6 : $5.</string>
+  <string name="main-status-bar">Traitement de &lt;b&gt;$1&lt;/b&gt; modifications et &lt;b&gt;$2&lt;/b&gt; requêtes. Utilisateurs en liste blanche : &lt;b&gt;$3&lt;/b&gt;. Taille de la file d’attente : &lt;b&gt;$4&lt;/b&gt;. Statistiques pour $6 : $5</string>
   <string name="main-shutting-down">Huggle est en cours d’arrêt, ignoré</string>
   <string name="main-system-messages">Montrer les nouveaux messages</string>
   <string name="main-system-reconnectirc">Reconnecter le fil IRC</string>
@@ -448,7 +448,7 @@
   <string name="main-statistics-none">aucun(e)</string>
   <string name="main-tab-welcome-title">Page d’accueil</string>
   <string name="message-title">Message $1</string>
-  <string name="message-help">Spécifiez un ou les deux champs Objet et Résumé. Si aucun résumé n’est donné, l’objet sera utilisé ; si aucun objet n’est donné, aucun entête ne sera ajouté.</string>
+  <string name="message-help">Spécifiez l’un ou les deux champs « Objet » et « Résumé » . Si aucun résumé n’est donné, Objet sera utilisé ; si aucun objet n’est donné, aucun entête ne sera ajouté.</string>
   <string name="message-subject">Objet :</string>
   <string name="message-message">Message :</string>
   <string name="message-summary">Résumé :</string>
@@ -755,7 +755,7 @@
   <string name="requesting">En cours de requête</string>
   <string name="requested">Demandé</string>
   <string name="protect-request-fail">Impossible de récupérer la page de rapport en cours : $1</string>
-  <string name="protect-request-fail-notext">Impossible de récupérer la page de rapport courante parce que la requête n’a pas renvoyé de texte pour cette page</string>
+  <string name="protect-request-fail-notext">Impossible de récupérer la page courante de rapport parce que la requête n’a pas renvoyé de texte pour cette page</string>
   <string name="protect-request-fail-notime">La requête n’a pas renvoyé d’horodatage. C’est peut-être un bogue de MédiaWiki. Abandon de la requête</string>
   <string name="message-fail">Echec lors de la transmission du message</string>
   <string name="edit-conflict">Conflit de modification.</string>
