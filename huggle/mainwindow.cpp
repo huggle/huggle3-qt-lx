@@ -1181,6 +1181,7 @@ void MainWindow::TriggerWelcome()
             message = conf->Welcome;
         else
            message = HuggleParser::GetValueFromKey(conf->WelcomeTypes.at(0));
+        message += " ~~~~";
     }
     this->Welcome(message);
 }
