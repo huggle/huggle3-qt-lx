@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">Polski</string>
+  <string name="autorelog">Wykonaj nie pytając ponownie</string>
   <string name="isrtl">false</string>
   <string name="add">Dodaj</string>
   <string name="cancel">Anuluj</string>
@@ -23,7 +24,7 @@
   <string name="result">Rezultat</string>
   <string name="save">Zapisz</string>
   <string name="show">Pokaż</string>
-  <string name="no-instant" fuzzy="true">Na projekcie $1 szybkie ostrzeżenia są wyłączone, nie zostanie wysłana wiadomość do $2, wybierz inny poziom ostrzeżenia.</string>
+  <string name="no-instant">Wiadomość do $2 nie może zostać wysłana dopóki szybkie ostrzeżenia są wyłączone w projekcie $1. Wybierz inny poziom ostrzeżenia.</string>
   <string name="undo">Cofnij</string>
   <string name="yes">Tak</string>
   <string name="editing-page">Edytowanie strony</string>
@@ -46,7 +47,7 @@
   <string name="link">Link</string>
   <string name="reason">Powód</string>
   <string name="diffid">DiffID</string>
-  <string name="whitelisted" fuzzy="true">$1 z wynikiem $2 na $3 został dodany do białej listy</string>
+  <string name="whitelisted">$1 z wynikiem $2 na $3 został dodany do białej listy</string>
   <string name="expiry-time">Czas wygaśnięcia</string>
   <string name="duration">Czas trwania</string>
   <string name="enable">Włącz</string>
@@ -54,7 +55,7 @@
   <string name="no-token">Brak tokenu</string>
   <string name="flags">Flagi</string>
   <string name="gracetime" fuzzy="true">Oczekiwanie na zakończenie żądań związanych z edycją...</string>
-  <string name="browser-none" fuzzy="true">Strona nie wyświetli się teraz</string>
+  <string name="browser-none">Nie ma jeszcze strony do wyświetlania.</string>
   <string name="browser-load" fuzzy="true">Pobieranie różnic używając awaryjnego renderowania web, proszę czekać...</string>
   <string name="browser-miss-summ">Nie podano opisu edycji</string>
   <string name="browser-diff">Porównanie strony: $1 (wynik: $2)</string>
@@ -79,10 +80,10 @@
   <string name="block-token-1">Uzyskiwanie tokenu do blokady $1</string>
   <string name="block-fail">Nie udało się zablokować $1</string>
   <string name="block-token-e1">Token nie może zostać pobrany: $1</string>
-  <string name="block-error-no-info" fuzzy="true">Brak informacji o użytkowniku w zapytaniu (jesteś administratorem?)</string>
+  <string name="block-error-no-info">Brak informacji o użytkowniku w zapytaniu (jesteś administratorem?)</string>
   <string name="block-type">Zablokuj / odblokuj</string>
-  <string name="block-admin" fuzzy="true">Blokujący administrator</string>
-  <string name="block-none" fuzzy="true">Brak użytkowników do zablokowania.</string>
+  <string name="block-admin">Blokowanie administratora</string>
+  <string name="block-none">Nie wybrano użytkownika do zablokowania.</string>
   <string name="contribution-browser-user-info">Pokazywanie ostatnich edycji przez użytkownika $1</string>
   <string name="config-function">Funkcja</string>
   <string name="config-description">Opis</string>
@@ -121,16 +122,19 @@
   <string name="config-instant-reverts">Używaj natychmiastowego wycofywania zmian (bardzo szybko działa, ale nie można przerwać po wybraniu)</string>
   <string name="config-revert-wait">Opóźnienie przed wycofaniem (w sekundach)</string>
   <string name="config-revert">Cofnij</string>
+  <string name="config-skip">Pomiń</string>
   <string name="config-revert-diff">Wycofuj zmiany nowsze niż aktualnie pokazywana, jeśli są wykonane przez tego samego użytkownika-wandala</string>
   <string name="config-change-all">Zmień wszystkie ustawienia Huggle, żeby zachowywał się podobnie do Huggle 2</string>
   <string name="config-merge-messages">Połącz swoje wiadomości z innymi w istniejących sekcjach</string>
   <string name="config-months-name">Używaj miesięcy w tytułach zamiast nazwy strony</string>
   <string name="config-automatic-warning">Użyj automatycznie wybieranego typu ostrzeżenia i poziomu w funkcji \"wyślij ostrzeżenie\"</string>
   <string name="config-enable-irc">Włącz IRC</string>
-  <string name="config-remove-reverted" fuzzy="true">Usuń zmiany, które zostały już wycofane przez kogoś innego</string>
+  <string name="config-remove-reverted">Usuń z kolejki zmiany, które zostały już wycofane przez kogoś innego</string>
+  <string name="config-remove-old">Usuń starsze zmiany z kolejki jeśli ostrzymano nowsze zmiany tej strony</string>
   <string name="config-auto-load-history">Automatycznie pobieraj historię i informacje o użytkowniku (wymaga dobrego połączenia internetowego)</string>
-  <string name="config-last-revision" fuzzy="true">Przejdź do najnowszej wersji strony w przypadku gdy załadowana edycja nie jest ostatnią (zostanie pobrana później, spowalniając Huggle)</string>
+  <string name="config-last-revision">Przejdź do najnowszej wersji strony w przypadku gdy pobrana wersja zmian nie jest najnowsza (zostanie pobrana ponownie, spowalniając Huggle)</string>
   <string name="config-wait-edit">Opóźnienie w sekundach, zanim będzie można wprowadzać zmiany:</string>
+  <string name="config-display-next">Pokaż następne</string>
   <string name="config-retrieve-edit">Przywróć swoją własną edycję</string>
   <string name="config-nothing">Nic</string>
   <string name="config-bot-edits">Edycje bota (b)</string>
@@ -155,10 +159,11 @@
   <string name="config-confirmselfrevert">Potwierdź rewersję własnych edycji (z wyjątkiem cofania)</string>
   <string name="config-confirmwarned">Potwierdź rewersję edycji przez użytkownika, który jest ostrzeżony</string>
   <string name="config-confirmrange" fuzzy="true">Potwierdź rewersję edycji przez anonimowego użytkownika będącego w tym samym zakresie /16 co użytkownik będący rewertowanym</string>
-  <string name="config-confirmpage" fuzzy="true">Potwierdź rewersję ignorowanych stron</string>
+  <string name="config-confirmpage">Potwierdź cofnięcia na ignorowanych stronach</string>
   <string name="config-autoadvance">Po rewerowaniu, przejdź do następnej edycji w kolejce</string>
   <string name="config-userollback">Korzystaj z funkcji cofnięcia, jeśli jest dostępna</string>
   <string name="config-revertsummaries">Rewertuj opisy dostępne w menu</string>
+  <string name="config-auto-refresh">Automatycznie odśwież stronę, jeśli została na niej dokonana zmiana</string>
   <string name="config-extendreports">Rozszerz raporty po dodatkowych wandalizmach.</string>
   <string name="config-reportnone">Nic nie rób</string>
   <string name="config-reportprompt">Zapytaj o dokonanie zgłoszenia</string>
@@ -175,7 +180,7 @@
   <string name="config-defaultsprompt">Przywrócić ustawienia domyślne?</string>
   <string name="config-logbrowsetitle">Lokalizacja pliku dziennika</string>
   <string name="config-shortcutconflict">Skrót \'$1\' jest konfliktowy dla istniejącego skrótu dla \'$1\'.</string>
-  <string name="config-no-colon" fuzzy="true">Nie możesz używać : w nazwie kolejki</string>
+  <string name="config-no-colon">Nie możesz użyć : w nazwie kolejki</string>
   <string name="config-notify-update">Sprawdź aktualizacje</string>
   <string name="config-notify-beta">Sprawdzaj dostępność wersji beta</string>
   <string name="delete-title">Usuń $1</string>
@@ -189,7 +194,7 @@
   <string name="delete-e1">Strona nie może zostać usunięta: $1</string>
   <string name="delete-e2">Nie można usunąć strony</string>
   <string name="delete-edsc">Nie można usunąć strony, ponieważ $1</string>
-  <string name="delete-failed-no-info" fuzzy="true">Brak informacji o użytkowniku w zapytaniu (jesteś administratorem?)</string>
+  <string name="delete-failed-no-info">Brak informacji o stronie w zapytaniu (jesteś administratorem?)</string>
   <string name="extension-kl">Nie działa</string>
   <string name="extension-ok">Załadowany i działa</string>
   <string name="historyform-no-info">Brak informacji o edycji</string>
@@ -198,7 +203,7 @@
   <string name="historyform-retrieving-history">Uzyskiwanie historii</string>
   <string name="historyform-not-latest-tip">To nie jest najnowsza wersja tej strony. Upewnij się, że przejrzałeś też nowsze wersję. Miej na uwadze, że wycofanie zmian z tego punktu może być niemożliwe.</string>
   <string name="history-error-message-title">Nie można cofnąć</string>
-  <string name="history-error" fuzzy="true">Ta edycja nie może zostać wycofana. Być może ta strona została w międzyczasie zmieniona lub usunięta i Huggle nie może wycofać z tego punktu. Jeżeli naprawdę chcesz ją wycofać, musisz to zrobić z interfejsu MediaWiki.</string>
+  <string name="history-error">Ten element nie może być wycofany.Możliwe, że zawartość strony została zmnieniona lub usunięta i Huggle nie może cofnąć od tego miejsca. Jeżeli naprawdę chcesz cofnąć, musisz to zrobić ręcznie używając interfejsu MediaWiki.</string>
   <string name="history-failure">Nie udało się uzyskać historii</string>
   <string name="userhistory-title">Historia twoich zmian</string>
   <string name="irc-connected">$1: Połączono z kanałem IRC ostatnich zmian</string>
@@ -215,7 +220,7 @@
   <string name="login-username">Nazwa użytkownika:</string>
   <string name="login-password">Hasło:</string>
   <string name="login-proxygroup">Ustawienia serwera proxy</string>
-  <string name="login-proxy" fuzzy="true">Użyj serwera proxy</string>
+  <string name="login-proxy">Użyj proxy</string>
   <string name="login-proxyaddress">Adres:</string>
   <string name="login-proxy-remember-this">Zapamiętaj to ustawienie na następny raz</string>
   <string name="login-proxyport">Port:</string>
@@ -263,6 +268,7 @@
   <string name="login-error-unknown">Nie można zalogować się do $1.</string>
   <string name="login-error-version">Ta wersja jest nieaktualna. Aktualizuj do najnowszej wersji.</string>
   <string name="login-error-whitelist">Nie udało się załadować białej listy użytkowników dla $1.</string>
+  <string name="login-ro-title">Przełącz na tryb tylko do odczytu</string>
   <string name="main-no-reason">Użytkownik nie podał powodu</string>
   <string name="main-restoring-slap" fuzzy="true">Przywracam inną edycję, proszę czekać...</string>
   <string name="main-page">Strona</string>
@@ -274,6 +280,7 @@
   <string name="main-system">System</string>
   <string name="main-status-bar">Przetwarzanie &lt;b&gt;$1&lt;/b&gt; edycji i &lt;b&gt;$2&lt;/b&gt; zapytań. Użytkownicy w białej liście: &lt;b&gt;$3&lt;/b&gt; Rozmiar kolejki: &lt;b&gt;$4&lt;/b&gt; Statystyki dla $6: $5</string>
   <string name="main-system-messages">Pokaż nowe wiadomości</string>
+  <string name="main-system-savelog">Zapisz rejestr...</string>
   <string name="main-system-statistics">Statystyki...</string>
   <string name="main-system-showqueue">Pokaż kolejkę</string>
   <string name="main-system-options">Opcje...</string>
@@ -286,11 +293,13 @@
   <string name="main-config-state-fail">Nie udało się odczytać stanu z pliku konfiguracyjnego</string>
   <string name="main-queue">Kolejka</string>
   <string name="main-queue-next">Następne</string>
+  <string name="main-queue-clear">Wyczyść bieżącą</string>
   <string name="main-queue-count">$1 elementów</string>
   <string name="main-queue-query">Wysyłam zapytanie...</string>
   <string name="main-queue-reset">Zresetuj</string>
   <string name="main-queue-clearall">Wyczyść wszystko</string>
   <string name="main-queue-options">Ustawienia kolejek...</string>
+  <string name="main-queue-when-full-remove">Usuń stare zmiany</string>
   <string name="main-goto">Przejdź do</string>
   <string name="main-goto-mytalk">Moja strona dyskusji</string>
   <string name="main-goto-mycontribs">Mój wkład</string>
@@ -333,12 +342,15 @@
   <string name="main-page-load">Wczytaj</string>
   <string name="main-patrol-not-enabled">Patrolowanie zmian nie jest włączone na $1</string>
   <string name="main-page-restore">Przywróć tę wersję</string>
+  <string name="main-page-tab-close">Zamknij bieżącą zakładkę</string>
+  <string name="main-page-tab-open">Otwórz nową zakładkę</string>
   <string name="main-user-info">Pokaż dane o użytkowniku</string>
   <string name="main-user-ignore">Ignoruj</string>
   <string name="main-user-unignore">Nie ignoruj</string>
   <string name="main-user-contribs">Pokaż wkład użytkownika w przeglądarce</string>
   <string name="main-user-clear-talk">Wyczyść stronę dyskusji użytkownika</string>
   <string name="main-user-talk">Zobacz stronę dyskusji</string>
+  <string name="main-user-page">Wyświetl stronę użytkownika</string>
   <string name="main-user-message">Wyślij wiadomość...</string>
   <string name="main-user-warn">Ostrzeż...</string>
   <string name="main-user-db">Zmniejsz liczbę punktów karnych</string>
@@ -361,6 +373,7 @@
   <string name="main-han-display-user-data">Pokaż dane użytkownika</string>
   <string name="main-help-documentation">Dokumentacja</string>
   <string name="main-help-about">O Huggle...</string>
+  <string name="main-help-introduction">Wstęp</string>
   <string name="main-addqueue">Dodaj...</string>
   <string name="main-savelogtitle">Zapisz log</string>
   <string name="main-usermessageother">Inny komunikat...</string>
@@ -378,12 +391,18 @@
   <string name="main-revert-newpage-title">Nie można tego wycofać</string>
   <string name="main-revert-newpage">To jest nowa strona, więc nie może być wycofana. Możesz ją oznaczyć lub skasować.</string>
   <string name="main-welcome-user">Przywitaj użytkownika</string>
+  <string name="main-custom-reason-fail">Nie podano prawidłowej przyczyny</string>
   <string name="main-report-username">Zgłoś nazwę użytkownika</string>
   <string name="main-report-user">Zgłoś użytkownika</string>
+  <string name="main-edit-user-talk">Edytuj wypowiedź użytkownika</string>
+  <string name="main-statistics-paused">wstrzymane</string>
+  <string name="main-tab-welcome-title">Strona powitalna</string>
   <string name="message-title">Wiadomość $1</string>
+  <string name="message-help">Wybierz Temat i Podsumowanie lub oba. Jeśli brak podsumowania zostanie użyty temat; jeślu brak tematu nagłówek nie zostanie dodany.</string>
   <string name="message-subject">Temat:</string>
   <string name="message-message">Wiadomość:</string>
   <string name="message-summary">Podsumowanie:</string>
+  <string name="message-autosign">Automatycznie dodaj podpis</string>
   <string name="message-done">Pomyślnie dostarczona wiadomość w $2 do: $1</string>
   <string name="protect-reason">Powód:</string>
   <string name="protect-expiry">Czas trwania:</string>
@@ -434,21 +453,24 @@
   <string name="uaa-reported">Zgłoszono</string>
   <string name="uaa-nr">Powód nie został podany</string>
   <string name="uaa-g1">Pobieranie zawartości UAA</string>
-  <string name="uaa-e2" fuzzy="true">zawartość strony nie była dostępna.</string>
+  <string name="uaa-e2">Zawartość strony nie była dostępna.</string>
   <string name="revert-conflict">Ta strona była edytowana przez użytkownika „$1”, który znajduje się na białej liście.</string>
   <string name="speedy-reason">Powód:</string>
   <string name="speedy-parameters">Parametry</string>
+  <string name="speedy-notifycreator">Powiadom twórcę strony</string>
   <string name="rollback">Przywracanie $1</string>
   <string name="tag-title">Znacznik $1</string>
   <string name="tag-tagselector">Dodaj znacznik:</string>
   <string name="tag-tags">Znacznik(i):</string>
   <string name="tag-parameter">Parametr</string>
   <string name="tag-summary">Podsumowanie:</string>
+  <string name="tag-insertatend">Wstaw na końcu strony</string>
   <string name="update-title">Dostępna jest nowa wersja</string>
   <string name="update-progress">Pobieranie nowej wersji...</string>
   <string name="update-error">Nie udało się pobrać nowej wersji</string>
   <string name="updater-title">Dostępna jest nowa wersja Huggle</string>
   <string name="updater-update">Aktualizuj</string>
+  <string name="updater-update-available">Dostępna jest nowsza wersja Huggle: wersja $1</string>
   <string name="updater-open-manualdownloadpage">Otwórz stronę pobierania</string>
   <string name="updater-close">Zamknij</string>
   <string name="updater-disable-notify">Wyłącz aktualizacje</string>
@@ -459,12 +481,14 @@
   <string name="shortcut-report-user">Zgłoś użytkownika</string>
   <string name="shortcut-my-talk">Moja strona dyskusji</string>
   <string name="shortcut-raw">Wycofaj edycję i ostrzeż użytkownika</string>
+  <string name="shortcut-exit">Zatrzymaj Huggle w normalny sposób</string>
   <string name="shortcut-next">Idź do następnej edycji</string>
   <string name="shortcut-suspicious">Oznacz edycję jako podejrzaną</string>
   <string name="shortcut-back">Idź do poprzednio pokazywanej edycji</string>
+  <string name="shortcut-warn">Wyślij ostrzeżenie di użtkownika bez cofania zmian</string>
   <string name="shortcut-revert">Wycofaj edycję</string>
-  <string name="shortcut-watch" fuzzy="true">Wstawia wyświetlaną stronę do listy obserwowanych</string>
-  <string name="shortcut-unwatch" fuzzy="true">Usuwa wyświetlaną stronę z listy obserwowanych</string>
+  <string name="shortcut-watch">Dodaje wyświetlaną stronę do twojej listy obserwowanych</string>
+  <string name="shortcut-unwatch">Usuwa wyświetlaną stronę ze twojej listy obserwowanych</string>
   <string name="shortcut-browser-close-tab">Zamknij kartę przeglądarki</string>
   <string name="shortcut-tab">Otwiera nową kartę.</string>
   <string name="warning-title">Ostrzeż $1</string>
@@ -477,15 +501,24 @@
   <string name="warning-warntype">Typ ostrzeżenia:</string>
   <string name="warning-warnlog">Ostrzeżenia dla tego użytkownika:</string>
   <string name="warning-submit">Wyślij</string>
+  <string name="han-network">Sieć</string>
+  <string name="han-send">Wyślij</string>
+  <string name="error-loggedout">Konto zostało wylogowane, ponowne logowanie za...</string>
   <string name="error-noresponse">Brak odpowiedzi</string>
   <string name="error-pagemissing">Strona nie istnieje</string>
+  <string name="error-reloginfail">Błąd ponownego logowania, spróbuj przestartować Huggle</string>
   <string name="error-unknown">Nieznany błąd</string>
   <string name="block-progress">Blokowanie $1...</string>
   <string name="delete-done">Usunięto $1</string>
   <string name="delete-fail">Nie usunięto $1</string>
   <string name="delete-progress">Usuwanie $1...</string>
   <string name="delete-user">Ta strona jest w przestrzeni użytkownika. Czy na pewno chcesz ją usunąć?</string>
+  <string name="deletelog-none">Brak rejestru usubięć dla $1</string>
+  <string name="deletelog-progress">Ładowanie rejestru usunięć dla $1...</string>
+  <string name="edit-bar-top">To jest najnowsza zmiana</string>
+  <string name="edit-fail">Nie edytuj $1</string>
   <string name="edit-progress">Edycja $1...</string>
+  <string name="history-fail">Błąd ładowania historii $1</string>
   <string name="history-message-revert-title">Czy chcesz cofnąć tylko tą wiadomość?</string>
   <string name="history-already-done">To już zostało cofnięte</string>
   <string name="history-revert-fail">Nie można cofnąć twojej edycji na $1 z powodu wystąpienia błędu: $2</string>
@@ -496,6 +529,8 @@
   <string name="logs-widget-name">Logi systemu</string>
   <string name="wait">Proszę czekać...</string>
   <string name="missing-aiv">Ten projekt nie używa AIV</string>
+  <string name="edit-conflict">Edytuj konflikt</string>
+  <string name="error-unknown-code">Nieznany Błąd: $1</string>
   <string name="relogin-fail">Nie można zalogować się na: $1</string>
   <string name="projects">Projekty</string>
 </resources>

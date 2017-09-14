@@ -20,6 +20,7 @@
   <string name="rename">নামান্তর</string>
   <string name="reload">পুনঃলোড</string>
   <string name="project">প্রকল্প</string>
+  <string name="warning">সতর্কীকরণ</string>
   <string name="result">ফলাফল</string>
   <string name="save">সংরক্ষণ</string>
   <string name="show">দেখাও</string>
@@ -659,6 +660,7 @@
   <string name="history-retrieve-fail">আমরা যে নিজস্ব সম্পাদনা বাতিল করতে চেয়েছিলাম সেই পাতার বিষয়বস্তু সংগ্রহ করা যায়নি, ত্রুটি ছিল: $1</string>
   <string name="history-welcome-msg-title">পরিবর্তে স্বাগতম বার্তা পাঠাবেন?</string>
   <string name="history-welcome-msg">আপনি এই আলাপ পাতা তৈরী করেছেন, তাই এটি পূর্বাবস্থায় ফেরানো যাবে না। আপনি কি একটি স্বাগতম টেমপ্লেট দিয়ে এটি প্রতিস্থাপন করতে চান?</string>
+  <string name="newtab-title">এটি একটি নতুন ট্যাব!</string>
   <string name="notify-fail">$1-এর প্রণেতাকে বিজ্ঞপ্তি দেয়া যায়নি</string>
   <string name="notify-unknowncreator">পাতার প্রণেতা খুঁজে পাওয়া যায়নি</string>
   <string name="protect-done">$1-এর জন্য সুরক্ষার স্তর পরিবর্তন করা হয়েছে</string>

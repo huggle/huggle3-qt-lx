@@ -149,6 +149,7 @@
   <string name="config-message-notification">당신의 토론 문서에 새로운 메시지를 받을 때 알림을 표시</string>
   <string name="config-warning-api">API 쿼리에 대한 경고 표시</string>
   <string name="config-updates">업데이트 확인</string>
+  <string name="config-reset-menu">마지막 방문 이후로 프로젝트 구성(경고 유형 목록)이 변경되었기 때문에 드롭다운 메뉴의 바로 가기(되돌리기, 경고 등)가 초기화되었습니다.</string>
   <string name="config-beta">베타 버전을 확인</string>
   <string name="config-html-messages">HAN은 HTML 메시지를 렌더링할 수 있습니다 (위험)</string>
   <string name="config-close-without">저장하지 않고 닫기</string>
@@ -430,6 +431,7 @@
   <string name="main-report-username">사용자 이름 보고</string>
   <string name="main-report-user">사용자 보고</string>
   <string name="main-edit-user-talk">사용자 토론 편집</string>
+  <string name="main-statistics-paused">일시 정지함</string>
   <string name="main-statistics-waiting">더 많은 편집을 기다리는 중</string>
   <string name="main-statistics-none">없음</string>
   <string name="main-tab-welcome-title">환영 페이지</string>
@@ -681,6 +683,7 @@
   <string name="rc-title-missing">RC 피드: 항목에 제목 특성이 없습니다: $1</string>
   <string name="whitelist-download">새 허용 목록을 다운로드 중</string>
   <string name="logs-widget-name">시스템 기록</string>
+  <string name="processes-widget-name">프로세스</string>
   <string name="wait">기다려 주세요...</string>
   <string name="function-miss">기능은 이제 사용할 수 없습니다</string>
   <string name="missing-aiv">이 프로젝트는 AIV를 사용하지 않습니다</string>
