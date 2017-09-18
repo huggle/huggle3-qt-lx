@@ -98,6 +98,7 @@
   <string name="config-undosummary">自編集を差し戻すときのデフォルト要約</string>
   <string name="config-confirm-wl">ホワイトリストに登録された利用者による改編について承認を要求</string>
   <string name="config-revert">リバート</string>
+  <string name="config-skip">スキップ</string>
   <string name="config-enable-irc">IRCを可動</string>
   <string name="config-bot-edits">ボットによる編集(b)</string>
   <string name="config-own-edits">自分の編集</string>
