@@ -125,7 +125,7 @@ QVariant UserConfiguration::SetOption(QString key_, QString config_, QVariant de
 QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
 {
     QString configuration_ = "<nowiki>\n";
-    configuration_ += "// This is a configuration of huggle, do not change it unless you know what you do.\n";
+    configuration_ += "// This is a configuration of huggle, do not change it unless you know what you are doing.\n";
     configuration_ += "enable:true\n";
     configuration_ += "// Last version of huggle that wrote into this configuration file (sanity check)\n";
     configuration_ += "version:" + hcfg->HuggleVersion + "\n\n";
