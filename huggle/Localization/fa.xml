@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">فارسی</string>
+  <string name="autorelog">از این به بعد بدون پرسش همین کار را بکن</string>
   <string name="isrtl">ناصحیح</string>
   <string name="add">افزودن</string>
   <string name="cancel">لغو</string>
@@ -19,10 +20,11 @@
   <string name="rename">تغییر نام</string>
   <string name="reload">بارگیری دوباره</string>
   <string name="project">پروژه</string>
+  <string name="warning">هشدار</string>
   <string name="result">نتیجه</string>
   <string name="save">ذخیره کردن</string>
   <string name="show">نمایش</string>
-  <string name="no-instant" fuzzy="true">خطای فوری در پروژه $1 فعال نشده‌است، پیام به $2 ارسال نمی‌شود، سطح هشدار دیگری را انتخاب کنید</string>
+  <string name="no-instant">خطای فوری در پروژه $1 فعال نشده‌است، پیام به $2 ارسال نمی‌شود، سطح هشدار دیگری را انتخاب کنید</string>
   <string name="undo">واگردانی</string>
   <string name="yes">بله</string>
   <string name="editing-page">در حال ویرایش صفحه</string>
@@ -45,14 +47,14 @@
   <string name="link">پیوند</string>
   <string name="reason">دلیل</string>
   <string name="diffid">شناسه تفاوت</string>
-  <string name="whitelisted" fuzzy="true">$1 با امتیاز $2 بر $3 به فهرست پذیرش افزوده شد</string>
+  <string name="whitelisted">$1 با امتیاز $2 بر $3 به فهرست پذیرش افزوده شد</string>
   <string name="expiry-time">زمان انقضاء</string>
   <string name="duration">مدت</string>
   <string name="enable">فعال</string>
   <string name="disable">غیرفعال</string>
   <string name="no-token">بدون رمز</string>
   <string name="flags">پرچم‌ها</string>
-  <string name="gracetime" fuzzy="true">در انتظار پایان صف ویرایش‌ها</string>
+  <string name="gracetime">در انتظار پایان صف ویرایش‌ها</string>
   <string name="browser-none" fuzzy="true">هیچ صفحه‌ای نمایش داده نشد</string>
   <string name="browser-load" fuzzy="true">بارگیری تفاوت با استفاده از رندر وب، لطفاً صبر کنید....</string>
   <string name="browser-miss-summ">هیچ خلاصه‌ای ارائه نشده است</string>
@@ -108,6 +110,7 @@
   <string name="config-noshortcut">هیچ</string>
   <string name="config-defaults">پیش‌فرض‌ها</string>
   <string name="config-minor">نشانه‌گذاری به عنوان جزئی</string>
+  <string name="config-ip">کاربران آی‌پی</string>
   <string name="config-watchlist">افزودن به پی‌گیری‌ها</string>
   <string name="config-defaultsummary">خلاصه ویرایش پیش‌فرض برای ویرایش‌های دستی</string>
   <string name="config-undosummary">خلاصه ویرایش برای واگردانی ویرایش‌های خودتان</string>
@@ -120,6 +123,7 @@
   <string name="config-instant-reverts">استفاده از واگردانی‌های فوری (بسیار سریع، اما زمانی که اجرا شد نمی‌تواند لغو شود)</string>
   <string name="config-revert-wait" fuzzy="true">انتظار واگردانی (به ثانیه)</string>
   <string name="config-revert">واگردانی</string>
+  <string name="config-skip">رها کردن</string>
   <string name="config-revert-diff">واگردانی ویرایش‌های تازه‌تر صفحه نسبت به تفاوت نمایش داده‌شده در حالتی که توسط همان کاربر خرابکار صورت گرفته‌باشد</string>
   <string name="config-change-all" fuzzy="true">تغییر همه تنظیمات هاگل برای بیشتر شبیه هاگل ۲ رفتارکردن</string>
   <string name="config-merge-messages">ادغام‌کردن پیام‌های شما با دیگران در بخش‌های موجود</string>
@@ -132,6 +136,7 @@
   <string name="config-last-revision" fuzzy="true">نمایش بازبینی آخر از صفحه در حالتی که ویرایش فراخوانی‌شدهٔ جاری بازبینی آخر نیست (پس از گذشتن از نهان‌گاه دریافتش می‌کند)</string>
   <string name="config-require-delay">به یک تأخیر پس از هر بارگیری از ویرایش بعدی نیاز است، به این دلیل که ممکن نیست از هر ویژگی نوشتن استفاده شود (کاربردی زمانی  که باید اشکال چند فشار صفحه کلید رفع شود)</string>
   <string name="config-wait-edit">زمانی که باید صبر کنید (به ثانیه) تا ویژگی‌های نوشتاری فعال شوند:</string>
+  <string name="config-display-next">نمایش بعدی</string>
   <string name="config-retrieve-edit">بازیابی ویرایش خودتان</string>
   <string name="config-nothing">هیچ‌چیز</string>
   <string name="config-bot-edits">ویرایش‌های ربات (ر)</string>
@@ -244,9 +249,11 @@
   <string name="login-password-empty">پسوردی که وارد کرده‌اید خالی است.</string>
   <string name="login-fail-wrong-name" fuzzy="true">شما هیچ نام کاربری برای لاگین وارد نکرده‌اید</string>
   <string name="login-api">خطا: api.php با نتیجه‌ای ناشناخته داد: $1</string>
+  <string name="login-abort">لغو</string>
   <string name="login-start">ورود</string>
   <string name="login-oauth-notsupported">این روش همکنون پشتیبانی نمی‌شود</string>
   <string name="login-translate">ترجمهٔ هاگل</string>
+  <string name="login-progress-formtitle">در حال بارگیری...</string>
   <string name="login-progress-start">ورود به $1</string>
   <string name="login-progress-retrieve-mw">دریافت اطلاعات درباره مدیاویکی برای $1</string>
   <string name="login-progress-language">به روزرسانی فایل‌های پیام...</string>
@@ -276,6 +283,7 @@
   <string name="login-error-unknown" fuzzy="true">قادر به ثبت ورود در $1 نبود.</string>
   <string name="login-error-version">این نسخه، قدیمی است. به آخرین نسخه به‌روزرسانی نمایید.</string>
   <string name="login-error-whitelist">بارگیری فهرست سفید کاربران برای $1 نافرجام ماند.</string>
+  <string name="login-ro-title">تغییر به فقط خواندنی</string>
   <string name="main-menu-provider-stop">توقف ارائه دهنده</string>
   <string name="main-menu-provider-resume">رزومه ارائه دهنده</string>
   <string name="provider-up">برقراری ارتباط با روند تغییرات در $2 بدست‌آورنده: $1</string>
@@ -313,6 +321,7 @@
   <string name="main-queue-reset">از نو</string>
   <string name="main-queue-clearall">پاک کردن همه</string>
   <string name="main-queue-options">مدیریت صف...</string>
+  <string name="main-queue-when-full">وقتی صف پر است</string>
   <string name="main-goto">برو به</string>
   <string name="main-goto-mytalk">صفحهٔ بحث من</string>
   <string name="main-goto-mycontribs">مشارکت‌های من</string>
@@ -355,6 +364,7 @@
   <string name="main-page-load">بارگیری</string>
   <string name="main-patrol-not-enabled">گشت‌زنی در $1 فعال نشده‌است</string>
   <string name="main-page-restore">برگرداندن این نسخه</string>
+  <string name="main-page-tab-close">بستن زبانه فعلی</string>
   <string name="main-user-info">مشاهدهٔ اطلاعات کاربر</string>
   <string name="main-user-ignore">نادیده گرفتن</string>
   <string name="main-user-unignore">عدم نادیده‌گرفتن</string>
@@ -386,6 +396,7 @@
   <string name="main-help-documentation">مستندات</string>
   <string name="main-help-feedback">بازخورد</string>
   <string name="main-help-about">درباره هاگل...</string>
+  <string name="main-help-contents">محتویات</string>
   <string name="main-addqueue">افزودن...</string>
   <string name="main-savelogtitle">ذخیره سیاهه</string>
   <string name="main-usermessageother">پیام دیگر...</string>
@@ -406,6 +417,7 @@
   <string name="main-revert-newpage">این یک صفحهٔ تازه است، بنابراین نمی‌تواند واگردانی شود، شما می‌توانید به آن برچسب بزنید، یا حذفش کنید.</string>
   <string name="main-restore-text-fail">ناتوان در برگرداندن بازبینی، به دلیل عدم وجود متنی برایش</string>
   <string name="main-restore-data-fail" fuzzy="true">ناتوان در برگرداندن بازبینی، به دلیل عدم ارائهٔ هیچ داده‌ای برای نگارش انتخاب‌شده از طرف ویکی</string>
+  <string name="main-statistics-none">هیچ‌کدام</string>
   <string name="message-title">پیام $1</string>
   <string name="message-help">یک یا هر دو موضوع و خلاصه را مشخص کنید. اگر هیچ خلاصه‌ای داده نشود، موضوع استفاده خواهد شد؛ اگر موضوعی نباشد، سرایندی افزوده نخواهد شد.</string>
   <string name="message-subject">موضوع:</string>
@@ -688,6 +700,7 @@
   <string name="preferences-watchlist-unwatch">حذف از فهرست پی‌گیری</string>
   <string name="preferences-watchlist-preferences">از ترجیحات ویکی خود استفاده کنید</string>
   <string name="preferences-watchlist-nochange">کاری نکن</string>
+  <string name="preferences-queue-size">طول صف</string>
   <string name="fail">شکست</string>
   <string name="request">درخواست</string>
   <string name="requesting">درخواست دادن</string>
@@ -740,4 +753,6 @@
   <string name="main-revert-type-made-white-list">ایجاد شده توسط کاربری که در لیست سفید است</string>
   <string name="main-revert-warn">این ویرایش $1 است، پس اگر شبیه به خرابکاری به نظر برسد، لزوماً خرابکاری نیست، آیا از واگردانی اطمینان دارید؟</string>
   <string name="query-protected-link">پیوند محافظت شده</string>
+  <string name="queue-empty-title">خالی است</string>
+  <string name="queue-empty-text">چیز دیگری در صف نیست</string>
 </resources>
