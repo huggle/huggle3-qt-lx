@@ -230,7 +230,7 @@
   <string name="login-username">نام کاربری:</string>
   <string name="login-password">گذرواژه:</string>
   <string name="login-proxygroup">تنظیمات پراکسی</string>
-  <string name="login-proxy" fuzzy="true">استفاده از سرور پراکسی</string>
+  <string name="login-proxy">استفاده از پراکسی</string>
   <string name="login-proxyaddress">نشانی:</string>
   <string name="login-proxy-remember-this">این تنظیمات را برای دفعه بعدی به یاد نگه‌دار</string>
   <string name="login-proxyport">درگاه:</string>
@@ -247,7 +247,7 @@
   <string name="login-failed-edit">ورود ناموفق در $1: ویرایش‌های شما در این پروژه کافی نیست.</string>
   <string name="login-retrieving-info">دریافت اطلاعات کاربر روی $1</string>
   <string name="login-password-empty">پسوردی که وارد کرده‌اید خالی است.</string>
-  <string name="login-fail-wrong-name" fuzzy="true">شما هیچ نام کاربری برای لاگین وارد نکرده‌اید</string>
+  <string name="login-fail-wrong-name">شما هیچ نام کاربری برای لاگین وارد نکرده‌اید</string>
   <string name="login-api">خطا: api.php با نتیجه‌ای ناشناخته داد: $1</string>
   <string name="login-abort">لغو</string>
   <string name="login-start">ورود</string>
@@ -365,12 +365,14 @@
   <string name="main-patrol-not-enabled">گشت‌زنی در $1 فعال نشده‌است</string>
   <string name="main-page-restore">برگرداندن این نسخه</string>
   <string name="main-page-tab-close">بستن زبانه فعلی</string>
+  <string name="main-page-tab-open">بازکردن سربرگ تازه</string>
   <string name="main-user-info">مشاهدهٔ اطلاعات کاربر</string>
   <string name="main-user-ignore">نادیده گرفتن</string>
   <string name="main-user-unignore">عدم نادیده‌گرفتن</string>
   <string name="main-user-contribs">نمایش مشارکت‌های کاربر در یک مرورگر</string>
   <string name="main-user-clear-talk">پاک کردن صفحه بحث کاربر</string>
   <string name="main-user-talk">مشاهده صفحه بحث</string>
+  <string name="main-user-page">نمایش صفحهٔ کاربر</string>
   <string name="main-user-message">پیام...</string>
   <string name="main-user-warn">هشدار...</string>
   <string name="main-user-db">کاهش نمره بدی کاربر</string>
@@ -379,6 +381,7 @@
   <string name="main-user-clear-tp">خالی کردن صفحه بحث کاربر</string>
   <string name="main-user-retrieving-tp">واگردانی صفحهٔ بحث $1</string>
   <string name="main-user-block">بستن...</string>
+  <string name="main-user-manualtemplate">قالب دستی</string>
   <string name="main-browser-back">بازگشت</string>
   <string name="main-browser-forward">جلو</string>
   <string name="main-browser-open">نمایش در مرورگر خارجی</string>

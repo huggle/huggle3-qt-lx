@@ -20,6 +20,7 @@
   <string name="rename">Переименовать</string>
   <string name="reload">Перезагрузить</string>
   <string name="project">Проект</string>
+  <string name="warning">Предупреждение</string>
   <string name="result">Результат</string>
   <string name="save">Сохранить</string>
   <string name="show">Показать</string>
@@ -81,8 +82,8 @@
   <string name="block-token-e1">Токен не может быть получен: $1</string>
   <string name="block-error-no-info" fuzzy="true">В запросе отсутствует информация об участнике (вы администратор?)</string>
   <string name="block-type">Блокировать / разблокировать</string>
-  <string name="block-admin" fuzzy="true">Заблокировавший администратор</string>
-  <string name="block-none" fuzzy="true">Нет участника для блокирования.</string>
+  <string name="block-admin">Заблокировавший администратор</string>
+  <string name="block-none">Не выбран участник для блокировки.</string>
   <string name="contribution-browser-user-info">Показаны недавние вклады пользователя $1</string>
   <string name="config-function">Функция</string>
   <string name="config-description">Описание</string>
@@ -122,6 +123,7 @@
   <string name="config-instant-reverts">Использовать систему мгновенных откатов (очень быстро, но они не могут быть отменены после того, как запущены)</string>
   <string name="config-revert-wait">Задержка отката (в секундах)</string>
   <string name="config-revert">Откатить</string>
+  <string name="config-skip">Пропустить</string>
   <string name="config-revert-diff">Откатить правки страницы, которые новее чем показанное изменение, в случае если если они сделаны тем же участником-вандалом</string>
   <string name="config-change-all">Изменить все настройки Huggle так чтобы его поведение было ближе к Huggle 2</string>
   <string name="config-merge-messages">Объединять ваши сообщения с другими в существующих разделах</string>
@@ -322,6 +324,8 @@
   <string name="main-queue-reset">Сброс очереди</string>
   <string name="main-queue-clearall">Очистить все очереди</string>
   <string name="main-queue-options">Настройки очередей...</string>
+  <string name="main-queue-when-full">Когда очередь заполнена</string>
+  <string name="main-queue-when-full-remove">Удалить старые правки</string>
   <string name="main-goto">Перейти</string>
   <string name="main-goto-mytalk">Моя страница обсуждения</string>
   <string name="main-goto-mycontribs">Мой вклад</string>
@@ -395,6 +399,7 @@
   <string name="main-help-documentation">Документация</string>
   <string name="main-help-feedback">Отзыв</string>
   <string name="main-help-about">О Huggle...</string>
+  <string name="main-help-introduction">Введение</string>
   <string name="main-addqueue">Добавить...</string>
   <string name="main-savelogtitle">Сохранить журнал</string>
   <string name="main-usermessageother">Другое сообщение...</string>
@@ -431,10 +436,10 @@
   <string name="message-fail-re-user-tp">Не удалось получить $1. Останавливаем доставку сообщения этому участнику</string>
   <string name="message-er">Невозможно доставить сообщение для $1: $2</string>
   <string name="message-error">Не удалось доставить сообщение для $1! Пожалуйста, проверьте логи!</string>
-  <string name="message-fail-retrieve-talk" fuzzy="true">не удается получить страницу обсуждения участника</string>
+  <string name="message-fail-retrieve-talk">Не удается получить страницу обсуждения участника</string>
   <string name="message-done">Сообщение успешно доставлено на $2 для: $1</string>
-  <string name="message-fail-token-1" fuzzy="true">не удалось получить маркер редактирования</string>
-  <string name="message-fail-token-2" fuzzy="true">в результате запроса маркер не был возвращён</string>
+  <string name="message-fail-token-1">Не удалось получить токен редактирования</string>
+  <string name="message-fail-token-2">В результате запроса токен не был возвращён</string>
   <string name="protect-request-title">Запросы защиты для $1</string>
   <string name="protect-reason">Причина:</string>
   <string name="protect-expiry">Истекает:</string>
@@ -511,7 +516,7 @@
   <string name="score-only-whole-word">Соответствует только целым словам</string>
   <string name="score-take-any-word">Соответствует любому слову, содержащему эту строку</string>
   <string name="ssl-is-not-supported">Вы запросили использование SSL, но $1 его не поддерживает.</string>
-  <string name="ssl-required" fuzzy="true">Веб-сервер $1 требует включения SSL. Пожалуйста, включите протокол SSL и попробовать снова. Если Вы не можете включить SSL (опция недоступна) возможно, требуется установить Open SSL библиотеки в вашей системе.</string>
+  <string name="ssl-required">Веб-сервер $1 требует включения SSL. Пожалуйста, включите протокол SSL и попробуйте снова. Если вы не можете включить SSL (опция недоступна), возможно, требуется установить библиотеки OpenSSL в вашей системе.</string>
   <string name="uaa-not-supported">UAA недоступна</string>
   <string name="uaa-not-supported-text">\"Usernames for administrator attention\" (UAA) недоступна для этой вики.</string>
   <string name="uaa-reporting">Сообщить о $1 в UAA</string>
@@ -519,7 +524,7 @@
   <string name="uaa-no-reason-warn">Вы не указали причину, почему имя участника нарушает правила. Пожалуйста, укажите причину.</string>
   <string name="uaa-nr">Не была указана причина</string>
   <string name="uaa-g1">Получение данных из UAA</string>
-  <string name="uaa-e1" fuzzy="true">запрос содержимого страницы не возвращает никаких данных.</string>
+  <string name="uaa-e1">Запрос содержимого страницы не возвращает никаких данных.</string>
   <string name="uaa-e2" fuzzy="true">содержимое страницы недоступно.</string>
   <string name="read-only">Проект $1 сконфигурирован в режиме «только для чтения», функции редактирования будут ограничены</string>
   <string name="revert-confirm-multiple">Откатить несколько правок участника \'$1\'?</string>
@@ -527,7 +532,7 @@
   <string name="revert-confirm-same">Это действие откатит правку участника $1 к его же версии. Продолжить?</string>
   <string name="revert-confirm-warned">Откатить правки к версии $1; этот участник уже предупреждался. Продолжить?</string>
   <string name="revert-error-first">Эта правка является первой правкой на странице, и она не может быть возвращена.</string>
-  <string name="revert-only" fuzzy="true">Эта правка является единственной правкой страницы.</string>
+  <string name="revert-only">Эта правка является единственной правкой страницы.</string>
   <string name="revert-creator">Последняя правка была сделана автором страницы, $1.</string>
   <string name="revert-preflightcheck">Предполетная проверка</string>
   <string name="revert-delete-instead">Удалить страницу вместо этого?</string>
@@ -605,6 +610,8 @@
   <string name="han-already-connected">Подключение к HAN не производится, поскольку он уже подключен</string>
   <string name="han-already-connecting">Пожалуйста, подождите, я уже подключаюсь к HAN</string>
   <string name="han-disconnected">Вы были отключены от HAN</string>
+  <string name="han-network">Сеть</string>
+  <string name="han-send">Отправить</string>
   <string name="error-loggedout">Произошло разъединение, повторный вход...</string>
   <string name="error-noresponse">Не отвечает</string>
   <string name="error-pagemissing">Страница не существует</string>
@@ -684,6 +691,7 @@
   <string name="missing-aiv">Этот проект не использует AIV</string>
   <string name="missing-page">В этой вики нет страницы $1</string>
   <string name="updating-wl">Обновляем белый список...</string>
+  <string name="waiting">Ожидание…</string>
   <string name="feature-nfru">Эта функция только для IP-участников</string>
   <string name="report-no-user">Получатель сообщения не выбран, пожалуйста, выберите одного из участников</string>
   <string name="welcome-show">Показывать это сообщение и в следующий раз вы запустите на Huggle</string>
@@ -712,6 +720,8 @@
   <string name="preferences-performance-catscansandwatched" fuzzy="true">Включить сканирование категорий и фильтрацию статусов просмотра (требует дополнительный API-запрос на каждую правку)</string>
   <string name="preferences-max-score">Включить максимальную оценку (правки с большей оценкой будут проигнорированы — полезно, если вы хотите видеть только хорошие правки)</string>
   <string name="preferences-min-score">Включить минимальную оценку (правки с большей оценкой будут проигнорированы — полезно, если вы хотите видеть только плохие правки)</string>
+  <string name="preferences-queue-size">Размер запроса</string>
+  <string name="preferences-empty-queue-page">Страница пустой очереди:</string>
   <string name="fail">Сбой</string>
   <string name="request">Запрос</string>
   <string name="requesting">Запрос</string>
@@ -721,7 +731,7 @@
   <string name="protect-request-fail-notime">Запрос не вернул никакой отметки времени. Возможно, это ошибка MediaWiki. Прерываем запрос</string>
   <string name="message-fail">Не удалось доставить сообщение</string>
   <string name="edit-conflict">Конфликт редактирования.</string>
-  <string name="page-tag-nodescription" fuzzy="true">отсутствует описание для этой метки :/</string>
+  <string name="page-tag-nodescription">Отсутствует описание для этой метки</string>
   <string name="page-tag-fail">Не удалось пометить страницу</string>
   <string name="page-tag-error">Не удается пометить страницу, ошибка: $1</string>
   <string name="page-unknown">Неизвестная страница</string>
@@ -734,7 +744,7 @@
   <string name="report-page-fail">Ошибка: не удалось получить страницу отчётов в $1</string>
   <string name="report-page-fail-time" fuzzy="true">Не удалось получить дату/время текущей страницы сообщений о вандализме, сбой API:\n\n $1</string>
   <string name="report-unable" fuzzy="true">Не удалось сообщить о пользователе :(</string>
-  <string name="about-python-with" fuzzy="true"> ,с поддержкой python</string>
+  <string name="about-python-with">, с поддержкой python</string>
   <string name="about-python-without">без поддержки python</string>
   <string name="about-qt">, скомпилировано с использованием QT $1 Работает на QT $1</string>
   <string name="about-info">, на основе $1, целевая платформа: $2</string>
@@ -743,11 +753,11 @@
   <string name="projects">Проекты</string>
   <string name="unable-to-retrieve-user-list">Не удается получить список пользователей: $1</string>
   <string name="login-no-userinfo">Сайт не возвращает никаких сведений о пользователях</string>
-  <string name="login-invalid-register-date" fuzzy="true">MediaWiki вернула некорректную дату регистрации</string>
+  <string name="login-invalid-register-date">MediaWiki вернула некорректную дату регистрации</string>
   <string name="login-site-info-query-failed">Запрос информации о сайте для $1 не сработал: $2</string>
   <string name="login-no-site-info-returned">Эта вики не вернула никакой информации о сайте</string>
   <string name="loading-main-window">Загружается главное окно Huggle</string>
-  <string name="api.php-invalid-response" fuzzy="true">api.php вернул некорректный текст (сервер не работает?), проверьте журнал отладки для более точной информации</string>
+  <string name="api.php-invalid-response">API вернул некорректный текст (сервер не работает?), проверьте журнал отладки для получения более точной информации</string>
   <string name="login-username-doesnt-exist">Это имя пользователя не существует</string>
   <string name="developer-mode-enter-title">Ура!</string>
   <string name="developer-mode-enter-message">Вы вошли в режим разработчика!</string>
