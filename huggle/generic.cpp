@@ -34,9 +34,13 @@ QString Generic::Bool2String(bool b)
 
 bool Generic::SafeBool(QString value, bool defaultvalue)
 {
-    if (value.toLower() == "true")
+    value = value.toLower();
+    if (value == "true")
     {
         return true;
+    } else if (value == "false")
+    {
+        return false;
     }
     return defaultvalue;
 }
