@@ -13,6 +13,7 @@
 #include <QtTest>
 #include "../../huggleparser.hpp"
 #include "../../configuration.hpp"
+#include "../../generic.hpp"
 #include "../../wikiedit.hpp"
 #include "../../wikipage.hpp"
 #include "../../wikisite.hpp"
@@ -54,6 +55,7 @@ class HuggleTest : public QObject
         void testCaseConfigurationParse_QL();
         void testCaseScores();
         void testCaseVersionComparison();
+        void testCaseGenerics();
 };
 
 HuggleTest::HuggleTest()
@@ -275,6 +277,18 @@ void HuggleTest::testCaseVersionComparison()
     QVERIFY2(Huggle::Version("1.2.0") != Huggle::Version("2.0"), "Invalid version comparison results: fail");
     QVERIFY2(Huggle::Version("1.2") > Huggle::Version("1.0.0"), "Invalid version comparison results: fail");
     QVERIFY2(Huggle::Version("1.2.0") > Huggle::Version("1.0.2.5462"), "Invalid version comparison results: fail");
+}
+
+void HuggleTest::testCaseGenerics()
+{
+    QVERIFY2(Huggle::Generic::Bool2String(true).toLower() == "true", "Invalid conversion of bool to string");
+    QVERIFY2(Huggle::Generic::Bool2String(false).toLower() == "false", "Invalid conversion of bool to string");
+    QVERIFY2(Huggle::Generic::SafeBool("f", false) == false, "Invalid conversion of string to bool");
+    QVERIFY2(Huggle::Generic::SafeBool("x", true) == true, "Invalid conversion of string to bool");
+    QVERIFY2(Huggle::Generic::SafeBool("x", false) == false, "Invalid conversion of string to bool");
+    QVERIFY2(Huggle::Generic::SafeBool("true") == true, "Invalid conversion of string to bool");
+    QVERIFY2(Huggle::Generic::SafeBool("false") == false, "Invalid conversion of string to bool");
+    QVERIFY2(Huggle::Generic::SafeBool("TRUE") == true, "Invalid conversion of string to bool");
 }
 
 QTEST_APPLESS_MAIN(HuggleTest)
