@@ -296,7 +296,7 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
         speedy_option.Info = speedy_parsed[1];
         speedy_option.Template = speedy_parsed[2];
         speedy_option.Msg = speedy_parsed[3];
-        speedy_option.Notify = speedy_parsed.count() > 4 && speedy_parsed[4] == "notify";
+        speedy_option.Notify = speedy_parsed.count() > 4 && (speedy_parsed[4] == "notify" || speedy_parsed[4] == "notify,");
 
         this->SpeedyTemplates.append(speedy_option);
     }
