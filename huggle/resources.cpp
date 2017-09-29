@@ -65,7 +65,8 @@ QByteArray Huggle::Resources::GetResourceAsBinary(QString path)
 QString Huggle::Resources::GetRandomProTip()
 {
     int random = GetRandom(1, HUGGLE_PROTIP_COUNT);
-    while (last_tip == random)
+    //! \todo Figure out why GetRandom returns 0 even if min is 1
+    while (last_tip == random || random == 0)
         random = GetRandom(1, HUGGLE_PROTIP_COUNT);
 
     last_tip = random;
