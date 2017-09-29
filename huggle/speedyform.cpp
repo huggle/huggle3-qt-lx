@@ -91,13 +91,7 @@ void SpeedyForm::Fail(QString reason)
 void SpeedyForm::processTags()
 {
     // insert the template to bottom of the page
-    QStringList vals = this->edit->GetSite()->GetProjectConfig()->SpeedyTemplates
-                       .at(this->ui->comboBox->currentIndex()).split(";");
-    if (vals.count() < 4)
-    {
-        this->Fail(_l("speedy-csd-invalid"));
-        return;
-    }
+    ProjectConfiguration::SpeedyOption speedy_option = this->edit->GetSite()->GetProjectConfig()->SpeedyTemplates.at(this->ui->comboBox->currentIndex());
     //! \todo make this cross wiki instead of checking random tag
     QString lower = this->Text;
     lower = lower.toLower();
@@ -111,11 +105,11 @@ void SpeedyForm::processTags()
         this->Text = this->ReplacingText;
     // insert a tag to page
     if (this->ui->lineEdit->text().isEmpty())
-        this->Text = "{{" + vals.at(2) + "}}\n" + this->Text;
+        this->Text = "{{" + speedy_option.Template + "}}\n" + this->Text;
     else
-        this->Text = "{{" + vals.at(2) + "|" + this->ui->lineEdit->text() + "}}\n" + this->Text;
+        this->Text = "{{" + speedy_option.Template + "|" + this->ui->lineEdit->text() + "}}\n" + this->Text;
     // store a message we later send to user (we need to check if edit is successful first)
-    this->warning = vals.at(3);
+    this->warning = speedy_option.Msg;
     // let's modify the page now
     QString summary = this->edit->GetSite()->GetProjectConfig()->SpeedyEditSummary;
     summary.replace("$1", this->edit->Page->PageName);
@@ -137,16 +131,9 @@ void SpeedyForm::Init(WikiEdit *edit_)
         throw new Huggle::NullPointerException("WikiEdit *edit_", BOOST_CURRENT_FUNCTION);
     }
     this->edit = edit_;
-    foreach (QString item, this->edit->GetSite()->GetProjectConfig()->SpeedyTemplates)
+    foreach (ProjectConfiguration::SpeedyOption item, this->edit->GetSite()->GetProjectConfig()->SpeedyTemplates)
     {
-        // now we need to get first 2 items
-        QStringList vals = item.split(";");
-        if (vals.count() < 4)
-        {
-            Huggle::Syslog::HuggleLogs->DebugLog("Invalid csd: " + item);
-            continue;
-        }
-        this->ui->comboBox->addItem(vals.at(0) + ": " + vals.at(1));
+        this->ui->comboBox->addItem(item.Tag + ": " + item.Info);
     }
     this->ui->label_2->setText(edit_->Page->PageName);
 }
@@ -158,13 +145,7 @@ QString SpeedyForm::GetSelectedDBReason()
 
 QString SpeedyForm::GetSelectedTagID()
 {
-    QStringList vals = this->edit->GetSite()->GetProjectConfig()->SpeedyTemplates
-                       .at(this->ui->comboBox->currentIndex()).split(";");
-    if (vals.count() < 4)
-    {
-        return "";
-    }
-    return vals.at(2);
+    return this->edit->GetSite()->GetProjectConfig()->SpeedyTemplates.at(this->ui->comboBox->currentIndex()).Template;
 }
 
 void SpeedyForm::SetMessageUserCheck(bool new_value)
@@ -209,4 +190,11 @@ void SpeedyForm::OnTick()
             this->ui->pushButton->setText(_l("speedy-finished"));
         }
     }
+}
+
+void Huggle::SpeedyForm::on_comboBox_currentIndexChanged(int index)
+{
+    ProjectConfiguration::SpeedyOption speedy_option = this->edit->GetSite()->GetProjectConfig()->SpeedyTemplates.at(index);
+    this->ui->checkBox->setChecked(speedy_option.Notify);
+    this->ui->checkBox->setEnabled(speedy_option.Notify);
 }

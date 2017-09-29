@@ -27,33 +27,42 @@
 using namespace Huggle::Generic;
 using namespace Huggle;
 
-QStringList ProjectConfiguration::Yaml_FetchSpeedyOptions(YAML::Node &node)
+QList<ProjectConfiguration::SpeedyOption> ProjectConfiguration::Yaml_FetchSpeedyOptions(YAML::Node &node)
 {
-    // this is just temporary hack
+    QList<ProjectConfiguration::SpeedyOption> results;
     try
     {
         if (!node)
             throw new Huggle::NullPointerException("YAML::Node *node", BOOST_CURRENT_FUNCTION);
 
         if (!node["speedy-options"])
-            return QStringList();
+            return results;
 
-        QStringList results;
         YAML::Node seq = node["speedy-options"];
-
         for (YAML::const_iterator it = seq.begin(); it != seq.end(); ++it)
         {
-            QString tag = QString::fromStdString(it->first.as<std::string>());
+            SpeedyOption speedy_opt;
+            speedy_opt.Tag = QString::fromStdString(it->first.as<std::string>());
             YAML::Node s = it->second;
             QStringList options = HuggleParser::YAML2QStringList(s);
-            results.append(tag + ";" + options.join(QString(";")));
+            if (options.count() < 3)
+            {
+                HUGGLE_DEBUG1("Invalid speedy option: " + speedy_opt.Tag);
+            } else
+            {
+                speedy_opt.Info = options[0];
+                speedy_opt.Template = options[1];
+                speedy_opt.Msg = options[2];
+                speedy_opt.Notify = options.size() > 3 && options[3] == "notify";
+                results.append(speedy_opt);
+            }
         }
         return results;
     } catch (YAML::Exception exception)
     {
         HUGGLE_ERROR("YAML Parsing error (speedy-options): " + QString(exception.what()));
     }
-    return QStringList();
+    return results;
 }
 
 QHash<QString, int> ProjectConfiguration::Yaml_FetchScoreTags(YAML::Node &node)
@@ -270,7 +279,27 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
     this->ReportSummary = HuggleParser::ConfigurationParse("report-summary", config);
     this->ReportAutoSummary = HuggleParser::ConfigurationParse("report-auto-summary", config, "This user was automatically reported by Huggle due to reverted vandalism after four warnings, please verify their"\
                                                                                               " contributions carefully, it may be a false positive");
-    this->SpeedyTemplates = HuggleParser::ConfigurationParse_QL("speedy-options", config);
+    //this->SpeedyTemplates = HuggleParser::ConfigurationParse_QL("speedy-options", config);
+    this->SpeedyTemplates.clear();
+    QStringList speedies = HuggleParser::ConfigurationParse_QL("speedy-options", config);
+    foreach (QString speedy, speedies)
+    {
+        SpeedyOption speedy_option;
+        QStringList speedy_parsed = speedy.split(";");
+        if (speedy_parsed.count() < 4)
+        {
+            Huggle::Syslog::HuggleLogs->DebugLog("Invalid csd: " + speedy);
+            continue;
+        }
+
+        speedy_option.Tag = speedy_parsed[0];
+        speedy_option.Info = speedy_parsed[1];
+        speedy_option.Template = speedy_parsed[2];
+        speedy_option.Msg = speedy_parsed[3];
+        speedy_option.Notify = speedy_parsed.count() > 4 && speedy_parsed[4] == "notify";
+
+        this->SpeedyTemplates.append(speedy_option);
+    }
     // Parsing
     this->TemplateAge = HuggleParser::ConfigurationParse("template-age", config, QString::number(this->TemplateAge)).toInt();
     // UAA

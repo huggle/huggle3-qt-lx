@@ -73,7 +73,23 @@ namespace Huggle
     class HUGGLE_EX ProjectConfiguration
     {
         public:
-            static QStringList Yaml_FetchSpeedyOptions(YAML::Node &node);
+            //! Speedy option - used for speedy deletions
+            class HUGGLE_EX SpeedyOption
+            {
+                public:
+                    //! Name of tag
+                    QString Tag;
+                    QString Template;
+                    //! Description
+                    QString Info;
+                    //! Template used to message user
+                    QString Msg;
+                    //! Whether user should be notified when tag is applied
+                    bool Notify = false;
+
+            };
+
+            static QList<ProjectConfiguration::SpeedyOption> Yaml_FetchSpeedyOptions(YAML::Node &node);
             static QHash<QString, int> Yaml_FetchScoreTags(YAML::Node &node);
 
             ProjectConfiguration(QString project_name);
@@ -266,7 +282,7 @@ namespace Huggle
             QString                 SpeedyEditSummary = "Tagging page for deletion";
             QString                 SpeedyWarningSummary = "Sending user a notification regarding deletion of their page";
             QHash<int,QStringList>  AlternativeMonths;
-            QStringList             SpeedyTemplates;
+            QList<SpeedyOption>     SpeedyTemplates;
             QStringList             WelcomeTypes;
             long                    WhitelistScore = -800;
             // UAA
