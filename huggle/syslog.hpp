@@ -61,9 +61,30 @@ namespace Huggle
             HuggleLogType Type;
     };
 
-    //! Provides a logging to various places
+    //! Provides logging to various places
 
-    //! There is an instance of this class that can be used to log from external modules using same facility
+    //! This is a base class of logging subsystem, which provides ability to generate logs into internal Huggle ring log
+    //! as well as terminal, both stdout and stderr.
+    //! This subsystem support threading and uses own buffer for writing, so it's safe to put massive amount of data into it, although even that may affect performance
+    //! in some way, given that the logs you input here will be drawn somewhere, and that is usually CPU expensive.
+    //!
+    //! Basic usage of this subsystem can be done through various macros, for example:
+    //! HUGGLE_LOG("Hello world"); // This will write to standard log
+    //! HUGGLE_WARNING("Hey - be careful"); // Orange warning
+    //! HUGGLE_ERROR("Something is wrong"); // Red text, goes to stderr
+    //! HUGGLE_DEBUG1("Debug with verbosity 1"); // Debug log
+    //! HUGGLE_DEBUG("Some text", 5); // Debug with verbosity 5
+    //!
+    //! Debug logs are only visible if verbosity is same or higher than their level
+    //!
+    //! There is an instance of this class that can be used to log from external modules using same facility, you can do that using these macros:
+    //!
+    //! HUGGLE_EXDEBUG("Some text", verbosity);
+    //! HUGGLE_EXDEBUG1("Hi");
+    //!
+    //! These macros are only available within extension scope.
+    //!
+    //! Primary instance of this class, if you can't use macros, can be accessed through pointer Huggle::Syslog::HuggleLogs
     class HUGGLE_EX Syslog
     {
         public:
