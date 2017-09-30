@@ -152,6 +152,8 @@ Login::Login(QWidget *parent) : HW("login", this, parent), ui(new Ui::Login)
 #ifdef HUGGLE_QTV5
     HUGGLE_DEBUG1("SSL library: " + QSslSocket::sslLibraryBuildVersionString());
 #endif
+    if (!hcfg->GlobalConfig_OverrideConfigYAMLPath.isEmpty())
+        Generic::MessageBox(_l("warning"), _l("override-warn"), MessageBoxStyleWarning, false, this);
 }
 
 Login::~Login()
@@ -741,6 +743,8 @@ void Login::RetrieveProjectYamlConfig(WikiSite *site)
     this->loadingForm->ModifyIcon(this->GetRowIDForSite(site, LOGINFORM_YAMLCONFIG), LoadingForm_Icon_Loading);
     ApiQuery *query = new ApiQuery(ActionQuery, site);
     query->IncRef();
+    if (!hcfg->GlobalConfig_OverrideConfigYAMLPath.isEmpty())
+        hcfg->GlobalConfig_LocalConfigYAMLPath = hcfg->GlobalConfig_OverrideConfigYAMLPath;
     query->Parameters = "prop=revisions&rvprop=content&rvlimit=1&titles=" + hcfg->GlobalConfig_LocalConfigYAMLPath;
     query->Process();
     this->LoginQueries.insert(site, query);

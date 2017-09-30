@@ -86,6 +86,19 @@ bool TerminalParser::Parse()
             Configuration::HuggleConfiguration->SystemConfig_LanguageSanity = true;
             valid = true;
         }
+        if (text == "--override-conf")
+        {
+            if (this->args.count() > x + 1 && !this->args.at(x + 1).startsWith("-"))
+            {
+                Configuration::HuggleConfiguration->GlobalConfig_OverrideConfigYAMLPath = this->args.at(x + 1);
+                valid = true;
+                ++x;
+            } else
+            {
+                cerr << "Parameter --override-conf requires an argument for it to work!" << endl;
+                return true;
+            }
+        }
         if (text == "--dot")
         {
             Configuration::HuggleConfiguration->SystemConfig_Dot = true;
@@ -257,8 +270,10 @@ void TerminalParser::DisplayHelp()
             "                   warnings found in localization files. This option is useful for\n"\
             "                   developers and people who create localization files\n"\
             "  --dot:           Debug on terminal only mode\n"\
-            "  --qd [file]:     Write all transferred data to a file\n\n"\
-            "Python related:\n"\
+            "  --qd [file]:     Write all transferred data to a file\n"\
+            "  --override-conf [url]:\n"\
+            "                   Will override the wiki configuration path, useful for testing of new config\n"\
+            "\nPython related:\n"\
             "  --pylibs-dump:   Dump all built-in python libraries to std out\n"\
             "\nNote: every argument in [brackets] is optional\n"\
             "      but argument in <brackets> is required\n\n"\

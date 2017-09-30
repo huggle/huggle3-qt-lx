@@ -16,6 +16,7 @@
   <string name="done">Done</string>
   <string name="no">No</string>
   <string name="ok">OK</string>
+  <string name="override-warn">You have overriden the path of project config. Please keep in mind that abusing this feature in order to gain write access on wiki, where you wouldn't normally have it, may result in permanent block of your account.</string>
   <string name="remove">Remove</string>
   <string name="rename">Rename</string>
   <string name="reload">Reload</string>
