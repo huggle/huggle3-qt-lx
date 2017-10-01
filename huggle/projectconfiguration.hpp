@@ -86,6 +86,7 @@ namespace Huggle
                     QString Msg;
                     //! Whether user should be notified when tag is applied
                     bool Notify = false;
+                    QString Parameter;
 
             };
 

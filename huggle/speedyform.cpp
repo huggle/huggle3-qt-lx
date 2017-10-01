@@ -42,6 +42,12 @@ SpeedyForm::~SpeedyForm()
 
 void SpeedyForm::on_pushButton_clicked()
 {
+    ProjectConfiguration::SpeedyOption speedy_option = this->edit->GetSite()->GetProjectConfig()->SpeedyTemplates.at(this->ui->comboBox->currentIndex());
+    if (this->ui->lineEdit->text().isEmpty() && !speedy_option.Parameter.isEmpty())
+    {
+        Generic::MessageBox(_l("error"), _l("speedy-parameters-fail"), MessageBoxStyleError, false, this);
+        return;
+    }
     if (!Hooks::Speedy_BeforeOK(this->edit, this))
         return;
     if (this->edit->Page->IsUserpage())
@@ -197,4 +203,6 @@ void Huggle::SpeedyForm::on_comboBox_currentIndexChanged(int index)
     ProjectConfiguration::SpeedyOption speedy_option = this->edit->GetSite()->GetProjectConfig()->SpeedyTemplates.at(index);
     this->ui->checkBox->setChecked(speedy_option.Notify);
     this->ui->checkBox->setEnabled(speedy_option.Notify);
+    this->ui->lineEdit->setText(speedy_option.Parameter);
+    this->ui->lineEdit->setEnabled(!speedy_option.Parameter.isEmpty());
 }

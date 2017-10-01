@@ -51,7 +51,15 @@ QList<ProjectConfiguration::SpeedyOption> ProjectConfiguration::Yaml_FetchSpeedy
             } else
             {
                 speedy_opt.Info = options[0];
-                speedy_opt.Template = options[1];
+                QString tmp = options[1];
+                if (tmp.contains("|"))
+                {
+                    speedy_opt.Parameter = tmp.mid(tmp.indexOf("|") + 1);
+                    speedy_opt.Template = tmp.mid(0, tmp.indexOf("|"));
+                } else
+                {
+                    speedy_opt.Template = tmp;
+                }
                 speedy_opt.Msg = options[2];
                 speedy_opt.Notify = options.size() > 3 && options[3] == "notify";
                 results.append(speedy_opt);

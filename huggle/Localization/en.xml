@@ -566,6 +566,7 @@
   <string name="revert-fail-pre-flight">Preflight check failed: $1</string>
   <string name="speedy-reason">Reason:</string>
   <string name="speedy-parameters">Parameters:</string>
+  <string name="speedy-parameters-fail">You must provide parameters for this speedy option</string>
   <string name="speedy-notifycreator">Notify page creator</string>
   <string name="rollback">Rolling back $1</string>
   <string name="software-rollback">You don&apos;t have rollback rights, falling back to software rollback</string>
