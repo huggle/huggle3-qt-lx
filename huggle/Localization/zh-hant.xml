@@ -16,6 +16,7 @@
   <string name="done">完成</string>
   <string name="no">否</string>
   <string name="ok">確定</string>
+  <string name="override-warn">您已覆蓋項目設定的路徑。請留意；若濫用此功能在 wiki 上獲得原先您所不俱有的寫入存取，可能會導致永久封禁您的帳號。</string>
   <string name="remove">移除</string>
   <string name="rename">重新命名</string>
   <string name="reload">重新載入</string>
@@ -565,6 +566,7 @@
   <string name="revert-fail-pre-flight">預先檢查失敗：$1</string>
   <string name="speedy-reason">原因：</string>
   <string name="speedy-parameters">參數：</string>
+  <string name="speedy-parameters-fail">您必須為此快速選項提供參數</string>
   <string name="speedy-notifycreator">通知頁面建立者</string>
   <string name="rollback">回退$1</string>
   <string name="software-rollback">您沒有回退權限，改為軟體回退</string>

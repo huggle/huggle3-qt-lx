@@ -16,6 +16,7 @@
   <string name="done">完成</string>
   <string name="no">否</string>
   <string name="ok">确定</string>
+  <string name="override-warn">您已重写项目配置的路径。请记住，如果您只是为了获得wiki上写入访问权，而滥用该功能，并且通常不使用它的话，您可能会被无限期封禁。</string>
   <string name="remove">移除</string>
   <string name="rename">重命名</string>
   <string name="reload">重新加载</string>
@@ -565,6 +566,7 @@
   <string name="revert-fail-pre-flight">预先检查失败：$1</string>
   <string name="speedy-reason">原因：</string>
   <string name="speedy-parameters">参数：</string>
+  <string name="speedy-parameters-fail">您必须为该快速删除选项提供参数</string>
   <string name="speedy-notifycreator">告知创建者</string>
   <string name="rollback">回退$1</string>
   <string name="software-rollback">您没有回退权，改为软件回退</string>
