@@ -20,10 +20,11 @@
   <string name="rename">Преименувај</string>
   <string name="reload">Превчитај</string>
   <string name="project">Проект</string>
+  <string name="warning">Предупредување</string>
   <string name="result">Исход</string>
   <string name="save">Зачувај</string>
   <string name="show">Прикажи</string>
-  <string name="no-instant" fuzzy="true">Моментните предупредувања не се овозможени на проектот $1. Затоа, не можам да ја испратам пораката на $2. Одберете друг степен на предупредување.</string>
+  <string name="no-instant">Пораката $2 не може да се испрати бидејќи непосредните предупредувања не се овозможени на проектот $1. Одберете друг степен на предупредување.</string>
   <string name="undo">Врати</string>
   <string name="yes">Да</string>
   <string name="editing-page">Уредување на страница</string>
@@ -46,15 +47,15 @@
   <string name="link">Врска</string>
   <string name="reason">Причина</string>
   <string name="diffid">Назнака на разликата</string>
-  <string name="whitelisted" fuzzy="true">$1 со оценка $2 на $3 е ставен на белиот список</string>
+  <string name="whitelisted">$1 со оценка $2 на $3 е ставен на белиот список</string>
   <string name="expiry-time">Истек</string>
   <string name="duration">Траење</string>
   <string name="enable">Овозможи</string>
   <string name="disable">Оневозможи</string>
   <string name="no-token">Нема шифра</string>
   <string name="flags">Бележници</string>
-  <string name="gracetime" fuzzy="true">Чекам да се завршат барањата што вршат извесно уредување...</string>
-  <string name="browser-none" fuzzy="true">Сега не се прикажува ниедна страница</string>
+  <string name="gracetime">Чекам да се завршат барањата што вршат извесно уредување...</string>
+  <string name="browser-none">Засега нема страници за приказ.</string>
   <string name="browser-load">Ги преземам разликите користејќи резервен семрежен испис. Почекајте...</string>
   <string name="browser-miss-summ">Нема укажано опис</string>
   <string name="browser-diff">Разлики на страницата: $1 (оценка: $2)</string>
@@ -79,10 +80,10 @@
   <string name="block-token-1">Ја земам шифрата за блокирање на $1</string>
   <string name="block-fail">Не можам да го блокирам корисникот, $1</string>
   <string name="block-token-e1">Не можам да ја добијам шифрата: $1</string>
-  <string name="block-error-no-info" fuzzy="true">Во барањето немаше кориснички информации (Дали сте администратор?)</string>
+  <string name="block-error-no-info">Во барањето немаше кориснички информации (Дали сте администратор?)</string>
   <string name="block-type">Блокирај / одблокирај</string>
-  <string name="block-admin" fuzzy="true">Администратор што блокирал</string>
-  <string name="block-none" fuzzy="true">Нема корисник за блокирање.</string>
+  <string name="block-admin">Администратор што блокирал</string>
+  <string name="block-none">Нема корисник за блокирање.</string>
   <string name="contribution-browser-user-info">Приказ на скорешни придонеси на корисникот $1</string>
   <string name="config-function">Функција</string>
   <string name="config-description">Опис</string>
@@ -122,6 +123,7 @@
   <string name="config-instant-reverts">Користи непосредни отповикувања (многу брзо, но штом ќе се направим не може да се поврати)</string>
   <string name="config-revert-wait">Задршка за отповикување (секунди)</string>
   <string name="config-revert">Отповикај</string>
+  <string name="config-skip">Прескокни</string>
   <string name="config-revert-diff">Отповикај ги поновите уредувања наместо само прикажаните во разликата ако се направени од еден ист вандал</string>
   <string name="config-change-all">Смени ги сите поставки на Huggle за да се однесува повеќе како Huggle 2</string>
   <string name="config-merge-messages">Спој ги моите пораки со други од постоечките делови</string>
@@ -131,9 +133,10 @@
   <string name="config-remove-reverted">Отстрани уредувања веќе отповикани од друг во редицата</string>
   <string name="config-remove-old">Отстрани постари стари уредувања од редицата ако е добиено поново уредување на истата страница</string>
   <string name="config-auto-load-history">Атоматски вчитај ја историјата и корисничките информации (податочно обемно)</string>
-  <string name="config-last-revision" fuzzy="true">Префрли на последната преработка на страница во случај тековно вчитаното уредување да не е последната верзија (се презема отпосле, забавувајќи го Huggle)</string>
+  <string name="config-last-revision">Префрли на последната преработка на страница во случај тековно вчитаното уредување да не е последната верзија (се презема отпосле, забавувајќи го Huggle)</string>
   <string name="config-require-delay">Барај одложување по секое вчитување на следното уредување во чиј тек нема да може се употреби никаква записна функција (за избегнување на бубачката што се јавува при стискање на повеќе копчиња на тастатурата)</string>
   <string name="config-wait-edit">Одолжувањето, во секунди, до овозможувањето на записните функции:</string>
+  <string name="config-display-next">Прикажи следно</string>
   <string name="config-retrieve-edit">Дај мое уредување</string>
   <string name="config-nothing">Ништо</string>
   <string name="config-bot-edits">Ботски уредувања (b)</string>

@@ -530,7 +530,7 @@
   <string name="wait">Proszę czekać...</string>
   <string name="missing-aiv">Ten projekt nie używa AIV</string>
   <string name="edit-conflict">Edytuj konflikt</string>
-  <string name="error-unknown-code">Nieznany Błąd: $1</string>
+  <string name="error-unknown-code">Nieznany błąd: $1</string>
   <string name="relogin-fail">Nie można zalogować się na: $1</string>
   <string name="projects">Projekty</string>
 </resources>

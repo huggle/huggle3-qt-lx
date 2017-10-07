@@ -16,6 +16,7 @@
   <string name="done">Fertig</string>
   <string name="no">Nein</string>
   <string name="ok">OK</string>
+  <string name="override-warn">Du hast den Pfad der Projektkonfiguration überschrieben. Bitte beachte, dass der Missbrauch dieser Funktion, um Schreibzugriff auf dem Wiki zu erhalten, den du normalerweise nicht haben würdest, zu einer dauerhaften Sperrung deines Benutzerkontos führen kann.</string>
   <string name="remove">Entfernen</string>
   <string name="rename">Umbenennen</string>
   <string name="reload">Neu laden</string>
@@ -565,6 +566,7 @@
   <string name="revert-fail-pre-flight">Vorflugkontrolle fehlgeschlagen: $1</string>
   <string name="speedy-reason">Grund:</string>
   <string name="speedy-parameters">Parameter:</string>
+  <string name="speedy-parameters-fail">Du musst Parameter für diese Schnelloption angeben</string>
   <string name="speedy-notifycreator">Seitenersteller benachrichtigen?</string>
   <string name="rollback">Setze $1 zurück</string>
   <string name="software-rollback">Du hast keine Zurücksetzungsrechte. Rückgriff auf Software-Zurücksetzung.</string>
