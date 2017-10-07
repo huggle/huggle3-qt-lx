@@ -823,4 +823,6 @@
   <string name="tip10">Most of the shortcuts can be changed in preferences.</string>
   <string name="tip11">Moving a widget on Huggle screen over another widget will merge them into one, separated with tabs.</string>
   <string name="tip12">Made a mistake? No problem, right clicking any edit you made in "History of your edits" opens a popup which offers Undo of your own change.</string>
+  <string name="tip13">You can open a "contribution browser" for user of currently displayed edit, by pressing Shift + C (default) or from user menu? It allows you to quickly view recent edits made by this user.</string>
+  <string name="tip14">You can chat with other active users of Huggle who are using the program right now? You will see them in "Network" window, if they are online.</string>
 </resources>
