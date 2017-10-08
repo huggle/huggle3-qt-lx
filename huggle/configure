@@ -255,7 +255,7 @@ if [ $modules -gt 0 ];then
     CMAKE_ARGS="$CMAKE_ARGS -DHUGGLE_EXT=TRUE"
 fi
 if [ -d "$BUILD" ];then
-  echo $WARN"WARNING: build directory already exist make sure it's clean"$NORMAL
+  echo $WARN"WARNING: build directory $BUILD already exist, make sure it's clean"$NORMAL
 else
   mkdir "$BUILD" || exit 1
 fi
