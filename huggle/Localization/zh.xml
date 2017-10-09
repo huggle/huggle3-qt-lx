@@ -823,4 +823,6 @@
   <string name="tip10">大多数快捷方式可以在参数设置中更改。</string>
   <string name="tip11">在Huggle屏幕上移动小部件到另一部件上，会将两个部件合并为一个，以标签分隔。</string>
   <string name="tip12">做错了么？没问题，在“您的编辑历史”中右键点击您做出的任意编辑，就会弹出窗口让您撤销您自己的更改。</string>
+  <string name="tip13">您可以为当前显示编辑的用户开启“贡献浏览器”，通过按下Shift + C（默认）或从用户菜单中打开。这允许您快速查阅该用户做出的最近编辑。</string>
+  <string name="tip14">您可以与其他Huggle活跃用户聊天，只要它们正在使用程序的话。您将在“网络”窗口看见他们，只要它们在线即可。</string>
 </resources>

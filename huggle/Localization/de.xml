@@ -823,4 +823,6 @@
   <string name="tip10">Die meisten Tastaturkürzel können in den Einstellungen geändert werden.</string>
   <string name="tip11">Das Verschieben eines Widgets auf dem Huggle-Bildschirm über ein anderes Widget führt sie in eines zusammen, getrennt durch Registerkarten.</string>
   <string name="tip12">Hast du einen Fehler gemacht? Kein Problem. Klicke mit der rechten Maustaste auf eine deiner Bearbeitungen im „Verlauf deiner Bearbeitungen“ und es öffnet sich ein Popup-Fenster, das dir das Rückgängigmachen deiner eigenen Änderung ermöglicht.</string>
+  <string name="tip13">Du kannst einen „Beitragsbrowser“ für den derzeit angezeigten Bearbeitungsbenutzer öffnen, indem du (standardmäßig) Shift + C drückst oder das Benutzermenü aufrufst. Er ermöglicht dir das schnelle Ansehen der letzten Bearbeitungen dieses Benutzers.</string>
+  <string name="tip14">Du kannst mit anderen aktiven Huggle-Benutzern chatten, die das Programm derzeit verwenden. Du siehst sie im Fenster „Netzwerk“, falls sie online sind.</string>
 </resources>

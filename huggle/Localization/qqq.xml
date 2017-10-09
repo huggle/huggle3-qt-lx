@@ -383,4 +383,5 @@
   <string name="developer-mode-enter-title">Whee it\'s not a word | Whee nu este un cuvant</string>
   <string name="title-on">{{Identical|On}}</string>
   <string name="main-revert-type-unknown">{{Identical|Unknown}}</string>
+  <string name="tip14">Note that both \"them\" and \"they\" here are under plural form, there\'s no singular they rules.</string>
 </resources>
