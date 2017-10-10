@@ -14,10 +14,8 @@
 #include "localization.hpp"
 #include <QMainWindow>
 #include <QDesktopServices>
-#include <QDebug>
 #include <QTranslator>
 #include <QApplication>
-#include <QLibraryInfo>
 
 using namespace Huggle;
 
