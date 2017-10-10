@@ -37,13 +37,10 @@ namespace Huggle
             void on_label_2_linkActivated(const QString &link);
             void on_cb_Language_currentIndexChanged(const QString &arg1);
 
-
-
         private:
             void Localize();
             bool loading = true;
             Ui::WelcomeInfo *ui;
-
     };
 }
 
