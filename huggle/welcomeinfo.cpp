@@ -12,10 +12,9 @@
 #include "ui_welcomeinfo.h"
 #include "configuration.hpp"
 #include "localization.hpp"
-#include <QMainWindow>
+#include "syslog.hpp"
 #include <QDesktopServices>
-#include <QTranslator>
-#include <QApplication>
+#include <QLocale>
 
 using namespace Huggle;
 
@@ -23,6 +22,12 @@ WelcomeInfo::WelcomeInfo(QWidget *parent) : QDialog(parent), ui(new Ui::WelcomeI
 {
     this->ui->setupUi(this);
     int localization_ix=0, preferred=0;
+
+    // \todo This doesn't work yet - QLocale returns locale names that are completely different from key names in Huggle
+    // If this is a first time Huggle was started we can detect language preferred by OS and if we support it, offer it to user
+    QString default_language = QLocale().name();
+    HUGGLE_DEBUG1("OS reported language: " + default_language);
+
     while (localization_ix<Localizations::HuggleLocalizations->LocalizationData.count())
     {
         this->ui->cb_Language->addItem(Localizations::HuggleLocalizations->LocalizationData.at(localization_ix)->LanguageID);
@@ -45,12 +50,6 @@ WelcomeInfo::WelcomeInfo(QWidget *parent) : QDialog(parent), ui(new Ui::WelcomeI
     this->ui->cb_Language->setCurrentIndex(preferred);
     this->loading = false;
     this->Localize();
-    // let's hide this language bar for now, this form is not yet supporting it
-
-    // this can be removed once there is l10 for this
-    this->ui->label_4->setVisible(true);
-    this->ui->cb_Language->setVisible(true);
-
     while (localization_ix<Localizations::HuggleLocalizations->LocalizationData.count())
     {
         this->ui->cb_Language->addItem(Localizations::HuggleLocalizations->LocalizationData.at(localization_ix)->LanguageID);
@@ -60,17 +59,14 @@ WelcomeInfo::WelcomeInfo(QWidget *parent) : QDialog(parent), ui(new Ui::WelcomeI
         }
         localization_ix++;
     }
-    //QString title = "Huggle 3";
     if (hcfg->Verbosity > 0)
     {
         // add debug lang "qqx" last
         this->ui->cb_Language->addItem(Localizations::LANG_QQX);
         if(Localizations::HuggleLocalizations->PreferredLanguage == Localizations::LANG_QQX)
             preferred = localization_ix;
-        title += " [" + hcfg->HuggleVersion + "]";
         localization_ix++;
     }
-    this->ui->checkBox->setChecked(true);
 
 }
 
@@ -100,8 +96,9 @@ void Huggle::WelcomeInfo::on_label_2_linkActivated(const QString &link)
 void Huggle::WelcomeInfo::on_cb_Language_currentIndexChanged(const QString &arg1)
 {
     if (this->loading)  return;
-    QLocale d;
-    QString lang = d.name();
+    // This is just a fallback in case there is some weird bug with combo box
+    // it's not a default language, don't change it here
+    QString lang = "en";
     int c = 0;
     while (c<Localizations::HuggleLocalizations->LocalizationData.count())
     {
@@ -125,6 +122,4 @@ void WelcomeInfo::DisableFirst()
     this->ui->label_5->setVisible(false);
     this->ui->cb_Language->setVisible(false);
 }
-
-
 

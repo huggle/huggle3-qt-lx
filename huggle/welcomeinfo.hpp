@@ -16,8 +16,6 @@
 #include <QDialog>
 #include <QUrl>
 
-class QTranslator;
-
 namespace Ui
 {
     class WelcomeInfo;

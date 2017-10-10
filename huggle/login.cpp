@@ -48,6 +48,11 @@ Login::Login(QWidget *parent) : HW("login", this, parent), ui(new Ui::Login)
 {
     HUGGLE_PROFILER_RESET;
     this->Loading = true;
+    if (!hcfg->Login && (hcfg->SystemConfig_FirstRun || hcfg->SystemConfig_ShowStartupInfo))
+    {
+        WelcomeInfo info;
+        info.exec();
+    }
     this->ui->setupUi(this);
     this->ui->tableWidget->setVisible(false);
     if (hcfg->SystemConfig_Multiple)
@@ -125,12 +130,6 @@ Login::Login(QWidget *parent) : HW("login", this, parent), ui(new Ui::Login)
             hcfg->SystemConfig_ProxyUser, hcfg->SystemConfig_ProxyPass);
     }
     HUGGLE_PROFILER_PRINT_TIME(BOOST_CURRENT_FUNCTION);
-    if (!hcfg->Login && (hcfg->SystemConfig_FirstRun ||
-        hcfg->SystemConfig_ShowStartupInfo))
-    {
-        WelcomeInfo info;
-        info.exec();
-    }
     if (hcfg->Login)
     {
         // user wanted to login using a terminal
@@ -1427,8 +1426,7 @@ void Login::on_pushButton_clicked()
 void Login::on_Language_currentIndexChanged(const QString &arg1)
 {
     if (this->Loading)  return;
-    QLocale d;
-    QString lang = d.name();
+    QString lang = "en";
     int c = 0;
     while (c<Localizations::HuggleLocalizations->LocalizationData.count())
     {
