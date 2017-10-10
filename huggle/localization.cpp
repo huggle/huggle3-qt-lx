@@ -22,8 +22,8 @@ Localizations *Localizations::HuggleLocalizations = nullptr;
 const QString Localizations::LANG_QQX = "qqx";
 
 Localizations::Localizations()
-{
-    this->PreferredLanguage = "en";
+{   QLocale d;
+    this->PreferredLanguage = d.name(); //detects the language from OS
 }
 
 Localizations::~Localizations()
