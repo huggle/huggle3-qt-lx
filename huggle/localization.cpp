@@ -23,8 +23,6 @@ const QString Localizations::LANG_QQX = "qqx";
 
 Localizations::Localizations()
 {
-    // Detects the language from OS
-    // QString default_language = QLocale().name();
     this->PreferredLanguage = "en";
 }
 
