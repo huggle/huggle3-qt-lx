@@ -1427,7 +1427,8 @@ void Login::on_pushButton_clicked()
 void Login::on_Language_currentIndexChanged(const QString &arg1)
 {
     if (this->Loading)  return;
-    QString lang = "en";
+    QLocale d;
+    QString lang = d.name();
     int c = 0;
     while (c<Localizations::HuggleLocalizations->LocalizationData.count())
     {

@@ -12,7 +12,10 @@
 #include "ui_welcomeinfo.h"
 #include "configuration.hpp"
 #include "localization.hpp"
+#include <QMainWindow>
 #include <QDesktopServices>
+#include <QTranslator>
+#include <QApplication>
 
 using namespace Huggle;
 
@@ -45,8 +48,30 @@ WelcomeInfo::WelcomeInfo(QWidget *parent) : QDialog(parent), ui(new Ui::WelcomeI
     // let's hide this language bar for now, this form is not yet supporting it
 
     // this can be removed once there is l10 for this
-    this->ui->label_4->setVisible(false);
-    this->ui->cb_Language->setVisible(false);
+    this->ui->label_4->setVisible(true);
+    this->ui->cb_Language->setVisible(true);
+
+    while (localization_ix<Localizations::HuggleLocalizations->LocalizationData.count())
+    {
+        this->ui->cb_Language->addItem(Localizations::HuggleLocalizations->LocalizationData.at(localization_ix)->LanguageID);
+        if (Localizations::HuggleLocalizations->LocalizationData.at(localization_ix)->LanguageName == Localizations::HuggleLocalizations->PreferredLanguage)
+        {
+            preferred = localization_ix;
+        }
+        localization_ix++;
+    }
+    //QString title = "Huggle 3";
+    if (hcfg->Verbosity > 0)
+    {
+        // add debug lang "qqx" last
+        this->ui->cb_Language->addItem(Localizations::LANG_QQX);
+        if(Localizations::HuggleLocalizations->PreferredLanguage == Localizations::LANG_QQX)
+            preferred = localization_ix;
+        title += " [" + hcfg->HuggleVersion + "]";
+        localization_ix++;
+    }
+    this->ui->checkBox->setChecked(true);
+
 }
 
 WelcomeInfo::~WelcomeInfo()
@@ -75,7 +100,8 @@ void Huggle::WelcomeInfo::on_label_2_linkActivated(const QString &link)
 void Huggle::WelcomeInfo::on_cb_Language_currentIndexChanged(const QString &arg1)
 {
     if (this->loading)  return;
-    QString lang = "en";
+    QLocale d;
+    QString lang = d.name();
     int c = 0;
     while (c<Localizations::HuggleLocalizations->LocalizationData.count())
     {
@@ -99,4 +125,6 @@ void WelcomeInfo::DisableFirst()
     this->ui->label_5->setVisible(false);
     this->ui->cb_Language->setVisible(false);
 }
+
+
 
