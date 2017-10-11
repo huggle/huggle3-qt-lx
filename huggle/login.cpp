@@ -48,6 +48,11 @@ Login::Login(QWidget *parent) : HW("login", this, parent), ui(new Ui::Login)
 {
     HUGGLE_PROFILER_RESET;
     this->Loading = true;
+    if (!hcfg->Login && (hcfg->SystemConfig_FirstRun || hcfg->SystemConfig_ShowStartupInfo))
+    {
+        WelcomeInfo info;
+        info.exec();
+    }
     this->ui->setupUi(this);
     this->ui->tableWidget->setVisible(false);
     if (hcfg->SystemConfig_Multiple)
@@ -125,12 +130,6 @@ Login::Login(QWidget *parent) : HW("login", this, parent), ui(new Ui::Login)
             hcfg->SystemConfig_ProxyUser, hcfg->SystemConfig_ProxyPass);
     }
     HUGGLE_PROFILER_PRINT_TIME(BOOST_CURRENT_FUNCTION);
-    if (!hcfg->Login && (hcfg->SystemConfig_FirstRun ||
-        hcfg->SystemConfig_ShowStartupInfo))
-    {
-        WelcomeInfo info;
-        info.exec();
-    }
     if (hcfg->Login)
     {
         // user wanted to login using a terminal
