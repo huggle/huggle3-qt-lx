@@ -16,6 +16,7 @@
   <string name="done">Terminé</string>
   <string name="no">Non</string>
   <string name="ok">OK</string>
+  <string name="override-warn">Vous avez passé outre le chemin de la configuration du projet. Veuillez garder à l’esprit qu’abuser de cette fonctionnalité pour obtenir des droits d’accès en écriture au wiki là où vous ne devriez pas les avoir, peut aboutir à un blocage permanent de votre compte.</string>
   <string name="remove">Retirer</string>
   <string name="rename">Renommer</string>
   <string name="reload">Recharger</string>
@@ -565,6 +566,7 @@
   <string name="revert-fail-pre-flight">Échec du contrôle préalable : $1</string>
   <string name="speedy-reason">Motif :</string>
   <string name="speedy-parameters">Paramètres :</string>
+  <string name="speedy-parameters-fail">Vous devez fournir les paramètres pour cette option d’accélération.</string>
   <string name="speedy-notifycreator">Aviser le créateur de la page</string>
   <string name="rollback">Retour à $1</string>
   <string name="software-rollback">Vous n’avez pas le droit de retour arrière, repli vers un retour arrière logiciel</string>
@@ -821,4 +823,6 @@
   <string name="tip10">La plupart des raccourcis peuvent être modifiés dans les préférences.</string>
   <string name="tip11">Déplacer un widget sur l’écran de Huggle par-dessus un autre widget fusionnera les deux en un, séparés par des onglets.</string>
   <string name="tip12">Vous avez fait une erreur ? Aucun problème, cliquer droit sur une modification que vous avez faite dans « l’historique de vos modifications » ouvrira une fenêtre qui proposera d’annuler votre propre modification.</string>
+  <string name="tip13">Vous pouvez ouvrir un « navigateur de contribution » pour l’utilisateur de la modification actuellement affichée, en appuyant sur Shift + C (par défaut) ou depuis le menu utilisateur. Cela vous permet de voir rapidement les modifications récentes faites par cet utilisateur.</string>
+  <string name="tip14">Vous pouvez dialoguer avec d\'autres utilisateurs actifs de Huggle qui utilisent le programme actuellement. Vous les verrez dans la fenêtre \"Réseau\" s\'ils sont en ligne.</string>
 </resources>
