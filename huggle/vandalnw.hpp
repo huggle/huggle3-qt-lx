@@ -136,6 +136,7 @@ namespace Huggle
             void ProcessRollback(WikiEdit *edit, QString user);
             void ProcessSusp(WikiEdit *edit, QString user);
             void UpdateHeader();
+            void ProcessCommand(WikiSite *site, QString nick, QString message);
             Ui::VandalNw *ui;
             //! This is to track the changes to user list so that we don't need to update text in header
             //! when there is no change (that is actually CPU expensive operation)
@@ -158,6 +159,7 @@ namespace Huggle
             void OnIRCUserPart(libircclient::Parser *px, libircclient::Channel *channel);
             void OnIRCSelfPart(libircclient::Parser *px, libircclient::Channel *channel);
             void OnIRCChannelMessage(libircclient::Parser *px);
+            void OnIRCChannelCTCP(libircclient::Parser *px, QString command, QString parameters);
             void OnIRCChannelQuit(libircclient::Parser *px, libircclient::Channel *channel);
             void OnIRCLoggedIn(libircclient::Parser *px);
             void OnConnected();

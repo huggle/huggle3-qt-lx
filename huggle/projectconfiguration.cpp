@@ -678,7 +678,7 @@ bool ProjectConfiguration::ParseYAML(QString yaml_src, QString *reason, WikiSite
     }
     this->ReportSummary = HuggleParser::YAML2String("report-summary", yaml);
     this->ReportAutoSummary = HuggleParser::YAML2String("report-auto-summary", yaml, "This user was automatically reported by Huggle due to reverted vandalism after four warnings, please verify their"\
-                                                                                              " contributions carefully, it may be a false positive");
+                                                                                     " contributions carefully, it may be a false positive");
     this->SpeedyTemplates = Yaml_FetchSpeedyOptions(yaml);
     // Parsing
     this->TemplateAge = HuggleParser::YAML2Int("template-age", yaml, this->TemplateAge);

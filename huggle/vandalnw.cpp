@@ -127,6 +127,7 @@ VandalNw::VandalNw(QWidget *parent) : QDockWidget(parent), ui(new Ui::VandalNw)
     connect(this->Irc, SIGNAL(Event_MyInfo(libircclient::Parser*)), this, SLOT(OnIRCLoggedIn(libircclient::Parser*)));
     connect(this->Irc, SIGNAL(Event_Part(libircclient::Parser*,libircclient::Channel*)), this, SLOT(OnIRCUserPart(libircclient::Parser*,libircclient::Channel*)));
     connect(this->Irc, SIGNAL(Event_EndOfNames(libircclient::Parser*)), this, SLOT(OnIRCChannelNames(libircclient::Parser*)));
+    connect(this->Irc, SIGNAL(Event_CTCP(libircclient::Parser*,QString,QString)), this, SLOT(OnIRCChannelCTCP(libircclient::Parser*,QString,QString)));
     this->Irc->SetDefaultUsername(Configuration::HuggleConfiguration->HuggleVersion);
     this->Irc->SetDefaultIdent("huggle");
     this->ui->tableWidget->setColumnCount(1);
@@ -409,6 +410,103 @@ void VandalNw::UpdateHeader()
     }
 }
 
+void VandalNw::ProcessCommand(WikiSite *site, QString nick, QString message)
+{
+    HAN::MessageType mt;
+    if (!nick.toLower().contains("bot"))
+    {
+        mt = HAN::MessageType_User;
+    } else
+    {
+        mt = HAN::MessageType_Bot;
+    }
+    QString Command = message.mid(2);
+    if (Command.contains(" "))
+    {
+        Command = Command.mid(0, Command.indexOf(" "));
+        QString revid = message.mid(message.indexOf(" ") + 1);
+        QString parameter = "";
+        if (revid.contains(" "))
+        {
+            parameter = revid.mid(revid.indexOf(" ") + 1);
+            revid = revid.mid(0, revid.indexOf(" "));
+        }
+        if (Command == "GOOD")
+        {
+            int RevID = revid.toInt();
+            WikiEdit *edit = MainWindow::HuggleMain->Queue1->GetWikiEditByRevID(RevID, site);
+            if (edit != nullptr)
+            {
+                this->ProcessGood(edit, nick);
+            } else
+            {
+                while (this->UnparsedGood.count() > Configuration::HuggleConfiguration->SystemConfig_CacheHAN)
+                {
+                    this->UnparsedGood.removeAt(0);
+                }
+                this->UnparsedGood.append(HAN::GenericItem(site, RevID, nick));
+            }
+        }
+        if (Command == "ROLLBACK")
+        {
+            int RevID = revid.toInt();
+            WikiEdit *edit = MainWindow::HuggleMain->Queue1->GetWikiEditByRevID(RevID, site);
+            if (edit != nullptr)
+            {
+                this->ProcessRollback(edit, nick);
+            } else
+            {
+                while (this->UnparsedRoll.count() > Configuration::HuggleConfiguration->SystemConfig_CacheHAN)
+                {
+                    this->UnparsedRoll.removeAt(0);
+                }
+                this->UnparsedRoll.append(HAN::GenericItem(site, RevID, nick));
+            }
+        }
+        if (Command == "SUSPICIOUS")
+        {
+            int RevID = revid.toInt();
+            WikiEdit *edit = MainWindow::HuggleMain->Queue1->GetWikiEditByRevID(RevID, site);
+            if (edit != nullptr)
+            {
+                this->ProcessSusp(edit, nick);
+            } else
+            {
+                while (this->UnparsedSusp.count() > Configuration::HuggleConfiguration->SystemConfig_CacheHAN)
+                {
+                    this->UnparsedSusp.removeAt(0);
+                }
+                this->UnparsedSusp.append(HAN::GenericItem(site, RevID, nick));
+            }
+        }
+        if (Command == "SCORED")
+        {
+            revid_ht RevID = revid.toLongLong();
+            long Score = parameter.toLong();
+            if (Score != 0)
+            {
+                WikiEdit *edit = MainWindow::HuggleMain->Queue1->GetWikiEditByRevID(RevID, site);
+                if (edit != nullptr)
+                {
+                    this->Insert("<font color=green>" + nick  + " rescored edit <b>" + edit->Page->PageName + "</b> by <b>" + edit->User->Username +
+                                 "</b> (" + GenerateWikiDiffLink(revid, revid, edit->GetSite()) + ") by " + QString::number(Score) + "</font>", mt);
+                    edit->Score += Score;
+                    if (!edit->MetaLabels.contains("Bot score"))
+                        edit->MetaLabels.insert("Bot score", QString::number(Score));
+                    MainWindow::HuggleMain->Queue1->SortItemByEdit(edit);
+                } else
+                {
+                    while (this->UnparsedScores.count() > Configuration::HuggleConfiguration->SystemConfig_CacheHAN)
+                    {
+                        this->UnparsedScores.removeAt(0);
+                    }
+                    this->UnparsedScores.append(HAN::RescoreItem(site, RevID, Score, nick));
+                }
+            }
+        }
+    }
+}
+
 void VandalNw::Insert(QString text, HAN::MessageType type)
 {
     if ((type == HAN::MessageType_Bot && !Configuration::HuggleConfiguration->UserConfig->HAN_DisplayBots)      ||
@@ -579,101 +677,9 @@ void VandalNw::OnIRCChannelMessage(libircclient::Parser *px)
     }
 
     WikiSite *site = this->Ch2Site[channel];
-    HAN::MessageType mt;
-    if (!nick.toLower().contains("bot"))
-    {
-        mt = HAN::MessageType_User;
-    } else
-    {
-        mt = HAN::MessageType_Bot;
-    }
     if (message.startsWith(this->Prefix))
     {
-        QString Command = message.mid(2);
-        if (Command.contains(" "))
-        {
-            Command = Command.mid(0, Command.indexOf(" "));
-            QString revid = message.mid(message.indexOf(" ") + 1);
-            QString parameter = "";
-            if (revid.contains(" "))
-            {
-                parameter = revid.mid(revid.indexOf(" ") + 1);
-                revid = revid.mid(0, revid.indexOf(" "));
-            }
-            if (Command == "GOOD")
-            {
-                int RevID = revid.toInt();
-                WikiEdit *edit = MainWindow::HuggleMain->Queue1->GetWikiEditByRevID(RevID, site);
-                if (edit != nullptr)
-                {
-                    this->ProcessGood(edit, nick);
-                } else
-                {
-                    while (this->UnparsedGood.count() > Configuration::HuggleConfiguration->SystemConfig_CacheHAN)
-                    {
-                        this->UnparsedGood.removeAt(0);
-                    }
-                    this->UnparsedGood.append(HAN::GenericItem(site, RevID, nick));
-                }
-            }
-            if (Command == "ROLLBACK")
-            {
-                int RevID = revid.toInt();
-                WikiEdit *edit = MainWindow::HuggleMain->Queue1->GetWikiEditByRevID(RevID, site);
-                if (edit != nullptr)
-                {
-                    this->ProcessRollback(edit, nick);
-                } else
-                {
-                    while (this->UnparsedRoll.count() > Configuration::HuggleConfiguration->SystemConfig_CacheHAN)
-                    {
-                        this->UnparsedRoll.removeAt(0);
-                    }
-                    this->UnparsedRoll.append(HAN::GenericItem(site, RevID, nick));
-                }
-            }
-            if (Command == "SUSPICIOUS")
-            {
-                int RevID = revid.toInt();
-                WikiEdit *edit = MainWindow::HuggleMain->Queue1->GetWikiEditByRevID(RevID, site);
-                if (edit != nullptr)
-                {
-                    this->ProcessSusp(edit, nick);
-                } else
-                {
-                    while (this->UnparsedSusp.count() > Configuration::HuggleConfiguration->SystemConfig_CacheHAN)
-                    {
-                        this->UnparsedSusp.removeAt(0);
-                    }
-                    this->UnparsedSusp.append(HAN::GenericItem(site, RevID, nick));
-                }
-            }
-            if (Command == "SCORED")
-            {
-                revid_ht RevID = revid.toLongLong();
-                long Score = parameter.toLong();
-                if (Score != 0)
-                {
-                    WikiEdit *edit = MainWindow::HuggleMain->Queue1->GetWikiEditByRevID(RevID, site);
-                    if (edit != nullptr)
-                    {
-                        this->Insert("<font color=green>" + nick  + " rescored edit <b>" + edit->Page->PageName + "</b> by <b>" + edit->User->Username +
-                                     "</b> (" + GenerateWikiDiffLink(revid, revid, edit->GetSite()) + ") by " + QString::number(Score) + "</font>", mt);
-                        edit->Score += Score;
-                        if (!edit->MetaLabels.contains("Bot score"))
-                            edit->MetaLabels.insert("Bot score", QString::number(Score));
-                        MainWindow::HuggleMain->Queue1->SortItemByEdit(edit);
-                    } else
-                    {
-                        while (this->UnparsedScores.count() > Configuration::HuggleConfiguration->SystemConfig_CacheHAN)
-                        {
-                            this->UnparsedScores.removeAt(0);
-                        }
-                        this->UnparsedScores.append(HAN::RescoreItem(site, RevID, Score, nick));
-                    }
-                }
-            }
-        }
+        this->ProcessCommand(site, nick, message);
     } else
     {
         QString message_ = message;
@@ -689,6 +695,19 @@ void VandalNw::OnIRCChannelMessage(libircclient::Parser *px)
         if (hcfg->SystemConfig_PlaySoundOnIRCUserMsg)
             Resources::PlayEmbeddedSoundFile("not1.wav");
     }
+}
+
+void VandalNw::OnIRCChannelCTCP(libircclient::Parser *px, QString command, QString parameters)
+{
+    (void)command;
+    (void)parameters;
+    if (!this->Ch2Site.contains(px->GetParameterLine()))
+    {
+        Syslog::HuggleLogs->DebugLog("Ignoring message to channel " + px->GetParameterLine() + " as we don't know which site it belongs to");
+        return;
+    }
+    WikiSite *site = this->Ch2Site[px->GetParameterLine()];
+    this->ProcessCommand(site, px->GetSourceUserInfo()->GetNick(), px->GetText());
 }
 
 void VandalNw::OnIRCChannelQuit(libircclient::Parser *px, libircclient::Channel *channel)
