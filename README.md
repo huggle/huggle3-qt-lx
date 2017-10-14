@@ -1,7 +1,7 @@
 huggle3-qt-lx
 =============
 
-Huggle 3 is an anti-vandalism tool for use on Wikipedia and other MediaWiki sites, written in C++ (QT framework). It is officialy supported for Windows (2000 or newer), MacOS and Linux (debian/ubuntu).
+Huggle 3 is an anti-vandalism tool for use on [Wikipedia](https://wikipedia.org) and other [MediaWiki](https://mediawiki.org) sites, written in C++ (QT framework). It is officialy supported for Windows (2000 or newer), MacOS and Linux (debian/ubuntu).
 
 [![Build Status](https://api.travis-ci.org/huggle/huggle3-qt-lx.png?branch=master)](https://travis-ci.org/huggle/huggle3-qt-lx/)
 [![Build status](https://ci.appveyor.com/api/projects/status/huy2phxnc95m77sl?svg=true)](https://ci.appveyor.com/project/benapetr/huggle3-qt-lx)
@@ -26,9 +26,11 @@ Libraries and tools you need to have to build:
 * (optional) QT5 sdk (libqt5webkit5-dev qt5-default qtquick1-5-dev qtlocation5-dev qtsensors5-dev qtscript5-dev qtdeclarative5-dev)
 * (optional) Python (libpython-dev)
 
+[NEW] It's now possible to use a VirtualBox VM as a portable development environment for Huggle. [» Wiki page](https://github.com/huggle/huggle3-qt-lx/wiki/Portable-development-environment)
+
 Windows
 -------------
-https://github.com/huggle/huggle3-qt-lx/wiki/Building-on-Windows
+[» Wiki page](https://github.com/huggle/huggle3-qt-lx/wiki/Building-on-Windows)
 
 Linux
 -------------
@@ -48,7 +50,7 @@ sudo make install
 
 MacOS
 ------------
-https://github.com/huggle/huggle3-qt-lx/wiki/Building-on-MacOS
+[» Wiki page](https://github.com/huggle/huggle3-qt-lx/wiki/Building-on-MacOS)
 
 WebKit vs Chromium
 -------------------
@@ -83,9 +85,9 @@ information ask for help on our irc channel.
 Documentation
 =============
 
-Developers: https://tools.wmflabs.org/huggle/docs/head/ and https://github.com/huggle/huggle3-qt-lx/wiki
+Developers: [a documentation](https://tools.wmflabs.org/huggle/docs/head/) and [the repo's Wiki](https://github.com/huggle/huggle3-qt-lx/wiki) are available.
 
-This is a documentation for users: https://meta.wikimedia.org/wiki/Huggle and https://www.mediawiki.org/wiki/Manual:Huggle
+This is a documentation for users [on metawiki](https://meta.wikimedia.org/wiki/Huggle) and [mediawiki](https://www.mediawiki.org/wiki/Manual:Huggle).
 
 Getting help
 =============
@@ -104,14 +106,14 @@ sanity check, like documentation or comments, please append [ci skip] to your me
 
 Reporting bugs
 ===============
-Please use https://phabricator.wikimedia.org/maniphest/task/create/?projects=Huggle
+Please use [Wikimedia's tracking platform, phabricator](https://phabricator.wikimedia.org/maniphest/task/create/?projects=Huggle).
 
 Support us
 ===============
 
 Your donations are welcome and help us focus on the development even more:
 
-PayPal (preferred): http://tools.wmflabs.org/huggle/donate.htm
+[PayPal](http://tools.wmflabs.org/huggle/donate.htm) (preferred), or :
 ```
 LTC:  LfMDMWKqhiT45q4h1uduiDfjUZfiwGiCes
 Doge: DMhK9EarJQaZrAHYinGReESL3CPvoMYcKK
