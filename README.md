@@ -85,9 +85,9 @@ information ask for help on our irc channel.
 Documentation
 =============
 
-Developers: [a documentation](https://tools.wmflabs.org/huggle/docs/head/) and [the repo's Wiki](https://github.com/huggle/huggle3-qt-lx/wiki) are available.
+For developers: [source code documentation](https://tools.wmflabs.org/huggle/docs/head/) and [the repo's Wiki](https://github.com/huggle/huggle3-qt-lx/wiki) are available.
 
-This is a documentation for users [on metawiki](https://meta.wikimedia.org/wiki/Huggle) and [mediawiki](https://www.mediawiki.org/wiki/Manual:Huggle).
+For users: [on metawiki](https://meta.wikimedia.org/wiki/Huggle) and [mediawiki](https://www.mediawiki.org/wiki/Manual:Huggle).
 
 Getting help
 =============
