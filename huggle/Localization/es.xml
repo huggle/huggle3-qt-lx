@@ -210,7 +210,7 @@
   <string name="userhistory-title">Historial de tus cambios</string>
   <string name="irc-connected">$1: conectado con el suministro IRC de cambios recientes</string>
   <string name="irc-connecting">Intentando conectar al canal IRC de cambios recientes en $1; esto puede tomar un momento...</string>
-  <string name="irc-disconnected">Se perdió la conexión al canal IRC de cambios recientes el $1. Reconectando...</string>
+  <string name="irc-disconnected">Se perdió la conexión con el canal IRC de cambios recientes el $1. Conectando de nuevo…</string>
   <string name="irc-nochannel">Canal IRC para $1 no encontrado; usando peticiones API más lentas en lugar de ello</string>
   <string name="irc-error">No se puede conectar al canal IRC de cambios recientes ($1: $2). Usando peticiones API más lentas en lugar de ello</string>
   <string name="irc-stop">Esperando el principal proveedor de alimentación para dejar en $1</string>

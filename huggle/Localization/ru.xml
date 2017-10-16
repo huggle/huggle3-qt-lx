@@ -368,6 +368,7 @@
   <string name="main-page-load">Загрузить</string>
   <string name="main-patrol-not-enabled">Патрулирование не включено на $1</string>
   <string name="main-page-restore">Восстановить эту версию</string>
+  <string name="main-page-tab-open">Открыть новую вкладку</string>
   <string name="main-user-info">Показать информацию об участнике</string>
   <string name="main-user-ignore">Добавить в белый список</string>
   <string name="main-user-unignore">Удалить из белого списка</string>
