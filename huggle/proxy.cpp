@@ -58,6 +58,7 @@ Proxy::Proxy(QWidget *parent) : HW("proxy", this, parent), ui(new Ui::Proxy)
     this->ui->comboBox->addItem("Http");
     this->ui->comboBox->addItem("Http (caching proxy)");
     this->ui->comboBox->addItem("Ftp");
+    this->ui->l_Restart->setText(_l("proxy-restart"));
     this->ui->comboBox->setCurrentIndex(hcfg->SystemConfig_ProxyType);
     if (hcfg->SystemConfig_UseProxy)
     {

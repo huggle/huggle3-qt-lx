@@ -239,6 +239,7 @@
   <string name="login-proxy-remember-this">Remember this setting for next time</string>
   <string name="login-proxyport">Port:</string>
   <string name="login-proxydomain">Domain:</string>
+  <string name="proxy-restart">Huggle may need to be restarted for these changes to take effect</string>
   <string name="login-retrieving-user-conf">Retrieving user config</string>
   <string name="login-fail-css">Login failed on $1: Unable to retrieve user configuration. Special:MyPage/huggle3.css is missing. Did you create huggle3.css in your userspace?</string>
   <string name="login-fail-enable-true">Login failed on $1: You don&apos;t have enable:true in your personal config.</string>

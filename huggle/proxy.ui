@@ -7,48 +7,76 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>206</height>
+    <height>226</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Configure proxy</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
+   <item row="6" column="1">
+    <widget class="QCheckBox" name="checkBox">
+     <property name="text">
+      <string>Remember this setting for next time</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
     <widget class="QLabel" name="label">
      <property name="text">
       <string>Hostname</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="label_3">
-     <property name="text">
-      <string>Port</string>
+   <item row="2" column="1">
+    <widget class="QLineEdit" name="lineEdit_2">
+     <property name="inputMethodHints">
+      <set>Qt::ImhNone</set>
      </property>
     </widget>
-   </item>
-   <item row="4" column="1">
-    <widget class="QComboBox" name="comboBox"/>
    </item>
    <item row="4" column="0">
-    <widget class="QLabel" name="label_2">
-     <property name="text">
-      <string>Type</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0">
     <widget class="QLabel" name="label_4">
      <property name="text">
       <string>Password</string>
      </property>
     </widget>
    </item>
-   <item row="0" column="1">
-    <widget class="QLineEdit" name="lineEdit"/>
+   <item row="4" column="1">
+    <widget class="QLineEdit" name="lineEdit_4">
+     <property name="echoMode">
+      <enum>QLineEdit::Password</enum>
+     </property>
+    </widget>
    </item>
-   <item row="6" column="1">
+   <item row="3" column="0">
+    <widget class="QLabel" name="label_5">
+     <property name="text">
+      <string>Username</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+      <string>Port</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="1">
+    <widget class="QComboBox" name="comboBox"/>
+   </item>
+   <item row="3" column="1">
+    <widget class="QLineEdit" name="lineEdit_3"/>
+   </item>
+   <item row="5" column="0">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>Type</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="1">
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -58,34 +86,26 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="1">
-    <widget class="QLineEdit" name="lineEdit_3"/>
-   </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="label_5">
-     <property name="text">
-      <string>Username</string>
-     </property>
-    </widget>
-   </item>
    <item row="1" column="1">
-    <widget class="QLineEdit" name="lineEdit_2">
-     <property name="inputMethodHints">
-      <set>Qt::ImhNone</set>
-     </property>
-    </widget>
+    <widget class="QLineEdit" name="lineEdit"/>
    </item>
-   <item row="3" column="1">
-    <widget class="QLineEdit" name="lineEdit_4">
-     <property name="echoMode">
-      <enum>QLineEdit::Password</enum>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="1">
-    <widget class="QCheckBox" name="checkBox">
+   <item row="0" column="1">
+    <widget class="QLabel" name="l_Restart">
      <property name="text">
-      <string>Remember this setting for next time</string>
+      <string>[[proxy-restart]]</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="label_7">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/warning_icon_micro.png</pixmap>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
    </item>
@@ -99,7 +119,9 @@
   <tabstop>comboBox</tabstop>
   <tabstop>checkBox</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="pictures.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>buttonBox</sender>
