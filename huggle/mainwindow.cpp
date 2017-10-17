@@ -1257,7 +1257,7 @@ void MainWindow::TriggerWarn()
         this->fWarningList->show();
         return;
     }
-    this->Warn("warning", nullptr, this->CurrentEdit);
+    this->Warn(this->GetCurrentWikiSite()->GetProjectConfig()->DefaultTemplate, nullptr, this->CurrentEdit);
 }
 
 void MainWindow::on_actionPreferences_triggered()
@@ -1601,7 +1601,7 @@ void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_trig
     Collectable_SmartPtr<RevertQuery> result = this->Revert("");
     if (result != nullptr)
     {
-        this->Warn("warning", result, result->GetEdit());
+        this->Warn(result->GetEdit()->GetSite()->GetProjectConfig()->DefaultTemplate, result, result->GetEdit());
     }
 }
 
@@ -1612,7 +1612,7 @@ void MainWindow::on_actionRevert_and_warn_triggered()
     Collectable_SmartPtr<RevertQuery> result = this->Revert("");
     if (result != nullptr)
     {
-        this->Warn("warning", result, result->GetEdit());
+        this->Warn(result->GetEdit()->GetSite()->GetProjectConfig()->DefaultTemplate, result, result->GetEdit());
     }
 }
 
@@ -2530,7 +2530,7 @@ void MainWindow::on_actionRevert_currently_displayed_edit_warn_user_and_stay_on_
         return;
     Collectable_SmartPtr<RevertQuery> result = this->Revert("", false);
     if (result != nullptr)
-        this->Warn("warning", result, result->GetEdit());
+        this->Warn(result->GetEdit()->GetSite()->GetProjectConfig()->DefaultTemplate, result, result->GetEdit());
 }
 
 void MainWindow::on_actionRevert_currently_displayed_edit_and_stay_on_page_triggered()

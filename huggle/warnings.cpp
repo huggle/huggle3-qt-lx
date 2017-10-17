@@ -335,7 +335,7 @@ void Warnings::ForceWarn(int Level, WikiEdit *Edit)
     if (Edit == nullptr)
         return;
 
-    QString __template = "warning" + QString::number(Level);
+    QString __template = Edit->GetSite()->GetProjectConfig()->DefaultTemplate + QString::number(Level);
     QString MessageText_ = Warnings::RetrieveTemplateToWarn(__template, Edit->GetSite(), instant);
 
     if (!MessageText_.size())
