@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>561</width>
-    <height>299</height>
+    <height>305</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -73,7 +73,7 @@
    <item>
     <widget class="QCheckBox" name="checkBox_3">
      <property name="text">
-      <string>use autoblock</string>
+      <string>Use autoblock</string>
      </property>
      <property name="checked">
       <bool>true</bool>
