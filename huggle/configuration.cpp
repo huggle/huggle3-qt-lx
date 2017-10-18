@@ -703,6 +703,18 @@ Shortcut::Shortcut(QString name, QString description)
             this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN13;
         else if (name == "main-revert-and-warn-14")
             this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN14;
+        else if (name == "main-revert-and-warn-15")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN15;
+        else if (name == "main-revert-and-warn-16")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN16;
+        else if (name == "main-revert-and-warn-17")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN17;
+        else if (name == "main-revert-and-warn-18")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN18;
+        else if (name == "main-revert-and-warn-19")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN19;
+        else if (name == "main-revert-and-warn-20")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_AND_WARN20;
     } else if (name.startsWith("main-revert-"))
     {
         if (name == "main-revert-0")
@@ -735,6 +747,18 @@ Shortcut::Shortcut(QString name, QString description)
             this->ID = HUGGLE_ACCEL_MAIN_REVERT_13;
         else if (name == "main-revert-14")
             this->ID = HUGGLE_ACCEL_MAIN_REVERT_14;
+        else if (name == "main-revert-15")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_15;
+        else if (name == "main-revert-16")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_16;
+        else if (name == "main-revert-17")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_17;
+        else if (name == "main-revert-18")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_18;
+        else if (name == "main-revert-19")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_19;
+        else if (name == "main-revert-20")
+            this->ID = HUGGLE_ACCEL_MAIN_REVERT_20;
     } else if (name.startsWith("main-warn-"))
     {
         if (name == "main-warn-0")
@@ -767,6 +791,18 @@ Shortcut::Shortcut(QString name, QString description)
             this->ID = HUGGLE_ACCEL_MAIN_WARN13;
         else if (name == "main-warn-14")
             this->ID = HUGGLE_ACCEL_MAIN_WARN14;
+        else if (name == "main-warn-15")
+            this->ID = HUGGLE_ACCEL_MAIN_WARN15;
+        else if (name == "main-warn-16")
+            this->ID = HUGGLE_ACCEL_MAIN_WARN16;
+        else if (name == "main-warn-17")
+            this->ID = HUGGLE_ACCEL_MAIN_WARN17;
+        else if (name == "main-warn-18")
+            this->ID = HUGGLE_ACCEL_MAIN_WARN18;
+        else if (name == "main-warn-19")
+            this->ID = HUGGLE_ACCEL_MAIN_WARN19;
+        else if (name == "main-warn-20")
+            this->ID = HUGGLE_ACCEL_MAIN_WARN20;
     }
 }
 
