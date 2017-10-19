@@ -233,6 +233,7 @@
   <string name="login-proxy-remember-this">다음을 위해 이 설정 기억하기</string>
   <string name="login-proxyport">포트:</string>
   <string name="login-proxydomain">도메인:</string>
+  <string name="proxy-restart">이 변경사항을 적용하려면 Huggle을 다시 시작해야 할 수 있습니다</string>
   <string name="login-retrieving-user-conf">사용자 설정을 얻는 중</string>
   <string name="login-fail-css">사용자 설정을 얻을 수 없어 $1에 로그인에 실패했습니다. 당신의 사용자 공간에 huggle3.css를 만들었습니까? (Special:MyPage/huggle3.css가 없습니다)</string>
   <string name="login-fail-enable-true">당신의 개인 설정에 enable:true가 없기 때문에 $1에 로그인에 실패했습니다</string>

@@ -239,6 +239,7 @@
   <string name="login-proxy-remember-this">Diese Einstellung für das nächste Mal speichern</string>
   <string name="login-proxyport">Proxy-Port:</string>
   <string name="login-proxydomain">Proxy-Domain:</string>
+  <string name="proxy-restart">Huggle muss neu gestartet werden, damit diese Änderungen wirksam werden.</string>
   <string name="login-retrieving-user-conf">Rufe Benutzerkonfiguration ab</string>
   <string name="login-fail-css">Anmeldung auf $1 fehlgeschlagen: Die Benutzerkonfiguration konnte nicht abgerufen werden. Special:MyPage/huggle3.css fehlt. Hast du in deinem Benutzernamensraum huggle3.css erstellt?</string>
   <string name="login-fail-enable-true">Anmeldung auf $1 fehlgeschlagen: In deiner persönlichen Konfiguration wurde nicht enable:true festgelegt.</string>

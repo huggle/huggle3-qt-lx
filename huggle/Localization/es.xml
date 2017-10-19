@@ -234,6 +234,7 @@
   <string name="login-proxy-remember-this">Recordar esta configuración para la próxima vez</string>
   <string name="login-proxyport">Puerto:</string>
   <string name="login-proxydomain">Dominio:</string>
+  <string name="proxy-restart">Puede que Huggle necesite reiniciarse para que los cambios tengan efecto</string>
   <string name="login-retrieving-user-conf">Consultando configuración de usuario</string>
   <string name="login-fail-css">Falló el acceso a $1: no se pudo obtener la configuración de la cuenta.\nFalta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu espacio de usuario?</string>
   <string name="login-fail-enable-true">Falló el acceso a $1: falta la orden «enable:true» en tu configuración personal.</string>
@@ -797,4 +798,5 @@
   <string name="query-protected-link">Enlace protegido</string>
   <string name="queue-empty-title">Está vacío</string>
   <string name="protip">Recomendación</string>
+  <string name="tip14">¿Quiere chatear con otros usuarios activos de Huggle que están usando el programa ahora? Si están en línea los verá en la ventana de \"Red\".</string>
 </resources>

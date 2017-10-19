@@ -239,6 +239,7 @@
   <string name="login-proxy-remember-this">下次记住此次设置</string>
   <string name="login-proxyport">端口：</string>
   <string name="login-proxydomain">域:</string>
+  <string name="proxy-restart">Huggle可能需要重启才能使更改生效</string>
   <string name="login-retrieving-user-conf">获取用户配置</string>
   <string name="login-fail-css">登录$1失败：无法检索到用户配置。Special:MyPage/huggle3.css丢失。您在您的用户空间创建了huggle3.css吗？</string>
   <string name="login-fail-enable-true">登录$1失败：您没有在您个人的设置中设置enable:true。</string>
