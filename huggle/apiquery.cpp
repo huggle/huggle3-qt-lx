@@ -29,13 +29,6 @@ ApiQuery::ApiQuery()
     this->Type = QueryApi;
 }
 
-ApiQuery::ApiQuery(Action action)
-{
-    this->RequestFormat = XML;
-    this->Type = QueryApi;
-    this->SetAction(action);
-}
-
 ApiQuery::ApiQuery(Action action, WikiSite *site)
 {
     this->RequestFormat = XML;

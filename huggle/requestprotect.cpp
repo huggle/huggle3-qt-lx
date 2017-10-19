@@ -142,7 +142,7 @@ void RequestProtect::Tick()
 
 void Huggle::RequestProtect::on_pushButton_clicked()
 {
-    this->qRFPPage = new ApiQuery(ActionQuery);
+    this->qRFPPage = new ApiQuery(ActionQuery, this->page->GetSite());
     // if this wiki has the requests in separate section, get it, if not, we get a whole page
     if (this->page->GetSite()->GetProjectConfig()->RFPP_Section == 0)
     {

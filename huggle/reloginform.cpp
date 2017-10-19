@@ -154,7 +154,7 @@ void ReloginForm::LittleTick()
             return;
         }
         QString token = login_->GetAttribute("token");
-        this->qReloginPw = new ApiQuery(ActionLogin);
+        this->qReloginPw = new ApiQuery(ActionLogin, nullptr);
         this->qReloginPw->HiddenQuery = true;
         this->qReloginPw->Parameters = "lgname=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_Username)
             + "&lgpassword=" + QUrl::toPercentEncoding(this->ui->lineEdit->text()) + "&lgtoken=" + QUrl::toPercentEncoding(token);

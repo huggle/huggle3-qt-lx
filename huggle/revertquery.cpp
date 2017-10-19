@@ -684,7 +684,7 @@ bool RevertQuery::ProcessRevert()
     }
     this->CustomStatus = "Retrieving content of previous version";
     // now we need to get the content of page
-    this->qRetrieve = new ApiQuery(ActionQuery);
+    this->qRetrieve = new ApiQuery(ActionQuery, this->GetSite());
     this->qRetrieve->Parameters = "prop=revisions&revids=" + QString::number(this->SR_RevID) + "&rvprop=" +
                                   QUrl::toPercentEncoding("ids|content");
     this->qRetrieve->Process();

@@ -72,7 +72,6 @@ namespace Huggle
         public:
             //! Creates a new instance of this class and set the defaults
             explicit ApiQuery();
-            explicit ApiQuery(Action action);
             explicit ApiQuery(Action action, WikiSite *site);
             ~ApiQuery();
             Action GetAction();
