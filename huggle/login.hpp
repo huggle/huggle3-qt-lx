@@ -114,6 +114,7 @@ namespace Huggle
             void RetrieveUserConfig(WikiSite *site);
             void RetrieveUserInfo(WikiSite *site);
             void DeveloperMode();
+            bool IsDeveloperMode();
             void ProcessSiteInfo(WikiSite *site);
             void DisplayError(QString message);
             void Finish();

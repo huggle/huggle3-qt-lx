@@ -483,8 +483,7 @@ void Login::PressOK()
     hcfg->UserConfig = hcfg->Project->GetUserConfig();
     hcfg->ProjectConfig = hcfg->Project->GetProjectConfig();
 
-    if (this->ui->lineEdit_username->text() == "Developer Mode" ||
-            this->ui->lineEdit_username->text() == "Developer_Mode")
+    if (this->IsDeveloperMode())
     {
         this->DeveloperMode();
         return;
@@ -1464,8 +1463,7 @@ void Login::VerifyLogin()
 {
     if((((this->ui->lineEditBotUser->text().size() == 0 && this->ui->lineEdit_username->text().size() == 0) ||
         (this->ui->lineEdit_password->text().size() == 0 && this->ui->lineEditBotP->text().size() == 0))) &&
-       (this->ui->lineEdit_username->text() != "Developer Mode" &&
-        this->ui->lineEdit_username->text() != "Developer_Mode"))
+        this->IsDeveloperMode())
         this->ui->ButtonOK->setEnabled(false);
     else
         this->ui->ButtonOK->setEnabled(true);
@@ -1534,4 +1532,9 @@ void Huggle::Login::on_tabWidget_currentChanged(int index)
         if (this->ui->lineEditBotUser->text().isEmpty() && !this->ui->lineEdit_username->text().isEmpty())
             this->ui->lineEditBotUser->setText(this->ui->lineEdit_username->text() + "@huggle");
     }
+}
+
+bool Login::IsDeveloperMode()
+{
+    return this->ui->lineEdit_username->text().replace('_', ' ').toLower() != "developer mode";
 }
