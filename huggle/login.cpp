@@ -1536,5 +1536,5 @@ void Huggle::Login::on_tabWidget_currentChanged(int index)
 
 bool Login::IsDeveloperMode()
 {
-    return this->ui->lineEdit_username->text().replace('_', ' ').toLower() != "developer mode";
+    return this->ui->lineEdit_username->text().replace('_', ' ').toLower() == "developer mode";
 }
