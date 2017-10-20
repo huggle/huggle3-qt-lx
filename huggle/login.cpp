@@ -1463,7 +1463,7 @@ void Login::VerifyLogin()
 {
     if((((this->ui->lineEditBotUser->text().size() == 0 && this->ui->lineEdit_username->text().size() == 0) ||
         (this->ui->lineEdit_password->text().size() == 0 && this->ui->lineEditBotP->text().size() == 0))) &&
-        this->IsDeveloperMode())
+        !this->IsDeveloperMode())
         this->ui->ButtonOK->setEnabled(false);
     else
         this->ui->ButtonOK->setEnabled(true);
