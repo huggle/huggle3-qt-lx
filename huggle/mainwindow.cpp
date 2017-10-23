@@ -82,6 +82,7 @@
 #include "ui_mainwindow.h"
 #include "requestprotect.hpp"
 #include "queuehelp.hpp"
+#include "custommessage.hpp"
 #ifdef DeleteForm
     #undef DeleteForm
 #endif
@@ -3359,4 +3360,22 @@ void Huggle::MainWindow::on_actionShow_score_debug_triggered()
         debug_info = debug_info.mid(0, debug_info.size() - 2);
 
     HUGGLE_DEBUG1(debug_info);
+}
+
+void Huggle::MainWindow::on_actionPost_a_custom_message_triggered()
+{
+    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
+        return;
+    if(this->CurrentEdit == nullptr)
+    {
+        Syslog::HuggleLogs->ErrorLog(_l("custommessage-none"));
+        return;
+    }
+    if (this->fCustomMessageForm != nullptr)
+        delete this->fCustomMessageForm;
+
+    this->fCustomMessageForm = new CustomMessage(this);
+    this->CurrentEdit->User->Resync();
+    this->fCustomMessageForm->SetWikiUser(this->CurrentEdit->User);
+    this->fCustomMessageForm->show();
 }
