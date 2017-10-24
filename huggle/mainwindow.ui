@@ -86,11 +86,11 @@
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>Fi&amp;le</string>
+     <string>File</string>
     </property>
     <widget class="QMenu" name="menuChange_provider">
      <property name="title">
-      <string>&amp;Change provider</string>
+      <string>Change provider</string>
      </property>
      <addaction name="actionIRC"/>
      <addaction name="actionWiki"/>
@@ -112,7 +112,7 @@
     </property>
     <widget class="QMenu" name="menuDebug_2">
      <property name="title">
-      <string>&amp;Debug</string>
+      <string>Debug</string>
      </property>
      <addaction name="actionResort_queue"/>
      <addaction name="actionEdit_info"/>
@@ -182,7 +182,7 @@
    </widget>
    <widget class="QMenu" name="menuTools">
     <property name="title">
-     <string>&amp;Tools</string>
+     <string>Tools</string>
     </property>
     <addaction name="actionShow_ignore_list_of_current_wiki"/>
     <addaction name="actionShow_list_of_score_words"/>
@@ -192,11 +192,11 @@
    </widget>
    <widget class="QMenu" name="menuUser">
     <property name="title">
-     <string>Use&amp;r</string>
+     <string>User</string>
     </property>
     <widget class="QMenu" name="menuManual_template">
      <property name="title">
-      <string>&amp;Manual template</string>
+      <string>Manual template</string>
      </property>
      <addaction name="actionWarning_1"/>
      <addaction name="actionWarning_2"/>
@@ -226,11 +226,11 @@
    </widget>
    <widget class="QMenu" name="menuQueue">
     <property name="title">
-     <string>&amp;Queue</string>
+     <string>Queue</string>
     </property>
     <widget class="QMenu" name="menuWhen_queue_is_full">
      <property name="title">
-      <string>&amp;When queue is full</string>
+      <string>When queue is full</string>
      </property>
      <addaction name="actionStop_feed"/>
      <addaction name="actionRemove_old_edits"/>
@@ -242,7 +242,7 @@
    </widget>
    <widget class="QMenu" name="menuHAN">
     <property name="title">
-     <string>&amp;HAN</string>
+     <string>HAN</string>
     </property>
     <addaction name="actionConnect"/>
     <addaction name="actionDisconnect"/>
@@ -253,7 +253,7 @@
    </widget>
    <widget class="QMenu" name="menuGo_to">
     <property name="title">
-     <string>&amp;Go to</string>
+     <string>Go to</string>
     </property>
     <addaction name="actionMy_talk_page"/>
     <addaction name="actionMy_Contributions"/>
@@ -307,7 +307,7 @@
   </widget>
   <action name="actionPreferences">
    <property name="text">
-    <string notr="true">&amp;Preferences</string>
+    <string notr="true">Preferences</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+P</string>
@@ -315,12 +315,12 @@
   </action>
   <action name="actionExit">
    <property name="text">
-    <string notr="true">&amp;Exit</string>
+    <string notr="true">Exit</string>
    </property>
   </action>
   <action name="actionContents">
    <property name="text">
-    <string notr="true">&amp;Contents</string>
+    <string notr="true">Contents</string>
    </property>
    <property name="shortcut">
     <string>F1</string>
@@ -328,7 +328,7 @@
   </action>
   <action name="actionAbout">
    <property name="text">
-    <string notr="true">&amp;About</string>
+    <string notr="true">About</string>
    </property>
   </action>
   <action name="actionRevert_and_warn">
@@ -378,7 +378,7 @@
   </action>
   <action name="actionNext_2">
    <property name="text">
-    <string notr="true">&amp;Next</string>
+    <string notr="true">Next</string>
    </property>
    <property name="shortcut">
     <string>Space</string>
@@ -386,7 +386,7 @@
   </action>
   <action name="actionRevert_currently_displayed_edit">
    <property name="text">
-    <string notr="true">Re&amp;vert currently displayed edit</string>
+    <string notr="true">Revert currently displayed edit</string>
    </property>
    <property name="shortcut">
     <string>R</string>
@@ -402,7 +402,7 @@
   </action>
   <action name="actionWarn_the_user">
    <property name="text">
-    <string notr="true">&amp;Warn the user</string>
+    <string notr="true">Warn the user</string>
    </property>
    <property name="shortcut">
     <string>W</string>
@@ -437,7 +437,7 @@
   </action>
   <action name="actionShow_ignore_list_of_current_wiki">
    <property name="text">
-    <string notr="true">&amp;Show ignore list of current wiki</string>
+    <string notr="true">Show ignore list of current wiki</string>
    </property>
   </action>
   <action name="actionWelcome_user">
@@ -473,7 +473,7 @@
   </action>
   <action name="actionIncrease_badness_score_by_20">
    <property name="text">
-    <string notr="true">&amp;Increase badness score</string>
+    <string notr="true">Increase badness score</string>
    </property>
    <property name="iconText">
     <string>Increase badness score</string>
@@ -484,7 +484,7 @@
   </action>
   <action name="actionDecrease_badness_score_by_20">
    <property name="text">
-    <string notr="true">&amp;Decrease badness score</string>
+    <string notr="true">Decrease badness score</string>
    </property>
    <property name="shortcut">
     <string>Shift+D</string>
@@ -504,7 +504,7 @@
   </action>
   <action name="actionTalk_page">
    <property name="text">
-    <string notr="true">&amp;Talk page</string>
+    <string notr="true">Talk page</string>
    </property>
    <property name="shortcut">
     <string>T</string>
@@ -512,7 +512,7 @@
   </action>
   <action name="actionUser_page">
    <property name="text">
-    <string notr="true">&amp;User page</string>
+    <string notr="true">User page</string>
    </property>
   </action>
   <action name="actionPatrol">
@@ -520,7 +520,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string notr="true">&amp;Patrol</string>
+    <string notr="true">Patrol</string>
    </property>
    <property name="toolTip">
     <string notr="true">Patrol</string>
@@ -531,7 +531,7 @@
   </action>
   <action name="actionDisplay_this_page_in_browser">
    <property name="text">
-    <string notr="true">&amp;Display this page in browser</string>
+    <string notr="true">Display this page in browser</string>
    </property>
    <property name="shortcut">
     <string>O</string>
@@ -539,7 +539,7 @@
   </action>
   <action name="actionDisplay_history_in_browser">
    <property name="text">
-    <string notr="true">Display &amp;history in browser</string>
+    <string notr="true">Display history in browser</string>
    </property>
    <property name="shortcut">
     <string>H</string>
@@ -547,7 +547,7 @@
   </action>
   <action name="actionEdit_page_in_browser">
    <property name="text">
-    <string notr="true">&amp;Edit page in browser</string>
+    <string notr="true">Edit page in browser</string>
    </property>
    <property name="shortcut">
     <string>E</string>
@@ -555,7 +555,7 @@
   </action>
   <action name="actionFlag_as_a_good_edit">
    <property name="text">
-    <string notr="true">Flag as a &amp;good edit (this action give -200 score to user)</string>
+    <string notr="true">Flag as a good edit (this action give -200 score to user)</string>
    </property>
    <property name="shortcut">
     <string>G</string>
@@ -569,7 +569,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string notr="true">&amp;Stop feed</string>
+    <string notr="true">Stop feed</string>
    </property>
   </action>
   <action name="actionRemove_old_edits">
@@ -577,7 +577,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string notr="true">&amp;Remove old edits</string>
+    <string notr="true">Remove old edits</string>
    </property>
   </action>
   <action name="actionQueue">
@@ -637,12 +637,12 @@
   </action>
   <action name="actionClear_talk_page_of_user">
    <property name="text">
-    <string notr="true">&amp;Clear talk page of user</string>
+    <string notr="true">Clear talk page of user</string>
    </property>
   </action>
   <action name="actionList_all_QGC_items">
    <property name="text">
-    <string notr="true">&amp;List all QGC items</string>
+    <string notr="true">List all QGC items</string>
    </property>
   </action>
   <action name="actionRevert_currently_displayed_edit_and_stay_on_page">
@@ -663,12 +663,12 @@
   </action>
   <action name="actionFeedback">
    <property name="text">
-    <string notr="true">&amp;Feedback</string>
+    <string notr="true">Feedback</string>
    </property>
   </action>
   <action name="actionWelcome_user_2">
    <property name="text">
-    <string notr="true">&amp;Welcome user</string>
+    <string notr="true">Welcome user</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+H</string>
@@ -691,7 +691,7 @@
   </action>
   <action name="actionReport_user_2">
    <property name="text">
-    <string notr="true">Re&amp;port user</string>
+    <string notr="true">Report user</string>
    </property>
   </action>
   <action name="actionClear_template_meta_data">
@@ -701,42 +701,42 @@
   </action>
   <action name="actionWarning_1">
    <property name="text">
-    <string notr="true">&amp;Warning 1</string>
+    <string notr="true">Warning 1</string>
    </property>
   </action>
   <action name="actionWarning_2">
    <property name="text">
-    <string notr="true">Warning &amp;2</string>
+    <string notr="true">Warning 2</string>
    </property>
   </action>
   <action name="actionWarning_3">
    <property name="text">
-    <string notr="true">Warning &amp;3</string>
+    <string notr="true">Warning 3</string>
    </property>
   </action>
   <action name="actionWarning_4">
    <property name="text">
-    <string notr="true">Warning &amp;4</string>
+    <string notr="true">Warning 4</string>
    </property>
   </action>
   <action name="actionEdit_user_talk">
    <property name="text">
-    <string notr="true">&amp;Edit user talk</string>
+    <string notr="true">Edit user talk</string>
    </property>
   </action>
   <action name="actionReconnect_IRC">
    <property name="text">
-    <string notr="true">&amp;Reconnect IRC</string>
+    <string notr="true">Reconnect IRC</string>
    </property>
   </action>
   <action name="actionTag_2">
    <property name="text">
-    <string notr="true">&amp;Tag</string>
+    <string notr="true">Tag</string>
    </property>
   </action>
   <action name="actionRequest_speedy_deletion">
    <property name="text">
-    <string notr="true">Request &amp;speedy deletion</string>
+    <string notr="true">Request speedy deletion</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
@@ -744,7 +744,7 @@
   </action>
   <action name="actionDelete">
    <property name="text">
-    <string notr="true">De&amp;lete</string>
+    <string notr="true">Delete</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+D</string>
@@ -752,7 +752,7 @@
   </action>
   <action name="actionBlock_user">
    <property name="text">
-    <string notr="true">&amp;Block user</string>
+    <string notr="true">Block user</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+B</string>
@@ -763,7 +763,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string notr="true">&amp;IRC</string>
+    <string notr="true">IRC</string>
    </property>
   </action>
   <action name="actionWiki">
@@ -771,12 +771,12 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string notr="true">&amp;Wiki</string>
+    <string notr="true">Wiki</string>
    </property>
   </action>
   <action name="actionShow_talk">
    <property name="text">
-    <string notr="true">&amp;Show talk</string>
+    <string notr="true">Show talk</string>
    </property>
    <property name="shortcut">
     <string>Alt+M</string>
@@ -789,7 +789,7 @@
   </action>
   <action name="actionDisconnect">
    <property name="text">
-    <string notr="true">&amp;Disconnect</string>
+    <string notr="true">Disconnect</string>
    </property>
   </action>
   <action name="actionDisplay_user_messages">
@@ -800,7 +800,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string notr="true">Display &amp;user messages</string>
+    <string notr="true">Display user messages</string>
    </property>
   </action>
   <action name="actionDisplay_user_data">
@@ -811,17 +811,17 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string notr="true">D&amp;isplay user data</string>
+    <string notr="true">Display user data</string>
    </property>
   </action>
   <action name="actionEdit_info">
    <property name="text">
-    <string notr="true">&amp;Edit info</string>
+    <string notr="true">Edit info</string>
    </property>
   </action>
   <action name="actionFlag_as_suspicious_edit">
    <property name="text">
-    <string notr="true">&amp;Flag as suspicious edit (this action give +1 score to user)</string>
+    <string notr="true">Flag as suspicious edit (this action give +1 score to user)</string>
    </property>
    <property name="shortcut">
     <string>S</string>
@@ -829,12 +829,12 @@
   </action>
   <action name="actionReport_username">
    <property name="text">
-    <string notr="true">&amp;Report username</string>
+    <string notr="true">Report username</string>
    </property>
   </action>
   <action name="actionShow_list_of_score_words">
    <property name="text">
-    <string notr="true">Show &amp;list of score words</string>
+    <string notr="true">Show list of score words</string>
    </property>
   </action>
   <action name="actionRevert_AGF">
@@ -847,17 +847,17 @@
   </action>
   <action name="actionDisplay_a_session_data">
    <property name="text">
-    <string notr="true">&amp;Display a session data</string>
+    <string notr="true">Display a session data</string>
    </property>
   </action>
   <action name="actionDisplay_whitelist">
    <property name="text">
-    <string notr="true">Display &amp;whitelist</string>
+    <string notr="true">Display whitelist</string>
    </property>
   </action>
   <action name="actionResort_queue">
    <property name="text">
-    <string>&amp;Resort queue</string>
+    <string>Resort queue</string>
    </property>
   </action>
   <action name="actionRestore_this_revision">
@@ -867,7 +867,7 @@
   </action>
   <action name="actionClear">
    <property name="text">
-    <string>&amp;Remove all edits</string>
+    <string>Remove all edits</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Space</string>
@@ -905,22 +905,22 @@
   </action>
   <action name="actionSimulate_message">
    <property name="text">
-    <string>&amp;Simulate new message info</string>
+    <string>Simulate new message info</string>
    </property>
   </action>
   <action name="actionHtml_dump">
    <property name="text">
-    <string>&amp;Dump page</string>
+    <string>Dump page</string>
    </property>
   </action>
   <action name="actionEnforce_sysop_rights">
    <property name="text">
-    <string>E&amp;nforce sysop rights</string>
+    <string>Enforce sysop rights</string>
    </property>
   </action>
   <action name="actionConnect">
    <property name="text">
-    <string>&amp;Connect</string>
+    <string>Connect</string>
    </property>
   </action>
   <action name="actionDisplay_bot_data">
@@ -931,17 +931,17 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Display &amp;bot data</string>
+    <string>Display bot data</string>
    </property>
   </action>
   <action name="actionRequest_protection">
    <property name="text">
-    <string>Re&amp;quest protection of page</string>
+    <string>Request protection of page</string>
    </property>
   </action>
   <action name="actionRemove_edits_made_by_whitelisted_users">
    <property name="text">
-    <string>Remove &amp;edits made by whitelisted users</string>
+    <string>Remove edits made by whitelisted users</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Alt+W</string>
@@ -949,7 +949,7 @@
   </action>
   <action name="actionDelete_all_edits_with_score_lower_than_200">
    <property name="text">
-    <string>&amp;Delete edits with score lower than -200</string>
+    <string>Delete edits with score lower than -200</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Alt+D</string>
@@ -957,7 +957,7 @@
   </action>
   <action name="actionRelog">
    <property name="text">
-    <string>Re_lo&amp;gin</string>
+    <string>Re_login</string>
    </property>
   </action>
   <action name="actionAbort">
@@ -967,7 +967,7 @@
   </action>
   <action name="actionAbort_2">
    <property name="text">
-    <string>&amp;Abort</string>
+    <string>Abort</string>
    </property>
    <property name="shortcut">
     <string>Esc</string>
@@ -975,12 +975,12 @@
   </action>
   <action name="actionUser_contributions">
    <property name="text">
-    <string>U&amp;ser contributions</string>
+    <string>User contributions</string>
    </property>
   </action>
   <action name="actionDisplay_this_page">
    <property name="text">
-    <string>Displa&amp;y this page</string>
+    <string>Display this page</string>
    </property>
    <property name="shortcut">
     <string>Alt+O</string>
@@ -988,12 +988,12 @@
   </action>
   <action name="actionStop_provider">
    <property name="text">
-    <string>St&amp;op provider</string>
+    <string>Stop provider</string>
    </property>
   </action>
   <action name="actionResume_provider">
    <property name="text">
-    <string>Res&amp;ume provider</string>
+    <string>Resume provider</string>
    </property>
    <property name="visible">
     <bool>false</bool>
@@ -1004,7 +1004,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Dr&amp;yMode</string>
+    <string>DryMode</string>
    </property>
   </action>
   <action name="actionRevert_only_this_revision">
@@ -1014,27 +1014,27 @@
   </action>
   <action name="actionReload_menus">
    <property name="text">
-    <string>Reload &amp;menus</string>
+    <string>Reload menus</string>
    </property>
   </action>
   <action name="actionInsert_page_to_a_watchlist">
    <property name="text">
-    <string>&amp;Insert page to a watchlist</string>
+    <string>Insert page to a watchlist</string>
    </property>
   </action>
   <action name="actionRemove_page_from_a_watchlist">
    <property name="text">
-    <string>Re&amp;move page from a watchlist</string>
+    <string>Remove page from a watchlist</string>
    </property>
   </action>
   <action name="actionMy_talk_page">
    <property name="text">
-    <string>&amp;My talk page</string>
+    <string>My talk page</string>
    </property>
   </action>
   <action name="actionMy_Contributions">
    <property name="text">
-    <string>My &amp;Contributions</string>
+    <string>My Contributions</string>
    </property>
   </action>
   <action name="actionRevert_only_this_revision_assuming_good_faith">
@@ -1044,7 +1044,7 @@
   </action>
   <action name="actionClose_current_tab">
    <property name="text">
-    <string>&amp;Close current tab</string>
+    <string>Close current tab</string>
    </property>
    <property name="toolTip">
     <string>Close tab</string>
@@ -1052,12 +1052,12 @@
   </action>
   <action name="actionOpen_new_tab">
    <property name="text">
-    <string>&amp;Open new tab</string>
+    <string>Open new tab</string>
    </property>
   </action>
   <action name="actionVerbosity">
    <property name="text">
-    <string>&amp;verbosity--</string>
+    <string>verbosity--</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+-</string>
@@ -1065,7 +1065,7 @@
   </action>
   <action name="actionVerbosity_2">
    <property name="text">
-    <string>ver&amp;bosity++</string>
+    <string>verbosity++</string>
    </property>
    <property name="shortcut">
     <string>Ctrl++</string>
@@ -1073,12 +1073,12 @@
   </action>
   <action name="actionReload_tokens">
    <property name="text">
-    <string>Reload to&amp;kens</string>
+    <string>Reload tokens</string>
    </property>
   </action>
   <action name="actionLog_out">
    <property name="text">
-    <string>Log &amp;out</string>
+    <string>Log out</string>
    </property>
   </action>
   <action name="actionXmlRcs">
@@ -1086,52 +1086,52 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>&amp;XmlRcs</string>
+    <string>XmlRcs</string>
    </property>
   </action>
   <action name="actionQueue_legend">
    <property name="text">
-    <string>&amp;Queue legend</string>
+    <string>Queue legend</string>
    </property>
   </action>
   <action name="actionFinal">
    <property name="text">
-    <string>&amp;Final</string>
+    <string>Final</string>
    </property>
   </action>
   <action name="actionPrint_API_for_diff">
    <property name="text">
-    <string>&amp;Print API for diff</string>
+    <string>Print API for diff</string>
    </property>
   </action>
   <action name="actionContribution_browser">
    <property name="text">
-    <string>C&amp;ontribution browser</string>
+    <string>Contribution browser</string>
    </property>
   </action>
   <action name="actionCheck_for_dups">
    <property name="text">
-    <string>&amp;Check for duplicates in current queue</string>
+    <string>Check for duplicates in current queue</string>
    </property>
   </action>
   <action name="actionIntroduction">
    <property name="text">
-    <string>&amp;Introduction</string>
+    <string>Introduction</string>
    </property>
   </action>
   <action name="actionRevert_edit_using_custom_reason">
    <property name="text">
-    <string>Revert edit &amp;using custom reason</string>
+    <string>Revert edit using custom reason</string>
    </property>
   </action>
   <action name="actionRefresh">
    <property name="text">
-    <string>&amp;Refresh</string>
+    <string>Refresh</string>
    </property>
   </action>
   <action name="actionShow_score_debug">
    <property name="text">
-    <string>S&amp;how score debug</string>
+    <string>Show score debug</string>
    </property>
   </action>
   <action name="actionPost_a_custom_message">
