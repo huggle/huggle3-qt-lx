@@ -177,10 +177,11 @@ SET(tst_testmain_SOURCES ${srcx} ${srcx_web}
 ../../welcomeinfo.cpp
 ../../webserverquery.cpp
 ../../userconfiguration.cpp
-../../projectconfiguration.cpp 
-../../queuehelp.cpp)
+../../projectconfiguration.cpp
+../../queuehelp.cpp
+../../custommessage.cpp)
 
-SET(tst_testmain_FORMS ${uixx} ${uixx_web}) 
+SET(tst_testmain_FORMS ${uixx} ${uixx_web})
 SET(tst_testmain_RESOURCES ${resx} ${resx_web})
 if(QT5_BUILD)
     QT5_WRAP_CPP(tst_testmain_HEADERS_MOC ${tst_testmain_HEADERS})
