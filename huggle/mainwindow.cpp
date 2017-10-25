@@ -3371,8 +3371,7 @@ void Huggle::MainWindow::on_actionPost_a_custom_message_triggered()
         Syslog::HuggleLogs->ErrorLog(_l("custommessage-none"));
         return;
     }
-    if (this->fCustomMessageForm != nullptr)
-        delete this->fCustomMessageForm;
+    this->setAttribute(Qt::WidgetAttribute::WA_DeleteOnClose);
 
     this->fCustomMessageForm = new CustomMessage(this);
     this->CurrentEdit->User->Resync();

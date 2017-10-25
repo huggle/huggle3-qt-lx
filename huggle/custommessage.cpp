@@ -51,12 +51,12 @@ void CustomMessage::on_pushButton_clicked()
 {
     // plainTextEdit: wikitext message ; lineEdit: section title
     WikiUtil::MessageUser(this->user, this->ui->plainTextEdit->toPlainText(), this->ui->lineEdit->text(), "A message");
-    this->hide();
+    this->close();
 }
 
 bool CustomMessage::VerifyMessage()
 {
-    if (this->ui->plainTextEdit->toPlainText() == "" || this->ui->lineEdit->text() == "")
+    if (this->ui->plainTextEdit->toPlainText().isEmpty() || this->ui->lineEdit->text().isEmpty())
     {
         this->ui->pushButton->setEnabled(false);
         return false;
