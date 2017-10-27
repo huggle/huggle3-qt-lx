@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">עברית</string>
-  <string name="isrtl">שגוי</string>
+  <string name="isrtl">true</string>
   <string name="add">הוספה</string>
   <string name="cancel">ביטול</string>
   <string name="clear">ניקוי</string>

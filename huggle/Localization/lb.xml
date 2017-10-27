@@ -144,6 +144,7 @@
   <string name="login-proxyaddress">Adress:</string>
   <string name="login-proxyport">Port:</string>
   <string name="login-proxydomain">Domaine:</string>
+  <string name="proxy-restart">Huggle muss neigestart gi fir datt dës Ännerunge wierksam sinn.</string>
   <string name="login-fail-enable-true">Aloggen op $1 huet net funktionéiert: An Äre perséinlechen Astellungen ass enable:true net dran.</string>
   <string name="login-fail-no-info">Aloggen op $1 huet net funktionéiert.\nBenotzerinformatioun konnt net ofgefrot ginn: $2</string>
   <string name="login-bot">Wat ass den Ënnerscheed tëscht engem BotPassword -Login an engem traditionelle Login?</string>

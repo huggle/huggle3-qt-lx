@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">Українська</string>
+  <string name="autorelog">Наступного разу зробити це, не запитуючи</string>
   <string name="isrtl">false</string>
   <string name="add">Додати</string>
   <string name="cancel">Скасувати</string>
@@ -15,14 +16,16 @@
   <string name="done">Готово</string>
   <string name="no">Ні</string>
   <string name="ok">Гаразд</string>
+  <string name="override-warn">Ви проігнорували шлях до файлу конфігурації проекту. Будь ласка, пам\'ятайте про те, що зловживання цією функцією для отримання доступу до редагування тієї вікі, у якій в іншому разі Ви б його не мали, може стати причиною безстрокового блокування Вашого облікового запису.</string>
   <string name="remove">Вилучити</string>
   <string name="rename">Перейменувати</string>
   <string name="reload">Перезавантажити</string>
   <string name="project">Проект</string>
+  <string name="warning">Попередження</string>
   <string name="result">Результат</string>
   <string name="save">Зберегти</string>
   <string name="show">Показати</string>
-  <string name="no-instant" fuzzy="true">Миттєві попередження не підключені для проекту $1, тому неможливо надіслати повідомлення для $2. Спробуйте вибрати інший рівень попередження.</string>
+  <string name="no-instant">Неможливо надіслати повідомлення $2, оскільки миттєві попередження не увімкнені в проекті $1. Будь ласка, виберіть інший рівень попередження.</string>
   <string name="undo">Скасувати</string>
   <string name="yes">Так</string>
   <string name="editing-page">Редагувати сторінку</string>
@@ -45,16 +48,16 @@
   <string name="link">Посилання</string>
   <string name="reason">Причина</string>
   <string name="diffid">ID дифу</string>
-  <string name="whitelisted" fuzzy="true">$1 додано до білого списку. Штрафних балів на $3 $2</string>
+  <string name="whitelisted">$1 додано до білого списку; штрафних балів — $2, у проекті $3</string>
   <string name="expiry-time">Залишилось часу</string>
   <string name="duration">Тривалість</string>
   <string name="enable">Увімкнено</string>
   <string name="disable">Вимкнено</string>
   <string name="no-token">Немає маркера</string>
   <string name="flags">Прапорці</string>
-  <string name="gracetime" fuzzy="true">Чекаю на виконання запитів на редагування…</string>
-  <string name="browser-none" fuzzy="true">Зараз не відображається жодна сторінка</string>
-  <string name="browser-load" fuzzy="true">Редагування завантажується шляхом веб-рендерингу. Зачекайте, будь ласка…</string>
+  <string name="gracetime">Очікування на завершення запитів, які виконують редагування…</string>
+  <string name="browser-none">Іще немає сторінки для показу.</string>
+  <string name="browser-load">Редагування завантажується за допомогою фолбеку MW. Зачекайте, будь ласка…</string>
   <string name="browser-miss-summ">Немає опису редагування</string>
   <string name="browser-diff">Різниця версій для $1 (бали: $2)</string>
   <string name="browser-fail">Не вдалося отримати редагування: $1</string>
@@ -78,10 +81,10 @@
   <string name="block-token-1">Отримання токена для блокування $1</string>
   <string name="block-fail">Неможливо заблокувати користувача, $1</string>
   <string name="block-token-e1">Токен не отримано: $1</string>
-  <string name="block-error-no-info" fuzzy="true">У запиті немає інформації про користувача (Ви точно адміністратор?)</string>
+  <string name="block-error-no-info">У запиті немає інформації про користувача (Ви точно адміністратор?)</string>
   <string name="block-type">Заблокувати / розблокувати</string>
-  <string name="block-admin" fuzzy="true">Блокування адміністратора</string>
-  <string name="block-none" fuzzy="true">Немає кого блокувати</string>
+  <string name="block-admin">Адміністратор, що заблокував</string>
+  <string name="block-none">Не вибрано користувача для блокування.</string>
   <string name="contribution-browser-user-info">Показ останніх внесків користувача $1</string>
   <string name="config-function">Функція</string>
   <string name="config-description">Опис</string>
@@ -108,6 +111,7 @@
   <string name="config-noshortcut">Немає</string>
   <string name="config-defaults">Стандартно</string>
   <string name="config-minor">Незначна зміна (м)</string>
+  <string name="config-ip">Анонімні користувачі</string>
   <string name="config-watchlist">Додати до списку спостереження</string>
   <string name="config-defaultsummary">Стандартний опис змін для ручних редагувань</string>
   <string name="config-undosummary">Короткий опис для скасування власних редагувань</string>
@@ -116,22 +120,25 @@
   <string name="config-confirm-talk">Вимагати підтвердження для скасування редагувань на сторінках обговорень</string>
   <string name="config-use-rollback">Використовувати власний відкочувач Huggle</string>
   <string name="config-welcome-empty-page">За потреби залишати привітання на сторінках користувачів, чиї редагування позначені як добрі</string>
-  <string name="config-conflicts-revert" fuzzy="true">Автоматично вирішувати конфлікти редагувань</string>
+  <string name="config-conflicts-revert">Автоматично вирішувати конфлікти редагувань, коли інші користувачі скасовують редагування чи роблять зміни на тій же сторінці</string>
   <string name="config-instant-reverts">Використовувати миттєві відкоти (дуже швидко, проте неможливо скасувати)</string>
-  <string name="config-revert-wait" fuzzy="true">Перед відкотом зачекати (сек.)</string>
+  <string name="config-reverts-multiple">При відкиданні декількох редагувань одного користувача:</string>
+  <string name="config-revert-wait">Затримка відкоту (в секундах)</string>
   <string name="config-revert">Відкотити</string>
+  <string name="config-skip">Пропустити</string>
   <string name="config-revert-diff">Відкотити редагування, новіші за показане зараз, якщо їх було зроблено тим самим вандалом</string>
   <string name="config-change-all">Застосувати налаштування максимально схожі до таких в Huggle 2</string>
   <string name="config-merge-messages">Об’єднувати Ваші попереджувальні повідомлення з іншими такими ж у вже існуючих темах</string>
   <string name="config-months-name">Для іменування нових тем використовувати місяці, а не назви сторінок, про які йдеться</string>
   <string name="config-automatic-warning">Використовувати автоматичне визначення типу та рівня попереджувального повідомлення в команді «Надіслати попередження»</string>
   <string name="config-enable-irc">Включити IRC</string>
-  <string name="config-remove-reverted" fuzzy="true">Прибирати редагування, що вже скасовані кимось іншим</string>
-  <string name="config-remove-old" fuzzy="true">Прибирати старіші редагування, якщо отримано нове редагування тієї ж сторінки</string>
+  <string name="config-remove-reverted">Прибирати з черги редагування, що вже скасовані кимось іншим</string>
+  <string name="config-remove-old">Прибирати з черги старіші редагування, якщо отримано нове редагування тієї ж сторінки</string>
   <string name="config-auto-load-history">Автоматично завантажувати історію редагувань та останні редагування користувача (потребує багато трафіку)</string>
   <string name="config-last-revision" fuzzy="true">Показувати останню версію сторінки, якщо поточне редагування не є найновішим (завантаження буде виконано оминаючи кеш)</string>
   <string name="config-require-delay">Встановити затримку після кожного завантаження наступного редагування, під час якої неможливо внести зміни (корисно для вирішення проблеми з натисканням кількох клавіш одразу)</string>
   <string name="config-wait-edit">Скільки потрібно чекати до ввімкнення можливості редагування (в секундах):</string>
+  <string name="config-display-next">Показати наступне</string>
   <string name="config-retrieve-edit">Показувати Ваше редагування</string>
   <string name="config-nothing">Нічого</string>
   <string name="config-bot-edits">Редагування бота (б)</string>
@@ -170,7 +177,7 @@
   <string name="config-template">Шаблон</string>
   <string name="config-promptforblock">Повідомити адміністраторів при спробі попередити користувача з останнім попередженням</string>
   <string name="config-blockreason">Причина блокування за замовчуванням</string>
-  <string name="config-blocktime" fuzzy="true">Термін блокування за замовчуванням</string>
+  <string name="config-blocktime">Термін блокування за замовчуванням</string>
   <string name="config-blocktimeanon">анонімні користувачі</string>
   <string name="config-blocktimereg">зареєстровані користувачі</string>
   <string name="config-summaryprompt">Введіть короткий опис редагування</string>
@@ -178,7 +185,7 @@
   <string name="config-defaultsprompt">Відновити значення за замовчуванням?</string>
   <string name="config-logbrowsetitle">Розташування файлу журналу</string>
   <string name="config-shortcutconflict">Комбінація клавіш \'$1\' конфліктує з уже існуючою для \'$1\'</string>
-  <string name="config-no-colon" fuzzy="true">Ви не можете використовувати : в назві черги</string>
+  <string name="config-no-colon">Ви не можете використовувати : в назві черги</string>
   <string name="config-notify-update">Перевіряти наявність оновлень</string>
   <string name="config-notify-beta">Перевіряти наявність бета-версій</string>
   <string name="delete-title">Вилучити $1</string>
