@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">العربية</string>
-  <string name="isrtl">خطأ</string>
+  <string name="isrtl">true</string>
   <string name="add">أضف</string>
   <string name="cancel">ألغِ</string>
   <string name="clear">امحُ</string>
