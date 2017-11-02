@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">Bahasa Indonesia</string>
+  <string name="autorelog">Lakukan dan jangan tanyakan lagi lain kali.</string>
   <string name="isrtl">salah</string>
   <string name="add">Tambah</string>
   <string name="cancel">Batal</string>
@@ -19,6 +20,7 @@
   <string name="rename">Ubah nama</string>
   <string name="reload">Muat ulang</string>
   <string name="project">Proyek</string>
+  <string name="warning">Peringatan</string>
   <string name="result">Hasil</string>
   <string name="save">Simpan</string>
   <string name="show">Tampilkan</string>
@@ -108,6 +110,7 @@
   <string name="config-noshortcut">Tidak ada</string>
   <string name="config-defaults">Baku</string>
   <string name="config-minor">Tandakan sebagai suntingan kecil</string>
+  <string name="config-ip">Pengguna anonim (pengguna IP)</string>
   <string name="config-watchlist">Tambahkan ke daftar pantauan</string>
   <string name="config-defaultsummary">Ringkasan baku untuk suntingan manual</string>
   <string name="config-undosummary">Ringkasan ketika membalikkan suntingan sendiri</string>
@@ -120,6 +123,7 @@
   <string name="config-instant-reverts">Gunakan pengembalian segera (sangat cepat tetapi tidak bisa dibatalkan dalam sekali perlakuan)</string>
   <string name="config-revert-wait" fuzzy="true">Waktu tunggu pembalikan (detik)</string>
   <string name="config-revert">Batalkan</string>
+  <string name="config-skip">Lewati</string>
   <string name="config-revert-diff">Batalkan suntingan ke halaman yang lebih baru daripada yang ditampilkan oleh perbedaan (diff) jika suntingan itu dibuat oleh pengguna vandalisme yang sama</string>
   <string name="config-change-all">Ubah semua pengaturan Huggle untuk bekerja seperti Huggle 2</string>
   <string name="config-merge-messages">Gabungkan pesan-pesan Anda dengan pesan lain dalam bagian yang ada</string>
