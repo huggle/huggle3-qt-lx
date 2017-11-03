@@ -3366,15 +3366,13 @@ void Huggle::MainWindow::on_actionPost_a_custom_message_triggered()
 {
     if (!this->CheckExit() || !this->CheckEditableBrowserPage())
         return;
-    if(this->CurrentEdit == nullptr)
+
+    if (this->CurrentEdit == nullptr)
     {
         Syslog::HuggleLogs->ErrorLog(_l("custommessage-none"));
         return;
     }
-    this->setAttribute(Qt::WidgetAttribute::WA_DeleteOnClose);
 
-    this->fCustomMessageForm = new CustomMessage(this);
-    this->CurrentEdit->User->Resync();
-    this->fCustomMessageForm->SetWikiUser(this->CurrentEdit->User);
-    this->fCustomMessageForm->show();
+    CustomMessage *cm = new CustomMessage(this->CurrentEdit->User, this);
+    cm->show();
 }

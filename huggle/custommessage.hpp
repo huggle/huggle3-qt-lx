@@ -28,13 +28,9 @@ namespace Huggle
     {
             Q_OBJECT
         public:
-            explicit CustomMessage(QWidget *parent = nullptr);
+            explicit CustomMessage(WikiUser *User, QWidget *parent = nullptr);
             ~CustomMessage();
-            /*!
-            * \brief SetWikiUser Select the user/IP
-            * \param User User to select
-            */
-            void SetWikiUser(WikiUser *User);
+
         private slots:
             void on_pushButton_clicked();
             void on_pushButton_2_clicked();
@@ -43,6 +39,11 @@ namespace Huggle
             void on_plainTextEdit_textChanged();
 
         private:
+            /*!
+            * \brief SetWikiUser Select the user/IP
+            * \param User User to select
+            */
+            void SetWikiUser(WikiUser *User);
             Ui::CustomMessage *ui;
             WikiUser *user;
     };

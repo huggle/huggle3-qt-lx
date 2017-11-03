@@ -17,11 +17,13 @@
 
 using namespace Huggle;
 
-CustomMessage::CustomMessage(QWidget *parent) : HW("custommessage", this, parent), ui(new Ui::CustomMessage)
+CustomMessage::CustomMessage(WikiUser *User, QWidget *parent) : HW("custommessage", this, parent), ui(new Ui::CustomMessage)
 {
     this->ui->setupUi(this);
     this->user = nullptr;
     this->RestoreWindow();
+    this->setAttribute(Qt::WidgetAttribute::WA_DeleteOnClose);
+    this->SetWikiUser(User);
 }
 
 CustomMessage::~CustomMessage()
