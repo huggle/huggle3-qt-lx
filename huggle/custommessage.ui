@@ -36,20 +36,6 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="lSummary">
-     <property name="text">
-      <string>Edit summary (huggle suffix will be automatically inserted)</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLineEdit" name="leSummary">
-     <property name="text">
-      <string>Delivering a custom message to user</string>
-     </property>
-    </widget>
-   </item>
-   <item>
     <widget class="QPlainTextEdit" name="plainTextEdit">
      <property name="plainText">
       <string/>
@@ -57,15 +43,16 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="lSummary">
      <property name="text">
-      <string>To user &lt;b&gt;xxx&lt;/b&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Edit summary (Huggle suffix will be automatically inserted)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
-     <property name="scaledContents">
-      <bool>false</bool>
-     </property>
-     <property name="wordWrap">
-      <bool>false</bool>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="leSummary">
+     <property name="text">
+      <string>Delivering a custom message to user</string>
      </property>
     </widget>
    </item>

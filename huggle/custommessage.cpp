@@ -40,8 +40,8 @@ void CustomMessage::SetWikiUser(WikiUser *User)
     }
     this->user = new WikiUser(User);
     this->setWindowTitle("Send a custom message to " + this->user->Username);
-    this->ui->label->setText("Send to user <b>" + this->user->Username + "</b>");
-    this->ui->plainTextEdit->setPlainText(QString("Hello <<<USERNAME>>>,\n\nWrite your message here. --~~~~").replace("<<<USERNAME>>>", this->user->Username));
+    this->ui->leSummary->setText("Delivering a custom message to " + this->user->Username);
+    this->ui->plainTextEdit->setPlainText(QString("Hello <<<USERNAME>>>,\n\nWrite your message here.\n\n--~~~~").replace("<<<USERNAME>>>", this->user->Username));
 }
 
 void CustomMessage::on_pushButton_2_clicked()
