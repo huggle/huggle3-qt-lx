@@ -41,7 +41,7 @@ void CustomMessage::SetWikiUser(WikiUser *User)
     this->user = new WikiUser(User);
     this->setWindowTitle("Send a custom message to " + this->user->Username);
     this->ui->label->setText("Send to user <b>" + this->user->Username + "</b>");
-    this->ui->plainTextEdit->setPlainText(QString("Hello <<<USERNAME>>>, xxx. Heartily --~~~~").replace("<<<USERNAME>>>", this->user->Username));
+    this->ui->plainTextEdit->setPlainText(QString("Hello <<<USERNAME>>>,\n\nWrite your message here. --~~~~").replace("<<<USERNAME>>>", this->user->Username));
 }
 
 void CustomMessage::on_pushButton_2_clicked()
@@ -52,13 +52,13 @@ void CustomMessage::on_pushButton_2_clicked()
 void CustomMessage::on_pushButton_clicked()
 {
     // plainTextEdit: wikitext message ; lineEdit: section title
-    WikiUtil::MessageUser(this->user, this->ui->plainTextEdit->toPlainText(), this->ui->lineEdit->text(), "A message");
+    WikiUtil::MessageUser(this->user, this->ui->plainTextEdit->toPlainText(), this->ui->lineEdit->text(), this->ui->leSummary->text());
     this->close();
 }
 
 bool CustomMessage::VerifyMessage()
 {
-    if (this->ui->plainTextEdit->toPlainText().isEmpty() || this->ui->lineEdit->text().isEmpty())
+    if (this->ui->plainTextEdit->toPlainText().isEmpty() || this->ui->lineEdit->text().isEmpty() || this->ui->leSummary->text().isEmpty())
     {
         this->ui->pushButton->setEnabled(false);
         return false;
