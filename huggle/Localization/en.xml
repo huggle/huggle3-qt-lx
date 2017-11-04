@@ -190,6 +190,11 @@
   <string name="config-no-colon">You can&apos;t use : in the name of a queue</string>
   <string name="config-notify-update">Check for updates</string>
   <string name="config-notify-beta">Check for beta versions if available</string>
+  <string name="custommessage-title">Send a custom message to $1</string>
+  <string name="custommessage-summary">Edit summary (Huggle suffix will be automatically inserted)</string>
+  <string name="custommessage-subject">Title</string>
+  <string name="custommessage-menu">Send a custom message</string>
+  <string name="custommessage-send">Send message</string>
   <string name="delete-title">Delete $1</string>
   <string name="delete-reason">Reason:</string>
   <string name="delete-deletionlog">Deletion log:</string>
@@ -597,6 +602,7 @@
   <string name="shortcut-my-talk">My talk page</string>
   <string name="shortcut-raw">Revert edit and warn a user</string>
   <string name="shortcut-contrib">Show contribution for user who made the currently displayed edit</string>
+  <string name="shortcut-custom-msg">Opens a form to send a custom message to current user</string>
   <string name="shortcut-exit">Terminate Huggle in a usual way</string>
   <string name="shortcut-next">Go to the next edit</string>
   <string name="shortcut-suspicious">Mark edit as suspicious</string>

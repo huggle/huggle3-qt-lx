@@ -77,6 +77,7 @@ Configuration::Configuration()
     this->MakeShortcut("main-page-patrol-edit", "shortcut-page-patrol-edit");
     this->MakeShortcut("main-page-refresh", "shortcut-refresh", "F5");
     this->MakeShortcut("main-user-clear-tp", "shortcut-user-clear-talk");
+    this->MakeShortcut("main-user-custom-msg", "shortcut-custom-msg", "M");
     this->ResetMenuShortcuts();
 }
 
@@ -671,6 +672,8 @@ Shortcut::Shortcut(QString name, QString description)
         this->ID = HUGGLE_ACCEL_MAIN_REFRESH;
     else if (name == "main-user-clear-tp")
         this->ID = HUGGLE_ACCEL_MAIN_USER_CLEAR_TALK;
+    else if (name == "main-user-custom-msg")
+        this->ID = HUGGLE_ACCEL_MAIN_USER_CUSTOM_MSG;
     else if (name.startsWith("main-revert-and-warn-"))
     {
         if (name == "main-revert-and-warn-0")

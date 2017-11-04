@@ -82,6 +82,7 @@
 #include "ui_mainwindow.h"
 #include "requestprotect.hpp"
 #include "queuehelp.hpp"
+#include "custommessage.hpp"
 #ifdef DeleteForm
     #undef DeleteForm
 #endif
@@ -700,6 +701,9 @@ void MainWindow::ReloadShort(QString id)
         case HUGGLE_ACCEL_MAIN_REVERT:
             q = this->ui->actionRevert_currently_displayed_edit;
             tip = this->ui->actionRevert;
+            break;
+        case HUGGLE_ACCEL_MAIN_USER_CUSTOM_MSG:
+            q = this->ui->actionPost_a_custom_message;
             break;
         case HUGGLE_ACCEL_MAIN_USER_CONTRIBUTIONS:
             q = this->ui->actionUser_contributions;
@@ -1941,6 +1945,7 @@ void MainWindow::Localize()
     this->ui->actionTalk_page->setText(_l("main-user-talk"));
     this->ui->actionUser_page->setText(_l("main-user-page"));
     this->ui->menuManual_template->setTitle(_l("main-user-manualtemplate"));
+    this->ui->actionPost_a_custom_message->setText(_l("custommessage-menu"));
 
     // arrows icons should be mirrored for RTL languages
     if (Localizations::HuggleLocalizations->IsRTL())
@@ -3359,4 +3364,19 @@ void Huggle::MainWindow::on_actionShow_score_debug_triggered()
         debug_info = debug_info.mid(0, debug_info.size() - 2);
 
     HUGGLE_DEBUG1(debug_info);
+}
+
+void Huggle::MainWindow::on_actionPost_a_custom_message_triggered()
+{
+    if (!this->CheckExit() || !this->CheckEditableBrowserPage())
+        return;
+
+    if (this->CurrentEdit == nullptr)
+    {
+        Syslog::HuggleLogs->ErrorLog(_l("custommessage-none"));
+        return;
+    }
+
+    CustomMessage *cm = new CustomMessage(this->CurrentEdit->User, this);
+    cm->show();
 }

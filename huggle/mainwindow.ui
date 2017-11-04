@@ -81,7 +81,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>19</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -222,6 +222,7 @@
     <addaction name="separator"/>
     <addaction name="menuManual_template"/>
     <addaction name="actionEdit_user_talk"/>
+    <addaction name="actionPost_a_custom_message"/>
    </widget>
    <widget class="QMenu" name="menuQueue">
     <property name="title">
@@ -1131,6 +1132,11 @@
   <action name="actionShow_score_debug">
    <property name="text">
     <string>Show score debug</string>
+   </property>
+  </action>
+  <action name="actionPost_a_custom_message">
+   <property name="text">
+    <string>Post a custom message</string>
    </property>
   </action>
  </widget>
