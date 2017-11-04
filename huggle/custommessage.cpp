@@ -24,6 +24,10 @@ CustomMessage::CustomMessage(WikiUser *User, QWidget *parent) : HW("custommessag
     this->RestoreWindow();
     this->setAttribute(Qt::WidgetAttribute::WA_DeleteOnClose);
     this->SetWikiUser(User);
+    this->ui->pushButton_2->setText(_l("cancel"));
+    this->ui->pushButton->setText(_l("custommessage-send"));
+    this->ui->lSummary->setText(_l("custommessage-summary"));
+    this->ui->lSubject->setText(_l("custommessage-subject"));
 }
 
 CustomMessage::~CustomMessage()
@@ -39,9 +43,10 @@ void CustomMessage::SetWikiUser(WikiUser *User)
         throw new Huggle::NullPointerException("WikiUser *User", BOOST_CURRENT_FUNCTION);
     }
     this->user = new WikiUser(User);
-    this->setWindowTitle("Send a custom message to " + this->user->Username);
+    this->setWindowTitle(_l("custommessage-title", this->user->Username));
+    //! \todo Implement these 2 strings to project config
     this->ui->leSummary->setText("Delivering a custom message to " + this->user->Username);
-    this->ui->plainTextEdit->setPlainText(QString("Hello <<<USERNAME>>>,\n\nWrite your message here.\n\n--~~~~").replace("<<<USERNAME>>>", this->user->Username));
+    this->ui->plainTextEdit->setPlainText(QString("Hello $1,\n\nWrite your message here.\n\n--~~~~").replace("$1", this->user->Username));
 }
 
 void CustomMessage::on_pushButton_2_clicked()
@@ -62,7 +67,8 @@ bool CustomMessage::VerifyMessage()
     {
         this->ui->pushButton->setEnabled(false);
         return false;
-    }else{
+    } else
+    {
         this->ui->pushButton->setEnabled(true);
         return true;
     }

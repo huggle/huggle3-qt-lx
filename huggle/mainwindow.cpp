@@ -1942,6 +1942,7 @@ void MainWindow::Localize()
     this->ui->actionTalk_page->setText(_l("main-user-talk"));
     this->ui->actionUser_page->setText(_l("main-user-page"));
     this->ui->menuManual_template->setTitle(_l("main-user-manualtemplate"));
+    this->ui->actionPost_a_custom_message->setText(_l("custommessage-menu"));
 
     // arrows icons should be mirrored for RTL languages
     if (Localizations::HuggleLocalizations->IsRTL())
