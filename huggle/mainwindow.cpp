@@ -702,6 +702,9 @@ void MainWindow::ReloadShort(QString id)
             q = this->ui->actionRevert_currently_displayed_edit;
             tip = this->ui->actionRevert;
             break;
+        case HUGGLE_ACCEL_MAIN_USER_CUSTOM_MSG:
+            q = this->ui->actionPost_a_custom_message;
+            break;
         case HUGGLE_ACCEL_MAIN_USER_CONTRIBUTIONS:
             q = this->ui->actionUser_contributions;
             break;
