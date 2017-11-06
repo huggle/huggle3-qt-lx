@@ -184,6 +184,10 @@
   <string name="config-no-colon">대기열의 이름에서 : 사용할 수 없습니다</string>
   <string name="config-notify-update">업데이트 확인</string>
   <string name="config-notify-beta">사용할 수 있으면 베타 버전 확인</string>
+  <string name="custommessage-title">사용자 지정 메시지를 $1에 보내기</string>
+  <string name="custommessage-subject">제목</string>
+  <string name="custommessage-menu">사용자 지정 메시지 보내기</string>
+  <string name="custommessage-send">메시지 보내기</string>
   <string name="delete-title">$1 삭제</string>
   <string name="delete-reason">이유:</string>
   <string name="delete-deletionlog">삭제 기록:</string>

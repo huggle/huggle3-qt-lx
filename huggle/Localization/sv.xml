@@ -154,6 +154,8 @@
   <string name="config-no-colon" fuzzy="true">Du kan inte använda : i namn av kön</string>
   <string name="config-notify-update">Sök efter uppdateringar</string>
   <string name="config-notify-beta">Kontrollera om en beta-version finns tillgänglig</string>
+  <string name="custommessage-subject">Titel</string>
+  <string name="custommessage-send">Skicka meddelande</string>
   <string name="delete-title">Radera $1</string>
   <string name="delete-reason">Anledning:</string>
   <string name="delete-deletionlog">Raderingslogg:</string>

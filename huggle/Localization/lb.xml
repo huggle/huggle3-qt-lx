@@ -122,6 +122,8 @@
   <string name="config-logbrowsetitle">Plaz vum Log-Fichier</string>
   <string name="config-notify-update">No Aktualisatioune sichen</string>
   <string name="config-notify-beta">Nokucken ob Beta-Versiounen disponibel sinn</string>
+  <string name="custommessage-subject">Titel</string>
+  <string name="custommessage-send">Message schécken</string>
   <string name="delete-title">$1 läschen</string>
   <string name="delete-reason">Grond:</string>
   <string name="delete-deletionlog">Logbuch vum Läschen:</string>

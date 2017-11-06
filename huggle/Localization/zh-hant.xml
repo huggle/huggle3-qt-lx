@@ -190,6 +190,11 @@
   <string name="config-no-colon">您不能在佇列名稱裡使用「:」</string>
   <string name="config-notify-update">檢查更新</string>
   <string name="config-notify-beta">檢查是否有測試版本</string>
+  <string name="custommessage-title">寄送自定義訊息給$1</string>
+  <string name="custommessage-summary">編輯摘要（Huggle 字尾將會自動插入）</string>
+  <string name="custommessage-subject">標題</string>
+  <string name="custommessage-menu">寄送自定義訊息</string>
+  <string name="custommessage-send">寄送訊息</string>
   <string name="delete-title">刪除 $1</string>
   <string name="delete-reason">原因：</string>
   <string name="delete-deletionlog">刪除日誌：</string>
@@ -597,6 +602,7 @@
   <string name="shortcut-my-talk">我的對話頁面</string>
   <string name="shortcut-raw">還原編輯並警告使用者</string>
   <string name="shortcut-contrib">顯示做出目前所顯示編輯之用戶的貢獻</string>
+  <string name="shortcut-custom-msg">開啟一個表單來寄送自定義訊息給目前的使用者</string>
   <string name="shortcut-exit">以一般方式終止 Huggle</string>
   <string name="shortcut-next">前往下一個編輯</string>
   <string name="shortcut-suspicious">標記編輯為可疑</string>

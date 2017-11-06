@@ -190,6 +190,11 @@
   <string name="config-no-colon">Vous ne pouvez pas utiliser « : » dans le nom d’une file d’attente</string>
   <string name="config-notify-update">Vérifier les mises à jour</string>
   <string name="config-notify-beta">Vérifier si des versions bêta sont disponibles</string>
+  <string name="custommessage-title">Écrire un message à $1</string>
+  <string name="custommessage-summary">Résumé d\'édit (le préfixe \"Huggle\" sera ajouté)</string>
+  <string name="custommessage-subject">Titre</string>
+  <string name="custommessage-menu">Écrire un message</string>
+  <string name="custommessage-send">Envoyer</string>
   <string name="delete-title">Supprimer $1</string>
   <string name="delete-reason">Motif :</string>
   <string name="delete-deletionlog">Journal des suppressions :</string>
@@ -597,6 +602,7 @@
   <string name="shortcut-my-talk">Ma page de discussion</string>
   <string name="shortcut-raw">Annuler la modification et avertir un utilisateur</string>
   <string name="shortcut-contrib">Afficher la contribution de l’utilisateur qui a fait la modification actuellement affichée</string>
+  <string name="shortcut-custom-msg">Ouvre un formulaire permettant de rédiger un message</string>
   <string name="shortcut-exit">Mettre fin à Huggle de la manière habituelle</string>
   <string name="shortcut-next">Aller à la modification suivante</string>
   <string name="shortcut-suspicious">Marquer la modification comme suspecte</string>

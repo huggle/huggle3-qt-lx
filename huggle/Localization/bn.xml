@@ -186,6 +186,8 @@
   <string name="config-no-colon">আপনি ব্যবহার করতে পারবেন না: সারির মধ্যে নাম</string>
   <string name="config-notify-update">হালনাগাদের জন্য পরীক্ষা করুন</string>
   <string name="config-notify-beta">উপলব্ধ হলে বেটা সংস্করণের জন্য পরীক্ষা করুন</string>
+  <string name="custommessage-subject">শিরোনাম</string>
+  <string name="custommessage-send">বার্তা পাঠান</string>
   <string name="delete-title">$1 অপসারণ করুন</string>
   <string name="delete-reason">কারণ:</string>
   <string name="delete-deletionlog">অপসারণ লগ:</string>

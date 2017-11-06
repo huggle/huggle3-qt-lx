@@ -108,6 +108,7 @@
   <string name="config-blocktimereg">{{Identical|Registered user}}</string>
   <string name="config-notify-update">Used as label for the checkbox.\n{{Identical|Check for update}}</string>
   <string name="config-notify-beta">Used as label for the checkbox.</string>
+  <string name="custommessage-subject">{{Identical|Title}}</string>
   <string name="delete-title">{{Identical|Delete}}</string>
   <string name="delete-reason">{{Identical|Reason}}</string>
   <string name="delete-deletionlog">{{Identical|Deletion log}}</string>

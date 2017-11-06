@@ -185,6 +185,11 @@
   <string name="config-no-colon">No puedes utilizar : en el nombre de una cola</string>
   <string name="config-notify-update">Buscar actualizaciones</string>
   <string name="config-notify-beta">Buscar versiones beta si las hay</string>
+  <string name="custommessage-title">Envie un mensaje personalizado de $1</string>
+  <string name="custommessage-summary">Editar al resumen ( El Suffix Huggle sera insertado automaticamente)</string>
+  <string name="custommessage-subject">Titulo</string>
+  <string name="custommessage-menu">Envie un mensaje personalizado</string>
+  <string name="custommessage-send">Enviar mensaje</string>
   <string name="delete-title">Borrar $1</string>
   <string name="delete-reason">Razón:</string>
   <string name="delete-deletionlog">Registro de borrados:</string>
@@ -588,6 +593,7 @@
   <string name="shortcut-my-talk">Mi página de discusión</string>
   <string name="shortcut-raw">Revertir la edición y advertir al usuario</string>
   <string name="shortcut-contrib">Mostrar la contribución para el usuario que hizo el que se muestra actualmente editar</string>
+  <string name="shortcut-custom-msg">Abre una forma para enviar un mensaje personalizado al usuario presente</string>
   <string name="shortcut-exit">Terminar Huggle en una forma habitual</string>
   <string name="shortcut-next">Ir a la próxima edición</string>
   <string name="shortcut-suspicious">Marcar edición como sospechosa</string>

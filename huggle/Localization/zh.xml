@@ -190,6 +190,11 @@
   <string name="config-no-colon">您不能在队列名中使用“:”</string>
   <string name="config-notify-update">检查更新</string>
   <string name="config-notify-beta">如果可用，检查测试版本</string>
+  <string name="custommessage-title">发送自定义消息至$1</string>
+  <string name="custommessage-summary">编辑摘要（Huggle后缀将自动插入）</string>
+  <string name="custommessage-subject">标题</string>
+  <string name="custommessage-menu">发送自定义消息</string>
+  <string name="custommessage-send">发送消息</string>
   <string name="delete-title">删除$1</string>
   <string name="delete-reason">原因：</string>
   <string name="delete-deletionlog">删除日志：</string>
@@ -597,6 +602,7 @@
   <string name="shortcut-my-talk">我的讨论页</string>
   <string name="shortcut-raw">回退编辑并警告用户</string>
   <string name="shortcut-contrib">显示做出当前显示编辑的用户的贡献</string>
+  <string name="shortcut-custom-msg">打开表单发送自定义消息至当前用户</string>
   <string name="shortcut-exit">使用通常方式终止Huggle</string>
   <string name="shortcut-next">转到下一次编辑</string>
   <string name="shortcut-suspicious">标记编辑为可疑</string>

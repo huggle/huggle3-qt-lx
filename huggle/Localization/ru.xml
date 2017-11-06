@@ -47,7 +47,7 @@
   <string name="link">Ссылка</string>
   <string name="reason">Причина</string>
   <string name="diffid">DiffID</string>
-  <string name="whitelisted" fuzzy="true">$1 с баллами $2 на $3 был добавлен в белый список</string>
+  <string name="whitelisted">$1 с баллами $2 на $3 был добавлен в белый список</string>
   <string name="expiry-time">Время истечения</string>
   <string name="duration">Срок</string>
   <string name="enable">Включить</string>

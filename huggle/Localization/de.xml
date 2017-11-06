@@ -190,6 +190,11 @@
   <string name="config-no-colon">Du kannst keinen Doppelpunkt im Namen einer Warteschlange benutzen</string>
   <string name="config-notify-update">Nach Aktualisierungen suchen</string>
   <string name="config-notify-beta">Nach Beta-Versionen suchen, falls verfügbar.</string>
+  <string name="custommessage-title">Eine benutzerdefinierte Nachricht an $1 senden</string>
+  <string name="custommessage-summary">Bearbeitungszusammenfassung (der Huggle-Zusatz wird automatisch eingefügt)</string>
+  <string name="custommessage-subject">Titel</string>
+  <string name="custommessage-menu">Eine benutzerdefinierte Nachricht senden</string>
+  <string name="custommessage-send">Nachricht senden</string>
   <string name="delete-title">$1 löschen</string>
   <string name="delete-reason">Grund:</string>
   <string name="delete-deletionlog">Löschlogbuch:</string>
@@ -597,6 +602,7 @@
   <string name="shortcut-my-talk">Meine Diskussionsseite</string>
   <string name="shortcut-raw">Bearbeitung zurücksetzen und einen Benutzer warnen</string>
   <string name="shortcut-contrib">Beitrag für den Benutzer, der die aktuell angezeigte Bearbeitung durchgeführt hat.</string>
+  <string name="shortcut-custom-msg">Öffnet ein Formular zum Versenden einer benutzerdefinierten Nachricht an den aktuellen Benutzer</string>
   <string name="shortcut-exit">Huggle auf normale Weise beenden</string>
   <string name="shortcut-next">Gehe zur nächsten Bearbeitung</string>
   <string name="shortcut-suspicious">Bearbeitung als verdächtig markieren</string>
