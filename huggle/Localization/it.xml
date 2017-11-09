@@ -184,6 +184,9 @@
   <string name="config-no-colon">Non puoi usare : nel nome di una coda</string>
   <string name="config-notify-update">Controlla aggiornamenti</string>
   <string name="config-notify-beta">Controlla la presenza di versioni beta se disponibili</string>
+  <string name="custommessage-subject">Titolo</string>
+  <string name="custommessage-menu">Invia un messaggio personalizzato</string>
+  <string name="custommessage-send">Spedisci messaggio</string>
   <string name="delete-title">Cancella $1</string>
   <string name="delete-reason">Motivo:</string>
   <string name="delete-deletionlog">Registro delle cancellazioni:</string>

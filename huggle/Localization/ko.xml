@@ -185,6 +185,7 @@
   <string name="config-notify-update">업데이트 확인</string>
   <string name="config-notify-beta">사용할 수 있으면 베타 버전 확인</string>
   <string name="custommessage-title">사용자 지정 메시지를 $1에 보내기</string>
+  <string name="custommessage-summary">편집 요약(Huggle 접미사가 자동으로 추가됩니다)</string>
   <string name="custommessage-subject">제목</string>
   <string name="custommessage-menu">사용자 지정 메시지 보내기</string>
   <string name="custommessage-send">메시지 보내기</string>
@@ -579,6 +580,7 @@
   <string name="shortcut-report-user">사용자 보고</string>
   <string name="shortcut-my-talk">내 토론 문서</string>
   <string name="shortcut-raw">편집을 되돌리고 사용자를 경고</string>
+  <string name="shortcut-custom-msg">사용자 지정 메시지를 현재 사용자로 보내는 양식을 엽니다</string>
   <string name="shortcut-exit">일반적인 방식으로 Huggle 끝내기</string>
   <string name="shortcut-next">다음 편집으로 가기</string>
   <string name="shortcut-suspicious">수상한 편집으로 표시</string>
