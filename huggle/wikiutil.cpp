@@ -12,6 +12,7 @@
 #include "apiquery.hpp"
 #include "apiqueryresult.hpp"
 #include "configuration.hpp"
+#include "hooks.hpp"
 #include "exception.hpp"
 #include "editquery.hpp"
 #include "mediawiki.hpp"
@@ -79,6 +80,11 @@ Message *WikiUtil::MessageUser(WikiUser *User, QString Text, QString Title, QStr
                               Query *Dependency, bool NoSuffix, bool SectionKeep, bool Autoremove,
                               QString BaseTimestamp, bool CreateOnly, bool FreshOnly)
 {
+    // Let extensions override this function
+    Message *temp = Hooks::MessageUser(User, Text, Title, Summary, InsertSection, Dependency, NoSuffix, SectionKeep, Autoremove, BaseTimestamp, CreateOnly, FreshOnly);
+    if (temp != nullptr)
+        return temp;
+
     if (User == nullptr)
     {
         Huggle::Syslog::HuggleLogs->Log("Cowardly refusing to message NULL user");
