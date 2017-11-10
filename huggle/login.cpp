@@ -185,7 +185,10 @@ void Login::Localize()
     this->ui->checkBox_2->setText(_l("login-remember-password"));
     this->ui->checkBox_2->setToolTip(_l("login-remember-password-tooltip"));
     this->ui->labelIntro->setText(_l("login-intro"));
-    this->ui->pushButton_2->setText(_l("projects") + " >>");
+    if (this->ui->tableWidget->isVisible())
+        this->ui->pushButton_2->setText(_l("projects") + " >>");
+    else
+        this->ui->pushButton_2->setText(_l("projects") + " <<");
     this->ui->label->setText("<a href='dummy'>" + _l("login-proxy") + "</a>");
     this->ui->labelTranslate->setText(QString("<html><head/><body><p><a href=\"http://meta.wikimedia.org/wiki/Huggle/Localization\"><span style=\""\
                                               " text-decoration: underline; color:#0000ff;\">%1</span></a></p></body></html>").arg(_l("login-translate")));
