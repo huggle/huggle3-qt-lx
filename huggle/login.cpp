@@ -185,7 +185,7 @@ void Login::Localize()
     this->ui->checkBox_2->setText(_l("login-remember-password"));
     this->ui->checkBox_2->setToolTip(_l("login-remember-password-tooltip"));
     this->ui->labelIntro->setText(_l("login-intro"));
-    if (this->ui->tableWidget->isVisible())
+    if (!this->ui->tableWidget->isVisible())
         this->ui->pushButton_2->setText(_l("projects") + " >>");
     else
         this->ui->pushButton_2->setText(_l("projects") + " <<");

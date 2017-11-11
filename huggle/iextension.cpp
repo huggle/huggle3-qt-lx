@@ -35,13 +35,18 @@ QString iExtension::GetExtensionFullPath()
 
 void iExtension::Init()
 {
-    Huggle::Core::HuggleCore = (Huggle::Core*) this->HuggleCore;
-    Huggle::QueryPool::HugglePool = Huggle::Core::HuggleCore->HGQP;
+    if (this->RequestCore())
+    {
+        Huggle::Core::HuggleCore = (Huggle::Core*) this->HuggleCore;
+        Huggle::QueryPool::HugglePool = Huggle::Core::HuggleCore->HGQP;
+        Huggle::Syslog::HuggleLogs = Huggle::Core::HuggleCore->HuggleSyslog;
+        Huggle::GC::gc = Huggle::Core::HuggleCore->gc;
+    }
     Huggle::Localizations::HuggleLocalizations = (Huggle::Localizations*) this->Localization;
-    Huggle::Syslog::HuggleLogs = Huggle::Core::HuggleCore->HuggleSyslog;
-    Huggle::GC::gc = Huggle::Core::HuggleCore->gc;
-    Huggle::Query::NetworkManager = this->Networking;
-    Huggle::Configuration::HuggleConfiguration = (Huggle::Configuration*) this->Configuration;
+    if (this->RequestNetwork())
+        Huggle::Query::NetworkManager = this->Networking;
+    if (this->RequestConfiguration())
+        Huggle::Configuration::HuggleConfiguration = (Huggle::Configuration*) this->Configuration;
 }
 
 QString iExtension::GetConfig(QString key, QString dv)
