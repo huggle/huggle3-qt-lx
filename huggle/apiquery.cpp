@@ -407,6 +407,7 @@ void ApiQuery::SetAction(const Action action)
             this->ActionPart = "clearhasmsg";
             this->UsingPOST = true;
             return;
+        ///! \todo ActionQuery still used ?
         case ActionQuery:
             this->ActionPart = "query";
             this->IsContinuous = true;
@@ -414,6 +415,10 @@ void ApiQuery::SetAction(const Action action)
             return;
         case ActionLogin:
             this->ActionPart = "login";
+            this->EnforceLogin = false;
+            return;
+        case ClientLogin:
+            this->ActionPart = "clientlogin";
             this->EnforceLogin = false;
             return;
         case ActionLogout:

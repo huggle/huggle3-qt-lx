@@ -31,6 +31,7 @@ namespace Huggle
         ActionClearHasMsg,
         ActionQuery,
         ActionLogin,
+        ClientLogin,
         ActionLogout,
         //ActionTokens,
         ActionPurge,
