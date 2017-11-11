@@ -51,6 +51,7 @@ Message::Message(WikiUser *target, QString MessageText, QString MessageSummary)
 Message::~Message()
 {
     delete this->User;
+    this->User = nullptr;
 }
 
 void Message::Send()
