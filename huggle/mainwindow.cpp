@@ -2222,6 +2222,7 @@ void MainWindow::Welcome(QString message)
     }
     // write something to talk page so that we don't welcome this user twice
     this->CurrentEdit->User->TalkPage_SetContents(message);
+    message.replace("$1", this->CurrentEdit->User->Username);
     WikiUtil::MessageUser(this->CurrentEdit->User, message, conf->WelcomeTitle, conf->WelcomeSummary, false, nullptr,
                           false, false, true, this->CurrentEdit->TPRevBaseTime, create_only);
 }
