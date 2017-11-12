@@ -417,7 +417,7 @@ void ApiQuery::SetAction(const Action action)
             this->ActionPart = "login";
             this->EnforceLogin = false;
             return;
-        case ClientLogin:
+        case ActionClientLogin:
             this->ActionPart = "clientlogin";
             this->EnforceLogin = false;
             return;

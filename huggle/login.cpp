@@ -555,7 +555,7 @@ void Login::PerformLoginPart2(WikiSite *site)
     this->Statuses[site] = WaitingForToken;
     this->LoginQueries.remove(site);
     query->DecRef();
-    query = new ApiQuery(ClientLogin, site);
+    query = new ApiQuery(ActionClientLogin, site);
     this->LoginQueries.insert(site, query);
     //query->HiddenQuery = true;
     query->IncRef();
@@ -1286,12 +1286,14 @@ bool Login::ProcessOutput(WikiSite *site)
         if (true){
             // 2FA is requierd (TOTP code needed)
             QString totp = QInputDialog::getText(this, "Two factor authentification", "Please enter the 2FA code from your device:");
-            query = new ApiQuery(ClientLogin, site);
+            query = new ApiQuery(ActionClientLogin, site);
             //query->HiddenQuery = true;
             query->IncRef();
             query->Parameters = "username=" + QUrl::toPercentEncoding(hcfg->SystemConfig_BotLogin)
                         + "&password=" + QUrl::toPercentEncoding(hcfg->TemporaryConfig_Password)
-                        + "&OATHToken=" + totp + "&loginreturnurl=http://example.com/&rememberMe=1&logintoken=" + QUrl::toPercentEncoding(this->Tokens[site]);
+                        + "&OATHToken=" + totp +
+                        + "&logintoken=" + QUrl::toPercentEncoding(this->Tokens[site])
+                        + "&logincontinue=1&rememberMe=1";
             query->UsingPOST = true;
             query->Process();
             ApiQueryResult *result = query->GetApiQueryResult();
