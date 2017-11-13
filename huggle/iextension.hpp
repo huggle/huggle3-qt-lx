@@ -125,6 +125,25 @@ namespace Huggle
              * \param edit is a pointer to edit in question
              */
             virtual void Hook_EditPreProcess(void *edit) {}
+            /*!
+             * \brief Hook_MessageUser is called when MessageUser function is called, if returns any value, the original function is aborted, so you if you want
+             *                         to replace the original function call, return false here
+             * \param User             Pointer to target user
+             * \param Text             Text of message
+             * \param Title            Title
+             * \param Summary          Edit summary of msg
+             * \param InsertSection    If new section should be created or appended to existing last section
+             * \param Dependency       Dependency query, if this is not NULL, message should only be delivered when it's successfuly finished
+             * \param NoSuffix         Huggle suffix ignored
+             * \param SectionKeep      Keep in the existing section
+             * \param Autoremove
+             * \param BaseTimestamp
+             * \param CreateOnly
+             * \param FreshOnly
+             * \return                 If not nullptr, the original function call will continue
+             */
+            virtual void* Hook_MessageUser(void *User, QString Text, QString Title, QString Summary, bool InsertSection = true, void *Dependency = nullptr, bool NoSuffix = false, bool SectionKeep = false,
+                                           bool Autoremove = true, QString BaseTimestamp = "", bool CreateOnly = false, bool FreshOnly = false) { return nullptr; }
             virtual void Hook_GoodEdit(void *edit) {}
             /*!
              * \brief Hook_RevertPreflight is called before preflight check is executed and if

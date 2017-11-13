@@ -12,6 +12,7 @@
 #include "core.hpp"
 #include "configuration.hpp"
 #include "mainwindow.hpp"
+#include "message.hpp"
 #include "vandalnw.hpp"
 #include "iextension.hpp"
 #include "wikiuser.hpp"
@@ -19,7 +20,6 @@
 #include "syslog.hpp"
 #include "exception.hpp"
 #include "wikipage.hpp"
-
 
 bool Huggle::Hooks::ContribBoxBeforeQuery(WikiUser *user, UserinfoForm *user_info)
 {
@@ -263,5 +263,20 @@ bool Huggle::Hooks::MainWindow_ReloadShortcut(Huggle::Shortcut *shortcut)
         }
     }
     return result;
+}
+
+Huggle::Message *Huggle::Hooks::MessageUser(Huggle::WikiUser *User, QString Text, QString Title, QString Summary, bool InsertSection, Query *Dependency, bool NoSuffix,
+                                bool SectionKeep, bool Autoremove, QString BaseTimestamp, bool CreateOnly, bool FreshOnly)
+{
+    foreach(Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
+    {
+        if (e->IsWorking())
+        {
+            void *result = e->Hook_MessageUser((void*)User, Text, Title, Summary, InsertSection, (void*)Dependency, NoSuffix, SectionKeep, Autoremove, BaseTimestamp, CreateOnly, FreshOnly);
+            if (result != nullptr)
+                return (Huggle::Message*)result;
+        }
+    }
+    return nullptr;
 }
 
