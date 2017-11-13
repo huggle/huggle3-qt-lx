@@ -394,7 +394,7 @@ bool UserConfiguration::ParseUserConfig(QString config, ProjectConfiguration *Pr
         if (hash != this->ShortcutHash)
         {
             // Suppress this warning in case there is no record yet, this is first run of Huggle by new user
-            if (this->ShortcutHash != "null")
+            if (!this->ShortcutHash.isEmpty() && this->ShortcutHash != "null")
                 Generic::MessageBox(_l("warning"), _l("config-reset-menu"), MessageBoxStyleWarning, true);
             hcfg->ResetMenuShortcuts();
             this->ShortcutHash = hash;
