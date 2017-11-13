@@ -419,6 +419,15 @@ bool UserConfiguration::ParseUserConfig(QString config, ProjectConfiguration *Pr
             hcfg->Shortcuts[id].QAccel = QKeySequence(parts[1]).toString();
         }
     }
+
+    // Sanitize
+    if (this->DefaultSummary.isEmpty())
+        this->DefaultSummary = ProjectConfig->DefaultSummary;
+    if (this->RollbackSummary.isEmpty())
+        this->RollbackSummary = ProjectConfig->RollbackSummary;
+    if (this->RollbackSummaryUnknownTarget.isEmpty())
+        this->RollbackSummaryUnknownTarget = ProjectConfig->RollbackSummaryUnknownTarget;
+
     return true;
 }
 
