@@ -16,7 +16,7 @@ enable-all: true
 # Minimum required version, users with older Huggle will not be allowed to login
 min-version: 3.1.0
 # If this is set to true, your username must be listed on Approval Page which is defined
-# with option "userlist"
+# with option "userlist" in section "Other"
 approval: false
 # User must be admin in order to use huggle (member of sysop group)
 require-admin: false
@@ -36,11 +36,11 @@ read-only: true
 
 ##############################################################################
 # Reporting
-# AIV and similar pages
+# Definition of AIV and similar pages that vandals get reported to
 ##############################################################################
 
 # Requests for page protection, set protection-requests to true if you want this feature to work on this wiki
-
+protection-requests: false
 # Template to use when requesting a page protection, $title is substed to page name, $protection to requested protection level and $reason is the reason for protection
 rfpp-template: > 
     ==== {{la|$title}} ====\n'''$protection:''' $reason ~~~~
@@ -58,8 +58,6 @@ protection-request-page: "Wikipedia:Requests for page protection"
 #protection-request-reason: "Persistent vandalism."
 # Summary RFPP
 #protection-request-summary: 'Requesting $1 of [[$2]]'
-# Set this to true to enable this feature
-protection-requests: false
 
 # User reporting
 
@@ -177,8 +175,8 @@ score-tags:
     Possible vandalism: 800
 
 ##############################################################################
-# Reverting
-# Configuration of reverting
+# Reverting and templates
+# Configuration of reverting and various templates
 ##############################################################################
 # List of tags supported by a wiki, please keep in mind that "tag" is a bit historical term, they are in fact templates
 tags: [advert, autobiography, BLP PROD, cleanup, coi, confusing, context, copyedit, disputed, essay-like, expand, expert, hoax, in-universe, internallinks, introrewrite, nofootnotes, non-free, notability, 'notenglish|INSERT LANGUAGE NAME', npov, original research, orphan, plot, primarysources, prose, refimprove, sections, tone, tooshort, totally-disputed, uncategorized, underconstruction, unencyclopedic, unreferenced, update, wikify]
@@ -191,15 +189,22 @@ tags-info:
     coi: info='Conflict of interest'
     context: info='Page is missing context'
 
+# User needs to confirm they want to revert user who is on whitelist
 confirm-ignored: true
+# User must confirm revert of multiple edits
 confirm-multiple: false
+# To be implemented (probably revert of page creator?)
 confirm-page: true
-confirm-range: true
+# To be implemented (probably revert that leads to same version of text)
 confirm-same: true
+# User must confirm if they want to revert themselves
 confirm-self-revert: true
-confirm-warned: true
+# To be implemented (probably revert of user who is warned? makes no sense :))
+confirm-warned: false
 
+# Default summary for software rollback, eg. using manual revert instead of rollback functionality provided my MW
 manual-revert-summary: 'Reverted edits by [[Special:Contributions/$1|$1]] to last revision by $2'
+# Not currently in use - might be implemented in future
 multiple-revert-summary-parts: "Reverted,edit by,edits by,and,other users,to last revision by,to an older version by"
 
 # List of warning types, these will be present in dropdown menus in Huggle, allowing to clarify reasons for revert.
@@ -210,6 +215,9 @@ warning-types:
 #    test: Editing tests
 #    delete: Removal of content
 
+# Default warning template to use, it must be one of these defined in "warning-types".
+default-template: warning
+
 # Summaries associated with warning types, each warning type should have one
 revert-summaries:
     warning: 'Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]): nonconstructive edits'
@@ -217,11 +225,18 @@ revert-summaries:
 #    spam: "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]): violates [[WP:EL|external links]] policy"
 #    test: "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]): [[WP:SANDBOX|editing tests]]"
 
-rollback-summary: "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2"
+# Not currently in use as there is too many default summaries :) we need to figure out which are really not needed and get rid of them
+# rollback-summary: "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2"
+
+# This is actual default summary that is used for rollback in case reason is not specified
 default-summary: "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]]) to last revision by $2"
+# To be implemented - rollback summary used in case that target revision is unknown
 rollback-summary-unknown: "Reverted edits by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])"
+# To be implemented - for revert of current revision only
 single-revert-summary: "Undid edit by [[Special:Contributions/$1|$1]] ([[User talk:$1|talk]])"
+# Used when undoing own edit
 undo-summary: "Undoing own edit"
+# Edit summary for warning deliveries, $1 is name of page related to warning
 warn-summary: "Message re. [[$1]]"
 warn-summary-2: "Level 2 warning re. [[$1]]"
 warn-summary-3: "Level 3 warning re. [[$1]]"
@@ -237,10 +252,13 @@ warning-template-tags:
     - '3;<!-- Template:uw-vandalism3 -->'
     - '4;<!-- Template:uw-vandalism4 -->'
 
+# Whether this project supports "instant warnings" these are templates that trigger level 4 instantly, used for obvious vandals
 warning-im: true
+# How many warning levels to use. Currently it's only supported to use 3 or 4, but plans are to make this completely dynamic.
 warning-mode: 4
-warning-month-headings: true
-warning-series: [warning,spam,attack,test,delete,npov,error,bio,unsor]
+
+# Definitions of warning templates - these are messages that are delivered to user who is about to receive a warning.
+# $1 = name of page, $2 = URL to diff
 
 warning1: '{{subst:huggle/warn-1|1=$1|2=$2}}'
 warning2: '{{subst:huggle/warn-2|1=$1|2=$2}}'
@@ -266,35 +284,43 @@ warning4im: '{{subst:huggle/warn-4im|1=$1|2=$2}}'
 #test4: '{{subst:huggle/warn-4|1=$1|2=$2}}'
 #test4im: '{{subst:huggle/warn-4im|1=$1|2=$2}}'
 
-welcomes-user: true
+# Welcoming of users
+# All welcome templates are expected not to contain four tildes, signatures are appended by Huggle
 
+# List of templates for dropdown menu
+# $1 will substitute to name of target user (since Huggle 3.3.3)
 welcome-messages:
     "Welcome with menu": '{{subst:WelcomeMenu}}'
     "Welcome personal": '{{subst:Huggle/Welcome-pers}}'
     "Welcome vandal :)": '{{subst:Huggle/welcomevandal}}'
 
+# Default welcome message for registered users
 welcome: '{{subst:welcome}}'
+# Welcome message sent to IP users
 welcome-anon: '{{subst:welcome-anon}}'
+# Edit summary
 welcome-summary: 'Welcoming user'
 
 ##############################################################################
 # Administrator functions
 ##############################################################################
-admin: true
 
-block: true
+# Expiry options that will be displayed in block form
 block-expiry-options: [15 minutes,3 hours,12 hours,24 hours,31 hours,48 hours,55 hours,72 hours,1 week,2 weeks,1 month,3 months,6 months,1 year,indefinite]
+# Default expiry time
 blocktime: indefinite
+# Default expiry time for anonymous user
 blocktime-anon: "24 hours"
+# Default message to deliver to user who is getting a block
 block-message: '{{subst:huggle/block|1=$1|2=$2}}'
-block-message-default: true
-block-message-indef: '{{subst:huggle/block-indef|1=$1}}'
-block-prompt: true
+# To be implemented. Default block message for user who is getting indefinite block
+# block-message-indef: '{{subst:huggle/block-indef|1=$1}}'
+# Default reason for block
 block-reason: "[[Wikipedia:Vandalism|Vandalism]]"
+# Edit summary used when editing user talk page
 block-summary: "Notification: Blocked"
 
-delete: true
-protect: true
+# Default reason for page protection
 protection-reason: 'Excessive [[Wikipedia:Vandalism|vandalism]]'
 
 ##############################################################################
@@ -315,10 +341,9 @@ months:
   - November
   - December
 
-# these are needed especially for wikis where months in signatures are not same as these in months
-# every line is a YAML array for 1 month, the alternative names are separated by a colon, for example:
+# These are needed especially for wikis where months in signatures are not same as these in months
+# every line is a YAML array for 1 month, for example:
 # - ['January','Jan','J.','1.']
-# every line needs to be terminated with comma, except for last one, which shouldn't be
 alternative-months:
   - [1.,Jan]
   - [2.,Feb]
@@ -468,14 +493,14 @@ ignore-patterns:
 # Other
 ##############################################################################
 
+# Summary used when updating user config page
 config-summary: 'Updating configuration'
-diff-font-size: 8
+# These items are visible in "Go" menu in Huggle, first one is name of page on wiki, second is name as seen in Huggle menu
 go:
     "Project:Huggle": "Huggle main page"
+# Whether patrolling of changes is enabled on the project
 patrolling-enabled: true
-show-new-edits: true
-show-queue: true
-show-tool-tips: true
+# This suffix is appended to every single edit message made by huggle
 summary: '(HG)'
 startup-message-location: "Project:Huggle/Message"
 userlist: "Wikipedia:Huggle/Users"

@@ -47,6 +47,8 @@ namespace Huggle
             //! Writes a wikipage name that is encoded using percent encoding
             QString EncodedName();
             QString Contents;
+            //! Content model of a page, if known
+            QString ContentModel;
             //! Name of page
             QString PageName;
             QStringList GetCategories();
