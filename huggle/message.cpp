@@ -238,6 +238,9 @@ void Message::Finish()
                         MainWindow::HuggleMain->_History->Prepend(item);
                     }
 #endif
+                    // write something to talk page in case it was empty
+                    if (this->User->TalkPage_GetContents().isEmpty())
+                        this->User->TalkPage_SetContents(this->Text);
                 }
             }
         }
