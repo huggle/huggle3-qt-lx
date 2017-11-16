@@ -537,7 +537,7 @@
   <string name="score-only-whole-word">Coincidir solo con palabras completas</string>
   <string name="score-take-any-word">Coincide con cualquier palabra que contenga esta cadena</string>
   <string name="ssl-is-not-supported">Has solicitado el uso de SSL, pero $1 no lo admite.</string>
-  <string name="ssl-required" fuzzy="true">Webserver de $1 requiere SSL para ser habilitado. Por favor activar SSL e inténtelo de nuevo. Si no se puede habilitar el SSL (opción está en gris) puede que necesite instalar open ssl bibliotecas para su sistema.</string>
+  <string name="ssl-required">El servidor web de $1 necesita SSL para activarse. Activa SSL e inténtalo de nuevo. Si no es posible activar SSL (la opción está desactivada), es posible que necesites instalar las bibliotecas de OpenSSL en el sistema.</string>
   <string name="uaa-not-supported">UAA no está disponible</string>
   <string name="uaa-not-supported-text">Esta función no está disponible en tu proyecto.</string>
   <string name="uaa-reporting">Denunciando a $1 en UAA</string>
