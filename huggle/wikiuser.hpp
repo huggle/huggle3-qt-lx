@@ -25,6 +25,7 @@ class QMutex;
 namespace Huggle
 {
     class WikiSite;
+    class WikiPage;
 
     //! User
     class HUGGLE_EX WikiUser : public MediaWikiObject
@@ -101,6 +102,8 @@ namespace Huggle
             bool Resync();
             //! Return a link to talk page of this user (like User talk:Jimbo)
             QString GetTalk();
+            //! Returns a WikiPage object for talk page of this user, unlike "GetTalk()" which only returns a name of talk page
+            WikiPage *GetTalkPage();
             bool TalkPage_WasRetrieved();
             bool TalkPage_ContainsSharedIPTemplate();
             //! Returns true if this user is wl
@@ -165,6 +168,7 @@ namespace Huggle
             //! This is a date when we retrieved this talk page
             QDateTime DateOfTalkPage;
             QMutex *UserLock;
+            WikiPage *wpTalkPage = nullptr;
             bool Bot;
             bool IP;
     };

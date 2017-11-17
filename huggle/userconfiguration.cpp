@@ -192,6 +192,7 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
     configuration_ += "EnableMinScore:" + Bool2String(this->EnableMinScore) + "\n";
     configuration_ += "MinScore:" + QString::number(this->MinScore) + "\n";
     configuration_ += "AutomaticRefresh:" + Bool2String(this->AutomaticRefresh) + "\n";
+    configuration_ += "AutomaticallyWatchlistWarnedUsers:" + Bool2String(this->AutomaticallyWatchlistWarnedUsers) + "\n";
     configuration_ += "ShortcutHash:" + this->ShortcutHash + "\n";
     // shortcuts
     QStringList shortcuts = Configuration::HuggleConfiguration->Shortcuts.keys();
@@ -374,6 +375,7 @@ bool UserConfiguration::ParseUserConfig(QString config, ProjectConfiguration *Pr
     this->PageEmptyQueue = HuggleParser::ConfigurationParse("PageEmptyQueue", config);
     delete this->Previous_Version;
     this->Previous_Version = new Version(ConfigurationParse("version", config, HUGGLE_VERSION));
+    this->AutomaticallyWatchlistWarnedUsers = HuggleParser::ConfigurationParseBool("AutomaticallyWatchlistWarnedUsers", config, this->AutomaticallyWatchlistWarnedUsers);
     // Score range
     this->EnableMaxScore = SafeBool(ConfigurationParse("EnableMaxScore", config));
     this->MinScore = ConfigurationParse("MinScore", config, "0").toLongLong();

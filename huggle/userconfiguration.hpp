@@ -81,6 +81,7 @@ namespace Huggle
             //! Resolve edit conflict without asking user
             bool            AutomaticallyResolveConflicts = true;
             bool            AutomaticRefresh = true;
+            bool            AutomaticallyWatchlistWarnedUsers = false;
             //! default-summary inherited from project config so there is no default here
             QString         DefaultSummary;
             QString         RollbackSummary;

@@ -20,6 +20,7 @@
 #include "hugglequeue.hpp"
 #include "huggleprofiler.hpp"
 #include "syslog.hpp"
+#include "wikipage.hpp"
 #include "wikisite.hpp"
 using namespace Huggle;
 
@@ -257,6 +258,7 @@ WikiUser::WikiUser(QString user)
 
 WikiUser::~WikiUser()
 {
+    delete this->wpTalkPage;
     delete this->UserLock;
 }
 
@@ -354,6 +356,22 @@ QString WikiUser::GetTalk()
         prefix = "User talk";
     prefix += ":";
     return prefix + this->Username;
+}
+
+WikiPage *WikiUser::GetTalkPage()
+{
+    if (this->wpTalkPage)
+    {
+        // In case that a pointer to wiki site was changed in past, ensure it's consistent in every case
+        if (this->Site != this->wpTalkPage->Site)
+            this->wpTalkPage->Site = this->Site;
+        return this->wpTalkPage;
+    }
+
+    WikiPage *page = new WikiPage(this->GetTalk());
+    page->Site = this->GetSite();
+    this->wpTalkPage = page;
+    return page;
 }
 
 bool WikiUser::TalkPage_ContainsSharedIPTemplate()
