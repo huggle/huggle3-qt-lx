@@ -173,7 +173,8 @@ namespace Huggle
             friend class MainWindow;
             bool ProcessingByWorkerThread;
             bool ProcessingRevs;
-            bool ProcessingDiff;
+            bool ProcessingEditInfo;
+            bool ProcessingDiff = false;
             //! This variable is used by worker thread and needs to be public so that it is working
             bool PostProcessing;
             //! This variable is used by worker thread and needs to be public so that it is working
@@ -181,6 +182,8 @@ namespace Huggle
             Collectable_SmartPtr<ApiQuery> qTalkpage;
             //! This is a query used to retrieve information about the user
             Collectable_SmartPtr<ApiQuery> qUser;
+            //! Query that get information about revs
+            Collectable_SmartPtr<ApiQuery> qRevisionInfo;
             Collectable_SmartPtr<ApiQuery> qDifference;
             Collectable_SmartPtr<ApiQuery> qFounder;
             Collectable_SmartPtr<ApiQuery> qText;
