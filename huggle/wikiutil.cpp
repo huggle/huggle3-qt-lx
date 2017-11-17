@@ -432,3 +432,14 @@ void WikiUtil::DisplayContributionBrowser(WikiUser *User, QWidget *parent)
     report->SetUser(User);
     report->show();
 }
+
+Collectable_SmartPtr<ApiQuery> WikiUtil::APIRequest(Action action, WikiSite *site, QString parameters, bool using_post, QString target)
+{
+    Collectable_SmartPtr <ApiQuery> request = new ApiQuery(action, site);
+    request->Parameters = parameters;
+    request->UsingPOST = using_post;
+    request->Target = target;
+    HUGGLE_QP_APPEND(request);
+    request->Process();
+    return request;
+}

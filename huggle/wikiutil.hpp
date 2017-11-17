@@ -32,6 +32,16 @@ namespace Huggle
     {
         typedef void* (*RetrieveEditByRevid_Callback) (WikiEdit*, void*, QString);
 
+        /*!
+         * \brief APIRequest Perform an API request using ApiQuery class, this is just a helper function that makes it easier to invoke API calls
+         * \param action     Refer to Action enum
+         * \param site       WikiSite to execute request on
+         * \param parameters Parameters of query
+         * \param using_post If request should be submitted using POST method of HTTP protocol
+         * \param target     Optional target name
+         * \return           Pointer to ApiQuery
+         */
+        HUGGLE_EX Collectable_SmartPtr<ApiQuery> APIRequest(Action action, WikiSite *site, QString parameters, bool using_post = false, QString target = "");
         HUGGLE_EX bool IsRevert(QString Summary);
         //! Return a localized month for a current wiki
         HUGGLE_EX QString MonthText(int n, WikiSite *site = nullptr);
