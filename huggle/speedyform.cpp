@@ -71,7 +71,7 @@ void SpeedyForm::on_pushButton_clicked()
     this->ui->pushButton->setEnabled(false);
     this->Header = this->ui->comboBox->currentText();
     // first we need to retrieve the content of page if we don't have it already
-    this->qObtainText = Generic::RetrieveWikiPageContents(this->edit->Page);
+    this->qObtainText = WikiUtil::RetrieveWikiPageContents(this->edit->Page);
     this->timer->start(HUGGLE_TIMER);
     this->qObtainText->Process();
 }
@@ -165,7 +165,7 @@ void SpeedyForm::OnTick()
     {
         if (!this->qObtainText->IsProcessed()) { return; }
         bool failed = false;
-        this->Text = Generic::EvaluateWikiPageContents(this->qObtainText, &failed, &this->base);
+        this->Text = WikiUtil::EvaluateWikiPageContents(this->qObtainText, &failed, &this->base);
         if (failed)
         {
             this->Fail(this->Text);

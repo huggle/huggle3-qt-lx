@@ -23,6 +23,7 @@
 #include "querypool.hpp"
 #include "syslog.hpp"
 #include "wikisite.hpp"
+#include "wikiutil.hpp"
 #include "wikiuser.hpp"
 #include <QUrl>
 
@@ -262,7 +263,7 @@ void Message::PreflightCheck()
     {
         this->_Status = MessageStatus_RetrievingTalkPage;
         // we need to retrieve the talk page
-        this->query = Generic::RetrieveWikiPageContents(this->User->GetTalk(), this->User->GetSite());
+        this->query = WikiUtil::RetrieveWikiPageContents(this->User->GetTalk(), this->User->GetSite());
         // inform user what is going on
         HUGGLE_QP_APPEND(this->query);
         this->query->Target = _l("main-user-retrieving-tp", this->User->Username);

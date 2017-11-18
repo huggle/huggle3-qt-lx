@@ -444,6 +444,9 @@ void ApiQuery::SetAction(const Action action)
             this->ActionPart = "block";
             this->EditingQuery = true;
             return;
+        case ActionParse:
+            this->ActionPart = "parse";
+            return;
         case ActionProtect:
             this->ActionPart = "protect";
             this->EditingQuery = true;

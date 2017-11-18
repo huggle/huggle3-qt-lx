@@ -139,7 +139,7 @@ void Huggle::WikiPageTagsForm_FinishRead(Query *result)
     ApiQuery *retrieve = (ApiQuery*)result;
     bool success = false;
     QString t_;
-    QString text = Generic::EvaluateWikiPageContents(retrieve, &success, &t_);
+    QString text = WikiUtil::EvaluateWikiPageContents(retrieve, &success, &t_);
     if (success)
     {
         Generic::MessageBox(_l("page-tag-fail"), _l("page-tag-error", text));
@@ -204,7 +204,7 @@ void Huggle::WikiPageTagsForm::on_pushButton_clicked()
     this->ui->checkBox->setEnabled(false);
     this->ui->tableWidget->setEnabled(false);
     // first get the contents of the page
-    ApiQuery *retrieve = Generic::RetrieveWikiPageContents(this->page, false);
+    ApiQuery *retrieve = WikiUtil::RetrieveWikiPageContents(this->page, false);
     retrieve->FailureCallback = (Callback)Fail;
     retrieve->CallbackResult = (void*)this;
     retrieve->callback = (Callback)Huggle::WikiPageTagsForm_FinishRead;

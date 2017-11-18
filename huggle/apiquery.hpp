@@ -41,6 +41,7 @@ namespace Huggle
         ActionBlock,
         ActionPatrol,
         ActionReview, // FlaggedRevs
+        ActionParse,
         ActionProtect,
         ActionEdit,
         ActionUnwatch,

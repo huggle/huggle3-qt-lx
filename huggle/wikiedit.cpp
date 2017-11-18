@@ -13,7 +13,6 @@
 #include <QUrl>
 #include "apiqueryresult.hpp"
 #include "configuration.hpp"
-#include "generic.hpp"
 #ifndef HUGGLE_SDK
     #include "hooks.hpp"
 #endif
@@ -362,7 +361,7 @@ bool WikiEdit::FinalizePostProcessing()
     if (this->qText != nullptr && this->qText->IsProcessed())
     {
         bool failed = false;
-        QString result = Generic::EvaluateWikiPageContents(this->qText, &failed);
+        QString result = WikiUtil::EvaluateWikiPageContents(this->qText, &failed);
         if (failed)
         {
             Syslog::HuggleLogs->ErrorLog("Failed to obtain text of " + this->Page->PageName + ": " + result);
@@ -586,7 +585,7 @@ void WikiEdit::PostProcess()
     // Send info to other functions
     Hooks::EditBeforePostProcess(this);
 #endif
-    this->qTalkpage = Generic::RetrieveWikiPageContents(this->User->GetTalk(), this->GetSite());
+    this->qTalkpage = WikiUtil::RetrieveWikiPageContents(this->User->GetTalk(), this->GetSite());
     HUGGLE_QP_APPEND(this->qTalkpage);
     this->qTalkpage->Target = "Retrieving tp " + this->User->GetTalk();
     this->qTalkpage->Process();
@@ -626,7 +625,7 @@ void WikiEdit::PostProcess()
         this->ProcessingDiff = true;
     } else if (this->Page->Contents.isEmpty())
     {
-        this->qText = Generic::RetrieveWikiPageContents(this->Page, true);
+        this->qText = WikiUtil::RetrieveWikiPageContents(this->Page, true);
         this->qText->Target = "Retrieving content of " + this->Page->PageName;
         HUGGLE_QP_APPEND(this->qText);
         this->qText->Process();

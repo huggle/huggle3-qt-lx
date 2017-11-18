@@ -625,7 +625,7 @@ void ReportUser::Report()
     // obtain current page
     this->Loading = true;
     this->ui->pushButton->setText(_l("report-retrieving"));
-    this->qHistory = Generic::RetrieveWikiPageContents(this->ReportedUser->GetSite()->GetProjectConfig()->ReportAIV, this->ReportedUser->GetSite());
+    this->qHistory = WikiUtil::RetrieveWikiPageContents(this->ReportedUser->GetSite()->GetProjectConfig()->ReportAIV, this->ReportedUser->GetSite());
     this->qHistory->Site = this->ReportedUser->GetSite();
     this->qHistory->Process();
     this->ReportText = reports;
@@ -652,8 +652,8 @@ void ReportUser::failCheck(QString reason)
 void ReportUser::on_pushButton_3_clicked()
 {
     this->ui->pushButton_3->setEnabled(false);
-    this->qReport = Generic::RetrieveWikiPageContents(this->ReportedUser->GetSite()->GetProjectConfig()->ReportAIV,
-                                                      this->ReportedUser->GetSite());
+    this->qReport = WikiUtil::RetrieveWikiPageContents(this->ReportedUser->GetSite()->GetProjectConfig()->ReportAIV,
+                                                       this->ReportedUser->GetSite());
     this->qReport->Process();
     this->tReportPageCheck->start(HUGGLE_TIMER);
 }

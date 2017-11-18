@@ -18,10 +18,10 @@
 #include "history.hpp"
 #include "historyitem.hpp"
 #endif
-#include "generic.hpp"
 #include "syslog.hpp"
 #include "querypool.hpp"
 #include "wikipage.hpp"
+#include "wikiutil.hpp"
 #include "wikisite.hpp"
 #include <QUrl>
 
@@ -105,7 +105,7 @@ bool EditQuery::IsProcessed()
         }
         bool failed = false;
         QString ts;
-        this->OriginalText = Generic::EvaluateWikiPageContents(this->qRetrieve, &failed, &ts);
+        this->OriginalText = WikiUtil::EvaluateWikiPageContents(this->qRetrieve, &failed, &ts);
         this->qRetrieve.Delete();
         if (failed)
         {
@@ -211,7 +211,7 @@ void EditQuery::EditPage()
     if ((this->Append || this->Prepend) && !this->HasPreviousPageText)
     {
         // we first need to get a text of current page
-        this->qRetrieve = Generic::RetrieveWikiPageContents(this->Page);
+        this->qRetrieve = WikiUtil::RetrieveWikiPageContents(this->Page);
         HUGGLE_QP_APPEND(this->qRetrieve);
         this->qRetrieve->Process();
         return;

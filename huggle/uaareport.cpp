@@ -14,7 +14,6 @@
 #include <QUrl>
 #include "configuration.hpp"
 #include "exception.hpp"
-#include "generic.hpp"
 #include "syslog.hpp"
 #include "localization.hpp"
 #include "querypool.hpp"
@@ -64,7 +63,7 @@ void UAAReport::getPageContents()
         throw new Huggle::NullPointerException("local WikiUser User", BOOST_CURRENT_FUNCTION);
     if (this->qUAApage != nullptr)
         this->qUAApage->DecRef();
-    this->qUAApage = Generic::RetrieveWikiPageContents(this->User->GetSite()->GetProjectConfig()->UAAPath, this->User->GetSite());
+    this->qUAApage = WikiUtil::RetrieveWikiPageContents(this->User->GetSite()->GetProjectConfig()->UAAPath, this->User->GetSite());
     this->qUAApage->Site = this->User->GetSite();
     this->qUAApage->Target = _l("uaa-g1");
     QueryPool::HugglePool->AppendQuery(this->qUAApage);
@@ -184,7 +183,7 @@ void UAAReport::on_pushButton_2_clicked()
 void UAAReport::on_pushButton_3_clicked()
 {
     this->ui->pushButton_3->setEnabled(false);
-    this->qCheckUAAUser = Generic::RetrieveWikiPageContents(this->User->GetSite()->GetProjectConfig()->UAAPath, this->User->GetSite());
+    this->qCheckUAAUser = WikiUtil::RetrieveWikiPageContents(this->User->GetSite()->GetProjectConfig()->UAAPath, this->User->GetSite());
     this->qCheckUAAUser->Site = this->User->GetSite();
     QueryPool::HugglePool->AppendQuery(this->qCheckUAAUser);
     this->qCheckUAAUser->Process();
