@@ -246,7 +246,7 @@ namespace Huggle
             //! Version
             QString           HuggleVersion;
             QString           HANMask = "$feed.huggle";
-            QByteArray        WebqueryAgent;
+            QByteArray        WebRequest_UserAgent;
             bool              SystemConfig_Multiple = false;
             bool              SystemConfig_UM = false;
             QString           UpdaterRoot;

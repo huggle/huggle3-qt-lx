@@ -512,9 +512,6 @@ bool Configuration::ParseGlobalConfig(QString config)
     this->GlobalConfig_XmlrcsPort = HuggleParser::YAML2Int("xmlrcs-port", yaml, 8822);
     this->HANMask = HuggleParser::YAML2String("han-mask", yaml, this->HANMask);
     this->GlobalConfig_Whitelist = HuggleParser::YAML2String("whitelist-server", yaml);
-    QString Webquery_ = HuggleParser::YAML2String("user-agent", yaml, "Huggle/$1 http://en.wikipedia.org/wiki/Wikipedia:Huggle");
-    Webquery_.replace("$1", this->SystemConfig_Username);
-    this->WebqueryAgent = Webquery_.toUtf8();
     this->GlobalConfigWasLoaded = true;
     return true;
 }

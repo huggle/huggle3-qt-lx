@@ -338,7 +338,7 @@ void ApiQuery::Process()
         url = QUrl::fromEncoded(this->URL.toUtf8());
     }
     QNetworkRequest request(url);
-    request.setRawHeader("User-Agent", Configuration::HuggleConfiguration->WebqueryAgent);
+    request.setRawHeader("User-Agent", Configuration::HuggleConfiguration->WebRequest_UserAgent);
     if (this->UsingPOST)
         request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
     if (Configuration::HuggleConfiguration->SystemConfig_DryMode && this->EditingQuery)

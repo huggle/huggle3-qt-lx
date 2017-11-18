@@ -66,7 +66,7 @@ void WebserverQuery::Process()
     {
         this->reply = Query::NetworkManager->get(request);
     }
-    request.setRawHeader("User-Agent", Configuration::HuggleConfiguration->WebqueryAgent);
+    request.setRawHeader("User-Agent", Configuration::HuggleConfiguration->WebRequest_UserAgent);
     QObject::connect(this->reply, SIGNAL(finished()), this, SLOT(Finished()));
     QObject::connect(this->reply, SIGNAL(readyRead()), this, SLOT(ReadData()));
     Huggle::Syslog::HuggleLogs->DebugLog("Processing webserver request " + this->URL, 2);

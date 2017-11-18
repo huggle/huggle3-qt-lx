@@ -85,6 +85,8 @@ void Core::Init()
     {
         Configuration::LoadSystemConfig(QCoreApplication::applicationDirPath() + HUGGLE_CONF);
     }
+    hcfg->WebRequest_UserAgent = QString("Huggle/" + QString(HUGGLE_VERSION) + " (http://en.wikipedia.org/wiki/WP:Huggle; " + hcfg->HuggleVersion + ")").toUtf8();
+    HUGGLE_DEBUG1("UserAgent: " + QString(hcfg->WebRequest_UserAgent));
     HUGGLE_PROFILER_PRINT_TIME("Core::Init()@conf");
     HUGGLE_DEBUG1("Loading defs");
     this->LoadDefs();
