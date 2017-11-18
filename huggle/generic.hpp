@@ -16,12 +16,6 @@
 #include <QAbstractSocket>
 #include <QString>
 
-#define EvaluatePageErrorReason_Missing 0
-#define EvaluatePageErrorReason_Unknown 1
-#define EvaluatePageErrorReason_NULL    2
-#define EvaluatePageErrorReason_NoRevs  3
-#define EvaluatePageErrorReason_Running 4
-
 #ifdef MessageBox
     // fix GCC for windows headers port
     #undef MessageBox
@@ -31,11 +25,6 @@ class QWidget;
 
 namespace Huggle
 {
-    class ApiQuery;
-    class WikiEdit;
-    class WikiPage;
-    class WikiSite;
-
     enum MessageBoxStyle
     {
         MessageBoxStyleNormal, // OK
@@ -76,26 +65,7 @@ namespace Huggle
         //! Display a message box telling user that function is not allowed during developer mode
         HUGGLE_EX void DeveloperError();
         HUGGLE_EX QString IRCQuitDefaultMessage();
-        /*!
-         * \brief EvaluateWikiPageContents evaluates the result of query
-         * This function can be only used to check the results of query that was created in order to
-         * retrieve contents of a wiki page.
-         * \param query
-         * \param failed In case the query has failed, this will be set to true
-         * \param ts pointer where timestamp string should be stored (optional)
-         * \param comment pointer where summary string should be stored (optional)
-         * \param user pointer where user should be stored (optional)
-         * \param revid id of revision (optional)
-         * \param reason if there is a failure this is a number of error that happened
-         * \return Text of wiki page or error message
-         */
-        HUGGLE_EX QString EvaluateWikiPageContents(ApiQuery *query, bool *failed, QString *ts = nullptr, QString *comment = nullptr,
-                                                   QString *user = nullptr, long *revid = nullptr, int *reason = nullptr,
-                                                   QString *title = nullptr);
         HUGGLE_EX QString SocketError2Str(QAbstractSocket::SocketError error);
-        //! \obsolete RetrieveWikiPageContents(WikiPage *page, bool parse = false);
-        HUGGLE_EX ApiQuery *RetrieveWikiPageContents(QString page, WikiSite *site, bool parse = false);
-        HUGGLE_EX ApiQuery *RetrieveWikiPageContents(WikiPage *page, bool parse = false);
         /*!
          * \brief ShrinkText makes string fit to a size, if text is longer, the extra part is replaced with ".."
          * \param text Text which is about to be made smaller

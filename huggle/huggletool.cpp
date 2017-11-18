@@ -19,6 +19,7 @@
 #include "wikipage.hpp"
 #include "mainwindow.hpp"
 #include "wikisite.hpp"
+#include "wikiutil.hpp"
 #include "wikiuser.hpp"
 #include "syslog.hpp"
 #include "ui_huggletool.h"
@@ -127,7 +128,7 @@ void HuggleTool::DownloadEdit()
     this->ui->lineEdit_3->setStyleSheet(this->GenerateColor("green"));
     // retrieve information about the page
     this->QueryPhase = 1;
-    this->query = Generic::RetrieveWikiPageContents(this->ui->lineEdit_3->text(), this->GetSite());
+    this->query = WikiUtil::RetrieveWikiPageContents(this->ui->lineEdit_3->text(), this->GetSite());
     this->query->Process();
     this->tick->start(HUGGLE_TIMER);
 }

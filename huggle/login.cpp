@@ -906,7 +906,7 @@ void Login::RetrieveUserInfo(WikiSite *site)
         {
             QString result;
             bool failed = false;
-            result = Generic::EvaluateWikiPageContents(query, &failed);
+            result = WikiUtil::EvaluateWikiPageContents(query, &failed);
             if (failed)
             {
                 this->DisplayError(_l("unable-to-retrieve-user-list", result));
@@ -1039,7 +1039,7 @@ void Login::RetrieveUserInfo(WikiSite *site)
             // So now we passed all checks if we can use huggle, so let's update the user list in case we want that
             if (!site->GetProjectConfig()->ReadOnly && (site->GetProjectConfig()->UserlistSync || site->GetProjectConfig()->Approval))
             {
-                this->qApproval.insert(site, Generic::RetrieveWikiPageContents(site->GetProjectConfig()->ApprovalPage, site));
+                this->qApproval.insert(site, WikiUtil::RetrieveWikiPageContents(site->GetProjectConfig()->ApprovalPage, site));
                 this->qApproval[site]->IncRef();
                 this->qApproval[site]->Process();
                 return;

@@ -13,7 +13,6 @@
 #include <QUrl>
 #include "apiqueryresult.hpp"
 #include "configuration.hpp"
-#include "generic.hpp"
 #ifndef HUGGLE_SDK
     #include "hooks.hpp"
 #endif
@@ -48,7 +47,7 @@ WikiEdit::WikiEdit()
     this->EditMadeByHuggle = false;
     this->TrustworthEdit = false;
     this->PostProcessing = false;
-    this->ProcessingDiff = false;
+    this->ProcessingEditInfo = false;
     this->ProcessingRevs = false;
     this->DiffText = "";
     this->Priority = 20;
@@ -263,26 +262,25 @@ bool WikiEdit::FinalizePostProcessing()
         this->ProcessingRevs = false;
     }
 
-    if (this->ProcessingDiff)
+    if (this->ProcessingEditInfo)
     {
         // check if api was processed
-        if (!this->qDifference->IsProcessed())
+        if (!this->qRevisionInfo->IsProcessed())
         {
             return false;
         }
 
-        if (this->qDifference->IsFailed())
+        if (this->qRevisionInfo->IsFailed())
         {
             // whoa it ended in error, we need to get rid of this edit somehow now
-            Huggle::Syslog::HuggleLogs->WarningLog("Failed to obtain diff for " + this->Page->PageName + " the error was: " + this->qDifference->GetFailureReason());
-            this->qDifference = nullptr;
+            Huggle::Syslog::HuggleLogs->WarningLog("Failed to obtain diff for " + this->Page->PageName + " the error was: " + this->qRevisionInfo->GetFailureReason());
+            this->qRevisionInfo = nullptr;
             this->PostProcessing = false;
             return true;
         }
 
-        // parse the diff now
-        QList<ApiQueryResultNode*> revision_data = this->qDifference->GetApiQueryResult()->GetNodes("rev");
-        QList<ApiQueryResultNode*> diffs = this->qDifference->GetApiQueryResult()->GetNodes("diff");
+        // parse the revision meta-data now
+        QList<ApiQueryResultNode*> revision_data = this->qRevisionInfo->GetApiQueryResult()->GetNodes("rev");
         // get last id
         if (revision_data.count() > 0)
         {
@@ -317,23 +315,53 @@ bool WikiEdit::FinalizePostProcessing()
                 }
             }
         }
-        if (diffs.count() > 0)
+
+        this->qRevisionInfo = nullptr;
+        this->ProcessingEditInfo = false;
+    }
+
+    if (this->ProcessingDiff)
+    {
+        if (!this->qDifference->IsProcessed())
+            return false;
+
+        if (this->qDifference->IsFailed())
         {
-            ApiQueryResultNode *temp = diffs.at(0);
-            this->DiffText = temp->Value;
-        } else
-        {
+            // We weren't able to retrieve the diff using action=compare so let's keep it empty and let the browser component fallback to alternative method
             Huggle::Syslog::HuggleLogs->WarningLog("Failed to obtain diff for " + this->Page->PageName + " the error was: " + this->qDifference->GetFailureReason());
+            this->ProcessingDiff = false;
+            return false;
         }
-        this->qDifference = nullptr;
-        // we are done processing the diff
+
+        ApiQueryResultNode* diff = this->qDifference->GetApiQueryResult()->GetNode("compare");
+        if (diff == nullptr)
+        {
+            Huggle::Syslog::HuggleLogs->WarningLog("Failed to obtain diff for " + this->Page->PageName + " no diff data in query result");
+            HUGGLE_DEBUG1(this->qDifference->GetApiQueryResult()->Data);
+            this->ProcessingDiff = false;
+            return false;
+        }
+
+        if (hcfg->Verbosity > 0)
+        {
+            // Safety check
+            if (this->RevID != WIKI_UNKNOWN_REVID && diff->GetAttribute("torevid") != QString::number(this->RevID))
+                HUGGLE_DEBUG1(this->Page->PageName + ": revid doesn't match: " + QString::number(this->RevID) + " != " + diff->GetAttribute("torevid"));
+
+            if (diff->GetAttribute("fromtitle") != this->Page->PageName)
+                HUGGLE_DEBUG1(QString::number(this->RevID) + ": pageid doesn't match " + this->Page->PageName + " != " + diff->GetAttribute("fromtitle"));
+        }
+
+        this->DiffText = diff->Value;
+
+        this->qDifference.Delete();
         this->ProcessingDiff = false;
     }
 
     if (this->qText != nullptr && this->qText->IsProcessed())
     {
         bool failed = false;
-        QString result = Generic::EvaluateWikiPageContents(this->qText, &failed);
+        QString result = WikiUtil::EvaluateWikiPageContents(this->qText, &failed);
         if (failed)
         {
             Syslog::HuggleLogs->ErrorLog("Failed to obtain text of " + this->Page->PageName + ": " + result);
@@ -347,7 +375,7 @@ bool WikiEdit::FinalizePostProcessing()
     }
 
     // check if everything was processed and clean up
-    if (this->ProcessingRevs || this->ProcessingDiff || this->qUser != nullptr || this->qText != nullptr || this->qFounder != nullptr || this->qCategoriesAndWatched != nullptr)
+    if (this->ProcessingRevs || this->ProcessingDiff || this->ProcessingEditInfo || this->qUser != nullptr || this->qText != nullptr || this->qFounder != nullptr || this->qCategoriesAndWatched != nullptr)
         return false;
 
     this->qTalkpage = nullptr;
@@ -557,34 +585,47 @@ void WikiEdit::PostProcess()
     // Send info to other functions
     Hooks::EditBeforePostProcess(this);
 #endif
-    this->qTalkpage = Generic::RetrieveWikiPageContents(this->User->GetTalk(), this->GetSite());
+    this->qTalkpage = WikiUtil::RetrieveWikiPageContents(this->User->GetTalk(), this->GetSite());
     HUGGLE_QP_APPEND(this->qTalkpage);
     this->qTalkpage->Target = "Retrieving tp " + this->User->GetTalk();
     this->qTalkpage->Process();
     if (!this->NewPage)
     {
-        this->qDifference = new ApiQuery(ActionQuery, this->GetSite());
+        // This query will fetch information about the revision(s) but not the diff itself
+        this->qRevisionInfo = new ApiQuery(ActionQuery, this->GetSite());
         if (this->RevID != WIKI_UNKNOWN_REVID)
         {
             // &rvprop=content can't be used because of fuck up of mediawiki
-            this->qDifference->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("ids|tags|user|timestamp|comment") +
-                                            "&rvlimit=1&rvstartid=" + QString::number(this->RevID) + "&rvdiffto=" + this->DiffTo + "&titles=" +
-                                            QUrl::toPercentEncoding(this->Page->PageName);
+            this->qRevisionInfo->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("ids|tags|user|timestamp|comment") +
+                                              "&rvlimit=1&rvstartid=" + QString::number(this->RevID) + "&titles=" +
+                                              QUrl::toPercentEncoding(this->Page->PageName);
         } else
         {
-            this->qDifference->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("ids|tags|user|timestamp|comment") +
-                                            "&rvlimit=1&rvdiffto=" + this->DiffTo + "&titles=" +
-                                            QUrl::toPercentEncoding(this->Page->PageName);
+            this->qRevisionInfo->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding("ids|tags|user|timestamp|comment") +
+                                              "&rvlimit=1&titles=" + QUrl::toPercentEncoding(this->Page->PageName);
         }
-        this->qDifference->Target = this->Page->PageName;
-        HUGGLE_QP_APPEND(this->qDifference);
-        this->qDifference->Process();
+        this->qRevisionInfo->Target = this->Page->PageName;
+        HUGGLE_QP_APPEND(this->qRevisionInfo);
+        this->qRevisionInfo->Process();
         if (hcfg->Verbosity > 0)
-            this->PropertyBag.insert("debug_api_url_diff", this->qDifference->GetURL());
+            this->PropertyBag.insert("debug_api_url_rev_info", this->qRevisionInfo->GetURL());
+        this->ProcessingEditInfo = true;
+
+        // This query will download the actual diff of edit
+        if (this->RevID != WIKI_UNKNOWN_REVID)
+        {
+            if (!this->IsRangeOfEdits())
+                this->qDifference = WikiUtil::APIRequest(ActionCompare, this->GetSite(), "fromrev=" + QString::number(this->RevID) + "&torelative=" + this->DiffTo, false, "Diff of " + this->Page->PageName);
+            else
+                this->qDifference = WikiUtil::APIRequest(ActionCompare, this->GetSite(), "fromrev=" + QString::number(this->RevID) + "&torev=" + this->DiffTo, false, "Diff of " + this->Page->PageName);
+        } else
+        {
+            this->qDifference = WikiUtil::APIRequest(ActionCompare, this->GetSite(), "fromtitle=" + QUrl::toPercentEncoding(this->Page->PageName) + "&torelative=" + this->DiffTo, false, "Diff of " + this->Page->PageName);
+        }
         this->ProcessingDiff = true;
     } else if (this->Page->Contents.isEmpty())
     {
-        this->qText = Generic::RetrieveWikiPageContents(this->Page, true);
+        this->qText = WikiUtil::RetrieveWikiPageContents(this->Page, true);
         this->qText->Target = "Retrieving content of " + this->Page->PageName;
         HUGGLE_QP_APPEND(this->qText);
         this->qText->Process();

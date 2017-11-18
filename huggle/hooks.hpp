@@ -17,6 +17,7 @@
 
 namespace Huggle
 {
+    class ApiQuery;
     class EditBar;
     class UserinfoForm;
     class WikiUser;
@@ -24,7 +25,9 @@ namespace Huggle
     class Shortcut;
     class Exception;
     class MainWindow;
+    class Message;
     class SpeedyForm;
+    class Query;
 
     //! Hooks that can be used to attach some 3rd code to existing functions
     class HUGGLE_EX Hooks
@@ -107,6 +110,9 @@ namespace Huggle
             static void MainWindow_OnLoad(MainWindow *window);
             static void MainWindow_OnRender();
             static bool MainWindow_ReloadShortcut(Shortcut *shortcut);
+            static Message *MessageUser(WikiUser *User, QString Text, QString Title, QString Summary, bool InsertSection = true,
+                                    Query *Dependency = nullptr, bool NoSuffix = false, bool SectionKeep = false,
+                                    bool Autoremove = true, QString BaseTimestamp = "", bool CreateOnly = false, bool FreshOnly = false);
             static void Shutdown();
     };
 }

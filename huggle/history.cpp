@@ -110,7 +110,7 @@ void History::Undo(HistoryItem *hist)
                 hist->ReferencedBy = nullptr;
             }
             this->RevertingItem = hist;
-            this->qEdit = Generic::RetrieveWikiPageContents("User_talk:" + hist->Target, hist->GetSite());
+            this->qEdit = WikiUtil::RetrieveWikiPageContents("User_talk:" + hist->Target, hist->GetSite());
             this->qEdit->Site = hist->GetSite();
             this->qEdit->Process();
             HUGGLE_QP_APPEND(this->qEdit);
@@ -120,7 +120,7 @@ void History::Undo(HistoryItem *hist)
         case HistoryEdit:
             // we need to revert both warning of user as well as page we rolled back
             this->RevertingItem = hist;
-            this->qEdit = Generic::RetrieveWikiPageContents(hist->Target, hist->GetSite());
+            this->qEdit = WikiUtil::RetrieveWikiPageContents(hist->Target, hist->GetSite());
             this->qEdit->Site = hist->GetSite();
             this->qEdit->Process();
             HUGGLE_QP_APPEND(this->qEdit);
@@ -260,7 +260,7 @@ void History::Tick()
         bool failed = false;
         QString user, title;
         long revid;
-        QString result = Generic::EvaluateWikiPageContents(this->qEdit, &failed, nullptr, nullptr, &user, &revid, nullptr, &title);
+        QString result = WikiUtil::EvaluateWikiPageContents(this->qEdit, &failed, nullptr, nullptr, &user, &revid, nullptr, &title);
         this->qEdit.Delete();
         if (failed)
         {
@@ -282,8 +282,7 @@ void History::Tick()
         edit->RevID = revid;
         if (this->RevertingItem->NewPage && this->RevertingItem->Type == HistoryMessage)
         {
-            int message = Generic::MessageBox(_l("history-welcome-msg-title"), _l("history-welcome-msg"),
-                    MessageBoxStyleQuestion);
+            int message = Generic::MessageBox(_l("history-welcome-msg-title"), _l("history-welcome-msg"), MessageBoxStyleQuestion);
             if (message == QMessageBox::Yes)
             {
                 if (edit->GetSite()->ProjectConfig->WelcomeTypes.count() == 0)

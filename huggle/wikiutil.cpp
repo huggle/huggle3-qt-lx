@@ -12,6 +12,7 @@
 #include "apiquery.hpp"
 #include "apiqueryresult.hpp"
 #include "configuration.hpp"
+#include "hooks.hpp"
 #include "exception.hpp"
 #include "editquery.hpp"
 #include "mediawiki.hpp"
@@ -79,6 +80,11 @@ Message *WikiUtil::MessageUser(WikiUser *User, QString Text, QString Title, QStr
                               Query *Dependency, bool NoSuffix, bool SectionKeep, bool Autoremove,
                               QString BaseTimestamp, bool CreateOnly, bool FreshOnly)
 {
+    // Let extensions override this function
+    Message *temp = Hooks::MessageUser(User, Text, Title, Summary, InsertSection, Dependency, NoSuffix, SectionKeep, Autoremove, BaseTimestamp, CreateOnly, FreshOnly);
+    if (temp != nullptr)
+        return temp;
+
     if (User == nullptr)
     {
         Huggle::Syslog::HuggleLogs->Log("Cowardly refusing to message NULL user");
@@ -425,4 +431,99 @@ void WikiUtil::DisplayContributionBrowser(WikiUser *User, QWidget *parent)
     report->setAttribute(Qt::WidgetAttribute::WA_DeleteOnClose);
     report->SetUser(User);
     report->show();
+}
+
+Collectable_SmartPtr<ApiQuery> WikiUtil::APIRequest(Action action, WikiSite *site, QString parameters, bool using_post, QString target)
+{
+    Collectable_SmartPtr <ApiQuery> request = new ApiQuery(action, site);
+    request->Parameters = parameters;
+    request->UsingPOST = using_post;
+    request->Target = target;
+    HUGGLE_QP_APPEND(request);
+    request->Process();
+    return request;
+}
+
+ApiQuery *WikiUtil::RetrieveWikiPageContents(QString page, WikiSite *site, bool parse)
+{
+    WikiPage pt(page);
+    pt.Site = site;
+    return RetrieveWikiPageContents(&pt, parse);
+}
+
+ApiQuery *WikiUtil::RetrieveWikiPageContents(WikiPage *page, bool parse)
+{
+    // performance hack
+    static QString options = QUrl::toPercentEncoding("timestamp|user|comment|content");
+    ApiQuery *query = new ApiQuery(ActionQuery, page->Site);
+    query->Target = "Retrieving contents of " + page->PageName;
+    query->Parameters = "prop=revisions&rvlimit=1&rvprop=" + options + "&titles=" + QUrl::toPercentEncoding(page->PageName);
+    if (parse)
+        query->Parameters += "&rvparse";
+    return query;
+}
+
+QString WikiUtil::EvaluateWikiPageContents(ApiQuery *query, bool *failed, QString *ts, QString *comment, QString *user,
+                                          long *revid, int *reason, QString *title)
+{
+    if (!failed)
+    {
+        throw new Huggle::NullPointerException("bool *failed", BOOST_CURRENT_FUNCTION);
+    }
+    if (query == nullptr)
+    {
+        if (reason) { *reason = EvaluatePageErrorReason_NULL; }
+        *failed = true;
+        return "Query was NULL";
+    }
+    if (!query->IsProcessed())
+    {
+        if (reason) { *reason = EvaluatePageErrorReason_Running; }
+        *failed = true;
+        return "Query didn't finish";
+    }
+    if (query->IsFailed())
+    {
+        if (reason) { *reason = EvaluatePageErrorReason_Unknown; }
+        *failed = true;
+        return query->GetFailureReason();
+    }
+    ApiQueryResultNode *rev = query->GetApiQueryResult()->GetNode("rev");
+    ApiQueryResultNode *page = query->GetApiQueryResult()->GetNode("page");
+    if (page != nullptr)
+    {
+        if (title && page->Attributes.contains("title"))
+            *title = page->Attributes["title"];
+
+        if (page->Attributes.contains("missing"))
+        {
+            if (reason) { *reason = EvaluatePageErrorReason_Missing; }
+            *failed = true;
+            return "Page is missing";
+        }
+    }
+    if (rev == nullptr)
+    {
+        if (reason) { *reason = EvaluatePageErrorReason_NoRevs; }
+        *failed = true;
+        return "No revisions were provided for this page";
+    }
+    if (user && rev->Attributes.contains("user"))
+        *user = rev->Attributes["user"];
+
+    if (comment && rev->Attributes.contains("comment"))
+        *comment = rev->Attributes["comment"];
+
+    if (ts && rev->Attributes.contains("timestamp"))
+        *ts = rev->Attributes["timestamp"];
+
+    if (revid)
+    {
+        if (rev->Attributes.contains("revid"))
+            *revid = rev->Attributes["revid"].toInt();
+        else
+            *revid = WIKI_UNKNOWN_REVID;
+    }
+    *failed = false;
+    return rev->Value;
 }

@@ -407,7 +407,9 @@ void ApiQuery::SetAction(const Action action)
             this->ActionPart = "clearhasmsg";
             this->UsingPOST = true;
             return;
-        ///! \todo ActionQuery still used ?
+        case ActionCompare:
+            this->ActionPart = "compare";
+            return;
         case ActionQuery:
             this->ActionPart = "query";
             this->IsContinuous = true;
@@ -445,6 +447,9 @@ void ApiQuery::SetAction(const Action action)
         case ActionBlock:
             this->ActionPart = "block";
             this->EditingQuery = true;
+            return;
+        case ActionParse:
+            this->ActionPart = "parse";
             return;
         case ActionProtect:
             this->ActionPart = "protect";

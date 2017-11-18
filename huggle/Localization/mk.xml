@@ -16,6 +16,7 @@
   <string name="done">Готово</string>
   <string name="no">Не</string>
   <string name="ok">ОК</string>
+  <string name="override-warn">Презапишавте врз патеката на проектните поставки. Имајте на ум дека злоупотребата на оваа можност за да добиете записен пристап на викито (кога инаку не би го имале) е казниво со траен блок на вашата сметка.</string>
   <string name="remove">Отстрани</string>
   <string name="rename">Преименувај</string>
   <string name="reload">Превчитај</string>
@@ -121,6 +122,7 @@
   <string name="config-welcome-empty-page">Испрати добредојде на корисници со празни страници за разговор при извршено добро уредување</string>
   <string name="config-conflicts-revert">Автоматски решавај спорови со други уредници кои  отповикуваат или менуваат една иста страница</string>
   <string name="config-instant-reverts">Користи непосредни отповикувања (многу брзо, но штом ќе се направим не може да се поврати)</string>
+  <string name="config-reverts-multiple">За враќање на повеќе уредувања од ист корисник:</string>
   <string name="config-revert-wait">Задршка за отповикување (секунди)</string>
   <string name="config-revert">Отповикај</string>
   <string name="config-skip">Прескокни</string>
@@ -186,6 +188,9 @@
   <string name="config-no-colon">Не можете да користите : во името на редицата</string>
   <string name="config-notify-update">Провери поднови</string>
   <string name="config-notify-beta">Провери дали има бета-верзии</string>
+  <string name="custommessage-subject">Наслов</string>
+  <string name="custommessage-menu">Испрати прилагодена порака</string>
+  <string name="custommessage-send">Испрати порака</string>
   <string name="delete-title">Избриши го $1</string>
   <string name="delete-reason">Причина:</string>
   <string name="delete-deletionlog">Записник на бришења:</string>

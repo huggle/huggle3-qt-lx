@@ -29,6 +29,7 @@ namespace Huggle
     enum Action
     {
         ActionClearHasMsg,
+        ActionCompare,
         ActionQuery,
         ActionLogin,
         ActionClientLogin,
@@ -41,6 +42,7 @@ namespace Huggle
         ActionBlock,
         ActionPatrol,
         ActionReview, // FlaggedRevs
+        ActionParse,
         ActionProtect,
         ActionEdit,
         ActionUnwatch,

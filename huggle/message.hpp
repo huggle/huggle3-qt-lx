@@ -48,12 +48,12 @@ namespace Huggle
         public:
             //! Creates a new instance of message class that is used to deliver a message to users
             Message(WikiUser *target, QString MessageText, QString MessageSummary);
-            ~Message();
+            virtual ~Message();
             //! Send a message to user
-            void Send();
+            virtual void Send();
             //! Returns true in case that message was sent
-            bool IsFinished();
-            bool IsFailed();
+            virtual bool IsFinished();
+            virtual bool IsFailed();
             MessageStatus _Status;
             //! If this dependency is not a NULL then a message is sent after it is Processed (see Query::Processed())
             Collectable_SmartPtr<Query> Dependency;
@@ -83,25 +83,25 @@ namespace Huggle
             QString ErrorText;
             //! Changing this to true will make the message be appended to existing section of same name
             bool SectionKeep;
-        private:
-            bool Done();
-            void Fail(QString reason);
+        protected:
+            virtual bool Done();
+            virtual void Fail(QString reason);
             //! This is a generic finish that either finishes whole message sending, or call respective finish function
             //! that is needed to finish the current step
-            void Finish();
+            virtual void Finish();
             //! Returns true if there is a valid token in memory
 
             //! Valid token means that it is syntactically correct, not that it isn't expired
-            bool HasValidEditToken();
-            bool IsSending();
+            virtual bool HasValidEditToken();
+            virtual bool IsSending();
             //! This function perform several checks and if everything is ok, it automatically calls next functions that send the message
-            void PreflightCheck();
+            virtual void PreflightCheck();
             //! This function write the new text to a talk page assuming that all checks were passed
 
             //! If you call this function before performing the checks, you will get in serious troubles
-            void ProcessSend();
-            void ProcessTalk();
-            QString Append(QString text, QString OriginalText, QString Label);
+            virtual void ProcessSend();
+            virtual void ProcessTalk();
+            virtual QString Append(QString text, QString OriginalText, QString Label);
             Collectable_SmartPtr<ApiQuery> query;
             //! This is a text of talk page that was present before we change it
             QString Page;

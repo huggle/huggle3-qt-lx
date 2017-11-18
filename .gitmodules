@@ -25,3 +25,6 @@
 [submodule "huggle/libs/yaml-cpp"]
 	path = huggle/libs/yaml-cpp
 	url = http://github.com/jbeder/yaml-cpp
+[submodule "huggle/extension_list/extension-flow"]
+	path = huggle/extension_list/extension-flow
+	url = https://github.com/huggle/extension-flow

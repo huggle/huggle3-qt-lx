@@ -20,6 +20,12 @@
 #include "revertquery.hpp"
 #include "wikipage.hpp"
 
+#define EvaluatePageErrorReason_Missing 0
+#define EvaluatePageErrorReason_Unknown 1
+#define EvaluatePageErrorReason_NULL    2
+#define EvaluatePageErrorReason_NoRevs  3
+#define EvaluatePageErrorReason_Running 4
+
 namespace Huggle
 {
     class EditQuery;
@@ -28,10 +34,21 @@ namespace Huggle
     class WikiPage;
     class WikiEdit;
 
+    //! Provides helper functions that make it easy to do various stuff with mediawiki sites
     namespace WikiUtil
     {
         typedef void* (*RetrieveEditByRevid_Callback) (WikiEdit*, void*, QString);
 
+        /*!
+         * \brief APIRequest Perform an API request using ApiQuery class, this is just a helper function that makes it easier to invoke API calls
+         * \param action     Refer to Action enum
+         * \param site       WikiSite to execute request on
+         * \param parameters Parameters of query
+         * \param using_post If request should be submitted using POST method of HTTP protocol
+         * \param target     Optional target name
+         * \return           Pointer to ApiQuery
+         */
+        HUGGLE_EX Collectable_SmartPtr<ApiQuery> APIRequest(Action action, WikiSite *site, QString parameters, bool using_post = false, QString target = "");
         HUGGLE_EX bool IsRevert(QString Summary);
         //! Return a localized month for a current wiki
         HUGGLE_EX QString MonthText(int n, WikiSite *site = nullptr);
@@ -101,6 +118,25 @@ namespace Huggle
                                                            QString BaseTimestamp = "", unsigned int section = 0, WikiSite *site = nullptr);
         HUGGLE_EX Collectable_SmartPtr<EditQuery> EditPage(WikiPage *page, QString text, QString summary = "Edited using huggle", bool minor = false,
                                                            QString BaseTimestamp = "", unsigned int section = 0);
+        /*!
+         * \brief EvaluateWikiPageContents evaluates the result of query
+         * This function can be only used to check the results of query that was created in order to
+         * retrieve contents of a wiki page.
+         * \param query
+         * \param failed In case the query has failed, this will be set to true
+         * \param ts pointer where timestamp string should be stored (optional)
+         * \param comment pointer where summary string should be stored (optional)
+         * \param user pointer where user should be stored (optional)
+         * \param revid id of revision (optional)
+         * \param reason if there is a failure this is a number of error that happened
+         * \return Text of wiki page or error message
+         */
+        HUGGLE_EX QString EvaluateWikiPageContents(ApiQuery *query, bool *failed, QString *ts = nullptr, QString *comment = nullptr,
+                                                   QString *user = nullptr, long *revid = nullptr, int *reason = nullptr,
+                                                   QString *title = nullptr);
+        //! \obsolete RetrieveWikiPageContents(WikiPage *page, bool parse = false);
+        HUGGLE_EX ApiQuery *RetrieveWikiPageContents(QString page, WikiSite *site, bool parse = false);
+        HUGGLE_EX ApiQuery *RetrieveWikiPageContents(WikiPage *page, bool parse = false);
         HUGGLE_EX Collectable_SmartPtr<ApiQuery> Unwatchlist(WikiPage *page);
         HUGGLE_EX Collectable_SmartPtr<ApiQuery> Watchlist(WikiPage *page);
         /*!

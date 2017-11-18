@@ -752,6 +752,7 @@
   <string name="preferences-watchlist-unwatch">Remove from watchlist</string>
   <string name="preferences-watchlist-preferences">Follow your on-wiki preferences</string>
   <string name="preferences-watchlist-nochange">Do nothing</string>
+  <string name="preferences-auto-watch-talk">Watch talk page of user who receives a warning from you</string>
   <string name="preferences-sounds-enable-queue">Play sound when a new item is added to the queue</string>
   <string name="preferences-sounds-enable-irc">Play sound when a message is received in HAN</string>
   <string name="preferences-sounds-minimal-score">Minimal edit score for notification</string>

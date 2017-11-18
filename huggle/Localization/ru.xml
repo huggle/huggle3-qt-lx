@@ -221,8 +221,8 @@
   <string name="login-old">Получение пользовательских настроек из старого местоположения</string>
   <string name="login-intro">Пожалуйста, выберите проект и введите своё имя пользователя и пароль. Вы также можете войти в несколько проектов, нажав на кнопку \"Проекты\".</string>
   <string name="invalid-bot-user-name">Это не допустимое имя бота. Пример правильное название бота: Jimbo@Huggle</string>
-  <string name="login-tab-botp">Пароли ботов</string>
-  <string name="login-tab-login">Наследие</string>
+  <string name="login-tab-botp">Пароль бота</string>
+  <string name="login-tab-login">По-старому</string>
   <string name="login-reload-tool-tip">Перезагрузить список проектов, которые могут быть использованы в Huggle. Это может быть полезно в случае, если вы хотите использовать Huggle в проекте, для которого инструмент был включен недавно.</string>
   <string name="login-language">Язык:</string>
   <string name="login-project">Проект:</string>

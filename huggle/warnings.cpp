@@ -135,6 +135,8 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
     {
         CreateOnly = true;
     }
+    if (hcfg->UserConfig->AutomaticallyWatchlistWarnedUsers)
+        WikiUtil::Watchlist(Edit->User->GetTalkPage());
     PendingWarning *pw = new PendingWarning(WikiUtil::MessageUser(Edit->User, MessageText_, HeadingText_, Summary_, true, Dependency, false,
                                                                   Configuration::HuggleConfiguration->UserConfig->SectionKeep, false,
                                                                   Edit->TPRevBaseTime, CreateOnly, true), WarningType, Edit);
@@ -363,6 +365,8 @@ void Warnings::ForceWarn(int Level, WikiEdit *Edit)
         id = WikiUtil::MonthText(date_.date().month(), Edit->GetSite()) + " " + QString::number(date_.date().year());
     }
     MessageText_ = Warnings::UpdateSharedIPTemplate(Edit->User, MessageText_, Edit->GetSite());
+    if (hcfg->UserConfig->AutomaticallyWatchlistWarnedUsers)
+        WikiUtil::Watchlist(Edit->User->GetTalkPage());
     WikiUtil::MessageUser(Edit->User, MessageText_, id, Summary_, true, nullptr, false,
                               Configuration::HuggleConfiguration->UserConfig->SectionKeep,
                               true, Edit->TPRevBaseTime);

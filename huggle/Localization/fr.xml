@@ -193,8 +193,8 @@
   <string name="custommessage-title">Écrire un message à $1</string>
   <string name="custommessage-summary">Résumé d\'édit (le préfixe \"Huggle\" sera ajouté)</string>
   <string name="custommessage-subject">Titre</string>
-  <string name="custommessage-menu">Écrire un message</string>
-  <string name="custommessage-send">Envoyer</string>
+  <string name="custommessage-menu">Envoyer un message personnalisé</string>
+  <string name="custommessage-send">Envoyer un message</string>
   <string name="delete-title">Supprimer $1</string>
   <string name="delete-reason">Motif :</string>
   <string name="delete-deletionlog">Journal des suppressions :</string>
@@ -602,7 +602,7 @@
   <string name="shortcut-my-talk">Ma page de discussion</string>
   <string name="shortcut-raw">Annuler la modification et avertir un utilisateur</string>
   <string name="shortcut-contrib">Afficher la contribution de l’utilisateur qui a fait la modification actuellement affichée</string>
-  <string name="shortcut-custom-msg">Ouvre un formulaire permettant de rédiger un message</string>
+  <string name="shortcut-custom-msg">Ouvre un formulaire permettant d\'envoyer un message personnalisé à l\'utilisateur actuel</string>
   <string name="shortcut-exit">Mettre fin à Huggle de la manière habituelle</string>
   <string name="shortcut-next">Aller à la modification suivante</string>
   <string name="shortcut-suspicious">Marquer la modification comme suspecte</string>

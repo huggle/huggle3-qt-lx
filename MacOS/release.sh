@@ -16,8 +16,8 @@ if [ ${version_array[0]} -eq 4 ]; then
     EXTRA_FLAGS="--qt4"
 elif [ ${version_array[0]} -eq 5 ]; then
     EXTRA_FLAGS="--qt5"
-    # Qt >= 5.9 requires this special flag
-    if [ ${version_array[1]} -ge 9 ]; then
+    # Qt >= 5.4 requires this special flag
+    if [ ${version_array[1]} -ge 4 ]; then
         EXTRA_FLAGS="${EXTRA_FLAGS} --web-engine"
     fi
 else

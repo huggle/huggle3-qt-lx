@@ -198,6 +198,7 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     this->ui->cbMaxScore->setText(_l("preferences-max-score"));
     this->ui->cbMinScore->setText(_l("preferences-min-score"));
     this->ui->cb_AutoRefresh->setText(_l("config-auto-refresh"));
+    this->ui->cb_WatchWarn->setText(_l("preferences-auto-watch-talk"));
     this->ui->l_QueueSize->setText(_l("preferences-queue-size"));
     this->ui->l_EmptyQueuePage->setText(_l("preferences-empty-queue-page"));
 
@@ -342,6 +343,7 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     hcfg->UserConfig->MaxScore = this->ui->leMaxScore->text().toLongLong();
     hcfg->UserConfig->EnableMaxScore = this->ui->cbMaxScore->isChecked();
     hcfg->SystemConfig_QueueSize = this->ui->le_QueueSize->text().toInt();
+    hcfg->UserConfig->AutomaticallyWatchlistWarnedUsers = this->ui->cb_WatchWarn->isChecked();
     hcfg->UserConfig->PageEmptyQueue = this->ui->le_EmptyQueuePage->text();
     hcfg->UserConfig->AutomaticRefresh = this->ui->cb_AutoRefresh->isChecked();
     if (hcfg->SystemConfig_QueueSize < 10)
@@ -806,6 +808,7 @@ void Preferences::ResetItems()
     this->ui->cbPlayOnIRCMsg->setChecked(hcfg->SystemConfig_PlaySoundOnIRCUserMsg);
     this->ui->cbCatScansAndWatched->setChecked(hcfg->SystemConfig_CatScansAndWatched);
     this->ui->cb_AutoRefresh->setChecked(hcfg->UserConfig->AutomaticRefresh);
+    this->ui->cb_WatchWarn->setChecked(hcfg->UserConfig->AutomaticallyWatchlistWarnedUsers);
 #ifdef HUGGLE_NOAUDIO
     this->ui->ln_QueueSoundMinScore->setEnabled(false);
     this->ui->cbPlayOnNewItem->setEnabled(false);
