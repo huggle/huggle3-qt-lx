@@ -123,6 +123,8 @@ namespace Huggle
             bool IsParsed(WikiEdit *edit);
             void Rescore(WikiEdit *edit);
             void Message();
+            //! For debugging only
+            void WriteTest(WikiEdit *edit);
             QHash<QString,WikiSite*> Ch2Site;
             QHash<WikiSite*,QString> Site2Channel;
             //! Prefix to special commands that are being sent to network to other users

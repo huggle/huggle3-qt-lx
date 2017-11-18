@@ -348,6 +348,7 @@ namespace Huggle
             void on_actionUser_page_triggered();
             void on_actionShow_score_debug_triggered();
             void on_actionPost_a_custom_message_triggered();
+            void on_actionWrite_text_to_HAN_triggered();
         private:
             void CloseTab(int tab);
             void DisplayWelcomeMessage();

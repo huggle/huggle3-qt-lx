@@ -3379,3 +3379,8 @@ void Huggle::MainWindow::on_actionPost_a_custom_message_triggered()
     CustomMessage *cm = new CustomMessage(this->CurrentEdit->User, this);
     cm->show();
 }
+
+void Huggle::MainWindow::on_actionWrite_text_to_HAN_triggered()
+{
+    this->VandalDock->WriteTest(this->CurrentEdit);
+}

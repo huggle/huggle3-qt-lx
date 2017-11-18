@@ -81,7 +81,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>20</height>
+     <height>19</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -130,6 +130,7 @@
      <addaction name="actionPrint_API_for_diff"/>
      <addaction name="actionCheck_for_dups"/>
      <addaction name="actionShow_score_debug"/>
+     <addaction name="actionWrite_text_to_HAN"/>
     </widget>
     <addaction name="actionIntroduction"/>
     <addaction name="actionContents"/>
@@ -1137,6 +1138,11 @@
   <action name="actionPost_a_custom_message">
    <property name="text">
     <string>Post a custom message</string>
+   </property>
+  </action>
+  <action name="actionWrite_text_to_HAN">
+   <property name="text">
+    <string>Write text to HAN</string>
    </property>
   </action>
  </widget>

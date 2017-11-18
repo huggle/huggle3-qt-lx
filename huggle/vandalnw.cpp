@@ -338,6 +338,19 @@ void VandalNw::Message()
     this->ui->lineEdit->setText("");
 }
 
+void VandalNw::WriteTest(WikiEdit *edit)
+{
+    if (edit == nullptr)
+    {
+        this->Insert("The edit is NULL.", HAN::MessageType_Info);
+    } else
+    {
+        QString sid = QString::number(edit->RevID);
+        this->Insert("<font color=red>Test message on " + edit->GetSite()->Name + " for " + edit->Page->PageName + " edit by " + edit->User->Username +
+                     " (" + GenerateWikiDiffLink(sid, sid, edit->GetSite()) + ").</font>", HAN::MessageType_User);
+    }
+}
+
 void VandalNw::ProcessGood(WikiEdit *edit, QString user)
 {
     edit->User->SetBadnessScore(edit->User->GetBadnessScore() - 200);
@@ -583,6 +596,8 @@ void VandalNw::TextEdit_anchorClicked(QString link)
     }
     if (scheme == "huggle")
     {
+        while (link.startsWith("/"))
+            link = link.mid(1);
         // ok this is internal huggle link let's get a site
         if (!link.contains("/"))
             return;
