@@ -12,6 +12,7 @@
 #include <QMessageBox>
 #include <QModelIndex>
 #include <QtXml>
+#include "apiqueryresult.hpp"
 #include "configuration.hpp"
 #include "exception.hpp"
 #include "generic.hpp"
@@ -421,7 +422,7 @@ void ReportUser::On_DiffTick()
     if (this->qDiff == nullptr || !this->qDiff->IsProcessed())
         return;
 
-    if (this->qDiff->Result->IsFailed())
+    if (this->qDiff->IsFailed())
     {
         this->webView->RenderHtml(_l("browser-fail", this->qDiff->GetFailureReason()));
         this->tPageDiff->stop();
@@ -429,15 +430,12 @@ void ReportUser::On_DiffTick()
     }
     QString Summary;
     QString Diff;
-    QDomDocument d;
-    d.setContent(this->qDiff->Result->Data);
-    QDomNodeList l = d.elementsByTagName("rev");
-    QDomNodeList diff = d.elementsByTagName("diff");
-    if (diff.count() > 0)
+
+    ApiQueryResultNode *diff = this->qDiff->GetApiQueryResult()->GetNode("compare");
+
+    if (diff)
     {
-        QDomElement e = diff.at(0).toElement();
-        if (e.nodeName() == "diff")
-            Diff = e.text();
+        Diff = diff->Value;
     } else
     {
         Huggle::Syslog::HuggleLogs->DebugLog(this->qDiff->Result->Data);
@@ -446,13 +444,7 @@ void ReportUser::On_DiffTick()
         this->tPageDiff->stop();
         return;
     }
-    // get last id
-    if (l.count() > 0)
-    {
-        QDomElement e = l.at(0).toElement();
-        if (e.nodeName() == "rev" && e.attributes().contains("comment"))
-                Summary = e.attribute("comment");
-    }
+    Summary = diff->GetAttribute("tocomment", "<font color=red>Unable to retrieve the edit summary</font>");
 
     if (!Summary.size())
         Summary = "<font color=red>" + _l("browser-miss-summ") + "</font>";
@@ -548,12 +540,8 @@ void ReportUser::on_tableWidget_clicked(const QModelIndex &index)
     if (this->qDiff != nullptr)
         this->qDiff->Kill();
 
-    this->qDiff = new ApiQuery(ActionQuery, this->ReportedUser->GetSite());
-    this->qDiff->Parameters = "prop=revisions&rvprop=" + QUrl::toPercentEncoding( "ids|user|timestamp|comment" ) +
-                      "&rvlimit=1&rvstartid=" + this->ui->tableWidget->item(index.row(), 3)->text() +
-                      "&rvendid=" + this->ui->tableWidget->item(index.row(), 3)->text() + "&rvdiffto=prev&titles=" +
-                      QUrl::toPercentEncoding(ui->tableWidget->item(index.row(), 0)->text());
-    this->qDiff->Process();
+    this->qDiff = WikiUtil::APIRequest(ActionCompare, this->ReportedUser->GetSite(), "fromrev=" + this->ui->tableWidget->item(index.row(), 3)->text() + "&torelative=prev"\
+                                       "&prop=" + QUrl::toPercentEncoding("diff|comment|parsedcomment"));
     this->tPageDiff->start(HUGGLE_TIMER);
 }
 

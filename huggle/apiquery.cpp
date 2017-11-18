@@ -407,6 +407,9 @@ void ApiQuery::SetAction(const Action action)
             this->ActionPart = "clearhasmsg";
             this->UsingPOST = true;
             return;
+        case ActionCompare:
+            this->ActionPart = "compare";
+            return;
         case ActionQuery:
             this->ActionPart = "query";
             this->IsContinuous = true;
