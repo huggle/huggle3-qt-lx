@@ -117,6 +117,7 @@ QString Query::QueryStatusToString()
 
 void Query::ProcessCallback()
 {
+    this->finishedTime = QDateTime::currentDateTime();
     if (this->callback != nullptr)
     {
         this->RegisterConsumer(HUGGLECONSUMER_CALLBACK);
@@ -126,6 +127,7 @@ void Query::ProcessCallback()
 
 void Query::ProcessFailure()
 {
+    this->finishedTime = QDateTime::currentDateTime();
     if (this->FailureCallback != nullptr)
     {
         this->RegisterConsumer(HUGGLECONSUMER_CALLBACK);
@@ -191,4 +193,12 @@ void Query::Suspend(bool enqueue)
     Collectable_SmartPtr<Query> query = this;
     if (enqueue)
         Query::PendingRestart.append(query);
+}
+
+qint64 Query::ExecutionTime()
+{
+    if (!this->IsProcessed())
+        return 0;
+
+    return this->StartTime.msecsTo(this->finishedTime);
 }

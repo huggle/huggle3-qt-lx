@@ -636,7 +636,13 @@ void MainWindow::UpdateStatusBarData()
     if (hcfg->Verbosity > 0)
         statistics_ += " QGC: " + QString::number(GC::gc->list.count()) + " U: " + QString::number(WikiUser::ProblematicUsers.count());
     params << statistics_ << this->GetCurrentWikiSite()->Name;
-    this->Status->setText(_l("main-status-bar", params));
+    QString status_text = _l("main-status-bar", params);
+#ifdef HUGGLE_METRICS
+    qint64 response_time = QueryPool::HugglePool->GetAverageExecutionTime();
+    if (response_time >= 0)
+        status_text += " | " + _l("main-metric-bar", QString::number(QueryPool::HugglePool->GetAverageExecutionTime()));
+#endif
+    this->Status->setText(status_text);
 }
 
 bool MainWindow::EditingChecks()

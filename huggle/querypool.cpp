@@ -198,6 +198,9 @@ void QueryPool::CheckQueries()
 #endif
         if (q->IsProcessed())
         {
+#ifdef HUGGLE_METRICS
+            this->registerQueryPerfTime(q);
+#endif
             this->RunningQueries.removeAt(curr);
             // this is pretty spamy :o
             HUGGLE_DEBUG("Query finished with: " + q->Result->Data, 8);
@@ -233,4 +236,31 @@ int QueryPool::GetRunningEditingQueries()
     }
     return n;
 }
+
+#ifdef HUGGLE_METRICS
+qint64 QueryPool::GetAverageExecutionTime()
+{
+    if (!this->performanceInfo.count())
+        return -1;
+
+    qint64 sum = 0;
+
+    // Calculate average value
+    foreach (qint64 i, this->performanceInfo)
+        sum += i;
+
+    return sum / this->performanceInfo.count();
+}
+
+void QueryPool::registerQueryPerfTime(Query *item)
+{
+    if (item->Type != QueryApi)
+        return;
+
+    while(this->performanceInfo.size() > HUGGLE_STATISTICS_BLOCK_SIZE)
+        this->performanceInfo.removeFirst();
+
+    this->performanceInfo.append(item->ExecutionTime());
+}
+#endif
 

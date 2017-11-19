@@ -112,6 +112,8 @@ namespace Huggle
             virtual void Restart();
             //! Prevents query from being finished
             virtual void Suspend(bool enqueue = true);
+            //! Returns how long did it take to process this query
+            qint64 ExecutionTime();
             //! Result of query, see documentation of QueryResult for more
             QueryResult *Result = nullptr;
             //! Current status of a query
@@ -161,6 +163,7 @@ namespace Huggle
             //! When a query fail and retry this is changed to true so that it doesn't endlessly restart
             bool Repeated;
             QString FailureReason;
+            QDateTime finishedTime;
         private:
             //! Every query has own unique ID which can be used to work with them
             unsigned int ID;

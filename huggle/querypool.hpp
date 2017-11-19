@@ -53,6 +53,10 @@ namespace Huggle
             void PostProcessEdit(WikiEdit *edit);
             int RunningQueriesGetCount();
             int GetRunningEditingQueries();
+#ifdef HUGGLE_METRICS
+            //! Return average response time, or -1 in case it's unknown.
+            qint64 GetAverageExecutionTime();
+#endif
 #ifndef HUGGLE_SDK
             //! Pointer to UI that contains all processes
             ProcessList *Processes = nullptr;
@@ -70,6 +74,10 @@ namespace Huggle
             QList<WikiEdit*> UncheckedReverts;
             QList<ApiQuery*> PendingWatches;
         private:
+#ifdef HUGGLE_METRICS
+            void registerQueryPerfTime(Query *item);
+            QList<qint64> performanceInfo;
+#endif
             //! List of all running queries
             QList<Query*> RunningQueries;
     };

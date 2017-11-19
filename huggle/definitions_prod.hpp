@@ -35,6 +35,9 @@ typedef long long revid_ht;
 // How many dynamic shortcuts for dropdown menus to support
 #define HUGGLE_MAX_DROPDOWN_SHORTCUTS  20
 
+// If advanced perf statistics should be used
+#define HUGGLE_METRICS
+
 #ifdef HUGGLE_WEBEN
     #define HUGGLE_WEB_ENGINE_NAME "Chromium"
 #else
