@@ -305,6 +305,7 @@
   <string name="main-space">문서 이름은 공백으로 끝날 수 없습니다. 문서 이름을 수정해 주십시오</string>
   <string name="main-system">시스템</string>
   <string name="main-status-bar">편집 &lt;b&gt;$1&lt;/b&gt;번과 쿼리 &lt;b&gt;$2&lt;/b&gt;개를 진행하고 있습니다. 목록에서 허용된 사용자: &lt;b&gt;$3&lt;/b&gt; 대기열 크키: &lt;b&gt;$4&lt;/b&gt; $6에 대한 통계: $5</string>
+  <string name="main-metric-bar">평균 API 응답 시간: $1ms</string>
   <string name="main-shutting-down">허글이 종료되고, 무시됩니다</string>
   <string name="main-system-messages">새 메시지 보이기</string>
   <string name="main-system-reconnectirc">IRC 피드 다시 연결</string>
@@ -718,6 +719,7 @@
   <string name="preferences-watchlist-watch">주시문서 목록에 추가</string>
   <string name="preferences-watchlist-unwatch">주시문서 목록에서 제거</string>
   <string name="preferences-watchlist-nochange">아무 것도 안 함</string>
+  <string name="preferences-auto-watch-talk">당신으로부터 경고를 받은 사용자의 토론 문서를 주시합니다</string>
   <string name="preferences-sounds-enable-queue">새로운 항목이 대기열에 추가되면 소리 재생</string>
   <string name="preferences-sounds-enable-irc">메시지가 HAN에 수신되면 소리 재생</string>
   <string name="preferences-sounds-minimal-score">알림을 위한 최소한의 편집 점수</string>

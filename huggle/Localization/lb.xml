@@ -194,6 +194,7 @@
   <string name="main-new-messages">Dir hutt nei Messagen. Wielt de System -&gt; Nei Message weisen oder M drécke fir se ze gesinn.</string>
   <string name="main-space">Den Numm vun der Säit däerf net mat engem Espace ophalen, verbessert w.e.g. den Numm vun der Säit</string>
   <string name="main-system">System</string>
+  <string name="main-metric-bar">Duerchschnëttlech API-Äntwertzäit: $1</string>
   <string name="main-system-messages">Nei Message weisen</string>
   <string name="main-system-reconnectirc">IRC-Feed nei verbannen</string>
   <string name="main-system-savelog">Logbuch späicheren...</string>
@@ -442,6 +443,7 @@
   <string name="preferences-watchlist-unwatch">Vun der Iwwerwaachungslëscht erofhuelen</string>
   <string name="preferences-watchlist-preferences">Iwwerwaacht Är Wiki-Astellungen</string>
   <string name="preferences-watchlist-nochange">Näischt maachen</string>
+  <string name="preferences-auto-watch-talk">Diskussiounssäit vu Benotzer iwwerwaachen déi vun Iech eng Warnung kritt hunn</string>
   <string name="request">Ufro</string>
   <string name="requesting">Ufroen</string>
   <string name="requested">Ugefrot</string>

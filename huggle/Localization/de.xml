@@ -312,6 +312,7 @@
   <string name="main-space">Der Seitenname kann nicht mit einem Leerzeichen enden. Bitte Seitennamen korrigieren.</string>
   <string name="main-system">System</string>
   <string name="main-status-bar">Verarbeite &lt;b&gt;$1&lt;/b&gt; Bearbeitungen und &lt;b&gt;$2&lt;/b&gt; Abfragen. Weißgelistete Benutzer: &lt;b&gt;$3&lt;/b&gt;. Größe der Warteschlange: &lt;b&gt;$4&lt;/b&gt;. Statistiken für $6: $5</string>
+  <string name="main-metric-bar">Durchschnittliche API-Antwortzeit: $1 ms</string>
   <string name="main-shutting-down">Huggle fährt herunter, ignoriert</string>
   <string name="main-system-messages">Neue Nachrichten anzeigen</string>
   <string name="main-system-reconnectirc">IRC-Feed neu verbinden</string>
@@ -751,6 +752,7 @@
   <string name="preferences-watchlist-unwatch">Von der Beobachtungsliste entfernen</string>
   <string name="preferences-watchlist-preferences">Folge deinen Wiki-Einstellungen</string>
   <string name="preferences-watchlist-nochange">Nichts unternehmen</string>
+  <string name="preferences-auto-watch-talk">Diskussionsseite des Benutzers beobachten, der von dir eine Warnung erhält.</string>
   <string name="preferences-sounds-enable-queue">Ton abspielen, wenn ein neues Objekt zur Warteschlange hinzugefügt wurde.</string>
   <string name="preferences-sounds-enable-irc">Ton abspielen, wenn eine Nachricht in HAN empfangen wurde.</string>
   <string name="preferences-sounds-minimal-score">Minimaler Bearbeitungsscore zur Benachrichtigung</string>

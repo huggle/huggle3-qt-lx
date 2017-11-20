@@ -185,6 +185,7 @@
   <string name="config-no-colon" fuzzy="true">Вы не можете использовать : в имени очереди</string>
   <string name="config-notify-update">Проверять на наличие обновлений</string>
   <string name="config-notify-beta">Проверять на наличие бета-версий, если возможно</string>
+  <string name="custommessage-send">Отправить сообщение</string>
   <string name="delete-title">Удалить $1</string>
   <string name="delete-reason">Причина:</string>
   <string name="delete-deletionlog">Журнал удалений:</string>

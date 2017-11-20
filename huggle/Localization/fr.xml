@@ -191,7 +191,7 @@
   <string name="config-notify-update">Vérifier les mises à jour</string>
   <string name="config-notify-beta">Vérifier si des versions bêta sont disponibles</string>
   <string name="custommessage-title">Écrire un message à $1</string>
-  <string name="custommessage-summary">Résumé d\'édit (le préfixe \"Huggle\" sera ajouté)</string>
+  <string name="custommessage-summary">Résumé d\'édit (le préfixe Huggle sera ajouté)</string>
   <string name="custommessage-subject">Titre</string>
   <string name="custommessage-menu">Envoyer un message personnalisé</string>
   <string name="custommessage-send">Envoyer un message</string>
@@ -312,6 +312,7 @@
   <string name="main-space">Le nom de la page ne peut pas se terminer par un espace, veuillez le corriger.</string>
   <string name="main-system">Système</string>
   <string name="main-status-bar">Traitement de &lt;b&gt;$1&lt;/b&gt; modifications et &lt;b&gt;$2&lt;/b&gt; requêtes. Utilisateurs en liste blanche : &lt;b&gt;$3&lt;/b&gt;. Taille de la file d’attente : &lt;b&gt;$4&lt;/b&gt;. Statistiques pour $6 : $5</string>
+  <string name="main-metric-bar">Temps de réponse moyen de l\'API: $1ms</string>
   <string name="main-shutting-down">Huggle est en cours d’arrêt, ignoré</string>
   <string name="main-system-messages">Montrer les nouveaux messages</string>
   <string name="main-system-reconnectirc">Reconnecter le fil IRC</string>

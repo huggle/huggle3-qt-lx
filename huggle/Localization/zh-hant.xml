@@ -117,9 +117,9 @@
   <string name="config-undosummary">撤銷自身編輯的默認編輯摘要</string>
   <string name="config-confirm-user">回退在用戶命名空間做出的編輯時需要確認</string>
   <string name="config-confirm-wl">需要確認以回退白名單用戶做出的編輯</string>
-  <string name="config-confirm-talk">回退在討論頁上做出的編輯時需要確認</string>
+  <string name="config-confirm-talk">回退在對話頁上做出的編輯時需要確認</string>
   <string name="config-use-rollback">使用軟體回退</string>
-  <string name="config-welcome-empty-page">發送歡迎信息到作出了良好編輯的只有空討論頁的用戶</string>
+  <string name="config-welcome-empty-page">發送歡迎信息到作出了良好編輯的只有空對話頁的用戶</string>
   <string name="config-conflicts-revert">自動解決與其他用戶在同一頁面回退或更改的編輯衝突</string>
   <string name="config-instant-reverts">使用立即回退（非常快，但執行後無法撤銷）</string>
   <string name="config-reverts-multiple">由同一使用者的多次編輯回退：</string>
@@ -148,7 +148,7 @@
   <string name="config-whitelisted">白名單</string>
   <string name="config-friend">好友</string>
   <string name="config-userspace">使用者空間</string>
-  <string name="config-talk">對話頁面</string>
+  <string name="config-talk">對話頁</string>
   <string name="config-columns-dynamic">讓清單為動態欄位（依項目內容多寡自動調整大小）或手動欄位（用戶自行調整大小）</string>
   <string name="config-message-notification">當您在自己的對話頁面中收到一則新訊息時，顯示通知</string>
   <string name="config-warning-api">顯示用於API查詢的警告</string>
@@ -312,6 +312,7 @@
   <string name="main-space">頁面名稱不能以空位作結，請修正頁面名稱。</string>
   <string name="main-system">系統</string>
   <string name="main-status-bar">處理&lt;b&gt;$1&lt;/b&gt;次編輯和&lt;b&gt;$2&lt;/b&gt;次查詢。白名單用戶：&lt;b&gt;$3&lt;/b&gt; 佇列大小： &lt;b&gt;$4&lt;/b&gt; 在$6的統計：$5</string>
+  <string name="main-metric-bar">API 平均回應時間：$1ms</string>
   <string name="main-shutting-down">Huggle 已關閉，略過</string>
   <string name="main-system-messages">顯示新訊息</string>
   <string name="main-system-reconnectirc">重新連線IRC訂閱</string>
@@ -342,7 +343,7 @@
   <string name="main-queue-remove-whitelisted">移除由白名單使用者作出的編輯</string>
   <string name="main-queue-remove-200">移除記分小於 -200 的編輯</string>
   <string name="main-goto">前往</string>
-  <string name="main-goto-mytalk">我的討論頁</string>
+  <string name="main-goto-mytalk">我的對話頁</string>
   <string name="main-goto-mycontribs">我的貢獻</string>
   <string name="main-revision-decline">拒絕修訂</string>
   <string name="main-revision">修訂</string>
@@ -391,7 +392,7 @@
   <string name="main-user-ignore">忽略</string>
   <string name="main-user-unignore">取消忽略</string>
   <string name="main-user-contribs">在瀏覽器中顯示使用者貢獻</string>
-  <string name="main-user-clear-talk">清除使用者討論頁</string>
+  <string name="main-user-clear-talk">清除使用者對話頁</string>
   <string name="main-user-talk">檢視討論頁</string>
   <string name="main-user-page">檢視使用者頁面</string>
   <string name="main-user-message">訊息…</string>
@@ -464,7 +465,7 @@
   <string name="message-fail-re-user-tp">無法取得$1。正在停止訊息寄送至該用戶</string>
   <string name="message-er">無法傳遞訊息至$1：$2</string>
   <string name="message-error">無法傳遞訊息至$1！請檢查日誌！</string>
-  <string name="message-fail-retrieve-talk">無法取得用戶討論頁</string>
+  <string name="message-fail-retrieve-talk">無法取得使用者對話頁</string>
   <string name="message-done">成功在$2傳遞訊息至：$1</string>
   <string name="message-fail-token-1">無法取得編輯令牌</string>
   <string name="message-fail-token-2">此請求未回傳令牌</string>
@@ -539,7 +540,7 @@
   <string name="score-score">記分</string>
   <string name="score-word">字</string>
   <string name="score-range">範圍</string>
-  <string name="score-take-any-no-talk-word">符合在非討論頁面上的任何文字</string>
+  <string name="score-take-any-no-talk-word">符合在非對話頁面上的任何文字</string>
   <string name="score-take-whole-no-talk-word">僅符合在非討論頁面上的整個單詞</string>
   <string name="score-only-whole-word">僅符合整個單詞</string>
   <string name="score-take-any-word">符合此字串所包含任何字詞</string>
@@ -599,7 +600,7 @@
   <string name="shortcut-page-patrol-edit">巡查編輯</string>
   <string name="shortcut-report-username">回報使用者名稱</string>
   <string name="shortcut-report-user">回報使用者</string>
-  <string name="shortcut-my-talk">我的對話頁面</string>
+  <string name="shortcut-my-talk">我的對話頁</string>
   <string name="shortcut-raw">還原編輯並警告使用者</string>
   <string name="shortcut-contrib">顯示做出目前所顯示編輯之用戶的貢獻</string>
   <string name="shortcut-custom-msg">開啟一個表單來寄送自定義訊息給目前的使用者</string>
@@ -618,7 +619,7 @@
   <string name="shortcut-good">標記此目前顯示的編輯為良好</string>
   <string name="shortcut-open-in-huggle">開啟目前顯示的頁面</string>
   <string name="shortcut-open">在外部瀏覽器中開啟目前顯示的編輯</string>
-  <string name="shortcut-talk">顯示做出此次更改的使用者討論頁</string>
+  <string name="shortcut-talk">顯示做出此次更改的使用者對話頁</string>
   <string name="shortcut-revert-agf-1">依據善意推定回退最新修訂</string>
   <string name="shortcut-browser-close-tab">關閉瀏覽頁籤</string>
   <string name="shortcut-tab">開啟新頁籤</string>
@@ -751,6 +752,7 @@
   <string name="preferences-watchlist-unwatch">從監視清單中移除</string>
   <string name="preferences-watchlist-preferences">遵循您在wiki上的設置</string>
   <string name="preferences-watchlist-nochange">什麼都不做</string>
+  <string name="preferences-auto-watch-talk">監視有接收到來自於您的警告之使用者對話頁</string>
   <string name="preferences-sounds-enable-queue">當新項目添加至佇列時播放音效</string>
   <string name="preferences-sounds-enable-irc">當在 HAN 裡有訊息收到時播放音效</string>
   <string name="preferences-sounds-minimal-score">通知的最小編輯記分</string>
