@@ -191,7 +191,7 @@
   <string name="config-notify-update">Vérifier les mises à jour</string>
   <string name="config-notify-beta">Vérifier si des versions bêta sont disponibles</string>
   <string name="custommessage-title">Écrire un message à $1</string>
-  <string name="custommessage-summary">Résumé d\'édit (le préfixe Huggle sera ajouté)</string>
+  <string name="custommessage-summary">Résumé des modifications (le préfixe Huggle sera ajouté automatiquement)</string>
   <string name="custommessage-subject">Titre</string>
   <string name="custommessage-menu">Envoyer un message personnalisé</string>
   <string name="custommessage-send">Envoyer un message</string>

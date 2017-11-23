@@ -312,6 +312,7 @@
   <string name="main-space">页面名不能以空格结尾，请修正页面名</string>
   <string name="main-system">系统</string>
   <string name="main-status-bar">处理&lt;b&gt;$1&lt;/b&gt;次编辑和&lt;b&gt;$2&lt;/b&gt;次查询中。白名单用户：&lt;b&gt;$3&lt;/b&gt; 队列大小：&lt;b&gt;$4&lt;/b&gt; $6的统计：$5</string>
+  <string name="main-metric-bar">平均API响应时间：$1ms</string>
   <string name="main-shutting-down">Huggle已关闭，忽略</string>
   <string name="main-system-messages">显示新消息</string>
   <string name="main-system-reconnectirc">重新连接IRC</string>
