@@ -739,7 +739,8 @@ void RevertQuery::Rollback()
         token = QUrl::toPercentEncoding(token);
     }
     this->qRevert->Parameters = "title=" + QUrl::toPercentEncoding(edit->Page->PageName) + "&token="
-                + token + tag + "&watchlist=nochange&user=" + QUrl::toPercentEncoding(edit->User->Username)
+                + token + tag + "&watchlist=" + UserConfiguration::WatchListOptionToString(hcfg->UserConfig->Watchlist)
+                + "&user=" + QUrl::toPercentEncoding(edit->User->Username)
                 + "&summary=" + QUrl::toPercentEncoding(this->Summary);
     this->qRevert->Target = edit->Page->PageName;
     this->qRevert->UsingPOST = true;
