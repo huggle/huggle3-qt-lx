@@ -739,7 +739,7 @@
   <string name="preferences-watchlist-unwatch">Quitar de la lista de seguimiento</string>
   <string name="preferences-watchlist-preferences">Seguir tus preferencias en el wiki</string>
   <string name="preferences-watchlist-nochange">No hacer nada</string>
-  <string name="preferences-auto-watch-talk">Pagina de discusion Watch del usuario que recibe un aviso de Ustedes</string>
+  <string name="preferences-auto-watch-talk">Vigilar página de discusión del usuario que reciba una advertencia tuya</string>
   <string name="preferences-sounds-enable-queue" fuzzy="true">Reproducir un sonido cuando se añade un nuevo elemento a la cola</string>
   <string name="preferences-sounds-enable-irc">Reproducir un sonido cuando se recibe un mensaje en HAN</string>
   <string name="preferences-sounds-minimal-score">Puntuación de edición mínima para la notificación</string>
