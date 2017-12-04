@@ -154,6 +154,7 @@
   <string name="config-warning-api">Прикажувај предупредувања за барања од извршник</string>
   <string name="config-title-diff">Наслов на страницата во сите разлики (голем текст со кој е испишан само насловот на страницата поставен врз секоја разлика)</string>
   <string name="config-updates">Провери поднови</string>
+  <string name="config-reset-menu">Проектните псотавки (списокот на видови предупредувања) се изменети по вашата последна посета;  вратени се основните тастатурни кратенки во расклопните менија (отповикување, предупредување и тн.).</string>
   <string name="config-beta">Провери бета-верзии</string>
   <string name="config-html-messages">HAN може да испише HTML-пораки (опасно)</string>
   <string name="config-summary-present">Истакни краток преглед кога е присутно наместо кога е отсутно</string>
@@ -167,6 +168,7 @@
   <string name="config-autoadvance">По отповикувањето, веднаш прејди на следното уредување во редицата</string>
   <string name="config-userollback">Користи функција за отповикување, ако е достапна</string>
   <string name="config-revertsummaries">Описите на отповикувањата се достапни во менито</string>
+  <string name="config-auto-refresh">Автоматски превчитувај ја страницата во случај да ја има изменето некој друг</string>
   <string name="config-extendreports">Проширени пријави по дополнителен вандализам</string>
   <string name="config-autoreport">Кога ќе се побара последна опомена за корисник</string>
   <string name="config-reportnone">Не прави ништо</string>
@@ -188,6 +190,8 @@
   <string name="config-no-colon">Не можете да користите : во името на редицата</string>
   <string name="config-notify-update">Провери поднови</string>
   <string name="config-notify-beta">Провери дали има бета-верзии</string>
+  <string name="custommessage-title">Испрати прилагодена порака на $1</string>
+  <string name="custommessage-summary">Опис на уредувањето (автоматски ќе се додаде наставка од Huggle)</string>
   <string name="custommessage-subject">Наслов</string>
   <string name="custommessage-menu">Испрати прилагодена порака</string>
   <string name="custommessage-send">Испрати порака</string>
@@ -240,6 +244,7 @@
   <string name="login-proxy-remember-this">Запомни ја поставкава за понатаму</string>
   <string name="login-proxyport">Порта:</string>
   <string name="login-proxydomain">Домен:</string>
+  <string name="proxy-restart">Може да треба да се превклучи Huggle за да стапат на сила овие измени</string>
   <string name="login-retrieving-user-conf">Добивање на кориснички поставки</string>
   <string name="login-fail-css">Најавата не успеа на $1: Не можам да ги преземам корисничките поставки од старото место. Дали создадовте huggle3.css во вашиот кориснички простор? (недостасува Special:MyPage/huggle3.css)</string>
   <string name="login-fail-enable-true">Најавата не успеа на $1: Немате enable:true во вашите лични поставки.</string>
@@ -307,6 +312,7 @@
   <string name="main-space">Името на страницата не може да завршува со празно место. Исправете го.</string>
   <string name="main-system">Систем</string>
   <string name="main-status-bar">Обработувам &lt;b&gt;$1&lt;/b&gt;уредувања и &lt;b&gt;$2&lt;/b&gt;барања. Корисници ставени на белиот список: &lt;b&gt;$3&lt;/b&gt; Големина на редицата: &lt;b&gt;$4&lt;/b&gt; Статистики за $6: $5</string>
+  <string name="main-metric-bar">Просечно одѕивно време на прилогот: $1 мс</string>
   <string name="main-shutting-down">Huggle се затвора. Занемарено.</string>
   <string name="main-system-messages">Прикажи нови пораки</string>
   <string name="main-system-reconnectirc">Преповрзи се со IRC-тековникот</string>
@@ -331,6 +337,11 @@
   <string name="main-queue-reset">Одново</string>
   <string name="main-queue-clearall">Исчисти ги сите</string>
   <string name="main-queue-options">Раководи со редиците...</string>
+  <string name="main-queue-when-full">Кога редицата е полна</string>
+  <string name="main-queue-when-full-stop">Запри го тековникот</string>
+  <string name="main-queue-when-full-remove">Отстрани стари уредувања</string>
+  <string name="main-queue-remove-whitelisted">Отстрани уредувања од уредници на белиот список</string>
+  <string name="main-queue-remove-200">Отстрани уредувања со помалку од -200 бода</string>
   <string name="main-goto">Оди на</string>
   <string name="main-goto-mytalk">Мојата страница за разговор</string>
   <string name="main-goto-mycontribs">Моите придонеси</string>
@@ -373,6 +384,7 @@
   <string name="main-page-load">Вчитај</string>
   <string name="main-patrol-not-enabled">Патролирањето не е овозможено на $1</string>
   <string name="main-page-restore">Отповикај ја преработкава</string>
+  <string name="main-page-watchlist-add">Стави страница во набљудувани</string>
   <string name="main-page-tab-close">Затвори го тековното јазиче</string>
   <string name="main-page-tab-open">Отвори ново јазиче</string>
   <string name="main-page-watchlist-remove">Отстрани ја страницата од набљудуваните</string>
@@ -805,4 +817,5 @@
   <string name="queue-empty-title">Празно е</string>
   <string name="queue-empty-text">Нема ништо друго во редицата...</string>
   <string name="protip">ProTip</string>
+  <string name="tip10">Највеќето тастатурни кратенки можат да се изменат во нагодувањата.</string>
 </resources>

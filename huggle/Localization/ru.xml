@@ -164,6 +164,7 @@
   <string name="config-autoadvance">После отката, сразу переходить к следующей правке в очереди</string>
   <string name="config-userollback">Использовать функции отката, если доступно</string>
   <string name="config-revertsummaries">Описания откатов доступны в меню</string>
+  <string name="config-auto-refresh">Автоматически обновлять страницу, если было кто-то внёс изменение</string>
   <string name="config-extendreports">Добавлять в отчёт повторяющиеся вандальные правки</string>
   <string name="config-autoreport">При простановке предупреждения пользователю с последним предупреждением</string>
   <string name="config-reportnone">Ничего не делать</string>
@@ -185,6 +186,9 @@
   <string name="config-no-colon" fuzzy="true">Вы не можете использовать : в имени очереди</string>
   <string name="config-notify-update">Проверять на наличие обновлений</string>
   <string name="config-notify-beta">Проверять на наличие бета-версий, если возможно</string>
+  <string name="custommessage-title">Отправить сообщение to $1</string>
+  <string name="custommessage-subject">Заголовок</string>
+  <string name="custommessage-menu">Отправить своё сообщение</string>
   <string name="custommessage-send">Отправить сообщение</string>
   <string name="delete-title">Удалить $1</string>
   <string name="delete-reason">Причина:</string>
@@ -235,6 +239,7 @@
   <string name="login-proxy-remember-this">Запомнить эту настройку на будущее</string>
   <string name="login-proxyport">Порт:</string>
   <string name="login-proxydomain">Домен:</string>
+  <string name="proxy-restart">Возможно, потребуется перезапустить Huggle, чтобы эти изменения вступили в силу</string>
   <string name="login-retrieving-user-conf">Получение пользовательских настроек</string>
   <string name="login-fail-css">Ошибка входа на $1: Не удалось получить настройки пользователя. Страница Special:MyPage/huggle3.css отсутствует. Вы создали подстраницу huggle3.css в своём пространстве?</string>
   <string name="login-fail-enable-true">Ошибка входа на $1: Отсутствует enable:true в настройках.</string>
@@ -301,6 +306,7 @@
   <string name="main-space">Название страницы не может заканчиваться пробелом. Пожалуйста, исправьте название страницы</string>
   <string name="main-system">Система</string>
   <string name="main-status-bar">Обрабатывается &lt;b&gt;$1&lt;/b&gt;правок и &lt;b&gt;$2&lt;/b&gt;запросов. Пользователей в белом списке: &lt;b&gt;$3&lt;/b&gt; Размер очереди: &lt;b&gt;$4&lt;/b&gt; Статистика для $6: $5</string>
+  <string name="main-metric-bar">Среднее время отклика API: $1ms</string>
   <string name="main-shutting-down">Huggle завершает работу, проигнорировано</string>
   <string name="main-system-messages">Показать новые сообщения</string>
   <string name="main-system-reconnectirc">Переподключиться к ленте IRC</string>
@@ -326,7 +332,10 @@
   <string name="main-queue-clearall">Очистить все очереди</string>
   <string name="main-queue-options">Настройки очередей...</string>
   <string name="main-queue-when-full">Когда очередь заполнена</string>
+  <string name="main-queue-when-full-stop">Приостановить</string>
   <string name="main-queue-when-full-remove">Удалить старые правки</string>
+  <string name="main-queue-remove-whitelisted">Убрать правки участников из «белого списка»</string>
+  <string name="main-queue-remove-200">Убрать правки с количеством баллов менее -200</string>
   <string name="main-goto">Перейти</string>
   <string name="main-goto-mytalk">Моя страница обсуждения</string>
   <string name="main-goto-mycontribs">Мой вклад</string>
@@ -369,13 +378,17 @@
   <string name="main-page-load">Загрузить</string>
   <string name="main-patrol-not-enabled">Патрулирование не включено на $1</string>
   <string name="main-page-restore">Восстановить эту версию</string>
+  <string name="main-page-watchlist-add">Добавить страницу в список наблюдения</string>
+  <string name="main-page-tab-close">Закрыть текущую вкладку</string>
   <string name="main-page-tab-open">Открыть новую вкладку</string>
+  <string name="main-page-watchlist-remove">Удалить эту страницу из списка наблюдения</string>
   <string name="main-user-info">Показать информацию об участнике</string>
   <string name="main-user-ignore">Добавить в белый список</string>
   <string name="main-user-unignore">Удалить из белого списка</string>
   <string name="main-user-contribs">Показать вклад пользователя в браузере</string>
   <string name="main-user-clear-talk">Очистить страницу обсуждения участника</string>
   <string name="main-user-talk">Страница обсуждения</string>
+  <string name="main-user-page">Просмотреть страницу участника</string>
   <string name="main-user-message">Сообщение...</string>
   <string name="main-user-warn">Предупредить...</string>
   <string name="main-user-db">Уменьшить баллы плохости участника</string>
@@ -402,6 +415,8 @@
   <string name="main-help-feedback">Отзыв</string>
   <string name="main-help-about">О Huggle...</string>
   <string name="main-help-introduction">Введение</string>
+  <string name="main-help-contents">Содержание</string>
+  <string name="main-help-queuelegend">Обозначения в очереди</string>
   <string name="main-addqueue">Добавить...</string>
   <string name="main-savelogtitle">Сохранить журнал</string>
   <string name="main-usermessageother">Другое сообщение...</string>
@@ -428,6 +443,8 @@
   <string name="main-report-username">Пожаловаться на имя участника</string>
   <string name="main-report-user">Сообщить о нарушении</string>
   <string name="main-edit-user-talk">Править страницу обсуждения участника</string>
+  <string name="main-statistics-paused">Приостановлено</string>
+  <string name="main-statistics-waiting">Ожидание правок</string>
   <string name="message-title">Сообщение $1</string>
   <string name="message-help">Укажите Заголовок и Текст сообщения. Если поле Описание изменений останется пустым, то в него подставится Заголовок сообщения. Если Заголовок сообщения останется пустым, то он не будет сгенерирован и останется пустым.</string>
   <string name="message-subject">Заголовок:</string>
@@ -573,6 +590,7 @@
   <string name="shortcut-my-talk">Моя страница обсуждения</string>
   <string name="shortcut-raw">Отменить редактирование и предупредить пользователя</string>
   <string name="shortcut-contrib">Показать вклад пользователя, который внёс отображаемую правку</string>
+  <string name="shortcut-custom-msg">Открытие формы для отправки сообщения текущему участнику</string>
   <string name="shortcut-exit">Завершить Huggle в обычном режиме</string>
   <string name="shortcut-next">Перейти к следующей правке</string>
   <string name="shortcut-suspicious">Пометить правку как подозрительную</string>
@@ -594,7 +612,9 @@
   <string name="shortcut-tab">Открывает новую вкладку</string>
   <string name="shortcut-rw-stay" fuzzy="true">Откатить текущую правку, предупредить пользователя и остаться на странице</string>
   <string name="shortcut-revert-and-stay" fuzzy="true">Откатить текущую правку и остаться на странице</string>
+  <string name="shortcut-custom-reason">Отменить правку с собственным описанием</string>
   <string name="shortcut-user-contribs-browser">Открыть вклад пользователя в браузере</string>
+  <string name="shortcut-user-clear-talk">Очистить страницу обсуждения текущего участника</string>
   <string name="warning-title">Предупредить $1</string>
   <string name="warning-levelgroup">Уровень предупреждения</string>
   <string name="warning-levelauto">Автоматически</string>
@@ -651,6 +671,7 @@
   <string name="history-retrieve-fail">Невозможно получить содержимое страницы, на которой мы хотели отменить собственную правку, из-за ошибки: $1</string>
   <string name="history-welcome-msg-title">Отправить вместо этого приветственное сообщение?</string>
   <string name="history-welcome-msg">Вы создали эту страницу обсуждения, поэтому действие не может быть отменено. Вы действительно хотите вместо этого вставить шаблон приветствия?</string>
+  <string name="newtab-title">Это новая вкладка!</string>
   <string name="notify-fail">Автор страницы \'$1\' не уведомлён</string>
   <string name="notify-unknowncreator">Автор страницы не известен</string>
   <string name="protect-done">Изменён уровень защиты для \'$1\'</string>
@@ -780,4 +801,6 @@
   <string name="query-request-noaction">Для запроса API не определены действия</string>
   <string name="query-login-undefined">Маркер входа требует значения определенного пользователем, он не хранится в памяти</string>
   <string name="query-protected-link">Защищенная ссылка</string>
+  <string name="queue-empty-title">Пусто</string>
+  <string name="protip">Совет</string>
 </resources>

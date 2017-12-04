@@ -19,6 +19,7 @@
   <string name="rename">Renomear</string>
   <string name="reload">Recarregar</string>
   <string name="project">Projeto</string>
+  <string name="warning">Aviso</string>
   <string name="result">Resultado</string>
   <string name="save">Gravar</string>
   <string name="show">Mostrar</string>
@@ -106,6 +107,7 @@
   <string name="config-noshortcut">Nenhum</string>
   <string name="config-defaults">Restaurar</string>
   <string name="config-minor">Marcar como edição menor</string>
+  <string name="config-ip">Utilizadores anónimos</string>
   <string name="config-watchlist">Adicionar às páginas vigiadas</string>
   <string name="config-defaultsummary">Sumário padrão para edições manuais</string>
   <string name="config-undosummary">Sumário para edições minhas que eu cancelar</string>
@@ -169,6 +171,8 @@
   <string name="config-no-colon" fuzzy="true">Você não pode usar: em nome da fila</string>
   <string name="config-notify-update">Verificar existência de atualizações</string>
   <string name="config-notify-beta">Verificar se existem versões beta disponíveis</string>
+  <string name="custommessage-subject">Título</string>
+  <string name="custommessage-send">Enviar mensagem</string>
   <string name="delete-title">Eliminar $1</string>
   <string name="delete-reason">Motivo:</string>
   <string name="delete-deletionlog">Registo de eliminações:</string>
