@@ -159,7 +159,7 @@
   <string name="config-html-messages">HAN can render HTML messages (dangerous)</string>
   <string name="config-summary-present">Highlight summary when present instead of when it&apos;s missing</string>
   <string name="config-close-without">Close without saving</string>
-  <string name="config-confirmmultiple">Confirm multiple versions of an edit by the same user</string>
+  <string name="config-confirmmultiple">Confirm revert multiple versions of an edit by the same user</string>
   <string name="config-confirmsame">Confirm reversion to an edit by the user being reverted</string>
   <string name="config-confirmselfrevert">Confirm reversion of own edits (except undo)</string>
   <string name="config-confirmwarned">Confirm reversion to an edit by a warned user</string>
