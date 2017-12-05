@@ -16,7 +16,7 @@
   <string name="done">Done</string>
   <string name="no">No</string>
   <string name="ok">OK</string>
-  <string name="override-warn">You have overriden the path of project config. Please keep in mind that abusing this feature in order to gain write access on wiki, where you wouldn't normally have it, may result in permanent block of your account.</string>
+  <string name="override-warn">You have overridden the project config path. Please keep in mind that abusing this feature in order to gain write access on the wiki, where you wouldn't normally have it, may result in a permanent block of your account.</string>
   <string name="remove">Remove</string>
   <string name="rename">Rename</string>
   <string name="reload">Reload</string>
@@ -159,7 +159,7 @@
   <string name="config-html-messages">HAN can render HTML messages (dangerous)</string>
   <string name="config-summary-present">Highlight summary when present instead of when it&apos;s missing</string>
   <string name="config-close-without">Close without saving</string>
-  <string name="config-confirmmultiple">Confirm multiple reversions of an edit by the same user</string>
+  <string name="config-confirmmultiple">Confirm multiple versions of an edit by the same user</string>
   <string name="config-confirmsame">Confirm reversion to an edit by the user being reverted</string>
   <string name="config-confirmselfrevert">Confirm reversion of own edits (except undo)</string>
   <string name="config-confirmwarned">Confirm reversion to an edit by a warned user</string>
@@ -544,7 +544,7 @@
   <string name="score-take-whole-no-talk-word">Matches only whole words on non-talk pages</string>
   <string name="score-only-whole-word">Matches only whole words</string>
   <string name="score-take-any-word">Matches any word that contains this string</string>
-  <string name="ssl-is-not-supported">You requested to use SSL but $1 doesn't support it.</string>
+  <string name="ssl-is-not-supported">You requested to use SSL but $1 doesn&apos;t support it.</string>
   <string name="ssl-required">Webserver of $1 requires SSL to be enabled. Please turn SSL on and try again. If you can't enable SSL (option is grayed out) you may need to install OpenSSL libraries to your system.</string>
   <string name="uaa-not-supported">UAA not available</string>
   <string name="uaa-not-supported-text">The &quot;Usernames for administrator attention&quot; noticeboard is not available on your wiki.</string>
@@ -797,7 +797,7 @@
   <string name="login-no-site-info-returned">No site info was returned for this wiki</string>
   <string name="loading-main-window">Loading main Huggle window</string>
   <string name="api.php-invalid-response">The API responded with invalid text (webserver is down?), please check debug log for precise information</string>
-  <string name="login-username-doesnt-exist">This username doesn't exist</string>
+  <string name="login-username-doesnt-exist">This username doesn&apos;t exist</string>
   <string name="developer-mode-enter-title">Whee</string>
   <string name="developer-mode-enter-message">You entered a developer mode!</string>
   <string name="unimplemented">This feature was not implemented yet</string>
@@ -813,7 +813,7 @@
   <string name="main-revert-type-made-on-talk-page">made on a talk page</string>
   <string name="main-revert-type-made-white-list">made by a user who is on the white list</string>
   <string name="main-revert-warn">This edit is $1, so even if it looks like it is a vandalism, it may not be, are you sure you want to revert it?</string>
-  <string name="query-result-nodata">Query result doesn't contain any data</string>
+  <string name="query-result-nodata">Query result doesn&apos;t contain any data</string>
   <string name="query-request-noaction">No action provided for api request</string>
   <string name="query-login-undefined">Login token requires a user defined value, it's not stored in memory</string>
   <string name="query-protected-link">Protected link</string>
