@@ -1,7 +1,7 @@
 huggle3-qt-lx
 =============
 
-Huggle 3 is an anti-vandalism tool for use on [Wikipedia](https://wikipedia.org) and other [MediaWiki](https://mediawiki.org) sites, written in C++ (QT framework). It is officialy supported for Windows (2000 or newer), MacOS and Linux (debian/ubuntu).
+Huggle 3 is an anti-vandalism tool for use on [Wikipedia](https://wikipedia.org) and other [MediaWiki](https://mediawiki.org) sites, written in C++ (QT framework). It is officially supported for Windows (2000 or newer), MacOS and Linux (debian/ubuntu).
 
 [![Build Status](https://api.travis-ci.org/huggle/huggle3-qt-lx.png?branch=master)](https://travis-ci.org/huggle/huggle3-qt-lx/)
 [![Build status](https://ci.appveyor.com/api/projects/status/huy2phxnc95m77sl?svg=true)](https://ci.appveyor.com/project/benapetr/huggle3-qt-lx)
@@ -17,7 +17,7 @@ git submodule init
 git submodule update
 ```
 
-If you didn't download this repository using git, there should be a guide on where you can download the libraries from in the respective folders.
+If you did not download this repository using git, there should be a guide on where you can download the libraries from in the respective folders.
 
 Libraries and tools you need to have to build:
 * C++11 compiler
@@ -26,7 +26,7 @@ Libraries and tools you need to have to build:
 * (optional) QT5 sdk (libqt5webkit5-dev qt5-default qtquick1-5-dev qtlocation5-dev qtsensors5-dev qtscript5-dev qtdeclarative5-dev)
 * (optional) Python (libpython-dev)
 
-[NEW] It's now possible to use a VirtualBox VM as a portable development environment for Huggle. [» Wiki page](https://github.com/huggle/huggle3-qt-lx/wiki/Portable-development-environment)
+[NEW] It is now possible to use a VirtualBox VM as a portable development environment for Huggle. [» Wiki page](https://github.com/huggle/huggle3-qt-lx/wiki/Portable-development-environment)
 
 Windows
 -------------
@@ -75,7 +75,7 @@ run ./configure with --python option, for example
 ```
 Note: you need to have cmake 3.0.0 or newer for this to work
 
-On windows you need to run cmake with -DHUGGLE_PYTHON=TRUE for it to work
+On Windows you need to run cmake with -DHUGGLE_PYTHON=TRUE for it to work
 
 Now rebuild Huggle and hope for the best!
 
