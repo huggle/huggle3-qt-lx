@@ -216,7 +216,7 @@
   <string name="irc-switch-rc">Viki SD beslemesine geçiliyor</string>
   <string name="login-old">Kullanıcı yapılandırması eski konumdan alınıyor</string>
   <string name="login-intro">Lütfen bir proje seçiniz ve kullanıcı adınızı ve parolanızı giriniz. \"Projeler\" düğmesine basarak birden fazla projede de oturum açabilirsiniz.</string>
-  <string name="invalid-bot-user-name">Bu geçerli bir bot ismi değil.Örnek bir boz ismi: Jimbo@Huggle</string>
+  <string name="invalid-bot-user-name" fuzzy="true">Bu geçerli bir bot ismi değil.Örnek bir boz ismi: Jimbo@Huggle</string>
   <string name="login-tab-botp">Bot parolası</string>
   <string name="login-tab-login">Eski</string>
   <string name="login-reload-tool-tip" fuzzy="true">Huggle\'da kullanılabilecek projelerin bir listesini yeniden yükleyin. Bu Huggle\'ın yakın zamanda aktifleştirildiği bir projede Huggle kullanmak istemeniz halinde faydalı olabilir.</string>
@@ -516,7 +516,7 @@
   <string name="revert-preflightcheck">Ön kontrol denetimi</string>
   <string name="revert-delete-instead">Bunun yerine sayfa silinsin mi?</string>
   <string name="revert-speedy-instead">Bunun yerine hızlı silme için etiketlensin mi?</string>
-  <string name="revert-cannotundo">Çakışan ara değişiklikler sebebiyle geri alınamaz.</string>
+  <string name="revert-cannotundo" fuzzy="true">Çakışan ara değişiklikler sebebiyle geri alınamaz.</string>
   <string name="revert-conflict">Sayfa beyaz liste üyesi \'$1\' tarafından düzenlenmiş</string>
   <string name="revert-fail">$1 geri alınmadı: $2</string>
   <string name="revert-nochange">Hedef revizyonla geçerli revizyon tamamen aynı</string>
@@ -678,7 +678,7 @@
   <string name="cr-revert-same-user" fuzzy="true">Çakışma düzeltildi: tüm değişiklikleri geri al - Aynı kullanıcının $1\'e yaptığı birçok düzenleme var</string>
   <string name="cr-message-same" fuzzy="true">$1 üzerinde aynı kullanıcı tarafından yapılan birden fazla değişiklik var. Bunları geri almak istediğinize emin misiniz?</string>
   <string name="cr-message-new">$1\'de yeni değişiklikler var. Gerçekten geri almak istiyor musunuz?</string>
-  <string name="cr-message-not-same">$1 üzerinde farklı kullanıcılar tarafından yapılan yeni değişiklikler var. Hepsini geri almak istediğinize emin misiniz? (Eski belirteç yüzünden muhtemelen zaten başarısız olacaktır.)</string>
+  <string name="cr-message-not-same" fuzzy="true">$1 üzerinde farklı kullanıcılar tarafından yapılan yeni değişiklikler var. Hepsini geri almak istediğinize emin misiniz? (Eski belirteç yüzünden muhtemelen zaten başarısız olacaktır.)</string>
   <string name="preferences-delete-using-filter">Kullanılan bir süzgeci silemezsiniz</string>
   <string name="preferences-extension-disabled" fuzzy="true">Bu uzantı zaten Huggle yeniden başlarken devre dışı kalmak üzere planlanmış</string>
   <string name="preferences-extension-disabled-restart" fuzzy="true">Bu uzantı Huggle yeniden başladığında devre dışı kalmak üzere ayarlanmış</string>
@@ -726,8 +726,8 @@
   <string name="api.php-invalid-response" fuzzy="true">api.php geçersiz metin(internet sunucusu çöktü?) ile yanıt aldı,lütfen daha ayrıntılı bilgi için hata ayıklama günlüğünü kontrol edin.</string>
   <string name="login-username-doesnt-exist">Bu kullanıcı adı yok</string>
   <string name="developer-mode-enter-title">Vaaay</string>
-  <string name="developer-mode-enter-message">Geliştirici moduna girdiniz!</string>
-  <string name="unimplemented">Bu özellik henüz uygulanmadı</string>
+  <string name="developer-mode-enter-message" fuzzy="true">Geliştirici moduna girdiniz!</string>
+  <string name="unimplemented" fuzzy="true">Bu özellik henüz uygulanmadı</string>
   <string name="unknown-item">Bilinmeyen madde</string>
   <string name="title-multiple-projects">Çoklu projeler ($1)</string>
   <string name="title-on"> $1 de</string>
@@ -739,7 +739,7 @@
   <string name="main-revert-type-made-by-you">siz tarafından yapılmış</string>
   <string name="main-revert-type-made-on-talk-page">konuşma sayfasında yapıldı</string>
   <string name="main-revert-type-made-white-list">beyaz listedeki bir kullanıcı tarafından yapıldı</string>
-  <string name="main-revert-warn">Bu düzenleme $1, vandalizm gibi görünse bile olmayabilir geri döndürmek istediğinizden emin misiniz?$1$1</string>
+  <string name="main-revert-warn" fuzzy="true">Bu düzenleme $1, vandalizm gibi görünse bile olmayabilir geri döndürmek istediğinizden emin misiniz?$1$1</string>
   <string name="query-login-undefined">Oturum belirteci bir kullanıcı tanımlı değer gerektirir, hafızasında kayıtlı değil</string>
   <string name="query-protected-link">Korumalı bağlantı</string>
 </resources>

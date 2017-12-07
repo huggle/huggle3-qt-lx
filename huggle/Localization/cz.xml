@@ -489,7 +489,7 @@
   <string name="revert-preflightcheck">Předletová kontrola</string>
   <string name="revert-delete-instead">Smazat stránku?</string>
   <string name="revert-speedy-instead">Označit pro smazání?</string>
-  <string name="revert-cannotundo">Nelze vrátit kvůli editačnímu konfliktu</string>
+  <string name="revert-cannotundo" fuzzy="true">Nelze vrátit kvůli editačnímu konfliktu</string>
   <string name="revert-conflict">Stránka byla editována schváleným uživatelem \'$1\'</string>
   <string name="revert-fail">Nelze vrátit $1: $2</string>
   <string name="revert-nochange">Obsah cílové revize je stejný jako aktuální revize</string>
@@ -640,7 +640,7 @@
   <string name="cr-revert-same-user">Konflikt vyřešen: vrátit všechny úpravy, je zde několik editací provedených stejným uživatelem $1</string>
   <string name="cr-message-same">Stránka $1 má nové editace vyrobené tím samým uživatelem, jste si jist že je chcete vrátit?</string>
   <string name="cr-message-new">Stránka $1 má nové editace, jste si jist že je chcete vrátit?</string>
-  <string name="cr-message-not-same">Stránka $1 má nové editace vyrobené jiným uživatelem, opravdu je chcete vrátit? (nejspíš to stejně nepůjde, protože token byl získán před těmito úpravami)</string>
+  <string name="cr-message-not-same" fuzzy="true">Stránka $1 má nové editace vyrobené jiným uživatelem, opravdu je chcete vrátit? (nejspíš to stejně nepůjde, protože token byl získán před těmito úpravami)</string>
   <string name="preferences-watchlist-watch">Přidat do sledovaných stránek</string>
   <string name="preferences-watchlist-unwatch">Odstranit ze sledovaných stránek</string>
   <string name="preferences-watchlist-preferences">Sledovat vaše nastavení na wiki</string>
@@ -669,8 +669,8 @@
   <string name="loading-main-window">Načítání hlavního Huggle okna</string>
   <string name="login-username-doesnt-exist">Toto uživatelské jméno neexistuje</string>
   <string name="developer-mode-enter-title">Jůůů</string>
-  <string name="developer-mode-enter-message">{{GENDER:|Otevřel|Otevřela|Otevřel(a)}} jste režim pro vývojáře!</string>
-  <string name="unimplemented">Tato funkce ještě není připravena</string>
+  <string name="developer-mode-enter-message" fuzzy="true">{{GENDER:|Otevřel|Otevřela|Otevřel(a)}} jste režim pro vývojáře!</string>
+  <string name="unimplemented" fuzzy="true">Tato funkce ještě není připravena</string>
   <string name="unknown-item">Neznámá položka</string>
   <string name="title-multiple-projects">více projektů ($1)</string>
   <string name="title-on">na $1</string>
@@ -681,6 +681,6 @@
   <string name="main-revert-type-made-by-you">vytvořeno vámi</string>
   <string name="main-revert-type-made-on-talk-page">vytvořeno na diskusní stránce</string>
   <string name="main-revert-type-made-white-list">vytvořeno uživatelem, který je na white-listu</string>
-  <string name="main-revert-warn">Tato editace je $1, takže i když to vypadá na vandalismus, nemusí tomu tak být. Jste si {{GENDER:|jist|jista|jist(a)}}, že tuto editaci chcete vrátit?</string>
+  <string name="main-revert-warn" fuzzy="true">Tato editace je $1, takže i když to vypadá na vandalismus, nemusí tomu tak být. Jste si {{GENDER:|jist|jista|jist(a)}}, že tuto editaci chcete vrátit?</string>
   <string name="query-protected-link">Chráněné odkaz</string>
 </resources>

@@ -201,7 +201,7 @@
   <string name="irc-stop">انتظار موفر الخلاصة الأولية للتوقف عند $1</string>
   <string name="login-old">استرجاع تكوين المستخدم من الموقع القديم</string>
   <string name="login-intro">يُرجَى اختيار المشروع وإدخال اسم المستخدم وكلمة المرور الخاصين بك، ويمكنك أيضا تسجيل الدخول إلى مشاريع متعددة عن طريق النقر على زر \"مشاريع\".</string>
-  <string name="invalid-bot-user-name">هذا ليس اسم بوت صالح. مثال على اسم بوت الصحيح: Jimbo@Huggle</string>
+  <string name="invalid-bot-user-name" fuzzy="true">هذا ليس اسم بوت صالح. مثال على اسم بوت الصحيح: Jimbo@Huggle</string>
   <string name="login-tab-botp">كلمة مرور البوت</string>
   <string name="login-tab-login">الخروج من التاريخ</string>
   <string name="login-reload-tool-tip" fuzzy="true">تحديث قائمة المشروعات المتاحة التي يمكن استخدامها في هغل. هذا يمكن أن يكون مفيدًا في حال كنت ترغب في استخدام هغل في المشروع الذي تم تمكين هغل فيه مؤخرًا.</string>
@@ -495,7 +495,7 @@
   <string name="revert-creator">آخر تعديل على الصفحة تم بواسطة الذي أنشأ الصفحة، $1.</string>
   <string name="revert-delete-instead">احذف الصفحة بدلاً عن ذلك؟</string>
   <string name="revert-speedy-instead">وسم الصفحة للشطب السريع بدلاً عن ذلك؟</string>
-  <string name="revert-cannotundo">لا يمكن التراجع بسبب وجود تعديلات متوسطة التناقض</string>
+  <string name="revert-cannotundo" fuzzy="true">لا يمكن التراجع بسبب وجود تعديلات متوسطة التناقض</string>
   <string name="revert-conflict">تم تعديل الصفحة بواسطة مستخدم متجاهل \'$1\'</string>
   <string name="revert-fail">لم يتم استرجاع $1: $2</string>
   <string name="revert-nochange">محتوى النسخة المستهدفة مطابق لمحتوى النسخة الحالية</string>
@@ -641,7 +641,7 @@
   <string name="cr-revert-same-user" fuzzy="true">الصراع تم حله: تم استرجاع كل التعديلات.هناك تعديلات عديدة بواسطة نفس المستخدم: $1.</string>
   <string name="cr-message-same" fuzzy="true">هناك العديد من التعديلات على $1 بواسطة نفس المستخدم، هل أنت متأكد من أنك تريد أن تسترجعها؟</string>
   <string name="cr-message-new">هناك تعديلات جديدة على $1. هل أنت متأكد من أنك تريد حقًا أن تسترجعها؟</string>
-  <string name="cr-message-not-same">هناك تعديلات جديدة بواسطة مستخدم آخر على $1. هل أنت متأكد من أنك تريد حقًا أن تسترجعها؟(من المرجح أن تفشل على أي حال بسبب الرمز القديم).</string>
+  <string name="cr-message-not-same" fuzzy="true">هناك تعديلات جديدة بواسطة مستخدم آخر على $1. هل أنت متأكد من أنك تريد حقًا أن تسترجعها؟(من المرجح أن تفشل على أي حال بسبب الرمز القديم).</string>
   <string name="preferences-delete-using-filter">لا يمكنك حذف مرشح مستخدم حاليًا</string>
   <string name="preferences-extension-disabled" fuzzy="true">من المقرر تعطيل هذا الامتداد عند بدء التشغيل القادم لهغل</string>
   <string name="preferences-extension-disabled-restart" fuzzy="true">تم تعيين ملحق ليتم تعطيله عند بدء التشغيل القادم لهغل</string>
@@ -685,8 +685,8 @@
   <string name="loading-main-window" fuzzy="true">تحميل نافذة هغل الرئيسية</string>
   <string name="api.php-invalid-response" fuzzy="true">رد api.php بنص غير صالح (خادم الويب بالأأسفل؟)، يرجى مراجعة سجل التصحيح للحصول على معلومات دقيقة</string>
   <string name="login-username-doesnt-exist">اسم المستخدم غير موجود</string>
-  <string name="developer-mode-enter-message">لقد أدخلت وضع المطور!</string>
-  <string name="unimplemented">لم تُنفَّذ هذه الميزة حتى الآن</string>
+  <string name="developer-mode-enter-message" fuzzy="true">لقد أدخلت وضع المطور!</string>
+  <string name="unimplemented" fuzzy="true">لم تُنفَّذ هذه الميزة حتى الآن</string>
   <string name="unknown-item">عنصر غير معروف</string>
   <string name="title-multiple-projects">مشاريع متعددة ($1)</string>
   <string name="title-on">على $1</string>
@@ -698,5 +698,5 @@
   <string name="main-revert-type-made-by-you">قمت أنت بإجرائه</string>
   <string name="main-revert-type-made-on-talk-page">أُجري في صفحة نقاش</string>
   <string name="main-revert-type-made-white-list">قام به مستخدم في القائمة البيضاء</string>
-  <string name="main-revert-warn">هذا التعديل $1; لذلك حتى لو كان يبدو أنه تخريب، فإنه قد لا يكون كذلك، هل أنت متأكد من أنك تريد أن تسترجعه؟</string>
+  <string name="main-revert-warn" fuzzy="true">هذا التعديل $1; لذلك حتى لو كان يبدو أنه تخريب، فإنه قد لا يكون كذلك، هل أنت متأكد من أنك تريد أن تسترجعه؟</string>
 </resources>

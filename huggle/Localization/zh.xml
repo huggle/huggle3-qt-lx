@@ -230,7 +230,7 @@
   <string name="irc-switch-rc">切换为wiki RC订阅</string>
   <string name="login-old">从旧位置检索用户配置</string>
   <string name="login-intro">请选择一个项目并输入您的用户名和密码。您也可通过按下“项目”按钮多次登陆多个项目。</string>
-  <string name="invalid-bot-user-name">这不是有效的机器人名称。正确的机器人名称例子：Jimbo@Huggle</string>
+  <string name="invalid-bot-user-name" fuzzy="true">这不是有效的机器人名称。正确的机器人名称例子：Jimbo@Huggle</string>
   <string name="login-tab-botp">机器人密码</string>
   <string name="login-tab-login">传统</string>
   <string name="login-reload-tool-tip">重新加载可使用Huggle工具的项目的列表。这对您希望在已启用项目使用Huggle时非常有用。</string>
@@ -244,7 +244,7 @@
   <string name="login-proxy-remember-this">下次记住此次设置</string>
   <string name="login-proxyport">端口：</string>
   <string name="login-proxydomain">域:</string>
-  <string name="proxy-restart">Huggle可能需要重启才能使更改生效</string>
+  <string name="proxy-restart" fuzzy="true">Huggle可能需要重启才能使更改生效</string>
   <string name="login-retrieving-user-conf">获取用户配置</string>
   <string name="login-fail-css">登录$1失败：无法检索到用户配置。Special:MyPage/huggle3.css丢失。您在您的用户空间创建了huggle3.css吗？</string>
   <string name="login-fail-enable-true">登录$1失败：您没有在您个人的设置中设置enable:true。</string>
@@ -384,7 +384,7 @@
   <string name="main-page-load">载入</string>
   <string name="main-patrol-not-enabled">在$1没有启用巡查</string>
   <string name="main-page-restore">恢复这个版本</string>
-  <string name="main-page-watchlist-add">插入页面至监视列表</string>
+  <string name="main-page-watchlist-add" fuzzy="true">插入页面至监视列表</string>
   <string name="main-page-tab-close">关闭当前标签</string>
   <string name="main-page-tab-open">打开新标签</string>
   <string name="main-page-watchlist-remove">从监视列表移除页面</string>
@@ -431,7 +431,7 @@
   <string name="main-stats">每分钟$1次编辑，每分钟$2次回退</string>
   <string name="main-display-session-data">显示会话数据</string>
   <string name="main-display-whitelist">显示白名单</string>
-  <string name="main-revert-custom-reson">请证明回退该编辑至上一修订版本是合规的</string>
+  <string name="main-revert-custom-reson" fuzzy="true">请证明回退该编辑至上一修订版本是合规的</string>
   <string name="main-log1">正在恢复$1的选定修订版本</string>
   <string name="main-tip-pagetagdelete">提删此页面</string>
   <string name="main-tip-pagedelete">删除此页面</string>
@@ -452,7 +452,7 @@
   <string name="main-report-user">报告用户</string>
   <string name="main-edit-user-talk">编辑用户讨论页</string>
   <string name="main-statistics-paused">已暂停</string>
-  <string name="main-statistics-waiting">等待更多编辑</string>
+  <string name="main-statistics-waiting" fuzzy="true">等待更多编辑</string>
   <string name="main-statistics-none">无</string>
   <string name="main-tab-welcome-title">欢迎页面</string>
   <string name="message-title">消息$1</string>
@@ -566,7 +566,7 @@
   <string name="revert-preflightcheck">预先检查</string>
   <string name="revert-delete-instead">是否删除?</string>
   <string name="revert-speedy-instead">标记速删?</string>
-  <string name="revert-cannotundo">编辑冲突无法撤销</string>
+  <string name="revert-cannotundo" fuzzy="true">编辑冲突无法撤销</string>
   <string name="revert-conflict">页面被白名单用户“$1”编辑</string>
   <string name="revert-fail">未回退$1，原因：$2</string>
   <string name="revert-nochange">目标版本和当前版本相同</string>
@@ -742,17 +742,17 @@
   <string name="cr-revert-same-user">冲突已解决：回退所有编辑——同一用户对$1的多次编辑</string>
   <string name="cr-message-same">太多对$1的编辑由同一用户，您希望回退它们？</string>
   <string name="cr-message-new">有新的编辑需要$1，您希望回退它们？</string>
-  <string name="cr-message-not-same">另外用户对$1做出新编辑，您确信希望回退它们么？（这很可能会因为使用旧令牌而失败）</string>
+  <string name="cr-message-not-same" fuzzy="true">另外用户对$1做出新编辑，您确信希望回退它们么？（这很可能会因为使用旧令牌而失败）</string>
   <string name="preferences-delete-using-filter">您无法删除一个正在使用的过滤器</string>
   <string name="preferences-extension-disabled">此扩展已计划在下次启动Huggle时被禁用</string>
   <string name="preferences-extension-disabled-restart">扩展已设置为将在下次启动Huggle时禁用</string>
   <string name="preferences-extension-enabled">此扩展未计划在下次启动Huggle时被禁用</string>
-  <string name="preferences-extension-enabled-restart">扩展已启用，但您需要重启Huggle才能使它生效</string>
+  <string name="preferences-extension-enabled-restart" fuzzy="true">扩展已启用，但您需要重启Huggle才能使它生效</string>
   <string name="preferences-watchlist-watch">添加至监视列表</string>
   <string name="preferences-watchlist-unwatch">从监视列表中移除</string>
   <string name="preferences-watchlist-preferences">关注您在wiki上的参数设置</string>
   <string name="preferences-watchlist-nochange">不做任何事</string>
-  <string name="preferences-auto-watch-talk">监视接受过您发出警告的用户的讨论页</string>
+  <string name="preferences-auto-watch-talk" fuzzy="true">监视接受过您发出警告的用户的讨论页</string>
   <string name="preferences-sounds-enable-queue">当新项目添加到队列时播放声音</string>
   <string name="preferences-sounds-enable-irc">当HAN收到新消息时播放声音</string>
   <string name="preferences-sounds-minimal-score">最低通知编辑分数</string>
@@ -799,8 +799,8 @@
   <string name="api.php-invalid-response">API响应了无效文字（web服务器当机了？），请检查调试日志以获取精确信息</string>
   <string name="login-username-doesnt-exist">此用户名不存在</string>
   <string name="developer-mode-enter-title">啊</string>
-  <string name="developer-mode-enter-message">您进入了开发者模式！</string>
-  <string name="unimplemented">此功能尚未执行</string>
+  <string name="developer-mode-enter-message" fuzzy="true">您进入了开发者模式！</string>
+  <string name="unimplemented" fuzzy="true">此功能尚未执行</string>
   <string name="unknown-item">未知项目</string>
   <string name="title-multiple-projects">多个项目（$1）</string>
   <string name="title-on">在$1</string>
@@ -812,8 +812,8 @@
   <string name="main-revert-type-made-by-you">由您做出</string>
   <string name="main-revert-type-made-on-talk-page">在讨论页做出</string>
   <string name="main-revert-type-made-white-list">由白名单上的一位用户做出</string>
-  <string name="main-revert-warn">此编辑是$1，因此即便它看起来像是破坏，它可能不是，您确定要回退它么？</string>
   <string name="query-result-nodata">查询结果不包含任何数据</string>
+  <string name="main-revert-warn" fuzzy="true">此编辑是$1，因此即便它看起来像是破坏，它可能不是，您确定要回退它么？</string>
   <string name="query-request-noaction">没有为api请求提供操作</string>
   <string name="query-login-undefined">登录令牌需要用户定义值，它未存储于内存中</string>
   <string name="query-protected-link">已保护链接</string>
@@ -822,16 +822,16 @@
   <string name="protip">重要提示</string>
   <string name="tip1">就像其他浏览器那样，Huggle支持标签！如果您正在做一些编辑，并且您希望稍后保持它，您完全可以打开新标签，并在这里继续检查队列。队列在所有标签中分享。</string>
   <string name="tip2">Huggle包含“编辑栏”，这是包含拥有简洁界面的用户和页面历史的小部件。当然它默认不启用。如果您使用小屏幕设备，您可以将用户和页面历史部件替换成它！</string>
-  <string name="tip3">多数参数设置都在wiki页面[[Special:MyPage/huggle3.css]]存储，您也可以在此手动更改它们！</string>
+  <string name="tip3" fuzzy="true">多数参数设置都在wiki页面[[Special:MyPage/huggle3.css]]存储，您也可以在此手动更改它们！</string>
   <string name="tip4">屏幕上几乎所有小工具都可以安全关闭（除了导航栏）。</string>
   <string name="tip5">您可以同时在多个项目上使用Huggle，在登录表单中点击“项目”即可。</string>
   <string name="tip6">只要您是有经验的，从未做错过的用户，Huggle的回退可以更快；）打开参数设置并勾选“即时回退”</string>
-  <string name="tip7">您可以在参数设置中创建您自己的队列过滤器，其存储在您wiki上的配置页面中。</string>
-  <string name="tip8">点击G将标记编辑为“良好编辑”，这将通知其他用户该编辑可以忽略，减少用户不良分数，并可向其发送欢迎消息。</string>
-  <string name="tip9">点击S将编辑标记为“可疑编辑”，这将通知其他用户该编辑需要注意，并添加到可疑编辑队列中，以供日后由专业用户复查。</string>
-  <string name="tip10">大多数快捷方式可以在参数设置中更改。</string>
+  <string name="tip7" fuzzy="true">您可以在参数设置中创建您自己的队列过滤器，其存储在您wiki上的配置页面中。</string>
+  <string name="tip8" fuzzy="true">点击G将标记编辑为“良好编辑”，这将通知其他用户该编辑可以忽略，减少用户不良分数，并可向其发送欢迎消息。</string>
+  <string name="tip9" fuzzy="true">点击S将编辑标记为“可疑编辑”，这将通知其他用户该编辑需要注意，并添加到可疑编辑队列中，以供日后由专业用户复查。</string>
+  <string name="tip10" fuzzy="true">大多数快捷方式可以在参数设置中更改。</string>
   <string name="tip11">在Huggle屏幕上移动小部件到另一部件上，会将两个部件合并为一个，以标签分隔。</string>
-  <string name="tip12">做错了么？没问题，在“您的编辑历史”中右键点击您做出的任意编辑，就会弹出窗口让您撤销您自己的更改。</string>
-  <string name="tip13">您可以为当前显示编辑的用户开启“贡献浏览器”，通过按下Shift + C（默认）或从用户菜单中打开。这允许您快速查阅该用户做出的最近编辑。</string>
-  <string name="tip14">您可以与其他Huggle活跃用户聊天，只要它们正在使用程序的话。您将在“网络”窗口看见他们，只要它们在线即可。</string>
+  <string name="tip12" fuzzy="true">做错了么？没问题，在“您的编辑历史”中右键点击您做出的任意编辑，就会弹出窗口让您撤销您自己的更改。</string>
+  <string name="tip13" fuzzy="true">您可以为当前显示编辑的用户开启“贡献浏览器”，通过按下Shift + C（默认）或从用户菜单中打开。这允许您快速查阅该用户做出的最近编辑。</string>
+  <string name="tip14" fuzzy="true">您可以与其他Huggle活跃用户聊天，只要它们正在使用程序的话。您将在“网络”窗口看见他们，只要它们在线即可。</string>
 </resources>

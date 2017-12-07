@@ -224,7 +224,7 @@
   <string name="irc-switch-rc">위키 최근 바뀜 피드로 전환</string>
   <string name="login-old">오래된 위치에서 사용자 설정을 얻는 중</string>
   <string name="login-intro">프로젝트를 고르고 사용자 이름과 비밀번호를 입력해주세요. 또한 \"프로젝트\" 버튼을 클릭하여 여러 프로젝트에 로그인할 수 있습니다.</string>
-  <string name="invalid-bot-user-name">유효한 봇 이름이 아닙니다. 유효한 봇 이름의 예: Jimbo@Huggle</string>
+  <string name="invalid-bot-user-name" fuzzy="true">유효한 봇 이름이 아닙니다. 유효한 봇 이름의 예: Jimbo@Huggle</string>
   <string name="login-tab-botp">봇 비밀번호</string>
   <string name="login-tab-login">레거시</string>
   <string name="login-reload-tool-tip">Huggle에서 사용할 수 있는 프로젝트의 목록을 다시 불러옵니다. 도구를 최근에 활성화한 프로젝트에 Huggle을 사용할 경우 유용할 수 있습니다.</string>
@@ -238,7 +238,7 @@
   <string name="login-proxy-remember-this">다음을 위해 이 설정 기억하기</string>
   <string name="login-proxyport">포트:</string>
   <string name="login-proxydomain">도메인:</string>
-  <string name="proxy-restart">이 변경사항을 적용하려면 Huggle을 다시 시작해야 할 수 있습니다</string>
+  <string name="proxy-restart" fuzzy="true">이 변경사항을 적용하려면 Huggle을 다시 시작해야 할 수 있습니다</string>
   <string name="login-retrieving-user-conf">사용자 설정을 얻는 중</string>
   <string name="login-fail-css">사용자 설정을 얻을 수 없어 $1에 로그인에 실패했습니다. 당신의 사용자 공간에 huggle3.css를 만들었습니까? (Special:MyPage/huggle3.css가 없습니다)</string>
   <string name="login-fail-enable-true">당신의 개인 설정에 enable:true가 없기 때문에 $1에 로그인에 실패했습니다</string>
@@ -374,7 +374,7 @@
   <string name="main-page-load">불러오기</string>
   <string name="main-patrol-not-enabled">점검은 $1에 사용되지 않습니다</string>
   <string name="main-page-restore">이 판을 되살리기</string>
-  <string name="main-page-watchlist-add">문서를 주시문서 목록에 추가</string>
+  <string name="main-page-watchlist-add" fuzzy="true">문서를 주시문서 목록에 추가</string>
   <string name="main-page-tab-close">현재 탭 닫기</string>
   <string name="main-page-tab-open">새 탭 열기</string>
   <string name="main-page-watchlist-remove">문서를 주시문서 목록에서 제거하기</string>
@@ -439,7 +439,7 @@
   <string name="main-report-user">사용자 보고</string>
   <string name="main-edit-user-talk">사용자 토론 편집</string>
   <string name="main-statistics-paused">일시 정지함</string>
-  <string name="main-statistics-waiting">더 많은 편집을 기다리는 중</string>
+  <string name="main-statistics-waiting" fuzzy="true">더 많은 편집을 기다리는 중</string>
   <string name="main-statistics-none">없음</string>
   <string name="main-tab-welcome-title">환영 페이지</string>
   <string name="message-title">$1에게 메시지 보내기</string>
@@ -547,7 +547,7 @@
   <string name="revert-creator">마지막 편집은 문서 작성자 $1에 의해 이루어졌습니다.</string>
   <string name="revert-delete-instead">대신에 문서를 삭제하겠습니까?</string>
   <string name="revert-speedy-instead">대신에 빠른 삭제로 태그하겠습니까?</string>
-  <string name="revert-cannotundo">중간 편집 충돌로 인해 실행을 취소할 수 없습니다</string>
+  <string name="revert-cannotundo" fuzzy="true">중간 편집 충돌로 인해 실행을 취소할 수 없습니다</string>
   <string name="revert-conflict">이 페이지는 허용된 사용자 \'$1\'에 의해 편집되었습니다</string>
   <string name="revert-fail">$1을 되돌리지 못했습니다: $2</string>
   <string name="revert-nochange">대상 판의 내용은 현재 판의 내용과 동일합니다</string>
@@ -710,16 +710,16 @@
   <string name="cr-revert-same-user">충돌 해결: 모든 편집을 되돌림 - $1에 대한 동일 사용자의 편집이 다수 있습니다</string>
   <string name="cr-message-same">같은 사용자가 $1에 기여한 여러 편집이 있습니다, 정말로 되돌리시겠습니까?</string>
   <string name="cr-message-new">$1 문서에 더 새로운 편집들이 있습니다. 이것들을 정말 되돌리시겠습니까?</string>
-  <string name="cr-message-not-same">다른 사용자가 $1에 기여한 더 새로운 편집들이 있습니다. 이 편집들을 모두 되돌리시겠습니까? (오래된 토큰으로 인해 어쨌든 실패할 가능성이 있습니다)</string>
+  <string name="cr-message-not-same" fuzzy="true">다른 사용자가 $1에 기여한 더 새로운 편집들이 있습니다. 이 편집들을 모두 되돌리시겠습니까? (오래된 토큰으로 인해 어쨌든 실패할 가능성이 있습니다)</string>
   <string name="preferences-delete-using-filter">현재 사용되고 있는 필터를 삭제할 수 없습니다</string>
   <string name="preferences-extension-disabled">이 확장 기능은 Huggle을 다음에 시작할 때 사용하지 않도록 이미 예약되어 있습니다</string>
   <string name="preferences-extension-disabled-restart">다음 Huggle 시작 시 확장 기능을 비활성화하는 것으로 설정되었습니다</string>
   <string name="preferences-extension-enabled">이 확장 기능은 Huggle을 다음에 시작할 때 사용하지 않도록 예약되어 있지 않습니다</string>
-  <string name="preferences-extension-enabled-restart">확장 기능을 활성화하였으나 적용하려면 Huggle을 다시 시작해야 합니다</string>
+  <string name="preferences-extension-enabled-restart" fuzzy="true">확장 기능을 활성화하였으나 적용하려면 Huggle을 다시 시작해야 합니다</string>
   <string name="preferences-watchlist-watch">주시문서 목록에 추가</string>
   <string name="preferences-watchlist-unwatch">주시문서 목록에서 제거</string>
   <string name="preferences-watchlist-nochange">아무 것도 안 함</string>
-  <string name="preferences-auto-watch-talk">당신으로부터 경고를 받은 사용자의 토론 문서를 주시합니다</string>
+  <string name="preferences-auto-watch-talk" fuzzy="true">당신으로부터 경고를 받은 사용자의 토론 문서를 주시합니다</string>
   <string name="preferences-sounds-enable-queue">새로운 항목이 대기열에 추가되면 소리 재생</string>
   <string name="preferences-sounds-enable-irc">메시지가 HAN에 수신되면 소리 재생</string>
   <string name="preferences-sounds-minimal-score">알림을 위한 최소한의 편집 점수</string>
@@ -759,8 +759,8 @@
   <string name="loading-main-window">주 Huggle 창을 불러오는 중</string>
   <string name="api.php-invalid-response">API가 유효하지 않은 텍스트로 응답했습니다. (웹 서버가 다운되었나요?) 정확한 정보를 위해 디버그 로그를 확인해 주십시오.</string>
   <string name="login-username-doesnt-exist">이 사용자 이름은 존재하지 않습니다</string>
-  <string name="developer-mode-enter-message">개발자 모드에 진입했습니다!</string>
-  <string name="unimplemented">이 기능은 아직 구현되지 않았습니다</string>
+  <string name="developer-mode-enter-message" fuzzy="true">개발자 모드에 진입했습니다!</string>
+  <string name="unimplemented" fuzzy="true">이 기능은 아직 구현되지 않았습니다</string>
   <string name="unknown-item">알 수 없는 항목</string>
   <string name="title-multiple-projects">여러 프로젝트 ($1)</string>
   <string name="title-on">$1에서</string>
@@ -771,16 +771,16 @@
   <string name="main-revert-type-made-by-you">당신에 의해 만들어짐</string>
   <string name="main-revert-type-made-on-talk-page">토론 문서에서 생성됨</string>
   <string name="main-revert-type-made-white-list">화이트리스트에 있는 사용자가 수행함</string>
-  <string name="main-revert-warn">이 편집은 $1이므로 문서 훼손으로 보이더라도 그렇지 않을 수 있습니다. 정말 되돌리시겠습니까?</string>
   <string name="query-result-nodata">쿼리 결과에 어떠한 데이터도 포함되어 있지 않습니다</string>
+  <string name="main-revert-warn" fuzzy="true">이 편집은 $1이므로 문서 훼손으로 보이더라도 그렇지 않을 수 있습니다. 정말 되돌리시겠습니까?</string>
   <string name="query-login-undefined">로그인 토큰에는 사용자 정의 값이 필요하지만, 메모리에 저장되어 있지 않습니다</string>
   <string name="query-protected-link">보호된 링크</string>
   <string name="queue-empty-title">비어 있습니다</string>
   <string name="queue-empty-text">그 밖의 항목이 대기열에 없습니다...</string>
   <string name="tip1">Huggle은 마치 다른 모든 웹 브라우저처럼 탭을 지원합니다! 편집을 하다가 나중에 이를 유지하고 싶으면 새 탭을 열어서 대기열을 확인해 나가시면 됩니다. 대기열은 모든 탭끼리 공유됩니다.</string>
-  <string name="tip3">대부분의 환경 설정은 위키의 [[Special:MyPage/huggle3.css]]에 저장되어 있으므로 해당 장소에서도 수동으로 변경이 가능합니다!</string>
+  <string name="tip3" fuzzy="true">대부분의 환경 설정은 위키의 [[Special:MyPage/huggle3.css]]에 저장되어 있으므로 해당 장소에서도 수동으로 변경이 가능합니다!</string>
   <string name="tip4">화면 상의 거의 모든 소도구는 안전하게 닫을 수 있습니다. (둘러보기 표시줄 제외)</string>
   <string name="tip5">여러 프로젝트에서 Huggle을 동시에 사용할 수 있습니다. 로그인 양식에서 \"프로젝트\" 버튼을 클릭하시면 됩니다.</string>
-  <string name="tip10">대부분의 바로 가기는 환경 설정에서 변경할 수 있습니다.</string>
-  <string name="tip12">실수하셨나요? 괜찮습니다. \"내 편집 역사\"에서 편집에 마우스 오른쪽 버튼을 클릭하면 변경사항의 취소를 제공하는 팝업이 열립니다.</string>
+  <string name="tip10" fuzzy="true">대부분의 바로 가기는 환경 설정에서 변경할 수 있습니다.</string>
+  <string name="tip12" fuzzy="true">실수하셨나요? 괜찮습니다. \"내 편집 역사\"에서 편집에 마우스 오른쪽 버튼을 클릭하면 변경사항의 취소를 제공하는 팝업이 열립니다.</string>
 </resources>

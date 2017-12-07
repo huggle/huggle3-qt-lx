@@ -216,7 +216,7 @@
   <string name="irc-switch-rc">Trocando para o feed RC da wiki</string>
   <string name="login-old">Recuperando configuração do usuário de local antigo.</string>
   <string name="login-intro">Por favor, escolha um projeto e digite o seu nome de usuário(a) e senha. Você pode iniciar a sessão em vários projetos ao clicar no botão \"Projetos\".</string>
-  <string name="invalid-bot-user-name">Este não é um nome de bot válido. Exemplo de nome válido para bot: Jimbo@Huggle</string>
+  <string name="invalid-bot-user-name" fuzzy="true">Este não é um nome de bot válido. Exemplo de nome válido para bot: Jimbo@Huggle</string>
   <string name="login-tab-botp">Senha do bot</string>
   <string name="login-tab-login">Normal</string>
   <string name="login-reload-tool-tip" fuzzy="true">Recarregue uma lista de projetos disponíveis que podem ser usados com o Huggle. Isto pode ser útil no caso de desejar usar o Huggle em um projeto onde foi recentemente ativado.</string>
@@ -516,7 +516,7 @@
   <string name="revert-preflightcheck">Verificação de comprovação</string>
   <string name="revert-delete-instead">Não será melhor eliminar a página?</string>
   <string name="revert-speedy-instead">Não será melhor marcar para eliminação rápida?</string>
-  <string name="revert-cannotundo">Não foi possível desfazer as edições devido a conflitos de edições intermediárias</string>
+  <string name="revert-cannotundo" fuzzy="true">Não foi possível desfazer as edições devido a conflitos de edições intermediárias</string>
   <string name="revert-conflict">A página foi editada pelo usuário da lista branca \'$1\'</string>
   <string name="revert-fail">Não foi possível reverter \'$1\'</string>
   <string name="revert-nochange">O conteúdo da edição para a qual quer reverter é idêntico à última edição</string>
@@ -680,7 +680,7 @@
   <string name="cr-revert-same-user" fuzzy="true">Conflito resolvido: revertidas todas as edições - existem múltiplas edições feitas pelo mesmo usuário em $1.</string>
   <string name="cr-message-same" fuzzy="true">Existem múltiplas edições para $1 pelo mesmo usuário, tem certeza que quer revertê-las?</string>
   <string name="cr-message-new">Existem novas edições para $1, tem certeza que quer revertê-las?</string>
-  <string name="cr-message-not-same">Existem novas edições feitas para $1 por um usuário diferente. Tem certeza que quer revertê-las? (é provável que falhe de qualquer jeito por causa da chave antiga)</string>
+  <string name="cr-message-not-same" fuzzy="true">Existem novas edições feitas para $1 por um usuário diferente. Tem certeza que quer revertê-las? (é provável que falhe de qualquer jeito por causa da chave antiga)</string>
   <string name="preferences-delete-using-filter">Você não pode excluir um filtro que atualmente está sendo usado</string>
   <string name="preferences-extension-disabled" fuzzy="true">Esta extensão já está programada para ser desabilitada na próxima inicialização do Huggle</string>
   <string name="preferences-extension-disabled-restart" fuzzy="true">Esta extensão foi programada para ser desabilitada na próxima inicialização do Huggle</string>
@@ -728,8 +728,8 @@
   <string name="api.php-invalid-response" fuzzy="true">api.php respondeu com texto inválido (webserver fora do ar?), por favor confira o debug log para informação precisa</string>
   <string name="login-username-doesnt-exist">Esse nome de usuário não existe</string>
   <string name="developer-mode-enter-title">Viva</string>
-  <string name="developer-mode-enter-message">Você entrou no modo para desenvolvedor!</string>
-  <string name="unimplemented">Esta funcionalidade não foi implementada ainda</string>
+  <string name="developer-mode-enter-message" fuzzy="true">Você entrou no modo para desenvolvedor!</string>
+  <string name="unimplemented" fuzzy="true">Esta funcionalidade não foi implementada ainda</string>
   <string name="unknown-item">Item desconhecido</string>
   <string name="title-multiple-projects">múltiplos projetos ($1)</string>
   <string name="title-on">Só $1</string>
@@ -741,8 +741,8 @@
   <string name="main-revert-type-made-by-you">feito por você</string>
   <string name="main-revert-type-made-on-talk-page">feito na página de discussão</string>
   <string name="main-revert-type-made-white-list">feito por um usuário na lista branca</string>
-  <string name="main-revert-warn">Essa edição é $1, então mesmo que pareça vandalismo pode não ser. Você está certo que deseja reverter?</string>
   <string name="query-result-nodata">O resultado da consulta não contém dados</string>
+  <string name="main-revert-warn" fuzzy="true">Essa edição é $1, então mesmo que pareça vandalismo pode não ser. Você está certo que deseja reverter?</string>
   <string name="query-request-noaction">Nenhuma ação fornecida para o pedido de api</string>
   <string name="query-login-undefined">O token de login requer um valor definido pelo usuário, ele não é armazenado na memória</string>
   <string name="query-protected-link">Link protegido</string>

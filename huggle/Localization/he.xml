@@ -217,7 +217,7 @@
   <string name="irc-switch-rc">מעבר להזנת שינויים אחרונים מהוויקי</string>
   <string name="login-old">מאחזר הגדרות משתמש מהמיקום הישן</string>
   <string name="login-intro">נא לבחור מיזם ולהזין את שם המשתמש והססמה שלך. באפשרותך להתחבר למיזמים מרובים גם באמצעות לחיצה על הכפתור \"מיזמים\".</string>
-  <string name="invalid-bot-user-name">זהו לא שם בוט תקין. דוגמה לשם בוט תקין: Jimbo@Huggle</string>
+  <string name="invalid-bot-user-name" fuzzy="true">זהו לא שם בוט תקין. דוגמה לשם בוט תקין: Jimbo@Huggle</string>
   <string name="login-tab-botp">ססמת בוט</string>
   <string name="login-tab-login">ישן</string>
   <string name="login-reload-tool-tip" fuzzy="true">רענון רשימת המיזמים הזמינים שאפשר להשתמש בהם בהאגל. זה יכול להיות שימושי בעת הפעלת האגל במיזם שבו הוא הופעל לאחרונה</string>
@@ -518,7 +518,7 @@
   <string name="revert-preflightcheck">בדיקת טרום־טיסה</string>
   <string name="revert-delete-instead">למחוק את הדף במקום זאת?</string>
   <string name="revert-speedy-instead">לסמן למחיקה מהירה במקום זאת?</string>
-  <string name="revert-cannotundo">לא ניתן לבטל בשל עריכות שנעשו בדרך וגרמו להתנגשויות</string>
+  <string name="revert-cannotundo" fuzzy="true">לא ניתן לבטל בשל עריכות שנעשו בדרך וגרמו להתנגשויות</string>
   <string name="revert-conflict">הדף הזה נערך על־ידי המשתמש $1 שמופיע ברשימה הלבנה</string>
   <string name="revert-fail">$1 לא שוחזר: $2</string>
   <string name="revert-nochange">התוכן של גרסת היעד זהה לתוכן של הגרסה הנוכחית</string>
@@ -682,7 +682,7 @@
   <string name="cr-revert-same-user" fuzzy="true">ההתנגשות נפתרה: לשחזר את כל העריכות – יש עריכות מרובות מאת אותו המשתמש לדף $1</string>
   <string name="cr-message-same" fuzzy="true">יש עריכות מרובות של אותו המשתמש לדף $1. האם ברצונך לשחזר אותן?</string>
   <string name="cr-message-new">ישנן עריכות חדשות לדף $1. האם ברצונך באמת לשחזר אותן?</string>
-  <string name="cr-message-not-same">יש עריכות חדשות יותר לדף $1 מאת משתמש אחר. האם ברצונך באמת לשחזר את כולן? (זה כנראה ממילא ייכשל בגלל אסימון ישן.)</string>
+  <string name="cr-message-not-same" fuzzy="true">יש עריכות חדשות יותר לדף $1 מאת משתמש אחר. האם ברצונך באמת לשחזר את כולן? (זה כנראה ממילא ייכשל בגלל אסימון ישן.)</string>
   <string name="preferences-delete-using-filter">לא ניתן למחוק מסנן שנמצא בשימוש עכשיו</string>
   <string name="preferences-extension-disabled" fuzzy="true">ההרחבה הזאת כבר תוזמנה לכבות בהפעלה הבאה של האגל</string>
   <string name="preferences-extension-disabled-restart" fuzzy="true">ההרחבה הזאת כבר תוזמנה לִכבות בהפעלה הבאה של האגל</string>
@@ -734,8 +734,8 @@
   <string name="api.php-invalid-response" fuzzy="true">שרת api.php החזיר טקסט בלתי־תקין (אולי שרת הווב לא פועל?), נא ללחוץ על יומן ניפוי השגיאות למידע מדויק</string>
   <string name="login-username-doesnt-exist">שם המשתמש הזה אינו קיים</string>
   <string name="developer-mode-enter-title">יאללה</string>
-  <string name="developer-mode-enter-message">נכנסת למצב מפתחים!</string>
-  <string name="unimplemented">האפשרות הזאת עוד לא ממומשת</string>
+  <string name="developer-mode-enter-message" fuzzy="true">נכנסת למצב מפתחים!</string>
+  <string name="unimplemented" fuzzy="true">האפשרות הזאת עוד לא ממומשת</string>
   <string name="unknown-item">פריט בלתי־ידוע</string>
   <string name="title-multiple-projects">מיזמים מרובים ($1)</string>
   <string name="title-on">על $1</string>
@@ -747,8 +747,8 @@
   <string name="main-revert-type-made-by-you">שלך</string>
   <string name="main-revert-type-made-on-talk-page">בדף השיחה</string>
   <string name="main-revert-type-made-white-list">של משתמש ברשימה הלבנה</string>
-  <string name="main-revert-warn">זאת עריכה $1, אז גם אם היא נראית כמו השחתה, אולי היא לא כזאת, האם באמת לשחזר אותה?</string>
   <string name="query-result-nodata">תוצאות השאילתה אינן מכילות שום נתונים</string>
+  <string name="main-revert-warn" fuzzy="true">זאת עריכה $1, אז גם אם היא נראית כמו השחתה, אולי היא לא כזאת, האם באמת לשחזר אותה?</string>
   <string name="query-request-noaction">לא סופקה בקשה לבקשת API</string>
   <string name="query-login-undefined">אסימון הכניסה דורש ערך מוגדר על־ידי משתמש, הוא לא מאוחסן בזיכרון</string>
   <string name="query-protected-link">קישור מוגן</string>

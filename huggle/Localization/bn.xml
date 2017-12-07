@@ -223,7 +223,7 @@
   <string name="irc-switch-rc">উইকি RC ফিডে পরিবর্তন</string>
   <string name="login-old">পুরাতন অবস্থান থেকে ব্যবহারকারী কনফিগ সংগ্রহ করা হচ্ছে</string>
   <string name="login-intro">দয়া করে একটি প্রকল্প বাছাই করুন এবং আপনার ব্যবহারকারীর নাম ও পাসওয়ার্ড লিখুন। এছাড়াও আপনি \"প্রকল্প\" বোতামে ক্লিক করে একাধিক প্রকল্পে প্রবেশ করতে পারেন।</string>
-  <string name="invalid-bot-user-name">এটি একটি বৈধ বট নাম নয়। সঠিক বট নামের উদাহরণ: Jimbo@Huggle</string>
+  <string name="invalid-bot-user-name" fuzzy="true">এটি একটি বৈধ বট নাম নয়। সঠিক বট নামের উদাহরণ: Jimbo@Huggle</string>
   <string name="login-tab-botp">বট পাসওয়ার্ড</string>
   <string name="login-tab-login">উত্তরাধিকার</string>
   <string name="login-reload-tool-tip">উপলব্ধ প্রকল্পের একটি তালিকা পুনঃলোড করে যা হাগলে ব্যবহার করা যেতে পারে। এটি সহায়ক হতে পারে যখন আপনি সরঞ্জামটি একটি প্রকল্পে ব্যবহার করতে চান যা সম্প্রতি সক্রিয় করা হয়েছে।</string>
@@ -369,7 +369,7 @@
   <string name="main-page-load">লোড করুন</string>
   <string name="main-patrol-not-enabled">$1-এ টহল সক্রিয় নয়</string>
   <string name="main-page-restore">এই সংশোধনটি পুনরুদ্ধার কর</string>
-  <string name="main-page-watchlist-add">নজরতালিকায় পাতা সন্নিবেশ করে</string>
+  <string name="main-page-watchlist-add" fuzzy="true">নজরতালিকায় পাতা সন্নিবেশ করে</string>
   <string name="main-page-tab-close">বর্তমান ট্যাব বন্ধ করুন</string>
   <string name="main-page-tab-open">নতুন ট্যাব খুলুন</string>
   <string name="main-page-watchlist-remove">নজরতালিকা থেকে পাতা সরায়</string>
@@ -416,7 +416,7 @@
   <string name="main-stats">মিনিট প্রতি $1টি সম্পাদনা, মিনিট প্রতি $2টি বাতিল</string>
   <string name="main-display-session-data">সেশন উপাত্ত প্রদর্শন করুন</string>
   <string name="main-display-whitelist">সাদাতালিকা প্রদর্শন করুন</string>
-  <string name="main-revert-custom-reson">দয়া করে একটি কারণ প্রদান করুন কেন আপনি পূর্ববর্তী সংস্করণে এই সম্পাদনাটি ফিরিয়ে নিয়ে চান</string>
+  <string name="main-revert-custom-reson" fuzzy="true">দয়া করে একটি কারণ প্রদান করুন কেন আপনি পূর্ববর্তী সংস্করণে এই সম্পাদনাটি ফিরিয়ে নিয়ে চান</string>
   <string name="main-log1">$1-এর নির্বাচিত সংস্করণ পুনরুদ্ধার করা হচ্ছে</string>
   <string name="main-tip-pagetagdelete">অপসারণের জন্য এই পৃষ্ঠা ট্যাগ করুন</string>
   <string name="main-tip-pagedelete">এই পাতাটি মুছে ফেলুন</string>
@@ -436,7 +436,7 @@
   <string name="main-report-user">ব্যবহারকারীকে প্রতিবেদন করুন</string>
   <string name="main-edit-user-talk">ব্যবহারকারী আলাপ সম্পাদনা করুন</string>
   <string name="main-statistics-paused">থামানো হয়েছে</string>
-  <string name="main-statistics-waiting">আরো সম্পাদনাের জন্য অপেক্ষা করা হচ্ছে</string>
+  <string name="main-statistics-waiting" fuzzy="true">আরো সম্পাদনাের জন্য অপেক্ষা করা হচ্ছে</string>
   <string name="main-statistics-none">কিছু না</string>
   <string name="main-tab-welcome-title">স্বাগতম পাতা</string>
   <string name="message-title">বার্তা $1</string>
@@ -549,7 +549,7 @@
   <string name="revert-preflightcheck">Preflight পরীক্ষা</string>
   <string name="revert-delete-instead">এর পরিবর্তে পাতাটি অপসারণ করবেন?</string>
   <string name="revert-speedy-instead">এর পরিবর্তে দ্রুত অপসারণের জন্য ট্যাগ লাগাবেন?</string>
-  <string name="revert-cannotundo">পরস্পরবিরোধী অন্তর্বর্তী সম্পাদনাগুলি কারণে পূর্বাবস্থায় ফেরাতে পারবেন না</string>
+  <string name="revert-cannotundo" fuzzy="true">পরস্পরবিরোধী অন্তর্বর্তী সম্পাদনাগুলি কারণে পূর্বাবস্থায় ফেরাতে পারবেন না</string>
   <string name="revert-conflict">এই পাতাটি সাদাতালিকাভুক্ত ব্যবহারকারী \'$1\' দ্বারা সম্পাদিত হয়েছিল</string>
   <string name="revert-fail">$1 বাতিল করা যাবে না: $2</string>
   <string name="revert-nochange">লক্ষ্য সংস্করণের বিষয়বস্তু বর্তমান বিষয়বস্তু একই</string>
@@ -719,12 +719,12 @@
   <string name="cr-revert-same-user">দ্বন্দ্ব সমাধান হয়েছে: সব সম্পাদনা বাতিল করা হয়েছে - $1-এ একই ব্যবহারকারীর একাধিক সম্পাদনা ছিল</string>
   <string name="cr-message-same">$1-এ একই ব্যবহারকারীর একাধিক সম্পাদনা আছে, আপনি কি নিশ্চিত আপনি সব বাতিল করতে চান?</string>
   <string name="cr-message-new">$1-এ নতুনতর সম্পাদনা আছে। আপনি কি নিশ্চিত আপনি সব বাতিল করতে চান?</string>
-  <string name="cr-message-not-same">$1-এ ভিন্ন ব্যবহারকারীর করা নতুনতর সম্পাদনা আছে। আপনি কি নিশ্চিত আপনি সব বাতিল করতে চান? (তবে এটা সম্ভবত পুরাতন টোকেন থাকার কারণে ব্যর্থ হবে।)</string>
+  <string name="cr-message-not-same" fuzzy="true">$1-এ ভিন্ন ব্যবহারকারীর করা নতুনতর সম্পাদনা আছে। আপনি কি নিশ্চিত আপনি সব বাতিল করতে চান? (তবে এটা সম্ভবত পুরাতন টোকেন থাকার কারণে ব্যর্থ হবে।)</string>
   <string name="preferences-delete-using-filter">বর্তমানে ব্যবহৃত হওয়া ছাঁকনি আপনি অপসারণ করতে পারবেন না</string>
   <string name="preferences-extension-disabled">এই এক্সটেনশনটি ইতিমধ্যে পরবর্তী হাগল সূচনার সময় নিষ্ক্রিয় করতে নির্ধারিত হয়েছে</string>
   <string name="preferences-extension-disabled-restart">পরবর্তী হাগল সূচনার সময় এক্সটেনশন নিষ্ক্রিয় করতে নির্ধারিত হয়েছিল</string>
   <string name="preferences-extension-enabled">এই এক্সটেনশনটি পরবর্তী হাগল সূচনার সময় নিষ্ক্রিয় করতে নির্ধারিত হয়নি</string>
-  <string name="preferences-extension-enabled-restart">এক্সটেনশন সক্রিয় করা হয়েছে, কিন্তু এটি করতে আপনাকে হাগল পুনঃসূচনা করতে হবে</string>
+  <string name="preferences-extension-enabled-restart" fuzzy="true">এক্সটেনশন সক্রিয় করা হয়েছে, কিন্তু এটি করতে আপনাকে হাগল পুনঃসূচনা করতে হবে</string>
   <string name="preferences-watchlist-watch">নজরতালিকায় যোগ করুন</string>
   <string name="preferences-watchlist-unwatch">নজরতালিকা থেকে অপসারণ করুন</string>
   <string name="preferences-watchlist-preferences">আপনার উইকির পছন্দগুলি অনুসরণ করে</string>
@@ -772,8 +772,8 @@
   <string name="api.php-invalid-response">api.php অবৈধ পাঠ্যসহ সাড়া দিয়েছে (ওয়েবসার্ভার সক্রিয় নয়?), সুনির্দিষ্ট তথ্যের জন্য ডিবাগ লগ পরীক্ষা করুন</string>
   <string name="login-username-doesnt-exist">এই ব্যবহারকারী নাম বিদ্যমান নয়</string>
   <string name="developer-mode-enter-title">ওওওয়ে</string>
-  <string name="developer-mode-enter-message">আপনি একজন বিকাশকারী মোড প্রবেশ করেছেন!</string>
-  <string name="unimplemented">এই বৈশিষ্ট্যটি এখনো বাস্তবায়িত হয়নি</string>
+  <string name="developer-mode-enter-message" fuzzy="true">আপনি একজন বিকাশকারী মোড প্রবেশ করেছেন!</string>
+  <string name="unimplemented" fuzzy="true">এই বৈশিষ্ট্যটি এখনো বাস্তবায়িত হয়নি</string>
   <string name="unknown-item">অজানা আইটেম</string>
   <string name="title-multiple-projects">একাধিক প্রকল্প ($1)</string>
   <string name="title-on">$1-এ</string>
@@ -785,13 +785,13 @@
   <string name="main-revert-type-made-by-you">আপনার দ্বারা করা</string>
   <string name="main-revert-type-made-on-talk-page">আলাপ পাতায় করা</string>
   <string name="main-revert-type-made-white-list">সাদাতালিকার একজন ব্যবহারকারী দ্বারা করা</string>
-  <string name="main-revert-warn">এই সম্পাদনাটি হচ্ছে $1, তাই এটি ধ্বংসপ্রবণতার মত মনে হলেও, এটি তা নাও হতে পারে, আপনি কি নিশ্চিত যে আপনি এটি বাতিল করতে চান?</string>
   <string name="query-result-nodata">ক্যোয়ারীr ফলাফল কোন উপাত্ত ধারণ করে না</string>
+  <string name="main-revert-warn" fuzzy="true">এই সম্পাদনাটি হচ্ছে $1, তাই এটি ধ্বংসপ্রবণতার মত মনে হলেও, এটি তা নাও হতে পারে, আপনি কি নিশ্চিত যে আপনি এটি বাতিল করতে চান?</string>
   <string name="query-request-noaction">API অনুরোধের জন্য কোনো পদক্ষেপ প্রদান করা হয়নি</string>
   <string name="query-login-undefined">প্রবেশ টোকেনের একটি ব্যবহারকারী সংজ্ঞায়িত মান প্রয়োজন, এটি মেমরির মধ্যে সংরক্ষিত নয়</string>
   <string name="query-protected-link">সুরক্ষিত সংযোগ</string>
   <string name="queue-empty-title">এটি খালি</string>
   <string name="queue-empty-text">সারিটিতে আর অন্য কিছু নেই...</string>
-  <string name="tip3">অধিকাংশ পছন্দ উইকির [[Special:MyPage/huggle3.css]]-এ সংরক্ষণ করা হয়, আপনি ম্যানুয়ালি সেখানে তাদের পরিবর্তন করতে পারেন!</string>
-  <string name="tip10">বেশিরভাগ শর্টকাটগুলি পছন্দে পরিবর্তন করা যায়।</string>
+  <string name="tip3" fuzzy="true">অধিকাংশ পছন্দ উইকির [[Special:MyPage/huggle3.css]]-এ সংরক্ষণ করা হয়, আপনি ম্যানুয়ালি সেখানে তাদের পরিবর্তন করতে পারেন!</string>
+  <string name="tip10" fuzzy="true">বেশিরভাগ শর্টকাটগুলি পছন্দে পরিবর্তন করা যায়।</string>
 </resources>

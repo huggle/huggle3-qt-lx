@@ -225,7 +225,7 @@
   <string name="irc-switch-rc">El cambio a la wiki RC alimentación</string>
   <string name="login-old">Consultando configuración de usuario de antigua localización</string>
   <string name="login-intro">Elige un proyecto y escribe tu nombre de usuario y tu contraseña. También puedes acceder a múltiples proyectos haciendo clic en el botón \"Proyectos\".</string>
-  <string name="invalid-bot-user-name">Esto no es un nombre de bot válido. Ejemplo de nombre válido: Jimbo@Huggle</string>
+  <string name="invalid-bot-user-name" fuzzy="true">Esto no es un nombre de bot válido. Ejemplo de nombre válido: Jimbo@Huggle</string>
   <string name="login-tab-botp">Contraseña de bot</string>
   <string name="login-tab-login">Normal</string>
   <string name="login-reload-tool-tip">Volver a cargar la lista de proyectos disponibles para su uso en Huggle. Esto es necesario si quieres usar Huggle con un proyecto en que recién se ha permitido su utilización.</string>
@@ -239,7 +239,7 @@
   <string name="login-proxy-remember-this">Recordar esta configuración para la próxima vez</string>
   <string name="login-proxyport">Puerto:</string>
   <string name="login-proxydomain">Dominio:</string>
-  <string name="proxy-restart">Puede que Huggle necesite reiniciarse para que los cambios tengan efecto</string>
+  <string name="proxy-restart" fuzzy="true">Puede que Huggle necesite reiniciarse para que los cambios tengan efecto</string>
   <string name="login-retrieving-user-conf">Consultando configuración de usuario</string>
   <string name="login-fail-css">Falló el acceso a $1: no se pudo obtener la configuración de la cuenta.\nFalta el archivo Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu espacio de usuario?</string>
   <string name="login-fail-enable-true">Falló el acceso a $1: falta la orden «enable:true» en tu configuración personal.</string>
@@ -377,7 +377,7 @@
   <string name="main-page-load">Cargar</string>
   <string name="main-patrol-not-enabled">La verificación no está activada en $1</string>
   <string name="main-page-restore">Restaurar esta revisión</string>
-  <string name="main-page-watchlist-add">Añadir la página a una lista de seguimiento</string>
+  <string name="main-page-watchlist-add" fuzzy="true">Añadir la página a una lista de seguimiento</string>
   <string name="main-page-tab-close">Cerrar la pestaña actual</string>
   <string name="main-page-tab-open">Abrir una pestaña nueva</string>
   <string name="main-page-watchlist-remove">Quitar página de una lista de seguimiento</string>
@@ -423,7 +423,7 @@
   <string name="main-stats">$1 ediciones por minuto, $2 reversiones por minuto</string>
   <string name="main-display-session-data">Mostrar datos de la sesión</string>
   <string name="main-display-whitelist">Mostrar lista blanca</string>
-  <string name="main-revert-custom-reson">Justifica tu reversión de este cambio a la revisión anterior</string>
+  <string name="main-revert-custom-reson" fuzzy="true">Justifica tu reversión de este cambio a la revisión anterior</string>
   <string name="main-log1">Restaurando la revisión seleccionada de $1</string>
   <string name="main-tip-pagetagdelete">Etiquetar esta página para su borrado</string>
   <string name="main-tip-pagedelete">Borrar esta página</string>
@@ -444,7 +444,7 @@
   <string name="main-report-user">Denunciar usuario</string>
   <string name="main-edit-user-talk">Editar discusión de usuario</string>
   <string name="main-statistics-paused">en pausa</string>
-  <string name="main-statistics-waiting">en espera de más ediciones</string>
+  <string name="main-statistics-waiting" fuzzy="true">en espera de más ediciones</string>
   <string name="main-statistics-none">ninguno</string>
   <string name="main-tab-welcome-title">Página de bienvenida</string>
   <string name="message-title">Enviar mensaje a $1</string>
@@ -558,7 +558,7 @@
   <string name="revert-preflightcheck">Comprobación</string>
   <string name="revert-delete-instead">¿Borrar página en vez de revertir?</string>
   <string name="revert-speedy-instead">¿Marcar para borrado rápido en vez de revertir?</string>
-  <string name="revert-cannotundo">No se puede deshacer debido a que hay conflicto con ediciones intermedias</string>
+  <string name="revert-cannotundo" fuzzy="true">No se puede deshacer debido a que hay conflicto con ediciones intermedias</string>
   <string name="revert-conflict">Esta página fue editada por el usuario ignorado \'$1\'</string>
   <string name="revert-fail">No se pudo revertir \'$1\'</string>
   <string name="revert-nochange">El contenido de la edición a la que quieres revertir es idéntico al de la edición actual</string>
@@ -729,7 +729,7 @@
   <string name="cr-revert-same-user" fuzzy="true">El conflicto se resuelve: revertir todas las ediciones - hay varias ediciones del mismo usuario a $1</string>
   <string name="cr-message-same" fuzzy="true">Hay varias ediciones a $1 del mismo usuario, ¿seguro quieres revertirlas?</string>
   <string name="cr-message-new">Hay nuevas ediciones a $1. ¿Seguro quieres revertirlas?</string>
-  <string name="cr-message-not-same">Hay nuevas ediciones a $1 de otro usuario. ¿Seguro quieres revertirlas todas? (De todas formas, probablemente falle por un \"token\" viejo)</string>
+  <string name="cr-message-not-same" fuzzy="true">Hay nuevas ediciones a $1 de otro usuario. ¿Seguro quieres revertirlas todas? (De todas formas, probablemente falle por un \"token\" viejo)</string>
   <string name="preferences-delete-using-filter">No se puede eliminar un filtro que se está usando actualmente</string>
   <string name="preferences-extension-disabled" fuzzy="true">Ya se ha programado esta extensión para su desactivación al próximo inicio de Huggle</string>
   <string name="preferences-extension-disabled-restart" fuzzy="true">La extensión se configuró para desactivarse en el siguiente inicio de Huggle</string>
@@ -739,7 +739,7 @@
   <string name="preferences-watchlist-unwatch">Quitar de la lista de seguimiento</string>
   <string name="preferences-watchlist-preferences">Seguir tus preferencias en el wiki</string>
   <string name="preferences-watchlist-nochange">No hacer nada</string>
-  <string name="preferences-auto-watch-talk">Vigilar página de discusión del usuario que reciba una advertencia tuya</string>
+  <string name="preferences-auto-watch-talk" fuzzy="true">Vigilar página de discusión del usuario que reciba una advertencia tuya</string>
   <string name="preferences-sounds-enable-queue" fuzzy="true">Reproducir un sonido cuando se añade un nuevo elemento a la cola</string>
   <string name="preferences-sounds-enable-irc">Reproducir un sonido cuando se recibe un mensaje en HAN</string>
   <string name="preferences-sounds-minimal-score">Puntuación de edición mínima para la notificación</string>
@@ -785,8 +785,8 @@
   <string name="api.php-invalid-response" fuzzy="true">El api.php respondió con inválida texto (servidor web está abajo?), por favor, compruebe de registro de depuración para obtener una información precisa</string>
   <string name="login-username-doesnt-exist">Este nombre de usuario no existe</string>
   <string name="developer-mode-enter-title">Whee</string>
-  <string name="developer-mode-enter-message">¡Ingresaste a un modo de desarrollador!</string>
-  <string name="unimplemented">Esta característica aún no se ha implementado</string>
+  <string name="developer-mode-enter-message" fuzzy="true">¡Ingresaste a un modo de desarrollador!</string>
+  <string name="unimplemented" fuzzy="true">Esta característica aún no se ha implementado</string>
   <string name="unknown-item">Elemento desconocido</string>
   <string name="title-multiple-projects">varios proyectos ($1)</string>
   <string name="title-on">en $1</string>
@@ -798,12 +798,12 @@
   <string name="main-revert-type-made-by-you">hecho por ti</string>
   <string name="main-revert-type-made-on-talk-page">hecho en la página de discusión</string>
   <string name="main-revert-type-made-white-list">hecho por un usuario que está en la lista blanca</string>
-  <string name="main-revert-warn">Esta edición es $1. Incluso aunque parezca vandalismo, puede no serlo. ¿Estás seguro de que quieres revertirla?</string>
   <string name="query-result-nodata">El resultado de la consulta no contiene datos</string>
+  <string name="main-revert-warn" fuzzy="true">Esta edición es $1. Incluso aunque parezca vandalismo, puede no serlo. ¿Estás seguro de que quieres revertirla?</string>
   <string name="query-request-noaction">No se ha proporcionado ninguna acción para la petición a la API</string>
   <string name="query-login-undefined">El token de inicio de sesión requiere un valor definido por el usuario, no se almacena en la memoria</string>
   <string name="query-protected-link">Enlace protegido</string>
   <string name="queue-empty-title">Está vacío</string>
   <string name="protip">Recomendación</string>
-  <string name="tip14">¿Quieres chatear con otros usuarios activos de Huggle que están usando el programa ahora? Si están en línea, los verás en la ventana de \"Red\".</string>
+  <string name="tip14" fuzzy="true">¿Quieres chatear con otros usuarios activos de Huggle que están usando el programa ahora? Si están en línea, los verás en la ventana de \"Red\".</string>
 </resources>

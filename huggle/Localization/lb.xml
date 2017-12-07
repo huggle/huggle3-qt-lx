@@ -146,7 +146,7 @@
   <string name="login-proxyaddress">Adress:</string>
   <string name="login-proxyport">Port:</string>
   <string name="login-proxydomain">Domaine:</string>
-  <string name="proxy-restart">Huggle muss neigestart gi fir datt dës Ännerunge wierksam sinn.</string>
+  <string name="proxy-restart" fuzzy="true">Huggle muss neigestart gi fir datt dës Ännerunge wierksam sinn.</string>
   <string name="login-fail-enable-true">Aloggen op $1 huet net funktionéiert: An Äre perséinlechen Astellungen ass enable:true net dran.</string>
   <string name="login-fail-no-info">Aloggen op $1 huet net funktionéiert.\nBenotzerinformatioun konnt net ofgefrot ginn: $2</string>
   <string name="login-bot">Wat ass den Ënnerscheed tëscht engem BotPassword -Login an engem traditionelle Login?</string>
@@ -243,7 +243,7 @@
   <string name="main-page-load">Lueden</string>
   <string name="main-patrol-not-enabled">D\'Nokucken ass op $1 net aktivéiert</string>
   <string name="main-page-restore">Dës Versioun restauréieren</string>
-  <string name="main-page-watchlist-add">Säit op eng Iwwerwaachungslëscht derbäisetzen</string>
+  <string name="main-page-watchlist-add" fuzzy="true">Säit op eng Iwwerwaachungslëscht derbäisetzen</string>
   <string name="main-page-tab-close">Aktuellen Tab zoumaachen</string>
   <string name="main-page-tab-open">Neien Tab opmaachen</string>
   <string name="main-page-watchlist-remove">Säit vun enger Iwwerwaachungslëscht erofhuelen</string>
@@ -279,7 +279,7 @@
   <string name="main-usermessageother">Anere Message...</string>
   <string name="main-advanced">Erweidert...</string>
   <string name="main-stats">$1 Ännerunge pro Minutt, $1 Zrécksetzunge pro Minutt</string>
-  <string name="main-revert-custom-reson">Gitt w.e.g. u firwat Dir dës Ännerung op déi vireg Versioun zrécksetzt</string>
+  <string name="main-revert-custom-reson" fuzzy="true">Gitt w.e.g. u firwat Dir dës Ännerung op déi vireg Versioun zrécksetzt</string>
   <string name="main-log1">Déi erausgesicht Versioun vu(n) $1 restauréieren</string>
   <string name="main-tip-pagetagdelete">Dës Säit markéiere fir ze läschen</string>
   <string name="main-tip-pagedelete">Dës Säit läschen</string>
@@ -296,7 +296,7 @@
   <string name="main-report-user">Benotzer mellen</string>
   <string name="main-edit-user-talk">Benotzerdiskussioun änneren</string>
   <string name="main-statistics-paused">ënnerbrach</string>
-  <string name="main-statistics-waiting">op méi Ännerunge waarden</string>
+  <string name="main-statistics-waiting" fuzzy="true">op méi Ännerunge waarden</string>
   <string name="main-statistics-none">keng</string>
   <string name="main-tab-welcome-title">Wëllkomm-Säit</string>
   <string name="message-title">Message $1</string>
@@ -438,12 +438,12 @@
   <string name="welcome-tp-empty-fail">Dëse Benotzer huet keng eidel Diskussiounssäit, sidd Dir sécher datt Dir him e Message schécke wëllt?</string>
   <string name="cr-newer-edits">Konflikt geléist: all Ännerunge goufen zréckgesat, inklusiv nei Ännerungen. D\'Ännerunge ware vum selwechte Benotzer: $1.</string>
   <string name="cr-message-new">Et gëtt méi nei Ännerunge vu(n) $1, sidd Dir sécher datt Dir se wierklech zrécksetze wëllt?</string>
-  <string name="preferences-extension-enabled-restart">D\'Erweiderung gouf aktivéiert. Dir musst Huggle nei starte fir datt dat wierksam gëtt.</string>
+  <string name="preferences-extension-enabled-restart" fuzzy="true">D\'Erweiderung gouf aktivéiert. Dir musst Huggle nei starte fir datt dat wierksam gëtt.</string>
   <string name="preferences-watchlist-watch">Op d\'Iwwerwaachungslëscht derbäisetzen</string>
   <string name="preferences-watchlist-unwatch">Vun der Iwwerwaachungslëscht erofhuelen</string>
   <string name="preferences-watchlist-preferences">Iwwerwaacht Är Wiki-Astellungen</string>
   <string name="preferences-watchlist-nochange">Näischt maachen</string>
-  <string name="preferences-auto-watch-talk">Diskussiounssäit vu Benotzer iwwerwaachen déi vun Iech eng Warnung kritt hunn</string>
+  <string name="preferences-auto-watch-talk" fuzzy="true">Diskussiounssäit vu Benotzer iwwerwaachen déi vun Iech eng Warnung kritt hunn</string>
   <string name="request">Ufro</string>
   <string name="requesting">Ufroen</string>
   <string name="requested">Ugefrot</string>
@@ -459,7 +459,7 @@
   <string name="login-no-site-info-returned">Et goufe keng Informatioune fir dës Wiki zréckginn</string>
   <string name="login-username-doesnt-exist">Dëse Benotzernumm gëtt et net</string>
   <string name="developer-mode-enter-title">Whee</string>
-  <string name="unimplemented">Dës Funktioun gouf nach net implementéiert</string>
+  <string name="unimplemented" fuzzy="true">Dës Funktioun gouf nach net implementéiert</string>
   <string name="unknown-item">Onbekannten Objet</string>
   <string name="title-multiple-projects">méi Projeten ($1)</string>
   <string name="title-on">op $1</string>

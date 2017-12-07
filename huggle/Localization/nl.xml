@@ -216,7 +216,7 @@
   <string name="irc-switch-rc">Overschakelen naar de feed met recente wijzigingen van de wiki</string>
   <string name="login-old">Gebruikerinstellingen ophalen van oude locatie</string>
   <string name="login-intro">Kies een project en voer uw gebruikersnaam en wachtwood in. U kunt ook bij meerdere projecten aanmelden via de knop \"Projecten\".</string>
-  <string name="invalid-bot-user-name">Dit is geen geldig botnaam. Voorbeeld van een correcte botnaam: Jimbo@Huggle</string>
+  <string name="invalid-bot-user-name" fuzzy="true">Dit is geen geldig botnaam. Voorbeeld van een correcte botnaam: Jimbo@Huggle</string>
   <string name="login-tab-botp">Bot wachtwoord</string>
   <string name="login-tab-login">Aanmelden verouderd</string>
   <string name="login-reload-tool-tip" fuzzy="true">De lijst met projecten waar Huggle mee kan werken opnieuw laden. Dit kan handig zijn als u Huggle wilt gebruiken met een project waar ondersteuning recentelijk voor is toegevoegd.</string>
@@ -580,8 +580,8 @@
   <string name="projects">Projecten</string>
   <string name="login-username-doesnt-exist">Deze gebruikersnaam bestaat niet</string>
   <string name="developer-mode-enter-title">Jawel!</string>
-  <string name="developer-mode-enter-message">U werkt in ontwikkelaarsmodus</string>
-  <string name="unimplemented">Deze functie is nog niet geïmplementeerd</string>
+  <string name="developer-mode-enter-message" fuzzy="true">U werkt in ontwikkelaarsmodus</string>
+  <string name="unimplemented" fuzzy="true">Deze functie is nog niet geïmplementeerd</string>
   <string name="unknown-item">Onbekend item</string>
   <string name="title-multiple-projects">meerdere projecten ($1)</string>
   <string name="title-on">op $1</string>
@@ -593,5 +593,5 @@
   <string name="main-revert-type-made-by-you">door u gemaakt</string>
   <string name="main-revert-type-made-on-talk-page">gemaakt op overlegpagina</string>
   <string name="main-revert-type-made-white-list">gemaakt door een gebruiker op de witte lijst</string>
-  <string name="main-revert-warn">Deze bewerking is $1, dus zelfs als het vandalisme lijkt, is dat het wellicht niet. Weet u zeker dat u wilt terugdraaien?</string>
+  <string name="main-revert-warn" fuzzy="true">Deze bewerking is $1, dus zelfs als het vandalisme lijkt, is dat het wellicht niet. Weet u zeker dat u wilt terugdraaien?</string>
 </resources>

@@ -218,7 +218,7 @@
   <string name="irc-switch-rc">Switching to the wiki Recent Changes feed</string>
   <string name="login-old">Retrieving user config from old location</string>
   <string name="login-intro">Please pick a project and enter your username and password. You can also login to multiple projects by clicking on the \"Projects\" button.</string>
-  <string name="invalid-bot-user-name">This is not a valid bot name. Example of right bot name: Jimbo@Huggle</string>
+  <string name="invalid-bot-user-name" fuzzy="true">This is not a valid bot name. Example of right bot name: Jimbo@Huggle</string>
   <string name="login-tab-botp">Bot password</string>
   <string name="login-tab-login">Legacy</string>
   <string name="login-reload-tool-tip">Reload a list of available projects that can be used in Huggle. This can be useful in case you want to use Huggle in a project in which the tool was recently enabled.</string>
@@ -533,7 +533,7 @@
   <string name="revert-preflightcheck">Preflight check</string>
   <string name="revert-delete-instead">Delete the page instead?</string>
   <string name="revert-speedy-instead">Tag for speedy deletion instead?</string>
-  <string name="revert-cannotundo">Cannot undo due to conflicting intermediate edits</string>
+  <string name="revert-cannotundo" fuzzy="true">Cannot undo due to conflicting intermediate edits</string>
   <string name="revert-conflict">The page was edited by the whitelisted user \'$1\'</string>
   <string name="revert-fail">Did not revert $1: $2</string>
   <string name="revert-nochange">The content of the target revision is identical to that of the current revision</string>
@@ -698,7 +698,7 @@
   <string name="cr-revert-same-user" fuzzy="true">Conflict resolved: revert all edits - there are multiple edits by same user to $1</string>
   <string name="cr-message-same" fuzzy="true">There are multiple edits to $1 by same user, are you sure you want to revert them?</string>
   <string name="cr-message-new">There are newer edits to $1. Are you sure you really want to revert them?</string>
-  <string name="cr-message-not-same">There are newer edits made to $1 by a different user. Are you sure you want to revert them all? (It will likely fail anyway because of an old token.)</string>
+  <string name="cr-message-not-same" fuzzy="true">There are newer edits made to $1 by a different user. Are you sure you want to revert them all? (It will likely fail anyway because of an old token.)</string>
   <string name="preferences-delete-using-filter">You can\'t delete a filter that is currently being used</string>
   <string name="preferences-extension-disabled" fuzzy="true">This extension is already scheduled for disabling the next startup of Huggle</string>
   <string name="preferences-extension-disabled-restart" fuzzy="true">This extension is already scheduled to be disabled on the next startup of Huggle</string>
@@ -752,8 +752,8 @@
   <string name="api.php-invalid-response" fuzzy="true">The api.php responded with invalid text (webserver is down?), please check debug log for precise information</string>
   <string name="login-username-doesnt-exist">This username doesn\'t exist</string>
   <string name="developer-mode-enter-title">Whee</string>
-  <string name="developer-mode-enter-message">You entered a developer mode!</string>
-  <string name="unimplemented">This feature was not implemented yet</string>
+  <string name="developer-mode-enter-message" fuzzy="true">You entered a developer mode!</string>
+  <string name="unimplemented" fuzzy="true">This feature was not implemented yet</string>
   <string name="unknown-item">Unknown item</string>
   <string name="title-multiple-projects">multiple projects ($1)</string>
   <string name="title-on">on $1</string>
@@ -765,8 +765,8 @@
   <string name="main-revert-type-made-by-you">made by you</string>
   <string name="main-revert-type-made-on-talk-page">made on talk page</string>
   <string name="main-revert-type-made-white-list">made by a user who is on the whitelist</string>
-  <string name="main-revert-warn">This edit is $1, so even if it looks like it is a vandalism, it may not be, are you sure you want to revert it?</string>
   <string name="query-result-nodata">Query result does not contain any data</string>
+  <string name="main-revert-warn" fuzzy="true">This edit is $1, so even if it looks like it is a vandalism, it may not be, are you sure you want to revert it?</string>
   <string name="query-request-noaction">No action provided for API request</string>
   <string name="query-login-undefined">Login token requires a user defined value that is not stored in memory</string>
   <string name="query-protected-link">Protected link</string>

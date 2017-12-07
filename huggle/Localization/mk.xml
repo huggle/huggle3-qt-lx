@@ -66,7 +66,7 @@
   <string name="block-title">Блокирај го $1</string>
   <string name="block-reason">Причина:</string>
   <string name="block-duration">Траење:</string>
-  <string name="block-message">Порака на страницата за разговор:</string>
+  <string name="block-message">Порака на разговорната страница:</string>
   <string name="block-message-user">Испратете порака на целниот корисник со образложение за блокот</string>
   <string name="block-anononly">Блокирај само анонимни корисници</string>
   <string name="block-creation">Забрани создавање сметки</string>
@@ -117,9 +117,9 @@
   <string name="config-undosummary">Опис за враќање на свои уредувања</string>
   <string name="config-confirm-user">Барај потврда за отповикување на уредување направено во корисничкиот именски простор</string>
   <string name="config-confirm-wl">Барај потврда при отповикување на уредување направено од корисник на белиот список</string>
-  <string name="config-confirm-talk">Барај потврда за отповикување на страница за разговор</string>
+  <string name="config-confirm-talk">Барај потврда за отповикување на разговорна страница</string>
   <string name="config-use-rollback">Користи отповикување преку програм</string>
-  <string name="config-welcome-empty-page">Испрати добредојде на корисници со празни страници за разговор при извршено добро уредување</string>
+  <string name="config-welcome-empty-page">Испрати добредојде на корисници со празни разговорни страници при извршено добро уредување</string>
   <string name="config-conflicts-revert">Автоматски решавај спорови со други уредници кои  отповикуваат или менуваат една иста страница</string>
   <string name="config-instant-reverts">Користи непосредни отповикувања (многу брзо, но штом ќе се направим не може да се поврати)</string>
   <string name="config-reverts-multiple">За враќање на повеќе уредувања од ист корисник:</string>
@@ -148,9 +148,9 @@
   <string name="config-whitelisted">На Белиот список</string>
   <string name="config-friend">Пријател</string>
   <string name="config-userspace">Кориснички простор</string>
-  <string name="config-talk">Страница за разговор</string>
+  <string name="config-talk">Разговорна страница</string>
   <string name="config-columns-dynamic">Направи ги столбовите во списокот динамички (ќе ја сменат големината зависно од големината на ставките) или рачни (корисникот може да им ја менува големината)</string>
-  <string name="config-message-notification">Прикажувај известување кога ќе примам нова порака во мојата страница за разговор</string>
+  <string name="config-message-notification">Прикажувај известување кога ќе примам нова порака во мојата разговорна страница</string>
   <string name="config-warning-api">Прикажувај предупредувања за барања од извршник</string>
   <string name="config-title-diff">Наслов на страницата во сите разлики (голем текст со кој е испишан само насловот на страницата поставен врз секоја разлика)</string>
   <string name="config-updates">Провери поднови</string>
@@ -230,7 +230,7 @@
   <string name="irc-switch-rc">Се префрлам на RC-викиканал</string>
   <string name="login-old">Добивање на кориснички поставки од старо наоѓалиште</string>
   <string name="login-intro">Одберете проект, па внесете го вашето корисничко име и лозинка. Можете да се најавите и на повеќе проекти наеднаш со копчето „Проекти“.</string>
-  <string name="invalid-bot-user-name">Ова не е важечко име за бот. Пример за правилно име: Jimbo@Huggle</string>
+  <string name="invalid-bot-user-name" fuzzy="true">Ова не е важечко име за бот. Пример за правилно име: Jimbo@Huggle</string>
   <string name="login-tab-botp">Ботовска лозинка</string>
   <string name="login-tab-login">Наследствено</string>
   <string name="login-reload-tool-tip">Превчитајте список на расположиви проекти што може да се користат во Huggle. Ова може да е корисно ако сакате да го користите на проект каде алатката е неодамна овозможена.</string>
@@ -244,7 +244,7 @@
   <string name="login-proxy-remember-this">Запомни ја поставкава за понатаму</string>
   <string name="login-proxyport">Порта:</string>
   <string name="login-proxydomain">Домен:</string>
-  <string name="proxy-restart">Може да треба да се превклучи Huggle за да стапат на сила овие измени</string>
+  <string name="proxy-restart" fuzzy="true">Може да треба да се превклучи Huggle за да стапат на сила овие измени</string>
   <string name="login-retrieving-user-conf">Добивање на кориснички поставки</string>
   <string name="login-fail-css">Најавата не успеа на $1: Не можам да ги преземам корисничките поставки од старото место. Дали создадовте huggle3.css во вашиот кориснички простор? (недостасува Special:MyPage/huggle3.css)</string>
   <string name="login-fail-enable-true">Најавата не успеа на $1: Немате enable:true во вашите лични поставки.</string>
@@ -343,7 +343,7 @@
   <string name="main-queue-remove-whitelisted">Отстрани уредувања од уредници на белиот список</string>
   <string name="main-queue-remove-200">Отстрани уредувања со помалку од -200 бода</string>
   <string name="main-goto">Оди на</string>
-  <string name="main-goto-mytalk">Мојата страница за разговор</string>
+  <string name="main-goto-mytalk">Мојата разговорна страница</string>
   <string name="main-goto-mycontribs">Моите придонеси</string>
   <string name="main-revision-decline">Одбиј преработка</string>
   <string name="main-revision">Преработка</string>
@@ -360,7 +360,7 @@
   <string name="main-tools-sess">Прикажувај информации за седница</string>
   <string name="main-tools-il">Прикажувај го списокот на занемарени на тековното вики</string>
   <string name="main-page-next">Следна</string>
-  <string name="main-page-switchtotalk">Прејди на страницата за разговор</string>
+  <string name="main-page-switchtotalk">Прејди на разговорната страница</string>
   <string name="main-page-switchtosubject">Прејди на главната страница</string>
   <string name="main-page-switchtoarticle">Прејди на статијата</string>
   <string name="main-page-viewlatest">Прикажи најнова преработка</string>
@@ -384,7 +384,7 @@
   <string name="main-page-load">Вчитај</string>
   <string name="main-patrol-not-enabled">Патролирањето не е овозможено на $1</string>
   <string name="main-page-restore">Отповикај ја преработкава</string>
-  <string name="main-page-watchlist-add">Стави страница во набљудувани</string>
+  <string name="main-page-watchlist-add" fuzzy="true">Стави страница во набљудувани</string>
   <string name="main-page-tab-close">Затвори го тековното јазиче</string>
   <string name="main-page-tab-open">Отвори ново јазиче</string>
   <string name="main-page-watchlist-remove">Отстрани ја страницата од набљудуваните</string>
@@ -392,15 +392,15 @@
   <string name="main-user-ignore">Занемари</string>
   <string name="main-user-unignore">Тргни занемарување</string>
   <string name="main-user-contribs">Прикажи кориснички придонеси во прелистувач</string>
-  <string name="main-user-clear-talk">Исчисти ја страницата за разговор на корисникот</string>
-  <string name="main-user-talk">Страница за разговор</string>
+  <string name="main-user-clear-talk">Исчисти ја разговорната страница на корисникот</string>
+  <string name="main-user-talk">Разговорна страница</string>
   <string name="main-user-page">Преглед на корисничката страница</string>
   <string name="main-user-message">Порака...</string>
   <string name="main-user-warn">Опомени...</string>
   <string name="main-user-db">Намали ја оценката на штетноста на корисникот</string>
   <string name="main-user-report">Пријави</string>
   <string name="main-user-ib">Зголеми ја оценката на штетноста на корисникот</string>
-  <string name="main-user-clear-tp">Исчисти ја страницата за разговор на корисникот</string>
+  <string name="main-user-clear-tp">Исчисти ја разговорната страница на корисникот</string>
   <string name="main-user-retrieving-tp">Ја преземам страницаата за разговор $1</string>
   <string name="main-user-block">Блокирај...</string>
   <string name="main-user-manualtemplate">Рачен шаблон</string>
@@ -431,7 +431,7 @@
   <string name="main-stats">$1 уредувања во минута, $2 враќања во минута</string>
   <string name="main-display-session-data">Прикажувај податоци за седницата</string>
   <string name="main-display-whitelist">Прикажувај бел список</string>
-  <string name="main-revert-custom-reson">Наведете ја причината зошто сакате да го вратите уреденото на претходна преработка</string>
+  <string name="main-revert-custom-reson" fuzzy="true">Наведете ја причината зошто сакате да го вратите уреденото на претходна преработка</string>
   <string name="main-log1">Ја повраќам одбраната преработка на $1</string>
   <string name="main-tip-pagetagdelete">Означи ја страницава за бришење</string>
   <string name="main-tip-pagedelete">Избриши ја страницава</string>
@@ -452,7 +452,7 @@
   <string name="main-report-user">Пријави корисник</string>
   <string name="main-edit-user-talk">Уреди разг. со корисникот</string>
   <string name="main-statistics-paused">паузирано</string>
-  <string name="main-statistics-waiting">чекам на повеќе уредувања</string>
+  <string name="main-statistics-waiting" fuzzy="true">чекам на повеќе уредувања</string>
   <string name="main-statistics-none">нема</string>
   <string name="main-tab-welcome-title">Страница за добредојде</string>
   <string name="message-title">Порака $1</string>
@@ -465,7 +465,7 @@
   <string name="message-fail-re-user-tp">Не можам да го добијам „$1“. Ја запирам доставата на пораката за тој корисник</string>
   <string name="message-er">Не можам да ја доставам пораката на $1: $2</string>
   <string name="message-error">Не успеав да ја доставам пораката за $1! Погледајте во дневниците!</string>
-  <string name="message-fail-retrieve-talk">Не можам да ја добијам корисничката страница за разговор</string>
+  <string name="message-fail-retrieve-talk">Не можам да ја добијам корисничката разговорна страница</string>
   <string name="message-done">Успешно доставена пораката за: $1</string>
   <string name="message-fail-token-1">Не можам да ја добијам шифрата на уредувањето</string>
   <string name="message-fail-token-2">Барањето не даде шифра</string>
@@ -519,7 +519,7 @@
   <string name="queue-examplelabel3">Не го проверувај овој атрибут</string>
   <string name="queue-usergroup">Прикажувај уредувања само од овие корисници</string>
   <string name="report-title">Пријави го $1</string>
-  <string name="report-warn">Овој корисик веќе е опоменат на IV степен, па затоа веќе нема да добива шаблони. Можете да го пријавите сега, но секогаш проверувајте дали е опоменат доволен број пати во достатно краток период! Ова можете да го направите стискајќи на копчето „страница за разговор“ во следниот образец. Имајте на ум дека овој образец и опомена се прикажува без оглед на тоа дали вашето отповикување успеало, па затоа тука може да се јави спротиставеност со други корисници (секогаш проверувајте дали некој веќе го пријавил корисникот). Дали сакате да го пријавите корисников?</string>
+  <string name="report-warn">Овој корисик веќе е опоменат на IV степен, па затоа веќе нема да добива шаблони. Можете да го пријавите сега, но секогаш проверувајте дали е опоменат доволен број пати во достатно краток период! Ова можете да го направите стискајќи на копчето „разговорна страница“ во следниот образец. Имајте на ум дека овој образец и опомена се прикажува без оглед на тоа дали вашето отповикување успеало, па затоа тука може да се јави спротиставеност со други корисници (секогаш проверувајте дали некој веќе го пријавил корисникот). Дали сакате да го пријавите корисников?</string>
   <string name="report-tu">Пријави корисник</string>
   <string name="report-reason">Причина:</string>
   <string name="report-auto">Пријавено $1</string>
@@ -566,7 +566,7 @@
   <string name="revert-preflightcheck">Подготвителна проверка</string>
   <string name="revert-delete-instead">А да ја избришам страницата?</string>
   <string name="revert-speedy-instead">А да ја означам за брзо бришење?</string>
-  <string name="revert-cannotundo">Не можам да вратам поради спротиставеност со меѓувремени уредувања</string>
+  <string name="revert-cannotundo" fuzzy="true">Не можам да вратам поради спротиставеност со меѓувремени уредувања</string>
   <string name="revert-conflict">Страниата е уредена од корисникот „$1“, кој се води на белиот список</string>
   <string name="revert-fail">Не го отповикав $1: $2</string>
   <string name="revert-nochange">Содржината на целната преработка е истоветна со онаа на тековната.</string>
@@ -600,9 +600,10 @@
   <string name="shortcut-page-patrol-edit">Означи како проверено</string>
   <string name="shortcut-report-username">Пријави корисничко име</string>
   <string name="shortcut-report-user">Пријави корисник</string>
-  <string name="shortcut-my-talk">Моја страница за разговор</string>
+  <string name="shortcut-my-talk">Моја разговорна страница</string>
   <string name="shortcut-raw">Отповикај го уредувањето и опомени го корисникот</string>
   <string name="shortcut-contrib">Прикажи придонеси за корисникот кој го има направено тековно прикажаното уредување</string>
+  <string name="shortcut-custom-msg">Отвора образец за испраќање на прилагодена порака за тековен корисник</string>
   <string name="shortcut-exit">Изгасни го Huggle на нормален начин</string>
   <string name="shortcut-next">Прејди на следното уредување</string>
   <string name="shortcut-suspicious">Означи го уредувањето како сомнително</string>
@@ -618,7 +619,7 @@
   <string name="shortcut-good">Обележи го тековно прикажаното уредување како добро</string>
   <string name="shortcut-open-in-huggle">Отвори ја тековно прикажаната страница</string>
   <string name="shortcut-open">Отвори го тековно прикажаното уредување во прелистувач</string>
-  <string name="shortcut-talk">Прикажи ја страницата за разговор на корисникот што ја има направено оваа промена</string>
+  <string name="shortcut-talk">Прикажи ја разговорната страница на корисникот што ја има направено оваа промена</string>
   <string name="shortcut-revert-agf-1">Отповикај ја последната преработка, претпоставувајќи добронамерност</string>
   <string name="shortcut-browser-close-tab">Затвори јазиче од прелистувачот</string>
   <string name="shortcut-tab">Отвора ново јазиче</string>
@@ -682,7 +683,7 @@
   <string name="history-undone">Успешно отповикано уредувањето $1</string>
   <string name="history-retrieve-fail">Не можев да ја добијам содржината на страницата за која требаше да се отповика уредување. Грешката гласеше: $1</string>
   <string name="history-welcome-msg-title">Наместо тоа да испратам порака со добредојде?</string>
-  <string name="history-welcome-msg">Вие ја создадовте оваа страница за разговор, па затоа не може да се отповика. Дали би сакале да ја замените со шаблон за добредојде?</string>
+  <string name="history-welcome-msg">Вие ја создадовте оваа разговорна страница, па затоа не може да се отповика. Дали би сакале да ја замените со шаблон за добредојде?</string>
   <string name="newtab-title">Ова е ново јазиче!</string>
   <string name="notify-fail">Не го известив создавачот на $1</string>
   <string name="notify-unknowncreator">Не можев да го најдам создавачот на страницата</string>
@@ -731,8 +732,8 @@
   <string name="feature-nfru">Оваа функција се однесува само на корисници од IP-адреси</string>
   <string name="report-no-user">Немате одбрано корисник за пријавување. Прво укажете корисник</string>
   <string name="welcome-show">Прикажи ја поракава и следен пат кога ќе го пуштам Huggle</string>
-  <string name="welcome-tp-empty-fail">Корисников нема празна страница за разговор. Дали сте сигурни дека сакате да му испратите порака?</string>
-  <string name="welcome-page-miss-fail">Huggle не можеше да ја добие содржината на корисничката страница за разговор. Дали сте сигурни дека сакате да испратите порака за добредојде?</string>
+  <string name="welcome-tp-empty-fail">Корисников нема празна разговорна страница. Дали сте сигурни дека сакате да му испратите порака?</string>
+  <string name="welcome-page-miss-fail">Huggle не можеше да ја добие содржината на корисничката разговорна страница. Дали сте сигурни дека сакате да испратите порака за добредојде?</string>
   <string name="cr-newer-edits">Спротиставеноста е решена: отповикани се сите уредувања, вклучувајќи ги новите. Беа направени од истиот корисник: $1.</string>
   <string name="cr-resolved-same-user">Спротиставеноста е решена: отповикани сите уредувања (вклучувајќи ги новите) направени од исти корисници —  уредувањата се од истиот корисник: $1</string>
   <string name="cr-stop-new-edit">Спротиставеноста е решена: не направив ништо — има понови уредувања за $1</string>
@@ -740,16 +741,17 @@
   <string name="cr-revert-same-user">Спротиставеноста е решена: отповикајте ги сите уредувања — истиот корисник има направено повеќе уредувања на $1</string>
   <string name="cr-message-same">$1 има повеќе уредувања од истиот корисник. Дали сте сигурни дека сакате да ги отповикате?</string>
   <string name="cr-message-new">$1 има понови уредувања. Дали сте сигурни дека навистина сакате да ги отповикате?</string>
-  <string name="cr-message-not-same">$1 има понови уредувања од различен корисник. Дали сте сигурни дека навистина сакате да ги отповикате сите нив? (веројатно бездруго нема да успеете поради старата шифра)</string>
+  <string name="cr-message-not-same" fuzzy="true">$1 има понови уредувања од различен корисник. Дали сте сигурни дека навистина сакате да ги отповикате сите нив? (веројатно бездруго нема да успеете поради старата шифра)</string>
   <string name="preferences-delete-using-filter">Не можете да избришете филтер кој е во тековна употреба</string>
   <string name="preferences-extension-disabled">Овој додаток е веќе предвиден да се оневозможи при следното пуштање на Huggle</string>
   <string name="preferences-extension-disabled-restart">Додатокот е наместен да се оневозможи при следното вклучување на Huggle</string>
   <string name="preferences-extension-enabled">Овој додаток не е предвиден да се оневозможи при следното пуштање на Huggle</string>
-  <string name="preferences-extension-enabled-restart">Додатокот е оневозможен. Меѓутоа, ќе треба да го превклучите Huggle одново за да се доврши оневозможувањето.</string>
+  <string name="preferences-extension-enabled-restart" fuzzy="true">Додатокот е оневозможен. Меѓутоа, ќе треба да го превклучите Huggle одново за да се доврши оневозможувањето.</string>
   <string name="preferences-watchlist-watch">Додај во набљудувани</string>
   <string name="preferences-watchlist-unwatch">Отстрани набљудуваните</string>
   <string name="preferences-watchlist-preferences">Води се по моите нагодувања на викито</string>
   <string name="preferences-watchlist-nochange">Не прави ништо</string>
+  <string name="preferences-auto-watch-talk" fuzzy="true">Набљудувај разговорна страница на корисник кој прима предупредување од вас</string>
   <string name="preferences-sounds-enable-queue">Пушти звук кога ќе се појави нова ставка во редицата</string>
   <string name="preferences-sounds-enable-irc">Пушти звук кога ќе се прими нова порака во HAN</string>
   <string name="preferences-sounds-minimal-score">Најмало уредување за известување</string>
@@ -796,8 +798,8 @@
   <string name="api.php-invalid-response">Извршникот одговори со неважечки текст (мрежниот опслужувач не работи?). Погледајте во дневникот на отстранување грешки за поточни информации</string>
   <string name="login-username-doesnt-exist">Не постои такво корисничко име.</string>
   <string name="developer-mode-enter-title">Одлично!</string>
-  <string name="developer-mode-enter-message">Влеговте во развоен режим!</string>
-  <string name="unimplemented">Оваа функција сè уште не е воведена.</string>
+  <string name="developer-mode-enter-message" fuzzy="true">Влеговте во развоен режим!</string>
+  <string name="unimplemented" fuzzy="true">Оваа функција сè уште не е воведена.</string>
   <string name="unknown-item">Непозната ставка</string>
   <string name="title-multiple-projects">повеќе проекти ($1)</string>
   <string name="title-on">на $1</string>
@@ -807,15 +809,15 @@
   <string name="main-revert-type-unknown">непознато</string>
   <string name="main-revert-type-in-userspace">во кориснички простор</string>
   <string name="main-revert-type-made-by-you">направено од Вас</string>
-  <string name="main-revert-type-made-on-talk-page">направно на страница за разговор</string>
+  <string name="main-revert-type-made-on-talk-page">направно на разговорна страница</string>
   <string name="main-revert-type-made-white-list">направено од корисник на кој е на белиот список</string>
-  <string name="main-revert-warn">Ова уредување е $1, па затоа може да не е вандализам, дури и ако ви изгледа така. Дали сте сигурни дека сакате да го отповикате?</string>
   <string name="query-result-nodata">Исходот од барањето не содржи никакви податоци</string>
+  <string name="main-revert-warn" fuzzy="true">Ова уредување е $1, па затоа може да не е вандализам, дури и ако ви изгледа така. Дали сте сигурни дека сакате да го отповикате?</string>
   <string name="query-request-noaction">Немате укажано дејство за барањето до извршникот</string>
   <string name="query-login-undefined">Најавната шифра бара кориснички укажана вредност. Таква не е складирана помнилото.</string>
   <string name="query-protected-link">Заштитена врска</string>
   <string name="queue-empty-title">Празно е</string>
   <string name="queue-empty-text">Нема ништо друго во редицата...</string>
   <string name="protip">ProTip</string>
-  <string name="tip10">Највеќето тастатурни кратенки можат да се изменат во нагодувањата.</string>
+  <string name="tip10" fuzzy="true">Највеќето тастатурни кратенки можат да се изменат во нагодувањата.</string>
 </resources>

@@ -218,7 +218,7 @@
   <string name="irc-switch-rc">Comut la feedul de schimbări recente al wikiului</string>
   <string name="login-old">Citesc configurația utilizatorului din vechea locație</string>
   <string name="login-intro">Vă rog să alegeți un proiect și să vă introduceți numele de utilizator și parola. Vă puteți și autentifica la proiecte multiple, prin click pe butonul „Proiecte”</string>
-  <string name="invalid-bot-user-name">Acesta nu este un nume valid pentru bot. Exemplu de un bot drept nume: Jumbo@Huggle</string>
+  <string name="invalid-bot-user-name" fuzzy="true">Acesta nu este un nume valid pentru bot. Exemplu de un bot drept nume: Jumbo@Huggle</string>
   <string name="login-tab-botp">Parola botului</string>
   <string name="login-tab-login">Autentificare</string>
   <string name="login-reload-tool-tip">Încarcă o listă de proiecte disponibile pentru a fi folosite de Huggle. Aceasta poate fi utilă în caz că doriți să folosiți Huggle într-un proiect în care Huggle a fost recent activat.</string>
@@ -530,7 +530,7 @@
   <string name="revert-preflightcheck">Preverificare</string>
   <string name="revert-delete-instead">Ștergem pagina mai bine?</string>
   <string name="revert-speedy-instead">Etichetăm pagina pentru ștergere rapidă mai bine?</string>
-  <string name="revert-cannotundo">Nu pot anula din cauza conflictului cu editări intermediare</string>
+  <string name="revert-cannotundo" fuzzy="true">Nu pot anula din cauza conflictului cu editări intermediare</string>
   <string name="revert-conflict">Pagina a fost editată de utilizatorul \'$1\' aflat în whitelist</string>
   <string name="revert-fail">Nu am revenit asupra $1: $2</string>
   <string name="revert-nochange">Conținutul reviziei este identic cu cel al reviziei curente</string>
@@ -694,7 +694,7 @@
   <string name="cr-revert-same-user" fuzzy="true">Conflict rezolvat: revenit asupra tuturor editărilor - sunt mai multe editări de la același utilizator la $1</string>
   <string name="cr-message-same" fuzzy="true">Există mai multe editări la $1 de la același utilizator, sigur doriți să revenim asupra tuturor?</string>
   <string name="cr-message-new">Sunt și editări mai noi la $1. Sigur doriți să revenim asupra lor?</string>
-  <string name="cr-message-not-same">Sunt editări mai noi la $1 de la un alt utilizator. Sigur doriți să reveniți asupra tuturor? (s-ar putea oricum să nu se poată din cauza învechirii tokenului.)</string>
+  <string name="cr-message-not-same" fuzzy="true">Sunt editări mai noi la $1 de la un alt utilizator. Sigur doriți să reveniți asupra tuturor? (s-ar putea oricum să nu se poată din cauza învechirii tokenului.)</string>
   <string name="preferences-delete-using-filter">Nu puteți șterge un filtru care este utilizat</string>
   <string name="preferences-extension-disabled" fuzzy="true">Această extensie este deja planificată pentru dezactivare la următoarea repornire de Huggle</string>
   <string name="preferences-extension-disabled-restart" fuzzy="true">Extensia urmează a fi dezactivată la următoarea pornire de Huggle</string>
@@ -747,8 +747,8 @@
   <string name="loading-main-window">Încărcarea fereastra principală Huggle</string>
   <string name="api.php-invalid-response" fuzzy="true">Api.php a răspuns cu text nevalid (serverul web este în jos?), Verificați jurnalul de depanare pentru informații exacte</string>
   <string name="login-username-doesnt-exist">Acest nume de utilizator nu există</string>
-  <string name="developer-mode-enter-message">Ați intrat în modul de dezvoltator!</string>
-  <string name="unimplemented">Această caracteristică nu a fost încă implementată</string>
+  <string name="developer-mode-enter-message" fuzzy="true">Ați intrat în modul de dezvoltator!</string>
+  <string name="unimplemented" fuzzy="true">Această caracteristică nu a fost încă implementată</string>
   <string name="unknown-item">Element necunoscut</string>
   <string name="title-multiple-projects">mai multe proiecte ($1)</string>
   <string name="title-on">la $1</string>
@@ -760,8 +760,8 @@
   <string name="main-revert-type-made-by-you">Făcut de tine</string>
   <string name="main-revert-type-made-on-talk-page">Făcut pe pagina de vorbire</string>
   <string name="main-revert-type-made-white-list">Făcut de utilizatorul cine este pe whitelist</string>
-  <string name="main-revert-warn">Această editare este de $1, deci chiar dacă se pare că este vandalism, poate că nu este, sunteți sigur că doriți să o reveniți?</string>
   <string name="query-result-nodata">Rezultatul Query nu conține date</string>
+  <string name="main-revert-warn" fuzzy="true">Această editare este de $1, deci chiar dacă se pare că este vandalism, poate că nu este, sunteți sigur că doriți să o reveniți?</string>
   <string name="query-request-noaction">Nu a fost prevăzută nicio acțiune pentru solicitarea API</string>
   <string name="query-login-undefined">Cheia de conectare necesită o valoare definită de utilizator, nu este stocat în memorie</string>
   <string name="query-protected-link">Legătură protejata</string>

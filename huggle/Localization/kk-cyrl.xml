@@ -379,7 +379,7 @@
   <string name="uaa-nr">Себебі көрсетілмеген</string>
   <string name="uaa-e2" fuzzy="true">бет контенті қолжетімді болмаған</string>
   <string name="revert-confirm-multiple">Бұл $1 істеген бірнеше өңдемені жоққа шығарады. Жалғастырасыз ба?</string>
-  <string name="revert-cannotundo">Өңдемелер арасында қақтығысқандықтан жоққа шығара алмайсыз</string>
+  <string name="revert-cannotundo" fuzzy="true">Өңдемелер арасында қақтығысқандықтан жоққа шығара алмайсыз</string>
   <string name="revert-conflict">Бетті өңдеген \'$1\' есімді қатысушы ақ тізімде</string>
   <string name="speedy-reason">Себебі:</string>
   <string name="speedy-parameters">Параметрлері:</string>

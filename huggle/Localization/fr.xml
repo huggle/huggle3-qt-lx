@@ -230,7 +230,7 @@
   <string name="irc-switch-rc">Bascule vers le fil IRC du wiki</string>
   <string name="login-old">Récupération de la configuration utilisateur depuis l’ancien emplacement</string>
   <string name="login-intro">Veuillez choisir un projet et saisir votre nom d’utilisateur et votre mot de passe. Vous pouvez aussi vous connecter à plusieurs projets en cliquant sur le bouton « Projets ».</string>
-  <string name="invalid-bot-user-name">Ce n’est pas un nom de robot valide. Exemple de nom de robot correct : Jimbo@Huggle</string>
+  <string name="invalid-bot-user-name" fuzzy="true">Ce n’est pas un nom de robot valide. Exemple de nom de robot correct : Jimbo@Huggle</string>
   <string name="login-tab-botp">Mot de passe du robot</string>
   <string name="login-tab-login">Normal</string>
   <string name="login-reload-tool-tip">Recharger une liste de projets disponibles qui peut être utilisée dans Huggle ; cela peut être utile si vous voulez utiliser Huggle sur un projet pour lequel Huggle a été récemment activé.</string>
@@ -244,7 +244,7 @@
   <string name="login-proxy-remember-this">Se souvenir de ce paramètre la prochaine fois</string>
   <string name="login-proxyport">Port :</string>
   <string name="login-proxydomain">Domaine :</string>
-  <string name="proxy-restart">Huggle as besoin d\'être redémarré pour que ces modifications soient prises en compte</string>
+  <string name="proxy-restart" fuzzy="true">Huggle as besoin d\'être redémarré pour que ces modifications soient prises en compte</string>
   <string name="login-retrieving-user-conf">Récupération de la configuration utilisateur en cours...</string>
   <string name="login-fail-css">Échec de la connexion sur $1 : Impossible de récupérer la configuration utilisateur. Special:MyPage/huggle3.css est absent. Avez-vous créé huggle3.css dans votre espace utilisateur ?</string>
   <string name="login-fail-enable-true">Échec de la connexion sur $1 : vous n’avez pas « enable:true » dans votre configuration personnelle.</string>
@@ -384,7 +384,7 @@
   <string name="main-page-load">Charger</string>
   <string name="main-patrol-not-enabled">Patrouiller n’est pas activé sur $1</string>
   <string name="main-page-restore">Rétablir cette révision</string>
-  <string name="main-page-watchlist-add">Insérer une page dans la liste de suivi</string>
+  <string name="main-page-watchlist-add" fuzzy="true">Insérer une page dans la liste de suivi</string>
   <string name="main-page-tab-close">Fermer l’onglet courant</string>
   <string name="main-page-tab-open">Ouvrir un nouvel onglet</string>
   <string name="main-page-watchlist-remove">Supprimer une page d’une liste de suivi</string>
@@ -431,7 +431,7 @@
   <string name="main-stats">$1 modifications par minute, $2 rétablissements par minute</string>
   <string name="main-display-session-data">Afficher les données de session</string>
   <string name="main-display-whitelist">Afficher la liste blanche</string>
-  <string name="main-revert-custom-reson">Veuillez justifier le rétablissement de cette modification à la révision précédente</string>
+  <string name="main-revert-custom-reson" fuzzy="true">Veuillez justifier le rétablissement de cette modification à la révision précédente</string>
   <string name="main-log1">Restauration de la révision sélectionnée de $1</string>
   <string name="main-tip-pagetagdelete">Identifier cette page pour la suppression</string>
   <string name="main-tip-pagedelete">Supprimer cette page</string>
@@ -452,7 +452,7 @@
   <string name="main-report-user">Signaliser l\'utilisateur</string>
   <string name="main-edit-user-talk">Modifier la conversation de l’utilisateur</string>
   <string name="main-statistics-paused">en pause</string>
-  <string name="main-statistics-waiting">en attente de davantage de modifications</string>
+  <string name="main-statistics-waiting" fuzzy="true">en attente de davantage de modifications</string>
   <string name="main-statistics-none">aucun(e)</string>
   <string name="main-tab-welcome-title">Page d’accueil</string>
   <string name="message-title">Message $1</string>
@@ -566,7 +566,7 @@
   <string name="revert-preflightcheck">Contrôle préalable</string>
   <string name="revert-delete-instead">Supprimer la page à la place ?</string>
   <string name="revert-speedy-instead">Tag for speedy deletion instead?</string>
-  <string name="revert-cannotundo">Impossible d’annuler à cause de conflits dans les modifications intermédiaires</string>
+  <string name="revert-cannotundo" fuzzy="true">Impossible d’annuler à cause de conflits dans les modifications intermédiaires</string>
   <string name="revert-conflict">La page a été modifiée par l’utilisateur en liste blanche « $1 »</string>
   <string name="revert-fail">Ne pas annuler $1 : $2</string>
   <string name="revert-nochange">Le contenu de la révision cible est identique à celui de la révision actuelle</string>
@@ -742,17 +742,17 @@
   <string name="cr-revert-same-user">Conflit résolu : annuler toutes les modifications — il y a plusieurs modifications du même utilisateur sur $1</string>
   <string name="cr-message-same">Il y a des modifications multiples de $1 par le même utilisateur, êtes-vous sûr de vouloir les annuler ?</string>
   <string name="cr-message-new">Il y a des modifications plus récentes sur $1, êtes-vous sûr de vouloir vraiment les annuler ?</string>
-  <string name="cr-message-not-same">Il y a des modifications plus récentes faites sur $1 par un autre utilisateur, êtes-vous sûr de vouloir les annuler toutes (cela échouera sans doute à cause d’un jeton ancien) ?</string>
+  <string name="cr-message-not-same" fuzzy="true">Il y a des modifications plus récentes faites sur $1 par un autre utilisateur, êtes-vous sûr de vouloir les annuler toutes (cela échouera sans doute à cause d’un jeton ancien) ?</string>
   <string name="preferences-delete-using-filter">Vous ne pouvez pas supprimer un filtre qui est utilisé actuellement</string>
   <string name="preferences-extension-disabled">Cette extension est déjà en attente de désactivation au prochain démarrage de Huggle</string>
   <string name="preferences-extension-disabled-restart">L’extension a été mise en attente de désactivation au prochain démarrage de Huggle</string>
   <string name="preferences-extension-enabled">Cette extension ne sera pas désactivée lors du prochain démarrage de Huggle</string>
-  <string name="preferences-extension-enabled-restart">L’extension a été activée, cependant, vous devez redémarrer Huggle pour que cela prenne effet</string>
+  <string name="preferences-extension-enabled-restart" fuzzy="true">L’extension a été activée, cependant, vous devez redémarrer Huggle pour que cela prenne effet</string>
   <string name="preferences-watchlist-watch">Ajouter à la liste de suivi</string>
   <string name="preferences-watchlist-unwatch">Supprimer de la liste de suivi</string>
   <string name="preferences-watchlist-preferences">Suivre vos préférences du wiki</string>
   <string name="preferences-watchlist-nochange">Ne rien faire</string>
-  <string name="preferences-auto-watch-talk">Surveiller la page de discussion d’un utilisateur qui a reçu un avertissement de votre part</string>
+  <string name="preferences-auto-watch-talk" fuzzy="true">Surveiller la page de discussion d’un utilisateur qui a reçu un avertissement de votre part</string>
   <string name="preferences-sounds-enable-queue">Emettre un son quand un nouvel élément est ajouté à la file</string>
   <string name="preferences-sounds-enable-irc">Emettre un son quand le message est reçu dans HAN</string>
   <string name="preferences-sounds-minimal-score">Valeur minimale de modifications pour la notification</string>
@@ -799,8 +799,8 @@
   <string name="api.php-invalid-response">L’API a répondu avec un texte non valide (serveur web hors service ?), veuillez consulter le journal de débogage pour des informations plus précises</string>
   <string name="login-username-doesnt-exist">Ce nom d’utilisateur n’existe pas</string>
   <string name="developer-mode-enter-title">Waouh</string>
-  <string name="developer-mode-enter-message">Vous êtes entré en mode développeur !</string>
-  <string name="unimplemented">Cette fonctionnalité n’est pas encore implémentée</string>
+  <string name="developer-mode-enter-message" fuzzy="true">Vous êtes entré en mode développeur !</string>
+  <string name="unimplemented" fuzzy="true">Cette fonctionnalité n’est pas encore implémentée</string>
   <string name="unknown-item">Élément inconnu</string>
   <string name="title-multiple-projects">projets multiples ($1)</string>
   <string name="title-on">sur $1</string>
@@ -812,8 +812,8 @@
   <string name="main-revert-type-made-by-you">fait par vous</string>
   <string name="main-revert-type-made-on-talk-page">fait sur la page de discussion</string>
   <string name="main-revert-type-made-white-list">fait par un utilisateur de la liste blanche</string>
-  <string name="main-revert-warn">Cette modification est $1, donc même si elle ressemble à du vandalisme, elle peut ne pas l’être ; êtes-vous sûr de vouloir l’annuler ?</string>
   <string name="query-result-nodata">Le résultat de la requête ne contient aucune donnée</string>
+  <string name="main-revert-warn" fuzzy="true">Cette modification est $1, donc même si elle ressemble à du vandalisme, elle peut ne pas l’être ; êtes-vous sûr de vouloir l’annuler ?</string>
   <string name="query-request-noaction">Aucune action fournie pour la requête de l’API</string>
   <string name="query-login-undefined">Le jeton de connexion nécessite une valeur définie par l’utilisateur, il n’est pas stocké en mémoire</string>
   <string name="query-protected-link">Lien protégé</string>
@@ -822,16 +822,16 @@
   <string name="protip">ProTip</string>
   <string name="tip1">Huggle supporte les onglets comme tout autre navigateur ! Si vous êtes sur une modification et que vous voulez la conserver pour plus tard, vous pouvez simplement ouvrir un nouvel onglet et continuer à vérifier la file de là. La file d’attente est partagée entre tous les onglets.</string>
   <string name="tip2">Hugglet contient une « barre d’édition », un petit widget qui mémorise l’historique de l’utilisateur et des pages, d’une nouvelle façon. Il n’est cependant pas activé par défaut. Si vous êtes sur un petit écran, vous pouvez remplacer les widgets d’historique utilisateur et de page par celui-ci  !</string>
-  <string name="tip3">La plupart des préférences sont rangées le fichier [[Special:MyPage/huggle3.css]] du wiki ; vous pouvez également les mettre à jour manuellement à cet endroit !</string>
+  <string name="tip3" fuzzy="true">La plupart des préférences sont rangées le fichier [[Special:MyPage/huggle3.css]] du wiki ; vous pouvez également les mettre à jour manuellement à cet endroit !</string>
   <string name="tip4">Presque tous les widgets à l’écran peuvent être fermés sans souci (sauf la barre de navigation).</string>
   <string name="tip5">Vous pouvez utiliser Huggle en même temps sur de nombreux projets, cliquez simplement sur le bouton « Projets » du formulaire de connexion.</string>
   <string name="tip6">L’annulation par Huggle peut être plus rapide si vous êtes un utilisateur expérimenté qui ne fait jamais d’erreurs \'\'\';-)\'\'\' Ouvrez les préférences et cochez « Annulations instantanées »</string>
-  <string name="tip7">Vous pouvez créer vos propres filtres de File d’attente dans les préférences, ils sont stockés dans votre page de configuration dans le wiki.</string>
-  <string name="tip8">Appuyer sur G marquera la modification comme une « bonne modification », cela indiquera aux autres que la modification peut être ignorée, décrémentera la note de mauvaise conduite de l’utilisateur et, de façon facultative, lui enverra un message de bienvenue.</string>
-  <string name="tip9">Appuyer sur S marquera la modification comme une « modification suspecte », cela indiquera aux autres de prêter attention à la modification et l’ajoutera à la file des modifications suspectes pour une relecture ultérieure par des experts.</string>
-  <string name="tip10">La plupart des raccourcis peuvent être modifiés dans les préférences.</string>
+  <string name="tip7" fuzzy="true">Vous pouvez créer vos propres filtres de File d’attente dans les préférences, ils sont stockés dans votre page de configuration dans le wiki.</string>
+  <string name="tip8" fuzzy="true">Appuyer sur G marquera la modification comme une « bonne modification », cela indiquera aux autres que la modification peut être ignorée, décrémentera la note de mauvaise conduite de l’utilisateur et, de façon facultative, lui enverra un message de bienvenue.</string>
+  <string name="tip9" fuzzy="true">Appuyer sur S marquera la modification comme une « modification suspecte », cela indiquera aux autres de prêter attention à la modification et l’ajoutera à la file des modifications suspectes pour une relecture ultérieure par des experts.</string>
+  <string name="tip10" fuzzy="true">La plupart des raccourcis peuvent être modifiés dans les préférences.</string>
   <string name="tip11">Déplacer un widget sur l’écran de Huggle par-dessus un autre widget fusionnera les deux en un, séparés par des onglets.</string>
-  <string name="tip12">Vous avez fait une erreur ? Aucun problème, cliquer droit sur une modification que vous avez faite dans « l’historique de vos modifications » ouvrira une fenêtre qui proposera d’annuler votre propre modification.</string>
-  <string name="tip13">Vous pouvez ouvrir un « navigateur de contribution » pour l’utilisateur de la modification actuellement affichée, en appuyant sur Shift + C (par défaut) ou depuis le menu utilisateur. Cela vous permet de voir rapidement les modifications récentes faites par cet utilisateur.</string>
-  <string name="tip14">Vous pouvez dialoguer avec d\'autres utilisateurs actifs de Huggle qui utilisent le programme actuellement. Vous les verrez dans la fenêtre \"Réseau\" s\'ils sont en ligne.</string>
+  <string name="tip12" fuzzy="true">Vous avez fait une erreur ? Aucun problème, cliquer droit sur une modification que vous avez faite dans « l’historique de vos modifications » ouvrira une fenêtre qui proposera d’annuler votre propre modification.</string>
+  <string name="tip13" fuzzy="true">Vous pouvez ouvrir un « navigateur de contribution » pour l’utilisateur de la modification actuellement affichée, en appuyant sur Shift + C (par défaut) ou depuis le menu utilisateur. Cela vous permet de voir rapidement les modifications récentes faites par cet utilisateur.</string>
+  <string name="tip14" fuzzy="true">Vous pouvez dialoguer avec d\'autres utilisateurs actifs de Huggle qui utilisent le programme actuellement. Vous les verrez dans la fenêtre \"Réseau\" s\'ils sont en ligne.</string>
 </resources>

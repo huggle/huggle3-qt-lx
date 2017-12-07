@@ -223,7 +223,7 @@
   <string name="irc-switch-rc">Переходжу на постачання списку нових редагувань через wiki</string>
   <string name="login-old">Отримання користувацьких налаштувань</string>
   <string name="login-intro">Будь ласка, виберіть проект і введіть ім’я користувача та пароль. Ви також можете одразу ввійти до декількох проектів, скориставшись кнопкою «Проекти».</string>
-  <string name="invalid-bot-user-name">Це не є дійсним іменем бота. Приклад коректного імені бота: Jimbo@Huggle</string>
+  <string name="invalid-bot-user-name" fuzzy="true">Це не є дійсним іменем бота. Приклад коректного імені бота: Jimbo@Huggle</string>
   <string name="login-tab-botp">Пароль бота</string>
   <string name="login-tab-login">Старий спосіб</string>
   <string name="login-reload-tool-tip" fuzzy="true">Перезавантажити список проектів, у яких можна використовувати Huggle. Це може бути корисним, якщо Ви хочете використовувати Huggle у проекті, для котрого його було підключено лише нещодавно.</string>
@@ -523,7 +523,7 @@
   <string name="revert-preflightcheck">Попередня перевірка</string>
   <string name="revert-delete-instead">Хочете замість цього вилучити сторінку?</string>
   <string name="revert-speedy-instead">Хочете замість цього номінувати сторінку на швидке вилучення?</string>
-  <string name="revert-cannotundo">Неможливо скасувати через конфлікт з проміжними редагуваннями</string>
+  <string name="revert-cannotundo" fuzzy="true">Неможливо скасувати через конфлікт з проміжними редагуваннями</string>
   <string name="revert-conflict">Сторінку відредагував користувач \'$1\' з білого списку</string>
   <string name="revert-fail">Не вдалося відкинути $1: $2</string>
   <string name="revert-nochange">Версія, до якої Ви хочете відкотити сторінку, ідентична поточній версії</string>
@@ -687,7 +687,7 @@
   <string name="cr-revert-same-user" fuzzy="true">Конфлікт вирішено: відкинуто всі зміни. На сторінці $1 є редагування від одного й того ж користувача.</string>
   <string name="cr-message-same" fuzzy="true">На сторінці $1 є редагування від одного й того ж користувача. Ви впевнені, що хочете відкинути їх?</string>
   <string name="cr-message-new">На сторінці $1 з’явилися нові редагування. Ви впевнені, що хочете відкинути їх?</string>
-  <string name="cr-message-not-same">На сторінці $1 з’явилися нові редагування, зроблені різними користувачами. Ви впевнені, що хочете відкинути їх? (Це швидше за все все одно не спрацює через старий маркер сесії.)</string>
+  <string name="cr-message-not-same" fuzzy="true">На сторінці $1 з’явилися нові редагування, зроблені різними користувачами. Ви впевнені, що хочете відкинути їх? (Це швидше за все все одно не спрацює через старий маркер сесії.)</string>
   <string name="preferences-delete-using-filter">Ви не можете видалити фільтр, що використовується в даний момент</string>
   <string name="preferences-extension-disabled" fuzzy="true">Дане розширення вже планується вимкнути при наступному запуску Huggle</string>
   <string name="preferences-extension-disabled-restart" fuzzy="true">Дане розширення вже планується вимкнути при наступному запуску Huggle</string>
@@ -735,8 +735,8 @@
   <string name="api.php-invalid-response" fuzzy="true">api.php відповів із неправильним текстом (впав веб-сервер?). Будь ласка, перевірте журнал зневадження для точної інформації</string>
   <string name="login-username-doesnt-exist">Це ім\'я користувача не існує</string>
   <string name="developer-mode-enter-title">Ура</string>
-  <string name="developer-mode-enter-message">Ви увійшли в режим розробника!</string>
-  <string name="unimplemented">Ця функція ще не втілена</string>
+  <string name="developer-mode-enter-message" fuzzy="true">Ви увійшли в режим розробника!</string>
+  <string name="unimplemented" fuzzy="true">Ця функція ще не втілена</string>
   <string name="unknown-item">Невідомий елемент</string>
   <string name="title-multiple-projects">кілька проектів ($1)</string>
   <string name="title-on">на $1</string>
@@ -748,8 +748,8 @@
   <string name="main-revert-type-made-by-you">зроблені вами</string>
   <string name="main-revert-type-made-on-talk-page">зроблено на сторінці обговорення</string>
   <string name="main-revert-type-made-white-list">зроблено користувачем, який знаходиться в білому списку</string>
-  <string name="main-revert-warn">Це редагування є $1, тому навіть якщо воно нагадує вандалізм, насправді це не так. Ви справді хочете повернути його?</string>
   <string name="query-result-nodata">Результат запиту не містить жодних даних</string>
+  <string name="main-revert-warn" fuzzy="true">Це редагування є $1, тому навіть якщо воно нагадує вандалізм, насправді це не так. Ви справді хочете повернути його?</string>
   <string name="query-request-noaction">Жодної дії не надано для запиту до API</string>
   <string name="query-login-undefined">Токен входу в систему вимагає значення, визначеного користувачем; воно не зберігається в пам\'яті</string>
   <string name="query-protected-link">Захищене посилання</string>

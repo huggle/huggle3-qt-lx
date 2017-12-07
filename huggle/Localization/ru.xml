@@ -225,7 +225,7 @@
   <string name="irc-switch-rc">Переключение на ленту свежих правок</string>
   <string name="login-old">Получение пользовательских настроек из старого местоположения</string>
   <string name="login-intro">Пожалуйста, выберите проект и введите своё имя пользователя и пароль. Вы также можете войти в несколько проектов, нажав на кнопку \"Проекты\".</string>
-  <string name="invalid-bot-user-name">Это не допустимое имя бота. Пример правильное название бота: Jimbo@Huggle</string>
+  <string name="invalid-bot-user-name" fuzzy="true">Это не допустимое имя бота. Пример правильное название бота: Jimbo@Huggle</string>
   <string name="login-tab-botp">Пароль бота</string>
   <string name="login-tab-login">По-старому</string>
   <string name="login-reload-tool-tip">Перезагрузить список проектов, которые могут быть использованы в Huggle. Это может быть полезно в случае, если вы хотите использовать Huggle в проекте, для которого инструмент был включен недавно.</string>
@@ -239,7 +239,7 @@
   <string name="login-proxy-remember-this">Запомнить эту настройку на будущее</string>
   <string name="login-proxyport">Порт:</string>
   <string name="login-proxydomain">Домен:</string>
-  <string name="proxy-restart">Возможно, потребуется перезапустить Huggle, чтобы эти изменения вступили в силу</string>
+  <string name="proxy-restart" fuzzy="true">Возможно, потребуется перезапустить Huggle, чтобы эти изменения вступили в силу</string>
   <string name="login-retrieving-user-conf">Получение пользовательских настроек</string>
   <string name="login-fail-css">Ошибка входа на $1: Не удалось получить настройки пользователя. Страница Special:MyPage/huggle3.css отсутствует. Вы создали подстраницу huggle3.css в своём пространстве?</string>
   <string name="login-fail-enable-true">Ошибка входа на $1: Отсутствует enable:true в настройках.</string>
@@ -378,7 +378,7 @@
   <string name="main-page-load">Загрузить</string>
   <string name="main-patrol-not-enabled">Патрулирование не включено на $1</string>
   <string name="main-page-restore">Восстановить эту версию</string>
-  <string name="main-page-watchlist-add">Добавить страницу в список наблюдения</string>
+  <string name="main-page-watchlist-add" fuzzy="true">Добавить страницу в список наблюдения</string>
   <string name="main-page-tab-close">Закрыть текущую вкладку</string>
   <string name="main-page-tab-open">Открыть новую вкладку</string>
   <string name="main-page-watchlist-remove">Удалить эту страницу из списка наблюдения</string>
@@ -444,7 +444,7 @@
   <string name="main-report-user">Сообщить о нарушении</string>
   <string name="main-edit-user-talk">Править страницу обсуждения участника</string>
   <string name="main-statistics-paused">Приостановлено</string>
-  <string name="main-statistics-waiting">Ожидание правок</string>
+  <string name="main-statistics-waiting" fuzzy="true">Ожидание правок</string>
   <string name="message-title">Сообщение $1</string>
   <string name="message-help">Укажите Заголовок и Текст сообщения. Если поле Описание изменений останется пустым, то в него подставится Заголовок сообщения. Если Заголовок сообщения останется пустым, то он не будет сгенерирован и останется пустым.</string>
   <string name="message-subject">Заголовок:</string>
@@ -556,7 +556,7 @@
   <string name="revert-preflightcheck">Предполетная проверка</string>
   <string name="revert-delete-instead">Удалить страницу вместо этого?</string>
   <string name="revert-speedy-instead">Подставить шаблон быстрого удаления вместо этого?</string>
-  <string name="revert-cannotundo">Нельзя отменить  из-за конфликта промежуточных версий</string>
+  <string name="revert-cannotundo" fuzzy="true">Нельзя отменить  из-за конфликта промежуточных версий</string>
   <string name="revert-conflict">Страница была изменена игнорируемым участником \'$1\'</string>
   <string name="revert-fail">Невозможно откатить $1: $2</string>
   <string name="revert-nochange">Содержимое текущей и целевой версий идентично</string>
@@ -727,7 +727,7 @@
   <string name="cr-revert-same-user" fuzzy="true">Конфликт разрешён: отменены все правки - есть несколько правок от одного пользователя в $1</string>
   <string name="cr-message-same" fuzzy="true">Есть несколько правок в $1 от одного участника, вы уверены, что хотите откатить их?</string>
   <string name="cr-message-new">Есть более новые правки в $1. Вы уверены, что действительно хотите откатить их?</string>
-  <string name="cr-message-not-same">Существуют более новые правки, внесенные в $1 другим участником. Вы уверены, что хотите откатить их все? (в любом случае, это, скорее всего, не получится сделать, из-за старого маркера.)</string>
+  <string name="cr-message-not-same" fuzzy="true">Существуют более новые правки, внесенные в $1 другим участником. Вы уверены, что хотите откатить их все? (в любом случае, это, скорее всего, не получится сделать, из-за старого маркера.)</string>
   <string name="preferences-delete-using-filter">Вы не можете удалить фильтр, который сейчас используется</string>
   <string name="preferences-extension-disabled" fuzzy="true">Это расширение уже запланировано к отключению во время следующей загрузки Huggle</string>
   <string name="preferences-extension-disabled-restart" fuzzy="true">Расширение будет отключено во время следующей загрузки Huggle</string>
@@ -783,8 +783,8 @@
   <string name="api.php-invalid-response">API вернул некорректный текст (сервер не работает?), проверьте журнал отладки для получения более точной информации</string>
   <string name="login-username-doesnt-exist">Это имя пользователя не существует</string>
   <string name="developer-mode-enter-title">Ура!</string>
-  <string name="developer-mode-enter-message">Вы вошли в режим разработчика!</string>
-  <string name="unimplemented">Эта функция еще не была реализована</string>
+  <string name="developer-mode-enter-message" fuzzy="true">Вы вошли в режим разработчика!</string>
+  <string name="unimplemented" fuzzy="true">Эта функция еще не была реализована</string>
   <string name="unknown-item">Неизвестный пункт</string>
   <string name="title-multiple-projects">несколько проектов ($1)</string>
   <string name="title-on">на $1</string>
@@ -796,8 +796,8 @@
   <string name="main-revert-type-made-by-you">сделанные вами</string>
   <string name="main-revert-type-made-on-talk-page">сделал на странице обсуждения</string>
   <string name="main-revert-type-made-white-list">за авторством участника из белого списка</string>
-  <string name="main-revert-warn">Эта правка - $1, поэтому даже если она выглядит как вандализм, она может не быть им. Уверены, что хотите отменить её?</string>
   <string name="query-result-nodata">Результат запроса не содержит данных</string>
+  <string name="main-revert-warn" fuzzy="true">Эта правка - $1, поэтому даже если она выглядит как вандализм, она может не быть им. Уверены, что хотите отменить её?</string>
   <string name="query-request-noaction">Для запроса API не определены действия</string>
   <string name="query-login-undefined">Маркер входа требует значения определенного пользователем, он не хранится в памяти</string>
   <string name="query-protected-link">Защищенная ссылка</string>

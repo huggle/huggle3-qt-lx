@@ -212,7 +212,7 @@
   <string name="irc-nochannel">Nie znaleziono kanału IRC dla $1; będą w zamian używane wolniejsze zapytania API</string>
   <string name="login-old">Pobieranie konfiguracji użytkownika ze starej lokalizacji</string>
   <string name="login-intro">Proszę wybrać projekt i wpisać swój login i hasło. Możesz się też zalogować do wielu projektów klikając przycisk \"Projekty\".</string>
-  <string name="invalid-bot-user-name">To nie jest poprawna nazwa bota. Przykład poprawnej nazwy bota: Jimbo@Huggle</string>
+  <string name="invalid-bot-user-name" fuzzy="true">To nie jest poprawna nazwa bota. Przykład poprawnej nazwy bota: Jimbo@Huggle</string>
   <string name="login-tab-botp">Hasło bota</string>
   <string name="login-tab-login">Stary sposób</string>
   <string name="login-language">Język:</string>

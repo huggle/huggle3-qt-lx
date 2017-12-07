@@ -222,7 +222,7 @@
   <string name="irc-switch-rc">Passaggio al feed RC del wiki</string>
   <string name="login-old">Recupero della configurazione utente dalla vecchia posizione</string>
   <string name="login-intro">Per favore scegli un progetto e inserisci nome utente e password. Puoi anche accedere a più progetti cliccando sul pulsante \"Progetti\".</string>
-  <string name="invalid-bot-user-name">Questo non è un nome di bot valido. Esempio di nome valido: Jimbo@Huggle</string>
+  <string name="invalid-bot-user-name" fuzzy="true">Questo non è un nome di bot valido. Esempio di nome valido: Jimbo@Huggle</string>
   <string name="login-tab-botp">Password bot</string>
   <string name="login-tab-login">Normale</string>
   <string name="login-reload-tool-tip">Ricarica una lista di progetti disponibili che possono essere utilizzati con Huggle. Può essere utile in caso tu voglia usare Huggle in un progetto dove questo strumento è stato attivato da poco.</string>
@@ -405,7 +405,7 @@
   <string name="main-stats">$1 modifiche al minuto, $2 annullamenti al minuto</string>
   <string name="main-display-session-data">Mostra i dati di sessione</string>
   <string name="main-display-whitelist">Mostra la lista bianca</string>
-  <string name="main-revert-custom-reson">Giustifica il ripristino di questa modifica alla versione precedente</string>
+  <string name="main-revert-custom-reson" fuzzy="true">Giustifica il ripristino di questa modifica alla versione precedente</string>
   <string name="main-log1">Ripristino della revisione selezionata di $1</string>
   <string name="main-tip-pagetagdelete">Proponi questa pagina per la cancellazione</string>
   <string name="main-tip-pagedelete">Cancella questa pagina</string>
@@ -535,7 +535,7 @@
   <string name="revert-preflightcheck">controllo preflight</string>
   <string name="revert-delete-instead">Cancellare la pagina invece?</string>
   <string name="revert-speedy-instead">Marcare per una cancellazione rapida invece?</string>
-  <string name="revert-cannotundo">Impossibile annullare a causa di modifiche intermedie in conflitto</string>
+  <string name="revert-cannotundo" fuzzy="true">Impossibile annullare a causa di modifiche intermedie in conflitto</string>
   <string name="revert-conflict">La pagina è stata modificata dall\'utente in lista bianca \'$1\'</string>
   <string name="revert-fail">Impossibile annullare $1: $2</string>
   <string name="revert-nochange">Il contenuto della revisione in oggetto è identico a quello della revisione attuale</string>
@@ -701,12 +701,12 @@
   <string name="cr-revert-same-user">Conflitto risolto: annullate tutte le modifiche - ci sono modifiche multiple da parte dello stesso utente a $1</string>
   <string name="cr-message-same">Ci sono modifiche multiple a $1 da parte dello stesso utente, sei sicuro di volerle annullare?</string>
   <string name="cr-message-new">Ci sono nuove modifiche a $1. Sei sicuro di volerle veramente annullare?</string>
-  <string name="cr-message-not-same">Ci sono nuove modifiche fatte a $1 da diversi utenti. Sei sicuro di volerle annullare tutte? (probabilmente non riuscirà in ogni caso a causa di un token vecchio.)</string>
+  <string name="cr-message-not-same" fuzzy="true">Ci sono nuove modifiche fatte a $1 da diversi utenti. Sei sicuro di volerle annullare tutte? (probabilmente non riuscirà in ogni caso a causa di un token vecchio.)</string>
   <string name="preferences-delete-using-filter">Non puoi cancellare un filtro attualmente in uso</string>
   <string name="preferences-extension-disabled">La disattivazione di questa estensione è già prevista al prossimo avvio di Huggle</string>
   <string name="preferences-extension-disabled-restart">La disattivazione di questa estensione è già prevista al prossimo avvio di Huggle</string>
   <string name="preferences-extension-enabled">La disattivazione di questa estensione non è prevista al prossimo avvio di Huggle</string>
-  <string name="preferences-extension-enabled-restart">L\'estensione è stata attivata, tuttavia, è necessario riavviare Huggle per renderla effettiva</string>
+  <string name="preferences-extension-enabled-restart" fuzzy="true">L\'estensione è stata attivata, tuttavia, è necessario riavviare Huggle per renderla effettiva</string>
   <string name="preferences-watchlist-watch">Aggiungi agli osservati speciali</string>
   <string name="preferences-watchlist-unwatch">Rimuovi dagli osservati speciali</string>
   <string name="preferences-watchlist-preferences">Segui le tue preferenze su wiki</string>
@@ -749,8 +749,8 @@
   <string name="api.php-invalid-response">API ha risposto con testo non valido (il server web non è attivo?), controlla il registro di debug per informazioni precise</string>
   <string name="login-username-doesnt-exist">Questo nome utente non esiste</string>
   <string name="developer-mode-enter-title">Whee</string>
-  <string name="developer-mode-enter-message">Sei entrato in modalità sviluppatore!</string>
-  <string name="unimplemented">Questa funzionalità non è stata ancora implementata</string>
+  <string name="developer-mode-enter-message" fuzzy="true">Sei entrato in modalità sviluppatore!</string>
+  <string name="unimplemented" fuzzy="true">Questa funzionalità non è stata ancora implementata</string>
   <string name="unknown-item">Elemento sconosciuto</string>
   <string name="title-multiple-projects">progetti multipli ($1)</string>
   <string name="title-on">su $1</string>
@@ -762,7 +762,7 @@
   <string name="main-revert-type-made-by-you">fatto da te</string>
   <string name="main-revert-type-made-on-talk-page">fatto sulla pagina di discussione</string>
   <string name="main-revert-type-made-white-list">fatto da un utente che è nella lista bianca</string>
-  <string name="main-revert-warn">Questa modifica è $1, quindi, anche se sembra che sia un vandalismo, potrebbe non esserlo, sei sicuro di volerla annullare?</string>
-  <string name="tip3">La maggior parte delle preferenze sono memorizzate su wiki in [[SPecial:MyPage/huggle3.css]], puoi anche cambiarle manualmente direttamente lì!</string>
+  <string name="main-revert-warn" fuzzy="true">Questa modifica è $1, quindi, anche se sembra che sia un vandalismo, potrebbe non esserlo, sei sicuro di volerla annullare?</string>
+  <string name="tip3" fuzzy="true">La maggior parte delle preferenze sono memorizzate su wiki in [[SPecial:MyPage/huggle3.css]], puoi anche cambiarle manualmente direttamente lì!</string>
   <string name="tip4">Praticamente ogni oggetto sullo schermo può essere chiuso in sicurezza (eccetto la barra di navigazione).</string>
 </resources>

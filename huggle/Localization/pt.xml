@@ -499,7 +499,7 @@
   <string name="revert-preflightcheck">Verificação de comprovação</string>
   <string name="revert-delete-instead">Não será melhor eliminar a página?</string>
   <string name="revert-speedy-instead">Não será melhor marcar para eliminação rápida?</string>
-  <string name="revert-cannotundo">Não foi possível desfazer as edições devido a conflitos de edições intermédias</string>
+  <string name="revert-cannotundo" fuzzy="true">Não foi possível desfazer as edições devido a conflitos de edições intermédias</string>
   <string name="revert-conflict">A página foi editada pelo utilizador da lista branca $1</string>
   <string name="revert-fail">Não foi possível reverter $1: $2</string>
   <string name="revert-nochange">O conteúdo da edição para a qual quer reverter é idêntico à última edição</string>
@@ -647,7 +647,7 @@
   <string name="cr-revert-same-user" fuzzy="true">Conflito resolvido: todas as edições foram desfeitas - existem várias edições feitas pelo mesmo utilizador em $1.</string>
   <string name="cr-message-same" fuzzy="true">Existem diversas edições em $1 feitas pelo mesmo utilizador. Tem a certeza de que pretende reverter todas?</string>
   <string name="cr-message-new">Existem edições mais recentes em $1. Tem certeza que pretende reverter?</string>
-  <string name="cr-message-not-same">Existem edições mais recentes em $1 feitas por um utilizador diferente. Tem certeza que as pretende reverter a todas? (provavelmente, falhará devido ao código de verificação antigo)</string>
+  <string name="cr-message-not-same" fuzzy="true">Existem edições mais recentes em $1 feitas por um utilizador diferente. Tem certeza que as pretende reverter a todas? (provavelmente, falhará devido ao código de verificação antigo)</string>
   <string name="preferences-extension-disabled" fuzzy="true">Esta extensão já está agendada para ser desativada na próxima inicialização do Huggle</string>
   <string name="preferences-extension-disabled-restart" fuzzy="true">A extensão foi definida para ser desativada na próxima inicialização do Huggle</string>
   <string name="preferences-extension-enabled" fuzzy="true">Esta extensão não foi programada para ser desativada na próxima inicialização do Huggle</string>
@@ -680,7 +680,7 @@
   <string name="login-no-site-info-returned">Não foi devolvida nenhuma informação do sítio para esta wiki</string>
   <string name="loading-main-window" fuzzy="true">A carregar janela principal do Huggle</string>
   <string name="login-username-doesnt-exist">Este nome de utilizador(a) não existe</string>
-  <string name="unimplemented">Esta funcionalidade não foi implementada ainda</string>
+  <string name="unimplemented" fuzzy="true">Esta funcionalidade não foi implementada ainda</string>
   <string name="unknown-item">Elemento desconhecido</string>
   <string name="title-multiple-projects">vários projetos ($1)</string>
   <string name="title-on">em $1</string>
@@ -692,5 +692,5 @@
   <string name="main-revert-type-made-by-you">feito por si</string>
   <string name="main-revert-type-made-on-talk-page">feito na página de discussão</string>
   <string name="main-revert-type-made-white-list">feito por utilizador(a) na lista branca</string>
-  <string name="main-revert-warn">Esta edição é $1, logo mesmo que pareça vandalismo, pode não ser o caso. Tem a certeza que pretende desfazê-la?</string>
+  <string name="main-revert-warn" fuzzy="true">Esta edição é $1, logo mesmo que pareça vandalismo, pode não ser o caso. Tem a certeza que pretende desfazê-la?</string>
 </resources>

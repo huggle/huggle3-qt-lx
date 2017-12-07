@@ -197,7 +197,7 @@
   <string name="irc-switch-rc">Byter till wiki RC-flödet</string>
   <string name="login-old">Hämta användarinställningar från tidigare plats</string>
   <string name="login-intro">Var god välj ett projekt och ange ditt användarnamn och lösenord. Du kan logga in på flera projekt genom att även klicka på \"Projekt\"-knappen.</string>
-  <string name="invalid-bot-user-name">Detta är inte ett giltigt namn på en bot. Exempel på ett riktigt namn på en bot: Jimbo@Huggle</string>
+  <string name="invalid-bot-user-name" fuzzy="true">Detta är inte ett giltigt namn på en bot. Exempel på ett riktigt namn på en bot: Jimbo@Huggle</string>
   <string name="login-tab-botp">Botlösenord</string>
   <string name="login-tab-login" fuzzy="true">Logga in</string>
   <string name="login-language">Språk:</string>
@@ -210,7 +210,7 @@
   <string name="login-proxy-remember-this">Kom ihåg denna inställning ´nästa gång</string>
   <string name="login-proxyport">Port:</string>
   <string name="login-proxydomain">Domän:</string>
-  <string name="proxy-restart">Huggle kanske måste startas om för att dessa ändringar ska träda i kraft</string>
+  <string name="proxy-restart" fuzzy="true">Huggle kanske måste startas om för att dessa ändringar ska träda i kraft</string>
   <string name="login-retrieving-user-conf">Hämtar användarinställningar</string>
   <string name="login-fail-css">Inloggningen misslyckades på $1: Kunde inte hämta användarkonfiguration. Special:MyPage/huggle3.css saknas. Skapade du huggle3.css i din användarrymd?</string>
   <string name="login-fail-enable-true">Inloggning misslyckades på $1: Du har inte enable:true i din personliga konfiguration.</string>
@@ -377,7 +377,7 @@
   <string name="main-report-user">Rapportera användare</string>
   <string name="main-edit-user-talk">Redigera användardiskussion</string>
   <string name="main-statistics-paused">pausad</string>
-  <string name="main-statistics-waiting">väntar på fler redigeringar</string>
+  <string name="main-statistics-waiting" fuzzy="true">väntar på fler redigeringar</string>
   <string name="main-statistics-none">ingen</string>
   <string name="main-tab-welcome-title">Välkomstssida</string>
   <string name="message-title">Meddelande $1</string>
@@ -543,7 +543,7 @@
   <string name="welcome-tp-empty-fail">Denna användare har inte en tom diskussionssida, är du säker på att du vill skicka ett meddelande till hen?</string>
   <string name="welcome-page-miss-fail">Huggle kunde inte hämta innehållet i användarens diskussionssida, är du säker på att du vill skicka ett välkomstmeddelande till hen?</string>
   <string name="preferences-extension-disabled">Detta tillägg har redan schemalagts för inaktivering vid nästa uppstart av Huggle</string>
-  <string name="preferences-extension-enabled-restart">Tillägget aktiverades, men du måste starta om Huggle för det ska träda i kraft</string>
+  <string name="preferences-extension-enabled-restart" fuzzy="true">Tillägget aktiverades, men du måste starta om Huggle för det ska träda i kraft</string>
   <string name="preferences-watchlist-watch">Lägg till i bevakningslistan</string>
   <string name="preferences-watchlist-unwatch">Ta bort från bevakningslistan</string>
   <string name="preferences-watchlist-nochange">Gör ingenting</string>
@@ -583,7 +583,7 @@
   <string name="main-revert-type-made-by-you">gjort av dig</string>
   <string name="main-revert-type-made-on-talk-page">gjord på diskussionssidan</string>
   <string name="main-revert-type-made-white-list">gjord av en användare som är vitlistad</string>
-  <string name="main-revert-warn">Denna redigering är $1, så även om det ser ut som det är vandalism kanske det inte är det, är du säker på att du vill återställa den?</string>
+  <string name="main-revert-warn" fuzzy="true">Denna redigering är $1, så även om det ser ut som det är vandalism kanske det inte är det, är du säker på att du vill återställa den?</string>
   <string name="query-protected-link">Skyddad länk</string>
   <string name="queue-empty-title">Den är tom</string>
   <string name="queue-empty-text">Det finns ingenting annat i kön...</string>

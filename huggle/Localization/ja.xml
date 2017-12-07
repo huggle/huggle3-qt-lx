@@ -392,7 +392,7 @@
   <string name="revert-creator">最終編集はページ作成者 $1 による編集でした</string>
   <string name="revert-delete-instead">代わりにページを削除しますか?</string>
   <string name="revert-speedy-instead">代わりに即時削除タグを貼り付けますか？</string>
-  <string name="revert-cannotundo">他の編集と競合したため、取り消しできませんでした</string>
+  <string name="revert-cannotundo" fuzzy="true">他の編集と競合したため、取り消しできませんでした</string>
   <string name="revert-conflict">ページが無視利用者 \'$1\' によって編集されました</string>
   <string name="revert-fail">\'$1\' をリバートできませんでした</string>
   <string name="revert-nochange">戻し先の版の内容が、最新版の内容と同じです</string>

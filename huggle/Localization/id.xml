@@ -344,8 +344,8 @@
   <string name="loading-main-window">Memuat jendela Huggle utama</string>
   <string name="login-username-doesnt-exist">Nama pengguna ini tidak ada</string>
   <string name="developer-mode-enter-title">Kapan</string>
-  <string name="developer-mode-enter-message">anda memasuki mode pengembang!</string>
-  <string name="unimplemented">Fitur ini belum diimplementasikan</string>
+  <string name="developer-mode-enter-message" fuzzy="true">anda memasuki mode pengembang!</string>
+  <string name="unimplemented" fuzzy="true">Fitur ini belum diimplementasikan</string>
   <string name="unknown-item">hal tidak dikenal</string>
   <string name="title-multiple-projects">beberapa proyek ($1)</string>
   <string name="title-on">di $1</string>

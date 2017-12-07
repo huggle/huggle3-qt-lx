@@ -355,7 +355,7 @@
   <string name="revert-creator">आखरी संपादन पृष्ठ निर्माता, $1, द्वारा बनाया गया था</string>
   <string name="revert-delete-instead">पृष्ठ को हटा दे?</string>
   <string name="revert-speedy-instead">शीघ्र हटाय जाने के लिए टैग करे?</string>
-  <string name="revert-cannotundo">मध्यवर्ती परस्पर विरोधी सम्पादनों के कारण अनकिया नहीं कर सकता</string>
+  <string name="revert-cannotundo" fuzzy="true">मध्यवर्ती परस्पर विरोधी सम्पादनों के कारण अनकिया नहीं कर सकता</string>
   <string name="revert-conflict">उपेक्षित सदस्य \'$1\' द्वारा पृष्ठ पर सम्पादन किया गया था</string>
   <string name="revert-fail">\'$1\' को पूर्ववत नहीं किया</string>
   <string name="revert-nochange">लक्ष्य संशोधन की सामग्री वर्तमान संशोधन के समान है</string>
