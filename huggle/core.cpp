@@ -622,7 +622,6 @@ void Core::LoadLocalizations()
     Localizations::HuggleLocalizations->LocalInit("pl");
     Localizations::HuggleLocalizations->LocalInit("pt"); // Portuguese
     Localizations::HuggleLocalizations->LocalInit("pt-BR"); // Portuguese (in Brazil)
-    Localizations::HuggleLocalizations->LocalInit("qqq");
     Localizations::HuggleLocalizations->LocalInit("ro"); // ??
     Localizations::HuggleLocalizations->LocalInit("ru"); // Russian
     Localizations::HuggleLocalizations->LocalInit("sa");
