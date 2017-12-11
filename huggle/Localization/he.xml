@@ -143,13 +143,13 @@
   <string name="config-friend">חברים</string>
   <string name="config-userspace">מרחב משתמש</string>
   <string name="config-talk">דף שיחה</string>
-  <string name="config-columns-dynamic">לעשות את העמודות של הרשימות דינמיות (ישנה את הגודל שלהן לפי גודל הפריטים) או ידניות (המשתמש יכול לשנות את הגודל שלהן)</string>
+  <string name="config-columns-dynamic" fuzzy="true">לעשות את העמודות של הרשימות דינמיות (ישנה את הגודל שלהן לפי גודל הפריטים) או ידניות (המשתמש יכול לשנות את הגודל שלהן)</string>
   <string name="config-message-notification">להציג התראה כשמגיעה לדף השיחה שלך הודעה חדשה</string>
   <string name="config-warning-api">הצגות אזהרות לשאילתות API</string>
   <string name="config-title-diff">כותרת הדף בכל השוואה (טקסט גדול שמראה רק כותרת דף בראש כל השוואה)</string>
   <string name="config-updates">בדיקת עדכונים</string>
   <string name="config-beta">בדיקת גרסאות בטא</string>
-  <string name="config-html-messages">HAN יכול לתצג הודעות HTML (מסוכן)</string>
+  <string name="config-html-messages" fuzzy="true">HAN יכול לתצג הודעות HTML (מסוכן)</string>
   <string name="config-summary-present">להאיר תקציר כאשר הוא נמצא ולא כאשר הוא חסר</string>
   <string name="config-close-without">לסגור בלי לשמור</string>
   <string name="config-confirmmultiple">לבקש אישור על שחזורים מרובים של עריכה על־ידי אותו משתמש</string>
@@ -248,7 +248,7 @@
   <string name="login-start">כניסה</string>
   <string name="login-oauth-notsupported">שיטה זו אינה נתמכת לעת־עתה</string>
   <string name="login-translate">תרגום האגל</string>
-  <string name="login-progress-start">כניסה לאתר $1</string>
+  <string name="login-progress-start" fuzzy="true">כניסה לאתר $1</string>
   <string name="login-progress-retrieve-mw">מאחזר מידע ממדיה־ויקי עבור $1</string>
   <string name="login-progress-language">עדכון קובצי הודעות...</string>
   <string name="login-progress-global">בדיקת הגדרות גלובליות...</string>
@@ -258,7 +258,7 @@
   <string name="login-progress-user-info">בדיקת פרטי משתמש עבור $1</string>
   <string name="login-progress-whitelist">אחזור רשימה לבנה של משתמשים...</string>
   <string name="login-remember-password">לזכור את הססמה</string>
-  <string name="login-ssl">להשתמש ב־HTTPS (נדרש OpenSSL)</string>
+  <string name="login-ssl" fuzzy="true">להשתמש ב־HTTPS (נדרש OpenSSL)</string>
   <string name="login-fail">הכניסה נכשלה ב־$1</string>
   <string name="login-error-admin">השימוש בהאגל במיזם הזה דורש חשבון מפעיל.</string>
   <string name="login-error-age" fuzzy="true">השימוש בהאגל במיזם הזה דורש חשבון לפחות בן $1 ימים.</string>
@@ -350,7 +350,7 @@
   <string name="main-page-patrol">סימון השינוי כבדוק</string>
   <string name="main-page-move">העברה...</string>
   <string name="main-page-flag-suspicious-edit">לסמן כעריכה חשודה (הפעולה הזאת תיתן למשתמש ציון ‎+1)</string>
-  <string name="main-page-flag-good-edit">סימון בתור עריכה טובה (הפעולה הזאת נותנת למשתמש ציון ‎-200)</string>
+  <string name="main-page-flag-good-edit" fuzzy="true">סימון בתור עריכה טובה (הפעולה הזאת נותנת למשתמש ציון ‎-200)</string>
   <string name="main-page-protect">הגנה</string>
   <string name="main-page-delete">מחיקה</string>
   <string name="main-page-load">טעינה</string>
@@ -375,7 +375,7 @@
   <string name="main-browser-open">להציג את זה בדפדפן חיצוני</string>
   <string name="main-browser-newedits">הצגת עריכות חדשות לדף</string>
   <string name="main-browser-newcontribs">הצגת התרומות החדשות של המשתמש</string>
-  <string name="main-browser-lasttab">אני לא יכול לסגור את הלשונית הזאת כי היא האחרונה, צריך שתהיה פתוחה לך לפחות לשונית אחת</string>
+  <string name="main-browser-lasttab" fuzzy="true">אני לא יכול לסגור את הלשונית הזאת כי היא האחרונה, צריך שתהיה פתוחה לך לפחות לשונית אחת</string>
   <string name="main-revert-manual">אין אסימון שחזור, גיבוי לשחזור ידני של $1</string>
   <string name="main-han">רמ\"ה</string>
   <string name="main-han-disconnect">התנתקות</string>
@@ -408,7 +408,7 @@
   <string name="main-restore-text-fail">לא ניתן לשחזר את הגרסה כי אין לה טקסט זמין</string>
   <string name="main-restore-data-fail" fuzzy="true">לא ניתן לשחזר את הגרסה כי הוויקי לא סיפק נתונים לגרסה שנבחרה</string>
   <string name="message-title">שליחת הודעה אל $1</string>
-  <string name="message-help">יש לציין נושא או תקציר. אם לא ניתן תקציר, הנושא ישמש בתור תקציר; אם לא יינתן נושא, לא תתווסף כותרת.</string>
+  <string name="message-help" fuzzy="true">יש לציין נושא או תקציר. אם לא ניתן תקציר, הנושא ישמש בתור תקציר; אם לא יינתן נושא, לא תתווסף כותרת.</string>
   <string name="message-subject">נושא:</string>
   <string name="message-message">הודעה:</string>
   <string name="message-summary">תקציר:</string>
@@ -496,7 +496,7 @@
   <string name="score-take-whole-no-talk-word">תואם רק מילים שלמות בדפים שאינם דפי שיחה</string>
   <string name="score-only-whole-word">מתאים רק למילים שלמות</string>
   <string name="score-take-any-word">מתאים לכל מילה שמכילה את המחרוזת הזאת</string>
-  <string name="ssl-is-not-supported">ביקשת להשתמש ב־SSL, אבל אין תמיכה בזה באתר $1.</string>
+  <string name="ssl-is-not-supported" fuzzy="true">ביקשת להשתמש ב־SSL, אבל אין תמיכה בזה באתר $1.</string>
   <string name="ssl-required" fuzzy="true">שרת הווב של $1 דורש הפעלת SSL. נא להפעיל SSL ולנסות שוב. אם אין ביכולתך להפעיל SSL (האפשרות אפורה) ייתכן שצריך להתקין ספריות ssl במערכת שלך.</string>
   <string name="uaa-not-supported">דף UAA אינו זמין</string>
   <string name="uaa-not-supported-text">לוח מודעות על משתמשים שדורשים תשומת לב ממפעיל (UAA) אינו זמין בוויקי שלך.</string>
@@ -535,7 +535,7 @@
   <string name="tag-summary">תקציר:</string>
   <string name="tag-insertatend">להוסיף בסוף הדף</string>
   <string name="update-title">גרסה חדשה זמינה</string>
-  <string name="update-progress">הורדת גרסה חדשה...</string>
+  <string name="update-progress" fuzzy="true">הורדת גרסה חדשה...</string>
   <string name="update-error">הורדת הגרסה החדשה נכשלה</string>
   <string name="updater-title">זמינה גרסה חדשה של האגל</string>
   <string name="updater-update">עדכון</string>
@@ -565,8 +565,8 @@
   <string name="shortcut-unwatch" fuzzy="true">הסרת הדף המוצג מרשימת המעקב</string>
   <string name="shortcut-x-warn">להפעיל את הפריט ה־N בתפריט האזהרה</string>
   <string name="shortcut-good">לסמן את העריכה הנוכחית בתור טובה</string>
-  <string name="shortcut-open-in-huggle">פתיחת הדף שמוצג עכשיו</string>
-  <string name="shortcut-open">לפתוח את העריכה שמוצגת כעת בדפדפן</string>
+  <string name="shortcut-open-in-huggle" fuzzy="true">פתיחת הדף שמוצג עכשיו</string>
+  <string name="shortcut-open" fuzzy="true">לפתוח את העריכה שמוצגת כעת בדפדפן</string>
   <string name="shortcut-talk">להציג את דף השיחה של המשתמש שעשה את השינוי הזה</string>
   <string name="shortcut-revert-agf-1">שחזור הגרסה האחרונה עם הנחת כוונה טובה</string>
   <string name="shortcut-browser-close-tab">סגירת לשונית של הדפדפן</string>
@@ -587,14 +587,14 @@
   <string name="wikiedit-tp-fail">לא ניתן לאחזר את רמת האזהרה של $1. זה לא ישמש לדירוג</string>
   <string name="missing-warning">אין תבנית אזהרה כזאת $1</string>
   <string name="han-not">רשת ההשחתות אינה מורשית באפשרויות</string>
-  <string name="han-connecting">התחברות לרשת האגל למאבק בהשחתות</string>
+  <string name="han-connecting" fuzzy="true">התחברות לרשת האגל למאבק בהשחתות</string>
   <string name="han-already-connected">לא מתחבר ל־HAN, כי כבר התחברתי</string>
-  <string name="han-already-connecting">נא להמתין, אני כבר מתחבר ל־HAN</string>
+  <string name="han-already-connecting" fuzzy="true">נא להמתין, אני כבר מתחבר ל־HAN</string>
   <string name="han-disconnected">התנתקת מ־HAN</string>
   <string name="error-loggedout">החשבון יצא, מתבצעת כניסה חזרה...</string>
   <string name="error-noresponse">אין תשובה</string>
   <string name="error-pagemissing">הדף אינו קיים</string>
-  <string name="error-reloginfail">הכניסה חזרה נכשלה. נא לנסות להפעיל מחדש את האגל</string>
+  <string name="error-reloginfail" fuzzy="true">הכניסה חזרה נכשלה. נא לנסות להפעיל מחדש את האגל</string>
   <string name="error-timeout">תם הזמן המוקצב לבקשה</string>
   <string name="error-unknown">שגיאה בלתי־ידועה</string>
   <string name="block-done">$1 נחסם</string>
@@ -616,7 +616,7 @@
   <string name="edit-progress">עריכת $1...</string>
   <string name="history-fail">אחזור ההיסטוריה של $1 נכשל</string>
   <string name="history-progress">מתבצע אחזור ההיסטוריה של $1 ($2)...</string>
-  <string name="history-work">ביטול עריכה של עצמך בדף $1</string>
+  <string name="history-work" fuzzy="true">ביטול עריכה של עצמך בדף $1</string>
   <string name="history-no-item-selected">לא נבחר שום פריט בכלי ההיסטוריה</string>
   <string name="history-message-revert-title">האם באמת לבטל רק את ההודעה הזאת?</string>
   <string name="history-another-edit" fuzzy="true">אני כבר מבטל עריכה אחרת, נא להמתין</string>
@@ -625,7 +625,7 @@
   <string name="history-message-revert-body">זאת הייתה הודעה שיש אליה הפניה משחזור. האם ברצונך לבטל רק את התבנית ואפילו לא העריכה שלך לדף? (עליך לבטל את השחזור אם ברצונך לשחזר מה מאלה)</string>
   <string name="history-revert-fail">לא ניתן לבטל את עריכתך ל־$1 כי אירעה השגיאה הבאה: $2</string>
   <string name="history-undone">הצלחתי לבטל עריכה לדף $1</string>
-  <string name="history-retrieve-fail">לא ניתן לאחזר תוכן של דף שרצינו לבטל בו עריכה של עצמנו, השגיאה הייתה: $1</string>
+  <string name="history-retrieve-fail" fuzzy="true">לא ניתן לאחזר תוכן של דף שרצינו לבטל בו עריכה של עצמנו, השגיאה הייתה: $1</string>
   <string name="history-welcome-msg-title">לשלוח במקום זאת הודעת ברוך־בואך?</string>
   <string name="history-welcome-msg">יצרת את דף השיחה הזה ולכן לא ניתן לבטל אותו. האם להחליף אותו בתבנית ברוך־בואך?</string>
   <string name="notify-fail">לא שלחת הודעה ליוצר של $1</string>

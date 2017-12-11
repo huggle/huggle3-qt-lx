@@ -176,7 +176,7 @@
   <string name="login-start">Enlogge</string>
   <string name="login-oauth-notsupported">Di Metohd es em Momang nit ongerschtöz</string>
   <string name="login-translate">Huggle övversäze</string>
-  <string name="login-progress-start">Ben op $1 aam enlogge.</string>
+  <string name="login-progress-start" fuzzy="true">Ben op $1 aam enlogge.</string>
   <string name="login-progress-retrieve-mw">Mer holle Aanjahbe övver MehdijaWikki för $1</string>
   <string name="login-progress-language">Ben de Datteije met de Täxte un Nohreeschte op der neuje Schtand aam bränge …</string>
   <string name="login-progress-global">Ben de alljemeine Enschtällonge aam pröhfe</string>
@@ -186,7 +186,7 @@
   <string name="login-progress-user-info">Ben de Aanjahbe övver dä Metmaacher $1 aam pröhfe</string>
   <string name="login-progress-whitelist">Ben dem Metmaacher sing „wiiße Leß“ aam holle</string>
   <string name="login-remember-password">Donn et Paßwood märke</string>
-  <string name="login-ssl">Donn &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"HyperText Transfer Protocol Secure - HTTP övver SSL - HTTP övver TSL\"&gt;HTTPS&lt;/i&gt; bruche — derföhr es &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Open Secure Sockets Layer\"&gt;OpenSSL&lt;/i&gt; nühdesch.</string>
+  <string name="login-ssl" fuzzy="true">Donn &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"HyperText Transfer Protocol Secure - HTTP övver SSL - HTTP övver TSL\"&gt;HTTPS&lt;/i&gt; bruche — derföhr es &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Open Secure Sockets Layer\"&gt;OpenSSL&lt;/i&gt; nühdesch.</string>
   <string name="login-fail">Et Ennlogge es donävve jejange op $1</string>
   <string name="login-error-alldisabled" fuzzy="true"> Huggle es em Momang op alle Projäkte afjeschalldt.</string>
   <string name="login-error-approval" fuzzy="true">Huggle op $1 ze bruche hädd_en Zohschtemmong nüdesch.</string>
@@ -340,7 +340,7 @@
   <string name="score-take-whole-no-talk-word">Pass op jehdes Wood en ene Sigg, di kein Klaafsigg es.</string>
   <string name="score-only-whole-word">Treff blohß jannze Wöht</string>
   <string name="score-take-any-word">Treff jehdes Woot, met dä Zeijsche em Zosammehang dren</string>
-  <string name="ssl-is-not-supported">Do wullts &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Secure Sockets Layer\"&gt;SSL&lt;/i&gt; han, ävver $1 kann dat nit.</string>
+  <string name="ssl-is-not-supported" fuzzy="true">Do wullts &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Secure Sockets Layer\"&gt;SSL&lt;/i&gt; han, ävver $1 kann dat nit.</string>
   <string name="ssl-required" fuzzy="true">{{ucfirst:{{GRAMMAR: Genitive s m |{{ucfirst:{{$1}}}}}}}} Wäßööver bruch &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Secure Sockets Layer\"&gt;SSL&lt;/i&gt;. Donn dat ennschallde un ersöhg et norr_ens. Wann De dat it kanns, för e Beijschpell, weil dat Käßje för e Höhksche eren ze maache op jrau jeschtalld es, dann moß De velleijsch de Projramme vum &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Open Secure Sockets Layer\"&gt;OpenSSL&lt;/i&gt; op Dingem Rääscher enschtallehre.</string>
   <string name="uaa-nr">Keine Jrond wohd aanjejovve</string>
   <string name="revert-only" fuzzy="true">Heh di Änderong es de einzejje Änderong aan dä Sigg</string>
@@ -355,7 +355,7 @@
   <string name="tag-parameter">Parramehter</string>
   <string name="tag-summary">Zosammefaßong:</string>
   <string name="update-title">Et sin neu Väsjohne doh</string>
-  <string name="update-progress">Ben neu Väsjohne aam eronger lahde …</string>
+  <string name="update-progress" fuzzy="true">Ben neu Väsjohne aam eronger lahde …</string>
   <string name="update-error">Kunnt de neu Väsjohn nit eronger lahde</string>
   <string name="updater-title">En neu Väsjohn vun Huggle es doh</string>
   <string name="updater-update">Op der neuste Schtand bränge</string>

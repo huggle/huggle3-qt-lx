@@ -136,7 +136,7 @@
   <string name="config-warning-api">Diskwel ar c\'hemennoù evit rekedoù an API</string>
   <string name="config-updates">Klask hizivadennoù</string>
   <string name="config-beta">Klask stummoù beta</string>
-  <string name="config-html-messages">Gallout a ra HAN furmadiñ kemennadennoù HTML (dañjeruz)</string>
+  <string name="config-html-messages" fuzzy="true">Gallout a ra HAN furmadiñ kemennadennoù HTML (dañjeruz)</string>
   <string name="config-close-without">Serriñ hep enrollañ</string>
   <string name="config-confirmmultiple">Kadanaat eo bet nullet lies a cheñchamañtoù gant ar memes implijer</string>
   <string name="config-confirmwarned">Kadarnaat nulladur ur c\'hemm gant un implijer arroutet</string>
@@ -199,7 +199,7 @@
   <string name="login-start">Kevreañ</string>
   <string name="login-oauth-notsupported">Ne c\'haller ket implijout an doare-ober-mañ evit bremañ</string>
   <string name="login-translate">Treiñ Huggle</string>
-  <string name="login-progress-start">O kevreañ ouzh $1</string>
+  <string name="login-progress-start" fuzzy="true">O kevreañ ouzh $1</string>
   <string name="login-progress-retrieve-mw">Oc\'h adtapout titouroù diwar-benn MediaWiki evit $1</string>
   <string name="login-progress-language">O hizivaat ar restroù kemennadennoù...</string>
   <string name="login-progress-global">O wiriañ ar c\'hefluniadur hollek...</string>
@@ -208,7 +208,7 @@
   <string name="login-progress-user">O wiriañ ar c\'hefluniadur implijer evit $1</string>
   <string name="login-progress-user-info">‎O wiriañ an titouroù implijer evit $1</string>
   <string name="login-remember-password">Derc\'hel soñj eus ar ger-tremen</string>
-  <string name="login-ssl">Implijout HTTPS (ezhomm en deus eus OpenSSL)</string>
+  <string name="login-ssl" fuzzy="true">Implijout HTTPS (ezhomm en deus eus OpenSSL)</string>
   <string name="login-fail">C\'hwitet kevreañ ouzh $1</string>
   <string name="login-error-admin">Ezhomm zo eus ur gont merour evit implijout Huggle war ar raktres-mañ.</string>
   <string name="login-error-age" fuzzy="true">Evit implijout Huggle war ar raktres-mañ ez eus ezhomm eus $1 devezh da nebeutañ.</string>
@@ -291,7 +291,7 @@
   <string name="main-browser-open">Gwelet an dra-mañ en ur merdeer diavaez</string>
   <string name="main-browser-newedits">Diskwel kemmoù nevez ar bajenn</string>
   <string name="main-browser-newcontribs">Diskouez an degasadennoù dre implijer</string>
-  <string name="main-browser-lasttab">Ne c\'hallan ket serriñ an ivinell-mañ rak an hini diwezhañ eo, rankout a rit kaout 1 ivinell digor da nebeutañ</string>
+  <string name="main-browser-lasttab" fuzzy="true">Ne c\'hallan ket serriñ an ivinell-mañ rak an hini diwezhañ eo, rankout a rit kaout 1 ivinell digor da nebeutañ</string>
   <string name="main-han">HAN</string>
   <string name="main-han-disconnect">Digevreañ</string>
   <string name="main-han-connect">Kevreañ</string>
@@ -363,7 +363,7 @@
   <string name="tag-summary">Diverradur :</string>
   <string name="tag-insertatend">Ensoc\'hañ e traoñ ar bajenn</string>
   <string name="update-title">Ur stumm nevez zo da gaout</string>
-  <string name="update-progress">Pellgargañ ar stumm nevez...</string>
+  <string name="update-progress" fuzzy="true">Pellgargañ ar stumm nevez...</string>
   <string name="updater-update">Hizivaat</string>
   <string name="updater-open-manualdownloadpage">Digeriñ ar bajenn bellgargañ</string>
   <string name="updater-close">Serriñ</string>

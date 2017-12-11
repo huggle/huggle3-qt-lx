@@ -149,14 +149,14 @@
   <string name="config-friend">好友</string>
   <string name="config-userspace">使用者空間</string>
   <string name="config-talk">對話頁</string>
-  <string name="config-columns-dynamic">讓清單為動態欄位（依項目內容多寡自動調整大小）或手動欄位（用戶自行調整大小）</string>
+  <string name="config-columns-dynamic" fuzzy="true">讓清單為動態欄位（依項目內容多寡自動調整大小）或手動欄位（用戶自行調整大小）</string>
   <string name="config-message-notification">當您在自己的對話頁面中收到一則新訊息時，顯示通知</string>
   <string name="config-warning-api">顯示用於API查詢的警告</string>
   <string name="config-title-diff">在每個差異的頁面標題（在每個差異的頂端，顯示頁面標題大量文本內容）</string>
   <string name="config-updates">檢查更新</string>
   <string name="config-reset-menu">自您上次訪問後項目設置（警告類型清單）已更改，下單選單的捷徑（回退和警告等等）已重新設定。</string>
   <string name="config-beta">檢查是否有測試版本</string>
-  <string name="config-html-messages">HAN 可以顯示 HTML 訊息 (危險)</string>
+  <string name="config-html-messages" fuzzy="true">HAN 可以顯示 HTML 訊息 (危險)</string>
   <string name="config-summary-present">當摘要存在而未遺失時突顯強調內容</string>
   <string name="config-close-without">不儲存關閉</string>
   <string name="config-confirmmultiple">確認由同一用戶編輯多項修訂版本</string>
@@ -257,14 +257,14 @@
   <string name="login-failed-edit">登入 $1 失敗：您於此專案未有足夠的編輯數。</string>
   <string name="login-retrieving-info">取得使用者資訊於 $1</string>
   <string name="login-password-empty">您輸入的密碼為空白</string>
-  <string name="login-fail-wrong-name">您提供用來登入的使用者名稱</string>
+  <string name="login-fail-wrong-name" fuzzy="true">您提供用來登入的使用者名稱</string>
   <string name="login-api">錯誤：api.php 回應了不明的結果：$1</string>
   <string name="login-abort">中止</string>
   <string name="login-start">登入</string>
   <string name="login-oauth-notsupported">此方法目前尚不支援</string>
   <string name="login-translate">翻譯Huggle</string>
   <string name="login-progress-formtitle">載入中...</string>
-  <string name="login-progress-start">正在登入至$1</string>
+  <string name="login-progress-start" fuzzy="true">正在登入至$1</string>
   <string name="login-progress-retrieve-mw">取得有關 $1 的 MediaWiki 資訊中</string>
   <string name="login-progress-language">正在更新訊息檔…</string>
   <string name="login-progress-global">正在檢查全域設定</string>
@@ -276,7 +276,7 @@
   <string name="login-progress-whitelist">取得使用者白名單...</string>
   <string name="login-remember-password">記住密碼</string>
   <string name="login-remember-password-tooltip">此選項將會在您的硬碟上以純文字方式儲存您的密碼。僅在如果您是唯一可存取此電腦的人之情況下使用。</string>
-  <string name="login-ssl">使用HTTPS加密連線（需要OpenSSL）</string>
+  <string name="login-ssl" fuzzy="true">使用HTTPS加密連線（需要OpenSSL）</string>
   <string name="login-fail">在$1登入失敗</string>
   <string name="login-error-admin">於此項目使用 Huggle 需要有管理員帳號。</string>
   <string name="login-error-age">於此項目使用 Huggle 前您的帳號至少需註冊 $1 天以上。　</string>
@@ -378,7 +378,7 @@
   <string name="main-page-patrol">標記為已巡查</string>
   <string name="main-page-move">移動…</string>
   <string name="main-page-flag-suspicious-edit">標記為可疑的編輯（這會將此用戶的記分 +1 分）</string>
-  <string name="main-page-flag-good-edit">標記為良好編輯（這會將此用戶的分數-200分）</string>
+  <string name="main-page-flag-good-edit" fuzzy="true">標記為良好編輯（這會將此用戶的分數-200分）</string>
   <string name="main-page-protect">保護</string>
   <string name="main-page-delete">刪除</string>
   <string name="main-page-load">載入</string>
@@ -409,7 +409,7 @@
   <string name="main-browser-open">在外部瀏覽器檢視</string>
   <string name="main-browser-newedits">顯示頁面新編輯</string>
   <string name="main-browser-newcontribs">顯示指定用戶的新貢獻</string>
-  <string name="main-browser-lasttab">最後一個頁籤不可關閉，您必須至少開啟一個頁籤</string>
+  <string name="main-browser-lasttab" fuzzy="true">最後一個頁籤不可關閉，您必須至少開啟一個頁籤</string>
   <string name="main-revert-manual">沒有回退令牌，改換成來手動回退$1</string>
   <string name="main-han">HAN</string>
   <string name="main-han-disconnect">中斷連線</string>
@@ -456,7 +456,7 @@
   <string name="main-statistics-none">無</string>
   <string name="main-tab-welcome-title">歡迎頁面</string>
   <string name="message-title">訊息 $1</string>
-  <string name="message-help">指定標題或摘要其一。如果沒有摘要，標題就必須使用；如果沒有標題，就不會有標頭加入。</string>
+  <string name="message-help" fuzzy="true">指定標題或摘要其一。如果沒有摘要，標題就必須使用；如果沒有標題，就不會有標頭加入。</string>
   <string name="message-subject">主旨：</string>
   <string name="message-message">訊息：</string>
   <string name="message-summary">摘要：</string>
@@ -544,8 +544,8 @@
   <string name="score-take-whole-no-talk-word">僅符合在非討論頁面上的整個單詞</string>
   <string name="score-only-whole-word">僅符合整個單詞</string>
   <string name="score-take-any-word">符合此字串所包含任何字詞</string>
-  <string name="ssl-is-not-supported">您的請求使用SSL安全協議，但是$1不支援。</string>
-  <string name="ssl-required">網頁伺服器$1要求開啟 SSL。請啟動 SSL 後再試一次。如果您不能開啟 SSL（該選項為灰色不可選情況）您可能需要在您的系統上安裝 OpenSSL 函式庫。</string>
+  <string name="ssl-is-not-supported" fuzzy="true">您的請求使用SSL安全協議，但是$1不支援。</string>
+  <string name="ssl-required" fuzzy="true">網頁伺服器$1要求開啟 SSL。請啟動 SSL 後再試一次。如果您不能開啟 SSL（該選項為灰色不可選情況）您可能需要在您的系統上安裝 OpenSSL 函式庫。</string>
   <string name="uaa-not-supported">UAA無法使用</string>
   <string name="uaa-not-supported-text">「管理員需注意的用戶名」公告欄在您的wiki上不可用。</string>
   <string name="uaa-reporting">回告$1給UAA</string>
@@ -584,7 +584,7 @@
   <string name="tag-summary">摘要：</string>
   <string name="tag-insertatend">在頁面末端插入</string>
   <string name="update-title">可用的新版本</string>
-  <string name="update-progress">正在下載新版本...</string>
+  <string name="update-progress" fuzzy="true">正在下載新版本...</string>
   <string name="update-error">最新版本下載失敗</string>
   <string name="updater-title">有Huggle的新版本可以使用</string>
   <string name="updater-update">更新</string>
@@ -617,8 +617,8 @@
   <string name="shortcut-unwatch">從您的監視清單移除一個顯示頁面</string>
   <string name="shortcut-x-warn">觸發了N個項目在告警選單</string>
   <string name="shortcut-good">標記此目前顯示的編輯為良好</string>
-  <string name="shortcut-open-in-huggle">開啟目前顯示的頁面</string>
-  <string name="shortcut-open">在外部瀏覽器中開啟目前顯示的編輯</string>
+  <string name="shortcut-open-in-huggle" fuzzy="true">開啟目前顯示的頁面</string>
+  <string name="shortcut-open" fuzzy="true">在外部瀏覽器中開啟目前顯示的編輯</string>
   <string name="shortcut-talk">顯示做出此次更改的使用者對話頁</string>
   <string name="shortcut-revert-agf-1">依據善意推定回退最新修訂</string>
   <string name="shortcut-browser-close-tab">關閉瀏覽頁籤</string>
@@ -641,16 +641,16 @@
   <string name="wikiedit-tp-fail">無法取得$1警告層級。這將不會被用於分數上</string>
   <string name="missing-warning">查無此警告模板$1</string>
   <string name="han-not">破壞性網路不允許在選項裡</string>
-  <string name="han-connecting">正在連線至Huggle反破壞網路絡</string>
+  <string name="han-connecting" fuzzy="true">正在連線至Huggle反破壞網路絡</string>
   <string name="han-already-connected">因已連線至HAN，故沒有進行連線</string>
-  <string name="han-already-connecting">請稍後，我正在連線至HAN</string>
+  <string name="han-already-connecting" fuzzy="true">請稍後，我正在連線至HAN</string>
   <string name="han-disconnected">您已從HAN失去連結</string>
   <string name="han-network">網路</string>
   <string name="han-send">傳送</string>
   <string name="error-loggedout">帳號已登出，重新登入中…</string>
   <string name="error-noresponse">無回應</string>
   <string name="error-pagemissing">此頁面不存在</string>
-  <string name="error-reloginfail">重新登入失敗，請嘗試重新啟動Huggle</string>
+  <string name="error-reloginfail" fuzzy="true">重新登入失敗，請嘗試重新啟動Huggle</string>
   <string name="error-timeout">請求超時</string>
   <string name="error-unknown">不明錯誤</string>
   <string name="block-done">已封鎖 $1</string>
@@ -672,16 +672,16 @@
   <string name="edit-progress">編輯 $1 中...</string>
   <string name="history-fail">取得$1的歷史記錄失敗</string>
   <string name="history-progress">正在取得$1（$2）的歷史記錄...</string>
-  <string name="history-work">撤銷自己對$1做的編輯</string>
+  <string name="history-work" fuzzy="true">撤銷自己對$1做的編輯</string>
   <string name="history-no-item-selected">在歷史記錄小工具裡沒有項目被選擇</string>
   <string name="history-message-revert-title">您確定只撤銷此訊息？</string>
-  <string name="history-another-edit">另一個編輯目前正被撤銷，請稍等</string>
+  <string name="history-another-edit" fuzzy="true">另一個編輯目前正被撤銷，請稍等</string>
   <string name="history-not-found">沒有找到可以撤銷的</string>
   <string name="history-already-done">這已是撤銷的</string>
   <string name="history-message-revert-body">這是一個引用被回退的訊息，您確定要僅撤銷模板即使不編輯頁面嗎？（您需要撤銷回退除非您想要復原兩者）</string>
   <string name="history-revert-fail">因遇到錯誤：$2，所以無法撤銷您在$1的編輯</string>
   <string name="history-undone">成功撤銷在$1的編輯</string>
-  <string name="history-retrieve-fail">無法取得我們想要撤銷自己編輯的頁面內容，錯誤：$1</string>
+  <string name="history-retrieve-fail" fuzzy="true">無法取得我們想要撤銷自己編輯的頁面內容，錯誤：$1</string>
   <string name="history-welcome-msg-title">是否傳送歡迎辭？</string>
   <string name="history-welcome-msg">您已建立了此對話頁，因此不能被撤銷。您是否想改以一個歡迎模板來替換呢？</string>
   <string name="newtab-title">這是一個新頁籤！</string>
@@ -795,7 +795,7 @@
   <string name="login-invalid-register-date">Mediawiki 回傳的註冊日期無效</string>
   <string name="login-site-info-query-failed">對於$1的站台查詢已失敗：$2</string>
   <string name="login-no-site-info-returned">沒有回傳給此wiki的站台資訊</string>
-  <string name="loading-main-window">載入 Huggle 主視窗</string>
+  <string name="loading-main-window" fuzzy="true">載入 Huggle 主視窗</string>
   <string name="api.php-invalid-response">API 檔案回應了無效文字（網頁伺服器當機？），請檢查除錯日誌檔以獲取精準訊息</string>
   <string name="login-username-doesnt-exist">此用戶名稱不存在</string>
   <string name="developer-mode-enter-title">喲呵</string>

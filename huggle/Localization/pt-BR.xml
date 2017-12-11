@@ -142,13 +142,13 @@
   <string name="config-friend">Amigo</string>
   <string name="config-userspace">Espaço do usuário</string>
   <string name="config-talk">Página de discussão</string>
-  <string name="config-columns-dynamic">Torna as colunas de listas dinâmicas (redimensionam com base no tamanho de itens) ou manual (o usuário pode alterar seu tamanho)</string>
+  <string name="config-columns-dynamic" fuzzy="true">Torna as colunas de listas dinâmicas (redimensionam com base no tamanho de itens) ou manual (o usuário pode alterar seu tamanho)</string>
   <string name="config-message-notification">Mostrar uma notificação quando você receber uma nova mensagem na sua página de discussão</string>
   <string name="config-warning-api">Mostra avisos para consultas API</string>
   <string name="config-title-diff">Título da página em cada diff (texto grande que aparece no topo de cada diff)</string>
   <string name="config-updates">Verificar atualizações</string>
   <string name="config-beta">Verificar versões beta</string>
-  <string name="config-html-messages">HAN pode mostrar mensagens HTML (perigoso)</string>
+  <string name="config-html-messages" fuzzy="true">HAN pode mostrar mensagens HTML (perigoso)</string>
   <string name="config-summary-present">Destacar o sumário quando existente em vez de quando estiver faltando</string>
   <string name="config-close-without">Fechar sem salvar</string>
   <string name="config-confirmmultiple">Pedir confirmação ao reverter várias edições do mesmo usuário</string>
@@ -247,7 +247,7 @@
   <string name="login-start">Entrar</string>
   <string name="login-oauth-notsupported">Este método não é suportado neste momento</string>
   <string name="login-translate">Traduzir Huggle</string>
-  <string name="login-progress-start">Entrando na conta $1</string>
+  <string name="login-progress-start" fuzzy="true">Entrando na conta $1</string>
   <string name="login-progress-retrieve-mw">Recuperando informação sobre o MediaWiki para $1</string>
   <string name="login-progress-language">Atualizando os arquivos de mensagens...</string>
   <string name="login-progress-global">Verificando a configuração global...</string>
@@ -257,7 +257,7 @@
   <string name="login-progress-user-info">Verificando configuração de usuário para $1</string>
   <string name="login-progress-whitelist">Recebendo a lista branca de usuários...</string>
   <string name="login-remember-password">Lembrar senha</string>
-  <string name="login-ssl">Usar o HTTPS (requer OpenSSL)</string>
+  <string name="login-ssl" fuzzy="true">Usar o HTTPS (requer OpenSSL)</string>
   <string name="login-fail">Falha na identificação em $1</string>
   <string name="login-error-admin">Para usar o Huggle no projeto que escolheu é necessário ser administrador.</string>
   <string name="login-error-age" fuzzy="true">Para usar o Huggle no projeto que escolheu é necessário ter uma conta de usuário criada à pelo menos $1 dias.</string>
@@ -349,7 +349,7 @@
   <string name="main-page-patrol">Marcar como patrulhada</string>
   <string name="main-page-move">Mover...</string>
   <string name="main-page-flag-suspicious-edit">Marcar como edição suspeita (esta ação atribui +1 ponto a(o) usuário(a))</string>
-  <string name="main-page-flag-good-edit">Marcar como edição correta (esta ação retira 200 pontos do(a) usuário(a))</string>
+  <string name="main-page-flag-good-edit" fuzzy="true">Marcar como edição correta (esta ação retira 200 pontos do(a) usuário(a))</string>
   <string name="main-page-protect">Proteger</string>
   <string name="main-page-delete">Eliminar</string>
   <string name="main-page-load">Carregar</string>
@@ -374,7 +374,7 @@
   <string name="main-browser-open">Ver página no navegador externo</string>
   <string name="main-browser-newedits">Mostrar automaticamente novas edições feitas na página</string>
   <string name="main-browser-newcontribs">Mostrar automaticamente novas edições feitas pelo(a) usuário(a)</string>
-  <string name="main-browser-lasttab">Não posso fechar esta aba porque é a última, você precisa de ao menos 1 aba aberta</string>
+  <string name="main-browser-lasttab" fuzzy="true">Não posso fechar esta aba porque é a última, você precisa de ao menos 1 aba aberta</string>
   <string name="main-revert-manual">Sem token de reversor, utilizando reversão manual de $1</string>
   <string name="main-han">HAN</string>
   <string name="main-han-disconnect">Desconectar</string>
@@ -407,7 +407,7 @@
   <string name="main-restore-text-fail">Não é possível restaurar a revisão, por não haver texto disponível para ela.</string>
   <string name="main-restore-data-fail" fuzzy="true">Não é possível restaurar a revisão, porque a wiki não providenciou dados para a versão selecionada</string>
   <string name="message-title">Mensagem $1</string>
-  <string name="message-help">Introduza um ou ambos os campos de Assunto e Sumário. Se não introduzir o sumário, será usado o assunto. Se não introduzir o assunto, não será criada uma seção.</string>
+  <string name="message-help" fuzzy="true">Introduza um ou ambos os campos de Assunto e Sumário. Se não introduzir o sumário, será usado o assunto. Se não introduzir o assunto, não será criada uma seção.</string>
   <string name="message-subject">Assunto:</string>
   <string name="message-message">Mensagem:</string>
   <string name="message-summary">Sumário:</string>
@@ -495,7 +495,7 @@
   <string name="score-take-whole-no-talk-word">Coincide apenas palavras inteiras em páginas que não são de discussão</string>
   <string name="score-only-whole-word">Combinar somente palavras inteiras</string>
   <string name="score-take-any-word">Combinar qualquer palavra que contenha essa sequência de caracteres</string>
-  <string name="ssl-is-not-supported">Você solicitou o uso do SSL, mas $1 não o suporta.</string>
+  <string name="ssl-is-not-supported" fuzzy="true">Você solicitou o uso do SSL, mas $1 não o suporta.</string>
   <string name="ssl-required" fuzzy="true">Webserver de $1 requer SSL para ser ativado. Por favor ative o SSL e tente novamente. Se não for possível ativar o SSL (opção fica acinzentada) pode ser necessário a instalação de bibliotecas open ssl em seu sistema.</string>
   <string name="uaa-not-supported">UAA não disponível</string>
   <string name="uaa-not-supported-text">O painel de notícias \"Nomes de usuários que precisam de atenção do administrador\" não está disponível em sua wiki.</string>
@@ -533,7 +533,7 @@
   <string name="tag-summary">Sumário:</string>
   <string name="tag-insertatend">Inserir no final da página</string>
   <string name="update-title">Nova versão disponível</string>
-  <string name="update-progress">Baixando a nova versão...</string>
+  <string name="update-progress" fuzzy="true">Baixando a nova versão...</string>
   <string name="update-error">Não foi possível baixar a nova versão.</string>
   <string name="updater-title">Está disponível uma nova versão do Huggle</string>
   <string name="updater-update">Atualizar</string>
@@ -563,8 +563,8 @@
   <string name="shortcut-unwatch" fuzzy="true">Remove a página exibida da lista de vigiados</string>
   <string name="shortcut-x-warn">Acione Nº item no menu de avisos</string>
   <string name="shortcut-good">Marcar a edição atual exibida como boa</string>
-  <string name="shortcut-open-in-huggle">Abrir a página atualmente exibida</string>
-  <string name="shortcut-open">Abrir a edição atual exibida em um browser</string>
+  <string name="shortcut-open-in-huggle" fuzzy="true">Abrir a página atualmente exibida</string>
+  <string name="shortcut-open" fuzzy="true">Abrir a edição atual exibida em um browser</string>
   <string name="shortcut-talk">Mostrar a página de discussão do usuário que fez esta alteração</string>
   <string name="shortcut-revert-agf-1">Reverter última revisão assumindo boa fé</string>
   <string name="shortcut-browser-close-tab">Fechar uma aba do navegador</string>
@@ -585,14 +585,14 @@
   <string name="wikiedit-tp-fail">Não foi possível obter o nível de aviso da página $1. Não será utilizada para a pontuação</string>
   <string name="missing-warning">A predefinição de aviso $1 não existe</string>
   <string name="han-not">Rede de vandalismo não está disponível nas opções</string>
-  <string name="han-connecting">Conectando à rede de anti-vandalismo do Huggle</string>
+  <string name="han-connecting" fuzzy="true">Conectando à rede de anti-vandalismo do Huggle</string>
   <string name="han-already-connected">Não foi possível conectar a HAN porque já está conectada</string>
-  <string name="han-already-connecting">Por favor aguarde, estou me conectando a HAN</string>
+  <string name="han-already-connecting" fuzzy="true">Por favor aguarde, estou me conectando a HAN</string>
   <string name="han-disconnected">Você foi desconectado da HAN</string>
   <string name="error-loggedout">Você saiu de sua conta de usuário, entrando na conta...</string>
   <string name="error-noresponse">Sem resposta</string>
   <string name="error-pagemissing">A página não existe</string>
-  <string name="error-reloginfail">Não foi possível entrar novamente na conta, tente reiniciar o Huggle</string>
+  <string name="error-reloginfail" fuzzy="true">Não foi possível entrar novamente na conta, tente reiniciar o Huggle</string>
   <string name="error-timeout">Foi excedido o tempo de resposta do servidor.</string>
   <string name="error-unknown">Erro desconhecido</string>
   <string name="block-done">\'$1\' bloqueado</string>
@@ -614,7 +614,7 @@
   <string name="edit-progress">Editando \'$1\'...</string>
   <string name="history-fail">Ocorreu um erro ao receber o histórico de \'$1\'</string>
   <string name="history-progress">A receber o histórico de \'$1\' ($2)...</string>
-  <string name="history-work">Desfazendo a própria edição feita em $1</string>
+  <string name="history-work" fuzzy="true">Desfazendo a própria edição feita em $1</string>
   <string name="history-no-item-selected">Nenhum item está selecionado no widget de histórico</string>
   <string name="history-message-revert-title">Você realmente quer desfazer somente essa mensagem?</string>
   <string name="history-another-edit" fuzzy="true">Ainda estou desfazendo outra edição, por favor, aguarde</string>
@@ -623,7 +623,7 @@
   <string name="history-message-revert-body">Essa foi uma mensagem modificada por um reversor, você tem certeza que deseja reverter somente o modelo e não a pagina que você editou? (você terá que reverter o reversor se você quiser reverter os dois)</string>
   <string name="history-revert-fail">Não foi possível desfazer sua edição em $1, o seguinte erro foi encontrado: $2</string>
   <string name="history-undone">A edição em $1 foi desfeita com sucesso</string>
-  <string name="history-retrieve-fail">Não foi possível obter o conteúdo da página na qual queria desfazer a edição, o erro foi: $1</string>
+  <string name="history-retrieve-fail" fuzzy="true">Não foi possível obter o conteúdo da página na qual queria desfazer a edição, o erro foi: $1</string>
   <string name="history-welcome-msg-title">Enviar mensagem de boas-vindas?</string>
   <string name="history-welcome-msg">Você criou esta página de discussão, por isso não pode ser desfeita. Quer substituí-la por uma predefinição de boas-vindas?</string>
   <string name="notify-fail">Não foi possível notificar o criador de \'$1\'</string>

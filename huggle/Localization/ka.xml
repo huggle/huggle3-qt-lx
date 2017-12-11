@@ -125,13 +125,13 @@
   <string name="login-proxydomain">Домен:</string>
   <string name="login-start">Войти</string>
   <string name="login-translate">Huggle-ის თარგმნა</string>
-  <string name="login-progress-start">შესვლა პროექტში $1</string>
+  <string name="login-progress-start" fuzzy="true">შესვლა პროექტში $1</string>
   <string name="login-progress-language">Обновляю файлы сообщений...</string>
   <string name="login-progress-global">Проверяю глобальные настройки...</string>
   <string name="login-progress-config">Проверяю файлы конфигурации...</string>
   <string name="login-progress-whitelist">Обновляю белый список пользователей...</string>
   <string name="login-remember-password">პაროლის დამახსოვრება</string>
-  <string name="login-ssl">HTTPS-ის გამოყენება (საჭიროა OpenSSL)</string>
+  <string name="login-ssl" fuzzy="true">HTTPS-ის გამოყენება (საჭიროა OpenSSL)</string>
   <string name="login-fail">საიტზე $1 შესვლა ვერ მოხერხდა</string>
   <string name="login-error-cancelled">გაუქმებულია.</string>
   <string name="login-error-invalid">არასწორი მომხმარებლის სახელი</string>
@@ -277,7 +277,7 @@
   <string name="tag-summary">რეზიუმე:</string>
   <string name="tag-insertatend">გვერდის ბოლოში ჩასმა</string>
   <string name="update-title">ხელმისაწვდომია ახალი ვერსია</string>
-  <string name="update-progress">ახალი ვერსიის ჩამოტვირთვა...</string>
+  <string name="update-progress" fuzzy="true">ახალი ვერსიის ჩამოტვირთვა...</string>
   <string name="update-error">ახალი ვერსიის ჩამოტვირთვა ვერ მოხერხდა</string>
   <string name="updater-title">ხელმისაწვდომია Huggle-ის ახალი ვერსია</string>
   <string name="updater-update">განახლება</string>
@@ -304,7 +304,7 @@
   <string name="warning-warntype">გაფრთხილების ტიპი:</string>
   <string name="warning-warnlog">ამ მომხმარებლის გაფრთხილებები:</string>
   <string name="warning-submit">გაგზავნა</string>
-  <string name="han-already-connecting">გთხოვთ, მოიცადოთ, უკვე გაკავშირებთ HAN-ს</string>
+  <string name="han-already-connecting" fuzzy="true">გთხოვთ, მოიცადოთ, უკვე გაკავშირებთ HAN-ს</string>
   <string name="han-disconnected">თქვენ გამოეთიშეთ HAN-ს.</string>
   <string name="error-unknown">უცნობი შეცდომა</string>
   <string name="block-done">$1 დაიბლოკა</string>

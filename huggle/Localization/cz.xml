@@ -224,12 +224,12 @@
   <string name="login-failed-edit">Přihlášení k $1 se nezdařilo: Na tomto projektu nemáte dost editací.</string>
   <string name="login-retrieving-info">Načítání uživatelských informací na $1</string>
   <string name="login-password-empty">Zadané heslo je prázdné</string>
-  <string name="login-fail-wrong-name">Nezadali jste uživatelské jméno pro přihlášení</string>
+  <string name="login-fail-wrong-name" fuzzy="true">Nezadali jste uživatelské jméno pro přihlášení</string>
   <string name="login-api">Chyba: api.php odpovědělo neznámým výsledkem: $1</string>
   <string name="login-start">Přihlásit</string>
   <string name="login-oauth-notsupported">Tato metoda není v této chvíli podporována</string>
   <string name="login-translate">Přeložit Huggle</string>
-  <string name="login-progress-start">Přihlašování na $1</string>
+  <string name="login-progress-start" fuzzy="true">Přihlašování na $1</string>
   <string name="login-progress-retrieve-mw">Načítání informací o MediaWiki pro $1</string>
   <string name="login-progress-language">Nahrávám lokalizace...</string>
   <string name="login-progress-global">Kontroluji globalní nastaveni...</string>
@@ -239,7 +239,7 @@
   <string name="login-progress-user-info">Kontroluji informace o uživateli pro $1</string>
   <string name="login-progress-whitelist">Stahuji WL...</string>
   <string name="login-remember-password">Zapamatovat heslo</string>
-  <string name="login-ssl">Použití protokolu HTTPS (vyžaduje OpenSSL)</string>
+  <string name="login-ssl" fuzzy="true">Použití protokolu HTTPS (vyžaduje OpenSSL)</string>
   <string name="login-fail">Přihlášení k $1 selhalo</string>
   <string name="login-error-admin">Použití Huggle na tomto projektu vyžaduje účet správce.</string>
   <string name="login-error-age">Použití Huggle na tomto projektu vyžaduje, aby váš účet byl alespoň $1 dní starý.</string>
@@ -329,7 +329,7 @@
   <string name="main-page-patrol">Označit jako prověřené</string>
   <string name="main-page-move">Přesunout...</string>
   <string name="main-page-flag-suspicious-edit">Označit jako podezřelý edit (+1 skóre uživatele)</string>
-  <string name="main-page-flag-good-edit">Označit jako dobrou editaci (nastaví -200 do skóre uživatele)</string>
+  <string name="main-page-flag-good-edit" fuzzy="true">Označit jako dobrou editaci (nastaví -200 do skóre uživatele)</string>
   <string name="main-page-protect">Zamknout</string>
   <string name="main-page-delete">Smazat</string>
   <string name="main-page-load">Načíst</string>
@@ -352,7 +352,7 @@
   <string name="main-browser-open">Zobrazit toto v externím prohlížeči</string>
   <string name="main-browser-newedits">Zobrazit nové úpravy na stránce</string>
   <string name="main-browser-newcontribs">Zobrazit nové příspěvky uživatele</string>
-  <string name="main-browser-lasttab">Nemůžu zavřít tuto kartu, protože je poslední, musíte mít alespoň 1 další kartu otevřenou</string>
+  <string name="main-browser-lasttab" fuzzy="true">Nemůžu zavřít tuto kartu, protože je poslední, musíte mít alespoň 1 další kartu otevřenou</string>
   <string name="main-revert-manual">Token pro $1 se nepodařilo získat, pokusím se provést revert manuální editací</string>
   <string name="main-han">HAN</string>
   <string name="main-han-disconnect">Odpojit</string>
@@ -384,7 +384,7 @@
   <string name="main-revert-newpage">Toto je nová stránka, není ji možné revertovat. Můžete ji buď označit nebo smazat.</string>
   <string name="main-restore-text-fail">Není možné obnovit revizi, neboť není k dispozici žádný text.</string>
   <string name="message-title">Poslat zprávu uživateli $1</string>
-  <string name="message-help">Zadejte předmět zprávy nebo i shrnutí. Pokud není uvedeno žádné shrnutí úpravy, předmět bude použit. Pokud není uveden žádný předmět, zpráva nebude v nové sekci</string>
+  <string name="message-help" fuzzy="true">Zadejte předmět zprávy nebo i shrnutí. Pokud není uvedeno žádné shrnutí úpravy, předmět bude použit. Pokud není uveden žádný předmět, zpráva nebude v nové sekci</string>
   <string name="message-subject">Předmět:</string>
   <string name="message-message">Zpráva:</string>
   <string name="message-summary">Shrnutí:</string>
@@ -506,7 +506,7 @@
   <string name="tag-summary">Shrnutí:</string>
   <string name="tag-insertatend">Vložit na konec stránky</string>
   <string name="update-title">K dispozici je nová verze programu</string>
-  <string name="update-progress">Stahování nové verze...</string>
+  <string name="update-progress" fuzzy="true">Stahování nové verze...</string>
   <string name="update-error">Nepodařilo se stáhnout novou verzi</string>
   <string name="updater-title">Je k dispozici nová verze programu huggle</string>
   <string name="updater-update">Aktualizovat</string>
@@ -535,8 +535,8 @@
   <string name="shortcut-unwatch">Odstranit zobrazenou stránku z vašich sledovaných stránek</string>
   <string name="shortcut-x-warn">Spusť N-tou položku menu varovat</string>
   <string name="shortcut-good">Označit edit jako dobrou úpravu</string>
-  <string name="shortcut-open-in-huggle">Otevřít aktuálně zobrazenout stranu</string>
-  <string name="shortcut-open">Otevřít aktuálně zobrazenou stránku v prohlížeči</string>
+  <string name="shortcut-open-in-huggle" fuzzy="true">Otevřít aktuálně zobrazenout stranu</string>
+  <string name="shortcut-open" fuzzy="true">Otevřít aktuálně zobrazenou stránku v prohlížeči</string>
   <string name="shortcut-talk">Zobrazit diskusní stránku uživatele, který provedl tuto změnu</string>
   <string name="shortcut-revert-agf-1">Vrátit poslední edit za předpokladu, že byl proveden v dobré víře</string>
   <string name="shortcut-browser-close-tab">Zavřít okno prohlížeče</string>
@@ -556,13 +556,13 @@
   <string name="warning-submit">Odeslat</string>
   <string name="missing-warning">Neexistujíci template $1</string>
   <string name="han-not">HAN není povolena v konfiguraci</string>
-  <string name="han-connecting">Připojování do HAN</string>
-  <string name="han-already-connecting">Prosím, počkejte, již se připojuji na HAN</string>
+  <string name="han-connecting" fuzzy="true">Připojování do HAN</string>
+  <string name="han-already-connecting" fuzzy="true">Prosím, počkejte, již se připojuji na HAN</string>
   <string name="han-disconnected">Byli jste odpojeni od HAN</string>
   <string name="error-loggedout">Účet byl odhlášen, přihlašuji se...</string>
   <string name="error-noresponse">Žádná odpověď</string>
   <string name="error-pagemissing">Tato stránka neexistuje</string>
-  <string name="error-reloginfail">Nepodařilo se přihlásit zpět, zkuste restartovat Huggle</string>
+  <string name="error-reloginfail" fuzzy="true">Nepodařilo se přihlásit zpět, zkuste restartovat Huggle</string>
   <string name="error-timeout">Vypršel časový limit žádosti</string>
   <string name="error-unknown">Neznámá chyba</string>
   <string name="block-done">$1 byl zablokován</string>
@@ -584,7 +584,7 @@
   <string name="edit-progress">Editování $1 ...</string>
   <string name="history-fail">Nepodařilo se načíst historii $1</string>
   <string name="history-progress">Načítání historie $1 ($2)...</string>
-  <string name="history-work">Obnovuji vlastní editaci která byla na $1</string>
+  <string name="history-work" fuzzy="true">Obnovuji vlastní editaci která byla na $1</string>
   <string name="history-no-item-selected">Žádná položka v historii není vybrána</string>
   <string name="history-message-revert-title">Opravdu chcete vrátit jen tuto zprávu?</string>
   <string name="history-another-edit" fuzzy="true">Již pracuji na vrácení další editace, prosím čekejte</string>
@@ -666,7 +666,7 @@
   <string name="relogin-fail">Nemohu se přihlásit na wiki: $1</string>
   <string name="projects">Projekty</string>
   <string name="unable-to-retrieve-user-list">Nelze načíst seznam uživatelů: $1</string>
-  <string name="loading-main-window">Načítání hlavního Huggle okna</string>
+  <string name="loading-main-window" fuzzy="true">Načítání hlavního Huggle okna</string>
   <string name="login-username-doesnt-exist">Toto uživatelské jméno neexistuje</string>
   <string name="developer-mode-enter-title">Jůůů</string>
   <string name="developer-mode-enter-message" fuzzy="true">{{GENDER:|Otevřel|Otevřela|Otevřel(a)}} jste režim pro vývojáře!</string>

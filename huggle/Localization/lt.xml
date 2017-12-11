@@ -127,7 +127,7 @@
   <string name="config-warning-api">Rodyti įspėjimus API užklausoms</string>
   <string name="config-updates">Tikrinti, ar yra naujinių</string>
   <string name="config-beta">Tikrinti, ar yra beta versijų</string>
-  <string name="config-html-messages">HAN gali pavaizduoti HTML žinutes (pavojinga)</string>
+  <string name="config-html-messages" fuzzy="true">HAN gali pavaizduoti HTML žinutes (pavojinga)</string>
   <string name="config-close-without">Uždaryti neišsaugojus</string>
   <string name="config-confirmmultiple">Patvirtinti kelis įnašo anuliavimus, padarytus to paties vartotojo</string>
   <string name="config-autoadvance">Po anuliavimo pereiti prie kito įnašo eilėje</string>
@@ -205,7 +205,7 @@
   <string name="login-start">Prisijungti</string>
   <string name="login-oauth-notsupported">Šis metodas šiuo metu nėra palaikomas</string>
   <string name="login-translate">Versti Huggle</string>
-  <string name="login-progress-start">Prisijungiama prie $1</string>
+  <string name="login-progress-start" fuzzy="true">Prisijungiama prie $1</string>
   <string name="login-progress-retrieve-mw">Gaunama informacija apie $1 MediaWiki</string>
   <string name="login-progress-language">Atnaujinami pranešimų failai...</string>
   <string name="login-progress-global">Tikrinama globali konfigūracija...</string>
@@ -215,7 +215,7 @@
   <string name="login-progress-user-info">Tikrinama $1 vartotojo informacija</string>
   <string name="login-progress-whitelist">Gaunamas vartotojų baltasis sąrašas</string>
   <string name="login-remember-password">Prisiminti slaptažodį</string>
-  <string name="login-ssl">Naudoti HTTPS (reikia OpenSSL)</string>
+  <string name="login-ssl" fuzzy="true">Naudoti HTTPS (reikia OpenSSL)</string>
   <string name="login-fail">Nepavyko prisijungti prie $</string>
   <string name="login-error-admin">Huggle naudojimas šiame projekte reikalauja administratorius paskyros.</string>
   <string name="login-error-age" fuzzy="true">Huggle naudojimas šiame projekte reikalauja paskyros, kuri būti bent $1 dienų senumo.</string>
@@ -301,7 +301,7 @@
   <string name="main-page-display">Rodyti šį puslapį</string>
   <string name="main-page-move">Perkelti...</string>
   <string name="main-page-flag-suspicious-edit">Pažymėti kaip įtartiną įnašą (šis veiksmas vartotojui duoda +1 balą)</string>
-  <string name="main-page-flag-good-edit">Pažymėti kaip gerą įnašą (šis veiksmas vartotojui duoda -200 balus)</string>
+  <string name="main-page-flag-good-edit" fuzzy="true">Pažymėti kaip gerą įnašą (šis veiksmas vartotojui duoda -200 balus)</string>
   <string name="main-page-protect">Apsaugoti</string>
   <string name="main-page-delete">Ištrinti</string>
   <string name="main-page-load">Įkelti</string>
@@ -324,7 +324,7 @@
   <string name="main-browser-forward">Pirmyn</string>
   <string name="main-browser-open">Žiūrėti tai išorinėje naršyklėje</string>
   <string name="main-browser-newcontribs">Rodyti naujus vartotojo įnašus</string>
-  <string name="main-browser-lasttab">Negaliu užverti šio skirtuko, nes jis paskutinis, turite turėti bent 1 atvertą skirtuką</string>
+  <string name="main-browser-lasttab" fuzzy="true">Negaliu užverti šio skirtuko, nes jis paskutinis, turite turėti bent 1 atvertą skirtuką</string>
   <string name="main-han-disconnect">Atsijungti</string>
   <string name="main-han-connect">Prisijungti</string>
   <string name="main-help">Pagalba</string>
@@ -422,7 +422,7 @@
   <string name="score-take-any-no-talk-word">Atitinka bet kokį žodį ne aptarimo puslapiuose</string>
   <string name="score-take-whole-no-talk-word">Atitinka tik visus žodžius ne aptarimo puslapiuose</string>
   <string name="score-only-whole-word">Atitinka tik visus žodžius</string>
-  <string name="ssl-is-not-supported">Jūs prašėte naudoti SSL, bet $1 to nepalaiko.</string>
+  <string name="ssl-is-not-supported" fuzzy="true">Jūs prašėte naudoti SSL, bet $1 to nepalaiko.</string>
   <string name="uaa-reported">Pranešta</string>
   <string name="uaa-no-reason-warn">Jūs nenurodėte priežasties, kodėl vartotojo vardas yra taisyklių pažeidimas. Prašome nurodyti priežastį.</string>
   <string name="uaa-nr">Nebuvo nurodyta jokio priežastis</string>
@@ -445,7 +445,7 @@
   <string name="tag-summary">Santrauka:</string>
   <string name="tag-insertatend">Įtraukti į puslapio pabaigą</string>
   <string name="update-title">Galima nauja versija</string>
-  <string name="update-progress">Nauja versija atsiunčiama...</string>
+  <string name="update-progress" fuzzy="true">Nauja versija atsiunčiama...</string>
   <string name="update-error">Nepavyko atsisiųsti naują versiją</string>
   <string name="updater-title">Galima nauja Huggle versija</string>
   <string name="updater-update">Atnaujinti</string>
@@ -469,8 +469,8 @@
   <string name="shortcut-watch" fuzzy="true">Įterpia rodomą puslapį į stebimųjų sąrašą</string>
   <string name="shortcut-unwatch" fuzzy="true">Pašalina rodomą puslapį iš stebimųjų sąrašo</string>
   <string name="shortcut-good">Žymėti dabar rodomą keitimą kaip gerą</string>
-  <string name="shortcut-open-in-huggle">Atidaryti dabar rodomą puslapį</string>
-  <string name="shortcut-open">Atidaryti dabar rodomą keitimą naršyklėje</string>
+  <string name="shortcut-open-in-huggle" fuzzy="true">Atidaryti dabar rodomą puslapį</string>
+  <string name="shortcut-open" fuzzy="true">Atidaryti dabar rodomą keitimą naršyklėje</string>
   <string name="shortcut-talk">Rodyti vartotojo, kuris atliko šį keitimą, aptarimo puslapį</string>
   <string name="shortcut-browser-close-tab">Užverti naršyklės skirtuką</string>
   <string name="shortcut-tab">Atveria naują skirtuką</string>
@@ -489,11 +489,11 @@
   <string name="warning-submit">Siųsti</string>
   <string name="wikiedit-tp-fail">Nepavyko gauti $1 įspėjimo lygio. Tai nebus naudojama balams</string>
   <string name="missing-warning">Įspėjimo šablono $1 nėra</string>
-  <string name="han-connecting">Prisijungiama prie Huggle anti-vandalizmo tinklo</string>
+  <string name="han-connecting" fuzzy="true">Prisijungiama prie Huggle anti-vandalizmo tinklo</string>
   <string name="error-loggedout">Paskyra buvo atjungta, prisijungiama iš naujo...</string>
   <string name="error-noresponse">Jokio atsakymo</string>
   <string name="error-pagemissing">Puslapis neegzistuoja</string>
-  <string name="error-reloginfail">Nepavyko vėl prisijungti, pabandykite iš naujo paleisti Huggle</string>
+  <string name="error-reloginfail" fuzzy="true">Nepavyko vėl prisijungti, pabandykite iš naujo paleisti Huggle</string>
   <string name="error-timeout">Užklausos laikas baigėsi</string>
   <string name="error-unknown">Nežinoma klaida</string>
   <string name="block-done">Užblokavo $1</string>
@@ -513,14 +513,14 @@
   <string name="edit-progress">Redaguojama $1...</string>
   <string name="history-fail">Nepavyko gauti $1 istorijos</string>
   <string name="history-progress">Gaunama $1 ($2) istorija...</string>
-  <string name="history-work">Anuliuojamas paties $1 patekimas</string>
+  <string name="history-work" fuzzy="true">Anuliuojamas paties $1 patekimas</string>
   <string name="history-message-revert-title">Ar tikrai norite anuliuoti tik ši pranešimą?</string>
   <string name="history-another-edit" fuzzy="true">Aš jau anuliuoju kitą keitimą, prašome palaukti</string>
   <string name="history-not-found">Nieko nerasta anuliavimui</string>
   <string name="history-already-done">Tai jau anuliuota</string>
   <string name="history-revert-fail">Nepavyko anuliuoti jūsų $1 pakeitimo, nes susidurta su šia klaida: $2</string>
   <string name="history-undone">$1 keitimas sėkmingai anuliuotas</string>
-  <string name="history-retrieve-fail">Nepavyko gauti puslapio, kuriame norėjote anuliuoti savo keitimą, klaida: $1</string>
+  <string name="history-retrieve-fail" fuzzy="true">Nepavyko gauti puslapio, kuriame norėjote anuliuoti savo keitimą, klaida: $1</string>
   <string name="history-welcome-msg-title">Vietoj to siųsti sveikinimo pranešimą?</string>
   <string name="history-welcome-msg">Jūs sukūrėte šį aptarimo puslapį, tad jis negali būti anuliuotas. Ar norite pakeisti jį su sveikinimo šablonu?</string>
   <string name="notify-fail">$1 kūrėjui nebuvo pranešta</string>
@@ -607,7 +607,7 @@
   <string name="login-no-userinfo">Svetainėje negražino jokios userinfo informacijos</string>
   <string name="login-site-info-query-failed">Svetainės $1 informacijos užklausa nepavyko: $2</string>
   <string name="login-no-site-info-returned">Negražinta jokia viki svetainės informacija</string>
-  <string name="loading-main-window">Įkeliamas pagrindinis Huggle langas</string>
+  <string name="loading-main-window" fuzzy="true">Įkeliamas pagrindinis Huggle langas</string>
   <string name="login-username-doesnt-exist">Šis vartotojo vardas neegzistuoja</string>
   <string name="unknown-item">Nežinomas objektas</string>
   <string name="title-multiple-projects">keli projektai ($1)</string>

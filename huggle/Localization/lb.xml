@@ -167,7 +167,7 @@
   <string name="login-progress-user">Benotzerastellung fir $1 nokucken</string>
   <string name="login-remember-password">Passwuert verhalen</string>
   <string name="login-remember-password-tooltip">Dës Optioun späichert Äert Passwuert am Kloertext op Ärem Hard-Disk. Benotzt se nëmme wann Dir déi eenzeg Persoun sidd déi Zougang op dëse Computer huet.</string>
-  <string name="login-ssl">HTTPS benotzen (brauch OpenSSL)</string>
+  <string name="login-ssl">HTTPS benotze fir anzeloggen (brauch OpenSSL)</string>
   <string name="login-fail">Aloggen op $1 huet net funktionéiert</string>
   <string name="login-error-admin">Fir Huggle op dësem Projet ze benotze musst Dir Administrateur sinn.</string>
   <string name="login-error-age">Fir Huggle op dësem Projet ze benotze muss Äre Benotzerkont mindestens $1 Deeg al sinn.</string>
@@ -237,13 +237,13 @@
   <string name="main-page-patrol">Als nogekuckt markéieren</string>
   <string name="main-page-move">Réckelen...</string>
   <string name="main-page-flag-suspicious-edit">Als verdächteg Ännerung markéieren (dës Aktioun ännert de Score vum Benotzer ëm +1)</string>
-  <string name="main-page-flag-good-edit">Als gutt Ännerung markéiert (dës Aktioun ännert dem Benotzer säi Score ëm -200)</string>
+  <string name="main-page-flag-good-edit">Als gutt Ännerung markéieren (dës Aktioun zitt 200 vum Benotzer sengem Score of)</string>
   <string name="main-page-protect">Spären</string>
   <string name="main-page-delete">Läschen</string>
   <string name="main-page-load">Lueden</string>
   <string name="main-patrol-not-enabled">D\'Nokucken ass op $1 net aktivéiert</string>
   <string name="main-page-restore">Dës Versioun restauréieren</string>
-  <string name="main-page-watchlist-add" fuzzy="true">Säit op eng Iwwerwaachungslëscht derbäisetzen</string>
+  <string name="main-page-watchlist-add">Säit op eng Iwwerwaachungslëscht derbäisetzen</string>
   <string name="main-page-tab-close">Aktuellen Tab zoumaachen</string>
   <string name="main-page-tab-open">Neien Tab opmaachen</string>
   <string name="main-page-watchlist-remove">Säit vun enger Iwwerwaachungslëscht erofhuelen</string>
@@ -279,7 +279,7 @@
   <string name="main-usermessageother">Anere Message...</string>
   <string name="main-advanced">Erweidert...</string>
   <string name="main-stats">$1 Ännerunge pro Minutt, $1 Zrécksetzunge pro Minutt</string>
-  <string name="main-revert-custom-reson" fuzzy="true">Gitt w.e.g. u firwat Dir dës Ännerung op déi vireg Versioun zrécksetzt</string>
+  <string name="main-revert-custom-reson">Erkläert w.e.g. firwat Dir dës Ännerung op déi vireg Versioun zrécksetzt</string>
   <string name="main-log1">Déi erausgesicht Versioun vu(n) $1 restauréieren</string>
   <string name="main-tip-pagetagdelete">Dës Säit markéiere fir ze läschen</string>
   <string name="main-tip-pagedelete">Dës Säit läschen</string>
@@ -296,7 +296,7 @@
   <string name="main-report-user">Benotzer mellen</string>
   <string name="main-edit-user-talk">Benotzerdiskussioun änneren</string>
   <string name="main-statistics-paused">ënnerbrach</string>
-  <string name="main-statistics-waiting" fuzzy="true">op méi Ännerunge waarden</string>
+  <string name="main-statistics-waiting">Op méi Ännerunge waarden</string>
   <string name="main-statistics-none">keng</string>
   <string name="main-tab-welcome-title">Wëllkomm-Säit</string>
   <string name="message-title">Message $1</string>
@@ -338,7 +338,7 @@
   <string name="reportuser-not">Dëse Benotzer ass elo net gemellt</string>
   <string name="report-duplicate">De Benotzer gouf scho gemellt</string>
   <string name="score-word">Wuert</string>
-  <string name="ssl-is-not-supported">Dir hutt gefrot fir SSL ze benotzen awer $1 ënnerstëtzt dat net.</string>
+  <string name="ssl-is-not-supported">Dir hutt gefrot fir SSL ze benotzen awer $1 ënnerstëtzt dat leider net.</string>
   <string name="uaa-not-supported">UAA net disponibel</string>
   <string name="uaa-nr">Et gouf kee Grond uginn</string>
   <string name="uaa-e2">D\'Inhalter vun der Säit waren net disponibel.</string>
@@ -359,7 +359,7 @@
   <string name="tag-summary">Resumé:</string>
   <string name="tag-insertatend">Um Schluss vun der Säit drasetzen</string>
   <string name="update-title">Nei Versioun disponibel</string>
-  <string name="update-progress">Nei Versioun gëtt erofgelueden...</string>
+  <string name="update-progress">Nei Versioun gëtt erofgelueden, waart w.e.g. ...</string>
   <string name="update-error">Feeler beim Erofluede vun der neier Versioun</string>
   <string name="updater-title">Eng nei Versioun vun Huggle ass disponibel</string>
   <string name="updater-update">Aktualiséieren</string>
@@ -384,7 +384,9 @@
   <string name="shortcut-watch">Setzt eng gewise Säit op Är Iwwerwaachungslëscht derbäi</string>
   <string name="shortcut-unwatch">Hëlt eng gewise Säit vun Ärer Iwwerwaachungslëscht erof</string>
   <string name="shortcut-good">Déi elo gewisen Ännerung als gutt markéieren</string>
-  <string name="shortcut-open-in-huggle">Déi Säit déi elo gewise gët opmaachen</string>
+  <string name="shortcut-open-in-huggle">Mécht déi Säit op déi elo gewise gëtt</string>
+  <string name="shortcut-talk">Eng Diskussiounssäit vum Benotzer weisen deen dës Ännerung gemaach huet</string>
+  <string name="shortcut-revert-agf-1">Lescht Versioun zrécksetzen, gutt Intentioun gëtt ugeholl</string>
   <string name="shortcut-tab">Mécht en neien Tab op</string>
   <string name="shortcut-revert-and-stay">Aktuell Ännerung zrécksetzen an op der Säit bleiwen</string>
   <string name="shortcut-user-clear-talk">Eng Diskussiounssäit vum aktuelle Benotzer eidelmaachen</string>
@@ -459,7 +461,7 @@
   <string name="login-no-site-info-returned">Et goufe keng Informatioune fir dës Wiki zréckginn</string>
   <string name="login-username-doesnt-exist">Dëse Benotzernumm gëtt et net</string>
   <string name="developer-mode-enter-title">Whee</string>
-  <string name="unimplemented" fuzzy="true">Dës Funktioun gouf nach net implementéiert</string>
+  <string name="unimplemented">Dës Funktioun gouf nach net implementéiert</string>
   <string name="unknown-item">Onbekannten Objet</string>
   <string name="title-multiple-projects">méi Projeten ($1)</string>
   <string name="title-on">op $1</string>

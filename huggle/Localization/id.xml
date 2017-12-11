@@ -148,7 +148,7 @@
   <string name="config-warning-api">Tampilkan peringatan untuk kueri API</string>
   <string name="config-updates">Periksa pembaruan</string>
   <string name="config-beta">Periksa versi beta</string>
-  <string name="config-html-messages">HAN dapat merender pesan HTML (berbahaya)</string>
+  <string name="config-html-messages" fuzzy="true">HAN dapat merender pesan HTML (berbahaya)</string>
   <string name="config-close-without">Tutup tanpa menyimpan</string>
   <string name="config-userollback">Gunakan pengembalian jika tersedia</string>
   <string name="config-reportnone">Jangan lakukan apa pun</string>
@@ -193,7 +193,7 @@
   <string name="login-start">Masuk log</string>
   <string name="login-oauth-notsupported">Metode ini belum didukung saat ini</string>
   <string name="login-translate">Terjemahkan Huggle</string>
-  <string name="login-progress-start">Masuk log sebagai $1</string>
+  <string name="login-progress-start" fuzzy="true">Masuk log sebagai $1</string>
   <string name="login-progress-retrieve-mw">Mengambil informasi tentang MediaWiki untuk $1</string>
   <string name="login-progress-language">Memperbarui berkas pesan...</string>
   <string name="login-progress-config">Memeriksa halaman konfigurasi...</string>
@@ -202,7 +202,7 @@
   <string name="login-progress-user-info">Memeriksa info pengguna untuk $1</string>
   <string name="login-progress-whitelist">Mengambil daftar putih pengguna...</string>
   <string name="login-remember-password">Ingat kata sandi</string>
-  <string name="login-ssl">Gunakan HTTPS (memerlukan OpenSSL)</string>
+  <string name="login-ssl" fuzzy="true">Gunakan HTTPS (memerlukan OpenSSL)</string>
   <string name="login-fail">Masuk log gagal pada $1</string>
   <string name="login-error-admin">Penggunaan Huggle di proyek ini memerlukan akun pengurus.</string>
   <string name="login-error-cancelled">Telah dibatalkan</string>
@@ -341,7 +341,7 @@
   <string name="login-no-userinfo">Situs tidak mengembalikan setiap informasi pengguna</string>
   <string name="login-invalid-register-date" fuzzy="true">Tanggal pendaftaran tidak valid, dikembalikan oleh mediawiki</string>
   <string name="login-no-site-info-returned">Tidak ada situs Info dikembalikan untuk wiki ini</string>
-  <string name="loading-main-window">Memuat jendela Huggle utama</string>
+  <string name="loading-main-window" fuzzy="true">Memuat jendela Huggle utama</string>
   <string name="login-username-doesnt-exist">Nama pengguna ini tidak ada</string>
   <string name="developer-mode-enter-title">Kapan</string>
   <string name="developer-mode-enter-message" fuzzy="true">anda memasuki mode pengembang!</string>

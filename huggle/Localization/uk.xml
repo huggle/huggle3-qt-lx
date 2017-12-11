@@ -149,13 +149,13 @@
   <string name="config-friend">Інструмент</string>
   <string name="config-userspace">Простір користувача</string>
   <string name="config-talk">Сторінка обговорення</string>
-  <string name="config-columns-dynamic">Зробити стовпці списків динамічними (змінюватимуть розмір залежно від розміру елементів списку) чи ручними (користувач зможе змінювати їх розмір вручну)</string>
+  <string name="config-columns-dynamic" fuzzy="true">Зробити стовпці списків динамічними (змінюватимуть розмір залежно від розміру елементів списку) чи ручними (користувач зможе змінювати їх розмір вручну)</string>
   <string name="config-message-notification">Сповіщувати, якщо Ви отримаєте нове повідомлення на своїй сторінці обговорення</string>
   <string name="config-warning-api">Показувати попередження для API-запитів</string>
   <string name="config-title-diff">Назва сторінки у вікні змін (просто назва сторінки великим шрифтом угорі над порівнянням версій)</string>
   <string name="config-updates">Перевіряти наявність оновлень</string>
   <string name="config-beta">Перевіряти наявність бета-версій</string>
-  <string name="config-html-messages">HAN може відображати HTML-повідомлення (небезпечно)</string>
+  <string name="config-html-messages" fuzzy="true">HAN може відображати HTML-повідомлення (небезпечно)</string>
   <string name="config-summary-present">Виділяти червоним опис редагування, якщо він є, замість того, щоб показувати червоне повідомлення, коли опису немає</string>
   <string name="config-close-without">Закрити налаштування не зберігаючи</string>
   <string name="config-confirmmultiple">Вимагати підтвердження для скасування кількох редагувань одного й того ж користувача</string>
@@ -254,7 +254,7 @@
   <string name="login-start">Вхід</string>
   <string name="login-oauth-notsupported">Цей метод в даний момент не підтримується</string>
   <string name="login-translate">Переклад Huggle</string>
-  <string name="login-progress-start">Вхід до $1</string>
+  <string name="login-progress-start" fuzzy="true">Вхід до $1</string>
   <string name="login-progress-retrieve-mw">Отримання інформації про MediaWiki для $1</string>
   <string name="login-progress-language">Оновлення файлів повідомлень…</string>
   <string name="login-progress-global">Перевірка глобальних налаштувань…</string>
@@ -264,7 +264,7 @@
   <string name="login-progress-user-info">Перевірка інформації про користувача для $1</string>
   <string name="login-progress-whitelist">Отримання білого списку…</string>
   <string name="login-remember-password">Пам’ятати пароль</string>
-  <string name="login-ssl">Використовувати HTTPS (потрібна OpenSSL)</string>
+  <string name="login-ssl" fuzzy="true">Використовувати HTTPS (потрібна OpenSSL)</string>
   <string name="login-fail">Помилка входу до $1</string>
   <string name="login-error-admin">Для використання Huggle у цьому проекті потрібні права адміністратора.</string>
   <string name="login-error-age" fuzzy="true">Для використання Huggle у цьому проекті потрібен обліковий запис, створений щонайменше $1 днів назад.</string>
@@ -356,7 +356,7 @@
   <string name="main-page-patrol">Позначити версію як перевірену</string>
   <string name="main-page-move">Перейменувати…</string>
   <string name="main-page-flag-suspicious-edit">Позначити як підозріле редагування (+1 бал користувачеві)</string>
-  <string name="main-page-flag-good-edit">Позначити як добре редагування (-200 балів користувачеві)</string>
+  <string name="main-page-flag-good-edit" fuzzy="true">Позначити як добре редагування (-200 балів користувачеві)</string>
   <string name="main-page-protect">Захистити</string>
   <string name="main-page-delete">Вилучити</string>
   <string name="main-page-load">Показати</string>
@@ -381,7 +381,7 @@
   <string name="main-browser-open">Відкрити в браузері</string>
   <string name="main-browser-newedits">Показати нові редагування сторінки</string>
   <string name="main-browser-newcontribs">Показати новий внесок користувача</string>
-  <string name="main-browser-lasttab">Оскільки це остання вкладка, її неможливо закрити. Хоча б одна вкладка має бути відкритою</string>
+  <string name="main-browser-lasttab" fuzzy="true">Оскільки це остання вкладка, її неможливо закрити. Хоча б одна вкладка має бути відкритою</string>
   <string name="main-revert-manual">Немає маркеру відкоту, переходжу на ручне скасування редагувань на сторінці $1</string>
   <string name="main-han">HAN</string>
   <string name="main-han-disconnect">Відключитися</string>
@@ -414,7 +414,7 @@
   <string name="main-restore-text-fail">Неможливо відновити версію, оскільки для неї відсутній текст</string>
   <string name="main-restore-data-fail" fuzzy="true">Неможливо відновити версію, оскільки wiki не надала дані про неї</string>
   <string name="message-title">Повідомлення $1</string>
-  <string name="message-help">Введіть Заголовок та Текст повідомлення. Якщо Опис редагування залишиться пустим, він буде автоматично взятий із заголовку.</string>
+  <string name="message-help" fuzzy="true">Введіть Заголовок та Текст повідомлення. Якщо Опис редагування залишиться пустим, він буде автоматично взятий із заголовку.</string>
   <string name="message-subject">Заголовок:</string>
   <string name="message-message">Текст повідомлення:</string>
   <string name="message-summary">Опис редагування</string>
@@ -502,7 +502,7 @@
   <string name="score-take-whole-no-talk-word">Окреме слово поза сторінками обговорення</string>
   <string name="score-only-whole-word">Окреме слово на будь-якій сторінці</string>
   <string name="score-take-any-word">Будь-яке включення на будь-якій сторінці</string>
-  <string name="ssl-is-not-supported">$1 не підтримує SSL-протокол.</string>
+  <string name="ssl-is-not-supported" fuzzy="true">$1 не підтримує SSL-протокол.</string>
   <string name="ssl-required" fuzzy="true">Веб-сервер $1 вимагає ввімкнення SSL-протоколу. Будь ласка, ввімкніть SSL та спробуйте знову. Якщо Ви не можете його ввімкнути (опція недоступна), можливо, потрібно встановити Open SSL бібліотеки на Вашому комп’ютері.</string>
   <string name="uaa-not-supported">Сповіщення про ім’я користувача не підтримується</string>
   <string name="uaa-not-supported-text">Повідомлення адміністраторів про недопустиме ім’я користувача не підтримується в цій wiki.</string>
@@ -540,7 +540,7 @@
   <string name="tag-summary">Опис редагування</string>
   <string name="tag-insertatend">Додавати в кінець сторінки</string>
   <string name="update-title">Доступна нова версія</string>
-  <string name="update-progress">Завантажую нову версію…</string>
+  <string name="update-progress" fuzzy="true">Завантажую нову версію…</string>
   <string name="update-error">Не вдалося завантажити нову версію</string>
   <string name="updater-title">Доступна нова версія Huggle</string>
   <string name="updater-update">Оновити</string>
@@ -570,8 +570,8 @@
   <string name="shortcut-unwatch" fuzzy="true">Вилучити сторінку зі списку спостереження</string>
   <string name="shortcut-x-warn">Викликати N-й пункт з меню попереджень</string>
   <string name="shortcut-good">Позначити як добре редагування</string>
-  <string name="shortcut-open-in-huggle">Показати сторінку</string>
-  <string name="shortcut-open">Відкрити в браузері</string>
+  <string name="shortcut-open-in-huggle" fuzzy="true">Показати сторінку</string>
+  <string name="shortcut-open" fuzzy="true">Відкрити в браузері</string>
   <string name="shortcut-talk">Показати сторінку обговорення</string>
   <string name="shortcut-revert-agf-1">Відкинути, припускаючи добрі наміри</string>
   <string name="shortcut-browser-close-tab">Закрити вкладку</string>
@@ -592,14 +592,14 @@
   <string name="wikiedit-tp-fail">Неможливо завантажити $1. Інформація про попередження користувача не буде використана при підрахунку штрафних балів.</string>
   <string name="missing-warning">Не існує шаблону-попередження $1</string>
   <string name="han-not">Антивандальна мережа (HAN) не дозволена в налаштуваннях</string>
-  <string name="han-connecting">Підключення до антивандальної мережі Huggle (HAN)</string>
+  <string name="han-connecting" fuzzy="true">Підключення до антивандальної мережі Huggle (HAN)</string>
   <string name="han-already-connected">Підключення до антивандальної мережі Huggle (HAN) вже було проведено</string>
-  <string name="han-already-connecting">Будь ласка, зачекайте, вже підключаюся до антивандальної мережі Huggle (HAN)</string>
+  <string name="han-already-connecting" fuzzy="true">Будь ласка, зачекайте, вже підключаюся до антивандальної мережі Huggle (HAN)</string>
   <string name="han-disconnected">Вас було від’єднано від антивандальної мережі Huggle (HAN)</string>
   <string name="error-loggedout">Сталося роз’єднання, виконую повторний вхід…</string>
   <string name="error-noresponse">Немає відповіді</string>
   <string name="error-pagemissing">Такої сторінки не існує</string>
-  <string name="error-reloginfail">Не вдалося увійти, спробуйте перезавантажити Huggle</string>
+  <string name="error-reloginfail" fuzzy="true">Не вдалося увійти, спробуйте перезавантажити Huggle</string>
   <string name="error-timeout">Перевищено інтервал очікування для запиту</string>
   <string name="error-unknown">Невідома помилка</string>
   <string name="block-done">$1 заблоковано</string>
@@ -621,7 +621,7 @@
   <string name="edit-progress">Редагування сторінки $1…</string>
   <string name="history-fail">Не вдалося отримати історію редагувань сторінки $1</string>
   <string name="history-progress">Завантажую історію редагувань сторінки $1…</string>
-  <string name="history-work">Скасування власного редагування на сторінці $1</string>
+  <string name="history-work" fuzzy="true">Скасування власного редагування на сторінці $1</string>
   <string name="history-no-item-selected">Не вибрано жодного елементу у віконці історії</string>
   <string name="history-message-revert-title">Ви справді хочете скасувати лише це повідомлення</string>
   <string name="history-another-edit" fuzzy="true">Зараз я скасовую інше редагування; зачекайте, будь ласка</string>
@@ -630,7 +630,7 @@
   <string name="history-message-revert-body">Це повідомлення, залишене після відкоту. Ви впевнені, що хочете прибрати лише його, не скасовуючи сам відкіт? (Якщо Ви хочете відмінити обидві дії, Вам потрібно також скасувати відкіт.)</string>
   <string name="history-revert-fail">Не вдалося скасувати Ваше редагування на сторінці $1, оскільки виникла наступна помилка: $2</string>
   <string name="history-undone">Успішно скасовано редагування на сторінці $1</string>
-  <string name="history-retrieve-fail">Не вдалося отримати вміст сторінки, на котрій Ви хотіли скасувати власне редагування. Виникла наступна помилка:</string>
+  <string name="history-retrieve-fail" fuzzy="true">Не вдалося отримати вміст сторінки, на котрій Ви хотіли скасувати власне редагування. Виникла наступна помилка:</string>
   <string name="history-welcome-msg-title">Відправити замість цього привітання?</string>
   <string name="history-welcome-msg">Ви створили дану сторінку обговорення, цю дію неможливо скасувати. Хочете замінити її вміст на привітання?</string>
   <string name="notify-fail">Не вдалося повідомити автора сторінки $1</string>
@@ -731,7 +731,7 @@
   <string name="login-invalid-register-date" fuzzy="true">Медіавікі повернуло неправильну дату реєстрації</string>
   <string name="login-site-info-query-failed">Запит інформації про сайт для $1 був невдалим: $2</string>
   <string name="login-no-site-info-returned">Жодна інформація про сайт не повернулася для цього вікі</string>
-  <string name="loading-main-window">Завантаження головного вікна Huggle</string>
+  <string name="loading-main-window" fuzzy="true">Завантаження головного вікна Huggle</string>
   <string name="api.php-invalid-response" fuzzy="true">api.php відповів із неправильним текстом (впав веб-сервер?). Будь ласка, перевірте журнал зневадження для точної інформації</string>
   <string name="login-username-doesnt-exist">Це ім\'я користувача не існує</string>
   <string name="developer-mode-enter-title">Ура</string>

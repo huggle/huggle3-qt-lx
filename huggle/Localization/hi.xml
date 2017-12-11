@@ -175,7 +175,7 @@
   <string name="login-start">प्रवेश</string>
   <string name="login-oauth-notsupported">यह विधि इस समय समर्थित नहीं है।</string>
   <string name="login-translate">हगल अनुवाद</string>
-  <string name="login-progress-start">$1 में लॉग इन कर रहा है</string>
+  <string name="login-progress-start" fuzzy="true">$1 में लॉग इन कर रहा है</string>
   <string name="login-progress-retrieve-mw">$1 के लिए विकीमीडिया जानकारी प्राप्त हो रहा है।</string>
   <string name="login-progress-language">सन्देश सञ्चिकाएँ अद्यतित कर रहा है...</string>
   <string name="login-progress-global">वैश्विक समाकृति की जाँच कर रहा है...</string>
@@ -284,7 +284,7 @@
   <string name="main-tip-userblock">सदस्य अवरोधित करें</string>
   <string name="main-revision-acceptpend">यह लम्बित संपादन स्वीकार करें</string>
   <string name="message-title">$1 को सन्देश भेजें</string>
-  <string name="message-help">विषय और सारान्श में से एक या दोनों जोड़ें। यदि कोई सारान्श नहीं दिया गया तो विषय का उपयोग किया जाएगा। यदि कोई विषय नहीं दिया गया तो शीर्ष (हैडर) नहीं जोड़ा जाएगा।</string>
+  <string name="message-help" fuzzy="true">विषय और सारान्श में से एक या दोनों जोड़ें। यदि कोई सारान्श नहीं दिया गया तो विषय का उपयोग किया जाएगा। यदि कोई विषय नहीं दिया गया तो शीर्ष (हैडर) नहीं जोड़ा जाएगा।</string>
   <string name="message-subject">विषय:</string>
   <string name="message-message">सन्देश:</string>
   <string name="message-summary">सारान्श:</string>
@@ -368,7 +368,7 @@
   <string name="tag-summary">सारांश:</string>
   <string name="tag-insertatend">पृष्ठ के अंत में सम्मिलित करे</string>
   <string name="update-title">नवीन संस्करण उपलब्ध</string>
-  <string name="update-progress">नवीन संस्करण डाउनलोड कर रहा है...</string>
+  <string name="update-progress" fuzzy="true">नवीन संस्करण डाउनलोड कर रहा है...</string>
   <string name="update-error">नवीन संस्करण डाउनलोड करने में असफल</string>
   <string name="updater-update">अद्यतनित करें</string>
   <string name="updater-open-manualdownloadpage">डाउनलोड पृष्ठ खोलें</string>
@@ -392,7 +392,7 @@
   <string name="error-loggedout">खाते से लॉग आउट किया जा चुका है, पुनः लॉग इन कर रहा है...</string>
   <string name="error-noresponse">कोई प्रतिक्रिया नहीं</string>
   <string name="error-pagemissing">पृष्ठ अस्तित्व में नहीं है</string>
-  <string name="error-reloginfail">दोबारा लॉग इन करने में असफल, हूगल पुनः आरम्भ करने का प्रयास करें</string>
+  <string name="error-reloginfail" fuzzy="true">दोबारा लॉग इन करने में असफल, हूगल पुनः आरम्भ करने का प्रयास करें</string>
   <string name="error-timeout">अनुरोध का समय समाप्त हुआ</string>
   <string name="error-unknown">अज्ञात त्रुटि</string>
   <string name="block-done">\'$1\' अवरोधित</string>

@@ -147,13 +147,13 @@
   <string name="config-friend">বন্ধু</string>
   <string name="config-userspace">ব্যবহারকারীস্থান</string>
   <string name="config-talk">আলাপ পাতা</string>
-  <string name="config-columns-dynamic">তালিকার কলাম গতিশীল (আইটেম আকারের উপর ভিত্তি মাপ পরিবর্তন হবে) বা ম্যানুয়াল (ব্যবহারকারী তাদের আকার পরিবর্তন করতে পারবেন) করুন</string>
+  <string name="config-columns-dynamic">তালিকার কলাম হয় গতিশীল (আইটেম আকারের উপর ভিত্তি মাপ পরিবর্তন হবে) বা ম্যানুয়াল (ব্যবহারকারী তাদের আকার পরিবর্তন করতে পারবেন) করুন</string>
   <string name="config-message-notification">একটি বিজ্ঞপ্তি দেখুন যখন আপনি আপনার আলাপ পাতায় একটি নতুন বার্তা পান</string>
   <string name="config-warning-api">এপিআই ক্যোয়ারী জন্য সতর্কবার্তা প্রদর্শন করুন</string>
   <string name="config-title-diff">প্রতিটি পার্থক্যএ পাতার শিরোনাম</string>
   <string name="config-updates">হালনাগাদের জন্য পরীক্ষা করুন</string>
   <string name="config-beta">বেটা সংস্করণের জন্য পরীক্ষা করুন</string>
-  <string name="config-html-messages">HAN HTML বার্তাগুলি প্রদর্শন করতে পারে (বিপজ্জনক)</string>
+  <string name="config-html-messages">HAN HTML বার্তাগুলি প্রদর্শন করতে পারে (টীকা: এটি সম্ভাব্য বিপজ্জনক)</string>
   <string name="config-summary-present">সারাংশ অনুপস্থিতের পরিবর্তে উপস্থিত থাকলে আলোকপাত করুন</string>
   <string name="config-close-without">সংরক্ষণ না করে বন্ধ করুন</string>
   <string name="config-confirmmultiple">একই ব্যবহারকারী দ্বারা একটি সম্পাদনার একাধিক সংস্করণ নিশ্চিত করুন</string>
@@ -223,7 +223,7 @@
   <string name="irc-switch-rc">উইকি RC ফিডে পরিবর্তন</string>
   <string name="login-old">পুরাতন অবস্থান থেকে ব্যবহারকারী কনফিগ সংগ্রহ করা হচ্ছে</string>
   <string name="login-intro">দয়া করে একটি প্রকল্প বাছাই করুন এবং আপনার ব্যবহারকারীর নাম ও পাসওয়ার্ড লিখুন। এছাড়াও আপনি \"প্রকল্প\" বোতামে ক্লিক করে একাধিক প্রকল্পে প্রবেশ করতে পারেন।</string>
-  <string name="invalid-bot-user-name" fuzzy="true">এটি একটি বৈধ বট নাম নয়। সঠিক বট নামের উদাহরণ: Jimbo@Huggle</string>
+  <string name="invalid-bot-user-name">এটি একটি বৈধ বট নাম নয়। সঠিক বৈধ বট নামের উদাহরণ হল: Jimbo@Huggle</string>
   <string name="login-tab-botp">বট পাসওয়ার্ড</string>
   <string name="login-tab-login">উত্তরাধিকার</string>
   <string name="login-reload-tool-tip">উপলব্ধ প্রকল্পের একটি তালিকা পুনঃলোড করে যা হাগলে ব্যবহার করা যেতে পারে। এটি সহায়ক হতে পারে যখন আপনি সরঞ্জামটি একটি প্রকল্পে ব্যবহার করতে চান যা সম্প্রতি সক্রিয় করা হয়েছে।</string>
@@ -267,7 +267,7 @@
   <string name="login-progress-user-info">$1-এর জন্য ব্যবহারকারী তথ্য পরীক্ষা করা হচ্ছে</string>
   <string name="login-progress-whitelist">ব্যবহারকারীর সাদাতালিকা সংগ্রহ করা হচ্ছে...</string>
   <string name="login-remember-password">পাসওয়ার্ড মনে রাখুন</string>
-  <string name="login-ssl">HTTPS ব্যবহার করুন (OpenSSL প্রয়োজন)</string>
+  <string name="login-ssl">প্রবেশ করতে HTTPS ব্যবহার করুন (OpenSSL প্রয়োজন)</string>
   <string name="login-fail">$1-এ প্রবেশ ব্যর্থ হয়েছে</string>
   <string name="login-error-admin">এই প্রকল্পে হাগল ব্যবহার করার জন্য একটি প্রশাসক অ্যাকাউন্টের প্রয়োজন।</string>
   <string name="login-error-age">এই প্রকল্পে হাগল ব্যবহার করার জন্য একটি অ্যাকাউন্টকে কমপক্ষে $1 দিনের পুরনো হওয়া প্রয়োজন।</string>
@@ -363,13 +363,13 @@
   <string name="main-page-patrol">পরীক্ষিত হিসেবে চিহ্নিত করুন</string>
   <string name="main-page-move">স্থানান্তর...</string>
   <string name="main-page-flag-suspicious-edit">সন্দেহজনক সম্পাদনা রূপে পতাকাঙ্কিত করুন (এই কর্ম ব্যবহারকারীকে +১ স্কোর দেয়)</string>
-  <string name="main-page-flag-good-edit">ভালো সম্পাদনা রূপে পতাকাঙ্কিত করুন (এই কর্ম ব্যবহারকারীকে -২০০ স্কোর দেয়)</string>
+  <string name="main-page-flag-good-edit">ভালো সম্পাদনা রূপে পতাকাঙ্কিত করুন (এই কর্ম ব্যবহারকারীর স্কোর থেকে ২০০ বিয়োগ করে)</string>
   <string name="main-page-protect">সুরক্ষা করুন</string>
   <string name="main-page-delete">অপসারণ</string>
   <string name="main-page-load">লোড করুন</string>
   <string name="main-patrol-not-enabled">$1-এ টহল সক্রিয় নয়</string>
   <string name="main-page-restore">এই সংশোধনটি পুনরুদ্ধার কর</string>
-  <string name="main-page-watchlist-add" fuzzy="true">নজরতালিকায় পাতা সন্নিবেশ করে</string>
+  <string name="main-page-watchlist-add">নজরতালিকায় পাতা যোগ করে</string>
   <string name="main-page-tab-close">বর্তমান ট্যাব বন্ধ করুন</string>
   <string name="main-page-tab-open">নতুন ট্যাব খুলুন</string>
   <string name="main-page-watchlist-remove">নজরতালিকা থেকে পাতা সরায়</string>
@@ -394,7 +394,7 @@
   <string name="main-browser-open">একটি বহিঃস্থ ব্রাউজারে এটি দেখুন</string>
   <string name="main-browser-newedits">পাতায় নতুন সম্পাদনা দেখান</string>
   <string name="main-browser-newcontribs">ব্যবহারকারী অনুযায়ী নতুন অবদান দেখাও</string>
-  <string name="main-browser-lasttab">আমি এই ট্যাব বন্ধ করতে পারবো না কারণ এটি সর্বশেষ ট্যাব, আপনাকে অন্তত ১টি ট্যাব খোলা রাখতে হবে</string>
+  <string name="main-browser-lasttab">আমি এই ট্যাব বন্ধ করতে পারবো না কারণ এটি সর্বশেষ ট্যাব - আপনাকে অন্তত ১টি ট্যাব খোলা রাখতে হবে</string>
   <string name="main-revert-manual">কোন রোলব্যাক টোকেন নেই, $1-এর ম্যানুয়াল বাতিলে যাওয়া হচ্ছে</string>
   <string name="main-han">HAN</string>
   <string name="main-han-disconnect">বিচ্ছিন্ন করুন</string>
@@ -440,7 +440,7 @@
   <string name="main-statistics-none">কিছু না</string>
   <string name="main-tab-welcome-title">স্বাগতম পাতা</string>
   <string name="message-title">বার্তা $1</string>
-  <string name="message-help">এক বা উভয় বিষয় এবং সারাংশ উল্লেখ করে। যদি কোন সারাংস দেয়া না হয়, বিষয়টি ব্যবহৃত হবে, যদি কোন বিষয় দেয়া না হয়, তাহলে কোন শীর্ষ যোগ করা হবে না।</string>
+  <string name="message-help">বিষয় এবং/ও সারাংশ উল্লেখ করে। যদি কোন সারাংশ দেয়া না হয়, বিষয়টি ব্যবহৃত হবে, যদি কোন বিষয় দেয়া না হয়, তাহলে কোন শীর্ষ যোগ করা হবে না।</string>
   <string name="message-subject">বিষয়:</string>
   <string name="message-message">বার্তা:</string>
   <string name="message-summary">সারাংশ:</string>
@@ -528,8 +528,8 @@
   <string name="score-take-whole-no-talk-word">অ-আলাপ পাতায় শুধুমাত্র পূর্ণ শব্দ মেলায়</string>
   <string name="score-only-whole-word">শুধুমাত্র পূর্ণ শব্দ মেলায়</string>
   <string name="score-take-any-word">যেকোন শব্দ মেলায় যাতে এই স্ট্রিং আছে</string>
-  <string name="ssl-is-not-supported">আপনি SSL ব্যবহার করার জন্য অনুরোধ করেছেন কিন্তু $1 এটি সমর্থন করে না।</string>
-  <string name="ssl-required">$1 ওয়েবসার্ভারের SSL সক্রিয় থাকা প্রয়োজন। দয়া করে SSL চালু করুন এবং আবার চেষ্টা করুন। আপনি যদি এটি সক্রিয় করতে না পারেন, তাহলে আপনাকে আপনার সিস্টেমের জন্য OpenSSL লাইব্রেরি ইনস্টল করতে হতে পারে।</string>
+  <string name="ssl-is-not-supported">আপনি SSL ব্যবহার করার জন্য অনুরোধ করেছেন, কিন্তু দুঃখজনকভাবে $1 এটি সমর্থন করে না।</string>
+  <string name="ssl-required">$1-এর ওয়েবসার্ভারের SSL সক্রিয় থাকা প্রয়োজন। দয়া করে SSL চালু করুন এবং আবার চেষ্টা করুন। আপনি যদি এটি সক্রিয় করতে না পারেন, তাহলে আপনাকে আপনার সিস্টেমের জন্য OpenSSL লাইব্রেরি ইনস্টল করতে হতে পারে।</string>
   <string name="uaa-not-supported">UAA উপলব্ধ নয়</string>
   <string name="uaa-not-supported-text">\"প্রশাসকের দৃষ্টি আকর্ষণের জন্য ব্যবহারকারী নাম\" নোটিশবোর্ড আপনার উইকিতে উপলব্ধ নয়।</string>
   <string name="uaa-reporting">$1 কে UAAতে প্রতিবেদন করুন</string>
@@ -566,7 +566,7 @@
   <string name="tag-summary">সারাংশ:</string>
   <string name="tag-insertatend">পাতার শেষে সন্নিবেশ করুন</string>
   <string name="update-title">নতুন সংস্করণ উপলব্ধ</string>
-  <string name="update-progress">নতুন সংস্করণ ডাউনলোড হচ্ছে...</string>
+  <string name="update-progress">নতুন সংস্করণ ডাউনলোড হচ্ছে, দয়া করে অপেক্ষা করুন...</string>
   <string name="update-error">নতুন সংস্করণ ডাউনলোড করতে ব্যর্থ হয়েছে</string>
   <string name="updater-title">হাগলের নতুন সংস্করণ উপলব্ধ</string>
   <string name="updater-update">হালনাগাদ</string>
@@ -598,7 +598,7 @@
   <string name="shortcut-x-warn">সতর্কতা মেনুতে N তম আইটেম চালু করে</string>
   <string name="shortcut-good">প্রদর্শিত সম্পাদনা ভালো সম্পাদনা হিসেবে পতাকাঙ্কিত করে</string>
   <string name="shortcut-open-in-huggle">বর্তনামে প্রদর্শিত পাতা খোলে</string>
-  <string name="shortcut-open">বর্তমানে প্রদর্শিত পাতা ব্রাউজারে খোলে</string>
+  <string name="shortcut-open">বর্তমানে প্রদর্শিত পাতাটি ব্রাউজারে খোলে</string>
   <string name="shortcut-talk">ব্যবহারকারীর আলাপ পাতায় দেখায় যিনি এই সম্পাদনাটি করেছেন</string>
   <string name="shortcut-revert-agf-1">আস্থা রাখা সম্পাদনা হিসেবে শেষ সংশোধন বাতিল করে</string>
   <string name="shortcut-browser-close-tab">ব্রাউজারের একটি ট্যাব বন্ধ করে</string>
@@ -621,14 +621,14 @@
   <string name="han-not">ধ্বংসপ্রবণতা নেটওয়ার্ক বিকল্পগুলিতে অনুমোদিত নয়</string>
   <string name="han-connecting">হাগল অ্যান্টি ধ্বংসপ্রবণতা নেটওয়ার্কে সংযুক্ত করা হচ্ছে</string>
   <string name="han-already-connected">HAN-এ সংযোগ করা হচ্ছে না কারণ এটি ইতিমধ্যে সংযুক্ত</string>
-  <string name="han-already-connecting">অনুগ্রহ করে অপেক্ষা করুন, আমি ইতিমধ্যে HAN-এর সাথে সংযোগ করছি</string>
+  <string name="han-already-connecting">অনুগ্রহ করে অপেক্ষা করুন, আমি ইতিমধ্যে HAN-এর সাথে সংযোগ করছি...</string>
   <string name="han-disconnected">আপনি HAN থেকে বিচ্ছিন্ন হয়ে গেছেন</string>
   <string name="han-network">নেটওয়ার্ক</string>
   <string name="han-send">পাঠান</string>
   <string name="error-loggedout">অ্যাকাউন্ট থেকে বেরিয়ে যাওয়া হয়েছে, আবার প্রবেশ করানো হচ্ছে...</string>
   <string name="error-noresponse">কোন উত্তর নেই</string>
   <string name="error-pagemissing">পাতাটির অস্তিত্ব নেই</string>
-  <string name="error-reloginfail">পুনঃপ্রবেশ ব্যর্থ হয়েছে, হাগল পুনরারম্ভ করে চেষ্টা করুন</string>
+  <string name="error-reloginfail">পুনঃপ্রবেশ ব্যর্থ হয়েছে। হাগল পুনরারম্ভ করে চেষ্টা করুন</string>
   <string name="error-timeout">অনুরোধের সময় শেষ হয়েছে</string>
   <string name="error-unknown">অজানা ত্রুটি</string>
   <string name="block-done">$1 কে বাধা দেয়া হয়েছে</string>
@@ -653,7 +653,7 @@
   <string name="history-work">$1-এ করা নিজস্ব সম্পাদনা বাতিল করা হচ্ছে</string>
   <string name="history-no-item-selected">কোনো আইটেম ইতিহাস উইজেটে নির্বাচন করা হয়নি</string>
   <string name="history-message-revert-title">আপনি কি সত্যিই শুধু এই বার্তাটি বাতিল করতে চান?</string>
-  <string name="history-another-edit">অন্য একটি সম্পাদনা পূর্বাবস্থায় ফেরানো হচ্ছে, দয়া করে অপেক্ষা করুন</string>
+  <string name="history-another-edit">অন্য একটি সম্পাদনা পূর্বাবস্থায় ফেরানো হচ্ছে, দয়া করে অপেক্ষা করুন...</string>
   <string name="history-not-found">বাতিল করার জন্য কিছু পাওয়া যায়নি</string>
   <string name="history-already-done">এটি ইতিমধ্যে বাতিল করা হয়েছে</string>
   <string name="history-message-revert-body">এটি একটি বার্তা যা একটি রোলব্যাক দ্বারা উল্লেখ করা হয়েছে, আপনি কি নিশ্চিত আপনি শুধুমাত্র টেমপ্লেট পূর্বাবস্থায় নিয়ে যেতে চান কিন্তু তাতে করা আপনার সম্পাদনা না? (আপনাকে রোলব্যাক পূর্বাবস্থা নিতে হবে যদি উভয়কে আপনি ফিরিয়ে আনতে চান)</string>
@@ -768,11 +768,11 @@
   <string name="login-invalid-register-date">মিডিয়াউইকি নিবন্ধনের তারিখ অবৈধ বলছে</string>
   <string name="login-site-info-query-failed">$1-এর জন্য সাইটের তথ্যের কোয়েরি ব্যর্থ হয়েছে: $2</string>
   <string name="login-no-site-info-returned">এই উইকি জন্য কোন সাইটের তথ্য ফেরত আসেনি</string>
-  <string name="loading-main-window">হাগলের প্রধান উইন্ডো লোড করা হচ্ছে</string>
+  <string name="loading-main-window">হাগলের প্রধান উইন্ডো লোড করা হচ্ছে...</string>
   <string name="api.php-invalid-response">api.php অবৈধ পাঠ্যসহ সাড়া দিয়েছে (ওয়েবসার্ভার সক্রিয় নয়?), সুনির্দিষ্ট তথ্যের জন্য ডিবাগ লগ পরীক্ষা করুন</string>
   <string name="login-username-doesnt-exist">এই ব্যবহারকারী নাম বিদ্যমান নয়</string>
   <string name="developer-mode-enter-title">ওওওয়ে</string>
-  <string name="developer-mode-enter-message" fuzzy="true">আপনি একজন বিকাশকারী মোড প্রবেশ করেছেন!</string>
+  <string name="developer-mode-enter-message">আপনি একজন বিকাশকারী মোড প্রবেশ করেছেন!</string>
   <string name="unimplemented" fuzzy="true">এই বৈশিষ্ট্যটি এখনো বাস্তবায়িত হয়নি</string>
   <string name="unknown-item">অজানা আইটেম</string>
   <string name="title-multiple-projects">একাধিক প্রকল্প ($1)</string>
@@ -793,5 +793,5 @@
   <string name="queue-empty-title">এটি খালি</string>
   <string name="queue-empty-text">সারিটিতে আর অন্য কিছু নেই...</string>
   <string name="tip3" fuzzy="true">অধিকাংশ পছন্দ উইকির [[Special:MyPage/huggle3.css]]-এ সংরক্ষণ করা হয়, আপনি ম্যানুয়ালি সেখানে তাদের পরিবর্তন করতে পারেন!</string>
-  <string name="tip10" fuzzy="true">বেশিরভাগ শর্টকাটগুলি পছন্দে পরিবর্তন করা যায়।</string>
+  <string name="tip10">বেশিরভাগ শর্টকাটগুলি আপনার পছন্দে পরিবর্তন করা যাবে।</string>
 </resources>

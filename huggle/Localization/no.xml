@@ -94,7 +94,7 @@
   <string name="login-proxydomain">Domene:</string>
   <string name="login-start">Logg på</string>
   <string name="login-translate">Oversett Huggle</string>
-  <string name="login-progress-start">Logger på $1</string>
+  <string name="login-progress-start" fuzzy="true">Logger på $1</string>
   <string name="login-progress-language">Oppdaterer meldingsfiler...</string>
   <string name="login-progress-global">Sjekker global konfigurasjon...</string>
   <string name="login-progress-config">Sjekker konfigurasjonssider...</string>
@@ -191,7 +191,7 @@
   <string name="main-tip-userreport">Rapporter denne brukeren</string>
   <string name="main-tip-userblock">Blokker denne brukeren</string>
   <string name="message-title">Melding til $1</string>
-  <string name="message-help">Spesifiser Emne eller Oppsummering, eller begge. Hvis ingen oppsummering blir gitt, vil intet meldingshode bli lagt til.</string>
+  <string name="message-help" fuzzy="true">Spesifiser Emne eller Oppsummering, eller begge. Hvis ingen oppsummering blir gitt, vil intet meldingshode bli lagt til.</string>
   <string name="message-subject">Emne:</string>
   <string name="message-message">Melding:</string>
   <string name="message-summary">Oppsummering:</string>
@@ -267,7 +267,7 @@
   <string name="tag-summary">Oppsummering:</string>
   <string name="tag-insertatend">Sett inn på slutten av siden</string>
   <string name="update-title">Ny versjon tilgjengelig</string>
-  <string name="update-progress">Laster ned ny versjon...</string>
+  <string name="update-progress" fuzzy="true">Laster ned ny versjon...</string>
   <string name="update-error">Kunne ikke laste ned ny versjon</string>
   <string name="warning-title">Advar $1</string>
   <string name="warning-levelgroup">Advarselsnivå</string>
@@ -281,7 +281,7 @@
   <string name="error-loggedout">Kontoen har blitt logget ut, logger inn igjen...</string>
   <string name="error-noresponse">Ingen respons</string>
   <string name="error-pagemissing">Siden eksisterer ikke</string>
-  <string name="error-reloginfail">Kunne ikke logge inn igjen, prøv å starte Huggle på nytt</string>
+  <string name="error-reloginfail" fuzzy="true">Kunne ikke logge inn igjen, prøv å starte Huggle på nytt</string>
   <string name="error-timeout">Forespørsel tok for lang tid</string>
   <string name="error-unknown">Ukjent feil</string>
   <string name="block-done">Blokkerte \'$1\'</string>

@@ -142,13 +142,13 @@
   <string name="config-friend">Vriend</string>
   <string name="config-userspace">Gebruikersruimte</string>
   <string name="config-talk">Overlegpagina</string>
-  <string name="config-columns-dynamic">Kolommenlijst dynamisch maken (wordt gewijzigd op basis van de grootte van de items) of handmatig (gebruiker kan de grootte aanpassen)</string>
+  <string name="config-columns-dynamic" fuzzy="true">Kolommenlijst dynamisch maken (wordt gewijzigd op basis van de grootte van de items) of handmatig (gebruiker kan de grootte aanpassen)</string>
   <string name="config-message-notification">Melding weergeven als u een nieuw bericht op uw overlegpagina ontvangt</string>
   <string name="config-warning-api">Waarschuwingen voor API-zoekopdrachten weergeven</string>
   <string name="config-title-diff">Paginanaam bij alle verschillen (grote letters met de paginanaam bovenaan verschillen)</string>
   <string name="config-updates">Controleren op updates</string>
   <string name="config-beta">Controleren op betaversies</string>
-  <string name="config-html-messages">HAN kan HTML-berichten renderen (gevaarlijk)</string>
+  <string name="config-html-messages" fuzzy="true">HAN kan HTML-berichten renderen (gevaarlijk)</string>
   <string name="config-summary-present">Samenvatting markeren als aanwezig in plaats van wanneer die ontbreekt</string>
   <string name="config-close-without">Sluiten zonder opslaan</string>
   <string name="config-confirmmultiple">Meerdere reversies van een bewerking door dezelfde gebruiker bevestigen</string>
@@ -247,7 +247,7 @@
   <string name="login-start">Aanmelden</string>
   <string name="login-oauth-notsupported">Deze methode wordt op het moment niet ondersteund</string>
   <string name="login-translate">Huggle vertalen</string>
-  <string name="login-progress-start">Aanmelden op $1</string>
+  <string name="login-progress-start" fuzzy="true">Aanmelden op $1</string>
   <string name="login-progress-retrieve-mw">Opvragen van informatie over MediaWiki van $1</string>
   <string name="login-progress-language">Berichtenbestanden bijwerken...</string>
   <string name="login-progress-global">Globale instellingen controleren...</string>
@@ -257,7 +257,7 @@
   <string name="login-progress-user-info">Gebruikersgegevens voor $1 controleren</string>
   <string name="login-progress-whitelist">Witte lijst met gebruikers ophalen...</string>
   <string name="login-remember-password">Wachtwoord onthouden</string>
-  <string name="login-ssl">Gebruik HTTPS (OpenSSL vereist)</string>
+  <string name="login-ssl" fuzzy="true">Gebruik HTTPS (OpenSSL vereist)</string>
   <string name="login-fail">aanmelden op $1 mislukt</string>
   <string name="login-error-admin">U kunt Huggle op dit project alleen gebruiken als u beheerder bent.</string>
   <string name="login-error-age" fuzzy="true">U kunt Huggle op dit project alleen gebruiken als uw acccount minstens $1 dagen oud is.</string>
@@ -349,7 +349,7 @@
   <string name="main-page-patrol">Markeren als gecontroleerd</string>
   <string name="main-page-move">Verplaatsen...</string>
   <string name="main-page-flag-suspicious-edit">Markeren als verdachte bewerking (door deze handeling krijgt de gebruiker +1)</string>
-  <string name="main-page-flag-good-edit">Markeren als goede bewerking (door deze handeling krijgt de gebruiker -200)</string>
+  <string name="main-page-flag-good-edit" fuzzy="true">Markeren als goede bewerking (door deze handeling krijgt de gebruiker -200)</string>
   <string name="main-page-protect">Beveiligen</string>
   <string name="main-page-delete">Verwijderen</string>
   <string name="main-page-load">Laden</string>
@@ -374,7 +374,7 @@
   <string name="main-browser-open">Dit in een externe browser bekijken</string>
   <string name="main-browser-newedits">Nieuwe bewerkingen aan pagina weergeven</string>
   <string name="main-browser-newcontribs">Nieuw bijdragen van gebruiker weergeven</string>
-  <string name="main-browser-lasttab">Dit tabblad kan niet gesloten worden omdat het het laatste is. Laat ten minste één tabblad open</string>
+  <string name="main-browser-lasttab" fuzzy="true">Dit tabblad kan niet gesloten worden omdat het het laatste is. Laat ten minste één tabblad open</string>
   <string name="main-revert-manual">Er is geen token om mee terug te draaien. $1 wordt een handmatig teruggedraaid</string>
   <string name="main-han">HAN</string>
   <string name="main-han-disconnect">Verbinding verbreken</string>
@@ -407,7 +407,7 @@
   <string name="main-restore-text-fail">Terugdraaien van de versie is niet mogelijk, omdat er geen tekst voor beschikbaar is</string>
   <string name="main-restore-data-fail" fuzzy="true">Terugdraaien van de versie is niet mogelijk, omdat er door de wiki geen gegevens voor de geselecteerde versie zijn verstrekt</string>
   <string name="message-title">Bericht $1</string>
-  <string name="message-help">Geef een Onderwerp of Samenvatting op. Als er geen samenvatting is gegeven, wordt het onderwerp gebruikt; als er geen onderwerp is opgegeven, wordt er geen koptekst toegevoegd.</string>
+  <string name="message-help" fuzzy="true">Geef een Onderwerp of Samenvatting op. Als er geen samenvatting is gegeven, wordt het onderwerp gebruikt; als er geen onderwerp is opgegeven, wordt er geen koptekst toegevoegd.</string>
   <string name="message-subject">Onderwerp:</string>
   <string name="message-message">Bericht:</string>
   <string name="message-summary">Samenvatting:</string>

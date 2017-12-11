@@ -173,7 +173,7 @@
   <string name="login-start">Кіру</string>
   <string name="login-oauth-notsupported">Бұл сәтте осы әдісті қолдамайды</string>
   <string name="login-translate">Huggle-ді аудару</string>
-  <string name="login-progress-start">$1 сайтына кіруде</string>
+  <string name="login-progress-start" fuzzy="true">$1 сайтына кіруде</string>
   <string name="login-progress-language">Хабарлама файлары жаңартылуда...</string>
   <string name="login-progress-global">Ғаламдық конфигурация тексерілуде...</string>
   <string name="login-progress-config">Конфигурация беттері тексерілуде...</string>
@@ -182,7 +182,7 @@
   <string name="login-progress-user-info">$1 сайты үшін қатысушы мәліметтері тексерілуде</string>
   <string name="login-progress-whitelist">Қатысушы ақ тізімі жаңартылуда...</string>
   <string name="login-remember-password">Құпия сөзді есте сақтау</string>
-  <string name="login-ssl">HTTPS қолдану (OpenSSL қажет етеді)</string>
+  <string name="login-ssl" fuzzy="true">HTTPS қолдану (OpenSSL қажет етеді)</string>
   <string name="login-fail">$1 сайтында кіру сәтсіз болды</string>
   <string name="login-error-admin">Бұл жобада Huggle бағадарламасын қолдану әкімші тіркелгісін қажет етеді.</string>
   <string name="login-error-age" fuzzy="true">Бұл жобада Huggle бағадарламасын қолдану тіркелгеніне $1 күн болуын қажет етеді.</string>
@@ -392,7 +392,7 @@
   <string name="tag-summary">Түйіндемесі:</string>
   <string name="tag-insertatend">Беттің соңына кірістіру</string>
   <string name="update-title">Жаңа нұсқасы қолжетімді</string>
-  <string name="update-progress">Жаңа нұсқасы түсірілуде...</string>
+  <string name="update-progress" fuzzy="true">Жаңа нұсқасы түсірілуде...</string>
   <string name="update-error">Жаңа нұсқасын түсіру сәтсәз болды</string>
   <string name="updater-title">Huggle бағдарламасының жаңа нұсқасы қолжетімді</string>
   <string name="updater-update">Жаңарту</string>
@@ -411,8 +411,8 @@
   <string name="shortcut-watch" fuzzy="true">Бақылау тізіміне көрсетілген бетті кірістіру</string>
   <string name="shortcut-unwatch" fuzzy="true">Бақылау тізімінен көрсетілген бетті аластау</string>
   <string name="shortcut-good">Қазіргі көрсетілген өңдемені жақсы деп жалауша қою</string>
-  <string name="shortcut-open-in-huggle">Қазіргі көрсетілген бетті ашу</string>
-  <string name="shortcut-open">Қазіргі көрсетілген бетті броузерде ашу</string>
+  <string name="shortcut-open-in-huggle" fuzzy="true">Қазіргі көрсетілген бетті ашу</string>
+  <string name="shortcut-open" fuzzy="true">Қазіргі көрсетілген бетті броузерде ашу</string>
   <string name="shortcut-talk">Бұл өңдемені жасаған қатысушының талқылау бетін көрсету</string>
   <string name="shortcut-browser-close-tab">Броузер қойындысын жабу</string>
   <string name="shortcut-tab">Жаңа қойынды ашу</string>
@@ -428,14 +428,14 @@
   <string name="warning-warntype">Ескерту түрі:</string>
   <string name="warning-warnlog">Бұл қатысушыға жасалған ескертулер:</string>
   <string name="warning-submit">Жіберу</string>
-  <string name="han-connecting">Huggle антивандализм желісіне қосылу</string>
+  <string name="han-connecting" fuzzy="true">Huggle антивандализм желісіне қосылу</string>
   <string name="han-already-connected">Huggle антивандализм желісіне қосылмады, себебі ол әлдеқашан байланысқан</string>
-  <string name="han-already-connecting">Күте тұрыңыз, мен әлдеқашан Huggle антивандализм желісіне қосылғамын</string>
+  <string name="han-already-connecting" fuzzy="true">Күте тұрыңыз, мен әлдеқашан Huggle антивандализм желісіне қосылғамын</string>
   <string name="han-disconnected">Сіз Huggle антивандализм желісіне қосылмағансыз</string>
   <string name="error-loggedout">Аккаунт шығып кеткен, қайта кіріңіз...</string>
   <string name="error-noresponse">Жауап жоқ</string>
   <string name="error-pagemissing">Бет жоқ</string>
-  <string name="error-reloginfail">Қайта кіру сәтсәз болды, Huggle бағдарламасын қайта бастап көріңіз</string>
+  <string name="error-reloginfail" fuzzy="true">Қайта кіру сәтсәз болды, Huggle бағдарламасын қайта бастап көріңіз</string>
   <string name="error-timeout">Сұраныс уақыт бітті</string>
   <string name="error-unknown">Белгісіз қате</string>
   <string name="block-done">$1 бұғатталды</string>

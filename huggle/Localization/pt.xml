@@ -236,7 +236,7 @@
   <string name="login-start">Entrar</string>
   <string name="login-oauth-notsupported">Este método não é suportado neste momento</string>
   <string name="login-translate">Traduzir Huggle</string>
-  <string name="login-progress-start">A entrar na conta em $1...</string>
+  <string name="login-progress-start" fuzzy="true">A entrar na conta em $1...</string>
   <string name="login-progress-retrieve-mw">A aceder à informação da MediaWiki para $1</string>
   <string name="login-progress-language">A atualizar os ficheiros de mensagens...</string>
   <string name="login-progress-global">A verificar a configuração global...</string>
@@ -246,7 +246,7 @@
   <string name="login-progress-user-info">A verificar informação de utilizador(a) para $1</string>
   <string name="login-progress-whitelist">A receber a lista branca de utilizadores...</string>
   <string name="login-remember-password">Lembrar palavra-passe</string>
-  <string name="login-ssl">Usar o HTTPS (requer OpenSSL)</string>
+  <string name="login-ssl" fuzzy="true">Usar o HTTPS (requer OpenSSL)</string>
   <string name="login-fail">O início de sessão em $1 falhou</string>
   <string name="login-error-admin">Para usar o Huggle no projeto que escolheu é necessário ser administrador.</string>
   <string name="login-error-age" fuzzy="true">Para usar o Huggle no projeto que escolheu é necessário ter uma conta de usuário criada há pelo menos $1 dias.</string>
@@ -337,12 +337,13 @@
   <string name="main-page-patrol">Marcar como patrulhada</string>
   <string name="main-page-move">Mover...</string>
   <string name="main-page-flag-suspicious-edit">Marcar como edição suspeita (esta ação atribui mais 1 ponto ao utilizador(a))</string>
-  <string name="main-page-flag-good-edit">Marcar como edição correta (esta ação retira 200 pontos ao utilizador(a))</string>
+  <string name="main-page-flag-good-edit" fuzzy="true">Marcar como edição correta (esta ação retira 200 pontos ao utilizador(a))</string>
   <string name="main-page-protect">Proteger</string>
   <string name="main-page-delete">Eliminar</string>
   <string name="main-page-load">Carregar</string>
   <string name="main-patrol-not-enabled">O patrulhamento não está disponível em $1</string>
   <string name="main-page-restore">Restaurar esta versão</string>
+  <string name="main-page-tab-open">Abrir num separador novo</string>
   <string name="main-user-info">Mostrar informações do(a) utilizador(a)</string>
   <string name="main-user-ignore">Ignorar</string>
   <string name="main-user-unignore">Deixar de ignorar</string>
@@ -393,7 +394,7 @@
   <string name="main-revert-newpage">Esta é uma página nova, portanto a edição não pode ser desfeita. Pode marcá-la ou eliminá-la.</string>
   <string name="main-restore-text-fail">Não foi possível restaurar a revisão, porque não há texto disponível para ela</string>
   <string name="message-title">Mensagem $1</string>
-  <string name="message-help">Introduza um ou ambos os campos de Assunto e Sumário. Se não introduzir o sumário, será usado o assunto. Se não introduzir o assunto, não será criada uma secção.</string>
+  <string name="message-help" fuzzy="true">Introduza um ou ambos os campos de Assunto e Sumário. Se não introduzir o sumário, será usado o assunto. Se não introduzir o assunto, não será criada uma secção.</string>
   <string name="message-subject">Assunto:</string>
   <string name="message-message">Mensagem:</string>
   <string name="message-summary">Sumário:</string>
@@ -516,7 +517,7 @@
   <string name="tag-summary">Resumo:</string>
   <string name="tag-insertatend">Inserir no final da página e não no início</string>
   <string name="update-title">Nova versão disponível</string>
-  <string name="update-progress">A descarregar a nova versão...</string>
+  <string name="update-progress" fuzzy="true">A descarregar a nova versão...</string>
   <string name="update-error">Não foi possível descarregar a nova versão.</string>
   <string name="updater-title">Está disponível uma nova versão do Huggle</string>
   <string name="updater-update">Atualizar</string>
@@ -546,8 +547,8 @@
   <string name="shortcut-unwatch" fuzzy="true">Remove a página exibida da lista de vigiados</string>
   <string name="shortcut-x-warn">Disparar item N° no menu de avisos</string>
   <string name="shortcut-good">Marcar a edição exibida como boa</string>
-  <string name="shortcut-open-in-huggle">Abrir a página atualmente exibida</string>
-  <string name="shortcut-open">Abrir edição exibida atualmente no navegador</string>
+  <string name="shortcut-open-in-huggle" fuzzy="true">Abrir a página atualmente exibida</string>
+  <string name="shortcut-open" fuzzy="true">Abrir edição exibida atualmente no navegador</string>
   <string name="shortcut-talk">Mostrar a página de discussão do utilizador que fez esta alteração</string>
   <string name="shortcut-revert-agf-1">Reverter última edição assumindo boa-fé</string>
   <string name="shortcut-browser-close-tab">Fechar um separador do navegador</string>
@@ -567,11 +568,11 @@
   <string name="warning-submit">Enviar</string>
   <string name="missing-warning">A predefinição de aviso $1 não existe</string>
   <string name="han-not">A rede de anti-vandalismo não está ativa nas opções</string>
-  <string name="han-connecting">A ligar à rede de anti-vandalismo do Huggle</string>
+  <string name="han-connecting" fuzzy="true">A ligar à rede de anti-vandalismo do Huggle</string>
   <string name="error-loggedout">Terminou a sessão, a entrar novamente na conta...</string>
   <string name="error-noresponse">Sem resposta</string>
   <string name="error-pagemissing">A página não existe</string>
-  <string name="error-reloginfail">Não foi possível entrar de novo na conta, tente reiniciar o Huggle</string>
+  <string name="error-reloginfail" fuzzy="true">Não foi possível entrar de novo na conta, tente reiniciar o Huggle</string>
   <string name="error-timeout">Foi excedido o tempo de resposta do servidor.</string>
   <string name="error-unknown">Erro desconhecido</string>
   <string name="block-done">$1 bloqueado</string>
@@ -593,12 +594,12 @@
   <string name="edit-progress">A editar $1...</string>
   <string name="history-fail">Ocorreu um erro ao receber o histórico de $1</string>
   <string name="history-progress">A receber o histórico de $1 ($2)...</string>
-  <string name="history-work">A desfazer a própria edição feita em $1</string>
+  <string name="history-work" fuzzy="true">A desfazer a própria edição feita em $1</string>
   <string name="history-no-item-selected">Nenhum item foi selecionado no histórico do widget</string>
   <string name="history-not-found">Nada foi encontrado para desfazer</string>
   <string name="history-already-done">Já foi desfeita</string>
   <string name="history-undone">A edição em $1 foi desfeita com sucesso</string>
-  <string name="history-retrieve-fail">Não foi possível obter o conteúdo da página que queria anular, o erro foi: $1</string>
+  <string name="history-retrieve-fail" fuzzy="true">Não foi possível obter o conteúdo da página que queria anular, o erro foi: $1</string>
   <string name="history-welcome-msg-title">Enviar antes uma mensagem de boas-vindas?</string>
   <string name="history-welcome-msg">Criou esta página de discussão, por isso não pode desfazer a edição. Pretende substituir por uma mensagem de boas-vindas?</string>
   <string name="notify-fail">Não foi possível notificar o criador de $1</string>

@@ -145,13 +145,13 @@
   <string name="config-friend">Znajomy</string>
   <string name="config-userspace">Przestrzeń użytkownika</string>
   <string name="config-talk">Strona dyskusji</string>
-  <string name="config-columns-dynamic">Twórz kolumny list jako dynamiczne (dopasowujące szerokość do rozmiaru wpisów) lub ręcznie (użytkownik sam ustala ich rozmiar)</string>
+  <string name="config-columns-dynamic" fuzzy="true">Twórz kolumny list jako dynamiczne (dopasowujące szerokość do rozmiaru wpisów) lub ręcznie (użytkownik sam ustala ich rozmiar)</string>
   <string name="config-message-notification">Wyświetl powiadomienie, gdy pojawi się nowa wiadomość na twojej stronie dyskusji</string>
   <string name="config-warning-api">Wyświetlaj ostrzeżenia dla zapytań API</string>
   <string name="config-title-diff">Tytuł strony w każdym porównaniu (duży tekst, w którym wyświetlana jest tylko nagłówek strony, w górnej części każdego porównania)</string>
   <string name="config-updates">Sprawdź aktualizacje</string>
   <string name="config-beta">Sprawdź, czy są dostępne wersje beta</string>
-  <string name="config-html-messages">HAN może wyświetlać wiadomości HTML (niezalecane, może powodować problemy)</string>
+  <string name="config-html-messages" fuzzy="true">HAN może wyświetlać wiadomości HTML (niezalecane, może powodować problemy)</string>
   <string name="config-summary-present">Podświetlaj opis zmian gdy jest obecny, zamiast kiedy gdy go nie ma</string>
   <string name="config-close-without">Zamknij bez zapisywania</string>
   <string name="config-confirmmultiple">Potwierdź kilka rewersji jednej edycji przez tego samego użytkownika</string>
@@ -239,7 +239,7 @@
   <string name="login-oauth-notsupported">Ta metoda nie jest w tej chwili obsługiwana</string>
   <string name="login-translate">Przetłumacz Huggle</string>
   <string name="login-progress-formtitle">Ładowanie...</string>
-  <string name="login-progress-start">Logowanie do $1</string>
+  <string name="login-progress-start" fuzzy="true">Logowanie do $1</string>
   <string name="login-progress-retrieve-mw">Uzyskiwanie informacji o MediaWiki dla $1</string>
   <string name="login-progress-language">Uaktualnianie plików wiadomości...</string>
   <string name="login-progress-global">Sprawdzanie konfiguracji globalnej...</string>
@@ -249,7 +249,7 @@
   <string name="login-progress-user-info">Sprawdzanie informacji o użytkowniku dla $1</string>
   <string name="login-progress-whitelist">Otrzymywanie białej listy użytkowników...</string>
   <string name="login-remember-password">Zapamiętaj hasło</string>
-  <string name="login-ssl">Używaj HTTPS (wymagane OpenSSL)</string>
+  <string name="login-ssl" fuzzy="true">Używaj HTTPS (wymagane OpenSSL)</string>
   <string name="login-fail">Logowanie na $1 nie powiodło się</string>
   <string name="login-error-admin">Użycie Huggle w tym projekcie wymaga konta administratora.</string>
   <string name="login-error-age" fuzzy="true">Korzystanie z Huggle w tym projekcie wymaga co najmniej $1 dni uczestnictwa.</string>
@@ -336,7 +336,7 @@
   <string name="main-page-patrol">Oznacz edycję jako „sprawdzoną”</string>
   <string name="main-page-move">Przenieś...</string>
   <string name="main-page-flag-suspicious-edit">Oznacz edycję jako podejrzaną (doda to też użytkownikowi +1 punktów karnych)</string>
-  <string name="main-page-flag-good-edit">Oznacz edycję jako dobrą (doda to też użytkownikowi -200 punktów karnych)</string>
+  <string name="main-page-flag-good-edit" fuzzy="true">Oznacz edycję jako dobrą (doda to też użytkownikowi -200 punktów karnych)</string>
   <string name="main-page-protect">Zabezpiecz</string>
   <string name="main-page-delete">Usuń</string>
   <string name="main-page-load">Wczytaj</string>
@@ -364,7 +364,7 @@
   <string name="main-browser-open">Pokaż w zewnętrznej przeglądarce</string>
   <string name="main-browser-newedits">Pokaż nowe edycje na stronie</string>
   <string name="main-browser-newcontribs">Pokaż nowy wkład użytkownika</string>
-  <string name="main-browser-lasttab">Nie mogę zamknąć tej karty, bo jest ostatnia, musisz mieć otwartą co najmniej 1 kartę</string>
+  <string name="main-browser-lasttab" fuzzy="true">Nie mogę zamknąć tej karty, bo jest ostatnia, musisz mieć otwartą co najmniej 1 kartę</string>
   <string name="main-han-disconnect">Rozłącz</string>
   <string name="main-han-connect">Połącz</string>
   <string name="main-help">Pomoc</string>
@@ -398,7 +398,7 @@
   <string name="main-statistics-paused">wstrzymane</string>
   <string name="main-tab-welcome-title">Strona powitalna</string>
   <string name="message-title">Wiadomość $1</string>
-  <string name="message-help">Wybierz Temat i Podsumowanie lub oba. Jeśli brak podsumowania zostanie użyty temat; jeślu brak tematu nagłówek nie zostanie dodany.</string>
+  <string name="message-help" fuzzy="true">Wybierz Temat i Podsumowanie lub oba. Jeśli brak podsumowania zostanie użyty temat; jeślu brak tematu nagłówek nie zostanie dodany.</string>
   <string name="message-subject">Temat:</string>
   <string name="message-message">Wiadomość:</string>
   <string name="message-summary">Podsumowanie:</string>
@@ -466,7 +466,7 @@
   <string name="tag-summary">Podsumowanie:</string>
   <string name="tag-insertatend">Wstaw na końcu strony</string>
   <string name="update-title">Dostępna jest nowa wersja</string>
-  <string name="update-progress">Pobieranie nowej wersji...</string>
+  <string name="update-progress" fuzzy="true">Pobieranie nowej wersji...</string>
   <string name="update-error">Nie udało się pobrać nowej wersji</string>
   <string name="updater-title">Dostępna jest nowa wersja Huggle</string>
   <string name="updater-update">Aktualizuj</string>
@@ -506,7 +506,7 @@
   <string name="error-loggedout">Konto zostało wylogowane, ponowne logowanie za...</string>
   <string name="error-noresponse">Brak odpowiedzi</string>
   <string name="error-pagemissing">Strona nie istnieje</string>
-  <string name="error-reloginfail">Błąd ponownego logowania, spróbuj przestartować Huggle</string>
+  <string name="error-reloginfail" fuzzy="true">Błąd ponownego logowania, spróbuj przestartować Huggle</string>
   <string name="error-unknown">Nieznany błąd</string>
   <string name="block-progress">Blokowanie $1...</string>
   <string name="delete-done">Usunięto $1</string>

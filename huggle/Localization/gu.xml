@@ -130,7 +130,7 @@
   <string name="login-retrieving-user-conf">સભ્યની ગોઠવણ લાવે છે</string>
   <string name="login-start">પ્રવેશો</string>
   <string name="login-translate">Huggle ભાષાંતર</string>
-  <string name="login-progress-start">$1 માં પ્રવેશ થાય છે</string>
+  <string name="login-progress-start" fuzzy="true">$1 માં પ્રવેશ થાય છે</string>
   <string name="login-fail">$1 માં પ્રવેશ અસફળ</string>
   <string name="login-error-cancelled">નિરસ્ત</string>
   <string name="login-error-invalid">અમાન્ય સભ્યનામ</string>
@@ -270,7 +270,7 @@
   <string name="tag-summary">સારાંશ :</string>
   <string name="tag-insertatend">પાનાંના અંતમાં મૂકો</string>
   <string name="update-title">નવી આવૃત્તિ ઉપલબ્ધ</string>
-  <string name="update-progress">નવી આવૃત્તિ ડાઉનલોડ થાય છે...</string>
+  <string name="update-progress" fuzzy="true">નવી આવૃત્તિ ડાઉનલોડ થાય છે...</string>
   <string name="update-error">નવી આવૃત્તિ ડાઉલોડ અસફળ</string>
   <string name="updater-title">Huggle ની નવીનતમા આવૃત્તિ ઉપલબ્ધ છે.</string>
   <string name="updater-update">અદ્યતન કરો</string>

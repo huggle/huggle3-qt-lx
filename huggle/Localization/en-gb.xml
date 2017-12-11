@@ -144,13 +144,13 @@
   <string name="config-friend">Friend</string>
   <string name="config-userspace">Userspace</string>
   <string name="config-talk">Talk page</string>
-  <string name="config-columns-dynamic">Make the columns of lists dynamic (will resize them based on size of items) or manual (user can change their size)</string>
+  <string name="config-columns-dynamic" fuzzy="true">Make the columns of lists dynamic (will resize them based on size of items) or manual (user can change their size)</string>
   <string name="config-message-notification">Display a notification when you receive a new message on your talk page</string>
   <string name="config-warning-api">Display warnings for API queries</string>
   <string name="config-title-diff">Page title in every diff (large text which show just a page title in top of every diff)</string>
   <string name="config-updates">Check for updates</string>
   <string name="config-beta">Check for beta versions</string>
-  <string name="config-html-messages">HAN can render HTML messages (dangerous)</string>
+  <string name="config-html-messages" fuzzy="true">HAN can render HTML messages (dangerous)</string>
   <string name="config-summary-present">Highlight summary when present (instead of when it\'s missing)</string>
   <string name="config-close-without">Close without saving</string>
   <string name="config-confirmmultiple">Confirm multiple reversions of an edit by the same user</string>
@@ -251,7 +251,7 @@
   <string name="login-oauth-notsupported">This method is not supported at this moment</string>
   <string name="login-translate">Translate Huggle</string>
   <string name="login-progress-formtitle">Loading...</string>
-  <string name="login-progress-start">Logging in to $1</string>
+  <string name="login-progress-start" fuzzy="true">Logging in to $1</string>
   <string name="login-progress-retrieve-mw">Retrieving information about MediaWiki for $1</string>
   <string name="login-progress-language">Updating message files...</string>
   <string name="login-progress-global">Checking global configuration...</string>
@@ -262,7 +262,7 @@
   <string name="login-progress-whitelist">Retrieving user whitelist...</string>
   <string name="login-remember-password">Remember password</string>
   <string name="login-remember-password-tooltip" fuzzy="true">This option will store your password in a plaintext on your hard drive. Use it only if you are the only person with access to this computer.</string>
-  <string name="login-ssl">Use HTTPS (requires OpenSSL)</string>
+  <string name="login-ssl" fuzzy="true">Use HTTPS (requires OpenSSL)</string>
   <string name="login-fail">Login failed on $1</string>
   <string name="login-error-admin">Use of Huggle on this project requires an administrator account.</string>
   <string name="login-error-age" fuzzy="true">Use of Huggle on this project requires an account at least $1 days old.</string>
@@ -358,7 +358,7 @@
   <string name="main-page-patrol">Mark as patrolled</string>
   <string name="main-page-move">Move...</string>
   <string name="main-page-flag-suspicious-edit">Flag as a suspicious edit (this action will give +1 score to the user)</string>
-  <string name="main-page-flag-good-edit">Flag as a good edit (this action will give -200 score to the user)</string>
+  <string name="main-page-flag-good-edit" fuzzy="true">Flag as a good edit (this action will give -200 score to the user)</string>
   <string name="main-page-protect">Protect</string>
   <string name="main-page-delete">Delete</string>
   <string name="main-page-load">Load</string>
@@ -383,7 +383,7 @@
   <string name="main-browser-open">View this in an external browser</string>
   <string name="main-browser-newedits">Show new edits to page</string>
   <string name="main-browser-newcontribs">Show new contributions by user</string>
-  <string name="main-browser-lasttab">I can\'t close this tab because it\'s the last one. You must have at least one tab open</string>
+  <string name="main-browser-lasttab" fuzzy="true">I can\'t close this tab because it\'s the last one. You must have at least one tab open</string>
   <string name="main-revert-manual">No rollback token, fallback to manual revert of $1</string>
   <string name="main-han">HAN</string>
   <string name="main-han-disconnect">Disconnect</string>
@@ -423,7 +423,7 @@
   <string name="main-report-user">Report user</string>
   <string name="main-edit-user-talk">Edit user talk</string>
   <string name="message-title">Message $1</string>
-  <string name="message-help">Specify one or both of Subject and Summary. If no summary is given, the subject will be used; if no subject is given, no header will be added.</string>
+  <string name="message-help" fuzzy="true">Specify one or both of Subject and Summary. If no summary is given, the subject will be used; if no subject is given, no header will be added.</string>
   <string name="message-subject">Subject:</string>
   <string name="message-message">Message:</string>
   <string name="message-summary">Summary:</string>
@@ -511,7 +511,7 @@
   <string name="score-take-whole-no-talk-word">Matches only whole words on non-talk pages</string>
   <string name="score-only-whole-word">Matches only whole words</string>
   <string name="score-take-any-word">Matches any word that contains this string</string>
-  <string name="ssl-is-not-supported">You requested to use SSL but $1 doesn\'t support it.</string>
+  <string name="ssl-is-not-supported" fuzzy="true">You requested to use SSL but $1 doesn\'t support it.</string>
   <string name="ssl-required" fuzzy="true">Webserver of $1 requires SSL to be enabled. Please turn SSL on and try again. If you can\'t enable SSL (option is grayed out) you may need to install openssl libraries to your system.</string>
   <string name="uaa-not-supported">UAA not available</string>
   <string name="uaa-not-supported-text">The \"Usernames for administrator attention\" noticeboard is not available on your wiki.</string>
@@ -550,7 +550,7 @@
   <string name="tag-summary">Summary:</string>
   <string name="tag-insertatend">Insert at the end of the page</string>
   <string name="update-title">New version available</string>
-  <string name="update-progress">Downloading the new version...</string>
+  <string name="update-progress" fuzzy="true">Downloading the new version...</string>
   <string name="update-error">Failed to download the new version</string>
   <string name="updater-title">New version of Huggle is available</string>
   <string name="updater-update">Update</string>
@@ -580,8 +580,8 @@
   <string name="shortcut-unwatch" fuzzy="true">Removes a displayed page from a watchlist</string>
   <string name="shortcut-x-warn">Trigger N th item in warn menu</string>
   <string name="shortcut-good">Flag the currently displayed edit as good</string>
-  <string name="shortcut-open-in-huggle">Open currently displayed page</string>
-  <string name="shortcut-open">Open currently displayed edit in a browser</string>
+  <string name="shortcut-open-in-huggle" fuzzy="true">Open currently displayed page</string>
+  <string name="shortcut-open" fuzzy="true">Open currently displayed edit in a browser</string>
   <string name="shortcut-talk">Display a talk page of user who did this change</string>
   <string name="shortcut-revert-agf-1">Revert last revision assuming good faith</string>
   <string name="shortcut-browser-close-tab">Close a browser tab</string>
@@ -603,14 +603,14 @@
   <string name="wikiedit-tp-fail">Unable to retrieve $1 warning level. It will not be used for scoring</string>
   <string name="missing-warning">There is no such warning template $1</string>
   <string name="han-not">Vandalism network isn\'t allowed in options</string>
-  <string name="han-connecting">Connecting to Huggle anti vandalism network</string>
+  <string name="han-connecting" fuzzy="true">Connecting to Huggle anti vandalism network</string>
   <string name="han-already-connected">Not connecting to HAN because it\'s already connected</string>
-  <string name="han-already-connecting">Please wait, I am already connecting to HAN</string>
+  <string name="han-already-connecting" fuzzy="true">Please wait, I am already connecting to HAN</string>
   <string name="han-disconnected">You were disconnected from HAN</string>
   <string name="error-loggedout">Account has been logged out, logging back in...</string>
   <string name="error-noresponse">No response</string>
   <string name="error-pagemissing">The page does not exist</string>
-  <string name="error-reloginfail">Failed to log back in, try restarting Huggle</string>
+  <string name="error-reloginfail" fuzzy="true">Failed to log back in, try restarting Huggle</string>
   <string name="error-timeout">Request timed out</string>
   <string name="error-unknown">Unknown error</string>
   <string name="block-done">Blocked $1</string>
@@ -632,7 +632,7 @@
   <string name="edit-progress">Editing $1...</string>
   <string name="history-fail">Failed to retrieve history of $1</string>
   <string name="history-progress">Retrieving history of $1 ($2)...</string>
-  <string name="history-work">Undoing own edit made to $1</string>
+  <string name="history-work" fuzzy="true">Undoing own edit made to $1</string>
   <string name="history-no-item-selected">No item is selected in history widget</string>
   <string name="history-message-revert-title">Do you really want to undo just this message?</string>
   <string name="history-another-edit" fuzzy="true">I am already undoing another edit, please wait</string>
@@ -641,7 +641,7 @@
   <string name="history-message-revert-body">This was a message that is referenced by a rollback: are you sure you want to undo only the template, not your edit to page? You will need to undo the rollback if you want to revert both of these.</string>
   <string name="history-revert-fail">Unable to undo your edit to $1 as the following error was encountered: $2</string>
   <string name="history-undone">Successfully undid edit to $1</string>
-  <string name="history-retrieve-fail">Unable to retrieve the content of the page that you wanted to undo your own edit on, error was: $1</string>
+  <string name="history-retrieve-fail" fuzzy="true">Unable to retrieve the content of the page that you wanted to undo your own edit on, error was: $1</string>
   <string name="history-welcome-msg-title">Send a welcome message instead?</string>
   <string name="history-welcome-msg">You created this talk page, so it can\'t be undone. Do you want to replace it with a welcome template?</string>
   <string name="notify-fail">Did not notify the creator of $1</string>
@@ -748,7 +748,7 @@
   <string name="login-invalid-register-date" fuzzy="true">Invalid registrationdate returned by mediawiki</string>
   <string name="login-site-info-query-failed">Site info query for $1 has failed: $2</string>
   <string name="login-no-site-info-returned">No site info was returned for this wiki</string>
-  <string name="loading-main-window">Loading main Huggle window</string>
+  <string name="loading-main-window" fuzzy="true">Loading main Huggle window</string>
   <string name="api.php-invalid-response" fuzzy="true">The api.php responded with invalid text (webserver is down?), please check debug log for precise information</string>
   <string name="login-username-doesnt-exist">This username doesn\'t exist</string>
   <string name="developer-mode-enter-title">Whee</string>

@@ -137,7 +137,7 @@
   <string name="config-warning-api">Visa varningar för API-frågor</string>
   <string name="config-updates">Sök efter uppdateringar</string>
   <string name="config-beta">Kolla efter beta-versioner</string>
-  <string name="config-html-messages">HAN kan rendera HTML-meddelanden (farligt)</string>
+  <string name="config-html-messages" fuzzy="true">HAN kan rendera HTML-meddelanden (farligt)</string>
   <string name="config-close-without">Stäng utan att spara</string>
   <string name="config-confirmmultiple">Bekräfta flera revideringar av en ändring av samma användare</string>
   <string name="config-userollback">Använd tillbakarullning om det finns</string>
@@ -222,7 +222,7 @@
   <string name="login-failed-edit">Inloggningen misslyckades på $1: Du har inte tillräckligt med redigeringar på detta projekt.</string>
   <string name="login-retrieving-info">Hämtar användarinformation på $1</string>
   <string name="login-password-empty">Lösenordet du angav var tomt</string>
-  <string name="login-fail-wrong-name">Du gav ingen användarnamn för inloggningen</string>
+  <string name="login-fail-wrong-name" fuzzy="true">Du gav ingen användarnamn för inloggningen</string>
   <string name="login-api">FEL: api.php svarade med ett okänt resultat: $1</string>
   <string name="login-abort">Avbryt</string>
   <string name="login-start">Logga in</string>
@@ -241,7 +241,7 @@
   <string name="login-progress-whitelist">Hämtar användarvitlista...</string>
   <string name="login-remember-password">Kom ihåg lösenord</string>
   <string name="login-remember-password-tooltip">Detta alternativ kommer att lagra ditt lösenord som vanligt text på din hårddisk. Använd detta endast om du är den enda personen som har åtkomst till denna dator.</string>
-  <string name="login-ssl">Använd HTTPS (kräver OpenSSL)</string>
+  <string name="login-ssl">Använd HTTPS för att logga in (kräver OpenSSL)</string>
   <string name="login-fail">Inloggningen misslyckades på $1</string>
   <string name="login-error-admin">Ett administratörskonto krävs för att använda Huggle på detta projekt.</string>
   <string name="login-error-age">Ditt konto måste vara minst $1 dagar gammalt för att kunna använda Huggle på detta projekt.</string>
@@ -320,11 +320,15 @@
   <string name="main-page-display">Visa denna sida</string>
   <string name="main-page-patrol">Märk som patrullerad</string>
   <string name="main-page-move">Flytta...</string>
-  <string name="main-page-flag-good-edit">Flagga som en bra redigering (denna åtgärd ger -200 poäng till användaren)</string>
+  <string name="main-page-flag-suspicious-edit">Flagga som en misstänksam redigering (denna handling ger +1 poäng till användaren)</string>
+  <string name="main-page-flag-good-edit" fuzzy="true">Flagga som en bra redigering (denna åtgärd ger -200 poäng till användaren)</string>
   <string name="main-page-protect">Skydda</string>
   <string name="main-page-delete">Radera</string>
   <string name="main-page-load">Läs in</string>
   <string name="main-page-restore">Återställ denna version</string>
+  <string name="main-page-watchlist-add">Lägg till sida i en bevakningslista</string>
+  <string name="main-page-tab-close">Stäng aktuell flik</string>
+  <string name="main-page-tab-open">Öppna en ny flik</string>
   <string name="main-user-info">Visa användarinformation</string>
   <string name="main-user-ignore">Ignorera</string>
   <string name="main-user-unignore">Sluta ignorera</string>
@@ -361,6 +365,7 @@
   <string name="main-stats">$1 redigeringar per minut, $2 åtetställningar per minut</string>
   <string name="main-display-session-data">Visa sessionsdata</string>
   <string name="main-display-whitelist">Visa vitlista</string>
+  <string name="main-revert-custom-reson">Förklara varför du rullar tillbaka denna ändring till föregående sidversion</string>
   <string name="main-log1">Återställer vald sidversion för $1</string>
   <string name="main-tip-pagetagdelete">Märk denna sida för radering</string>
   <string name="main-tip-pagedelete">Radera denna sida</string>
@@ -466,7 +471,7 @@
   <string name="tag-summary">Sammanfattning:</string>
   <string name="tag-insertatend">Infoga i slutet av sidan</string>
   <string name="update-title">Ny version tillgänglig</string>
-  <string name="update-progress">Laddar ned den nya versionen...</string>
+  <string name="update-progress" fuzzy="true">Laddar ned den nya versionen...</string>
   <string name="update-error">Kunde inte ladda ned den nya versionen</string>
   <string name="updater-title">En nyare version av Huggle är tillgänglig</string>
   <string name="updater-update">Uppdatera</string>
@@ -483,6 +488,7 @@
   <string name="shortcut-my-talk">Min diskussionssida</string>
   <string name="shortcut-next">Gå till nästa redigering</string>
   <string name="shortcut-suspicious">Märk redigering som misstänkt</string>
+  <string name="shortcut-talk">Visa en diskussionssida för användaren som gjorde denna ändring</string>
   <string name="shortcut-browser-close-tab">Stäng en webbläsarflik</string>
   <string name="shortcut-tab">Öppnar en ny flik</string>
   <string name="shortcut-custom-reason">Återställ redigeringen med en anpassad redigeringssammanfattning</string>
@@ -497,7 +503,7 @@
   <string name="warning-warnlog">Varningar för denna användare:</string>
   <string name="warning-submit">Sänd</string>
   <string name="missing-warning">Det finns ingen varningsmall som heter $1</string>
-  <string name="han-already-connecting">Var god vänta, jag ansluter redan till HAN</string>
+  <string name="han-already-connecting" fuzzy="true">Var god vänta, jag ansluter redan till HAN</string>
   <string name="han-disconnected">Du blev frånkopplad från HAN</string>
   <string name="error-noresponse">Inget svar</string>
   <string name="error-pagemissing">Sidan finns inte</string>
@@ -572,7 +578,7 @@
   <string name="projects">Projekt</string>
   <string name="unable-to-retrieve-user-list">Kunde inte hämta listan över användare: $1</string>
   <string name="login-no-userinfo">Sidan gav inte att någon användarinformation</string>
-  <string name="loading-main-window">Läser in Huggles huvudfönster</string>
+  <string name="loading-main-window">Läser in Huggles huvudfönster...</string>
   <string name="unknown-item">Okänt objekt</string>
   <string name="title-multiple-projects">flera projekt ($1)</string>
   <string name="title-on">på $1</string>
@@ -587,4 +593,6 @@
   <string name="query-protected-link">Skyddad länk</string>
   <string name="queue-empty-title">Den är tom</string>
   <string name="queue-empty-text">Det finns ingenting annat i kön...</string>
+  <string name="tip12">Gjort ett misstag? Inga problem, högerklicka på en redigering du gjorde i \"Historik över dina redigeringar\" öppnar ett popup-fönster som ger dig alternativet att ångra din egen ändring.</string>
+  <string name="tip14">Du kan chatta med andra aktiva användare i Huggle som använder programmet precis nu. Du kommer att se dem i fönstret \"Nätverk\", om de är online.</string>
 </resources>

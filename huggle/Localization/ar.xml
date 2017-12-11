@@ -112,6 +112,7 @@
   <string name="config-undosummary">الملخص عند رجوعك عن تعديلاتك الخاصة</string>
   <string name="config-confirm-user">تحتاج إلى تأكيد لتتراجع عن تعديل تم إجراؤه في نطاق المستخدم</string>
   <string name="config-confirm-wl">تحتاج إلى تأكيد لتتراجع عن تعديل تم إجراؤه بواسطة مستخدم في القائمة البيضاء</string>
+  <string name="config-confirm-talk">اطلب تأكيدًا عند التراجع في صفحة نقاش</string>
   <string name="config-use-rollback">استخدم برنامج استرجاع</string>
   <string name="config-welcome-empty-page">إرسال رسائل ترحيب للمستخدمين بصفحة نقاش فارغة على تعديل جيد</string>
   <string name="config-revert-wait" fuzzy="true">انتظار التراجع (ثوانٍ)</string>
@@ -133,7 +134,7 @@
   <string name="config-friend">صديق</string>
   <string name="config-userspace">نطاق المستخدم</string>
   <string name="config-talk">صفحة النقاش</string>
-  <string name="config-columns-dynamic">جعل أعمدة القوائم ديناميكية (يتم تغييرها على أساس حجم العناصر) أو يديوية (يمكن للمستخدم تغيير حجمها)</string>
+  <string name="config-columns-dynamic" fuzzy="true">جعل أعمدة القوائم ديناميكية (يتم تغييرها على أساس حجم العناصر) أو يديوية (يمكن للمستخدم تغيير حجمها)</string>
   <string name="config-message-notification">عرض إشعار عند تلقي رسالة جديدة على صفحة نقاشك</string>
   <string name="config-warning-api">عرض تحذيرات لاستعلامات API</string>
   <string name="config-title-diff">عنوان الصفحة في كل فرق (نص كبير يظهر فقط عنوان الصفحة على رأس كل فرق)</string>
@@ -233,7 +234,7 @@
   <string name="login-oauth-notsupported">لم يتم اعتماد هذه الطريقة في هذه اللحظة</string>
   <string name="login-translate">ترجم هجل</string>
   <string name="login-progress-formtitle">جارٍ التحميل...</string>
-  <string name="login-progress-start">تسجيل الدخول إلى $1</string>
+  <string name="login-progress-start" fuzzy="true">تسجيل الدخول إلى $1</string>
   <string name="login-progress-retrieve-mw">استرجاع المعلومات حول ميدياويكي ل $1</string>
   <string name="login-progress-language">ملفات الرسائل قيد التحديث...</string>
   <string name="login-progress-global">الخيارات العمومية قيد الفحص...</string>
@@ -243,7 +244,7 @@
   <string name="login-progress-user-info">التحقق من معلومات المستخدم ل $1</string>
   <string name="login-progress-whitelist">قيد استرجاع القائمة البيضاء للمستخدم...</string>
   <string name="login-remember-password">تذكر كلمة المرور</string>
-  <string name="login-ssl">استخدم HTTPS (يتطلب OpenSSL)</string>
+  <string name="login-ssl" fuzzy="true">استخدم HTTPS (يتطلب OpenSSL)</string>
   <string name="login-fail">فشل تسجيل الدخول على $1</string>
   <string name="login-error-admin">استخدام Huggle في هذا المشروع يحتاج حسابا إداريا.</string>
   <string name="login-error-age" fuzzy="true">استخدام Huggle في هذا المشروع يحتاج حسابا عمره $1 يوما على الأقل.</string>
@@ -332,12 +333,15 @@
   <string name="main-page-patrol">علم كمراجعة</string>
   <string name="main-page-move">انقل...</string>
   <string name="main-page-flag-suspicious-edit">التعليم باعتباره تعديلًا مشبوهًا (هذا الفعل يعطي +1 درجة للمستخدم)</string>
-  <string name="main-page-flag-good-edit">التعليم باعتباره تعديلًا جيدًا (هذا الفعل يعطي -200 درجة للمستخدم)</string>
+  <string name="main-page-flag-good-edit" fuzzy="true">التعليم باعتباره تعديلًا جيدًا (هذا الفعل يعطي -200 درجة للمستخدم)</string>
   <string name="main-page-protect">احم</string>
   <string name="main-page-delete">احذف</string>
   <string name="main-page-load">تحميل</string>
   <string name="main-patrol-not-enabled">لم يتم تمكين المراجعة على $1</string>
   <string name="main-page-restore">استرجاع هذه المراجعة</string>
+  <string name="main-page-watchlist-add">أضف الصفحة لقائمة مراقبة</string>
+  <string name="main-page-tab-close">أغلق اللسان الحالي</string>
+  <string name="main-page-tab-open">افتح لسانًا جديدًا</string>
   <string name="main-user-info">أظهر معلومات المستخدم</string>
   <string name="main-user-ignore">تجاهل</string>
   <string name="main-user-unignore">لا تتجاهل</string>
@@ -357,7 +361,7 @@
   <string name="main-browser-open">عرض هذا في متصفح خارجي</string>
   <string name="main-browser-newedits">أظهر التعديلات الجديدة للصفحة</string>
   <string name="main-browser-newcontribs">أظهر مساهمات المستخدم الجديدة</string>
-  <string name="main-browser-lasttab">لا يمكنني إغلاق هذا التبويب لأنه آخر واحد، يجب أن يكون على الأقل 1 تبويب مفتوح</string>
+  <string name="main-browser-lasttab" fuzzy="true">لا يمكنني إغلاق هذا التبويب لأنه آخر واحد، يجب أن يكون على الأقل 1 تبويب مفتوح</string>
   <string name="main-revert-manual">لا يوجد رمز للاسترجاع، عودة إلى التراجع اليدوي ل $1</string>
   <string name="main-han-disconnect">قطع الاتصال</string>
   <string name="main-han-connect">اتصال</string>
@@ -388,9 +392,12 @@
   <string name="main-revert-newpage">هذه صفحة جديدة; لذلك لا يمكن أن تتراجع عن تعديل فيها; يمكنك مراجعتها أو حذفها.</string>
   <string name="main-restore-text-fail">لا يمكن استرجاع المراجعة; لأنه لا يوجد نص متاح لها</string>
   <string name="main-restore-data-fail" fuzzy="true">غير قادر على استرجاع المراجعة; لأن الويكي لم يقدم أي بيانات عن الإصدار المحدد</string>
+  <string name="main-custom-reason-text">برجاء تقديم سبب التراجع عن هذا التعديل.</string>
+  <string name="main-custom-reason-fail">أنت لم تقدم سببًا صالحًا.</string>
   <string name="main-report-username">أبلغ عن اسم المستخدم</string>
+  <string name="main-statistics-waiting">بانتظار المزيد من التعديلات</string>
   <string name="message-title">رسالة $1</string>
-  <string name="message-help">حدد العنوان أو الملخص او كلاهما. لدى انعدام الملخص سيتم استخدام العنوان؛ لدى انعدام العنوان لن تتم إضافة ترويسة</string>
+  <string name="message-help" fuzzy="true">حدد العنوان أو الملخص او كلاهما. لدى انعدام الملخص سيتم استخدام العنوان؛ لدى انعدام العنوان لن تتم إضافة ترويسة</string>
   <string name="message-subject">العنوان:</string>
   <string name="message-message">الرسالة:</string>
   <string name="message-summary">الملخص:</string>
@@ -477,7 +484,7 @@
   <string name="score-take-whole-no-talk-word">مطابقة (فقط) أي كلمة كاملة في صقحات النقاش</string>
   <string name="score-only-whole-word">مطابقة (فقط) أي كلمة كاملة</string>
   <string name="score-take-any-word">مطابقة أي كلمة تحتوي هذه السلسلة</string>
-  <string name="ssl-is-not-supported">لقد طلبت استخدام SSL ولكن $1 لا يعتمد عليه.</string>
+  <string name="ssl-is-not-supported" fuzzy="true">لقد طلبت استخدام SSL ولكن $1 لا يعتمد عليه.</string>
   <string name="uaa-not-supported">UAA غير متاح</string>
   <string name="uaa-not-supported-text">لوحة الإعلانات \"أسماء مستخدمين تتطلب اهتمام الإداريين\" غير متوفرة في الويكي الخاص بك.</string>
   <string name="uaa-reporting">الإبلاغ عن $1 إلى UAA</string>
@@ -510,7 +517,7 @@
   <string name="tag-summary">تعديل:</string>
   <string name="tag-insertatend">أضف في نهاية الصفحة</string>
   <string name="update-title">يوجد إصدار جديد</string>
-  <string name="update-progress">جارٍ تنزيل الاصدار الجديد...</string>
+  <string name="update-progress" fuzzy="true">جارٍ تنزيل الاصدار الجديد...</string>
   <string name="update-error">فشل تنزيل الاصدار الجديد</string>
   <string name="updater-title">إصدار جديد من هغل متاح</string>
   <string name="updater-update">حدِّث</string>
@@ -536,8 +543,8 @@
   <string name="shortcut-watch" fuzzy="true">إدراج الصفحة المعروضة بقائمة المراقبة</string>
   <string name="shortcut-unwatch" fuzzy="true">إزالة الصفحة المعروضة بقائمة المراقبة</string>
   <string name="shortcut-good">علِّم على التعديل المعروض حاليًا كجيد</string>
-  <string name="shortcut-open-in-huggle">فتح الصفحة المعروضة حاليا</string>
-  <string name="shortcut-open">فتح التعديل المعروض حاليا في المتصفح</string>
+  <string name="shortcut-open-in-huggle" fuzzy="true">فتح الصفحة المعروضة حاليا</string>
+  <string name="shortcut-open" fuzzy="true">فتح التعديل المعروض حاليا في المتصفح</string>
   <string name="shortcut-talk">عرض صفحة نقاش المستخدم الذي فعل هذا التغيير</string>
   <string name="shortcut-revert-agf-1">استرجع آخر مراجعة بافتراض حسن النية</string>
   <string name="shortcut-browser-close-tab">إغلاق علامة تبويب المتصفح</string>
@@ -557,13 +564,13 @@
   <string name="warning-submit">إرسال</string>
   <string name="missing-warning">لا يوجد قالب تحذير مثل هذا $1</string>
   <string name="han-not">شبكة التخريب غير مسموح بها في الخيارات</string>
-  <string name="han-connecting">الاتصال بشبكة مكافحة التخريب في هغل</string>
-  <string name="han-already-connecting">يرجى الانتظار، أنا أتصل بHAN بالفعل</string>
+  <string name="han-connecting" fuzzy="true">الاتصال بشبكة مكافحة التخريب في هغل</string>
+  <string name="han-already-connecting" fuzzy="true">يرجى الانتظار، أنا أتصل بHAN بالفعل</string>
   <string name="han-disconnected">تم قطع اتصالك بHAN</string>
   <string name="error-loggedout">تم الخروج من الحساب، قيد تسجيل الدخول...</string>
   <string name="error-noresponse">لا رد</string>
   <string name="error-pagemissing">الصفحة غير موجودة</string>
-  <string name="error-reloginfail">تعذر تسجيل الدخول، يرجى إعادة تشغيل البرنامج</string>
+  <string name="error-reloginfail" fuzzy="true">تعذر تسجيل الدخول، يرجى إعادة تشغيل البرنامج</string>
   <string name="error-timeout">انتهى وقت الطلب</string>
   <string name="error-unknown">خطأ غير معروف</string>
   <string name="block-done">تم المنع $1</string>
@@ -584,7 +591,7 @@
   <string name="edit-progress">جار تعديل $1...</string>
   <string name="history-fail">تعذر جلب تاريخ $1</string>
   <string name="history-progress">جار جلب تاريخ $1 ($2)</string>
-  <string name="history-work">التراجع عن التعديل الخاص الذي تم إجراؤه في $1</string>
+  <string name="history-work" fuzzy="true">التراجع عن التعديل الخاص الذي تم إجراؤه في $1</string>
   <string name="history-no-item-selected">لم يتم تحديد أي عنصر في جزء التاريخ</string>
   <string name="history-message-revert-title">هل تريد حقًا التراجع عن هذه الرسالة؟</string>
   <string name="history-another-edit" fuzzy="true">أقوم بالتراجع عن تعديل آخر بالفعل; يرجى الانتظار</string>
@@ -651,6 +658,7 @@
   <string name="preferences-watchlist-unwatch">إزالة من قائمة المراقبة</string>
   <string name="preferences-watchlist-preferences">متابعتك على تفضيلات الويكي</string>
   <string name="preferences-watchlist-nochange">لا تفعل شيئًا</string>
+  <string name="preferences-auto-watch-talk">راقب صفحة نقاش المستخدم الذي تلقى تنبيهًا منك</string>
   <string name="fail">فشل</string>
   <string name="request">طلب</string>
   <string name="requesting">طلب</string>
@@ -699,4 +707,5 @@
   <string name="main-revert-type-made-on-talk-page">أُجري في صفحة نقاش</string>
   <string name="main-revert-type-made-white-list">قام به مستخدم في القائمة البيضاء</string>
   <string name="main-revert-warn" fuzzy="true">هذا التعديل $1; لذلك حتى لو كان يبدو أنه تخريب، فإنه قد لا يكون كذلك، هل أنت متأكد من أنك تريد أن تسترجعه؟</string>
+  <string name="tip10">يمكن تغيير معظم الاختصارات في تفضيلاتك.</string>
 </resources>

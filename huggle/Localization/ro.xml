@@ -144,13 +144,13 @@
   <string name="config-friend">Prieten</string>
   <string name="config-userspace">Spațiul utilizator</string>
   <string name="config-talk">Pagină de discuție</string>
-  <string name="config-columns-dynamic">Fă coloanele de liste dinamice (va redimensiona pe baza dimensiunii itemurilor) sau manuale (utilizatorii își pot schimba dimensiunile)</string>
+  <string name="config-columns-dynamic" fuzzy="true">Fă coloanele de liste dinamice (va redimensiona pe baza dimensiunii itemurilor) sau manuale (utilizatorii își pot schimba dimensiunile)</string>
   <string name="config-message-notification">Afișează o notificare când primiți un mesaj nou în pagina de discuții</string>
   <string name="config-warning-api">Afișează avertismentele din query-urile API</string>
   <string name="config-title-diff">Titlul paginii în fiecare diff (text mare care arată doar titlul paginii peste fiecare diff)</string>
   <string name="config-updates">Verifică actualizări</string>
   <string name="config-beta">Verifică versiuni beta</string>
-  <string name="config-html-messages">HAN poate reda mesaje HTML (periculos)</string>
+  <string name="config-html-messages" fuzzy="true">HAN poate reda mesaje HTML (periculos)</string>
   <string name="config-summary-present">Evidențiază sumarul atunci când este prezent, nu când lipsește</string>
   <string name="config-close-without">Închide fără a salva</string>
   <string name="config-confirmmultiple">Confirmă reveniri multiple dacă sunt făcute de același utilizator</string>
@@ -251,7 +251,7 @@
   <string name="login-oauth-notsupported">Această metodă nu este deocamdată suportată</string>
   <string name="login-translate">Traduceți Huggle</string>
   <string name="login-progress-formtitle">Se încarcă...</string>
-  <string name="login-progress-start">Autentific la $1</string>
+  <string name="login-progress-start" fuzzy="true">Autentific la $1</string>
   <string name="login-progress-retrieve-mw">Citesc informații despre MediaWiki pentru $1</string>
   <string name="login-progress-language">Actualizez fișierele de mesaje...</string>
   <string name="login-progress-global">Verific configurația globală...</string>
@@ -262,7 +262,7 @@
   <string name="login-progress-whitelist">Citesc whitelistul utilizatorului...</string>
   <string name="login-remember-password">Reține parola</string>
   <string name="login-remember-password-tooltip" fuzzy="true">Această opțiune va stoca parola într-un text simplu de pe hard disk. Utilizați-l numai dacă sunteți singura persoană care are acces la acest computer.</string>
-  <string name="login-ssl">Folosește HTTPS (necesită OpenSSL)</string>
+  <string name="login-ssl" fuzzy="true">Folosește HTTPS (necesită OpenSSL)</string>
   <string name="login-fail">Autentificare eșuată la $1</string>
   <string name="login-error-admin">Utilizarea lui Huggle pe acest proiect necesită cont de administrator.</string>
   <string name="login-error-age" fuzzy="true">Utilizarea lui Huggle pe acest proiect necesită un cont vechi de cel puțin $1 zile.</string>
@@ -358,7 +358,7 @@
   <string name="main-page-patrol">Marchează ca patrulată</string>
   <string name="main-page-move">Mută...</string>
   <string name="main-page-flag-suspicious-edit">Marchează ca editare suspectă (această acțiune dă scor +1 utilizatorului)</string>
-  <string name="main-page-flag-good-edit">Marchează ca editare bună (această acțiune dă scor -200 utilizatorului)</string>
+  <string name="main-page-flag-good-edit" fuzzy="true">Marchează ca editare bună (această acțiune dă scor -200 utilizatorului)</string>
   <string name="main-page-protect">Protejează</string>
   <string name="main-page-delete">Șterge</string>
   <string name="main-page-load">Încarcă</string>
@@ -383,7 +383,7 @@
   <string name="main-browser-open">Vizualizează într-un browser extern</string>
   <string name="main-browser-newedits">Arată editările noi în pagină</string>
   <string name="main-browser-newcontribs">Arată noile contribuții ale utilizatorului</string>
-  <string name="main-browser-lasttab">Nu pot închide acest tab deoarece este ultimul, trebuie să aveți cel puțin un tab deschis</string>
+  <string name="main-browser-lasttab" fuzzy="true">Nu pot închide acest tab deoarece este ultimul, trebuie să aveți cel puțin un tab deschis</string>
   <string name="main-revert-manual">Nu am token de rollback, recurg la revenirea manuală la $1</string>
   <string name="main-han">HAN</string>
   <string name="main-han-disconnect">Deconectează</string>
@@ -420,7 +420,7 @@
   <string name="main-report-user">Reclamați utilizatorul</string>
   <string name="main-edit-user-talk">Editează pagina de discuți a utilizatorului</string>
   <string name="message-title">Mesaj $1</string>
-  <string name="message-help">Specificați una sau ambele dintre Subiect și Sumar. Dacă nu se specifică sumar, se va folosi subiectul, nu se va adăuga antet.</string>
+  <string name="message-help" fuzzy="true">Specificați una sau ambele dintre Subiect și Sumar. Dacă nu se specifică sumar, se va folosi subiectul, nu se va adăuga antet.</string>
   <string name="message-subject">Subiect:</string>
   <string name="message-message">Mesaj:</string>
   <string name="message-summary">Sumar:</string>
@@ -508,7 +508,7 @@
   <string name="score-take-whole-no-talk-word">Se potrivește doar cu cuvinte întregi pe paginile care nu sunt de discuții</string>
   <string name="score-only-whole-word">Se potrivește doar cu cuvinte întregi</string>
   <string name="score-take-any-word">Se potrivește cu orice cuvânt ce conține acest șir</string>
-  <string name="ssl-is-not-supported">Ați cerut utilizarea de SSL dar $1 nu o suportă.</string>
+  <string name="ssl-is-not-supported" fuzzy="true">Ați cerut utilizarea de SSL dar $1 nu o suportă.</string>
   <string name="ssl-required" fuzzy="true">Serverul web al $1 necesită activarea SSL. Vă rog să porniți SSL și să mai încercați. Dacă nu puteți activa SSL (opțiunea este grizată) s-ar putea să trebuiască să vă instalați biblioteca OpenSSL în sistem.</string>
   <string name="uaa-not-supported">UAA nu este disponibil</string>
   <string name="uaa-not-supported-text">Avizierul de nume de utilizator nu este disponibil pe wikiul dumneavoastră.</string>
@@ -547,7 +547,7 @@
   <string name="tag-summary">Sumar</string>
   <string name="tag-insertatend">Inserează la sfârșitul paginii</string>
   <string name="update-title">Versiune nouă disponibilă</string>
-  <string name="update-progress">Descarc versiunea nouă...</string>
+  <string name="update-progress" fuzzy="true">Descarc versiunea nouă...</string>
   <string name="update-error">Nu am putut descărca versiunea nouă</string>
   <string name="updater-title">Este disponibilă o nouă versiune de Huggle</string>
   <string name="updater-update">Actualizează</string>
@@ -577,8 +577,8 @@
   <string name="shortcut-unwatch" fuzzy="true">Șterge o pagină afișată dintr-o listă de urmărire</string>
   <string name="shortcut-x-warn">Declanșează al N-lea element din meniul de avertizare</string>
   <string name="shortcut-good">Marchează editarea afișată actualmente drept bună</string>
-  <string name="shortcut-open-in-huggle">Deschide pagina afișată actualmente</string>
-  <string name="shortcut-open">Deschide într-un browser editarea afișată actualmente</string>
+  <string name="shortcut-open-in-huggle" fuzzy="true">Deschide pagina afișată actualmente</string>
+  <string name="shortcut-open" fuzzy="true">Deschide într-un browser editarea afișată actualmente</string>
   <string name="shortcut-talk">Afișează o pagină de discuție a utilizatorului care a efectuat această modificare</string>
   <string name="shortcut-revert-agf-1">Revino asupra reviziei presupunând buna credință</string>
   <string name="shortcut-browser-close-tab">Închide un tab de browser</string>
@@ -599,14 +599,14 @@
   <string name="wikiedit-tp-fail">Nu pot citi nivelul de avertisment $1. Nu va fi utilizat pentru scor.</string>
   <string name="missing-warning">Nu există formatul de avertizare $1</string>
   <string name="han-not">Rețeaua de vandalism nu este permisă în opțiuni</string>
-  <string name="han-connecting">Mă conectez la rețeaua antivandalism Huggle</string>
+  <string name="han-connecting" fuzzy="true">Mă conectez la rețeaua antivandalism Huggle</string>
   <string name="han-already-connected">Nu mă conectez la HAN deoarece este deja conectat</string>
-  <string name="han-already-connecting">Vă rog să așteptați, deja mă conectez la HAN</string>
+  <string name="han-already-connecting" fuzzy="true">Vă rog să așteptați, deja mă conectez la HAN</string>
   <string name="han-disconnected">Ați fost deconectat de la HAN</string>
   <string name="error-loggedout">Contul nu mai este autentificat, reautentific...</string>
   <string name="error-noresponse">Niciun răspuns</string>
   <string name="error-pagemissing">Pagina nu există</string>
-  <string name="error-reloginfail">Nu m-am putut reautentifica, încercați să reporniți Huggle</string>
+  <string name="error-reloginfail" fuzzy="true">Nu m-am putut reautentifica, încercați să reporniți Huggle</string>
   <string name="error-timeout">Cererea a expirat</string>
   <string name="error-unknown">Eroare necunoscută</string>
   <string name="block-done">Blocat $1</string>
@@ -628,7 +628,7 @@
   <string name="edit-progress">Editez $1...</string>
   <string name="history-fail">Nu am putut citi istoricul pentru $1</string>
   <string name="history-progress">Citesc istoricul pentru $1 ($2)...</string>
-  <string name="history-work">Anulez propria editare efectuată pe $1</string>
+  <string name="history-work" fuzzy="true">Anulez propria editare efectuată pe $1</string>
   <string name="history-no-item-selected">Nu a fost selectat niciun element în widgetul de istoric</string>
   <string name="history-message-revert-title">Sigur doriți să utilizați acest mesaj?</string>
   <string name="history-another-edit" fuzzy="true">Deja anulez altă editare, vă rog să așteptați</string>
@@ -637,7 +637,7 @@
   <string name="history-message-revert-body">Acesta a fost un mesaj referențiat de un rollback, sunteți sigur că doriți să anulați doar formatul și nu și editarea din pagină? (trebuie să anulați și rollbackul în caz că doriți să reveniți asupra ambelor)</string>
   <string name="history-revert-fail">Nu am putut anula editarea la $1 întrucât am întâlnit următoarea eroare: $2</string>
   <string name="history-undone">Am reușit să anulez editarea la $1</string>
-  <string name="history-retrieve-fail">Nu am putut citi conținutul paginii pentru care am vrut să anulăm propria editare, eroarea a fost: $1</string>
+  <string name="history-retrieve-fail" fuzzy="true">Nu am putut citi conținutul paginii pentru care am vrut să anulăm propria editare, eroarea a fost: $1</string>
   <string name="history-welcome-msg-title">Să trimitem în schimb un mesaj de bun venit?</string>
   <string name="history-welcome-msg">Ați creat această pagină de discuții, deci nu poate fi anulată. Doriți să o înlocuiți cu un format de bun venit?</string>
   <string name="notify-fail">Nu am notificat creatorul paginii $1</string>
@@ -744,7 +744,7 @@
   <string name="login-invalid-register-date" fuzzy="true">Data înregistrării nevalidă întors de mediawiki</string>
   <string name="login-site-info-query-failed">Site-ul info Query pentru $1 a eșuat: $2</string>
   <string name="login-no-site-info-returned">Site-ul a reîntors informațiile spre wiki</string>
-  <string name="loading-main-window">Încărcarea fereastra principală Huggle</string>
+  <string name="loading-main-window" fuzzy="true">Încărcarea fereastra principală Huggle</string>
   <string name="api.php-invalid-response" fuzzy="true">Api.php a răspuns cu text nevalid (serverul web este în jos?), Verificați jurnalul de depanare pentru informații exacte</string>
   <string name="login-username-doesnt-exist">Acest nume de utilizator nu există</string>
   <string name="developer-mode-enter-message" fuzzy="true">Ați intrat în modul de dezvoltator!</string>

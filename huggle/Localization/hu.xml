@@ -126,9 +126,9 @@
   <string name="login-start">Bejelentkezés</string>
   <string name="login-oauth-notsupported">Ez a módszer jelenleg nem támogatott</string>
   <string name="login-translate">A Huggle fordítása</string>
-  <string name="login-progress-start">Bejelentkezés a(z) $1 projektbe</string>
+  <string name="login-progress-start" fuzzy="true">Bejelentkezés a(z) $1 projektbe</string>
   <string name="login-remember-password">Jelszó mejegyzése</string>
-  <string name="login-ssl">HTTPS használata (OpenSSL szükséges)</string>
+  <string name="login-ssl" fuzzy="true">HTTPS használata (OpenSSL szükséges)</string>
   <string name="login-fail">Nem sikerült bejelentkezni a(z) $1 wikire</string>
   <string name="login-error-cancelled">Megszakítva.</string>
   <string name="login-error-invalid">Érvénytelen felhasználónév</string>
@@ -256,7 +256,7 @@
   <string name="tag-parameter">Paraméter</string>
   <string name="tag-summary">Összefoglaló:</string>
   <string name="update-title">Új verzió érhető el</string>
-  <string name="update-progress">Új verzió letöltése...</string>
+  <string name="update-progress" fuzzy="true">Új verzió letöltése...</string>
   <string name="update-error">Nem sikerült letölteni az új verziót</string>
   <string name="updater-title">Új Huggle-verzió érhető el</string>
   <string name="updater-update">Frissítés</string>

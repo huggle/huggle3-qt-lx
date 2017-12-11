@@ -142,13 +142,13 @@
   <string name="config-friend">Arkadaş</string>
   <string name="config-userspace">Kullanıcı alanı</string>
   <string name="config-talk">Tartışma Sayfası</string>
-  <string name="config-columns-dynamic">Liste kolonlarını dinamik (öğelerin büyüklüğüne göre yeniden boyutlandırılacaktır) veya manuel (kullanıcı boyutu değiştirebilecektir) yap</string>
+  <string name="config-columns-dynamic" fuzzy="true">Liste kolonlarını dinamik (öğelerin büyüklüğüne göre yeniden boyutlandırılacaktır) veya manuel (kullanıcı boyutu değiştirebilecektir) yap</string>
   <string name="config-message-notification">Konuşma sayfanızda yeni bir mesaj olduğunda bir bildirim gösterilsin</string>
   <string name="config-warning-api">API sorguları için uyarıları göster</string>
   <string name="config-title-diff">Her değişiklikte sayfa başlığı (her değişikliğin tepesinde sadece bir sayfa başlığı gösteren büyük metin)</string>
   <string name="config-updates">Güncelleştirmeleri denetle</string>
   <string name="config-beta">Beta sürümleri kontrol et</string>
-  <string name="config-html-messages">HAN, HTML mesajlarını render edebilir (tehlikeli)</string>
+  <string name="config-html-messages" fuzzy="true">HAN, HTML mesajlarını render edebilir (tehlikeli)</string>
   <string name="config-summary-present">Kayıp olduğunda değil mevcut olduğunda özeti vurgula</string>
   <string name="config-close-without">Kaydetmeden çıkış yap</string>
   <string name="config-confirmmultiple">Aynı kullanıcı tarafından yapılan çoklu geri almayı onayla</string>
@@ -247,7 +247,7 @@
   <string name="login-start">Giriş</string>
   <string name="login-oauth-notsupported">Bu yöntem şu anda desteklenmiyor</string>
   <string name="login-translate">Huggle\'ı tercüme et</string>
-  <string name="login-progress-start">$1\'e giriş yapılıyor</string>
+  <string name="login-progress-start" fuzzy="true">$1\'e giriş yapılıyor</string>
   <string name="login-progress-retrieve-mw">$1 için MediaWiki hakkında bilgi alınıyor</string>
   <string name="login-progress-language">Mesaj dosyaları güncelleniyor...</string>
   <string name="login-progress-global">Küresel yapılandırma denetleniyor...</string>
@@ -257,7 +257,7 @@
   <string name="login-progress-user-info">$1 için kullanıcı bilgisi denetleniyor</string>
   <string name="login-progress-whitelist">Beyaz liste kullanıcıları yükleniyor...</string>
   <string name="login-remember-password">Parolayı hatırla</string>
-  <string name="login-ssl">HTTPS kullan (OpenSSL gerektirir)</string>
+  <string name="login-ssl" fuzzy="true">HTTPS kullan (OpenSSL gerektirir)</string>
   <string name="login-fail">$1 üzerinde oturum açma başarısız</string>
   <string name="login-error-admin">Bu projede Huggle kullanımı yönetici hesabı gerektirir.</string>
   <string name="login-error-age" fuzzy="true">Bu projede Huggle kullanımı en az $1 günlük hesap gerektirir.</string>
@@ -349,7 +349,7 @@
   <string name="main-page-patrol">Kontrol edilmiş olarak işaretle</string>
   <string name="main-page-move">Taşı...</string>
   <string name="main-page-flag-suspicious-edit">Şüpheli değişiklik olarak işaretle (Kullanıcıya +1 puan verir)</string>
-  <string name="main-page-flag-good-edit">Kaliteli değişiklik olarak işaretle (Kullanıcıdan 200 puan siler)</string>
+  <string name="main-page-flag-good-edit" fuzzy="true">Kaliteli değişiklik olarak işaretle (Kullanıcıdan 200 puan siler)</string>
   <string name="main-page-protect">Koru</string>
   <string name="main-page-delete">Sil</string>
   <string name="main-page-load">Yükle</string>
@@ -374,7 +374,7 @@
   <string name="main-browser-open">Harici tarayıcıda görüntüle</string>
   <string name="main-browser-newedits">Sayfaya yapılan yeni değişiklikleri göster</string>
   <string name="main-browser-newcontribs">Kullanıcının yeni katkılarını göster</string>
-  <string name="main-browser-lasttab">En az bir kulakçık açık olmalı, bu yüzden bu kulakçığı kapatamıyorum.</string>
+  <string name="main-browser-lasttab" fuzzy="true">En az bir kulakçık açık olmalı, bu yüzden bu kulakçığı kapatamıyorum.</string>
   <string name="main-revert-manual">Değişiklik için geri alma başarısız. $1 elle düzenmeli</string>
   <string name="main-han">HAN</string>
   <string name="main-han-disconnect">Bağlantıyı kes</string>
@@ -407,7 +407,7 @@
   <string name="main-restore-text-fail">Revizyon geri getirilemiyor çünkü kullanılabilir metin yok</string>
   <string name="main-restore-data-fail" fuzzy="true">Revizyon geri yüklemek mümkün değil çünkü wiki seçili sürümü için veri sağlamadı.</string>
   <string name="message-title">Mesaj $1</string>
-  <string name="message-help">Bir konu ve/veya özet belirtin. Özet girilmemişse konu kullanılacak, o da yoksa başlık eklenmeyecek.</string>
+  <string name="message-help" fuzzy="true">Bir konu ve/veya özet belirtin. Özet girilmemişse konu kullanılacak, o da yoksa başlık eklenmeyecek.</string>
   <string name="message-subject">Konu:</string>
   <string name="message-message">Mesaj:</string>
   <string name="message-summary">Özet:</string>
@@ -495,7 +495,7 @@
   <string name="score-take-whole-no-talk-word">Tartışma sayfaları dışındaki sayfalara tüm sayfalarla eşleştirme</string>
   <string name="score-only-whole-word">Yalnızca tam sözcükleri eşleştir</string>
   <string name="score-take-any-word">Bu şartlara uyan herhangi bir kelimeyle eşleştir</string>
-  <string name="ssl-is-not-supported">SSL kullanmayı talep ettiniz ancak $1 bunu desteklemiyor.</string>
+  <string name="ssl-is-not-supported" fuzzy="true">SSL kullanmayı talep ettiniz ancak $1 bunu desteklemiyor.</string>
   <string name="ssl-required" fuzzy="true">$1 internet sunucusu SSL\'ın etkinleştirilmesini gerektiriyor. SSL\'i etkinleştirip tekrar deneyin. SSL\'i etkinleştiremiyorsanız (seçenek gri renkte ise) açık ssl kütüphanelerini sisteminize yüklemeniz gerekebilir.</string>
   <string name="uaa-not-supported">UAA mevcut değil</string>
   <string name="uaa-not-supported-text">\"Kullanıcı adları için hizmetli uyarı bildirimi\" tahtası Viki\'nizde kullanıma açık değildir.</string>
@@ -533,7 +533,7 @@
   <string name="tag-summary">Özet:</string>
   <string name="tag-insertatend">Sayfanın sonuna ekle</string>
   <string name="update-title">Yeni sürüm mevcut</string>
-  <string name="update-progress">Yeni sürüm indiriliyor...</string>
+  <string name="update-progress" fuzzy="true">Yeni sürüm indiriliyor...</string>
   <string name="update-error">Yeni sürümü indirme başarısız</string>
   <string name="updater-title">Huggle\'ın yeni sürümü mevcut</string>
   <string name="updater-update">Güncelle</string>
@@ -563,8 +563,8 @@
   <string name="shortcut-unwatch" fuzzy="true">Gösterilen sayfayı izleme listesinden çıkartır</string>
   <string name="shortcut-x-warn">Uyarı menüsündeki N inci öğeyi tetikle</string>
   <string name="shortcut-good">Görüntülenen değişikliği uygun olarak işaretle</string>
-  <string name="shortcut-open-in-huggle">Şu anda görüntülenen sayfayı aç</string>
-  <string name="shortcut-open">Görüntülenen değişikliği tarayıcıda aç</string>
+  <string name="shortcut-open-in-huggle" fuzzy="true">Şu anda görüntülenen sayfayı aç</string>
+  <string name="shortcut-open" fuzzy="true">Görüntülenen değişikliği tarayıcıda aç</string>
   <string name="shortcut-talk">Bu değişikliği gerçekleştiren kullanıcının mesaj sayfasını görüntüle</string>
   <string name="shortcut-revert-agf-1">İyi niyetli olduğunu düşünerek son sürümü geri getir</string>
   <string name="shortcut-browser-close-tab">Tarayıcı sekmesini kapat</string>
@@ -585,14 +585,14 @@
   <string name="wikiedit-tp-fail">$1 uyarı seviyesi çağrılamadı. Puanlama için kullanılamayacaktır.</string>
   <string name="missing-warning">Böyle bir uyarı şablonu yok $1</string>
   <string name="han-not">Vandalizm ağı seçeneklerde devredışı</string>
-  <string name="han-connecting">Huggle anti-vandalizm ağına bağlanılıyor</string>
+  <string name="han-connecting" fuzzy="true">Huggle anti-vandalizm ağına bağlanılıyor</string>
   <string name="han-already-connected">HAN\'a zaten bağlı</string>
-  <string name="han-already-connecting">Lütfen bekleyin, zaten HAN\'a bağlanmaya çalışıyorum.</string>
+  <string name="han-already-connecting" fuzzy="true">Lütfen bekleyin, zaten HAN\'a bağlanmaya çalışıyorum.</string>
   <string name="han-disconnected">HAN ile bağlantınız kesildi</string>
   <string name="error-loggedout">Hesaptan çıkış yapılmış, tekrar bağlanılıyor...</string>
   <string name="error-noresponse">Yanıt yok</string>
   <string name="error-pagemissing">Bu sayfa mevcut değil</string>
-  <string name="error-reloginfail">Tekrar bağlanma başarısız, Huggle\'ı yeniden başlatmayı deneyin</string>
+  <string name="error-reloginfail" fuzzy="true">Tekrar bağlanma başarısız, Huggle\'ı yeniden başlatmayı deneyin</string>
   <string name="error-timeout">İstek zaman aşımına uğradı</string>
   <string name="error-unknown">Bilinmeyen hata</string>
   <string name="block-done">Engellendi: $1</string>
@@ -614,7 +614,7 @@
   <string name="edit-progress">$1 değiştiriliyor...</string>
   <string name="history-fail">$1\'in geçmişine erişilemedi</string>
   <string name="history-progress">$1\'in ($2) geçmişi alınıyor...</string>
-  <string name="history-work">$1 üzerinde yapılan değişiklik geri alınıyor</string>
+  <string name="history-work" fuzzy="true">$1 üzerinde yapılan değişiklik geri alınıyor</string>
   <string name="history-no-item-selected">Geçmiş aletçiğinde herhangi bir öğe seçili değil</string>
   <string name="history-message-revert-title">Sadece bu iletiyi geri almak istediğinize emin misiniz?</string>
   <string name="history-another-edit" fuzzy="true">Başka bir düzenlemeyi açıyorum, lütfen bekleyin</string>
@@ -623,7 +623,7 @@
   <string name="history-message-revert-body">Bu bir geri döndürme tarafından referans gösterilen bir mesajdı, sadece şablonu geri almak istediğinize ve sayfa üzerindeki değişikliğinizi bile geri almak istemediğinize emin misiniz? (İkisini de geri almak istiyorsanız geri döndürmeyi geri almalısınız)</string>
   <string name="history-revert-fail">$1 üzerinde değişikliğiniz şu hatayla karşılaşılmasından dolayı geri alınamadı: $2</string>
   <string name="history-undone">$1 üzerindeki değişiklik başarıyla geri alındı.</string>
-  <string name="history-retrieve-fail">Kendi değişikliğini geri almak için istenen sayfa içeriğine erişilemedi. Hata: $1</string>
+  <string name="history-retrieve-fail" fuzzy="true">Kendi değişikliğini geri almak için istenen sayfa içeriğine erişilemedi. Hata: $1</string>
   <string name="history-welcome-msg-title">Bunun yerine \"Hoşgeldin\" mesajı gönderilsin mi?</string>
   <string name="history-welcome-msg">Bu tartışma sayfasını yarattnız artık, geri alınması mümkün değil. Sayfa içeriğini \"Hoşgeldin\" şablonuyla değiştirmek ister misiniz?</string>
   <string name="notify-fail">$1\'in yaratıcısına bildirim gönderilmedi</string>
