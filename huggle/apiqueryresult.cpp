@@ -9,10 +9,10 @@
 //GNU General Public License for more details.
 
 #include "apiqueryresult.hpp"
+#include <QtXml>
 #include "configuration.hpp"
 #include "exception.hpp"
 #include "syslog.hpp"
-#include <QtXml>
 
 using namespace Huggle;
 

@@ -8,9 +8,12 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "localization.hpp"
+#include "definitions.hpp"
 #include <QtXml>
 #include <QFile>
+// localizations.hpp must be included after global headers
+// there is some collision in _l macro on OSX
+#include "localization.hpp"
 #include "exception.hpp"
 #include "configuration.hpp"
 #include "generic.hpp"

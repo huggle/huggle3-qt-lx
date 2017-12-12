@@ -9,6 +9,12 @@
 //GNU General Public License for more details.
 
 #include "preferences.hpp"
+#include <QMessageBox>
+#include <QLabel>
+#include <QSpinBox>
+#include <QFile>
+#include <QDir>
+#include <QMenu>
 #include "core.hpp"
 #include "configuration.hpp"
 #include "exception.hpp"
@@ -21,12 +27,6 @@
 #include "resources.hpp"
 #include "mainwindow.hpp"
 #include "ui_preferences.h"
-#include <QMessageBox>
-#include <QLabel>
-#include <QSpinBox>
-#include <QFile>
-#include <QDir>
-#include <QMenu>
 
 using namespace Huggle;
 

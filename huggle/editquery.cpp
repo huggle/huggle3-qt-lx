@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "editquery.hpp"
+#include <QUrl>
 #include "apiqueryresult.hpp"
 #include "configuration.hpp"
 #include "exception.hpp"
@@ -23,7 +24,6 @@
 #include "wikipage.hpp"
 #include "wikiutil.hpp"
 #include "wikisite.hpp"
-#include <QUrl>
 
 using namespace Huggle;
 

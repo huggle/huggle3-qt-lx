@@ -8,11 +8,11 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
+#include "query.hpp"
+#include <QNetworkAccessManager>
 #include "exception.hpp"
 #include "gc.hpp"
 #include "syslog.hpp"
-#include "query.hpp"
-#include <QNetworkAccessManager>
 
 using namespace Huggle;
 
