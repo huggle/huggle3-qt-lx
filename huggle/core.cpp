@@ -605,7 +605,7 @@ void Core::LoadLocalizations()
     Localizations::HuggleLocalizations->LocalInit("ja"); // Japanese
     Localizations::HuggleLocalizations->LocalInit("ka"); // ?
     Localizations::HuggleLocalizations->LocalInit("kk-cyrl");
-    Localizations::HuggleLocalizations->LocalInit("km"); // Khmer
+    // Localizations::HuggleLocalizations->LocalInit("km"); // Khmer
     Localizations::HuggleLocalizations->LocalInit("kn"); // Kannada
     Localizations::HuggleLocalizations->LocalInit("ko"); // Korean
     Localizations::HuggleLocalizations->LocalInit("ksh");
