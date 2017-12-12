@@ -8,15 +8,15 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
+#include "processlist.hpp"
+#include <QMenu>
+#include <QClipboard>
 #include "exception.hpp"
 #include "core.hpp"
 #include "configuration.hpp"
 #include "localization.hpp"
 #include "huggleprofiler.hpp"
-#include "processlist.hpp"
 #include "ui_processlist.h"
-#include <QMenu>
-#include <QClipboard>
 
 using namespace Huggle;
 

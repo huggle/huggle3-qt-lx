@@ -9,6 +9,8 @@
 //GNU General Public License for more details.
 
 #include "updateform.hpp"
+#include <QtXml>
+#include <QFile>
 #include <QDesktopServices>
 #if QT_VERSION >= 0x050000
 #include <QTemporaryDir>
@@ -30,8 +32,6 @@
 #include "syslog.hpp"
 #include "ui_updateform.h"
 #include "webserverquery.hpp"
-#include <QtXml>
-#include <QFile>
 
 #define LOG Syslog::HuggleLogs->Log
 
