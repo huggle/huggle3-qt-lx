@@ -599,15 +599,18 @@ void Core::LoadLocalizations()
     Localizations::HuggleLocalizations->LocalInit("gu");
     Localizations::HuggleLocalizations->LocalInit("he"); // Hebrew
     Localizations::HuggleLocalizations->LocalInit("hi"); // Hindi
+    Localizations::HuggleLocalizations->LocalInit("hu"); // Hungarian
+    Localizations::HuggleLocalizations->LocalInit("id"); // Indonesian
     Localizations::HuggleLocalizations->LocalInit("it"); // Italian
     Localizations::HuggleLocalizations->LocalInit("ja"); // Japanese
     Localizations::HuggleLocalizations->LocalInit("ka"); // ?
     Localizations::HuggleLocalizations->LocalInit("kk-cyrl");
-    //Localizations::HuggleLocalizations->LocalInit("km"); // Khmer
+    // Localizations::HuggleLocalizations->LocalInit("km"); // Khmer
     Localizations::HuggleLocalizations->LocalInit("kn"); // Kannada
     Localizations::HuggleLocalizations->LocalInit("ko"); // Korean
     Localizations::HuggleLocalizations->LocalInit("ksh");
     Localizations::HuggleLocalizations->LocalInit("lb"); // Lebanon
+    Localizations::HuggleLocalizations->LocalInit("lt"); // Lithuanian
     Localizations::HuggleLocalizations->LocalInit("mk"); // Macedonian
     Localizations::HuggleLocalizations->LocalInit("ml"); // Malayalam
     Localizations::HuggleLocalizations->LocalInit("mr"); // Marathi
