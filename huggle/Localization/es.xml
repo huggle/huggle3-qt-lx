@@ -146,13 +146,13 @@
   <string name="config-friend">Amigo</string>
   <string name="config-userspace">Espacio de usuario</string>
   <string name="config-talk">Página de discusión</string>
-  <string name="config-columns-dynamic" fuzzy="true">Hacer que las columnas de listas dinámicas (cambiará de tamaño basado en el tamaño de los elementos) o manual (el usuario puede cambiar su tamaño)</string>
+  <string name="config-columns-dynamic">Configurar las columnas de las listas como dinámicas (cambiarán de tamaño en función del tamaño de los elementos) o manuales (el usuario puede cambiar su tamaño)</string>
   <string name="config-message-notification">Mostrar una notificación cuando reciba un nuevo mensaje en tu página de discusión</string>
   <string name="config-warning-api">Mostrar advertencia cuando se hagan consultas API</string>
   <string name="config-title-diff">Título de la página en cada diff (texto de gran tamaño que muestra el título de la página en la parte superior de cada diff)</string>
   <string name="config-updates">Buscar actualizaciones</string>
   <string name="config-beta">Buscar versiones de prueba</string>
-  <string name="config-html-messages" fuzzy="true">Permitir a la HAN (Huggle Antivandalism Network) mostrar mensajes en formato HTML (peligroso)</string>
+  <string name="config-html-messages">Permitir a la HAN mostrar mensajes en HTML (ALERTA: potencialmente peligroso)</string>
   <string name="config-summary-present">Resaltar resumen cuando se presente en lugar de cuando hace falta</string>
   <string name="config-close-without">Cerrar sin guardar</string>
   <string name="config-confirmmultiple">Confirmar reversiones de las ediciones de un mismo usuario</string>
@@ -173,7 +173,7 @@
   <string name="config-templatetext">Texto</string>
   <string name="config-template">Plantilla</string>
   <string name="config-promptforblock">Preguntar si se quiere bloquear cuando se advierte a un usuario con advertencia final</string>
-  <string name="config-blockreason">Razón de bloqueo por defecto</string>
+  <string name="config-blockreason">Motivo de bloqueo predeterminado</string>
   <string name="config-blocktime">Duración de bloqueo predeterminada</string>
   <string name="config-blocktimeanon">usuarios anónimos</string>
   <string name="config-blocktimereg">usuarios registrados</string>
@@ -225,7 +225,7 @@
   <string name="irc-switch-rc">El cambio a la wiki RC alimentación</string>
   <string name="login-old">Consultando configuración de usuario de antigua localización</string>
   <string name="login-intro">Elige un proyecto y escribe tu nombre de usuario y tu contraseña. También puedes acceder a múltiples proyectos haciendo clic en el botón \"Proyectos\".</string>
-  <string name="invalid-bot-user-name" fuzzy="true">Esto no es un nombre de bot válido. Ejemplo de nombre válido: Jimbo@Huggle</string>
+  <string name="invalid-bot-user-name">Este no es un nombre válido para un robot. Ejemplo de nombre válido: Jimbo@Huggle</string>
   <string name="login-tab-botp">Contraseña de bot</string>
   <string name="login-tab-login">Normal</string>
   <string name="login-reload-tool-tip">Volver a cargar la lista de proyectos disponibles para su uso en Huggle. Esto es necesario si quieres usar Huggle con un proyecto en que recién se ha permitido su utilización.</string>
@@ -252,14 +252,14 @@
   <string name="login-failed-edit">Falló el acceso a $1: no tienes la cantidad mínima de ediciones en este proyecto.</string>
   <string name="login-retrieving-info">Obteniendo la información del usuario en $1</string>
   <string name="login-password-empty">No se proporcionó la contraseña</string>
-  <string name="login-fail-wrong-name" fuzzy="true">No se proporcionó ningún nombre de usuario para acceder</string>
+  <string name="login-fail-wrong-name">No se proporcionó ningún nombre de usuario para acceder</string>
   <string name="login-api">ERROR: api.php respondió con resultado desconocido: $1</string>
   <string name="login-abort">Interrumpir</string>
   <string name="login-start">Ingresar</string>
   <string name="login-oauth-notsupported">En este momento no se admite este método</string>
   <string name="login-translate">Traducir Huggle</string>
   <string name="login-progress-formtitle">Cargando…</string>
-  <string name="login-progress-start" fuzzy="true">Accediendo a $1</string>
+  <string name="login-progress-start">Accediendo a $1</string>
   <string name="login-progress-retrieve-mw">Consultando información sobre MediaWiki para $1</string>
   <string name="login-progress-language">Actualizando archivos de mensaje...</string>
   <string name="login-progress-global">Revisando configuración global...</string>
@@ -271,7 +271,7 @@
   <string name="login-progress-whitelist">Obteniendo lista blanca de usuarios...</string>
   <string name="login-remember-password">Recordar contraseña</string>
   <string name="login-remember-password-tooltip">Esta opción almacenará tu contraseña en texto plano en tu disco duro. Úsala sólo si eres la única persona que accede a esta computadora.</string>
-  <string name="login-ssl" fuzzy="true">Utilizar HTTPS (requiere OpenSSL)</string>
+  <string name="login-ssl">Utilizar HTTPS para acceder (necesita OpenSSL)</string>
   <string name="login-fail">Falló el inicio de sesión en $1</string>
   <string name="login-error-admin">Se necesita cuenta de administrador para usar Huggle en este proyecto.</string>
   <string name="login-error-age" fuzzy="true">Se necesita una cuenta con al menos $1 días de antigüedad para usar Huggle en este proyecto.</string>
@@ -370,7 +370,7 @@
   <string name="main-page-display">Mostrar esta página</string>
   <string name="main-page-patrol">Marcar como verificado</string>
   <string name="main-page-move">Trasladar...</string>
-  <string name="main-page-flag-suspicious-edit">Marcar cono edición sospechosa (esta acción da +1 de puntuación para el usuario)</string>
+  <string name="main-page-flag-suspicious-edit">Marcar como edición sospechosa (esta acción da +1 de puntuación para el usuario)</string>
   <string name="main-page-flag-good-edit" fuzzy="true">Marcar como edición buena (esta acción da -200 de puntuación al usuario)</string>
   <string name="main-page-protect">Proteger</string>
   <string name="main-page-delete">Borrar</string>
@@ -402,7 +402,7 @@
   <string name="main-browser-open">Ver esto en un navegador externo</string>
   <string name="main-browser-newedits">Mostrar nuevas ediciones a la página</string>
   <string name="main-browser-newcontribs">Mostrar nuevas contribuciones del usuario</string>
-  <string name="main-browser-lasttab" fuzzy="true">No puedo cerrar esta ficha porque es pasado, usted debe tener al menos 1 pestaña abierta</string>
+  <string name="main-browser-lasttab">No se puede cerrar esta pestaña porque es la última. Debes tener al menos una pestaña abierta</string>
   <string name="main-revert-manual">Rollback No token, el retroceso en el manual de volver de $1</string>
   <string name="main-han">HAN</string>
   <string name="main-han-disconnect">Desconectar</string>
@@ -444,7 +444,7 @@
   <string name="main-report-user">Denunciar usuario</string>
   <string name="main-edit-user-talk">Editar discusión de usuario</string>
   <string name="main-statistics-paused">en pausa</string>
-  <string name="main-statistics-waiting" fuzzy="true">en espera de más ediciones</string>
+  <string name="main-statistics-waiting">En espera de más ediciones</string>
   <string name="main-statistics-none">ninguno</string>
   <string name="main-tab-welcome-title">Página de bienvenida</string>
   <string name="message-title">Enviar mensaje a $1</string>
@@ -536,8 +536,8 @@
   <string name="score-take-whole-no-talk-word">Coincide solo palabras completas en páginas que no sea de discusión</string>
   <string name="score-only-whole-word">Coincidir solo con palabras completas</string>
   <string name="score-take-any-word">Coincide con cualquier palabra que contenga esta cadena</string>
-  <string name="ssl-is-not-supported" fuzzy="true">Has solicitado el uso de SSL, pero $1 no lo admite.</string>
-  <string name="ssl-required" fuzzy="true">El servidor web de $1 necesita SSL para activarse. Activa SSL e inténtalo de nuevo. Si no es posible activar SSL (la opción está desactivada), es posible que necesites instalar las bibliotecas de OpenSSL en el sistema.</string>
+  <string name="ssl-is-not-supported">Has solicitado el uso de SSL, pero $1 no lo admite.</string>
+  <string name="ssl-required">El servidor web de $1 necesita SSL para activarse. Activa SSL e inténtalo de nuevo. Si no es posible activar SSL (por estar desactivada la opción), es posible que necesites instalar las bibliotecas de OpenSSL en el sistema.</string>
   <string name="uaa-not-supported">UAA no está disponible</string>
   <string name="uaa-not-supported-text">Esta función no está disponible en tu proyecto.</string>
   <string name="uaa-reporting">Denunciando a $1 en UAA</string>
@@ -575,7 +575,7 @@
   <string name="tag-summary">Resumen:</string>
   <string name="tag-insertatend">Colocar al final de la página</string>
   <string name="update-title">Nueva versión disponible</string>
-  <string name="update-progress" fuzzy="true">Descargando nueva versión...</string>
+  <string name="update-progress">Descargando la versión nueva; espera…</string>
   <string name="update-error">No se ha podido descargar la versión nueva</string>
   <string name="updater-title">Hay una versión más reciente de Huggle</string>
   <string name="updater-update">Actualizar</string>
@@ -607,8 +607,8 @@
   <string name="shortcut-unwatch" fuzzy="true">Elimina una página que se muestra a partir de una lista de seguimiento</string>
   <string name="shortcut-x-warn">Gatillo N-ésimo elemento en advertir menú</string>
   <string name="shortcut-good">Marcar como buena la edición que se muestra actualmente</string>
-  <string name="shortcut-open-in-huggle" fuzzy="true">Abrir la página que se muestra actualmente</string>
-  <string name="shortcut-open" fuzzy="true">Abrir en un navegador la edición que se muestra actualmente</string>
+  <string name="shortcut-open-in-huggle">Abre la página que se muestra actualmente</string>
+  <string name="shortcut-open">Abre en un navegador la edición que se muestra actualmente</string>
   <string name="shortcut-talk">Mostrar una página de discusión del usuario que hizo este cambio</string>
   <string name="shortcut-revert-agf-1">Revertir la última revisión asumiendo buena fe</string>
   <string name="shortcut-browser-close-tab">Cerrar una pestaña del navegador</string>
@@ -630,16 +630,16 @@
   <string name="wikiedit-tp-fail">No se puede recuperar de$1 nivel de advertencia. No va a ser utilizado para la puntuación</string>
   <string name="missing-warning">No hay tal advertencia de la plantilla de $1</string>
   <string name="han-not">Vandalismo de la red no está permitido en las opciones de</string>
-  <string name="han-connecting" fuzzy="true">Conectando con la red antivandalismo de Huggle</string>
+  <string name="han-connecting">Conectando con la red antivandalismo de Huggle</string>
   <string name="han-already-connected">No se conecta a HAN, porque ya está conectado</string>
-  <string name="han-already-connecting" fuzzy="true">Por favor espera, ya estoy intentando conectarme a la HAN</string>
+  <string name="han-already-connecting">Espera un momento; ya se está conectando con HAN…</string>
   <string name="han-disconnected">Has sido desconectado de la HAN</string>
   <string name="han-network">Red</string>
   <string name="han-send">Enviar</string>
   <string name="error-loggedout">La cuenta se ha deslogueado, volviendo a iniciar sesión...</string>
   <string name="error-noresponse">Sin respuesta</string>
   <string name="error-pagemissing">La página no existe</string>
-  <string name="error-reloginfail" fuzzy="true">No se pudo iniciar una nueva sesión, prueba reiniciando Huggle</string>
+  <string name="error-reloginfail">No se pudo acceder de nuevo. Prueba a reiniciar Huggle</string>
   <string name="error-timeout">El pedido excedió el tiempo de espera</string>
   <string name="error-unknown">Error desconocido</string>
   <string name="block-done">\'$1\' fue bloqueado</string>
@@ -661,16 +661,16 @@
   <string name="edit-progress">Editando $1...</string>
   <string name="history-fail">No se pudo obtener el historial de $1</string>
   <string name="history-progress">Obteniendo el historial de $1 ($2)…</string>
-  <string name="history-work" fuzzy="true">Deshaciendo edición propia hecha en $1</string>
+  <string name="history-work">Deshaciendo edición propia hecha en $1</string>
   <string name="history-no-item-selected">No se selecciona ningún elemento en la historia widget</string>
   <string name="history-message-revert-title">¿Realmente quieres deshacer solo este mensaje?</string>
-  <string name="history-another-edit" fuzzy="true">Se está deshaciendo otra edición. Espera</string>
+  <string name="history-another-edit">Se está deshaciendo otra edición. Espera…</string>
   <string name="history-not-found">No hay nada que deshacer</string>
   <string name="history-already-done">Esto ya se deshizo</string>
   <string name="history-message-revert-body">Este fue un mensaje que se hace referencia por un rollback, son usted seguro de que quiere deshacer de plantilla sólo y ni siquiera su edición a la página? (usted necesita para deshacer la operación de deshacer en caso de querer revertir tanto de estos)</string>
   <string name="history-revert-fail">Incapaz de deshacer tu edición a $1 como se encontró el siguiente error: $2</string>
   <string name="history-undone">Se deshizo con éxito la edición a $1</string>
-  <string name="history-retrieve-fail" fuzzy="true">No se puede recuperar el contenido de la página quisimos deshacer propia edición, el error fue de: $1</string>
+  <string name="history-retrieve-fail">No se puede recuperar el contenido de la página cuya edición propia se iba a deshacer. El error emitido es: $1</string>
   <string name="history-welcome-msg-title">¿Prefieres mandar un mensaje de bienvenida en su lugar?</string>
   <string name="history-welcome-msg">Tu has creado esta página de discusión, por lo que no puede deshacerse. ¿Quieres reemplazarla con una plantilla de bienvenida?</string>
   <string name="notify-fail">No se pudo avisar al creador de $1</string>
@@ -739,7 +739,7 @@
   <string name="preferences-watchlist-unwatch">Quitar de la lista de seguimiento</string>
   <string name="preferences-watchlist-preferences">Seguir tus preferencias en el wiki</string>
   <string name="preferences-watchlist-nochange">No hacer nada</string>
-  <string name="preferences-auto-watch-talk" fuzzy="true">Vigilar página de discusión del usuario que reciba una advertencia tuya</string>
+  <string name="preferences-auto-watch-talk">Vigilar página de discusión del usuario que reciba una advertencia tuya</string>
   <string name="preferences-sounds-enable-queue" fuzzy="true">Reproducir un sonido cuando se añade un nuevo elemento a la cola</string>
   <string name="preferences-sounds-enable-irc">Reproducir un sonido cuando se recibe un mensaje en HAN</string>
   <string name="preferences-sounds-minimal-score">Puntuación de edición mínima para la notificación</string>
@@ -781,11 +781,11 @@
   <string name="login-invalid-register-date">MediaWiki devolvió una fecha de registro no válida</string>
   <string name="login-site-info-query-failed">La información del sitio de consulta para $1 ha fallado: $2</string>
   <string name="login-no-site-info-returned">No hay información del sitio fue devuelto por este wiki</string>
-  <string name="loading-main-window" fuzzy="true">Cargando la ventana principal de Huggle</string>
+  <string name="loading-main-window">Cargando la ventana principal de Huggle…</string>
   <string name="api.php-invalid-response" fuzzy="true">El api.php respondió con inválida texto (servidor web está abajo?), por favor, compruebe de registro de depuración para obtener una información precisa</string>
   <string name="login-username-doesnt-exist">Este nombre de usuario no existe</string>
   <string name="developer-mode-enter-title">Whee</string>
-  <string name="developer-mode-enter-message" fuzzy="true">¡Ingresaste a un modo de desarrollador!</string>
+  <string name="developer-mode-enter-message">Ingresaste en el modo de desarrollo.</string>
   <string name="unimplemented" fuzzy="true">Esta característica aún no se ha implementado</string>
   <string name="unknown-item">Elemento desconocido</string>
   <string name="title-multiple-projects">varios proyectos ($1)</string>
@@ -805,5 +805,6 @@
   <string name="query-protected-link">Enlace protegido</string>
   <string name="queue-empty-title">Está vacío</string>
   <string name="protip">Recomendación</string>
+  <string name="tip7">Puedes crear tus propios filtros de cola personalizados en Preferencias. Quedarán almacenados en tu página wiki de configuración.</string>
   <string name="tip14" fuzzy="true">¿Quieres chatear con otros usuarios activos de Huggle que están usando el programa ahora? Si están en línea, los verás en la ventana de \"Red\".</string>
 </resources>

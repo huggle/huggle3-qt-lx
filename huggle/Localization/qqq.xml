@@ -72,7 +72,7 @@
   <string name="block-blockloglabel">Log of blocks</string>
   <string name="block-warnloglabel">List of warnings\n{{Identical|Warning}}</string>
   <string name="block-sharedipwarning">Information that $1 is tagged as a shared or dynamic IP address.</string>
-  <string name="block-rangeblockwarning">Shown when user start a block of user who is already blocked by another block</string>
+  <string name="block-rangeblockwarning">Shown when user starts a block of user who is already blocked by another block</string>
   <string name="block-token-1">Shown in a logs or progress bar</string>
   <string name="block-fail">Message that is displayed when it fails to block a user, $1 contains a reason</string>
   <string name="block-token-e1">Displayed when it fails to get a token while blocking a user, $1 is error message</string>
@@ -97,6 +97,7 @@
   <string name="config-shortcutaction">{{Identical|Action}}</string>
   <string name="config-noshortcut">{{Identical|None}}</string>
   <string name="config-defaults">{{Identical|Default}}</string>
+  <string name="config-minor">To mark an edit as minor</string>
   <string name="config-revert">{{Identical|Revert}}</string>
   <string name="config-skip">{{Identical|Skip}}</string>
   <string name="config-last-revision"/>
@@ -148,6 +149,8 @@
   <string name="login-failed-autoconfirm-rights">Parameters:\n* $1 - sitename</string>
   <string name="login-failed-edit">Parameters:\n* $1 - sitename</string>
   <string name="login-retrieving-info">Parameters:\n* $1 - sitename</string>
+  <string name="login-password-empty">Error message on login to inform the user that no password was entered.</string>
+  <string name="login-fail-wrong-name">Error message on login to inform the user that no username was entered.</string>
   <string name="login-api">Used as error message. Parameters:\n* $1 - unknown result. Known results are: \"Success\", \"EmptyPass\", \"WrongPass\", \"NoName\"</string>
   <string name="login-abort">{{Identical|Abort}}</string>
   <string name="login-start">{{Identical|Log in}}</string>
@@ -165,15 +168,21 @@
   <string name="login-progress-whitelist">{{Related|Login-progress}}</string>
   <string name="login-ssl">Used as label for the checkbox.</string>
   <string name="login-fail">Parameters:\n* $1 - sitename</string>
+  <string name="login-error-admin">Login error message to inform the user that Huggle can be used on the current project only by an administrator account.</string>
+  <string name="login-error-age">Login error message to inform the user that Huggle can be used on the current project only by users whose accounts were created before a certain number of days, where $1 is the number of days.</string>
   <string name="login-error-approval">Unused at this time.\n\nParameters:\n* $1 - project name</string>
   <string name="login-error-cancelled">{{Identical|Cancelled}}</string>
   <string name="login-error-config">Parameters:\n* $1 - sitename\n* $2 - error message, or reason</string>
+  <string name="login-error-count">Login error message to inform the user that they should have at least a certain number of edits to use Huggle on the current project, where $1 is the number of edits required.</string>
   <string name="login-error-disabled">Unused at this time.\n\nParameters:\n* $1 - ...</string>
   <string name="login-error-global">Followed by a colon and a error message.</string>
   <string name="login-error-invalid">{{Identical|Invalid username}}</string>
   <string name="login-error-noconfig">Unused at this time.\n\nParameters:\n* $1 - project name</string>
+  <string name="login-error-nouser">Error message on login to inform that the username entered does not belong to any known account</string>
+  <string name="login-error-password">Error message on login to inform the user that the password entered was incorrect</string>
   <string name="login-error-projdisabled">Parameters:\n* $1 - sitename</string>
   <string name="login-error-unknown">Parameters:\n* $1 - sitename</string>
+  <string name="login-error-version">Login error message to inform the user that their version of Huggle is out of date, and to update their software to the latest version</string>
   <string name="login-error-whitelist">Unused at this time.\n\nParameters:\n* $1 - ...</string>
   <string name="main-restoring-slap">Used as log entry.</string>
   <string name="main-page">{{Identical|Page}}</string>

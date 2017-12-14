@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">português</string>
+  <string name="autorelog">Fazer isto sem me perguntar da próxima vez</string>
   <string name="isrtl">false</string>
   <string name="add">Adicionar</string>
   <string name="cancel">Cancelar</string>
@@ -120,6 +121,7 @@
   <string name="config-instant-reverts">Utilizar reversão instantânea (muito rápido, mas não pode ser cancelada)</string>
   <string name="config-revert-wait" fuzzy="true">Espera para a reversão (segundos)</string>
   <string name="config-revert">Reverter</string>
+  <string name="config-skip">Saltar</string>
   <string name="config-revert-diff" fuzzy="true">Reverter edições mais recentes para a página do diff apresentado, caso tenham sido efectuados pelo mesmo utilizador (o mesmo do vândalo)</string>
   <string name="config-change-all">Alterar todas as configurações para um comportamento mais próximo do Huggle 2</string>
   <string name="config-merge-messages">Fundir as suas mensagens com outras em seções existentes</string>
@@ -172,6 +174,7 @@
   <string name="config-notify-update">Verificar existência de atualizações</string>
   <string name="config-notify-beta">Verificar se existem versões beta disponíveis</string>
   <string name="custommessage-subject">Título</string>
+  <string name="custommessage-menu">Enviar uma mensagem personalizada</string>
   <string name="custommessage-send">Enviar mensagem</string>
   <string name="delete-title">Eliminar $1</string>
   <string name="delete-reason">Motivo:</string>
@@ -208,6 +211,7 @@
   <string name="irc-switch-rc">A trocar para o feed RC da wiki</string>
   <string name="login-old">A recuperar configuração de utilizador do local antigo.</string>
   <string name="login-intro">Por favor, escolha um projeto e digite o seu nome de utilizador(a) e palavra-passe. Pode iniciar a sessão em vários projetos ao clicar no botão \"Projetos\".</string>
+  <string name="login-tab-botp">Palavra-passe do robô</string>
   <string name="login-tab-login">Normal</string>
   <string name="login-reload-tool-tip" fuzzy="true">Recarregue uma lista de projetos disponíveis que podem ser usados com o huggle, isto pode ser útil no caso de desejar usar o huggle num projeto onde foi recentemente ativado</string>
   <string name="login-language">Língua:</string>
@@ -236,6 +240,7 @@
   <string name="login-start">Entrar</string>
   <string name="login-oauth-notsupported">Este método não é suportado neste momento</string>
   <string name="login-translate">Traduzir Huggle</string>
+  <string name="login-progress-formtitle">A carregar...</string>
   <string name="login-progress-start" fuzzy="true">A entrar na conta em $1...</string>
   <string name="login-progress-retrieve-mw">A aceder à informação da MediaWiki para $1</string>
   <string name="login-progress-language">A atualizar os ficheiros de mensagens...</string>
@@ -301,6 +306,7 @@
   <string name="main-queue-reset">Reiniciar</string>
   <string name="main-queue-clearall">Remover edições de todas as filas</string>
   <string name="main-queue-options">Gerir filas de edições...</string>
+  <string name="main-queue-when-full-remove">Eliminar as edições antigas</string>
   <string name="main-goto">Ir para</string>
   <string name="main-goto-mytalk">Minha página de discussão</string>
   <string name="main-goto-mycontribs">Minhas contribuições</string>
@@ -350,6 +356,7 @@
   <string name="main-user-contribs">Mostrar contribuições de utilizador no navegador</string>
   <string name="main-user-clear-talk">Limpar página de discussão de utilizador(a)</string>
   <string name="main-user-talk">Ver página de discussão</string>
+  <string name="main-user-page">Ver página de utilizador</string>
   <string name="main-user-message">Mensagem...</string>
   <string name="main-user-warn">Avisar...</string>
   <string name="main-user-db">Reduzir pontuação de suspeição do utilizador</string>
@@ -374,6 +381,8 @@
   <string name="main-help-documentation">Documentação</string>
   <string name="main-help-feedback">Comentários</string>
   <string name="main-help-about">Sobre o Huggle...</string>
+  <string name="main-help-introduction">Introdução</string>
+  <string name="main-help-contents">Conteúdo</string>
   <string name="main-addqueue">Adicionar...</string>
   <string name="main-savelogtitle">Gravar registo</string>
   <string name="main-usermessageother">Outra mensagem...</string>
@@ -528,6 +537,7 @@
   <string name="user-history-fail" fuzzy="true">não é possível aceder ao histórico do utilizador: $1</string>
   <string name="userinfo-generic">Informação de utilizador</string>
   <string name="userinfo-retrieve">Consultar informação</string>
+  <string name="userinfo-no-user">Não há utilizadores</string>
   <string name="shortcut-page-patrol-edit">Patrulhar edição</string>
   <string name="shortcut-report-username">Denunciar nome de utilizador(a)</string>
   <string name="shortcut-report-user">Denunciar utilizador(a)</string>
@@ -569,6 +579,8 @@
   <string name="missing-warning">A predefinição de aviso $1 não existe</string>
   <string name="han-not">A rede de anti-vandalismo não está ativa nas opções</string>
   <string name="han-connecting" fuzzy="true">A ligar à rede de anti-vandalismo do Huggle</string>
+  <string name="han-network">Rede</string>
+  <string name="han-send">Enviar</string>
   <string name="error-loggedout">Terminou a sessão, a entrar novamente na conta...</string>
   <string name="error-noresponse">Sem resposta</string>
   <string name="error-pagemissing">A página não existe</string>
@@ -602,6 +614,7 @@
   <string name="history-retrieve-fail" fuzzy="true">Não foi possível obter o conteúdo da página que queria anular, o erro foi: $1</string>
   <string name="history-welcome-msg-title">Enviar antes uma mensagem de boas-vindas?</string>
   <string name="history-welcome-msg">Criou esta página de discussão, por isso não pode desfazer a edição. Pretende substituir por uma mensagem de boas-vindas?</string>
+  <string name="newtab-title">Este é um novo separador!</string>
   <string name="notify-fail">Não foi possível notificar o criador de $1</string>
   <string name="notify-unknowncreator">Não foi possível determinar o criador da página</string>
   <string name="protect-done">Nível de proteção de $1 foi alterado</string>
@@ -636,6 +649,7 @@
   <string name="missing-aiv">Este projeto não usa o AIV</string>
   <string name="missing-page">Não existe nenhuma página $1 nesta wiki</string>
   <string name="updating-wl">A actualizar a lista branca...</string>
+  <string name="waiting">A aguardar...</string>
   <string name="feature-nfru">Esta funcionalidade é apenas para utilizadores anónimos</string>
   <string name="report-no-user">Não foi selecionado nenhum utilizador para denunciar, marque um primeiro por favor</string>
   <string name="welcome-show">Exibir esta mensagem novamente na próxima vez que iniciar o huggle</string>
@@ -649,6 +663,7 @@
   <string name="cr-message-same" fuzzy="true">Existem diversas edições em $1 feitas pelo mesmo utilizador. Tem a certeza de que pretende reverter todas?</string>
   <string name="cr-message-new">Existem edições mais recentes em $1. Tem certeza que pretende reverter?</string>
   <string name="cr-message-not-same" fuzzy="true">Existem edições mais recentes em $1 feitas por um utilizador diferente. Tem certeza que as pretende reverter a todas? (provavelmente, falhará devido ao código de verificação antigo)</string>
+  <string name="preferences-delete-using-filter">Não pode apagar um filtro que está a ser utilizado atualmente</string>
   <string name="preferences-extension-disabled" fuzzy="true">Esta extensão já está agendada para ser desativada na próxima inicialização do Huggle</string>
   <string name="preferences-extension-disabled-restart" fuzzy="true">A extensão foi definida para ser desativada na próxima inicialização do Huggle</string>
   <string name="preferences-extension-enabled" fuzzy="true">Esta extensão não foi programada para ser desativada na próxima inicialização do Huggle</string>
@@ -656,6 +671,7 @@
   <string name="preferences-watchlist-watch">Adicionar às páginas vigiadas</string>
   <string name="preferences-watchlist-unwatch">Remover das páginas vigiadas</string>
   <string name="preferences-watchlist-nochange">Não fazer nada</string>
+  <string name="preferences-queue-size">Tamanho da fila</string>
   <string name="fail">Falha</string>
   <string name="request">Pedir</string>
   <string name="requesting">A solicitar</string>
@@ -681,6 +697,7 @@
   <string name="login-no-site-info-returned">Não foi devolvida nenhuma informação do sítio para esta wiki</string>
   <string name="loading-main-window" fuzzy="true">A carregar janela principal do Huggle</string>
   <string name="login-username-doesnt-exist">Este nome de utilizador(a) não existe</string>
+  <string name="developer-mode-enter-title">Viva</string>
   <string name="unimplemented" fuzzy="true">Esta funcionalidade não foi implementada ainda</string>
   <string name="unknown-item">Elemento desconhecido</string>
   <string name="title-multiple-projects">vários projetos ($1)</string>
@@ -694,4 +711,7 @@
   <string name="main-revert-type-made-on-talk-page">feito na página de discussão</string>
   <string name="main-revert-type-made-white-list">feito por utilizador(a) na lista branca</string>
   <string name="main-revert-warn" fuzzy="true">Esta edição é $1, logo mesmo que pareça vandalismo, pode não ser o caso. Tem a certeza que pretende desfazê-la?</string>
+  <string name="query-protected-link">Ligação protegida</string>
+  <string name="queue-empty-title">Está vazio</string>
+  <string name="protip">ProTip</string>
 </resources>

@@ -155,7 +155,7 @@
   <string name="config-title-diff">Назва сторінки у вікні змін (просто назва сторінки великим шрифтом угорі над порівнянням версій)</string>
   <string name="config-updates">Перевіряти наявність оновлень</string>
   <string name="config-beta">Перевіряти наявність бета-версій</string>
-  <string name="config-html-messages" fuzzy="true">HAN може відображати HTML-повідомлення (небезпечно)</string>
+  <string name="config-html-messages">HAN може відображати HTML-повідомлення (ПРИМІТКА. Це потенційно небезпечно)</string>
   <string name="config-summary-present">Виділяти червоним опис редагування, якщо він є, замість того, щоб показувати червоне повідомлення, коли опису немає</string>
   <string name="config-close-without">Закрити налаштування не зберігаючи</string>
   <string name="config-confirmmultiple">Вимагати підтвердження для скасування кількох редагувань одного й того ж користувача</string>
@@ -223,7 +223,7 @@
   <string name="irc-switch-rc">Переходжу на постачання списку нових редагувань через wiki</string>
   <string name="login-old">Отримання користувацьких налаштувань</string>
   <string name="login-intro">Будь ласка, виберіть проект і введіть ім’я користувача та пароль. Ви також можете одразу ввійти до декількох проектів, скориставшись кнопкою «Проекти».</string>
-  <string name="invalid-bot-user-name" fuzzy="true">Це не є дійсним іменем бота. Приклад коректного імені бота: Jimbo@Huggle</string>
+  <string name="invalid-bot-user-name">Це не є дійсним іменем бота. Приклад коректного імені бота: Jimbo@Huggle</string>
   <string name="login-tab-botp">Пароль бота</string>
   <string name="login-tab-login">Старий спосіб</string>
   <string name="login-reload-tool-tip" fuzzy="true">Перезавантажити список проектів, у яких можна використовувати Huggle. Це може бути корисним, якщо Ви хочете використовувати Huggle у проекті, для котрого його було підключено лише нещодавно.</string>
@@ -249,12 +249,12 @@
   <string name="login-failed-edit">Помилка входу до $1: Ви не маєте достатньо редагувань у цьому проекті.</string>
   <string name="login-retrieving-info">Отримання інформації про користувача з $1</string>
   <string name="login-password-empty">Ви ввели порожній пароль</string>
-  <string name="login-fail-wrong-name" fuzzy="true">Ви вказали неправильне ім’я користувача</string>
+  <string name="login-fail-wrong-name">Ви не вказали імені користувача для входу</string>
   <string name="login-api">ПОМИЛКА: api.php відповів з невідомим результатом: $1</string>
   <string name="login-start">Вхід</string>
   <string name="login-oauth-notsupported">Цей метод в даний момент не підтримується</string>
   <string name="login-translate">Переклад Huggle</string>
-  <string name="login-progress-start" fuzzy="true">Вхід до $1</string>
+  <string name="login-progress-start">Вхід до $1</string>
   <string name="login-progress-retrieve-mw">Отримання інформації про MediaWiki для $1</string>
   <string name="login-progress-language">Оновлення файлів повідомлень…</string>
   <string name="login-progress-global">Перевірка глобальних налаштувань…</string>
@@ -264,7 +264,7 @@
   <string name="login-progress-user-info">Перевірка інформації про користувача для $1</string>
   <string name="login-progress-whitelist">Отримання білого списку…</string>
   <string name="login-remember-password">Пам’ятати пароль</string>
-  <string name="login-ssl" fuzzy="true">Використовувати HTTPS (потрібна OpenSSL)</string>
+  <string name="login-ssl">Використовувати HTTPS для входу (потрібна OpenSSL)</string>
   <string name="login-fail">Помилка входу до $1</string>
   <string name="login-error-admin">Для використання Huggle у цьому проекті потрібні права адміністратора.</string>
   <string name="login-error-age" fuzzy="true">Для використання Huggle у цьому проекті потрібен обліковий запис, створений щонайменше $1 днів назад.</string>
@@ -503,7 +503,7 @@
   <string name="score-only-whole-word">Окреме слово на будь-якій сторінці</string>
   <string name="score-take-any-word">Будь-яке включення на будь-якій сторінці</string>
   <string name="ssl-is-not-supported" fuzzy="true">$1 не підтримує SSL-протокол.</string>
-  <string name="ssl-required" fuzzy="true">Веб-сервер $1 вимагає ввімкнення SSL-протоколу. Будь ласка, ввімкніть SSL та спробуйте знову. Якщо Ви не можете його ввімкнути (опція недоступна), можливо, потрібно встановити Open SSL бібліотеки на Вашому комп’ютері.</string>
+  <string name="ssl-required">Веб-сервер $1 вимагає ввімкнення SSL-протоколу. Будь ласка, ввімкніть SSL та спробуйте знову. Якщо Ви не можете його ввімкнути (опція недоступна), можливо, потрібно встановити бібліотеки OpenSSL на Вашому комп’ютері.</string>
   <string name="uaa-not-supported">Сповіщення про ім’я користувача не підтримується</string>
   <string name="uaa-not-supported-text">Повідомлення адміністраторів про недопустиме ім’я користувача не підтримується в цій wiki.</string>
   <string name="uaa-reporting">Повідомляю адміністраторів про недопустиме ім’я користувача $1</string>
@@ -592,14 +592,14 @@
   <string name="wikiedit-tp-fail">Неможливо завантажити $1. Інформація про попередження користувача не буде використана при підрахунку штрафних балів.</string>
   <string name="missing-warning">Не існує шаблону-попередження $1</string>
   <string name="han-not">Антивандальна мережа (HAN) не дозволена в налаштуваннях</string>
-  <string name="han-connecting" fuzzy="true">Підключення до антивандальної мережі Huggle (HAN)</string>
+  <string name="han-connecting">Підключення до антивандальної мережі Huggle</string>
   <string name="han-already-connected">Підключення до антивандальної мережі Huggle (HAN) вже було проведено</string>
-  <string name="han-already-connecting" fuzzy="true">Будь ласка, зачекайте, вже підключаюся до антивандальної мережі Huggle (HAN)</string>
+  <string name="han-already-connecting">Будь ласка, зачекайте, вже підключаюся до антивандальної мережі Huggle (HAN)...</string>
   <string name="han-disconnected">Вас було від’єднано від антивандальної мережі Huggle (HAN)</string>
   <string name="error-loggedout">Сталося роз’єднання, виконую повторний вхід…</string>
   <string name="error-noresponse">Немає відповіді</string>
   <string name="error-pagemissing">Такої сторінки не існує</string>
-  <string name="error-reloginfail" fuzzy="true">Не вдалося увійти, спробуйте перезавантажити Huggle</string>
+  <string name="error-reloginfail">Не вдалося ввійти. Можливо, спробуйте перезавантажити Huggle</string>
   <string name="error-timeout">Перевищено інтервал очікування для запиту</string>
   <string name="error-unknown">Невідома помилка</string>
   <string name="block-done">$1 заблоковано</string>
@@ -621,7 +621,7 @@
   <string name="edit-progress">Редагування сторінки $1…</string>
   <string name="history-fail">Не вдалося отримати історію редагувань сторінки $1</string>
   <string name="history-progress">Завантажую історію редагувань сторінки $1…</string>
-  <string name="history-work" fuzzy="true">Скасування власного редагування на сторінці $1</string>
+  <string name="history-work">Скасування власного редагування, яке було зроблено на сторінці $1</string>
   <string name="history-no-item-selected">Не вибрано жодного елементу у віконці історії</string>
   <string name="history-message-revert-title">Ви справді хочете скасувати лише це повідомлення</string>
   <string name="history-another-edit" fuzzy="true">Зараз я скасовую інше редагування; зачекайте, будь ласка</string>
@@ -630,7 +630,7 @@
   <string name="history-message-revert-body">Це повідомлення, залишене після відкоту. Ви впевнені, що хочете прибрати лише його, не скасовуючи сам відкіт? (Якщо Ви хочете відмінити обидві дії, Вам потрібно також скасувати відкіт.)</string>
   <string name="history-revert-fail">Не вдалося скасувати Ваше редагування на сторінці $1, оскільки виникла наступна помилка: $2</string>
   <string name="history-undone">Успішно скасовано редагування на сторінці $1</string>
-  <string name="history-retrieve-fail" fuzzy="true">Не вдалося отримати вміст сторінки, на котрій Ви хотіли скасувати власне редагування. Виникла наступна помилка:</string>
+  <string name="history-retrieve-fail">Не вдалося отримати вміст сторінки, на котрій ми хотіли скасувати своє власне редагування. Виникла помилка: $1</string>
   <string name="history-welcome-msg-title">Відправити замість цього привітання?</string>
   <string name="history-welcome-msg">Ви створили дану сторінку обговорення, цю дію неможливо скасувати. Хочете замінити її вміст на привітання?</string>
   <string name="notify-fail">Не вдалося повідомити автора сторінки $1</string>
@@ -731,11 +731,11 @@
   <string name="login-invalid-register-date" fuzzy="true">Медіавікі повернуло неправильну дату реєстрації</string>
   <string name="login-site-info-query-failed">Запит інформації про сайт для $1 був невдалим: $2</string>
   <string name="login-no-site-info-returned">Жодна інформація про сайт не повернулася для цього вікі</string>
-  <string name="loading-main-window" fuzzy="true">Завантаження головного вікна Huggle</string>
+  <string name="loading-main-window">Завантаження головного вікна Huggle...</string>
   <string name="api.php-invalid-response" fuzzy="true">api.php відповів із неправильним текстом (впав веб-сервер?). Будь ласка, перевірте журнал зневадження для точної інформації</string>
   <string name="login-username-doesnt-exist">Це ім\'я користувача не існує</string>
   <string name="developer-mode-enter-title">Ура</string>
-  <string name="developer-mode-enter-message" fuzzy="true">Ви увійшли в режим розробника!</string>
+  <string name="developer-mode-enter-message">Ви увійшли в режим розробника!</string>
   <string name="unimplemented" fuzzy="true">Ця функція ще не втілена</string>
   <string name="unknown-item">Невідомий елемент</string>
   <string name="title-multiple-projects">кілька проектів ($1)</string>

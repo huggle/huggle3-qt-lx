@@ -507,6 +507,7 @@
   <string name="han-disconnected">Du blev frånkopplad från HAN</string>
   <string name="error-noresponse">Inget svar</string>
   <string name="error-pagemissing">Sidan finns inte</string>
+  <string name="error-reloginfail">Misslyckades att logg in igen. Försök att starta om Huggle.</string>
   <string name="error-timeout">Begäran tog för lång tid</string>
   <string name="error-unknown">Okänt fel</string>
   <string name="block-done">Blockerade $1</string>

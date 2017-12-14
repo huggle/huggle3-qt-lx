@@ -149,14 +149,14 @@
   <string name="config-friend">Ami</string>
   <string name="config-userspace">Espace utilisateur</string>
   <string name="config-talk">Page de discussion</string>
-  <string name="config-columns-dynamic" fuzzy="true">Rendre les colonnes de liste dynamiques (seront redimensionnées d’après la taille des éléments) ou manuelles (l’utilisateur peut modifier leur taille)</string>
+  <string name="config-columns-dynamic">Rendre les colonnes de liste soit dynamiques (seront redimensionnées d’après la taille des éléments) soit manuelles (l’utilisateur peut modifier leur taille)</string>
   <string name="config-message-notification">Afficher une notification quand vous recevez un nouveau message sur votre page de discussion</string>
   <string name="config-warning-api">Afficher les avertissements pour les requêtes de l’API</string>
   <string name="config-title-diff">Titre de page dans chaque différence (texte en gros qui affiche uniquement le titre de la page en haut de chaque différence)</string>
   <string name="config-updates">Vérifier les mises à jour</string>
   <string name="config-reset-menu">La configuration du projet (liste des types d’avertissement) a été modifiée depuis votre dernière visite, les raccourcis pour les menus déroulants (annulation et avertissement, etc.) ont été réinitialisés.</string>
   <string name="config-beta">Vérifier les versions bêta</string>
-  <string name="config-html-messages" fuzzy="true">HAN peut utiliser le HTML inclus dans les messages pour les formater (dangereux)</string>
+  <string name="config-html-messages">HAN peut restituer les messages HTML (noter que c’est potentiellement dangereux).</string>
   <string name="config-summary-present">Mettre en évidence le résumé quand il est présent plutôt que quand il est absent</string>
   <string name="config-close-without">Fermer sans enregistrer</string>
   <string name="config-confirmmultiple">Confirmer les annulations multiples d’une modification par le même utilisateur</string>
@@ -378,7 +378,7 @@
   <string name="main-page-patrol">Marquer comme vérifié</string>
   <string name="main-page-move">Renommer...</string>
   <string name="main-page-flag-suspicious-edit">Marquer comme modification suspecte (cette action donne une note de +1 à l’utilisateur)</string>
-  <string name="main-page-flag-good-edit" fuzzy="true">Marquer comme bonne modification (cette action donne une note de -200 à l’utilisateur)</string>
+  <string name="main-page-flag-good-edit">Marquer comme bonne modification (cette action soustrait 200 à la note de l’utilisateur)</string>
   <string name="main-page-protect">Protéger</string>
   <string name="main-page-delete">Supprimer</string>
   <string name="main-page-load">Charger</string>
@@ -409,7 +409,7 @@
   <string name="main-browser-open">Afficher ceci dans un navigateur externe</string>
   <string name="main-browser-newedits">Afficher les nouvelles modifications de la page</string>
   <string name="main-browser-newcontribs">Show new contributions by user</string>
-  <string name="main-browser-lasttab" fuzzy="true">Je ne peux pas fermer cet onglet car c\'est le dernier, vous devez avoir au moins 1 onglet ouvert</string>
+  <string name="main-browser-lasttab">Je ne peux pas fermer cet onglet car c’est le dernier — vous devez avoir au moins un onglet ouvert</string>
   <string name="main-revert-manual">Aucun jeton d’annulation, passage en annulation manuelle de $1</string>
   <string name="main-han">HAN</string>
   <string name="main-han-disconnect">Déconnecter</string>
@@ -456,7 +456,7 @@
   <string name="main-statistics-none">aucun(e)</string>
   <string name="main-tab-welcome-title">Page d’accueil</string>
   <string name="message-title">Message $1</string>
-  <string name="message-help" fuzzy="true">Spécifiez l’un ou les deux champs « Objet » et « Résumé » . Si aucun résumé n’est donné, Objet sera utilisé ; si aucun objet n’est donné, aucun entête ne sera ajouté.</string>
+  <string name="message-help">Spécifiez l’un ou les deux champs « Objet » ou « Résumé ». Si aucun résumé n’est donné, Objet sera utilisé ; si aucun objet n’est donné, aucun entête ne sera ajouté.</string>
   <string name="message-subject">Objet :</string>
   <string name="message-message">Message :</string>
   <string name="message-summary">Résumé :</string>
@@ -544,8 +544,8 @@
   <string name="score-take-whole-no-talk-word">Correspond uniquement aux mots complets sur les pages hors discussion</string>
   <string name="score-only-whole-word">Correspond seulement aux mots complets</string>
   <string name="score-take-any-word">Correspond à n’importe quel mot contenant cette chaîne</string>
-  <string name="ssl-is-not-supported" fuzzy="true">Vous avez demandé à utiliser SSL mais $1 ne le prend pas en charge.</string>
-  <string name="ssl-required" fuzzy="true">Le serveur web de $1 nécessite que SSL soit activé. Veuillez activer SSL et réessayer. Si vous ne pouvez pas activer SSL (l’option est grisée), vous devrez installer les bibliothèques OpenSSL à votre système.</string>
+  <string name="ssl-is-not-supported">Vous avez demandé à utiliser SSL, mais malheureusement, $1 ne le prend pas en charge.</string>
+  <string name="ssl-required">Le serveur web de $1 nécessite que SSL soit activé. Veuillez activer SSL et réessayer. Si vous ne pouvez pas activer SSL (l’option est grisée), vous devrez installer les bibliothèques OpenSSL dans votre système.</string>
   <string name="uaa-not-supported">UAA non disponible</string>
   <string name="uaa-not-supported-text">Le panneau d’affichage « Noms d’utilisateur à l’attention de l’administrateur » n’est pas disponible sur votre wiki.</string>
   <string name="uaa-reporting">Signaler $1 à UAA</string>
@@ -584,7 +584,7 @@
   <string name="tag-summary">Résumé :</string>
   <string name="tag-insertatend">Insérer au bas de cette page</string>
   <string name="update-title">Nouvelle version disponible</string>
-  <string name="update-progress" fuzzy="true">Téléchargement de la nouvelle version...</string>
+  <string name="update-progress">Téléchargement de la nouvelle version, veuillez patienter…</string>
   <string name="update-error">Échec lors du téléchargement de la nouvelle version</string>
   <string name="updater-title">Une nouvelle version de Huggle est disponible</string>
   <string name="updater-update">Mettre à jour</string>
@@ -643,7 +643,7 @@
   <string name="han-not">Un réseau de vandalisme n’est pas autorisé dans les options</string>
   <string name="han-connecting">Connexion au réseau Huggle anti-vandalisme</string>
   <string name="han-already-connected">Non connecté à HAN car déjà connecté</string>
-  <string name="han-already-connecting" fuzzy="true">Veuillez attendre, je suis déjà en train de me connecter à HAN</string>
+  <string name="han-already-connecting">Veuillez attendre, je suis déjà en train de me connecter à HAN…</string>
   <string name="han-disconnected">Vous avez été déconnecté de HAN</string>
   <string name="han-network">Réseau</string>
   <string name="han-send">Envoyer</string>
@@ -672,7 +672,7 @@
   <string name="edit-progress">Modification de $1...</string>
   <string name="history-fail">Échec à la récupération de l’historique de $1</string>
   <string name="history-progress">Récupération de l’historique de $1 ($2)...</string>
-  <string name="history-work" fuzzy="true">Annulation de sa propre modification effectuée sur $1</string>
+  <string name="history-work">Annulation de votre propre modification, effectuée sur $1</string>
   <string name="history-no-item-selected">Aucun élément n’est sélectionné dans le widget historique</string>
   <string name="history-message-revert-title">Voulez-vous vraiment annuler simplement ce message ?</string>
   <string name="history-another-edit">Une autre modification est déja en cours d\'annulation, veuillez patienter...</string>
@@ -681,7 +681,7 @@
   <string name="history-message-revert-body">C’était un message référencé par une annulation ; êtes-vous sûr de vouloir annuler uniquement le modèle et pas même votre modification sur la page (vous devrez annuler le retour arrière si vous voulez revenir sur les deux) ?</string>
   <string name="history-revert-fail">Impossible d’annuler votre modification de $1  car l\'erreur suivante est apparue : $2</string>
   <string name="history-undone">Annulation réussie de la modification de $1</string>
-  <string name="history-retrieve-fail" fuzzy="true">Impossible de récupérer le contenu de la page pour laquelle nous voulons annuler notre propre modification, l’erreur était : $1</string>
+  <string name="history-retrieve-fail">Impossible de récupérer le contenu de la page pour laquelle nous voulons annuler notre propre modification. L’erreur est : $1</string>
   <string name="history-welcome-msg-title">Envoyer un message de bienvenue à la place ?</string>
   <string name="history-welcome-msg">Vous avez créé cette page de discussion, donc elle ne peut pas être annulée. Voulez-vous la remplacer par un modèle de mot de bienvenue ?</string>
   <string name="newtab-title">Ceci est un nouvel onglet !</string>
