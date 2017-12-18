@@ -17,10 +17,10 @@
   <string name="no">No</string>
   <string name="ok">Aceptar</string>
   <string name="remove">Eliminar</string>
-  <string name="rename">Renombrar</string>
+  <string name="rename">Cambiar nombre</string>
   <string name="reload">Recargar</string>
   <string name="project">Proyecto</string>
-  <string name="warning">Advertencia</string>
+  <string name="warning">Alerta</string>
   <string name="result">Resultado</string>
   <string name="save">Guardar</string>
   <string name="show">Mostrar</string>
@@ -98,7 +98,7 @@
   <string name="config-shownewedits">Mostrar ediciones nuevas en la página seleccionada a medida que se van haciendo</string>
   <string name="config-ircmode">Usar el IRC para acceder a los cambios recientes</string>
   <string name="config-ircport">Puerto de IRC</string>
-  <string name="config-difffontsize">Tamaño de fuente en los diffs</string>
+  <string name="config-difffontsize">Tamaño de letra en diferencias</string>
   <string name="config-logfile">Archivo de registro</string>
   <string name="config-viewlocalconfig">Ver la carpeta de configuración local</string>
   <string name="config-trayicon">Mostrar icono en bandeja</string>
@@ -191,7 +191,7 @@
   <string name="custommessage-menu">Enviar un mensaje personalizado</string>
   <string name="custommessage-send">Enviar mensaje</string>
   <string name="delete-title">Borrar $1</string>
-  <string name="delete-reason">Razón:</string>
+  <string name="delete-reason">Motivo:</string>
   <string name="delete-deletionlog">Registro de borrados:</string>
   <string name="delete-rem-talk">Eliminar discusión asociada</string>
   <string name="delete-notify">Notificar al creador</string>
@@ -255,7 +255,7 @@
   <string name="login-fail-wrong-name">No se proporcionó ningún nombre de usuario para acceder</string>
   <string name="login-api">ERROR: api.php respondió con resultado desconocido: $1</string>
   <string name="login-abort">Interrumpir</string>
-  <string name="login-start">Ingresar</string>
+  <string name="login-start">Acceder</string>
   <string name="login-oauth-notsupported">En este momento no se admite este método</string>
   <string name="login-translate">Traducir Huggle</string>
   <string name="login-progress-formtitle">Cargando…</string>
@@ -303,7 +303,7 @@
   <string name="main-user">Usuario</string>
   <string name="main-contribs">Contribuciones</string>
   <string name="main-history">Historial</string>
-  <string name="main-new-messages" fuzzy="true">Tienes mensajes nuevos. Selecciona Sistema -&gt; Mostrar nuevos mensajes o presiona M para verlos.</string>
+  <string name="main-new-messages">Tienes mensajes nuevos. Selecciona Sistema → Mostrar mensajes nuevos o presiona M para verlos.</string>
   <string name="main-space">El nombre de la página no puede terminar con un espacio. Corrígelo</string>
   <string name="main-system">Sistema</string>
   <string name="main-status-bar">Procesamiento de &lt;b&gt;$1&lt;/b&gt; ediciones y &lt;b&gt;$2&lt;/b&gt; consultas. Incluido en la lista blanca de usuarios: &lt;b&gt;$3&lt;/b&gt; tamaño de la Cola: &lt;b&gt;$4&lt;/b&gt; Estadísticas de $6: $5</string>
@@ -327,7 +327,7 @@
   <string name="main-queue-next">Siguiente</string>
   <string name="main-queue-clear">Limpiar actual</string>
   <string name="main-queue-count">$1 elementos</string>
-  <string name="main-queue-query">Haciendo pedido...</string>
+  <string name="main-queue-query">Ejecutando consulta…</string>
   <string name="main-queue-reset">Restablecer</string>
   <string name="main-queue-clearall">Limpiar todo</string>
   <string name="main-queue-options">Administrar colas...</string>
@@ -461,15 +461,15 @@
   <string name="message-done">Mensaje entregado correctamente en $2 a: $1</string>
   <string name="message-fail-token-1" fuzzy="true">no se puede recuperar la edición de token</string>
   <string name="message-fail-token-2" fuzzy="true">no token devuelto por la solicitud</string>
-  <string name="protect-request-title">Pedir protección de $1</string>
-  <string name="protect-reason">Razón:</string>
+  <string name="protect-request-title">Solicitar protección de $1</string>
+  <string name="protect-reason">Motivo:</string>
   <string name="protect-expiry">Caducidad:</string>
   <string name="protect-log">Registro de protecciones:</string>
   <string name="protect-currentlevel">Nivel de protección actual:</string>
   <string name="protect-type">Tipo de protección:</string>
   <string name="protect-none">Ninguna</string>
   <string name="protect-token">Token no puede ser recuperada. La razón fue: $1</string>
-  <string name="protect-semiprotection">Semi-protección</string>
+  <string name="protect-semiprotection">Semiprotección</string>
   <string name="protect-error">No se puede proteger la página porque $1</string>
   <string name="protect-fail-no-info">No hay información de página disponible (¿eres un administrador?)</string>
   <string name="protect-fullprotection">Protección completa</string>
@@ -487,7 +487,7 @@
   <string name="queue-removeold">Quitar ediciones antiguas a la misma página</string>
   <string name="queue-ignorepages">Ignorar ediciones a páginas que están en la lista de páginas ignoradas</string>
   <string name="queue-traynotification">Mostrar notificación en la barra de tareas cuando se añada una edición a esta cola</string>
-  <string name="queue-diffsgroup">Diffs</string>
+  <string name="queue-diffsgroup">Diferencias</string>
   <string name="queue-pagefiltersgroup">Filtros de títulos de páginas</string>
   <string name="queue-pageregex">El título coincide con la expresión regular:</string>
   <string name="queue-namespaces">Espacios de nombres:</string>
@@ -560,7 +560,7 @@
   <string name="revert-speedy-instead">¿Marcar para borrado rápido en vez de revertir?</string>
   <string name="revert-cannotundo" fuzzy="true">No se puede deshacer debido a que hay conflicto con ediciones intermedias</string>
   <string name="revert-conflict">Esta página fue editada por el usuario ignorado \'$1\'</string>
-  <string name="revert-fail">No se pudo revertir \'$1\'</string>
+  <string name="revert-fail">No se revirtió $1: $2</string>
   <string name="revert-nochange">El contenido de la edición a la que quieres revertir es idéntico al de la edición actual</string>
   <string name="revert-fail-pre-flight">La comprobación falló: $1</string>
   <string name="speedy-reason">Motivo:</string>
@@ -673,6 +673,7 @@
   <string name="history-retrieve-fail">No se puede recuperar el contenido de la página cuya edición propia se iba a deshacer. El error emitido es: $1</string>
   <string name="history-welcome-msg-title">¿Prefieres mandar un mensaje de bienvenida en su lugar?</string>
   <string name="history-welcome-msg">Tu has creado esta página de discusión, por lo que no puede deshacerse. ¿Quieres reemplazarla con una plantilla de bienvenida?</string>
+  <string name="newtab-title">Esta es una pestaña nueva.</string>
   <string name="notify-fail">No se pudo avisar al creador de $1</string>
   <string name="notify-unknowncreator">No se puede encontrar al creador de la página</string>
   <string name="protect-done">Cambiado el nivel de protección para \'$1\'</string>
