@@ -694,7 +694,7 @@
   <string name="speedy-progress">Marcando \'$1\' para borrado rápido...</string>
   <string name="speedy-wrong">La etiqueta solicitada no es válida. Elige otro motivo de borrado</string>
   <string name="speedy-finished">Finalizado</string>
-  <string name="warn-alreadyblocked">El usuario ya ha sido bloqueado</string>
+  <string name="warn-alreadyblocked">El usuario ya se ha bloqueado</string>
   <string name="editquery-success">Se editó con éxito $1 en $2</string>
   <string name="editquery-token">La recuperación de token para editar $1</string>
   <string name="editquery-token-error">No se puede recuperar editar token</string>
