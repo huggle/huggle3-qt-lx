@@ -5,7 +5,7 @@
   <string name="isrtl">false</string>
   <string name="add">Añadir</string>
   <string name="cancel">Cancelar</string>
-  <string name="clear">Borrar</string>
+  <string name="clear">Vaciar</string>
   <string name="close">Cerrar</string>
   <string name="continue">Continuar</string>
   <string name="copy">Copiar</string>
@@ -136,6 +136,7 @@
   <string name="config-last-revision" fuzzy="true">Cambiar a la última modificación de la página si la edición cargada no es la última (se descargará a continuación, lo que ralentizará Huggle)</string>
   <string name="config-require-delay">Requieren un retraso después de cada carga de la próxima edición, durante los cuales no será posible el uso de cualquier escritura característica (muy útil para evitar teclado multi-prensa error)</string>
   <string name="config-wait-edit">Los segundos que debes esperar para que se activen las funcionalidades de edición:</string>
+  <string name="config-display-next">Mostrar siguiente</string>
   <string name="config-retrieve-edit">Recuperar tu propia edición</string>
   <string name="config-nothing">Nada</string>
   <string name="config-bot-edits">Ediciones de bots (b)</string>
@@ -805,6 +806,7 @@
   <string name="query-login-undefined">El token de inicio de sesión requiere un valor definido por el usuario, no se almacena en la memoria</string>
   <string name="query-protected-link">Enlace protegido</string>
   <string name="queue-empty-title">Está vacío</string>
+  <string name="queue-empty-text">No queda nada más en la cola…</string>
   <string name="protip">Recomendación</string>
   <string name="tip7">Puedes crear tus propios filtros de cola personalizados en Preferencias. Quedarán almacenados en tu página wiki de configuración.</string>
   <string name="tip14" fuzzy="true">¿Quieres chatear con otros usuarios activos de Huggle que están usando el programa ahora? Si están en línea, los verás en la ventana de \"Red\".</string>
