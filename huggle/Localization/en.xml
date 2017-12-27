@@ -260,6 +260,7 @@
   <string name="login-remember-password">Remember password</string>
   <string name="login-ssl">Use HTTPS (requires OpenSSL)</string>
   <string name="login-fail">Login failed on $1</string>
+  <string name="login-fail-with-reason">Login failed (on $1): $2</string>
   <string name="login-error-admin">Use of Huggle on this project requires an administrator account.</string>
   <string name="login-error-age">Use of Huggle on this project requires an account at least $1 days old.</string>
   <string name="login-error-alldisabled">Huggle is currently disabled on all projects.</string>
@@ -277,6 +278,8 @@
   <string name="login-error-unknown">Unable to log to $1.</string>
   <string name="login-error-version">This version is out of date. Update to the latest version.</string>
   <string name="login-error-whitelist">Failed to load user whitelist for $1.</string>
+  <string name="login-error-config-query-no-data">Login failed unable to retrieve global config, the api query returned no data</string>
+  <string name="login-error-retrieve-config">Login failed unable to retrieve user config: $1</string>
   <string name="main-menu-provider-stop">Stop provider</string>
   <string name="main-menu-provider-resume">Resume provider</string>
   <string name="provider-up">Connecting to recent changes stream on $2 using provider: $1</string>
@@ -752,5 +755,10 @@
   <string name="query-login-undefined">Login token requires a user defined value, it's not stored in memory</string>
   <string name="query-execute-drymode">If I wasn't in dry mode I would execute this query (post=</string>
   <string name="query-protected-link">Protected link</string>
+  <string name="wikis-db-download-fail">Unable to download a db of wikis: $1</string>
+  <string name="no-projects-defined-in-list">There are no projects defined in a list you need to set up some on global wiki</string>
+  <string name="no-valid-login-token-returned">No valid login token returned by the site</string>
+  <string name="api-query-no-data">the api query returned no data</string>
+  <string name="no-wiki-statuses-list">There is no such a wiki in statuses list</string>
 
 </resources>

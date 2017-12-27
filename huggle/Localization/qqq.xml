@@ -276,6 +276,9 @@ Parameters:
   <string name="login-ssl">Used as label for the checkbox.</string>
   <string name="login-fail">Parameters:
 * $1 - sitename</string>
+  <string name="login-fail-with-reason">Parameters:
+* $1 - sitename
+* $2 - reason</string>
   <string name="login-error-approval">Unused at this time.
 
 Parameters:
@@ -302,6 +305,9 @@ Parameters:
 
 Parameters:
 * $1 - ...</string>
+  <string name="login-error-config-query-no-data">Error message used on login screen</string>
+  <string name="login-error-retrieve-config">Parameters:
+* $1 - config retrieval error message</string>
   <string name="main-restoring-slap">Used as log entry.</string>
   <string name="main-page">{{Identical|Page}}</string>
   <string name="main-user">{{Identical|User}}</string>
@@ -626,4 +632,10 @@ See also:
   <string name="projects">{{Identical|Project}}</string>
   <string name="title-on">{{Identical|On}}</string>
   <string name="main-revert-type-unknown">{{Identical|Unknown}}</string>
+  <string name="wikis-db-download-fail">Used on login screen if failed to download wikis database. Parameters:
+* $1 - reason of failure</string>
+  <string name="no-projects-defined-in-list">Error message used on login screen</string>
+  <string name="no-valid-login-token-returned">Error message used on login screen</string>
+  <string name="api-query-no-data">Used as a part of error message</string>
+  <string name="no-wiki-statuses-list">Used as an exception message</string>
 </resources>
