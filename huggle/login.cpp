@@ -349,7 +349,7 @@ void Login::DB()
     }
     if (this->qDatabase->IsFailed())
     {
-        this->DisplayError("Unable to download a db of wikis: " + this->qDatabase->GetFailureReason());
+        this->DisplayError(_l("wikis-db-download-fail", this->qDatabase->GetFailureReason()));
         this->timer->stop();
         this->EnableForm();
         this->Refreshing = false;
@@ -392,7 +392,7 @@ void Login::PressOK()
     if (this->ui->Project->count() == 0)
     {
         // there are no projects in login form
-        Generic::pMessageBox(this, _l("error"), "There are no projects defined in a list you need to set up some on global wiki");
+        Generic::pMessageBox(this, _l("error"), _l("no-projects-defined-in-list"));
         return;
     }
     hcfg->SystemConfig_StorePassword = this->ui->checkBox_2->isChecked();
@@ -546,7 +546,7 @@ void Login::PerformLoginPart2(WikiSite *site)
     ApiQueryResultNode *token_info = query->GetApiQueryResult()->GetNode("tokens");
     if (!token_info || !token_info->Attributes.contains("logintoken"))
     {
-        this->DisplayError(_l("login-fail", site->Name) + ": No valid login token returned by the site");
+        this->DisplayError(_l("login-fail-with-reason", site->Name, _l("login-error-no-valid-token")));
         return;
     }
     QString token = token_info->GetAttribute("logintoken");
@@ -587,7 +587,7 @@ bool Login::RetrieveGlobalConfig()
             ApiQueryResultNode *data = this->qConfig->GetApiQueryResult()->GetNode("rev");
             if (data == nullptr)
             {
-                this->DisplayError("Login failed unable to retrieve global config, the api query returned no data");
+                this->DisplayError(_l("login-error-config-query-no-data"));
                 return false;
             }
             if (hcfg->ParseGlobalConfig(data->Value))
@@ -625,7 +625,7 @@ void Login::FinishLogin(WikiSite *site)
     ApiQuery *query = this->LoginQueries[site];
     if (query->Result->IsFailed())
     {
-        this->DisplayError("Login failed (on " + site->Name + "): " + query->GetFailureReason());
+        this->DisplayError(_l("login-fail-with-reason", site->Name, query->GetFailureReason()));
         this->Statuses[site] = LoginFailed;
         return;
     }
@@ -777,7 +777,7 @@ void Login::RetrieveProjectConfig(WikiSite *site)
             ApiQueryResultNode *data = query->GetApiQueryResult()->GetNode("rev");
             if (data == nullptr)
             {
-                this->DisplayError(_l("login-error-config", site->Name, "the api query returned no data"));
+                this->DisplayError(_l("login-error-config", site->Name, _l("api-query-no-data")));
                 return;
             }
             QString value = data->Value;
@@ -822,7 +822,7 @@ void Login::RetrieveUserConfig(WikiSite *site)
         {
             if (q->IsFailed())
             {
-                this->DisplayError("Login failed unable to retrieve user config: " + q->GetFailureReason());
+                this->DisplayError(_l("login-error-config-retrieve", q->GetFailureReason()));
                 return;
             }
             ApiQueryResultNode *data = q->GetApiQueryResult()->GetNode("rev");
@@ -1343,7 +1343,7 @@ void Login::OnTimerTick()
     foreach (WikiSite *site, hcfg->Projects)
     {
         if (!this->Statuses.contains(site))
-            throw new Huggle::Exception("There is no such a wiki in statuses list", BOOST_CURRENT_FUNCTION);
+            throw new Huggle::Exception(_l("statuses-list-no-wiki"), BOOST_CURRENT_FUNCTION);
         if (!this->GlobalConfig)
         {
             // we need to skip these unless it's login
@@ -1406,7 +1406,7 @@ void Login::OnTimerTick()
         {
             this->EnableForm();
             this->timer->stop();
-            this->ui->ButtonOK->setText("Login");
+            this->ui->ButtonOK->setText(_l("login-start"));
         }
     }
     this->Finish();
