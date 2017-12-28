@@ -24,7 +24,7 @@
   <string name="result">Resultado</string>
   <string name="save">Guardar</string>
   <string name="show">Mostrar</string>
-  <string name="no-instant" fuzzy="true">Las advertencias instantáneas no están habilitadas en el proyecto $1, así que no se puede enviar el mensaje a $2. Elige un nivel de advertencia diferente.</string>
+  <string name="no-instant">No es posible enviar el mensaje dirigido a $2 porque las alertas instantáneas no se han activado en el proyecto $1. Elige un nivel de alerta distinto.</string>
   <string name="undo">Deshacer</string>
   <string name="yes">Sí</string>
   <string name="editing-page">Editando página</string>
@@ -165,6 +165,7 @@
   <string name="config-autoadvance">Después de revertir, pasar a la siguiente edición en cola</string>
   <string name="config-userollback">Usar Rollback si se puede</string>
   <string name="config-revertsummaries">Resúmenes de reversión disponibles en menú</string>
+  <string name="config-auto-refresh">Actualizar automáticamente la página si se le realizó otra edición</string>
   <string name="config-extendreports">Extender denuncias en caso de vandalismo adicional</string>
   <string name="config-autoreport">Cuando se quiere advertir a un usuario con advertencia final</string>
   <string name="config-reportnone">No hacer nada</string>
@@ -211,7 +212,7 @@
   <string name="historyform-retrieving-history">Recuperando historial</string>
   <string name="historyform-not-latest-tip">Esta no es la última revisión de esta página. Asegúrese de revisar las versiones más recientes también. Por favor, también tenga en cuenta que la reversión no puede ser posible a partir de este punto.</string>
   <string name="history-error-message-title">No se puede deshacer</string>
-  <string name="history-error" fuzzy="true">Este elemento no se puede deshacer. La página puede haber sido modificado o eliminado por mientras tanto, y Huggle es incapaz de realizar deshacer a partir de este punto. Si usted realmente quiere deshacer de él, tendrá que hacerlo a mano, usando la interfaz MediaWiki.</string>
+  <string name="history-error">No se puede deshacer este elemento. La página podría haber recibido modificaciones o haber sido borrada entretanto, y Huggle no puede realizar una operación de deshacer a partir de este punto. Si realmente quieres deshacerlo, debes hacerlo manualmente mediante la interfaz de MediaWiki.</string>
   <string name="history-failure">No ha sido posible obtener el historial</string>
   <string name="userhistory-title">Historial de tus cambios</string>
   <string name="irc-connected">$1: conectado con el suministro IRC de cambios recientes</string>
@@ -308,6 +309,7 @@
   <string name="main-space">El nombre de la página no puede terminar con un espacio. Corrígelo</string>
   <string name="main-system">Sistema</string>
   <string name="main-status-bar">Procesamiento de &lt;b&gt;$1&lt;/b&gt; ediciones y &lt;b&gt;$2&lt;/b&gt; consultas. Incluido en la lista blanca de usuarios: &lt;b&gt;$3&lt;/b&gt; tamaño de la Cola: &lt;b&gt;$4&lt;/b&gt; Estadísticas de $6: $5</string>
+  <string name="main-metric-bar">Tiempo promediado de respuesta de API: $1 ms</string>
   <string name="main-shutting-down">Huggle se está cerrando, ignorado</string>
   <string name="main-system-messages">Mostrar nuevos mensajes</string>
   <string name="main-system-reconnectirc">Reconectar con el suministro IRC</string>
@@ -736,7 +738,7 @@
   <string name="preferences-extension-disabled" fuzzy="true">Ya se ha programado esta extensión para su desactivación al próximo inicio de Huggle</string>
   <string name="preferences-extension-disabled-restart" fuzzy="true">La extensión se configuró para desactivarse en el siguiente inicio de Huggle</string>
   <string name="preferences-extension-enabled" fuzzy="true">Esta extensión no está programada para deshabilitar el siguiente inicio de Huggle</string>
-  <string name="preferences-extension-enabled-restart" fuzzy="true">La extensión se activó. Sin embargo, es necesario reiniciar Huggle</string>
+  <string name="preferences-extension-enabled-restart">Se activó la extensión. Reinicia Huggle para que esta surta efecto.</string>
   <string name="preferences-watchlist-watch">Añadir a la lista de seguimiento</string>
   <string name="preferences-watchlist-unwatch">Quitar de la lista de seguimiento</string>
   <string name="preferences-watchlist-preferences">Seguir tus preferencias en el wiki</string>
@@ -784,11 +786,11 @@
   <string name="login-site-info-query-failed">La información del sitio de consulta para $1 ha fallado: $2</string>
   <string name="login-no-site-info-returned">No hay información del sitio fue devuelto por este wiki</string>
   <string name="loading-main-window">Cargando la ventana principal de Huggle…</string>
-  <string name="api.php-invalid-response" fuzzy="true">El api.php respondió con inválida texto (servidor web está abajo?), por favor, compruebe de registro de depuración para obtener una información precisa</string>
+  <string name="api.php-invalid-response">La API respondió con texto no válido (¿servidor no disponible?). Revisa el registro de depuración para obtener datos precisos</string>
   <string name="login-username-doesnt-exist">Este nombre de usuario no existe</string>
   <string name="developer-mode-enter-title">Whee</string>
   <string name="developer-mode-enter-message">Ingresaste en el modo de desarrollo.</string>
-  <string name="unimplemented" fuzzy="true">Esta característica aún no se ha implementado</string>
+  <string name="unimplemented">Esta característica aún no se ha implementado</string>
   <string name="unknown-item">Elemento desconocido</string>
   <string name="title-multiple-projects">varios proyectos ($1)</string>
   <string name="title-on">en $1</string>
@@ -801,7 +803,7 @@
   <string name="main-revert-type-made-on-talk-page">hecho en la página de discusión</string>
   <string name="main-revert-type-made-white-list">hecho por un usuario que está en la lista blanca</string>
   <string name="query-result-nodata">El resultado de la consulta no contiene datos</string>
-  <string name="main-revert-warn" fuzzy="true">Esta edición es $1. Incluso aunque parezca vandalismo, puede no serlo. ¿Estás seguro de que quieres revertirla?</string>
+  <string name="main-revert-warn">Esta edición es $1. Incluso aunque parezca vandalismo, puede no serlo. ¿Confirmas que quieres revertirla?</string>
   <string name="query-request-noaction">No se ha proporcionado ninguna acción para la petición a la API</string>
   <string name="query-login-undefined">El token de inicio de sesión requiere un valor definido por el usuario, no se almacena en la memoria</string>
   <string name="query-protected-link">Enlace protegido</string>
@@ -809,5 +811,6 @@
   <string name="queue-empty-text">No queda nada más en la cola…</string>
   <string name="protip">Recomendación</string>
   <string name="tip7">Puedes crear tus propios filtros de cola personalizados en Preferencias. Quedarán almacenados en tu página wiki de configuración.</string>
+  <string name="tip10">Es posible cambiar la mayor parte de los atajos de teclado en Preferencias.</string>
   <string name="tip14" fuzzy="true">¿Quieres chatear con otros usuarios activos de Huggle que están usando el programa ahora? Si están en línea, los verás en la ventana de \"Red\".</string>
 </resources>
