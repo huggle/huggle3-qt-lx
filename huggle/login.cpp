@@ -1343,7 +1343,7 @@ void Login::OnTimerTick()
     foreach (WikiSite *site, hcfg->Projects)
     {
         if (!this->Statuses.contains(site))
-            throw new Huggle::Exception(_l("statuses-list-no-wiki"), BOOST_CURRENT_FUNCTION);
+            throw new Huggle::Exception("There is no such a wiki in statuses list", BOOST_CURRENT_FUNCTION);
         if (!this->GlobalConfig)
         {
             // we need to skip these unless it's login
