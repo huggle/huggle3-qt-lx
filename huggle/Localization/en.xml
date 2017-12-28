@@ -285,7 +285,7 @@
   <string name="login-error-approval">Use of Huggle on $1 requires approval.</string>
   <string name="login-error-cancelled">Cancelled.</string>
   <string name="login-error-config">Login failed, unable to parse local config for $1: $2</string>
-  <stirng name="login-error-config-retrieve">Login failed, unable to retrieve user config: $1</string>
+  <string name="login-error-config-retrieve">Login failed, unable to retrieve user config: $1</string>
   <string name="login-error-config-query-no-data">Login failed, unable to retrieve global config, the api query returned no data</string>
   <string name="login-error-count">Use of Huggle on this project requires at least $1 edits.</string>
   <string name="login-error-disabled">Huggle is not enabled for your account on $1. Check your user configuration page.</string>
