@@ -672,7 +672,7 @@ void Huggle::Preferences::on_cbDefault_currentIndexChanged(int index)
 {
     if (this->isNowReloadingFilters)
         return;
-    
+
     // update the filter
     this->Site->UserConfig->QueueID = this->ui->cbDefault->itemText(index);
     this->Site->CurrentFilter = HuggleQueueFilter::GetFilter(this->ui->cbDefault->itemText(index), this->Site);
@@ -818,8 +818,7 @@ void Preferences::ResetItems()
 
 void Huggle::Preferences::on_pushButton_rs_clicked()
 {
-    if (Generic::pMessageBox(this, "Reset GUI", "This will restore factory layout of huggle as it had when you installed it. "\
-                             "Huggle will shut down. Continue?", MessageBoxStyleQuestion) == QMessageBox::No)
+    if (Generic::pMessageBox(this, _l("preferences-reset-gui"), _l("preferences-restore-factory-layout"), MessageBoxStyleQuestion) == QMessageBox::No)
         return;
     Configuration::HuggleConfiguration->SystemConfig_SaveLayout = false;
     // remove all layout files

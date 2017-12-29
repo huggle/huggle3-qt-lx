@@ -195,6 +195,9 @@
   <string name="custommessage-subject">Title</string>
   <string name="custommessage-menu">Send a custom message</string>
   <string name="custommessage-send">Send message</string>
+  <string name="custommessage-wikiuser-lesummary">Delivering a custom message to $1</string>
+  <string name="custommessage-wikiuser-plaintext-1">Hello $1,</string>
+  <string name="custommessage-wikiuser-plaintext-2">Write your message here.</string>
   <string name="delete-title">Delete $1</string>
   <string name="delete-reason">Reason:</string>
   <string name="delete-deletionlog">Deletion log:</string>
@@ -209,6 +212,13 @@
   <string name="delete-failed-no-info">No page info was present in query (are you an admin?)</string>
   <string name="extension-kl">Not running</string>
   <string name="extension-ok">Loaded and running</string>
+  <string name="exception-text-1">Unfortunately Huggle has crashed. Please submit the following information together with details of what were you doing to </string>
+  <string name="exception-details">Exception details</string>
+  <string name="exception-error-code">Error code: $1</string>
+  <string name="exception-reason">Reason: $1</string>
+  <string name="exception-source">Source: $1</string>
+  <string name="exception-stack-trace">Stack trace:</string>
+  <string name="exception-system-log">System log</string>
   <string name="historyform-no-info">No edit info</string>
   <string name="historyform-title">History</string>
   <string name="historyform-retrieve-history">Retrieve history</string>
@@ -645,6 +655,9 @@
   <string name="warning-warntype">Warning type:</string>
   <string name="warning-warnlog">Warnings for this user:</string>
   <string name="warning-submit">Send</string>
+  <string name="warninglist-no-warning-title">No warning</string>
+  <string name="warninglist-no-warning-text">There is no data for this type of warning, unable to deliver a warning to user!</string>
+  <string name="warninglist-report-text">This user has already received a final warning, so I will not send any more warnings to them, do you want to report them instead?</string>
   <string name="wikiedit-tp-fail">Unable to retrieve $1 warning level. It will not be used for scoring</string>
   <string name="missing-warning">There is no such warning template $1</string>
   <string name="han-not">Vandalism network isn&apos;t allowed in options</string>
@@ -768,6 +781,8 @@
   <string name="preferences-min-score">Enable global min score (edits with lower score will be ignored - useful if you want to see only bad edits)</string>
   <string name="preferences-queue-size">Queue size</string>
   <string name="preferences-empty-queue-page">Empty queue page:</string>
+  <string name="preferences-reset-gui">Reset GUI</string>
+  <string name="preferences-restore-factory-layout">This will restore factory layout of huggle as it had when you installed it. Huggle will shut down. Continue?</string>
   <string name="fail">Fail</string>
   <string name="request">Request</string>
   <string name="requesting">Requesting</string>

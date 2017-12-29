@@ -44,9 +44,8 @@ void CustomMessage::SetWikiUser(WikiUser *User)
     }
     this->user = new WikiUser(User);
     this->setWindowTitle(_l("custommessage-title", this->user->Username));
-    //! \todo Implement these 2 strings to project config
-    this->ui->leSummary->setText("Delivering a custom message to " + this->user->Username);
-    this->ui->plainTextEdit->setPlainText(QString("Hello $1,\n\nWrite your message here.\n\n--~~~~").replace("$1", this->user->Username));
+    this->ui->leSummary->setText(_l("custommessage-wikiuser-lesummary", this->user->Username));
+    this->ui->plainTextEdit->setPlainText(QString(_l("custommesage-wikiuser-plaintext-1", this->user->Username) + "\n\n" + _l("custommessage-wikiuser-plaintext-2") + "\n\n--~~~~"));
 }
 
 void CustomMessage::on_pushButton_2_clicked()

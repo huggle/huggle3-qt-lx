@@ -11,6 +11,7 @@
 #include "core.hpp"
 #include "syslog.hpp"
 #include "exceptionwindow.hpp"
+#include "localization.hpp"
 #include "ui_exceptionwindow.h"
 
 using namespace Huggle;
@@ -23,12 +24,13 @@ ExceptionWindow::ExceptionWindow(Exception *e) : ui(new Ui::ExceptionWindow)
         hr = Huggle::Syslog::HuggleLogs->RingLogToText();
     else
         hr = "not available (nullptr)";
-    this->ui->textEdit->setText("Unfortunately Huggle has crashed. Please submit the following information "\
-                          "together with details of what were you doing to https://phabricator.wikimedia.org/maniphest/task/create/?projects=Huggle"\
-                          "\n\n\n\nException details\n============================\nError code: "
-                          + QString::number(e->ErrorCode) + "\nReason: "
-                          + e->Message + "\n\nSource: " + e->Source + "\nStack trace:\n" + e->StackTrace
-                          + "\n\n\n\n============================\nSystem log\n=======\n" + hr);
+    this->ui->textEdit->setText(_l("exception-text-1") +
+                          "https://phabricator.wikimedia.org/maniphest/task/create/?projects=Huggle\n\n\n\n" +
+                          _l("exception-details") + "\n============================\n" +
+                          _l("exception-error-code", QString::number(e->ErrorCode)) + "\n" +
+                          _l("exception-reason", e->Message) + "\n\n" +
+                          _l("exception-source", e->Source) + "\n" + _l("exception-stack-trace") + "\n" + e->StackTrace +
+                          "\n\n\n\n============================\n" + _l("exception-system-log") + "\n=======\n" + hr);
 }
 
 ExceptionWindow::~ExceptionWindow()
