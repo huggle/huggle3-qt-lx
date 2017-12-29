@@ -65,8 +65,8 @@ void WarningList::on_pushButton_clicked()
     if (wt.isEmpty())
     {
         QMessageBox mb;
-        mb.setWindowTitle("No warning");
-        mb.setText("There is no data for this type of warning, unable to deliver a warning to user!");
+        mb.setWindowTitle(_l("warninglist-no-warning-title"));
+        mb.setText(_l("warninglist-no-warning-text"));
         mb.exec();
         return;
     }
@@ -79,9 +79,7 @@ void WarningList::on_pushButton_clicked()
             ReportUser::SilentReport(this->wikiEdit->User);
         } else
         {
-            QMessageBox::StandardButton q = QMessageBox::question(nullptr, "Warning" , "This user has already received a final warning"\
-                                                                  ", so I will not send any more warnings to them, do you want to"\
-                                                                  " report them instead?", QMessageBox::Yes|QMessageBox::No);
+            QMessageBox::StandardButton q = QMessageBox::question(nullptr, _l("warning") , _l("warninglist-report-text"), QMessageBox::Yes|QMessageBox::No);
             if (q == QMessageBox::Yes)
             {
                 MainWindow::HuggleMain->DisplayReportUserWindow(this->wikiEdit->User);
