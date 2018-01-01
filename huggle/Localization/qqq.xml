@@ -191,7 +191,6 @@
   <string name="wikis-db-download-fail">Parameters:\n* $1 - failure reason</string>
   <string name="no-projects-defined-in-list">Displayed on login screen if there are no projects in login form</string>
   <string name="api-query-no-data">Used as a part of error message on login screen</string>
-  <string name="statuses-list-no-wiki">Used as exception message</string>
   <string name="main-restoring-slap">Used as log entry.</string>
   <string name="main-page">{{Identical|Page}}</string>
   <string name="main-user">{{Identical|User}}</string>

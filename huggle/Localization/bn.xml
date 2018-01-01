@@ -188,6 +188,9 @@
   <string name="config-notify-beta">উপলব্ধ হলে বেটা সংস্করণের জন্য পরীক্ষা করুন</string>
   <string name="custommessage-subject">শিরোনাম</string>
   <string name="custommessage-send">বার্তা পাঠান</string>
+  <string name="custommessage-wikiuser-lesummary">$1-এ একটি স্বনির্ধারিত বার্তা প্রদান</string>
+  <string name="custommessage-wikiuser-plaintext-1">প্রিয় $1,</string>
+  <string name="custommessage-wikiuser-plaintext-2">আপনার বার্তাটি এখানে লিখুন।</string>
   <string name="delete-title">$1 অপসারণ করুন</string>
   <string name="delete-reason">কারণ:</string>
   <string name="delete-deletionlog">অপসারণ লগ:</string>
@@ -202,6 +205,9 @@
   <string name="delete-failed-no-info">কোনো ব্যবহারকারী তথ্য কোয়েরিটিতে উপস্থিত নেই (আপনি কি প্রশাসক?)</string>
   <string name="extension-kl">চলছে না</string>
   <string name="extension-ok">লোড হয়েছে ও চলছে</string>
+  <string name="exception-reason">কারণ: $1</string>
+  <string name="exception-source">উত্স: $1</string>
+  <string name="exception-system-log">সিস্টেম লগ</string>
   <string name="historyform-no-info">কোন সম্পাদনা তথ্য নেই</string>
   <string name="historyform-title">ইতিহাস</string>
   <string name="historyform-retrieve-history">ইতিহাস পুনরুদ্ধার করুন</string>

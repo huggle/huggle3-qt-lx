@@ -3,7 +3,7 @@
   <string name="name">Lëtzebuergesch</string>
   <string name="autorelog">Dëst déi nächste Kéier maachen ouni ze froen</string>
   <string name="isrtl">false</string>
-  <string name="add">Derbäisetzen</string>
+  <string name="add">Dobäisetzen</string>
   <string name="cancel">Ofbriechen</string>
   <string name="clear">Eidel maachen</string>
   <string name="close">Zoumaachen</string>
@@ -124,6 +124,9 @@
   <string name="config-notify-beta">Nokucken ob Beta-Versiounen disponibel sinn</string>
   <string name="custommessage-subject">Titel</string>
   <string name="custommessage-send">Message schécken</string>
+  <string name="custommessage-wikiuser-lesummary">E personaliséierte Message schécken un $1</string>
+  <string name="custommessage-wikiuser-plaintext-1">Bonjour $1,</string>
+  <string name="custommessage-wikiuser-plaintext-2">Schreift Äre Message hei.</string>
   <string name="delete-title">$1 läschen</string>
   <string name="delete-reason">Grond:</string>
   <string name="delete-deletionlog">Logbuch vum Läschen:</string>
@@ -132,6 +135,10 @@
   <string name="delete-e2">Säit konnt net geläscht ginn</string>
   <string name="delete-edsc">Säit konnt net geläscht gi well $1</string>
   <string name="extension-kl">Funktionéiert net</string>
+  <string name="exception-details">Eenzelheete fir dës Ausnam</string>
+  <string name="exception-error-code">Feelercode: $1</string>
+  <string name="exception-reason">Grond: $1</string>
+  <string name="exception-source">Quell: $1</string>
   <string name="historyform-title">Versiounen</string>
   <string name="history-error-message-title">Réckgängegmaachen kann net gemaach ginn</string>
   <string name="userhistory-title">Lëscht vun Ären Ännerungen (chronologesch)</string>
@@ -184,6 +191,7 @@
   <string name="login-error-unknown">Aloggen op $1 huet net funktionéiert.</string>
   <string name="login-error-version">Dës Versioun ass vereelst. Aktualiséiert op déi lescht Versioun.</string>
   <string name="login-ro-title">Op \'nëmme liesen\' wiesselen</string>
+  <string name="api-query-no-data">D\'API-Ufro huet keng Donnéeën zréckginn</string>
   <string name="main-stat">$1 Ännerunge pro Minutt $2, Zrécksetzunge pro Minutt, Niveau $3</string>
   <string name="main-no-reason">De Benotzer huet kee Grond uginn</string>
   <string name="main-restoring-slap">Eng aner Ännerung gëtt elo restauréiert, waart w.e.g....</string>
@@ -274,7 +282,7 @@
   <string name="main-help-about">Iwwer Huggle...</string>
   <string name="main-help-introduction">Aféierung</string>
   <string name="main-help-contents">Inhalter</string>
-  <string name="main-addqueue">Derbäisetzen...</string>
+  <string name="main-addqueue">Dobäisetzen...</string>
   <string name="main-savelogtitle">Logbuch späicheren</string>
   <string name="main-usermessageother">Anere Message...</string>
   <string name="main-advanced">Erweidert...</string>
@@ -381,7 +389,7 @@
   <string name="shortcut-back">Op déi virdru gewisen Ännerung goen</string>
   <string name="shortcut-warn">Dem Benotzer eng Warnung schécken ouni d\'Ännerung zréckzesetzen</string>
   <string name="shortcut-revert">Ännerung zurécksetzen</string>
-  <string name="shortcut-watch">Setzt eng gewise Säit op Är Iwwerwaachungslëscht derbäi</string>
+  <string name="shortcut-watch">Setzt eng gewise Säit op Är Iwwerwaachungslëscht dobäi</string>
   <string name="shortcut-unwatch">Hëlt eng gewise Säit vun Ärer Iwwerwaachungslëscht erof</string>
   <string name="shortcut-good">Déi elo gewisen Ännerung als gutt markéieren</string>
   <string name="shortcut-open-in-huggle">Mécht déi Säit op déi elo gewise gëtt</string>
@@ -399,6 +407,7 @@
   <string name="warning-warntype">Typ vu Warnung:</string>
   <string name="warning-warnlog">Warnunge fir dëse Benotzer:</string>
   <string name="warning-submit">Schécken</string>
+  <string name="warninglist-no-warning-title">Keng Warnung</string>
   <string name="missing-warning">De Modell fir ze warnen $1 gëtt et net.</string>
   <string name="han-network">Reseau</string>
   <string name="han-send">Schécken</string>
@@ -446,6 +455,7 @@
   <string name="preferences-watchlist-preferences">Iwwerwaacht Är Wiki-Astellungen</string>
   <string name="preferences-watchlist-nochange">Näischt maachen</string>
   <string name="preferences-auto-watch-talk">D\'Diskussiounssäit vun engem Benotzer iwwerwaachen déi vun Iech eng Warnung kritt huet</string>
+  <string name="preferences-reset-gui">GUI zrécksetzen</string>
   <string name="request">Ufro</string>
   <string name="requesting">Ufroen</string>
   <string name="requested">Ugefrot</string>

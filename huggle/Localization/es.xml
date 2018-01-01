@@ -192,6 +192,9 @@
   <string name="custommessage-subject">Título</string>
   <string name="custommessage-menu">Enviar un mensaje personalizado</string>
   <string name="custommessage-send">Enviar mensaje</string>
+  <string name="custommessage-wikiuser-lesummary">Entregando un mensaje personalizado a $1</string>
+  <string name="custommessage-wikiuser-plaintext-1">Hola, $1:</string>
+  <string name="custommessage-wikiuser-plaintext-2">Escribe el mensaje aquí.</string>
   <string name="delete-title">Borrar $1</string>
   <string name="delete-reason">Motivo:</string>
   <string name="delete-deletionlog">Registro de borrados:</string>
@@ -206,6 +209,12 @@
   <string name="delete-failed-no-info">La consulta no contiene información de la página (¿eres un administrador?)</string>
   <string name="extension-kl">No está ejecutándose</string>
   <string name="extension-ok">Cargada y funcionando</string>
+  <string name="exception-details">Detalles de la excepción</string>
+  <string name="exception-error-code">Código de error: $1</string>
+  <string name="exception-reason">Motivo: $1</string>
+  <string name="exception-source">Fuente: $1</string>
+  <string name="exception-stack-trace">Seguimiento de pila:</string>
+  <string name="exception-system-log">Registro del sistema</string>
   <string name="historyform-no-info">No hay información de edición</string>
   <string name="historyform-title">Historial</string>
   <string name="historyform-retrieve-history">Recuperar historial</string>
@@ -281,6 +290,7 @@
   <string name="login-error-approval">En $1 se necesita aprobación antes de utilizar Huggle.</string>
   <string name="login-error-cancelled">Cancelado.</string>
   <string name="login-error-config">Falló el inicio de sesión. No se pudo cargar la configuración local para $1: $2</string>
+  <string name="login-error-config-retrieve">Falló el acceso; no se puede obtener la configuración de usuario: $1</string>
   <string name="login-error-count">Se necesita al menos $1 ediciones para usar Huggle en este proyecto.</string>
   <string name="login-error-disabled">Huggle no está activado en tu cuenta de $1. Revisa tu página de configuración personal.</string>
   <string name="login-error-global">Falló el acceso: no se puede analizar la configuración global. Consulta el registro de depuración para ver más detalles.</string>
@@ -295,6 +305,8 @@
   <string name="login-ro-title">Cambiar a solo lectura</string>
   <string name="login-ro-question">Uno o más proyectos ($1) no te permiten acceder con permisos de edición (motivo: $2). ¿Quieres cambiar al modo de solo lectura?</string>
   <string name="login-ro-info">El proyecto $1 cambió a modo de solo lectura</string>
+  <string name="wikis-db-download-fail">No se puede descargar la BD de wikis: $1</string>
+  <string name="api-query-no-data">la consulta de API no devolvió ningún dato</string>
   <string name="main-stat" fuzzy="true">$1 ediciones por minuto $2 reversiones por minuto, nivel $3</string>
   <string name="main-menu-provider-stop">Detener proveedor</string>
   <string name="main-menu-provider-resume">Retomar proveedor</string>
@@ -630,6 +642,7 @@
   <string name="warning-warntype">Tipo de advertencia:</string>
   <string name="warning-warnlog">Advertencias a este usuario:</string>
   <string name="warning-submit">Enviar</string>
+  <string name="warninglist-no-warning-text">No hay ningún dato para este tipo de alerta. No se puede entregar la alerta al usuario.</string>
   <string name="wikiedit-tp-fail">No se puede recuperar de$1 nivel de advertencia. No va a ser utilizado para la puntuación</string>
   <string name="missing-warning">No hay tal advertencia de la plantilla de $1</string>
   <string name="han-not">Vandalismo de la red no está permitido en las opciones de</string>
@@ -751,6 +764,7 @@
   <string name="preferences-max-score">Habilitar puntuación global máxima (las ediciones con puntuación superior, se ignorarán; útil si quieres ver sólo ediciones buenas)</string>
   <string name="preferences-min-score">Habilitar puntuación global mínima (las ediciones con puntuación inferior, se ignorarán; útil si quieres ver sólo ediciones malas)</string>
   <string name="preferences-queue-size">Tamaño de la cola</string>
+  <string name="preferences-reset-gui">Restablecer IGU</string>
   <string name="fail">Fallo</string>
   <string name="request">Solicitud</string>
   <string name="requesting">Solicitando</string>

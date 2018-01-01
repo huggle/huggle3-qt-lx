@@ -195,6 +195,9 @@
   <string name="custommessage-subject">Наслов</string>
   <string name="custommessage-menu">Испрати прилагодена порака</string>
   <string name="custommessage-send">Испрати порака</string>
+  <string name="custommessage-wikiuser-lesummary">Испратена прилагодена порака на $1</string>
+  <string name="custommessage-wikiuser-plaintext-1">Здраво, $1</string>
+  <string name="custommessage-wikiuser-plaintext-2">Внесете ја Вашата порака овде.</string>
   <string name="delete-title">Избриши го $1</string>
   <string name="delete-reason">Причина:</string>
   <string name="delete-deletionlog">Записник на бришења:</string>
@@ -209,6 +212,11 @@
   <string name="delete-failed-no-info">Во барањето немаше информации за страницата (Дали сте администратор?)</string>
   <string name="extension-kl">Не работи</string>
   <string name="extension-ok">Вчитано и работи</string>
+  <string name="exception-error-code">Код на грешката: $1</string>
+  <string name="exception-reason">Причина: $1</string>
+  <string name="exception-source">Извор: $1</string>
+  <string name="exception-stack-trace">Трага на стогот:</string>
+  <string name="exception-system-log">Системски записници</string>
   <string name="historyform-no-info">Нема информации за уредувањето</string>
   <string name="historyform-title">Историја</string>
   <string name="historyform-retrieve-history">Преземи историја</string>
@@ -278,6 +286,7 @@
   <string name="login-remember-password-tooltip">Оваа можност ви ја складира лозинката во прост текст на вашиот сметач. Користете ја само ако вие сте единственото лице со пристап до сметачот.</string>
   <string name="login-ssl">Користи HTTPS за најава (бара OpenSSL)</string>
   <string name="login-fail">Најавата не успеа на $1</string>
+  <string name="login-fail-with-reason">Најавата не успеа (на $1): $2</string>
   <string name="login-error-admin">За да користите Huggle на овој проект ќе ви треба администраторска сметка.</string>
   <string name="login-error-age">За да користите Huggle на овој проект ќе треба сметката да ви е стара барем $1 дена.</string>
   <string name="login-error-alldisabled">Huggle во моментов е исклучен на сите проекти.</string>
@@ -638,6 +647,8 @@
   <string name="warning-warntype">Тип на опомена:</string>
   <string name="warning-warnlog">Опомени за овој корисник:</string>
   <string name="warning-submit">Испрати</string>
+  <string name="warninglist-no-warning-title">Нема предупредување</string>
+  <string name="warninglist-report-text">Овој корисник веќе има добиено последна опомена, дали сакате да го пријавите?</string>
   <string name="wikiedit-tp-fail">Не можам да го добијам степенот на опомена за $1. Нема да може да се употреби во оценување.</string>
   <string name="missing-warning">Нема таков предупредувачки шаблон „$1“</string>
   <string name="han-not">Противвандалистичката мрежа не е допуштена во нагодувањата</string>

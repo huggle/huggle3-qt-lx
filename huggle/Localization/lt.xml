@@ -149,6 +149,8 @@
   <string name="config-no-colon" fuzzy="true">Negali naudoti : eilės pavadinime</string>
   <string name="config-notify-update">Tikrinti, ar yra naujinių</string>
   <string name="config-notify-beta">Jei galime tikrinti ar yra beta versijų</string>
+  <string name="custommessage-wikiuser-plaintext-1">Sveiki, $1,</string>
+  <string name="custommessage-wikiuser-plaintext-2">Rašykite savo žinutę čia.</string>
   <string name="delete-title">Trinti $1</string>
   <string name="delete-reason">Priežastis:</string>
   <string name="delete-deletionlog">šalinimų sąrašas:</string>
@@ -160,6 +162,10 @@
   <string name="delete-failed-no-info" fuzzy="true">Nėra puslapio informacijos užklausoje (ar esate sysop?)</string>
   <string name="extension-kl">Neveikia</string>
   <string name="extension-ok">Įkeltas ir veikia</string>
+  <string name="exception-error-code">Klaidos kodas: $1</string>
+  <string name="exception-reason">Priežastis: $1</string>
+  <string name="exception-source">Šaltinis: $1</string>
+  <string name="exception-system-log">Sistemos žurnalas</string>
   <string name="historyform-no-info">Nėra redagavimo informacijos</string>
   <string name="historyform-title">Istorija</string>
   <string name="historyform-retrieve-history">Gauti istoriją</string>
@@ -487,6 +493,7 @@
   <string name="warning-warntype">Įspėjimas tipas:</string>
   <string name="warning-warnlog">Įspėjimai šiam vartotojui:</string>
   <string name="warning-submit">Siųsti</string>
+  <string name="warninglist-no-warning-title">Nėra perspėjimo</string>
   <string name="wikiedit-tp-fail">Nepavyko gauti $1 įspėjimo lygio. Tai nebus naudojama balams</string>
   <string name="missing-warning">Įspėjimo šablono $1 nėra</string>
   <string name="han-connecting" fuzzy="true">Prisijungiama prie Huggle anti-vandalizmo tinklo</string>
