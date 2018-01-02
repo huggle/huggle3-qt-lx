@@ -567,6 +567,10 @@
   <string name="uaa-not-supported-text">The &quot;Usernames for administrator attention&quot; noticeboard is not available on your wiki.</string>
   <string name="uaa-reporting">Reporting $1 to UAA</string>
   <string name="uaa-reported">Reported</string>
+  <string name="uaa-user-reported-title">User is already reported"</string>
+  <string name="uaa-user-reported">This user has already been reported to UAA.</string>
+  <string name="uaa-user-unreported-title"">User is not reported</string>
+  <string name="uaa-user-unreported">This user is not reported to UAA.</string>
   <string name="uaa-no-reason-warn">You didn&apos;t specify a reason as to why the username is a policy violation. Please specify a reason.</string>
   <string name="uaa-nr">No reason was provided</string>
   <string name="uaa-g1">Getting content of UAA</string>
@@ -609,6 +613,7 @@
   <string name="updater-open-manualdownloadpage">Open the download page</string>
   <string name="updater-close">Close</string>
   <string name="updater-disable-notify">Disable updates</string>
+  <string name="updater-wait">I am now updating huggle, please wait...</string>
   <string name="user-history-fail">Unable to retrieve history for user: $1</string>
   <string name="userinfo-generic">User info</string>
   <string name="userinfo-retrieve">Retrieve info</string>
@@ -793,6 +798,7 @@
   <string name="message-fail">Failed to deliver the message</string>
   <string name="edit-conflict">Edit conflict</string>
   <string name="page-tag-nodescription">There is no description for this tag</string>
+  <string name="page-tag-noparameters">No parameters</string>
   <string name="page-tag-fail">Failed to tag page</string>
   <string name="page-tag-error">Unable to tag the page, error was: $1</string>
   <string name="page-unknown">Unknown page</string>
