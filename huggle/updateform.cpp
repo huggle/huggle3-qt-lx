@@ -49,7 +49,7 @@ UpdateForm::UpdateForm(QWidget *parent) : QDialog(parent), ui(new Ui::UpdateForm
         this->ui->checkBox->setEnabled(false);
         this->ui->checkBox_2->setEnabled(false);
         this->RootPath = hcfg->UpdaterRoot;
-        this->ui->label->setText("I am now updating huggle, please wait...");
+        this->ui->label->setText(_l("updater-wait"));
         this->ui->pushButton->setEnabled(false);
         this->ui->pushButton_2->setEnabled(false);
         this->Update();
