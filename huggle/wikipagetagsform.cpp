@@ -78,7 +78,7 @@ void WikiPageTagsForm::ChangePage(WikiPage *wikipage)
         }
         else
         {
-            line->setText("No parameters");
+            line->setText(_l("page-tag-noparameters"));
             line->setEnabled(false);
         }
         this->ui->tableWidget->setCellWidget(rx, 0, Item);
