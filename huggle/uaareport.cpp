@@ -217,12 +217,12 @@ void UAAReport::onStartOfSearch()
     this->dr = h.text();
     if (!this->checkIfReported())
     {
-        mb.setWindowTitle("User is already reported");
-        mb.setText("This user has already been reported to UAA.");
+        mb.setWindowTitle(_l("uaa-user-reported-title"));
+        mb.setText(_l("uaa-user-reported"));
     }else
     {
-        mb.setWindowTitle("User is not reported");
-        mb.setText("This user is not reported to UAA.");
+        mb.setWindowTitle(_l("uaa-user-unreported-title"));
+        mb.setText(_l("uaa-user-unreported"));
     }
     mb.exec();
 }
