@@ -567,6 +567,10 @@
   <string name="uaa-not-supported-text">管理员布告板的用户名在您的wiki不可用。</string>
   <string name="uaa-reporting">报告$1至UAA</string>
   <string name="uaa-reported">已报告</string>
+  <string name="uaa-user-reported-title">用户已被报告</string>
+  <string name="uaa-user-reported">此用户已被报告给UAA。</string>
+  <string name="uaa-user-unreported-title">用户未被报告</string>
+  <string name="uaa-user-unreported">此用户未被报告给UAA。</string>
   <string name="uaa-no-reason-warn">您没有指定这个用户名违反方针的原因。请指定一个原因。</string>
   <string name="uaa-nr">未提供原因</string>
   <string name="uaa-g1">获取UAA内容</string>
@@ -609,6 +613,7 @@
   <string name="updater-open-manualdownloadpage">打开下载页</string>
   <string name="updater-close">关闭</string>
   <string name="updater-disable-notify">停用更新</string>
+  <string name="updater-wait">我现在正在更新huggle，请稍等...</string>
   <string name="user-history-fail">无法检索用户$1的历史</string>
   <string name="userinfo-generic">用户信息</string>
   <string name="userinfo-retrieve">检索信息</string>
@@ -793,6 +798,7 @@
   <string name="message-fail">发送信息失败</string>
   <string name="edit-conflict">编辑冲突</string>
   <string name="page-tag-nodescription">没有用于此标签的描述</string>
+  <string name="page-tag-noparameters">无参数</string>
   <string name="page-tag-fail">无法标记页面</string>
   <string name="page-tag-error">无法标记页面，错误是:$1</string>
   <string name="page-unknown">未知页面</string>

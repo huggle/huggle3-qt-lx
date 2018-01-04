@@ -765,6 +765,7 @@
   <string name="preferences-min-score">Habilitar puntuación global mínima (las ediciones con puntuación inferior, se ignorarán; útil si quieres ver sólo ediciones malas)</string>
   <string name="preferences-queue-size">Tamaño de la cola</string>
   <string name="preferences-reset-gui">Restablecer IGU</string>
+  <string name="preferences-restore-factory-layout">Esto restaurará la disposición por omisión de Huggle tal como era cuando lo instalaste. Huggle se cerrará. ¿Quieres continuar?</string>
   <string name="fail">Fallo</string>
   <string name="request">Solicitud</string>
   <string name="requesting">Solicitando</string>

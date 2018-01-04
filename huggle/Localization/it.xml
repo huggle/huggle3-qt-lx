@@ -187,6 +187,7 @@
   <string name="custommessage-subject">Titolo</string>
   <string name="custommessage-menu">Invia un messaggio personalizzato</string>
   <string name="custommessage-send">Spedisci messaggio</string>
+  <string name="custommessage-wikiuser-plaintext-1">Ciao $1,</string>
   <string name="delete-title">Cancella $1</string>
   <string name="delete-reason">Motivo:</string>
   <string name="delete-deletionlog">Registro delle cancellazioni:</string>
@@ -201,6 +202,9 @@
   <string name="delete-failed-no-info">Nell\'interrogazione non era presente alcuna informazione della pagina (sei un amministratore?)</string>
   <string name="extension-kl">Non in esecuzione</string>
   <string name="extension-ok">Caricato e in esecuzione</string>
+  <string name="exception-details">Dettagli eccezione</string>
+  <string name="exception-reason">Motivo: $1</string>
+  <string name="exception-source">Fonte: $1</string>
   <string name="historyform-no-info">Nessuna informazione di modifica</string>
   <string name="historyform-title">Cronologia</string>
   <string name="historyform-retrieve-history">Recupera la cronologia</string>
@@ -562,6 +566,7 @@
   <string name="updater-open-manualdownloadpage">Apri la pagina di download</string>
   <string name="updater-close">Chiudi</string>
   <string name="updater-disable-notify">Disattiva gli aggiornamenti</string>
+  <string name="updater-wait">Sto aggiornando huggle, attendi...</string>
   <string name="user-history-fail">Impossibile recuperare la cronologia per l\'utente: $1</string>
   <string name="userinfo-generic">Informazioni utente</string>
   <string name="userinfo-retrieve">Recupera le informazioni</string>
@@ -723,6 +728,7 @@
   <string name="message-fail">Impossibile recapitare il messaggio</string>
   <string name="edit-conflict">Conflitto di edizione</string>
   <string name="page-tag-nodescription">Non c\'è alcuna descrizione per questo tag</string>
+  <string name="page-tag-noparameters">Nessun parametro</string>
   <string name="page-tag-fail">Impossibile taggare la pagina</string>
   <string name="page-tag-error">Impossibile taggare la pagina, l\'errore è: $1</string>
   <string name="page-unknown">Pagina sconosciuta</string>

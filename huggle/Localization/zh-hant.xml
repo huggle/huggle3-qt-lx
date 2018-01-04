@@ -548,7 +548,7 @@
   <string name="report-write">寫入中</string>
   <string name="reportuser-not">現在此用戶沒有辦法回告</string>
   <string name="report-evidence-none-provid">沒有提供比較內容作為證據。這會讓管理員很難判斷用戶是否為破壞者。您確定要繼續嗎？</string>
-  <string name="report-duplicate">用戶已被舉報</string>
+  <string name="report-duplicate">用戶已被回報</string>
   <string name="report-fail2">錯誤，無法在$1取得回報頁面</string>
   <string name="report-progress">回報$1中...</string>
   <string name="report-retrieving">取得目前回告頁面...</string>
@@ -565,11 +565,15 @@
   <string name="ssl-required">網頁伺服器 $1 要求開啟 SSL。請啟動 SSL 後再試一次。如果您不能開啟 SSL（該選項為灰色不可選情況）您可能需要在您的系統上安裝 OpenSSL 函式庫。</string>
   <string name="uaa-not-supported">UAA無法使用</string>
   <string name="uaa-not-supported-text">「管理員需注意的用戶名」公告欄在您的wiki上不可用。</string>
-  <string name="uaa-reporting">回告$1給UAA</string>
+  <string name="uaa-reporting">回報 $1 至「需要管理員注意的用戶名」</string>
   <string name="uaa-reported">已回報</string>
+  <string name="uaa-user-reported-title">使用者已被回報</string>
+  <string name="uaa-user-reported">使用者已被回報至「需要管理員注意的用戶名」。</string>
+  <string name="uaa-user-unreported-title">使用者未被回報</string>
+  <string name="uaa-user-unreported">使用者未被回報至「需要管理員注意的用戶名」。</string>
   <string name="uaa-no-reason-warn">您沒有指名原因關於為何此用戶名稱違反方針。請指名一個原因。</string>
   <string name="uaa-nr">未提供理由</string>
-  <string name="uaa-g1">獲取UAA內容</string>
+  <string name="uaa-g1">獲取「需要管理員注意的用戶名」的內容</string>
   <string name="uaa-e1">此頁面內容的查詢沒有回傳資料。</string>
   <string name="uaa-e2">頁面內容不可用。</string>
   <string name="read-only">項目$1被設置為唯獨，編輯功能將被限制</string>
@@ -609,6 +613,7 @@
   <string name="updater-open-manualdownloadpage">開啟下載頁面</string>
   <string name="updater-close">關閉</string>
   <string name="updater-disable-notify">關閉更新</string>
+  <string name="updater-wait">目前正在更新 huggle，請稍等...</string>
   <string name="user-history-fail">無法索取用戶：$1的歷史</string>
   <string name="userinfo-generic">使用者資訊</string>
   <string name="userinfo-retrieve">取得資訊</string>
@@ -793,6 +798,7 @@
   <string name="message-fail">訊息傳送失敗</string>
   <string name="edit-conflict">編輯衝突</string>
   <string name="page-tag-nodescription">沒有此標記的描述</string>
+  <string name="page-tag-noparameters">沒有參數</string>
   <string name="page-tag-fail">標記頁面失敗</string>
   <string name="page-tag-error">無法標記頁面，錯誤：$1</string>
   <string name="page-unknown">不明的頁面</string>

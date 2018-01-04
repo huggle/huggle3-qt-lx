@@ -496,7 +496,7 @@
   <string name="score-take-any-word">Overeenkomst met woorden die deze tekenreeks bevatten</string>
   <string name="uaa-not-supported">UAA niet beschikbaar</string>
   <string name="uaa-reported">Gerapporteerd</string>
-  <string name="uaa-no-reason-warn">U heeft niet aangegeven waarom deze gebruikersnaam in strijd is met de voorwaarden. Geef alstublieft een reden.</string>
+  <string name="uaa-no-reason-warn">U hebt niet aangegeven waarom deze gebruikersnaam in strijd is met de voorwaarden. Geef alstublieft een reden.</string>
   <string name="uaa-nr">Geen reden opgegeven</string>
   <string name="uaa-e2" fuzzy="true">de inhoud van de pagina was niet beschikbaar.</string>
   <string name="revert-confirm-multiple">Dit draait meerdere bewerkingen van $1 terug. Wilt u doorgaan?</string>

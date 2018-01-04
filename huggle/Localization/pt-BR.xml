@@ -567,6 +567,10 @@
   <string name="uaa-not-supported-text">O painel de notícias \"Nomes de usuários que precisam de atenção do administrador\" não está disponível em sua wiki.</string>
   <string name="uaa-reporting">Denunciando $1 para UAA</string>
   <string name="uaa-reported">Reportado</string>
+  <string name="uaa-user-reported-title">O usuário já se encontra reportado</string>
+  <string name="uaa-user-reported">Este usuário já foi reportado a UAA.</string>
+  <string name="uaa-user-unreported-title">O usuário não foi reportado</string>
+  <string name="uaa-user-unreported">Este usuário não foi reportado a UAA.</string>
   <string name="uaa-no-reason-warn">Você não especificou a razão pelo qual a conta de usuário é uma violação da política. Por favor especifique a razão.</string>
   <string name="uaa-nr">Nenhuma razão foi fornecida</string>
   <string name="uaa-g1">Obtendo conteúdo de UAA</string>
@@ -609,6 +613,7 @@
   <string name="updater-open-manualdownloadpage">Abrir página para download</string>
   <string name="updater-close">Fechar</string>
   <string name="updater-disable-notify">Desativar atualizações</string>
+  <string name="updater-wait">Estou agora atualizando o huggle, por favor aguarde...</string>
   <string name="user-history-fail">Não foi possível recuperar o histórico do usuário: $1</string>
   <string name="userinfo-generic">Informação de usuário</string>
   <string name="userinfo-retrieve">Recuperar informação</string>
@@ -793,6 +798,7 @@
   <string name="message-fail">Falha na entrega da mensagem</string>
   <string name="edit-conflict">Conflito de edição</string>
   <string name="page-tag-nodescription">Não há descrição para esta etiqueta</string>
+  <string name="page-tag-noparameters">Não há parâmetros</string>
   <string name="page-tag-fail">A marcação da página falhou</string>
   <string name="page-tag-error">Não foi possível marcar a página, o erro foi: $1</string>
   <string name="page-unknown">Página desconhecida</string>

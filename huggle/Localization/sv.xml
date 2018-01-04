@@ -176,6 +176,10 @@
   <string name="delete-failed-no-info">Ingen sidinfo fanns i frågan (är du en admin?)</string>
   <string name="extension-kl">Körs inte</string>
   <string name="extension-ok">Lästs in och körs</string>
+  <string name="exception-error-code">Felkod: $1</string>
+  <string name="exception-reason">Orsak: $1</string>
+  <string name="exception-source">Källa: $1</string>
+  <string name="exception-system-log">Systemlogg</string>
   <string name="historyform-no-info">Ingen redigeringsinformation</string>
   <string name="historyform-title">Historik</string>
   <string name="historyform-retrieve-history">Hämta historia</string>

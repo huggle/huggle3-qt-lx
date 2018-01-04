@@ -157,6 +157,8 @@
   <string name="config-no-colon" fuzzy="true">N\'hallit ket implijout \":\" en anv ar steudad c\'hortoz</string>
   <string name="config-notify-update">Gwiriañ hag-eñ ez eus hizivadennoù</string>
   <string name="config-notify-beta">Gwiriañ ma c\'haller kaout ar stummoù bêta</string>
+  <string name="custommessage-wikiuser-plaintext-1">Demat, $1</string>
+  <string name="custommessage-wikiuser-plaintext-2">Skrivañ ho kemennadenn amañ</string>
   <string name="delete-title">Dilemel $1</string>
   <string name="delete-reason">Abeg :</string>
   <string name="delete-deletionlog">Marilh an dilamadennoù :</string>
@@ -165,6 +167,10 @@
   <string name="delete-e2">Ne c\'haller ket dilemel ar bajenn</string>
   <string name="extension-kl" fuzzy="true">Lazhet</string>
   <string name="extension-ok">Karget hag o seveniñ</string>
+  <string name="exception-error-code">Kod fazi: $1</string>
+  <string name="exception-reason">Abeg : $1</string>
+  <string name="exception-source">Mammenn : $1</string>
+  <string name="exception-system-log">Renabl reizhiad</string>
   <string name="historyform-no-info">Titour ebet war ar c\'hemmoù</string>
   <string name="historyform-title">Istor</string>
   <string name="historyform-retrieve-history">Adtapout an istor</string>
@@ -210,6 +216,7 @@
   <string name="login-remember-password">Derc\'hel soñj eus ar ger-tremen</string>
   <string name="login-ssl" fuzzy="true">Implijout HTTPS (ezhomm en deus eus OpenSSL)</string>
   <string name="login-fail">C\'hwitet kevreañ ouzh $1</string>
+  <string name="login-fail-with-reason">C\'hwitet kevreañ (ouzh $1): $2</string>
   <string name="login-error-admin">Ezhomm zo eus ur gont merour evit implijout Huggle war ar raktres-mañ.</string>
   <string name="login-error-age" fuzzy="true">Evit implijout Huggle war ar raktres-mañ ez eus ezhomm eus $1 devezh da nebeutañ.</string>
   <string name="login-error-alldisabled">Diweredekaet eo Huggle war an holl raktresoù evit bremañ.</string>
@@ -351,6 +358,7 @@
   <string name="score-range">Lijorenn</string>
   <string name="score-only-whole-word">A glot gant ar gerioù klok hepken</string>
   <string name="score-take-any-word">A glot gant n\'eus forzh peseurt ger a zo ar chadenn-mañ ennañ</string>
+  <string name="uaa-user-unreported-title">N\'eo ket stanket an implijer</string>
   <string name="uaa-nr">N\'eus bet roet abeg ebet</string>
   <string name="revert-delete-instead">Dilemel ar bajenn, kentoc\'h ?</string>
   <string name="speedy-reason">Abeg :</string>
@@ -380,6 +388,7 @@
   <string name="warning-level4">Live 4 (diwezhañ)</string>
   <string name="warning-warntype">Seurt kemennoù-diwall :</string>
   <string name="warning-submit">Kas</string>
+  <string name="warninglist-no-warning-title">Kemenn-diwall ebet</string>
   <string name="error-noresponse">Respont ebet</string>
   <string name="error-pagemissing">N\'eus ket eus ar bajenn</string>
   <string name="error-unknown">Fazi dianav</string>
@@ -400,6 +409,7 @@
   <string name="wait">Gortozit mar plij...</string>
   <string name="fail">C\'hwitet</string>
   <string name="request">Reked</string>
+  <string name="page-tag-noparameters">Arventennoù ebet</string>
   <string name="page-unknown">Pajenn dianav</string>
   <string name="namespace">Esaouenn anv</string>
   <string name="error-unknown-code">Fazi dianav: §1</string>

@@ -195,6 +195,9 @@
   <string name="custommessage-subject">Titre</string>
   <string name="custommessage-menu">Envoyer un message personnalisé</string>
   <string name="custommessage-send">Envoyer un message</string>
+  <string name="custommessage-wikiuser-lesummary">Envoi d’un message personnalisé à $1</string>
+  <string name="custommessage-wikiuser-plaintext-1">Bonjour $1,</string>
+  <string name="custommessage-wikiuser-plaintext-2">Écrire votre message ici.</string>
   <string name="delete-title">Supprimer $1</string>
   <string name="delete-reason">Motif :</string>
   <string name="delete-deletionlog">Journal des suppressions :</string>
@@ -209,6 +212,13 @@
   <string name="delete-failed-no-info">Aucune information de page n’était présente dans la requête (êtes-vous un administrateur ?)</string>
   <string name="extension-kl">Pas en cours d’exécution</string>
   <string name="extension-ok">Chargé et en cours d’exécution</string>
+  <string name="exception-text-1">Malheureusement, Huggle s’est planté. Veuillez envoyer les informations suivantes avec les détails de ce que vous étiez en train de faire</string>
+  <string name="exception-details">Détails de l’exception</string>
+  <string name="exception-error-code">Code d\'erreur : $1</string>
+  <string name="exception-reason">Motif : $1</string>
+  <string name="exception-source">Source : $1</string>
+  <string name="exception-stack-trace">Trace de la pile :</string>
+  <string name="exception-system-log">Journal système</string>
   <string name="historyform-no-info">Aucune information sur la modification</string>
   <string name="historyform-title">Historique</string>
   <string name="historyform-retrieve-history">Récupérer l’historique</string>
@@ -557,6 +567,10 @@
   <string name="uaa-not-supported-text">Le panneau d’affichage « Noms d’utilisateur à l’attention de l’administrateur » n’est pas disponible sur votre wiki.</string>
   <string name="uaa-reporting">Signaler $1 à UAA</string>
   <string name="uaa-reported">Signalé</string>
+  <string name="uaa-user-reported-title">L’utilisateur est déjà signalé</string>
+  <string name="uaa-user-reported">Cet utilisateur a déjà été signalé à UAA.</string>
+  <string name="uaa-user-unreported-title">L’utilisateur n’est pas signalé</string>
+  <string name="uaa-user-unreported">Cet utilisateur n’est pas signalé à UAA.</string>
   <string name="uaa-no-reason-warn">Vous n’avez pas indiqué de motif indiquant pourquoi le nom d’utilisateur est une violation de la politique. Veuillez en spécifier un.</string>
   <string name="uaa-nr">Aucun motif fourni</string>
   <string name="uaa-g1">Obtention du contenu de UAA</string>
@@ -599,6 +613,7 @@
   <string name="updater-open-manualdownloadpage">Ouvrir la page de téléchargement</string>
   <string name="updater-close">Fermer</string>
   <string name="updater-disable-notify">Désactiver les mises à jour</string>
+  <string name="updater-wait">Je mets actuellement Huggle à jour, veuillez patienter…</string>
   <string name="user-history-fail">Impossible de récupérer l’historique pour l’utilisateur : $1</string>
   <string name="userinfo-generic">Information utilisateur</string>
   <string name="userinfo-retrieve">Récupérer l’information</string>
@@ -645,6 +660,9 @@
   <string name="warning-warntype">Type d’avertissement :</string>
   <string name="warning-warnlog">Avertissements pour cet utilisateur :</string>
   <string name="warning-submit">Envoyer</string>
+  <string name="warninglist-no-warning-title">Aucun avertissement</string>
+  <string name="warninglist-no-warning-text">Il n’y a aucune donnée pour ce type d’avertissement, impossible de fournir un avertissement à l’utilisateur !</string>
+  <string name="warninglist-report-text">Cet utilisateur a déjà reçu un avertissement final, donc je ne lui enverrai plus d\'avertissement, voulez-vous plutôt le signaler ?</string>
   <string name="wikiedit-tp-fail">Impossible de récupérer le niveau d’avertissement de $1. Il ne sera pas utilisé pour l’évaluation</string>
   <string name="missing-warning">Il n’y a pas un tel modèle d’avertissement $1</string>
   <string name="han-not">Un réseau de vandalisme n’est pas autorisé dans les options</string>
@@ -768,6 +786,8 @@
   <string name="preferences-min-score">Activer le score minimal global (les modifications avec un score inférieur seront ignorées — utile si vous voulez ne voir que les mauvaises modifications)</string>
   <string name="preferences-queue-size">Taille de la file</string>
   <string name="preferences-empty-queue-page">Page de file d’attente vide :</string>
+  <string name="preferences-reset-gui">Réinitialiser l’IHM</string>
+  <string name="preferences-restore-factory-layout">Cela rétablira la disposition d’usine de Huggle comme il se trouvait quand vous l’avez installé. Huggle s’arrêtera. Continuer ?</string>
   <string name="fail">Échec</string>
   <string name="request">Requête</string>
   <string name="requesting">En cours de requête</string>
@@ -778,6 +798,7 @@
   <string name="message-fail">Echec lors de la transmission du message</string>
   <string name="edit-conflict">Conflit de modification.</string>
   <string name="page-tag-nodescription">Il n’y a pas de description pour cette balise</string>
+  <string name="page-tag-noparameters">Aucun paramètre</string>
   <string name="page-tag-fail">Échec pour baliser la page</string>
   <string name="page-tag-error">Impossible de baliser la page, l’erreur était : $1</string>
   <string name="page-unknown">Page inconnue</string>

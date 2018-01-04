@@ -375,6 +375,7 @@
   <string name="updater-open-manualdownloadpage">Download-Säit opmaachen</string>
   <string name="updater-close">Zoumaachen</string>
   <string name="updater-disable-notify">Aktualisatiounen desaktivéieren</string>
+  <string name="updater-wait">Ech aktualiséieren elo Huggle, waart w.e.g. ...</string>
   <string name="userinfo-generic">Benotzerinformatioun</string>
   <string name="userinfo-retrieve">Informatiounen ofruffen</string>
   <string name="userinfo-no-user">Kee Benotzer</string>
@@ -461,6 +462,7 @@
   <string name="requested">Ugefrot</string>
   <string name="edit-conflict">Ännerungskonflikt</string>
   <string name="page-tag-nodescription">Et gëtt keng Beschreiwung fir dësen Tag</string>
+  <string name="page-tag-noparameters">Keng Parameteren</string>
   <string name="page-unknown">Onbekannt Säit</string>
   <string name="namespace">Nummraum</string>
   <string name="block-alreadyblocked">Benotzer ass scho gespaart</string>

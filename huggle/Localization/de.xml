@@ -567,6 +567,10 @@
   <string name="uaa-not-supported-text">Die Pinnwand „Benutzernamen für die Administratorbeachtung“ ist auf deinem Wiki nicht verfügbar.</string>
   <string name="uaa-reporting">Melde $1 an UAA</string>
   <string name="uaa-reported">Gemeldet</string>
+  <string name="uaa-user-reported-title">Der Benutzer wurde bereits gemeldet</string>
+  <string name="uaa-user-reported">Dieser Benutzer wurde bereits auf UAA gemeldet.</string>
+  <string name="uaa-user-unreported-title">Der Benutzer wurde nicht gemeldet</string>
+  <string name="uaa-user-unreported">Dieser Benutzer ist auf UAA nicht gemeldet.</string>
   <string name="uaa-no-reason-warn">Du hast keine Begründung angegeben, warum dieser Benutzername ein Verstoß gegen die Richtlinien ist. Bitte eine Begründung angeben.</string>
   <string name="uaa-nr">Es wurde keine Begründung angegeben</string>
   <string name="uaa-g1">Inhalt von UAA abrufen</string>
@@ -609,6 +613,7 @@
   <string name="updater-open-manualdownloadpage">Download-Seite öffnen</string>
   <string name="updater-close">Schließen</string>
   <string name="updater-disable-notify">Aktualisierungen deaktivieren</string>
+  <string name="updater-wait">Ich aktualisiere jetzt Huggle. Bitte warten …</string>
   <string name="user-history-fail">Der Verlauf für den Benutzer konnte nicht abgerufen werden: $1</string>
   <string name="userinfo-generic">Benutzerinformation</string>
   <string name="userinfo-retrieve">Rufe Informationen ab</string>
@@ -793,6 +798,7 @@
   <string name="message-fail">Nachricht konnte nicht versandt werden</string>
   <string name="edit-conflict">Bearbeitungskonflikt</string>
   <string name="page-tag-nodescription">Für diese Markierung gibt es keine Beschreibung</string>
+  <string name="page-tag-noparameters">Keine Parameter</string>
   <string name="page-tag-fail">Seite konnte nicht markiert werden</string>
   <string name="page-tag-error">Seite konnte nicht markiert werden. Der Fehler war: $1</string>
   <string name="page-unknown">Unbekannte Seite</string>

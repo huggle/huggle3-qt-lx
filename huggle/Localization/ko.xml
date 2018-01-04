@@ -212,6 +212,7 @@
   <string name="exception-error-code">오류 코드: $1</string>
   <string name="exception-reason">이유: $1</string>
   <string name="exception-source">출처: $1</string>
+  <string name="exception-stack-trace">스택 트레이스:</string>
   <string name="exception-system-log">시스템 로그</string>
   <string name="historyform-no-info">편집 정보 없음</string>
   <string name="historyform-title">역사</string>
@@ -551,6 +552,10 @@
   <string name="uaa-not-supported-text">이 위키에는 \"관리자의 관심이 필요한 사용자명\" 알림판이 존재하지 않습니다.</string>
   <string name="uaa-reporting">UAA로 $1 신고 중</string>
   <string name="uaa-reported">보고됨</string>
+  <string name="uaa-user-reported-title">사용자는 이미 보고되었습니다</string>
+  <string name="uaa-user-reported">이 사용자는 이미 UAA에 보고되어 있습니다.</string>
+  <string name="uaa-user-unreported-title">사용자가 보고되어 있지 않습니다</string>
+  <string name="uaa-user-unreported">이 사용자는 UAA에 보고되어 있지 않습니다.</string>
   <string name="uaa-no-reason-warn">사용자 이름이 정책 위반인 이유를 지정하지 않았습니다. 이유를 지정해 주십시오.</string>
   <string name="uaa-nr">제공된 이유가 없습니다</string>
   <string name="uaa-g1">UAA의 내용을 가져오는 중</string>
@@ -587,6 +592,7 @@
   <string name="updater-open-manualdownloadpage">다운로드 페이지 열기</string>
   <string name="updater-close">닫기</string>
   <string name="updater-disable-notify">업데이트 비활성화</string>
+  <string name="updater-wait">huggle을 지금 업데이트하고 있으니 기다려 주십시오...</string>
   <string name="user-history-fail">사용자의 역사를 검색하지 못했습니다: $1</string>
   <string name="userinfo-generic">사용자 정보</string>
   <string name="userinfo-retrieve">정보 얻기</string>
@@ -756,6 +762,7 @@
   <string name="message-fail">메시지 전달을 실패했습니다</string>
   <string name="edit-conflict">편집 충돌</string>
   <string name="page-tag-nodescription">이 태그에 대한 설명이 없습니다</string>
+  <string name="page-tag-noparameters">변수 없음</string>
   <string name="page-tag-fail">문서를 태그하는 데 실패함</string>
   <string name="page-tag-error">페이지를 태그할 수 없습니다. 오류: $1</string>
   <string name="page-unknown">알 수 없는 문서</string>
