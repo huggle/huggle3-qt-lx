@@ -286,7 +286,7 @@
   <string name="login-progress-whitelist">Retrieving user whitelist...</string>
   <string name="login-remember-password">Remember password</string>
   <string name="login-remember-password-tooltip">This option will store your password in plaintext on your hard drive. Use it only if you are the only person with access to this computer.</string>
-  <string name="login-ssl">Use HTTPS to login (requires OpenSSL)</string>
+  <string name="login-ssl">Use HTTPS to log in (requires OpenSSL)</string>
   <string name="login-fail">Login failed on $1</string>
   <string name="login-fail-with-reason">Login failed (on $1): $2</string>
   <string name="login-error-admin">Use of Huggle on this project requires an administrator account.</string>
