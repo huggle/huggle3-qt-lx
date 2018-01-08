@@ -110,6 +110,7 @@
   <string name="config-notify-update">Used as label for the checkbox.\n{{Identical|Check for update}}</string>
   <string name="config-notify-beta">Used as label for the checkbox.</string>
   <string name="custommessage-subject">{{Identical|Title}}</string>
+  <string name="custommessage-wikiuser-plaintext-1">Абзиара шәымаз, $1,</string>
   <string name="delete-title">{{Identical|Delete}}</string>
   <string name="delete-reason">{{Identical|Reason}}</string>
   <string name="delete-deletionlog">{{Identical|Deletion log}}</string>
@@ -119,6 +120,10 @@
   <string name="delete-edsc">Parameters:\n* $1 - one of the following messages:\n** {{msg-huggle|Delete-error-token}}\n** {{msg-huggle|Delete-failed-no-info}}\n** {{msg-huggle|Delete-token02}}\n** {{msg-huggle|Delete-e1}}</string>
   <string name="delete-failed-no-info">Used as &lt;code&gt;$1&lt;/code&gt; in {{msg-huggle|Delete-edsc}}.</string>
   <string name="extension-kl">{{Identical|Killed}}</string>
+  <string name="exception-error-code">Агха акод: $1</string>
+  <string name="exception-reason">Амзыз: $1</string>
+  <string name="exception-source">Ахыҵхырҭа: $1</string>
+  <string name="exception-system-log">Асистематә журнал</string>
   <string name="historyform-title">{{Identical|History}}</string>
   <string name="history-error-message-title">Used as title for the message box.\n\nFollowed by any one of the following:\n* {{msg-huggle|History-error}}\n* \"Unknown item\" (hard-coded)</string>
   <string name="history-error">Used in the message box having the title {{msg-huggle|History-error-message-title}}.</string>

@@ -209,6 +209,7 @@
   <string name="delete-failed-no-info">La consulta no contiene información de la página (¿eres un administrador?)</string>
   <string name="extension-kl">No está ejecutándose</string>
   <string name="extension-ok">Cargada y funcionando</string>
+  <string name="exception-text-1">Desafortunadamente Huggle ha dejado de funcionar. Por favor, completa el campo con información detallada sobre lo que estabas haciendo</string>
   <string name="exception-details">Detalles de la excepción</string>
   <string name="exception-error-code">Código de error: $1</string>
   <string name="exception-reason">Motivo: $1</string>
@@ -284,6 +285,7 @@
   <string name="login-remember-password-tooltip">Esta opción almacenará tu contraseña en texto plano en tu disco duro. Úsala sólo si eres la única persona que accede a esta computadora.</string>
   <string name="login-ssl">Utilizar HTTPS para acceder (necesita OpenSSL)</string>
   <string name="login-fail">Falló el inicio de sesión en $1</string>
+  <string name="login-fail-with-reason">Falló el acceso (a $1): $2</string>
   <string name="login-error-admin">Se necesita cuenta de administrador para usar Huggle en este proyecto.</string>
   <string name="login-error-age" fuzzy="true">Se necesita una cuenta con al menos $1 días de antigüedad para usar Huggle en este proyecto.</string>
   <string name="login-error-alldisabled">Huggle está actualmente desactivado en todos los proyectos.</string>
@@ -291,12 +293,14 @@
   <string name="login-error-cancelled">Cancelado.</string>
   <string name="login-error-config">Falló el inicio de sesión. No se pudo cargar la configuración local para $1: $2</string>
   <string name="login-error-config-retrieve">Falló el acceso; no se puede obtener la configuración de usuario: $1</string>
+  <string name="login-error-config-query-no-data">Falló el acceso. No se pudo recuperar la configuración global porque la consulta a la API no devolvió ningún dato</string>
   <string name="login-error-count">Se necesita al menos $1 ediciones para usar Huggle en este proyecto.</string>
   <string name="login-error-disabled">Huggle no está activado en tu cuenta de $1. Revisa tu página de configuración personal.</string>
   <string name="login-error-global">Falló el acceso: no se puede analizar la configuración global. Consulta el registro de depuración para ver más detalles.</string>
   <string name="login-error-invalid">Nombre de usuario no válido.</string>
   <string name="login-error-noconfig">$1 no tiene una página de configuración de Huggle</string>
   <string name="login-error-nouser">El usuario no existe</string>
+  <string name="login-error-no-valid-token">El sitio no devolvió ningún autenticador de acceso válido</string>
   <string name="login-error-password">Contraseña incorrecta</string>
   <string name="login-error-projdisabled">Huggle está actualmente desactivado en este proyecto.</string>
   <string name="login-error-unknown">No se puede acceder a $1.</string>
@@ -306,6 +310,7 @@
   <string name="login-ro-question">Uno o más proyectos ($1) no te permiten acceder con permisos de edición (motivo: $2). ¿Quieres cambiar al modo de solo lectura?</string>
   <string name="login-ro-info">El proyecto $1 cambió a modo de solo lectura</string>
   <string name="wikis-db-download-fail">No se puede descargar la BD de wikis: $1</string>
+  <string name="no-projects-defined-in-list">No existen proyectos definidos en ninguna lista. Necesitas establecer algunos en el wiki global</string>
   <string name="api-query-no-data">la consulta de API no devolvió ningún dato</string>
   <string name="main-stat" fuzzy="true">$1 ediciones por minuto $2 reversiones por minuto, nivel $3</string>
   <string name="main-menu-provider-stop">Detener proveedor</string>
@@ -557,6 +562,10 @@
   <string name="uaa-not-supported-text">Esta función no está disponible en tu proyecto.</string>
   <string name="uaa-reporting">Denunciando a $1 en UAA</string>
   <string name="uaa-reported">Denunciado</string>
+  <string name="uaa-user-reported-title">El usuario ya ha sido reportado</string>
+  <string name="uaa-user-reported">Este usuario ya ha sido reportado a UAA.</string>
+  <string name="uaa-user-unreported-title">El usuario no está reportado</string>
+  <string name="uaa-user-unreported">Esto usuario no se encuentra reportado a UAA.</string>
   <string name="uaa-no-reason-warn">No has especificado una razón de por qué el nombre de usuario supone una infracción a las políticas vigentes. Por favor especifica una razón.</string>
   <string name="uaa-nr">No se proporcionó ningún motivo</string>
   <string name="uaa-g1">Obteniendo contenido de UAA</string>
@@ -598,6 +607,7 @@
   <string name="updater-open-manualdownloadpage">Abrir la página de descarga</string>
   <string name="updater-close">Cerrar</string>
   <string name="updater-disable-notify">Deshabilitar las actualizaciones</string>
+  <string name="updater-wait">Se está actualizando Huggle; espera un momento…</string>
   <string name="user-history-fail" fuzzy="true">no se pudo recuperar el historial del usuario: $1</string>
   <string name="userinfo-generic">Información del usuario</string>
   <string name="userinfo-retrieve">Recuperar información</string>
@@ -642,7 +652,9 @@
   <string name="warning-warntype">Tipo de advertencia:</string>
   <string name="warning-warnlog">Advertencias a este usuario:</string>
   <string name="warning-submit">Enviar</string>
+  <string name="warninglist-no-warning-title">Sin advertencia</string>
   <string name="warninglist-no-warning-text">No hay ningún dato para este tipo de alerta. No se puede entregar la alerta al usuario.</string>
+  <string name="warninglist-report-text">Este usuario ya ha recibido una advertencia final, así que ya no le enviaré más advertencias, ¿prefieres reportarlo en su lugar?</string>
   <string name="wikiedit-tp-fail">No se puede recuperar de$1 nivel de advertencia. No va a ser utilizado para la puntuación</string>
   <string name="missing-warning">No hay tal advertencia de la plantilla de $1</string>
   <string name="han-not">Vandalismo de la red no está permitido en las opciones de</string>
@@ -776,6 +788,7 @@
   <string name="message-fail">No se pudo entregar el mensaje</string>
   <string name="edit-conflict">Conflicto de edición</string>
   <string name="page-tag-nodescription">No hay ninguna descripción para esta etiqueta</string>
+  <string name="page-tag-noparameters">Sin parámetros</string>
   <string name="page-tag-fail">Falló al etiquetar la página</string>
   <string name="page-tag-error">Imposible marcar la página, el error fue $1</string>
   <string name="page-unknown">Página desconocida</string>

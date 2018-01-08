@@ -781,6 +781,7 @@
   <string name="message-fail">Не удалось доставить сообщение</string>
   <string name="edit-conflict">Конфликт редактирования.</string>
   <string name="page-tag-nodescription">Отсутствует описание для этой метки</string>
+  <string name="page-tag-noparameters">Иацҵатәуп апараметрқәа</string>
   <string name="page-tag-fail">Не удалось пометить страницу</string>
   <string name="page-tag-error">Не удается пометить страницу, ошибка: $1</string>
   <string name="page-unknown">Неизвестная страница</string>

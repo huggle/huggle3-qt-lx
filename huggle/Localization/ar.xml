@@ -185,6 +185,7 @@
   <string name="delete-failed-no-info" fuzzy="true">ما من معلومات عن الصفحة في الطلب (هل أنت إداري؟)</string>
   <string name="extension-kl">لا يعمل</string>
   <string name="extension-ok">تحميل وتشغيل</string>
+  <string name="exception-system-log">سجل النظام</string>
   <string name="historyform-no-info">لا معلومات تعديل</string>
   <string name="historyform-title">التاريخ</string>
   <string name="historyform-retrieve-history">اجلب التاريخ</string>

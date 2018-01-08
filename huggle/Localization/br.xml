@@ -170,6 +170,7 @@
   <string name="exception-error-code">Kod fazi: $1</string>
   <string name="exception-reason">Abeg : $1</string>
   <string name="exception-source">Mammenn : $1</string>
+  <string name="exception-stack-trace">Roud al listenn:</string>
   <string name="exception-system-log">Renabl reizhiad</string>
   <string name="historyform-no-info">Titour ebet war ar c\'hemmoù</string>
   <string name="historyform-title">Istor</string>
@@ -376,6 +377,7 @@
   <string name="updater-open-manualdownloadpage">Digeriñ ar bajenn bellgargañ</string>
   <string name="updater-close">Serriñ</string>
   <string name="updater-disable-notify">Diweredekaat an hizivadennoù</string>
+  <string name="updater-wait">Emaon o nevesaat huggle, gortozit Mar plij</string>
   <string name="shortcut-my-talk">Ma fajenn gaozeal</string>
   <string name="shortcut-browser-close-tab">Serriñ un dikedenn eus ar merdeer</string>
   <string name="shortcut-tab">Digeriñ a ra un ivinell nevez</string>

@@ -181,6 +181,8 @@
   <string name="config-no-colon" fuzzy="true">Sıra adında : kullanamzsınız</string>
   <string name="config-notify-update">Güncelleştirmeleri denetle</string>
   <string name="config-notify-beta">Uygunsa Beta sürümleri olup olmadığını kontrol et.</string>
+  <string name="custommessage-wikiuser-plaintext-1">Merhaba $1,</string>
+  <string name="custommessage-wikiuser-plaintext-2">Mesajınızı buraya yazın.</string>
   <string name="delete-title">Sil $1</string>
   <string name="delete-reason">Sebep:</string>
   <string name="delete-deletionlog">Silme günlüğü:</string>
@@ -195,6 +197,11 @@
   <string name="delete-failed-no-info" fuzzy="true">Sorguda hiç sayfa bilgisi görüntülenemedi (hizmetli misiniz?)</string>
   <string name="extension-kl">Çalışmıyor</string>
   <string name="extension-ok">Yüklendi ve çalışıyor</string>
+  <string name="exception-details">İstisnai detaylar</string>
+  <string name="exception-error-code">Hata kodu: $1</string>
+  <string name="exception-reason">Gerekçe: $1</string>
+  <string name="exception-source">Kaynak: $1</string>
+  <string name="exception-system-log">Sistem günlüğü</string>
   <string name="historyform-no-info">Düzenleme bilgisi yok</string>
   <string name="historyform-title">Geçmiş</string>
   <string name="historyform-retrieve-history">Geçmişi getir</string>
@@ -501,6 +508,10 @@
   <string name="uaa-not-supported-text">\"Kullanıcı adları için hizmetli uyarı bildirimi\" tahtası Viki\'nizde kullanıma açık değildir.</string>
   <string name="uaa-reporting">UAA\'ya rapor ediliyor: $1</string>
   <string name="uaa-reported">Rapor edildi</string>
+  <string name="uaa-user-reported-title">Kullanıcı zaten rapor edilmiş</string>
+  <string name="uaa-user-reported">Kullanıcı zaten UAA\'ya bildirilmiş.</string>
+  <string name="uaa-user-unreported-title">Kullanıcı rapor edilmemiş</string>
+  <string name="uaa-user-unreported">Kullanıcı, UAA\'ya rapor edilmemiş.</string>
   <string name="uaa-no-reason-warn">Kullanıcı adının neden politika ihlali olduğunu belirtmediniz. Lütfen bir neden belirtiniz.</string>
   <string name="uaa-nr">Neden belirtilmedi</string>
   <string name="uaa-g1">UAA içeriği alınıyor</string>
@@ -541,6 +552,7 @@
   <string name="updater-open-manualdownloadpage">İndirme sayfasını aç</string>
   <string name="updater-close">Kapat</string>
   <string name="updater-disable-notify">Güncelleştirmeleri devre dışı bırak</string>
+  <string name="updater-wait">Huggle\'ı şu an güncelliyorum, lütfen bekleyin...</string>
   <string name="user-history-fail" fuzzy="true">$1 kullanıcısı için geçmiş getirilemedi</string>
   <string name="userinfo-generic">Kullanıcı bilgisi</string>
   <string name="userinfo-retrieve">Bilgiyi getir</string>
@@ -582,6 +594,9 @@
   <string name="warning-warntype">Uyarı türü:</string>
   <string name="warning-warnlog">Bu kullanıcıya yapılan uyarılar:</string>
   <string name="warning-submit">Gönder</string>
+  <string name="warninglist-no-warning-title">Uyarı mevcut değil</string>
+  <string name="warninglist-no-warning-text">Bu uyarı türü için herhangi bir bilgi mevcut değil, kullanıcıya uyarı gönderme işlemi gerçekleştirilemedi.</string>
+  <string name="warninglist-report-text">Bu kullanıcı zaten son uyarısını aldığı için daha fazla uyarı göndermeyeceğim, bunun yerine rapor etmek ister misin?</string>
   <string name="wikiedit-tp-fail">$1 uyarı seviyesi çağrılamadı. Puanlama için kullanılamayacaktır.</string>
   <string name="missing-warning">Böyle bir uyarı şablonu yok $1</string>
   <string name="han-not">Vandalizm ağı seçeneklerde devredışı</string>
@@ -688,6 +703,7 @@
   <string name="preferences-watchlist-unwatch">İzleme listesinden çıkar</string>
   <string name="preferences-watchlist-preferences">Wiki\'deki tercihlerini takip et</string>
   <string name="preferences-watchlist-nochange">Hiçbir şey yapma</string>
+  <string name="preferences-reset-gui">GUI\'yi sıfırlayın</string>
   <string name="fail">Başarısız</string>
   <string name="request">Talep et</string>
   <string name="requesting">Talep ediliyor</string>
@@ -698,6 +714,7 @@
   <string name="message-fail">Mesajı iletme başarısız oldu</string>
   <string name="edit-conflict">Değişiklik çakışması</string>
   <string name="page-tag-nodescription" fuzzy="true">bu etiket için hiçbir açıklama yok :/</string>
+  <string name="page-tag-noparameters">Parametreler mevcut değil</string>
   <string name="page-tag-fail">Sayfa etiketi başarısız oldu</string>
   <string name="page-tag-error">Sayfa etiketlenemedi. Hata: $1</string>
   <string name="page-unknown">Bilinmeyen sayfa</string>
