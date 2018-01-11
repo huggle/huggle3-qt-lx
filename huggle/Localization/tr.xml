@@ -19,6 +19,7 @@
   <string name="rename">Yeniden adlandır</string>
   <string name="reload">Yeniden yükle</string>
   <string name="project">Proje</string>
+  <string name="warning">İkaz</string>
   <string name="result">Sonuç</string>
   <string name="save">Kaydet</string>
   <string name="show">Göster</string>
@@ -80,8 +81,8 @@
   <string name="block-token-e1">Belirteç elde edilemiyor: $1</string>
   <string name="block-error-no-info" fuzzy="true">Sorguda kullanıcı bilgisi görüntülenemedi (hizmetli misiniz?)</string>
   <string name="block-type">Engelle / Engeli kaldır</string>
-  <string name="block-admin" fuzzy="true">Engelleyen hizmetli</string>
-  <string name="block-none" fuzzy="true">Engellenecek kullanıcı yok</string>
+  <string name="block-admin">Engelleyen hizmetli</string>
+  <string name="block-none">Engellenecek kullanıcı seçilmedi.</string>
   <string name="contribution-browser-user-info">Kulanıcı $1\'ın son değişiklikleri gösteriliyor</string>
   <string name="config-function">İşlev</string>
   <string name="config-description">Açıklama</string>
@@ -108,6 +109,7 @@
   <string name="config-noshortcut">Hiçbiri</string>
   <string name="config-defaults">Varsayılan</string>
   <string name="config-minor">Küçük değişiklik olarak işaretle</string>
+  <string name="config-ip">Anonim kullanıcılar</string>
   <string name="config-watchlist">İzleme listesine ekle</string>
   <string name="config-defaultsummary">Elle yapılan değişiklikler için varsayılan özet</string>
   <string name="config-undosummary">Kendi değişikliklerinizi eski haline getirmek için özet</string>
@@ -120,6 +122,7 @@
   <string name="config-instant-reverts">Ani geri alma kullan (çok hızlı, fakat başladıktan sonra durdurulamaz)</string>
   <string name="config-revert-wait" fuzzy="true">Geri alma zamanı (saniye)</string>
   <string name="config-revert">Geri al</string>
+  <string name="config-skip">Geç</string>
   <string name="config-revert-diff">Eğer gösterilen değişiklerden daha yeni olan değişiklikler aynı vandal kullanıcı tarafından yapılmışsa söz konusu değişiklikleri geri al</string>
   <string name="config-change-all">Huggle\'ın tüm ayarlarını Huggle 2 versiyonuna çevir</string>
   <string name="config-merge-messages">Mevcut bölümlerdeki mesajlarını birleştir</string>
@@ -132,6 +135,7 @@
   <string name="config-last-revision" fuzzy="true">Eğer şuan yüklü olan değişiklik son değişiklik değilse en yeni sürümünü göster (önbelleği atlayarak sonradan indirecektir)</string>
   <string name="config-require-delay">Her yeni değişikliği yüklerken geciktirme gereksin, herhangi bir yazma özelliği kullanılamasın (klavyede çoklu basma sorununu çözmeye çalışırken faydalıdır)</string>
   <string name="config-wait-edit">Düzenleme özelliklerinin etkinleştirilmesi için beklemeniz gereken süre (saniye):</string>
+  <string name="config-display-next">Sonrakini görüntüle</string>
   <string name="config-retrieve-edit">Düzenlemenizi geri alın</string>
   <string name="config-nothing">Hiçbir şey</string>
   <string name="config-bot-edits">Bot düzenlemeleri (b)</string>
@@ -181,6 +185,8 @@
   <string name="config-no-colon" fuzzy="true">Sıra adında : kullanamzsınız</string>
   <string name="config-notify-update">Güncelleştirmeleri denetle</string>
   <string name="config-notify-beta">Uygunsa Beta sürümleri olup olmadığını kontrol et.</string>
+  <string name="custommessage-subject">Başlık</string>
+  <string name="custommessage-send">Mesaj gönder</string>
   <string name="custommessage-wikiuser-plaintext-1">Merhaba $1,</string>
   <string name="custommessage-wikiuser-plaintext-2">Mesajınızı buraya yazın.</string>
   <string name="delete-title">Sil $1</string>
@@ -251,10 +257,12 @@
   <string name="login-password-empty">Girdiğiniz parola boş</string>
   <string name="login-fail-wrong-name" fuzzy="true">Oturum açmak için doğru bir kullanıcı adı girmediniz</string>
   <string name="login-api">HATA: api.php bilinmeyen bir cevap verdi: $1</string>
+  <string name="login-abort">Sonlandır</string>
   <string name="login-start">Giriş</string>
   <string name="login-oauth-notsupported">Bu yöntem şu anda desteklenmiyor</string>
   <string name="login-translate">Huggle\'ı tercüme et</string>
-  <string name="login-progress-start" fuzzy="true">$1\'e giriş yapılıyor</string>
+  <string name="login-progress-formtitle">Yükleniyor...</string>
+  <string name="login-progress-start">$1\'e giriş yapılıyor</string>
   <string name="login-progress-retrieve-mw">$1 için MediaWiki hakkında bilgi alınıyor</string>
   <string name="login-progress-language">Mesaj dosyaları güncelleniyor...</string>
   <string name="login-progress-global">Küresel yapılandırma denetleniyor...</string>
@@ -320,6 +328,8 @@
   <string name="main-queue-reset">Sıfırla</string>
   <string name="main-queue-clearall">Tümünü temizle</string>
   <string name="main-queue-options">Sıraları yönet...</string>
+  <string name="main-queue-when-full-stop">Akışı durdur</string>
+  <string name="main-queue-when-full-remove">Eski değişiklikleri kaldır</string>
   <string name="main-goto">Git</string>
   <string name="main-goto-mytalk">Mesaj sayfam</string>
   <string name="main-goto-mycontribs">Katkılarım</string>
@@ -362,12 +372,15 @@
   <string name="main-page-load">Yükle</string>
   <string name="main-patrol-not-enabled">$1\'de devriyelik devre dışı</string>
   <string name="main-page-restore">Bu sürümü geri getir</string>
+  <string name="main-page-tab-open">Yeni sekme aç</string>
+  <string name="main-page-watchlist-remove">Sayfayı izleme listesinden çıkar</string>
   <string name="main-user-info">Kullanıcı bilgisini göster</string>
   <string name="main-user-ignore">Yoksay</string>
   <string name="main-user-unignore">Yoksaymayı geri al</string>
   <string name="main-user-contribs">Kullanıcı katkıları bir tarayıcıda göster</string>
   <string name="main-user-clear-talk">Kullanıcının mesaj sayfasını temizle</string>
   <string name="main-user-talk">Mesaj sayfasını görüntüle</string>
+  <string name="main-user-page">Kullanıcı sayfasını göster</string>
   <string name="main-user-message">Mesaj...</string>
   <string name="main-user-warn">Uyar...</string>
   <string name="main-user-db">Kullanıcının hata puanlarını azalt</string>
@@ -393,6 +406,8 @@
   <string name="main-help-documentation">Belgeleme</string>
   <string name="main-help-feedback">Geri bildirim</string>
   <string name="main-help-about">Huggle hakkında...</string>
+  <string name="main-help-introduction">Giriş</string>
+  <string name="main-help-contents">İçindekiler</string>
   <string name="main-addqueue">Ekle...</string>
   <string name="main-savelogtitle">Günlüğü kaydet</string>
   <string name="main-usermessageother">Diğer mesaj...</string>
@@ -413,6 +428,7 @@
   <string name="main-revert-newpage">Bu yeni bir sayfa olduğu için geri alınamıyor. Sayfayı yalnızca etiketleyebilir veya silebilirsiniz.</string>
   <string name="main-restore-text-fail">Revizyon geri getirilemiyor çünkü kullanılabilir metin yok</string>
   <string name="main-restore-data-fail" fuzzy="true">Revizyon geri yüklemek mümkün değil çünkü wiki seçili sürümü için veri sağlamadı.</string>
+  <string name="main-welcome-user">Hoşgeldin kullanıcı</string>
   <string name="message-title">Mesaj $1</string>
   <string name="message-help" fuzzy="true">Bir konu ve/veya özet belirtin. Özet girilmemişse konu kullanılacak, o da yoksa başlık eklenmeyecek.</string>
   <string name="message-subject">Konu:</string>

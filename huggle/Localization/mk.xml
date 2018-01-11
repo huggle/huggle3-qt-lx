@@ -782,6 +782,7 @@
   <string name="message-fail">Не успеав да ја доставам пораката</string>
   <string name="edit-conflict">Спротиставеност во уредувањето.</string>
   <string name="page-tag-nodescription">Нема опис за оваа ознака</string>
+  <string name="page-tag-noparameters">Нема параметри</string>
   <string name="page-tag-fail">Не успеав да ја означам страницата</string>
   <string name="page-tag-error">Не можам да ја означам страницата. Грешката гласи: $1</string>
   <string name="page-unknown">Непозната страница</string>

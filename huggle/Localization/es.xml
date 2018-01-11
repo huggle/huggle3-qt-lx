@@ -16,7 +16,8 @@
   <string name="done">Hecho</string>
   <string name="no">No</string>
   <string name="ok">Aceptar</string>
-  <string name="remove">Eliminar</string>
+  <string name="override-warn">Te has saltado la ruta de configuración del proyecto. Ten en cuenta que abusar de esta funcionalidad para obtener acceso de escritura en el wiki, en aquellos casos donde normalmente no lo tendrías, puede resultar en un bloqueo permanente a tu cuenta.</string>
+  <string name="remove">Quitar</string>
   <string name="rename">Cambiar nombre</string>
   <string name="reload">Recargar</string>
   <string name="project">Proyecto</string>
@@ -76,7 +77,7 @@
   <string name="block-blockloglabel">Registro de bloqueos:</string>
   <string name="block-warnloglabel">Advertencias:</string>
   <string name="block-sharedipwarning">Nota: $1 está etiquetada como una IP compartida o dinámica.</string>
-  <string name="block-rangeblockwarning">$1 está afectado por el bloqueo del rango en {1}.\nEste bloqueo hará que se pierda el efecto del bloqueo del rango. ¿Continuar de todos modos?</string>
+  <string name="block-rangeblockwarning">$1 ya está afectado por un bloqueo de intervalo en $2.\nEste bloqueo anulará el efecto del bloqueo de intervalo. ¿Quieres continuar?</string>
   <string name="block-token-1">Obteniendo ficha para bloquear a $1</string>
   <string name="block-fail">No se puede bloquear al usuario, $1</string>
   <string name="block-token-e1">No se puede recuperar la ficha: $1</string>
@@ -477,10 +478,10 @@
   <string name="message-fail-re-user-tp">Incapaz de recuperar los $1. Detener la entrega de mensajes para que el usuario</string>
   <string name="message-er">No se puede entregar el mensaje a $1: $2</string>
   <string name="message-error">Falló la entrega de un mensaje a $1. Revisa los registros.</string>
-  <string name="message-fail-retrieve-talk" fuzzy="true">no se puede recuperar la página de discusión del usuario</string>
+  <string name="message-fail-retrieve-talk">No se puede recuperar la página de discusión del usuario</string>
   <string name="message-done">Mensaje entregado correctamente en $2 a: $1</string>
-  <string name="message-fail-token-1" fuzzy="true">no se puede recuperar la edición de token</string>
-  <string name="message-fail-token-2" fuzzy="true">no token devuelto por la solicitud</string>
+  <string name="message-fail-token-1">No se puede recuperar el autenticador de la edición</string>
+  <string name="message-fail-token-2">La solicitud no devolvió ningún autenticador</string>
   <string name="protect-request-title">Solicitar protección de $1</string>
   <string name="protect-reason">Motivo:</string>
   <string name="protect-expiry">Caducidad:</string>
@@ -562,10 +563,10 @@
   <string name="uaa-not-supported-text">Esta función no está disponible en tu proyecto.</string>
   <string name="uaa-reporting">Denunciando a $1 en UAA</string>
   <string name="uaa-reported">Denunciado</string>
-  <string name="uaa-user-reported-title">El usuario ya ha sido reportado</string>
-  <string name="uaa-user-reported">Este usuario ya ha sido reportado a UAA.</string>
-  <string name="uaa-user-unreported-title">El usuario no está reportado</string>
-  <string name="uaa-user-unreported">Esto usuario no se encuentra reportado a UAA.</string>
+  <string name="uaa-user-reported-title">Ya se denunció al usuario</string>
+  <string name="uaa-user-reported">Ya se denunció a este usuario ante UAA.</string>
+  <string name="uaa-user-unreported-title">No se ha denunciado al usuario</string>
+  <string name="uaa-user-unreported">No se ha denunciado a este usuario ante UAA.</string>
   <string name="uaa-no-reason-warn">No has especificado una razón de por qué el nombre de usuario supone una infracción a las políticas vigentes. Por favor especifica una razón.</string>
   <string name="uaa-nr">No se proporcionó ningún motivo</string>
   <string name="uaa-g1">Obteniendo contenido de UAA</string>

@@ -215,7 +215,7 @@
   <string name="login-progress-user">O wiriañ ar c\'hefluniadur implijer evit $1</string>
   <string name="login-progress-user-info">‎O wiriañ an titouroù implijer evit $1</string>
   <string name="login-remember-password">Derc\'hel soñj eus ar ger-tremen</string>
-  <string name="login-ssl" fuzzy="true">Implijout HTTPS (ezhomm en deus eus OpenSSL)</string>
+  <string name="login-ssl">Implijout HTTPS evit en em lugañ (ezhomm a zo eus OpenSSL)</string>
   <string name="login-fail">C\'hwitet kevreañ ouzh $1</string>
   <string name="login-fail-with-reason">C\'hwitet kevreañ (ouzh $1): $2</string>
   <string name="login-error-admin">Ezhomm zo eus ur gont merour evit implijout Huggle war ar raktres-mañ.</string>
@@ -359,7 +359,10 @@
   <string name="score-range">Lijorenn</string>
   <string name="score-only-whole-word">A glot gant ar gerioù klok hepken</string>
   <string name="score-take-any-word">A glot gant n\'eus forzh peseurt ger a zo ar chadenn-mañ ennañ</string>
+  <string name="uaa-user-reported-title">An implijer a zo bet diskuilhet dija</string>
+  <string name="uaa-user-reported">An implijer-se a zo bet diskuilhet dija d\'an UAA</string>
   <string name="uaa-user-unreported-title">N\'eo ket stanket an implijer</string>
+  <string name="uaa-user-unreported">An implijer n\'eo ket diskuilhet d\'an UAA</string>
   <string name="uaa-nr">N\'eus bet roet abeg ebet</string>
   <string name="revert-delete-instead">Dilemel ar bajenn, kentoc\'h ?</string>
   <string name="speedy-reason">Abeg :</string>
