@@ -194,6 +194,7 @@
   <string name="custommessage-subject">Заголовок</string>
   <string name="custommessage-menu">Отправить своё сообщение</string>
   <string name="custommessage-send">Отправить сообщение</string>
+  <string name="custommessage-wikiuser-lesummary">Отправка пользовательского сообщения для $1</string>
   <string name="custommessage-wikiuser-plaintext-1">Здравствуйте, $1,</string>
   <string name="custommessage-wikiuser-plaintext-2">Пишите ваше сообщение здесь.</string>
   <string name="delete-title">Удалить $1</string>
@@ -830,4 +831,5 @@
   <string name="query-protected-link">Защищенная ссылка</string>
   <string name="queue-empty-title">Пусто</string>
   <string name="protip">Совет</string>
+  <string name="tip10">Большинство ярлыков можно изменить в ваших настройках.</string>
 </resources>
