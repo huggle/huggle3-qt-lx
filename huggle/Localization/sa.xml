@@ -49,11 +49,11 @@
   <string name="disable">अक्षमं क्रियताम्</string>
   <string name="no-token">स्तोकं नास्ति</string>
   <string name="flags">ध्वजाः</string>
-  <string name="browser-none">अधुना नैकमपि पृष्ठे दर्शयति</string>
+  <string name="browser-none" fuzzy="true">अधुना नैकमपि पृष्ठे दर्शयति</string>
   <string name="browser-miss-summ">सारांशः न प्रदत्तः</string>
   <string name="browser-fail">भेदं ज्ञातम् अक्षमः : $1</string>
   <string name="about-contributors">विधिकाराः :</string>
-  <string name="block-not">प्रयोक्ता अवरुद्धः वर्तते</string>
+  <string name="block-not">सदस्यः अवरुद्धः वर्तते</string>
   <string name="block-title">$1 अवरुद्धः</string>
   <string name="block-reason">कारणम् :</string>
   <string name="block-duration">कालः</string>
@@ -70,10 +70,10 @@
   <string name="block-token-1">अवरोधयितुं स्तोकम् आनयति $1</string>
   <string name="block-fail">योजकम् अवरोधयितुं न शक्तम्, $1</string>
   <string name="block-token-e1">स्तोकं स्वीकर्तुं न शक्यते : $1</string>
-  <string name="block-error-no-info">प्रश्ने योजकस्य विवरणं नासीत् (भवान्/भवती प्रबन्धकः अस्ति ?)</string>
+  <string name="block-error-no-info" fuzzy="true">प्रश्ने सदस्यस्य विवरणं नासीत् (भवान्/भवती प्रबन्धकः अस्ति ?)</string>
   <string name="block-type">अवरुद्धम्/अनवरुद्धम्</string>
-  <string name="block-admin">प्रबन्धकम् अवरुध्यति</string>
-  <string name="block-none">कोऽपि सदस्यः अवरोधयितुं न विद्यते ।</string>
+  <string name="block-admin" fuzzy="true">प्रबन्धकम् अवरुध्यति</string>
+  <string name="block-none" fuzzy="true">कोऽपि सदस्यः अवरोधयितुं न विद्यते ।</string>
   <string name="config-function">नियोज्यम्</string>
   <string name="config-description">वर्णनम्</string>
   <string name="config-shortcut">लाघवम्</string>
@@ -85,9 +85,8 @@
   <string name="config-shortcutaction">क्रिया</string>
   <string name="config-noshortcut">नैकमपि</string>
   <string name="config-defaults">यदभावे</string>
-  <string name="config-revert-wait">पूर्ववत् भवति (क्षणानि)</string>
+  <string name="config-revert-wait" fuzzy="true">पूर्ववत् भवति (क्षणानि)</string>
   <string name="config-revert">पूर्ववत्</string>
-  <string name="config-display-text">अग्रिमं दर्श्यताम्</string>
   <string name="config-retrieve-edit">स्वसम्पादनं पूर्ववत् क्रियताम्</string>
   <string name="config-nothing">किमपि न</string>
   <string name="config-bot-edits">बॉट् सम्पादनानि (b)</string>
@@ -103,16 +102,16 @@
   <string name="historyform-title">इतिहासः</string>
   <string name="history-error-message-title">पूर्ववत् कर्तुं न शक्यते</string>
   <string name="userhistory-title">भवतः/भवत्याः परिवर्तनानाम् इतिहासः</string>
-  <string name="login-tab-login">प्रविश्यताम्</string>
+  <string name="login-tab-login" fuzzy="true">प्रविश्यताम्</string>
   <string name="login-language">भाषा :</string>
   <string name="login-project">प्रकल्पः :</string>
   <string name="login-username">सदस्यनाम :</string>
   <string name="login-password">कूटशब्दः :</string>
   <string name="login-proxyaddress">सङ्केतः :</string>
-  <string name="login-proxydomain">क्षेत्रम् :</string>
+  <string name="login-proxydomain">प्रदेशः :</string>
   <string name="login-start">प्रविश्यताम्</string>
   <string name="login-error-cancelled">निरस्तम्</string>
-  <string name="login-error-invalid">अमान्यं योजकनाम</string>
+  <string name="login-error-invalid">अमान्यं सदस्यनाम</string>
   <string name="main-page">पृष्ठम्</string>
   <string name="main-user">सदस्यः</string>
   <string name="main-contribs">योगदानानि</string>
@@ -146,7 +145,7 @@
   <string name="main-page-delete">अपाक्रियताम्</string>
   <string name="main-page-load">आरोपणम्</string>
   <string name="main-page-restore">संस्करणं पुनस्थाप्यताम्</string>
-  <string name="main-user-info">योजकस्य विवरणं दृश्यताम्</string>
+  <string name="main-user-info">सदस्यस्य विवरणं दृश्यताम्</string>
   <string name="main-user-ignore">अवगण्यताम्</string>
   <string name="main-user-unignore">मा अवगण्यताम्</string>
   <string name="main-user-talk">सम्भाषणपृष्ठं दृश्यताम्</string>
@@ -166,7 +165,7 @@
   <string name="message-summary">सारांशः :</string>
   <string name="protect-reason">कारणम् :</string>
   <string name="protect-expiry">अवसानम् :</string>
-  <string name="protect-log">सुरक्षाऽऽवलिः :</string>
+  <string name="protect-log">सुरक्षायाः संरक्षितावलिः :</string>
   <string name="protect-none">नैकमपि</string>
   <string name="queue-listselector">सूची</string>
   <string name="queue-diffsgroup">अन्तरम्</string>
@@ -202,7 +201,7 @@
   <string name="tag-summary">सारांशः :</string>
   <string name="tag-insertatend">पृष्ठस्य अन्ते योज्यताम्</string>
   <string name="update-title">नवीनं संस्करणम् उपलब्धम्</string>
-  <string name="update-progress">नवीनं संस्करणम् अवारोपयति...</string>
+  <string name="update-progress" fuzzy="true">नवीनं संस्करणम् अवारोपयति...</string>
   <string name="update-error">नवीनसंस्करणस्य अवारोपणम् असफलम्</string>
   <string name="updater-title">Huggle इत्यस्य नवीनं संस्करणम् उपलब्धम् अस्ति ।</string>
   <string name="updater-update">अद्यतनीक्रियताम्</string>
@@ -210,10 +209,10 @@
   <string name="updater-open-manualdownloadpage">अवारोपितपृष्ठम् उद्धाट्यताम्</string>
   <string name="updater-close">पिदधातु</string>
   <string name="updater-disable-notify">नीवनीकरणम् असमर्थ्यताम्</string>
-  <string name="user-history-fail">$1 इत्यस्मै योजकाय इतिहासः न प्राप्यते</string>
+  <string name="user-history-fail" fuzzy="true">$1 इत्यस्मै योजकाय इतिहासः न प्राप्यते</string>
   <string name="userinfo-generic">योजकसूचना</string>
   <string name="shortcut-my-talk">मम सम्भाषणपृष्ठम्</string>
-  <string name="shortcut-raw">सम्पादनं पूर्ववत् कृत्वा योजकं पूर्वसूचनां ददातु</string>
+  <string name="shortcut-raw">सम्पादनं पूर्ववत् कृत्वा सदस्याय पूर्वसूचनां ददातु</string>
   <string name="shortcut-next">समन्तरं सम्पादनं प्रति गच्छतु</string>
   <string name="shortcut-back">पूर्वस्य सम्पादनं प्रति गच्छतु</string>
   <string name="shortcut-revert">सम्पादनं पूर्ववत् क्रियताम्</string>

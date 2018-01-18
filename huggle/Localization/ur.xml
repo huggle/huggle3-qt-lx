@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">اردو</string>
-  <string name="isrtl">غلط</string>
+  <string name="isrtl">true</string>
   <string name="add">شامل کریں</string>
   <string name="cancel">منسوخ کریں</string>
   <string name="clear">صاف کریں</string>
@@ -19,6 +19,7 @@
   <string name="rename">نام تبدیل کریں</string>
   <string name="reload">دوبارہ لوڈ کریں</string>
   <string name="project">منصوبہ</string>
+  <string name="warning">انتباہ</string>
   <string name="result">نتیجہ</string>
   <string name="save">محفوظ کریں</string>
   <string name="show">دکھائیں</string>
@@ -80,7 +81,7 @@
   <string name="config-watchlist">زیر نظر فہرست میں شامل کریں</string>
   <string name="config-defaultsummary">دستی ترامیم کے لیے طے شدہ خلاصہ ہائے ترامیم</string>
   <string name="config-revert">استرجع</string>
-  <string name="config-display-text">اگلا دکھائیں</string>
+  <string name="config-display-next">اگلا ظاہر کریں</string>
   <string name="config-bot-edits">روبہ ترامیم (b)</string>
   <string name="config-new-page">نیا صفحہ</string>
   <string name="config-talk">تبادلۂ خیال صفحہ</string>
@@ -104,7 +105,7 @@
   <string name="login-username">صارف نام:</string>
   <string name="login-password">پاسورڈ:</string>
   <string name="login-proxygroup">ترتیبات پراکسی</string>
-  <string name="login-proxy">پراکسی سرور استعمال کریں</string>
+  <string name="login-proxy" fuzzy="true">پراکسی سرور استعمال کریں</string>
   <string name="login-proxyaddress">ایڈریس:</string>
   <string name="login-proxyport">پورٹ:</string>
   <string name="login-fail-css">$1 میں لاگ ان ناکام: صارف کانفیگریشن نہیں مل سکی۔\nخاص:میرا_صفحہ/huggle3.css موجود نہیں ہے۔ کیا آپ نے اپنے صارف نام فضا میں huggle3.css بنا لیا ہے؟</string>
@@ -115,7 +116,7 @@
   <string name="login-fail-wrong-name" fuzzy="true">لاگ ان ہونے کے لیے آپ نے غلط صارف نام درج کیا ہے</string>
   <string name="login-start">لاگ ان</string>
   <string name="login-translate">ہگل کا ترجمہ کریں</string>
-  <string name="login-progress-start">$1 میں لاگ ان ہو رہے ہیں</string>
+  <string name="login-progress-start" fuzzy="true">$1 میں لاگ ان ہو رہے ہیں</string>
   <string name="login-progress-global">عالمی کانفیگریشن زیر پڑتال</string>
   <string name="login-progress-config">کانفیگریشن صفحات زیر پڑتال</string>
   <string name="login-progress-local">مقامی کانفیگریشن برائے $1 زیر پڑتال</string>
@@ -123,7 +124,7 @@
   <string name="login-progress-user-info">معلومات صارف برائے $1 زیر پڑتال</string>
   <string name="login-progress-whitelist">صارف کی فہرست سفید زیر معائنہ۔۔۔</string>
   <string name="login-remember-password">پاسورڈ محفوظ رکھیں</string>
-  <string name="login-ssl">HTTPS استعمال کریں (OpenSSL درکار ہوگا)</string>
+  <string name="login-ssl" fuzzy="true">HTTPS استعمال کریں (OpenSSL درکار ہوگا)</string>
   <string name="login-fail">$1 میں لاگ ان ناکام</string>
   <string name="login-error-cancelled">منسوخ کر دیا گیا۔</string>
   <string name="login-error-config">لاگ ان ناکام، $1 میں مقامی کانفیگریشن پارس نہیں ہو سکی: $2</string>
@@ -244,7 +245,7 @@
   <string name="tag-summary">خلاصہ:</string>
   <string name="tag-insertatend">صفحہ کے آخر میں درج کریں</string>
   <string name="update-title">نیا ورژن دستیاب ہے</string>
-  <string name="update-progress">نیا ورژن ڈاؤنلوڈ ہو رہا ہے۔۔۔</string>
+  <string name="update-progress" fuzzy="true">نیا ورژن ڈاؤنلوڈ ہو رہا ہے۔۔۔</string>
   <string name="update-error">نئے ورژن کو ڈاؤنلوڈ کرنے میں ناکامی ہوئی</string>
   <string name="updater-title">ہگل کا نیا ورژن دستیاب ہے</string>
   <string name="updater-update">تجدید</string>
@@ -262,6 +263,7 @@
   <string name="shortcut-suspicious">بطور مشکوک ترمیم نشان زد کریں</string>
   <string name="shortcut-warn" fuzzy="true">ترمیم کا استرجع کیے بغیر صارف کو انتباہ دیں</string>
   <string name="shortcut-revert">ترمیم کا استرجع کریں</string>
+  <string name="shortcut-user-clear-talk">موجودہ صارف کے تبادلہ خیال صفحہ کو صاف کیجیے</string>
   <string name="warning-title">انتباہ $1</string>
   <string name="warning-levelgroup">سطح انتباہ</string>
   <string name="warning-levelauto">خودکار</string>
@@ -276,14 +278,18 @@
   <string name="error-noresponse">کوئی جواب نہیں</string>
   <string name="edit-progress">آپ \"$1\" میں ترمیم کر رہے ہیں۔</string>
   <string name="history-welcome-msg-title">اس کے بجائے خوش آمدید پیغام روانہ کریں؟</string>
+  <string name="protect-done">تبدیلیِ درجۂ حفاظت تبدیل برائے $1</string>
+  <string name="protect-progress">$1 کا درجۂ حفاظت تبدیل ہورہا ہے۔۔۔</string>
   <string name="speedy-finished">ختم شد</string>
   <string name="logs-widget-name">نوشتہ ہائے نظام</string>
   <string name="wait">براہ مہربانی انتظار کریں...</string>
+  <string name="waiting">انتظار کیا جا رہا ہے...</string>
   <string name="report-no-user">شکایت کے لیے کوئی صارف منتخب نہیں کیا گیا ہے، براہ کرم پہلے کسی صارف کو منتخب کریں</string>
   <string name="welcome-tp-empty-fail" fuzzy="true">اس صارف کا تبادلۂ خیال صفحہ خالی نہیں ہے، کیا آپ واقعی اسے پیغام ارسال کرنا چاہتے ہیں؟</string>
   <string name="preferences-watchlist-watch">زیر نظر فہرست میں شامل کریں</string>
   <string name="preferences-watchlist-preferences">اپنی ویکی ترجیحات کی پیروی کریں</string>
   <string name="preferences-watchlist-nochange">کچھ نہ کریں</string>
+  <string name="preferences-auto-watch-talk" fuzzy="true">صارف کا تبادلہ خیال صفحہ دیکھیں جسے آپ کی جانب سے تنبیہ کی جاتی ہے۔</string>
   <string name="fail">ناکام</string>
   <string name="request">درخواست</string>
   <string name="edit-conflict">تنازع ترمیم</string>

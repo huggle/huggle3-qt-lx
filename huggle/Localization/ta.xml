@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">ஆங்கிலம்</string>
-  <string name="isrtl">பொய்</string>
+  <string name="isrtl">false</string>
   <string name="add">சேர்க்கவும்</string>
   <string name="cancel">இரத்து செய்க</string>
   <string name="clear">நீக்குக</string>
@@ -12,6 +12,7 @@
   <string name="deleted">நீக்கப்பட்டது</string>
   <string name="error">பிழை</string>
   <string name="exit">வெளியேறுக</string>
+  <string name="done">முடிந்தது</string>
   <string name="no">இல்லை</string>
   <string name="ok">சரி</string>
   <string name="remove">நீக்குக</string>
@@ -43,8 +44,7 @@
   <string name="expiry-time">காலாவதி நேரம்</string>
   <string name="duration">இடைப்பட்ட காலம்</string>
   <string name="flags">கொடிகள்</string>
-  <string name="score-word">சொல்</string>
-  <string name="browser-none">எப்பக்கமும் இப்போது காட்டப்படவில்லை</string>
+  <string name="browser-none" fuzzy="true">எப்பக்கமும் இப்போது காட்டப்படவில்லை</string>
   <string name="browser-miss-summ">சுருக்கம் கொடுக்கப்படவில்லை</string>
   <string name="block-not">பயனர் தடுக்கப்படவில்லை</string>
   <string name="block-title">தடை $1</string>
@@ -61,8 +61,8 @@
   <string name="block-warnloglabel">எச்சரிக்கைகள்:</string>
   <string name="block-fail">பயனரைத் தடை செய்ய முடியவில்லை, $1</string>
   <string name="block-type">தடு / தடையை நீக்கு</string>
-  <string name="block-admin">தடைசெய்யும் நிர்வாகி</string>
-  <string name="block-none">தடைசெய்ய ஒரு பயனரும் இல்லை</string>
+  <string name="block-admin" fuzzy="true">தடைசெய்யும் நிர்வாகி</string>
+  <string name="block-none" fuzzy="true">தடைசெய்ய ஒரு பயனரும் இல்லை</string>
   <string name="config-shortcut">குறுக்குவழி</string>
   <string name="config-title">விருப்பத்தேர்வுகள்</string>
   <string name="config-shortcutlist">விசைப்பலகை குறுக்குவழிகள்</string>
@@ -84,7 +84,7 @@
   <string name="historyform-retrieving-history">வரலாறு மீட்டெடுக்கப்படுகின்றது</string>
   <string name="history-error-message-title">மீளமைக்க முடியவில்லை</string>
   <string name="userhistory-title">உங்கள் மாற்றங்களின் வரலாறு</string>
-  <string name="login-tab-login">புகுபதிகை</string>
+  <string name="login-tab-login">மரபு</string>
   <string name="login-language">மொழி:</string>
   <string name="login-project">திட்டம்:</string>
   <string name="login-username">பயனர் பெயர்:</string>
@@ -133,12 +133,11 @@
   <string name="main-page-watch">கவனி</string>
   <string name="main-page-unwatch">கவனிப்புநீக்கு</string>
   <string name="main-page-purge">களைக</string>
-  <string name="main-page-curr-disp">
-தற்பொழுது தெரிவது</string>
+  <string name="main-page-curr-disp">\nதற்பொழுது தெரிவது</string>
   <string name="main-page-display">இப்பக்கத்தைக் காட்டுக</string>
   <string name="main-page-patrol">ரோந்து செய்ததாக குறி</string>
   <string name="main-page-move">நகர்த்தவும்...</string>
-  <string name="main-page-flag-good-edit">நன்றாக திருத்தியமைக்கப்பட்டது என்று கொடி குறிகை செய் (இச்செயலால் பயனருக்கு 200 மதிப்பெண் கிடைக்கும்)</string>
+  <string name="main-page-flag-good-edit" fuzzy="true">நன்றாக திருத்தியமைக்கப்பட்டது என்று கொடி குறிகை செய் (இச்செயலால் பயனருக்கு 200 மதிப்பெண் கிடைக்கும்)</string>
   <string name="main-page-protect">பாதுகாப்பளி</string>
   <string name="main-page-delete">நீக்கு ,அழி,எடுத்து விடு</string>
   <string name="main-page-load">ஏற்று</string>
@@ -204,6 +203,7 @@
   <string name="report-write">எழுதுகை</string>
   <string name="report-duplicate">இப்பயனர் ஏற்கனவே புகாரளிக்கப்பட்டிருக்கிறார்</string>
   <string name="report-user">அறிக்கை</string>
+  <string name="score-word">சொல்</string>
   <string name="speedy-reason">காரணம்:</string>
   <string name="speedy-parameters">அளபுருக்கள்:</string>
   <string name="tag-title">குறிச்சொல் $1</string>
@@ -229,4 +229,5 @@
   <string name="speedy-finished">நிறைவுற்றது</string>
   <string name="warn-alreadyblocked">பயனர் ஏற்கனவே தடைசெய்யப்பட்டிருக்கிறார்</string>
   <string name="report-no-user">எந்த பயனரும்   தேர்வு செய்யப்படவில்லை . முதலில் பயனரை   தேர்வு செய்யவும்</string>
+  <string name="query-protected-link">பாதுகாக்கப்பட்ட தொடுப்பு</string>
 </resources>
