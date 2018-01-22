@@ -269,7 +269,7 @@
   <string name="login-password-empty">O campo da palavra-passe estava vazio</string>
   <string name="login-fail-wrong-name">Não forneceu nenhum nome de utilizador para entrar</string>
   <string name="login-api">ERRO: O ficheiro api.php devolveu um resultado desconhecido: $1</string>
-  <string name="login-abort">Abortar</string>
+  <string name="login-abort">Interromper</string>
   <string name="login-start">Entrar</string>
   <string name="login-oauth-notsupported">Este método não é suportado neste momento</string>
   <string name="login-translate">Traduzir Huggle</string>
@@ -338,7 +338,7 @@
   <string name="main-system-showqueue">Mostrar fila de edições a rever</string>
   <string name="main-system-options">Opções...</string>
   <string name="main-system-logout">Sair da conta</string>
-  <string name="main-system-abort">Abortar</string>
+  <string name="main-system-abort">Interromper</string>
   <string name="main-system-change-provider">Mudar provedor</string>
   <string name="main-system-change-provider-irc">IRC</string>
   <string name="main-system-change-provider-wiki">Wiki</string>

@@ -61,6 +61,7 @@
   <string name="block-usercontribs">حصے داری</string>
   <string name="block-blockloglabel">پابندی دی لاگ:</string>
   <string name="block-warnloglabel">ݙراوا:</string>
+  <string name="block-type">پابندی لاؤ/پابندی ہٹاؤ</string>
   <string name="config-function">فنکشن</string>
   <string name="config-description">تفصیل</string>
   <string name="config-shortcut">شارٹ کٹ</string>
@@ -93,6 +94,7 @@
   <string name="exception-source">ماخذ: $1</string>
   <string name="exception-system-log">سسٹم لاگ</string>
   <string name="historyform-title">تاریخچہ</string>
+  <string name="login-tab-botp">بوٹ پاس ورڈ</string>
   <string name="login-language">زبان:</string>
   <string name="login-project">منصوبہ:</string>
   <string name="login-username">ورتݨ آلا ناں:</string>
@@ -101,6 +103,7 @@
   <string name="login-proxyaddress">پتہ:</string>
   <string name="login-proxyport">پورٹ:</string>
   <string name="login-proxydomain">ڈومین:</string>
+  <string name="login-abort">مکاؤ</string>
   <string name="login-start">لاگ ان تھیوو</string>
   <string name="login-progress-formtitle">لوڈ تھیندا پئے۔۔۔</string>
   <string name="login-remember-password">پاس ورڈ یاد رکھو</string>
@@ -150,8 +153,10 @@
   <string name="main-user-block">بلاک۔۔۔</string>
   <string name="main-browser-back">پچھوں</string>
   <string name="main-browser-forward">اڳوں تے بھیجو</string>
+  <string name="main-han-connect">جوڑو</string>
   <string name="main-help">مدد</string>
   <string name="main-help-feedback">تہاڈی رائے</string>
+  <string name="main-help-introduction">تعارف</string>
   <string name="main-help-contents">شامل حصے</string>
   <string name="main-addqueue">شامل کرو۔۔۔</string>
   <string name="main-savelogtitle">لاگ بچاؤ</string>
