@@ -121,7 +121,7 @@
   <string name="config-use-rollback">Utiliser un retour en arrière logiciel</string>
   <string name="config-welcome-empty-page">Envoyer des messages de bienvenue aux utilisateurs ayant une page de discussion vide lors d’une bonne modification</string>
   <string name="config-conflicts-revert">Résoudre automatiquement les conflits d’édition avec les autres utilisateurs qui reviennent en arrière ou modifient la même page</string>
-  <string name="config-instant-reverts">Utiliser les retours arrière instantanés (très rapide, mais impossible à annuler une fois exécuté)</string>
+  <string name="config-instant-reverts">Utiliser les retours en arrière instantanés (très rapide, mais impossible à annuler une fois exécuté)</string>
   <string name="config-reverts-multiple">Sur l’annulation de plusieurs modifications par le même utilisateur :</string>
   <string name="config-revert-wait">Délai de retour arrière (en secondes)</string>
   <string name="config-revert">Rétablir</string>
@@ -166,7 +166,7 @@
   <string name="config-confirmrange">Confirmer le retour aux modifications par les utilisateurs anonymes dans la même plage /16 que l’utilisateur ayant été ramené</string>
   <string name="config-confirmpage">Confirmer l’annulation sur les pages ignorées</string>
   <string name="config-autoadvance">Passer à la modification suivante dans la file d’attente après une annulation</string>
-  <string name="config-userollback">Utiliser le retour arrière s’il est disponible</string>
+  <string name="config-userollback">Utiliser le retour en arrière s’il est disponible</string>
   <string name="config-revertsummaries">Rétablir les résumés disponibles dans le menu</string>
   <string name="config-auto-refresh">Recharger automatiquement la page au cas où une autre modification aurait été faite</string>
   <string name="config-extendreports">Étendre les rapports après un vandalisme supplémentaire</string>
@@ -300,12 +300,12 @@
   <string name="login-error-count">L’utilisation de Huggle sur ce projet requiert au moins $1 modification{{PLURAL:$1||s}}.</string>
   <string name="login-error-disabled">Huggle n’est pas activé pour votre compte sur $1. Vérifiez la configuration sur votre page utilisateur.</string>
   <string name="login-error-global">La connexion a échoué : la configuration globale n’a pas pu être lue. Reportez-vous au journal de débogage pour plus de détails.</string>
-  <string name="login-error-invalid">Nom d\'utilisateur invalide.</string>
-  <string name="login-error-noconfig">$1 n’a pas de page de configuration de Huggle.</string>
-  <string name="login-error-nouser">L’utilisateur n’existe pas.</string>
+  <string name="login-error-invalid">Nom d\'utilisateur invalide</string>
+  <string name="login-error-noconfig">$1 n’a pas de page de configuration de Huggle</string>
+  <string name="login-error-nouser">L’utilisateur n’existe pas</string>
   <string name="login-error-no-valid-token">Aucun jeton de connexion valide renvoyé par le site</string>
-  <string name="login-error-password">Mot de passe incorrect.</string>
-  <string name="login-error-projdisabled">Huggle est actuellement désactivé sur ce projet.</string>
+  <string name="login-error-password">Mot de passe incorrect</string>
+  <string name="login-error-projdisabled">Huggle est actuellement désactivé sur $1 .</string>
   <string name="login-error-unknown">Impossible de se connecter à $1.</string>
   <string name="login-error-version">Cette version est désuète. Mettre à jour avec la dernière version.</string>
   <string name="login-error-whitelist">Échec du chargement de la liste blanche des utilisateurs pour $1.</string>
@@ -326,7 +326,7 @@
   <string name="main-contribs">Contributions</string>
   <string name="main-history">Historique</string>
   <string name="main-new-messages">Vous avez de nouveaux messages. Sélectionnez Système -&gt; Afficher les nouveaux messages, ou appuyez sur M pour les afficher.</string>
-  <string name="main-space">Le nom de la page ne peut pas se terminer par un espace, veuillez le corriger.</string>
+  <string name="main-space">Le nom de la page ne peut pas se terminer par un espace, veuillez le corriger</string>
   <string name="main-system">Système</string>
   <string name="main-status-bar">Traitement de &lt;b&gt;$1&lt;/b&gt; modifications et &lt;b&gt;$2&lt;/b&gt; requêtes. Utilisateurs en liste blanche : &lt;b&gt;$3&lt;/b&gt;. Taille de la file d’attente : &lt;b&gt;$4&lt;/b&gt;. Statistiques pour $6 : $5</string>
   <string name="main-metric-bar">Temps de réponse moyen de l\'API: $1ms</string>

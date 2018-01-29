@@ -56,9 +56,9 @@
   <string name="block-reason">Разлог:</string>
   <string name="block-duration">Трајање:</string>
   <string name="block-anononly">Блокирај само анонимне кориснике</string>
-  <string name="block-creation">Влокирај креирање налога</string>
+  <string name="block-creation">Влокирај стварање налога</string>
   <string name="block-autoblock">Омогући аутоблокирање</string>
-  <string name="block-email">Блокирај имејл</string>
+  <string name="block-email">Блокирај е-пошту</string>
   <string name="block-usertalk">Разговор</string>
   <string name="block-usercontribs">Доприноси</string>
   <string name="block-blockloglabel">Дневник блокирања:</string>
@@ -117,7 +117,7 @@
   <string name="login-abort">Заустави</string>
   <string name="login-start">Пријави ме</string>
   <string name="login-translate">Преведи Huggle</string>
-  <string name="login-progress-formtitle">Учитавање...</string>
+  <string name="login-progress-formtitle">Учитавам...</string>
   <string name="login-remember-password">Запамти лозинку</string>
   <string name="login-error-cancelled">Отказано.</string>
   <string name="login-error-invalid">Неисправно корисничко име</string>
@@ -125,7 +125,7 @@
   <string name="login-ro-title">Промени на само читање</string>
   <string name="login-ro-question">Један или више пројеката ($1) не допуштају Вам да се пријавите са дозволама за уређивање (разлог: $2). Желите ли да промените на режим само за читање?</string>
   <string name="login-ro-info">Пројекат $1 промењен на режим само за читање</string>
-  <string name="main-stat" fuzzy="true">$1 измена по минути, $2 враћања по минути; ниво $3</string>
+  <string name="main-stat">$1 измена по минути, $2 враћања по минути; ниво $3</string>
   <string name="main-page">Страница</string>
   <string name="main-user">Корисник</string>
   <string name="main-contribs">Доприноси</string>
@@ -164,7 +164,7 @@
   <string name="main-page-load">Учитај</string>
   <string name="main-patrol-not-enabled">Патролирање није омогућено на $1</string>
   <string name="main-page-restore">Врати ову измену</string>
-  <string name="main-page-watchlist-add" fuzzy="true">Додај страницу у списак надгледања</string>
+  <string name="main-page-watchlist-add">Додај страницу у списак надгледања</string>
   <string name="main-page-tab-close">Затвори тренутну картицу</string>
   <string name="main-page-tab-open">Отвори нову картицу</string>
   <string name="main-page-watchlist-remove">Уклони страницу са списка надгледања</string>
@@ -190,7 +190,7 @@
   <string name="main-tip-pagedelete">Обриши ову страницу</string>
   <string name="main-tip-userreport">Пријави овог корисника</string>
   <string name="main-tip-userblock">Блокирај овог корисника</string>
-  <string name="main-no-page">Акција коју сте захтевали није доступна јер страница није учитана или је доступна само за читање. Молимо да учитате страницу која се може уређивати пре наредног покушаја.</string>
+  <string name="main-no-page">Радња коју сте захтевали није доступна јер страница није учитана или је доступна само за читање. Молимо да учитате страницу која се може уређивати пре наредног покушаја.</string>
   <string name="main-report-username">Пријави корисничко име</string>
   <string name="main-report-user">Пријави корисника</string>
   <string name="main-edit-user-talk">Уреди корисничку страницу за разговор</string>
@@ -218,10 +218,10 @@
   <string name="han-network">Мрежа</string>
   <string name="han-send">Пошаљи</string>
   <string name="waiting">Сачекајте...</string>
-  <string name="preferences-sounds-enable-queue" fuzzy="true">Пусти звучни сигнал када се дода нова ставка</string>
+  <string name="preferences-sounds-enable-queue">Пусти звучни сигнал када се дода нова ставка</string>
   <string name="preferences-sounds-enable-irc">Пусти звучни сигнал када порука дође у HAN</string>
   <string name="preferences-sounds-minimal-score">Минимална оцена уређивања за обавештење</string>
-  <string name="preferences-performance-catscansandwatched" fuzzy="true">Омогућавање скенирања категорија и филтрирање статуса надгледања (захтева додатну API претрагу по појединој измени)</string>
+  <string name="preferences-performance-catscansandwatched">Омогућавање скенирања категорија и филтрирање статуса надгледања (захтева додатну API претрагу по измени)</string>
   <string name="main-revert-type-made-on-talk-page">направљено на страници за разговор</string>
   <string name="main-revert-type-made-white-list">направио корисник који је на белој листи</string>
   <string name="protip">Савет</string>
