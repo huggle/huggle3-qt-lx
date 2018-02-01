@@ -398,6 +398,7 @@ namespace Huggle
             QString     WmfOAuthConsumerKey;
             //! Password
             QString     TemporaryConfig_Password = "";
+            //! This helps us remember that some site changed our login name during login. In case multiple sites decided to change the username, we need to quit the login.
             bool        TemporaryConfig_UserNameWasChanged = false;
             bool        SystemConfig_StorePassword = false;
             QString     SystemConfig_RememberedPassword;

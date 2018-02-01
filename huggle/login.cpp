@@ -663,6 +663,10 @@ void Login::FinishLogin(WikiSite *site)
             this->Statuses[site] = LoginFailed;
             return;
         }
+        // Remember that we already changed the username once, in case some other wiki changes it again (in case we are logging in to multiple sites) we would have a problem
+        hcfg->TemporaryConfig_UserNameWasChanged = true;
+
+        // Show a warning
         HUGGLE_WARNING("Actual username was changed by MediaWiki (on " + site->Name + ") to " + actual_user_name + ", fixing up");
         hcfg->SystemConfig_Username = actual_user_name;
     }
