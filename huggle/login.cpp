@@ -642,7 +642,7 @@ void Login::FinishLogin(WikiSite *site)
 
     if (login_result->GetAttribute("result") != "Success")
     {
-        this->DisplayError(_l("login-fail-with-reason", site->Name, "unknown error, login result: " + login_result->GetAttribute("result")));
+        this->DisplayError(_l("login-fail-with-reason", site->Name, _l("login-api", login_result->GetAttribute("result"))));
         this->Statuses[site] = LoginFailed;
         return;
     }
