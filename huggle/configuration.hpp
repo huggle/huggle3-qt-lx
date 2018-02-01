@@ -398,6 +398,7 @@ namespace Huggle
             QString     WmfOAuthConsumerKey;
             //! Password
             QString     TemporaryConfig_Password = "";
+            bool        TemporaryConfig_UserNameWasChanged = false;
             bool        SystemConfig_StorePassword = false;
             QString     SystemConfig_RememberedPassword;
 
