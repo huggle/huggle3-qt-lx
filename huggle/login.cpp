@@ -379,6 +379,7 @@ void Login::DB()
 void Login::PressOK()
 {
     this->GlobalConfig = false;
+    hcfg->TemporaryConfig_UserNameWasChanged = false;
     hcfg->SystemConfig_BotPassword = this->ui->tab_oauth->isVisible();
     // Simple hack - some users are aware of bot passwords but not that you need to explicitly specify if you use them in Huggle
     if (!hcfg->SystemConfig_BotPassword && this->ui->lineEdit_username->text().contains("@"))
@@ -628,6 +629,46 @@ void Login::FinishLogin(WikiSite *site)
         this->DisplayError(_l("login-fail-with-reason", site->Name, query->GetFailureReason()));
         this->Statuses[site] = LoginFailed;
         return;
+    }
+
+    ApiQueryResultNode *login_result = query->GetApiQueryResult()->GetNode("login");
+    if (!login_result)
+    {
+        // Probably not necessary to localize this, as it's extremely rare
+        this->DisplayError(_l("login-fail-with-reason", site->Name, "login result was missing in API response"));
+        this->Statuses[site] = LoginFailed;
+        return;
+    }
+
+    if (login_result->GetAttribute("result") != "Success")
+    {
+        this->DisplayError(_l("login-fail-with-reason", site->Name, _l("login-api", login_result->GetAttribute("result"))));
+        this->Statuses[site] = LoginFailed;
+        return;
+    }
+
+    if (!login_result->Attributes.contains("lgusername"))
+    {
+        this->DisplayError(_l("login-fail-with-reason", site->Name, "API result did not contain actual login name"));
+        this->Statuses[site] = LoginFailed;
+        return;
+    }
+
+    QString actual_user_name = login_result->GetAttribute("lgusername");
+    if (actual_user_name != hcfg->SystemConfig_Username)
+    {
+        if (hcfg->SystemConfig_Multiple && hcfg->TemporaryConfig_UserNameWasChanged)
+        {
+            this->DisplayError(_l("login-fail-with-reason", site->Name, "multiple sites changed your username after login to different names. That is not supported. You can't use this username in multi-wiki mode"));
+            this->Statuses[site] = LoginFailed;
+            return;
+        }
+        // Remember that we already changed the username once, in case some other wiki changes it again (in case we are logging in to multiple sites) we would have a problem
+        hcfg->TemporaryConfig_UserNameWasChanged = true;
+
+        // Show a warning
+        HUGGLE_WARNING("Actual username was changed by MediaWiki (on " + site->Name + ") to " + actual_user_name + ", fixing up");
+        hcfg->SystemConfig_Username = actual_user_name;
     }
 
     // Assume login was successful
