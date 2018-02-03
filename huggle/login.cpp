@@ -93,6 +93,8 @@ Login::Login(QWidget *parent) : HW("login", this, parent), ui(new Ui::Login)
     this->setWindowTitle(title);
     this->ui->Language->setCurrentIndex(preferred);
     this->Reload();
+    if (hcfg->TemporaryConfig_LoginFile)
+        hcfg->SystemConfig_BotPassword = true;
     if (!QSslSocket::supportsSsl())
     {
         hcfg->SystemConfig_UsingSSL = false;
@@ -129,13 +131,20 @@ Login::Login(QWidget *parent) : HW("login", this, parent), ui(new Ui::Login)
         Proxy::SetProxy(hcfg->SystemConfig_ProxyType, hcfg->SystemConfig_ProxyHost, hcfg->SystemConfig_ProxyPort,
             hcfg->SystemConfig_ProxyUser, hcfg->SystemConfig_ProxyPass);
     }
+    if (hcfg->SystemConfig_BotPassword)
+        this->ui->tabWidget->setCurrentIndex(0);
+    else
+        this->ui->tabWidget->setCurrentIndex(1);
     HUGGLE_PROFILER_PRINT_TIME(BOOST_CURRENT_FUNCTION);
-    if (hcfg->Login)
-    {
-        // user wanted to login using a terminal
-        this->Processing = true;
-        this->PressOK();
-    } else if (hcfg->SystemConfig_StorePassword)
+    // Finished loading the login form
+#ifdef HUGGLE_QTV5
+    HUGGLE_DEBUG1("SSL library: " + QSslSocket::sslLibraryBuildVersionString());
+#endif
+    if (!hcfg->GlobalConfig_OverrideConfigYAMLPath.isEmpty())
+        Generic::MessageBox(_l("warning"), _l("override-warn"), MessageBoxStyleWarning, false, this);
+
+    // Load the stored credentials, if we have them
+    if (hcfg->SystemConfig_StorePassword && !hcfg->TemporaryConfig_LoginFile)
     {
         if (hcfg->SystemConfig_BotPassword)
             this->ui->lineEditBotP->setText(hcfg->SystemConfig_RememberedPassword);
@@ -143,16 +152,23 @@ Login::Login(QWidget *parent) : HW("login", this, parent), ui(new Ui::Login)
             this->ui->lineEdit_password->setText(hcfg->SystemConfig_RememberedPassword);
         this->ui->checkBox_2->setChecked(true);
     }
+
+    // If we are using login file, override the stored password (and ignore password updates)
+    if (hcfg->TemporaryConfig_LoginFile)
+    {
+        this->ui->lineEditBotP->setText(hcfg->TemporaryConfig_Password);
+        this->ui->lineEditBotUser->setText(hcfg->SystemConfig_BotLogin);
+        this->ui->checkBox_2->setChecked(false);
+    }
+
+    // Check if we wanted to login using --login option
+    if (hcfg->Login)
+    {
+        // user wanted to login using a terminal
+        this->Processing = true;
+        this->PressOK();
+    }
     this->RestoreWindow();
-    if (hcfg->SystemConfig_BotPassword)
-        this->ui->tabWidget->setCurrentIndex(0);
-    else
-        this->ui->tabWidget->setCurrentIndex(1);
-#ifdef HUGGLE_QTV5
-    HUGGLE_DEBUG1("SSL library: " + QSslSocket::sslLibraryBuildVersionString());
-#endif
-    if (!hcfg->GlobalConfig_OverrideConfigYAMLPath.isEmpty())
-        Generic::MessageBox(_l("warning"), _l("override-warn"), MessageBoxStyleWarning, false, this);
 }
 
 Login::~Login()
@@ -240,6 +256,8 @@ void Login::RemoveQueries()
 
 void Login::CancelLogin()
 {
+    // No longer a login file managed stuff
+    hcfg->TemporaryConfig_LoginFile = false;
     this->Processing = false;
     LoadingForm::IsKilled = true;
     this->timer->stop();
@@ -381,6 +399,9 @@ void Login::PressOK()
     this->GlobalConfig = false;
     hcfg->TemporaryConfig_UserNameWasChanged = false;
     hcfg->SystemConfig_BotPassword = this->ui->tab_oauth->isVisible();
+    // If we use login file, it's always a bot password
+    if (hcfg->TemporaryConfig_LoginFile)
+        hcfg->SystemConfig_BotPassword = true;
     // Simple hack - some users are aware of bot passwords but not that you need to explicitly specify if you use them in Huggle
     if (!hcfg->SystemConfig_BotPassword && this->ui->lineEdit_username->text().contains("@"))
     {

@@ -178,8 +178,8 @@ bool TerminalParser::Parse()
                     cerr << "Unable to read the credential file, expected colon as a separator" << endl;
                     return true;
                 }
+                hcfg->TemporaryConfig_LoginFile = true;
                 // we need to split it by first colon now
-                hcfg->SystemConfig_BotPassword = true;
                 hcfg->SystemConfig_BotLogin = credentials.mid(0, credentials.indexOf(":"));
                 if (!hcfg->SystemConfig_BotLogin.contains("@"))
                 {
