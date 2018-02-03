@@ -396,6 +396,8 @@ namespace Huggle
             bool        SystemConfig_BotPassword = true;
             //! Consumer key
             QString     WmfOAuthConsumerKey;
+            //! Whether login file is in use
+            bool        TemporaryConfig_LoginFile = false;
             //! Password
             QString     TemporaryConfig_Password = "";
             //! This helps us remember that some site changed our login name during login. In case multiple sites decided to change the username, we need to quit the login.
