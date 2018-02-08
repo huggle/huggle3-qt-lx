@@ -41,9 +41,6 @@ add_subdirectory(../libs/yaml-cpp ${CMAKE_CURRENT_BINARY_DIR}/yaml-cpp)
 file(GLOB srcx
     "*.cpp"
 )
-file (GLOB resx
-    "*.qrc"
-)
 file (GLOB uixx
     "*.ui"
 )
@@ -51,17 +48,14 @@ file (GLOB uixx
 FILE (STRINGS "sources.list" source_list)
 
 SET(huggle_SOURCES ${srcx} ${source_list})
-
 SET(huggle_FORMS ${uixx})
-SET(huggle_RESOURCES ${resx})
+
 if(QT5_BUILD)
     QT5_WRAP_CPP(huggle_HEADERS_MOC ${huggle_HEADERS})
     QT5_WRAP_UI(huggle_FORMS_HEADERS ${huggle_FORMS})
-    QT5_ADD_RESOURCES(huggle_RESOURCES_RCC ${huggle_RESOURCES})
 else()
     QT4_WRAP_CPP(huggle_HEADERS_MOC ${huggle_HEADERS})
     QT4_WRAP_UI(huggle_FORMS_HEADERS ${huggle_FORMS})
-    QT4_ADD_RESOURCES(huggle_RESOURCES_RCC ${huggle_RESOURCES})
 endif()
 if (NOT QT5_BUILD)
   INCLUDE(${QT_USE_FILE})

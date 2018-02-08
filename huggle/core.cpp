@@ -539,11 +539,11 @@ void Core::Shutdown()
     Configuration::HuggleConfiguration = nullptr;
     delete Localizations::HuggleLocalizations;
     Localizations::HuggleLocalizations = nullptr;
-    Resources::Uninit();
     // Syslog should be deleted last because since now there is no way to effectively report stuff to terminal
     delete Syslog::HuggleLogs;
     Syslog::HuggleLogs = nullptr;
 #ifndef HUGGLE_SDK
+    Resources::Uninit();
     QApplication::quit();
 #endif
 }

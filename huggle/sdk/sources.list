@@ -26,7 +26,6 @@
 ../querypool.cpp
 ../queryresult.cpp
 ../revertquery.cpp
-../resources.cpp
 ../syslog.cpp
 ../userconfiguration.cpp
 ../version.cpp
