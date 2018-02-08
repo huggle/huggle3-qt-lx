@@ -458,7 +458,7 @@
   <string name="report-select">Prosím vyberte diff ze seznamu pro otevření náhledu</string>
   <string name="report-write">Zapisuji</string>
   <string name="reportuser-not">Uživatel není nahlášen</string>
-  <string name="report-evidence-none-provid">Nebyly poskytnuty žádné dify jako evidence, díky čemuž bude složité pro administrátory, potvrdit že se jedná o vandala. Jste si jistý že chcete pokračovat?</string>
+  <string name="report-evidence-none-provid">Nebyly poskytnuty žádné rozdíly jako evidence, díky čemuž bude složité pro správce potvrdit, že se jedná o vandala. Jste si jist, že chcete pokračovat?</string>
   <string name="report-duplicate">Tento uživatel již byl nahlášen</string>
   <string name="report-fail2">Chyba: Nepodařilo se otevřít stránku pro nahlášení uživatele $1</string>
   <string name="report-progress">Nahlašuji $1...</string>

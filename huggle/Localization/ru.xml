@@ -279,7 +279,7 @@
   <string name="login-progress-config">Проверка страниц настроек...</string>
   <string name="login-progress-yaml">Проверка локальной конфигурации YAML для $1</string>
   <string name="login-progress-local">Проверка локальных настроек для $1</string>
-  <string name="login-progress-user">Проверка настроек участника для $1</string>
+  <string name="login-progress-user">Проверка настроек пользователя для $1</string>
   <string name="login-progress-user-info">Проверка информации об участнике $1</string>
   <string name="login-progress-whitelist">Обновляю белый список участников...</string>
   <string name="login-remember-password">Напомнить пароль</string>
@@ -293,6 +293,7 @@
   <string name="login-error-approval">Использование Huggle в $1 требует одобрения заявки.</string>
   <string name="login-error-cancelled">Отменено.</string>
   <string name="login-error-config">Не удалось войти, не удалось разобрать локальные настройки для $1: $2</string>
+  <string name="login-error-config-retrieve">Ошибка входа. Не удалось получить настройки пользователя: $1</string>
   <string name="login-error-count">Использование Huggle в этом проекте требует, по крайней мере, $1 правок.</string>
   <string name="login-error-disabled">Huggle не включён для вашей учётной записи в $1. Проверьте вашу страницу пользовательских настроек.</string>
   <string name="login-error-global">Ошибка входа: не удается выполнить разбор глобальных настроек. Смотрите отладочный журнал для получения более подробной информации.</string>
