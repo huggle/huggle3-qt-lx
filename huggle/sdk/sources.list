@@ -11,7 +11,7 @@
 ../gc_thread.cpp
 ../hugglefeed.cpp
 ../hugglefeedproviderwiki.cpp
-../hugglefeedproviderirc.cpp
+../hugglefeedproviderxml.cpp
 ../huggleparser.cpp
 ../huggleoption.cpp
 ../huggleprofiler.cpp
@@ -21,7 +21,6 @@
 ../mediawikiobject.cpp
 ../mediawiki.cpp
 ../message.cpp
-../networkirc.cpp
 ../projectconfiguration.cpp
 ../query.cpp
 ../querypool.cpp

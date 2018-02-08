@@ -32,6 +32,12 @@ else()
     find_package(Qt4 REQUIRED)
 endif()
 
+# YAML
+option(YAML_CPP_BUILD_TOOLS "Disable tests" OFF)
+option(BUILD_SHARED_LIBS "Build as shared" ON)
+include_directories("../libs/yaml-cpp/include/")
+add_subdirectory(../libs/yaml-cpp ${CMAKE_CURRENT_BINARY_DIR}/yaml-cpp)
+
 file(GLOB srcx
     "*.cpp"
 )
