@@ -14,8 +14,10 @@
 #include "configuration.hpp"
 #include "syslog.hpp"
 
-#ifdef __linux__
-    //linux code goes here
+// Test if we are in GNU/Linux
+// __linux__ is defined also in Android, which however isn't GNU
+#if defined(__linux__) && !defined(HUGGLE_ANDROID)
+    // linux code goes here
 #include <stdio.h>
 #include <execinfo.h>
 #include <signal.h>
@@ -120,7 +122,7 @@ void Exception::ThrowSoftException(QString Text, QString Source)
 QString Exception::GetCurrentStackTrace()
 {
     QString result;
-#ifdef __linux__
+#if defined(__linux__) && !defined(HUGGLE_ANDROID)
     result = "";
     void *array[HUGGLE_STACK];
     unsigned int i;
