@@ -20,9 +20,11 @@ if(QT5_BUILD)
     find_package(Qt5Core REQUIRED)
     find_package(Qt5Gui REQUIRED)
     find_package(Qt5Xml REQUIRED)
+    find_package(Qt5Widgets REQUIRED)
     find_package(Qt5Network REQUIRED)
     set(QT_INCLUDES
         ${Qt5Gui_INCLUDE_DIRS}
+        ${Qt5Widgets_INCLUDE_DIRS}
         ${Qt5Network_INCLUDE_DIRS}
         ${Qt5Xml_INCLUDE_DIRS}
         ${Qt5Svg_INCLUDE_DIRS}
@@ -66,7 +68,7 @@ ADD_LIBRARY(huggle_core SHARED ${huggle_SOURCES} ${huggle_HEADERS_MOC} ${huggle_
 TARGET_LINK_LIBRARIES(huggle_core ${QT_LIBRARIES} yaml-cpp)
 SET_TARGET_PROPERTIES(huggle_core PROPERTIES COMPILE_FLAGS -DHUGGLE_LIBRARY)
 if (QT5_BUILD)
-    qt5_use_modules(huggle_core Core Network Xml)
+    qt5_use_modules(huggle_core Core Gui Widgets Network Xml)
 endif()
 if (WIN32)
     TARGET_LINK_LIBRARIES(huggle_core dbghelp)
