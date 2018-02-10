@@ -80,10 +80,12 @@ Message *WikiUtil::MessageUser(WikiUser *User, QString Text, QString Title, QStr
                               Query *Dependency, bool NoSuffix, bool SectionKeep, bool Autoremove,
                               QString BaseTimestamp, bool CreateOnly, bool FreshOnly)
 {
+#ifndef HUGGLE_SDK
     // Let extensions override this function
     Message *temp = Hooks::MessageUser(User, Text, Title, Summary, InsertSection, Dependency, NoSuffix, SectionKeep, Autoremove, BaseTimestamp, CreateOnly, FreshOnly);
     if (temp != nullptr)
         return temp;
+#endif
 
     if (User == nullptr)
     {
@@ -422,6 +424,7 @@ void WikiUtil::RetrieveEditByRevid(revid_ht revid, WikiSite *site, void *source,
 /////////////////////////////////////////////////////////////////
 
 
+#ifndef HUGGLE_SDK
 void WikiUtil::DisplayContributionBrowser(WikiUser *User, QWidget *parent)
 {
     // We are using ReportUser as a contribution browser because we already have all the code for contribs
@@ -432,6 +435,7 @@ void WikiUtil::DisplayContributionBrowser(WikiUser *User, QWidget *parent)
     report->SetUser(User);
     report->show();
 }
+#endif
 
 Collectable_SmartPtr<ApiQuery> WikiUtil::APIRequest(Action action, WikiSite *site, QString parameters, bool using_post, QString target)
 {
