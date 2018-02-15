@@ -443,7 +443,7 @@
   <string name="main-report-user">ব্যবহারকারীকে প্রতিবেদন করুন</string>
   <string name="main-edit-user-talk">ব্যবহারকারী আলাপ সম্পাদনা করুন</string>
   <string name="main-statistics-paused">থামানো হয়েছে</string>
-  <string name="main-statistics-waiting" fuzzy="true">আরো সম্পাদনাের জন্য অপেক্ষা করা হচ্ছে</string>
+  <string name="main-statistics-waiting">আরো সম্পাদনাের জন্য অপেক্ষা করা হচ্ছে</string>
   <string name="main-statistics-none">কিছু না</string>
   <string name="main-tab-welcome-title">স্বাগতম পাতা</string>
   <string name="message-title">বার্তা $1</string>
@@ -556,7 +556,7 @@
   <string name="revert-preflightcheck">Preflight পরীক্ষা</string>
   <string name="revert-delete-instead">এর পরিবর্তে পাতাটি অপসারণ করবেন?</string>
   <string name="revert-speedy-instead">এর পরিবর্তে দ্রুত অপসারণের জন্য ট্যাগ লাগাবেন?</string>
-  <string name="revert-cannotundo" fuzzy="true">পরস্পরবিরোধী অন্তর্বর্তী সম্পাদনাগুলি কারণে পূর্বাবস্থায় ফেরাতে পারবেন না</string>
+  <string name="revert-cannotundo">পরস্পরবিরোধী অন্তর্বর্তী সম্পাদনাগুলি কারণে এই সম্পাদনা পূর্বাবস্থায় ফেরাতে পারবেন না</string>
   <string name="revert-conflict">এই পাতাটি সাদাতালিকাভুক্ত ব্যবহারকারী \'$1\' দ্বারা সম্পাদিত হয়েছিল</string>
   <string name="revert-fail">$1 বাতিল করা যাবে না: $2</string>
   <string name="revert-nochange">লক্ষ্য সংস্করণের বিষয়বস্তু বর্তমান বিষয়বস্তু একই</string>
