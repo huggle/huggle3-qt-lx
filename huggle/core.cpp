@@ -480,7 +480,6 @@ void Core::Shutdown()
         this->Processor->exit();
     }
     Core::SaveDefs();
-    Configuration::SaveSystemConfig();
 #ifdef HUGGLE_PYTHON
     if (!Configuration::HuggleConfiguration->SystemConfig_SafeMode)
     {
@@ -490,6 +489,7 @@ void Core::Shutdown()
 #endif
     QueryPool::HugglePool = nullptr;
 #ifndef HUGGLE_SDK
+    Configuration::SaveSystemConfig();
     if (this->fLogin != nullptr)
     {
         delete this->fLogin;

@@ -11,6 +11,7 @@
 ../gc_thread.cpp
 ../hugglefeed.cpp
 ../hugglefeedproviderwiki.cpp
+../hugglefeedproviderirc.cpp
 ../hugglefeedproviderxml.cpp
 ../huggleparser.cpp
 ../huggleoption.cpp

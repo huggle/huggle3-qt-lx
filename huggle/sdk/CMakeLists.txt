@@ -34,6 +34,10 @@ else()
     find_package(Qt4 REQUIRED)
 endif()
 
+# IRC
+add_subdirectory(../libs/libirc/libirc ${CMAKE_CURRENT_BINARY_DIR}/libirc)
+add_subdirectory(../libs/libirc/libircclient ${CMAKE_CURRENT_BINARY_DIR}/libircclient)
+
 # YAML
 option(YAML_CPP_BUILD_TOOLS "Disable tests" OFF)
 option(BUILD_SHARED_LIBS "Build as shared" ON)
@@ -65,13 +69,10 @@ endif()
 ADD_DEFINITIONS(${QT_DEFINITIONS})
 ADD_DEFINITIONS( -DQT_USE_QSTRINGBUILDER )
 ADD_LIBRARY(huggle_core SHARED ${huggle_SOURCES} ${huggle_HEADERS_MOC} ${huggle_FORMS_HEADERS} ${huggle_RESOURCES_RCC})
-TARGET_LINK_LIBRARIES(huggle_core ${QT_LIBRARIES} yaml-cpp)
+TARGET_LINK_LIBRARIES(huggle_core ${QT_LIBRARIES} yaml-cpp irc ircclient)
 SET_TARGET_PROPERTIES(huggle_core PROPERTIES COMPILE_FLAGS -DHUGGLE_LIBRARY)
 if (QT5_BUILD)
     qt5_use_modules(huggle_core Core Gui Widgets Network Xml)
-endif()
-if (WIN32)
-    TARGET_LINK_LIBRARIES(huggle_core dbghelp)
 endif()
 
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
