@@ -61,7 +61,7 @@
   <string name="block-title">blok $1</string>
   <string name="block-reason">Sebeb:</string>
   <string name="block-duration">Sure:</string>
-  <string name="block-message">Mesaca pera vaten</string>
+  <string name="block-message">Mesacê pela werênayışi:</string>
   <string name="block-message-user">Weçinaye karberi rë poğa bloki muhtewa kerden mesac bırış</string>
   <string name="block-anononly">Karberanê anoniman tenya bloke ke</string>
   <string name="block-creation">Hesab vıraşteni bloqe kı</string>
@@ -107,7 +107,7 @@
   <string name="config-whitelisted">Spe liste biyo</string>
   <string name="config-friend">Embaz</string>
   <string name="config-userspace">Cay karberi</string>
-  <string name="config-talk">Pera vaten</string>
+  <string name="config-talk">Pela werênayışi</string>
   <string name="config-reportnone">Qırşê mekı</string>
   <string name="config-reportprompt">Rapor bıwaz</string>
   <string name="config-reportauto">Otomatikmen rapor vıraz</string>
