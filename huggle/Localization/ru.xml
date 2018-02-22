@@ -831,6 +831,7 @@
   <string name="query-login-undefined">Маркер входа требует значения определенного пользователем, он не хранится в памяти</string>
   <string name="query-protected-link">Защищенная ссылка</string>
   <string name="queue-empty-title">Пусто</string>
+  <string name="queue-empty-text">В очереди ничего нет...</string>
   <string name="protip">Совет</string>
   <string name="tip10">Большинство ярлыков можно изменить в ваших настройках.</string>
 </resources>
