@@ -512,6 +512,8 @@ bool Configuration::ParseGlobalConfig(QString config)
     this->GlobalConfig_XmlrcsPort = HuggleParser::YAML2Int("xmlrcs-port", yaml, 8822);
     this->HANMask = HuggleParser::YAML2String("han-mask", yaml, this->HANMask);
     this->GlobalConfig_Whitelist = HuggleParser::YAML2String("whitelist-server", yaml);
+    this->VandalNw_Server = HuggleParser::YAML2String("han-server", yaml, this->VandalNw_Server);
+    this->IRCServer = HuggleParser::YAML2String("irc-server", yaml, this->IRCServer);
     this->GlobalConfigWasLoaded = true;
     return true;
 }

@@ -420,6 +420,9 @@ namespace Huggle
             //! Port
             int     IRCPort = 6667;
             int     SystemConfig_IRCConnectionTimeOut = 2;
+            //! HAN
+            QString     VandalNw_Server = "irc.tm-irc.org";
+            bool        VandalNw_Login = true;
 
             //////////////////////////////////////////////
             // Misc
@@ -438,9 +441,6 @@ namespace Huggle
             bool        WelcomeEmpty = true;
             //! This is changed to true in case that someone send a message to user
             bool        NewMessage = false;
-            QString     VandalNw_Server = "irc.tm-irc.org";
-            QString     VandalNw_Ident;
-            bool        VandalNw_Login = true;
             QString     QueryDebugPath = "querydump.dat";
             bool        QueryDebugging = false;
             QStringList   IgnoredExtensions;
