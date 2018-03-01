@@ -121,7 +121,7 @@
   <string name="config-use-rollback">Utiliser un retour en arrière logiciel</string>
   <string name="config-welcome-empty-page">Envoyer des messages de bienvenue aux utilisateurs ayant une page de discussion vide lors d’une bonne modification</string>
   <string name="config-conflicts-revert">Résoudre automatiquement les conflits d’édition avec les autres utilisateurs qui reviennent en arrière ou modifient la même page</string>
-  <string name="config-instant-reverts">Utiliser les retours en arrière instantanés (très rapide, mais impossible à annuler une fois exécuté)</string>
+  <string name="config-instant-reverts">Utiliser les retours en arrière instantanés (très rapide, mais impossible à annuler une fois exécutés)</string>
   <string name="config-reverts-multiple">Sur l’annulation de plusieurs modifications par le même utilisateur :</string>
   <string name="config-revert-wait">Délai de retour arrière (en secondes)</string>
   <string name="config-revert">Rétablir</string>
@@ -156,7 +156,7 @@
   <string name="config-updates">Vérifier les mises à jour</string>
   <string name="config-reset-menu">La configuration du projet (liste des types d’avertissement) a été modifiée depuis votre dernière visite, les raccourcis pour les menus déroulants (annulation et avertissement, etc.) ont été réinitialisés.</string>
   <string name="config-beta">Vérifier les versions bêta</string>
-  <string name="config-html-messages">HAN peut restituer les messages HTML (noter que c’est potentiellement dangereux).</string>
+  <string name="config-html-messages">HAN peut restituer les messages HTML (remarque : c’est potentiellement dangereux).</string>
   <string name="config-summary-present">Mettre en évidence le résumé quand il est présent plutôt que quand il est absent</string>
   <string name="config-close-without">Fermer sans enregistrer</string>
   <string name="config-confirmmultiple">Confirmer les annulations multiples d’une modification par le même utilisateur</string>
@@ -191,7 +191,7 @@
   <string name="config-notify-update">Vérifier les mises à jour</string>
   <string name="config-notify-beta">Vérifier si des versions bêta sont disponibles</string>
   <string name="custommessage-title">Écrire un message à $1</string>
-  <string name="custommessage-summary">Résumé des modifications (le préfixe Huggle sera ajouté automatiquement)</string>
+  <string name="custommessage-summary">Résumé des modifications (le suffixe Huggle sera ajouté automatiquement)</string>
   <string name="custommessage-subject">Titre</string>
   <string name="custommessage-menu">Envoyer un message personnalisé</string>
   <string name="custommessage-send">Envoyer un message</string>
@@ -254,7 +254,7 @@
   <string name="login-proxy-remember-this">Se souvenir de ce paramètre la prochaine fois</string>
   <string name="login-proxyport">Port :</string>
   <string name="login-proxydomain">Domaine :</string>
-  <string name="proxy-restart">Huggle as besoin d\'être redémarré pour que ces modifications soient prises en compte.</string>
+  <string name="proxy-restart">Huggle as besoin d\'être redémarré pour que ces changements soient pris en compte.</string>
   <string name="login-retrieving-user-conf">Récupération de la configuration utilisateur en cours...</string>
   <string name="login-fail-css">Échec de la connexion sur $1 : Impossible de récupérer la configuration utilisateur. Special:MyPage/huggle3.css est absent. Avez-vous créé huggle3.css dans votre espace utilisateur ?</string>
   <string name="login-fail-enable-true">Échec de la connexion sur $1 : vous n’avez pas « enable:true » dans votre configuration personnelle.</string>
@@ -301,11 +301,11 @@
   <string name="login-error-disabled">Huggle n’est pas activé pour votre compte sur $1. Vérifiez la configuration sur votre page utilisateur.</string>
   <string name="login-error-global">La connexion a échoué : la configuration globale n’a pas pu être lue. Reportez-vous au journal de débogage pour plus de détails.</string>
   <string name="login-error-invalid">Nom d\'utilisateur invalide</string>
-  <string name="login-error-noconfig">$1 n’a pas de page de configuration de Huggle</string>
+  <string name="login-error-noconfig">$1 n’a pas de page de configuration pour Huggle</string>
   <string name="login-error-nouser">L’utilisateur n’existe pas</string>
   <string name="login-error-no-valid-token">Aucun jeton de connexion valide renvoyé par le site</string>
   <string name="login-error-password">Mot de passe incorrect</string>
-  <string name="login-error-projdisabled">Huggle est actuellement désactivé sur $1 .</string>
+  <string name="login-error-projdisabled">Huggle est actuellement désactivé sur $1.</string>
   <string name="login-error-unknown">Impossible de se connecter à $1.</string>
   <string name="login-error-version">Cette version est désuète. Mettre à jour avec la dernière version.</string>
   <string name="login-error-whitelist">Échec du chargement de la liste blanche des utilisateurs pour $1.</string>
@@ -329,7 +329,7 @@
   <string name="main-space">Le nom de la page ne peut pas se terminer par un espace, veuillez le corriger</string>
   <string name="main-system">Système</string>
   <string name="main-status-bar">Traitement de &lt;b&gt;$1&lt;/b&gt; modifications et &lt;b&gt;$2&lt;/b&gt; requêtes. Utilisateurs en liste blanche : &lt;b&gt;$3&lt;/b&gt;. Taille de la file d’attente : &lt;b&gt;$4&lt;/b&gt;. Statistiques pour $6 : $5</string>
-  <string name="main-metric-bar">Temps de réponse moyen de l\'API: $1ms</string>
+  <string name="main-metric-bar">Temps de réponse moyen de l\'API : $1ms</string>
   <string name="main-shutting-down">Huggle est en cours d’arrêt, ignoré</string>
   <string name="main-system-messages">Montrer les nouveaux messages</string>
   <string name="main-system-reconnectirc">Reconnecter le fil IRC</string>
@@ -688,7 +688,7 @@
   <string name="delete-done">$1 supprimé</string>
   <string name="delete-fail">Ne pas supprimer $1</string>
   <string name="delete-progress">Suppression de $1...</string>
-  <string name="delete-user">Cette page est dans l’espace utilisateur. Etes-vous sûr de vouloir la supprimer  ?</string>
+  <string name="delete-user">Cette page est dans l’espace utilisateur. Êtes-vous sûr de vouloir la supprimer ?</string>
   <string name="deletelog-fail">Échec à la récupération du journal de suppression pour $1</string>
   <string name="deletelog-none">Aucun journal de suppression pour $1</string>
   <string name="deletelog-progress">Récupération du journal de suppression pour $1...</string>

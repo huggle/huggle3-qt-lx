@@ -68,7 +68,7 @@
   <string name="block-creation">Blokovat vytvoření účtu</string>
   <string name="block-autoblock">Povolit autobloky</string>
   <string name="block-email">Blokovat e-mail</string>
-  <string name="block-usertalk">Diskuzní stránka</string>
+  <string name="block-usertalk">Diskusní stránka</string>
   <string name="block-usercontribs">Příspěvky</string>
   <string name="block-blockloglabel">Kniha zablokování:</string>
   <string name="block-warnloglabel">Upozornění:</string>
@@ -131,7 +131,7 @@
   <string name="config-whitelisted">Whitelist</string>
   <string name="config-friend">Přítel</string>
   <string name="config-userspace">Uživatelský prostor</string>
-  <string name="config-talk">Diskuzní stránka</string>
+  <string name="config-talk">Diskusní stránka</string>
   <string name="config-updates">Zkontrolovat aktualizace</string>
   <string name="config-beta">Zkontrolovat beta verze</string>
   <string name="config-close-without">Zavřít bez uložení</string>

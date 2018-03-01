@@ -154,6 +154,7 @@
   <string name="config-warning-api">Отображать предупреждения для API-запросов</string>
   <string name="config-title-diff">Заголовок страницы в каждом сравнении (крупный текст, в котором показан только заголовок страницы, в верхней части каждого сравнения)</string>
   <string name="config-updates">Проверять на наличие обновлений</string>
+  <string name="config-reset-menu">Конфигурация проекта (список типов предупреждений) была изменена с момента последнего посещения, были сброшены ярлыки для выпадающих меню (возврат и предупреждение и т.д.).</string>
   <string name="config-beta">Проверять на наличие бета-версий</string>
   <string name="config-html-messages">HAN может отображать HTML-сообщения (это может быть опасно)</string>
   <string name="config-summary-present">Подсвечивать описание изменений когда оно есть, вместо подсветки когда его нет</string>
@@ -211,6 +212,7 @@
   <string name="delete-failed-no-info">В запросе отсутствует информация о странице (вы администратор?)</string>
   <string name="extension-kl">Не запущено</string>
   <string name="extension-ok">Загружено и работает</string>
+  <string name="exception-text-1">К сожалению, Huggle разбился. Просьба представить следующую информацию вместе с подробной информацией о том, что вы делали с</string>
   <string name="exception-details">Детали исключения</string>
   <string name="exception-error-code">Код ошибки: $1</string>
   <string name="exception-reason">Причина: $1</string>
@@ -294,12 +296,14 @@
   <string name="login-error-cancelled">Отменено.</string>
   <string name="login-error-config">Не удалось войти, не удалось разобрать локальные настройки для $1: $2</string>
   <string name="login-error-config-retrieve">Ошибка входа. Не удалось получить настройки пользователя: $1</string>
+  <string name="login-error-config-query-no-data">Ошибка входа в систему, не удалось получить глобальную конфигурацию, запрос api не возвратил данные</string>
   <string name="login-error-count">Использование Huggle в этом проекте требует, по крайней мере, $1 правок.</string>
   <string name="login-error-disabled">Huggle не включён для вашей учётной записи в $1. Проверьте вашу страницу пользовательских настроек.</string>
   <string name="login-error-global">Ошибка входа: не удается выполнить разбор глобальных настроек. Смотрите отладочный журнал для получения более подробной информации.</string>
   <string name="login-error-invalid">Неверное имя пользователя.</string>
   <string name="login-error-noconfig">В $1 отсутствует страница настроек Huggle.</string>
   <string name="login-error-nouser">Пользователь не существует</string>
+  <string name="login-error-no-valid-token">Недействительный логин входа, возвращаемый сайтом</string>
   <string name="login-error-password">Неправильный пароль</string>
   <string name="login-error-projdisabled">В настоящее время Huggle отключен в $1.</string>
   <string name="login-error-unknown">Невозможно войти в $1.</string>
@@ -309,6 +313,7 @@
   <string name="login-ro-question">Один или более проектов ($1) не позволяют вам авторизоваться с правами на редактирования (причина: $2). Желаете переключиться в режим только для чтения?</string>
   <string name="login-ro-info">Проект $1 переключен в режим только для чтения</string>
   <string name="wikis-db-download-fail">Не удается скачать базу данных вики: $1</string>
+  <string name="no-projects-defined-in-list">В списке нет проектов, которые необходимо настроить для глобальной вики</string>
   <string name="api-query-no-data">API-запрос не вернул никаких данных</string>
   <string name="main-stat">$1 правок в минуту, $2 откатов в минуту, уровень $3</string>
   <string name="main-menu-provider-stop">Остановить провайдера</string>
@@ -415,6 +420,7 @@
   <string name="main-user-clear-tp">Очистить страницу обсуждения участника</string>
   <string name="main-user-retrieving-tp">Получение страницы обсуждения для $1</string>
   <string name="main-user-block">Блокировать...</string>
+  <string name="main-user-manualtemplate">Шаблон руководство</string>
   <string name="main-browser-back">Назад</string>
   <string name="main-browser-forward">Вперёд</string>
   <string name="main-browser-open">Просмотр во внешнем браузере</string>
@@ -561,6 +567,10 @@
   <string name="uaa-not-supported-text">\"Usernames for administrator attention\" (UAA) недоступна для этой вики.</string>
   <string name="uaa-reporting">Сообщить о $1 в UAA</string>
   <string name="uaa-reported">Отчитавшийся</string>
+  <string name="uaa-user-reported-title">Пользователь уже сообщил</string>
+  <string name="uaa-user-reported">Этот пользователь уже был отправлен в UAA.</string>
+  <string name="uaa-user-unreported-title">Пользователь не сообщил</string>
+  <string name="uaa-user-unreported">Этот пользователь не сообщается в UAA.</string>
   <string name="uaa-no-reason-warn">Вы не указали причину, почему имя участника нарушает правила. Пожалуйста, укажите причину.</string>
   <string name="uaa-nr">Не была указана причина</string>
   <string name="uaa-g1">Получение данных из UAA</string>
@@ -584,6 +594,7 @@
   <string name="revert-fail-pre-flight">Предполетная проверка не удалась: $1</string>
   <string name="speedy-reason">Причина:</string>
   <string name="speedy-parameters">Параметры:</string>
+  <string name="speedy-parameters-fail">Вы должны предоставить параметры для этой быстрой опции</string>
   <string name="speedy-notifycreator">Уведомить автора статьи</string>
   <string name="rollback">Возврат $1</string>
   <string name="software-rollback">У Вас нет прав для восстановления, возвращайтесь обратно в программу восстановления.</string>
@@ -602,6 +613,7 @@
   <string name="updater-open-manualdownloadpage">Открыть страницу загрузки</string>
   <string name="updater-close">Закрыть</string>
   <string name="updater-disable-notify">Отключить обновления</string>
+  <string name="updater-wait">Я сейчас обновляю huggle, пожалуйста, подождите...</string>
   <string name="user-history-fail">Не удалось получить историю для участника: $1</string>
   <string name="userinfo-generic">Информация об участнике</string>
   <string name="userinfo-retrieve">Получить информацию</string>
@@ -650,6 +662,7 @@
   <string name="warning-submit">Отправить</string>
   <string name="warninglist-no-warning-title">Не предупреждать</string>
   <string name="warninglist-no-warning-text">Нет данных для этого типа предупреждения, невозможно доставить пользователю предупреждение!</string>
+  <string name="warninglist-report-text">Этот пользователь уже получил окончательное предупреждение, поэтому я не буду отправлять им больше предупреждений, не хотите ли вы сообщить об этом?</string>
   <string name="wikiedit-tp-fail">Не удалось получить уровень предупреждений для $1. Она не будет использоваться в расчётах.</string>
   <string name="missing-warning">Нет шаблона предупреждения $1</string>
   <string name="han-not">Антивандальная сеть (HAN) не разрешена в настройках</string>
@@ -764,6 +777,7 @@
   <string name="preferences-watchlist-unwatch">Удалить из списка наблюдения</string>
   <string name="preferences-watchlist-preferences">Следовать вашим настройкам в вики</string>
   <string name="preferences-watchlist-nochange">Ничего не делать</string>
+  <string name="preferences-auto-watch-talk">Смотрите страницу обсуждения пользователя, получившего предупреждение от вас</string>
   <string name="preferences-sounds-enable-queue">Проигрывать звуковое уведомление при добавлении нового элемента в очередь</string>
   <string name="preferences-sounds-enable-irc">Проигрывать звуковое уведомление при получении нового сообщения в HAN</string>
   <string name="preferences-sounds-minimal-score">Минимальное число правок для уведомления</string>
@@ -773,6 +787,7 @@
   <string name="preferences-queue-size">Размер запроса</string>
   <string name="preferences-empty-queue-page">Страница пустой очереди:</string>
   <string name="preferences-reset-gui">Сбросить интерфейс</string>
+  <string name="preferences-restore-factory-layout">Это восстановит заводскую компоновку huggle, как это было при ее установке. Huggle отключится. Продолжать?</string>
   <string name="fail">Сбой</string>
   <string name="request">Запрос</string>
   <string name="requesting">Запрос</string>
@@ -783,7 +798,7 @@
   <string name="message-fail">Не удалось доставить сообщение</string>
   <string name="edit-conflict">Конфликт редактирования.</string>
   <string name="page-tag-nodescription">Отсутствует описание для этой метки</string>
-  <string name="page-tag-noparameters">Иацҵатәуп апараметрқәа</string>
+  <string name="page-tag-noparameters" fuzzy="true">Нет параметров</string>
   <string name="page-tag-fail">Не удалось пометить страницу</string>
   <string name="page-tag-error">Не удается пометить страницу, ошибка: $1</string>
   <string name="page-unknown">Неизвестная страница</string>
@@ -833,5 +848,18 @@
   <string name="queue-empty-title">Пусто</string>
   <string name="queue-empty-text">В очереди ничего нет...</string>
   <string name="protip">Совет</string>
+  <string name="tip1">Huggle поддерживает вкладки, как и любой другой веб-браузер! Если вы находитесь на редактировании и хотите сохранить его позже, вы можете просто открыть новую вкладку и продолжить проверку очереди там. Очередь распределяется между всеми вкладками.</string>
+  <string name="tip2">Huggle содержит \"панель редактирования\", небольшой виджет, который содержит как пользовательскую, так и страницу истории аккуратным способом. Однако он не включен по умолчанию. Если вы находитесь на маленьком экране, вы можете заменить его виджетами пользователей и страниц!</string>
+  <string name="tip3">Большинство настроек хранятся в вики в [[Special:MyPage/huggle3.css]]. Вы также можете вручную их изменить.</string>
+  <string name="tip4">Почти каждый виджет на экране может быть безопасно закрыт (кроме панели навигации).</string>
+  <string name="tip5">Вы можете одновременно использовать Huggle для нескольких проектов, просто нажмите кнопку \"Проекты\" в форме входа.</string>
+  <string name="tip6">Возвращение Huggle может быть сделано намного быстрее, если вы опытный пользователь, который никогда не ошибается;) открывайте настройки и проверяйте \"Мгновенные реверты\",</string>
+  <string name="tip7">Вы можете создавать свои собственные фильтры очереди в своих предпочтениях. Они хранятся на вашей странице конфигурации вики.</string>
+  <string name="tip8">Нажатие G будет отмечать это редактирование как \"хорошее редактирование\". Это уведомит других о том, что это редактирование может быть проигнорировано, уменьшено количество ошибок пользователя и, возможно, отправлено им приветственное сообщение.</string>
+  <string name="tip9">При нажатии кнопки S будет отображаться как \"подозрительное редактирование\". Это уведомит других о том, что это редактирование требует внимания и добавляет его в очередь подозрительных изменений для последующего анализа экспертами.</string>
   <string name="tip10">Большинство ярлыков можно изменить в ваших настройках.</string>
+  <string name="tip11">Перемещение виджета на экране Huggle поверх другого виджета объединит их в один, разделенный вкладками.</string>
+  <string name="tip12">Сделал ошибку? Нет проблем, щелкнув правой кнопкой мыши любое редактирование, сделанное вами в \"История ваших изменений\", открывается всплывающее окно, которое предлагает возможность отменить ваши собственные изменения.</string>
+  <string name="tip13">Вы можете открыть \"браузер вклада\" для пользователя, который создал отображаемое в данный момент редактирование, нажав Shift + C (по умолчанию) или в меню пользователя. Он позволяет быстро просматривать последние изменения, сделанные этим пользователем.</string>
+  <string name="tip14">Вы можете общаться с другими активными пользователями Huggle, которые сейчас используют программу. Вы увидите их в окне \"Сеть\", если они находятся в сети.</string>
 </resources>

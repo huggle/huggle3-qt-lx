@@ -171,6 +171,8 @@
   <string name="config-no-colon" fuzzy="true">لا يمكنك استخدام: في اسم قائمة الانتظار</string>
   <string name="config-notify-update">اطلع على التحديثات</string>
   <string name="config-notify-beta">اطلع على إصدارات البيتا إذا كانت متوافرة</string>
+  <string name="custommessage-wikiuser-plaintext-1">مرحبا $1,</string>
+  <string name="custommessage-wikiuser-plaintext-2">أكتب رسالتك هنا.</string>
   <string name="delete-title">احذف $1ء</string>
   <string name="delete-reason">سبب:</string>
   <string name="delete-deletionlog">سجل الحذف:</string>
