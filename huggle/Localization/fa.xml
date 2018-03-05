@@ -455,7 +455,7 @@
   <string name="main-tip-userreport">گزارش این کاربر</string>
   <string name="main-tip-userblock">بستن این کاربر</string>
   <string name="main-revision-acceptpend">پذیرفتن این نسخه در انتظار</string>
-  <string name="main-no-page">عملی که شما درخوسات دادید موجود نیست زیرا صفحه بارگیری نشده‌است یا حالت فقط-خواند است. لطفاً یک صفحهٔ قابل ویرایش را از نو بارگیری کنید.</string>
+  <string name="main-no-page">عملی که شما درخواست دادید موجود نیست زیرا صفحه بارگیری نشده‌است یا حالت فقط-خواندن است. لطفاً یک صفحهٔ قابل ویرایش را از نو بارگیری کنید.</string>
   <string name="main-revert-null">برگرداندن ناموفق: ویرایش خالی است</string>
   <string name="main-revert-newpage-title">نمی‌توان این را برگرداند</string>
   <string name="main-revert-newpage">این یک صفحهٔ تازه است، بنابراین نمی‌تواند برگردانده شود. شما می‌توانید به آن برچسب بزنید، یا حذفش کنید.</string>

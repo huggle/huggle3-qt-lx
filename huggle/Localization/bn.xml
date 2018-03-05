@@ -541,6 +541,8 @@
   <string name="uaa-not-supported-text">\"প্রশাসকের দৃষ্টি আকর্ষণের জন্য ব্যবহারকারী নাম\" নোটিশবোর্ড আপনার উইকিতে উপলব্ধ নয়।</string>
   <string name="uaa-reporting">$1 কে UAAতে প্রতিবেদন করুন</string>
   <string name="uaa-reported">প্রতিবেদনকৃত</string>
+  <string name="uaa-user-reported-title">ব্যবহারকারীকে ইতিমধ্যে জানানো হয়েছে</string>
+  <string name="uaa-user-unreported-title">ব্যবহারকারীকে জানানো হয়নি</string>
   <string name="uaa-no-reason-warn">আপনি কোন কারণ উল্লেখ করেননি কেন এই ব্যবহারকারীর নামটি নীতিমালা লঙ্ঘন করছে। একটি কারণ উল্লেখ করুন।</string>
   <string name="uaa-nr">কোন কারণ দেয়া হয়নি</string>
   <string name="uaa-g1">UAA-এর বিষয়বস্তু আনা হচ্ছে</string>
@@ -581,6 +583,7 @@
   <string name="updater-open-manualdownloadpage">ডাউনলোড পৃষ্ঠাটি খুলুন</string>
   <string name="updater-close">বন্ধ করুন</string>
   <string name="updater-disable-notify">হালনাগাদ নিষ্ক্রিয় করুন</string>
+  <string name="updater-wait">আমি এখন হাগলকে হালনাগাদ করছি, দয়া করে অপেক্ষা করুন</string>
   <string name="user-history-fail">$1 ব্যবহারকারী জন্য ইতিহাস সংগ্রহ করা যায়নি</string>
   <string name="userinfo-generic">ব্যবহারকারী তথ্য</string>
   <string name="userinfo-retrieve">তথ্য পুনরুদ্ধার করুন</string>
@@ -731,7 +734,7 @@
   <string name="preferences-extension-disabled">এই এক্সটেনশনটি ইতিমধ্যে পরবর্তী হাগল সূচনার সময় নিষ্ক্রিয় করতে নির্ধারিত হয়েছে</string>
   <string name="preferences-extension-disabled-restart">পরবর্তী হাগল সূচনার সময় এক্সটেনশন নিষ্ক্রিয় করতে নির্ধারিত হয়েছিল</string>
   <string name="preferences-extension-enabled">এই এক্সটেনশনটি পরবর্তী হাগল সূচনার সময় নিষ্ক্রিয় করতে নির্ধারিত হয়নি</string>
-  <string name="preferences-extension-enabled-restart" fuzzy="true">এক্সটেনশন সক্রিয় করা হয়েছে, কিন্তু এটি করতে আপনাকে হাগল পুনঃসূচনা করতে হবে</string>
+  <string name="preferences-extension-enabled-restart">এক্সটেনশন সক্রিয় করা হয়েছে। এটি কার্যকর করতে আপনাকে Huggle পুনরায় চালু করতে হবে।</string>
   <string name="preferences-watchlist-watch">নজরতালিকায় যোগ করুন</string>
   <string name="preferences-watchlist-unwatch">নজরতালিকা থেকে অপসারণ করুন</string>
   <string name="preferences-watchlist-preferences">আপনার উইকির পছন্দগুলি অনুসরণ করে</string>
@@ -780,7 +783,7 @@
   <string name="login-username-doesnt-exist">এই ব্যবহারকারী নাম বিদ্যমান নয়</string>
   <string name="developer-mode-enter-title">ওওওয়ে</string>
   <string name="developer-mode-enter-message">আপনি একজন বিকাশকারী মোড প্রবেশ করেছেন!</string>
-  <string name="unimplemented" fuzzy="true">এই বৈশিষ্ট্যটি এখনো বাস্তবায়িত হয়নি</string>
+  <string name="unimplemented">এই বৈশিষ্ট্যটি এখনো বাস্তবায়িত হয়নি</string>
   <string name="unknown-item">অজানা আইটেম</string>
   <string name="title-multiple-projects">একাধিক প্রকল্প ($1)</string>
   <string name="title-on">$1-এ</string>
@@ -793,12 +796,12 @@
   <string name="main-revert-type-made-on-talk-page">আলাপ পাতায় করা</string>
   <string name="main-revert-type-made-white-list">সাদাতালিকার একজন ব্যবহারকারী দ্বারা করা</string>
   <string name="query-result-nodata">ক্যোয়ারীr ফলাফল কোন উপাত্ত ধারণ করে না</string>
-  <string name="main-revert-warn" fuzzy="true">এই সম্পাদনাটি হচ্ছে $1, তাই এটি ধ্বংসপ্রবণতার মত মনে হলেও, এটি তা নাও হতে পারে, আপনি কি নিশ্চিত যে আপনি এটি বাতিল করতে চান?</string>
+  <string name="main-revert-warn">এই সম্পাদনাটি হচ্ছে $1, তাই এটি ধ্বংসপ্রবণতার মত মনে হলেও, এটি তা নাও হতে পারে। আপনি কি নিশ্চিত যে আপনি এটি বাতিল করতে চান?</string>
   <string name="query-request-noaction">API অনুরোধের জন্য কোনো পদক্ষেপ প্রদান করা হয়নি</string>
   <string name="query-login-undefined">প্রবেশ টোকেনের একটি ব্যবহারকারী সংজ্ঞায়িত মান প্রয়োজন, এটি মেমরির মধ্যে সংরক্ষিত নয়</string>
   <string name="query-protected-link">সুরক্ষিত সংযোগ</string>
   <string name="queue-empty-title">এটি খালি</string>
   <string name="queue-empty-text">সারিটিতে আর অন্য কিছু নেই...</string>
-  <string name="tip3" fuzzy="true">অধিকাংশ পছন্দ উইকির [[Special:MyPage/huggle3.css]]-এ সংরক্ষণ করা হয়, আপনি ম্যানুয়ালি সেখানে তাদের পরিবর্তন করতে পারেন!</string>
+  <string name="tip3">অধিকাংশ পছন্দ উইকির [[Special:MyPage/huggle3.css]]-এ সংরক্ষণ করা হয়। আপনি ম্যানুয়ালি সেখানে তাদের পরিবর্তন করতে পারেন।</string>
   <string name="tip10">বেশিরভাগ শর্টকাটগুলি আপনার পছন্দে পরিবর্তন করা যাবে।</string>
 </resources>
