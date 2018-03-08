@@ -3,7 +3,7 @@
   <string name="name">Lëtzebuergesch</string>
   <string name="autorelog">Dëst déi nächste Kéier maachen ouni ze froen</string>
   <string name="isrtl">false</string>
-  <string name="add">Dobäisetzen</string>
+  <string name="add">Derbäisetzen</string>
   <string name="cancel">Ofbriechen</string>
   <string name="clear">Eidel maachen</string>
   <string name="close">Zoumaachen</string>
@@ -282,7 +282,7 @@
   <string name="main-help-about">Iwwer Huggle...</string>
   <string name="main-help-introduction">Aféierung</string>
   <string name="main-help-contents">Inhalter</string>
-  <string name="main-addqueue">Dobäisetzen...</string>
+  <string name="main-addqueue">Derbäisetzen...</string>
   <string name="main-savelogtitle">Logbuch späicheren</string>
   <string name="main-usermessageother">Anere Message...</string>
   <string name="main-advanced">Erweidert...</string>
