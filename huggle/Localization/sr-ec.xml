@@ -69,7 +69,7 @@
   <string name="config-description">Опис</string>
   <string name="config-shortcut">Пречица</string>
   <string name="config-title">Опције</string>
-  <string name="config-logfile">Дневник</string>
+  <string name="config-logfile">Записник</string>
   <string name="config-shortcutlist">Пречице на тастатури</string>
   <string name="config-shortcutaction">Радња</string>
   <string name="config-changeshortcut">Промени пречицу за $1</string>

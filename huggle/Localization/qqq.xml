@@ -341,6 +341,7 @@
   <string name="updater-close">Used as label for the button.\n{{Identical|Close}}</string>
   <string name="updater-disable-notify">Used as label for the checkbox.</string>
   <string name="user-history-fail">Used as error log entry. Parameters:\n* $1 - username</string>
+  <string name="userinfo-generic">Ҡатнашыуцы мәләмәт</string>
   <string name="userinfo-retrieve">Used as label for the button.</string>
   <string name="shortcut-x-raw">\"N\" refers to Number (0 - 9).\n{{Related|Shortcut-x}}</string>
   <string name="shortcut-x-revert">\"N\" refers to Number (0 - 9).\n{{Related|Shortcut-x}}</string>
