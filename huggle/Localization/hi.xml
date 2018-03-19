@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="name">हिन्दी</string>
+  <string name="autorelog">अगली बार ऐसा बिना पूछे करे</string>
   <string name="isrtl">false</string>
   <string name="add">जोड़ें</string>
   <string name="cancel">रद्द करें</string>
@@ -19,9 +20,11 @@
   <string name="rename">पुनर्नामकरण</string>
   <string name="reload">पुनः प्राप्त किया</string>
   <string name="project">परियोजना</string>
+  <string name="warning">चेतावनी</string>
   <string name="result">परिणाम</string>
   <string name="save">सहेजें</string>
   <string name="show">दिखायें</string>
+  <string name="no-instant">$2 को यह संदेश नहीं भेजा जा सकता है क्योंकि तत्कालीन चेनावनियाँ प्रकल्प $1 पर बंद हैं। कृप्या दूसरा चेतावनी स्तर चुनें।</string>
   <string name="undo">पूर्ववत करें</string>
   <string name="yes">हाँ</string>
   <string name="editing-page">सम्पादन वाला पृष्ठ</string>
@@ -44,14 +47,14 @@
   <string name="link">कड़ी</string>
   <string name="reason">कारण</string>
   <string name="diffid">अन्तर पता</string>
-  <string name="whitelisted" fuzzy="true">$3 पर $2 स्कोर के साथ $1 को श्वेत सूची में समाहित किया</string>
+  <string name="whitelisted">$3 पर $2 स्कोर के साथ $1 को श्वेत सूची में समाहित किया</string>
   <string name="expiry-time">समाप्ति समय</string>
   <string name="duration">अवधि</string>
   <string name="enable">सक्षम करें</string>
   <string name="disable">अक्षम करें</string>
   <string name="no-token">कोई संकेत नहीं</string>
   <string name="flags">चिह्न</string>
-  <string name="browser-none" fuzzy="true">अभी कोई पृष्ठ प्रदर्शित नहीं हुआ</string>
+  <string name="browser-none">अभी प्रदर्शित करने को कोई पृष्ठ नहीं है।</string>
   <string name="browser-miss-summ">कोई सारांश नहीं दिया गया</string>
   <string name="browser-diff">पृष्ठों में अन्तर: $1 (स्कोर: $2)</string>
   <string name="browser-fail">अन्तर प्राप्त करने में अक्षम: $1</string>
@@ -75,10 +78,10 @@
   <string name="block-token-1">प्रतिबन्ध $1 के लिए टोकन प्राप्त करें</string>
   <string name="block-fail">\'$1\' को अवरोधित नहीं किया</string>
   <string name="block-token-e1">टोकन पुनः प्राप्त नहीं हो सकता: $1</string>
-  <string name="block-error-no-info" fuzzy="true">जाँच में कोई सदस्य सूचना उपलब्ध नहीं है (क्या आप प्रबन्धक हो?)</string>
+  <string name="block-error-no-info">जाँच में कोई सदस्य सूचना उपलब्ध नहीं है (क्या आप प्रबन्धक हो?)</string>
   <string name="block-type">प्रतिबन्धित करें/प्रतिबन्ध हटायें</string>
-  <string name="block-admin" fuzzy="true">प्रतिबन्धित करने वाला प्रबन्धक</string>
-  <string name="block-none" fuzzy="true">कोई भी सदस्य प्रतिबन्धित करने के लिए नहीं है।</string>
+  <string name="block-admin">प्रतिबन्धित करने वाला प्रबन्धक</string>
+  <string name="block-none">कोई भी सदस्य प्रतिबन्धित करने के लिए नहीं चुना है।</string>
   <string name="config-function">फलन</string>
   <string name="config-description">विवरण</string>
   <string name="config-shortcut">लघुपथ</string>
@@ -115,14 +118,25 @@
   <string name="config-welcome-empty-page">अच्छे सम्पादन करने वाले सदस्यों के खाली वार्ता पृष्ठों पर स्वागत सन्देश भेजें</string>
   <string name="config-conflicts-revert" fuzzy="true">पूर्ववत करने अथवा पृष्ठों में बदलाव करने वाले सदस्यों के संघर्ष का स्वचालित रूप समाधान करें</string>
   <string name="config-instant-reverts">तत्काल बदलाव काम में लें (बहुत तीव्र, लेकिन एक बार निष्पादित करने के बाद निरसित नहीं हो सकता)</string>
-  <string name="config-revert-wait" fuzzy="true">बदलाव के लिए प्रतीक्षा करें (सैकण्ड)</string>
+  <string name="config-revert-wait">प्रत्यावर्तन का विलंब (सैकण्ड)</string>
   <string name="config-revert">बदलें</string>
-  <string name="config-change-all" fuzzy="true">हगल २ की तरह अधिक व्यवहार करने के लिए हगल की पसन्द बदलें</string>
+  <string name="config-skip">छोड़ें</string>
+  <string name="config-change-all">हगल २ की तरह अधिक व्यवहार करने के लिए हगल की पसन्द बदलें</string>
   <string name="config-merge-messages">पहले से उपलब्ध अनुभाग में अपने सन्देशों का विलय करें</string>
   <string name="config-months-name">शीर्षणी में पृष्ठ के नाम के स्थान पर माह का उपयोग करें</string>
   <string name="config-enable-irc">आईआरसी सक्रिय करें</string>
+  <string name="config-display-next">अगला दिखाएं</string>
+  <string name="config-retrieve-edit">अपने ही संपादन को प्रत्यावर्तित करें</string>
+  <string name="config-nothing">कुछ नहीं</string>
+  <string name="config-bot-edits">बॉट के संपादन (b)</string>
+  <string name="config-own-edits">खुद के संपादन</string>
+  <string name="config-reverts">प्रत्यावर्तन</string>
+  <string name="config-new-page">नया पृष्ठ</string>
   <string name="config-friend">दोस्त</string>
+  <string name="config-userspace">सदस्य स्थान</string>
   <string name="config-talk">वार्ता पृष्ठ</string>
+  <string name="config-message-notification">अधिसूचना दिखाएं जब आपके वार्ता पृष्ठ पर नया संदेश आए</string>
+  <string name="config-updates">अद्यतन के लिए जाँच करें</string>
   <string name="config-close-without">बिना सहेजे बन्द करें</string>
   <string name="config-confirmmultiple">एक ही सदस्य के एक ही संपादन के एक से अधिक संस्करण की पुष्टि करें</string>
   <string name="config-confirmsame">एक सदस्य द्वारा किये गये संपादन की आवृति पूर्ववत किये जाने की पुष्टि करें</string>
@@ -151,17 +165,27 @@
   <string name="config-defaultsprompt">डिफ़ाल्ट पुनर्स्थापित करें?</string>
   <string name="config-logbrowsetitle">लॉग सञ्चिका ठिकाना</string>
   <string name="config-shortcutconflict">लघुपथ \'$1\' अस्तित्वयुक्त लघुपथ \'$2\' के साथ टकराव स्थिति में है।</string>
+  <string name="custommessage-subject">शीर्षक</string>
+  <string name="custommessage-send">संदेश भेजें</string>
+  <string name="custommessage-wikiuser-plaintext-1">नमस्कार $1</string>
+  <string name="custommessage-wikiuser-plaintext-2">अपना संदेश यहां लिखें।</string>
   <string name="delete-title">$1 को हटाएँ</string>
   <string name="delete-reason">कारण:</string>
   <string name="delete-deletionlog">हटाए जाने का लॉग:</string>
   <string name="delete-rem-talk">सम्बन्धित वार्ता हटाएँ</string>
   <string name="delete-notify">निर्माता को सूचित करें</string>
+  <string name="delete-e2">पृष्ठ हटाने में असमर्थ</string>
+  <string name="delete-edsc">पृष्ठ हटाने में असमर्थ क्योंकि $1</string>
+  <string name="extension-kl">नहीं चल रहा</string>
+  <string name="exception-reason">कारण : $1</string>
+  <string name="exception-source">स्रोत : $1</string>
   <string name="historyform-title">इतिहास</string>
   <string name="irc-connected">$1: आईआरसी हाल ही भरण से जुड़ा।</string>
   <string name="irc-connecting">$1 पर आईआरसी हाल ही के भरण से जुड़ने का प्रयास हो रहा है, इसमें कुछ समय लग सकता है...</string>
   <string name="irc-disconnected">$1 पर आईआरसी हाल ही के परिवर्तन भरण से सम्पर्क टूट गया। पुनः सम्पर्क किया जा रहा है...</string>
   <string name="irc-nochannel">$1 के लिये आई आरसी चेनल नहीं मिला;</string>
   <string name="irc-error" fuzzy="true">आई आर सी हाल ही में परिवर्तन फीड  से जुडने में असमर्थ. धीमी ऐपीआई का प्रयोग</string>
+  <string name="login-tab-botp">बॉट पासवर्ड</string>
   <string name="login-language">भाषा:</string>
   <string name="login-project">परियोजना:</string>
   <string name="login-username">सदस्य का नाम:</string>
@@ -172,38 +196,46 @@
   <string name="login-proxyport">पोर्ट:</string>
   <string name="login-proxydomain">डोमेन:</string>
   <string name="login-password-empty">आपके द्वारा दिया हुआ पासवर्ड रिक्त है।</string>
+  <string name="login-abort">रोकें</string>
   <string name="login-start">प्रवेश</string>
   <string name="login-oauth-notsupported">यह विधि इस समय समर्थित नहीं है।</string>
-  <string name="login-translate">हगल अनुवाद</string>
-  <string name="login-progress-start" fuzzy="true">$1 में लॉग इन कर रहा है</string>
+  <string name="login-translate">हगल का अनुवाद करें</string>
+  <string name="login-progress-formtitle">लोड हो रहा है...</string>
+  <string name="login-progress-start">$1 में लॉग इन कर रहा है</string>
   <string name="login-progress-retrieve-mw">$1 के लिए विकीमीडिया जानकारी प्राप्त हो रहा है।</string>
   <string name="login-progress-language">सन्देश सञ्चिकाएँ अद्यतित कर रहा है...</string>
   <string name="login-progress-global">वैश्विक समाकृति की जाँच कर रहा है...</string>
   <string name="login-progress-config">समाकृति पृष्ठों की जाँच कर रहा है...</string>
   <string name="login-progress-local">$1 की स्थानीय विन्यास की जाँच</string>
   <string name="login-progress-whitelist">श्वेतसूची पुनः प्राप्त कर रहा है...</string>
-  <string name="login-error-admin">इस परियोजना पर हूगल का उपयोग करने के लिए प्रशासक खाते की आवश्यकता है।</string>
-  <string name="login-error-age" fuzzy="true">इस परियोजना पर हूगल का उपयोग करने के लिए खाता कम से कम $1 दिन पुराना होना चाहिए।</string>
-  <string name="login-error-alldisabled">वर्तमान में हूगल सभी परियोजनाओं के लिए अक्षम किया हुआ है।</string>
+  <string name="login-remember-password">पासवर्ड याद रखें</string>
+  <string name="login-fail">$1 में लाॅगिन विफल</string>
+  <string name="login-fail-with-reason">$1 में लाॅगिन विफल : $2</string>
+  <string name="login-error-admin">इस परियोजना पर हगल का उपयोग करने के लिए प्रशासक खाते की आवश्यकता है।</string>
+  <string name="login-error-age">इस परियोजना पर हगल का उपयोग करने के लिए आपका खाता कम से कम $1 दिन पुराना होना चाहिए।</string>
+  <string name="login-error-alldisabled">वर्तमान में हगल सभी परियोजनाओं के लिए अक्षम किया हुआ है।</string>
   <string name="login-error-approval">$1 पर हगल का उपयोग करने के लिए स्वीकृति चाहिए।</string>
   <string name="login-error-cancelled">रद्द किया गया।</string>
   <string name="login-error-config">लॉग-इन असफल रहा, $1 के समाकृति पृष्ठों को लोड नहीं कर पाया: $2</string>
-  <string name="login-error-count">इस परियोजना पर हूगल उपयोग के लिए कम से कम $1 सम्पादन होने चाहिए।</string>
-  <string name="login-error-disabled" fuzzy="true">आपके खाते $1 के लिए हगल सक्षम नहीं किया गया है। प्रयोक्ता समाकृति पृष्ठ देखें।</string>
+  <string name="login-error-count">इस परियोजना पर हगल उपयोग के लिए कम से कम $1 सम्पादन होने चाहिए।</string>
+  <string name="login-error-disabled">आपके खाते $1 पर हगल सक्षम नहीं किया गया है। अपना प्रयोक्ता समाकृति पृष्ठ देखें।</string>
   <string name="login-error-global">लॉग-इन असफल: वैश्विक समाकृति पृष्ठ लोड करने में असफल। अधिक जानकारी के लिए त्रुटि लॉग देखें।</string>
   <string name="login-error-invalid">सदस्य नाम अमान्य है।</string>
   <string name="login-error-noconfig">$1 पर हगल संविन्यास पृष्ठ नहीं है।</string>
   <string name="login-error-nouser">यह सदस्य अस्तित्व में नहीं है</string>
   <string name="login-error-password">गलत पारशब्द।</string>
-  <string name="login-error-projdisabled">अभी इस परियोजना पर हूगल अक्षम किया हुआ है।</string>
-  <string name="login-error-unknown" fuzzy="true">$1 पर लॉग इन करने में असमर्थ।</string>
+  <string name="login-error-projdisabled">परियोजना $1 पर हगल अभी अक्षम किया हुआ है।</string>
+  <string name="login-error-unknown">$1 पर लॉग इन करने में असमर्थ।</string>
   <string name="login-error-version">यह संस्करण अप्रचलित है। नवीनतम संस्करण के साथ अद्यतन करें।</string>
   <string name="login-error-whitelist">$1 के लिए श्वेतसूची सदस्य लोड करने में असफल।</string>
+  <string name="main-menu-provider-stop">प्रदाता को रोकें</string>
+  <string name="main-menu-provider-resume">प्रदाता को फिर से शुरू करें</string>
+  <string name="main-no-reason">सदस्य ने कोई वैध कारण नहीं दिया</string>
   <string name="main-page">पृष्ठ</string>
   <string name="main-user">प्रयोक्ता</string>
   <string name="main-contribs">योगदान</string>
   <string name="main-history">इतिहास</string>
-  <string name="main-new-messages" fuzzy="true">आपके लिये नया संदेश। व्यवस्था चुने -&gt; नये संदेश दिखाये या उन्हे देखने के लिये M दबायें।</string>
+  <string name="main-new-messages">आपके लिये नये संदेश हैं। व्यवस्था चुने -&gt; नये संदेश दिखायें, या उन्हे देखने के लिये M दबायें।</string>
   <string name="main-system">प्रणाली</string>
   <string name="main-system-messages">नए सन्देश दिखाएँ</string>
   <string name="main-system-reconnectirc">आई आर सी फीड पर फीर से जुडे़</string>
@@ -213,6 +245,7 @@
   <string name="main-system-options">विकल्प...</string>
   <string name="main-system-logout">सत्रान्त</string>
   <string name="main-system-abort">परिचय</string>
+  <string name="main-system-change-provider">प्रदाता बदलें</string>
   <string name="main-system-change-provider-irc">आई॰आर॰सी॰</string>
   <string name="main-system-change-provider-wiki">विकी</string>
   <string name="main-system-exit">निकास</string>
@@ -249,16 +282,23 @@
   <string name="main-page-watch">ध्यान दें</string>
   <string name="main-page-unwatch">निगरानी न रखें हुए</string>
   <string name="main-page-purge">पर्ज</string>
+  <string name="main-page-display">यह पृष्ठ दिखाएं</string>
   <string name="main-page-patrol">पैट्रोल्ड मार्क करें</string>
   <string name="main-page-move">स्थानान्तरण...</string>
   <string name="main-page-protect">सुरक्षित करें</string>
   <string name="main-page-delete">हटाएँ</string>
+  <string name="main-page-load">लोड करें</string>
   <string name="main-page-restore">लेख के इस संस्करण पुनः स्थापित करें</string>
+  <string name="main-page-watchlist-add">पृष्ठ को ध्यानसूची में डालें</string>
+  <string name="main-page-tab-close">वर्तमान टैब बंद करें</string>
+  <string name="main-page-tab-open">नया टैब खोलें</string>
+  <string name="main-page-watchlist-remove">पृष्ठ को ध्यानसूची से हटाएं</string>
   <string name="main-user-info">सदस्य के बारे में सूचना देवें</string>
   <string name="main-user-ignore">उपेक्षित करें</string>
   <string name="main-user-unignore">अनुपेक्षित करें</string>
   <string name="main-user-contribs">ब्राउज़र में सदस्य योगदान दिखायें</string>
   <string name="main-user-talk">वार्ता पृष्ठ देखें</string>
+  <string name="main-user-page">सदस्य पृष्ठ देखें</string>
   <string name="main-user-message">सन्देश...</string>
   <string name="main-user-warn">चेतावनी दें...</string>
   <string name="main-user-report">विवरण</string>
@@ -268,11 +308,15 @@
   <string name="main-browser-open">बाहरी ब्राउजर में दिखायें</string>
   <string name="main-browser-newedits">पृष्ठ पर हुए नये संपादन दिखायें</string>
   <string name="main-browser-newcontribs">सदस्य द्वारा किये गये नये संपादन दिखायें</string>
+  <string name="main-browser-lasttab">मैं ये टैब बंद नहीं कर सकता क्योंकि यह आखरी टैब है। न्यूनतम एक टैब खुला रहना आवश्यक है।</string>
+  <string name="main-han">HAN</string>
+  <string name="main-han-connect">संयोजित करें</string>
   <string name="main-help">सहायता</string>
   <string name="main-han-display-bot-data">बॉट डाटा दिखाएँ</string>
   <string name="main-help-documentation">दस्तावेज़ीकरण</string>
   <string name="main-help-feedback">प्रतिक्रिया</string>
   <string name="main-help-about">हगल के बारे में...</string>
+  <string name="main-help-introduction">परिचय</string>
   <string name="main-addqueue">जोड़े...</string>
   <string name="main-savelogtitle">चिठ्ठा सुरक्षित करें</string>
   <string name="main-usermessageother">अन्य सन्देश...</string>
@@ -283,6 +327,9 @@
   <string name="main-tip-userreport">इस सदस्य को सूचना दें</string>
   <string name="main-tip-userblock">सदस्य अवरोधित करें</string>
   <string name="main-revision-acceptpend">यह लम्बित संपादन स्वीकार करें</string>
+  <string name="main-welcome-user">सदस्य का स्वागत करें</string>
+  <string name="main-statistics-none">कोई नहीं</string>
+  <string name="main-tab-welcome-title">स्वागत पृष्ठ</string>
   <string name="message-title">$1 को सन्देश भेजें</string>
   <string name="message-help" fuzzy="true">विषय और सारान्श में से एक या दोनों जोड़ें। यदि कोई सारान्श नहीं दिया गया तो विषय का उपयोग किया जाएगा। यदि कोई विषय नहीं दिया गया तो शीर्ष (हैडर) नहीं जोड़ा जाएगा।</string>
   <string name="message-subject">विषय:</string>
@@ -351,7 +398,7 @@
   <string name="revert-confirm-same">ये वापस ले हुए सदस्य, $1, के अन्य संशोधन को वापस ले लेगा। जारी रखे?</string>
   <string name="revert-confirm-warned">ये $1 द्वारा संशोधन को वापस ले लेगा, जो की पहले सचेत किए जा चुके है। जारी रखे?</string>
   <string name="revert-error-first">यह सम्पादन इस पृष्ठ का प्रथम सम्पादन है और यह पूर्ववत नहीं किया जा सकता।</string>
-  <string name="revert-only" fuzzy="true">संपादन पृष्ठ का एकलोता संपादन है।</string>
+  <string name="revert-only">यह संपादन पृष्ठ का एकलौता संपादन है।</string>
   <string name="revert-creator">आखरी संपादन पृष्ठ निर्माता, $1, द्वारा बनाया गया था</string>
   <string name="revert-delete-instead">पृष्ठ को हटा दे?</string>
   <string name="revert-speedy-instead">शीघ्र हटाय जाने के लिए टैग करे?</string>
@@ -376,7 +423,10 @@
   <string name="updater-disable-notify">अद्यतन निष्क्रिय करें</string>
   <string name="userinfo-generic">सदस्य जानकारी</string>
   <string name="userinfo-retrieve">जानकारी प्राप्त करें</string>
+  <string name="userinfo-no-user">कोई सदस्य नहीं</string>
   <string name="shortcut-my-talk">मेरा वार्ता पृष्ठ</string>
+  <string name="shortcut-next">अगला संपादन देखें</string>
+  <string name="shortcut-back">पिछला प्रदर्शित संपादन देखें</string>
   <string name="shortcut-browser-close-tab">ब्राउज़र टैब बन्द करें</string>
   <string name="shortcut-tab">नया टैब खोलें</string>
   <string name="warning-title">$1 को चेतावनी दें</string>
@@ -389,10 +439,12 @@
   <string name="warning-warntype">चेतावनी प्रकार:</string>
   <string name="warning-warnlog">इस प्रयोक्ता के लिए चेतावनियाँ:</string>
   <string name="warning-submit">भेजें</string>
+  <string name="warninglist-no-warning-title">कोई चेतावनी नहीं</string>
+  <string name="han-send">भेजें</string>
   <string name="error-loggedout">खाते से लॉग आउट किया जा चुका है, पुनः लॉग इन कर रहा है...</string>
   <string name="error-noresponse">कोई प्रतिक्रिया नहीं</string>
   <string name="error-pagemissing">पृष्ठ अस्तित्व में नहीं है</string>
-  <string name="error-reloginfail" fuzzy="true">दोबारा लॉग इन करने में असफल, हूगल पुनः आरम्भ करने का प्रयास करें</string>
+  <string name="error-reloginfail">दोबारा लॉग इन करने में असफल। हगल पुनः आरम्भ करने का प्रयास करें</string>
   <string name="error-timeout">अनुरोध का समय समाप्त हुआ</string>
   <string name="error-unknown">अज्ञात त्रुटि</string>
   <string name="block-done">\'$1\' अवरोधित</string>
@@ -434,6 +486,7 @@
   <string name="speedy-finished">समाप्त</string>
   <string name="warn-alreadyblocked">यह प्रयोक्ता पहले ही अवरोधित किया जा चुका है</string>
   <string name="wait">कृपया प्रतीक्षा करें...</string>
+  <string name="waiting">इंतज़ार किया जा रहा है...</string>
   <string name="feature-nfru">यह विशेषता केवल आईपी सदस्यों के लिए है</string>
   <string name="preferences-queue-size">पंक्ति का आकार</string>
   <string name="page-unknown">अज्ञात पृष्ठ</string>
