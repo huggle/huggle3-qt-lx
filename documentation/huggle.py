@@ -66,6 +66,12 @@ def warning_log(str_message):
     """
     return true;
 
+def localize(key):
+    """
+    Returns a localized version of key using Huggle's localization system
+    """
+    return "[" + key + "]"
+
 class Marshalling:
     @staticmethod
     def mWikiEdit(edit):
