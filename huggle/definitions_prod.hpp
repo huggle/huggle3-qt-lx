@@ -186,7 +186,7 @@ namespace std { typedef decltype(nullptr) nullptr_t; }
     #define HUGGLE_GLOBAL_EXTENSION_PATH            QCoreApplication::applicationDirPath() + "/extensions"
 #elif defined __linux__
     #define HUGGLE_UPDATER_PLATFORM_TYPE            "linux"
-    #define HUGGLE_GLOBAL_EXTENSION_PATH            "/usr/share/huggle/extensions"
+    #define HUGGLE_GLOBAL_EXTENSION_PATH            "/usr/local/share/huggle/extensions"
 #elif defined HUGGLE_WIN
     // This is needed by yaml cpp library, otherwise it won't build with MSVC
     #define YAML_CPP_DLL
