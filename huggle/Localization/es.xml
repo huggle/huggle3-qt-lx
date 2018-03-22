@@ -847,6 +847,7 @@
   <string name="queue-empty-title">Está vacío</string>
   <string name="queue-empty-text">No queda nada más en la cola…</string>
   <string name="protip">Recomendación</string>
+  <string name="tip1">¡Huggle soporta pestañas justo como cualquier otro navegador web! Si  estas editando y  quieres continuar más tarde, sencillamente puedes abrir una pestaña nueva y continuar comprobando la cola ahí. La cola está compartida entre todas las pestañas.</string>
   <string name="tip7">Puedes crear tus propios filtros de cola personalizados en Preferencias. Quedarán almacenados en tu página wiki de configuración.</string>
   <string name="tip10">Es posible cambiar la mayor parte de los atajos de teclado en Preferencias.</string>
   <string name="tip14" fuzzy="true">¿Quieres chatear con otros usuarios activos de Huggle que están usando el programa ahora? Si están en línea, los verás en la ventana de \"Red\".</string>

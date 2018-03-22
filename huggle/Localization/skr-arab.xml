@@ -66,6 +66,7 @@
   <string name="config-function">فنکشن</string>
   <string name="config-description">تفصیل</string>
   <string name="config-shortcut">شارٹ کٹ</string>
+  <string name="config-queue-filter-require">لوڑ ہے(ضروری)</string>
   <string name="config-title">اختیارات</string>
   <string name="config-ircport">IRC پورٹ</string>
   <string name="config-logfile">لاڳ فائل</string>
