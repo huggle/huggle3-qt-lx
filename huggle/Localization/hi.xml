@@ -166,7 +166,9 @@
   <string name="config-logbrowsetitle">लॉग सञ्चिका ठिकाना</string>
   <string name="config-shortcutconflict">लघुपथ \'$1\' अस्तित्वयुक्त लघुपथ \'$2\' के साथ टकराव स्थिति में है।</string>
   <string name="custommessage-subject">शीर्षक</string>
+  <string name="custommessage-menu">विशेष संदेश भेजें</string>
   <string name="custommessage-send">संदेश भेजें</string>
+  <string name="custommessage-wikiuser-lesummary">$1 को विशेष संदेश भेजा जा रहा है</string>
   <string name="custommessage-wikiuser-plaintext-1">नमस्कार $1</string>
   <string name="custommessage-wikiuser-plaintext-2">अपना संदेश यहां लिखें।</string>
   <string name="delete-title">$1 को हटाएँ</string>
@@ -174,6 +176,7 @@
   <string name="delete-deletionlog">हटाए जाने का लॉग:</string>
   <string name="delete-rem-talk">सम्बन्धित वार्ता हटाएँ</string>
   <string name="delete-notify">निर्माता को सूचित करें</string>
+  <string name="delete-e1">यह पृष्ठ हटाया नहीं जा सकता : $1</string>
   <string name="delete-e2">पृष्ठ हटाने में असमर्थ</string>
   <string name="delete-edsc">पृष्ठ हटाने में असमर्थ क्योंकि $1</string>
   <string name="extension-kl">नहीं चल रहा</string>
@@ -196,6 +199,7 @@
   <string name="login-proxyport">पोर्ट:</string>
   <string name="login-proxydomain">डोमेन:</string>
   <string name="login-password-empty">आपके द्वारा दिया हुआ पासवर्ड रिक्त है।</string>
+  <string name="login-fail-wrong-name">आपने लॉगिन के लिये कोई सदस्यनाम नहीं दिया</string>
   <string name="login-abort">रोकें</string>
   <string name="login-start">प्रवेश</string>
   <string name="login-oauth-notsupported">यह विधि इस समय समर्थित नहीं है।</string>
@@ -257,6 +261,7 @@
   <string name="main-queue-reset">फिर से स्थापित करें</string>
   <string name="main-queue-clearall">सब साफ करें</string>
   <string name="main-queue-options">पंक्तियाँ व्यवस्थित करें...</string>
+  <string name="main-queue-when-full-remove">पुराने संपादन हटाएं</string>
   <string name="main-goto">पर जायें</string>
   <string name="main-goto-mytalk">मेरा वार्ता पृष्ठ</string>
   <string name="main-goto-mycontribs">मेरे योगदान</string>
@@ -268,6 +273,7 @@
   <string name="main-revision-previous">पिछला</string>
   <string name="main-revision-next">अगला</string>
   <string name="main-revision-latest">नवीनतम</string>
+  <string name="main-tools">उपकरण</string>
   <string name="main-page-next">अगला</string>
   <string name="main-page-switchtotalk">वार्ता पृष्ठ पर जायें</string>
   <string name="main-page-switchtosubject">विषय पृष्ठ पर जायें</string>
@@ -328,6 +334,7 @@
   <string name="main-tip-userblock">सदस्य अवरोधित करें</string>
   <string name="main-revision-acceptpend">यह लम्बित संपादन स्वीकार करें</string>
   <string name="main-welcome-user">सदस्य का स्वागत करें</string>
+  <string name="main-custom-reason-fail">आपने वैध कारण नहीं दिया</string>
   <string name="main-statistics-none">कोई नहीं</string>
   <string name="main-tab-welcome-title">स्वागत पृष्ठ</string>
   <string name="message-title">$1 को सन्देश भेजें</string>
@@ -347,6 +354,7 @@
   <string name="protect-none">कोई नहीं</string>
   <string name="protect-semiprotection">अर्ध-सुरक्षा</string>
   <string name="protect-fullprotection">पुर्ण सुरक्षा</string>
+  <string name="protect-message-title-fail">सुरक्षित करने में असफल</string>
   <string name="protect-moveprotection">सुरक्षा परिवर्तन</string>
   <string name="queue-title">कतारे</string>
   <string name="queue-queues">कतारे:</string>
@@ -385,6 +393,7 @@
   <string name="report-reason">कारण:</string>
   <string name="report-message">सन्देश:</string>
   <string name="report-log">इस प्रयोक्ता के लिए चेतावनियाँ:</string>
+  <string name="report-write">लेखन</string>
   <string name="report-duplicate">ये सदस्य को पहले से रिपोर्ट कर दिया गया है</string>
   <string name="report-progress">\'$1\' को रिपोर्ट कर रहे है...</string>
   <string name="score-score">स्कोर</string>
@@ -417,6 +426,7 @@
   <string name="update-title">नवीन संस्करण उपलब्ध</string>
   <string name="update-progress" fuzzy="true">नवीन संस्करण डाउनलोड कर रहा है...</string>
   <string name="update-error">नवीन संस्करण डाउनलोड करने में असफल</string>
+  <string name="updater-title">हगल का नया संस्करण उपलब्ध है</string>
   <string name="updater-update">अद्यतनित करें</string>
   <string name="updater-open-manualdownloadpage">डाउनलोड पृष्ठ खोलें</string>
   <string name="updater-close">बंद करें</string>
@@ -465,6 +475,7 @@
   <string name="history-fail">\'$1\' के इतिहास को पुनः प्राप्त करने में असफल</string>
   <string name="history-progress">\'$1\' के इतिहास को पुनः प्राप्त कर रहे है {$2}...</string>
   <string name="history-message-revert-title">क्या आप वास्तव में इस सन्देश को पूर्ववत करना चाहते हो?</string>
+  <string name="newtab-title">यह एक नया टैब है!</string>
   <string name="notify-fail">\'$1\' के निर्माता को सूचित नहीं किया</string>
   <string name="notify-unknowncreator">लेख निर्माता को खोज नहीं सकते</string>
   <string name="protect-done">\'$1\' के सुरक्षा स्तर बदला</string>
@@ -499,6 +510,9 @@
   <string name="login-username-doesnt-exist">यह सदस्य नाम उपस्थित नहीं है।</string>
   <string name="title-multiple-projects">कई परियोजनाएं ($1)</string>
   <string name="title-on">अन $1</string>
+  <string name="main-revert-type-made-by-you">आपके द्वारा किये गये</string>
+  <string name="main-revert-type-made-on-talk-page">चर्चा पृष्ठ पर किये गये</string>
+  <string name="queue-empty-title">यह खाली है</string>
   <string name="tip1" fuzzy="true">किसी भी अन्य ब्राउज़र की तरह ही हगल टैब को समर्थन देता है! यदि आप कुछ संपादन पर हैं और आप इसे बाद के लिए रखना चाहते हैं, तो आप बस नए टैब खोल सकते हैं और वहां कतार की जांच करना जारी रख सकते हैं। कतार सभी टैब के बीच साझा किया जाता है।</string>
   <string name="tip2" fuzzy="true">हगल में एक \"संशोधन पट्टी\" का एक छोटा विजेट होता है जिसमें उपयोगकर्ता और पृष्ठ इतिहास दोनों एक व्यवस्थित तरीके से शामिल होते हैं।\nहालांकि यह डिफ़ॉल्ट रूप से सक्षम नहीं किया जाता है। यदि आप एक छोटी स्क्रीन पर हैं, तो आप इसके साथ उपयोगकर्ता और पृष्ठ इतिहास विजेट को बदल सकते हैं!</string>
   <string name="tip3" fuzzy="true">अधिकांश प्राथमिकताओं को [[Special:MyPage/huggle3.css]],में विकी पर संग्रहीत किया जाता है, आप उन्हें वहां भी बदल सकते हैं!</string>

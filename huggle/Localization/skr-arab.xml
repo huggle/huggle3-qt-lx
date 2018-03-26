@@ -70,6 +70,7 @@
   <string name="config-title">اختیارات</string>
   <string name="config-ircport">IRC پورٹ</string>
   <string name="config-logfile">لاڳ فائل</string>
+  <string name="config-shortcutaction">عمل</string>
   <string name="config-noshortcut">کوئی وی کائنی</string>
   <string name="config-defaults">پہلے کنوں طے تھیا ہویا</string>
   <string name="config-ip">آئی پی ورتݨ آلے</string>
@@ -191,6 +192,7 @@
   <string name="report-title">$1 دی شکایت کرو</string>
   <string name="report-reason">سبب:</string>
   <string name="report-message">سنیہا:</string>
+  <string name="report-write">لکھت</string>
   <string name="report-user">رپورٹ</string>
   <string name="score-score">سکور</string>
   <string name="score-word">لفظ</string>
@@ -204,12 +206,16 @@
   <string name="tag-summary">خلاصہ:</string>
   <string name="updater-update">اپ ݙیٹ</string>
   <string name="updater-close">بند کرو</string>
+  <string name="userinfo-no-user">کوئی ورتو کائنی</string>
   <string name="warning-level1">درجہ اول</string>
   <string name="warning-level2">درجہ ݙو</string>
   <string name="warning-level3">درجہ ٣</string>
   <string name="warning-level4">درجہ ٤ (چھیکڑی)</string>
   <string name="warning-submit">بھیجو</string>
+  <string name="han-network">نیٹ ورک</string>
   <string name="han-send">بھیجو</string>
+  <string name="delete-done">$1 مٹاݙتے</string>
+  <string name="newtab-title">ایہ نواں ٹیب ہے!</string>
   <string name="speedy-finished">مُک ڳیا</string>
   <string name="wait">انتظار کرو۔۔۔</string>
   <string name="waiting">تانگھ وچ ہے۔۔۔</string>

@@ -29,7 +29,7 @@
   <string name="undo">Rückgängig</string>
   <string name="yes">Ja</string>
   <string name="editing-page">Bearbeite Seite</string>
-  <string name="agf">Als gutgläubige Bearbeitung mit einer individuellen Begründung zurücksetzen</string>
+  <string name="agf">Als gut gemeinte Bearbeitung mit einer individuellen Begründung zurücksetzen</string>
   <string name="successful">Erfolgreich</string>
   <string name="summary">Zusammenfassung</string>
   <string name="id">Kennung</string>
@@ -369,7 +369,7 @@
   <string name="main-revision-rv-stay">Diese Bearbeitung zurücksetzen und auf einer Seite bleiben</string>
   <string name="main-revision-revert-warn">Derzeit angezeigte Bearbeitung zurücksetzen und Benutzer warnen</string>
   <string name="main-revision-rws">Derzeit angezeigte Bearbeitung zurücksetzen, Benutzer warnen und auf einer Seite bleiben</string>
-  <string name="main-revision-faith">Gutgläubig zurücksetzen</string>
+  <string name="main-revision-faith">Gut gemeinte Änderung zurücksetzen</string>
   <string name="main-revision-previous">Vorherige</string>
   <string name="main-revision-next">Nächste</string>
   <string name="main-revision-latest">Aktuellste</string>
@@ -642,7 +642,7 @@
   <string name="shortcut-open-in-huggle">Derzeit angezeigte Seite öffnen</string>
   <string name="shortcut-open">Derzeit angezeigte Bearbeitung in einem Browser öffnen</string>
   <string name="shortcut-talk">Eine Diskussionsseite des Benutzers anzeigen, der diese Änderung durchgeführt hat.</string>
-  <string name="shortcut-revert-agf-1">Letzte Version als gutgläubig zurücksetzen</string>
+  <string name="shortcut-revert-agf-1">Letzte Version zurücksetzen, von guten Absichten ausgehen</string>
   <string name="shortcut-browser-close-tab">Eine Browser-Registerkarte schließen</string>
   <string name="shortcut-tab">Öffnet eine neue Registerkarte</string>
   <string name="shortcut-rw-stay">Setzt die aktuelle Bearbeitung zurück, warnt den Autor und bleibt auf der Seite.</string>

@@ -212,6 +212,8 @@
   <string name="delete-failed-no-info">Во барањето немаше информации за страницата (Дали сте администратор?)</string>
   <string name="extension-kl">Не работи</string>
   <string name="extension-ok">Вчитано и работи</string>
+  <string name="exception-text-1">За жал, Huggle се урна. Поднесете ги следниве информации заедно со поединостите за тоа што правевте со</string>
+  <string name="exception-details">Поединости за исклучокот</string>
   <string name="exception-error-code">Код на грешката: $1</string>
   <string name="exception-reason">Причина: $1</string>
   <string name="exception-source">Извор: $1</string>
@@ -256,13 +258,13 @@
   <string name="login-retrieving-user-conf">Добивање на кориснички поставки</string>
   <string name="login-fail-css">Најавата не успеа на $1: Не можам да ги преземам корисничките поставки од старото место. Дали создадовте huggle3.css во вашиот кориснички простор? (недостасува Special:MyPage/huggle3.css)</string>
   <string name="login-fail-enable-true">Најавата не успеа на $1: Немате enable:true во вашите лични поставки.</string>
-  <string name="login-fail-no-info">Најавате не успеа на $1: Не можам да ги добијам корисничките информации: $2</string>
+  <string name="login-fail-no-info">Најавата не успеа на $1: Не можам да ги добијам корисничките информации: $2</string>
   <string name="login-bot">Која е разликата помеѓу ботовската (BotPassword) и наследствената најава?</string>
-  <string name="login-fail-parse-config">Најавате не успеа на $1: Не можам да ги расчленам корисничките поставки. Повеќе информации ќе најдете во дневникот на грешки.</string>
-  <string name="login-fail-user-data">Најавате не успеа на $1: Не можам да ги добијам корисничките информации. Извршникот не даде податоци по зададеното барање.</string>
-  <string name="login-fail-rollback-rights">Најавате не успеа на $1: Немате дозвола за отповикување на проектов.</string>
-  <string name="login-failed-autoconfirm-rights">Најавате не успеа на $1: Не сте автопотврден корисник на проектов.</string>
-  <string name="login-failed-edit">Најавате не успеа на $1: Немате направено доволно уредувања на проектов.</string>
+  <string name="login-fail-parse-config">Најавата не успеа на $1: Не можам да ја расчленам корисничката поставеност. Повеќе информации ќе најдете во дневникот на грешки.</string>
+  <string name="login-fail-user-data">Најавата не успеа на $1: Не можам да ги добијам корисничките информации. Извршникот не даде податоци по зададеното барање.</string>
+  <string name="login-fail-rollback-rights">Најавата не успеа на $1: Немате дозвола за отповикување на проектов.</string>
+  <string name="login-failed-autoconfirm-rights">Најавата не успеа на $1: Не сте автопотврден корисник на проектов.</string>
+  <string name="login-failed-edit">Најавата не успеа на $1: Немате направено доволно уредувања на проектов.</string>
   <string name="login-retrieving-info">Ги преземам корисничките информации на $1</string>
   <string name="login-password-empty">Внесената лозинка е празна.</string>
   <string name="login-fail-wrong-name">Не укажавте корисничко име за најава.</string>
@@ -293,6 +295,7 @@
   <string name="login-error-approval">Потребно ви е одобрение да го користите Huggle на $1.</string>
   <string name="login-error-cancelled">Откажано.</string>
   <string name="login-error-config">Најавата не успеа. Не можам да ги расчленам месните поставки за $1: $2</string>
+  <string name="login-error-config-retrieve">Најавата не успеа. Не можам да ја добијам корисничката поставеност: $1</string>
   <string name="login-error-count">Употребата на Huggle на овој проект бара најмалку $1 уредувања.</string>
   <string name="login-error-disabled">Huggle на ви е овозможен за вашата сметка на $1. Проверете во корисничките поставки.</string>
   <string name="login-error-global">Најавата не успеа: Не можам да ги расчленам глобалните поставки. Повеќе ќе дознаете во записникот со грешки.</string>
@@ -559,6 +562,8 @@
   <string name="uaa-not-supported-text">Корисничките имиња за таблата за администраторско внимание не се достапни на вашето вики.</string>
   <string name="uaa-reporting">Го пријавувам $1 кај UAA</string>
   <string name="uaa-reported">Пријавено</string>
+  <string name="uaa-user-unreported-title">Корисникот не е пријавен</string>
+  <string name="uaa-user-unreported">Корисников не е приајвен во UAA.</string>
   <string name="uaa-no-reason-warn">Не укажавте причина зошто корисничкото име ги крши правилата. Наведете причина.</string>
   <string name="uaa-nr">Нема наведено причина</string>
   <string name="uaa-g1">Земам содржини од UAA</string>
@@ -601,6 +606,7 @@
   <string name="updater-open-manualdownloadpage">Отвори страница за преземање</string>
   <string name="updater-close">Затвори</string>
   <string name="updater-disable-notify">Оневозможи подновувања</string>
+  <string name="updater-wait">Сега го подновувам Huggle. Почекајте...</string>
   <string name="user-history-fail">Не можам да ја добијам историјата на корисникот: $1</string>
   <string name="userinfo-generic">Кориснички информации</string>
   <string name="userinfo-retrieve">Повикај се на информациите</string>
@@ -772,6 +778,7 @@
   <string name="preferences-min-score">Овозможи глобална најниска оцена (уредувањата со пониска оцена ќе бидат занемарени — корисно ако сакате да ги видите само лошите уредувања)</string>
   <string name="preferences-queue-size">Големина на редицата</string>
   <string name="preferences-empty-queue-page">Празна страница за редица:</string>
+  <string name="preferences-reset-gui">Одново посредникот</string>
   <string name="fail">Неуспех</string>
   <string name="request">Барање</string>
   <string name="requesting">Барање</string>
