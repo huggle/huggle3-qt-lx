@@ -61,17 +61,18 @@ bool HuggleFeedProviderIRC::Start()
     qsrand(QTime::currentTime().msec());
     nick += QString::number(qrand());
     libirc::ServerAddress server(hcfg->IRCServer, false, hcfg->IRCPort, nick);
+    server.SetSuffix(this->GetSite()->IRCChannel);
     this->Network = new libircclient::Network(server, "Wikimedia IRC");
     this->Network->SetDefaultUsername(Configuration::HuggleConfiguration->HuggleVersion);
     this->Network->SetDefaultIdent("huggle");
     connect(this->Network, SIGNAL(Event_Connected()), this, SLOT(OnConnected()));
-    connect(this->Network, SIGNAL(Event_SelfJoin(libircclient::Channel*)), this, SLOT(OnIRCSelfJoin(libircclient::Channel*)));
-    connect(this->Network, SIGNAL(Event_SelfPart(libircclient::Parser*,libircclient::Channel*)), this, SLOT(OnIRCSelfPart(libircclient::Parser*,libircclient::Channel*)));
+    //connect(this->Network, SIGNAL(Event_SelfJoin(libircclient::Channel*)), this, SLOT(OnIRCSelfJoin(libircclient::Channel*)));
+    //connect(this->Network, SIGNAL(Event_SelfPart(libircclient::Parser*,libircclient::Channel*)), this, SLOT(OnIRCSelfPart(libircclient::Parser*,libircclient::Channel*)));
     connect(this->Network, SIGNAL(Event_PRIVMSG(libircclient::Parser*)), this, SLOT(OnIRCChannelMessage(libircclient::Parser*)));
-    connect(this->Network, SIGNAL(Event_PerChannelQuit(libircclient::Parser*,libircclient::Channel*)), this, SLOT(OnIRCChannelQuit(libircclient::Parser*,libircclient::Channel*)));
+    //connect(this->Network, SIGNAL(Event_PerChannelQuit(libircclient::Parser*,libircclient::Channel*)), this, SLOT(OnIRCChannelQuit(libircclient::Parser*,libircclient::Channel*)));
     connect(this->Network, SIGNAL(Event_Disconnected()), this, SLOT(OnDisconnected()));
-    connect(this->Network, SIGNAL(Event_Join(libircclient::Parser*,libircclient::User*,libircclient::Channel*)), this, SLOT(OnIRCUserJoin(libircclient::Parser*,libircclient::User*,libircclient::Channel*)));
-    connect(this->Network, SIGNAL(Event_Part(libircclient::Parser*,libircclient::Channel*)), this, SLOT(OnIRCUserPart(libircclient::Parser*,libircclient::Channel*)));
+    //connect(this->Network, SIGNAL(Event_Join(libircclient::Parser*,libircclient::User*,libircclient::Channel*)), this, SLOT(OnIRCUserJoin(libircclient::Parser*,libircclient::User*,libircclient::Channel*)));
+    //connect(this->Network, SIGNAL(Event_Part(libircclient::Parser*,libircclient::Channel*)), this, SLOT(OnIRCUserPart(libircclient::Parser*,libircclient::Channel*)));
     connect(this->Network, SIGNAL(Event_NetworkFailure(QString,int)), this, SLOT(OnFailure(QString,int)));
     this->Connected = true;
     this->Network->Connect();
@@ -320,7 +321,6 @@ void HuggleFeedProviderIRC::OnIRCChannelMessage(libircclient::Parser *px)
 
 void HuggleFeedProviderIRC::OnConnected()
 {
-    this->Network->RequestJoin(this->GetSite()->IRCChannel);
     Huggle::Syslog::HuggleLogs->Log(_l("irc-connected", this->Site->Name));
     this->Connected = true;
     this->UptimeDate = QDateTime::currentDateTime();
