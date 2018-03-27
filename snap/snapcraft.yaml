@@ -1,5 +1,5 @@
 name: huggle
-version: "3.3.4"
+version: "3.3.5"
 summary: Diff browser for MediaWiki based websites intended to deal with vandalism
 description: Diff browser for MediaWiki based websites intended to deal with vandalism
 confinement: strict
