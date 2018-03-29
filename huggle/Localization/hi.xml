@@ -24,7 +24,7 @@
   <string name="result">परिणाम</string>
   <string name="save">सहेजें</string>
   <string name="show">दिखायें</string>
-  <string name="no-instant">$2 को यह संदेश नहीं भेजा जा सकता है क्योंकि तत्कालीन चेनावनियाँ प्रकल्प $1 पर बंद हैं। कृप्या दूसरा चेतावनी स्तर चुनें।</string>
+  <string name="no-instant">$2 को यह संदेश नहीं भेजा जा सकता है क्योंकि तत्कालीन चेतावनियाँ प्रकल्प $1 पर बंद हैं। कृप्या दूसरा चेतावनी स्तर चुनें।</string>
   <string name="undo">पूर्ववत करें</string>
   <string name="yes">हाँ</string>
   <string name="editing-page">सम्पादन वाला पृष्ठ</string>

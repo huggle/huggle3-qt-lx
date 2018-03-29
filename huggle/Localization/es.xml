@@ -714,7 +714,7 @@
   <string name="notify-unknowncreator">No se puede encontrar al creador de la página</string>
   <string name="protect-done">Cambiado el nivel de protección para \'$1\'</string>
   <string name="protect-fail">No se pudo cambiar el nivel de protección para \'$1\'</string>
-  <string name="protect-progress">Cambiando el nivel de protección para \'$1\'...</string>
+  <string name="protect-progress">Cambiando el nivel de protección de «$1»…</string>
   <string name="protectlog-fail">No se pudo obtener el registro de protecciones para \'$1\'</string>
   <string name="protectlog-none">No hay registro de protecciones para \'$1\'</string>
   <string name="protectlog-progress">Obteniendo registro de protecciones para \'$1\'...</string>
