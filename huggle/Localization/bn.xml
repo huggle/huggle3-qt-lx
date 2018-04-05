@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Authors:
+* Aftabuzzaman
+* Bodhisattwa
+* Macofe
+* Mohammed Galib Hasan
+* Tauhid16
+-->
 <resources>
   <string name="name">বাংলা</string>
   <string name="autorelog">পরের বার জিজ্ঞাসা না করে এটি করুন</string>

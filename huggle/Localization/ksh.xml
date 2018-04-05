@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Authors:
+* Purodha
+-->
 <resources>
   <string name="name">Änglesch</string>
   <string name="isrtl">false</string>

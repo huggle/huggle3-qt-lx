@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Authors:
+* Dan Koehl
+* Fader
+* Jopparn
+* Josve05a
+* Lokal Profil
+* Macofe
+* McDutchie
+* WikiPhoenix
+-->
 <resources>
   <string name="name">Svenska</string>
   <string name="autorelog">Gör detta utan att fråga mig nästa gång</string>

@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Authors:
+* Cocu
+* Danmichaelo
+* Tarjeimo
+-->
 <resources>
   <string name="name">Norsk (bokmål)</string>
   <string name="add">Legg til</string>

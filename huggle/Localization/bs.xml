@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Authors:
+* Irus
+* Macofe
+* Palapa
+* Srdjan m
+-->
 <resources>
   <string name="name">Bosanski</string>
   <string name="isrtl">false</string>

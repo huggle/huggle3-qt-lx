@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Authors:
+* McDutchie
+* Otokoume
+* Shirayuki
+* SkyDaisy9
+* Sujiniku
+* Yusuke1109
+* ネイ
+-->
 <resources>
   <string name="name">日本語</string>
   <string name="autorelog">次回に尋ねることなくこれを行う</string>

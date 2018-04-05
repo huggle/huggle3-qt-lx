@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Authors:
+* Anakmalaysia
+* Encikmelur
+* Jeluang Terluang
+-->
 <resources>
   <string name="name">Bahasa Melayu</string>
   <string name="autorelog">Lakukan ini tanpa menyoal lagi lain kali.</string>

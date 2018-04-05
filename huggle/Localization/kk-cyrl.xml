@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Authors:
+* Arystanbek
+* Batyrbek.kz
+* Irus
+* Macofe
+-->
 <resources>
   <string name="name">Қазақша кирил</string>
   <string name="isrtl">false</string>

@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Authors:
+* Bjankuloski06
+* Macofe
+* Идеологист
+-->
 <resources>
   <string name="name">Македонски</string>
   <string name="autorelog">Прави го ова без да ме прашуваш</string>

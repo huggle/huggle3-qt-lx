@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Authors:
+* Ahonc
+* Alex Khimich
+* Andriykopanytsia
+* Base
+* Gluck
+* Olvin
+* Piramidion
+* Renamerr
+* Ypryima
+-->
 <resources>
   <string name="name">Українська</string>
   <string name="autorelog">Наступного разу зробити це, не запитуючи</string>

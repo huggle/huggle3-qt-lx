@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Authors:
+* AmaryllisGardener
+* Macofe
+-->
 <resources>
   <string name="name">Scots</string>
   <string name="isrtl">false</string>

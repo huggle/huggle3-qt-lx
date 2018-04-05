@@ -1,4 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Authors:
+* Alexey zakharenkov
+* Av6
+* Biathlon
+* Edible Melon
+* Eroha
+* EugenG
+* Facenapalm
+* INS Pirat
+* Iluvatar
+* Kaganer
+* Kareyac
+* Lemondoge
+* Lugimax
+* Macofe
+* MaxBioHazard
+* McDutchie
+* Meshkov.a
+* Mouse21
+* Movses
+* Nitch
+* Nzeemin
+* Okras
+* Redredsonia
+* Striking Blue
+* Wirbel78
+* Дмитрий
+* Евгений
+* ЛосЯш
+* Ядерный Трамвай
+-->
 <resources>
   <string name="name">Русский</string>
   <string name="autorelog">Сделайте это в следующий раз, не спрашивая</string>

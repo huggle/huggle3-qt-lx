@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Authors:
+* Arthur2e5
+* LNDDYL
+* Liuxinyu970226
+* NeverBehave
+* NigelSoft
+* Shizhao
+* Tomchen1989
+* Yfdyh000
+* Zhaofeng Li
+-->
 <resources>
   <string name="name">简体中文</string>
   <string name="autorelog">下次无需确认进行操作</string>
@@ -29,7 +40,7 @@
   <string name="undo">撤销</string>
   <string name="yes">是</string>
   <string name="editing-page">编辑页面</string>
-  <string name="agf">善意推定回退，并自定义理由</string>
+  <string name="agf">假定善意回退，并自定义理由</string>
   <string name="successful">成功</string>
   <string name="summary">摘要</string>
   <string name="id">ID</string>
@@ -369,7 +380,7 @@
   <string name="main-revision-rv-stay">回退此编辑并留在页面</string>
   <string name="main-revision-revert-warn">回退当前显示的编辑并警告用户</string>
   <string name="main-revision-rws">恢复当前显示的编辑、警告用户，并停留在这个页面上</string>
-  <string name="main-revision-faith">善意推定回退</string>
+  <string name="main-revision-faith">假定善意回退</string>
   <string name="main-revision-previous">先前</string>
   <string name="main-revision-next">之后</string>
   <string name="main-revision-latest">最新</string>
@@ -642,7 +653,7 @@
   <string name="shortcut-open-in-huggle">打开当前显示的页面</string>
   <string name="shortcut-open">在浏览器中打开当前显示的编辑</string>
   <string name="shortcut-talk">显示做出此次更改的用户的讨论页</string>
-  <string name="shortcut-revert-agf-1">善意推定回退最近修订</string>
+  <string name="shortcut-revert-agf-1">假定善意回退最近修订</string>
   <string name="shortcut-browser-close-tab">关闭浏览器标签</string>
   <string name="shortcut-tab">打开新标签</string>
   <string name="shortcut-rw-stay">回退当前编辑，警告编辑者并留在页面上</string>

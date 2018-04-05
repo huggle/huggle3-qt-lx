@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Authors:
+* Aktron
+* Chmee2
+* Dvorapa
+* Ilimanaq29
+* LukasJandera
+* Matěj Grabovský
+* Matěj Suchánek
+* Mormegil
+* Petrb
+* Tchoř
+* Walter Klosse
+-->
 <resources>
   <string name="name">Čeština</string>
   <string name="isrtl">false</string>

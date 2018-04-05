@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Authors:
+* 1917 Ekim Devrimi
+* Asmen
+* Gırd
+* Kumkumuk
+* Macofe
+* Marmase
+* Mirzali
+* Patrick Star
+-->
 <resources>
   <string name="name">Zazaki</string>
   <string name="isrtl">false</string>

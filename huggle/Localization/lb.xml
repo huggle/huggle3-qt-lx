@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Authors:
+* Les Meloures
+* Macofe
+* Robby
+-->
 <resources>
   <string name="name">Lëtzebuergesch</string>
   <string name="autorelog">Dëst déi nächste Kéier maachen ouni ze froen</string>

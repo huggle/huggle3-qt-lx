@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Authors:
+* Hex
+* Lemondoge
+* Macofe
+* Mar(c)
+* MedShot
+* Robin van der Vliet
+* SPQRobin
+* Siebrand
+* Sikjes
+* Sjoerddebruin
+* Southparkfan
+* TBloemink
+-->
 <resources>
   <string name="name">Nederlands (Dutch)</string>
   <string name="isrtl">false</string>

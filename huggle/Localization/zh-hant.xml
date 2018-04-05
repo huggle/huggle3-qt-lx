@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Authors:
+* A2093064
+* Black9869184
+* Bowleerin
+* Cwlin0416
+* EagerLin
+* Kly
+* LNDDYL
+* Liuxinyu970226
+* Macofe
+* Sanmosa
+* Simon Shek
+* Zhxy 519
+-->
 <resources>
   <string name="name">繁體中文</string>
   <string name="autorelog">下次執行此操作不再詢問</string>
@@ -29,13 +43,13 @@
   <string name="undo">撤銷</string>
   <string name="yes">是</string>
   <string name="editing-page">正在編輯頁面</string>
-  <string name="agf">善意推定回退，並自訂理由</string>
+  <string name="agf">假定善意回退，並自訂理由</string>
   <string name="successful">成功</string>
   <string name="summary">摘要</string>
   <string name="id">帳號</string>
   <string name="type">類型</string>
   <string name="target">目標</string>
-  <string name="user">使用者</string>
+  <string name="user">用戶</string>
   <string name="size">大小</string>
   <string name="date">日期</string>
   <string name="page">頁面</string>
@@ -369,7 +383,7 @@
   <string name="main-revision-rv-stay">回退此編輯並停留在此頁面</string>
   <string name="main-revision-revert-warn">回退目前顯示的編輯並警告該使用者</string>
   <string name="main-revision-rws">回退目前顯示的編輯並在警告用戶後停留在此頁面</string>
-  <string name="main-revision-faith">善意推定回退</string>
+  <string name="main-revision-faith">假定善意回退</string>
   <string name="main-revision-previous">前一頁</string>
   <string name="main-revision-next">下一頁</string>
   <string name="main-revision-latest">最新</string>
@@ -642,7 +656,7 @@
   <string name="shortcut-open-in-huggle">開啟目前顯示的頁面</string>
   <string name="shortcut-open">在瀏覽器開啟目前所顯示的編輯</string>
   <string name="shortcut-talk">顯示做出此次更改的使用者對話頁</string>
-  <string name="shortcut-revert-agf-1">依據善意推定回退最新修訂</string>
+  <string name="shortcut-revert-agf-1">依據假定善意回退最新修訂</string>
   <string name="shortcut-browser-close-tab">關閉瀏覽頁籤</string>
   <string name="shortcut-tab">開啟新頁籤</string>
   <string name="shortcut-rw-stay">回退目前編輯，警告一名作者並停留在頁面</string>

@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Authors:
+* BukhariSaeed
+* Hindustanilanguage
+* Muhammad Shuaib
+* امین اکبر
+-->
 <resources>
   <string name="name">اردو</string>
   <string name="isrtl">true</string>

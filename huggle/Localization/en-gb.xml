@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Authors:
+* Andibing
+* Captaindogfish
+* Chase me ladies, I'm the Cavalry
+* DatGuy
+* Dejavu
+-->
 <resources>
   <string name="name">English (British)</string>
   <string name="autorelog">Do this without asking next time</string>

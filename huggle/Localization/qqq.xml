@@ -1,4 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Authors:
+* Addshore
+* Amire80
+* Base
+* Clockery
+* Kghbln
+* Krenair
+* Liuxinyu970226
+* Lokal Profil
+* MarcoAurelio
+* McDutchie
+* Nemo bis
+* Petrb
+* Robby
+* Se4598
+* Shirayuki
+* Silviu200530
+* Sorbat
+* Urhixidur
+* Wladek92
+* Андрей
+-->
 <resources>
   <string name="name">{{doc-important|Please change this word to the autonym of language that you are translating to, not directly translate \"English\".}}\nThis is a name of the language as shown on the login form.\n{{Identical|English}}</string>
   <string name="autorelog">This text is shown as a label for a checkbox to indicate that in future when a relogin is required, it should be performed automatically without prompting the user where possible.</string>

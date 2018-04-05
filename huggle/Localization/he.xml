@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Authors:
+* Amire80
+* Guycn2
+* Or
+* Reza1615
+* Ronel1
+* ערן
+-->
 <resources>
   <string name="name">עברית</string>
   <string name="isrtl">true</string>

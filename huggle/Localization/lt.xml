@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Authors:
+* Beta16
+* Eitvys200
+* Macofe
+* Zygimantus
+-->
 <resources>
   <string name="name">Anglų kalba</string>
   <string name="isrtl">false</string>
