@@ -16,7 +16,7 @@ if [ "$QTTYPE" = "4" ]; then
 fi
 
 if [ "$QTTYPE" = "5" ]; then
-    ./configure --qt5 --extension
+    ./configure --qt5 --extension --web-engine
     cd huggle_release
     make || exit 1
     cd ..
