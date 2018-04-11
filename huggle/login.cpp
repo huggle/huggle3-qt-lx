@@ -137,7 +137,7 @@ Login::Login(QWidget *parent) : HW("login", this, parent), ui(new Ui::Login)
         this->ui->tabWidget->setCurrentIndex(1);
     HUGGLE_PROFILER_PRINT_TIME(BOOST_CURRENT_FUNCTION);
     // Finished loading the login form
-#ifdef HUGGLE_QTV5
+#if QT_VERSION >= 0x050400
     HUGGLE_DEBUG1("SSL library: " + QSslSocket::sslLibraryBuildVersionString());
 #endif
     if (!hcfg->GlobalConfig_OverrideConfigYAMLPath.isEmpty())
