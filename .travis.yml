@@ -22,7 +22,7 @@ matrix:
     - os: osx
       env: QTTYPE=5
     - os: linux
-      env: QTTYPE=4
+      env: QTTYPE=5
   exclude:
     - env: THENEEDFORTHIS=FAIL
 

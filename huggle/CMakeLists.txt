@@ -18,7 +18,7 @@ execute_process(COMMAND "${CMAKE_SOURCE_DIR}/update.sh" WORKING_DIRECTORY ${CMAK
 option(LIBCORE "Build huggle_core library" false)
 option(LINUX_SNAP "Enable support for snap, use this option only if you are building snapshotable version" false)
 option(PYTHON_BUILD "Build Huggle with python" false)
-option(QT5_BUILD "Build Huggle using the Qt5 framework" false)
+option(QT5_BUILD "Build Huggle using the Qt5 framework" true)
 option(HUGGLE_EXT "Build Huggle extensions" false)
 option(WEB_ENGINE "Use Qt WebEngine instead of WebKit library" false)
 option(AUDIO "Enable audio backend" true)
