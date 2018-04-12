@@ -8,6 +8,7 @@
 * Matěj Grabovský
 * Matěj Suchánek
 * Mormegil
+* Patriccck
 * Petrb
 * Tchoř
 * Walter Klosse
@@ -133,8 +134,8 @@
   <string name="config-revert">Vrátit zpět</string>
   <string name="config-months-name">Použít jako záhlaví aktuální měsíc místo názvu stránky</string>
   <string name="config-enable-irc">Povolit IRC</string>
-  <string name="config-remove-reverted" fuzzy="true">Odstranit editace, které již někdo dříve revertoval</string>
-  <string name="config-remove-old" fuzzy="true">Odstranit staré editace, pokud jsou parsovány na stránku novější editace</string>
+  <string name="config-remove-reverted">Odebrat editace, které již byly vráceny někým jiným z fronty</string>
+  <string name="config-remove-old">Odstranit staršíc úpravy z fronty, pokud je přijata novější úprava na stejné stránce</string>
   <string name="config-retrieve-edit">Zobrazit vaši vlastní editaci</string>
   <string name="config-nothing">Nic</string>
   <string name="config-bot-edits">Úpravy robota (b)</string>
@@ -152,7 +153,7 @@
   <string name="config-confirmsame">Potvrdit revert do úpravy vyrobené stejným uživatelem</string>
   <string name="config-confirmselfrevert">Potvrdit reverzi vlastní úpravy</string>
   <string name="config-confirmwarned">Potvrdit revert editace do verze která byla vytvořena varovaným uživatelem</string>
-  <string name="config-confirmrange" fuzzy="true">Potvrdit revert editace od anonymních uživatelů ve stejném /16 rozsahu jako uživatel jehož edit chcete revertovat</string>
+  <string name="config-confirmrange">Potvrdit revizi na změny provedené anonymními uživateli ve stejném /16 rozsahu jako uživatel jehož edit chcete revertovat</string>
   <string name="config-confirmpage">Potvrdit reverzi na ignorovaných stránkách</string>
   <string name="config-autoadvance">Po revertu přesunout na další položku ve frontě</string>
   <string name="config-userollback">Použití rollback, pokud je k dispozici</string>
@@ -198,7 +199,7 @@
   <string name="historyform-retrieving-history">Stahuji historii</string>
   <string name="historyform-not-latest-tip">To není poslední revize této stránky - ujistěte se, že jste shledli novější verze. Prosím také mějte na paměti, že rollback nemusi byt možny z teto revize.</string>
   <string name="history-error-message-title">Nelze vrátit</string>
-  <string name="history-error" fuzzy="true">Tuto položku nelze vrátit zpět. Stránka mohla být změněna nebo odstraněna a huggle ji z tohoto bodu už nemůže obnovit. Pokud ji opravdu chcete vrátit, musíte to udělat ručně pomocí rozhraní MediaWiki.</string>
+  <string name="history-error">Tuto položku nelze vrátit zpět. Stránka mohla být změněna nebo odstraněna a Huggle ji z tohoto bodu už nemůže obnovit. Pokud ji opravdu chcete vrátit, musíte to udělat ručně pomocí rozhraní MediaWiki.</string>
   <string name="history-failure">Nelze načíst historii</string>
   <string name="userhistory-title">Historie vašich změn</string>
   <string name="irc-connected">$1: Připojen k serveru IRC</string>
@@ -237,12 +238,12 @@
   <string name="login-failed-edit">Přihlášení k $1 se nezdařilo: Na tomto projektu nemáte dost editací.</string>
   <string name="login-retrieving-info">Načítání uživatelských informací na $1</string>
   <string name="login-password-empty">Zadané heslo je prázdné</string>
-  <string name="login-fail-wrong-name" fuzzy="true">Nezadali jste uživatelské jméno pro přihlášení</string>
+  <string name="login-fail-wrong-name">Nezadali jste uživatelské jméno pro přihlášení</string>
   <string name="login-api">Chyba: api.php odpovědělo neznámým výsledkem: $1</string>
   <string name="login-start">Přihlásit</string>
   <string name="login-oauth-notsupported">Tato metoda není v této chvíli podporována</string>
   <string name="login-translate">Přeložit Huggle</string>
-  <string name="login-progress-start" fuzzy="true">Přihlašování na $1</string>
+  <string name="login-progress-start">Přihlašování na $1</string>
   <string name="login-progress-retrieve-mw">Načítání informací o MediaWiki pro $1</string>
   <string name="login-progress-language">Nahrávám lokalizace...</string>
   <string name="login-progress-global">Kontroluji globalní nastaveni...</string>
@@ -252,7 +253,7 @@
   <string name="login-progress-user-info">Kontroluji informace o uživateli pro $1</string>
   <string name="login-progress-whitelist">Stahuji WL...</string>
   <string name="login-remember-password">Zapamatovat heslo</string>
-  <string name="login-ssl" fuzzy="true">Použití protokolu HTTPS (vyžaduje OpenSSL)</string>
+  <string name="login-ssl">Použití protokolu HTTPS pro přihlášení (vyžaduje OpenSSL)</string>
   <string name="login-fail">Přihlášení k $1 selhalo</string>
   <string name="login-error-admin">Použití Huggle na tomto projektu vyžaduje účet správce.</string>
   <string name="login-error-age">Použití Huggle na tomto projektu vyžaduje, aby váš účet byl alespoň $1 dní starý.</string>
@@ -274,7 +275,7 @@
   <string name="main-menu-provider-stop">Zastavit poskytovatele</string>
   <string name="main-menu-provider-resume">Obnovit poskytovatele</string>
   <string name="main-no-reason">Žádný důvod nebyl poskytnut</string>
-  <string name="main-restoring-slap" fuzzy="true">V tuto chvíli obnovuji jinou editaci, prosím počkejte…</string>
+  <string name="main-restoring-slap">Další úprava se v současné době obnovuje, počkejte prosím ...</string>
   <string name="main-page">Stránka</string>
   <string name="main-user">Uživatel</string>
   <string name="main-contribs">Příspěvky</string>
@@ -342,7 +343,7 @@
   <string name="main-page-patrol">Označit jako prověřené</string>
   <string name="main-page-move">Přesunout...</string>
   <string name="main-page-flag-suspicious-edit">Označit jako podezřelý edit (+1 skóre uživatele)</string>
-  <string name="main-page-flag-good-edit" fuzzy="true">Označit jako dobrou editaci (nastaví -200 do skóre uživatele)</string>
+  <string name="main-page-flag-good-edit">Označit jako dobrou editaci (tato akce odečte 200 bodů od skóre uživatele)</string>
   <string name="main-page-protect">Zamknout</string>
   <string name="main-page-delete">Smazat</string>
   <string name="main-page-load">Načíst</string>
@@ -365,7 +366,7 @@
   <string name="main-browser-open">Zobrazit toto v externím prohlížeči</string>
   <string name="main-browser-newedits">Zobrazit nové úpravy na stránce</string>
   <string name="main-browser-newcontribs">Zobrazit nové příspěvky uživatele</string>
-  <string name="main-browser-lasttab" fuzzy="true">Nemůžu zavřít tuto kartu, protože je poslední, musíte mít alespoň 1 další kartu otevřenou</string>
+  <string name="main-browser-lasttab">Tuto kartu nelze zavřít, protože je poslední - musíte mít alespoň 1 kartu otevřenou</string>
   <string name="main-revert-manual">Token pro $1 se nepodařilo získat, pokusím se provést revert manuální editací</string>
   <string name="main-han">HAN</string>
   <string name="main-han-disconnect">Odpojit</string>
@@ -384,7 +385,7 @@
   <string name="main-stats">$1 úprav za minutu, $2 revertů za minutu</string>
   <string name="main-display-session-data">Zobrazit data relace</string>
   <string name="main-display-whitelist">Zobrazení whitelistu</string>
-  <string name="main-revert-custom-reson" fuzzy="true">Zadejte důvod proč chcete vrátit tyto úpravy na předchozí revizi</string>
+  <string name="main-revert-custom-reson">Vysvětlete, chcete vrátit tuto úpravu k předchozí revizi</string>
   <string name="main-log1">Obnovení vybrané revize $1</string>
   <string name="main-tip-pagetagdelete">Tag tuto stránku na smazání</string>
   <string name="main-tip-pagedelete">Smazat stránku</string>
@@ -397,7 +398,7 @@
   <string name="main-revert-newpage">Toto je nová stránka, není ji možné revertovat. Můžete ji buď označit nebo smazat.</string>
   <string name="main-restore-text-fail">Není možné obnovit revizi, neboť není k dispozici žádný text.</string>
   <string name="message-title">Poslat zprávu uživateli $1</string>
-  <string name="message-help" fuzzy="true">Zadejte předmět zprávy nebo i shrnutí. Pokud není uvedeno žádné shrnutí úpravy, předmět bude použit. Pokud není uveden žádný předmět, zpráva nebude v nové sekci</string>
+  <string name="message-help">Zadejte předmět a/nebo souhrn. Pokud není uvedeno žádné shrnutí úpravy, předmět bude použit. Pokud není uveden žádný předmět, zpráva nebude v nové sekci</string>
   <string name="message-subject">Předmět:</string>
   <string name="message-message">Zpráva:</string>
   <string name="message-summary">Shrnutí:</string>
@@ -502,7 +503,7 @@
   <string name="revert-preflightcheck">Předletová kontrola</string>
   <string name="revert-delete-instead">Smazat stránku?</string>
   <string name="revert-speedy-instead">Označit pro smazání?</string>
-  <string name="revert-cannotundo" fuzzy="true">Nelze vrátit kvůli editačnímu konfliktu</string>
+  <string name="revert-cannotundo">Tuto úpravu nelze vrátit zpět kvůli konfliktním mezilehlým úpravám.</string>
   <string name="revert-conflict">Stránka byla editována schváleným uživatelem \'$1\'</string>
   <string name="revert-fail">Nelze vrátit $1: $2</string>
   <string name="revert-nochange">Obsah cílové revize je stejný jako aktuální revize</string>
@@ -519,7 +520,7 @@
   <string name="tag-summary">Shrnutí:</string>
   <string name="tag-insertatend">Vložit na konec stránky</string>
   <string name="update-title">K dispozici je nová verze programu</string>
-  <string name="update-progress" fuzzy="true">Stahování nové verze...</string>
+  <string name="update-progress">Stahování nové verze, čekejte prosím ...</string>
   <string name="update-error">Nepodařilo se stáhnout novou verzi</string>
   <string name="updater-title">Je k dispozici nová verze programu huggle</string>
   <string name="updater-update">Aktualizovat</string>
@@ -569,13 +570,13 @@
   <string name="warning-submit">Odeslat</string>
   <string name="missing-warning">Neexistujíci template $1</string>
   <string name="han-not">HAN není povolena v konfiguraci</string>
-  <string name="han-connecting" fuzzy="true">Připojování do HAN</string>
-  <string name="han-already-connecting" fuzzy="true">Prosím, počkejte, již se připojuji na HAN</string>
+  <string name="han-connecting">Připojení k síti Huggle proti vandalismu</string>
+  <string name="han-already-connecting">Prosím, počkejte, již se připojuji na HPV...</string>
   <string name="han-disconnected">Byli jste odpojeni od HAN</string>
   <string name="error-loggedout">Účet byl odhlášen, přihlašuji se...</string>
   <string name="error-noresponse">Žádná odpověď</string>
   <string name="error-pagemissing">Tato stránka neexistuje</string>
-  <string name="error-reloginfail" fuzzy="true">Nepodařilo se přihlásit zpět, zkuste restartovat Huggle</string>
+  <string name="error-reloginfail">Editaci se nepodařilo vrátit zpět. Možná zkuste restartovat Huggle</string>
   <string name="error-timeout">Vypršel časový limit žádosti</string>
   <string name="error-unknown">Neznámá chyba</string>
   <string name="block-done">$1 byl zablokován</string>
@@ -597,10 +598,10 @@
   <string name="edit-progress">Editování $1 ...</string>
   <string name="history-fail">Nepodařilo se načíst historii $1</string>
   <string name="history-progress">Načítání historie $1 ($2)...</string>
-  <string name="history-work" fuzzy="true">Obnovuji vlastní editaci která byla na $1</string>
+  <string name="history-work">Obnovování vlastní úpravy, která byla provedena na $1</string>
   <string name="history-no-item-selected">Žádná položka v historii není vybrána</string>
   <string name="history-message-revert-title">Opravdu chcete vrátit jen tuto zprávu?</string>
-  <string name="history-another-edit" fuzzy="true">Již pracuji na vrácení další editace, prosím čekejte</string>
+  <string name="history-another-edit">Další úprava již byla zrušena, počkejte prosím ...</string>
   <string name="history-not-found">Nic nebylo nalezeno</string>
   <string name="history-already-done">Již bylo vráceno zpět</string>
   <string name="history-message-revert-body">Toto je pouze zpráva která byla poslána na základě rollbacku, jste si jisti že chcete vrátit pouze odeslání zprávy a ne i revertaci která v ní je zmíněna? (Pokud chcete vrátit obojí klikněte na vrátit na revertaci).</string>
@@ -679,11 +680,11 @@
   <string name="relogin-fail">Nemohu se přihlásit na wiki: $1</string>
   <string name="projects">Projekty</string>
   <string name="unable-to-retrieve-user-list">Nelze načíst seznam uživatelů: $1</string>
-  <string name="loading-main-window" fuzzy="true">Načítání hlavního Huggle okna</string>
+  <string name="loading-main-window">Načítání hlavního okna Huggle ...</string>
   <string name="login-username-doesnt-exist">Toto uživatelské jméno neexistuje</string>
   <string name="developer-mode-enter-title">Jůůů</string>
-  <string name="developer-mode-enter-message" fuzzy="true">{{GENDER:|Otevřel|Otevřela|Otevřel(a)}} jste režim pro vývojáře!</string>
-  <string name="unimplemented" fuzzy="true">Tato funkce ještě není připravena</string>
+  <string name="developer-mode-enter-message">Vstupujete do režimu pro vývojáře!</string>
+  <string name="unimplemented">Tato funkce nebyla doposud implementována</string>
   <string name="unknown-item">Neznámá položka</string>
   <string name="title-multiple-projects">více projektů ($1)</string>
   <string name="title-on">na $1</string>
@@ -694,6 +695,6 @@
   <string name="main-revert-type-made-by-you">vytvořeno vámi</string>
   <string name="main-revert-type-made-on-talk-page">vytvořeno na diskusní stránce</string>
   <string name="main-revert-type-made-white-list">vytvořeno uživatelem, který je na white-listu</string>
-  <string name="main-revert-warn" fuzzy="true">Tato editace je $1, takže i když to vypadá na vandalismus, nemusí tomu tak být. Jste si {{GENDER:|jist|jista|jist(a)}}, že tuto editaci chcete vrátit?</string>
+  <string name="main-revert-warn">Tato úprava je $1, takže i když vypadá, že je to vandalismus, nemusí vandalismem být. Opravdu chcete editaci vrátit?</string>
   <string name="query-protected-link">Chráněné odkaz</string>
 </resources>
