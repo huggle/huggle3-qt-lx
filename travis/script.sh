@@ -1,6 +1,6 @@
 #! /bin/bash
 
-cd ./huggle/tests/test
+cd ./release/tests/test
 
 echo Testing QTTYPE $QTTYPE
 

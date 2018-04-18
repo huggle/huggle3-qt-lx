@@ -9,10 +9,6 @@
 //GNU General Public License for more details.
 
 #include "definitions.hpp"
-#include "libs/libirc/libirc/serveraddress.h"
-#include "libs/libirc/libircclient/parser.h"
-#include "libs/libirc/libircclient/network.h"
-#include "libs/libirc/libircclient/channel.h"
 #include "hugglefeedproviderirc.hpp"
 #include "configuration.hpp"
 #include "mainwindow.hpp"
@@ -26,6 +22,10 @@
 #include "wikipage.hpp"
 #include "wikisite.hpp"
 #include "wikiuser.hpp"
+#include <libirc/libirc/serveraddress.h>
+#include <libirc/libircclient/parser.h>
+#include <libirc/libircclient/network.h>
+#include <libirc/libircclient/channel.h>
 
 using namespace Huggle;
 

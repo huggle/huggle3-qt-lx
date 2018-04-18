@@ -11,16 +11,16 @@
 #include <QString>
 #include <iostream>
 #include <QtTest>
-#include "../../huggleparser.hpp"
-#include "../../configuration.hpp"
-#include "../../generic.hpp"
-#include "../../wikiedit.hpp"
-#include "../../wikipage.hpp"
-#include "../../wikisite.hpp"
-#include "../../sleeper.hpp"
-#include "../../terminalparser.hpp"
-#include "../../wikiuser.hpp"
-#include "../../version.hpp"
+#include <core_lib/huggleparser.hpp>
+#include <core_lib/configuration.hpp>
+#include <core_lib/generic.hpp>
+#include <core_lib/wikiedit.hpp>
+#include <core_lib/wikipage.hpp>
+#include <core_lib/wikisite.hpp>
+#include <core_lib/sleeper.hpp>
+#include <core_lib/terminalparser.hpp>
+#include <core_lib/wikiuser.hpp>
+#include <core_lib/version.hpp>
 
 static void testTalkPageWarningParser(QString id, QDate date, int level);
 //! This is a unit test

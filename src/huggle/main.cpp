@@ -8,19 +8,18 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#ifndef HUGGLE_LIBRARY
-#include "definitions.hpp"
+#include <huggle_core/definitions.hpp>
 
 #include <QApplication>
 #include <QStringList>
 #include <QString>
-#include "configuration.hpp"
-#include "core.hpp"
-#include "syslog.hpp"
-#include "updateform.hpp"
-#include "terminalparser.hpp"
-#include "login.hpp"
-#include "exception.hpp"
+#include <huggle_core/configuration.hpp>
+#include <huggle_core/core.hpp>
+#include <huggle_core/syslog.hpp>
+#include <huggle_core/updateform.hpp>
+#include <huggle_core/terminalparser.hpp>
+#include <huggle_core/login.hpp>
+#include <huggle_core/exception.hpp>
 #ifdef _MSC_VER
 #    pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
 #endif
@@ -107,5 +106,3 @@ int main(int argc, char *argv[])
         return Fatal(&fail);
     }
 }
-
-#endif

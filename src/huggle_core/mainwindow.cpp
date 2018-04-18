@@ -419,6 +419,32 @@ WikiEdit *MainWindow::GetCurrentWikiEdit()
     return this->CurrentEdit.GetPtr();
 }
 
+QMenu *MainWindow::GetMenu(int menu_id)
+{
+    switch (menu_id)
+    {
+        case HUGGLE_MW_MENU_SYSTEM:
+            return this->ui->menuFile;
+        case HUGGLE_MW_MENU_USER:
+            return this->ui->menuUser;
+        case HUGGLE_MW_MENU_PAGE:
+            return this->ui->menuPage;
+        default:
+            return nullptr;
+    }
+}
+
+QAction *MainWindow::GetMenuItem(int menu_item)
+{
+    switch (menu_item)
+    {
+        case HUGGLE_MW_MENUITEM_EXIT:
+            return this->ui->actionExit;
+        default:
+            return nullptr;
+    }
+}
+
 void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, bool KeepUser, bool ForcedJump)
 {
     if (e == nullptr || this->ShuttingDown)

@@ -35,12 +35,11 @@ WARN=$(tput setaf 3)
 GREEN=$(tput setaf 2)
 NORMAL=$(tput sgr0)
 CMAKE_ARGS=''
-PYTHON=0
 _BUILD=0
 _Q=0
 QTPATH=''
 USEDEBUG=0
-BUILD='huggle_release'
+BUILD='release'
 BUILD_CHANGED=0
 if [ x"$*" != x ];then
     echo "Options used: $*"
@@ -55,10 +54,10 @@ do
         echo " --disable-dependency-tracking: skip all package checks"
         echo " --extension: will build all extensions as well"
         echo " --qtpath: path to Qt (for example C:\\Qt\\5.4\\mingw\\"
-        echo " --python: will build huggle with p engine"
         echo " --folder <folder>: change the default build folder"
         echo " --no-audio: don't build huggle with audio engine"
         echo " --no-colors: suppress colors"
+        echo " --tests: unit tests"
         echo " --web-engine: use web engine instead of web kit"
         echo " --version: show version"
         echo
@@ -74,8 +73,8 @@ do
         continue
     fi
     if [ "$_BUILD" = "1" ];then
-	BUILD="$var"
-	BUILD_CHANGED=1
+	    BUILD="$var"
+	    BUILD_CHANGED=1
         _BUILD=0
         continue
     fi
@@ -94,16 +93,12 @@ do
         GREEN=""
         NORMAL=""
     fi
-    if [ "$var" = "--python" ];then
-        PYTHON=1
-        continue
-    fi
     if [ "$var" = "--folder" ];then
         _BUILD=1
         continue
     fi
     if [ "$var" = "--version" ];then
-        echo "Huggle configure v 1.1"
+        echo "Huggle configure v 1.2"
         exit 0
     fi
     if [ "$var" = "--web-engine" ];then
@@ -116,6 +111,10 @@ do
     fi
     if [ "$var" = "--debug" ];then
         USEDEBUG=1
+        continue
+    fi
+    if [ "$var" = "--tests" ];then
+        CMAKE_ARGS="$CMAKE_ARGS -DHUGGLE_TEST=true"
         continue
     fi
 done
@@ -163,7 +162,7 @@ checkhf()
 if [ "$USEDEBUG" -eq 1 ];then
     CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_BUILD_TYPE=Debug"
     if [ "$BUILD_CHANGED" = "0" ];then
-        BUILD='huggle_debug'
+        BUILD='debug'
     fi
 else
     CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_BUILD_TYPE=Release"
@@ -186,31 +185,22 @@ if [ -d "../.git" ];then
     git submodule update
 fi
 
-if [ ! -d "libs/libirc/libirc" ];then
+if [ ! -d "src/3rd/libirc/libirc" ];then
     echo "The libirc directories are missing! Fixing by using a backup file..."
-    cd "libs" || exit 1
+    cd "src/3rd" || exit 1
     unzip libirc.zip || exit 1
     cd - || exit 1
 fi
 
-if [ ! -d "libs/yaml-cpp/src" ];then
+if [ ! -d "src/3rd/yaml-cpp/src" ];then
     echo "The yaml-cpp directory is missing! Fixing by using a backup file..."
-    cd "libs" || exit 1
+    cd "src/3rd" || exit 1
     unzip yaml-cpp.zip || exit 1
     cd - || exit 1
 fi
 
-if [ ! -f huggle.pro ];then
-    text "Preparing huggle.pro file"
-    cp huggle.orig huggle.pro || exit 1
-    ok
-fi
-
-if [ "$PYTHON" -eq 1 ];then
-    CMAKE_ARGS="$CMAKE_ARGS -DPYTHON_BUILD=true"
-fi
-
 text "Executing update.sh... "
+cd src/huggle_core || exit 1
 
 if [ ! -f update.sh ];then
     fail
@@ -227,11 +217,11 @@ if [ ! -f version.txt ];then
 	exit 1
 fi
 ok
+cd ../..
 if [ x"$QTPATH" != "x" ];then
     CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_PREFIX_PATH=$QTPATH"
 fi
 if [ $modules -gt 0 ];then
-    ./build/extensions_init.sh || exit 1
     CMAKE_ARGS="$CMAKE_ARGS -DHUGGLE_EXT=TRUE"
 fi
 if [ -d "$BUILD" ];then
@@ -241,7 +231,7 @@ else
 fi
 cd "$BUILD" || exit 1
 echo "$*" > configure_args
-cmake .. $CMAKE_ARGS || exit 1
+cmake ../src $CMAKE_ARGS -Wno-dev || exit 1
 echo "Everything is ready, you can build huggle by entering "$BUILD" and typing"
 echo "make"
 

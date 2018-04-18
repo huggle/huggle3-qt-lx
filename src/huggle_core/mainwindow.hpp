@@ -23,6 +23,13 @@
 #ifdef DeleteForm
     #undef DeleteForm
 #endif
+
+#define HUGGLE_MW_MENU_SYSTEM       0
+#define HUGGLE_MW_MENU_USER         1
+#define HUGGLE_MW_MENU_PAGE         2
+
+#define HUGGLE_MW_MENUITEM_EXIT     0
+
 class QLabel;
 class QTimer;
 class QMenu;
@@ -106,6 +113,8 @@ namespace Huggle
             bool CheckRevertable();
             void DisplayReportUserWindow(WikiUser *User = nullptr);
             WikiEdit *GetCurrentWikiEdit();
+            QMenu *GetMenu(int menu_id);
+            QAction *GetMenuItem(int menu_item);
             /*!
              * \brief ProcessEdit Will display an edit in huggle window
              * \param e Edit
