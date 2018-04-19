@@ -179,7 +179,7 @@ fi
 
 ok
 
-if [ -d "../.git" ];then
+if [ -d ".git" ];then
     echo "This is a git repository, updating modules..."
     git submodule init
     git submodule update
