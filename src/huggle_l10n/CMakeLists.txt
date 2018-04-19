@@ -5,20 +5,8 @@ if (NOT HUGGLE_CMAKE)
     message(FATAL_ERROR "This cmake file can't be used on its own, it must be included from parent folder")
 endif()
 
-project(huggle_ui)
+project(huggle_l10n)
 execute_process(COMMAND "${CMAKE_SOURCE_DIR}/update.sh" WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
-
-if (NOT AUDIO)
-    add_definitions(-DHUGGLE_NOAUDIO)
-endif()
-
-if (WEB_ENGINE)
-    add_definitions(-DHUGGLE_WEBEN)
-endif()
-
-if (LINUX_SNAP)
-    add_definitions(-DHUGGLE_SNAP)
-endif()
 
 set(CMAKE_include_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
@@ -60,36 +48,36 @@ else()
     file(GLOB headers_web "web_engine*.hpp")
 endif()
 
-set(huggle_ui_SOURCES ${srcx} ${srcx_web})
-set(huggle_ui_FORMS ${uixx} ${uixx_web})
-set(huggle_ui_RESOURCES ${resx} ${resx_web})
+set(huggle_l10n_SOURCES ${srcx} ${srcx_web})
+set(huggle_l10n_FORMS ${uixx} ${uixx_web})
+set(huggle_l10n_RESOURCES ${resx} ${resx_web})
 
-QT5_WRAP_CPP(huggle_ui_HEADERS_MOC ${huggle_ui_HEADERS})
-QT5_WRAP_UI(huggle_ui_FORMS_HEADERS ${huggle_ui_FORMS})
-QT5_ADD_RESOURCES(huggle_ui_RESOURCES_RCC ${huggle_ui_RESOURCES})
+QT5_WRAP_CPP(huggle_l10n_HEADERS_MOC ${huggle_l10n_HEADERS})
+QT5_WRAP_UI(huggle_l10n_FORMS_HEADERS ${huggle_l10n_FORMS})
+QT5_ADD_RESOURCES(huggle_l10n_RESOURCES_RCC ${huggle_l10n_RESOURCES})
 
 add_definitions(${QT_DEFINITIONS})
 add_definitions( -DQT_USE_QSTRINGBUILDER )
 
-add_library(huggle_ui SHARED ${huggle_ui_SOURCES} ${headers} ${headers_web} ${huggle_ui_HEADERS_MOC} ${huggle_ui_FORMS_HEADERS} ${huggle_ui_RESOURCES_RCC})
-target_link_libraries(huggle_ui ${QT_LIBRARIES})
-set_target_properties(huggle_ui PROPERTIES COMPILE_FLAGS -DHUGGLE_LIBRARY)
+add_library(huggle_l10n SHARED ${huggle_l10n_SOURCES} ${headers} ${headers_web} ${huggle_l10n_HEADERS_MOC} ${huggle_l10n_FORMS_HEADERS} ${huggle_l10n_RESOURCES_RCC})
+target_link_libraries(huggle_l10n ${QT_LIBRARIES})
+set_target_properties(huggle_l10n PROPERTIES COMPILE_FLAGS -DHUGGLE_LIBRARY)
 
 if (WIN32)
-    target_link_libraries(huggle_ui dbghelp)
+    target_link_libraries(huggle_l10n dbghelp)
 endif()
 
-target_link_libraries(huggle_ui huggle_core irc ircclient yaml-cpp)
+target_link_libraries(huggle_l10n huggle_core irc ircclient yaml-cpp)
 
 if (NOT WEB_ENGINE)
-    qt5_use_modules(huggle_ui Core Gui Widgets WebKitWidgets WebKit Network Xml)
+    qt5_use_modules(huggle_l10n Core Gui Widgets WebKitWidgets WebKit Network Xml)
 else()
-    qt5_use_modules(huggle_ui Core Gui Widgets WebEngineWidgets WebEngine Network Xml)
+    qt5_use_modules(huggle_l10n Core Gui Widgets WebEngineWidgets WebEngine Network Xml)
 endif()
 
 if (AUDIO)
-    qt5_use_modules(huggle_ui Multimedia)
+    qt5_use_modules(huggle_l10n Multimedia)
 endif()
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
-INSTALL(TARGETS huggle_ui DESTINATION lib)
+INSTALL(TARGETS huggle_l10n DESTINATION lib)

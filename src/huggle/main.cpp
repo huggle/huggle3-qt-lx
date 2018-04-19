@@ -86,13 +86,21 @@ int main(int argc, char *argv[])
             delete update_form;
             return ReturnCode;
         }
+
         // load the core
         Huggle::Core::HuggleCore = new Huggle::Core();
         Huggle::Core::HuggleCore->Init();
-        // start the huggle :o
-        Huggle::Core::HuggleCore->fLogin = new Huggle::Login();
-        Huggle::Core::HuggleCore->fLogin->show();
+
+        // start the huggle by creating the login form
+        // this form will delete itself after finish to save RAM, so it should be instantiated dynamically, and shouldn't be deleted
+        Huggle::Login *login_form = new Huggle::Login();
+        login_form->show();
+        login_form->setAttribute(Qt::WA_DeleteOnClose);
+
+        // Event loop
         ReturnCode = a.exec();
+        if (Huggle::Core::HuggleCore->Running)
+            Huggle::Core::HuggleCore->Shutdown();
         delete Huggle::Core::HuggleCore;
         Huggle::Exception::ExitBreakpad();
         return ReturnCode;

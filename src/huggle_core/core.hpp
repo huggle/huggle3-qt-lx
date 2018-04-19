@@ -30,8 +30,6 @@ namespace Huggle
     }
 #endif
     class Configuration;
-    class Login;
-    class MainWindow;
     class Exception;
     class GC;
     class ProcessorThread;
@@ -84,13 +82,8 @@ namespace Huggle
 
             Core();
             ~Core();
-#ifndef HUGGLE_SDK
             //! Function which is called as one of first when huggle is loaded
             void Init();
-#else
-            //! Use this to initialize huggle core if you are working with Huggle SDK
-            void SdkInit(Configuration *huggle_conf);
-#endif
             //! Load extensions (libraries as well as python)
             void ExtensionLoad();
             //! Terminate the process, call this after you release all resources and finish all queries
@@ -106,10 +99,6 @@ namespace Huggle
             QueryPool *HGQP;
             // Global variables
             QDateTime StartupTime;
-#ifndef HUGGLE_SDK
-            //! Login form
-            Login *fLogin;
-#endif
             Syslog *HuggleSyslog;
             //! List of extensions loaded in huggle
             QList<iExtension*> Extensions;
@@ -123,7 +112,7 @@ namespace Huggle
 #endif
         private:
             //! This is a post-processor for edits
-            ProcessorThread *Processor;
+            ProcessorThread *processorThread;
             bool loaded = false;
     };
 }

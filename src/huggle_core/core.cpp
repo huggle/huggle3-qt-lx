@@ -74,8 +74,8 @@ void Core::Init()
     Syslog::HuggleLogs->Log("Huggle version " + Configuration::HuggleConfiguration->HuggleVersion);
     Resources::Init();
     Syslog::HuggleLogs->Log("Loading configuration");
-    this->Processor = new ProcessorThread();
-    this->Processor->start();
+    this->processorThread = new ProcessorThread();
+    this->processorThread->start();
     this->LoadLocalizations();
     Huggle::Syslog::HuggleLogs->Log("Home: " + hcfg->HomePath);
     if (QFile().exists(Configuration::GetConfigurationPath() + HUGGLE_CONF))
@@ -125,10 +125,7 @@ Core::Core()
 #ifdef HUGGLE_PYTHON
     this->Python = nullptr;
 #endif
-#ifndef HUGGLE_SDK
-    this->fLogin = nullptr;
-#endif
-    this->Processor = nullptr;
+    this->processorThread = nullptr;
     this->HuggleSyslog = nullptr;
     this->StartupTime = QDateTime::currentDateTime();
     this->Running = true;
@@ -137,41 +134,9 @@ Core::Core()
 
 Core::~Core()
 {
-#ifndef HUGGLE_SDK
-    delete this->fLogin;
-#endif
     delete this->gc;
-    delete this->Processor;
+    delete this->processorThread;
 }
-
-#ifdef HUGGLE_SDK
-
-void Core::SdkInit(Configuration *huggle_conf)
-{
-    if (this->loaded)
-        throw new Huggle::Exception("Initializing huggle core that was already loaded", BOOST_CURRENT_FUNCTION);
-    this->loaded = true;
-    Configuration::HuggleConfiguration = huggle_conf;
-#ifdef HUGGLE_BREAKPAD
-    Syslog::HuggleLogs->Log("Dumping enabled using google breakpad");
-#endif
-    this->gc = new Huggle::GC();
-    GC::gc = this->gc;
-    Query::NetworkManager = new QNetworkAccessManager();
-    QueryPool::HugglePool = new QueryPool();
-    this->HGQP = QueryPool::HugglePool;
-    this->HuggleSyslog = Syslog::HuggleLogs;
-#if QT_VERSION >= 0x050000
-    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
-#else
-    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
-#endif
-    this->Processor = new ProcessorThread();
-    Configuration::HuggleConfiguration->SystemConfig_WordSeparators << " " << "." << "," << "(" << ")" << ":" << ";" << "!"
-                                                                    << "?" << "/" << "<" << ">" << "[" << "]";
-}
-
-#endif
 
 void Core::LoadDB()
 {
@@ -459,25 +424,19 @@ void Core::Shutdown()
 {
     // Now we can shutdown whole huggle
     this->Running = false;
-#ifndef HUGGLE_SDK
     // We need to disable all extensions first
     Hooks::Shutdown();
-    if (MainWindow::HuggleMain != nullptr)
+    foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
     {
-        foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
-        {
-            if (site->Provider && site->Provider->IsWorking())
-                site->Provider->Stop();
-        }
-        MainWindow::HuggleMain->hide();
+        if (site->Provider && site->Provider->IsWorking())
+            site->Provider->Stop();
     }
-#endif
     // Grace time for subthreads to finish
     Syslog::HuggleLogs->Log("SHUTDOWN: giving a gracetime to other threads to finish");
     Sleeper::msleep(200);
-    if (this->Processor->isRunning())
+    if (this->processorThread->isRunning())
     {
-        this->Processor->exit();
+        this->processorThread->exit();
     }
     Core::SaveDefs();
 #ifdef HUGGLE_PYTHON
@@ -488,19 +447,7 @@ void Core::Shutdown()
     }
 #endif
     QueryPool::HugglePool = nullptr;
-#ifndef HUGGLE_SDK
     Configuration::SaveSystemConfig();
-    if (this->fLogin != nullptr)
-    {
-        delete this->fLogin;
-        this->fLogin = nullptr;
-    }
-    if (MainWindow::HuggleMain != nullptr)
-    {
-        delete MainWindow::HuggleMain;
-        MainWindow::HuggleMain = nullptr;
-    }
-#endif
     delete this->HGQP;
     this->HGQP = nullptr;
     QueryPool::HugglePool = nullptr;

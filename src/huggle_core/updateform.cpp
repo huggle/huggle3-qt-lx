@@ -344,6 +344,7 @@ void UpdateForm::OnTick()
 
 void UpdateForm::Exit()
 {
+    this->close();
     Core::HuggleCore->Shutdown();
 }
 

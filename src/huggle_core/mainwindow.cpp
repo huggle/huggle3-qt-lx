@@ -1776,6 +1776,7 @@ void MainWindow::Exit()
         this->GeneralTimer->stop();
         this->deleteLater();
         this->close();
+        MainWindow::HuggleMain = nullptr;
         Core::HuggleCore->Shutdown();
         return;
     }

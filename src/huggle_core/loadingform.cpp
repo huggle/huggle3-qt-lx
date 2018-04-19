@@ -19,7 +19,7 @@ using namespace Huggle;
 
 bool LoadingForm::IsKilled = false;
 
-LoadingForm::LoadingForm(QWidget *parent) : QDialog(parent), ui(new Ui::LoadingForm)
+LoadingForm::LoadingForm(Login *parent) : QDialog(parent), ui(new Ui::LoadingForm)
 {
     this->ui->setupUi(this);
     this->ui->tableWidget->setColumnCount(2);
@@ -38,6 +38,7 @@ LoadingForm::LoadingForm(QWidget *parent) : QDialog(parent), ui(new Ui::LoadingF
     this->ui->tableWidget->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
     this->ui->tableWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
     this->ui->pushButton->setText(_l("login-abort"));
+    this->loginForm = parent;
 }
 
 void LoadingForm::Info(QString text)
@@ -108,7 +109,7 @@ LoadingForm::~LoadingForm()
 void Huggle::LoadingForm::on_pushButton_clicked()
 {
     this->ui->pushButton->setEnabled(false);
-    Core::HuggleCore->fLogin->CancelLogin();
+    this->loginForm->CancelLogin();
 }
 
 void LoadingForm::reject()

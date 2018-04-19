@@ -22,6 +22,8 @@ namespace Ui
 
 namespace Huggle
 {
+    class Login;
+
     enum LoadingForm_Icon
     {
         LoadingForm_Icon_Loading,
@@ -37,7 +39,7 @@ namespace Huggle
         public:
             static bool IsKilled;
 
-            explicit LoadingForm(QWidget *parent = nullptr);
+            explicit LoadingForm(Login *parent);
             void Info(QString text);
             void ModifyIcon(int row, LoadingForm_Icon it);
             void Insert(int row, QString text, LoadingForm_Icon icon);
@@ -45,8 +47,9 @@ namespace Huggle
         private slots:
             void on_pushButton_clicked();
         private:
-            Ui::LoadingForm *ui;
             void reject();
+            Login *loginForm;
+            Ui::LoadingForm *ui;
     };
 }
 

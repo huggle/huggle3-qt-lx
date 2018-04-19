@@ -11,10 +11,10 @@
 #include "aboutform.hpp"
 #include <QDesktopServices>
 #include <QUrl>
-#include "configuration.hpp"
-#include "generic.hpp"
-#include "mainwindow.hpp"
-#include "localization.hpp"
+#include <huggle_core/configuration.hpp>
+#include <huggle_core/generic.hpp>
+#include <huggle_core/mainwindow.hpp>
+#include <huggle_core/localization.hpp>
 #include "ui_aboutform.h"
 
 using namespace Huggle;

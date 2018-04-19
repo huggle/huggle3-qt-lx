@@ -46,16 +46,16 @@ if (!(Test-Path "update.sh"))
 }
 
 echo "Creating version.txt"
-if ((Test-Path "..\.git") -and (Get-Command git -errorAction SilentlyContinue))
+if ((Test-Path "..\..\.git") -and (Get-Command git -errorAction SilentlyContinue))
 {
     $revision_count = git rev-list HEAD --count
     $hash = git describe --always --tags
     echo "build: $revision_count $hash" | Set-Content version.txt
 } else
 {
-    if (Test-Path("..\.git\FETCH_HEAD"))
+    if (Test-Path("..\..\.git\FETCH_HEAD"))
     {
-        $first, $lines = cat "..\.git\FETCH_HEAD"
+        $first, $lines = cat "..\..\.git\FETCH_HEAD"
         # Do not use the > trick per http://stackoverflow.com/questions/22406496/what-is-a-difference-between-operator-and-set-content-cmdlet
         echo $first | %{$_ -replace "[\t\s].*", ""} | Set-Content version.txt
     } else
@@ -63,13 +63,6 @@ if ((Test-Path "..\.git") -and (Get-Command git -errorAction SilentlyContinue))
         echo "Development (non-git)" > version.txt
     }
 }
-
-if ($qtcreator -and !(Test-Path "huggle.pro"))
-{
-    echo "Creating huggle.pro"
-    Copy-Item "huggle.orig" "huggle.pro"
-}
-
 
 $definitions_created = 0;
 

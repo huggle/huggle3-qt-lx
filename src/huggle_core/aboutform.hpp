@@ -11,9 +11,9 @@
 #ifndef ABOUTFORM_H
 #define ABOUTFORM_H
 
-#include "definitions.hpp"
+#include <huggle_core/definitions.hpp>
 
-#include "hw.hpp"
+#include <huggle_core/hw.hpp>
 #include <QString>
 
 namespace Ui

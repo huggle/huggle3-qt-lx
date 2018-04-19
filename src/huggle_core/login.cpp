@@ -103,7 +103,7 @@ Login::Login(QWidget *parent) : HW("login", this, parent), ui(new Ui::Login)
     }
     if (hcfg->SystemConfig_EnableUpdates)
     {
-        this->Updater = new UpdateForm();
+        this->Updater = new UpdateForm(this);
         this->Updater->Check();
     }
     if (hcfg->SystemConfig_BotPassword)
@@ -307,6 +307,15 @@ void Login::EnableForm(bool value)
     this->ui->lineEdit_password->setEnabled(value);
     this->ui->pushButton->setEnabled(value);
     this->ui->ButtonOK->setEnabled(value);
+}
+
+void Login::closeEvent(QCloseEvent *event)
+{
+    Q_UNUSED(event);
+
+    // Destroy the updater form so that it doesn't crash the application in case we close login form
+    delete this->Updater;
+    this->Updater = nullptr;
 }
 
 bool Login::ReadonlyFallback(WikiSite *site, QString why)
@@ -1309,9 +1318,6 @@ void Login::Finish()
         this->loadingForm = nullptr;
         LoadingForm::IsKilled = true;
     }
-    // now we can safely delete this form
-    Core::HuggleCore->fLogin = nullptr;
-    delete this;
 }
 
 void Login::reject()

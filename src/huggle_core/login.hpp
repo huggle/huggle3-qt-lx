@@ -98,6 +98,7 @@ namespace Huggle
              * \param site to switch to read-only mode
              * \return true on success
              */
+            void closeEvent(QCloseEvent *event);
             bool ReadonlyFallback(WikiSite *site, QString why);
             void Reload();
             void DB();
