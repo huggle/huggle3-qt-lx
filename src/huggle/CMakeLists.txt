@@ -62,6 +62,6 @@ if (AUDIO)
 endif()
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
-install(FILES ${CMAKE_SOURCE_DIR}/man/huggle.1 DESTINATION share/man/man1)
+install(FILES ${CMAKE_SOURCE_DIR}/huggle/man/huggle.1 DESTINATION share/man/man1)
 install(TARGETS huggle DESTINATION bin)
 install(FILES ${CMAKE_SOURCE_DIR}/build/huggle.desktop DESTINATION share/applications)
