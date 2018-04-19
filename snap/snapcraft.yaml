@@ -24,12 +24,10 @@ parts:
     plugin: cmake
     configflags:
       - -DQT5_BUILD=true
-      - -DPYTHON_BUILD=true
       - -DLINUX_SNAP=true
       - -DHUGGLE_EXT=true
-    source: huggle/
+    source: src/
     stage-packages:
-      - libpython3.5
       - libqt5gui5
       - libqt5core5a
       - libqt5webkit5
@@ -39,10 +37,11 @@ parts:
       - libqt5declarative5
       - libqt5quickwidgets5
       - libqt5network5
+      - libqt5script5
       - libqt5multimediaquick-p5
       - libqt5multimediawidgets5
+      - libqt5xml5
     build-packages:
-      - libpython3-dev
       - libgtk2.0-0
       - libdrm-dev
       - libegl1-mesa-dev
@@ -52,6 +51,7 @@ parts:
       - libqt5opengl5-dev
       - libwayland-dev
       - libx11-dev
+      - qtscript5-dev
       - qtmultimedia5-dev
       - libqt5webkit5-dev
     after: [desktop-qt5]
