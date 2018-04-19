@@ -88,6 +88,10 @@ add_subdirectory(huggle_core)
 # Huggle executable
 add_subdirectory(huggle)
 
+if (HUGGLE_TEST)
+    add_subdirectory(tests)
+endif()
+
 include(${CMAKE_SOURCE_DIR}/CPackInfo)
 install(FILES ${CMAKE_SOURCE_DIR}/huggle_core/Resources/huggle3_newlogo.png DESTINATION share/huggle)
 include(CPack)

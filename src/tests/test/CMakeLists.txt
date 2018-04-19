@@ -7,6 +7,7 @@ if (NOT HUGGLE_CMAKE)
 endif()
 
 PROJECT(tst_testmain)
+SET(CMAKE_AUTOMOC ON)
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Gui REQUIRED)
 find_package(Qt5Test REQUIRED)
