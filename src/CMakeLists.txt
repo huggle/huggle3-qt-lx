@@ -82,17 +82,17 @@ add_definitions( -DQT_USE_QSTRINGBUILDER )
 include_directories("3rd/")
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
-# Huggle core
-add_subdirectory(huggle_core)
-
-# Qt desktop
-add_subdirectory(huggle_ui)
-
 # Resources
 add_subdirectory(huggle_res)
 
 # Localizations
 add_subdirectory(huggle_l10n)
+
+# Huggle core
+add_subdirectory(huggle_core)
+
+# Qt desktop
+add_subdirectory(huggle_ui)
 
 # Huggle executable
 add_subdirectory(huggle)
