@@ -1,30 +1,30 @@
 [submodule "src/extensions/mass-delivery"]
 	path = src/extensions/mass-delivery
-	url = http://github.com/huggle/mass-delivery
+	url = https://github.com/huggle/mass-delivery
 [submodule "src/extensions/enwiki"]
 	path = src/extensions/enwiki
-	url = http://github.com/huggle/enwiki
+	url = https://github.com/huggle/enwiki
 [submodule "src/extensions/extension-thanks"]
 	path = src/extensions/extension-thanks
-	url = http://github.com/huggle/extension-thanks
+	url = https://github.com/huggle/extension-thanks
 [submodule "src/extensions/extension-splitter-helper"]
 	path = src/extensions/extension-splitter-helper
-	url = http://github.com/huggle/extension-splitter-helper
+	url = https://github.com/huggle/extension-splitter-helper
 [submodule "src/extensions/extension-review"]
 	path = src/extensions/extension-review
-	url = http://github.com/huggle/extension-review
+	url = https://github.com/huggle/extension-review
 [submodule "src/extensions/extension-mass-delete"]
 	path = src/extensions/extension-mass-delete
-	url = http://github.com/huggle/extension-mass-delete
+	url = https://github.com/huggle/extension-mass-delete
 [submodule "src/extensions/extension-scoring"]
 	path = src/extensions/extension-scoring
-	url = http://github.com/huggle/extension-scoring
+	url = https://github.com/huggle/extension-scoring
 [submodule "src/3rd/libirc"]
 	path = src/3rd/libirc
-	url = http://github.com/grumpy-irc/libirc
+	url = https://github.com/grumpy-irc/libirc
 [submodule "src/3rd/libs/yaml-cpp"]
 	path = src/3rd/yaml-cpp
-	url = http://github.com/jbeder/yaml-cpp
+	url = https://github.com/jbeder/yaml-cpp
 [submodule "src/extensions/extension-flow"]
 	path = src/extensions/extension-flow
 	url = https://github.com/huggle/extension-flow
