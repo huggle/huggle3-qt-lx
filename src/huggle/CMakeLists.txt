@@ -35,7 +35,7 @@ if (WIN32)
     target_link_libraries(huggle dbghelp)
 endif()
 
-target_link_libraries(huggle huggle_core)
+target_link_libraries(huggle huggle_core huggle_ui)
 
 qt5_use_modules(huggle Core Gui Widgets)
 
