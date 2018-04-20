@@ -14,11 +14,8 @@
 #include "configuration.hpp"
 #include "exception.hpp"
 #include "localization.hpp"
-#ifndef HUGGLE_SDK
-#include "mainwindow.hpp"
-#include "history.hpp"
 #include "historyitem.hpp"
-#endif
+#include "hooks.hpp"
 #include "syslog.hpp"
 #include "querypool.hpp"
 #include "wikipage.hpp"
@@ -170,17 +167,12 @@ bool EditQuery::IsProcessed()
                 if (edit->Attributes["result"] == "Success")
                 {
                     failed = false;
-#ifndef HUGGLE_SDK
-                    if (MainWindow::HuggleMain != nullptr)
-                    {
-                        HistoryItem *item = new HistoryItem();
-                        item->Result = _l("successful");
-                        item->Type = HistoryEdit;
-                        item->Target = this->Page->PageName;
-                        this->HI = item;
-                        MainWindow::HuggleMain->_History->Prepend(item);
-                    }
-#endif
+                    HistoryItem *item = new HistoryItem();
+                    item->Result = _l("successful");
+                    item->Type = HistoryEdit;
+                    item->Target = this->Page->PageName;
+                    this->HI = item;
+                    Hooks::WikiEdit_OnNewHistoryItem(item);
                     this->ProcessCallback();
                     Huggle::Syslog::HuggleLogs->Log(_l("editquery-success", this->Page->PageName, this->Page->GetSite()->Name));
                 }

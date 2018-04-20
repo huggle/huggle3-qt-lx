@@ -14,7 +14,7 @@
 #include <QPluginLoader>
 #include "configuration.hpp"
 #include "exception.hpp"
-#include "exceptionwindow.hpp"
+#include "exceptionhandler.hpp"
 #include "events.hpp"
 #include "gc.hpp"
 #include "generic.hpp"
@@ -23,11 +23,7 @@
 #include "hugglequeuefilter.hpp"
 #include "iextension.hpp"
 #include "localization.hpp"
-#ifndef HUGGLE_SDK
-    #include "hooks.hpp"
-    #include "login.hpp"
-    #include "mainwindow.hpp"
-#endif
+#include "hooks.hpp"
 #include "sleeper.hpp"
 #include "resources.hpp"
 #include "query.hpp"
@@ -43,9 +39,10 @@ using namespace Huggle;
 // definitions
 Core    *Core::HuggleCore = nullptr;
 
-#ifndef HUGGLE_SDK
 void Core::Init()
 {
+    // This goes first otherwise we can't throw exceptions
+    this->exceptionHandler = new ExceptionHandler();
     // We check if this isn't an attempt to start huggle core which was already started, this can cause serious hard to debug problems with network
     if (this->loaded)
         throw new Huggle::Exception("Initializing huggle core that was already loaded", BOOST_CURRENT_FUNCTION);
@@ -124,8 +121,6 @@ void Core::Init()
     HUGGLE_PROFILER_PRINT_TIME("Core::Init()@finalize");
 }
 
-#endif
-
 Core::Core()
 {
 #ifdef HUGGLE_PYTHON
@@ -142,6 +137,7 @@ Core::~Core()
 {
     delete this->gc;
     delete this->processorThread;
+    delete this->exceptionHandler;
 }
 
 void Core::LoadDB()
@@ -588,18 +584,21 @@ void Core::LoadLocalizations()
     this->TestLanguages();
 }
 
+void Core::InstallNewExceptionHandler(ExceptionHandler *eh)
+{
+    delete this->exceptionHandler;
+    this->exceptionHandler = eh;
+}
+
 qint64 Core::GetUptimeInSeconds()
 {
     return this->StartupTime.secsTo(QDateTime::currentDateTime());
 }
 
 // Exception handling
-#ifndef HUGGLE_SDK
-void Core::ExceptionHandler(Exception *exception)
+void Core::HandleException(Exception *exception)
 {
-    ExceptionWindow *w = new ExceptionWindow(exception);
-    w->exec();
-    delete w;
+    Core::HuggleCore->exceptionHandler->HandleException(exception);
 }
 
 bool HgApplication::notify(QObject *receiver, QEvent *event)
@@ -610,12 +609,11 @@ bool HgApplication::notify(QObject *receiver, QEvent *event)
         done = QApplication::notify(receiver, event);
     }catch (Huggle::Exception *ex)
     {
-        Core::ExceptionHandler(ex);
+        Core::HandleException(ex);
         delete ex;
     }catch (Huggle::Exception &ex)
     {
-        Core::ExceptionHandler(&ex);
+        Core::HandleException(&ex);
     }
     return done;
 }
-#endif

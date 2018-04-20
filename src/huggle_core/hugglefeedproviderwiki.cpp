@@ -12,10 +12,9 @@
 #include <QtXml>
 #include "configuration.hpp"
 #include "exception.hpp"
+#include "hugglequeuefilter.hpp"
 #include "localization.hpp"
-#include "mainwindow.hpp"
 #include "mediawiki.hpp"
-#include "hugglequeue.hpp"
 #include "querypool.hpp"
 #include "syslog.hpp"
 #include "wikipage.hpp"

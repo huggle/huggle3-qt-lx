@@ -28,6 +28,7 @@ namespace Huggle
     class Message;
     class SpeedyForm;
     class Query;
+    class HistoryItem;
 
     //! Hooks that can be used to attach some 3rd code to existing functions
     class HUGGLE_EX Hooks
@@ -114,6 +115,11 @@ namespace Huggle
                                     Query *Dependency = nullptr, bool NoSuffix = false, bool SectionKeep = false,
                                     bool Autoremove = true, QString BaseTimestamp = "", bool CreateOnly = false, bool FreshOnly = false);
             static void WikiUser_Updated(WikiUser *user);
+            static void WikiEdit_OnNewHistoryItem(HistoryItem *history_item);
+            static void QueryPool_Remove(Query *q);
+            static void QueryPool_Update(Query *q);
+            static void ReportUser(WikiUser *u);
+            static void SilentReport(WikiUser *u);
             static void Shutdown();
     };
 }

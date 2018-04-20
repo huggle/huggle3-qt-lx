@@ -16,11 +16,8 @@
 #include "generic.hpp"
 #include "querypool.hpp"
 #include "localization.hpp"
-#ifndef HUGGLE_SDK
-    #include "history.hpp"
-    #include "historyitem.hpp"
-    #include "mainwindow.hpp"
-#endif
+#include "historyitem.hpp"
+#include "hooks.hpp"
 #include "syslog.hpp"
 #include "wikisite.hpp"
 #include "wikiuser.hpp"
@@ -479,7 +476,6 @@ bool RevertQuery::CheckRevert()
     } else
     {
         this->Status = StatusDone;
-#ifndef HUGGLE_SDK
         HistoryItem *item = new HistoryItem();
         this->HI = item;
         this->HI->Site = this->GetSite();
@@ -488,9 +484,7 @@ bool RevertQuery::CheckRevert()
         item->Target = this->qRevert->Target;
         item->Type = HistoryRollback;
         item->Result = _l("successful");
-        if (MainWindow::HuggleMain != nullptr)
-            MainWindow::HuggleMain->_History->Prepend(item);
-#endif
+        Hooks::WikiEdit_OnNewHistoryItem(item);
     }
     this->qRevert->UnregisterConsumer(HUGGLECONSUMER_REVERTQUERY);
     this->qRevert.Delete();

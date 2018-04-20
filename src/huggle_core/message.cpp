@@ -14,13 +14,10 @@
 #include "configuration.hpp"
 #include "exception.hpp"
 #include "localization.hpp"
-#ifndef HUGGLE_SDK
-    #include "mainwindow.hpp"
-    #include "history.hpp"
-    #include "historyitem.hpp"
-#endif
+#include "historyitem.hpp"
 #include "generic.hpp"
 #include "querypool.hpp"
+#include "hooks.hpp"
 #include "syslog.hpp"
 #include "wikisite.hpp"
 #include "wikiutil.hpp"
@@ -220,9 +217,6 @@ void Message::Finish()
                 {
                     Huggle::Syslog::HuggleLogs->Log(_l("message-done", this->User->Username, this->User->GetSite()->Name));
                     sent = true;
-#ifndef HUGGLE_SDK
-                    /// \todo Relocate this to different file later, it should be in main window, not in message handler
-                    /// for this has no use in SDK library
                     HistoryItem *item = new HistoryItem();
                     item->Result = _l("successful");
                     item->NewPage = this->CreateOnly;
@@ -234,11 +228,7 @@ void Message::Finish()
                         this->Dependency->HI->UndoDependency = item;
                         item->ReferencedBy = this->Dependency->HI;
                     }
-                    if (MainWindow::HuggleMain != nullptr)
-                    {
-                        MainWindow::HuggleMain->_History->Prepend(item);
-                    }
-#endif
+                    Hooks::WikiEdit_OnNewHistoryItem(item);
                     // write something to talk page in case it was empty
                     if (this->User->TalkPage_GetContents().isEmpty())
                         this->User->TalkPage_SetContents(this->Text);

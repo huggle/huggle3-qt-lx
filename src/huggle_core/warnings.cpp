@@ -14,10 +14,9 @@
 #include "exception.hpp"
 #include "generic.hpp"
 #include "huggleparser.hpp"
-#include "mainwindow.hpp"
+#include "hooks.hpp"
 #include "querypool.hpp"
 #include "message.hpp"
-#include "reportuser.hpp"
 #include "revertquery.hpp"
 #include "localization.hpp"
 #include "hooks.hpp"
@@ -241,11 +240,11 @@ void Warnings::ResendWarnings()
                 {
                     if (hcfg->UserConfig->AutomaticReports)
                     {
-                        ReportUser::SilentReport(warning->RelatedEdit->User);
+                        Hooks::SilentReport(warning->RelatedEdit->User);
                     }
                     else
                     {
-                        MainWindow::HuggleMain->DisplayReportUserWindow(warning->RelatedEdit->User);
+                        Hooks::ReportUser(warning->RelatedEdit->User);
                     }
                 }
 

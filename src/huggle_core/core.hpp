@@ -31,6 +31,7 @@ namespace Huggle
 #endif
     class Configuration;
     class Exception;
+    class ExceptionHandler;
     class GC;
     class ProcessorThread;
     class HuggleQueueFilter;
@@ -61,9 +62,7 @@ namespace Huggle
     class HUGGLE_EX Core
     {
         public:
-#ifndef HUGGLE_SDK
-            static void ExceptionHandler(Exception *exception);
-#endif
+            static void HandleException(Exception *exception);
             /*!
              * \brief VersionRead - read the version from embedded git file
              *
@@ -96,6 +95,7 @@ namespace Huggle
             void SaveDefs();
             qint64 GetUptimeInSeconds();
             void LoadLocalizations();
+            void InstallNewExceptionHandler(ExceptionHandler *eh);
             QueryPool *HGQP;
             // Global variables
             QDateTime StartupTime;
@@ -113,6 +113,7 @@ namespace Huggle
         private:
             //! This is a post-processor for edits
             ProcessorThread *processorThread;
+            ExceptionHandler *exceptionHandler;
             bool loaded = false;
     };
 }

@@ -24,6 +24,51 @@ Events::~Events()
 
 }
 
+void Events::on_WEGood(WikiEdit *e)
+{
+    emit this->WikiEdit_OnGood(e);
+}
+
+void Events::on_WENewHistoryItem(HistoryItem *hi)
+{
+    emit this->WikiEdit_OnNewHistoryItem(hi);
+}
+
+void Events::on_WEWarningSent(WikiUser *u, byte_ht wl)
+{
+    emit this->WikiEdit_OnWarning(u, wl);
+}
+
+void Events::on_WESuspicious(WikiEdit *e)
+{
+    emit this->WikiEdit_OnSuspicious(e);
+}
+
+void Events::on_QueryPoolRemove(Query *q)
+{
+    emit this->QueryPool_Remove(q);
+}
+
+void Events::on_QueryPoolUpdate(Query *q)
+{
+    emit this->QueryPool_Update(q);
+}
+
+void Events::on_Report(WikiUser *u)
+{
+    emit this->Reporting_Report(u);
+}
+
+void Events::on_SReport(WikiUser *u)
+{
+    emit this->Reporting_SilentReport(u);
+}
+
+void Events::on_WERevert(WikiEdit *e)
+{
+    emit this->WikiEdit_OnRevert(e);
+}
+
 void Events::on_UpdateUser(WikiUser *wiki_user)
 {
     emit this->WikiUser_Updated(wiki_user);

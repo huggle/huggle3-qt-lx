@@ -89,9 +89,6 @@ namespace Huggle
         HUGGLE_EX Message *MessageUser(WikiUser *User, QString Text, QString Title, QString Summary, bool InsertSection = true,
                                        Query *Dependency = nullptr, bool NoSuffix = false, bool SectionKeep = false,
                                        bool Autoremove = true, QString BaseTimestamp = "", bool CreateOnly = false, bool FreshOnly = false);
-#ifndef HUGGLE_SDK
-        HUGGLE_EX void DisplayContributionBrowser(WikiUser *User, QWidget *parent = nullptr);
-#endif
         /*!
          * \brief SanitizeUser removes all invalid or problematic characters from user name
          * \param username Username that is to be fixed

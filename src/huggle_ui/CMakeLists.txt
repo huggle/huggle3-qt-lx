@@ -8,18 +8,6 @@ endif()
 project(huggle_ui)
 execute_process(COMMAND "${CMAKE_SOURCE_DIR}/update.sh" WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 
-if (NOT AUDIO)
-    add_definitions(-DHUGGLE_NOAUDIO)
-endif()
-
-if (WEB_ENGINE)
-    add_definitions(-DHUGGLE_WEBEN)
-endif()
-
-if (LINUX_SNAP)
-    add_definitions(-DHUGGLE_SNAP)
-endif()
-
 set(CMAKE_include_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 

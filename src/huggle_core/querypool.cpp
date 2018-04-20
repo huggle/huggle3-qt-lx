@@ -12,15 +12,12 @@
 #include <QtXml>
 #include "configuration.hpp"
 #include "editquery.hpp"
+#include "editqueue.hpp"
 #include "exception.hpp"
-#include "hugglequeue.hpp"
 #include "apiqueryresult.hpp"
-#ifndef HUGGLE_SDK
-#include "mainwindow.hpp"
-#include "processlist.hpp"
-#endif
 #include "hugglefeed.hpp"
 #include "query.hpp"
+#include "hooks.hpp"
 #include "message.hpp"
 #include "syslog.hpp"
 #include "wikiedit.hpp"
@@ -115,14 +112,11 @@ void QueryPool::PreProcessEdit(WikiEdit *edit)
             this->UncheckedReverts.append(edit);
         }
     }
-#ifndef HUGGLE_SDK
-    if (hcfg->UserConfig->RemoveAfterTrustedEdit && edit->User->IsWhitelisted() &&
-        MainWindow::HuggleMain && MainWindow::HuggleMain->Queue1)
-        MainWindow::HuggleMain->Queue1->DeleteOlder(edit);
+    if (hcfg->UserConfig->RemoveAfterTrustedEdit && edit->User->IsWhitelisted() && EditQueue::Primary)
+        EditQueue::Primary->DeleteOlder(edit);
     // In case we are currently looking at this page in main window, let's refresh
-    if (hcfg->UserConfig->AutomaticRefresh && MainWindow::HuggleMain->CurrentEdit != nullptr && edit->Page->PageName == MainWindow::HuggleMain->CurrentEdit->Page->PageName)
-        MainWindow::HuggleMain->RefreshPage();
-#endif
+    //if (hcfg->UserConfig->AutomaticRefresh && MainWindow::HuggleMain->CurrentEdit != nullptr && edit->Page->PageName == MainWindow::HuggleMain->CurrentEdit->Page->PageName)
+    //    MainWindow::HuggleMain->RefreshPage();
     edit->Status = StatusProcessed;
 }
 
@@ -192,10 +186,7 @@ void QueryPool::CheckQueries()
     while (curr < this->RunningQueries.count())
     {
         Query *q = this->RunningQueries.at(curr);
-#ifndef HUGGLE_SDK
-        if (this->Processes != nullptr)
-            this->Processes->UpdateQuery(q);
-#endif
+        Hooks::QueryPool_Update(q);
         if (q->IsProcessed())
         {
 #ifdef HUGGLE_METRICS
@@ -204,13 +195,8 @@ void QueryPool::CheckQueries()
             this->RunningQueries.removeAt(curr);
             // this is pretty spamy :o
             HUGGLE_DEBUG("Query finished with: " + q->Result->Data, 8);
-#ifndef HUGGLE_SDK
-            if (this->Processes != nullptr)
-            {
-                this->Processes->UpdateQuery(q);
-                this->Processes->RemoveQuery(q);
-            }
-#endif
+            Hooks::QueryPool_Update(q);
+            Hooks::QueryPool_Remove(q);
             q->UnregisterConsumer(HUGGLECONSUMER_QP);
         } else
         {

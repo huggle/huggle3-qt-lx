@@ -12,9 +12,7 @@
 #include "core.hpp"
 #include "configuration.hpp"
 #include "events.hpp"
-#include "mainwindow.hpp"
 #include "message.hpp"
-#include "vandalnw.hpp"
 #include "iextension.hpp"
 #include "wikiuser.hpp"
 #include "wikiedit.hpp"
@@ -137,7 +135,7 @@ bool Huggle::Hooks::OnEditLoadToQueue(Huggle::WikiEdit *Edit)
 
 void Huggle::Hooks::OnGood(Huggle::WikiEdit *Edit)
 {
-    MainWindow::HuggleMain->VandalDock->Good(Edit);
+    Events::Global->on_WEGood(Edit);
     foreach(Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
     {
         if (e->IsWorking())
@@ -151,7 +149,7 @@ void Huggle::Hooks::OnGood(Huggle::WikiEdit *Edit)
 
 void Huggle::Hooks::OnRevert(Huggle::WikiEdit *Edit)
 {
-    MainWindow::HuggleMain->VandalDock->Rollback(Edit);
+    Events::Global->on_WERevert(Edit);
 }
 
 bool Huggle::Hooks::EditCheckIfReady(Huggle::WikiEdit *Edit)
@@ -167,12 +165,12 @@ bool Huggle::Hooks::EditCheckIfReady(Huggle::WikiEdit *Edit)
 
 void Huggle::Hooks::OnWarning(Huggle::WikiUser *User)
 {
-    MainWindow::HuggleMain->VandalDock->WarningSent(User, User->GetWarningLevel());
+    Events::Global->on_WEWarningSent(User, User->GetWarningLevel());
 }
 
 void Huggle::Hooks::Suspicious(Huggle::WikiEdit *Edit)
 {
-    MainWindow::HuggleMain->VandalDock->SuspiciousWikiEdit(Edit);
+    Events::Global->on_WESuspicious(Edit);
 }
 
 void Huggle::Hooks::BadnessScore(Huggle::WikiUser *User, int Score)
@@ -287,5 +285,33 @@ void Huggle::Hooks::WikiUser_Updated(Huggle::WikiUser *user)
         return;
 
     Events::Global->on_UpdateUser(user);
+}
+
+void Huggle::Hooks::WikiEdit_OnNewHistoryItem(Huggle::HistoryItem *history_item)
+{
+    if (!Events::Global)
+        return;
+
+    Events::Global->on_WENewHistoryItem(history_item);
+}
+
+void Huggle::Hooks::QueryPool_Remove(Huggle::Query *q)
+{
+    Events::Global->on_QueryPoolRemove(q);
+}
+
+void Huggle::Hooks::QueryPool_Update(Huggle::Query *q)
+{
+    Events::Global->on_QueryPoolUpdate(q);
+}
+
+void Huggle::Hooks::ReportUser(Huggle::WikiUser *u)
+{
+    Events::Global->on_Report(u);
+}
+
+void Huggle::Hooks::SilentReport(Huggle::WikiUser *u)
+{
+    Events::Global->on_SReport(u);
 }
 

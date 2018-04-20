@@ -11,14 +11,19 @@
 #ifndef EVENTS_HPP
 #define EVENTS_HPP
 
+#include "definitions.hpp"
 #include <QObject>
 #include <QString>
 
 namespace Huggle
 {
+    class Query;
+    class WikiEdit;
     class WikiUser;
+    class WikiSite;
     class Hooks;
-    class Events : public QObject
+    class HistoryItem;
+    class HUGGLE_EX Events : public QObject
     {
             Q_OBJECT
         public:
@@ -28,10 +33,32 @@ namespace Huggle
 
         signals:
             void WikiUser_Updated(WikiUser *wiki_user);
+            void WikiEdit_OnNewHistoryItem(HistoryItem *hi);
+            //! Triggered when "good edit" button is pressed by user
+            void WikiEdit_OnGood(WikiEdit *wiki_edit);
+            //! Triggered when "revert" is done by user
+            void WikiEdit_OnRevert(WikiEdit *wiki_edit);
+            //! When warning is sent to vandal user
+            void WikiEdit_OnWarning(WikiUser *wiki_user, byte_ht warning_level);
+            //! When suspicious edit is flagged by user
+            void WikiEdit_OnSuspicious(WikiEdit *wiki_edit);
+            void QueryPool_Remove(Query *q);
+            void QueryPool_Update(Query *q);
+            void Reporting_SilentReport(WikiUser *wiki_user);
+            void Reporting_Report(WikiUser *wiki_user);
 
         private:
             friend class Hooks;
 
+            void on_WERevert(WikiEdit *e);
+            void on_WEGood(WikiEdit *e);
+            void on_WENewHistoryItem(HistoryItem *hi);
+            void on_WEWarningSent(WikiUser *u, byte_ht wl);
+            void on_WESuspicious(WikiEdit *e);
+            void on_QueryPoolRemove(Query *q);
+            void on_QueryPoolUpdate(Query *q);
+            void on_Report(WikiUser *u);
+            void on_SReport(WikiUser *u);
             void on_UpdateUser(WikiUser *wiki_user);
     };
 }

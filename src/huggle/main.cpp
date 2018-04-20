@@ -16,10 +16,11 @@
 #include <huggle_core/configuration.hpp>
 #include <huggle_core/core.hpp>
 #include <huggle_core/syslog.hpp>
-#include <huggle_core/updateform.hpp>
 #include <huggle_core/terminalparser.hpp>
-#include <huggle_core/login.hpp>
 #include <huggle_core/exception.hpp>
+#include <huggle_ui/uiexceptionhandler.hpp>
+#include <huggle_ui/login.hpp>
+#include <huggle_ui/updateform.hpp>
 #ifdef _MSC_VER
 #    pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
 #endif
@@ -90,6 +91,9 @@ int main(int argc, char *argv[])
         // load the core
         Huggle::Core::HuggleCore = new Huggle::Core();
         Huggle::Core::HuggleCore->Init();
+
+        // install graphical exception handler, so we get a nice window on exception
+        Huggle::Core::HuggleCore->InstallNewExceptionHandler(new Huggle::UiExceptionHandler());
 
         // start the huggle by creating the login form
         // this form will delete itself after finish to save RAM, so it should be instantiated dynamically, and shouldn't be deleted

@@ -15,7 +15,6 @@
 #include "huggleparser.hpp"
 #include "localization.hpp"
 #include "hooks.hpp"
-#include "hugglequeue.hpp"
 #include "huggleprofiler.hpp"
 #include "syslog.hpp"
 #include "wikipage.hpp"
