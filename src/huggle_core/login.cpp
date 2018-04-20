@@ -312,10 +312,7 @@ void Login::EnableForm(bool value)
 void Login::closeEvent(QCloseEvent *event)
 {
     Q_UNUSED(event);
-
-    // Destroy the updater form so that it doesn't crash the application in case we close login form
-    delete this->Updater;
-    this->Updater = nullptr;
+    this->reject();
 }
 
 bool Login::ReadonlyFallback(WikiSite *site, QString why)
@@ -1324,6 +1321,9 @@ void Login::reject()
 {
     if (this->Finished == false)
     {
+        // Destroy the updater form so that it doesn't crash the application in case we close login form
+        delete this->Updater;
+        this->Updater = nullptr;
         Core::HuggleCore->Shutdown();
     }
     else

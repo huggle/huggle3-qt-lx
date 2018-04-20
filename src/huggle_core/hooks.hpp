@@ -113,6 +113,7 @@ namespace Huggle
             static Message *MessageUser(WikiUser *User, QString Text, QString Title, QString Summary, bool InsertSection = true,
                                     Query *Dependency = nullptr, bool NoSuffix = false, bool SectionKeep = false,
                                     bool Autoremove = true, QString BaseTimestamp = "", bool CreateOnly = false, bool FreshOnly = false);
+            static void WikiUser_Updated(WikiUser *user);
             static void Shutdown();
     };
 }

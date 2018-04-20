@@ -25,6 +25,7 @@
 #include "aboutform.hpp"
 #include "apiquery.hpp"
 #include "apiqueryresult.hpp"
+#include "events.hpp"
 #include "configuration.hpp"
 #include "editbar.hpp"
 #include "reloginform.hpp"
@@ -288,6 +289,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     connect(this->tStatusBarRefreshTimer, SIGNAL(timeout()), this, SLOT(OnStatusBarRefreshTimerTick()));
     this->tCheck->start(20000);
     this->tStatusBarRefreshTimer->start(500);
+    if (!Events::Global)
+        throw new Exception("Global events aren't instantiated now", BOOST_CURRENT_FUNCTION);
+    connect(Events::Global, SIGNAL(WikiUser_Updated(WikiUser*)), this, SLOT(OnWikiUserUpdate(WikiUser*)));
     this->EnableEditing(false);
 }
 
@@ -3416,4 +3420,9 @@ void Huggle::MainWindow::on_actionPost_a_custom_message_triggered()
 void Huggle::MainWindow::on_actionWrite_text_to_HAN_triggered()
 {
     this->VandalDock->WriteTest(this->CurrentEdit);
+}
+
+void MainWindow::OnWikiUserUpdate(WikiUser *user)
+{
+    this->Queue1->UpdateUser(user);
 }

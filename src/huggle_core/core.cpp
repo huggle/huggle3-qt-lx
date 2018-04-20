@@ -15,6 +15,7 @@
 #include "configuration.hpp"
 #include "exception.hpp"
 #include "exceptionwindow.hpp"
+#include "events.hpp"
 #include "gc.hpp"
 #include "generic.hpp"
 #include "hugglefeed.hpp"
@@ -50,6 +51,11 @@ void Core::Init()
         throw new Huggle::Exception("Initializing huggle core that was already loaded", BOOST_CURRENT_FUNCTION);
     HUGGLE_PROFILER_RESET;
     this->loaded = true;
+
+    if (Events::Global)
+        throw new Huggle::Exception("Global events are already loaded", BOOST_CURRENT_FUNCTION);
+    Events::Global = new Events();
+
     // preload of config
     Configuration::HuggleConfiguration->WikiDB = Generic::SanitizePath(Configuration::GetConfigurationPath() + "wikidb.xml");
     if (Configuration::HuggleConfiguration->SystemConfig_SafeMode)
@@ -489,10 +495,10 @@ void Core::Shutdown()
     // Syslog should be deleted last because since now there is no way to effectively report stuff to terminal
     delete Syslog::HuggleLogs;
     Syslog::HuggleLogs = nullptr;
-#ifndef HUGGLE_SDK
     Resources::Uninit();
+    delete Events::Global;
+    Events::Global = nullptr;
     QApplication::quit();
-#endif
 }
 
 void Core::TestLanguages()

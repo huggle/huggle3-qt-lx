@@ -44,7 +44,6 @@ namespace Huggle
 
     class Query;
     class ApiQuery;
-    class MainWindow;
     class WikiPage;
     class WikiEdit;
     class WikiUser;

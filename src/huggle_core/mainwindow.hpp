@@ -358,6 +358,7 @@ namespace Huggle
             void on_actionShow_score_debug_triggered();
             void on_actionPost_a_custom_message_triggered();
             void on_actionWrite_text_to_HAN_triggered();
+            void OnWikiUserUpdate(WikiUser *user);
         private:
             void CloseTab(int tab);
             void DisplayWelcomeMessage();

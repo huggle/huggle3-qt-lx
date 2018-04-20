@@ -13,9 +13,7 @@
 #include <QUrl>
 #include "apiqueryresult.hpp"
 #include "configuration.hpp"
-#ifndef HUGGLE_SDK
-    #include "hooks.hpp"
-#endif
+#include "hooks.hpp"
 #include "core.hpp"
 #include "querypool.hpp"
 #include "exception.hpp"

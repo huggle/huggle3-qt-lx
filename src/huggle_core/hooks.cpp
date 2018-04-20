@@ -11,6 +11,7 @@
 #include "hooks.hpp"
 #include "core.hpp"
 #include "configuration.hpp"
+#include "events.hpp"
 #include "mainwindow.hpp"
 #include "message.hpp"
 #include "vandalnw.hpp"
@@ -278,5 +279,13 @@ Huggle::Message *Huggle::Hooks::MessageUser(Huggle::WikiUser *User, QString Text
         }
     }
     return nullptr;
+}
+
+void Huggle::Hooks::WikiUser_Updated(Huggle::WikiUser *user)
+{
+    if (!Events::Global)
+        return;
+
+    Events::Global->on_UpdateUser(user);
 }
 
