@@ -213,11 +213,11 @@ namespace std { typedef decltype(nullptr) nullptr_t; }
 #endif
 
 #ifndef HUGGLE_EX_L10N
-    #define HUGGLE_L10N
+    #define HUGGLE_EX_L10N
 #endif
 
 #ifndef HUGGLE_EX_RES
-    #define HUGGLE_RES
+    #define HUGGLE_EX_RES
 #endif
 
 //! Change this to DEBIAN / UBUNTU / WINDOWS to get automatic updates for selected channels
