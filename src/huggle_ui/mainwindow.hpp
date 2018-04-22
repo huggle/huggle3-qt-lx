@@ -363,6 +363,10 @@ namespace Huggle
             void OnWikiEditHist(HistoryItem *item);
             void OnReport(WikiUser *user);
             void OnSReport(WikiUser *user);
+            void OnMessage(QString title, QString text);
+            void OnWarning(QString title, QString text);
+            void OnQuestion(QString title, QString text, bool *y);
+            void OnError(QString title, QString text);
         private:
             void CloseTab(int tab);
             void DisplayWelcomeMessage();

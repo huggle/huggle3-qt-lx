@@ -23,7 +23,6 @@
 #include "wikiuser.hpp"
 #include "wikiutil.hpp"
 #include <QUrl>
-#include <QMessageBox>
 #include <QTimer>
 
 using namespace Huggle;
@@ -313,9 +312,7 @@ void RevertQuery::Preflight()
                 // to revert them all? (it will likely fail anyway because of old token)
                 text = (_l("cr-message-not-same", this->edit->Page->PageName));
             }
-            int re;
-            re = Generic::MessageBox(_l("revert-preflightcheck"), text, MessageBoxStyleQuestion, true);
-            if (re == QMessageBox::No)
+            if (!Hooks::ShowYesNoQuestion(_l("revert-preflightcheck"), text, false))
             {
                 this->Cancel();
                 return;
@@ -431,7 +428,7 @@ void RevertQuery::CheckPreflight()
                 }
             }
         }
-        if (Generic::MessageBox(_l("revert-preflightcheck"), text, MessageBoxStyleQuestion) == QMessageBox::No)
+        if (!Hooks::ShowYesNoQuestion(_l("revert-preflightcheck"), text, false))
         {
             // abort
             this->Exit();

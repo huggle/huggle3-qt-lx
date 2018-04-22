@@ -315,3 +315,23 @@ void Huggle::Hooks::SilentReport(Huggle::WikiUser *u)
     Events::Global->on_SReport(u);
 }
 
+void Huggle::Hooks::ShowMessage(QString title, QString message)
+{
+    Events::Global->on_SMessage(title, message);
+}
+
+void Huggle::Hooks::ShowError(QString title, QString message)
+{
+    Events::Global->on_SError(title, message);
+}
+
+void Huggle::Hooks::ShowWarning(QString title, QString message)
+{
+    Events::Global->on_SWarning(title, message);
+}
+
+bool Huggle::Hooks::ShowYesNoQuestion(QString title, QString message, bool default_answer)
+{
+    return Events::Global->on_SYesNoQs(title, message, default_answer);
+}
+

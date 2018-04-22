@@ -494,7 +494,7 @@ void Core::Shutdown()
     Resources::Uninit();
     delete Events::Global;
     Events::Global = nullptr;
-    QApplication::quit();
+    QCoreApplication::quit();
 }
 
 void Core::TestLanguages()
@@ -599,21 +599,4 @@ qint64 Core::GetUptimeInSeconds()
 void Core::HandleException(Exception *exception)
 {
     Core::HuggleCore->exceptionHandler->HandleException(exception);
-}
-
-bool HgApplication::notify(QObject *receiver, QEvent *event)
-{
-    bool done = true;
-    try
-    {
-        done = QApplication::notify(receiver, event);
-    }catch (Huggle::Exception *ex)
-    {
-        Core::HandleException(ex);
-        delete ex;
-    }catch (Huggle::Exception &ex)
-    {
-        Core::HandleException(&ex);
-    }
-    return done;
 }

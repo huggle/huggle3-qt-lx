@@ -21,6 +21,7 @@
 #include <huggle_core/wikiedit.hpp>
 #include <huggle_core/wikipage.hpp>
 #include <huggle_core/wikiutil.hpp>
+#include "uigeneric.hpp"
 #include "ui_wikipagetagsform.h"
 
 using namespace Huggle;
@@ -142,7 +143,7 @@ void Huggle::WikiPageTagsForm_FinishRead(Query *result)
     QString text = WikiUtil::EvaluateWikiPageContents(retrieve, &success, &t_);
     if (success)
     {
-        Generic::MessageBox(_l("page-tag-fail"), _l("page-tag-error", text));
+        UiGeneric::MessageBox(_l("page-tag-fail"), _l("page-tag-error", text));
         result->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
         return;
     }
@@ -166,7 +167,7 @@ void Huggle::WikiPageTagsForm_FinishRead(Query *result)
                 {
                     if (form->Arguments[tag]->text() == form->page->GetSite()->GetProjectConfig()->TagsArgs[tag])
                     {
-                        Generic::pMessageBox(form, "Error", "This tag requires a parameter, but you didn't provide any for it: " + tag);
+                        UiGeneric::pMessageBox(form, "Error", "This tag requires a parameter, but you didn't provide any for it: " + tag);
                         return;
                     }
                     key = "{{" + tag + "|" + form->Arguments[tag]->text() + "}}";

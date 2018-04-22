@@ -8,6 +8,8 @@ these parts together with other libraries are located in this folder.
 * build:       various tools and scripts
 * huggle_core: Huggle core - all the Huggle internals, mostly independent on UI
 * huggle_ui:   Qt UI for Desktop Huggle version
+* huggle_l10n: Localization files
+* huggle_res:  Non-critical resources (sounds, icons, etc)
 * huggle:      Simple executable used to launch Huggle
 
 The reasons for this layout are availability of Huggle's core to other projects,

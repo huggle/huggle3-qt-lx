@@ -294,6 +294,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         throw new Exception("Global events aren't instantiated now", BOOST_CURRENT_FUNCTION);
     connect(Events::Global, SIGNAL(WikiEdit_OnNewHistoryItem(HistoryItem*)), this, SLOT(OnWikiEditHist(HistoryItem*)));
     connect(Events::Global, SIGNAL(WikiUser_Updated(WikiUser*)), this, SLOT(OnWikiUserUpdate(WikiUser*)));
+    connect(Events::Global, SIGNAL(System_ErrorMessage(QString,QString)), this, SLOT(OnError(QString,QString)));
+    connect(Events::Global, SIGNAL(System_Message(QString,QString)), this, SLOT(OnMessage(QString,QString)));
+    connect(Events::Global, SIGNAL(System_WarningMessage(QString,QString)), this, SLOT(OnWarning(QString,QString)));
+    connect(Events::Global, SIGNAL(System_YesNoQuestion(QString,QString,bool*)), this, SLOT(OnQuestion(QString,QString,bool*)));
     this->EnableEditing(false);
 }
 
@@ -372,7 +376,7 @@ void MainWindow::DisplayReportUserWindow(WikiUser *User)
     // only use this if current projects support it
     if (!conf->AIV)
     {
-        Generic::pMessageBox(this, _l("missing-aiv"), _l("function-miss"));
+        UiGeneric::pMessageBox(this, _l("missing-aiv"), _l("function-miss"));
         return;
     }
 
@@ -1070,7 +1074,7 @@ Collectable_SmartPtr<RevertQuery> MainWindow::Revert(QString summary, bool next,
         return ptr_;
     if (this->CurrentEdit->NewPage)
     {
-        Generic::pMessageBox(this, _l("main-revert-newpage-title"), _l("main-revert-newpage"), MessageBoxStyleNormal, true);
+        UiGeneric::pMessageBox(this, _l("main-revert-newpage-title"), _l("main-revert-newpage"), MessageBoxStyleNormal, true);
         return ptr_;
     }
     if (!this->CurrentEdit->IsPostProcessed())
@@ -1116,7 +1120,7 @@ bool MainWindow::PreflightCheck(WikiEdit *_e)
     }
     if (this->qNext != nullptr)
     {
-        Generic::pMessageBox(this, _l("main-revert-already-pending-title"), _l("main-revert-already-pending-text"),
+        UiGeneric::pMessageBox(this, _l("main-revert-already-pending-title"), _l("main-revert-already-pending-text"),
                             MessageBoxStyleNormal, true);
         return false;
     }
@@ -1143,7 +1147,7 @@ bool MainWindow::PreflightCheck(WikiEdit *_e)
     }
     if (Warn)
     {
-        int q = Generic::pMessageBox(this, _l("shortcut-revert"), _l("main-revert-warn", type), MessageBoxStyleQuestion);
+        int q = UiGeneric::pMessageBox(this, _l("shortcut-revert"), _l("main-revert-warn", type), MessageBoxStyleQuestion);
         if (q == QMessageBox::No)
             return false;
     }
@@ -1568,11 +1572,11 @@ void MainWindow::OnTimerTick0()
                 if (*site->UserConfig->Previous_Version > huggle_version)
                 {
                     //! \todo LOCALIZE THIS
-                    if (Generic::pMessageBox(this, "Do you really want to store the configs",
-                                              "This version of huggle (" + QString(HUGGLE_VERSION) + ") is older than version of huggle that you used last (" +
-                                              site->UserConfig->Previous_Version->ToString() + ") if you continue, some of the settings you stored "\
-                                              "with the newer version may be lost. Do you really want to do that? (clicking no will skip it)",
-                                              MessageBoxStyleQuestion, true) == QMessageBox::No)
+                    if (UiGeneric::pMessageBox(this, "Do you really want to store the configs",
+                                               "This version of huggle (" + QString(HUGGLE_VERSION) + ") is older than version of huggle that you used last (" +
+                                               site->UserConfig->Previous_Version->ToString() + ") if you continue, some of the settings you stored "\
+                                               "with the newer version may be lost. Do you really want to do that? (clicking no will skip it)",
+                                               MessageBoxStyleQuestion, true) == QMessageBox::No)
                         continue;
                 }
                 WikiPage *uc = new WikiPage(page);
@@ -1812,7 +1816,7 @@ bool MainWindow::CheckEditableBrowserPage()
 {
     if (!this->EditablePage || this->CurrentEdit == nullptr)
     {
-        Generic::pMessageBox(this, "Cannot perform action", _l("main-no-page"), MessageBoxStyleNormal, true);
+        UiGeneric::pMessageBox(this, "Cannot perform action", _l("main-no-page"), MessageBoxStyleNormal, true);
         return false;
     }
     if (Configuration::HuggleConfiguration->SystemConfig_RequestDelay)
@@ -2219,7 +2223,7 @@ bool MainWindow::CheckExit()
 {
     if (this->ShuttingDown)
     {
-        Generic::pMessageBox(this, _l("error"), _l("main-shutting-down"), MessageBoxStyleNormal, true);
+        UiGeneric::pMessageBox(this, _l("error"), _l("main-shutting-down"), MessageBoxStyleNormal, true);
         return false;
     }
     return true;
@@ -2229,7 +2233,7 @@ bool MainWindow::CheckRevertable()
 {
     if (!this->GetCurrentWikiSite()->GetProjectConfig()->RevertingEnabled)
     {
-        Generic::pMessageBox(this, _l("error"), "This site doesn't support reverting through huggle, you can only use it to browse edits");
+        UiGeneric::pMessageBox(this, _l("error"), "This site doesn't support reverting through huggle, you can only use it to browse edits");
         return false;
     }
     return true;
@@ -2244,13 +2248,13 @@ void MainWindow::Welcome(QString message)
     bool create_only = true;
     if (!this->CurrentEdit->User->TalkPage_GetContents().isEmpty())
     {
-        if (Generic::pMessageBox(this, "Welcome :o", _l("welcome-tp-empty-fail"), MessageBoxStyleQuestion) == QMessageBox::No)
+        if (UiGeneric::pMessageBox(this, "Welcome :o", _l("welcome-tp-empty-fail"), MessageBoxStyleQuestion) == QMessageBox::No)
             return;
         else
             create_only = false;
     } else if (!this->CurrentEdit->User->TalkPage_WasRetrieved())
     {
-        if (Generic::pMessageBox(this, "Welcome :o", _l("welcome-page-miss-fail"), MessageBoxStyleQuestion) == QMessageBox::No)
+        if (UiGeneric::pMessageBox(this, "Welcome :o", _l("welcome-page-miss-fail"), MessageBoxStyleQuestion) == QMessageBox::No)
             return;
     }
     if (message.isEmpty())
@@ -2738,7 +2742,7 @@ void MainWindow::on_actionReport_username_triggered()
     }
     if (!this->GetCurrentWikiSite()->ProjectConfig->UAAavailable)
     {
-        Generic::pMessageBox(this, _l("uaa-not-supported"), _l("uaa-not-supported-text"), MessageBoxStyleWarning, true);
+        UiGeneric::pMessageBox(this, _l("uaa-not-supported"), _l("uaa-not-supported-text"), MessageBoxStyleWarning, true);
         return;
     }
     if (this->CurrentEdit->User->IsIP())
@@ -3442,4 +3446,28 @@ void MainWindow::OnReport(WikiUser *user)
 void MainWindow::OnSReport(WikiUser *user)
 {
     ReportUser::SilentReport(user);
+}
+
+void MainWindow::OnMessage(QString title, QString text)
+{
+    UiGeneric::MessageBox(title, text);
+}
+
+void MainWindow::OnWarning(QString title, QString text)
+{
+    UiGeneric::MessageBox(title, text, MessageBoxStyleWarning);
+}
+
+void MainWindow::OnQuestion(QString title, QString text, bool *y)
+{
+    int result = UiGeneric::MessageBox(title, text, MessageBoxStyleQuestion);
+    if (result)
+        *y = true;
+    else
+        *y = false;
+}
+
+void MainWindow::OnError(QString title, QString text)
+{
+    UiGeneric::MessageBox(title, text, MessageBoxStyleError);
 }

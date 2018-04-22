@@ -18,9 +18,9 @@ file(GLOB resx "*.qrc")
 file(GLOB uixx "*.ui")
 file(GLOB headers "*.hpp")
 
-set(huggle_SOURCES ${srcx} ${srcx_web})
-set(huggle_FORMS ${uixx} ${uixx_web})
-set(huggle_RESOURCES ${resx} ${resx_web})
+set(huggle_SOURCES ${srcx})
+set(huggle_FORMS ${uixx})
+set(huggle_RESOURCES ${resx})
 
 QT5_WRAP_CPP(huggle_HEADERS_MOC ${huggle_HEADERS})
 QT5_WRAP_UI(huggle_FORMS_HEADERS ${huggle_FORMS})
@@ -28,7 +28,7 @@ QT5_ADD_RESOURCES(huggle_RESOURCES_RCC ${huggle_RESOURCES})
 
 add_definitions(${QT_DEFINITIONS})
 
-add_executable(huggle ${huggle_SOURCES} ${headers} ${headers_web} ${huggle_HEADERS_MOC} ${huggle_FORMS_HEADERS} ${huggle_RESOURCES_RCC})
+add_executable(huggle ${huggle_SOURCES} ${headers} ${huggle_HEADERS_MOC} ${huggle_FORMS_HEADERS} ${huggle_RESOURCES_RCC})
 target_link_libraries(huggle ${QT_LIBRARIES})
 
 if (WIN32)

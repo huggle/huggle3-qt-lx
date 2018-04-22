@@ -23,6 +23,7 @@
 #include <huggle_core/wikipage.hpp>
 #include <huggle_core/wikisite.hpp>
 #include <huggle_core/wikiuser.hpp>
+#include "uigeneric.hpp"
 #include "ui_deleteform.h"
 #include "history.hpp"
 #include "mainwindow.hpp"
@@ -97,7 +98,7 @@ void DeleteForm::Delete()
 
 void DeleteForm::Failed(QString Reason)
 {
-    Generic::MessageBox(_l("delete-e2"), _l("delete-edsc", Reason), MessageBoxStyleError, true);
+    UiGeneric::MessageBox(_l("delete-e2"), _l("delete-edsc", Reason), MessageBoxStyleError, true);
     this->tDelete->stop();
     delete this->tDelete;
     this->tDelete = nullptr;

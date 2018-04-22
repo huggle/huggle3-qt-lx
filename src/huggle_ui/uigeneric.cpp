@@ -10,8 +10,60 @@
 
 #include "uigeneric.hpp"
 #include "reportuser.hpp"
+#include <QMessageBox>
 
 using namespace Huggle;
+
+int UiGeneric::MessageBox(QString title, QString text, MessageBoxStyle st, bool enforce_stop, QWidget *parent)
+{
+    QMessageBox *mb = new QMessageBox(parent);
+    mb->setWindowTitle(title);
+    mb->setText(text);
+    int return_value = -1;
+    switch (st)
+    {
+        case MessageBoxStyleQuestion:
+            mb->setIcon(QMessageBox::Question);
+            mb->setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+            mb->setDefaultButton(QMessageBox::Yes);
+            return_value = mb->exec();
+            break;
+        case MessageBoxStyleQuestionAbort:
+            mb->setIcon(QMessageBox::Question);
+            mb->setStandardButtons(QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
+            mb->setDefaultButton(QMessageBox::Cancel);
+            return_value = mb->exec();
+            break;
+        case MessageBoxStyleNormal:
+            mb->setIcon(QMessageBox::Information);
+            goto exec;
+        case MessageBoxStyleError:
+            mb->setIcon(QMessageBox::Critical);
+            goto exec;
+        case MessageBoxStyleWarning:
+            mb->setIcon(QMessageBox::Warning);
+            goto exec;
+    }
+    delete mb;
+    return return_value;
+    exec:
+        if (enforce_stop)
+        {
+            return_value = mb->exec();
+            delete mb;
+        }
+        else
+        {
+            mb->setAttribute(Qt::WA_DeleteOnClose, true);
+            mb->show();
+        }
+        return return_value;
+}
+
+int UiGeneric::pMessageBox(QWidget *parent, QString title, QString text, MessageBoxStyle st, bool enforce_stop)
+{
+    return UiGeneric::MessageBox(title, text, st, enforce_stop, parent);
+}
 
 void UiGeneric::DisplayContributionBrowser(WikiUser *User, QWidget *parent)
 {

@@ -18,6 +18,7 @@
 #include <huggle_core/syslog.hpp>
 #include <huggle_core/wikiutil.hpp>
 #include <QUrl>
+#include "uigeneric.hpp"
 #include "ui_reloginform.h"
 
 using namespace Huggle;
@@ -170,8 +171,8 @@ void ReloginForm::Fail(QString why)
     this->qReloginTokenReq.Delete();
     this->ui->lineEdit->setEnabled(true);
     this->qReloginPw.Delete();
-    Generic::MessageBox(_l("fail"), _l("relogin-fail", why),
-                        MessageBoxStyleWarning, true);
+    UiGeneric::MessageBox(_l("fail"), _l("relogin-fail", why),
+                          MessageBoxStyleWarning, true);
     this->ui->pushButton_2->setEnabled(true);
 }
 

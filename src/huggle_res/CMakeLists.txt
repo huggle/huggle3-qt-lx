@@ -19,9 +19,12 @@ file(GLOB resx "*.qrc")
 file(GLOB uixx "*.ui")
 file(GLOB headers "*.hpp")
 
-set(huggle_res_SOURCES ${srcx} ${srcx_web})
-set(huggle_res_FORMS ${uixx} ${uixx_web})
-set(huggle_res_RESOURCES ${resx} ${resx_web})
+set(huggle_res_SOURCES ${srcx})
+set(huggle_res_FORMS ${uixx})
+set(huggle_res_RESOURCES ${resx})
+if (AUDIO)
+    set(huggle_res_RESOURCES ${huggle_core_RESOURCES} "sounds/resources.qrc")
+endif()
 
 QT5_WRAP_CPP(huggle_res_HEADERS_MOC ${huggle_res_HEADERS})
 QT5_WRAP_UI(huggle_res_FORMS_HEADERS ${huggle_res_FORMS})
@@ -30,9 +33,11 @@ QT5_ADD_RESOURCES(huggle_res_RESOURCES_RCC ${huggle_res_RESOURCES})
 add_definitions(${QT_DEFINITIONS})
 add_definitions( -DQT_USE_QSTRINGBUILDER )
 
-add_library(huggle_res SHARED ${huggle_res_SOURCES} ${headers} ${headers_web} ${huggle_res_HEADERS_MOC} ${huggle_res_FORMS_HEADERS} ${huggle_res_RESOURCES_RCC})
+add_library(huggle_res SHARED ${huggle_res_SOURCES} ${headers} ${huggle_res_HEADERS_MOC} ${huggle_res_FORMS_HEADERS} ${huggle_res_RESOURCES_RCC})
 target_link_libraries(huggle_res ${QT_LIBRARIES})
 set_target_properties(huggle_res PROPERTIES COMPILE_FLAGS -DHUGGLE_LIBRARY)
+
+qt5_use_modules(huggle_res Core)
 
 if (WIN32)
     target_link_libraries(huggle_res dbghelp)

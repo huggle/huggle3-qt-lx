@@ -24,10 +24,11 @@
 #include <huggle_core/syslog.hpp>
 #include <huggle_core/localization.hpp>
 #include <huggle_core/resources.hpp>
-#include "blockuser.hpp"
 #include <huggle_core/wikisite.hpp>
 #include <huggle_core/wikiuser.hpp>
 #include <huggle_core/wikiutil.hpp>
+#include "uigeneric.hpp"
+#include "blockuser.hpp"
 #include "ui_reportuser.h"
 using namespace Huggle;
 
@@ -298,7 +299,7 @@ void ReportUser::Tick()
                     delete this;
                 } else
                 {
-                    Generic::pMessageBox(this, "Failure", _l("report-fail", this->qEdit->GetFailureReason()), MessageBoxStyleError);
+                    UiGeneric::pMessageBox(this, "Failure", _l("report-fail", this->qEdit->GetFailureReason()), MessageBoxStyleError);
                     Syslog::HuggleLogs->DebugLog("REPORT: " + this->qEdit->Result->Data);
                     this->Kill();
                     return;
@@ -338,7 +339,7 @@ void ReportUser::Tick()
             QDomElement e = results.at(0).toElement();
             if (!e.attributes().contains("timestamp"))
             {
-                Generic::MessageBox(_l("error"), _l("report-page-fail-time",this->qReport->Result->Data), Huggle::MessageBoxStyleError);
+                UiGeneric::MessageBox(_l("error"), _l("report-page-fail-time",this->qReport->Result->Data), Huggle::MessageBoxStyleError);
                 this->Kill();
                 return;
             } else
@@ -479,7 +480,7 @@ void ReportUser::Test()
         {
             result = _l("block-not");
         }
-        Generic::pMessageBox(this, _l("result"), result);
+        UiGeneric::pMessageBox(this, _l("result"), result);
         this->qCheckIfBlocked.Delete();
         this->ui->pushButton_7->setEnabled(true);
     }

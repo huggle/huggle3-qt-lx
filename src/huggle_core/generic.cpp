@@ -9,11 +9,11 @@
 //GNU General Public License for more details.
 
 #include "generic.hpp"
-#include <QMessageBox>
 #include <QUrl>
 #include <QCryptographicHash>
 #include "configuration.hpp"
 #include "exception.hpp"
+#include "hooks.hpp"
 #include "localization.hpp"
 
 using namespace Huggle;
@@ -60,8 +60,7 @@ bool Generic::ReportPreFlightCheck()
 {
     if (!Configuration::HuggleConfiguration->AskUserBeforeReport)
         return true;
-    QMessageBox::StandardButton q = QMessageBox::question(nullptr, _l("report-tu"), _l("report-warn"), QMessageBox::Yes|QMessageBox::No);
-    return (q != QMessageBox::No);
+    return Hooks::ShowYesNoQuestion(_l("report-tu"), _l("report-warn"), false);
 }
 
 QString Generic::SanitizePath(QString name)
@@ -136,8 +135,8 @@ QString Generic::SocketError2Str(QAbstractSocket::SocketError error)
 
 void Generic::DeveloperError()
 {
-    Generic::MessageBox("Function is restricted now", "You can't perform this action in"\
-                        " developer mode, because you aren't logged into the wiki");
+    Hooks::ShowError("Function is restricted now", "You can't perform this action in"\
+                     " developer mode, because you aren't logged into the wiki");
 }
 
 QString Generic::ShrinkText(QString text, unsigned int size, bool html, unsigned int minimum)
@@ -168,57 +167,6 @@ QString Generic::ShrinkText(QString text, unsigned int size, bool html, unsigned
         text_.replace(" ", "&nbsp;");
     }
     return text_;
-}
-
-int Generic::MessageBox(QString title, QString text, MessageBoxStyle st, bool enforce_stop, QWidget *parent)
-{
-    QMessageBox *mb = new QMessageBox(parent);
-    mb->setWindowTitle(title);
-    mb->setText(text);
-    int return_value = -1;
-    switch (st)
-    {
-        case MessageBoxStyleQuestion:
-            mb->setIcon(QMessageBox::Question);
-            mb->setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-            mb->setDefaultButton(QMessageBox::Yes);
-            return_value = mb->exec();
-            break;
-        case MessageBoxStyleQuestionAbort:
-            mb->setIcon(QMessageBox::Question);
-            mb->setStandardButtons(QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
-            mb->setDefaultButton(QMessageBox::Cancel);
-            return_value = mb->exec();
-            break;
-        case MessageBoxStyleNormal:
-            mb->setIcon(QMessageBox::Information);
-            goto exec;
-        case MessageBoxStyleError:
-            mb->setIcon(QMessageBox::Critical);
-            goto exec;
-        case MessageBoxStyleWarning:
-            mb->setIcon(QMessageBox::Warning);
-            goto exec;
-    }
-    delete mb;
-    return return_value;
-    exec:
-        if (enforce_stop)
-        {
-            return_value = mb->exec();
-            delete mb;
-        }
-        else
-        {
-            mb->setAttribute(Qt::WA_DeleteOnClose, true);
-            mb->show();
-        }
-        return return_value;
-}
-
-int Generic::pMessageBox(QWidget *parent, QString title, QString text, MessageBoxStyle st, bool enforce_stop)
-{
-    return Generic::MessageBox(title, text, st, enforce_stop, parent);
 }
 
 QString Generic::IRCQuitDefaultMessage()

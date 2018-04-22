@@ -20,6 +20,7 @@
 #include <huggle_core/wikiuser.hpp>
 #include <huggle_core/wikisite.hpp>
 #include <huggle_core/wikiutil.hpp>
+#include "uigeneric.hpp"
 #include "mainwindow.hpp"
 #include "ui_speedyform.h"
 
@@ -45,7 +46,7 @@ void SpeedyForm::on_pushButton_clicked()
     ProjectConfiguration::SpeedyOption speedy_option = this->edit->GetSite()->GetProjectConfig()->SpeedyTemplates.at(this->ui->comboBox->currentIndex());
     if (this->ui->lineEdit->text().isEmpty() && !speedy_option.Parameter.isEmpty())
     {
-        Generic::MessageBox(_l("error"), _l("speedy-parameters-fail"), MessageBoxStyleError, false, this);
+        UiGeneric::MessageBox(_l("error"), _l("speedy-parameters-fail"), MessageBoxStyleError, false, this);
         return;
     }
     if (!Hooks::Speedy_BeforeOK(this->edit, this))
@@ -60,7 +61,7 @@ void SpeedyForm::on_pushButton_clicked()
     }
     if (this->ui->comboBox->currentText().isEmpty())
     {
-        Generic::MessageBox(_l("speedy-wrong"), "Wrong csd");
+        UiGeneric::MessageBox(_l("speedy-wrong"), "Wrong csd");
         return;
     }
     this->ui->checkBox->setEnabled(false);
@@ -89,7 +90,7 @@ void SpeedyForm::Fail(QString reason)
 {
     this->qObtainText.Delete();
     this->Template.Delete();
-    Generic::MessageBox("Error", reason, MessageBoxStyleError);
+    UiGeneric::MessageBox("Error", reason, MessageBoxStyleError);
     Hooks::Speedy_Finished(this->edit, this->ui->comboBox->currentText(), false);
     this->timer->stop();
 }

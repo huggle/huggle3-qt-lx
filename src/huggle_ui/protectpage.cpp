@@ -17,6 +17,7 @@
 #include <huggle_core/syslog.hpp>
 #include <huggle_core/wikisite.hpp>
 #include "history.hpp"
+#include "uigeneric.hpp"
 #include "mainwindow.hpp"
 #include "ui_protectpage.h"
 
@@ -89,7 +90,7 @@ void ProtectPage::on_pushButton_2_clicked()
 
 void ProtectPage::Failed(QString reason)
 {
-    Generic::MessageBox(_l("protect-message-title-fail"), _l("protect-error", reason), MessageBoxStyleWarning, true);
+    UiGeneric::MessageBox(_l("protect-message-title-fail"), _l("protect-error", reason), MessageBoxStyleWarning, true);
     this->tt->stop();
     delete this->tt;
     this->qProtection.Delete();

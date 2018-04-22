@@ -26,6 +26,7 @@
 #include <huggle_core/syslog.hpp>
 #include <huggle_core/resources.hpp>
 #include "mainwindow.hpp"
+#include "uigeneric.hpp"
 #include "ui_preferences.h"
 
 using namespace Huggle;
@@ -497,7 +498,7 @@ void Huggle::Preferences::on_pushButton_4_clicked()
     }
     if (this->Site->CurrentFilter == filter)
     {
-        Generic::MessageBox(_l("error"), _l("preferences-delete-using-filter"), MessageBoxStyleWarning);
+        UiGeneric::MessageBox(_l("error"), _l("preferences-delete-using-filter"), MessageBoxStyleWarning);
         return;
     }
     HuggleQueueFilter::Filters[this->Site]->removeAll(filter);
@@ -702,12 +703,12 @@ void Huggle::Preferences::on_tableWidget_customContextMenuRequested(const QPoint
             lastrow = extension->row();
             if (hcfg->IgnoredExtensions.contains(ex->GetExtensionFullPath()))
             {
-                Generic::MessageBox(_l("error"), _l("preferences-extension-disabled"));
+                UiGeneric::MessageBox(_l("error"), _l("preferences-extension-disabled"));
             }
             else
             {
                 hcfg->IgnoredExtensions.append(ex->GetExtensionFullPath());
-                Generic::MessageBox(_l("done"), _l("preferences-extension-disabled-restart"));
+                UiGeneric::MessageBox(_l("done"), _l("preferences-extension-disabled-restart"));
             }
         }
     }
@@ -724,12 +725,12 @@ void Huggle::Preferences::on_tableWidget_customContextMenuRequested(const QPoint
             iExtension *ex = Core::HuggleCore->Extensions.at(extension->row());
             if (!hcfg->IgnoredExtensions.contains(ex->GetExtensionFullPath()))
             {
-                Generic::MessageBox(_l("error"), _l("preferences-extension-enabled"));
+                UiGeneric::MessageBox(_l("error"), _l("preferences-extension-enabled"));
             }
             else
             {
                 hcfg->IgnoredExtensions.removeAll(ex->GetExtensionFullPath());
-                Generic::MessageBox(_l("done"), _l("preferences-extension-enabled-restart"));
+                UiGeneric::MessageBox(_l("done"), _l("preferences-extension-enabled-restart"));
             }
         }
     }
@@ -818,7 +819,7 @@ void Preferences::ResetItems()
 
 void Huggle::Preferences::on_pushButton_rs_clicked()
 {
-    if (Generic::pMessageBox(this, _l("preferences-reset-gui"), _l("preferences-restore-factory-layout"), MessageBoxStyleQuestion) == QMessageBox::No)
+    if (UiGeneric::pMessageBox(this, _l("preferences-reset-gui"), _l("preferences-restore-factory-layout"), MessageBoxStyleQuestion) == QMessageBox::No)
         return;
     Configuration::HuggleConfiguration->SystemConfig_SaveLayout = false;
     // remove all layout files

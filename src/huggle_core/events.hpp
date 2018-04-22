@@ -46,6 +46,10 @@ namespace Huggle
             void QueryPool_Update(Query *q);
             void Reporting_SilentReport(WikiUser *wiki_user);
             void Reporting_Report(WikiUser *wiki_user);
+            void System_Message(QString title, QString text);
+            void System_WarningMessage(QString title, QString text);
+            void System_ErrorMessage(QString title, QString text);
+            void System_YesNoQuestion(QString title, QString text, bool *yes);
 
         private:
             friend class Hooks;
@@ -60,6 +64,10 @@ namespace Huggle
             void on_Report(WikiUser *u);
             void on_SReport(WikiUser *u);
             void on_UpdateUser(WikiUser *wiki_user);
+            void on_SMessage(QString title, QString text);
+            void on_SWarning(QString title, QString text);
+            void on_SError(QString title, QString text);
+            bool on_SYesNoQs(QString title, QString text, bool d);
     };
 }
 

@@ -12,6 +12,7 @@
 #include "generic.hpp"
 #include "configuration.hpp"
 #include "exception.hpp"
+#include "hooks.hpp"
 #include "huggleoption.hpp"
 #include "huggleparser.hpp"
 #include "syslog.hpp"
@@ -398,7 +399,7 @@ bool UserConfiguration::ParseUserConfig(QString config, ProjectConfiguration *Pr
         {
             // Suppress this warning in case there is no record yet, this is first run of Huggle by new user
             if (!this->ShortcutHash.isEmpty() && this->ShortcutHash != "null")
-                Generic::MessageBox(_l("warning"), _l("config-reset-menu"), MessageBoxStyleWarning, true);
+                Hooks::ShowWarning(_l("warning"), _l("config-reset-menu"));
             hcfg->ResetMenuShortcuts();
             this->ShortcutHash = hash;
             return true;

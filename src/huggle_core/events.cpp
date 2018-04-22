@@ -73,3 +73,25 @@ void Events::on_UpdateUser(WikiUser *wiki_user)
 {
     emit this->WikiUser_Updated(wiki_user);
 }
+
+void Events::on_SMessage(QString title, QString text)
+{
+    emit this->System_Message(title, text);
+}
+
+void Events::on_SWarning(QString title, QString text)
+{
+    emit this->System_WarningMessage(title, text);
+}
+
+void Events::on_SError(QString title, QString text)
+{
+    emit this->System_ErrorMessage(title, text);
+}
+
+bool Events::on_SYesNoQs(QString title, QString text, bool d)
+{
+    bool result = d;
+    emit this->System_YesNoQuestion(title, text, &d);
+    return result;
+}

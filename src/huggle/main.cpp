@@ -18,6 +18,7 @@
 #include <huggle_core/syslog.hpp>
 #include <huggle_core/terminalparser.hpp>
 #include <huggle_core/exception.hpp>
+#include <huggle_ui/hgapplication.hpp>
 #include <huggle_ui/uiexceptionhandler.hpp>
 #include <huggle_ui/login.hpp>
 #include <huggle_ui/updateform.hpp>

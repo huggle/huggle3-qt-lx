@@ -31,9 +31,9 @@
 #include "loadingform.hpp"
 #include "proxy.hpp"
 #include "welcomeinfo.hpp"
-#include "ui_login.h"
+#include "uigeneric.hpp"
 #include "updateform.hpp"
-
+#include "ui_login.h"
 
 #define LOGINFORM_LOGIN 0
 #define LOGINFORM_SITEINFO 1
@@ -142,7 +142,7 @@ Login::Login(QWidget *parent) : HW("login", this, parent), ui(new Ui::Login)
     HUGGLE_DEBUG1("SSL library: " + QSslSocket::sslLibraryBuildVersionString());
 #endif
     if (!hcfg->GlobalConfig_OverrideConfigYAMLPath.isEmpty())
-        Generic::MessageBox(_l("warning"), _l("override-warn"), MessageBoxStyleWarning, false, this);
+        UiGeneric::MessageBox(_l("warning"), _l("override-warn"), MessageBoxStyleWarning, false, this);
 
     // Load the stored credentials, if we have them
     if (hcfg->SystemConfig_StorePassword && !hcfg->TemporaryConfig_LoginFile)
@@ -321,7 +321,7 @@ bool Login::ReadonlyFallback(WikiSite *site, QString why)
     if (site->GetProjectConfig()->ReadOnly)
         return true;
 
-    if (Generic::MessageBox(_l("login-ro-title"), _l("login-ro-question", site->Name, why), MessageBoxStyleQuestion, true, this) == QMessageBox::No)
+    if (UiGeneric::MessageBox(_l("login-ro-title"), _l("login-ro-question", site->Name, why), MessageBoxStyleQuestion, true, this) == QMessageBox::No)
     {
         return false;
     }
@@ -421,7 +421,7 @@ void Login::PressOK()
     if (this->ui->Project->count() == 0)
     {
         // there are no projects in login form
-        Generic::pMessageBox(this, _l("error"), _l("no-projects-defined-in-list"));
+        UiGeneric::pMessageBox(this, _l("error"), _l("no-projects-defined-in-list"));
         return;
     }
     hcfg->SystemConfig_StorePassword = this->ui->checkBox_2->isChecked();

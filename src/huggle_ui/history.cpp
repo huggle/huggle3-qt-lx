@@ -23,6 +23,7 @@
 #include <huggle_core/wikisite.hpp>
 #include <huggle_core/wikiuser.hpp>
 #include <huggle_core/wikiutil.hpp>
+#include "uigeneric.hpp"
 #include "mainwindow.hpp"
 #include "ui_history.h"
 
@@ -90,7 +91,7 @@ void History::Undo(HistoryItem *hist)
     if (!hist->IsRevertable)
     {
         // there is no way to revert this
-        Generic::MessageBox(_l("history-error-message-title"), _l("history-error"), MessageBoxStyleWarning, true);
+        UiGeneric::MessageBox(_l("history-error-message-title"), _l("history-error"), MessageBoxStyleWarning, true);
         return;
     }
     switch (hist->Type)
@@ -101,7 +102,7 @@ void History::Undo(HistoryItem *hist)
             {
                 int reply;
                 // let's ask user if they really want to undo just message because that is weird to do
-                reply = Generic::MessageBox(_l("history-message-revert-title"), _l("history-message-revert-body"),
+                reply = UiGeneric::MessageBox(_l("history-message-revert-title"), _l("history-message-revert-body"),
                                               MessageBoxStyleQuestion);
                 if (reply == QMessageBox::No)
                     return;
@@ -130,10 +131,10 @@ void History::Undo(HistoryItem *hist)
         case HistoryDelete:
         case HistoryProtect:
         case HistoryUndelete:
-            Generic::MessageBox(_l("history-error-message-title"), _l("unimplemented"));
+            UiGeneric::MessageBox(_l("history-error-message-title"), _l("unimplemented"));
             return;
         case HistoryUnknown:
-            Generic::MessageBox(_l("history-error-message-title"), _l("unknown-item"));
+            UiGeneric::MessageBox(_l("history-error-message-title"), _l("unknown-item"));
             return;
     }
     Syslog::HuggleLogs->Log(_l("history-work", hist->Target));
@@ -282,7 +283,7 @@ void History::Tick()
         edit->RevID = revid;
         if (this->RevertingItem->NewPage && this->RevertingItem->Type == HistoryMessage)
         {
-            int message = Generic::MessageBox(_l("history-welcome-msg-title"), _l("history-welcome-msg"), MessageBoxStyleQuestion);
+            int message = UiGeneric::MessageBox(_l("history-welcome-msg-title"), _l("history-welcome-msg"), MessageBoxStyleQuestion);
             if (message == QMessageBox::Yes)
             {
                 if (edit->GetSite()->ProjectConfig->WelcomeTypes.count() == 0)

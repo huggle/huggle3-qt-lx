@@ -30,6 +30,7 @@
 #include <huggle_core/generic.hpp>
 #include <huggle_core/localization.hpp>
 #include <huggle_core/syslog.hpp>
+#include "uigeneric.hpp"
 #include "ui_updateform.h"
 #include <huggle_core/webserverquery.hpp>
 
@@ -590,7 +591,7 @@ void UpdateForm::Fail(QString reason)
                     "backup in " + this->TempPath +
                     " this log has file update.log, please send it to developers "\
                     "for analysis of update problem. ";
-    Generic::MessageBox("Fatal", reason, MessageBoxStyleError, true);
+    UiGeneric::MessageBox("Fatal", reason, MessageBoxStyleError, true);
     this->Error = reason;
     if (this->timer)
         this->timer->stop();

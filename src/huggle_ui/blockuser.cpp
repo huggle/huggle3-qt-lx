@@ -113,7 +113,7 @@ void BlockUser::Block()
         {
             reason = error->GetAttribute("info");
         }
-        Generic::pMessageBox(this, _l("error"), _l("block-fail", reason), MessageBoxStyleError, true);
+        UiGeneric::pMessageBox(this, _l("error"), _l("block-fail", reason), MessageBoxStyleError, true);
         this->ui->pushButton->setText(_l("block-title", this->user->Username));
         this->qUser->Result->SetError(HUGGLE_EUNKNOWN, "Unable to block: " + reason);
         this->qUser = nullptr;
@@ -137,7 +137,7 @@ void BlockUser::Block()
 
 void BlockUser::Failed(QString reason)
 {
-    Generic::pMessageBox(this, "Unable to block user", _l("block-fail", reason),
+    UiGeneric::pMessageBox(this, "Unable to block user", _l("block-fail", reason),
                          MessageBoxStyleError, true);
     this->t0->stop();
     this->ui->pushButton->setEnabled(true);
@@ -233,7 +233,7 @@ void BlockUser::Recheck()
         {
             text = _l("block-not");
         }
-        Generic::MessageBox(_l("result"), text, MessageBoxStyleNormal, true);
+        UiGeneric::MessageBox(_l("result"), text, MessageBoxStyleNormal, true);
         this->qUser = nullptr;
         this->t0->stop();
         this->ui->pushButton_3->setEnabled(true);

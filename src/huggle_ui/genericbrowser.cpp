@@ -9,15 +9,15 @@
 //GNU General Public License for more details.
 
 #include "genericbrowser.hpp"
-#include "exception.hpp"
-#include "generic.hpp"
-#include "localization.hpp"
-#include "syslog.hpp"
-#include "configuration.hpp"
-#include "wikipage.hpp"
-#include "wikisite.hpp"
-#include "wikiedit.hpp"
-#include "resources.hpp"
+#include <huggle_core/exception.hpp>
+#include <huggle_core/generic.hpp>
+#include <huggle_core/localization.hpp>
+#include <huggle_core/syslog.hpp>
+#include <huggle_core/configuration.hpp>
+#include <huggle_core/wikipage.hpp>
+#include <huggle_core/wikisite.hpp>
+#include <huggle_core/wikiedit.hpp>
+#include <huggle_core/resources.hpp>
 
 using namespace Huggle;
 

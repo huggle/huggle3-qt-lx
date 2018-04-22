@@ -15,6 +15,7 @@
 #include <huggle_core/generic.hpp>
 #include <huggle_ui/mainwindow.hpp>
 #include <huggle_core/localization.hpp>
+#include "uigeneric.hpp"
 #include "ui_aboutform.h"
 
 using namespace Huggle;
@@ -95,7 +96,7 @@ static void check_dev()
 {
     if (developer > 20)
     {
-        Generic::MessageBox(_l("developer-mode-enter-title"), _l("developer-mode-enter-message"));
+        UiGeneric::MessageBox(_l("developer-mode-enter-title"), _l("developer-mode-enter-message"));
         hcfg->Verbosity = 1;
         MainWindow::HuggleMain->EnableDev();
         developer = -200;

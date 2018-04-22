@@ -12,11 +12,7 @@
 #define CORE_H
 
 #include "definitions.hpp"
-
-#ifndef HUGGLE_SDK
 #include "pythonengine.hpp"
-#include <QApplication>
-#endif
 #include <QList>
 #include <QDateTime>
 
@@ -38,16 +34,6 @@ namespace Huggle
     class Syslog;
     class QueryPool;
     class iExtension;
-
-#ifndef HUGGLE_SDK
-    //! Override of qapplication so that we can reimplement notify
-    class HUGGLE_EX HgApplication : public QApplication
-    {
-        public:
-            HgApplication(int& argc, char** argv) : QApplication(argc, argv) {}
-            bool notify(QObject* receiver, QEvent* event);
-    };
-#endif
 
     /*!
      * \brief Miscelanceous system functions

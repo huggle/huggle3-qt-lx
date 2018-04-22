@@ -16,9 +16,25 @@
 class QWidget;
 namespace Huggle
 {
+    enum MessageBoxStyle
+    {
+        MessageBoxStyleNormal, // OK
+        MessageBoxStyleQuestion, // Yes No
+        MessageBoxStyleQuestionAbort, // Yes No Cancel
+        MessageBoxStyleWarning, // OK (warning)
+        MessageBoxStyleError // OK (error)
+    };
+
     class WikiUser;
     namespace UiGeneric
     {
+        /*!
+         * \brief MessageBox Display a message box
+         * \param title Title of message box
+         * \param text What is displayed in a message
+         */
+        HUGGLE_EX int pMessageBox(QWidget *parent, QString title, QString text, MessageBoxStyle st = MessageBoxStyleNormal, bool enforce_stop = false);
+        HUGGLE_EX int MessageBox(QString title, QString text, MessageBoxStyle st = MessageBoxStyleNormal, bool enforce_stop = false, QWidget *parent = nullptr);
         HUGGLE_EX void DisplayContributionBrowser(WikiUser *User, QWidget *parent = nullptr);
     }
 }

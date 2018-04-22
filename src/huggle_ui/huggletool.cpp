@@ -21,11 +21,11 @@
 #include <huggle_core/wikiutil.hpp>
 #include <huggle_core/wikiuser.hpp>
 #include <huggle_core/syslog.hpp>
-#include "ui_huggletool.h"
 #include <QPalette>
 #include <QUrl>
 #include "mainwindow.hpp"
-
+#include "uigeneric.hpp"
+#include "ui_huggletool.h"
 
 using namespace Huggle;
 
@@ -122,7 +122,7 @@ void HuggleTool::DownloadEdit()
         return;
     if (this->ui->lineEdit_3->text().endsWith("_") || this->ui->lineEdit_3->text().endsWith(" "))
     {
-        Generic::MessageBox(_l("error"), _l("main-space"), MessageBoxStyleError);
+        UiGeneric::MessageBox(_l("error"), _l("main-space"), MessageBoxStyleError);
         return;
     }
     this->ui->pushButton->setEnabled(false);

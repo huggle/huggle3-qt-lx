@@ -120,6 +120,10 @@ namespace Huggle
             static void QueryPool_Update(Query *q);
             static void ReportUser(WikiUser *u);
             static void SilentReport(WikiUser *u);
+            static void ShowMessage(QString title, QString message);
+            static void ShowError(QString title, QString message);
+            static void ShowWarning(QString title, QString message);
+            static bool ShowYesNoQuestion(QString title, QString message, bool default_answer);
             static void Shutdown();
     };
 }

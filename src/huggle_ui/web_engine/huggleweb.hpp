@@ -16,7 +16,7 @@
 #include <QFrame>
 #include <QWebEngineHistory>
 #include <QWebEngineView>
-#include <huggle_core/genericbrowser.hpp>
+#include <huggle_ui/genericbrowser.hpp>
 
 namespace Ui
 {

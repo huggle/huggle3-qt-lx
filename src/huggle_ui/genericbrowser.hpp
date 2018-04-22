@@ -11,11 +11,11 @@
 #ifndef HUGGLEGENERICBROWSERWEB_H
 #define HUGGLEGENERICBROWSERWEB_H
 
-#include "definitions.hpp"
+#include <huggle_core/definitions.hpp>
 
 #include <QFrame>
-#include "collectable_smartptr.hpp"
-#include "wikiedit.hpp"
+#include <huggle_core/collectable_smartptr.hpp>
+#include <huggle_core/wikiedit.hpp>
 
 namespace Ui
 {

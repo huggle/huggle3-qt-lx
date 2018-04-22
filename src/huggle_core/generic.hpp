@@ -25,15 +25,6 @@ class QWidget;
 
 namespace Huggle
 {
-    enum MessageBoxStyle
-    {
-        MessageBoxStyleNormal, // OK
-        MessageBoxStyleQuestion, // Yes No
-        MessageBoxStyleQuestionAbort, // Yes No Cancel
-        MessageBoxStyleWarning, // OK (warning)
-        MessageBoxStyleError // OK (error)
-    };
-
     //! Generic C++ functions that are missing in standard libs
     namespace Generic
     {
@@ -53,15 +44,8 @@ namespace Huggle
         HUGGLE_EX bool SafeBool(QString value, bool defaultvalue = false);
         //! Display a user message before reporting a user based on user preferences
         HUGGLE_EX bool ReportPreFlightCheck();
-        HUGGLE_EX int pMessageBox(QWidget *parent, QString title, QString text, MessageBoxStyle st = MessageBoxStyleNormal, bool enforce_stop = false);
         HUGGLE_EX QString SanitizePath(QString name);
         HUGGLE_EX QString MD5(QString data);
-        /*!
-         * \brief MessageBox Display a message box
-         * \param title Title of message box
-         * \param text What is displayed in a message
-         */
-        HUGGLE_EX int MessageBox(QString title, QString text, MessageBoxStyle st = MessageBoxStyleNormal, bool enforce_stop = false, QWidget *parent = nullptr);
         //! Display a message box telling user that function is not allowed during developer mode
         HUGGLE_EX void DeveloperError();
         HUGGLE_EX QString IRCQuitDefaultMessage();
