@@ -11,12 +11,12 @@
 #ifndef HUGGLEWEB_H
 #define HUGGLEWEB_H
 
-#include "../definitions.hpp"
+#include <huggle_core/definitions.hpp>
 
 #include <QFrame>
 #include <QWebHistory>
 #include <QWebFrame>
-#include "../genericbrowser.hpp"
+#include <huggle_core/genericbrowser.hpp>
 
 namespace Ui
 {
