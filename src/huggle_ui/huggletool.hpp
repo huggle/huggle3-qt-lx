@@ -34,7 +34,7 @@ namespace Huggle
     class WikiSite;
 
     //! Toolbar on top of window
-    class HUGGLE_EX HuggleTool : public QDockWidget
+    class HUGGLE_EX_UI HuggleTool : public QDockWidget
     {
             Q_OBJECT
         public:

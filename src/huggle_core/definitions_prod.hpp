@@ -160,24 +160,64 @@ namespace std { typedef decltype(nullptr) nullptr_t; }
     #define HUGGLE_TIMER                   200
 #endif
 
-#ifndef HUGGLE_EX
-    #ifdef HUGGLE_EXTENSION
-        #ifdef HUGGLE_WIN
-            #define HUGGLE_EX __declspec(dllimport)
+#ifndef HUGGLE_EX_CORE
+    #ifdef HUGGLE_WIN
+        #ifndef HUGGLE_LIBRARY_CORE
+            #define HUGGLE_EX_CORE __declspec(dllimport)
+        #else
+            #define HUGGLE_EX_CORE __declspec(dllexport)
         #endif
     #endif
 #endif
 
-#ifndef HUGGLE_EX
-    #ifdef HUGGLE_LIBRARY 
-        #ifdef HUGGLE_WIN
-            #define HUGGLE_EX __declspec(dllexport)
-        #endif
-    #endif
-#endif
-
-#ifndef HUGGLE_EX
+#ifndef HUGGLE_EX_CORE
     #define HUGGLE_EX
+#endif
+
+#ifndef HUGGLE_EX_UI
+    #ifdef HUGGLE_WIN
+        #ifndef HUGGLE_LIBRARY_UI
+            #define HUGGLE_EX_UI __declspec(dllimport)
+        #else
+            #define HUGGLE_EX_UI __declspec(dllexport)
+        #endif
+    #endif
+#endif
+
+#ifndef HUGGLE_EX_RES
+    #ifdef HUGGLE_WIN
+        #ifndef HUGGLE_LIBRARY_RES
+            #define HUGGLE_EX_RES __declspec(dllimport)
+        #else
+            #define HUGGLE_EX_RES __declspec(dllexport)
+        #endif
+    #endif
+#endif
+
+#ifndef HUGGLE_EX_L10N
+    #ifdef HUGGLE_WIN
+        #ifndef HUGGLE_LIBRARY_L10N
+            #define HUGGLE_EX_L10N __declspec(dllimport)
+        #else
+            #define HUGGLE_EX_L10N __declspec(dllexport)
+        #endif
+     #endif
+#endif
+
+#ifndef HUGGLE_EX_CORE
+    #define HUGGLE_EX_CORE
+#endif
+
+#ifndef HUGGLE_EX_UI
+    #define HUGGLE_EX_UI
+#endif
+
+#ifndef HUGGLE_EX_L10N
+    #define HUGGLE_L10N
+#endif
+
+#ifndef HUGGLE_EX_RES
+    #define HUGGLE_RES
 #endif
 
 //! Change this to DEBIAN / UBUNTU / WINDOWS to get automatic updates for selected channels

@@ -21,7 +21,7 @@ namespace Huggle
 {
     //! Key/value node for data from API queries
     //! \todo Currently value is provided even for nodes that shouldn't have it
-    class HUGGLE_EX ApiQueryResultNode
+    class HUGGLE_EX_CORE ApiQueryResultNode
     {
           public:
             ApiQueryResultNode();
@@ -47,7 +47,7 @@ namespace Huggle
     //! this is a universal result class that uses same format for all known
     //! formats we are going to use, including XML or JSON, so that it shouldn't
     //! matter which one we use, we always get this structure as output
-    class HUGGLE_EX ApiQueryResult : public QueryResult
+    class HUGGLE_EX_CORE ApiQueryResult : public QueryResult
     {
         public:
             ApiQueryResult();

@@ -61,7 +61,7 @@ namespace Huggle
      * $temp - temporary folder
      * $root_bck - backup of root
      */
-    class HUGGLE_EX UpdateForm : public QDialog
+    class HUGGLE_EX_UI UpdateForm : public QDialog
     {
             Q_OBJECT
         public:

@@ -17,7 +17,7 @@
 namespace Huggle
 {
     //! Override of qapplication so that we can reimplement notify
-    class HUGGLE_EX HgApplication : public QApplication
+    class HUGGLE_EX_UI HgApplication : public QApplication
     {
         public:
             HgApplication(int& argc, char** argv) : QApplication(argc, argv) {}

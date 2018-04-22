@@ -20,7 +20,7 @@ namespace Huggle
     //!
     //! \brief The IRCChatTextBox class provides a simple text box with clickable links (QPlainTextEdit doesn't support them)
     //!
-    class HUGGLE_EX IRCChatTextBox : public QPlainTextEdit
+    class HUGGLE_EX_UI IRCChatTextBox : public QPlainTextEdit
     {
         Q_OBJECT
 

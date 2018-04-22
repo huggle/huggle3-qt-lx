@@ -22,7 +22,7 @@ class QMediaPlayer;
 namespace Huggle
 {
     //! Embedded resource files
-    class HUGGLE_EX Resources
+    class HUGGLE_EX_CORE Resources
     {
         public:
             static void Init();

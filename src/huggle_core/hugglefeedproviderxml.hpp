@@ -24,7 +24,7 @@
 
 namespace Huggle
 {
-    class HUGGLE_EX HuggleFeedProviderXml : public QObject, public HuggleFeed
+    class HUGGLE_EX_CORE HuggleFeedProviderXml : public QObject, public HuggleFeed
     {
             Q_OBJECT
         public:

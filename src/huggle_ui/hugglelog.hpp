@@ -30,7 +30,7 @@ namespace Huggle
     class HuggleLog_Line;
 
     //! This window contains all the messages that are stored in ring log
-    class HUGGLE_EX HuggleLog : public QDockWidget
+    class HUGGLE_EX_UI HuggleLog : public QDockWidget
     {
             Q_OBJECT
         public:

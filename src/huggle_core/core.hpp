@@ -45,7 +45,7 @@ namespace Huggle
      * core (in order to hook up into huggle internals) would get these memory addresses and can update these
      * static pointers which it has inside of its own domain, there is no other better way I know how to handle that
      */
-    class HUGGLE_EX Core
+    class HUGGLE_EX_CORE Core
     {
         public:
             static void HandleException(Exception *exception);

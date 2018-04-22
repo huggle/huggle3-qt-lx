@@ -34,7 +34,7 @@ namespace Huggle
     /*!
      * \brief The ProtectPage class display a window where user can protect a page given they have the permissions to do that
      */
-    class HUGGLE_EX ProtectPage : public HW
+    class HUGGLE_EX_UI ProtectPage : public HW
     {
             Q_OBJECT
         public:

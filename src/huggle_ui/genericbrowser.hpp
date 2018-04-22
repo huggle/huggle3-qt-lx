@@ -27,7 +27,7 @@ namespace Huggle
     class WikiPage;
     class Resources;
 
-    class HUGGLE_EX GenericBrowser : public QFrame
+    class HUGGLE_EX_UI GenericBrowser : public QFrame
     {
             Q_OBJECT
         public:

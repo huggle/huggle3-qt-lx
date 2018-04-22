@@ -23,7 +23,7 @@ namespace Huggle
     class WikiSite;
     class Hooks;
     class HistoryItem;
-    class HUGGLE_EX Events : public QObject
+    class HUGGLE_EX_CORE Events : public QObject
     {
             Q_OBJECT
         public:

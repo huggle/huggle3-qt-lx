@@ -38,7 +38,7 @@ namespace Huggle
     }
 
     //! Provider that uses a wikimedia irc recent changes feed to retrieve information about edits
-    class HUGGLE_EX HuggleFeedProviderIRC : public QObject, public HuggleFeed
+    class HUGGLE_EX_CORE HuggleFeedProviderIRC : public QObject, public HuggleFeed
     {
             Q_OBJECT
         public:

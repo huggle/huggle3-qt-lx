@@ -33,23 +33,23 @@ namespace Huggle
          * \param b bool
          * \return string
          */
-        HUGGLE_EX QString Bool2String(bool b);
-        HUGGLE_EX QStringList CSV2QStringList(QString CSV, QChar separator = ',');
-        HUGGLE_EX QString HtmlEncode(QString text);
+        HUGGLE_EX_CORE QString Bool2String(bool b);
+        HUGGLE_EX_CORE QStringList CSV2QStringList(QString CSV, QChar separator = ',');
+        HUGGLE_EX_CORE QString HtmlEncode(QString text);
         /*!
          * \brief Safely turn a QString into a bool value
          * \param value QString Text that needs to be changed to bool
          * \param defaultvalue bool What value should bool have in case that text can't be parsed, by default it's false
          */
-        HUGGLE_EX bool SafeBool(QString value, bool defaultvalue = false);
+        HUGGLE_EX_CORE bool SafeBool(QString value, bool defaultvalue = false);
         //! Display a user message before reporting a user based on user preferences
-        HUGGLE_EX bool ReportPreFlightCheck();
-        HUGGLE_EX QString SanitizePath(QString name);
-        HUGGLE_EX QString MD5(QString data);
+        HUGGLE_EX_CORE bool ReportPreFlightCheck();
+        HUGGLE_EX_CORE QString SanitizePath(QString name);
+        HUGGLE_EX_CORE QString MD5(QString data);
         //! Display a message box telling user that function is not allowed during developer mode
-        HUGGLE_EX void DeveloperError();
-        HUGGLE_EX QString IRCQuitDefaultMessage();
-        HUGGLE_EX QString SocketError2Str(QAbstractSocket::SocketError error);
+        HUGGLE_EX_CORE void DeveloperError();
+        HUGGLE_EX_CORE QString IRCQuitDefaultMessage();
+        HUGGLE_EX_CORE QString SocketError2Str(QAbstractSocket::SocketError error);
         /*!
          * \brief ShrinkText makes string fit to a size, if text is longer, the extra part is replaced with ".."
          * \param text Text which is about to be made smaller
@@ -58,7 +58,7 @@ namespace Huggle
          * \param minimum size
          * \return new string
          */
-        HUGGLE_EX QString ShrinkText(QString text, unsigned int size, bool html = true, unsigned int minimum = 2);
+        HUGGLE_EX_CORE QString ShrinkText(QString text, unsigned int size, bool html = true, unsigned int minimum = 2);
     }
 }
 

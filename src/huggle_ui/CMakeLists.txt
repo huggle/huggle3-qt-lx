@@ -61,7 +61,7 @@ add_definitions( -DQT_USE_QSTRINGBUILDER )
 
 add_library(huggle_ui SHARED ${huggle_ui_SOURCES} ${headers} ${headers_web} ${huggle_ui_HEADERS_MOC} ${huggle_ui_FORMS_HEADERS} ${huggle_ui_RESOURCES_RCC})
 target_link_libraries(huggle_ui ${QT_LIBRARIES})
-set_target_properties(huggle_ui PROPERTIES COMPILE_FLAGS -DHUGGLE_LIBRARY)
+set_target_properties(huggle_ui PROPERTIES COMPILE_FLAGS -DHUGGLE_LIBRARY_UI)
 
 if (WIN32)
     target_link_libraries(huggle_ui dbghelp)

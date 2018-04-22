@@ -35,7 +35,7 @@ namespace Huggle
      * \brief The EditBar widget can be used to render various edit information of pages, like
      *        the time and username of the last edit and display them as icons
      */
-    class HUGGLE_EX EditBar : public QDockWidget
+    class HUGGLE_EX_UI EditBar : public QDockWidget
     {
             Q_OBJECT
         public: 

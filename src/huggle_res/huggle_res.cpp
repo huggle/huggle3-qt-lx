@@ -8,22 +8,12 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#ifndef OAUTHLOGINQUERY_H
-#define OAUTHLOGINQUERY_H
+#include "huggle_res.hpp"
 
-#include "definitions.hpp"
+using namespace Huggle;
 
-#include <QString>
-#include "query.hpp"
-
-namespace Huggle
+int Huggle_Res::Init()
 {
-    //! This query is supposed to login user through oauth provider
-    class HUGGLE_EX_CORE OAuthLoginQuery : public Query
-    {
-        public:
-            OAuthLoginQuery();
-    };
+	extern int qInitResources_pictures();
+	return qInitResources_pictures();
 }
-
-#endif // OAUTHLOGINQUERY_H

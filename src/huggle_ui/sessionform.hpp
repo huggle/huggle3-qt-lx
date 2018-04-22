@@ -25,7 +25,7 @@ namespace Huggle
     //! Session info
 
     //! Display which user, project, what rights and flags your session have
-    class HUGGLE_EX SessionForm : public HW
+    class HUGGLE_EX_UI SessionForm : public HW
     {
             Q_OBJECT
         public:

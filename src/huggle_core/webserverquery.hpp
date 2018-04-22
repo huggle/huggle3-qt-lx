@@ -22,7 +22,7 @@ class QNetworkReply;
 namespace Huggle
 {
     //! This is a query that can be used to perform simple webserver requests
-    class HUGGLE_EX WebserverQuery : public QObject, public Query
+    class HUGGLE_EX_CORE WebserverQuery : public QObject, public Query
     {
             Q_OBJECT
         public:

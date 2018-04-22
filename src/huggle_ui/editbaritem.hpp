@@ -25,7 +25,7 @@ namespace Huggle
      * \brief The EditBarItem class is used for being an item of an EditBar
      * It gives general information about the edit of a page
      */
-    class HUGGLE_EX EditBarItem : public QFrame
+    class HUGGLE_EX_UI EditBarItem : public QFrame
     {
             Q_OBJECT
         public:

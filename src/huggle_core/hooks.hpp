@@ -31,7 +31,7 @@ namespace Huggle
     class HistoryItem;
 
     //! Hooks that can be used to attach some 3rd code to existing functions
-    class HUGGLE_EX Hooks
+    class HUGGLE_EX_CORE Hooks
     {
         public:
              /*!

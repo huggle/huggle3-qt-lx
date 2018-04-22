@@ -24,7 +24,7 @@ namespace Huggle
     };
 
     //! This class can be used to store various versions and compare them
-    class HUGGLE_EX Version
+    class HUGGLE_EX_CORE Version
     {
         public:
             /*!
@@ -108,12 +108,12 @@ namespace Huggle
         return this->original_string;
     }
 
-    bool operator !=(const Version &a, const Version &b);
-    bool operator ==(const Version &a, const Version &b);
-    bool operator <=(const Version &a, const Version &b);
-    bool operator >=(const Version &a, const Version &b);
-    bool operator >(const Version &a, const Version &b);
-    bool operator <(const Version &a, const Version &b);
+	HUGGLE_EX_CORE bool operator !=(const Version &a, const Version &b);
+	HUGGLE_EX_CORE bool operator ==(const Version &a, const Version &b);
+	HUGGLE_EX_CORE bool operator <=(const Version &a, const Version &b);
+	HUGGLE_EX_CORE bool operator >=(const Version &a, const Version &b);
+	HUGGLE_EX_CORE bool operator >(const Version &a, const Version &b);
+	HUGGLE_EX_CORE bool operator <(const Version &a, const Version &b);
 }
 
 #endif // VERSION_HPP

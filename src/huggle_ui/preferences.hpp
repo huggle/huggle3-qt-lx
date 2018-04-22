@@ -31,7 +31,7 @@ namespace Huggle
     class HuggleQueueFilter;
     class WikiSite;
     //! Preferences window
-    class HUGGLE_EX Preferences : public HW
+    class HUGGLE_EX_UI Preferences : public HW
     {
         Q_OBJECT
         public:

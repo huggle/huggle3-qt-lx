@@ -23,7 +23,7 @@ namespace Huggle
     class WikiSite;
 
     //! Mediawiki page
-    class HUGGLE_EX WikiPage : public MediaWikiObject
+    class HUGGLE_EX_CORE WikiPage : public MediaWikiObject
     {
         public:
             //! Create new empty instance of wiki page

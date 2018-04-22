@@ -26,7 +26,7 @@ namespace Ui
 namespace Huggle
 {
     //! Web browser
-    class HUGGLE_EX HuggleWeb : public GenericBrowser
+    class HUGGLE_EX_UI HuggleWeb : public GenericBrowser
     {
             Q_OBJECT
         public:

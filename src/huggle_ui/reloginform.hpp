@@ -29,7 +29,7 @@ namespace Huggle
 {
     class ApiQuery;
     //! Relogin form used to login back to mediawiki when session is removed
-    class HUGGLE_EX ReloginForm : public QDialog
+    class HUGGLE_EX_UI ReloginForm : public QDialog
     {
             Q_OBJECT
         public:

@@ -57,7 +57,7 @@ namespace Huggle
 
         //! These "HAN items" are for example information about rollbacks, because they
         //! share common properties, they are all inherited from this GenericItem :o
-        class HUGGLE_EX GenericItem
+        class HUGGLE_EX_UI GenericItem
         {
             public:
                 GenericItem(WikiSite *site);
@@ -78,7 +78,7 @@ namespace Huggle
         //! can't be applied to edits that weren't parsed by huggle yet. So in case
         //! that other user has faster internet connection we cache the information
         //! using this class and use it later when edit is parsed
-        class HUGGLE_EX RescoreItem : public GenericItem
+        class HUGGLE_EX_UI RescoreItem : public GenericItem
         {
             public:
                 RescoreItem(WikiSite *site, int _revID, int _score, QString _user);
@@ -93,7 +93,7 @@ namespace Huggle
 
     //! Huggle 3 comes with a system that allows all clients to operate together in order
     //! to be effective in reverting of vandalism
-    class HUGGLE_EX VandalNw : public QDockWidget
+    class HUGGLE_EX_UI VandalNw : public QDockWidget
     {
             Q_OBJECT
 

@@ -34,7 +34,7 @@ namespace Huggle
     void WikiPageTagsForm_FinishRead(Query *result);
 
     //! Form used to tag page
-    class HUGGLE_EX WikiPageTagsForm : public HW
+    class HUGGLE_EX_UI WikiPageTagsForm : public HW
     {
             Q_OBJECT
         public:

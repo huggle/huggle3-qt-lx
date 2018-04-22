@@ -23,7 +23,7 @@ namespace Huggle
     //! This default instance is writing exceptions to terminal and then ungracefully kill the program,
     //! it can be overriden though
     //!
-    class HUGGLE_EX ExceptionHandler
+    class HUGGLE_EX_CORE ExceptionHandler
     {
         public:
             ExceptionHandler();

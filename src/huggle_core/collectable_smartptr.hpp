@@ -10,7 +10,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU Lesser General Public License for more details.
 
-// Copyright (c) Petr Bena 2014
+// Copyright (c) Petr Bena 2014 - 2018
 
 #ifndef COLLECTABLE_SMARTPTR_HPP
 #define COLLECTABLE_SMARTPTR_HPP
@@ -28,45 +28,30 @@ namespace Huggle
 
     //! These ptrs don't need to allocate new manager for every single object that is maintained
     //! by any smart ptr like std ones do, but utilize the single instance GC we use
-    class Collectable_SmartPtr
+    class HUGGLE_EX_CORE Collectable_SmartPtr
     {
         public:
-            HUGGLE_EX Collectable_SmartPtr();
-            HUGGLE_EX Collectable_SmartPtr(Collectable_SmartPtr *smart_ptr);
-            HUGGLE_EX Collectable_SmartPtr(const Collectable_SmartPtr &sp_);
-            HUGGLE_EX Collectable_SmartPtr<T>(T *pt);
-            HUGGLE_EX virtual ~Collectable_SmartPtr();
+            Collectable_SmartPtr();
+            Collectable_SmartPtr(Collectable_SmartPtr *smart_ptr);
+            Collectable_SmartPtr(const Collectable_SmartPtr &sp_);
+            Collectable_SmartPtr<T>(T *pt);
+            virtual ~Collectable_SmartPtr();
             //! Change a bare pointer to other pointer
-            HUGGLE_EX virtual void SetPtr(T *pt);
+            virtual void SetPtr(T *pt);
             //! Remove a bare pointer if there is some
             void Delete();
-            void operator=(T* _ptr)
-            {
-                this->SetPtr(_ptr);
-            }
-            void operator=(const Collectable_SmartPtr &smart_ptr)
-            {
-                this->SetPtr(smart_ptr.GetPtr());
-            }
-            void operator=(std::nullptr_t &null)
-            {
-                this->SetPtr(null);
-            }
+			void operator=(T* _ptr);
+			void operator=(const Collectable_SmartPtr &smart_ptr);
+			void operator=(std::nullptr_t &null);
             operator void* () const;
-            HUGGLE_EX operator T* () const;
-            HUGGLE_EX T* operator->();
-            HUGGLE_EX T* GetPtr() const;
+            operator T* () const;
+            T* operator->();
+            T* GetPtr() const;
         protected:
         private:
             void FreeAcqRsrPtr();
             T *ptr;
     };
-
-    template <class H>
-    inline void Collectable_SmartPtr<H>::Delete()
-    {
-        this->FreeAcqRsrPtr();
-    }
 
     template <class H>
     bool operator==(Collectable_SmartPtr<H> &smart_ptr, Collectable_SmartPtr<H> &smart_ptx)

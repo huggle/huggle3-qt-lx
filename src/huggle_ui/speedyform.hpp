@@ -38,7 +38,7 @@ namespace Huggle
      * This is a feature that originated on English wikipedia and is designed for users who need to delete a page, but don't
      * have the permissions to do that.
      */
-    class HUGGLE_EX SpeedyForm : public HW
+    class HUGGLE_EX_UI SpeedyForm : public HW
     {
             Q_OBJECT
         public:

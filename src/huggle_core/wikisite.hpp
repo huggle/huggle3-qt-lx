@@ -24,7 +24,7 @@ namespace Huggle
     class HuggleFeed;
     class HuggleQueueFilter;
     //! Namespace (mediawiki)
-    class HUGGLE_EX WikiPageNS
+    class HUGGLE_EX_CORE WikiPageNS
     {
         public:
             WikiPageNS(int id, QString name, QString canonical_name);
@@ -63,7 +63,7 @@ namespace Huggle
     }
 
     //! Extension info
-    class HUGGLE_EX WikiSite_Ext
+    class HUGGLE_EX_CORE WikiSite_Ext
     {
         public:
             WikiSite_Ext(QString name, QString type, QString description, QString author, QString url, QString version);
@@ -76,7 +76,7 @@ namespace Huggle
     };
 
     //! Site
-    class HUGGLE_EX WikiSite
+    class HUGGLE_EX_CORE WikiSite
     {
         public:
             //! This NS is used in case we can't find a match for page

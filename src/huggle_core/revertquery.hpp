@@ -34,7 +34,7 @@ namespace Huggle
     /*!
      * \brief The RevertQuery class can be used to rollback any edit
      */
-    class HUGGLE_EX RevertQuery : public QObject, public Query, public MediaWikiObject
+    class HUGGLE_EX_CORE RevertQuery : public QObject, public Query, public MediaWikiObject
     {
             Q_OBJECT
         public:

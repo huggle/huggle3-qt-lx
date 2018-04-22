@@ -66,7 +66,7 @@ namespace Huggle
     //! The query system is using GC. That means every query is either unmanaged or managed. In case it is managed,
     //! the GC will care about it being removed from operating memory and you must not
     //! call a delete on it, otherwise program will crash.
-    class HUGGLE_EX Query : public Collectable
+    class HUGGLE_EX_CORE Query : public Collectable
     {
         public:
             //! List of queries that need to be restarted, used for relogin so that operation that was to be executed

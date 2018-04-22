@@ -57,7 +57,7 @@ namespace Huggle
     class WikiSite;
 
     //! Window that is displayed as first when huggle is started
-    class HUGGLE_EX Login : public HW
+    class HUGGLE_EX_UI Login : public HW
     {
             Q_OBJECT
         public:

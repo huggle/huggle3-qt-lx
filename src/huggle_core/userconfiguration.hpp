@@ -45,7 +45,7 @@ namespace Huggle
     class Version;
 
     //! User configuration, for a user per project
-    class HUGGLE_EX UserConfiguration
+    class HUGGLE_EX_CORE UserConfiguration
     {
         public:
             static WatchlistOption WatchlistOptionFromString(QString string);

@@ -18,7 +18,7 @@ namespace Huggle
     class WikiEdit;
     class WikiUser;
     class WikiSite;
-    class HUGGLE_EX EditQueue
+    class HUGGLE_EX_CORE EditQueue
     {
         public:
             static EditQueue *Primary;

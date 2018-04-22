@@ -8,25 +8,18 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#ifndef SLEEPER_HPP
-#define SLEEPER_HPP
+#ifndef HUGGLE_L10N_HPP
+#define HUGGLE_L10N_HPP
 
-#include "definitions.hpp"
-
-#include <QThread>
+#include <huggle_core/definitions.hpp>
 
 namespace Huggle
 {
-    /*!
-     * \brief This is a workaround that allow us to use sleep
-     */
-    class HUGGLE_EX_CORE Sleeper : public QThread
-    {
-        public:
-            static void usleep(unsigned long usecs){QThread::usleep(usecs);}
-            static void msleep(unsigned long msecs){QThread::msleep(msecs);}
-            static void sleep(unsigned long secs){QThread::sleep(secs);}
-    };
+	class HUGGLE_EX_L10N Huggle_l10n
+	{
+    	public:
+		    static int Init();
+	};
 }
 
-#endif // SLEEPER_HPP
+#endif

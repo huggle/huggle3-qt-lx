@@ -20,7 +20,7 @@ namespace Huggle
     //! Every mediawiki asset may be inherited from this
 
     //! This class makes it simple to create cross-wiki support for various types that are bound to a given site
-    class HUGGLE_EX MediaWikiObject
+    class HUGGLE_EX_CORE MediaWikiObject
     {
         public:
             MediaWikiObject();

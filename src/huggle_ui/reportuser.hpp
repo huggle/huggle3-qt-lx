@@ -41,7 +41,7 @@ namespace Huggle
     //! In standard mode this window is used to report users to AIV, but it's
     //! possible to switch it into "contrib browser" mode in which it serves
     //! only in order to display contributions of a given user
-    class HUGGLE_EX ReportUser : public HW
+    class HUGGLE_EX_UI ReportUser : public HW
     {
             Q_OBJECT
         public:

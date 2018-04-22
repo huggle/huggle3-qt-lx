@@ -24,7 +24,7 @@ namespace Huggle
     class WikiPage;
 
     //! Modifications of mediawiki pages can be done using this query
-    class HUGGLE_EX EditQuery : public Query
+    class HUGGLE_EX_CORE EditQuery : public Query
     {
         public:
             EditQuery();

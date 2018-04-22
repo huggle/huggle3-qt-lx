@@ -10,7 +10,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU Lesser General Public License for more details.
 
-// Copyright (c) Petr Bena 2014
+// Copyright (c) Petr Bena 2014 - 2018
 
 #include "collectable.hpp"
 #include "collectable_smartptr.hpp"
@@ -23,6 +23,7 @@
 #include "wlquery.hpp"
 
 using namespace Huggle;
+
 template <class T>
 Collectable_SmartPtr<T>::Collectable_SmartPtr()
 {
@@ -103,6 +104,30 @@ template <class T>
 void Collectable_SmartPtr<T>::FreeAcqRsrPtr()
 {
     GC_DECREF(this->ptr);
+}
+
+template <class H>
+void Collectable_SmartPtr<H>::Delete()
+{
+	this->FreeAcqRsrPtr();
+}
+
+template<class T>
+void Collectable_SmartPtr<T>::operator=(T * _ptr)
+{
+	this->SetPtr(_ptr);
+}
+
+template<class T>
+void Collectable_SmartPtr<T>::operator=(const Collectable_SmartPtr & smart_ptr)
+{
+	this->SetPtr(smart_ptr.GetPtr());
+}
+
+template<class T>
+void Collectable_SmartPtr<T>::operator=(std::nullptr_t & null)
+{
+	this->SetPtr(null);
 }
 
 namespace Huggle

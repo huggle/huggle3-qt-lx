@@ -59,7 +59,7 @@ namespace Huggle
      * that has some score and score of edit is incremented by sum of all scores
      * of all score words matched in edit
      */
-    class ScoreWord
+    class HUGGLE_EX_CORE ScoreWord
     {
         public:
             ScoreWord(QString Word, int Score);
@@ -70,11 +70,11 @@ namespace Huggle
     };
 
     //! Project configuration, each project needs to have own instance of this
-    class HUGGLE_EX ProjectConfiguration
+    class HUGGLE_EX_CORE ProjectConfiguration
     {
         public:
             //! Speedy option - used for speedy deletions
-            class HUGGLE_EX SpeedyOption
+            class HUGGLE_EX_CORE SpeedyOption
             {
                 public:
                     //! Name of tag

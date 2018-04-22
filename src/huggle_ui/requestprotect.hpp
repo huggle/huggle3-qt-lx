@@ -32,7 +32,7 @@ namespace Huggle
     class ApiQuery;
 
     //! This can be used to request protection of a page
-    class HUGGLE_EX RequestProtect : public HW
+    class HUGGLE_EX_UI RequestProtect : public HW
     {
             Q_OBJECT
         public:

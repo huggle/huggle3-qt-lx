@@ -19,7 +19,7 @@
 namespace Huggle
 {
     //! Parses the data provided by user in parameters to executable
-    class TerminalParser
+    class HUGGLE_EX_CORE TerminalParser
     {
         public:
             TerminalParser(int argc, char *argv[]);

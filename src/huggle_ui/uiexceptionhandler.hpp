@@ -15,7 +15,7 @@
 
 namespace Huggle
 {
-    class UiExceptionHandler : public ExceptionHandler
+    class HUGGLE_EX_UI UiExceptionHandler : public ExceptionHandler
     {
         public:
             UiExceptionHandler();

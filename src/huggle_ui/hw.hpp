@@ -17,7 +17,7 @@
 
 namespace Huggle
 {
-    class HUGGLE_EX HW : public QDialog
+    class HUGGLE_EX_UI HW : public QDialog
     {
         Q_OBJECT
         public:

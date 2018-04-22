@@ -50,7 +50,7 @@ namespace Huggle
     };
 
     //! Line of log
-    class HUGGLE_EX HuggleLog_Line
+    class HUGGLE_EX_CORE HuggleLog_Line
     {
         public:
             HuggleLog_Line(HuggleLog_Line *line);
@@ -85,7 +85,7 @@ namespace Huggle
     //! These macros are only available within extension scope.
     //!
     //! Primary instance of this class, if you can't use macros, can be accessed through pointer Huggle::Syslog::HuggleLogs
-    class HUGGLE_EX Syslog
+    class HUGGLE_EX_CORE Syslog
     {
         public:
             static Syslog *HuggleLogs;

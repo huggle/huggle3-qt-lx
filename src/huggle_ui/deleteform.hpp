@@ -31,7 +31,7 @@ namespace Huggle
     class WikiUser;
 
     //! This is a delete form
-    class HUGGLE_EX DeleteForm : public HW
+    class HUGGLE_EX_UI DeleteForm : public HW
     {
             Q_OBJECT
         public:

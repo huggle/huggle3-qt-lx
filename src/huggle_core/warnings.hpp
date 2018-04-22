@@ -36,7 +36,7 @@ namespace Huggle
      * is stored in a list of these pending warnings and periodically checked using timer. If it's finished it's
      * removed, if it's not then it is checked and something is done with it.
      */
-    class HUGGLE_EX PendingWarning
+    class HUGGLE_EX_CORE PendingWarning
     {
         public:
             static QList<PendingWarning*> PendingWarnings;
@@ -63,16 +63,16 @@ namespace Huggle
          * \param Report This is address of boolean to which value whether user should be reported instead is stored
          * \return Pointer to a warning object which contains information about the warning
          */
-        HUGGLE_EX PendingWarning *WarnUser(QString WarningType, RevertQuery *Dependency, WikiEdit *Edit, bool *Report);
+        HUGGLE_EX_CORE PendingWarning *WarnUser(QString WarningType, RevertQuery *Dependency, WikiEdit *Edit, bool *Report);
         //! This sends a warning to user no matter if they should receive it or not
-        HUGGLE_EX void ForceWarn(int Level, WikiEdit *Edit);
+        HUGGLE_EX_CORE void ForceWarn(int Level, WikiEdit *Edit);
         //! Checks all warnings that weren't sent and try to send them
 
         //! This is used on talk pages of users which changed while we tried to send them a warning
-        void ResendWarnings();
-        QString RetrieveTemplateToWarn(QString type, WikiSite *site, bool force = false);
+		HUGGLE_EX_CORE void ResendWarnings();
+		HUGGLE_EX_CORE QString RetrieveTemplateToWarn(QString type, WikiSite *site, bool force = false);
         //! In case there is no shared IP
-        QString UpdateSharedIPTemplate(WikiUser *User, QString Text, WikiSite *site);
+		HUGGLE_EX_CORE QString UpdateSharedIPTemplate(WikiUser *User, QString Text, WikiSite *site);
     }
 }
 

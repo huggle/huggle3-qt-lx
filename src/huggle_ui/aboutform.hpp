@@ -24,7 +24,7 @@ namespace Ui
 namespace Huggle
 {
     //! Form that can be displayed from help menu, should list all developers
-    class HUGGLE_EX AboutForm : public HW
+    class HUGGLE_EX_UI AboutForm : public HW
     {
             Q_OBJECT
         public:

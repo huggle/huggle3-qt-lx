@@ -18,7 +18,7 @@
 namespace Huggle
 {
     //! Not being used now because wmf doesn't provide OAuth yet
-    class OAuth
+    class HUGGLE_EX_CORE OAuth
     {
         public:
             OAuth(QString login);

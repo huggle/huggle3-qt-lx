@@ -8,6 +8,9 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
+// IMPORTANT: Since Huggle 3.4.0 this is just an entry point for dll libraries
+//            that huggle consists of (huggle_core, huggle_ui etc).
+
 #include <huggle_core/definitions.hpp>
 
 #include <QApplication>

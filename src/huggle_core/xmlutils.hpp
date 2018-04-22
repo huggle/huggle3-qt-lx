@@ -21,8 +21,8 @@ namespace Huggle
     //! Provides a set of functions that extend Qt's Dom model with features that were missing in it
     namespace XmlUtils
     {
-        HUGGLE_EX QList<QDomElement> FetchElementsFromDocument(QDomDocument xmls);
-        HUGGLE_EX QList<QDomElement> FetchAllElementsByName(QDomDocument xmls, QString name);
+        HUGGLE_EX_CORE QList<QDomElement> FetchElementsFromDocument(QDomDocument xmls);
+        HUGGLE_EX_CORE QList<QDomElement> FetchAllElementsByName(QDomDocument xmls, QString name);
     }
 }
 

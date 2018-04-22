@@ -32,7 +32,7 @@ namespace Huggle
 
     //! Keep in mind that extensions are running in separate domain so that if you want to have access
     //! to resources like configuration or network, you need to explicitly request it.
-    class HUGGLE_EX iExtension
+    class HUGGLE_EX_CORE iExtension
     {
         public:
             iExtension() {}

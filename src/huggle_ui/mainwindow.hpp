@@ -98,7 +98,7 @@ namespace Huggle
     };
 
     //! Primary huggle window
-    class HUGGLE_EX MainWindow : public QMainWindow
+    class HUGGLE_EX_UI MainWindow : public QMainWindow
     {
             Q_OBJECT
         public:
