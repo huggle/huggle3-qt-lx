@@ -30,6 +30,8 @@ HW::HW(QString window_name, QWidget *widget, QWidget *parent) : QDialog(parent)
 
 HW::~HW()
 {
+    if (!Huggle::Configuration::HuggleConfiguration)
+        return;
     // Check if we want to store the layout to file
     if (Huggle::Configuration::HuggleConfiguration->SystemConfig_SaveLayout == false)
         return;
