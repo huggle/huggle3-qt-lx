@@ -17,15 +17,12 @@ include_directories(${QT_INCLUDES})
 
 file(GLOB srcx "*.cpp")
 file(GLOB resx "*.qrc")
-file(GLOB uixx "*.ui")
 file(GLOB headers "*.hpp")
 
 set(huggle_l10n_SOURCES ${srcx})
-set(huggle_l10n_FORMS ${uixx})
 set(huggle_l10n_RESOURCES ${resx})
 
 QT5_WRAP_CPP(huggle_l10n_HEADERS_MOC ${huggle_l10n_HEADERS})
-QT5_WRAP_UI(huggle_l10n_FORMS_HEADERS ${huggle_l10n_FORMS})
 QT5_ADD_RESOURCES(huggle_l10n_RESOURCES_RCC ${huggle_l10n_RESOURCES})
 
 add_definitions(${QT_DEFINITIONS})
