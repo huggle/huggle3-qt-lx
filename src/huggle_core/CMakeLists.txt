@@ -82,7 +82,7 @@ if (WIN32)
     target_link_libraries(huggle_core dbghelp)
 endif()
 
-target_link_libraries(huggle_core huggle_l10n irc ircclient yaml-cpp)
+target_link_libraries(huggle_core huggle_l10n huggle_res irc ircclient yaml-cpp)
 
 if (NOT WEB_ENGINE)
     qt5_use_modules(huggle_core Core Gui Widgets WebKitWidgets WebKit Network Xml)
