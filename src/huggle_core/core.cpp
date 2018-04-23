@@ -12,8 +12,6 @@
 #include <QtXml>
 #include <QFile>
 #include <QPluginLoader>
-#include <huggle_res/huggle_res.hpp>
-#include <huggle_l10n/huggle_l10n.hpp>
 #include "configuration.hpp"
 #include "exception.hpp"
 #include "exceptionhandler.hpp"
@@ -50,12 +48,6 @@ void Core::Init()
         throw new Huggle::Exception("Initializing huggle core that was already loaded", BOOST_CURRENT_FUNCTION);
     HUGGLE_PROFILER_RESET;
     this->loaded = true;
-
-	// Load the external resource files, needed only on windows, because of shitties dynamic linker ever
-#ifdef HUGGLE_WIN
-	Huggle_l10n::Init();
-	Huggle_Res::Init();
-#endif
 
     if (Events::Global)
         throw new Huggle::Exception("Global events are already loaded", BOOST_CURRENT_FUNCTION);

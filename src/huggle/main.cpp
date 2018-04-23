@@ -21,6 +21,8 @@
 #include <huggle_core/syslog.hpp>
 #include <huggle_core/terminalparser.hpp>
 #include <huggle_core/exception.hpp>
+#include <huggle_res/huggle_res.hpp>
+#include <huggle_l10n/huggle_l10n.hpp>
 #include <huggle_ui/hgapplication.hpp>
 #include <huggle_ui/uiexceptionhandler.hpp>
 #include <huggle_ui/login.hpp>
@@ -91,6 +93,12 @@ int main(int argc, char *argv[])
             delete update_form;
             return ReturnCode;
         }
+
+        // Load the external resource files, needed only on windows, because of shitties dynamic linker ever
+        #ifdef HUGGLE_WIN
+            Huggle_l10n::Init();
+            Huggle_Res::Init();
+        #endif
 
         // load the core
         Huggle::Core::HuggleCore = new Huggle::Core();
