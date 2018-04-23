@@ -148,7 +148,7 @@ echo "OK"
 
 echo "Configuring the project..."
 
-cd ..\src
+cd ..\src\huggle_core
 if ($git_enabled -and (Test-Path("..\.git")))
 {
     $rev_list = git rev-list HEAD --count | Out-String
@@ -160,9 +160,6 @@ if ($git_enabled -and (Test-Path("..\.git")))
 {
     echo "build: non-git build (windows)" > version.txt
 }
-
-# Prepare defs
-cd huggle_core
 
 if (!(Test-Path("definitions.hpp")))
 {
