@@ -404,6 +404,9 @@ namespace Huggle
             bool        TemporaryConfig_UserNameWasChanged = false;
             bool        SystemConfig_StorePassword = false;
             QString     SystemConfig_RememberedPassword;
+            bool        SystemConfig_KeystrokeMultiPressFix = true;
+            //! How many ms between keystrokes
+            int         SystemConfig_KeystrokeMultiPressRate = 100;
 
             //////////////////////////////////////////////
             // IRC

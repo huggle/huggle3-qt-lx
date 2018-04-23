@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1106</width>
-    <height>794</height>
+    <height>828</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -20,7 +20,7 @@
    <string>Dialog</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="pictures.qrc">
+   <iconset resource="../huggle_res/pictures.qrc">
     <normaloff>:/huggle/pictures/Resources/huggle3_small.ico</normaloff>:/huggle/pictures/Resources/huggle3_small.ico</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -1012,6 +1012,16 @@
         </widget>
        </item>
        <item>
+        <widget class="QCheckBox" name="cbKeystrokeFix">
+         <property name="text">
+          <string>Prevent repeated keystrokes by following rate in miliseconds (only 1 same shortcut can be triggered within N ms)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="le_KeystrokeRate"/>
+       </item>
+       <item>
         <widget class="QPushButton" name="pushButton_rs">
          <property name="text">
           <string>Restore layout</string>
@@ -1201,7 +1211,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="pictures.qrc"/>
+  <include location="../huggle_res/pictures.qrc"/>
  </resources>
  <connections/>
 </ui>

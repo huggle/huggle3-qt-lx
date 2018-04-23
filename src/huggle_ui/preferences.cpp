@@ -200,6 +200,7 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     this->ui->cbMinScore->setText(_l("preferences-min-score"));
     this->ui->cb_AutoRefresh->setText(_l("config-auto-refresh"));
     this->ui->cb_WatchWarn->setText(_l("preferences-auto-watch-talk"));
+    this->ui->cbKeystrokeFix->setText(_l("preferences-keystroke-rate-limit"));
     this->ui->l_QueueSize->setText(_l("preferences-queue-size"));
     this->ui->l_EmptyQueuePage->setText(_l("preferences-empty-queue-page"));
 
@@ -364,6 +365,9 @@ void Huggle::Preferences::on_pushButton_2_clicked()
 
     hcfg->UserConfig->Watchlist = static_cast<WatchlistOption>(this->ui->comboBox_WatchlistPreference->currentIndex());
     hcfg->SystemConfig_Font = this->ui->lineEdit_5->text();
+
+    hcfg->SystemConfig_KeystrokeMultiPressRate = this->ui->le_KeystrokeRate->text().toInt();
+    hcfg->SystemConfig_KeystrokeMultiPressFix = this->ui->cbKeystrokeFix->isChecked();
 
     if (hcfg->UserConfig->WelcomeGood != this->ui->checkBox_WelcomeEmptyPage->isChecked())
     {
@@ -810,6 +814,9 @@ void Preferences::ResetItems()
     this->ui->cbCatScansAndWatched->setChecked(hcfg->SystemConfig_CatScansAndWatched);
     this->ui->cb_AutoRefresh->setChecked(hcfg->UserConfig->AutomaticRefresh);
     this->ui->cb_WatchWarn->setChecked(hcfg->UserConfig->AutomaticallyWatchlistWarnedUsers);
+    this->ui->le_KeystrokeRate->setText(QString::number(hcfg->SystemConfig_KeystrokeMultiPressRate));
+    this->ui->cbKeystrokeFix->setChecked(hcfg->SystemConfig_KeystrokeMultiPressFix);
+
 #ifdef HUGGLE_NOAUDIO
     this->ui->ln_QueueSoundMinScore->setEnabled(false);
     this->ui->cbPlayOnNewItem->setEnabled(false);

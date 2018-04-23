@@ -1622,6 +1622,8 @@ void MainWindow::on_actionNext_triggered()
 
 void MainWindow::on_actionNext_2_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_NEXT))
+        return;
     if (!this->Queue1->Next())
         this->ShowEmptyQueuePage();
 }
@@ -1633,6 +1635,8 @@ void MainWindow::on_actionWarn_triggered()
 
 void MainWindow::on_actionRevert_currently_displayed_edit_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_REVERT))
+        return;
     if (this->EditingChecks() && this->CheckRevertable())
         this->Revert();
 }
@@ -1655,6 +1659,8 @@ void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_trig
 
 void MainWindow::on_actionRevert_and_warn_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_REVERT_AND_WARN))
+        return;
     if (!this->EditingChecks() || !this->CheckRevertable())
         return;
     Collectable_SmartPtr<RevertQuery> result = this->Revert("");
@@ -2221,6 +2227,25 @@ QString MainWindow::ProjectURL()
     return Configuration::GetProjectWikiURL(this->CurrentEdit->GetSite());
 }
 
+bool MainWindow::keystrokeCheck(int id)
+{
+    if (!hcfg->SystemConfig_KeystrokeMultiPressFix)
+        return true;
+    if (!this->lKeyPressTime.contains(id))
+    {
+        this->lKeyPressTime.insert(id, QDateTime::currentDateTime());
+        return true;
+    }
+    int span = this->lKeyPressTime[id].msecsTo(QDateTime::currentDateTime());
+    if (span < hcfg->SystemConfig_KeystrokeMultiPressRate)
+    {
+        HUGGLE_DEBUG1("Keystroke bug on " + QString::number(id) + " span " + QString::number(span));
+        return false;
+    }
+    this->lKeyPressTime[id] = QDateTime::currentDateTime();
+    return true;
+}
+
 bool MainWindow::CheckExit()
 {
     if (this->ShuttingDown)
@@ -2498,6 +2523,8 @@ void MainWindow::on_actionTalk_page_triggered()
 
 void MainWindow::on_actionFlag_as_a_good_edit_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_GOOD))
+        return;
     this->FlagGood();
 }
 
@@ -2728,6 +2755,8 @@ void Huggle::MainWindow::on_actionEdit_info_triggered()
 
 void Huggle::MainWindow::on_actionFlag_as_suspicious_edit_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_SUSPICIOUS_EDIT))
+        return;
     this->SuspiciousEdit();
 }
 

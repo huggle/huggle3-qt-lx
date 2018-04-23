@@ -399,6 +399,7 @@ namespace Huggle
             void ProcessReverts();
             QString WikiScriptURL();
             QString ProjectURL();
+            bool keystrokeCheck(int id);
             WikiSite *PreviousSite = nullptr;
             QList<QAction*> RevertAndWarnItems;
             QList<QAction*> RevertItems;
@@ -427,6 +428,9 @@ namespace Huggle
             QHash<WikiSite*, QAction*> lXml;
             QHash<WikiSite*, QAction*> lIRC;
             QHash<WikiSite*, QAction*> lWikis;
+            //! This is used to store last time of keypress for shortcuts, used as workaround for Qt bugs resulting
+            //! in multiple key strokes
+            QHash<int, QDateTime> lKeyPressTime;
             //! List of all edits that are kept in history, so that we can track them and delete them
             QList<WikiEdit*> Historical;
             Collectable_SmartPtr<ApiQuery> RestoreQuery;

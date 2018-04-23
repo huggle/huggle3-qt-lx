@@ -349,6 +349,8 @@ void Configuration::LoadSystemConfig(QString fn)
             hcfg->SystemConfig_ProxyHost = option.attribute("text");
             continue;
         }
+        RCN(KeystrokeMultiPressRate);
+        RCB(KeystrokeMultiPressFix)
         RCU(ProxyPort);
         RC(ProxyPass);
         RCB(PlaySoundOnQueue);
@@ -425,6 +427,8 @@ void Configuration::SaveSystemConfig()
     INSERT_CONFIG_N(PlaySoundQueueScore);
     INSERT_CONFIG_B(PlaySoundOnQueue);
     INSERT_CONFIG_B(PlaySoundOnIRCUserMsg);
+    INSERT_CONFIG_N(KeystrokeMultiPressRate);
+    INSERT_CONFIG_B(KeystrokeMultiPressFix);
     InsertConfig("BotLogin", hcfg->SystemConfig_BotLogin, writer);
     InsertConfig("UserName", hcfg->SystemConfig_Username, writer);
     InsertConfig("IndexOfLastWiki", QString::number(hcfg->IndexOfLastWiki), writer);
