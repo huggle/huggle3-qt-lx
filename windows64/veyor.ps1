@@ -202,8 +202,8 @@ local_wget "http://petr.insw.cz/devel/ssl/ssleay32.dll" "ssleay32.dll"
 local_wget "http://petr.insw.cz/devel/ssl/libeay32.dll" "libeay32.dll"
 
 # get the qt
-cp ..\huggle\Resources\huggle.ico huggle.ico
-cp ..\huggle\Resources\huggle.ico release
+cp ..\src\huggle_res\Resources\huggle.ico huggle.ico
+cp ..\src\huggle_res\Resources\huggle.ico release
 cp ssleay32.dll release
 cp libeay32.dll release
 
