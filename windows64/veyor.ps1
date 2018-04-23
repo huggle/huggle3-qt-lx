@@ -148,7 +148,7 @@ echo "OK"
 
 echo "Configuring the project..."
 
-cd ..\huggle
+cd ..\src
 if ($git_enabled -and (Test-Path("..\.git")))
 {
     $rev_list = git rev-list HEAD --count | Out-String
