@@ -210,13 +210,7 @@ cp libeay32.dll release
 # Set the environment variable needed by windeployqt, todo: check if it's already set
 $env:VCINSTALLDIR = $vcinstall_path
 
-#Invoke-Expression "$qt5_path\bin\windeployqt.exe release\huggle.exe"
 Invoke-Expression "$qt5_path\bin\windeployqt.exe release\huggle_ui.dll"
 
 # Weird hack needed because qtdeploy has bugs
 cp "$qt5_path\bin\Qt5Multimedia.dll" release\
-cp "$qt5_path\bin\Qt5Xml.dll" release\
-cp "$qt5_path\bin\Qt5WebEngineCore.dll" release\
-cp "$qt5_path\bin\Qt5WebEngineWidgets.dll" release\
-cp "$qt5_path\bin\Qt5Network.dll" release\
-cp "$qt5_path\bin\Qt5Quick.dll" release\
