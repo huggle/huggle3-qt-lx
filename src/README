@@ -1,0 +1,38 @@
+Huggle source code layout
+================================
+
+Huggle since version 3.4.0 is divided to separate parts for greater modularity,
+these parts together with other libraries are located in this folder.
+
+* 3rd:         3rd party libraries provided by projects unaffiliated to Huggle
+* build:       various tools and scripts
+* huggle_core: Huggle core - all the Huggle internals, mostly independent on UI
+* huggle_ui:   Qt UI for Desktop Huggle version
+* huggle_l10n: Localization files
+* huggle_res:  Non-critical resources (sounds, icons, etc)
+* huggle:      Simple executable used to launch Huggle
+
+The reasons for this layout are availability of Huggle's core to other projects,
+like mediawiki bots, or different Huggle UI's (like mobile phone UI).
+
+It's also necessary in order to make it easily and efficiently possible for
+binary extensions to link against the huggle's core and interface.
+
+
+Graphical overview:
+
++---------------------+
+|Main binary          |
+|(huggle.exe / huggle)|
++----------+----------+
+           |
+           |
+     +-----v---+              +--------+
+     |Huggle UI+-------------->3RD libs|
+     +-----+---+              +-----^--+
+           |                        |
+           |                        |
+     +-----v-----+                  |
+     |Huggle core+------------------+
+     +-----------+
+

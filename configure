@@ -1,0 +1,239 @@
+#!/usr/bin/env bash
+#  Copyright (c) 2013 - 2014, Petr Bena
+#  All rights reserved.
+
+#  Redistribution and use in source and binary forms, with
+#  or without modification, are permitted provided that
+#  the following conditions are met:
+
+#  1. Redistributions of source code must retain
+#     the above copyright notice, this list 
+#     of conditions and the following disclaimer.
+
+#  2. Redistributions in binary form must reproduce the above copyright
+#     notice, this list of conditions and the following disclaimer in
+#     the documentation and/or other materials provided with the distribution.
+
+#  3. Neither the name of Huggle nor the names of its contributors may be used
+#     to endorse or promote products derived from this software without specific
+#     prior written permission.
+
+#  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS
+#  OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+#  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+#  THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+#  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+#  OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+#  HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+#  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+#  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+SKIPCHECKS=0
+modules=0
+RED=$(tput setaf 1)
+WARN=$(tput setaf 3)
+GREEN=$(tput setaf 2)
+NORMAL=$(tput sgr0)
+CMAKE_ARGS=''
+_BUILD=0
+_Q=0
+QTPATH=''
+USEDEBUG=0
+BUILD='release'
+BUILD_CHANGED=0
+if [ x"$*" != x ];then
+    echo "Options used: $*"
+fi
+# first we parse all arguments we got
+for var in $@
+do
+    if [ "$var" = "--help" ] || [ "$var" = "-h" ];then
+        echo "Configure script for huggle, parameters:"
+        echo "=========================================="
+        echo " --debug: build a debuggable huggle"
+        echo " --disable-dependency-tracking: skip all package checks"
+        echo " --extension: will build all extensions as well"
+        echo " --qtpath: path to Qt (for example C:\\Qt\\5.4\\mingw\\"
+        echo " --folder <folder>: change the default build folder"
+        echo " --no-audio: don't build huggle with audio engine"
+        echo " --no-colors: suppress colors"
+        echo " --tests: unit tests"
+        echo " --web-engine: use web engine instead of web kit"
+        echo " --version: show version"
+        echo
+        echo "Copyright (c) 2013 - 2018 Petr Bena and Huggle team. This script is licensed under the BSD license."
+        exit 0
+    fi
+    if [ "$var" = "--no-audio" ];then
+        CMAKE_ARGS="$CMAKE_ARGS -DAUDIO=false"
+        continue
+    fi
+    if [ "$var" = "--extension" ];then
+        modules=1
+        continue
+    fi
+    if [ "$_BUILD" = "1" ];then
+	    BUILD="$var"
+	    BUILD_CHANGED=1
+        _BUILD=0
+        continue
+    fi
+    if [ "$_Q" = "1" ];then
+        _Q=0
+        QTPATH=$var
+        continue
+    fi
+    if [ "$var" = "--qtpath" ];then
+        _Q=1
+        continue
+    fi
+    if [ "$var" = "--no-colors" ];then
+        RED=""
+        WARN=""
+        GREEN=""
+        NORMAL=""
+    fi
+    if [ "$var" = "--folder" ];then
+        _BUILD=1
+        continue
+    fi
+    if [ "$var" = "--version" ];then
+        echo "Huggle configure v 1.2"
+        exit 0
+    fi
+    if [ "$var" = "--web-engine" ];then
+        CMAKE_ARGS="$CMAKE_ARGS -DWEB_ENGINE=true"
+        continue
+    fi
+    if [ "$var" = "--disable-dependency-tracking" ];then
+        SKIPCHECKS=1
+        continue
+    fi
+    if [ "$var" = "--debug" ];then
+        USEDEBUG=1
+        continue
+    fi
+    if [ "$var" = "--tests" ];then
+        CMAKE_ARGS="$CMAKE_ARGS -DHUGGLE_TEST=true"
+        continue
+    fi
+done
+
+ok()
+{
+    printf '%s%s%s\n' "$GREEN" "[OK]" "$NORMAL"
+}
+
+fail()
+{
+    printf '%s%s%s\n' "$RED" "[FAIL]" "$NORMAL"
+}
+
+warn()
+{
+    printf '%s%s%s\n' "$WARN" "WARNING!" "$NORMAL"
+}
+
+text()
+{
+    MSG="$1"
+    let COL=$(tput cols)-20-${#MSG}+${#GREEN}+${#NORMAL}
+    printf '%s%*s' "$MSG" $COL
+}
+
+checkhf()
+{
+    text "Check for headers of $1..."
+    if [ "$SKIPCHECKS" -eq 1 ];then
+        echo "SKIP"
+        return 0
+    fi
+    if [ -f "$2" ];then
+        ok
+        return 0
+    else
+        fail
+        echo "Unable to find headers for $1 ($2)"
+        echo "try installing dev files for $1"
+        exit 1
+    fi
+} 
+
+if [ "$USEDEBUG" -eq 1 ];then
+    CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_BUILD_TYPE=Debug"
+    if [ "$BUILD_CHANGED" = "0" ];then
+        BUILD='debug'
+    fi
+else
+    CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_BUILD_TYPE=Release"
+fi
+
+echo "Checking all required packages..."
+text "Checking for cmake... "
+
+if [ "`which cmake`" = "" ];then
+	fail
+	echo "cmake can't be found"
+	exit 1
+fi
+
+ok
+
+if [ -d ".git" ];then
+    echo "This is a git repository, updating modules..."
+    git submodule init
+    git submodule update
+fi
+
+if [ ! -d "src/3rd/libirc/libirc" ];then
+    echo "The libirc directories are missing! Fixing by using a backup file..."
+    cd "src/3rd" || exit 1
+    unzip libirc.zip || exit 1
+    cd - || exit 1
+fi
+
+if [ ! -d "src/3rd/yaml-cpp/src" ];then
+    echo "The yaml-cpp directory is missing! Fixing by using a backup file..."
+    cd "src/3rd" || exit 1
+    unzip yaml-cpp.zip || exit 1
+    cd - || exit 1
+fi
+
+text "Executing update.sh... "
+cd src/huggle_core || exit 1
+
+if [ ! -f update.sh ];then
+    fail
+    echo "update.sh is missing!"
+    exit 1
+fi
+
+sh update.sh || exit 1;ok
+text "Checking if version.txt exist... "
+
+if [ ! -f version.txt ];then
+        fail
+	echo "Error! unable to create a version file!"
+	exit 1
+fi
+ok
+cd ../..
+if [ x"$QTPATH" != "x" ];then
+    CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_PREFIX_PATH=$QTPATH"
+fi
+if [ $modules -gt 0 ];then
+    CMAKE_ARGS="$CMAKE_ARGS -DHUGGLE_EXT=TRUE"
+fi
+if [ -d "$BUILD" ];then
+  echo $WARN"WARNING: build directory $BUILD already exist, make sure it's clean"$NORMAL
+else
+  mkdir "$BUILD" || exit 1
+fi
+cd "$BUILD" || exit 1
+echo "$*" > configure_args
+cmake ../src $CMAKE_ARGS -Wno-dev || exit 1
+echo "Everything is ready, you can build huggle by entering "$BUILD" and typing"
+echo "make"
+
+# this isn't normally needed but ensure we return 0 here
+exit 0

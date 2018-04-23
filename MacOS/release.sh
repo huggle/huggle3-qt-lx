@@ -26,16 +26,16 @@ else
 fi
 echo "Checking sanity of system..."
 of=`pwd`
-if [ -d huggle_release ];then
+if [ -d release ];then
     echo "Release folder is already in folder, you need to delete it"
     exit 1
 fi
-cd ../huggle || exit 1
+cd .. || exit 1
 ./configure ${EXTRA_FLAGS} --qtpath "$QTDIR" --extension || exit 1
-cd huggle_release || exit 1
+cd release || exit 1
 make || exit 1
 cd "$of"
-cp -r ../huggle/huggle_release "$of/huggle_release" || exit 1
+cp -r ../release "$of/release" || exit 1
 mkdir package || exit 1
 mkdir package/huggle.app
 cd package/huggle.app || exit 1
@@ -49,13 +49,13 @@ cd "$of"
 
 echo "Copying the binaries to package"
 cp info.plist package/huggle.app/Contents || exit 1
-cp huggle_release/*.dylib package/huggle.app/Contents/MacOS || exit 1
-cp huggle_release/huggle package/huggle.app/Contents/MacOS || exit 1
+cp release/*.dylib package/huggle.app/Contents/MacOS || exit 1
+cp release/huggle package/huggle.app/Contents/MacOS || exit 1
 for extension in `ls huggle_release/extension_list`
 do
-    cp huggle_release/extension_list/$extension/*.dylib package/huggle.app/Contents/PlugIns/ || exit 1
+    cp release/extension_list/$extension/*.dylib package/huggle.app/Contents/PlugIns/ || exit 1
 done
-cp ../huggle/Resources/huggle.icns package/huggle.app/Contents/Resources || exit 1
+cp ../src/huggle_res/Resources/huggle.icns package/huggle.app/Contents/Resources || exit 1
 #cp -R $QTDIR/lib/QtWebKitWidgets.framework/ package/huggle.app/Contents/Frameworks || exit 1
 #cp -R $QTDIR/lib/QtWebKit.framework/ package/huggle.app/Contents/Frameworks || exit 1
 #cp -R $QTDIR/lib/QtNetwork.framework/ package/huggle.app/Contents/Frameworks || exit 1

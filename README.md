@@ -33,7 +33,7 @@ Windows
 Linux
 -------------
 * checkout this repository
-* cd REPO/huggle, execute
+* enter the repository folder, then execute:
 
 ```sh
 # IMPORTANT

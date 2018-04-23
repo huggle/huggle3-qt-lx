@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="/huggle/text">
+    <file>Resources/Python/definitions.py</file>
+  </qresource>
+</RCC>
