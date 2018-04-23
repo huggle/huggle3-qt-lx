@@ -102,5 +102,5 @@ if (HUGGLE_TEST)
 endif()
 
 include(${CMAKE_SOURCE_DIR}/CPackInfo)
-install(FILES ${CMAKE_SOURCE_DIR}/huggle_core/Resources/huggle3_newlogo.png DESTINATION share/huggle)
+install(FILES ${CMAKE_SOURCE_DIR}/huggle_res/Resources/huggle3_newlogo.png DESTINATION share/huggle)
 include(CPack)
