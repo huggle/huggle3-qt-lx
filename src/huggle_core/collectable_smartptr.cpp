@@ -109,25 +109,25 @@ void Collectable_SmartPtr<T>::FreeAcqRsrPtr()
 template <class H>
 void Collectable_SmartPtr<H>::Delete()
 {
-	this->FreeAcqRsrPtr();
+    this->FreeAcqRsrPtr();
 }
 
 template<class T>
 void Collectable_SmartPtr<T>::operator=(T * _ptr)
 {
-	this->SetPtr(_ptr);
+    this->SetPtr(_ptr);
 }
 
 template<class T>
 void Collectable_SmartPtr<T>::operator=(const Collectable_SmartPtr & smart_ptr)
 {
-	this->SetPtr(smart_ptr.GetPtr());
+    this->SetPtr(smart_ptr.GetPtr());
 }
 
 template<class T>
 void Collectable_SmartPtr<T>::operator=(std::nullptr_t & null)
 {
-	this->SetPtr(null);
+    this->SetPtr(null);
 }
 
 namespace Huggle

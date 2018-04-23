@@ -15,8 +15,8 @@ using namespace Huggle;
 int Huggle_l10n::Init()
 {
 #ifdef HUGGLE_WIN
-	extern int qInitResources_text();
-	return qInitResources_text();
+    extern int qInitResources_text();
+    return qInitResources_text();
 #else
     return -1;
 #endif
