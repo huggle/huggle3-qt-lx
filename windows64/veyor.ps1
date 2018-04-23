@@ -174,7 +174,7 @@ cd build
 
 # Hack to fix crappy new cmake
 $ErrorActionPreference = "Continue"
-cmake ..\..\src\ -G "$cmake_generator" -DWEB_ENGINE=true -DPYTHON_BUILD=false -DCMAKE_PREFIX_PATH:STRING=$qt5_path -Wno-dev=true -DHUGGLE_EXT=true -DQT5_BUILD=true $cmake_param
+cmake ..\..\src\ -G "$cmake_generator" -DWEB_ENGINE=true -DPYTHON_BUILD=false -DCMAKE_PREFIX_PATH:STRING=$qt5_path -Wno-dev -DHUGGLE_EXT=true $cmake_param
 $ErrorActionPreference = "Stop"
 
 if ($mingw)
@@ -190,20 +190,20 @@ mkdir release | Out-Null
 mkdir release\platforms | Out-Null
 mkdir release\extensions | Out-Null
 cp .\build\Release\*.dll release
+cp .\build\huggle_core\Release\*.dll release
+cp .\build\huggle_ui\Release\*.dll release
+cp .\build\huggle_res\Release\*.dll release
+cp .\build\huggle_l10n\Release\*.dll release
 cp .\build\Release\extensions\*.dll release\extensions
-cp .\build\Release\*.lib release
-cp .\build\Release\huggle.exe release
-if ($python)
-{
-    cp .\build\Release\py_hug.exe release
-}
+cp .\build\huggle\Release\huggle.exe release
+
 # get openssl packs
 local_wget "http://petr.insw.cz/devel/ssl/ssleay32.dll" "ssleay32.dll"
 local_wget "http://petr.insw.cz/devel/ssl/libeay32.dll" "libeay32.dll"
 
 # get the qt
-cp ..\huggle\Resources\huggle.ico huggle.ico
-cp ..\huggle\Resources\huggle.ico release
+cp ..\src\huggle_res\Resources\huggle.ico huggle.ico
+cp ..\src\huggle_res\Resources\huggle.ico release
 cp ssleay32.dll release
 cp libeay32.dll release
 
