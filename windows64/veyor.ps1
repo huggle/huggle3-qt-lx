@@ -212,3 +212,7 @@ $env:VCINSTALLDIR = $vcinstall_path
 
 Invoke-Expression "$qt5_path\bin\windeployqt.exe release\huggle.exe"
 
+# Weird hack needed because qtdeploy has bugs
+cp "$qt5_path\bin\Qt5Xml.dll" release\
+cp "$qt5_path\bin\Qt5WebEngineWidgets.dll" release\
+cp "$qt5_path\bin\Qt5Network.dll" release\
