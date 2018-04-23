@@ -36,9 +36,19 @@ namespace Huggle
     class iExtension;
 
     /*!
-     * \brief Miscelanceous system functions
+     * \brief Miscelanceous system functions and application control class
      *
-     * Making any instance of this class is nonsense don't do it :D
+     * This class exists mostly for historical reasons, it's typically instantiated during launch of application and destroyed
+     * during it's shutdown.
+     *
+     * It controls various components of Huggle internals:
+     * * Garbage collector
+     * * Localization subsystem
+     * * Exception handling
+     * * Configuration load / write
+     * * Extension control
+     *
+     * It should be globally accessible through instance Core::HuggleCore
      *
      * You may figure out that some pointers here are duplicates of static pointers that exist somewhere else but point
      * to exactly same memory area as these, that is made so that extension which explicitly request memory area for

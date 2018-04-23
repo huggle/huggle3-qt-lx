@@ -58,7 +58,7 @@ namespace Huggle
         Default
     };
 
-    //! This class can be used to execute any kind of api query on any wiki
+    //! This class can be used to execute any kind of api query on any MW wiki
     class HUGGLE_EX_CORE ApiQuery : public QObject, public Query, public MediaWikiObject
     {
         enum Token

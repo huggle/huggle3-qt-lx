@@ -59,7 +59,7 @@ namespace Huggle
         QueryWebServer
     };
 
-    //! Query base class for all http queries executed by huggle
+    //! Query base class for all server queries (http requests, mediawiki API queries etc) executed by huggle
 
     //! Every request to website is processed as a query, this is a base object that all
     //! other queries are derived from. This is an abstract class meaning that you can't create instances of it.
