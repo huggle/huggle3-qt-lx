@@ -12,16 +12,14 @@ fi
 QTVERSION=`${QTDIR}/bin/qtpaths --qt-version`
 version_array=( ${QTVERSION//./ } )
 EXTRA_FLAGS=""
-if [ ${version_array[0]} -eq 4 ]; then
-    EXTRA_FLAGS="--qt4"
-elif [ ${version_array[0]} -eq 5 ]; then
-    EXTRA_FLAGS="--qt5"
+if [ ${version_array[0]} -eq 5 ]; then
+    EXTRA_FLAGS=""
     # Qt >= 5.4 requires this special flag
     if [ ${version_array[1]} -ge 4 ]; then
         EXTRA_FLAGS="${EXTRA_FLAGS} --web-engine"
     fi
 else
-    echo "Unsupported Qt version ${QTVERSION}, must be 4.x or 5.x"
+    echo "Unsupported Qt version ${QTVERSION}, must be 5.x"
     exit 1
 fi
 echo "Checking sanity of system..."
@@ -49,11 +47,11 @@ cd "$of"
 
 echo "Copying the binaries to package"
 cp info.plist package/huggle.app/Contents || exit 1
-cp release/*.dylib package/huggle.app/Contents/MacOS || exit 1
-cp release/huggle package/huggle.app/Contents/MacOS || exit 1
-for extension in `ls huggle_release/extension_list`
+cp release/*/*.dylib package/huggle.app/Contents/MacOS || exit 1
+cp release/huggle/huggle package/huggle.app/Contents/MacOS || exit 1
+for extension in `ls release/extensions`
 do
-    cp release/extension_list/$extension/*.dylib package/huggle.app/Contents/PlugIns/ || exit 1
+    cp release/extensions/$extension/*.dylib package/huggle.app/Contents/PlugIns/ || exit 1
 done
 cp ../src/huggle_res/Resources/huggle.icns package/huggle.app/Contents/Resources || exit 1
 #cp -R $QTDIR/lib/QtWebKitWidgets.framework/ package/huggle.app/Contents/Frameworks || exit 1
