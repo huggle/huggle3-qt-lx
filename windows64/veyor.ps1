@@ -190,13 +190,12 @@ mkdir release | Out-Null
 mkdir release\platforms | Out-Null
 mkdir release\extensions | Out-Null
 cp .\build\Release\*.dll release
-cp .\build\Release\huggle_core\*.dll release
-cp .\build\Release\huggle_ui\*.dll release
-cp .\build\Release\huggle_res\*.dll release
-cp .\build\Release\huggle_l10n\*.dll release
+cp .\build\huggle_core\Release\*.dll release
+cp .\build\huggle_ui\Release\*.dll release
+cp .\build\huggle_res\Release\*.dll release
+cp .\build\huggle_l10n\Release\*.dll release
 cp .\build\Release\extensions\*.dll release\extensions
-cp .\build\Release\*.lib release
-cp .\build\Release\huggle\huggle.exe release
+cp .\build\huggle\Release\huggle.exe release
 
 # get openssl packs
 local_wget "http://petr.insw.cz/devel/ssl/ssleay32.dll" "ssleay32.dll"
