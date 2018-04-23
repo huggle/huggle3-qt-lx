@@ -57,6 +57,8 @@ add_subdirectory(3rd/libirc/libircclient libircclient)
 
 # YAML
 option(YAML_CPP_BUILD_TOOLS "Disable tests" OFF)
+option(YAML_CPP_BUILD_TESTS "Enable testing" OFF)
+option(YAML_CPP_BUILD_TOOLS "Enable parse tools" OFF)
 option(BUILD_SHARED_LIBS "Build as shared" ON)
 include_directories("3rd/yaml-cpp/include/")
 add_subdirectory(3rd/yaml-cpp)
