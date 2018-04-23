@@ -14,6 +14,10 @@ using namespace Huggle;
 
 int Huggle_Res::Init()
 {
+#ifdef HUGGLE_WIN
 	extern int qInitResources_pictures();
 	return qInitResources_pictures();
+#else
+    return -1;
+#endif;
 }
