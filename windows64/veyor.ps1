@@ -190,13 +190,14 @@ mkdir release | Out-Null
 mkdir release\platforms | Out-Null
 mkdir release\extensions | Out-Null
 cp .\build\Release\*.dll release
+cp .\build\Release\huggle_core\*.dll release
+cp .\build\Release\huggle_ui\*.dll release
+cp .\build\Release\huggle_res\*.dll release
+cp .\build\Release\huggle_l10n\*.dll release
 cp .\build\Release\extensions\*.dll release\extensions
 cp .\build\Release\*.lib release
-cp .\build\Release\huggle.exe release
-if ($python)
-{
-    cp .\build\Release\py_hug.exe release
-}
+cp .\build\Release\huggle\huggle.exe release
+
 # get openssl packs
 local_wget "http://petr.insw.cz/devel/ssl/ssleay32.dll" "ssleay32.dll"
 local_wget "http://petr.insw.cz/devel/ssl/libeay32.dll" "libeay32.dll"
