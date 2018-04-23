@@ -1607,7 +1607,9 @@ void MainWindow::OnTimerTick0()
             }
         }
         this->wlt->stop();
+        this->tStatusBarRefreshTimer->stop();
         this->GeneralTimer->stop();
+        this->tCheck->stop();
         Core::HuggleCore->Shutdown();
     }
 }
