@@ -814,7 +814,7 @@
   <string name="page-tag-error">无法标记页面，错误是:$1</string>
   <string name="page-unknown">未知页面</string>
   <string name="summary-edit-range">显示从修订ID $1至$2之间的差异</string>
-  <string name="speedy-csd-invalid">无效速删标记，没有信息或维基标记可以使用</string>
+  <string name="speedy-csd-invalid">无效速删标记，没有消息和wiki标记可以使用</string>
   <string name="speedy-csd-existing">页面上已经有一个速删标记了。</string>
   <string name="namespace">名字空间</string>
   <string name="block-alreadyblocked">用户已被封禁</string>

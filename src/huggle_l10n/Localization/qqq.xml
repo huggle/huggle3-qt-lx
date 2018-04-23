@@ -422,7 +422,7 @@
   <string name="preferences-extension-enabled">Used as a message box content.</string>
   <string name="preferences-extension-enabled-restart">Used as a message box content.</string>
   <string name="preferences-watchlist-nochange">{{Identical|Do nothing}}</string>
-  <string name="speedy-csd-invalid" fuzzy="true">CSD es el nombre que a las plantillas de borrado rápido le dan en la Wikipedia en inglés. Traducir por plantilla de borrado rápido o criterio de borrado rápido.</string>
+  <string name="speedy-csd-invalid">CSD is the name that the quick erase templates give you in the English Wikipedia. Translate by quick erase template or fast erase criteria.</string>
   <string name="namespace">{{Identical|Namespace}}</string>
   <string name="relogin-fail">Used in error message box. Parameters:\n* $1 - reason of failure</string>
   <string name="projects">{{Identical|Project}}</string>
