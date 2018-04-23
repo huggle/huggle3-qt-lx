@@ -19,5 +19,5 @@ int Huggle_Res::Init()
 	return qInitResources_pictures();
 #else
     return -1;
-#endif;
+#endif
 }
