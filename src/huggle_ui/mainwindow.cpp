@@ -1643,11 +1643,15 @@ void MainWindow::on_actionRevert_currently_displayed_edit_triggered()
 
 void MainWindow::on_actionWarn_the_user_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_WARN))
+        return;
     this->TriggerWarn();
 }
 
 void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_REVW_STAY))
+        return;
     if (!this->EditingChecks() || !this->CheckRevertable())
         return;
     Collectable_SmartPtr<RevertQuery> result = this->Revert("");
@@ -1688,6 +1692,8 @@ void MainWindow::on_actionShow_ignore_list_of_current_wiki_triggered()
 
 void MainWindow::on_actionForward_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_FORWARD))
+        return;
     if (this->CurrentEdit == nullptr || this->CurrentEdit->Next == nullptr)
         return;
     this->ProcessEdit(this->CurrentEdit->Next, true);
@@ -1695,6 +1701,8 @@ void MainWindow::on_actionForward_triggered()
 
 void MainWindow::on_actionBack_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_BACK))
+        return;
     if (this->CurrentEdit == nullptr || this->CurrentEdit->Previous == nullptr)
         return;
     this->ProcessEdit(this->CurrentEdit->Previous, true);
@@ -1710,6 +1718,8 @@ void MainWindow::CustomWelcome()
 
 void MainWindow::CustomRevert()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_REVERT))
+        return;
     if (!this->EditingChecks() || !this->CheckRevertable())
         return;
     QAction *revert = (QAction*) QObject::sender();
@@ -1723,6 +1733,8 @@ void MainWindow::CustomRevert()
 
 void MainWindow::CustomRevertWarn()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_REVERT_AND_WARN))
+        return;
     if (!this->EditingChecks() || !this->CheckRevertable())
         return;
     QAction *revert = (QAction*) QObject::sender();
@@ -1744,6 +1756,8 @@ void MainWindow::CustomRevertWarn()
 
 void MainWindow::CustomWarn()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_WARN))
+        return;
     if (!this->EditingChecks())
         return;
     ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
@@ -3191,11 +3205,15 @@ void MainWindow::on_tabWidget_currentChanged(int index)
 
 void MainWindow::on_actionClose_current_tab_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_CLOSE_TAB))
+        return;
     this->CloseTab(this->ui->tabWidget->currentIndex());
 }
 
 void MainWindow::on_actionOpen_new_tab_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_CREATE_NEW_TAB))
+        return;
     this->CreateBrowserTab("New tab", this->ui->tabWidget->count() - 1);
     this->CurrentEdit = nullptr;
     this->LockPage();
