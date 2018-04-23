@@ -1309,6 +1309,12 @@ void Login::Finish()
     this->hide();
     MainWindow::HuggleMain = new MainWindow();
     MainWindow::HuggleMain->show();
+    if (this->Updater)
+    {
+        this->Updater->close();
+        delete this->Updater;
+        this->Updater = nullptr;
+    }
     if (this->loadingForm != nullptr)
     {
         this->loadingForm->close();
