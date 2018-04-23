@@ -96,8 +96,8 @@ int main(int argc, char *argv[])
 
         // Load the external resource files, needed only on windows, because of shitties dynamic linker ever
         #ifdef HUGGLE_WIN
-            Huggle_l10n::Init();
-            Huggle_Res::Init();
+            Huggle::Huggle_l10n::Init();
+            Huggle::Huggle_Res::Init();
         #endif
 
         // load the core
