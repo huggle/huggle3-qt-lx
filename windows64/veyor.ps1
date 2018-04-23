@@ -160,6 +160,10 @@ if ($git_enabled -and (Test-Path("..\.git")))
 {
     echo "build: non-git build (windows)" > version.txt
 }
+
+# Prepare defs
+cd huggle_core
+
 if (!(Test-Path("definitions.hpp")))
 {
     cp "definitions_prod.hpp" "definitions.hpp"
