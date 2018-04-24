@@ -406,7 +406,7 @@ namespace Huggle
             QString     SystemConfig_RememberedPassword;
             bool        SystemConfig_KeystrokeMultiPressFix = true;
             //! How many ms between keystrokes
-            int         SystemConfig_KeystrokeMultiPressRate = 100;
+            int         SystemConfig_KeystrokeMultiPressRate = 60;
 
             //////////////////////////////////////////////
             // IRC
