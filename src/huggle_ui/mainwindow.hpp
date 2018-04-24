@@ -43,7 +43,7 @@ namespace Ui
 namespace Huggle
 {
     class AboutForm;
-    class BlockUser;
+    class BlockUserForm;
     class DeleteForm;
     class EditBar;
     class HuggleLog;
@@ -108,6 +108,7 @@ namespace Huggle
             ~MainWindow();
             //! Returns true if current page can be edited
             bool BrowserPageIsEditable();
+            void ChangeProvider(WikiSite *site, HuggleFeed *provider);
             //! Check if huggle is shutting down or not, in case it is, message box is shown as well
             //! this function should be called before every action user can trigger
             bool CheckExit();
@@ -149,7 +150,7 @@ namespace Huggle
             void Localize();
             //! Toggle whether interface buttons that edit wiki or displayed page are enabled or not
             void EnableEditing(bool enabled);
-            void _BlockUser();
+            void BlockUser();
             void DisplayNext(Query *q = nullptr);
             void ShowEmptyQueuePage();
             void DeletePage();
@@ -161,6 +162,8 @@ namespace Huggle
              */
             void DisplayRevid(revid_ht revid, WikiSite *site);
             void PauseQueue();
+            //! Recreate interface, should be called everytime you do anything with main form
+            void Render(bool KeepHistory = false, bool KeepUser = false);
             void ResumeQueue();
             //! Request a page deletion csd or afd and so on
             void RequestPD(WikiEdit *edit = nullptr);
@@ -173,6 +176,11 @@ namespace Huggle
             void RefreshPage();
             //! Make currently displayed page unchangeable (useful when you render non-diff pages where rollback wouldn't work)
             void LockPage();
+            void UpdateStatusBarData();
+            //! Perform all common tests that are needed before a page can be edited and return false if they fail
+            bool EditingChecks();
+            void DecreaseBS();
+            void IncreaseBS();
             //! List of edits that are being saved
             QList<WikiEdit*> PendingEdits;
             //! Pointer to syslog
@@ -218,7 +226,7 @@ namespace Huggle
             //! If system is shutting down this is displaying which part of shutdown is currently being executed
             ShutdownOp Shutdown;
             //! Pointer to a form to block user
-            BlockUser *fBlockForm = nullptr;
+            BlockUserForm *fBlockForm = nullptr;
             //! Pointer to a form to delete a page
             DeleteForm *fDeleteForm = nullptr;
             //! Pointer to a form to protect a page
@@ -368,34 +376,25 @@ namespace Huggle
             void OnQuestion(QString title, QString text, bool *y);
             void OnError(QString title, QString text);
             void on_actionThrow_triggered();
-
         private:
-            void CloseTab(int tab);
+            void closeTab(int tab);
             void DisplayWelcomeMessage();
-            void FinishRestore();
-            void CreateBrowserTab(QString name, int index);
-            void Title(QString name);
+            void finishRestore();
+            void createBrowserTab(QString name, int index);
+            void changeCurrentBrowserTabTitle(QString name);
             //! When any button to warn current user is pressed it call this function
-            void TriggerWarn();
+            void triggerWarn();
             //! When any button to welcome current user is pressed it call this function
-            void TriggerWelcome();
+            void triggerWelcome();
             //! Check if we can revert this edit
-            bool PreflightCheck(WikiEdit *_e);
+            bool preflightCheck(WikiEdit *_e);
             //! Welcome user
-            void Welcome(QString message);
-            void ChangeProvider(WikiSite *site, HuggleFeed *provider);
-            void ReloadInterface();
-            //! Recreate interface, should be called everytime you do anything with main form
-            void Render(bool KeepHistory = false, bool KeepUser = false);
+            void welcomeCurrentUser(QString message);
+            void reloadInterface();
             void RevertAgf(bool only);
             //! This function is called by main thread and is used to remove edits that were already reverted
             void TruncateReverts();
             void closeEvent(QCloseEvent *event);
-            void UpdateStatusBarData();
-            //! Perform all common tests that are needed before a page can be edited and return false if they fail
-            bool EditingChecks();
-            void DecreaseBS();
-            void IncreaseBS();
             void ReloadSc();
             void ReloadShort(QString id);
             void ProcessReverts();
