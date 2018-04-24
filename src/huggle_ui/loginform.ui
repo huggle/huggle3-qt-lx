@@ -32,7 +32,7 @@
    <string>Huggle</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="pictures.qrc">
+   <iconset resource="../huggle_res/pictures.qrc">
     <normaloff>:/huggle/pictures/Resources/huggle3_small.ico</normaloff>:/huggle/pictures/Resources/huggle3_small.ico</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -66,7 +66,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/huggle3_logo.png</pixmap>
+      <pixmap resource="../huggle_res/pictures.qrc">:/huggle/pictures/Resources/huggle3_logo.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>false</bool>
@@ -122,15 +122,18 @@
        <item>
         <layout class="QGridLayout" name="gridLayout_3">
          <property name="leftMargin">
-          <number>8</number>
+          <number>2</number>
          </property>
          <property name="topMargin">
           <number>2</number>
          </property>
          <property name="rightMargin">
-          <number>8</number>
+          <number>2</number>
          </property>
          <property name="bottomMargin">
+          <number>2</number>
+         </property>
+         <property name="spacing">
           <number>2</number>
          </property>
          <item row="0" column="0">
@@ -184,19 +187,19 @@
        <item>
         <layout class="QGridLayout" name="gridLayout">
          <property name="leftMargin">
-          <number>8</number>
+          <number>2</number>
          </property>
          <property name="topMargin">
           <number>2</number>
          </property>
          <property name="rightMargin">
-          <number>8</number>
+          <number>2</number>
          </property>
          <property name="bottomMargin">
           <number>2</number>
          </property>
          <property name="spacing">
-          <number>6</number>
+          <number>2</number>
          </property>
          <item row="0" column="0">
           <widget class="QLabel" name="labelUsername">
@@ -381,7 +384,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="pictures.qrc"/>
+  <include location="../huggle_res/pictures.qrc"/>
  </resources>
  <connections/>
 </ui>
