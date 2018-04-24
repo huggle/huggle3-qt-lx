@@ -26,14 +26,14 @@
 #include <QSslSocket>
 #include <QDesktopServices>
 #include <QMessageBox>
-#include "login.hpp"
+#include "loginform.hpp"
 #include "mainwindow.hpp"
 #include "loadingform.hpp"
 #include "proxy.hpp"
 #include "welcomeinfo.hpp"
 #include "uigeneric.hpp"
 #include "updateform.hpp"
-#include "ui_login.h"
+#include "ui_loginform.h"
 
 #define LOGINFORM_LOGIN 0
 #define LOGINFORM_SITEINFO 1
@@ -45,7 +45,7 @@
 
 using namespace Huggle;
 
-Login::Login(QWidget *parent) : HW("login", this, parent), ui(new Ui::Login)
+LoginForm::LoginForm(QWidget *parent) : HW("login", this, parent), ui(new Ui::Login)
 {
     HUGGLE_PROFILER_RESET;
     this->Loading = true;
@@ -172,7 +172,7 @@ Login::Login(QWidget *parent) : HW("login", this, parent), ui(new Ui::Login)
     this->RestoreWindow();
 }
 
-Login::~Login()
+LoginForm::~LoginForm()
 {
     this->RemoveQueries();
     delete this->Updater;
@@ -182,7 +182,7 @@ Login::~Login()
     delete this->timer;
 }
 
-void Login::Localize()
+void LoginForm::Localize()
 {
     this->ui->ButtonExit->setText(_l("main-system-exit"));
     this->ui->ButtonOK->setText(_l("login-start"));
@@ -216,7 +216,7 @@ void Login::Localize()
         QApplication::setLayoutDirection(Qt::LeftToRight);
 }
 
-void Login::Update(QString ms)
+void LoginForm::Update(QString ms)
 {
      // let's just pass it there
     if (this->loadingForm != nullptr)
@@ -226,12 +226,12 @@ void Login::Update(QString ms)
     this->ui->labelIntro->setText(ms);
 }
 
-void Login::Reset()
+void LoginForm::Reset()
 {
     this->ui->labelIntro->setText(_l("[[login-intro]]"));
 }
 
-void Login::RemoveQueries()
+void LoginForm::RemoveQueries()
 {
     QList<WikiSite*> Sites = this->LoginQueries.keys();
     foreach (WikiSite* st, Sites)
@@ -255,7 +255,7 @@ void Login::RemoveQueries()
     this->LoginQueries.clear();
 }
 
-void Login::CancelLogin()
+void LoginForm::CancelLogin()
 {
     // No longer a login file managed stuff
     hcfg->TemporaryConfig_LoginFile = false;
@@ -278,7 +278,7 @@ void Login::CancelLogin()
     this->RemoveQueries();
 }
 
-int Login::GetRowIDForSite(WikiSite *site, int row)
+int LoginForm::GetRowIDForSite(WikiSite *site, int row)
 {
     if (!this->LoadingFormRows.contains(site))
         throw new Huggle::Exception("There is no such a site in DB of rows", BOOST_CURRENT_FUNCTION);
@@ -289,7 +289,7 @@ int Login::GetRowIDForSite(WikiSite *site, int row)
     return this->LoadingFormRows[site][row];
 }
 
-void Login::EnableForm(bool value)
+void LoginForm::EnableForm(bool value)
 {
     this->ui->checkBox_2->setEnabled(value);
     this->ui->lineEditBotP->setEnabled(value);
@@ -310,13 +310,13 @@ void Login::EnableForm(bool value)
     this->ui->ButtonOK->setEnabled(value);
 }
 
-void Login::closeEvent(QCloseEvent *event)
+void LoginForm::closeEvent(QCloseEvent *event)
 {
     Q_UNUSED(event);
     this->reject();
 }
 
-bool Login::ReadonlyFallback(WikiSite *site, QString why)
+bool LoginForm::ReadonlyFallback(WikiSite *site, QString why)
 {
     if (site->GetProjectConfig()->ReadOnly)
         return true;
@@ -331,12 +331,12 @@ bool Login::ReadonlyFallback(WikiSite *site, QString why)
     return true;
 }
 
-void Login::Disable()
+void LoginForm::Disable()
 {
     this->EnableForm(false);
 }
 
-void Login::Reload()
+void LoginForm::Reload()
 {
     int current = 0;
     this->ui->Project->clear();
@@ -366,7 +366,7 @@ void Login::Reload()
         this->ui->Project->setCurrentIndex(0);
 }
 
-void Login::DB()
+void LoginForm::DB()
 {
     if (this->qDatabase == nullptr || !this->qDatabase->IsProcessed())
     {
@@ -401,7 +401,7 @@ void Login::DB()
     this->Refreshing = false;
 }
 
-void Login::PressOK()
+void LoginForm::PressOK()
 {
     this->GlobalConfig = false;
     hcfg->TemporaryConfig_UserNameWasChanged = false;
@@ -548,7 +548,7 @@ void Login::PressOK()
     this->timer->start(HUGGLE_TIMER);
 }
 
-void Login::PerformLogin(WikiSite *site)
+void LoginForm::PerformLogin(WikiSite *site)
 {
     this->Update(_l("[[login-progress-start]]", site->Name));
     // we create an api request to login
@@ -560,7 +560,7 @@ void Login::PerformLogin(WikiSite *site)
     this->Statuses[site] = WaitingForLoginQuery;
 }
 
-void Login::PerformLoginPart2(WikiSite *site)
+void LoginForm::PerformLoginPart2(WikiSite *site)
 {
     // verify if query is already finished
     if (!this->LoginQueries.contains(site) || !this->LoginQueries[site]->IsProcessed())
@@ -602,7 +602,7 @@ void Login::PerformLoginPart2(WikiSite *site)
     query->Process();
 }
 
-bool Login::RetrieveGlobalConfig()
+bool LoginForm::RetrieveGlobalConfig()
 {
     if (this->qConfig != nullptr)
     {
@@ -646,7 +646,7 @@ bool Login::RetrieveGlobalConfig()
     return false;
 }
 
-void Login::FinishLogin(WikiSite *site)
+void LoginForm::FinishLogin(WikiSite *site)
 {
     if (!this->LoginQueries.contains(site) || !this->LoginQueries[site]->IsProcessed())
         return;
@@ -720,7 +720,7 @@ void Login::FinishLogin(WikiSite *site)
     }
 }
 
-void Login::RetrieveWhitelist(WikiSite *site)
+void LoginForm::RetrieveWhitelist(WikiSite *site)
 {
     // if whitelist is not defined in config we don't need to do this
     if (!hcfg->SystemConfig_WhitelistDisabled && Configuration::HuggleConfiguration->GlobalConfig_Whitelist.isEmpty())
@@ -765,7 +765,7 @@ void Login::RetrieveWhitelist(WikiSite *site)
     query->Process();
 }
 
-void Login::RetrieveProjectYamlConfig(WikiSite *site)
+void LoginForm::RetrieveProjectYamlConfig(WikiSite *site)
 {
     if (this->LoginQueries.contains(site))
     {
@@ -820,7 +820,7 @@ void Login::RetrieveProjectYamlConfig(WikiSite *site)
     this->LoginQueries.insert(site, query);
 }
 
-void Login::FallbackToLegacyConfig(WikiSite *site)
+void LoginForm::FallbackToLegacyConfig(WikiSite *site)
 {
     ApiQuery *query = this->LoginQueries[site];
     query->DecRef();
@@ -831,7 +831,7 @@ void Login::FallbackToLegacyConfig(WikiSite *site)
     this->RetrieveProjectConfig(site);
 }
 
-void Login::RetrieveProjectConfig(WikiSite *site)
+void LoginForm::RetrieveProjectConfig(WikiSite *site)
 {
     if (this->LoginQueries.contains(site))
     {
@@ -882,7 +882,7 @@ void Login::RetrieveProjectConfig(WikiSite *site)
     this->LoginQueries.insert(site, query);
 }
 
-void Login::RetrieveUserConfig(WikiSite *site)
+void LoginForm::RetrieveUserConfig(WikiSite *site)
 {
     if (this->LoginQueries.contains(site))
     {
@@ -965,7 +965,7 @@ void Login::RetrieveUserConfig(WikiSite *site)
     query->Process();
 }
 
-void Login::RetrieveUserInfo(WikiSite *site)
+void LoginForm::RetrieveUserInfo(WikiSite *site)
 {
     // check approval page
     if (this->qApproval.contains(site))
@@ -1128,7 +1128,7 @@ void Login::RetrieveUserInfo(WikiSite *site)
     this->LoginQueries.insert(site, temp);
 }
 
-void Login::DeveloperMode()
+void LoginForm::DeveloperMode()
 {
     // load dummy project config files
     QFile *vf;
@@ -1145,7 +1145,7 @@ void Login::DeveloperMode()
     this->hide();
 }
 
-void Login::ProcessSiteInfo(WikiSite *site)
+void LoginForm::ProcessSiteInfo(WikiSite *site)
 {
     if (this->qTokenInfo.contains(site) && this->qSiteInfo.contains(site)
             && this->qTokenInfo[site]->IsProcessed() && this->qSiteInfo[site]->IsProcessed())
@@ -1269,7 +1269,7 @@ void Login::ProcessSiteInfo(WikiSite *site)
     }
 }
 
-void Login::DisplayError(QString message)
+void LoginForm::DisplayError(QString message)
 {
     this->CancelLogin();
     Syslog::HuggleLogs->ErrorLog(message);
@@ -1277,7 +1277,7 @@ void Login::DisplayError(QString message)
     QMessageBox::critical(this->window(), _l("error"), message);
 }
 
-void Login::Finish()
+void LoginForm::Finish()
 {
     // let's check if all processes are finished
     foreach (WikiSite *xx, hcfg->Projects)
@@ -1324,7 +1324,7 @@ void Login::Finish()
     }
 }
 
-void Login::reject()
+void LoginForm::reject()
 {
     if (this->Finished == false)
     {
@@ -1339,7 +1339,7 @@ void Login::reject()
     }
 }
 
-bool Login::ProcessOutput(WikiSite *site)
+bool LoginForm::ProcessOutput(WikiSite *site)
 {
     ApiQuery *query = this->LoginQueries[site];
     // Check what the result was
@@ -1382,7 +1382,7 @@ bool Login::ProcessOutput(WikiSite *site)
     return false;
 }
 
-void Login::on_ButtonOK_clicked()
+void LoginForm::on_ButtonOK_clicked()
 {
     if (!this->Processing)
     {
@@ -1398,12 +1398,12 @@ void Login::on_ButtonOK_clicked()
     }
 }
 
-void Login::on_ButtonExit_clicked()
+void LoginForm::on_ButtonExit_clicked()
 {
     Core::HuggleCore->Shutdown();
 }
 
-void Login::OnTimerTick()
+void LoginForm::OnTimerTick()
 {
     if (this->Refreshing)
     {
@@ -1487,7 +1487,7 @@ void Login::OnTimerTick()
     this->Finish();
 }
 
-void Login::on_pushButton_clicked()
+void LoginForm::on_pushButton_clicked()
 {
     this->Disable();
     this->qDatabase = new ApiQuery(ActionQuery, nullptr);
@@ -1500,7 +1500,7 @@ void Login::on_pushButton_clicked()
     this->qDatabase->Process();
 }
 
-void Login::on_Language_currentIndexChanged(const QString &arg1)
+void LoginForm::on_Language_currentIndexChanged(const QString &arg1)
 {
     if (this->Loading)  return;
     QString lang = "en";
@@ -1520,24 +1520,24 @@ void Login::on_Language_currentIndexChanged(const QString &arg1)
     this->Localize();
 }
 
-void Huggle::Login::on_labelTranslate_linkActivated(const QString &link)
+void Huggle::LoginForm::on_labelTranslate_linkActivated(const QString &link)
 {
     QDesktopServices::openUrl(link);
 }
 
-void Huggle::Login::on_lineEdit_username_textChanged(const QString &arg1)
+void Huggle::LoginForm::on_lineEdit_username_textChanged(const QString &arg1)
 {
     Q_UNUSED( arg1 )
-    Login::VerifyLogin();
+    LoginForm::VerifyLogin();
 }
 
-void Huggle::Login::on_lineEdit_password_textChanged(const QString &arg1)
+void Huggle::LoginForm::on_lineEdit_password_textChanged(const QString &arg1)
 {
     Q_UNUSED( arg1 )
-    Login::VerifyLogin();
+    LoginForm::VerifyLogin();
 }
 
-void Login::VerifyLogin()
+void LoginForm::VerifyLogin()
 {
     if((((this->ui->lineEditBotUser->text().size() == 0 && this->ui->lineEdit_username->text().size() == 0) ||
         (this->ui->lineEdit_password->text().size() == 0 && this->ui->lineEditBotP->text().size() == 0))) &&
@@ -1547,13 +1547,13 @@ void Login::VerifyLogin()
         this->ui->ButtonOK->setEnabled(true);
 }
 
-int Login::RegisterLoadingFormRow(WikiSite *site, int row)
+int LoginForm::RegisterLoadingFormRow(WikiSite *site, int row)
 {
     this->LoadingFormRows[site].insert(row, this->LastRow);
     return this->LastRow++;
 }
 
-void Login::ClearLoadingFormRows()
+void LoginForm::ClearLoadingFormRows()
 {
     QList<WikiSite*> Sites = this->LoadingFormRows.keys();
     this->LastRow = 0;
@@ -1562,7 +1562,7 @@ void Login::ClearLoadingFormRows()
     this->LoadingFormRows.clear();
 }
 
-void Huggle::Login::on_pushButton_2_clicked()
+void Huggle::LoginForm::on_pushButton_2_clicked()
 {
     if (this->ui->tableWidget->isVisible())
     {
@@ -1579,31 +1579,31 @@ void Huggle::Login::on_pushButton_2_clicked()
     }
 }
 
-void Huggle::Login::on_label_linkActivated(const QString &link)
+void Huggle::LoginForm::on_label_linkActivated(const QString &link)
 {
     Q_UNUSED(link);
     Proxy pr;
     pr.exec();
 }
 
-void Huggle::Login::on_lineEditBotUser_textChanged(const QString &arg1)
+void Huggle::LoginForm::on_lineEditBotUser_textChanged(const QString &arg1)
 {
     Q_UNUSED(arg1)
-    Login::VerifyLogin();
+    LoginForm::VerifyLogin();
 }
 
-void Huggle::Login::on_lineEditBotP_textChanged(const QString &arg1)
+void Huggle::LoginForm::on_lineEditBotP_textChanged(const QString &arg1)
 {
     Q_UNUSED(arg1)
-    Login::VerifyLogin();
+    LoginForm::VerifyLogin();
 }
 
-void Huggle::Login::on_label_2_linkActivated(const QString &link)
+void Huggle::LoginForm::on_label_2_linkActivated(const QString &link)
 {
     QDesktopServices::openUrl(link);
 }
 
-void Huggle::Login::on_tabWidget_currentChanged(int index)
+void Huggle::LoginForm::on_tabWidget_currentChanged(int index)
 {
     if (index == 0)
     {
@@ -1612,7 +1612,7 @@ void Huggle::Login::on_tabWidget_currentChanged(int index)
     }
 }
 
-bool Login::IsDeveloperMode()
+bool LoginForm::IsDeveloperMode()
 {
     return this->ui->lineEdit_username->text().replace('_', ' ').toLower() == "developer mode";
 }

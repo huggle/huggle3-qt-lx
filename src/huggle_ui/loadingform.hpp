@@ -21,7 +21,7 @@ namespace Ui
 
 namespace Huggle
 {
-    class Login;
+    class LoginForm;
 
     enum LoadingForm_Icon
     {
@@ -38,7 +38,7 @@ namespace Huggle
         public:
             static bool IsKilled;
 
-            explicit LoadingForm(Login *parent);
+            explicit LoadingForm(LoginForm *parent);
             void Info(QString text);
             void ModifyIcon(int row, LoadingForm_Icon it);
             void Insert(int row, QString text, LoadingForm_Icon icon);
@@ -47,7 +47,7 @@ namespace Huggle
             void on_pushButton_clicked();
         private:
             void reject();
-            Login *loginForm;
+            LoginForm *loginForm;
             Ui::LoadingForm *ui;
     };
 }

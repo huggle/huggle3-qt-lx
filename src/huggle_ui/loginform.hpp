@@ -10,8 +10,8 @@
 
 // This file contains source for login form and most of login operations
 
-#ifndef LOGIN_H
-#define LOGIN_H
+#ifndef LOGINFORM_H
+#define LOGINFORM_H
 
 #include <huggle_core/definitions.hpp>
 
@@ -57,12 +57,12 @@ namespace Huggle
     class WikiSite;
 
     //! Window that is displayed as first when huggle is started
-    class HUGGLE_EX_UI Login : public HW
+    class HUGGLE_EX_UI LoginForm : public HW
     {
             Q_OBJECT
         public:
-            explicit Login(QWidget *parent = 0);
-            ~Login();
+            explicit LoginForm(QWidget *parent = 0);
+            ~LoginForm();
             //! This function will reload all localizations for login form, called when user change a language
             void Localize();
             //! Updates the info message down on login form as well as on LoadingForm

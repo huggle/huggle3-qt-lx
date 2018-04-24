@@ -9,7 +9,7 @@
 //GNU General Public License for more details.
 
 #include "loadingform.hpp"
-#include "login.hpp"
+#include "loginform.hpp"
 #include <huggle_core/exception.hpp>
 #include <huggle_core/core.hpp>
 #include <huggle_core/localization.hpp>
@@ -19,7 +19,7 @@ using namespace Huggle;
 
 bool LoadingForm::IsKilled = false;
 
-LoadingForm::LoadingForm(Login *parent) : QDialog(parent), ui(new Ui::LoadingForm)
+LoadingForm::LoadingForm(LoginForm *parent) : QDialog(parent), ui(new Ui::LoadingForm)
 {
     this->ui->setupUi(this);
     this->ui->tableWidget->setColumnCount(2);

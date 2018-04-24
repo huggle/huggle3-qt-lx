@@ -25,7 +25,7 @@
 #include <huggle_l10n/huggle_l10n.hpp>
 #include <huggle_ui/hgapplication.hpp>
 #include <huggle_ui/uiexceptionhandler.hpp>
-#include <huggle_ui/login.hpp>
+#include <huggle_ui/loginform.hpp>
 #include <huggle_ui/updateform.hpp>
 #ifdef _MSC_VER
 #    pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
@@ -109,7 +109,7 @@ int main(int argc, char *argv[])
 
         // start the huggle by creating the login form
         // this form will delete itself after finish to save RAM, so it should be instantiated dynamically, and shouldn't be deleted
-        Huggle::Login *login_form = new Huggle::Login();
+        Huggle::LoginForm *login_form = new Huggle::LoginForm();
         login_form->show();
         login_form->setAttribute(Qt::WA_DeleteOnClose);
 
