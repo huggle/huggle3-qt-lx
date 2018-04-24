@@ -28,7 +28,7 @@
 #include <huggle_core/wikiuser.hpp>
 #include <huggle_core/wikiutil.hpp>
 #include "uigeneric.hpp"
-#include "blockuser.hpp"
+#include "blockuserform.hpp"
 #include "ui_reportuser.h"
 using namespace Huggle;
 
@@ -665,7 +665,7 @@ void Huggle::ReportUser::on_pushButton_4_clicked()
     {
         delete this->BlockForm;
     }
-    this->BlockForm = new BlockUser(this);
+    this->BlockForm = new BlockUserForm(this);
     this->BlockForm->SetWikiUser(this->ReportedUser);
     this->BlockForm->show();
 }

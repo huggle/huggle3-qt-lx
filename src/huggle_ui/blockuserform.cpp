@@ -8,7 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "blockuser.hpp"
+#include "blockuserform.hpp"
 #include <QLineEdit>
 #include <QTimer>
 #include <QUrl>
@@ -24,14 +24,14 @@
 #include <huggle_core/localization.hpp>
 #include <huggle_core/syslog.hpp>
 #include <huggle_core/configuration.hpp>
-#include "ui_blockuser.h"
+#include "ui_blockuserform.h"
 #include "mainwindow.hpp"
 #include "history.hpp"
 #include "uigeneric.hpp"
 
 using namespace Huggle;
 
-BlockUser::BlockUser(QWidget *parent) : HW("blockuser", this, parent), ui(new Ui::BlockUser)
+BlockUserForm::BlockUserForm(QWidget *parent) : HW("blockuser", this, parent), ui(new Ui::BlockUser)
 {
     this->ui->setupUi(this);
     // we should initialise every variable
@@ -48,14 +48,14 @@ BlockUser::BlockUser(QWidget *parent) : HW("blockuser", this, parent), ui(new Ui
     this->RestoreWindow();
 }
 
-BlockUser::~BlockUser()
+BlockUserForm::~BlockUserForm()
 {
     delete this->user;
     delete this->t0;
     delete this->ui;
 }
 
-void BlockUser::SetWikiUser(WikiUser *User)
+void BlockUserForm::SetWikiUser(WikiUser *User)
 {
     if (User == nullptr)
     {
@@ -77,12 +77,12 @@ void BlockUser::SetWikiUser(WikiUser *User)
     }
 }
 
-void BlockUser::on_pushButton_2_clicked()
+void BlockUserForm::on_pushButton_2_clicked()
 {
     this->hide();
 }
 
-void BlockUser::onTick()
+void BlockUserForm::onTick()
 {
     switch (this->QueryPhase)
     {
@@ -96,7 +96,7 @@ void BlockUser::onTick()
     this->t0->stop();
 }
 
-void BlockUser::Block()
+void BlockUserForm::Block()
 {
     if (this->qUser == nullptr || !this->qUser->IsProcessed())
         return;
@@ -135,7 +135,7 @@ void BlockUser::Block()
         this->sendBlockNotice(nullptr);
 }
 
-void BlockUser::Failed(QString reason)
+void BlockUserForm::Failed(QString reason)
 {
     UiGeneric::pMessageBox(this, "Unable to block user", _l("block-fail", reason),
                          MessageBoxStyleError, true);
@@ -145,7 +145,7 @@ void BlockUser::Failed(QString reason)
     this->qUser.Delete();
 }
 
-void BlockUser::on_pushButton_clicked()
+void BlockUserForm::on_pushButton_clicked()
 {
     // disable the button so that user can't click it multiple times
     this->ui->pushButton->setEnabled(false);
@@ -178,7 +178,7 @@ void BlockUser::on_pushButton_clicked()
     this->t0->start(HUGGLE_TIMER);
 }
 
-void BlockUser::sendBlockNotice(ApiQuery *dependency)
+void BlockUserForm::sendBlockNotice(ApiQuery *dependency)
 {
     QString blocknotice;
     if (this->ui->comboBox_2->currentText() != "indefinite")
@@ -195,7 +195,7 @@ void BlockUser::sendBlockNotice(ApiQuery *dependency)
     WikiUtil::MessageUser(user, blocknotice, blocksum, blocksum, true, dependency, false, false);
 }
 
-void Huggle::BlockUser::on_pushButton_3_clicked()
+void Huggle::BlockUserForm::on_pushButton_3_clicked()
 {
     if (this->qUser != nullptr)
         return;
@@ -216,7 +216,7 @@ void Huggle::BlockUser::on_pushButton_3_clicked()
     this->t0->start();
 }
 
-void BlockUser::Recheck()
+void BlockUserForm::Recheck()
 {
     if (this->qUser == nullptr)
         throw new Huggle::NullPointerException("local ApiQuery qUser",  BOOST_CURRENT_FUNCTION);
@@ -241,7 +241,7 @@ void BlockUser::Recheck()
     }
 }
 
-void Huggle::BlockUser::on_pushButton_4_clicked()
+void Huggle::BlockUserForm::on_pushButton_4_clicked()
 {
     UiGeneric::DisplayContributionBrowser(this->user, this);
 }

@@ -8,7 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-// IMPORTANT: Since Huggle 3.4.0 this is just an entry point for dll libraries
+// IMPORTANT: Since Huggle 3.4.0 this is just an entry point for dynamic libraries
 //            that huggle consists of (huggle_core, huggle_ui etc).
 
 #include <huggle_core/definitions.hpp>
@@ -27,19 +27,12 @@
 #include <huggle_ui/uiexceptionhandler.hpp>
 #include <huggle_ui/loginform.hpp>
 #include <huggle_ui/updateform.hpp>
+
+// This is needed for MSVC to turn this to Windows application, otherwise console window
+// would be displayed during run of program
 #ifdef _MSC_VER
 #    pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
 #endif
-
-//! This function just reads console parameters and return true if we can continue or need to terminate
-bool TerminalParse(Huggle::TerminalParser *p)
-{
-    // Parse() returns false in case program should terminate
-    bool require_exit = !p->Parse();
-    delete p;
-    // we can continue if we don't require exit
-    return require_exit;
-}
 
 int Fatal(Huggle::Exception *fail)
 {
@@ -56,7 +49,7 @@ int main(int argc, char *argv[])
     Huggle::Exception::InitBreakpad();
     try
     {
-        // We need to create terminal parser now and rest later, because it depends on X11
+        // We need to create terminal parser now and rest later, because rest of program depends on X11,
         // and that would result in weird errors on systems that don't have graphical frontend.
         // Using huggle on such is not supported yet, but there are plans for headless version
         Huggle::TerminalParser *parser = new Huggle::TerminalParser(argc, argv);
@@ -75,18 +68,24 @@ int main(int argc, char *argv[])
             // enable HiDPI support (available since Qt 5.1, but off by default)
             a.setAttribute(Qt::AA_UseHighDpiPixmaps);
         #endif
+
+        // We must create config before we run terminal parser, because some config options may be altered using it
         Huggle::Configuration::HuggleConfiguration = new Huggle::Configuration();
-        // Check if arguments don't need to exit program
-        if (!TerminalParse(parser))
+
+        // Parse() returns true in case program should terminate
+        if (parser->Parse())
         {
             Huggle::Exception::ExitBreakpad();
             delete Huggle::Configuration::HuggleConfiguration;
+            delete parser;
             return ReturnCode;
         }
+        // We don't need parser anymore so let's free the memory
+        delete parser;
+
         if (hcfg->SystemConfig_UM)
         {
-            // we start huggle in updater mode, so that it performs some updates
-            // which needs to be done in separate process
+            // we start huggle in updater mode, so that it performs some updates which needs to be done in separate process
             Huggle::UpdateForm *update_form = new Huggle::UpdateForm();
             update_form->show();
             ReturnCode = a.exec();
@@ -100,22 +99,21 @@ int main(int argc, char *argv[])
             Huggle::Huggle_Res::Init();
         #endif
 
-        // load the core
+        // Load the core which manages lof of stuff like GC, exception handling and some internal stuff
         Huggle::Core::HuggleCore = new Huggle::Core();
         Huggle::Core::HuggleCore->Init();
 
-        // install graphical exception handler, so we get a nice window on exception
+        // Install graphical exception handler, so we get a nice window on exception, instead of some console error
         Huggle::Core::HuggleCore->InstallNewExceptionHandler(new Huggle::UiExceptionHandler());
 
-        // start the huggle by creating the login form
-        // this form will delete itself after finish to save RAM, so it should be instantiated dynamically, and shouldn't be deleted
+        // Start the huggle by creating the login form, this form will delete itself after it's closed to save RAM, so it should be instantiated dynamically, and shouldn't be deleted
         Huggle::LoginForm *login_form = new Huggle::LoginForm();
         login_form->show();
         login_form->setAttribute(Qt::WA_DeleteOnClose);
 
         // Event loop
         ReturnCode = a.exec();
-        if (Huggle::Core::HuggleCore->Running)
+        if (Huggle::Core::HuggleCore && Huggle::Core::HuggleCore->Running)
             Huggle::Core::HuggleCore->Shutdown();
         delete Huggle::Core::HuggleCore;
         Huggle::Exception::ExitBreakpad();

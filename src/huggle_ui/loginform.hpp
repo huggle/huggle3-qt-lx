@@ -56,7 +56,7 @@ namespace Huggle
     class LoadingForm;
     class WikiSite;
 
-    //! Window that is displayed as first when huggle is started
+    //! Window that is displayed as first when huggle is started, letting user login to one or more wikis
     class HUGGLE_EX_UI LoginForm : public HW
     {
             Q_OBJECT
@@ -91,72 +91,74 @@ namespace Huggle
 
         private:
             //! Reset the interface to default
-            void Reset();
-            void RemoveQueries();
+            void resetForm();
+            void removeQueries();
             //! Enable parts of interface
-            void EnableForm(bool value = true);
+            void enableForm(bool value = true);
             /*!
              * \brief ReadonlyFallback try to fallback into read-only mode
              * \param site to switch to read-only mode
              * \return true on success
              */
             void closeEvent(QCloseEvent *event);
-            bool ReadonlyFallback(WikiSite *site, QString why);
-            void Reload();
-            void DB();
-            void Disable();
-            void PressOK();
-            void PerformLogin(WikiSite *site);
-            void PerformLoginPart2(WikiSite *site);
-            void FinishLogin(WikiSite *site);
-            void RetrieveWhitelist(WikiSite *site);
-            void RetrieveProjectYamlConfig(WikiSite *site);
-            void FallbackToLegacyConfig(WikiSite *site);
-            void RetrieveProjectConfig(WikiSite *site);
-            bool RetrieveGlobalConfig();
-            void RetrieveUserConfig(WikiSite *site);
-            void RetrieveUserInfo(WikiSite *site);
-            void DeveloperMode();
-            bool IsDeveloperMode();
-            void ProcessSiteInfo(WikiSite *site);
-            void DisplayError(QString message);
-            void Finish();
-            void VerifyLogin();
-            int RegisterLoadingFormRow(WikiSite *site, int row);
-            void ClearLoadingFormRows();
+            bool readonlyFallback(WikiSite *site, QString why);
+            void reloadForm();
+            void reloadWikiDB();
+            void disableForm();
+            void pressOK();
+            void performLogin(WikiSite *site);
+            void performLoginPart2(WikiSite *site);
+            void finishLogin(WikiSite *site);
+            void retrieveWhitelist(WikiSite *site);
+            void retrieveProjectYamlConfig(WikiSite *site);
+            void fallbackToLegacyConfig(WikiSite *site);
+            void retrieveProjectConfig(WikiSite *site);
+            bool retrieveGlobalConfig();
+            void retrieveUserConfig(WikiSite *site);
+            void retrieveUserInfo(WikiSite *site);
+            void developerMode();
+            bool isDeveloperMode();
+            void processSiteInfo(WikiSite *site);
+            void displayError(QString message);
+            void finishLogin();
+            void verifyLogin();
+            int registerLoadingFormRow(WikiSite *site, int row);
+            void clearLoadingFormRows();
             void reject();
             //! This function make sure that login result is done
-            bool ProcessOutput(WikiSite *site);
-            UpdateForm *Updater = nullptr;
-            bool GlobalConfig = false;
+            bool processOutput(WikiSite *site);
+            UpdateForm *updateForm = nullptr;
+            bool globalConfigIsLoaded = false;
             Ui::Login *ui;
-            bool Finished = false;
-            bool Processing = false;
-            int GlobalRow = 0;
-            QList <QCheckBox*> Project_CheckBoxens;
+            bool loginFinished = false;
+            bool loginInProgress = false;
+            //! ID of row in loading form which belongs to global config progress
+            int loadingFormGlobalConfigRow = 0;
+            QList <QCheckBox*> project_CheckBoxens;
             QTimer *timer;
             QHash<WikiSite*, bool> processedWL;
             bool Refreshing = false;
             QHash<WikiSite*, bool> processedSiteinfos;
             QHash<WikiSite*, bool> processedLogin;
             QHash<WikiSite*, ApiQuery*> qApproval;
-            QHash<WikiSite*, WLQuery*> WhitelistQueries;
+            QHash<WikiSite*, WLQuery*> wlQueries;
             QHash<WikiSite*, ApiQuery*> qSiteInfo;
             QHash<WikiSite*, ApiQuery*> qTokenInfo;
             QHash<WikiSite*, ApiQuery*> LoginQueries;
             LoadingForm *loadingForm = nullptr;
-            bool Loading;
+            //! True until the login form is fully loaded
+            bool isLoading;
             Collectable_SmartPtr<ApiQuery> qDatabase;
             Collectable_SmartPtr<ApiQuery> qConfig;
             //! This is a list that identify every single row in loading form so that we know which row is which
             //! every site has its own hash of rows, where every hash correspond to real position
-            QHash<WikiSite*,QHash<int,int>> LoadingFormRows;
+            QHash<WikiSite*,QHash<int,int>> loadingFormRows;
             //! Last row we used in loading form
-            int LastRow = 0;
-            //! The token obtained from login
-            QHash<WikiSite*, QString> Tokens;
-            //! for RetrievePrivateConfig, if we should try to load from
-            QHash <WikiSite*,bool> LoadedOldConfigs;
+            int loadingForm_LastRow = 0;
+            //! The tokens obtained from login
+            QHash<WikiSite*, QString> loginTokens;
+            //! for RetrievePrivateConfig, if we should try to load from old config pages
+            QHash <WikiSite*,bool> loadedOldConfigs;
     };
 }
 

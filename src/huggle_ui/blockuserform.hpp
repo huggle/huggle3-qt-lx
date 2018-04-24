@@ -31,12 +31,12 @@ namespace Huggle
     class ApiQuery;
 
     //! This form can be used to block users from editing, which requires the block permission
-    class BlockUser : public HW
+    class BlockUserForm : public HW
     {
             Q_OBJECT
         public:
-            explicit BlockUser(QWidget *parent = nullptr);
-            ~BlockUser();
+            explicit BlockUserForm(QWidget *parent = nullptr);
+            ~BlockUserForm();
             /*!
             * \brief SetWikiUser Select the user/IP to block, display block expiry options from site
             * \param User User to select

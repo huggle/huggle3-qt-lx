@@ -33,7 +33,7 @@ namespace Huggle
     class HuggleWeb;
     class ApiQuery;
     class EditQuery;
-    class BlockUser;
+    class BlockUserForm;
 
     //! Report user
 
@@ -100,7 +100,7 @@ namespace Huggle
             QString ReportTs;
             bool Loading;
             bool Messaging;
-            BlockUser *BlockForm;
+            BlockUserForm *BlockForm;
             //! This query is used to get a block history
             Collectable_SmartPtr<ApiQuery> qBlockHistory;
             //! This is used to retrieve current report page and write to it
