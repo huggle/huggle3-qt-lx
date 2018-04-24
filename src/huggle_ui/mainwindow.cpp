@@ -9,7 +9,7 @@
 //GNU General Public License for more details.
 
 #include "mainwindow.hpp"
-#include "blockuserform.hpp"
+#include "blockuser.hpp"
 #include "deleteform.hpp"
 #include "editbar.hpp"
 #include "history.hpp"
@@ -116,7 +116,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->tb = new HuggleTool();
     this->Queries = new ProcessList(this);
     this->SystemLog = new HuggleLog(this);
-    this->createBrowserTab(_l("main-tab-welcome-title"), 0);
+    this->CreateBrowserTab(_l("main-tab-welcome-title"), 0);
     this->TrayIcon.setIcon(this->windowIcon());
     this->TrayIcon.show();
     this->TrayIcon.setToolTip("Huggle");
@@ -219,7 +219,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         }
     }
     HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@providers");
-    this->reloadInterface();
+    this->ReloadInterface();
     this->tabifyDockWidget(this->SystemLog, this->Queries);
     this->GeneralTimer = new QTimer(this);
     //this->ui->actionTag_2->setVisible(false);
@@ -538,28 +538,30 @@ void MainWindow::Render(bool KeepHistory, bool KeepUser)
             if (Configuration::HuggleConfiguration->UserConfig->HistoryLoad)
                 this->wHistory->Read();
         }
-        this->changeCurrentBrowserTabTitle(this->CurrentEdit->Page->PageName);
+        this->Title(this->CurrentEdit->Page->PageName);
         if (this->PreviousSite != this->GetCurrentWikiSite())
         {
-            this->reloadInterface();
+            this->ReloadInterface();
             this->PreviousSite = this->GetCurrentWikiSite();
         }
         this->tb->SetTitle(this->CurrentEdit->Page->PageName);
         this->tb->SetPage(this->CurrentEdit->Page);
         this->tb->SetUser(this->CurrentEdit->User->Username);
-        QString word_list = "";
+        QString word = "";
         if (this->CurrentEdit->ScoreWords.count() != 0)
         {
-            word_list = " words: ";
-            foreach (QString word, this->CurrentEdit->ScoreWords)
+            word = " words: ";
+            int x = 0;
+            while (x < this->CurrentEdit->ScoreWords.count())
             {
-                word_list += word + ", ";
+                word += this->CurrentEdit->ScoreWords.at(x) + ", ";
+                x++;
             }
-            if (word_list.endsWith(", "))
-                word_list = word_list.mid(0, word_list.length() - 2);
+            if (word.endsWith(", "))
+                word = word.mid(0, word.length() - 2);
         }
         QStringList params;
-        params << this->CurrentEdit->Page->PageName << QString::number(this->CurrentEdit->Score) + word_list;
+        params << this->CurrentEdit->Page->PageName << QString::number(this->CurrentEdit->Score) + word;
         this->tb->SetInfo(_l("browser-diff", params));
         this->EnableEditing(!this->CurrentEdit->GetSite()->GetProjectConfig()->ReadOnly);
         Hooks::MainWindow_OnRender();
@@ -1087,7 +1089,7 @@ Collectable_SmartPtr<RevertQuery> MainWindow::Revert(QString summary, bool next,
         Syslog::HuggleLogs->WarningLog(_l("main-revert-manual", this->CurrentEdit->Page->PageName));
         rollback = false;
     }
-    if (this->preflightCheck(this->CurrentEdit))
+    if (this->PreflightCheck(this->CurrentEdit))
     {
         this->CurrentEdit->User->Resync();
         this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore(false) - 10);
@@ -1109,7 +1111,7 @@ Collectable_SmartPtr<RevertQuery> MainWindow::Revert(QString summary, bool next,
     return ptr_;
 }
 
-bool MainWindow::preflightCheck(WikiEdit *_e)
+bool MainWindow::PreflightCheck(WikiEdit *_e)
 {
     if (!Hooks::RevertPreflight(_e))
     {
@@ -1190,7 +1192,7 @@ void MainWindow::DisplayWelcomeMessage()
     this->Render();
 }
 
-void MainWindow::finishRestore()
+void MainWindow::FinishRestore()
 {
     if (this->RestoreEdit == nullptr || this->RestoreQuery == nullptr || !this->RestoreQuery->IsProcessed())
         return;
@@ -1235,7 +1237,7 @@ void MainWindow::finishRestore()
     this->RestoreQuery.Delete();
 }
 
-void MainWindow::createBrowserTab(QString name, int index)
+void MainWindow::CreateBrowserTab(QString name, int index)
 {
     QWidget *tab = new QWidget(this);
     HuggleWeb *web = new HuggleWeb();
@@ -1254,12 +1256,12 @@ void MainWindow::createBrowserTab(QString name, int index)
     this->Browser->RenderHtml(Resources::GetNewTabHTML());
 }
 
-void MainWindow::changeCurrentBrowserTabTitle(QString name)
+void MainWindow::Title(QString name)
 {
     this->ui->tabWidget->setTabText(this->ui->tabWidget->currentIndex(), Generic::ShrinkText(name, 20, false, 3));
 }
 
-void MainWindow::triggerWelcome()
+void MainWindow::TriggerWelcome()
 {
     ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
     QString message;
@@ -1281,10 +1283,10 @@ void MainWindow::triggerWelcome()
            message = HuggleParser::GetValueFromKey(conf->WelcomeTypes.at(0));
         message += " ~~~~";
     }
-    this->welcomeCurrentUser(message);
+    this->Welcome(message);
 }
 
-void MainWindow::triggerWarn()
+void MainWindow::TriggerWarn()
 {
     if (!this->CheckExit() || !this->CheckEditableBrowserPage())
         return;
@@ -1430,7 +1432,8 @@ void MainWindow::OnMainTimerTick()
             {
                 QueryPool::HugglePool->ProcessingEdits.removeAt(Edit);
                 e->UnregisterConsumer(HUGGLECONSUMER_CORE_POSTPROCESS);
-            } else
+            }
+            else
             {
                 Edit++;
             }
@@ -1460,7 +1463,7 @@ void MainWindow::OnMainTimerTick()
         this->OnNext_EvPage = nullptr;
         this->qNext = nullptr;
     }
-    this->finishRestore();
+    this->FinishRestore();
     this->TruncateReverts();
     this->SystemLog->Render();
 }
@@ -1627,7 +1630,7 @@ void MainWindow::on_actionNext_2_triggered()
 
 void MainWindow::on_actionWarn_triggered()
 {
-    this->triggerWarn();
+    this->TriggerWarn();
 }
 
 void MainWindow::on_actionRevert_currently_displayed_edit_triggered()
@@ -1642,7 +1645,7 @@ void MainWindow::on_actionWarn_the_user_triggered()
 {
     if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_WARN))
         return;
-    this->triggerWarn();
+    this->TriggerWarn();
 }
 
 void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_triggered()
@@ -1710,7 +1713,7 @@ void MainWindow::CustomWelcome()
     if (!this->EditingChecks())
         return;
     QAction *welcome = (QAction*) QObject::sender();
-    this->welcomeCurrentUser(HuggleParser::GetValueFromKey(welcome->data().toString()));
+    this->Welcome(HuggleParser::GetValueFromKey(welcome->data().toString()));
 }
 
 void MainWindow::CustomRevert()
@@ -2017,7 +2020,7 @@ void MainWindow::Localize()
     }
 }
 
-void MainWindow::BlockUser()
+void MainWindow::_BlockUser()
 {
     if (!this->CheckExit() || !this->CheckEditableBrowserPage())
         return;
@@ -2029,7 +2032,7 @@ void MainWindow::BlockUser()
     if (this->fBlockForm != nullptr)
         delete this->fBlockForm;
 
-    this->fBlockForm = new BlockUserForm(this);
+    this->fBlockForm = new BlockUser(this);
     this->CurrentEdit->User->Resync();
     this->fBlockForm->SetWikiUser(this->CurrentEdit->User);
     this->fBlockForm->show();
@@ -2168,7 +2171,7 @@ void MainWindow::FlagGood()
     this->PatrolEdit();
     this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore() - 200);
     if (Configuration::HuggleConfiguration->UserConfig->WelcomeGood && this->CurrentEdit->User->TalkPage_GetContents().isEmpty())
-        this->triggerWelcome();
+        this->TriggerWelcome();
     this->DisplayNext();
 }
 
@@ -2208,7 +2211,9 @@ void MainWindow::RenderPage(QString Page)
 WikiSite *MainWindow::GetCurrentWikiSite()
 {
     if (this->CurrentEdit == nullptr || this->CurrentEdit->Page == nullptr)
+    {
         return Configuration::HuggleConfiguration->Project;
+    }
 
     return this->CurrentEdit->GetSite();
 }
@@ -2230,7 +2235,9 @@ void MainWindow::LockPage()
 QString MainWindow::ProjectURL()
 {
     if (this->CurrentEdit == nullptr || this->CurrentEdit->Page == nullptr)
+    {
         return Configuration::GetProjectWikiURL();
+    }
     return Configuration::GetProjectWikiURL(this->CurrentEdit->GetSite());
 }
 
@@ -2273,7 +2280,7 @@ bool MainWindow::CheckRevertable()
     return true;
 }
 
-void MainWindow::welcomeCurrentUser(QString message)
+void MainWindow::Welcome(QString message)
 {
     if (!this->EditingChecks())
         return;
@@ -2386,7 +2393,7 @@ void MainWindow::ChangeProvider(WikiSite *site, HuggleFeed *provider)
     }
 }
 
-void MainWindow::reloadInterface()
+void MainWindow::ReloadInterface()
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
@@ -2480,7 +2487,7 @@ void MainWindow::reloadInterface()
 
 void MainWindow::on_actionWelcome_user_triggered()
 {
-    this->triggerWelcome();
+    this->TriggerWelcome();
 }
 
 void MainWindow::on_actionOpen_in_a_browser_triggered()
@@ -2625,7 +2632,7 @@ void MainWindow::on_actionRevert_currently_displayed_edit_and_stay_on_page_trigg
 
 void MainWindow::on_actionWelcome_user_2_triggered()
 {
-    this->triggerWelcome();
+    this->TriggerWelcome();
 }
 
 void MainWindow::on_actionReport_user_triggered()
@@ -2693,7 +2700,7 @@ void MainWindow::on_actionDelete_triggered()
 
 void Huggle::MainWindow::on_actionBlock_user_triggered()
 {
-    this->BlockUser();
+    this->_BlockUser();
 }
 
 void Huggle::MainWindow::on_actionIRC_triggered()
@@ -2775,7 +2782,9 @@ void Huggle::MainWindow::on_actionDisconnect_triggered()
 void MainWindow::on_actionReport_username_triggered()
 {
     if (this->CurrentEdit == nullptr || !this->CheckExit() || !this->CheckEditableBrowserPage())
+    {
         return;
+    }
     if (!this->GetCurrentWikiSite()->ProjectConfig->UAAavailable)
     {
         UiGeneric::pMessageBox(this, _l("uaa-not-supported"), _l("uaa-not-supported-text"), MessageBoxStyleWarning, true);
@@ -2877,7 +2886,7 @@ void Huggle::MainWindow::on_actionDelete_page_triggered()
 
 void Huggle::MainWindow::on_actionBlock_user_2_triggered()
 {
-    this->BlockUser();
+    this->_BlockUser();
 }
 
 void Huggle::MainWindow::on_actionDisplay_talk_triggered()
@@ -3094,7 +3103,7 @@ void MainWindow::on_actionTag_2_triggered()
 
 void MainWindow::on_actionReload_menus_triggered()
 {
-    this->reloadInterface();
+    this->ReloadInterface();
 }
 
 void MainWindow::SetProviderIRC()
@@ -3179,7 +3188,7 @@ void MainWindow::on_tabWidget_currentChanged(int index)
     if (index == in)
     {
         // we need to create a new browser window
-        this->createBrowserTab("New tab", in);
+        this->CreateBrowserTab("New tab", in);
         this->CurrentEdit = nullptr;
         this->LockPage();
     } else
@@ -3198,14 +3207,14 @@ void MainWindow::on_actionClose_current_tab_triggered()
 {
     if (!this->keystrokeCheck(HUGGLE_ACCEL_CLOSE_TAB))
         return;
-    this->closeTab(this->ui->tabWidget->currentIndex());
+    this->CloseTab(this->ui->tabWidget->currentIndex());
 }
 
 void MainWindow::on_actionOpen_new_tab_triggered()
 {
     if (!this->keystrokeCheck(HUGGLE_ACCEL_CREATE_NEW_TAB))
         return;
-    this->createBrowserTab("New tab", this->ui->tabWidget->count() - 1);
+    this->CreateBrowserTab("New tab", this->ui->tabWidget->count() - 1);
     this->CurrentEdit = nullptr;
     this->LockPage();
 }
@@ -3340,10 +3349,10 @@ void Huggle::MainWindow::on_tabWidget_customContextMenuRequested(const QPoint &p
 
 void Huggle::MainWindow::on_tabWidget_tabCloseRequested(int index)
 {
-    this->closeTab(index);
+    this->CloseTab(index);
 }
 
-void MainWindow::closeTab(int tab)
+void MainWindow::CloseTab(int tab)
 {
     if (tab == (this->ui->tabWidget->count() - 1))
     {
@@ -3510,4 +3519,9 @@ void MainWindow::OnQuestion(QString title, QString text, bool *y)
 void MainWindow::OnError(QString title, QString text)
 {
     UiGeneric::MessageBox(title, text, MessageBoxStyleError);
+}
+
+void Huggle::MainWindow::on_actionThrow_triggered()
+{
+    throw new Huggle::Exception("Test exception (from menu)", BOOST_CURRENT_FUNCTION);
 }

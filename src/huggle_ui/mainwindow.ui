@@ -14,7 +14,7 @@
    <string>Huggle is loading, please wait</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="pictures.qrc">
+   <iconset resource="../huggle_res/pictures.qrc">
     <normaloff>:/huggle/pictures/Resources/huggle3_small.ico</normaloff>:/huggle/pictures/Resources/huggle3_small.ico</iconset>
   </property>
   <property name="iconSize">
@@ -81,7 +81,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>19</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -131,6 +131,7 @@
      <addaction name="actionCheck_for_dups"/>
      <addaction name="actionShow_score_debug"/>
      <addaction name="actionWrite_text_to_HAN"/>
+     <addaction name="actionThrow"/>
     </widget>
     <addaction name="actionIntroduction"/>
     <addaction name="actionContents"/>
@@ -334,7 +335,7 @@
   </action>
   <action name="actionRevert_and_warn">
    <property name="icon">
-    <iconset resource="pictures.qrc">
+    <iconset resource="../huggle_res/pictures.qrc">
      <normaloff>:/huggle/pictures/Resources/diff-revert-warn.png</normaloff>:/huggle/pictures/Resources/diff-revert-warn.png</iconset>
    </property>
    <property name="text">
@@ -346,7 +347,7 @@
   </action>
   <action name="actionRevert">
    <property name="icon">
-    <iconset resource="pictures.qrc">
+    <iconset resource="../huggle_res/pictures.qrc">
      <normaloff>:/huggle/pictures/Resources/diff-revert.png</normaloff>:/huggle/pictures/Resources/diff-revert.png</iconset>
    </property>
    <property name="text">
@@ -358,7 +359,7 @@
   </action>
   <action name="actionWarn">
    <property name="icon">
-    <iconset resource="pictures.qrc">
+    <iconset resource="../huggle_res/pictures.qrc">
      <normaloff>:/huggle/pictures/Resources/user-warn.png</normaloff>:/huggle/pictures/Resources/user-warn.png</iconset>
    </property>
    <property name="text">
@@ -367,7 +368,7 @@
   </action>
   <action name="actionNext">
    <property name="icon">
-    <iconset resource="pictures.qrc">
+    <iconset resource="../huggle_res/pictures.qrc">
      <normaloff>:/huggle/pictures/Resources/diff-next.png</normaloff>:/huggle/pictures/Resources/diff-next.png</iconset>
    </property>
    <property name="text">
@@ -411,7 +412,7 @@
   </action>
   <action name="actionBack">
    <property name="icon">
-    <iconset resource="pictures.qrc">
+    <iconset resource="../huggle_res/pictures.qrc">
      <normaloff>:/huggle/pictures/Resources/browser-prev.png</normaloff>:/huggle/pictures/Resources/browser-prev.png</iconset>
    </property>
    <property name="text">
@@ -426,7 +427,7 @@
   </action>
   <action name="actionForward">
    <property name="icon">
-    <iconset resource="pictures.qrc">
+    <iconset resource="../huggle_res/pictures.qrc">
      <normaloff>:/huggle/pictures/Resources/browser-next.png</normaloff>:/huggle/pictures/Resources/browser-next.png</iconset>
    </property>
    <property name="text">
@@ -443,7 +444,7 @@
   </action>
   <action name="actionWelcome_user">
    <property name="icon">
-    <iconset resource="pictures.qrc">
+    <iconset resource="../huggle_res/pictures.qrc">
      <normaloff>:/huggle/pictures/Resources/user-welcome.png</normaloff>:/huggle/pictures/Resources/user-welcome.png</iconset>
    </property>
    <property name="text">
@@ -460,7 +461,7 @@
   </action>
   <action name="actionOpen_in_a_browser">
    <property name="icon">
-    <iconset resource="pictures.qrc">
+    <iconset resource="../huggle_res/pictures.qrc">
      <normaloff>:/huggle/pictures/Resources/browser-open.png</normaloff>:/huggle/pictures/Resources/browser-open.png</iconset>
    </property>
    <property name="text">
@@ -493,7 +494,7 @@
   </action>
   <action name="actionGood_edit">
    <property name="icon">
-    <iconset resource="pictures.qrc">
+    <iconset resource="../huggle_res/pictures.qrc">
      <normaloff>:/huggle/pictures/Resources/sight-and-next.png</normaloff>:/huggle/pictures/Resources/sight-and-next.png</iconset>
    </property>
    <property name="text">
@@ -677,7 +678,7 @@
   </action>
   <action name="actionReport_user">
    <property name="icon">
-    <iconset resource="pictures.qrc">
+    <iconset resource="../huggle_res/pictures.qrc">
      <normaloff>:/huggle/pictures/Resources/user-report.png</normaloff>:/huggle/pictures/Resources/user-report.png</iconset>
    </property>
    <property name="text">
@@ -876,7 +877,7 @@
   </action>
   <action name="actionDelete_page">
    <property name="icon">
-    <iconset resource="pictures.qrc">
+    <iconset resource="../huggle_res/pictures.qrc">
      <normaloff>:/huggle/pictures/Resources/page-delete.png</normaloff>:/huggle/pictures/Resources/page-delete.png</iconset>
    </property>
    <property name="text">
@@ -888,7 +889,7 @@
     <bool>false</bool>
    </property>
    <property name="icon">
-    <iconset resource="pictures.qrc">
+    <iconset resource="../huggle_res/pictures.qrc">
      <normaloff>:/huggle/pictures/Resources/user-block.png</normaloff>:/huggle/pictures/Resources/user-block.png</iconset>
    </property>
    <property name="text">
@@ -897,7 +898,7 @@
   </action>
   <action name="actionDisplay_talk">
    <property name="icon">
-    <iconset resource="pictures.qrc">
+    <iconset resource="../huggle_res/pictures.qrc">
      <normaloff>:/huggle/pictures/Resources/user-talk.png</normaloff>:/huggle/pictures/Resources/user-talk.png</iconset>
    </property>
    <property name="text">
@@ -1145,10 +1146,15 @@
     <string>Write text to HAN</string>
    </property>
   </action>
+  <action name="actionThrow">
+   <property name="text">
+    <string>Throw</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="pictures.qrc"/>
+  <include location="../huggle_res/pictures.qrc"/>
  </resources>
  <connections/>
 </ui>
