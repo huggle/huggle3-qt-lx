@@ -768,6 +768,7 @@
   <string name="cr-message-same">There are multiple edits to $1 by the same user, are you sure you want to revert them?</string>
   <string name="cr-message-new">There are newer edits to $1. Are you sure you really want to revert them?</string>
   <string name="cr-message-not-same">There are newer edits made to $1 by a different user. Are you sure you want to revert them all? (It will likely fail anyway because it will have an old token.)</string>
+  <string name="preferences-show-warning-if-not-last-revision">Show warning if you are not on last revision of page</string>
   <string name="preferences-delete-using-filter">You can&apos;t delete a filter that is currently being used</string>
   <string name="preferences-extension-disabled">This extension is already scheduled for disabling on the next startup of Huggle</string>
   <string name="preferences-extension-disabled-restart">Extension was set to be disabled on the next startup of Huggle</string>

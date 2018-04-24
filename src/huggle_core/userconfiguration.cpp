@@ -195,6 +195,7 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
     configuration_ += "AutomaticRefresh:" + Bool2String(this->AutomaticRefresh) + "\n";
     configuration_ += "AutomaticallyWatchlistWarnedUsers:" + Bool2String(this->AutomaticallyWatchlistWarnedUsers) + "\n";
     configuration_ += "ShortcutHash:" + this->ShortcutHash + "\n";
+    configuration_ += "ShowWarningIfNotOnLastRevision:" + Bool2String(this->ShowWarningIfNotOnLastRevision) + "\n";
     // shortcuts
     QStringList shortcuts = Configuration::HuggleConfiguration->Shortcuts.keys();
     // we need to do this otherwise huggle may sort the items differently every time and spam wiki
@@ -385,6 +386,7 @@ bool UserConfiguration::ParseUserConfig(QString config, ProjectConfiguration *Pr
     this->EnableMinScore = SafeBool(ConfigurationParse("EnableMinScore", config));
     this->AutomaticRefresh = SafeBool(ConfigurationParse("AutomaticRefresh", config), this->AutomaticRefresh);
     this->ShortcutHash = ConfigurationParse("ShortcutHash", config, "null");
+    this->ShowWarningIfNotOnLastRevision = SafeBool(ConfigurationParse("ShowWarningIfNotOnLastRevision", config), this->ShowWarningIfNotOnLastRevision);
     // for now we do this only for home wiki but later we need to make it for every wiki
     if (IsHome)
     {

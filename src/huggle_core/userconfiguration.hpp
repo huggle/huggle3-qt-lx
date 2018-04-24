@@ -94,6 +94,7 @@ namespace Huggle
             bool            EnforceManualSRT = false;
             int             PreferredProvider = 2;
             unsigned int    TalkPageFreshness = 20;
+            bool            ShowWarningIfNotOnLastRevision = true;
             //! Huggle will auto revert all edits that were made by same user on auto conflict resolution
             bool            RevertOnMultipleEdits = true;
             //! Whether a founder of every page should be retrieved or not

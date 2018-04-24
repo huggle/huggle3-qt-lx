@@ -203,6 +203,7 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     this->ui->cbKeystrokeFix->setText(_l("preferences-keystroke-rate-limit"));
     this->ui->l_QueueSize->setText(_l("preferences-queue-size"));
     this->ui->l_EmptyQueuePage->setText(_l("preferences-empty-queue-page"));
+    this->ui->cbShowWarningIfNotOnLastRevision->setText(_l("preferences-show-warning-if-not-last-revision"));
 
 #ifndef HUGGLE_NOAUDIO
     this->ui->label_NoAudio->setVisible(false);
@@ -354,6 +355,7 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     hcfg->SystemConfig_PlaySoundQueueScore = this->ui->ln_QueueSoundMinScore->text().toLong();
     hcfg->SystemConfig_PlaySoundOnQueue = this->ui->cbPlayOnNewItem->isChecked();
     hcfg->SystemConfig_CatScansAndWatched = this->ui->cbCatScansAndWatched->isChecked();
+    hcfg->UserConfig->ShowWarningIfNotOnLastRevision = this->ui->cbShowWarningIfNotOnLastRevision->isChecked();
     if (this->ui->checkBox_7->isChecked())
         hcfg->UserConfig->SummaryMode = 1;
     else
@@ -812,6 +814,7 @@ void Preferences::ResetItems()
     this->ui->cbPlayOnNewItem->setChecked(hcfg->SystemConfig_PlaySoundOnQueue);
     this->ui->cbPlayOnIRCMsg->setChecked(hcfg->SystemConfig_PlaySoundOnIRCUserMsg);
     this->ui->cbCatScansAndWatched->setChecked(hcfg->SystemConfig_CatScansAndWatched);
+    this->ui->cbShowWarningIfNotOnLastRevision->setChecked(hcfg->UserConfig->ShowWarningIfNotOnLastRevision);
     this->ui->cb_AutoRefresh->setChecked(hcfg->UserConfig->AutomaticRefresh);
     this->ui->cb_WatchWarn->setChecked(hcfg->UserConfig->AutomaticallyWatchlistWarnedUsers);
     this->ui->le_KeystrokeRate->setText(QString::number(hcfg->SystemConfig_KeystrokeMultiPressRate));

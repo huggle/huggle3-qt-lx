@@ -1012,6 +1012,13 @@
         </widget>
        </item>
        <item>
+        <widget class="QCheckBox" name="cbShowWarningIfNotOnLastRevision">
+         <property name="text">
+          <string>ShowWarningIfNotOnLastRevision</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QCheckBox" name="cbKeystrokeFix">
          <property name="text">
           <string>Prevent repeated keystrokes by following rate in miliseconds (only 1 same shortcut can be triggered within N ms)</string>

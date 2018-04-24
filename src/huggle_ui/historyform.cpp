@@ -278,8 +278,8 @@ void HistoryForm::onTick01()
             else
                 pntr.setX(this->pos().x() + 100);
 
-            // display a tip
-            QToolTip::showText(pntr, "<b><big>" + _l("historyform-not-latest-tip") + "</big></b>", this);
+            if (hcfg->UserConfig->ShowWarningIfNotOnLastRevision)
+                QToolTip::showText(pntr, "<b><big>" + _l("historyform-not-latest-tip") + "</big></b>", this);
         }
     }
     if (hcfg->UserConfig->AutomaticallyGroup)
