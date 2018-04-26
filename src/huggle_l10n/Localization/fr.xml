@@ -790,6 +790,7 @@
   <string name="cr-message-same">Il y a des modifications multiples de $1 par le même utilisateur, êtes-vous sûr de vouloir les annuler ?</string>
   <string name="cr-message-new">Il y a des modifications plus récentes sur $1, êtes-vous sûr de vouloir vraiment les annuler ?</string>
   <string name="cr-message-not-same">Il y a des modifications plus récentes faites sur $1 par un autre utilisateur. Êtes-vous sûr de vouloir les annuler toutes (cela échouera sans doute parce qu’elles auront aura un jeton ancien) ?</string>
+  <string name="preferences-show-warning-if-not-last-revision">Afficher un avertissement si vous n’êtes pas sur la dernière révision de la page</string>
   <string name="preferences-delete-using-filter">Vous ne pouvez pas supprimer un filtre qui est utilisé actuellement</string>
   <string name="preferences-extension-disabled">Cette extension est déjà en attente de désactivation au prochain démarrage de Huggle</string>
   <string name="preferences-extension-disabled-restart">L’extension a été mise en attente de désactivation au prochain démarrage de Huggle</string>
@@ -810,6 +811,7 @@
   <string name="preferences-empty-queue-page">Page de file d’attente vide :</string>
   <string name="preferences-reset-gui">Réinitialiser l’IHM</string>
   <string name="preferences-restore-factory-layout">Cela rétablira la disposition d’usine de Huggle comme il se trouvait quand vous l’avez installé. Huggle s’arrêtera. Continuer ?</string>
+  <string name="preferences-keystroke-rate-limit">Empêcher les appuis répétés de touche pendant un nombre donné de millisecondes (un seul raccourci peut être activé en N ms)</string>
   <string name="fail">Échec</string>
   <string name="request">Requête</string>
   <string name="requesting">En cours de requête</string>

@@ -782,6 +782,7 @@
   <string name="cr-message-same">有同一用戶在$1做出多次編輯，您確定要回退這些編輯嗎？</string>
   <string name="cr-message-new">這些是在$1較新的編輯。您確定您要回退它們？</string>
   <string name="cr-message-not-same">在$1上有其他用戶做出較新的編輯。您確定您要回退這些編輯嗎？（這可能會因為有較舊的令牌而失敗）</string>
+  <string name="preferences-show-warning-if-not-last-revision">若您不是在頁面的最後修訂時顯示警告</string>
   <string name="preferences-delete-using-filter">您不能刪除一個正在使用的篩選條件</string>
   <string name="preferences-extension-disabled">此擴充功能被設定在下一次啟動 Huggle 時停用。</string>
   <string name="preferences-extension-disabled-restart">擴充功能被設定在下一次啟動 Huggle 時停用。</string>
@@ -802,6 +803,7 @@
   <string name="preferences-empty-queue-page">空佇列頁面：</string>
   <string name="preferences-reset-gui">重新設定圖形介面</string>
   <string name="preferences-restore-factory-layout">這將會重新儲存您所安裝的 Huggle 配置。Huggle 會先進行關閉，要繼續嗎？</string>
+  <string name="preferences-keystroke-rate-limit">防止以下毫秒單位頻率的重複鍵盤敲擊（同一快速鍵在 N 毫秒內僅可觸發 1 次）</string>
   <string name="fail">失敗</string>
   <string name="request">請求</string>
   <string name="requesting">請求中</string>

@@ -691,6 +691,7 @@
   <string name="cr-message-same" fuzzy="true">יש עריכות מרובות של אותו המשתמש לדף $1. האם ברצונך לשחזר אותן?</string>
   <string name="cr-message-new">ישנן עריכות חדשות לדף $1. האם ברצונך באמת לשחזר אותן?</string>
   <string name="cr-message-not-same" fuzzy="true">יש עריכות חדשות יותר לדף $1 מאת משתמש אחר. האם ברצונך באמת לשחזר את כולן? (זה כנראה ממילא ייכשל בגלל אסימון ישן.)</string>
+  <string name="preferences-show-warning-if-not-last-revision">הצגת אזהרה בעת צפייה בגרסה שאינה האחרונה</string>
   <string name="preferences-delete-using-filter">לא ניתן למחוק מסנן שנמצא בשימוש עכשיו</string>
   <string name="preferences-extension-disabled" fuzzy="true">ההרחבה הזאת כבר תוזמנה לכבות בהפעלה הבאה של האגל</string>
   <string name="preferences-extension-disabled-restart" fuzzy="true">ההרחבה הזאת כבר תוזמנה לִכבות בהפעלה הבאה של האגל</string>

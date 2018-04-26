@@ -140,6 +140,7 @@
   <string name="config-friend">Laguna</string>
   <string name="config-userspace">Lankide orria</string>
   <string name="config-talk">Eztabaida-orria</string>
+  <string name="config-columns-dynamic">Zerrenden zutabeak dinamikoak egin (produktuen tamainaren arabera egokituko da) edo eskuz (erabiltzaileak haien tamaina alda dezake)</string>
   <string name="config-close-without">Itxi gorde gabe</string>
   <string name="config-autoreport">Erabiltzaile bati azken abisua eman nahi zaionerako</string>
   <string name="config-reportnone">Ezer ez egin</string>

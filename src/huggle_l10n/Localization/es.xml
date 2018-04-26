@@ -787,6 +787,7 @@
   <string name="cr-message-same" fuzzy="true">Hay varias ediciones a $1 del mismo usuario, ¿seguro quieres revertirlas?</string>
   <string name="cr-message-new">Hay nuevas ediciones a $1. ¿Seguro quieres revertirlas?</string>
   <string name="cr-message-not-same" fuzzy="true">Hay nuevas ediciones a $1 de otro usuario. ¿Seguro quieres revertirlas todas? (De todas formas, probablemente falle por un \"token\" viejo)</string>
+  <string name="preferences-show-warning-if-not-last-revision">Mostrar una alerta si no estás en la última revisión de una página</string>
   <string name="preferences-delete-using-filter">No se puede eliminar un filtro que se está usando actualmente</string>
   <string name="preferences-extension-disabled" fuzzy="true">Ya se ha programado esta extensión para su desactivación al próximo inicio de Huggle</string>
   <string name="preferences-extension-disabled-restart" fuzzy="true">La extensión se configuró para desactivarse en el siguiente inicio de Huggle</string>

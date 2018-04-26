@@ -783,6 +783,7 @@
   <string name="cr-message-same">Existem diversas edições em $1 feitas pelo mesmo utilizador. Tem a certeza de que pretende reverter todas?</string>
   <string name="cr-message-new">Existem edições mais recentes em $1. Tem certeza que pretende reverter?</string>
   <string name="cr-message-not-same">Existem edições mais recentes em $1 feitas por um utilizador diferente. Tem certeza que as pretende reverter todas? (provavelmente falhará, devido a chave antiga.)</string>
+  <string name="preferences-show-warning-if-not-last-revision">Mostrar um aviso caso não estiver na última revisão de uma página</string>
   <string name="preferences-delete-using-filter">Não pode apagar um filtro que está a ser utilizado atualmente</string>
   <string name="preferences-extension-disabled">Esta extensão já está agendada para ser desativada na próxima inicialização do Huggle</string>
   <string name="preferences-extension-disabled-restart">A extensão foi definida para ser desativada na próxima inicialização do Huggle</string>
@@ -803,6 +804,7 @@
   <string name="preferences-empty-queue-page">Página da fila vazia:</string>
   <string name="preferences-reset-gui">Redefinir a GUI</string>
   <string name="preferences-restore-factory-layout">Isto vai repor a composição de fábrica do Huggle como aconteceu quando o instalou. O Huggle será desligado. Deseja continuar?</string>
+  <string name="preferences-keystroke-rate-limit">Impedir a repetição do toque nas teclas por um determinado tempo em milissegundos (só 1 mesmo atalho pode ser desencadeado com N ms)</string>
   <string name="fail">Falha</string>
   <string name="request">Pedir</string>
   <string name="requesting">A solicitar</string>

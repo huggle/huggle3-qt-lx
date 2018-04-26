@@ -783,6 +783,7 @@
   <string name="cr-message-same">Es gibt mehrere Bearbeitungen an $1 des gleichen Benutzers. Bist du sicher, dass du sie zurücksetzen willst?</string>
   <string name="cr-message-new">Es gibt neuere Bearbeitungen von $1. Bist du sicher, dass du sie wirklich alle zurücksetzen willst?</string>
   <string name="cr-message-not-same">Es gibt neuere Bearbeitungen an $1 von einem anderen Benutzer. Bist du sicher, dass du sie alle zurücksetzen willst? Es wird vermutlich wegen eines alten Tokens fehlschlagen.</string>
+  <string name="preferences-show-warning-if-not-last-revision">Eine Warnung anzeigen, falls du nicht auf der letzten Seitenversion bist.</string>
   <string name="preferences-delete-using-filter">Du kannst keinen Filter löschen, der bereits verwendet wird.</string>
   <string name="preferences-extension-disabled">Diese Erweiterung wurde bereits zur Deaktivierung beim nächsten Huggle-Start geplant</string>
   <string name="preferences-extension-disabled-restart">Die Erweiterung wurde so eingestellt, dass sie beim nächsten Start von Huggle deaktiviert wird.</string>
@@ -803,6 +804,7 @@
   <string name="preferences-empty-queue-page">Leere Warteschlangenseite:</string>
   <string name="preferences-reset-gui">GUI zurücksetzen</string>
   <string name="preferences-restore-factory-layout">Dies wird das Huggle-Werkslayout zum Zeitpunkt der Installation wiederherstellen. Huggle wird geschlossen. Fortfahren?</string>
+  <string name="preferences-keystroke-rate-limit">Wiederholte Tastenanschläge durch das Befolgen einer Frequenz in Millisekunden verhindern (es kann nur ein gleiches Tastaturkürzel innerhalb N ms ausgelöst werden)</string>
   <string name="fail">Fehlgeschlagen</string>
   <string name="request">Anfragen</string>
   <string name="requesting">Frage an …</string>

@@ -794,6 +794,7 @@
   <string name="cr-message-same">Existem múltiplas edições para $1 feitas pelo mesmo usuário, tem certeza que quer revertê-las?</string>
   <string name="cr-message-new">Existem novas edições para $1, tem certeza que quer revertê-las?</string>
   <string name="cr-message-not-same">Existem novas edições feitas para $1 por um usuário diferente. Tem certeza que quer revertê-las? (é provável que falhe de qualquer jeito por causa da chave antiga.)</string>
+  <string name="preferences-show-warning-if-not-last-revision">Mostrar um aviso caso não estiver na última revisão de uma página</string>
   <string name="preferences-delete-using-filter">Você não pode excluir um filtro que atualmente está sendo usado</string>
   <string name="preferences-extension-disabled">Esta extensão já está programada para ser desabilitada na próxima inicialização do Huggle</string>
   <string name="preferences-extension-disabled-restart">Esta extensão foi programada para ser desabilitada na próxima inicialização do Huggle</string>

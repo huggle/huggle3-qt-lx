@@ -254,7 +254,7 @@
   <string name="historyform-title">История</string>
   <string name="historyform-retrieve-history">Получить историю</string>
   <string name="historyform-retrieving-history">Получение истории</string>
-  <string name="historyform-not-latest-tip">Это не последняя версия данной страницы. Убедитесь что вы просмотрели и более новые версии. Пожалуйста, также имейте в виду, что откат с этой точки может быть невозможен.</string>
+  <string name="historyform-not-latest-tip">Это не последняя версия данной страницы. Убедитесь, что вы просмотрели и более новые версии. Также имейте в виду, что откат с этой точки может быть невозможен.</string>
   <string name="history-error-message-title">Невозможно отменить</string>
   <string name="history-error">Этот пункт не может быть отменён. Возможно, страница была изменена или удалена за это время, и Huggle не в состоянии выполнить откат от этой точки. Если вы действительно хотите отменить это изменение, необходимо будет сделать это вручную, используя интерфейс MediaWiki.</string>
   <string name="history-failure">Не удалось получить историю</string>
@@ -799,6 +799,7 @@
   <string name="cr-message-same">Есть несколько правок в $1 от одного участника, вы уверены, что хотите откатить их?</string>
   <string name="cr-message-new">Есть более новые правки в $1. Вы уверены, что действительно хотите откатить их?</string>
   <string name="cr-message-not-same">Существуют более новые правки, внесенные в $1 другим участником. Вы уверены, что хотите откатить их все? (В любом случае, это, скорее всего, не получится сделать, из-за старого маркера.)</string>
+  <string name="preferences-show-warning-if-not-last-revision">Показывать предупреждение, что вы находитесь не на последней версии страницы</string>
   <string name="preferences-delete-using-filter">Вы не можете удалить фильтр, который сейчас используется</string>
   <string name="preferences-extension-disabled">Это расширение уже запланировано к отключению во время следующей загрузки Huggle</string>
   <string name="preferences-extension-disabled-restart">Расширение будет отключено во время следующей загрузки Huggle</string>
@@ -819,6 +820,7 @@
   <string name="preferences-empty-queue-page">Страница пустой очереди:</string>
   <string name="preferences-reset-gui">Сбросить интерфейс</string>
   <string name="preferences-restore-factory-layout">Это восстановит заводскую компоновку huggle, как это было при ее установке. Huggle отключится. Продолжать?</string>
+  <string name="preferences-keystroke-rate-limit">Опрашивать клавиатурные сочетания с определённой частотой в миллисекундах, чтобы предотвратить повторы нажатий (комбинация клавиш может быть использована лишь один раз в течение N мс)</string>
   <string name="fail">Сбой</string>
   <string name="request">Запрос</string>
   <string name="requesting">Запрос</string>

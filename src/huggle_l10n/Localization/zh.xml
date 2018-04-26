@@ -779,6 +779,7 @@
   <string name="cr-message-same">太多对$1的编辑由同一用户，您希望回退它们？</string>
   <string name="cr-message-new">有新的编辑需要$1，您希望回退它们？</string>
   <string name="cr-message-not-same">有不同的用户对$1做出新编辑。您确定要回退它们么？（这很可能会失败，因为它将拥有旧的令牌。）</string>
+  <string name="preferences-show-warning-if-not-last-revision">如果您未出现在页面的最新修订版本，则显示警告</string>
   <string name="preferences-delete-using-filter">您无法删除一个正在使用的过滤器</string>
   <string name="preferences-extension-disabled">此扩展已计划在下次启动Huggle时被禁用</string>
   <string name="preferences-extension-disabled-restart">扩展已设置为将在下次启动Huggle时禁用</string>
@@ -799,6 +800,7 @@
   <string name="preferences-empty-queue-page">空队列页面：</string>
   <string name="preferences-reset-gui">重置GUI</string>
   <string name="preferences-restore-factory-layout">这将恢复huggle的工厂设计，就像您当初安装它时那样。Huggle将会关闭。继续么？</string>
+  <string name="preferences-keystroke-rate-limit">防止以下频率（毫秒）的重复击键（同一快捷键在N毫秒内只允许触发1次）</string>
   <string name="fail">失败</string>
   <string name="request">请求</string>
   <string name="requesting">请求中</string>
