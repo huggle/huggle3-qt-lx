@@ -63,19 +63,20 @@ namespace Huggle
             QString Message;
             QString StackTrace;
             //! ctor
-            Exception(QString text, bool isRecoverable = true);
-            Exception(QString text, QString source, bool isRecoverable = true);
+            Exception(QString text, bool is_recoverable = true);
+            Exception(QString text, QString source, bool is_recoverable = true);
             Exception(QString text, const char *source);
+            virtual ~Exception();
             bool IsRecoverable() const;
         private:
-            void construct(QString text, QString source, bool isRecoverable);
+            void construct(QString text, QString source, bool is_recoverable);
 #ifdef HUGGLE_BREAKPAD
 #if HUGGLE_BREAKPAD == 0
             static google_breakpad::MinidumpDescriptor *GoogleBP_descriptor;
 #endif
             static google_breakpad::ExceptionHandler   *GoogleBP_handler;
 #endif
-            bool _IsRecoverable;
+            bool issRecoverable;
     };
 
     class HUGGLE_EX_CORE NullPointerException : public Exception

@@ -14,7 +14,8 @@ set(CMAKE_AUTOMOC ON)
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Xml REQUIRED)
 find_package(Qt5Network REQUIRED)
-set(QT_INCLUDES ${Qt5Network_INCLUDE_DIRS} ${Qt5Xml_INCLUDE_DIRS})
+find_package(Qt5Script REQUIRED)
+set(QT_INCLUDES ${Qt5Network_INCLUDE_DIRS} ${Qt5Script_INCLUDE_DIRS} ${Qt5Xml_INCLUDE_DIRS})
 if (AUDIO)
     find_package(Qt5Multimedia REQUIRED)
     set(QT_INCLUDES ${QT_INCLUDES} ${Qt5Multimedia_INCLUDE_DIRS})
@@ -44,7 +45,7 @@ endif()
 
 target_link_libraries(huggle_core irc ircclient yaml-cpp)
 
-qt5_use_modules(huggle_core Core Network Xml)
+qt5_use_modules(huggle_core Core Script Network Xml)
 
 if (AUDIO)
     qt5_use_modules(huggle_core Multimedia)
