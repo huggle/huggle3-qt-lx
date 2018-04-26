@@ -8,6 +8,8 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU Lesser General Public License for more details.
 
+// This code is larger taken over from GrumpyChat project
+
 // Copyright (c) Petr Bena 2018
 
 #ifndef SCRIPT_HPP
@@ -22,7 +24,10 @@ namespace Huggle
     class Script;
     class ScriptException : public Exception
     {
+        public:
             ScriptException(QString text, QString source, Script *scr, bool is_recoverable = true);
+        private:
+            Script *s;
     };
 
     class Script : public QObject

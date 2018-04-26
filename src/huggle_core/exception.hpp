@@ -76,7 +76,7 @@ namespace Huggle
 #endif
             static google_breakpad::ExceptionHandler   *GoogleBP_handler;
 #endif
-            bool issRecoverable;
+            bool isRecoverable;
     };
 
     class HUGGLE_EX_CORE NullPointerException : public Exception

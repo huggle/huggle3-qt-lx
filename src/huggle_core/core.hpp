@@ -12,19 +12,12 @@
 #define CORE_H
 
 #include "definitions.hpp"
-#include "pythonengine.hpp"
 #include <QList>
 #include <QDateTime>
 
 namespace Huggle
 {
     // Predeclaring some types
-#ifdef HUGGLE_PYTHON
-    namespace Python
-    {
-        class PythonEngine;
-    }
-#endif
     class Configuration;
     class Exception;
     class ExceptionHandler;
@@ -103,9 +96,6 @@ namespace Huggle
             bool Running;
             //! Garbage collector
             Huggle::GC *gc;
-#ifdef HUGGLE_PYTHON
-            Python::PythonEngine *Python = nullptr;
-#endif
         private:
             //! This is a post-processor for edits
             ProcessorThread *processorThread;

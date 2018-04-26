@@ -22,7 +22,7 @@
 using namespace Huggle;
 
 QList<QString> Script::loadedPaths;
-QList<Script*> Script::scripts;
+QHash<QString, Script*> Script::scripts;
 
 Script *Script::GetScriptByPath(QString path)
 {
@@ -59,7 +59,7 @@ Script *Script::GetScriptByName(QString name)
 
 QList<Script *> Script::GetScripts()
 {
-    return this->scripts.values();
+    return Script::scripts.values();
 }
 
 Script::Script()
@@ -260,7 +260,7 @@ bool Script::loadSource(QString source, QString *error)
 
     this->scriptName = this->scriptName.toLower();
 
-    if (this->extensions.contains(this->scriptName))
+    if (this->scripts.contains(this->scriptName))
     {
         *error = this->scriptName + " is already loaded";
         this->isWorking = false;
@@ -281,12 +281,12 @@ bool Script::loadSource(QString source, QString *error)
 
 bool Script::executeFunctionAsBool(QString function, QScriptValueList parameters)
 {
-    return this->executeFunction(function, QScriptValueList()).toBool();
+    return this->executeFunction(function, parameters).toBool();
 }
 
 bool Script::executeFunctionAsBool(QString function)
 {
-
+    return this->executeFunctionAsBool(function, QScriptValueList());
 }
 
 QString Script::executeFunctionAsString(QString function)
@@ -300,11 +300,6 @@ QString Script::executeFunctionAsString(QString function, QScriptValueList param
 }
 
 QScriptValue Script::executeFunction(QString function, QScriptValueList parameters)
-{
-    return this->executeFunction(function, QScriptValueList());
-}
-
-QScriptValue Script::executeFunction(QString function)
 {
     if (!this->isLoaded)
         throw new ScriptException("Call to script function of extension that isn't loaded", BOOST_CURRENT_FUNCTION, this);
@@ -329,22 +324,242 @@ QScriptValue Script::executeFunction(QString function)
     return result;
 }
 
+QScriptValue Script::executeFunction(QString function)
+{
+    return this->executeFunction(function, QScriptValueList());
+}
+
 void Script::registerFunction(QString name, QScriptEngine::FunctionSignature function_signature, int parameters, QString help, bool is_unsafe)
 {
+    // Check if this script is allowed to access unsafe functions
+    if (is_unsafe && !this->isUnsafe)
+        return;
 
+    this->functionsExported.append(name);
+    this->functionsHelp.insert(name, help);
+    this->engine->globalObject().setProperty(name, this->engine->newFunction(function_signature, parameters));
 }
 
 void Script::registerHook(QString name, int parameters, QString help, bool is_unsafe)
 {
-
+    this->hooksExported.append(name);
+    this->functionsHelp.insert(name, help);
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////
+/// Function definitions
+///////////////////////////////////////////////////////////////////////////////////////////
+
+static QScriptValue get_hook_list(QScriptContext *context, QScriptEngine *engine)
+{
+    Q_UNUSED(context);
+    Script *extension = Script::GetScriptByEngine(engine);
+    if (!extension)
+        return QScriptValue(engine, false);
+
+    return qScriptValueFromSequence(engine, extension->GetHooks());
+}
+
+static QScriptValue is_unsafe(QScriptContext *context, QScriptEngine *engine)
+{
+    Q_UNUSED(context);
+    Script *extension = Script::GetScriptByEngine(engine);
+    if (!extension)
+        return QScriptValue(engine, false);
+
+    return QScriptValue(engine, extension->IsUnsafe());
+}
+
+static QScriptValue get_cfg(QScriptContext *context, QScriptEngine *engine)
+{
+    Script *extension = Script::GetScriptByEngine(engine);
+    if (!extension)
+        return QScriptValue(engine, false);
+    if (context->argumentCount() < 1)
+    {
+        // Wrong number of parameters
+        HUGGLE_ERROR(extension->GetName() + ": get_cfg(key): requires 1 parameter");
+        return QScriptValue(engine, false);
+    }
+    QScriptValue default_value;
+    if (context->argumentCount() > 1)
+        default_value = context->argument(1);
+    QString key = context->argument(0).toString();
+    QString prefix = "script_" + extension->GetName();
+
+    if (!hcfg->ExtensionConfigContainsKey(prefix, key))
+        return default_value;
+
+    QString value = hcfg->GetExtensionConfig(prefix, key, default_value.toString());
+    QScriptValue result = QScriptValue(engine, value);
+    return result;
+}
+
+static QScriptValue set_cfg(QScriptContext *context, QScriptEngine *engine)
+{
+    Script *extension = Script::GetScriptByEngine(engine);
+    if (!extension)
+        return QScriptValue(engine, false);
+
+    if (context->argumentCount() < 2)
+    {
+        HUGGLE_ERROR(extension->GetName() + ": set_cfg(key, value): requires 2 parameters");
+        return QScriptValue(engine, false);
+    }
+    QString key = context->argument(0).toString();
+    QVariant value = context->argument(1).toVariant();
+
+    hcfg->SetExtensionConfig("script_" + extension->GetName(), key, value.toString());
+    return QScriptValue();
+}
+
+static QScriptValue get_version(QScriptContext *context, QScriptEngine *engine)
+{
+    Q_UNUSED(context);
+    Script *extension = Script::GetScriptByEngine(engine);
+    if (!extension)
+        return QScriptValue(engine, false);
+
+    int major = HUGGLE_BYTE_VERSION_MAJOR;
+    int minor = HUGGLE_BYTE_VERSION_MINOR;
+    int revision = HUGGLE_BYTE_VERSION_RELEASE;
+
+    // Marshalling
+    QScriptValue version = engine->newObject();
+    version.setProperty("Major", QScriptValue(engine, major));
+    version.setProperty("Minor", QScriptValue(engine, minor));
+    version.setProperty("Revision", QScriptValue(engine, revision));
+    version.setProperty("String", hcfg->HuggleVersion);
+    return version;
+}
+
+static QScriptValue get_context(QScriptContext *context, QScriptEngine *engine)
+{
+    Q_UNUSED(context);
+    Script *extension = Script::GetScriptByEngine(engine);
+    if (!extension)
+        return QScriptValue(engine, false);
+
+    return QScriptValue(engine, extension->GetContext());
+}
+
+static QScriptValue has_function(QScriptContext *context, QScriptEngine *engine)
+{
+    Script *extension = Script::GetScriptByEngine(engine);
+    if (!extension)
+        return QScriptValue(engine, false);
+    if (context->argumentCount() < 1)
+    {
+        // Wrong number of parameters
+        HUGGLE_ERROR(extension->GetName() + ": has_function(function): requires 1 parameter");
+        return QScriptValue(engine, false);
+    }
+    QString fx = context->argument(0).toString();
+    return QScriptValue(engine, extension->SupportFunction(fx));
+}
+
+static QScriptValue get_function_help(QScriptContext *context, QScriptEngine *engine)
+{
+    Script *extension = Script::GetScriptByEngine(engine);
+    if (!extension)
+        return QScriptValue(engine, false);
+    if (context->argumentCount() < 1)
+    {
+        // Wrong number of parameters
+        HUGGLE_ERROR(extension->GetName() + ": get_function_help(function): requires 1 parameter");
+        return QScriptValue(engine, QString("Function not found"));
+    }
+    QString fx = context->argument(0).toString();
+    return QScriptValue(engine, extension->GetHelpForFunc(fx));
+}
+
+static QScriptValue get_function_list(QScriptContext *context, QScriptEngine *engine)
+{
+    Q_UNUSED(context);
+    Script *extension = Script::GetScriptByEngine(engine);
+    if (!extension)
+        return QScriptValue(engine, false);
+
+    return qScriptValueFromSequence(engine, extension->GetFunctions());
+}
+
+static QScriptValue error_log(QScriptContext *context, QScriptEngine *engine)
+{
+    Script *extension = Script::GetScriptByEngine(engine);
+    if (!extension)
+        return QScriptValue(engine, false);
+    if (context->argumentCount() < 1)
+    {
+        // Wrong number of parameters
+        HUGGLE_ERROR(extension->GetName() + ": error_log(text, verbosity): requires 2 parameters");
+        return QScriptValue(engine, false);
+    }
+    QString text = context->argument(0).toString();
+    HUGGLE_ERROR(extension->GetName() + ": " + text);
+    return QScriptValue(engine, true);
+}
+
+static QScriptValue debug_log(QScriptContext *context, QScriptEngine *engine)
+{
+    Script *extension = Script::GetScriptByEngine(engine);
+    if (!extension)
+        return QScriptValue(engine, false);
+    if (context->argumentCount() < 2)
+    {
+        // Wrong number of parameters
+        HUGGLE_ERROR(extension->GetName() + ": debug_log(text, verbosity): requires 2 parameters");
+        return QScriptValue(engine, false);
+    }
+    QString text = context->argument(0).toString();
+    int verbosity = context->argument(1).toInt32();
+    HUGGLE_DEBUG(extension->GetName() + ": " + text, verbosity);
+    return QScriptValue(engine, true);
+}
+
+static QScriptValue log(QScriptContext *context, QScriptEngine *engine)
+{
+    Script *extension = Script::GetScriptByEngine(engine);
+    if (!extension)
+        return QScriptValue(engine, false);
+    if (context->argumentCount() < 1)
+    {
+        // Wrong number of parameters
+        HUGGLE_ERROR(extension->GetName() + ": log(text): requires 1 parameter");
+        return QScriptValue(engine, false);
+    }
+    QString text = context->argument(0).toString();
+    HUGGLE_LOG(text);
+    return QScriptValue(engine, true);
+}
+
+
 
 void Script::registerFunctions()
 {
+    this->registerFunction("huggle_get_function_help", get_function_help, 1, "(function_name): give you help for a function, returns string");
+    this->registerFunction("huggle_get_function_list", get_function_list, 0, "(): returns array with list of functions");
+    this->registerFunction("huggle_get_hook_list", get_hook_list, 0, "(): returns a list of all hooks");
+    this->registerFunction("huggle_get_version", get_version, 0, "(): returns version object with properties: Major, Minor, Revision, String");
+    this->registerFunction("huggle_is_unsafe", is_unsafe, 0, "(): returns true if script has access to unsafe functions");
+    this->registerFunction("huggle_set_cfg", set_cfg, 2, "(key, value): stores value as key in settings");
+    this->registerFunction("huggle_get_cfg", get_cfg, 2, "(key, default): returns stored value from ini file");
+    this->registerFunction("huggle_has_function", has_function, 1, "(function_name): return true or false whether function is present");
+    this->registerFunction("huggle_get_context", get_context, 0, "(): return execution context, either core or GrumpyChat (core doesn't have ui functions and hooks)");
+    this->registerFunction("huggle_debug_log", debug_log, 2, "(text, verbosity): prints to debug log");
+    this->registerFunction("huggle_error_log", error_log, 1, "(text): prints to log");
+    this->registerFunction("huggle_log", log, 1, "(text): prints to log");
 
+    this->registerHook("ext_init", 0, "(): called on start, must return true, otherwise load of extension is considered as failure");
+    this->registerHook("ext_on_shutdown", 0, "(): called on exit");
+    this->registerHook("ext_get_name", 0, "(): should return a name of this extension");
+    this->registerHook("ext_get_desc", 0, "(): should return description");
+    this->registerHook("ext_get_author", 0, "(): should contain name of creator");
+    this->registerHook("ext_desc_version", 0, "(): should return version");
+    this->registerHook("ext_unload", 0, "(): called when extension is being unloaded from system");
+    this->registerHook("ext_is_working", 0, "(): must exist and must return true, if returns false, extension is considered crashed");
 }
 
 ScriptException::ScriptException(QString text, QString source, Script *scr, bool is_recoverable) : Exception(text, source, is_recoverable)
 {
-
+    this->s = scr;
 }
