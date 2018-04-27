@@ -11,6 +11,8 @@ these parts together with other libraries are located in this folder.
 * huggle_l10n: Localization files
 * huggle_res:  Non-critical resources (sounds, icons, etc)
 * huggle:      Simple executable used to launch Huggle
+* extensions:  Extensions to huggle
+* scripts:     JS extensions
 
 The reasons for this layout are availability of Huggle's core to other projects,
 like mediawiki bots, or different Huggle UI's (like mobile phone UI).
