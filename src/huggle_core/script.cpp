@@ -176,7 +176,7 @@ unsigned int Script::GetContextID()
 
 QString Script::GetContext()
 {
-    return "huggle3";
+    return "huggle_core";
 }
 
 bool Script::IsUnsafe()

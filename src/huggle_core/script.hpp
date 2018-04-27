@@ -8,7 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU Lesser General Public License for more details.
 
-// This code is larger taken over from GrumpyChat project
+// This code is mostly taken from GrumpyChat project
 
 // Copyright (c) Petr Bena 2018
 

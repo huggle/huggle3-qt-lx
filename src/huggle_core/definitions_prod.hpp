@@ -113,6 +113,9 @@ namespace std { typedef decltype(nullptr) nullptr_t; }
     #endif
 #endif
 
+#define HUGGLE_SCRIPT_CONTEXT_CORE 0
+#define HUGGLE_SCRIPT_CONTEXT_UI   1
+
 #define HUGGLE_SUCCESS                     1
 #define PRODUCTION_BUILD                   0
 #define HUGGLE_WL_UNKNOWN   0

@@ -1,0 +1,6 @@
+This folder contains default scripts that are shipped with huggle.
+
+Huggle supports 2 types of scripts:
+
+* core scripts (js): loaded by huggle core, support only low level functions and hooks, compatible with anything descending from core, like bots.
+* ui scripts (jsu):  loaded by desktop huggle, support Qt UI functions, compatible with Huggle only.
