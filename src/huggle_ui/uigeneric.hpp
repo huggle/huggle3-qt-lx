@@ -18,11 +18,11 @@ namespace Huggle
 {
     enum MessageBoxStyle
     {
-        MessageBoxStyleNormal, // OK
-        MessageBoxStyleQuestion, // Yes No
-        MessageBoxStyleQuestionAbort, // Yes No Cancel
-        MessageBoxStyleWarning, // OK (warning)
-        MessageBoxStyleError // OK (error)
+        MessageBoxStyleNormal = 0, // OK
+        MessageBoxStyleQuestion = 1, // Yes No
+        MessageBoxStyleQuestionAbort = 2, // Yes No Cancel
+        MessageBoxStyleWarning = 3, // OK (warning)
+        MessageBoxStyleError = 4 // OK (error)
     };
 
     class WikiUser;

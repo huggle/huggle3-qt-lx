@@ -377,18 +377,6 @@ void Core::ExtensionLoad()
                     Huggle::Syslog::HuggleLogs->Log("Failed to load (reason: " + extension->errorString() + "): " + ename);
                     delete extension;
                 }
-            } else if (name.endsWith(".js"))
-            {
-                QString er;
-                Script *script = new Script();
-                if (script->Load(ename, &er))
-                {
-                    Huggle::Syslog::HuggleLogs->Log("Loaded JS script: " + ename);
-                } else
-                {
-                    Huggle::Syslog::HuggleLogs->Log("Failed to load a JS script: " + er);
-                    delete script;
-                }
             }
         }
     } else

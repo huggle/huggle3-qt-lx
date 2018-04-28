@@ -25,11 +25,14 @@ namespace Huggle
     class ScriptMenu
     {
         public:
-            ScriptMenu(UiScript *s);
+            ScriptMenu(UiScript *s, QMenu *parent, QString text, QString fc);
 
         private:
+            QString title;
+            QString callback;
+            QMenu *parentMenu = nullptr;
             UiScript *script;
-            QMenu *qm;
+            QMenu *qm = nullptr;
     };
 
     class UiScript : public Script
@@ -42,9 +45,12 @@ namespace Huggle
             ~UiScript();
             QString GetContext();
             unsigned int GetContextID();
+            int RegisterMenu(QMenu *parent, QString title, QString fc);
         private:
             static QList<UiScript*> uiScripts;
             void registerFunctions();
+            int lastMenu = 0;
+            QHash<int, ScriptMenu*> scriptMenus;
     };
 }
 

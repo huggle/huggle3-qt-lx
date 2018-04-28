@@ -32,6 +32,10 @@ function print_help()
 
 function ext_init()
 {
-
     return true;
+}
+
+function ext_on_main_open()
+{
+    huggle_ui_create_menu(0, "Show scipting manual", "print_help");
 }

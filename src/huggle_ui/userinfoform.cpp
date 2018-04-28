@@ -9,9 +9,12 @@
 //GNU General Public License for more details.
 
 #include "userinfoform.hpp"
+#include "editbar.hpp"
+#include "mainwindow.hpp"
+#include "ui_userinfoform.h"
+#include "uihooks.hpp"
 #include <QtXml>
 #include <huggle_core/configuration.hpp>
-#include "editbar.hpp"
 #include <huggle_core/exception.hpp>
 #include <huggle_core/hooks.hpp>
 #include <huggle_core/localization.hpp>
@@ -20,12 +23,11 @@
 #else
     #include "webkit/huggleweb.hpp"
 #endif
-#include "mainwindow.hpp"
 #include <huggle_core/querypool.hpp>
 #include <huggle_core/syslog.hpp>
 #include <huggle_core/wikiuser.hpp>
 #include <huggle_core/wikipage.hpp>
-#include "ui_userinfoform.h"
+
 
 using namespace Huggle;
 
@@ -98,7 +100,7 @@ void UserinfoForm::ChangeUser(WikiUser *user)
 
 void UserinfoForm::Read()
 {
-    if (!Hooks::ContribBoxBeforeQuery(this->User, this))
+    if (!UiHooks::ContribBoxBeforeQuery(this->User, this))
         return;
     this->qContributions = new ApiQuery(ActionQuery, this->User->GetSite());
     this->qContributions->Target = "Retrieving contributions of " + this->User->Username;
@@ -216,7 +218,7 @@ void UserinfoForm::OnTick()
         MainWindow::HuggleMain->wEditBar->RefreshUser();
         this->qContributions.Delete();
         this->timer->stop();
-        Hooks::ContribBoxAfterQuery(this->User, this);
+        UiHooks::ContribBoxAfterQuery(this->User, this);
     }
 }
 
