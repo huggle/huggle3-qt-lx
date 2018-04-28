@@ -22,7 +22,7 @@
 namespace Huggle
 {
     class Script;
-    class ScriptException : public Exception
+    class HUGGLE_EX_CORE ScriptException : public Exception
     {
         public:
             ScriptException(QString text, QString source, Script *scr, bool is_recoverable = true);
@@ -30,7 +30,7 @@ namespace Huggle
             Script *s;
     };
 
-    class Script : public QObject
+    class HUGGLE_EX_CORE Script : public QObject
     {
             Q_OBJECT
         public:

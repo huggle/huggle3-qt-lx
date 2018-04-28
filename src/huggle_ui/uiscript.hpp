@@ -22,7 +22,7 @@ namespace Huggle
 {
     class UiScript;
 
-    class ScriptMenu
+    class HUGGLE_EX_UI ScriptMenu
     {
         public:
             ScriptMenu(UiScript *s, QMenu *parent, QString text, QString fc);
@@ -35,7 +35,7 @@ namespace Huggle
             QMenu *qm = nullptr;
     };
 
-    class UiScript : public Script
+    class HUGGLE_EX_UI UiScript : public Script
     {
         public:
             static QList<UiScript*> GetAllUiScripts();
