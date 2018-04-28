@@ -13,6 +13,8 @@
 #include "uiscript.hpp"
 #include "uigeneric.hpp"
 #include "mainwindow.hpp"
+#include <QAction>
+#include <QMenu>
 #include <QDir>
 #include <huggle_core/configuration.hpp>
 #include <huggle_core/generic.hpp>
@@ -65,7 +67,6 @@ void UiScript::Autostart()
             if (script->Load(name, &er))
             {
                 Huggle::Syslog::HuggleLogs->Log("Loaded JS script: " + name);
-                UiScript::uiScripts.append(script);
             } else
             {
                 Huggle::Syslog::HuggleLogs->Log("Failed to load a JS script: " + er);
@@ -77,12 +78,17 @@ void UiScript::Autostart()
 
 UiScript::UiScript()
 {
-
+    UiScript::uiScripts.append(this);
 }
 
 UiScript::~UiScript()
 {
-
+    if (UiScript::uiScripts.contains(this))
+        UiScript::uiScripts.removeAll(this);
+    foreach (ScriptMenu *menu, this->scriptMenus.values())
+        delete menu;
+    this->scriptMenusByAction.clear();
+    this->scriptMenus.clear();
 }
 
 QString UiScript::GetContext()
@@ -99,8 +105,25 @@ int UiScript::RegisterMenu(QMenu *parent, QString title, QString fc)
 {
     int id = this->lastMenu++;
     ScriptMenu *menu = new ScriptMenu(this, parent, title, fc);
+    this->scriptMenusByAction.insert(menu->GetAction(), menu);
     this->scriptMenus.insert(id, menu);
     return id;
+}
+
+void UiScript::Hook_OnMain()
+{
+    this->executeFunction("ext_on_main_open");
+}
+
+void UiScript::MenuClicked()
+{
+    QAction *menu = (QAction*)QObject::sender();
+    if (!this->scriptMenusByAction.contains(menu))
+    {
+        HUGGLE_ERROR(this->GetName() + ": invalid menu pointer: " + QString("0x%1").arg((quintptr)menu, QT_POINTER_SIZE * 2, 16, QChar('0')));
+        return;
+    }
+    this->executeFunction(this->scriptMenusByAction[menu]->GetCallback());
 }
 
 static QScriptValue create_menu(QScriptContext *context, QScriptEngine *engine)
@@ -120,9 +143,9 @@ static QScriptValue create_menu(QScriptContext *context, QScriptEngine *engine)
         return QScriptValue(engine, false);
     }
 
-    int parent = context->argument(1).toInt32();
-    QString name = context->argument(2).toString();
-    QString callback = context->argument(3).toString();
+    int parent = context->argument(0).toInt32();
+    QString name = context->argument(1).toString();
+    QString callback = context->argument(2).toString();
     QMenu *parentMenu = nullptr;
     if (parent < 0)
     {
@@ -156,7 +179,7 @@ static QScriptValue message_box(QScriptContext *context, QScriptEngine *engine)
     }
     MessageBoxStyle type = MessageBoxStyleNormal;
     if (context->argumentCount() > 2)
-        type = (MessageBoxStyle)context->argument(3).toInt32();
+        type = (MessageBoxStyle)context->argument(2).toInt32();
     if (type < 0 || type > 4)
     {
         HUGGLE_ERROR(extension->GetName() + ": message_box(title, text, type): invalid message box type");
@@ -165,10 +188,10 @@ static QScriptValue message_box(QScriptContext *context, QScriptEngine *engine)
     bool enforce_stop = false;
     if (context->argumentCount() > 3)
     {
-        enforce_stop = context->argument(4).toBool();
+        enforce_stop = context->argument(3).toBool();
     }
-    QString title = context->argument(1).toString();
-    QString text = context->argument(2).toString();
+    QString title = context->argument(0).toString();
+    QString text = context->argument(1).toString();
     UiGeneric::MessageBox(title, text, type, enforce_stop);
     return QScriptValue(engine, true);
 }
@@ -182,10 +205,29 @@ void UiScript::registerFunctions()
     Script::registerFunctions();
 }
 
-ScriptMenu::ScriptMenu(UiScript *s, QMenu *parent, QString text, QString fc)
+ScriptMenu::ScriptMenu(UiScript *s, QMenu *parent, QString text, QString fc, QAction *before)
 {
     this->callback = fc;
     this->script = s;
     this->parentMenu = parent;
     this->title = text;
+    this->item = new QAction(text, (QObject*)parent);
+    if (parent)
+        parent->insertAction(before, this->item);
+    UiScript::connect(this->item, SIGNAL(triggered()), this->script, SLOT(MenuClicked()));
+}
+
+ScriptMenu::~ScriptMenu()
+{
+    delete this->item;
+}
+
+QAction *ScriptMenu::GetAction()
+{
+    return this->item;
+}
+
+QString ScriptMenu::GetCallback()
+{
+    return this->callback;
 }

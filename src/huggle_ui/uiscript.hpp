@@ -16,6 +16,7 @@
 #include <huggle_core/definitions.hpp>
 #include <huggle_core/script.hpp>
 
+class QAction;
 class QMenu;
 
 namespace Huggle
@@ -25,18 +26,22 @@ namespace Huggle
     class HUGGLE_EX_UI ScriptMenu
     {
         public:
-            ScriptMenu(UiScript *s, QMenu *parent, QString text, QString fc);
+            ScriptMenu(UiScript *s, QMenu *parent, QString text, QString fc, QAction *before = nullptr);
+            ~ScriptMenu();
+            QAction *GetAction();
+            QString GetCallback();
 
         private:
             QString title;
             QString callback;
             QMenu *parentMenu = nullptr;
             UiScript *script;
-            QMenu *qm = nullptr;
+            QAction *item = nullptr;
     };
 
     class HUGGLE_EX_UI UiScript : public Script
     {
+            Q_OBJECT
         public:
             static QList<UiScript*> GetAllUiScripts();
             static void Autostart();
@@ -46,10 +51,14 @@ namespace Huggle
             QString GetContext();
             unsigned int GetContextID();
             int RegisterMenu(QMenu *parent, QString title, QString fc);
+            void Hook_OnMain();
+        public slots:
+            void MenuClicked();
         private:
             static QList<UiScript*> uiScripts;
             void registerFunctions();
             int lastMenu = 0;
+            QHash<QAction*, ScriptMenu*> scriptMenusByAction;
             QHash<int, ScriptMenu*> scriptMenus;
     };
 }

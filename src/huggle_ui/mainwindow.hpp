@@ -24,11 +24,16 @@
     #undef DeleteForm
 #endif
 
-#define HUGGLE_MW_MENU_SYSTEM       0
-#define HUGGLE_MW_MENU_USER         1
-#define HUGGLE_MW_MENU_PAGE         2
+#define HUGGLE_MW_MENU_SYSTEM       1
+#define HUGGLE_MW_MENU_USER         2
+#define HUGGLE_MW_MENU_PAGE         3
+#define HUGGLE_MW_MENU_TOOLS        4
+#define HUGGLE_MW_MENU_QUEUE        5
+#define HUGGLE_MW_MENU_HAN          6
+#define HUGGLE_MW_MENU_GOTO         7
+#define HUGGLE_MW_MENU_HELP         8
 
-#define HUGGLE_MW_MENUITEM_EXIT     0
+#define HUGGLE_MW_MENUITEM_EXIT     1
 
 class QLabel;
 class QTimer;

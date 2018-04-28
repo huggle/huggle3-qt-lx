@@ -11,6 +11,7 @@
 #include "uihooks.hpp"
 #include "speedyform.hpp"
 #include "userinfoform.hpp"
+#include "uiscript.hpp"
 #include <huggle_core/iextension.hpp>
 #include <huggle_core/core.hpp>
 
@@ -50,6 +51,10 @@ void UiHooks::MainWindow_OnLoad(Huggle::MainWindow *window)
     {
         if (e->IsWorking())
             e->Hook_MainWindowOnLoad((void*)window);
+    }
+    foreach (UiScript *sc, UiScript::GetAllUiScripts())
+    {
+        sc->Hook_OnMain();
     }
 }
 

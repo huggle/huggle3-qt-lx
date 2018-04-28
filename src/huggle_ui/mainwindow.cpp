@@ -95,6 +95,9 @@ MainWindow *MainWindow::HuggleMain = nullptr;
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
+    if (MainWindow::HuggleMain)
+        throw new Exception("Main window already exist", BOOST_CURRENT_FUNCTION);
+    MainWindow::HuggleMain = this;
     HUGGLE_PROFILER_RESET;
     this->LastTPRevID = WIKI_UNKNOWN_REVID;
     this->EditLoad = QDateTime::currentDateTime();
@@ -284,7 +287,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->VandalDock->Connect();
     HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@irc");
     this->tCheck = new QTimer(this);
-    UiHooks::MainWindow_OnLoad(this);
     HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@hooks");
     connect(this->tCheck, SIGNAL(timeout()), this, SLOT(TimerCheckTPOnTick()));
     this->tStatusBarRefreshTimer = new QTimer(this);
@@ -300,6 +302,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     connect(Events::Global, SIGNAL(System_WarningMessage(QString,QString)), this, SLOT(OnWarning(QString,QString)));
     connect(Events::Global, SIGNAL(System_YesNoQuestion(QString,QString,bool*)), this, SLOT(OnQuestion(QString,QString,bool*)));
     this->EnableEditing(false);
+    UiHooks::MainWindow_OnLoad(this);
 }
 
 MainWindow::~MainWindow()
@@ -440,6 +443,16 @@ QMenu *MainWindow::GetMenu(int menu_id)
             return this->ui->menuUser;
         case HUGGLE_MW_MENU_PAGE:
             return this->ui->menuPage;
+        case HUGGLE_MW_MENU_GOTO:
+            return this->ui->menuGo_to;
+        case HUGGLE_MW_MENU_QUEUE:
+            return this->ui->menuQueue;
+        case HUGGLE_MW_MENU_TOOLS:
+            return this->ui->menuTools;
+        case HUGGLE_MW_MENU_HAN:
+            return this->ui->menuHAN;
+        case HUGGLE_MW_MENU_HELP:
+            return this->ui->menuHelp;
         default:
             return nullptr;
     }

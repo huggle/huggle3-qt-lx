@@ -37,5 +37,5 @@ function ext_init()
 
 function ext_on_main_open()
 {
-    huggle_ui_create_menu(0, "Show scipting manual", "print_help");
+    huggle_ui_create_menu(huggle_ui_menu_help, "Show scipting manual", "print_help");
 }
