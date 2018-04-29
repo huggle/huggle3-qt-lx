@@ -1,5 +1,5 @@
 <RCC>
   <qresource prefix="/huggle/text">
-    <file>Resources/Python/definitions.py</file>
+    <file>Resources/ecma/huggle.js</file>
   </qresource>
 </RCC>

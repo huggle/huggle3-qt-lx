@@ -102,19 +102,6 @@ namespace std { typedef decltype(nullptr) nullptr_t; }
 // was left in for future times when google adapts their code for C++11
 #define DISABLE_BREAKPAD
 
-// this is a nasty workaround that exist because python is written by noobs
-#ifdef HUGGLE_PYTHON
-  #ifdef HUGGLE_WIN
-  // workaround for http://bugs.python.org/issue11566
-  // remove at least 8 months after the bug is fixed
-  #include <cmath>
-  #endif
-#endif
-
-#ifdef HUGGLE_PYTHON
-    #include <Python.h>
-#endif
-
 #include <QObject>
 
 #if QT_VERSION >= 0x050000
@@ -125,6 +112,9 @@ namespace std { typedef decltype(nullptr) nullptr_t; }
     #define HUGGLE_NOAUDIO
     #endif
 #endif
+
+#define HUGGLE_SCRIPT_CONTEXT_CORE 0
+#define HUGGLE_SCRIPT_CONTEXT_UI   1
 
 #define HUGGLE_SUCCESS                     1
 #define PRODUCTION_BUILD                   0

@@ -13,7 +13,6 @@
 #include <huggle_core/configuration.hpp>
 #include <huggle_core/core.hpp>
 #include <huggle_core/exception.hpp>
-#include <huggle_core/hooks.hpp>
 #include <huggle_core/generic.hpp>
 #include <huggle_core/localization.hpp>
 #include <huggle_core/syslog.hpp>
@@ -21,6 +20,7 @@
 #include <huggle_core/wikisite.hpp>
 #include <huggle_core/wikiutil.hpp>
 #include "uigeneric.hpp"
+#include "uihooks.hpp"
 #include "mainwindow.hpp"
 #include "ui_speedyform.h"
 
@@ -49,7 +49,7 @@ void SpeedyForm::on_pushButton_clicked()
         UiGeneric::MessageBox(_l("error"), _l("speedy-parameters-fail"), MessageBoxStyleError, false, this);
         return;
     }
-    if (!Hooks::Speedy_BeforeOK(this->edit, this))
+    if (!UiHooks::Speedy_BeforeOK(this->edit, this))
         return;
     if (this->edit->Page->IsUserpage())
     {
@@ -80,7 +80,7 @@ void SpeedyForm::on_pushButton_clicked()
 void Finalize(Query *result)
 {
     SpeedyForm *form = (SpeedyForm*)result->CallbackResult;
-    Hooks::Speedy_Finished(form->edit, form->Header, true);
+    UiHooks::Speedy_Finished(form->edit, form->Header, true);
     result->CallbackResult = nullptr;
     result->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
     form->close();
@@ -91,7 +91,7 @@ void SpeedyForm::Fail(QString reason)
     this->qObtainText.Delete();
     this->Template.Delete();
     UiGeneric::MessageBox("Error", reason, MessageBoxStyleError);
-    Hooks::Speedy_Finished(this->edit, this->ui->comboBox->currentText(), false);
+    UiHooks::Speedy_Finished(this->edit, this->ui->comboBox->currentText(), false);
     this->timer->stop();
 }
 

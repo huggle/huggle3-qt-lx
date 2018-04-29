@@ -1132,8 +1132,8 @@ void LoginForm::developerMode()
     foreach (WikiSite *site, hcfg->Projects)
         site->GetProjectConfig()->ParseYAML(pref, nullptr, site);
     hcfg->Restricted = true;
-    MainWindow::HuggleMain = new MainWindow();
-    MainWindow::HuggleMain->show();
+    MainWindow *main = new MainWindow();
+    main->show();
     this->hide();
 }
 
@@ -1299,8 +1299,8 @@ void LoginForm::finishLogin()
     this->Update(_l("loading-main-window"));
     this->timer->stop();
     this->hide();
-    MainWindow::HuggleMain = new MainWindow();
-    MainWindow::HuggleMain->show();
+    MainWindow *main = new MainWindow();
+    main->show();
     if (this->updateForm)
     {
         this->updateForm->close();

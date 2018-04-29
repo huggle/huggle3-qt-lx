@@ -28,6 +28,7 @@
 #include "resources.hpp"
 #include "query.hpp"
 #include "querypool.hpp"
+#include "script.hpp"
 #include "syslog.hpp"
 #include "wikiedit.hpp"
 #include "wikipage.hpp"
@@ -103,10 +104,6 @@ void Core::Init()
                                                                     << "?" << "/" << "<" << ">" << "[" << "]";
     if (!Configuration::HuggleConfiguration->SystemConfig_SafeMode)
     {
-#ifdef HUGGLE_PYTHON
-        Syslog::HuggleLogs->Log("Loading python engine");
-        this->Python = new Python::PythonEngine(Configuration::GetExtensionsRootPath());
-#endif
 #ifdef HUGGLE_GLOBAL_EXTENSION_PATH
         Syslog::HuggleLogs->Log("Loading plugins in " + Generic::SanitizePath(QString(HUGGLE_GLOBAL_EXTENSION_PATH)) + " and " + Configuration::GetExtensionsRootPath());
 #else
@@ -123,9 +120,6 @@ void Core::Init()
 
 Core::Core()
 {
-#ifdef HUGGLE_PYTHON
-    this->Python = nullptr;
-#endif
     this->processorThread = nullptr;
     this->HuggleSyslog = nullptr;
     this->StartupTime = QDateTime::currentDateTime();
@@ -383,28 +377,13 @@ void Core::ExtensionLoad()
                     Huggle::Syslog::HuggleLogs->Log("Failed to load (reason: " + extension->errorString() + "): " + ename);
                     delete extension;
                 }
-            } else if (name.endsWith(".py"))
-            {
-#ifdef HUGGLE_PYTHON
-                if (Core::Python->LoadScript(ename))
-                {
-                    Huggle::Syslog::HuggleLogs->Log("Loaded python script: " + ename);
-                } else
-                {
-                    Huggle::Syslog::HuggleLogs->Log("Failed to load a python script: " + ename);
-                }
-#endif
             }
         }
     } else
     {
         Huggle::Syslog::HuggleLogs->Log("There is no extensions folder, skipping load");
     }
-#ifndef HUGGLE_PYTHON
-    Huggle::Syslog::HuggleLogs->Log("Extensions: " + QString::number(Core::Extensions.count()));
-#else
-    Huggle::Syslog::HuggleLogs->Log("Extensions: " + QString::number(Core::Python->Count() + Core::Extensions.count()));
-#endif
+    Huggle::Syslog::HuggleLogs->Log("Extensions: " + QString::number(Script::GetScripts().count() + Core::Extensions.count()));
 }
 
 void Core::VersionRead()
@@ -441,13 +420,14 @@ void Core::Shutdown()
         this->processorThread->exit();
     }
     Core::SaveDefs();
-#ifdef HUGGLE_PYTHON
-    if (!Configuration::HuggleConfiguration->SystemConfig_SafeMode)
+    // We need to make a copy of list here, because calling delete would remove the pointer from original list
+    // that could cause some issues.
+    QList<Script*> sl = Script::GetScripts();
+    foreach (Script *s, sl)
     {
-        Huggle::Syslog::HuggleLogs->Log("Unloading python");
-        delete this->Python;
+        s->Hook_Shutdown();
+        delete s;
     }
-#endif
     QueryPool::HugglePool = nullptr;
     Configuration::SaveSystemConfig();
     delete this->HGQP;

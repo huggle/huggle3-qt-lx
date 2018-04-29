@@ -463,13 +463,13 @@ void Configuration::SaveSystemConfig()
     foreach (QString ex, extensions)
     {
         ExtensionConfig *ed = hcfg->ExtensionData[ex];
-        QStringList options = ed->Options.keys();
+        QStringList options = ed->options.keys();
         foreach (QString option, options)
         {
             writer->writeStartElement("extern");
             writer->writeAttribute("extension", ex);
             writer->writeAttribute("name", option);
-            writer->writeAttribute("value", ed->Options[option]);
+            writer->writeAttribute("value", ed->options[option]);
             writer->writeEndElement();
         }
     }
@@ -564,6 +564,13 @@ void Configuration::SetExtensionConfig(QString extension, QString name, QString 
     if (!this->ExtensionData.contains(extension))
         this->ExtensionData.insert(extension, new ExtensionConfig());
     this->ExtensionData[extension]->SetOption(name, value);
+}
+
+bool Configuration::ExtensionConfigContainsKey(QString extension, QString name)
+{
+    if (!this->ExtensionData.contains(extension))
+        return false;
+    return this->ExtensionData[extension]->Contains(name);
 }
 
 QString Configuration::GetProjectURL(WikiSite *Project)
@@ -824,19 +831,24 @@ Shortcut::Shortcut(const Shortcut &copy)
 
 void ExtensionConfig::SetOption(QString name, QString value)
 {
-    if (this->Options.contains(name))
+    if (this->options.contains(name))
     {
-        this->Options[name] = value;
+        this->options[name] = value;
         return;
     }
-    this->Options.insert(name, value);
+    this->options.insert(name, value);
 }
 
 QString ExtensionConfig::GetOption(QString name, QString md)
 {
     // only return the value if we have it
-    if (!this->Options.contains(name))
+    if (!this->options.contains(name))
         return md;
 
-    return this->Options[name];
+    return this->options[name];
+}
+
+bool ExtensionConfig::Contains(QString name)
+{
+    return this->options.contains(name);
 }

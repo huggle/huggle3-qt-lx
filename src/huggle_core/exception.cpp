@@ -78,14 +78,14 @@ google_breakpad::ExceptionHandler *Exception::GoogleBP_handler = NULL;
     #endif
 #endif
 
-Exception::Exception(QString text, bool isRecoverable)
+Exception::Exception(QString text, bool is_recoverable)
 {
-    this->construct(text, "{hidden}", isRecoverable);
+    this->construct(text, "{hidden}", is_recoverable);
 }
 
-Exception::Exception(QString text, QString source, bool isRecoverable)
+Exception::Exception(QString text, QString source, bool is_recoverable)
 {
-    this->construct(text, source, isRecoverable);
+    this->construct(text, source, is_recoverable);
 }
 
 Exception::Exception(QString text, const char *source)
@@ -93,19 +93,24 @@ Exception::Exception(QString text, const char *source)
     this->construct(text, QString(source), true);
 }
 
-bool Exception::IsRecoverable() const
+Exception::~Exception()
 {
-    return this->_IsRecoverable;
+
 }
 
-void Exception::construct(QString text, QString source, bool isRecoverable)
+bool Exception::IsRecoverable() const
+{
+    return this->isRecoverable;
+}
+
+void Exception::construct(QString text, QString source, bool is_recoverable)
 {
     std::cerr << "FATAL Exception thrown: " + text.toStdString() << std::endl;
     this->Source = source;
     this->StackTrace = GetCurrentStackTrace();
     this->Message = text;
     this->ErrorCode = 2;
-    this->_IsRecoverable = isRecoverable;
+    this->isRecoverable = is_recoverable;
 }
 
 void Exception::ThrowSoftException(QString Text, QString Source)

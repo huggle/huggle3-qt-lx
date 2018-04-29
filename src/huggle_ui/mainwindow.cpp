@@ -10,6 +10,7 @@
 
 #include "mainwindow.hpp"
 #include "blockuserform.hpp"
+#include "custommessage.hpp"
 #include "deleteform.hpp"
 #include "editbar.hpp"
 #include "history.hpp"
@@ -27,7 +28,6 @@
 #include "scorewordsdbform.hpp"
 #include "preferences.hpp"
 #include "processlist.hpp"
-#include "uigeneric.hpp"
 #include "protectpage.hpp"
 #include "reloginform.hpp"
 #include "reportuser.hpp"
@@ -37,9 +37,10 @@
 #include "wikipagetagsform.hpp"
 #include "uaareport.hpp"
 #include "ui_mainwindow.h"
+#include "uihooks.hpp"
+#include "uigeneric.hpp"
 #include "requestprotect.hpp"
 #include "queuehelp.hpp"
-#include "custommessage.hpp"
 #include <huggle_core/apiquery.hpp>
 #include <huggle_core/apiqueryresult.hpp>
 #include <huggle_core/events.hpp>
@@ -94,6 +95,9 @@ MainWindow *MainWindow::HuggleMain = nullptr;
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
+    if (MainWindow::HuggleMain)
+        throw new Exception("Main window already exist", BOOST_CURRENT_FUNCTION);
+    MainWindow::HuggleMain = this;
     HUGGLE_PROFILER_RESET;
     this->LastTPRevID = WIKI_UNKNOWN_REVID;
     this->EditLoad = QDateTime::currentDateTime();
@@ -283,7 +287,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->VandalDock->Connect();
     HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@irc");
     this->tCheck = new QTimer(this);
-    Hooks::MainWindow_OnLoad(this);
     HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@hooks");
     connect(this->tCheck, SIGNAL(timeout()), this, SLOT(TimerCheckTPOnTick()));
     this->tStatusBarRefreshTimer = new QTimer(this);
@@ -299,6 +302,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     connect(Events::Global, SIGNAL(System_WarningMessage(QString,QString)), this, SLOT(OnWarning(QString,QString)));
     connect(Events::Global, SIGNAL(System_YesNoQuestion(QString,QString,bool*)), this, SLOT(OnQuestion(QString,QString,bool*)));
     this->EnableEditing(false);
+    UiHooks::MainWindow_OnLoad(this);
 }
 
 MainWindow::~MainWindow()
@@ -439,6 +443,16 @@ QMenu *MainWindow::GetMenu(int menu_id)
             return this->ui->menuUser;
         case HUGGLE_MW_MENU_PAGE:
             return this->ui->menuPage;
+        case HUGGLE_MW_MENU_GOTO:
+            return this->ui->menuGo_to;
+        case HUGGLE_MW_MENU_QUEUE:
+            return this->ui->menuQueue;
+        case HUGGLE_MW_MENU_TOOLS:
+            return this->ui->menuTools;
+        case HUGGLE_MW_MENU_HAN:
+            return this->ui->menuHAN;
+        case HUGGLE_MW_MENU_HELP:
+            return this->ui->menuHelp;
         default:
             return nullptr;
     }
@@ -562,12 +576,12 @@ void MainWindow::Render(bool KeepHistory, bool KeepUser)
         params << this->CurrentEdit->Page->PageName << QString::number(this->CurrentEdit->Score) + word_list;
         this->tb->SetInfo(_l("browser-diff", params));
         this->EnableEditing(!this->CurrentEdit->GetSite()->GetProjectConfig()->ReadOnly);
-        Hooks::MainWindow_OnRender();
+        UiHooks::MainWindow_OnRender();
         return;
     }
     this->EnableEditing(false);
     this->tb->SetTitle(this->Browser->CurrentPageName());
-    Hooks::MainWindow_OnRender();
+    UiHooks::MainWindow_OnRender();
 }
 
 void MainWindow::RequestPD(WikiEdit *edit)
@@ -727,7 +741,7 @@ void MainWindow::ReloadShort(QString id)
     if (!Configuration::HuggleConfiguration->Shortcuts.contains(id))
         throw new Huggle::Exception("Invalid shortcut name", BOOST_CURRENT_FUNCTION);
     Shortcut s = Configuration::HuggleConfiguration->Shortcuts[id];
-    if (!Hooks::MainWindow_ReloadShortcut(&s))
+    if (!UiHooks::MainWindow_ReloadShortcut(&s))
         return;
     QAction *q = nullptr;
     QAction *tip = nullptr;

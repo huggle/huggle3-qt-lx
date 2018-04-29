@@ -154,8 +154,9 @@ namespace Huggle
              * \return Value that is associated with the key
              */
             QString GetOption(QString name, QString md = "");
+            bool Contains(QString name);
         private:
-            QHash<QString, QString> Options;
+            QHash<QString, QString> options;
             friend class Configuration;
     };
 
@@ -232,6 +233,7 @@ namespace Huggle
             //! This will reset shortcuts of dropdown menus that are dynamic
             void ResetMenuShortcuts();
             void SetExtensionConfig(QString extension, QString name, QString value);
+            bool ExtensionConfigContainsKey(QString extension, QString name);
 
             ////////////////////////////////////////////
             // System

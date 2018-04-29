@@ -9,25 +9,26 @@
 //GNU General Public License for more details.
 
 #include "preferences.hpp"
+#include "hugglequeue.hpp"
+#include "mainwindow.hpp"
+#include "uigeneric.hpp"
+#include "ui_preferences.h"
 #include <QMessageBox>
 #include <QLabel>
 #include <QSpinBox>
 #include <QFile>
 #include <QDir>
 #include <QMenu>
+#include <huggle_core/script.hpp>
 #include <huggle_core/core.hpp>
 #include <huggle_core/configuration.hpp>
 #include <huggle_core/exception.hpp>
 #include <huggle_core/generic.hpp>
 #include <huggle_core/huggleoption.hpp>
-#include "hugglequeue.hpp"
 #include <huggle_core/localization.hpp>
 #include <huggle_core/wikisite.hpp>
 #include <huggle_core/syslog.hpp>
 #include <huggle_core/resources.hpp>
-#include "mainwindow.hpp"
-#include "uigeneric.hpp"
-#include "ui_preferences.h"
 
 using namespace Huggle;
 
@@ -119,27 +120,23 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
         this->ui->tableWidget->setItem(c, 4, new QTableWidgetItem(extension->GetExtensionVersion()));
         c++;
     }
-#ifdef HUGGLE_PYTHON
-    c = 0;
-    QList<Python::PythonScript*> scripts(Core::HuggleCore->Python->ScriptsList());
-    while (c < scripts.count())
+
+    foreach (Script *s, Script::GetScripts())
     {
-        Python::PythonScript *script = scripts.at(c);
-        c++;
         this->ui->tableWidget->insertRow(0);
-        this->ui->tableWidget->setItem(0, 0, new QTableWidgetItem(script->GetModule()));
-        this->ui->tableWidget->setItem(0, 1, new QTableWidgetItem(script->GetAuthor()));
-        this->ui->tableWidget->setItem(0, 2, new QTableWidgetItem(script->GetDescription()));
-        if (script->IsEnabled())
+        this->ui->tableWidget->setItem(0, 0, new QTableWidgetItem(s->GetName()));
+        this->ui->tableWidget->setItem(0, 1, new QTableWidgetItem(s->GetAuthor()));
+        this->ui->tableWidget->setItem(0, 2, new QTableWidgetItem(s->GetDescription()));
+        if (s->IsWorking())
         {
             this->ui->tableWidget->setItem(0, 3, new QTableWidgetItem(_l("extension-ok")));
         } else
         {
             this->ui->tableWidget->setItem(0, 3, new QTableWidgetItem(_l("extension-kl")));
         }
-        this->ui->tableWidget->setItem(0, 4, new QTableWidgetItem(script->GetVersion()));
+        this->ui->tableWidget->setItem(0, 4, new QTableWidgetItem(s->GetVersion()));
     }
-#endif
+
     this->EnableQueues(false);
     this->ui->checkBox_AutoResolveConflicts->setText(_l("config-conflicts-revert"));
     this->ui->checkBox_ConfirmUserSpaceEditRevert->setText(_l("config-confirm-user"));
