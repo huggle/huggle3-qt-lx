@@ -532,22 +532,20 @@ static QScriptValue log(QScriptContext *context, QScriptEngine *engine)
     return QScriptValue(engine, true);
 }
 
-
-
 void Script::registerFunctions()
 {
-    this->registerFunction("huggle_get_function_help", get_function_help, 1, "(function_name): give you help for a function, returns string");
+    this->registerFunction("huggle_get_function_help", get_function_help, 1, "(string function_name): give you help for a function, returns string");
     this->registerFunction("huggle_get_function_list", get_function_list, 0, "(): returns array with list of functions");
     this->registerFunction("huggle_get_hook_list", get_hook_list, 0, "(): returns a list of all hooks");
     this->registerFunction("huggle_get_version", get_version, 0, "(): returns version object with properties: Major, Minor, Revision, String");
     this->registerFunction("huggle_is_unsafe", is_unsafe, 0, "(): returns true if script has access to unsafe functions");
-    this->registerFunction("huggle_set_cfg", set_cfg, 2, "(key, value): stores value as key in settings");
-    this->registerFunction("huggle_get_cfg", get_cfg, 2, "(key, default): returns stored value from ini file");
-    this->registerFunction("huggle_has_function", has_function, 1, "(function_name): return true or false whether function is present");
+    this->registerFunction("huggle_set_cfg", set_cfg, 2, "(string key, string value): stores value as key in settings");
+    this->registerFunction("huggle_get_cfg", get_cfg, 2, "(string key, string default): returns stored value from ini file");
+    this->registerFunction("huggle_has_function", has_function, 1, "(string function_name): return true or false whether function is present");
     this->registerFunction("huggle_get_context", get_context, 0, "(): return execution context, either core or GrumpyChat (core doesn't have ui functions and hooks)");
-    this->registerFunction("huggle_debug_log", debug_log, 2, "(text, verbosity): prints to debug log");
-    this->registerFunction("huggle_error_log", error_log, 1, "(text): prints to log");
-    this->registerFunction("huggle_log", log, 1, "(text): prints to log");
+    this->registerFunction("huggle_debug_log", debug_log, 2, "(string text, int verbosity): prints to debug log");
+    this->registerFunction("huggle_error_log", error_log, 1, "(string text): prints to log");
+    this->registerFunction("huggle_log", log, 1, "(string text): prints to log");
 
     this->registerHook("ext_init", 0, "(): called on start, must return true, otherwise load of extension is considered as failure");
     this->registerHook("ext_on_shutdown", 0, "(): called on exit");

@@ -2093,6 +2093,11 @@ void MainWindow::ShowEmptyQueuePage()
     this->LockPage();
 }
 
+void MainWindow::RenderHtml(QString html)
+{
+    this->Browser->RenderHtml(html);
+}
+
 void MainWindow::DeletePage()
 {
     if (!this->CheckExit() || !this->CheckEditableBrowserPage())

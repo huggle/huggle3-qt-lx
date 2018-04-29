@@ -158,6 +158,7 @@ namespace Huggle
             void BlockUser();
             void DisplayNext(Query *q = nullptr);
             void ShowEmptyQueuePage();
+            void RenderHtml(QString html);
             void DeletePage();
             void DisplayTalk();
             /*!

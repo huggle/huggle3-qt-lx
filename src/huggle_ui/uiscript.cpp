@@ -196,10 +196,41 @@ static QScriptValue message_box(QScriptContext *context, QScriptEngine *engine)
     return QScriptValue(engine, true);
 }
 
+static QScriptValue render_html(QScriptContext *context, QScriptEngine *engine)
+{
+    Script *extension = Script::GetScriptByEngine(engine);
+    if (!extension)
+        return QScriptValue(engine, false);
+    if (context->argumentCount() < 1)
+    {
+        // Wrong number of parameters
+        HUGGLE_ERROR(extension->GetName() + ": render_html(html [, lock_page]): requires 1 parameters");
+        return QScriptValue(engine, false);
+    }
+    if (!Huggle::MainWindow::HuggleMain)
+    {
+        HUGGLE_ERROR(extension->GetName() + ": render_html(html): mainwindow is not loaded yet");
+        return QScriptValue(engine, false);
+    }
+    QString source = context->argument(0).toString();
+    bool disable_interface = false;
+
+    if (context->argumentCount() > 1)
+        disable_interface = context->argument(1).toBool();
+
+    MainWindow::HuggleMain->RenderHtml(source);
+
+    if (disable_interface)
+        MainWindow::HuggleMain->LockPage();
+
+    return QScriptValue(engine, true);
+}
+
 void UiScript::registerFunctions()
 {
-    this->registerFunction("huggle_ui_create_menu", create_menu, 3, "(parent, name, function_name): Creates a new menu item");
-    this->registerFunction("huggle_ui_message_box", message_box, 2, "(title, text, [type], [enforce_stop]): Show a message box");
+    this->registerFunction("huggle_ui_render_html", render_html, 1, "(string html, [bool lock_page]): Renders html in current tab");
+    this->registerFunction("huggle_ui_create_menu", create_menu, 3, "(int parent, string name, string function_name): Creates a new menu item");
+    this->registerFunction("huggle_ui_message_box", message_box, 2, "(string title, string text, [int type], [enforce_stop]): Show a message box");
     this->registerHook("ext_on_login_open", 0, "Called when login form is loaded");
     this->registerHook("ext_on_main_open", 0, "Called when main window is loaded");
     Script::registerFunctions();
