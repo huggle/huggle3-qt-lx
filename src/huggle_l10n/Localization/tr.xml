@@ -794,6 +794,7 @@
   <string name="cr-message-same">$1 üzerinde aynı kullanıcı tarafından yapılan birden fazla değişiklik var. Bunları geri almak istediğinize emin misiniz?</string>
   <string name="cr-message-new">$1\'de yeni değişiklikler var. Gerçekten geri almak istiyor musunuz?</string>
   <string name="cr-message-not-same">$1 üzerinde farklı kullanıcılar tarafından yapılan yeni değişiklikler var. Hepsini geri almak istediğinize emin misiniz? (Eski anahtar yüzünden muhtemelen zaten başarısız olacaktır.)</string>
+  <string name="preferences-show-warning-if-not-last-revision">Sayfanın son revizyonunda değilseniz uyarı gösterilsin</string>
   <string name="preferences-delete-using-filter">Kullanılan bir süzgeci silemezsiniz</string>
   <string name="preferences-extension-disabled">Bu uzantı zaten Huggle yeniden başlarken devre dışı kalmak üzere planlanmış</string>
   <string name="preferences-extension-disabled-restart">Bu uzantı Huggle yeniden başladığında devre dışı kalmak üzere ayarlanmış</string>
