@@ -815,6 +815,7 @@
   <string name="preferences-empty-queue-page">Página da fila vazia:</string>
   <string name="preferences-reset-gui">Reiniciar a GUI</string>
   <string name="preferences-restore-factory-layout">Isto vai repor a composição de fábrica do Huggle como aconteceu quando você o instalou. O Huggle será desligado. Você deseja continuar?</string>
+  <string name="preferences-keystroke-rate-limit">Impedir a repetição do toque nas teclas por um determinado tempo em milissegundos (só 1 mesmo atalho pode ser desencadeado com N ms)</string>
   <string name="fail">Falha</string>
   <string name="request">Solicitar</string>
   <string name="requesting">Solicitando</string>
