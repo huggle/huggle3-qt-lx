@@ -727,7 +727,7 @@
   <string name="cr-message-same">Ci sono modifiche multiple a $1 da parte dello stesso utente, sei sicuro di volerle annullare?</string>
   <string name="cr-message-new">Ci sono nuove modifiche a $1. Sei sicuro di volerle veramente annullare?</string>
   <string name="cr-message-not-same">Ci sono nuove modifiche fatte a $1 da diversi utenti. Sei sicuro di volerle annullare tutte? (probabilmente non riuscirà in ogni caso poiché ha un token vecchio.)</string>
-  <string name="preferences-show-warning-if-not-last-revision">Mostra l\'avviso se non sei nell\'ultima pagina di revisione</string>
+  <string name="preferences-show-warning-if-not-last-revision">Mostra l\'avviso se non sei nell\'ultima versione della pagina</string>
   <string name="preferences-delete-using-filter">Non puoi cancellare un filtro attualmente in uso</string>
   <string name="preferences-extension-disabled">La disattivazione di questa estensione è già prevista al prossimo avvio di Huggle</string>
   <string name="preferences-extension-disabled-restart">La disattivazione di questa estensione è già prevista al prossimo avvio di Huggle</string>
@@ -737,6 +737,7 @@
   <string name="preferences-watchlist-unwatch">Rimuovi dagli osservati speciali</string>
   <string name="preferences-watchlist-preferences">Segui le tue preferenze su wiki</string>
   <string name="preferences-watchlist-nochange">Non fare nulla</string>
+  <string name="preferences-keystroke-rate-limit">Prevenire i tasti ripetuti seguendo la frequenza in millisecondi (solo 1 stesso tasto di scelta rapida può essere attivato in N ms)</string>
   <string name="fail">Fallito</string>
   <string name="request">Richiesta</string>
   <string name="requesting">Richiesta</string>

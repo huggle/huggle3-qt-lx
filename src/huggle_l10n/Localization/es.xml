@@ -261,7 +261,7 @@
   <string name="login-old">Consultando configuración de usuario de antigua localización</string>
   <string name="login-intro">Elige un proyecto y escribe tu nombre de usuario y tu contraseña. También puedes acceder a múltiples proyectos haciendo clic en el botón \"Proyectos\".</string>
   <string name="invalid-bot-user-name">Este no es un nombre válido para un robot. Ejemplo de nombre válido: Jimbo@Huggle</string>
-  <string name="login-tab-botp">Contraseña de bot</string>
+  <string name="login-tab-botp">Contraseña del robot</string>
   <string name="login-tab-login">Normal</string>
   <string name="login-reload-tool-tip">Volver a cargar la lista de proyectos disponibles para su uso en Huggle. Esto es necesario si quieres usar Huggle con un proyecto en que recién se ha permitido su utilización.</string>
   <string name="login-language">Idioma:</string>
@@ -452,7 +452,7 @@
   <string name="main-han-disconnect">Desconectar</string>
   <string name="main-han-connect">Conectar</string>
   <string name="main-help">Ayuda</string>
-  <string name="main-han-display-bot-data">Mostrar datos del bot</string>
+  <string name="main-han-display-bot-data">Mostrar datos del robot</string>
   <string name="main-han-display-user-messages">Mostrar mensajes del usuario</string>
   <string name="main-han-display-user-data">Mostrar datos del usuario</string>
   <string name="main-help-documentation">Documentación</string>
@@ -546,7 +546,7 @@
   <string name="queue-filternotifications">Notificación</string>
   <string name="queue-filterwarnings">Advertencia</string>
   <string name="queue-filtertags">Etiqueta</string>
-  <string name="queue-filterbot">Edición de bot</string>
+  <string name="queue-filterbot">Edición de robot</string>
   <string name="queue-filterassisted">Edición automática</string>
   <string name="queue-filterhuggle">Edición con Huggle</string>
   <string name="queue-filterme">Edición mía</string>

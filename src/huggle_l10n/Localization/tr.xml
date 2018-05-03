@@ -815,6 +815,7 @@
   <string name="preferences-empty-queue-page">Boş sorgu sayfası:</string>
   <string name="preferences-reset-gui">GUI\'yi sıfırlayın</string>
   <string name="preferences-restore-factory-layout">Bu, Huggle\'ın fabrika ayarlarını yüklediğiniz zamanki gibi geri yükleyecektir. Huggle kapanacak. Devam et?</string>
+  <string name="preferences-keystroke-rate-limit">Milisaniye cinsinden hızı takip ederek tekrarlanan tuş vuruşlarını önleme (N ms içinde sadece 1 aynı kısayol tetiklenebilir)</string>
   <string name="fail">Başarısız</string>
   <string name="request">Talep et</string>
   <string name="requesting">Talep ediliyor</string>
