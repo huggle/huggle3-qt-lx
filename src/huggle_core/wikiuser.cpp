@@ -453,7 +453,7 @@ QString WikiUser::Flags()
     return flags;
 }
 
-bool WikiUser::GetBot() const
+bool WikiUser::IsBot() const
 {
     return this->Bot;
 }

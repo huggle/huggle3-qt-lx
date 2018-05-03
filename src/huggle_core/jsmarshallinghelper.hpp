@@ -13,6 +13,9 @@
 #ifndef JSMARSHALLINGHELPER_HPP
 #define JSMARSHALLINGHELPER_HPP
 
+#include "definitions.hpp"
+#include <QtScript>
+
 namespace Huggle
 {
     class WikiEdit;
@@ -20,7 +23,9 @@ namespace Huggle
     class WikiUser;
     namespace JSMarshallingHelper
     {
-
+        QScriptValue FromSite(WikiSite *site, QScriptEngine *engine);
+        QScriptValue FromUser(WikiUser *user, QScriptEngine *engine);
+        QScriptValue FromEdit(WikiEdit *edit, QScriptEngine *engine);
     }
 }
 

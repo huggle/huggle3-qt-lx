@@ -126,7 +126,7 @@ namespace Huggle
             //! E - exception
             //! b - bot
             QString Flags();
-            bool GetBot() const;
+            bool IsBot() const;
             void SetBot(bool value);
             void DecrementWarningLevel();
             void IncrementWarningLevel();
