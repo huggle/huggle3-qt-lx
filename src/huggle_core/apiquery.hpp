@@ -49,18 +49,18 @@ namespace Huggle
         ActionCustom
     };
 
-    //! Format in which the result will be returned
-    enum Format
-    {
-        XML,
-        JSON,
-        PlainText,
-        Default
-    };
-
     //! This class can be used to execute any kind of api query on any MW wiki
     class HUGGLE_EX_CORE ApiQuery : public QObject, public Query, public MediaWikiObject
     {
+        //! Format in which the result will be returned
+        enum Format
+        {
+            XML,
+            JSON,
+            PlainText,
+            Default
+        };
+
         enum Token
         {
             TokenLogin,

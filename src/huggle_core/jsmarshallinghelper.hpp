@@ -18,14 +18,20 @@
 
 namespace Huggle
 {
+    class Version;
     class WikiEdit;
     class WikiSite;
+    class WikiPage;
+    class WikiPageNS;
     class WikiUser;
     namespace JSMarshallingHelper
     {
         QScriptValue FromSite(WikiSite *site, QScriptEngine *engine);
         QScriptValue FromUser(WikiUser *user, QScriptEngine *engine);
         QScriptValue FromEdit(WikiEdit *edit, QScriptEngine *engine);
+        QScriptValue FromPage(WikiPage *page, QScriptEngine *engine);
+        QScriptValue FromVersion(Version *version, QScriptEngine *engine);
+        QScriptValue FromNS(WikiPageNS *ns, QScriptEngine *engine);
     }
 }
 
