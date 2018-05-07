@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
 * Acamicamacaraca
+* BadDog
 * Milicevic01
 * Obsuser
 * Prevodim
@@ -9,6 +10,7 @@
 -->
 <resources>
   <string name="name">Српски</string>
+  <string name="autorelog">Уради ово без питања следећи пут</string>
   <string name="isrtl">false</string>
   <string name="add">Додај</string>
   <string name="cancel">Откажи</string>
@@ -44,13 +46,14 @@
   <string name="date">Датум</string>
   <string name="page">Страница</string>
   <string name="time">Време</string>
-  <string name="version">Издање</string>
+  <string name="version">Верзија</string>
   <string name="general-name">Име</string>
   <string name="author">Аутор</string>
   <string name="description">Опис</string>
   <string name="status">Статус</string>
   <string name="link">Веза</string>
   <string name="reason">Разлог</string>
+  <string name="diffid">DiffID</string>
   <string name="expiry-time">Време истека</string>
   <string name="duration">Трајање</string>
   <string name="enable">Омогући</string>
@@ -58,11 +61,15 @@
   <string name="no-token">Нема жетона</string>
   <string name="flags">Ознаке</string>
   <string name="browser-none">Тренутно нема страница за приказ.</string>
+  <string name="browser-miss-summ">Није дат опис</string>
+  <string name="browser-diff">Разлика измена на страници: $1 (бодови: $2)</string>
+  <string name="browser-fail">Није могуће приказати измену: $1</string>
   <string name="about-contributors">Програмери:</string>
   <string name="block-not">Корисник није блокиран</string>
   <string name="block-title">Блокирање $1</string>
   <string name="block-reason">Разлог:</string>
   <string name="block-duration">Трајање:</string>
+  <string name="block-message">Порука на страници за разговор:</string>
   <string name="block-anononly">Блокирај само анонимне кориснике</string>
   <string name="block-creation">Влокирај стварање налога</string>
   <string name="block-autoblock">Омогући аутоблокирање</string>

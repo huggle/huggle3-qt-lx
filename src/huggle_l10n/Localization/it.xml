@@ -737,7 +737,7 @@
   <string name="preferences-watchlist-unwatch">Rimuovi dagli osservati speciali</string>
   <string name="preferences-watchlist-preferences">Segui le tue preferenze su wiki</string>
   <string name="preferences-watchlist-nochange">Non fare nulla</string>
-  <string name="preferences-keystroke-rate-limit">Prevenire i tasti ripetuti seguendo la frequenza in millisecondi (solo 1 stesso tasto di scelta rapida può essere attivato in N ms)</string>
+  <string name="preferences-keystroke-rate-limit">Previeni la ripetizione dei tasti seguendo la frequenza in millisecondi (solo 1 stesso tasto di scelta rapida può essere attivato in N ms)</string>
   <string name="fail">Fallito</string>
   <string name="request">Richiesta</string>
   <string name="requesting">Richiesta</string>
