@@ -114,7 +114,7 @@ QString ApiQuery::ConstructParameterLessUrl()
 
 QString ApiQuery::GetAssertPartSuffix()
 {
-    if (this->EnforceLogin && !Configuration::HuggleConfiguration->Restricted)
+    if (this->EnforceLogin && !Configuration::HuggleConfiguration->DeveloperMode)
     {
         // we need to use this so that mediawiki will fail if we aren't logged in
         return "&assert=user";

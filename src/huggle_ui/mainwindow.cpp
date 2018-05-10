@@ -362,7 +362,7 @@ void MainWindow::DisplayReportUserWindow(WikiUser *User)
     if (!this->CheckExit() || this->CurrentEdit == nullptr)
         return;
 
-    if (Configuration::HuggleConfiguration->Restricted)
+    if (Configuration::HuggleConfiguration->DeveloperMode)
     {
         Generic::DeveloperError();
         return;
@@ -588,7 +588,7 @@ void MainWindow::RequestPD(WikiEdit *edit)
 {
     if (!this->CheckExit() || !this->CheckEditableBrowserPage() || this->CurrentEdit == nullptr)
         return;
-    if (Configuration::HuggleConfiguration->Restricted)
+    if (Configuration::HuggleConfiguration->DeveloperMode)
     {
         Generic::DeveloperError();
         return;
@@ -611,7 +611,7 @@ void MainWindow::RevertAgf(bool only)
 {
     if (this->CurrentEdit == nullptr || !this->CheckExit() || !this->CheckEditableBrowserPage() || !this->CheckRevertable())
         return;
-    if (Configuration::HuggleConfiguration->Restricted)
+    if (Configuration::HuggleConfiguration->DeveloperMode)
     {
         Generic::DeveloperError();
         return;
@@ -698,7 +698,7 @@ bool MainWindow::EditingChecks()
     if (!this->CheckExit() || !this->CheckEditableBrowserPage())
         return false;
 
-    if (Configuration::HuggleConfiguration->Restricted)
+    if (Configuration::HuggleConfiguration->DeveloperMode)
     {
         Generic::DeveloperError();
         return false;
@@ -1302,7 +1302,7 @@ void MainWindow::triggerWarn()
 {
     if (!this->CheckExit() || !this->CheckEditableBrowserPage())
         return;
-    if (Configuration::HuggleConfiguration->Restricted)
+    if (Configuration::HuggleConfiguration->DeveloperMode)
     {
         Generic::DeveloperError();
         return;
@@ -1340,7 +1340,7 @@ void MainWindow::on_actionAbout_triggered()
 void MainWindow::OnMainTimerTick()
 {
     ProjectConfiguration *cfg = this->GetCurrentWikiSite()->GetProjectConfig();
-    if (!cfg->IsLoggedIn && !cfg->RequestingLogin && !hcfg->Restricted)
+    if (!cfg->IsLoggedIn && !cfg->RequestingLogin && !hcfg->DeveloperMode)
     {
         delete this->fRelogin;
         // we need to flag it here so that we don't reload the form next tick
@@ -1621,6 +1621,7 @@ void MainWindow::OnTimerTick0()
         this->tStatusBarRefreshTimer->stop();
         this->GeneralTimer->stop();
         this->tCheck->stop();
+        this->close();
         Core::HuggleCore->Shutdown();
     }
 }
@@ -1813,7 +1814,7 @@ void MainWindow::Exit()
         layout->close();
         delete layout;
     }
-    if (Configuration::HuggleConfiguration->Restricted)
+    if (Configuration::HuggleConfiguration->DeveloperMode)
     {
         this->tCheck->stop();
         this->GeneralTimer->stop();
@@ -2855,7 +2856,7 @@ void Huggle::MainWindow::on_actionRestore_this_revision_triggered()
     if (!this->CheckExit() || this->CurrentEdit == nullptr)
         return;
 
-    if (Configuration::HuggleConfiguration->Restricted)
+    if (Configuration::HuggleConfiguration->DeveloperMode)
     {
         Generic::DeveloperError();
         return;
@@ -2908,7 +2909,7 @@ void Huggle::MainWindow::on_actionDisplay_talk_triggered()
 
 void MainWindow::TimerCheckTPOnTick()
 {
-    if (Configuration::HuggleConfiguration->Restricted || this->ShuttingDown)
+    if (Configuration::HuggleConfiguration->DeveloperMode || this->ShuttingDown)
     {
         this->tCheck->stop();
         return;
@@ -3167,7 +3168,7 @@ void MainWindow::on_actionRemove_page_from_a_watchlist_triggered()
 
 void MainWindow::on_actionMy_talk_page_triggered()
 {
-    if (Configuration::HuggleConfiguration->Restricted)
+    if (Configuration::HuggleConfiguration->DeveloperMode)
         return;
     this->LockPage();
     this->Browser->DisplayPage(Configuration::GetProjectWikiURL(this->GetCurrentWikiSite()) + "User_talk:" +
@@ -3176,7 +3177,7 @@ void MainWindow::on_actionMy_talk_page_triggered()
 
 void MainWindow::on_actionMy_Contributions_triggered()
 {
-    if (Configuration::HuggleConfiguration->Restricted)
+    if (Configuration::HuggleConfiguration->DeveloperMode)
         return;
     this->LockPage();
     this->Browser->DisplayPage(Configuration::GetProjectWikiURL(this->GetCurrentWikiSite()) + "Special:Contributions/" +
@@ -3416,7 +3417,7 @@ void Huggle::MainWindow::on_actionRevert_edit_using_custom_reason_triggered()
     if (!this->CheckExit() || this->CurrentEdit == nullptr)
         return;
 
-    if (Configuration::HuggleConfiguration->Restricted)
+    if (Configuration::HuggleConfiguration->DeveloperMode)
     {
         Generic::DeveloperError();
         return;

@@ -62,7 +62,7 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
     {
         throw new Huggle::NullPointerException("WikiEdit *Edit", BOOST_CURRENT_FUNCTION);
     }
-    if (Configuration::HuggleConfiguration->Restricted)
+    if (Configuration::HuggleConfiguration->DeveloperMode)
     {
         Generic::DeveloperError();
         return nullptr;
@@ -313,7 +313,7 @@ void Warnings::ResendWarnings()
 
 void Warnings::ForceWarn(int Level, WikiEdit *Edit)
 {
-    if (Configuration::HuggleConfiguration->Restricted)
+    if (Configuration::HuggleConfiguration->DeveloperMode)
     {
         Generic::DeveloperError();
         return;

@@ -261,7 +261,7 @@ namespace Huggle
             QStringList       ProjectString;
             //! When this is true most of functions will not work
             //! used on "Developer Mode" so far
-            bool            Restricted = false;
+            bool            DeveloperMode = false;
             //! This is used in combination with --login option, so that huggle knows if it should
             //! login automatically or wait for user to fill in their user information
             bool            Login = false;

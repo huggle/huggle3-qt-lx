@@ -36,7 +36,7 @@ void ReportUser::SilentReport(WikiUser *user)
 {
     // We need to automatically report this user, that means we create a background instance
     // of this report form, prefill it and submit without even showing it to user
-    if (Configuration::HuggleConfiguration->Restricted)
+    if (Configuration::HuggleConfiguration->DeveloperMode)
     {
         Generic::DeveloperError();
         return;

@@ -157,7 +157,7 @@ void VandalNw::Connect()
         Syslog::HuggleLogs->Log(_l("han-already-connected"));
         return;
     }
-    if (Configuration::HuggleConfiguration->Restricted || !Configuration::HuggleConfiguration->VandalNw_Login)
+    if (Configuration::HuggleConfiguration->DeveloperMode || !Configuration::HuggleConfiguration->VandalNw_Login)
     {
         Huggle::Syslog::HuggleLogs->Log(_l("han-not"));
         return;

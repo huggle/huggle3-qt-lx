@@ -1131,7 +1131,7 @@ void LoginForm::developerMode()
     delete vf;
     foreach (WikiSite *site, hcfg->Projects)
         site->GetProjectConfig()->ParseYAML(pref, nullptr, site);
-    hcfg->Restricted = true;
+    hcfg->DeveloperMode = true;
     MainWindow *main = new MainWindow();
     main->show();
     this->hide();
