@@ -32,7 +32,7 @@ namespace Huggle
      * \brief Miscelanceous system functions and application control class
      *
      * This class exists mostly for historical reasons, it's typically instantiated during launch of application and destroyed
-     * during it's shutdown.
+     * during its shutdown.
      *
      * It controls various components of Huggle internals:
      * * Garbage collector

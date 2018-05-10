@@ -2255,6 +2255,8 @@ QString MainWindow::ProjectURL()
 
 bool MainWindow::keystrokeCheck(int id)
 {
+    if (this->ShuttingDown)
+        return true;
     if (!hcfg->SystemConfig_KeystrokeMultiPressFix)
         return true;
     if (!this->lKeyPressTime.contains(id))
