@@ -157,7 +157,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         if (!site->GetProjectConfig()->WhiteList.contains(hcfg->SystemConfig_Username))
             site->GetProjectConfig()->WhiteList.append(hcfg->SystemConfig_Username);
     }
-    QueryPool::HugglePool->Processes = this->Queries;
     QString projects;
     if (hcfg->SystemConfig_Multiple)
     {
@@ -3253,7 +3252,7 @@ void MainWindow::on_actionLog_out_triggered()
 {
     ApiQuery *qx = new ApiQuery(ActionLogout, this->GetCurrentWikiSite());
     qx->CallbackOwner = this->GetCurrentWikiSite();
-    qx->callback = (Callback)FinishLogout;
+    qx->SuccessCallback = (Callback)FinishLogout;
     HUGGLE_QP_APPEND(qx);
     qx->Process();
 }

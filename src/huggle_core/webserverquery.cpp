@@ -49,11 +49,11 @@ void WebserverQuery::Process()
     {
         this->Result = new QueryResult(true);
         this->Result->SetError("You provided invalid url");
-        this->Status = StatusInError;
+        this->status = StatusInError;
         return;
     }
     this->ThrowOnValidResult();
-    this->Status = StatusProcessing;
+    this->status = StatusProcessing;
     this->Result = new QueryResult();
 
     QUrl url = QUrl::fromEncoded(this->URL.toUtf8());
@@ -82,7 +82,7 @@ void WebserverQuery::Kill()
 
 void WebserverQuery::ReadData()
 {    // don't even try to do anything if query was killed
-    if (this->Status == StatusKilled)
+    if (this->status == StatusKilled)
         return;
     if (this->reply == nullptr)
         throw new Huggle::NullPointerException("loc WebserverQuery::reply", BOOST_CURRENT_FUNCTION);
@@ -92,7 +92,7 @@ void WebserverQuery::ReadData()
 void WebserverQuery::Finished()
 {
     // don't even try to do anything if query was killed
-    if (this->Status == StatusKilled)
+    if (this->status == StatusKilled)
         return;
     if (this->Result == nullptr)
         throw new Huggle::NullPointerException("loc WebserverQuery::Result", BOOST_CURRENT_FUNCTION);
@@ -107,7 +107,7 @@ void WebserverQuery::Finished()
         this->Result->SetError(reply->errorString());
         this->reply->deleteLater();
         this->reply = NULL;
-        this->Status = StatusDone;
+        this->status = StatusDone;
         return;
     }
     this->reply->deleteLater();
@@ -116,5 +116,5 @@ void WebserverQuery::Finished()
     {
         Huggle::Syslog::HuggleLogs->DebugLog("Finished request " + URL, 2);
     }
-    this->Status = StatusDone;
+    this->status = StatusDone;
 }

@@ -29,8 +29,8 @@ WLQuery::~WLQuery()
 {
     if (this->networkReply != nullptr)
     {
-        QObject::disconnect(this->networkReply, SIGNAL(finished()), this, SLOT(Finished()));
-        QObject::disconnect(this->networkReply, SIGNAL(readyRead()), this, SLOT(ReadData()));
+        QObject::disconnect(this->networkReply, SIGNAL(finished()), this, SLOT(finished()));
+        QObject::disconnect(this->networkReply, SIGNAL(readyRead()), this, SLOT(readData()));
         this->networkReply->abort();
         this->networkReply->disconnect(this);
         this->networkReply->deleteLater();
@@ -55,11 +55,11 @@ void WLQuery::Kill()
 {
     if (this->networkReply != nullptr)
     {
-        QObject::disconnect(this->networkReply, SIGNAL(finished()), this, SLOT(Finished()));
-        QObject::disconnect(this->networkReply, SIGNAL(readyRead()), this, SLOT(ReadData()));
-        if (this->Status == StatusProcessing)
+        QObject::disconnect(this->networkReply, SIGNAL(finished()), this, SLOT(finished()));
+        QObject::disconnect(this->networkReply, SIGNAL(readyRead()), this, SLOT(readData()));
+        if (this->status == StatusProcessing)
         {
-            this->Status = StatusKilled;
+            this->status = StatusKilled;
             this->disconnect(this->networkReply);
             this->networkReply->abort();
             this->networkReply->disconnect(this);
@@ -79,10 +79,10 @@ void WLQuery::Process()
         Syslog::HuggleLogs->ErrorLog("Unable to process WL request, there is no whitelist server defined");
         this->Result = new QueryResult();
         this->Result->SetError("Invalid URL");
-        this->Status = Huggle::StatusInError;
+        this->status = Query::StatusInError;
         return;
     }
-    this->Status = StatusProcessing;
+    this->status = StatusProcessing;
     this->Result = new QueryResult();
     QUrl url(Configuration::HuggleConfiguration->GlobalConfig_Whitelist
              + "?action=read&wp=" + this->GetSite()->WhiteList);
@@ -134,18 +134,18 @@ void WLQuery::Process()
         this->networkReply = Query::NetworkManager->post(request, data);
     }
     request.setRawHeader("User-Agent", Configuration::HuggleConfiguration->WebRequest_UserAgent);
-    QObject::connect(this->networkReply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(WriteProgress(qint64,qint64)));
-    QObject::connect(this->networkReply, SIGNAL(uploadProgress(qint64,qint64)), this, SLOT(WriteProgress(qint64,qint64)));
-    QObject::connect(this->networkReply, SIGNAL(finished()), this, SLOT(Finished()));
-    QObject::connect(this->networkReply, SIGNAL(readyRead()), this, SLOT(ReadData()));
+    QObject::connect(this->networkReply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(writeProgress(qint64,qint64)));
+    QObject::connect(this->networkReply, SIGNAL(uploadProgress(qint64,qint64)), this, SLOT(writeProgress(qint64,qint64)));
+    QObject::connect(this->networkReply, SIGNAL(finished()), this, SLOT(finished()));
+    QObject::connect(this->networkReply, SIGNAL(readyRead()), this, SLOT(readData()));
 }
 
-void WLQuery::ReadData()
+void WLQuery::readData()
 {
     this->Result->Data += QString(this->networkReply->readAll());
 }
 
-void WLQuery::Finished()
+void WLQuery::finished()
 {
     this->Result->Data += QString(this->networkReply->readAll());
     if (this->Type == WLQueryType_WriteWL)
@@ -163,10 +163,10 @@ void WLQuery::Finished()
     }
     this->networkReply->deleteLater();
     this->networkReply = nullptr;
-    this->Status = StatusDone;
+    this->status = StatusDone;
 }
 
-void WLQuery::WriteProgress(qint64 n, qint64 m)
+void WLQuery::writeProgress(qint64 n, qint64 m)
 {
     if (m < 0 || n < 0)
     {

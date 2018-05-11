@@ -114,26 +114,26 @@ namespace Huggle
             //! You can change this to url of different wiki than a project
             QString OverrideWiki = "";
         private slots:
-            void ReadData();
-            void Finished();
+            void readData();
+            void finished();
         private:
             //! Generate api url
-            void ConstructUrl();
-            QString ConstructParameterLessUrl();
-            QString GetAssertPartSuffix();
+            void constructUrl();
+            QString constructParameterLessUrl();
+            QString getAssertPartSuffix();
             //! Check if return format is supported by huggle
-            bool FormatIsCurrentlySupported();
+            bool formatIsCurrentlySupported();
             //! This is only needed when you are using rollback
-            void FinishRollback();
+            void finishRollback();
             QHash<QString, QString> params;
             Action _action = ActionQuery;
-            QString ActionPart;
+            QString actionPart;
             QByteArray temp;
             //! Reply from qnet
             QNetworkReply *reply = nullptr;
     };
 
-    inline bool ApiQuery::FormatIsCurrentlySupported()
+    inline bool ApiQuery::formatIsCurrentlySupported()
     {
         // other formats will be supported later
         return (this->RequestFormat == XML);
@@ -141,7 +141,7 @@ namespace Huggle
 
     inline void ApiQuery::SetAction(const QString action)
     {
-        this->ActionPart = action;
+        this->actionPart = action;
     }
 
     inline QString ApiQuery::QueryTargetToString()
@@ -151,7 +151,7 @@ namespace Huggle
 
     inline QString ApiQuery::QueryTypeToString()
     {
-        return "ApiQuery (" + this->ActionPart + ")";
+        return "ApiQuery (" + this->actionPart + ")";
     }
 }
 

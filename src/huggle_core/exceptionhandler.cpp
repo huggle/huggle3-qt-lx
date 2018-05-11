@@ -9,6 +9,9 @@
 //GNU General Public License for more details.
 
 #include "exceptionhandler.hpp"
+#include "exception.hpp"
+#include <iostream>
+#include <QCoreApplication>
 
 using namespace Huggle;
 
@@ -24,5 +27,10 @@ ExceptionHandler::~ExceptionHandler()
 
 void ExceptionHandler::HandleException(Exception *ex)
 {
+    std::cout << "FATAL: Unhandled exception occured, description: " << ex->Message.toStdString() << std::endl
+              << "Source: " << ex->Source.toStdString() << std::endl
+              << "Stack: " << ex->StackTrace.toStdString() << std::endl;
 
+    // Kill the application to prevent collateral damage to system
+    QCoreApplication::exit(ex->ErrorCode);
 }

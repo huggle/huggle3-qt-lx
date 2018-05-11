@@ -191,7 +191,7 @@ void Huggle::WikiPageTagsForm_FinishRead(Query *result)
     Collectable_SmartPtr<EditQuery> e = WikiUtil::EditPage(form->page, text, Configuration::HuggleConfiguration->GenerateSuffix(
                                                            form->page->GetSite()->GetProjectConfig()->TaggingSummary, form->page->GetSite()->GetProjectConfig()), true, t_);
     e->FailureCallback = (Callback)Fail;
-    e->callback = (Callback)Finish;
+    e->SuccessCallback = (Callback)Finish;
     e->CallbackResult = (void*)form;
     // this is just making sure that this edit will not get deleted by GC, it's removed in callback function
     // it probably isn't needed
@@ -208,7 +208,7 @@ void Huggle::WikiPageTagsForm::on_pushButton_clicked()
     ApiQuery *retrieve = WikiUtil::RetrieveWikiPageContents(this->page, false);
     retrieve->FailureCallback = (Callback)Fail;
     retrieve->CallbackResult = (void*)this;
-    retrieve->callback = (Callback)Huggle::WikiPageTagsForm_FinishRead;
+    retrieve->SuccessCallback = (Callback)Huggle::WikiPageTagsForm_FinishRead;
     QueryPool::HugglePool->AppendQuery(retrieve);
     retrieve->Process();
 }

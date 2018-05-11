@@ -18,6 +18,10 @@ namespace Huggle
     class WikiEdit;
     class WikiUser;
     class WikiSite;
+
+    /*!
+     * \brief The EditQueue class handles basic operations and logic of edit queue
+     */
     class HUGGLE_EX_CORE EditQueue
     {
         public:
@@ -42,6 +46,8 @@ namespace Huggle
             //! Delete all edits to the page that are older than this edit
             virtual void DeleteOlder(WikiEdit *edit);
             virtual void UpdateUser(WikiUser *user);
+        protected:
+            WikiSite *currentSite = nullptr;
     };
 }
 

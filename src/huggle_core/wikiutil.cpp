@@ -211,7 +211,7 @@ Collectable_SmartPtr<ApiQuery> WikiUtil::Unwatchlist(WikiPage *page)
     {
         wt->Result = new QueryResult(true);
         wt->Result->SetError("No watchlist token");
-        wt->Status = StatusInError;
+        wt->SetStatus(Query::StatusInError);
         return wt;
     }
     wt->Parameters = "titles=" + page->EncodedName() + "&unwatch=1&token=" + QUrl::toPercentEncoding(page->GetSite()->GetProjectConfig()->Token_Watch);
@@ -231,7 +231,7 @@ Collectable_SmartPtr<ApiQuery> WikiUtil::Watchlist(WikiPage *page)
     {
         wt->Result = new QueryResult(true);
         wt->Result->SetError("No watchlist token");
-        wt->Status = StatusInError;
+        wt->SetStatus(Query::StatusInError);
         return wt;
     }
     wt->Parameters = "titles=" + page->EncodedName() + "&token=" + QUrl::toPercentEncoding(page->GetSite()->GetProjectConfig()->Token_Watch);
@@ -323,7 +323,7 @@ void WikiUtil::RetrieveTokens(WikiSite *wiki_site)
     qr->Target = "Tokens";
     qr->CallbackOwner = wiki_site;
     qr->FailureCallback = (Callback)FailureTokens;
-    qr->callback = (Callback)FinishTokens;
+    qr->SuccessCallback = (Callback)FinishTokens;
     qr->Process();
 }
 
@@ -413,7 +413,7 @@ void WikiUtil::RetrieveEditByRevid(revid_ht revid, WikiSite *site, void *source,
     i->error = callback_er;
     i->success = callback_success;
     qPage->CallbackOwner = i;
-    qPage->callback = (Callback) RetrieveEditByRevid_Page_OK;
+    qPage->SuccessCallback = (Callback) RetrieveEditByRevid_Page_OK;
     qPage->FailureCallback = (Callback) RetrieveEditByRevid_Page_ER;
     qPage->Parameters = "prop=revisions&revids=" + QString::number(revid) + "&rvprop=" +
                           QUrl::toPercentEncoding("ids|flags|timestamp|user|contentmodel|comment|size") + "&rvdiffto=prev";

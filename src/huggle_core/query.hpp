@@ -29,17 +29,6 @@ namespace Huggle
     class Query;
     typedef void* (*Callback) (Query*);
 
-    //! Status of a query
-    enum _Status
-    {
-        StatusNull,
-        StatusDone,
-        StatusKilled,
-        StatusProcessing,
-        StatusInError,
-        StatusIsSuspended
-    };
-
     /*!
      * \brief The QueryType enum
      */
@@ -69,16 +58,23 @@ namespace Huggle
     class HUGGLE_EX_CORE Query : public Collectable
     {
         public:
-            //! List of queries that need to be restarted, used for relogin so that operation that was to be executed
-            //! can be resumed
+            //! Status of a query
+            enum Status
+            {
+                StatusNull,
+                StatusDone,
+                StatusKilled,
+                StatusProcessing,
+                StatusInError,
+                StatusIsSuspended
+            };
+
+            //! List of queries that need to be restarted, used for relogin so that operation that was to be executed can be resumed
             static QList<Collectable_SmartPtr<Query>> PendingRestart;
-            //! We need to have a shared manager for all queries
-            //! so that sessions work in wiki
+            //! We need to have a shared network manager for all queries, otherwise mediawiki sessions will not work
             static QNetworkAccessManager *NetworkManager;
 
-            //! Creates empty query
             Query();
-            //! Destructor for query
             virtual ~Query();
             //! Returns true in case that query is processed which means that it's finished and it's not going to
             //! do anything on its own unless you restart it
@@ -111,13 +107,17 @@ namespace Huggle
             //! Attempt to rerun same query which either finished or failed
             virtual void Restart();
             //! Prevents query from being finished
+            //!
+            //! This function was originally created to pause queries in case that user was logged out from mediawiki.
+            //! Queries are meant to be automatically restarted when login process is finished, so by default this query will restart on login.
+            //! If you want to prevent that, set enqeue to false.
             virtual void Suspend(bool enqueue = true);
             //! Returns how long did it take to process this query
             qint64 ExecutionTime();
+            Status GetStatus();
+            void SetStatus(Status state);
             //! Result of query, see documentation of QueryResult for more
             QueryResult *Result = nullptr;
-            //! Current status of a query
-            enum _Status Status;
             //! Custom status
 
             //! This can be used to override the current string representation of status with
@@ -131,10 +131,9 @@ namespace Huggle
             //! Callback
 
             //! If this is not a NULL this function will be called by query
-            //! once it's finished, a consumer HUGGLECONSUMER_CALLBACK will be created and you
-            //! will have to either replace it or remove in your function
-            //! otherwise you create a leak in huggle
-            Callback callback = nullptr;
+            //! once it's finished, a consumer HUGGLECONSUMER_CALLBACK will be registered for this collectable to prevent its deletion and you
+            //! will have to either replace it or remove in your function, otherwise you create a leak in huggle!!
+            Callback SuccessCallback = nullptr;
             Callback FailureCallback = nullptr;
             //! This is a pointer to object returned by your callback function
             void* CallbackResult = nullptr;
@@ -155,20 +154,24 @@ namespace Huggle
             //! until the dependency is processed as well, for most types
             //! of queries they will not even start before that
             Query *Dependency = nullptr;
+
         protected:
             //! If you inherit query you should allways call this from a signal that
             //! you receive when the query finish
-            void ProcessCallback();
-            void ProcessFailure();
+            void processCallback();
+            void processFailure();
             //! When a query fail and retry this is changed to true so that it doesn't endlessly restart
-            bool Repeated;
-            QString FailureReason;
+            bool isRepeated;
+            QString failureReason;
             QDateTime finishedTime;
+            //! Current status of a query
+            Status status;
+
         private:
+            //! This is a last ID used by a constructor of a query
+            static unsigned int lastID;
             //! Every query has own unique ID which can be used to work with them
             unsigned int ID;
-            //! This is a last ID used by a constructor of a query
-            static unsigned int LastID;
     };
 
     inline QString Query::QueryTargetToString()
@@ -179,6 +182,11 @@ namespace Huggle
     inline unsigned int Query::QueryID()
     {
         return this->ID;
+    }
+
+    inline Query::Status Query::GetStatus()
+    {
+        return this->status;
     }
 }
 

@@ -56,10 +56,10 @@ QueryPool::~QueryPool()
         this->PendingWatches.at(0)->UnregisterConsumer(HUGGLECONSUMER_QP_WATCHLIST);
         this->PendingWatches.removeAt(0);
     }
-    while(this->RunningQueries.count() != 0)
+    while(this->runningQueries.count() != 0)
     {
-        this->RunningQueries.at(0)->UnregisterConsumer(HUGGLECONSUMER_QP);
-        this->RunningQueries.removeAt(0);
+        this->runningQueries.at(0)->UnregisterConsumer(HUGGLECONSUMER_QP);
+        this->runningQueries.removeAt(0);
     }
     while (this->UncheckedReverts.count() != 0)
     {
@@ -71,7 +71,7 @@ QueryPool::~QueryPool()
 void QueryPool::AppendQuery(Query *item)
 {
     item->RegisterConsumer(HUGGLECONSUMER_QP);
-    this->RunningQueries.append(item);
+    this->runningQueries.append(item);
 }
 
 void QueryPool::PreProcessEdit(WikiEdit *edit)
@@ -181,18 +181,18 @@ void QueryPool::CheckQueries()
         }
     }
     curr = 0;
-    if (this->RunningQueries.count() < 1)
+    if (this->runningQueries.count() < 1)
         return;
-    while (curr < this->RunningQueries.count())
+    while (curr < this->runningQueries.count())
     {
-        Query *q = this->RunningQueries.at(curr);
+        Query *q = this->runningQueries.at(curr);
         Hooks::QueryPool_Update(q);
         if (q->IsProcessed())
         {
 #ifdef HUGGLE_METRICS
             this->registerQueryPerfTime(q);
 #endif
-            this->RunningQueries.removeAt(curr);
+            this->runningQueries.removeAt(curr);
             // this is pretty spamy :o
             HUGGLE_DEBUG("Query finished with: " + q->Result->Data, 8);
             Hooks::QueryPool_Update(q);
@@ -207,13 +207,13 @@ void QueryPool::CheckQueries()
 
 int QueryPool::RunningQueriesGetCount()
 {
-    return this->RunningQueries.count();
+    return this->runningQueries.count();
 }
 
 int QueryPool::GetRunningEditingQueries()
 {
     int n = 0;
-    foreach (Query *query, this->RunningQueries)
+    foreach (Query *query, this->runningQueries)
     {
         if (query->Type == QueryApi && ((ApiQuery*)query)->EditingQuery)
         {

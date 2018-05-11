@@ -44,9 +44,9 @@ namespace Huggle
             WLQueryType Type;
             double Progress;
         private slots:
-            void ReadData();
-            void Finished();
-            void WriteProgress(qint64 n, qint64 m);
+            void readData();
+            void finished();
+            void writeProgress(qint64 n, qint64 m);
         private:
             QNetworkReply *networkReply;
     };

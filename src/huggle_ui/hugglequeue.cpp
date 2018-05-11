@@ -524,9 +524,9 @@ void HuggleQueue::RedrawTitle()
 
 WikiSite *HuggleQueue::CurrentSite()
 {
-    if (this->Site == nullptr)
+    if (this->currentSite == nullptr)
         return hcfg->Project;
-    return this->Site;
+    return this->currentSite;
 }
 
 void HuggleQueue::ChangeSite(WikiSite *site)
@@ -534,7 +534,7 @@ void HuggleQueue::ChangeSite(WikiSite *site)
     if (this->CurrentSite() != site)
     {
         // let's switch the list of queues
-        this->Site = site;
+        this->currentSite = site;
         this->Filters();
     }
 }

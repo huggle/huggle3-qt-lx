@@ -27,7 +27,7 @@ namespace Huggle
     class HUGGLE_EX_CORE WikiPageNS
     {
         public:
-            WikiPageNS(int id, QString name, QString canonical_name);
+            WikiPageNS(int id, QString localized_name, QString canonical_name);
             WikiPageNS(const WikiPageNS &k);
             WikiPageNS(WikiPageNS *k);
             ~WikiPageNS();
@@ -36,25 +36,25 @@ namespace Huggle
             bool IsTalkPage();
             int GetID();
         private:
-            QString Name;
-            QString CanonicalName;
-            bool Talk;
+            QString localizedName;
+            QString canonicalName;
+            bool isTalk;
             int ID;
     };
 
     inline QString WikiPageNS::GetName()
     {
-        return this->Name;
+        return this->localizedName;
     }
 
     inline QString WikiPageNS::GetCanonicalName()
     {
-        return this->CanonicalName;
+        return this->canonicalName;
     }
 
     inline bool WikiPageNS::IsTalkPage()
     {
-        return this->Talk;
+        return this->isTalk;
     }
 
     inline int WikiPageNS::GetID()

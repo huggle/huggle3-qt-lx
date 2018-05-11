@@ -82,7 +82,6 @@ namespace Huggle
             void ResortItem(QLayoutItem *item, int position = -1);
             //! Internal function
             bool DeleteItem(HuggleQueueItemLabel *item);
-            WikiSite *Site = nullptr;
             Ui::HuggleQueue *ui;
             bool loading;
     };

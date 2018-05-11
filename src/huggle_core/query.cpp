@@ -17,15 +17,15 @@
 using namespace Huggle;
 
 QList<Collectable_SmartPtr<Query>> Query::PendingRestart;
-unsigned int Query::LastID = 0;
+unsigned int Query::lastID = 0;
 QNetworkAccessManager *Query::NetworkManager = nullptr;
 
 Query::Query()
 {
     this->Type = QueryNull;
-    this->Status = StatusNull;
-    this->ID = this->LastID;
-    this->LastID++;
+    this->status = StatusNull;
+    this->ID = this->lastID;
+    this->lastID++;
     this->HiddenQuery = false;
     this->Timeout = 60;
     this->StartTime = QDateTime::currentDateTime();
@@ -40,19 +40,19 @@ Query::~Query()
 
 bool Query::IsProcessed()
 {
-    if (this->Status == StatusNull || this->Status == StatusIsSuspended)
+    if (this->status == StatusNull || this->status == StatusIsSuspended)
         return false;
-    if (this->Status == StatusDone || this->Status == StatusInError || this->Status == StatusKilled)
+    if (this->status == StatusDone || this->status == StatusInError || this->status == StatusKilled)
         return true;
     if (QDateTime::currentDateTime() > this->StartTime.addSecs(this->Timeout))
     {
-        if (!this->Repeated && this->RetryOnTimeoutFailure)
+        if (!this->isRepeated && this->RetryOnTimeoutFailure)
         {
             this->Kill();
             delete this->Result;
             this->Result = nullptr;
             this->StartTime = QDateTime::currentDateTime();
-            this->Repeated = true;
+            this->isRepeated = true;
             this->Process();
             return false;
         }
@@ -62,8 +62,8 @@ bool Query::IsProcessed()
 
         this->Kill();
         this->Result->SetError("Timed out");
-        this->Status = StatusInError;
-        this->ProcessFailure();
+        this->status = StatusInError;
+        this->processFailure();
         return true;
     }
     return false;
@@ -94,7 +94,7 @@ QString Query::QueryStatusToString()
     if (this->CustomStatus.size())
         return CustomStatus;
 
-    switch (this->Status)
+    switch (this->status)
     {
         case StatusNull:
             return "Waiting";
@@ -115,17 +115,17 @@ QString Query::QueryStatusToString()
     return "Unknown";
 }
 
-void Query::ProcessCallback()
+void Query::processCallback()
 {
     this->finishedTime = QDateTime::currentDateTime();
-    if (this->callback != nullptr)
+    if (this->SuccessCallback != nullptr)
     {
         this->RegisterConsumer(HUGGLECONSUMER_CALLBACK);
-        this->callback(this);
+        this->SuccessCallback(this);
     }
 }
 
-void Query::ProcessFailure()
+void Query::processFailure()
 {
     this->finishedTime = QDateTime::currentDateTime();
     if (this->FailureCallback != nullptr)
@@ -140,7 +140,7 @@ bool Query::IsFailed()
     if (this->Result != nullptr && this->Result->IsFailed())
         return true;
 
-    if (this->Status == Huggle::StatusInError || this->Status == Huggle::StatusKilled)
+    if (this->status == Query::StatusInError || this->status == Query::StatusKilled)
         return true;
 
     return false;
@@ -148,16 +148,16 @@ bool Query::IsFailed()
 
 QString Query::GetFailureReason()
 {
-    if (this->Status == Huggle::StatusKilled)
+    if (this->status == Query::StatusKilled)
         return "Query was killed";
 
     if (this->Result != nullptr)
         return this->Result->ErrorMessage;
 
-    if (this->FailureReason.isEmpty())
+    if (this->failureReason.isEmpty())
         return "Unknown";
 
-    return this->FailureReason;
+    return this->failureReason;
 }
 
 QString Query::DebugURL()
@@ -170,26 +170,26 @@ void Query::ThrowOnValidResult()
     if (!this->Result)
         return;
 
-    this->Status = StatusInError;
+    this->status = StatusInError;
     throw new Huggle::Exception("Result was not NULL memory would leak: 0x" + QString::number((uintptr_t)this->Result, 16), BOOST_CURRENT_FUNCTION);
 }
 
 void Query::Restart()
 {
-    if (this->Status == StatusProcessing)
+    if (this->status == StatusProcessing)
         this->Kill();
 
     delete this->Result;
     this->Result = nullptr;
-    this->Status = StatusNull;
-    this->Repeated = false;
-    this->FailureReason = "";
+    this->status = StatusNull;
+    this->isRepeated = false;
+    this->failureReason = "";
     this->Process();
 }
 
 void Query::Suspend(bool enqueue)
 {
-    this->Status = StatusIsSuspended;
+    this->status = StatusIsSuspended;
     Collectable_SmartPtr<Query> query = this;
     if (enqueue)
         Query::PendingRestart.append(query);
@@ -201,4 +201,9 @@ qint64 Query::ExecutionTime()
         return 0;
 
     return this->StartTime.msecsTo(this->finishedTime);
+}
+
+void Query::SetStatus(Query::Status state)
+{
+    this->status = state;
 }

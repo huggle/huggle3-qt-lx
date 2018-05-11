@@ -65,10 +65,10 @@ void RevertQuery::DisplayError(QString error, QString reason)
         reason = error;
     Huggle::Syslog::HuggleLogs->ErrorLog(error);
     this->Kill();
-    this->Status = StatusDone;
+    this->status = StatusDone;
     this->Result = new QueryResult();
     this->Result->SetError();
-    this->ProcessFailure();
+    this->processFailure();
 }
 
 QString RevertQuery::getCustomRevertStatus(bool *failed)
@@ -106,12 +106,12 @@ void RevertQuery::Process()
         this->Suspend();
         return;
     }
-    if (this->Status == StatusProcessing)
+    if (this->status == StatusProcessing)
     {
         Huggle::Syslog::HuggleLogs->DebugLog("Cowardly refusing to double process the query");
         return;
     }
-    this->Status = StatusProcessing;
+    this->status = StatusProcessing;
     if (this->timer != nullptr)
         delete this->timer;
     this->StartTime = QDateTime::currentDateTime();
@@ -154,7 +154,7 @@ void RevertQuery::Kill()
         this->qHistoryInfo.Delete();
     }
     // set the status
-    this->Status = StatusKilled;
+    this->status = StatusKilled;
 
     if (this->qRetrieve != nullptr)
     {
@@ -176,9 +176,9 @@ WikiEdit *RevertQuery::GetEdit()
 
 bool RevertQuery::IsProcessed()
 {
-    if (this->Status == StatusIsSuspended)
+    if (this->status == StatusIsSuspended)
         return false;
-    if (this->Status == StatusDone || this->Status == StatusInError || this->Status == StatusKilled)
+    if (this->status == StatusDone || this->status == StatusInError || this->status == StatusKilled)
         return true;
     if (!this->PreflightFinished)
         return false;
@@ -200,9 +200,9 @@ bool RevertQuery::IsUsingSR()
 
 void RevertQuery::OnTick()
 {
-    if (this->Status == StatusIsSuspended)
+    if (this->status == StatusIsSuspended)
         return;
-    if (this->Status != StatusDone)
+    if (this->status != StatusDone)
     {
         if (!this->PreflightFinished)
         {
@@ -343,9 +343,9 @@ void RevertQuery::CheckPreflight()
         Huggle::Syslog::HuggleLogs->Log(_l("revert-fail-pre-flight", this->qPreflight->GetFailureReason()));
         this->Kill();
         this->Result = new QueryResult();
-        this->Status = StatusDone;
+        this->status = StatusDone;
         this->Result->SetError();
-        this->ProcessFailure();
+        this->processFailure();
         return;
     }
     QList<ApiQueryResultNode*> revs = this->qPreflight->GetApiQueryResult()->GetNodes("rev");
@@ -435,9 +435,9 @@ void RevertQuery::CheckPreflight()
             this->CustomStatus = "Stopped";
             this->Result = new QueryResult();
             this->Result->SetError("User requested to abort this");
-            this->Status = StatusDone;
+            this->status = StatusDone;
             this->PreflightFinished = true;
-            this->ProcessFailure();
+            this->processFailure();
             return;
         }
     }
@@ -448,14 +448,14 @@ bool RevertQuery::CheckRevert()
 {
     if (this->UsingSR)
         return ProcessRevert();
-    if (this->Status == StatusIsSuspended)
+    if (this->status == StatusIsSuspended)
         return false;
     if (this->qRevert == nullptr || !this->qRevert->IsProcessed())
         return false;
     bool failed = false;
     this->CustomStatus = this->getCustomRevertStatus(&failed);
     // In case that we got suspended by the session logout, quit here
-    if (this->Status == StatusIsSuspended)
+    if (this->status == StatusIsSuspended)
         return false;
     if (!failed && this->qRevert->IsFailed())
     {
@@ -464,15 +464,15 @@ bool RevertQuery::CheckRevert()
     }
     if (failed)
     {
-        this->Status = StatusInError;
+        this->status = StatusInError;
         Huggle::Syslog::HuggleLogs->Log(_l("revert-fail", this->qRevert->Target, this->CustomStatus));
         this->qRevert->Result->SetError(CustomStatus);
         this->Result = new QueryResult(true);
         this->Result->SetError(CustomStatus);
-        this->ProcessFailure();
+        this->processFailure();
     } else
     {
-        this->Status = StatusDone;
+        this->status = StatusDone;
         HistoryItem *item = new HistoryItem();
         this->HI = item;
         this->HI->Site = this->GetSite();
@@ -494,9 +494,9 @@ void RevertQuery::Cancel()
     this->CustomStatus = "Stopped";
     this->Result = new QueryResult(true);
     this->Result->SetError("User requested to abort this");
-    this->Status = StatusDone;
+    this->status = StatusDone;
     this->PreflightFinished = true;
-    this->ProcessFailure();
+    this->processFailure();
 }
 
 bool RevertQuery::ProcessRevert()
@@ -516,8 +516,8 @@ bool RevertQuery::ProcessRevert()
             Syslog::HuggleLogs->ErrorLog(_l("revert-fail", this->edit->Page->PageName, "edit failed"));
             this->Result->SetError(this->eqSoftwareRollback->GetFailureReason());
             this->Kill();
-            this->ProcessFailure();
-            this->Status = StatusInError;
+            this->processFailure();
+            this->status = StatusInError;
             return true;
         }
         Syslog::HuggleLogs->DebugLog("Sucessful SR of page " + this->edit->Page->PageName);
@@ -715,9 +715,9 @@ void RevertQuery::Rollback()
         Huggle::Syslog::HuggleLogs->ErrorLog(_l("revert-fail", this->edit->Page->PageName, "rollback token was empty"));
         this->Result = new QueryResult();
         this->Result->SetError(_l("revert-fail", this->edit->Page->PageName, "rollback token was empty"));
-        this->Status = StatusDone;
+        this->status = StatusDone;
         this->Exit();
-        this->ProcessFailure();
+        this->processFailure();
         return;
     }
     QString tag = "";

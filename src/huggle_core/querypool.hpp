@@ -57,10 +57,6 @@ namespace Huggle
             //! Return average response time, or -1 in case it's unknown.
             qint64 GetAverageExecutionTime();
 #endif
-#ifndef HUGGLE_SDK
-            //! Pointer to UI that contains all processes
-            ProcessList *Processes = nullptr;
-#endif
             //! List of all messages that are being sent
             QList<Message*> Messages;
             //! Pending changes
@@ -79,7 +75,7 @@ namespace Huggle
             QList<qint64> performanceInfo;
 #endif
             //! List of all running queries
-            QList<Query*> RunningQueries;
+            QList<Query*> runningQueries;
     };
 }
 

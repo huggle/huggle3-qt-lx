@@ -17,31 +17,31 @@ using namespace Huggle;
 
 WikiPageNS *WikiSite::Unknown = new WikiPageNS(0, "", "");
 
-WikiPageNS::WikiPageNS(int id, QString name, QString canonical_name)
+WikiPageNS::WikiPageNS(int id, QString localized_name, QString canonical_name)
 {
     QString lc = canonical_name.toLower().replace("_", " ");
-    QString lw = name.toLower();
-    this->Talk = (lc.startsWith("talk") || lc.contains(" talk") || lw.startsWith("talk") || lw.contains(" talk"));
+    QString lw = localized_name.toLower();
+    this->isTalk = (lc.startsWith("talk") || lc.contains(" talk") || lw.startsWith("talk") || lw.contains(" talk"));
     this->ID = id;
     canonical_name = canonical_name.replace("_", " ");
-    this->CanonicalName = canonical_name;
-    this->Name = name;
+    this->canonicalName = canonical_name;
+    this->localizedName = localized_name;
 }
 
 WikiPageNS::WikiPageNS(const WikiPageNS &k)
 {
-    this->CanonicalName = k.CanonicalName;
+    this->canonicalName = k.canonicalName;
     this->ID = k.ID;
-    this->Name = k.Name;
-    this->Talk = k.Talk;
+    this->localizedName = k.localizedName;
+    this->isTalk = k.isTalk;
 }
 
 WikiPageNS::WikiPageNS(WikiPageNS *k)
 {
-    this->CanonicalName = k->CanonicalName;
+    this->canonicalName = k->canonicalName;
     this->ID = k->ID;
-    this->Name = k->Name;
-    this->Talk = k->Talk;
+    this->localizedName = k->localizedName;
+    this->isTalk = k->isTalk;
 }
 
 WikiPageNS::~WikiPageNS()

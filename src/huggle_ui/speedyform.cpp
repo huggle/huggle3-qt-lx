@@ -122,7 +122,7 @@ void SpeedyForm::processTags()
     summary.replace("$1", this->edit->Page->PageName);
     this->Template = WikiUtil::EditPage(this->edit->Page, this->Text, summary, false, this->base);
     this->Template->CallbackResult = (void*)this;
-    this->Template->callback = (Callback)Finalize;
+    this->Template->SuccessCallback = (Callback)Finalize;
 }
 
 void SpeedyForm::on_pushButton_2_clicked()
