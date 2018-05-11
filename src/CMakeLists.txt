@@ -99,13 +99,16 @@ add_subdirectory(huggle_ui)
 # Huggle executable
 add_subdirectory(huggle)
 
-# Default JS ext
-add_subdirectory(scripts)
-
 if (HUGGLE_TEST)
     add_subdirectory(tests)
 endif()
 
 include(${CMAKE_SOURCE_DIR}/CPackInfo)
 install(FILES ${CMAKE_SOURCE_DIR}/huggle_res/Resources/huggle3_newlogo.png DESTINATION share/huggle)
+if (LINUX_SNAP)
+    install(DIRECTORY scripts/ DESTINATION bin/extensions FILES_MATCHING PATTERN "*.js")
+else()
+    install(DIRECTORY scripts/ DESTINATION share/huggle/extensions FILES_MATCHING PATTERN "*.js")
+endif()
+
 include(CPack)
