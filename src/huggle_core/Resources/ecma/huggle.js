@@ -11,11 +11,11 @@
 var huggle_context_core = 0;
 var huggle_context_ui = 1;
 
-var huggle_MessageBoxStyleNormal = 0, // OK
-var huggle_MessageBoxStyleQuestion = 1, // Yes No
-var huggle_MessageBoxStyleQuestionAbort = 2, // Yes No Cancel
-var huggle_MessageBoxStyleWarning = 3, // OK (warning)
-var huggle_MessageBoxStyleError = 4 // OK (error)
+var huggle_MessageBoxStyleNormal = 0; // OK
+var huggle_MessageBoxStyleQuestion = 1; // Yes No
+var huggle_MessageBoxStyleQuestionAbort = 2; // Yes No Cancel
+var huggle_MessageBoxStyleWarning = 3; // OK (warning)
+var huggle_MessageBoxStyleError = 4; // OK (error)
 
 var huggle_ui_menu_system   = -1;
 var huggle_ui_menu_user     = -2;

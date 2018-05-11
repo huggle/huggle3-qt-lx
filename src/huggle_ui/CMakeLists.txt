@@ -6,11 +6,8 @@ if (NOT HUGGLE_CMAKE)
 endif()
 
 project(huggle_ui)
-execute_process(COMMAND "${CMAKE_SOURCE_DIR}/update.sh" WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
-
 set(CMAKE_include_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
-
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Gui REQUIRED)
 find_package(Qt5Xml REQUIRED)

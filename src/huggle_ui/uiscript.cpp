@@ -32,6 +32,9 @@ QList<UiScript*> UiScript::GetAllUiScripts()
 
 void UiScript::Autostart()
 {
+    if (hcfg->SystemConfig_SafeMode)
+        return;
+
     QStringList extensions, files;;
     QString script_path = Configuration::GetExtensionsRootPath();
     if (QDir().exists(script_path))

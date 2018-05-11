@@ -6,7 +6,6 @@ if (NOT HUGGLE_CMAKE)
 endif()
 
 project(huggle_res)
-execute_process(COMMAND "${CMAKE_SOURCE_DIR}/update.sh" WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 
 set(CMAKE_include_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)

@@ -99,6 +99,9 @@ add_subdirectory(huggle_ui)
 # Huggle executable
 add_subdirectory(huggle)
 
+# Default JS ext
+add_subdirectory(scripts)
+
 if (HUGGLE_TEST)
     add_subdirectory(tests)
 endif()
