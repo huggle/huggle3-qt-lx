@@ -49,6 +49,8 @@ echo "Copying the binaries to package"
 cp info.plist package/huggle.app/Contents || exit 1
 cp release/*/*.dylib package/huggle.app/Contents/MacOS || exit 1
 cp release/huggle/huggle package/huggle.app/Contents/MacOS || exit 1
+echo "Copying js"
+cp ../src/scripts/*.js package/huggle.app/Contents/PlugIns/ || exit 1
 for extension in `ls release/extensions`
 do
     cp release/extensions/$extension/*.dylib package/huggle.app/Contents/PlugIns/ || exit 1

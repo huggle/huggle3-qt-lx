@@ -194,6 +194,7 @@ cp .\build\huggle_core\Release\*.dll release
 cp .\build\huggle_ui\Release\*.dll release
 cp .\build\huggle_res\Release\*.dll release
 cp .\build\huggle_l10n\Release\*.dll release
+cp ..\src\scripts\*.js release\extensions
 cp .\build\Release\extensions\*.dll release\extensions
 cp .\build\huggle\Release\huggle.exe release
 

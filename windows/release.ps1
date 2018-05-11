@@ -187,6 +187,7 @@ cp .\build\Release\*.dll release
 cp .\build\Release\extensions\*.dll release\extensions
 cp .\build\Release\*.lib release
 cp .\build\Release\huggle.exe release
+cp ..\src\scripts\*.js release\extensions
 if ($python)
 {
     cp .\build\Release\py_hug.exe release
