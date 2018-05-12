@@ -44,6 +44,7 @@ Linux
 cd huggle_release
 make
 sudo make install
+sudo ldconfig
 ```
 
 MacOS
