@@ -47,31 +47,31 @@ namespace Huggle
             WikiEdit *RetrieveEdit();
             QString ToString();
         private:
-            void Process(QString data);
-            void ProcessEdit(QDomElement item);
-            void ProcessLog(QDomElement item);
-            void InsertEdit(WikiEdit *edit);
-            bool Paused = false;
-            bool Refreshing;
-            QList<WikiEdit*> *Buffer;
+            void processData(QString data);
+            void processEdit(QDomElement item);
+            void processLog(QDomElement item);
+            void insertEdit(WikiEdit *edit);
+            bool isPaused = false;
+            bool isRefreshing;
+            QList<WikiEdit*> *editBuffer;
             Collectable_SmartPtr<ApiQuery> qReload;
-            QDateTime LastRefresh;
-            QDateTime LatestTime;
+            QDateTime lastRefresh;
+            QDateTime latestTime;
     };
 
     inline bool HuggleFeedProviderWiki::IsPaused()
     {
-        return this->Paused;
+        return this->isPaused;
     }
 
     inline void HuggleFeedProviderWiki::Resume()
     {
-        this->Paused = false;
+        this->isPaused = false;
     }
 
     inline void HuggleFeedProviderWiki::Pause()
     {
-        this->Paused = true;
+        this->isPaused = true;
     }
 }
 

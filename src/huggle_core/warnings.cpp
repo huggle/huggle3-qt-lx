@@ -55,10 +55,10 @@ QString sanitize_page_name(QString page_name)
     return page_name;
 }
 
-PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency, WikiEdit *Edit, bool *Report)
+PendingWarning *Warnings::WarnUser(QString warning_type, RevertQuery *dependency, WikiEdit *edit, bool *report)
 {
-    *Report = false;
-    if (Edit == nullptr)
+    *report = false;
+    if (edit == nullptr)
     {
         throw new Huggle::NullPointerException("WikiEdit *Edit", BOOST_CURRENT_FUNCTION);
     }
@@ -69,18 +69,18 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
     }
 
     // check if user wasn't changed and if was, let's update the info
-    Edit->User->Resync();
+    edit->User->Resync();
 
-    if (Edit->User->GetWarningLevel() >= Edit->GetSite()->GetProjectConfig()->WarningLevel)
+    if (edit->User->GetWarningLevel() >= edit->GetSite()->GetProjectConfig()->WarningLevel)
     {
         // we should report this user instead
-        if (Edit->User->IsReported)
+        if (edit->User->IsReported)
         {
             // the user is already reported we don't need to do anything
             return nullptr;
         }
 
-        if (!Edit->GetSite()->GetProjectConfig()->AIV)
+        if (!edit->GetSite()->GetProjectConfig()->AIV)
         {
             // there is no AIV function for this wiki
             Syslog::HuggleLogs->WarningLog("This user has already reached level 4 warning and there is no AIV "\
@@ -90,17 +90,17 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
 
         if (hcfg->UserConfig->AutomaticReports || Generic::ReportPreFlightCheck())
         {
-            *Report = true;
+            *report = true;
         }
         return nullptr;
     }
 
     // get a template
-    Edit->User->IncrementWarningLevel();
+    edit->User->IncrementWarningLevel();
     // we need to update the user so that new level gets propagated everywhere on interface of huggle
-    Edit->User->Update();
-    QString Template_ = WarningType + QString::number(Edit->User->GetWarningLevel());
-    QString MessageText_ = Warnings::RetrieveTemplateToWarn(Template_, Edit->GetSite());
+    edit->User->Update();
+    QString Template_ = warning_type + QString::number(edit->User->GetWarningLevel());
+    QString MessageText_ = Warnings::RetrieveTemplateToWarn(Template_, edit->GetSite());
 
     if (!MessageText_.size())
     {
@@ -108,38 +108,38 @@ PendingWarning *Warnings::WarnUser(QString WarningType, RevertQuery *Dependency,
         return nullptr;
     }
 
-    MessageText_ = MessageText_.replace("$2", Edit->GetFullUrl()).replace("$1", Edit->Page->PageName);
+    MessageText_ = MessageText_.replace("$2", edit->GetFullUrl()).replace("$1", edit->Page->PageName);
     QString Summary_;
-    if (!Edit->GetSite()->GetProjectConfig()->WarningSummaries.contains(Edit->User->GetWarningLevel()))
+    if (!edit->GetSite()->GetProjectConfig()->WarningSummaries.contains(edit->User->GetWarningLevel()))
     {
-        Summary_ = Edit->GetSite()->GetProjectConfig()->WarningSummaries[1];
+        Summary_ = edit->GetSite()->GetProjectConfig()->WarningSummaries[1];
     } else
     {
-        Summary_ = Edit->GetSite()->GetProjectConfig()->WarningSummaries[Edit->User->GetWarningLevel()];
+        Summary_ = edit->GetSite()->GetProjectConfig()->WarningSummaries[edit->User->GetWarningLevel()];
     }
-    Summary_ = Summary_.replace("$1", sanitize_page_name(Edit->Page->PageName));
-    QString HeadingText_ = Edit->GetSite()->GetProjectConfig()->TemplateHeader;
-    HeadingText_ = HeadingText_.replace("$1", sanitize_page_name(Edit->Page->PageName));
-    if (Edit->GetSite()->GetProjectConfig()->MessageHeadings == HeadingsStandard)
+    Summary_ = Summary_.replace("$1", sanitize_page_name(edit->Page->PageName));
+    QString HeadingText_ = edit->GetSite()->GetProjectConfig()->TemplateHeader;
+    HeadingText_ = HeadingText_.replace("$1", sanitize_page_name(edit->Page->PageName));
+    if (edit->GetSite()->GetProjectConfig()->MessageHeadings == HeadingsStandard)
     {
-        QDateTime d = Edit->GetSite()->GetProjectConfig()->ServerTime();
-        HeadingText_ = WikiUtil::MonthText(d.date().month(), Edit->GetSite()) + " " + QString::number(d.date().year());
-    } else if (Edit->GetSite()->GetProjectConfig()->MessageHeadings == HeadingsNone)
+        QDateTime d = edit->GetSite()->GetProjectConfig()->ServerTime();
+        HeadingText_ = WikiUtil::MonthText(d.date().month(), edit->GetSite()) + " " + QString::number(d.date().year());
+    } else if (edit->GetSite()->GetProjectConfig()->MessageHeadings == HeadingsNone)
     {
         HeadingText_ = "";
     }
-    MessageText_ = Warnings::UpdateSharedIPTemplate(Edit->User, MessageText_, Edit->GetSite());
+    MessageText_ = Warnings::UpdateSharedIPTemplate(edit->User, MessageText_, edit->GetSite());
     bool CreateOnly = false;
-    if (Edit->User->TalkPage_GetContents().isEmpty())
+    if (edit->User->TalkPage_GetContents().isEmpty())
     {
         CreateOnly = true;
     }
     if (hcfg->UserConfig->AutomaticallyWatchlistWarnedUsers)
-        WikiUtil::Watchlist(Edit->User->GetTalkPage());
-    PendingWarning *pw = new PendingWarning(WikiUtil::MessageUser(Edit->User, MessageText_, HeadingText_, Summary_, true, Dependency, false,
+        WikiUtil::Watchlist(edit->User->GetTalkPage());
+    PendingWarning *pw = new PendingWarning(WikiUtil::MessageUser(edit->User, MessageText_, HeadingText_, Summary_, true, dependency, false,
                                                                   Configuration::HuggleConfiguration->UserConfig->SectionKeep, false,
-                                                                  Edit->TPRevBaseTime, CreateOnly, true), WarningType, Edit);
-    Hooks::OnWarning(Edit->User);
+                                                                  edit->TPRevBaseTime, CreateOnly, true), warning_type, edit);
+    Hooks::OnWarning(edit->User);
     return pw;
 }
 
@@ -311,7 +311,7 @@ void Warnings::ResendWarnings()
     }
 }
 
-void Warnings::ForceWarn(int Level, WikiEdit *Edit)
+void Warnings::ForceWarn(int level, WikiEdit *edit)
 {
     if (Configuration::HuggleConfiguration->DeveloperMode)
     {
@@ -321,54 +321,54 @@ void Warnings::ForceWarn(int Level, WikiEdit *Edit)
 
     bool instant = false;
 
-    if (Level == 0)
+    if (level == 0)
     {
-        Level = 4;
+        level = 4;
         instant = true;
     }
 
-    if (instant && !Edit->GetSite()->GetProjectConfig()->InstantWarnings)
+    if (instant && !edit->GetSite()->GetProjectConfig()->InstantWarnings)
     {
-        Syslog::HuggleLogs->ErrorLog(_l("no-instant", Edit->GetSite()->Name, Edit->User->UnderscorelessUsername()));
+        Syslog::HuggleLogs->ErrorLog(_l("no-instant", edit->GetSite()->Name, edit->User->UnderscorelessUsername()));
         return;
     }
 
-    if (Edit == nullptr)
+    if (edit == nullptr)
         return;
 
-    QString __template = Edit->GetSite()->GetProjectConfig()->DefaultTemplate + QString::number(Level);
-    QString MessageText_ = Warnings::RetrieveTemplateToWarn(__template, Edit->GetSite(), instant);
+    QString _template = edit->GetSite()->GetProjectConfig()->DefaultTemplate + QString::number(level);
+    QString MessageText_ = Warnings::RetrieveTemplateToWarn(_template, edit->GetSite(), instant);
 
     if (!MessageText_.size())
     {
         // this is very rare error no need to translate it
-        Syslog::HuggleLogs->Log("There is no such warning template " + __template);
+        Syslog::HuggleLogs->Log("There is no such warning template " + _template);
         return;
     }
 
-    MessageText_ = MessageText_.replace("$2", Edit->GetFullUrl()).replace("$1", Edit->Page->PageName);
+    MessageText_ = MessageText_.replace("$2", edit->GetFullUrl()).replace("$1", edit->Page->PageName);
     QString Summary_;
-    if (!Edit->GetSite()->GetProjectConfig()->WarningSummaries.contains(Edit->User->GetWarningLevel()))
+    if (!edit->GetSite()->GetProjectConfig()->WarningSummaries.contains(edit->User->GetWarningLevel()))
     {
-        Summary_ = Edit->GetSite()->GetProjectConfig()->WarningSummaries[1];
+        Summary_ = edit->GetSite()->GetProjectConfig()->WarningSummaries[1];
     } else
     {
-        Summary_ = Edit->GetSite()->GetProjectConfig()->WarningSummaries[Edit->User->GetWarningLevel()];
+        Summary_ = edit->GetSite()->GetProjectConfig()->WarningSummaries[edit->User->GetWarningLevel()];
     }
-    Summary_ = Summary_.replace("$1", sanitize_page_name(Edit->Page->PageName));
-    QString id = Edit->GetSite()->GetProjectConfig()->TemplateHeader;
-    id = id.replace("$1", sanitize_page_name(Edit->Page->PageName));
+    Summary_ = Summary_.replace("$1", sanitize_page_name(edit->Page->PageName));
+    QString id = edit->GetSite()->GetProjectConfig()->TemplateHeader;
+    id = id.replace("$1", sanitize_page_name(edit->Page->PageName));
     if (Configuration::HuggleConfiguration->UserConfig->EnforceMonthsAsHeaders)
     {
-        QDateTime date_ = Edit->GetSite()->GetProjectConfig()->ServerTime();
-        id = WikiUtil::MonthText(date_.date().month(), Edit->GetSite()) + " " + QString::number(date_.date().year());
+        QDateTime date_ = edit->GetSite()->GetProjectConfig()->ServerTime();
+        id = WikiUtil::MonthText(date_.date().month(), edit->GetSite()) + " " + QString::number(date_.date().year());
     }
-    MessageText_ = Warnings::UpdateSharedIPTemplate(Edit->User, MessageText_, Edit->GetSite());
+    MessageText_ = Warnings::UpdateSharedIPTemplate(edit->User, MessageText_, edit->GetSite());
     if (hcfg->UserConfig->AutomaticallyWatchlistWarnedUsers)
-        WikiUtil::Watchlist(Edit->User->GetTalkPage());
-    WikiUtil::MessageUser(Edit->User, MessageText_, id, Summary_, true, nullptr, false,
+        WikiUtil::Watchlist(edit->User->GetTalkPage());
+    WikiUtil::MessageUser(edit->User, MessageText_, id, Summary_, true, nullptr, false,
                               Configuration::HuggleConfiguration->UserConfig->SectionKeep,
-                              true, Edit->TPRevBaseTime);
+                              true, edit->TPRevBaseTime);
 }
 
 QString Warnings::RetrieveTemplateToWarn(QString type, WikiSite *site, bool force)
@@ -389,15 +389,15 @@ QString Warnings::RetrieveTemplateToWarn(QString type, WikiSite *site, bool forc
     return "";
 }
 
-QString Warnings::UpdateSharedIPTemplate(WikiUser *User, QString Text, WikiSite *site)
+QString Warnings::UpdateSharedIPTemplate(WikiUser *user, QString text, WikiSite *site)
 {
-    if (!User->IsIP() || site->GetProjectConfig()->SharedIPTemplate.isEmpty())
+    if (!user->IsIP() || site->GetProjectConfig()->SharedIPTemplate.isEmpty())
     {
-        return Text;
+        return text;
     }
-    if (!User->TalkPage_ContainsSharedIPTemplate())
+    if (!user->TalkPage_ContainsSharedIPTemplate())
     {
-        Text += "\n" + site->GetProjectConfig()->SharedIPTemplate + "\n";
+        text += "\n" + site->GetProjectConfig()->SharedIPTemplate + "\n";
     }
-    return Text;
+    return text;
 }

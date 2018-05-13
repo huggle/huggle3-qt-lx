@@ -78,7 +78,7 @@ void Core::Init()
     Syslog::HuggleLogs->Log("Huggle version " + Configuration::HuggleConfiguration->HuggleVersion);
     Resources::Init();
     Syslog::HuggleLogs->Log("Loading configuration");
-    this->processorThread = new ProcessorThread();
+    this->processorThread = new WikiEdit_ProcessorThread();
     this->processorThread->start();
     this->LoadLocalizations();
     Huggle::Syslog::HuggleLogs->Log("Home: " + hcfg->HomePath);

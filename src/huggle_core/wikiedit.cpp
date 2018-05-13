@@ -35,7 +35,7 @@ WikiEdit::WikiEdit()
     this->User = nullptr;
     this->Minor = false;
     this->NewPage = false;
-    this->Size = 0;
+    this->diffSize = 0;
     this->Diff = 0;
     this->OldID = 0;
     this->Summary = "";
@@ -44,9 +44,9 @@ WikiEdit::WikiEdit()
     this->OwnEdit = false;
     this->EditMadeByHuggle = false;
     this->TrustworthEdit = false;
-    this->PostProcessing = false;
-    this->ProcessingEditInfo = false;
-    this->ProcessingRevs = false;
+    this->postProcessing = false;
+    this->processingEditInfo = false;
+    this->processingRevs = false;
     this->DiffText = "";
     this->Priority = 20;
     this->IsRevert = false;
@@ -57,8 +57,8 @@ WikiEdit::WikiEdit()
     // this->Time = QDateTime::currentDateTime();
     this->Time = GetUnknownEditTime();
     this->Next = nullptr;
-    this->ProcessingByWorkerThread = false;
-    this->ProcessedByWorkerThread = false;
+    this->processingByWorkerThread = false;
+    this->processedByWorkerThread = false;
     this->RevID = WIKI_UNKNOWN_REVID;
     WikiEdit::Lock_EditList->lock();
     WikiEdit::EditList.append(this);
@@ -89,15 +89,15 @@ WikiEdit::~WikiEdit()
     delete this->Page;
 }
 
-bool WikiEdit::FinalizePostProcessing()
+bool WikiEdit::finalizePostProcessing()
 {
-    if (this->ProcessedByWorkerThread || !this->PostProcessing)
+    if (this->processedByWorkerThread || !this->postProcessing)
     {
         WikiUser::UpdateWl(this->User, this->Score);
         return true;
     }
 
-    if (this->ProcessingByWorkerThread)
+    if (this->processingByWorkerThread)
     {
         return false;
     }
@@ -174,7 +174,7 @@ bool WikiEdit::FinalizePostProcessing()
                 {
                     this->User->EditCount = user_info_->GetAttribute("editcount").toLong();
                     // users with high number of edits aren't vandals
-                    this->RecordScore("EditScore", this->User->EditCount * this->GetSite()->ProjectConfig->EditScore);
+                    this->recordScore("EditScore", this->User->EditCount * this->GetSite()->ProjectConfig->EditScore);
                 }
                 else
                 {
@@ -198,18 +198,18 @@ bool WikiEdit::FinalizePostProcessing()
                 this->User->Groups.append(gn);
                 ++x;
             }
-            this->RecordScore("ScoreFlag", this->GetSite()->ProjectConfig->ScoreFlag * this->User->Groups.count());
+            this->recordScore("ScoreFlag", this->GetSite()->ProjectConfig->ScoreFlag * this->User->Groups.count());
             if (this->User->Groups.contains("bot"))
             {
                 // if it's a flagged bot we likely don't need to watch them
-                this->RecordScore("BotScore", this->GetSite()->ProjectConfig->BotScore);
+                this->recordScore("BotScore", this->GetSite()->ProjectConfig->BotScore);
             }
             // let's delete it now
             this->qUser = nullptr;
         }
     }
 
-    if (this->ProcessingRevs)
+    if (this->processingRevs)
     {
         // check if api was processed
         if (!this->qTalkpage->IsProcessed())
@@ -257,10 +257,10 @@ bool WikiEdit::FinalizePostProcessing()
                 }
             }
         }
-        this->ProcessingRevs = false;
+        this->processingRevs = false;
     }
 
-    if (this->ProcessingEditInfo)
+    if (this->processingEditInfo)
     {
         // check if api was processed
         if (!this->qRevisionInfo->IsProcessed())
@@ -273,7 +273,7 @@ bool WikiEdit::FinalizePostProcessing()
             // whoa it ended in error, we need to get rid of this edit somehow now
             Huggle::Syslog::HuggleLogs->WarningLog("Failed to obtain diff for " + this->Page->PageName + " the error was: " + this->qRevisionInfo->GetFailureReason());
             this->qRevisionInfo = nullptr;
-            this->PostProcessing = false;
+            this->postProcessing = false;
             return true;
         }
 
@@ -315,10 +315,10 @@ bool WikiEdit::FinalizePostProcessing()
         }
 
         this->qRevisionInfo = nullptr;
-        this->ProcessingEditInfo = false;
+        this->processingEditInfo = false;
     }
 
-    if (this->ProcessingDiff)
+    if (this->processingDiff)
     {
         if (!this->qDifference->IsProcessed())
             return false;
@@ -327,7 +327,7 @@ bool WikiEdit::FinalizePostProcessing()
         {
             // We weren't able to retrieve the diff using action=compare so let's keep it empty and let the browser component fallback to alternative method
             Huggle::Syslog::HuggleLogs->WarningLog("Failed to obtain diff for " + this->Page->PageName + " the error was: " + this->qDifference->GetFailureReason());
-            this->ProcessingDiff = false;
+            this->processingDiff = false;
             return false;
         }
 
@@ -336,7 +336,7 @@ bool WikiEdit::FinalizePostProcessing()
         {
             Huggle::Syslog::HuggleLogs->WarningLog("Failed to obtain diff for " + this->Page->PageName + " no diff data in query result");
             HUGGLE_DEBUG1(this->qDifference->GetApiQueryResult()->Data);
-            this->ProcessingDiff = false;
+            this->processingDiff = false;
             return false;
         }
 
@@ -353,7 +353,7 @@ bool WikiEdit::FinalizePostProcessing()
         this->DiffText = diff->Value;
 
         this->qDifference.Delete();
-        this->ProcessingDiff = false;
+        this->processingDiff = false;
     }
 
     if (this->qText != nullptr && this->qText->IsProcessed())
@@ -373,15 +373,15 @@ bool WikiEdit::FinalizePostProcessing()
     }
 
     // check if everything was processed and clean up
-    if (this->ProcessingRevs || this->ProcessingDiff || this->ProcessingEditInfo || this->qUser != nullptr || this->qText != nullptr || this->qFounder != nullptr || this->qCategoriesAndWatched != nullptr)
+    if (this->processingRevs || this->processingDiff || this->processingEditInfo || this->qUser != nullptr || this->qText != nullptr || this->qFounder != nullptr || this->qCategoriesAndWatched != nullptr)
         return false;
 
     this->qTalkpage = nullptr;
-    this->ProcessingByWorkerThread = true;
-    ProcessorThread::EditLock.lock();
+    this->processingByWorkerThread = true;
+    WikiEdit_ProcessorThread::EditLock.lock();
     this->RegisterConsumer(HUGGLECONSUMER_PROCESSOR);
-    ProcessorThread::PendingEdits.append(this);
-    ProcessorThread::EditLock.unlock();
+    WikiEdit_ProcessorThread::PendingEdits.append(this);
+    WikiEdit_ProcessorThread::EditLock.unlock();
     return false;
 }
 
@@ -513,11 +513,11 @@ void WikiEdit::ProcessWords()
     ProjectConfiguration *conf = this->GetSite()->GetProjectConfig();
     if (!this->Page->IsTalk())
     {
-        this->RecordScore("PartsInWikiText_NoTalk", ProcessPartsInWikiText(&this->ScoreWords, text, &conf->NoTalkScoreParts));
-        this->RecordScore("WordsInWikiText_NoTalk", ProcessWordsInWikiText(&this->ScoreWords, text, &conf->NoTalkScoreWords));
+        this->recordScore("PartsInWikiText_NoTalk", ProcessPartsInWikiText(&this->ScoreWords, text, &conf->NoTalkScoreParts));
+        this->recordScore("WordsInWikiText_NoTalk", ProcessWordsInWikiText(&this->ScoreWords, text, &conf->NoTalkScoreWords));
     }
-    this->RecordScore("WordsInWikiText", ProcessWordsInWikiText(&this->ScoreWords, text, &conf->ScoreWords));
-    this->RecordScore("PartsInWikiText", ProcessPartsInWikiText(&this->ScoreWords, text, &conf->ScoreParts));
+    this->recordScore("WordsInWikiText", ProcessWordsInWikiText(&this->ScoreWords, text, &conf->ScoreWords));
+    this->recordScore("PartsInWikiText", ProcessPartsInWikiText(&this->ScoreWords, text, &conf->ScoreParts));
 }
 
 void WikiEdit::RemoveFromHistoryChain()
@@ -544,7 +544,7 @@ void WikiEdit::RemoveFromHistoryChain()
     }
 }
 
-void WikiEdit::RecordScore(QString name, score_ht score)
+void WikiEdit::recordScore(QString name, score_ht score)
 {
     this->Score += score;
     if (hcfg->SystemConfig_ScoreDebug)
@@ -563,7 +563,7 @@ void WikiEdit::RecordScore(QString name, score_ht score)
 
 void WikiEdit::PostProcess()
 {
-    if (this->PostProcessing)
+    if (this->postProcessing)
         return;
 
     if (this->Page == nullptr)
@@ -578,7 +578,7 @@ void WikiEdit::PostProcess()
         throw new Huggle::Exception("Unable to post process an edit that is already processed", BOOST_CURRENT_FUNCTION);
     if (this->Status != Huggle::StatusProcessed)
         throw new Huggle::Exception("Unable to post process an edit that wasn't in processed status", BOOST_CURRENT_FUNCTION);
-    this->PostProcessing = true;
+    this->postProcessing = true;
 #ifndef HUGGLE_SDK
     // Send info to other functions
     Hooks::EditBeforePostProcess(this);
@@ -607,7 +607,7 @@ void WikiEdit::PostProcess()
         this->qRevisionInfo->Process();
         if (hcfg->Verbosity > 0)
             this->PropertyBag.insert("debug_api_url_rev_info", this->qRevisionInfo->GetURL());
-        this->ProcessingEditInfo = true;
+        this->processingEditInfo = true;
 
         // This query will download the actual diff of edit
         if (this->RevID != WIKI_UNKNOWN_REVID)
@@ -620,7 +620,7 @@ void WikiEdit::PostProcess()
         {
             this->qDifference = WikiUtil::APIRequest(ActionCompare, this->GetSite(), "fromtitle=" + QUrl::toPercentEncoding(this->Page->PageName) + "&torelative=" + this->DiffTo, false, "Diff of " + this->Page->PageName);
         }
-        this->ProcessingDiff = true;
+        this->processingDiff = true;
     } else if (this->Page->Contents.isEmpty())
     {
         this->qText = WikiUtil::RetrieveWikiPageContents(this->Page, true);
@@ -647,7 +647,7 @@ void WikiEdit::PostProcess()
         this->qCategoriesAndWatched->Process();
     }
 
-    this->ProcessingRevs = true;
+    this->processingRevs = true;
     if (this->User->IsIP())
         return;
     this->qUser = new ApiQuery(ActionQuery, this->GetSite());
@@ -747,28 +747,28 @@ bool WikiEdit::IsReady()
 #endif
 }
 
-QMutex ProcessorThread::EditLock(QMutex::Recursive);
-QList<WikiEdit*> ProcessorThread::PendingEdits;
+QMutex WikiEdit_ProcessorThread::EditLock(QMutex::Recursive);
+QList<WikiEdit*> WikiEdit_ProcessorThread::PendingEdits;
 
-void ProcessorThread::run()
+void WikiEdit_ProcessorThread::run()
 {
     while(Core::HuggleCore->Running)
     {
-        ProcessorThread::EditLock.lock();
+        WikiEdit_ProcessorThread::EditLock.lock();
         int e=0;
-        while (e<ProcessorThread::PendingEdits.count())
+        while (e<WikiEdit_ProcessorThread::PendingEdits.count())
         {
             this->Process(PendingEdits.at(e));
             PendingEdits.at(e)->UnregisterConsumer(HUGGLECONSUMER_PROCESSOR);
             ++e;
         }
         PendingEdits.clear();
-        ProcessorThread::EditLock.unlock();
+        WikiEdit_ProcessorThread::EditLock.unlock();
         QThread::usleep(200000);
     }
 }
 
-void ProcessorThread::Process(WikiEdit *edit)
+void WikiEdit_ProcessorThread::Process(WikiEdit *edit)
 {
 #ifndef HUGGLE_SDK
     if (Hooks::EditBeforeScore(edit))
@@ -781,7 +781,7 @@ void ProcessorThread::Process(WikiEdit *edit)
             if (edit->User->IsIP())
             {
                 // Reverts made by anons are very likely reverts to vandalism
-                edit->RecordScore("IPScore_talk", conf->IPScore * 10);
+                edit->recordScore("IPScore_talk", conf->IPScore * 10);
             } else
             {
                 if (!edit->DiffText_IsSplit)
@@ -794,35 +794,35 @@ void ProcessorThread::Process(WikiEdit *edit)
         // score
         if (edit->User->IsIP())
         {
-            edit->RecordScore("IPScore", conf->IPScore);
+            edit->recordScore("IPScore", conf->IPScore);
         }
         if (edit->Bot)
-            edit->RecordScore("BotScore", conf->BotScore);
+            edit->recordScore("BotScore", conf->BotScore);
         if (edit->Page->IsUserpage() && !edit->Page->SanitizedName().contains(edit->User->Username))
-            edit->RecordScore("ForeignUser", conf->ForeignUser);
+            edit->recordScore("ForeignUser", conf->ForeignUser);
         else if (edit->Page->IsUserpage())
-            edit->RecordScore("UserPage", conf->ScoreUser);
+            edit->recordScore("UserPage", conf->ScoreUser);
         if (edit->Page->IsTalk())
-            edit->RecordScore("ScoreTalk", conf->ScoreTalk);
-        if (edit->Size > 1200 || edit->Size < -1200)
-            edit->RecordScore("ScoreChange", conf->ScoreChange);
+            edit->recordScore("ScoreTalk", conf->ScoreTalk);
+        if (edit->diffSize > 1200 || edit->diffSize < -1200)
+            edit->recordScore("ScoreChange", conf->ScoreChange);
         if (edit->Page->IsUserpage())
             IgnoreWords = true;
         if (edit->User->IsWhitelisted())
-            edit->RecordScore("WhitelistScore", conf->WhitelistScore);
-        edit->RecordScore("User_BadnessScore", edit->User->GetBadnessScore());
+            edit->recordScore("WhitelistScore", conf->WhitelistScore);
+        edit->recordScore("User_BadnessScore", edit->User->GetBadnessScore());
         if (!IgnoreWords)
             edit->ProcessWords();
         foreach (QString tx, edit->Tags)
         {
             if (conf->ScoreTags.contains(tx))
-                edit->RecordScore("tag_" + tx, conf->ScoreTags[tx]);
+                edit->recordScore("tag_" + tx, conf->ScoreTags[tx]);
         }
-        if (edit->SizeIsKnown && edit->Size < (-1 * conf->LargeRemoval))
-            edit->RecordScore("ScoreRemoval", conf->ScoreRemoval);
+        if (edit->SizeIsKnown && edit->diffSize < (-1 * conf->LargeRemoval))
+            edit->recordScore("ScoreRemoval", conf->ScoreRemoval);
         edit->User->ParseTP(QDate::currentDate());
         if (edit->Summary.size() == 0)
-            edit->RecordScore("NoSummary", 10);
+            edit->recordScore("NoSummary", 10);
         int warning_level = edit->User->GetWarningLevel();
         if (warning_level > 0)
         {
@@ -831,7 +831,7 @@ void ProcessorThread::Process(WikiEdit *edit)
                 HUGGLE_WARNING("No score present for warning level " + QString::number(warning_level) + " of user " + edit->User->Username + " site " + edit->GetSite()->Name);
             } else
             {
-                edit->RecordScore("WarningLevel", conf->ScoreLevel[warning_level]);
+                edit->recordScore("WarningLevel", conf->ScoreLevel[warning_level]);
             }
         }
         switch(warning_level)
@@ -853,7 +853,7 @@ void ProcessorThread::Process(WikiEdit *edit)
     }
     Hooks::EditPostProcess(edit);
 #endif
-    edit->PostProcessing = false;
-    edit->ProcessedByWorkerThread = true;
+    edit->postProcessing = false;
+    edit->processedByWorkerThread = true;
     edit->Status = StatusPostProcessed;
 }

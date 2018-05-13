@@ -31,7 +31,7 @@ EditQuery::EditQuery()
     this->Section = 0;
     this->BaseTimestamp = "";
     this->StartTimestamp = "";
-    this->text = "";
+    this->Text = "";
     this->Type = QueryEdit;
 }
 
@@ -50,8 +50,8 @@ void EditQuery::Kill()
 
     this->qEdit.Delete();
     this->qRetrieve.Delete();
-    this->HasPreviousPageText = false;
-    this->OriginalText = "";
+    this->hasPreviousPageText = false;
+    this->originalText = "";
     this->status = StatusKilled;
 }
 
@@ -78,10 +78,10 @@ void EditQuery::Process()
     this->StartTime = QDateTime::currentDateTime();
     if (this->Page->GetSite()->GetProjectConfig()->Token_Csrf.isEmpty())
     {
-        this->SetError(_l("editquery-nocsrf"));
+        this->setError(_l("editquery-nocsrf"));
         return;
     }
-    this->EditPage();
+    this->editPage();
 }
 
 bool EditQuery::IsProcessed()
@@ -96,22 +96,22 @@ bool EditQuery::IsProcessed()
     {
         if (this->qRetrieve->IsFailed())
         {
-            this->SetError(_l("editquery-error-retrieve-prev", this->qRetrieve->GetFailureReason()));
+            this->setError(_l("editquery-error-retrieve-prev", this->qRetrieve->GetFailureReason()));
             this->qRetrieve.Delete();
             return true;
         }
         bool failed = false;
         QString ts;
-        this->OriginalText = WikiUtil::EvaluateWikiPageContents(this->qRetrieve, &failed, &ts);
+        this->originalText = WikiUtil::EvaluateWikiPageContents(this->qRetrieve, &failed, &ts);
         this->qRetrieve.Delete();
         if (failed)
         {
-            this->SetError(_l("editquery-error-retrieve-prev", this->OriginalText));
+            this->setError(_l("editquery-error-retrieve-prev", this->originalText));
             return true;
         }
-        this->HasPreviousPageText = true;
+        this->hasPreviousPageText = true;
         this->BaseTimestamp = ts;
-        this->EditPage();
+        this->editPage();
         return false;
     }
 
@@ -194,13 +194,13 @@ void EditQuery::Restart()
     Query::Restart();
 }
 
-void EditQuery::EditPage()
+void EditQuery::editPage()
 {
     if (this->Append && this->Prepend)
     {
         throw Huggle::Exception(_l("editquery-error-append"), BOOST_CURRENT_FUNCTION);
     }
-    if ((this->Append || this->Prepend) && !this->HasPreviousPageText)
+    if ((this->Append || this->Prepend) && !this->hasPreviousPageText)
     {
         // we first need to get a text of current page
         this->qRetrieve = WikiUtil::RetrieveWikiPageContents(this->Page);
@@ -215,14 +215,14 @@ void EditQuery::EditPage()
     {
         // we append new text now
         this->Section = 0;
-        this->text = this->OriginalText + this->text;
+        this->Text = this->originalText + this->Text;
     } else if (this->Prepend)
     {
         this->Section = 0;
-        this->text = this->text + this->OriginalText;
+        this->Text = this->Text + this->originalText;
     }
     {
-        this->text = this->text;
+        this->Text = this->Text;
     }
     QString base = "";
     QString start_ = "";
@@ -241,14 +241,14 @@ void EditQuery::EditPage()
         base = "&basetimestamp=" + QUrl::toPercentEncoding(this->BaseTimestamp);
     if (!this->StartTimestamp.isEmpty())
         start_ = "&starttimestamp=" + QUrl::toPercentEncoding(this->StartTimestamp);
-    this->qEdit->Parameters = "title=" + QUrl::toPercentEncoding(this->Page->PageName) + "&text=" + QUrl::toPercentEncoding(this->text) + section +
+    this->qEdit->Parameters = "title=" + QUrl::toPercentEncoding(this->Page->PageName) + "&text=" + QUrl::toPercentEncoding(this->Text) + section +
                               wl + "&summary=" + QUrl::toPercentEncoding(this->Summary) + tag + base + start_ + "&token=" +
                               QUrl::toPercentEncoding(this->Page->GetSite()->GetProjectConfig()->Token_Csrf);
     HUGGLE_QP_APPEND(this->qEdit);
     this->qEdit->Process();
 }
 
-void EditQuery::SetError(QString reason)
+void EditQuery::setError(QString reason)
 {
     this->Result = new QueryResult(true);
     this->Result->SetError(reason);

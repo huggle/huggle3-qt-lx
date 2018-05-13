@@ -28,21 +28,21 @@ HuggleFeedProviderXml::HuggleFeedProviderXml(WikiSite *site) : HuggleFeed(site)
 {
     this->pinger = new QTimer();
     connect(this->pinger, SIGNAL(timeout()), this, SLOT(OnPing()));
-    this->NetworkSocket = nullptr;
+    this->networkSocket = nullptr;
 }
 
 HuggleFeedProviderXml::~HuggleFeedProviderXml()
 {
     this->Stop();
     delete this->pinger;
-    while (this->Buffer.count() > 0)
+    while (this->buffer.count() > 0)
     {
-        this->Buffer.at(0)->DecRef();
-        this->Buffer.removeAt(0);
+        this->buffer.at(0)->DecRef();
+        this->buffer.removeAt(0);
     }
-    if (this->NetworkSocket && this->NetworkSocket->isOpen())
-        this->NetworkSocket->close();
-    delete this->NetworkSocket;
+    if (this->networkSocket && this->networkSocket->isOpen())
+        this->networkSocket->close();
+    delete this->networkSocket;
 }
 
 bool HuggleFeedProviderXml::Start()
@@ -54,89 +54,89 @@ bool HuggleFeedProviderXml::Start()
     }
     // we add some seconds here just to make sure it will not timeout before we finish
     // connecting to it
-    this->LastPong = QDateTime::currentDateTime().addSecs(22);
+    this->lastPong = QDateTime::currentDateTime().addSecs(22);
     if (this->GetSite()->XmlRcsName.isEmpty())
     {
         Syslog::HuggleLogs->ErrorLog("There is no XmlRcs provider for " + this->GetSite()->Name);
         return false;
     }
-    if (this->NetworkSocket != nullptr)
-        delete this->NetworkSocket;
-    this->NetworkSocket = new QTcpSocket();
-    connect(this->NetworkSocket, SIGNAL(readyRead()), this, SLOT(OnReceive()));
-    connect(this->NetworkSocket, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(OnError(QAbstractSocket::SocketError)));
-    this->is_connecting = true;
-    this->is_working = true;
-    this->NetworkSocket->connectToHost(hcfg->GlobalConfig_Xmlrcs, hcfg->GlobalConfig_XmlrcsPort);
+    if (this->networkSocket != nullptr)
+        delete this->networkSocket;
+    this->networkSocket = new QTcpSocket();
+    connect(this->networkSocket, SIGNAL(readyRead()), this, SLOT(OnReceive()));
+    connect(this->networkSocket, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(OnError(QAbstractSocket::SocketError)));
+    this->isConnecting = true;
+    this->isWorking = true;
+    this->networkSocket->connectToHost(hcfg->GlobalConfig_Xmlrcs, hcfg->GlobalConfig_XmlrcsPort);
     // we need to handle the connection later
-    connect(this->NetworkSocket, SIGNAL(connected()), this, SLOT(OnConnect()));
+    connect(this->networkSocket, SIGNAL(connected()), this, SLOT(OnConnect()));
     return true;
 }
 
 bool HuggleFeedProviderXml::IsPaused()
 {
-    return this->is_paused;
+    return this->isPaused;
 }
 
 void HuggleFeedProviderXml::Resume()
 {
-    this->is_paused = false;
+    this->isPaused = false;
 }
 
 void HuggleFeedProviderXml::Pause()
 {
-    this->is_paused = true;
+    this->isPaused = true;
 }
 
 void HuggleFeedProviderXml::OnPing()
 {
-    if (this->is_connected)
+    if (this->isConnected)
     {
-        if (QDateTime::currentDateTime().addSecs(-20) > this->LastPong)
+        if (QDateTime::currentDateTime().addSecs(-20) > this->lastPong)
         {
             Syslog::HuggleLogs->ErrorLog("XmlRcs feed has timed out, reconnecting to it");
             this->Restart();
         }
-        else if (QDateTime::currentDateTime().addSecs(-8) > this->LastPong)
+        else if (QDateTime::currentDateTime().addSecs(-8) > this->lastPong)
         {
-            this->Write("ping");
+            this->write("ping");
         }
     }
 }
 
 bool HuggleFeedProviderXml::IsWorking()
 {
-    return this->is_working;
+    return this->isWorking;
 }
 
 void HuggleFeedProviderXml::Stop()
 {
-    if (this->NetworkSocket)
-        this->NetworkSocket->disconnect();
-    this->is_connected = false;
-    this->is_connecting = false;
+    if (this->networkSocket)
+        this->networkSocket->disconnect();
+    this->isConnected = false;
+    this->isConnecting = false;
     this->pinger->stop();
-    this->is_working = false;
-    this->is_paused = false;
+    this->isWorking = false;
+    this->isPaused = false;
 }
 
 bool HuggleFeedProviderXml::ContainsEdit()
 {
-    return this->Buffer.count() > 0;
+    return this->buffer.count() > 0;
 }
 
 QString HuggleFeedProviderXml::GetError()
 {
-    return this->last_error;
+    return this->lastError;
 }
 
 WikiEdit *HuggleFeedProviderXml::RetrieveEdit()
 {
-    if (this->Buffer.size() == 0)
+    if (this->buffer.size() == 0)
         return nullptr;
 
-    WikiEdit *edit = this->Buffer.at(0);
-    this->Buffer.removeAt(0);
+    WikiEdit *edit = this->buffer.at(0);
+    this->buffer.removeAt(0);
     return edit;
 }
 
@@ -147,7 +147,7 @@ QString HuggleFeedProviderXml::ToString()
 
 void HuggleFeedProviderXml::OnError(QAbstractSocket::SocketError er)
 {
-    this->last_error = Generic::SocketError2Str(er);
+    this->lastError = Generic::SocketError2Str(er);
     this->Stop();
 }
 
@@ -155,57 +155,57 @@ void HuggleFeedProviderXml::OnReceive()
 {
     // THIS IS IMPORTANT
     // readLine() has some bugs in Qt so don't use it, this function needs to always use readAll from socket otherwise we get in troubles
-    if (!this->NetworkSocket)
+    if (!this->networkSocket)
         throw new Huggle::NullPointerException("this->NetworkSocket", BOOST_CURRENT_FUNCTION);
-    QString data(this->NetworkSocket->readAll());
+    QString data(this->networkSocket->readAll());
     // when there is no data we can quit this
     if (data.isEmpty())
         return;
 
-    if (!this->BufferedPart.isEmpty())
-        data = this->BufferedPart + data;
+    if (!this->bufferedPart.isEmpty())
+        data = this->bufferedPart + data;
 
     if (data.contains("\n"))
     {
-        this->BufferedPart.clear();
+        this->bufferedPart.clear();
         if (data.endsWith("\n"))
         {
             // we received whole block of lines
-            this->BufferedLines = data.split("\n");
+            this->bufferedLines = data.split("\n");
         } else
         {
             QStringList lines = data.split("\n");
             // last line is has not yet finished
-            this->BufferedPart = lines.last();
+            this->bufferedPart = lines.last();
             lines.removeLast();
-            this->BufferedLines = lines;
+            this->bufferedLines = lines;
         }
-        this->ProcessBufs();
+        this->processBufs();
         return;
     }
 
-    this->BufferedPart = data;
+    this->bufferedPart = data;
 }
 
 void HuggleFeedProviderXml::OnConnect()
 {
-    this->is_connected = true;
+    this->isConnected = true;
     this->pinger->start(1000);
-    this->is_connecting = false;
+    this->isConnecting = false;
     // subscribe
-    this->Write("S " + this->GetSite()->XmlRcsName);
+    this->write("S " + this->GetSite()->XmlRcsName);
 }
 
-void HuggleFeedProviderXml::Write(QString text)
+void HuggleFeedProviderXml::write(QString text)
 {
     // check if network socket isn't nullptr
-    if (!this->NetworkSocket)
+    if (!this->networkSocket)
         throw new Huggle::NullPointerException("this->NetworkSocket", BOOST_CURRENT_FUNCTION);
 
-    this->NetworkSocket->write(QString(text + "\n").toUtf8());
+    this->networkSocket->write(QString(text + "\n").toUtf8());
 }
 
-void HuggleFeedProviderXml::InsertEdit(WikiEdit *edit)
+void HuggleFeedProviderXml::insertEdit(WikiEdit *edit)
 {
     if (edit == nullptr)
         throw new Huggle::NullPointerException("WikiEdit *edit", BOOST_CURRENT_FUNCTION);
@@ -218,31 +218,31 @@ void HuggleFeedProviderXml::InsertEdit(WikiEdit *edit)
     // but it might be a performance improvement at some point
     if (edit->GetSite()->CurrentFilter->Matches(edit))
     {
-        if (this->Buffer.size() > hcfg->SystemConfig_ProviderCache)
+        if (this->buffer.size() > hcfg->SystemConfig_ProviderCache)
         {
             // If the buffer is full we need to remove 10 oldest edits
             // we also show a warning to user
-            while (this->Buffer.size() > (hcfg->SystemConfig_ProviderCache - 10))
+            while (this->buffer.size() > (hcfg->SystemConfig_ProviderCache - 10))
             {
-                this->Buffer.at(0)->DecRef();
-                this->Buffer.removeAt(0);
+                this->buffer.at(0)->DecRef();
+                this->buffer.removeAt(0);
             }
             if (!this->IsPaused())
                 Huggle::Syslog::HuggleLogs->WarningLog("insufficient space in xml cache, increase ProviderCache size, otherwise you will be losing edits");
         }
-        this->Buffer.append(edit);
+        this->buffer.append(edit);
     } else
     {
         edit->DecRef();
     }
 }
 
-void HuggleFeedProviderXml::ProcessBufs()
+void HuggleFeedProviderXml::processBufs()
 {
-    while (!this->BufferedLines.isEmpty())
+    while (!this->bufferedLines.isEmpty())
     {
-        QString data = this->BufferedLines.at(0);
-        this->BufferedLines.removeAt(0);
+        QString data = this->bufferedLines.at(0);
+        this->bufferedLines.removeAt(0);
         if (data.isEmpty())
             continue;
         // this should be an XML string, let's do some quick test
@@ -253,7 +253,7 @@ void HuggleFeedProviderXml::ProcessBufs()
         }
 
         // every message will update last time
-        this->LastPong = QDateTime::currentDateTime();
+        this->lastPong = QDateTime::currentDateTime();
         QDomDocument input;
         input.setContent(data);
         QDomElement element = input.firstChild().toElement();
@@ -266,7 +266,7 @@ void HuggleFeedProviderXml::ProcessBufs()
         }
         if (name == "ping")
         {
-            this->Write("pong");
+            this->write("pong");
             continue;
         }
 
@@ -335,7 +335,7 @@ void HuggleFeedProviderXml::ProcessBufs()
         }
         edit->OldID = element.attribute("oldid").toInt();
         ts.setTime_t(element.attribute("timestamp").toUInt());
-        this->InsertEdit(edit);
+        this->insertEdit(edit);
         continue;
 
         invalid:

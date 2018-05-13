@@ -80,15 +80,15 @@ namespace Huggle
             double GetUptime();
             HuggleQueueFilter *Filter;
         protected:
-            void RotateStats();
+            void rotateStats();
+            StatisticsBlock *getLatestStatisticsBlock();
             //! Number of edits made since you logged in
-            double EditCounter;
+            double editCounter;
             //! Number of reverts made since you logged in
-            double RvCounter;
-            QMutex *mutex;
-            StatisticsBlock *GetLatestStatisticsBlock();
-            QDateTime UptimeDate;
-            QList<StatisticsBlock*> StatisticsBlocks;
+            double rvCounter;
+            QMutex *statisticsMutex;
+            QDateTime startupTime;
+            QList<StatisticsBlock*> statisticsBlocks;
     };
 }
 

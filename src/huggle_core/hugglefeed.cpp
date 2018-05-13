@@ -19,27 +19,27 @@ QList<HuggleFeed*> HuggleFeed::Providers;
 
 HuggleFeed::HuggleFeed(WikiSite *site)
 {
-    this->mutex = new QMutex(QMutex::Recursive);
+    this->statisticsMutex = new QMutex(QMutex::Recursive);
     this->Site = site;
-    this->StatisticsBlocks.append(new StatisticsBlock());
-    this->EditCounter = 0;
-    this->RvCounter = 0;
-    this->UptimeDate = QDateTime::currentDateTime();
+    this->statisticsBlocks.append(new StatisticsBlock());
+    this->editCounter = 0;
+    this->rvCounter = 0;
+    this->startupTime = QDateTime::currentDateTime();
     Providers.append(this);
 }
 
 HuggleFeed::~HuggleFeed()
 {
-    this->mutex->lock();
-    while (this->StatisticsBlocks.count())
+    this->statisticsMutex->lock();
+    while (this->statisticsBlocks.count())
     {
-        delete this->StatisticsBlocks.at(0);
-        this->StatisticsBlocks.removeAt(0);
+        delete this->statisticsBlocks.at(0);
+        this->statisticsBlocks.removeAt(0);
     }
-    this->mutex->unlock();
+    this->statisticsMutex->unlock();
     if (Providers.contains(this))
         Providers.removeOne(this);
-    delete this->mutex;
+    delete this->statisticsMutex;
 }
 
 QString HuggleFeed::GetError()
@@ -49,36 +49,36 @@ QString HuggleFeed::GetError()
 
 double HuggleFeed::GetRevertsPerMinute()
 {
-    if (this->StatisticsBlocks.count() < 1)
+    if (this->statisticsBlocks.count() < 1)
         throw new Huggle::Exception("Invalid number of statistics blocks", BOOST_CURRENT_FUNCTION);
     // first we need to get an uptime
-    double uptime = ((double)this->StatisticsBlocks.at(0)->Uptime.secsTo(QDateTime::currentDateTime())) / 60;
+    double uptime = ((double)this->statisticsBlocks.at(0)->Uptime.secsTo(QDateTime::currentDateTime())) / 60;
     if (uptime == 0)
         return 0;
     // now we need to get a number of all reverts for latest blocks
-    this->mutex->lock();
+    this->statisticsMutex->lock();
     double reverts = 0;
-    foreach (StatisticsBlock *ptr, this->StatisticsBlocks)
+    foreach (StatisticsBlock *ptr, this->statisticsBlocks)
         reverts += ptr->Reverts;
-    this->mutex->unlock();
+    this->statisticsMutex->unlock();
     // now we know how many reverts per minute we have
     return reverts / uptime;
 }
 
 double HuggleFeed::GetEditsPerMinute()
 {
-    this->RotateStats();
-    if (this->StatisticsBlocks.count() < 1)
+    this->rotateStats();
+    if (this->statisticsBlocks.count() < 1)
         throw new Huggle::Exception("Invalid number of statistics blocks", BOOST_CURRENT_FUNCTION);
     // first we need to get an uptime
-    double uptime = ((double)this->StatisticsBlocks.at(0)->Uptime.secsTo(QDateTime::currentDateTime())) / 60;
+    double uptime = ((double)this->statisticsBlocks.at(0)->Uptime.secsTo(QDateTime::currentDateTime())) / 60;
     if (uptime == 0)
         return 0;
-    this->mutex->lock();
+    this->statisticsMutex->lock();
     double edits = 0;
-    foreach (StatisticsBlock *ptr, this->StatisticsBlocks)
+    foreach (StatisticsBlock *ptr, this->statisticsBlocks)
         edits += ptr->Edits;
-    this->mutex->unlock();
+    this->statisticsMutex->unlock();
     // now we know how many edits per minute we have
     return edits / uptime;
 }
@@ -87,50 +87,50 @@ void HuggleFeed::IncrementEdits()
 {
     if (!this->IsWorking())
         return;
-    this->EditCounter++;
-    this->GetLatestStatisticsBlock()->Edits++;
+    this->editCounter++;
+    this->getLatestStatisticsBlock()->Edits++;
 }
 
 void HuggleFeed::IncrementReverts()
 {
     if (!this->IsWorking())
         return;
-    this->RvCounter++;
-    this->GetLatestStatisticsBlock()->Reverts++;
+    this->rvCounter++;
+    this->getLatestStatisticsBlock()->Reverts++;
 }
 
 double HuggleFeed::GetUptime()
 {
-    return (double)this->UptimeDate.secsTo(QDateTime::currentDateTime());
+    return (double)this->startupTime.secsTo(QDateTime::currentDateTime());
 }
 
-void HuggleFeed::RotateStats()
+void HuggleFeed::rotateStats()
 {
-    if (this->StatisticsBlocks.count() < 2)
+    if (this->statisticsBlocks.count() < 2)
         return;
 
-    this->mutex->lock();
+    this->statisticsMutex->lock();
 
-    if (this->StatisticsBlocks.at(0)->Uptime.secsTo(QDateTime::currentDateTime()) > HUGGLE_STATISTICS_LIFETIME)
+    if (this->statisticsBlocks.at(0)->Uptime.secsTo(QDateTime::currentDateTime()) > HUGGLE_STATISTICS_LIFETIME)
     {
         // since this can get in a race condition we need to first remove it and then delete it
-        StatisticsBlock *b = this->StatisticsBlocks.at(0);
-        this->StatisticsBlocks.removeAt(0);
+        StatisticsBlock *b = this->statisticsBlocks.at(0);
+        this->statisticsBlocks.removeAt(0);
         delete b;
     }
 
-    this->mutex->unlock();
+    this->statisticsMutex->unlock();
 }
 
-StatisticsBlock *HuggleFeed::GetLatestStatisticsBlock()
+StatisticsBlock *HuggleFeed::getLatestStatisticsBlock()
 {
-    this->mutex->lock();
-    if (!this->StatisticsBlocks.count())
-        this->StatisticsBlocks.append(new StatisticsBlock());
-    if (this->StatisticsBlocks.last()->Uptime.secsTo(QDateTime::currentDateTime()) > HUGGLE_STATISTICS_BLOCK_SIZE)
-        this->StatisticsBlocks.append(new StatisticsBlock());
-    this->mutex->unlock();
-    return this->StatisticsBlocks.last();
+    this->statisticsMutex->lock();
+    if (!this->statisticsBlocks.count())
+        this->statisticsBlocks.append(new StatisticsBlock());
+    if (this->statisticsBlocks.last()->Uptime.secsTo(QDateTime::currentDateTime()) > HUGGLE_STATISTICS_BLOCK_SIZE)
+        this->statisticsBlocks.append(new StatisticsBlock());
+    this->statisticsMutex->unlock();
+    return this->statisticsBlocks.last();
 }
 
 StatisticsBlock::StatisticsBlock()

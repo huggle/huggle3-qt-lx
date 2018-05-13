@@ -39,7 +39,7 @@ namespace Huggle
             //! Page that is going to be edited
             WikiPage *Page = nullptr;
             //! Text a page will be replaced with
-            QString text;
+            QString Text;
             //! Edit summary
             QString Summary;
             //! Timestamp of the base revision (obtained through prop=revisions&rvprop=timestamp)
@@ -55,11 +55,11 @@ namespace Huggle
             //! Whether the edit is minor or not
             bool Minor;
         private:
-            void EditPage();
-            void SetError(QString reason);
-            QString OriginalText = "";
+            void editPage();
+            void setError(QString reason);
+            QString originalText = "";
             Collectable_SmartPtr<ApiQuery> qRetrieve;
-            bool HasPreviousPageText = false;
+            bool hasPreviousPageText = false;
             //! Api query to edit page
             Collectable_SmartPtr<ApiQuery> qEdit;
     };

@@ -57,22 +57,22 @@ namespace Huggle
     {
         /*!
          * \brief WarnUser Sends a warning to user
-         * \param WarningType Type of warning
-         * \param Dependency If the warnings is depending on some revert you can put a pointer to that here
-         * \param Edit Pointer to edit this warning is related to
-         * \param Report This is address of boolean to which value whether user should be reported instead is stored
+         * \param warning_type Type of warning
+         * \param dependency If the warnings is depending on some revert you can put a pointer to that here
+         * \param edit Pointer to edit this warning is related to
+         * \param report This is address of boolean to which value whether user should be reported instead is stored
          * \return Pointer to a warning object which contains information about the warning
          */
-        HUGGLE_EX_CORE PendingWarning *WarnUser(QString WarningType, RevertQuery *Dependency, WikiEdit *Edit, bool *Report);
+        HUGGLE_EX_CORE PendingWarning *WarnUser(QString warning_type, RevertQuery *dependency, WikiEdit *edit, bool *report);
         //! This sends a warning to user no matter if they should receive it or not
-        HUGGLE_EX_CORE void ForceWarn(int Level, WikiEdit *Edit);
+        HUGGLE_EX_CORE void ForceWarn(int level, WikiEdit *edit);
         //! Checks all warnings that weren't sent and try to send them
 
         //! This is used on talk pages of users which changed while we tried to send them a warning
 		HUGGLE_EX_CORE void ResendWarnings();
 		HUGGLE_EX_CORE QString RetrieveTemplateToWarn(QString type, WikiSite *site, bool force = false);
         //! In case there is no shared IP
-		HUGGLE_EX_CORE QString UpdateSharedIPTemplate(WikiUser *User, QString Text, WikiSite *site);
+        HUGGLE_EX_CORE QString UpdateSharedIPTemplate(WikiUser *user, QString text, WikiSite *site);
     }
 }
 

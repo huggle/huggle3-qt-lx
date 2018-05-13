@@ -55,20 +55,20 @@ namespace Huggle
             int GetID() { return HUGGLE_FEED_PROVIDER_IRC; }
             bool ContainsEdit();
             WikiEdit *RetrieveEdit();
-            bool IsPaused() { return Paused; }
-            void Pause() { Paused = true; }
-            void Resume() { Paused = false; }
+            bool IsPaused() { return isPaused; }
+            void Pause() { this->isPaused = true; }
+            void Resume() { this->isPaused = false; }
             bool IsConnected();
             QString ToString();
-            bool Connected;
         private slots:
             void OnIRCChannelMessage(libircclient::Parser *px);
             void OnConnected();
             void OnFailure(QString reason, int code);
             void OnDisconnected();
-        private:
-            QList<WikiEdit*> Buffer;
-            bool Paused;
+        protected:
+            bool isConnected;
+            QList<WikiEdit*> editBuffer;
+            bool isPaused;
     };
 }
 

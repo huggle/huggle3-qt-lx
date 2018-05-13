@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>389</width>
-    <height>132</height>
+    <height>135</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -20,7 +20,7 @@
    <string>Delete</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="pictures.qrc">
+   <iconset resource="../huggle_res/pictures.qrc">
     <normaloff>:/huggle/pictures/Resources/huggle3_small.ico</normaloff>:/huggle/pictures/Resources/huggle3_small.ico</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -75,7 +75,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="pictures.qrc"/>
+  <include location="../huggle_res/pictures.qrc"/>
  </resources>
  <connections/>
 </ui>

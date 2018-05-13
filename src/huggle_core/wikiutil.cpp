@@ -151,7 +151,7 @@ Collectable_SmartPtr<EditQuery> WikiUtil::AppendTextToPage(QString page, QString
     Collectable_SmartPtr<EditQuery> eq = new EditQuery();
     eq->Page = new WikiPage(page);
     eq->Page->Site = site;
-    eq->text = text;
+    eq->Text = text;
     summary = Configuration::GenerateSuffix(summary, eq->Page->GetSite()->GetProjectConfig());
     eq->Summary = summary;
     eq->Minor = minor;
@@ -182,7 +182,7 @@ Collectable_SmartPtr<EditQuery> WikiUtil::EditPage(WikiPage *page, QString text,
     eq->Page = new WikiPage(page);
     eq->BaseTimestamp = BaseTimestamp;
     QueryPool::HugglePool->PendingMods.append(eq);
-    eq->text = text;
+    eq->Text = text;
     eq->Section = section;
     eq->Summary = summary;
     eq->Minor = minor;
@@ -247,7 +247,7 @@ Collectable_SmartPtr<EditQuery> WikiUtil::PrependTextToPage(QString page, QStrin
     Collectable_SmartPtr<EditQuery> eq = new EditQuery();
     eq->Page = new WikiPage(page);
     eq->Page->Site = site;
-    eq->text = text;
+    eq->Text = text;
     summary = Configuration::GenerateSuffix(summary, eq->Page->GetSite()->GetProjectConfig());
     eq->Summary = summary;
     eq->Minor = minor;

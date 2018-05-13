@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>226</height>
+    <height>255</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -102,7 +102,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/warning_icon_micro.png</pixmap>
+      <pixmap resource="../huggle_res/pictures.qrc">:/huggle/pictures/Resources/warning_icon_micro.png</pixmap>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -120,7 +120,7 @@
   <tabstop>checkBox</tabstop>
  </tabstops>
  <resources>
-  <include location="pictures.qrc"/>
+  <include location="../huggle_res/pictures.qrc"/>
  </resources>
  <connections>
   <connection>

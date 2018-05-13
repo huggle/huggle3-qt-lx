@@ -22,7 +22,7 @@ namespace Huggle
     class Exception;
     class ExceptionHandler;
     class GC;
-    class ProcessorThread;
+    class WikiEdit_ProcessorThread;
     class HuggleQueueFilter;
     class Syslog;
     class QueryPool;
@@ -98,7 +98,7 @@ namespace Huggle
             Huggle::GC *gc;
         private:
             //! This is a post-processor for edits
-            ProcessorThread *processorThread;
+            WikiEdit_ProcessorThread *processorThread;
             ExceptionHandler *exceptionHandler;
             bool loaded = false;
     };

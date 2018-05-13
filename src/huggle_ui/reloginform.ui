@@ -14,7 +14,7 @@
    <string>Please enter your password</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="pictures.qrc">
+   <iconset resource="../huggle_res/pictures.qrc">
     <normaloff>:/huggle/pictures/Resources/huggle3_newlogo.ico</normaloff>:/huggle/pictures/Resources/huggle3_newlogo.ico</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -37,7 +37,7 @@
    <item>
     <widget class="QLineEdit" name="lineEdit">
      <property name="inputMethodHints">
-      <set>Qt::ImhHiddenText|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText</set>
+      <set>Qt::ImhHiddenText|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData</set>
      </property>
      <property name="echoMode">
       <enum>QLineEdit::Password</enum>
@@ -82,7 +82,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="pictures.qrc"/>
+  <include location="../huggle_res/pictures.qrc"/>
  </resources>
  <connections/>
 </ui>

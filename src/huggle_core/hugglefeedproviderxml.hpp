@@ -48,21 +48,21 @@ namespace Huggle
             void OnConnect();
             void OnPing();
         protected:
-            void Write(QString text);
-            void InsertEdit(WikiEdit *edit);
-            void ProcessBufs();
-            QStringList BufferedLines;
-            QString BufferedPart;
-            QDateTime LastPong;
-            QString last_error = "No error";
-            bool is_connected = false;
-            bool is_connecting = false;
-            bool is_working = false;
-            QList<WikiEdit*> Buffer;
-            QTcpSocket *NetworkSocket;
+            void write(QString text);
+            void insertEdit(WikiEdit *edit);
+            void processBufs();
+            QStringList bufferedLines;
+            QString bufferedPart;
+            QDateTime lastPong;
+            QString lastError = "No error";
+            bool isConnected = false;
+            bool isConnecting = false;
+            bool isWorking = false;
+            QList<WikiEdit*> buffer;
+            QTcpSocket *networkSocket;
         private:
             QTimer *pinger;
-            bool is_paused = false;
+            bool isPaused = false;
     };
 }
 

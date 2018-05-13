@@ -7,14 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>590</width>
-    <height>149</height>
+    <height>172</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Request deletion of a page</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="pictures.qrc">
+   <iconset resource="../huggle_res/pictures.qrc">
     <normaloff>:/huggle/pictures/Resources/huggle3_small.ico</normaloff>:/huggle/pictures/Resources/huggle3_small.ico</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -90,7 +90,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="pictures.qrc"/>
+  <include location="../huggle_res/pictures.qrc"/>
  </resources>
  <connections/>
 </ui>

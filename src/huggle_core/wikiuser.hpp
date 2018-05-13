@@ -145,7 +145,7 @@ namespace Huggle
             //! Groups that this user is in, by default it's empty
             QStringList Groups;
 
-    private:
+    protected:
             //! Matches only IPv4
             static QRegExp IPv4Regex;
             //! Matches all IP
@@ -159,17 +159,17 @@ namespace Huggle
              */
             long BadnessScore;
             //! Current warning level of user
-            byte_ht WarningLevel;
+            byte_ht warningLevel;
             //! Status of whitelist 0 means user is not whitelisted, 1 that it is and different value means we don't know
-            byte_ht WhitelistInfo;
+            byte_ht whitelistInfo;
             //! In case that we retrieved the talk page during parse of warning level, this string contains it
-            QString ContentsOfTalkPage;
-            bool _talkPageWasRetrieved;
+            QString contentsOfTalkPage;
+            bool talkPageWasRetrieved;
             //! This is a date when we retrieved this talk page
-            QDateTime DateOfTalkPage;
-            QMutex *UserLock;
+            QDateTime dateOfTalkPage;
+            QMutex *userMutex;
             WikiPage *wpTalkPage = nullptr;
-            bool Bot;
+            bool isBot;
             bool IP;
     };
 
@@ -185,7 +185,7 @@ namespace Huggle
 
     inline bool WikiUser::TalkPage_WasRetrieved()
     {
-        return this->_talkPageWasRetrieved;
+        return this->talkPageWasRetrieved;
     }
 
     inline bool WikiUser::IsIP() const
@@ -195,7 +195,7 @@ namespace Huggle
 
     inline QDateTime WikiUser::TalkPage_RetrievalTime()
     {
-        return this->DateOfTalkPage;
+        return this->dateOfTalkPage;
     }
 
     inline long WikiUser::GetBadnessScore(bool _resync)

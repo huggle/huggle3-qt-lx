@@ -31,25 +31,25 @@ using namespace Huggle;
 
 HuggleFeedProviderIRC::HuggleFeedProviderIRC(WikiSite *site) : HuggleFeed(site)
 {
-    this->Paused = false;
-    this->Connected = false;
+    this->isPaused = false;
+    this->isConnected = false;
     this->Network = nullptr;
 }
 
 HuggleFeedProviderIRC::~HuggleFeedProviderIRC()
 {
     this->Stop();
-    while (this->Buffer.count() > 0)
+    while (this->editBuffer.count() > 0)
     {
-        this->Buffer.at(0)->DecRef();
-        this->Buffer.removeAt(0);
+        this->editBuffer.at(0)->DecRef();
+        this->editBuffer.removeAt(0);
     }
     delete this->Network;
 }
 
 bool HuggleFeedProviderIRC::Start()
 {
-    if (this->Connected)
+    if (this->isConnected)
     {
         HUGGLE_DEBUG1("Attempted to start connection which was already started");
         return false;
@@ -74,7 +74,7 @@ bool HuggleFeedProviderIRC::Start()
     //connect(this->Network, SIGNAL(Event_Join(libircclient::Parser*,libircclient::User*,libircclient::Channel*)), this, SLOT(OnIRCUserJoin(libircclient::Parser*,libircclient::User*,libircclient::Channel*)));
     //connect(this->Network, SIGNAL(Event_Part(libircclient::Parser*,libircclient::Channel*)), this, SLOT(OnIRCUserPart(libircclient::Parser*,libircclient::Channel*)));
     connect(this->Network, SIGNAL(Event_NetworkFailure(QString,int)), this, SLOT(OnFailure(QString,int)));
-    this->Connected = true;
+    this->isConnected = true;
     this->Network->Connect();
     return true;
 }
@@ -83,19 +83,19 @@ bool HuggleFeedProviderIRC::IsWorking()
 {
     if (this->Network != nullptr)
     {
-        return this->Connected && (this->Network->IsConnected());
+        return this->isConnected && (this->Network->IsConnected());
     }
     return false;
 }
 
 void HuggleFeedProviderIRC::Stop()
 {
-    if (!this->Connected || this->Network == nullptr)
+    if (!this->isConnected || this->Network == nullptr)
     {
         return;
     }
     this->Network->Disconnect(Generic::IRCQuitDefaultMessage());
-    this->Connected = false;
+    this->isConnected = false;
 }
 
 void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)
@@ -111,20 +111,20 @@ void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)
     // but it might be a performance improvement at some point
     if (edit->GetSite()->CurrentFilter->Matches(edit))
     {
-        if (this->Buffer.size() > Configuration::HuggleConfiguration->SystemConfig_ProviderCache)
+        if (this->editBuffer.size() > Configuration::HuggleConfiguration->SystemConfig_ProviderCache)
         {
             // If the buffer is full we need to remove 10 oldest edits
             // we also show a warning to user
-            while (this->Buffer.size() > (Configuration::HuggleConfiguration->SystemConfig_ProviderCache - 10))
+            while (this->editBuffer.size() > (Configuration::HuggleConfiguration->SystemConfig_ProviderCache - 10))
             {
-                this->Buffer.at(0)->DecRef();
-                this->Buffer.removeAt(0);
+                this->editBuffer.at(0)->DecRef();
+                this->editBuffer.removeAt(0);
             }
             // This warning isn't useful if the provider is not running
             if (!this->IsPaused())
                 Huggle::Syslog::HuggleLogs->WarningLog("insufficient space in irc cache, increase ProviderCache size, otherwise you will be losing edits");
         }
-        this->Buffer.append(edit);
+        this->editBuffer.append(edit);
     } else
     {
         edit->DecRef();
@@ -134,7 +134,7 @@ void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)
 void HuggleFeedProviderIRC::ParseEdit(QString line)
 {
     // skip edits if provider is disabled
-    if (this->Paused)
+    if (this->isPaused)
     {
         return;
     }
@@ -290,23 +290,23 @@ bool HuggleFeedProviderIRC::IsStopped()
 
 bool HuggleFeedProviderIRC::ContainsEdit()
 {
-    return (this->Buffer.size() != 0);
+    return (this->editBuffer.size() != 0);
 }
 
 WikiEdit *HuggleFeedProviderIRC::RetrieveEdit()
 {
-    if (this->Buffer.size() == 0)
+    if (this->editBuffer.size() == 0)
     {
         return nullptr;
     }
-    WikiEdit *edit = this->Buffer.at(0);
-    this->Buffer.removeAt(0);
+    WikiEdit *edit = this->editBuffer.at(0);
+    this->editBuffer.removeAt(0);
     return edit;
 }
 
 bool HuggleFeedProviderIRC::IsConnected()
 {
-    return this->Connected;
+    return this->isConnected;
 }
 
 QString HuggleFeedProviderIRC::ToString()
@@ -322,8 +322,8 @@ void HuggleFeedProviderIRC::OnIRCChannelMessage(libircclient::Parser *px)
 void HuggleFeedProviderIRC::OnConnected()
 {
     Huggle::Syslog::HuggleLogs->Log(_l("irc-connected", this->Site->Name));
-    this->Connected = true;
-    this->UptimeDate = QDateTime::currentDateTime();
+    this->isConnected = true;
+    this->startupTime = QDateTime::currentDateTime();
 }
 
 void HuggleFeedProviderIRC::OnFailure(QString reason, int code)
@@ -337,5 +337,5 @@ void HuggleFeedProviderIRC::OnFailure(QString reason, int code)
 
 void HuggleFeedProviderIRC::OnDisconnected()
 {
-    this->Connected = false;
+    this->isConnected = false;
 }

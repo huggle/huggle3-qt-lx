@@ -50,7 +50,7 @@ namespace Huggle
     class WikiSite;
 
     //! Edits are post processed in this thread
-    class HUGGLE_EX_CORE ProcessorThread :  public QThread
+    class HUGGLE_EX_CORE WikiEdit_ProcessorThread :  public QThread
     {
             Q_OBJECT
         public:
@@ -164,20 +164,18 @@ namespace Huggle
             //! List of parsed score words which were found in this edit
             QStringList ScoreWords;
             QDateTime Time;
-        private:
-            void RecordScore(QString name, score_ht score);
+        protected:
+            void recordScore(QString name, score_ht score);
             //! This function is called by core
-            bool FinalizePostProcessing();
-            friend class ProcessorThread;
-            friend class MainWindow;
-            bool ProcessingByWorkerThread;
-            bool ProcessingRevs;
-            bool ProcessingEditInfo;
-            bool ProcessingDiff = false;
+            bool finalizePostProcessing();
+            bool processingByWorkerThread;
+            bool processingRevs;
+            bool processingEditInfo;
+            bool processingDiff = false;
             //! This variable is used by worker thread and needs to be public so that it is working
-            bool PostProcessing;
+            bool postProcessing;
             //! This variable is used by worker thread and needs to be public so that it is working
-            bool ProcessedByWorkerThread;
+            bool processedByWorkerThread;
             Collectable_SmartPtr<ApiQuery> qTalkpage;
             //! This is a query used to retrieve information about the user
             Collectable_SmartPtr<ApiQuery> qUser;
@@ -188,7 +186,9 @@ namespace Huggle
             Collectable_SmartPtr<ApiQuery> qText;
             Collectable_SmartPtr<ApiQuery> qCategoriesAndWatched;
             //! Size of change of edit
-            long Size;
+            long diffSize;
+            friend class WikiEdit_ProcessorThread;
+            friend class MainWindow;
     };
 
     inline QDateTime WikiEdit::GetUnknownEditTime()
@@ -203,13 +203,13 @@ namespace Huggle
 
     inline long WikiEdit::GetSize()
     {
-        return this->Size;
+        return this->diffSize;
     }
 
     inline void WikiEdit::SetSize(long size)
     {
         this->SizeIsKnown = true;
-        this->Size = size;
+        this->diffSize = size;
     }
 }
 

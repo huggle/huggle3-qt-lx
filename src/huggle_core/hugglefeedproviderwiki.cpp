@@ -24,28 +24,28 @@
 using namespace Huggle;
 HuggleFeedProviderWiki::HuggleFeedProviderWiki(WikiSite *site) : HuggleFeed(site)
 {
-    this->Buffer = new QList<WikiEdit*>();
+    this->editBuffer = new QList<WikiEdit*>();
     this->Site = site;
-    this->Refreshing = false;
+    this->isRefreshing = false;
     // we set the latest time to yesterday so that we don't get in troubles with time offset
-    this->LatestTime = QDateTime::currentDateTime().addDays(-1);
-    this->LastRefresh = QDateTime::currentDateTime().addDays(-1);
+    this->latestTime = QDateTime::currentDateTime().addDays(-1);
+    this->lastRefresh = QDateTime::currentDateTime().addDays(-1);
 }
 
 HuggleFeedProviderWiki::~HuggleFeedProviderWiki()
 {
-    while (this->Buffer->count() > 0)
+    while (this->editBuffer->count() > 0)
     {
-        this->Buffer->at(0)->DecRef();
-        this->Buffer->removeAt(0);
+        this->editBuffer->at(0)->DecRef();
+        this->editBuffer->removeAt(0);
     }
-    delete this->Buffer;
+    delete this->editBuffer;
 }
 
 bool HuggleFeedProviderWiki::Start()
 {
     if (this->IsPaused())
-        this->UptimeDate = QDateTime::currentDateTime();
+        this->startupTime = QDateTime::currentDateTime();
     this->Resume();
     this->Refresh();
     return true;
@@ -63,12 +63,12 @@ void HuggleFeedProviderWiki::Stop()
 
 bool HuggleFeedProviderWiki::ContainsEdit()
 {
-    if (this->Buffer->isEmpty())
+    if (this->editBuffer->isEmpty())
     {
-        if (this->LastRefresh.addSecs(6) < QDateTime::currentDateTime())
+        if (this->lastRefresh.addSecs(6) < QDateTime::currentDateTime())
         {
             this->Refresh();
-            this->LastRefresh = QDateTime::currentDateTime();
+            this->lastRefresh = QDateTime::currentDateTime();
         }
         return false;
     }
@@ -77,9 +77,9 @@ bool HuggleFeedProviderWiki::ContainsEdit()
 
 void HuggleFeedProviderWiki::Refresh()
 {
-    if (this->Paused)
+    if (this->isPaused)
         return;
-    if (this->Refreshing)
+    if (this->isRefreshing)
     {
         // the query is still in progress now
         if (!this->qReload->IsProcessed())
@@ -89,15 +89,15 @@ void HuggleFeedProviderWiki::Refresh()
             // failed to obtain the data
             Huggle::Syslog::HuggleLogs->Log(_l("rc-error", this->qReload->GetFailureReason()));
             this->qReload = nullptr;
-            this->Refreshing = false;
+            this->isRefreshing = false;
             return;
         }
-        this->Process(qReload->Result->Data);
+        this->processData(qReload->Result->Data);
         this->qReload = nullptr;
-        this->Refreshing = false;
+        this->isRefreshing = false;
         return;
     }
-    this->Refreshing = true;
+    this->isRefreshing = true;
     this->qReload = new ApiQuery(ActionQuery, this->GetSite());
     this->qReload->Parameters = "list=recentchanges&rcprop=" + QUrl::toPercentEncoding("user|userid|comment|flags|timestamp|title|ids|sizes|loginfo") +
                                 "&rclimit=" + QString::number(Configuration::HuggleConfiguration->SystemConfig_WikiRC);
@@ -108,12 +108,12 @@ void HuggleFeedProviderWiki::Refresh()
 
 WikiEdit *HuggleFeedProviderWiki::RetrieveEdit()
 {
-    if (this->Buffer->size() < 1)
+    if (this->editBuffer->size() < 1)
     {
         return nullptr;
     }
-    WikiEdit *edit = this->Buffer->at(0);
-    this->Buffer->removeAt(0);
+    WikiEdit *edit = this->editBuffer->at(0);
+    this->editBuffer->removeAt(0);
     return edit;
 }
 
@@ -122,7 +122,7 @@ QString HuggleFeedProviderWiki::ToString()
     return "Wiki";
 }
 
-void HuggleFeedProviderWiki::Process(QString data)
+void HuggleFeedProviderWiki::processData(QString data)
 {
     //QStringList lines = data.split("\n");
     QDomDocument d;
@@ -135,7 +135,7 @@ void HuggleFeedProviderWiki::Process(QString data)
         return;
     }
     // recursively scan all RC changes
-    QDateTime t = this->LatestTime;
+    QDateTime t = this->latestTime;
     bool Changed = false;
     while (CurrentNode > 0)
     {
@@ -170,20 +170,20 @@ void HuggleFeedProviderWiki::Process(QString data)
         QString type = item.attribute("type");
         if (type == "edit" || type == "new")
         {
-            ProcessEdit(item);
+            processEdit(item);
         }
         else if (type == "log")
         {
-            ProcessLog(item);
+            processLog(item);
         }
     }
     if (Changed)
     {
-        this->LatestTime = t.addSecs(1);
+        this->latestTime = t.addSecs(1);
     }
 }
 
-void HuggleFeedProviderWiki::ProcessEdit(QDomElement item)
+void HuggleFeedProviderWiki::processEdit(QDomElement item)
 {
     WikiEdit *edit = new WikiEdit();
     edit->Page = new WikiPage(item.attribute("title"));
@@ -214,10 +214,10 @@ void HuggleFeedProviderWiki::ProcessEdit(QDomElement item)
     if (item.attributes().contains("minor"))
         edit->Minor = true;
     edit->IncRef();
-    this->InsertEdit(edit);
+    this->insertEdit(edit);
 }
 
-void HuggleFeedProviderWiki::ProcessLog(QDomElement item)
+void HuggleFeedProviderWiki::processLog(QDomElement item)
 {
     /*
      * this function doesn't check if every attribute is present (unlike ProcessEdit())
@@ -256,22 +256,22 @@ void HuggleFeedProviderWiki::ProcessLog(QDomElement item)
     }
 }
 
-void HuggleFeedProviderWiki::InsertEdit(WikiEdit *edit)
+void HuggleFeedProviderWiki::insertEdit(WikiEdit *edit)
 {
     this->IncrementEdits();
     QueryPool::HugglePool->PreProcessEdit(edit);
     if (edit->GetSite()->CurrentFilter->Matches(edit))
     {
-        if (this->Buffer->size() > Configuration::HuggleConfiguration->SystemConfig_ProviderCache)
+        if (this->editBuffer->size() > Configuration::HuggleConfiguration->SystemConfig_ProviderCache)
         {
-            while (this->Buffer->size() > (Configuration::HuggleConfiguration->SystemConfig_ProviderCache - 10))
+            while (this->editBuffer->size() > (Configuration::HuggleConfiguration->SystemConfig_ProviderCache - 10))
             {
-                this->Buffer->at(0)->DecRef();
-                this->Buffer->removeAt(0);
+                this->editBuffer->at(0)->DecRef();
+                this->editBuffer->removeAt(0);
             }
             Huggle::Syslog::HuggleLogs->WarningLog("insufficient space in wiki cache, increase ProviderCache size, otherwise you will be losing edits");
         }
-        this->Buffer->append(edit);
+        this->editBuffer->append(edit);
     } else
     {
         edit->DecRef();

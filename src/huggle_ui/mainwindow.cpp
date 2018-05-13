@@ -1439,7 +1439,7 @@ void MainWindow::OnMainTimerTick()
         while (Edit < QueryPool::HugglePool->ProcessingEdits.count())
         {
             WikiEdit *e = QueryPool::HugglePool->ProcessingEdits.at(Edit);
-            if (e->FinalizePostProcessing())
+            if (e->finalizePostProcessing())
             {
                 QueryPool::HugglePool->ProcessingEdits.removeAt(Edit);
                 e->UnregisterConsumer(HUGGLECONSUMER_CORE_POSTPROCESS);

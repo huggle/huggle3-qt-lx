@@ -46,15 +46,15 @@ namespace Huggle
             bool IsUserpage();
             //! Writes a wikipage name that is encoded using percent encoding
             QString EncodedName();
+            QStringList GetCategories();
+            void SetCategories(QStringList value);
+            bool IsWatched();
+            void SetWatched(bool value);
             QString Contents;
             //! Content model of a page, if known
             QString ContentModel;
             //! Name of page
             QString PageName;
-            QStringList GetCategories();
-            void SetCategories(QStringList value);
-            bool IsWatched();
-            void SetWatched(bool value);
         private:
             QStringList categories;
             WikiPageNS *NS;

@@ -53,14 +53,14 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/blob-blanked.png</pixmap>
+      <pixmap resource="../huggle_res/pictures.qrc">:/huggle/pictures/Resources/blob-blanked.png</pixmap>
      </property>
     </widget>
    </item>
   </layout>
  </widget>
  <resources>
-  <include location="pictures.qrc"/>
+  <include location="../huggle_res/pictures.qrc"/>
  </resources>
  <connections/>
 </ui>

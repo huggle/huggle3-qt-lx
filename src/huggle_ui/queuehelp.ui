@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>421</width>
-    <height>414</height>
+    <height>450</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,7 +25,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/blob-anon.png</pixmap>
+        <pixmap resource="../huggle_res/pictures.qrc">:/huggle/pictures/Resources/blob-anon.png</pixmap>
        </property>
       </widget>
      </item>
@@ -42,7 +42,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/blob-blanked.png</pixmap>
+        <pixmap resource="../huggle_res/pictures.qrc">:/huggle/pictures/Resources/blob-blanked.png</pixmap>
        </property>
       </widget>
      </item>
@@ -59,7 +59,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/blob-blocked.png</pixmap>
+        <pixmap resource="../huggle_res/pictures.qrc">:/huggle/pictures/Resources/blob-blocked.png</pixmap>
        </property>
       </widget>
      </item>
@@ -76,7 +76,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/blob-bot.png</pixmap>
+        <pixmap resource="../huggle_res/pictures.qrc">:/huggle/pictures/Resources/blob-bot.png</pixmap>
        </property>
       </widget>
      </item>
@@ -93,7 +93,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/blob-ignored.png</pixmap>
+        <pixmap resource="../huggle_res/pictures.qrc">:/huggle/pictures/Resources/blob-ignored.png</pixmap>
        </property>
       </widget>
      </item>
@@ -110,7 +110,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/blob-me.png</pixmap>
+        <pixmap resource="../huggle_res/pictures.qrc">:/huggle/pictures/Resources/blob-me.png</pixmap>
        </property>
       </widget>
      </item>
@@ -127,7 +127,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/blob-new.png</pixmap>
+        <pixmap resource="../huggle_res/pictures.qrc">:/huggle/pictures/Resources/blob-new.png</pixmap>
        </property>
       </widget>
      </item>
@@ -144,7 +144,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/blob-none.png</pixmap>
+        <pixmap resource="../huggle_res/pictures.qrc">:/huggle/pictures/Resources/blob-none.png</pixmap>
        </property>
       </widget>
      </item>
@@ -161,7 +161,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/blob-reported.png</pixmap>
+        <pixmap resource="../huggle_res/pictures.qrc">:/huggle/pictures/Resources/blob-reported.png</pixmap>
        </property>
       </widget>
      </item>
@@ -178,7 +178,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/blob-warn-1.png</pixmap>
+        <pixmap resource="../huggle_res/pictures.qrc">:/huggle/pictures/Resources/blob-warn-1.png</pixmap>
        </property>
       </widget>
      </item>
@@ -195,7 +195,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/blob-warn-2.png</pixmap>
+        <pixmap resource="../huggle_res/pictures.qrc">:/huggle/pictures/Resources/blob-warn-2.png</pixmap>
        </property>
       </widget>
      </item>
@@ -212,7 +212,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/blob-warn-3.png</pixmap>
+        <pixmap resource="../huggle_res/pictures.qrc">:/huggle/pictures/Resources/blob-warn-3.png</pixmap>
        </property>
       </widget>
      </item>
@@ -229,7 +229,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/blob-warn-4.png</pixmap>
+        <pixmap resource="../huggle_res/pictures.qrc">:/huggle/pictures/Resources/blob-warn-4.png</pixmap>
        </property>
       </widget>
      </item>
@@ -246,7 +246,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/blob-warning.png</pixmap>
+        <pixmap resource="../huggle_res/pictures.qrc">:/huggle/pictures/Resources/blob-warning.png</pixmap>
        </property>
       </widget>
      </item>
@@ -263,7 +263,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/blob-blocknote.png</pixmap>
+        <pixmap resource="../huggle_res/pictures.qrc">:/huggle/pictures/Resources/blob-blocknote.png</pixmap>
        </property>
       </widget>
      </item>
@@ -280,7 +280,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/blob-report.png</pixmap>
+        <pixmap resource="../huggle_res/pictures.qrc">:/huggle/pictures/Resources/blob-report.png</pixmap>
        </property>
       </widget>
      </item>
@@ -304,7 +304,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/blob-tag.png</pixmap>
+        <pixmap resource="../huggle_res/pictures.qrc">:/huggle/pictures/Resources/blob-tag.png</pixmap>
        </property>
       </widget>
      </item>
@@ -321,7 +321,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="pictures.qrc">:/huggle/pictures/Resources/blob-revert.png</pixmap>
+        <pixmap resource="../huggle_res/pictures.qrc">:/huggle/pictures/Resources/blob-revert.png</pixmap>
        </property>
       </widget>
      </item>
@@ -330,7 +330,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="pictures.qrc"/>
+  <include location="../huggle_res/pictures.qrc"/>
  </resources>
  <connections/>
 </ui>
