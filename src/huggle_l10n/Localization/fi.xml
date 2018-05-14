@@ -103,7 +103,7 @@
   <string name="config-defaultsprompt">Palauta oletukset?</string>
   <string name="config-logbrowsetitle">Lokitiedoston sijainti</string>
   <string name="config-notify-update">Tarkista päivitykset</string>
-  <string name="config-notify-beta">Tarkista betaversiot, jos niitä on saatavilla</string>
+  <string name="config-notify-beta">Tarkista beetaversiot, jos niitä on saatavilla</string>
   <string name="custommessage-send">Lähetä viesti</string>
   <string name="custommessage-wikiuser-plaintext-1">Hei $1,</string>
   <string name="delete-title">Poista $1</string>
