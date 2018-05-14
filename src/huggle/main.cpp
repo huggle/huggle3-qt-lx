@@ -94,11 +94,9 @@ int main(int argc, char *argv[])
             return ReturnCode;
         }
 
-        // Load the external resource files, needed only on windows, because of shitties dynamic linker ever
-        #ifdef HUGGLE_WIN
-            Huggle::Huggle_l10n::Init();
-            Huggle::Huggle_Res::Init();
-        #endif
+        // Load the external resource files, needed only on some compilers though
+        Huggle::Huggle_l10n::Init();
+        Huggle::Huggle_Res::Init();
 
         // Load the core which manages lof of stuff like GC, exception handling and some internal stuff
         Huggle::Core::HuggleCore = new Huggle::Core();
