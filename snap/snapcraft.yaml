@@ -28,6 +28,12 @@ parts:
       - -DHUGGLE_EXT=true
     source: src/
     stage-packages:
+      - libxkbcommon0
+      - ttf-ubuntu-font-family
+      - dmz-cursor-theme
+      - light-themes
+      - locales-all
+      - shared-mime-info
       - libqt5gui5
       - libqt5core5a
       - libqt5webkit5
