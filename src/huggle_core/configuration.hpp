@@ -271,8 +271,6 @@ namespace Huggle
             bool            SystemConfig_DryMode = false;
             //! Maximum number of queue stuff
             int             SystemConfig_QueueSize = 200;
-            //! Whether python is available
-            bool            PythonEngine;
             bool            Fuzzy = false;
             //! Size of feed
             int             SystemConfig_ProviderCache = 200;

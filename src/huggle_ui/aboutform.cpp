@@ -26,13 +26,8 @@ int last_dev = -1;
 AboutForm::AboutForm(QWidget *parent) : HW("aboutform", this, parent), ui(new Ui::AboutForm)
 {
     this->ui->setupUi(this);
-    QString python = _l("about-python-without");
-    if (Configuration::HuggleConfiguration->PythonEngine)
-    {
-        python = _l("about-python-with");
-    }
     QString version = _l("about-qt", QString(QT_VERSION_STR), QString(qVersion()));
-    this->ui->label_7->setText(_l("version") + ": " + Configuration::HuggleConfiguration->HuggleVersion + python + version +
+    this->ui->label_7->setText(_l("version") + ": " + Configuration::HuggleConfiguration->HuggleVersion + version +
                                _l("about-info", QString(HUGGLE_WEB_ENGINE_NAME), QString(HUGGLE_UPDATER_PLATFORM_TYPE)));
     this->RestoreWindow();
 }

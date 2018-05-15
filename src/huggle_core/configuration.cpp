@@ -32,11 +32,6 @@ Configuration * hcfg = nullptr;
 
 Configuration::Configuration()
 {
-#ifdef HUGGLE_PYTHON
-    this->PythonEngine = true;
-#else
-    this->PythonEngine = false;
-#endif
     //! This is a consumer key for "huggle" on wmf wikis
     this->WmfOAuthConsumerKey = "56a6d6de895e3b859faa57b677f6cd21";
     this->HuggleVersion = HUGGLE_VERSION;
