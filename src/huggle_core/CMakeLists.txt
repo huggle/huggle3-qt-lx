@@ -43,7 +43,7 @@ if (WIN32)
     target_link_libraries(huggle_core dbghelp)
 endif()
 
-target_link_libraries(huggle_core irc ircclient yaml-cpp)
+target_link_libraries(huggle_core huggle_l10n irc ircclient yaml-cpp)
 
 qt5_use_modules(huggle_core Core Script Network Xml)
 
