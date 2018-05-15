@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="/huggle/text">
+    <file>Resources/ecma/help.js</file>
     <file>Resources/ecma/huggle.js</file>
+    <file>Resources/ecma/types.js</file>
   </qresource>
 </RCC>

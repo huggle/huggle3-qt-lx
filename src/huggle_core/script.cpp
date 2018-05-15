@@ -228,7 +228,9 @@ bool Script::loadSource(QString source, QString *error)
     }
 
     // Prepend the built-in libs
+    source = Resources::GetResource("/huggle/text/Resources/ecma/help.js") + source;
     source = Resources::GetResource("/huggle/text/Resources/ecma/huggle.js") + source;
+    source = Resources::GetResource("/huggle/text/Resources/ecma/types.js") + source;
 
     this->sourceCode = source;
     this->engine = new QScriptEngine();

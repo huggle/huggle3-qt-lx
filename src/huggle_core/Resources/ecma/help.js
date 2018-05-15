@@ -8,13 +8,5 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-function alert(message)
-{
-    if (huggle_context() === "huggle_ui")
-    {
-        huggle_ui_message_box("alert", message);
-    } else
-    {
-        huggle_log(message);
-    }
-}
+var huggle_ecma_function_help = { "alert": "(message): Shows a message box with text" };
+var huggle_ecma_function_list = [ "alert" ];

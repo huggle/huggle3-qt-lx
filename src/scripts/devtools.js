@@ -41,6 +41,16 @@ function print_help()
         help += "<tr><td>" + function_name + huggle_get_function_help(function_name) + "</td>\n";
     }
     help += "</table>\n";
+    help += "<h2>Ecma functions</h2>\n";
+    help += "<table>\n";
+    help += "<tr><th>Function</th></tr>\n";
+    functions = huggle_ecma_function_list;
+    for (i = 0, len = functions.length; i < len; i++)
+    {
+        var function_name = functions[i];
+        help += "<tr><td>" + function_name + huggle_ecma_function_help[function_name] + "</td>\n";
+    }
+    help += "<table>\n";
     help += "<h2>Hooks</h2>\n";
     help += "<table>\n";
     help += "<tr><th>Name</th></tr>\n";
