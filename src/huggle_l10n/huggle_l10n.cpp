@@ -21,3 +21,56 @@ int Huggle_l10n::Init()
     return -1;
 #endif
 }
+
+QStringList Huggle_l10n::GetLocalizations()
+{
+    QStringList results;
+    results << "ar" // Arabic
+            << "bg" // Bulgarian
+            << "bn" // Bengali
+            << "br" // Brezhoneg
+            << "cz" // Czech
+            << "de" // Deutsch
+            << "en" // English
+            << "en-gb"
+            << "es" // Spanish
+            << "fa" // Persian
+            << "fr" // French
+            << "gu"
+            << "he" // Hebrew
+            << "hi" // Hindi
+            << "hu" // Hungarian
+            << "id" // Indonesian
+            << "it" // Italian
+            << "ja" // Japanese
+            << "ka" // ?
+            << "kk-cyrl"
+    //      << "km" // Khmer
+            << "kn" // Kannada
+            << "ko" // Korean
+            << "ksh"
+            << "lb" // Lebanon
+            << "lt" // Lithuanian
+            << "mk" // Macedonian
+            << "ml" // Malayalam
+            << "mr" // Marathi
+            << "ms"
+            << "nl" // Dutch
+            << "no" // Norwegian
+            << "oc" // Occitan
+            << "or" // Oriya
+            << "pl" // Polish
+            << "pt" // Portuguese
+            << "pt-BR" // Portuguese (in Brazil)
+            << "ro" // ??
+            << "ru" // Russian
+            << "sa"
+            << "sv" // Swedish
+            << "ta"
+            << "tr" // Turkish
+            << "uk" // Ukrainian
+            << "ur" // Urdu
+            << "zh" // Chinese
+            << "zh-hant"; // Chinese hant
+    return results;
+}

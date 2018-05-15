@@ -12,6 +12,7 @@
 #include <QtXml>
 #include <QFile>
 #include <QPluginLoader>
+#include <huggle_l10n/huggle_l10n.hpp>
 #include "configuration.hpp"
 #include "exception.hpp"
 #include "exceptionhandler.hpp"
@@ -514,53 +515,9 @@ void Core::LoadLocalizations()
         Huggle::Syslog::HuggleLogs->Log("Skipping load of other languages, because of safe mode");
         return;
     }
-    Localizations::HuggleLocalizations->LocalInit("ar"); // Arabic
-    Localizations::HuggleLocalizations->LocalInit("bg"); // Bulgarian
-    Localizations::HuggleLocalizations->LocalInit("bn"); // Bengali
-    Localizations::HuggleLocalizations->LocalInit("br"); // Brezhoneg
-    Localizations::HuggleLocalizations->LocalInit("cz"); // Czech
-    Localizations::HuggleLocalizations->LocalInit("de"); // Deutsch
-    Localizations::HuggleLocalizations->LocalInit("en"); // English
-    Localizations::HuggleLocalizations->LocalInit("en-gb");
-    Localizations::HuggleLocalizations->LocalInit("es"); // Spanish
-    Localizations::HuggleLocalizations->LocalInit("fa"); // Persian
-    Localizations::HuggleLocalizations->LocalInit("fr"); // French
-    Localizations::HuggleLocalizations->LocalInit("gu");
-    Localizations::HuggleLocalizations->LocalInit("he"); // Hebrew
-    Localizations::HuggleLocalizations->LocalInit("hi"); // Hindi
-    Localizations::HuggleLocalizations->LocalInit("hu"); // Hungarian
-    Localizations::HuggleLocalizations->LocalInit("id"); // Indonesian
-    Localizations::HuggleLocalizations->LocalInit("it"); // Italian
-    Localizations::HuggleLocalizations->LocalInit("ja"); // Japanese
-    Localizations::HuggleLocalizations->LocalInit("ka"); // ?
-    Localizations::HuggleLocalizations->LocalInit("kk-cyrl");
-    // Localizations::HuggleLocalizations->LocalInit("km"); // Khmer
-    Localizations::HuggleLocalizations->LocalInit("kn"); // Kannada
-    Localizations::HuggleLocalizations->LocalInit("ko"); // Korean
-    Localizations::HuggleLocalizations->LocalInit("ksh");
-    Localizations::HuggleLocalizations->LocalInit("lb"); // Lebanon
-    Localizations::HuggleLocalizations->LocalInit("lt"); // Lithuanian
-    Localizations::HuggleLocalizations->LocalInit("mk"); // Macedonian
-    Localizations::HuggleLocalizations->LocalInit("ml"); // Malayalam
-    Localizations::HuggleLocalizations->LocalInit("mr"); // Marathi
-    Localizations::HuggleLocalizations->LocalInit("ms");
-    Localizations::HuggleLocalizations->LocalInit("nl"); // Dutch
-    Localizations::HuggleLocalizations->LocalInit("no"); // Norwegian
-    Localizations::HuggleLocalizations->LocalInit("oc"); // Occitan
-    Localizations::HuggleLocalizations->LocalInit("or"); // Oriya
-    Localizations::HuggleLocalizations->LocalInit("pl");
-    Localizations::HuggleLocalizations->LocalInit("pt"); // Portuguese
-    Localizations::HuggleLocalizations->LocalInit("pt-BR"); // Portuguese (in Brazil)
-    Localizations::HuggleLocalizations->LocalInit("ro"); // ??
-    Localizations::HuggleLocalizations->LocalInit("ru"); // Russian
-    Localizations::HuggleLocalizations->LocalInit("sa");
-    Localizations::HuggleLocalizations->LocalInit("sv"); // Swedish
-    Localizations::HuggleLocalizations->LocalInit("ta");
-    Localizations::HuggleLocalizations->LocalInit("tr"); // Turkish
-    Localizations::HuggleLocalizations->LocalInit("uk"); // Ukrainian
-    Localizations::HuggleLocalizations->LocalInit("ur"); // Urdu
-    Localizations::HuggleLocalizations->LocalInit("zh"); // Chinese
-    Localizations::HuggleLocalizations->LocalInit("zh-hant"); // Chinese hant
+    QStringList localizations = Huggle_l10n::GetLocalizations();
+    foreach (QString localization_name, localizations)
+        Localizations::HuggleLocalizations->LocalInit(localization_name);
     this->TestLanguages();
 }
 

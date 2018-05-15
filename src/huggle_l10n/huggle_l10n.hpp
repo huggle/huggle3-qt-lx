@@ -12,6 +12,7 @@
 #define HUGGLE_L10N_HPP
 
 #include <huggle_core/definitions.hpp>
+#include <QStringList>
 
 namespace Huggle
 {
@@ -19,6 +20,7 @@ namespace Huggle
 	{
     	public:
 		    static int Init();
+            static QStringList GetLocalizations();
 	};
 }
 
