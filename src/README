@@ -23,18 +23,20 @@ binary extensions to link against the huggle's core and interface.
 
 Graphical overview:
 
-+---------------------+
-|Main binary          |
-|(huggle.exe / huggle)|
-+----------+----------+
-           |
-           |
-     +-----v---+              +--------+
-     |Huggle UI+-------------->3RD libs|
-     +-----+---+              +-----^--+
-           |                        |
-           |                        |
-     +-----v-----+                  |
-     |Huggle core+------------------+
-     +-----------+
-
+                +---------------------+
+                |Main binary          |
+                |(huggle.exe / huggle)|
+                +----------+----------+
+                           |
+                     +-----v---+
+                     |Huggle UI+-----+--------------+
+                     +-----+---+     |              |
+                           |         |              |
+                     +-----v-----+   |              |
+    +----------------+Huggle core+------------+     |
+    |                +-----+-----+   |        |     |
+    |                      |         |        |     |
++---v----+  +--------------v---------v---+ +--v-----v----+
+|3RD libs|  |Resources (graphics, sounds)| |Localizations|
++--------+  |huggle_res                  | |huggle_l10   |
+            +----------------------------+ +-------------+
