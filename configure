@@ -39,6 +39,8 @@ _BUILD=0
 _Q=0
 QTPATH=''
 USEDEBUG=0
+HAS_PREFIX=0
+PREFIX=""
 BUILD='release'
 BUILD_CHANGED=0
 if [ x"$*" != x ];then
@@ -57,6 +59,7 @@ do
         echo " --folder <folder>: change the default build folder"
         echo " --no-audio: don't build huggle with audio engine"
         echo " --no-colors: suppress colors"
+        echo " --prefix: specify prefix for installation path"
         echo " --tests: unit tests"
         echo " --web-engine: use web engine instead of web kit"
         echo " --version: show version"
@@ -64,12 +67,9 @@ do
         echo "Copyright (c) 2013 - 2018 Petr Bena and Huggle team. This script is licensed under the BSD license."
         exit 0
     fi
-    if [ "$var" = "--no-audio" ];then
-        CMAKE_ARGS="$CMAKE_ARGS -DAUDIO=false"
-        continue
-    fi
-    if [ "$var" = "--extension" ];then
-        modules=1
+    if [ "$HAS_PREFIX" = "1" ];then
+        HAS_PREFIX=0
+        PREFIX=$var
         continue
     fi
     if [ "$_BUILD" = "1" ];then
@@ -81,6 +81,18 @@ do
     if [ "$_Q" = "1" ];then
         _Q=0
         QTPATH=$var
+        continue
+    fi
+    if [ "$var" = "--no-audio" ];then
+        CMAKE_ARGS="$CMAKE_ARGS -DAUDIO=false"
+        continue
+    fi
+    if [ "$var" = "--extension" ];then
+        modules=1
+        continue
+    fi
+    if [ "$var" = "--prefix" ];then
+        HAS_PREFIX=1
         continue
     fi
     if [ "$var" = "--qtpath" ];then
@@ -218,8 +230,11 @@ if [ ! -f version.txt ];then
 fi
 ok
 cd ../..
+if [ x"$PREFIX" != "x" ];then
+    CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_PREFIX:PATH=\"$PREFIX\""
+fi
 if [ x"$QTPATH" != "x" ];then
-    CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_PREFIX_PATH=$QTPATH"
+    CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_PREFIX_PATH:PATH=\"$QTPATH\""
 fi
 if [ $modules -gt 0 ];then
     CMAKE_ARGS="$CMAKE_ARGS -DHUGGLE_EXT=TRUE"
