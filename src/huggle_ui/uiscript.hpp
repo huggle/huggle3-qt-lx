@@ -30,6 +30,7 @@ namespace Huggle
             ~ScriptMenu();
             QAction *GetAction();
             QString GetCallback();
+            QMenu *GetParent();
 
         private:
             QString title;
@@ -51,7 +52,10 @@ namespace Huggle
             QString GetContext();
             unsigned int GetContextID();
             int RegisterMenu(QMenu *parent, QString title, QString fc);
+            void UnregisterMenu(int menu);
+            bool OwnMenu(int menu_id);
             void Hook_OnMain();
+            void Hook_OnLogin();
         public slots:
             void MenuClicked();
         private:

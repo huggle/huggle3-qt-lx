@@ -94,3 +94,11 @@ bool UiHooks::Speedy_BeforeOK(WikiEdit *edit, SpeedyForm *form)
     }
     return result;
 }
+
+void UiHooks::LoginForm_OnLoad(LoginForm *login_form)
+{
+    foreach (UiScript *sc, UiScript::GetAllUiScripts())
+    {
+        sc->Hook_OnLogin();
+    }
+}

@@ -88,8 +88,8 @@ UiScript::~UiScript()
 {
     if (UiScript::uiScripts.contains(this))
         UiScript::uiScripts.removeAll(this);
-    foreach (ScriptMenu *menu, this->scriptMenus.values())
-        delete menu;
+    while (!this->scriptMenus.isEmpty())
+        this->UnregisterMenu(this->scriptMenus.keys().first());
     this->scriptMenusByAction.clear();
     this->scriptMenus.clear();
 }
@@ -113,9 +113,35 @@ int UiScript::RegisterMenu(QMenu *parent, QString title, QString fc)
     return id;
 }
 
+void UiScript::UnregisterMenu(int menu)
+{
+    if (!this->scriptMenus.contains(menu))
+        return;
+    ScriptMenu *s = this->scriptMenus[menu];
+    if (this->scriptMenusByAction.contains(s->GetAction()))
+        this->scriptMenusByAction.remove(s->GetAction());
+    this->scriptMenus.remove(menu);
+    if (Huggle::MainWindow::HuggleMain)
+    {
+        if (s->GetParent())
+            s->GetParent()->removeAction(s->GetAction());
+    }
+    delete s;
+}
+
+bool UiScript::OwnMenu(int menu_id)
+{
+    return this->scriptMenus.contains(menu_id);
+}
+
 void UiScript::Hook_OnMain()
 {
     this->executeFunction("ext_on_main_open");
+}
+
+void UiScript::Hook_OnLogin()
+{
+    this->executeFunction("ext_on_login_open");
 }
 
 void UiScript::MenuClicked()
@@ -127,6 +153,35 @@ void UiScript::MenuClicked()
         return;
     }
     this->executeFunction(this->scriptMenusByAction[menu]->GetCallback());
+}
+
+static QScriptValue delete_menu(QScriptContext *context, QScriptEngine *engine)
+{
+    UiScript *extension = (UiScript*)Script::GetScriptByEngine(engine);
+    if (!extension)
+        return QScriptValue(engine, false);
+    if (!Huggle::MainWindow::HuggleMain)
+    {
+        HUGGLE_ERROR(extension->GetName() + ": delete_menu(id): mainwindow is not loaded yet");
+        return QScriptValue(engine, false);
+    }
+    if (context->argumentCount() < 1)
+    {
+        // Wrong number of parameters
+        HUGGLE_ERROR(extension->GetName() + ": delete_menu(id): requires 1 parameter");
+        return QScriptValue(engine, false);
+    }
+
+    int menu_id = context->argument(0).toInt32();
+
+    if (!extension->OwnMenu(menu_id))
+    {
+        HUGGLE_ERROR(extension->GetName() + ": delete_menu(id): request to delete menu that is not owned by this script");
+        return QScriptValue(engine, false);
+    }
+
+    extension->UnregisterMenu(menu_id);
+    return QScriptValue(engine, true);
 }
 
 static QScriptValue create_menu(QScriptContext *context, QScriptEngine *engine)
@@ -162,11 +217,24 @@ static QScriptValue create_menu(QScriptContext *context, QScriptEngine *engine)
         }
     } else if (parent > 0)
     {
-        //if ()
+        HUGGLE_ERROR(extension->GetName() + ": create_menu(parent, name, function_name): non-builtin menu not implemented yet");
+        return QScriptValue(engine, false);
     }
 
     int menu = extension->RegisterMenu(parentMenu, name, callback);
     return QScriptValue(engine, menu);
+}
+
+static QScriptValue mainwindow_is_loaded(QScriptContext *context, QScriptEngine *engine)
+{
+    (void) context;
+    UiScript *extension = (UiScript*)Script::GetScriptByEngine(engine);
+    if (!extension)
+        return QScriptValue(engine, false);
+    if (!Huggle::MainWindow::HuggleMain)
+        return QScriptValue(engine, false);
+
+    return QScriptValue(engine, true);
 }
 
 static QScriptValue message_box(QScriptContext *context, QScriptEngine *engine)
@@ -232,10 +300,13 @@ static QScriptValue render_html(QScriptContext *context, QScriptEngine *engine)
 void UiScript::registerFunctions()
 {
     this->registerFunction("huggle_ui_render_html", render_html, 1, "(string html, [bool lock_page]): Renders html in current tab");
-    this->registerFunction("huggle_ui_create_menu", create_menu, 3, "(int parent, string name, string function_name): Creates a new menu item");
+    this->registerFunction("huggle_ui_mainwindow_is_loaded", mainwindow_is_loaded, 0, "(): Returns true if main window is loaded");
+    this->registerFunction("huggle_ui_delete_menu", delete_menu, 1, "(int menu_id): remove a menu that was created by this script");
+    this->registerFunction("huggle_ui_create_menu", create_menu, 3, "(int parent, string name, string function_name): Creates a new menu item in main window, "\
+                                                                    "this function works only if main window is loaded");
     this->registerFunction("huggle_ui_message_box", message_box, 2, "(string title, string text, [int type], [enforce_stop]): Show a message box");
-    this->registerHook("ext_on_login_open", 0, "Called when login form is loaded");
-    this->registerHook("ext_on_main_open", 0, "Called when main window is loaded");
+    this->registerHook("ext_on_login_open", 0, "(): Called when login form is loaded");
+    this->registerHook("ext_on_main_open", 0, "(): Called when main window is loaded");
     Script::registerFunctions();
 }
 
@@ -264,4 +335,9 @@ QAction *ScriptMenu::GetAction()
 QString ScriptMenu::GetCallback()
 {
     return this->callback;
+}
+
+QMenu *ScriptMenu::GetParent()
+{
+    return this->parentMenu;
 }
