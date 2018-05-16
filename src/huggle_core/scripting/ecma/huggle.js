@@ -10,18 +10,18 @@
 
 function alert(message)
 {
-    if (huggle_context() === "huggle_ui")
+    if (huggle.get_context() === "huggle_ui")
     {
-        huggle_ui_message_box("alert", message);
+        huggle_ui.message_box("alert", message);
     } else
     {
-        huggle_log(message);
+        huggle.log(message);
     }
 }
 
 function console() {}
-console.assert = function(eval, txt) { if (eval) { huggle_log(txt); } }
-console.log = function(txt) { huggle_log(txt); }
-console.error = function(txt) { huggle_error_log(txt); }
-console.debug = function(txt) { huggle_debug_log(txt, 1); }
-console.warn = function(txt) { huggle_warning_log(txt); }
+console.assert = function(eval, txt) { if (eval) { huggle.log(txt); } }
+console.log = function(txt) { huggle.log(txt); }
+console.error = function(txt) { huggle.error_log(txt); }
+console.debug = function(txt) { huggle.debug_log(txt, 1); }
+console.warn = function(txt) { huggle.warning_log(txt); }

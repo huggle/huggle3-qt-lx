@@ -14,7 +14,7 @@
 #define UISCRIPT_HPP
 
 #include <huggle_core/definitions.hpp>
-#include <huggle_core/script.hpp>
+#include <huggle_core/scripting/script.hpp>
 
 class QAction;
 class QMenu;
@@ -60,6 +60,7 @@ namespace Huggle
             void MenuClicked();
         private:
             static QList<UiScript*> uiScripts;
+            void registerClasses();
             void registerFunctions();
             int lastMenu = 0;
             QHash<QAction*, ScriptMenu*> scriptMenusByAction;

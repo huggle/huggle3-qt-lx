@@ -176,7 +176,7 @@ if ($mingw)
     & mingw32-make.exe
 } else
 {
-    & $msbuild_path "huggle.sln" "/p:Configuration=Release" "/v:minimal"
+    & $msbuild_path "HuggleProject.sln" "/p:Configuration=Release" "/v:minimal"
 }
 cd $root_path
 echo "Preparing the package structure"

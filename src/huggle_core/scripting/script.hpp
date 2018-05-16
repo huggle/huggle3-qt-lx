@@ -15,12 +15,13 @@
 #ifndef SCRIPT_HPP
 #define SCRIPT_HPP
 
-#include "definitions.hpp"
-#include "exception.hpp"
-#include <QtScript>
+#include "../definitions.hpp"
+#include "../exception.hpp"
+#include <QJSEngine>
 
 namespace Huggle
 {
+    class GenericJSClass;
     class Script;
     class HUGGLE_EX_CORE ScriptException : public Exception
     {
@@ -35,7 +36,7 @@ namespace Huggle
             Q_OBJECT
         public:
             static Script *GetScriptByPath(QString path);
-            static Script *GetScriptByEngine(QScriptEngine *e);
+            static Script *GetScriptByEngine(QJSEngine *e);
             static Script *GetScriptByName(QString name);
             static QList<Script*> GetScripts();
 
@@ -50,7 +51,7 @@ namespace Huggle
             QString GetPath();
             QString GetAuthor();
             bool IsWorking();
-            QScriptValue ExecuteFunction(QString function, QScriptValueList parameters);
+            QJSValue ExecuteFunction(QString function, QJSValueList parameters);
             virtual unsigned int GetContextID();
             virtual QString GetContext();
             bool IsUnsafe();
@@ -58,25 +59,26 @@ namespace Huggle
             QString GetHelpForFunc(QString name);
             QList<QString> GetHooks();
             QList<QString> GetFunctions();
+            QJSEngine *GetEngine();
             void Hook_Shutdown();
-        private slots:
-            void OnError(QScriptValue e);
         protected:
             static QList<QString> loadedPaths;
             static QHash<QString, Script*> scripts;
             bool loadSource(QString source, QString *error);
-            bool executeFunctionAsBool(QString function, QScriptValueList parameters);
+            bool executeFunctionAsBool(QString function, QJSValueList parameters);
             bool executeFunctionAsBool(QString function);
             QString executeFunctionAsString(QString function);
-            QString executeFunctionAsString(QString function, QScriptValueList parameters);
-            QScriptValue executeFunction(QString function, QScriptValueList parameters);
-            QScriptValue executeFunction(QString function);
-            virtual void registerFunction(QString name, QScriptEngine::FunctionSignature function_signature, int parameters, QString help = "", bool is_unsafe = false);
+            QString executeFunctionAsString(QString function, QJSValueList parameters);
+            QJSValue executeFunction(QString function, QJSValueList parameters);
+            QJSValue executeFunction(QString function);
+            virtual void registerFunction(QString name, QString help = "", bool is_unsafe = false);
+            virtual void registerClass(QString name, GenericJSClass *c);
+            virtual void registerClasses();
             virtual void registerHook(QString name, int parameters, QString help = "", bool is_unsafe = false);
             //! Makes all functions available to ECMA
             virtual void registerFunctions();
-            QScriptEngine *engine;
-            QScriptValue script_ptr;
+            QJSEngine *engine;
+            QJSValue script_ptr;
             QList<QString> hooksExported;
             QList<QString> functionsExported;
             QHash<QString, QString> functionsHelp;

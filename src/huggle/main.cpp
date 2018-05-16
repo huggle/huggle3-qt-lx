@@ -25,7 +25,7 @@
 #include <huggle_l10n/huggle_l10n.hpp>
 #include <huggle_ui/hgapplication.hpp>
 #include <huggle_ui/uiexceptionhandler.hpp>
-#include <huggle_ui/uiscript.hpp>
+#include <huggle_ui/scripting/uiscript.hpp>
 #include <huggle_ui/loginform.hpp>
 #include <huggle_ui/updateform.hpp>
 

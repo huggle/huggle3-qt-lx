@@ -29,7 +29,7 @@
 #include "resources.hpp"
 #include "query.hpp"
 #include "querypool.hpp"
-#include "script.hpp"
+#include "scripting/script.hpp"
 #include "syslog.hpp"
 #include "wikiedit.hpp"
 #include "wikipage.hpp"

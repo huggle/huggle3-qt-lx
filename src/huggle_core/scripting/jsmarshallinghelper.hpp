@@ -13,8 +13,8 @@
 #ifndef JSMARSHALLINGHELPER_HPP
 #define JSMARSHALLINGHELPER_HPP
 
-#include "definitions.hpp"
-#include <QtScript>
+#include "../definitions.hpp"
+#include <QJSEngine>
 
 namespace Huggle
 {
@@ -26,12 +26,12 @@ namespace Huggle
     class WikiUser;
     namespace JSMarshallingHelper
     {
-        QScriptValue FromSite(WikiSite *site, QScriptEngine *engine);
-        QScriptValue FromUser(WikiUser *user, QScriptEngine *engine);
-        QScriptValue FromEdit(WikiEdit *edit, QScriptEngine *engine);
-        QScriptValue FromPage(WikiPage *page, QScriptEngine *engine);
-        QScriptValue FromVersion(Version *version, QScriptEngine *engine);
-        QScriptValue FromNS(WikiPageNS *ns, QScriptEngine *engine);
+        QJSValue FromSite(WikiSite *site, QJSEngine *engine);
+        QJSValue FromUser(WikiUser *user, QJSEngine *engine);
+        QJSValue FromEdit(WikiEdit *edit, QJSEngine *engine);
+        QJSValue FromPage(WikiPage *page, QJSEngine *engine);
+        QJSValue FromVersion(Version *version, QJSEngine *engine);
+        QJSValue FromNS(WikiPageNS *ns, QJSEngine *engine);
     }
 }
 
