@@ -73,6 +73,29 @@ bool HuggleJS::has_function(QString function_name)
     return this->script->SupportFunction(function_name);
 }
 
+bool HuggleJS::register_hook(QString hook, QString function_name)
+{
+    int hook_id = this->script->GetHookID(hook);
+    if (hook_id < 0)
+    {
+        HUGGLE_ERROR(this->script->GetName() + ": register_hook(hook, fc): unknown hook: " + hook);
+        return false;
+    }
+    this->script->SubscribeHook(hook_id, function_name);
+    return true;
+}
+
+void HuggleJS::unregister_hook(QString hook)
+{
+    int hook_id = this->script->GetHookID(hook);
+    if (hook_id < 0)
+    {
+        HUGGLE_ERROR(this->script->GetName() + ": unregister_hook(h): unknown hook: " + hook);
+        return;
+    }
+    this->script->UnsubscribeHook(hook_id);
+}
+
 QString HuggleJS::get_cfg(QString key, QVariant default_value)
 {
     return hcfg->GetExtensionConfig("script_" + this->script->GetName(), key, default_value.toString());

@@ -215,7 +215,37 @@ QJSEngine *Script::GetEngine()
 
 void Script::Hook_Shutdown()
 {
-    this->executeFunction("ext_hook_on_shutdown");
+    if (this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_SHUTDOWN))
+        return;
+    this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_SHUTDOWN]);
+}
+
+void Script::SubscribeHook(int hook, QString function_name)
+{
+    if (this->attachedHooks.contains(hook))
+        this->attachedHooks[hook] = function_name;
+    else
+        this->attachedHooks.insert(hook, function_name);
+}
+
+void Script::UnsubscribeHook(int hook)
+{
+    if (this->attachedHooks.contains(hook))
+        this->attachedHooks.remove(hook);
+}
+
+bool Script::HookSubscribed(int hook)
+{
+    return this->attachedHooks.contains(hook);
+}
+
+int Script::GetHookID(QString hook)
+{
+    // Resolve hook ID from string ID
+    // If doesn't exist, return -1
+    if (hook == "shutdown")
+        return HUGGLE_SCRIPT_HOOK_SHUTDOWN;
+    return -1;
 }
 
 bool Script::loadSource(QString source, QString *error)
@@ -376,13 +406,13 @@ void Script::registerFunctions()
     this->registerFunction("huggle.log", "(string text): prints to log");
 
     this->registerHook("ext_init", 0, "(): called on start, must return true, otherwise load of extension is considered as failure");
-    this->registerHook("ext_on_shutdown", 0, "(): called on exit");
     this->registerHook("ext_get_name", 0, "(): should return a name of this extension");
     this->registerHook("ext_get_desc", 0, "(): should return description");
     this->registerHook("ext_get_author", 0, "(): should contain name of creator");
     this->registerHook("ext_desc_version", 0, "(): should return version");
     this->registerHook("ext_unload", 0, "(): called when extension is being unloaded from system");
     this->registerHook("ext_is_working", 0, "(): must exist and must return true, if returns false, extension is considered crashed");
+    this->registerHook("shutdown", 0, "(): called on exit of Huggle");
 }
 
 ScriptException::ScriptException(QString text, QString source, Script *scr, bool is_recoverable) : Exception(text, source, is_recoverable)

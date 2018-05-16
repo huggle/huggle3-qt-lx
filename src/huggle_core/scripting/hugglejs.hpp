@@ -43,6 +43,8 @@ namespace Huggle
             Q_INVOKABLE QJSValue get_version();
             Q_INVOKABLE bool is_unsafe();
             Q_INVOKABLE bool has_function(QString function_name);
+            Q_INVOKABLE bool register_hook(QString hook, QString function_name);
+            Q_INVOKABLE void unregister_hook(QString hook);
             // Cfg
             Q_INVOKABLE QString get_cfg(QString key, QVariant default_value = "");
             Q_INVOKABLE void set_cfg(QString key, QVariant value);

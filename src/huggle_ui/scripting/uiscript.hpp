@@ -19,6 +19,9 @@
 class QAction;
 class QMenu;
 
+#define HUGGLE_SCRIPT_HOOK_LOGIN_OPEN 20000
+#define HUGGLE_SCRIPT_HOOK_MAIN_OPEN  20001
+
 namespace Huggle
 {
     class UiScript;
@@ -56,6 +59,7 @@ namespace Huggle
             bool OwnMenu(int menu_id);
             void Hook_OnMain();
             void Hook_OnLogin();
+            int GetHookID(QString hook);
         public slots:
             void MenuClicked();
         private:

@@ -138,12 +138,24 @@ bool UiScript::OwnMenu(int menu_id)
 
 void UiScript::Hook_OnMain()
 {
-    this->executeFunction("ext_on_main_open");
+    if (this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_MAIN_OPEN))
+        this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_MAIN_OPEN]);
 }
 
 void UiScript::Hook_OnLogin()
 {
-    this->executeFunction("ext_on_login_open");
+    if (this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_LOGIN_OPEN))
+        this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_LOGIN_OPEN]);
+}
+
+int UiScript::GetHookID(QString hook)
+{
+    if (hook == "main_open")
+        return HUGGLE_SCRIPT_HOOK_MAIN_OPEN;
+    if (hook == "login_open")
+        return HUGGLE_SCRIPT_HOOK_LOGIN_OPEN;
+
+    return Script::GetHookID(hook);
 }
 
 void UiScript::MenuClicked()
@@ -172,8 +184,8 @@ void UiScript::registerFunctions()
                                                                     "this function works only if main window is loaded");
     this->registerFunction("huggle_ui.message_box", "(string title, string text, [int type], [enforce_stop]): Show a message box");
 
-    this->registerHook("ext_on_login_open", 0, "(): Called when login form is loaded");
-    this->registerHook("ext_on_main_open", 0, "(): Called when main window is loaded");
+    this->registerHook("login_open", 0, "(): Called when login form is loaded");
+    this->registerHook("main_open", 0, "(): Called when main window is loaded");
 
     Script::registerFunctions();
 }

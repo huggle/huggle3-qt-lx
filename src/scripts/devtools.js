@@ -33,7 +33,7 @@ function print_help()
     help += "</head>\n";
     help += "<body>\n";
     help += "<h1>Huggle developer manual</h1>\n";
-    help += "<p>Huggle version: " + huggle.get_version()["String"] + "</p>\n";
+    help += "<p>Huggle version: " + huggle.get_version()["String"] + ", unsafe functions enabled: " + huggle.is_unsafe() + ", context: " + huggle.get_context() + "</p>\n";
     help += "<p>This page is a reference manual for all functions and hooks available in scripting engine:</p>\n";
     help += "<h2>Functions</h2>\n";
     help += "<table>\n";
@@ -72,6 +72,10 @@ function print_help()
 
 function ext_init()
 {
+    // Register hook to run when main window is loaded
+    if (!huggle.register_hook("main_open", "ext_on_main_open"))
+        return false;
+
     return true;
 }
 

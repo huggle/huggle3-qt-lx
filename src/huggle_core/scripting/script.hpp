@@ -19,6 +19,8 @@
 #include "../exception.hpp"
 #include <QJSEngine>
 
+#define HUGGLE_SCRIPT_HOOK_SHUTDOWN 0
+
 namespace Huggle
 {
     class GenericJSClass;
@@ -60,7 +62,12 @@ namespace Huggle
             QList<QString> GetHooks();
             QList<QString> GetFunctions();
             QJSEngine *GetEngine();
+            // HOOKS
             void Hook_Shutdown();
+            void SubscribeHook(int hook, QString function_name);
+            void UnsubscribeHook(int hook);
+            bool HookSubscribed(int hook);
+            virtual int GetHookID(QString hook);
         protected:
             static QList<QString> loadedPaths;
             static QHash<QString, Script*> scripts;
@@ -91,6 +98,7 @@ namespace Huggle
             bool isWorking;
             bool isLoaded;
             bool isUnsafe;
+            QHash<int, QString> attachedHooks;
     };
 }
 
