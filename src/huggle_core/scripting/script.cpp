@@ -208,6 +208,11 @@ QList<QString> Script::GetFunctions()
     return this->functionsExported;
 }
 
+QJSEngine *Script::GetEngine()
+{
+    return this->engine;
+}
+
 void Script::Hook_Shutdown()
 {
     this->executeFunction("ext_hook_on_shutdown");

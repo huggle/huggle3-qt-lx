@@ -60,6 +60,7 @@ namespace Huggle
             void MenuClicked();
         private:
             static QList<UiScript*> uiScripts;
+            void registerClasses();
             void registerFunctions();
             int lastMenu = 0;
             QHash<QAction*, ScriptMenu*> scriptMenusByAction;

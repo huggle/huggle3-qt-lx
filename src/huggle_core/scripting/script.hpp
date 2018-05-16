@@ -59,6 +59,7 @@ namespace Huggle
             QString GetHelpForFunc(QString name);
             QList<QString> GetHooks();
             QList<QString> GetFunctions();
+            QJSEngine *GetEngine();
             void Hook_Shutdown();
         protected:
             static QList<QString> loadedPaths;

@@ -48,18 +48,18 @@ QString HuggleJS::get_function_help(QString function_name)
     return this->script->GetHelpForFunc(function_name);
 }
 
-QHash<QString, QVariant> HuggleJS::get_version()
+QJSValue HuggleJS::get_version()
 {
     int major = HUGGLE_BYTE_VERSION_MAJOR;
     int minor = HUGGLE_BYTE_VERSION_MINOR;
     int revision = HUGGLE_BYTE_VERSION_RELEASE;
 
     // Marshalling
-    QHash<QString, QVariant> version;
-    version.insert("Major", QVariant(major));
-    version.insert("Minor", QVariant(minor));
-    version.insert("Revision", QVariant(revision));
-    version.insert("String", QVariant(hcfg->HuggleVersion));
+    QJSValue version = this->script->GetEngine()->newObject();
+    version.setProperty("Major", QJSValue(major));
+    version.setProperty("Minor", QJSValue(minor));
+    version.setProperty("Revision", QJSValue(revision));
+    version.setProperty("String", QJSValue(hcfg->HuggleVersion));
     return version;
 }
 

@@ -11,6 +11,7 @@
 // Copyright (c) Petr Bena 2018
 
 #include "uiscript.hpp"
+#include "huggleuijs.hpp"
 #include "../uigeneric.hpp"
 #include "../mainwindow.hpp"
 #include <QAction>
@@ -155,149 +156,11 @@ void UiScript::MenuClicked()
     this->executeFunction(this->scriptMenusByAction[menu]->GetCallback());
 }
 
-/*
-static QScriptValue delete_menu(QScriptContext *context, QScriptEngine *engine)
+void UiScript::registerClasses()
 {
-    UiScript *extension = (UiScript*)Script::GetScriptByEngine(engine);
-    if (!extension)
-        return QScriptValue(engine, false);
-    if (!Huggle::MainWindow::HuggleMain)
-    {
-        HUGGLE_ERROR(extension->GetName() + ": delete_menu(id): mainwindow is not loaded yet");
-        return QScriptValue(engine, false);
-    }
-    if (context->argumentCount() < 1)
-    {
-        // Wrong number of parameters
-        HUGGLE_ERROR(extension->GetName() + ": delete_menu(id): requires 1 parameter");
-        return QScriptValue(engine, false);
-    }
-
-    int menu_id = context->argument(0).toInt32();
-
-    if (!extension->OwnMenu(menu_id))
-    {
-        HUGGLE_ERROR(extension->GetName() + ": delete_menu(id): request to delete menu that is not owned by this script");
-        return QScriptValue(engine, false);
-    }
-
-    extension->UnregisterMenu(menu_id);
-    return QScriptValue(engine, true);
+    this->registerClass("huggle_ui", new HuggleUIJS(this));
+    Script::registerClasses();
 }
-
-static QScriptValue create_menu(QScriptContext *context, QScriptEngine *engine)
-{
-    UiScript *extension = (UiScript*)Script::GetScriptByEngine(engine);
-    if (!extension)
-        return QScriptValue(engine, false);
-    if (!Huggle::MainWindow::HuggleMain)
-    {
-        HUGGLE_ERROR(extension->GetName() + ": create_menu(parent, name, function_name): mainwindow is not loaded yet");
-        return QScriptValue(engine, false);
-    }
-    if (context->argumentCount() < 3)
-    {
-        // Wrong number of parameters
-        HUGGLE_ERROR(extension->GetName() + ": create_menu(parent, name, function_name): requires 3 parameters");
-        return QScriptValue(engine, false);
-    }
-
-    int parent = context->argument(0).toInt32();
-    QString name = context->argument(1).toString();
-    QString callback = context->argument(2).toString();
-    QMenu *parentMenu = nullptr;
-    if (parent < 0)
-    {
-        // Built-in menus
-        int menu_id = -parent;
-        parentMenu = MainWindow::HuggleMain->GetMenu(menu_id);
-        if (!parentMenu)
-        {
-            HUGGLE_ERROR(extension->GetName() + ": create_menu(parent, name, function_name): invalid parent menu");
-            return QScriptValue(engine, false);
-        }
-    } else if (parent > 0)
-    {
-        HUGGLE_ERROR(extension->GetName() + ": create_menu(parent, name, function_name): non-builtin menu not implemented yet");
-        return QScriptValue(engine, false);
-    }
-
-    int menu = extension->RegisterMenu(parentMenu, name, callback);
-    return QScriptValue(engine, menu);
-}
-
-static QScriptValue mainwindow_is_loaded(QScriptContext *context, QScriptEngine *engine)
-{
-    (void) context;
-    UiScript *extension = (UiScript*)Script::GetScriptByEngine(engine);
-    if (!extension)
-        return QScriptValue(engine, false);
-    if (!Huggle::MainWindow::HuggleMain)
-        return QScriptValue(engine, false);
-
-    return QScriptValue(engine, true);
-}
-
-static QScriptValue message_box(QScriptContext *context, QScriptEngine *engine)
-{
-    Script *extension = Script::GetScriptByEngine(engine);
-    if (!extension)
-        return QScriptValue(engine, false);
-    if (context->argumentCount() < 2)
-    {
-        // Wrong number of parameters
-        HUGGLE_ERROR(extension->GetName() + ": message_box(title, text, type): requires 2 parameters");
-        return QScriptValue(engine, false);
-    }
-    MessageBoxStyle type = MessageBoxStyleNormal;
-    if (context->argumentCount() > 2)
-        type = (MessageBoxStyle)context->argument(2).toInt32();
-    if (type < 0 || type > 4)
-    {
-        HUGGLE_ERROR(extension->GetName() + ": message_box(title, text, type): invalid message box type");
-        return QScriptValue(engine, false);
-    }
-    bool enforce_stop = false;
-    if (context->argumentCount() > 3)
-    {
-        enforce_stop = context->argument(3).toBool();
-    }
-    QString title = context->argument(0).toString();
-    QString text = context->argument(1).toString();
-    UiGeneric::MessageBox(title, text, type, enforce_stop);
-    return QScriptValue(engine, true);
-}
-
-static QScriptValue render_html(QScriptContext *context, QScriptEngine *engine)
-{
-    Script *extension = Script::GetScriptByEngine(engine);
-    if (!extension)
-        return QScriptValue(engine, false);
-    if (context->argumentCount() < 1)
-    {
-        // Wrong number of parameters
-        HUGGLE_ERROR(extension->GetName() + ": render_html(html [, lock_page]): requires 1 parameters");
-        return QScriptValue(engine, false);
-    }
-    if (!Huggle::MainWindow::HuggleMain)
-    {
-        HUGGLE_ERROR(extension->GetName() + ": render_html(html): mainwindow is not loaded yet");
-        return QScriptValue(engine, false);
-    }
-    QString source = context->argument(0).toString();
-    bool disable_interface = false;
-
-    if (context->argumentCount() > 1)
-        disable_interface = context->argument(1).toBool();
-
-    MainWindow::HuggleMain->RenderHtml(source);
-
-    if (disable_interface)
-        MainWindow::HuggleMain->LockPage();
-
-    return QScriptValue(engine, true);
-}
-*/
 
 void UiScript::registerFunctions()
 {

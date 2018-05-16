@@ -30,6 +30,7 @@ function print_help()
     var help = "<html>\n";
     help += "<body>\n";
     help += "<h1>Huggle developer manual</h1>\n";
+    help += "<p>Huggle version: " + huggle.get_version()["String"] + "</p>\n";
     help += "<p>This page is a reference manual for all functions and hooks available in scripting engine:</p>\n";
     help += "<h2>Functions</h2>\n";
     help += "<table>\n";

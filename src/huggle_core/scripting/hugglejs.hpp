@@ -20,6 +20,7 @@
 #include <QHash>
 #include <QObject>
 #include <QString>
+#include <QJSEngine>
 
 // Since QJSEngine doesn't have newFunction yet https://bugreports.qt.io/browse/QTBUG-45246
 // we need to use this workaround: https://forum.qt.io/topic/64407/newfunction-in-qjsengine-missing/6
@@ -39,7 +40,7 @@ namespace Huggle
             Q_INVOKABLE QList<QString> get_hook_list();
             Q_INVOKABLE QList<QString> get_function_list();
             Q_INVOKABLE QString get_function_help(QString function_name);
-            Q_INVOKABLE QHash<QString, QVariant> get_version();
+            Q_INVOKABLE QJSValue get_version();
             Q_INVOKABLE bool is_unsafe();
             Q_INVOKABLE bool has_function(QString function_name);
             // Cfg
