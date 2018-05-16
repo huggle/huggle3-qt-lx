@@ -28,6 +28,9 @@ function ext_get_author()
 function print_help()
 {
     var help = "<html>\n";
+    help += "<head>\n";
+    help += "<style>* { font-family: Helvetica Neue, Helvetica, Arial, sans-serif; }</style>\n";
+    help += "</head>\n";
     help += "<body>\n";
     help += "<h1>Huggle developer manual</h1>\n";
     help += "<p>Huggle version: " + huggle.get_version()["String"] + "</p>\n";
@@ -39,7 +42,7 @@ function print_help()
     for (i = 0, len = functions.length; i < len; i++)
     {
         var function_name = functions[i];
-        help += "<tr><td>" + function_name + huggle.get_function_help(function_name) + "</td>\n";
+        help += "<tr><td><b>" + function_name + "</b>" + huggle.get_function_help(function_name) + "</td>\n";
     }
     help += "</table>\n";
     help += "<h2>Ecma functions</h2>\n";
@@ -49,7 +52,7 @@ function print_help()
     for (i = 0, len = functions.length; i < len; i++)
     {
         var function_name = functions[i];
-        help += "<tr><td>" + function_name + huggle_ecma_function_help[function_name] + "</td>\n";
+        help += "<tr><td><b>" + function_name + "</b>" + huggle_ecma_function_help[function_name] + "</td>\n";
     }
     help += "<table>\n";
     help += "<h2>Hooks</h2>\n";
@@ -59,7 +62,7 @@ function print_help()
     for (i = 0, len = functions.length; i < len; i++)
     {
         var function_name = functions[i];
-        help += "<tr><td>" + function_name + huggle.get_function_help(function_name) + "</td>\n";
+        help += "<tr><td><b>" + function_name + "</b>" + huggle.get_function_help(function_name) + "</td>\n";
     }
     help += "</table>\n";
     help += "</body>\n";
