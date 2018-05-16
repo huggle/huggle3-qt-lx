@@ -45,6 +45,7 @@ namespace Huggle
             Q_INVOKABLE bool has_function(QString function_name);
             Q_INVOKABLE bool register_hook(QString hook, QString function_name);
             Q_INVOKABLE void unregister_hook(QString hook);
+            Q_INVOKABLE QString get_script_path();
             // Cfg
             Q_INVOKABLE QString get_cfg(QString key, QVariant default_value = "");
             Q_INVOKABLE void set_cfg(QString key, QVariant value);

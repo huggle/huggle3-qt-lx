@@ -35,6 +35,7 @@ function print_help()
     help += "<h1>Huggle developer manual</h1>\n";
     help += "<p>Huggle version: " + huggle.get_version()["String"] + ", unsafe functions enabled: " + huggle.is_unsafe() + ", context: " + huggle.get_context() + "</p>\n";
     help += "<p>This page is a reference manual for all functions and hooks available in scripting engine:</p>\n";
+    help += "<p><a href='file:///" + huggle.get_script_path() + "'>Right click here and choose follow link to display source code of this script</a></p>\n";
     help += "<h2>Functions</h2>\n";
     help += "<table>\n";
     help += "<tr><th>Function</th></tr>\n";
@@ -56,6 +57,7 @@ function print_help()
     }
     help += "<table>\n";
     help += "<h2>Hooks</h2>\n";
+    help += "<p>Important: hooks that are prefixed with ext_ are always called, and can be overriden simply by creating a function with same name. Other hooks must be subscribed using huggle.register_hook(hook_name, function)</p>\n";
     help += "<table>\n";
     help += "<tr><th>Name</th></tr>\n";
     functions = huggle.get_hook_list();

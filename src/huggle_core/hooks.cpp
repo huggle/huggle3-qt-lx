@@ -17,6 +17,7 @@
 #include "wikiuser.hpp"
 #include "wikiedit.hpp"
 #include "syslog.hpp"
+#include "scripting/script.hpp"
 #include "exception.hpp"
 #include "wikipage.hpp"
 
@@ -47,6 +48,11 @@ void Huggle::Hooks::EditPreProcess(Huggle::WikiEdit *Edit)
         if (extension->IsWorking())
             extension->Hook_EditPreProcess((void*)Edit);
     }
+    foreach (Script *s, Script::GetScripts())
+    {
+        if (s->IsWorking())
+            s->Hook_EditPreProcess(Edit);
+    }
 }
 
 void Huggle::Hooks::EditBeforePostProcess(Huggle::WikiEdit *Edit)
@@ -58,6 +64,11 @@ void Huggle::Hooks::EditBeforePostProcess(Huggle::WikiEdit *Edit)
     {
         if (extension->IsWorking())
             extension->Hook_EditBeforePostProcessing((void*)Edit);
+    }
+    foreach (Script *s, Script::GetScripts())
+    {
+        if (s->IsWorking())
+            s->Hook_EditBeforePostProcess(Edit);
     }
 }
 
@@ -85,18 +96,28 @@ void Huggle::Hooks::EditPostProcess(Huggle::WikiEdit *Edit)
         if (extension->IsWorking())
             extension->Hook_EditPostProcess((void*)Edit);
     }
+    foreach (Script *s, Script::GetScripts())
+    {
+        if (s->IsWorking())
+            s->Hook_EditPostProcess(Edit);
+    }
 }
 
 bool Huggle::Hooks::OnEditLoadToQueue(Huggle::WikiEdit *Edit)
 {
-    bool result = true;
     foreach(Huggle::iExtension *extension, Huggle::Core::HuggleCore->Extensions)
     {
         if (extension->IsWorking())
             if (!extension->Hook_OnEditLoadToQueue((void*)Edit))
-                result = false;
+                return false;
     }
-    return result;
+    foreach (Script *s, Script::GetScripts())
+    {
+        if (s->IsWorking())
+            if (!s->Hook_EditLoadToQueue(Edit))
+                return false;
+    }
+    return true;
 }
 
 void Huggle::Hooks::OnGood(Huggle::WikiEdit *Edit)

@@ -19,12 +19,19 @@
 #include "../exception.hpp"
 #include <QJSEngine>
 
-#define HUGGLE_SCRIPT_HOOK_SHUTDOWN 0
+#define HUGGLE_SCRIPT_HOOK_SHUTDOWN                             0
+#define HUGGLE_SCRIPT_HOOK_EDIT_PRE_PROCESS                     1
+#define HUGGLE_SCRIPT_HOOK_EDIT_BEFORE_POST_PROCESS             2
+#define HUGGLE_SCRIPT_HOOK_EDIT_POST_PROCESS                    3
+#define HUGGLE_SCRIPT_HOOK_EDIT_LOAD_TO_QUEUE                   4
 
 namespace Huggle
 {
     class GenericJSClass;
     class Script;
+    class WikiEdit;
+    class WikiUser;
+    class WikiPage;
     class HUGGLE_EX_CORE ScriptException : public Exception
     {
         public:
@@ -64,6 +71,10 @@ namespace Huggle
             QJSEngine *GetEngine();
             // HOOKS
             void Hook_Shutdown();
+            void Hook_EditPreProcess(WikiEdit *edit);
+            void Hook_EditBeforePostProcess(WikiEdit *edit);
+            void Hook_EditPostProcess(WikiEdit *edit);
+            bool Hook_EditLoadToQueue(WikiEdit *edit);
             void SubscribeHook(int hook, QString function_name);
             void UnsubscribeHook(int hook);
             bool HookSubscribed(int hook);

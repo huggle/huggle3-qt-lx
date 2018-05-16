@@ -96,6 +96,11 @@ void HuggleJS::unregister_hook(QString hook)
     this->script->UnsubscribeHook(hook_id);
 }
 
+QString HuggleJS::get_script_path()
+{
+    return this->script->GetPath();
+}
+
 QString HuggleJS::get_cfg(QString key, QVariant default_value)
 {
     return hcfg->GetExtensionConfig("script_" + this->script->GetName(), key, default_value.toString());

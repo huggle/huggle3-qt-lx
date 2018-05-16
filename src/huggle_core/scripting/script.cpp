@@ -11,6 +11,7 @@
 // Copyright (c) Petr Bena 2018
 
 #include "script.hpp"
+#include "jsmarshallinghelper.hpp"
 #include "genericjsclass.hpp"
 #include "hugglejs.hpp"
 #include "../configuration.hpp"
@@ -215,9 +216,48 @@ QJSEngine *Script::GetEngine()
 
 void Script::Hook_Shutdown()
 {
-    if (this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_SHUTDOWN))
+    if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_SHUTDOWN))
         return;
     this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_SHUTDOWN]);
+}
+
+void Script::Hook_EditPreProcess(WikiEdit *edit)
+{
+    if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_EDIT_PRE_PROCESS))
+        return;
+
+    QJSValueList parameters;
+    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine));
+    this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_EDIT_PRE_PROCESS], parameters);
+}
+
+void Script::Hook_EditBeforePostProcess(WikiEdit *edit)
+{
+    if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_EDIT_BEFORE_POST_PROCESS))
+        return;
+
+    QJSValueList parameters;
+    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine));
+    this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_EDIT_BEFORE_POST_PROCESS], parameters);
+}
+
+void Script::Hook_EditPostProcess(WikiEdit *edit)
+{
+    if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_EDIT_POST_PROCESS))
+        return;
+
+    QJSValueList parameters;
+    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine));
+    this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_EDIT_POST_PROCESS], parameters);
+}
+
+bool Script::Hook_EditLoadToQueue(WikiEdit *edit)
+{
+    if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_EDIT_LOAD_TO_QUEUE))
+        return true;
+    QJSValueList parameters;
+    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine));
+    return this->executeFunctionAsBool(this->attachedHooks[HUGGLE_SCRIPT_HOOK_EDIT_LOAD_TO_QUEUE], parameters);
 }
 
 void Script::SubscribeHook(int hook, QString function_name)
@@ -245,6 +285,14 @@ int Script::GetHookID(QString hook)
     // If doesn't exist, return -1
     if (hook == "shutdown")
         return HUGGLE_SCRIPT_HOOK_SHUTDOWN;
+    if (hook == "edit_pre_process")
+        return HUGGLE_SCRIPT_HOOK_EDIT_PRE_PROCESS;
+    if (hook == "edit_before_post_process")
+        return HUGGLE_SCRIPT_HOOK_EDIT_BEFORE_POST_PROCESS;
+    if (hook == "edit_load_to_queue")
+        return HUGGLE_SCRIPT_HOOK_EDIT_LOAD_TO_QUEUE;
+    if (hook == "edit_post_process")
+        return HUGGLE_SCRIPT_HOOK_EDIT_POST_PROCESS;
     return -1;
 }
 
@@ -398,12 +446,15 @@ void Script::registerFunctions()
     this->registerFunction("huggle.is_unsafe", "(): returns true if script has access to unsafe functions");
     this->registerFunction("huggle.set_cfg", "(string key, string value): stores value as key in settings");
     this->registerFunction("huggle.get_cfg", "(string key, string default): returns stored value from ini file");
+    this->registerFunction("huggle.get_script_path", "(): returns a path / URL of this script");
     this->registerFunction("huggle.has_function", "(string function_name): return true or false whether function is present");
     this->registerFunction("huggle.get_context", "(): return execution context, either core or GrumpyChat (core doesn't have ui functions and hooks)");
     this->registerFunction("huggle.debug_log", "(string text, int verbosity): prints to debug log");
     this->registerFunction("huggle.error_log", "(string text): prints to system error log");
     this->registerFunction("huggle.warning_log", "(string text): prints to warning log");
     this->registerFunction("huggle.log", "(string text): prints to log");
+    this->registerFunction("huggle.register_hook", "(string hook, string function_id): creates a hook");
+    this->registerFunction("huggle.unregister_hook", "(string hook): removes hook");
 
     this->registerHook("ext_init", 0, "(): called on start, must return true, otherwise load of extension is considered as failure");
     this->registerHook("ext_get_name", 0, "(): should return a name of this extension");
@@ -413,6 +464,9 @@ void Script::registerFunctions()
     this->registerHook("ext_unload", 0, "(): called when extension is being unloaded from system");
     this->registerHook("ext_is_working", 0, "(): must exist and must return true, if returns false, extension is considered crashed");
     this->registerHook("shutdown", 0, "(): called on exit of Huggle");
+    this->registerHook("edit_pre_process", 1, "(WikiEdit edit): called when edit is pre processed");
+    this->registerHook("edit_post_process", 1, "(WikiEdit edit): called when edit is post processed");
+    this->registerHook("bool edit_load_to_queue", 1, "(WikiEdit edit): called when edit is loaded to queue, if returns false, edit will be removed");
 }
 
 ScriptException::ScriptException(QString text, QString source, Script *scr, bool is_recoverable) : Exception(text, source, is_recoverable)
