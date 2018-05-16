@@ -18,3 +18,6 @@ function alert(message)
         huggle_log(message);
     }
 }
+
+function console() {}
+console.log = function(txt) { huggle_log(txt); }

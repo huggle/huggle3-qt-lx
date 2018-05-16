@@ -32,6 +32,7 @@
 #include "proxy.hpp"
 #include "welcomeinfo.hpp"
 #include "uigeneric.hpp"
+#include "uihooks.hpp"
 #include "updateform.hpp"
 #include "ui_loginform.h"
 
@@ -169,6 +170,7 @@ LoginForm::LoginForm(QWidget *parent) : HW("login", this, parent), ui(new Ui::Lo
         this->pressOK();
     }
     this->RestoreWindow();
+    UiHooks::LoginForm_OnLoad(this);
 }
 
 LoginForm::~LoginForm()

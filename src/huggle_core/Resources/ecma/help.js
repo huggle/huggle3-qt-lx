@@ -8,5 +8,6 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-var huggle_ecma_function_help = { "alert": "(message): Shows a message box with text" };
-var huggle_ecma_function_list = [ "alert" ];
+var huggle_ecma_function_help = { "alert": "(message): Shows a message box with text",
+                                  "console.log": "(text): Writes text to huggle log" };
+var huggle_ecma_function_list = [ "alert", "console.log" ];
