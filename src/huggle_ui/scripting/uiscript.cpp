@@ -17,6 +17,7 @@
 #include <QAction>
 #include <QMenu>
 #include <QDir>
+#include <QCoreApplication>
 #include <huggle_core/configuration.hpp>
 #include <huggle_core/generic.hpp>
 #include <huggle_core/syslog.hpp>
