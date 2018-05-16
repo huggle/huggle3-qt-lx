@@ -20,4 +20,8 @@ function alert(message)
 }
 
 function console() {}
+console.assert = function(eval, txt) { if (eval) { huggle_log(txt); } }
 console.log = function(txt) { huggle_log(txt); }
+console.error = function(txt) { huggle_error_log(txt); }
+console.debug = function(txt) { huggle_debug_log(txt, 1); }
+console.warn = function(txt) { huggle_warning_log(txt); }

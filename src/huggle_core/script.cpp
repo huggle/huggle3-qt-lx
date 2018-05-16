@@ -493,7 +493,7 @@ static QScriptValue error_log(QScriptContext *context, QScriptEngine *engine)
     if (context->argumentCount() < 1)
     {
         // Wrong number of parameters
-        HUGGLE_ERROR(extension->GetName() + ": error_log(text, verbosity): requires 2 parameters");
+        HUGGLE_ERROR(extension->GetName() + ": error_log(text): requires 1 parameter");
         return QScriptValue(engine, false);
     }
     QString text = context->argument(0).toString();
@@ -515,6 +515,22 @@ static QScriptValue debug_log(QScriptContext *context, QScriptEngine *engine)
     QString text = context->argument(0).toString();
     int verbosity = context->argument(1).toInt32();
     HUGGLE_DEBUG(extension->GetName() + ": " + text, verbosity);
+    return QScriptValue(engine, true);
+}
+
+static QScriptValue warning_log(QScriptContext *context, QScriptEngine *engine)
+{
+    Script *extension = Script::GetScriptByEngine(engine);
+    if (!extension)
+        return QScriptValue(engine, false);
+    if (context->argumentCount() < 1)
+    {
+        // Wrong number of parameters
+        HUGGLE_ERROR(extension->GetName() + ": warning_log(text): requires 1 parameter");
+        return QScriptValue(engine, false);
+    }
+    QString text = context->argument(0).toString();
+    HUGGLE_WARNING(extension->GetName() + ": " + text);
     return QScriptValue(engine, true);
 }
 
@@ -546,7 +562,8 @@ void Script::registerFunctions()
     this->registerFunction("huggle_has_function", has_function, 1, "(string function_name): return true or false whether function is present");
     this->registerFunction("huggle_get_context", get_context, 0, "(): return execution context, either core or GrumpyChat (core doesn't have ui functions and hooks)");
     this->registerFunction("huggle_debug_log", debug_log, 2, "(string text, int verbosity): prints to debug log");
-    this->registerFunction("huggle_error_log", error_log, 1, "(string text): prints to log");
+    this->registerFunction("huggle_error_log", error_log, 1, "(string text): prints to system error log");
+    this->registerFunction("huggle_warning_log", warning_log, 1, "(string text): prints to warning log");
     this->registerFunction("huggle_log", log, 1, "(string text): prints to log");
 
     this->registerHook("ext_init", 0, "(): called on start, must return true, otherwise load of extension is considered as failure");
