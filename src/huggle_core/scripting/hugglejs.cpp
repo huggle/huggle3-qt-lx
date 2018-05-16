@@ -100,5 +100,5 @@ void HuggleJS::error_log(QString text)
 
 void HuggleJS::debug_log(QString text, int verbosity)
 {
-    HUGGLE_DEBUG(this->script->GetName() + ": " + text, verbosity);
+    HUGGLE_DEBUG(this->script->GetName() + ": " + text, static_cast<unsigned int>(verbosity));
 }

@@ -21,7 +21,7 @@
 namespace Huggle
 {
     class Script;
-    class GenericJSClass : public QObject
+    class HUGGLE_EX_CORE GenericJSClass : public QObject
     {
             Q_OBJECT
         public:
