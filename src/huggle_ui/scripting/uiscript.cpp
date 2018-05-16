@@ -11,8 +11,8 @@
 // Copyright (c) Petr Bena 2018
 
 #include "uiscript.hpp"
-#include "uigeneric.hpp"
-#include "mainwindow.hpp"
+#include "../uigeneric.hpp"
+#include "../mainwindow.hpp"
 #include <QAction>
 #include <QMenu>
 #include <QDir>
@@ -155,6 +155,7 @@ void UiScript::MenuClicked()
     this->executeFunction(this->scriptMenusByAction[menu]->GetCallback());
 }
 
+/*
 static QScriptValue delete_menu(QScriptContext *context, QScriptEngine *engine)
 {
     UiScript *extension = (UiScript*)Script::GetScriptByEngine(engine);
@@ -296,17 +297,20 @@ static QScriptValue render_html(QScriptContext *context, QScriptEngine *engine)
 
     return QScriptValue(engine, true);
 }
+*/
 
 void UiScript::registerFunctions()
 {
-    this->registerFunction("huggle_ui_render_html", render_html, 1, "(string html, [bool lock_page]): Renders html in current tab");
-    this->registerFunction("huggle_ui_mainwindow_is_loaded", mainwindow_is_loaded, 0, "(): Returns true if main window is loaded");
-    this->registerFunction("huggle_ui_delete_menu", delete_menu, 1, "(int menu_id): remove a menu that was created by this script");
-    this->registerFunction("huggle_ui_create_menu", create_menu, 3, "(int parent, string name, string function_name): Creates a new menu item in main window, "\
+    this->registerFunction("huggle_ui.render_html", "(string html, [bool lock_page]): Renders html in current tab");
+    this->registerFunction("huggle_ui.mainwindow_is_loaded", "(): Returns true if main window is loaded");
+    this->registerFunction("huggle_ui.delete_menu", "(int menu_id): remove a menu that was created by this script");
+    this->registerFunction("huggle_ui.create_menu", "(int parent, string name, string function_name): Creates a new menu item in main window, "\
                                                                     "this function works only if main window is loaded");
-    this->registerFunction("huggle_ui_message_box", message_box, 2, "(string title, string text, [int type], [enforce_stop]): Show a message box");
+    this->registerFunction("huggle_ui.message_box", "(string title, string text, [int type], [enforce_stop]): Show a message box");
+
     this->registerHook("ext_on_login_open", 0, "(): Called when login form is loaded");
     this->registerHook("ext_on_main_open", 0, "(): Called when main window is loaded");
+
     Script::registerFunctions();
 }
 

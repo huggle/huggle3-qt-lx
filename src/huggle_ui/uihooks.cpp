@@ -11,7 +11,7 @@
 #include "uihooks.hpp"
 #include "speedyform.hpp"
 #include "userinfoform.hpp"
-#include "uiscript.hpp"
+#include "scripting/uiscript.hpp"
 #include <huggle_core/iextension.hpp>
 #include <huggle_core/core.hpp>
 

@@ -19,7 +19,7 @@
 #include <QFile>
 #include <QDir>
 #include <QMenu>
-#include <huggle_core/script.hpp>
+#include <huggle_core/scripting/script.hpp>
 #include <huggle_core/core.hpp>
 #include <huggle_core/configuration.hpp>
 #include <huggle_core/exception.hpp>
