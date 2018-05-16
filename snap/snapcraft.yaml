@@ -43,7 +43,6 @@ parts:
       - libqt5declarative5
       - libqt5quickwidgets5
       - libqt5network5
-      - libqt5script5
       - libqt5multimediaquick-p5
       - libqt5multimediawidgets5
       - libqt5xml5
@@ -57,7 +56,6 @@ parts:
       - libqt5opengl5-dev
       - libwayland-dev
       - libx11-dev
-      - qtscript5-dev
       - qtmultimedia5-dev
       - libqt5webkit5-dev
     after: [desktop-qt5]
