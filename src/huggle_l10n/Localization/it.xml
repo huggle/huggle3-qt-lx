@@ -761,8 +761,6 @@
   <string name="report-page-fail">Errore: impossibile recuperare la pagina di report in $1</string>
   <string name="report-page-fail-time">Impossibile recuperare il timestamp della pagina attuale di report, errore dell\'API:\n\n $1</string>
   <string name="report-unable">Impossibile segnalare l\'utente</string>
-  <string name="about-python-with">, con supporto python</string>
-  <string name="about-python-without">senza supporto python</string>
   <string name="about-qt">, compilato usando QT $1 In esecuzione su QT $1</string>
   <string name="about-info">, basato su $1, piattaforma di destinazione: $2</string>
   <string name="error-unknown-code">Errore Sconosciuto: $1</string>

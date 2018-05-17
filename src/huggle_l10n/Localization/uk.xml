@@ -730,8 +730,6 @@
   <string name="report-page-fail">Помилка: не вдалося завантажити сторінку для повідомлення адміністраторів в $1</string>
   <string name="report-page-fail-time" fuzzy="true">Не вдалося завантажити дату та час сторінки для повідомлення адміністраторів, збій API:\n\n$1</string>
   <string name="report-unable" fuzzy="true">Не вдалося повідомити про користувача :(</string>
-  <string name="about-python-with" fuzzy="true">, з підтримкою python</string>
-  <string name="about-python-without">без підтримки python</string>
   <string name="about-qt">, зкомпільовано з використанням QT $1 Працює на QT $1</string>
   <string name="about-info">, на основі $1, цільова платформа: $2</string>
   <string name="error-unknown-code">Невідома помилка: $1</string>

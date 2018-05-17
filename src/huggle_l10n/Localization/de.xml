@@ -828,8 +828,6 @@
   <string name="report-page-fail">Fehler: Berichtsseite unter $1 konnte nicht abgerufen werden.</string>
   <string name="report-page-fail-time">Der Zeitstempel für die aktuelle Berichtsseite konnte nicht abgerufen werden. API-Fehler:\n\n $1</string>
   <string name="report-unable">Der Benutzer konnte nicht gemeldet werden</string>
-  <string name="about-python-with">, mit Python-Unterstützung</string>
-  <string name="about-python-without">ohne Python-Unterstützung</string>
   <string name="about-qt">, kompiliert mithilfe QT $1 Läuft auf QT $1</string>
   <string name="about-info">, basierend auf $1, Ziel-Plattform: $2</string>
   <string name="error-unknown-code">Unbekannter Fehler: $1</string>

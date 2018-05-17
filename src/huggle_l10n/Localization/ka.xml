@@ -336,8 +336,6 @@
   <string name="namespace">სახელთა სივრცე</string>
   <string name="block-alreadyblocked">მომხმარებელი უკვე დაბლოკილია</string>
   <string name="report-page-fail-time" fuzzy="true">$1</string>
-  <string name="about-python-with" fuzzy="true"> ,python-ის მხარდაჭერით</string>
-  <string name="about-python-without"> python-ის მხარდაჭერის გარეშე</string>
   <string name="error-unknown-code">უცნობი შეცდომა: $1</string>
   <string name="relogin-fail">ვიკიში ავტორიზაციის გავლა შეუძლებელია: $1</string>
 </resources>

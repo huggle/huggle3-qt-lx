@@ -824,8 +824,6 @@
   <string name="report-page-fail">错误：无法检索位于$1的报告页面</string>
   <string name="report-page-fail-time">无法获取当前举报页面的时间戳，API错误：\n\n$1</string>
   <string name="report-unable">无法提报用户</string>
-  <string name="about-python-with">，包含python支持</string>
-  <string name="about-python-without">无Python支持</string>
   <string name="about-qt">，使用QT $1编译 正在用QT $1运行</string>
   <string name="about-info">，基于$1，目标平台：$2</string>
   <string name="error-unknown-code">未知错误：$1</string>

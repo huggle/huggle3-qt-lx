@@ -305,8 +305,6 @@
   <string name="namespace">Névtér</string>
   <string name="block-alreadyblocked">Felhasználó már blokkolva van</string>
   <string name="report-unable" fuzzy="true">Nem sikerült jelenteni a felhasználót :(</string>
-  <string name="about-python-with" fuzzy="true">, python támogatással</string>
-  <string name="about-python-without">python támogatás nélkül</string>
   <string name="error-unknown-code">Ismeretlen hiba: $1</string>
   <string name="relogin-fail">Nem sikerült bejelentkezni a wikibe: $1</string>
   <string name="projects">Projektek</string>

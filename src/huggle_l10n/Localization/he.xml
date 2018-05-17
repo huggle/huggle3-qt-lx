@@ -727,8 +727,6 @@
   <string name="report-page-fail">שגיאה: לא ניתן לאחזר דף דו״ח ב$1</string>
   <string name="report-page-fail-time" fuzzy="true">לא ניתן לאחזר חותם־זמן של דף הדו״ח הנוכחי, שגיאת API:\n\n$1</string>
   <string name="report-unable" fuzzy="true">לא ניתן לדווח על המשתמש</string>
-  <string name="about-python-with" fuzzy="true">, עם תמיכה בפייתון</string>
-  <string name="about-python-without">ללא תמיכה בפייתון</string>
   <string name="about-qt">, מהודר באמצעות QT $1 רץ על QT $1</string>
   <string name="about-info">, על בסיס $1, פלטפורמת יעד: $2</string>
   <string name="error-unknown-code">שגיאה בלתי ידועה: $1</string>

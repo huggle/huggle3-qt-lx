@@ -827,8 +827,6 @@
   <string name="report-page-fail">錯誤：無法取得在$1的回告頁面</string>
   <string name="report-page-fail-time">無法取得回告頁面的目前時間戳記，API 錯誤：\n\n$1</string>
   <string name="report-unable">無法回報使用者</string>
-  <string name="about-python-with">，包含 python 支援</string>
-  <string name="about-python-without">不包含python支援</string>
   <string name="about-qt">，使用 QT $1 編譯，執行於 QT $1</string>
   <string name="about-info">，基於$1，目標平台：$2</string>
   <string name="error-unknown-code">不明錯誤：$1</string>

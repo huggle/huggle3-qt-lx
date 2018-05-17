@@ -831,8 +831,6 @@
   <string name="report-page-fail">Error: no se puede recuperar la página de denuncias en $1</string>
   <string name="report-page-fail-time" fuzzy="true">No se puede recuperar la fecha de la página actual de denuncias. Fallo de API:\n\n $1</string>
   <string name="report-unable">No se puede denunciar al usuario</string>
-  <string name="about-python-with">, con compatibilidad con Python</string>
-  <string name="about-python-without"> sin compatibilidad con Python</string>
   <string name="about-qt">, compilado usando QT $1 ejecutándose en QT $1</string>
   <string name="about-info">, basado en $1, plataforma de destino: $2</string>
   <string name="error-unknown-code">Error desconocido: $1</string>

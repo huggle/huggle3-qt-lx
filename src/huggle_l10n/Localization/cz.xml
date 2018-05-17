@@ -674,8 +674,6 @@
   <string name="report-fail">Nepodařilo se nahlásit uživatele, protože: $1</string>
   <string name="report-page-fail">Chyba: nelze načíst stránku hlášení $1</string>
   <string name="report-unable">Nelze nahlásit uživatele</string>
-  <string name="about-python-with">, s podporou pythonu</string>
-  <string name="about-python-without">bez podpory pythonu</string>
   <string name="error-unknown-code">Neznámá chyba: $1</string>
   <string name="relogin-fail">Nemohu se přihlásit na wiki: $1</string>
   <string name="projects">Projekty</string>

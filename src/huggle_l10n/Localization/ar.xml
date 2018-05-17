@@ -697,8 +697,6 @@
   <string name="block-alreadyblocked">المستخدم ممنوع بالفعل</string>
   <string name="report-fail">لم يتم الاخطار عن المستخدم لأن: $1</string>
   <string name="report-page-fail">خطأ: غير قادر على استرجاع صفحة التقرير في $1</string>
-  <string name="about-python-with" fuzzy="true">، بدعم بايثون</string>
-  <string name="about-python-without">بدون دعم بايثون</string>
   <string name="about-qt">، مجمع باستخدام QT $1 يعمل على QT $1</string>
   <string name="error-unknown-code">خطأ غير معروف: $1</string>
   <string name="relogin-fail">غير قادر على تسجيل الدخول إلى الويكي: $1</string>

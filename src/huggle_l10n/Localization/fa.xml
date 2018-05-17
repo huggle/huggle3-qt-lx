@@ -833,8 +833,6 @@
   <string name="report-page-fail">خطا: ناتوانی در دریافت صفحهٔ گزارش در $1</string>
   <string name="report-page-fail-time">ناتوان در دریافت برچسب زمان صفحهٔ گزارش کنونی، شکست API:\n\n$1</string>
   <string name="report-unable">ناتوان در گزارش دادن کاربر</string>
-  <string name="about-python-with">، با پشتیبانی از پایتون</string>
-  <string name="about-python-without">بدون پشتیبانی از پایتون</string>
   <string name="about-qt">، کامپایل‌شده با استفاده از کیوتی $1 در حال اجرا روی کیوتی $1</string>
   <string name="about-info">، برپایهٔ $1، سکوی هدف: $2</string>
   <string name="error-unknown-code">خطای ناشناخته: $1</string>

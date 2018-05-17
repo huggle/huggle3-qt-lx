@@ -399,8 +399,6 @@
   <string name="summary-edit-range">De Ongerscheide zwesche de Väsjohne $1 bes $2</string>
   <string name="namespace">Appachtemang</string>
   <string name="report-unable" fuzzy="true">Mer künne dä Metmaacher nit mällde.</string>
-  <string name="about-python-with" fuzzy="true"> met &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"en freije hühtere Projrammehr_Schprohch\"&gt;Python&lt;/i&gt; -Ongerschtözong</string>
-  <string name="about-python-without">der ohne Ongerschtözong för &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"en freije hühtere Projrammehr_Schprohch\"&gt;Python&lt;/i&gt;</string>
   <string name="about-qt">, övversaz met QT $1 un leuf op QT $1</string>
   <string name="error-unknown-code">Ene onbikannte Fähler es opjetrodde: $1</string>
   <string name="relogin-fail">Mer künne em Wikki nit enlogge, weil: $1</string>

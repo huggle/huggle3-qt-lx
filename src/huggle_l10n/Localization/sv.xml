@@ -584,8 +584,6 @@
   <string name="namespace">Namnrymd</string>
   <string name="block-alreadyblocked">Användaren är redan blockerad</string>
   <string name="report-unable">Kunde inte rapportera användare</string>
-  <string name="about-python-with">, med Python-stöd</string>
-  <string name="about-python-without">utan Python-stöd</string>
   <string name="about-qt">, kompilerades med QT $1 Körs på QT $1</string>
   <string name="about-info">, baserat på $1, målplattform: $2</string>
   <string name="error-unknown-code">Okänt fel: $1</string>

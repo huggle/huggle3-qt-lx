@@ -807,8 +807,6 @@
   <string name="report-page-fail">Грешка: не можам да ја добијам пријавната страница на $1</string>
   <string name="report-page-fail-time">Не можам да го добијам времето и датумот на тековната пријавн страница. Извршникот не успеа:\n\n $1</string>
   <string name="report-unable">Не можам да го пријавам корисникот</string>
-  <string name="about-python-with"> , со поддршка за Python</string>
-  <string name="about-python-without"> без поддршка за Python</string>
   <string name="about-qt">, составен користејќи QT $1 Работи на QT $1</string>
   <string name="about-info">, на основа на $1, целна подлога: $2</string>
   <string name="error-unknown-code">Непозната грешка: $1</string>

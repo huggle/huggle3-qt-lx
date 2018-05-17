@@ -611,8 +611,6 @@
   <string name="report-page-fail">Klaida: nepavyko gauti $1 pranešimo puslapio</string>
   <string name="report-page-fail-time" fuzzy="true">Nepavyko gauti dabartinio pranešimo puslapio laiko žymės, api klaida:\n\n $1</string>
   <string name="report-unable" fuzzy="true">Nepavyko pranešti apie vartotoją :(</string>
-  <string name="about-python-with" fuzzy="true"> ,su python palaikymu</string>
-  <string name="about-python-without"> be python palaikymo</string>
   <string name="error-unknown-code">Nežinoma Klaida: $1</string>
   <string name="relogin-fail">Nepavyko prisijungti prie viki: $1</string>
   <string name="projects">Projektai</string>

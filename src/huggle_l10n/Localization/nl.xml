@@ -587,8 +587,6 @@
   <string name="speedy-csd-existing">De pagina heeft al een CSD-label.</string>
   <string name="namespace">Naamruimte</string>
   <string name="block-alreadyblocked">De gebruiker is al geblokkeerd</string>
-  <string name="about-python-with" fuzzy="true"> ,met python-ondersteuning</string>
-  <string name="about-python-without"> zonder python-ondersteuning</string>
   <string name="about-info">, gebaseerd op $1, doelplatform: $2</string>
   <string name="error-unknown-code">Onbekende fout: $1</string>
   <string name="projects">Projecten</string>

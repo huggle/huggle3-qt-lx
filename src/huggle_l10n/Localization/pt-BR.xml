@@ -839,8 +839,6 @@
   <string name="report-page-fail">Erro: Não é possível recuperar a página de relatório em $1</string>
   <string name="report-page-fail-time">Não foi possível recuperar a data da página do relatório atual, falha da API:\n\n $1</string>
   <string name="report-unable">Não foi possível reportar o usuário</string>
-  <string name="about-python-with">, com suporte para python</string>
-  <string name="about-python-without">sem suporte para python</string>
   <string name="about-qt">, compilado usando QT $1 Rodando em QT $1</string>
   <string name="about-info">, baseado em $1, plataforma alvo: $2</string>
   <string name="error-unknown-code">Erro desconhecido: $1</string>

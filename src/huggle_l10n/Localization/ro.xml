@@ -739,8 +739,6 @@
   <string name="report-page-fail">Nu am putut obține pagina de reclamații de la $1</string>
   <string name="report-page-fail-time" fuzzy="true">Nu am putut obține marca temporală a paginii actuale de reclamații, eroare de API:\n\n$1</string>
   <string name="report-unable" fuzzy="true">Nu am putut reclama utilziatorul :(</string>
-  <string name="about-python-with" fuzzy="true">, cu support python</string>
-  <string name="about-python-without">fără suport python</string>
   <string name="about-qt">, compilat folosind QT $1 rulând pe QT $1</string>
   <string name="about-info">Bazat pe $1, platforma: $2</string>
   <string name="error-unknown-code">Eroare necunoscută: $1</string>

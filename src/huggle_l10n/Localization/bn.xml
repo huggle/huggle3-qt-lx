@@ -773,8 +773,6 @@
   <string name="report-page-fail">ত্রুটি: $1-এ প্রতিবেদন পাতা সংগ্রহ করা যায়নি</string>
   <string name="report-page-fail-time">বর্তমান প্রতিবেদন পৃষ্ঠার সময়তারিখ উদ্ধার করতে অক্ষম, api ত্রুটি:\n\n $1</string>
   <string name="report-unable">ব্যবহারকারী প্রতিবেদন করা যায়নি :(</string>
-  <string name="about-python-with"> ,পাইথন সমর্থনসহ</string>
-  <string name="about-python-without"> পাইথন সমর্থন ছাড়া</string>
   <string name="about-qt">, QT $1 ব্যবহার করে প্রণীত QT $1-এ চালিত</string>
   <string name="about-info">, $1-এর উপর ভিত্তি করে, লক্ষ্য প্ল্যাটফর্ম: $2</string>
   <string name="error-unknown-code">অজানা ত্রুটি: $1</string>
