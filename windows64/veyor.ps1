@@ -33,7 +33,7 @@ param
 (
     [string]$msbuild_path = "C:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild.exe",
     [string]$root_path = $PWD,
-    [string]$qt5_path = "C:\Qt\5.8\msvc2015_64\",
+    [string]$qt5_path = "C:\Qt\5.10\msvc2015_64\",
     #[string]$qt5_path = "D:\libs\Qt\5.9.1\msvc2015_64\",
     [string]$openssl_path = "C:\OpenSSL-Win64",
     [string]$cmake_generator = "Visual Studio 14 2015 Win64",
