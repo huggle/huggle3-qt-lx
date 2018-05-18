@@ -41,7 +41,9 @@ namespace Huggle
     class HUGGLE_EX_CORE HuggleFeed : public MediaWikiObject
     {
         public:
-            static QList<HuggleFeed*> Providers;
+            static QList<HuggleFeed*> GetProviders();
+            static QList<HuggleFeed*> GetProvidersForSite(WikiSite *site);
+            static HuggleFeed *GetAlternativeFeedProvider(HuggleFeed *provider);
 
             HuggleFeed(WikiSite *site);
             virtual ~HuggleFeed();
@@ -82,6 +84,7 @@ namespace Huggle
             double GetUptime();
             HuggleQueueFilter *Filter;
         protected:
+            static QList<HuggleFeed*> providerList;
             void rotateStats();
             StatisticsBlock *getLatestStatisticsBlock();
             //! Number of edits made since you logged in

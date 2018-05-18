@@ -108,7 +108,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     {
         this->ui->menuChange_provider->setVisible(false);
         this->ui->actionStop_provider->setVisible(false);
-        this->ui->actionReconnect_IRC->setVisible(false);
         this->ui->actionIRC->setVisible(false);
         this->ui->actionWiki->setVisible(false);
     }
@@ -2002,7 +2001,6 @@ void MainWindow::Localize()
     this->ui->actionUser_contributions->setText(_l("main-user-contribs"));
     this->ui->actionPatrol->setText(_l("main-page-patrol"));
     this->ui->actionPreferences->setText(_l("main-system-options"));
-    this->ui->actionReconnect_IRC->setText(_l("main-system-reconnectirc"));
     this->ui->actionShow_talk->setText(_l("main-goto-mytalk"));
     this->ui->actionAbort_2->setText(_l("main-system-abort"));
     this->ui->menuChange_provider->setTitle(_l("main-system-change-provider"));
@@ -2370,7 +2368,6 @@ void MainWindow::ChangeProvider(WikiSite *site, HuggleFeed *provider)
                 if (!site->GetProjectConfig()->UseIrc)
                 {
                     Syslog::HuggleLogs->Log(_l("irc-not"));
-                    this->ui->actionReconnect_IRC->setEnabled(false);
                     this->ui->actionIRC->setEnabled(false);
                     this->SwitchAlternativeFeedProvider(site);
                     return;
@@ -2712,12 +2709,6 @@ void MainWindow::on_actionEdit_user_talk_triggered()
     if (this->CurrentEdit != nullptr)
         QDesktopServices::openUrl(QUrl::fromEncoded(QString(this->ProjectURL() + QUrl::toPercentEncoding(this->CurrentEdit->User->GetTalk()) +
                                                             "?action=edit").toUtf8()));
-}
-
-void MainWindow::on_actionReconnect_IRC_triggered()
-{
-    WikiSite *site = this->GetCurrentWikiSite();
-    this->ChangeProvider(site, new HuggleFeedProviderIRC(site));
 }
 
 void MainWindow::on_actionRequest_speedy_deletion_triggered()

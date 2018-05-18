@@ -296,7 +296,6 @@ namespace Huggle
             void on_actionWarning_3_triggered();
             void on_actionWarning_4_triggered();
             void on_actionEdit_user_talk_triggered();
-            void on_actionReconnect_IRC_triggered();
             void on_actionRequest_speedy_deletion_triggered();
             void on_actionDelete_triggered();
             void on_actionBlock_user_triggered();

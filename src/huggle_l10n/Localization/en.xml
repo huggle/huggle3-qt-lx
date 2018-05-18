@@ -332,7 +332,6 @@
   <string name="main-metric-bar">Average API response time: $1ms</string>
   <string name="main-shutting-down">Huggle is shutting down, ignored</string>
   <string name="main-system-messages">Show new messages</string>
-  <string name="main-system-reconnectirc">Reconnect IRC feed</string>
   <string name="main-system-savelog">Save log...</string>
   <string name="main-system-statistics">Statistics...</string>
   <string name="main-system-showqueue">Show queue</string>

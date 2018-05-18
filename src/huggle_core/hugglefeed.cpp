@@ -15,7 +15,34 @@
 
 using namespace Huggle;
 
-QList<HuggleFeed*> HuggleFeed::Providers;
+QList<HuggleFeed*> HuggleFeed::providerList;
+
+QList<HuggleFeed *> HuggleFeed::GetProviders()
+{
+    return HuggleFeed::providerList;
+}
+
+QList<HuggleFeed *> HuggleFeed::GetProvidersForSite(WikiSite *site)
+{
+    QList<HuggleFeed *> providers;
+    foreach (HuggleFeed *provider, HuggleFeed::providerList)
+    {
+        if (provider->GetSite() == site)
+            providers.append(provider);
+    }
+    return providers;
+}
+
+HuggleFeed *HuggleFeed::GetAlternativeFeedProvider(HuggleFeed *provider)
+{
+    QList<HuggleFeed*> providers = HuggleFeed::GetProvidersForSite(provider->GetSite());
+    foreach (HuggleFeed *px, providers)
+    {
+        if (px->FeedPriority() <= provider->FeedPriority() && px->GetID() != provider->GetID())
+            return px;
+    }
+    return nullptr;
+}
 
 HuggleFeed::HuggleFeed(WikiSite *site)
 {
@@ -25,7 +52,7 @@ HuggleFeed::HuggleFeed(WikiSite *site)
     this->editCounter = 0;
     this->rvCounter = 0;
     this->startupTime = QDateTime::currentDateTime();
-    Providers.append(this);
+    providerList.append(this);
 }
 
 HuggleFeed::~HuggleFeed()
@@ -37,8 +64,8 @@ HuggleFeed::~HuggleFeed()
         this->statisticsBlocks.removeAt(0);
     }
     this->statisticsMutex->unlock();
-    if (Providers.contains(this))
-        Providers.removeOne(this);
+    if (providerList.contains(this))
+        providerList.removeOne(this);
     delete this->statisticsMutex;
 }
 
