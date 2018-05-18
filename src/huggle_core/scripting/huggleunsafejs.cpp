@@ -27,7 +27,7 @@ HuggleUnsafeJS::HuggleUnsafeJS(Script *s) : GenericJSClass(s)
     this->function_help.insert("append_string_to_file", "(string text, string file): appends text to file");
 }
 
-bool HuggleUnsafeJS::write_string_to_file(QString text, QString file_path)
+bool HuggleUnsafeJS::append_string_to_file(QString text, QString file_path)
 {
     QFile file(file_path);
     if (!file.open(QIODevice::WriteOnly))
