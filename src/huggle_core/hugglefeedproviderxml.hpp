@@ -39,6 +39,7 @@ namespace Huggle
             void Stop();
             bool Restart() { this->Stop(); return this->Start(); }
             bool ContainsEdit();
+            int FeedPriority() { return 100; }
             QString GetError();
             WikiEdit *RetrieveEdit();
             QString ToString();

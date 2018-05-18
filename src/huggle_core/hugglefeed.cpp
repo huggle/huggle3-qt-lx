@@ -99,6 +99,11 @@ void HuggleFeed::IncrementReverts()
     this->getLatestStatisticsBlock()->Reverts++;
 }
 
+int HuggleFeed::FeedPriority()
+{
+    return 0;
+}
+
 double HuggleFeed::GetUptime()
 {
     return (double)this->startupTime.secsTo(QDateTime::currentDateTime());

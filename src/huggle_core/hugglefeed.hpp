@@ -77,6 +77,8 @@ namespace Huggle
             virtual QString ToString() = 0;
             virtual void IncrementEdits();
             virtual void IncrementReverts();
+            //! Used to find alternative feed provider in case that current one fails
+            virtual int FeedPriority();
             double GetUptime();
             HuggleQueueFilter *Filter;
         protected:

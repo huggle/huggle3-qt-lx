@@ -15,6 +15,7 @@
 
 #include <huggle_core/definitions.hpp>
 #include <huggle_core/scripting/genericjsclass.hpp>
+#include <QHash>
 
 namespace Huggle
 {
