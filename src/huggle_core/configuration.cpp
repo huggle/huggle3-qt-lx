@@ -308,6 +308,7 @@ void Configuration::LoadSystemConfig(QString fn)
         RCN(RingLogMaxSize);
         RC(GlobalConfigYAML);
         RCB(DynamicColsInList);
+        RCB(UnsafeExts);
         RCB(WarnUserSpaceRoll);
         RCB(EnableUpdates);
         RCB(NotifyBeta);
@@ -400,6 +401,7 @@ void Configuration::SaveSystemConfig()
     INSERT_CONFIG_B(UsingSSL);
     INSERT_CONFIG_B(ScoreDebug);
     INSERT_CONFIG_N(QueueSize);
+    INSERT_CONFIG_B(UnsafeExts);
     INSERT_CONFIG(GlobalConfigYAML);
     InsertConfig("GlobalConfigurationWikiAddress", hcfg->GlobalConfigurationWikiAddress, writer);
     InsertConfig("IRCIdent", hcfg->IRCIdent, writer);
@@ -822,7 +824,6 @@ Shortcut::Shortcut(const Shortcut &copy)
     this->ID = copy.ID;
     this->Description = copy.Description;
 }
-
 
 void ExtensionConfig::SetOption(QString name, QString value)
 {

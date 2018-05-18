@@ -364,6 +364,7 @@ void Huggle::Preferences::on_pushButton_2_clicked()
 
     hcfg->UserConfig->Watchlist = static_cast<WatchlistOption>(this->ui->comboBox_WatchlistPreference->currentIndex());
     hcfg->SystemConfig_Font = this->ui->lineEdit_5->text();
+    hcfg->SystemConfig_UnsafeExts = this->ui->checkBox_unsafe->isChecked();
 
     hcfg->SystemConfig_KeystrokeMultiPressRate = this->ui->le_KeystrokeRate->text().toInt();
     hcfg->SystemConfig_KeystrokeMultiPressFix = this->ui->cbKeystrokeFix->isChecked();

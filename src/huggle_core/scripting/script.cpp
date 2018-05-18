@@ -67,7 +67,7 @@ QList<Script *> Script::GetScripts()
 
 Script::Script()
 {
-    this->isUnsafe = true;
+    this->isUnsafe = hcfg->SystemConfig_UnsafeExts;
     this->isWorking = false;
     this->isLoaded = false;
     this->engine = nullptr;
