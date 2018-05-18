@@ -37,6 +37,7 @@ namespace Huggle
             Q_OBJECT
         public:
             HuggleJS(Script *s);
+            QHash<QString, QString> GetFunctions();
             Q_INVOKABLE QString get_context();
             Q_INVOKABLE int get_context_id();
             Q_INVOKABLE QList<QString> get_hook_list();
@@ -56,6 +57,8 @@ namespace Huggle
             Q_INVOKABLE void warning_log(QString text);
             Q_INVOKABLE void error_log(QString text);
             Q_INVOKABLE void debug_log(QString text, int verbosity);
+        private:
+            QHash<QString, QString> functions;
     };
 }
 

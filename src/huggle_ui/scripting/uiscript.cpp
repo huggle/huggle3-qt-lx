@@ -177,13 +177,6 @@ void UiScript::registerClasses()
 
 void UiScript::registerFunctions()
 {
-    this->registerFunction("huggle_ui.render_html", "(string html, [bool lock_page]): Renders html in current tab");
-    this->registerFunction("huggle_ui.mainwindow_is_loaded", "(): Returns true if main window is loaded");
-    this->registerFunction("huggle_ui.delete_menu", "(int menu_id): remove a menu that was created by this script");
-    this->registerFunction("huggle_ui.create_menu", "(int parent, string name, string function_name): Creates a new menu item in main window, "\
-                                                                    "this function works only if main window is loaded");
-    this->registerFunction("huggle_ui.message_box", "(string title, string text, [int type], [enforce_stop]): Show a message box");
-
     this->registerHook("login_open", 0, "(): Called when login form is loaded");
     this->registerHook("main_open", 0, "(): Called when main window is loaded");
 

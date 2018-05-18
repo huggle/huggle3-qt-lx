@@ -28,6 +28,7 @@ namespace Huggle
             GenericJSClass(Script *s);
             virtual ~GenericJSClass();
             virtual Script *GetScript();
+            virtual QHash<QString, QString> GetFunctions()=0;
 
         protected:
             Script *script;

@@ -21,6 +21,12 @@ using namespace Huggle;
 HuggleUIJS::HuggleUIJS(Script *s) : GenericJSClass(s)
 {
     this->ui_script = (UiScript*) s;
+    this->function_help.insert("huggle_ui.render_html", "(string html, [bool lock_page]): Renders html in current tab");
+    this->function_help.insert("huggle_ui.mainwindow_is_loaded", "(): Returns true if main window is loaded");
+    this->function_help.insert("huggle_ui.delete_menu", "(int menu_id): remove a menu that was created by this script");
+    this->function_help.insert("huggle_ui.create_menu", "(int parent, string name, string function_name): Creates a new menu item in main window, "\
+                                                                    "this function works only if main window is loaded");
+    this->function_help.insert("huggle_ui.message_box", "(string title, string text, [int type], [enforce_stop]): Show a message box");
 }
 
 int HuggleUIJS::create_menu(int parent, QString name, QString function)
@@ -100,4 +106,9 @@ bool HuggleUIJS::render_html(QString html, bool lock_page)
         MainWindow::HuggleMain->LockPage();
 
     return true;
+}
+
+QHash<QString, QString> HuggleUIJS::GetFunctions()
+{
+    return this->function_help;
 }

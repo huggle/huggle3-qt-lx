@@ -20,7 +20,27 @@ using namespace Huggle;
 
 HuggleJS::HuggleJS(Script *s) : GenericJSClass(s)
 {
+    this->functions.insert("get_function_help", "(string function_name): give you help for a function, returns string");
+    this->functions.insert("get_function_list", "(): returns array with list of functions");
+    this->functions.insert("get_hook_list", "(): returns a list of all hooks");
+    this->functions.insert("get_version", "(): returns version object with properties: Major, Minor, Revision, String");
+    this->functions.insert("is_unsafe", "(): returns true if script has access to unsafe functions");
+    this->functions.insert("set_cfg", "(string key, string value): stores value as key in settings");
+    this->functions.insert("get_cfg", "(string key, string default): returns stored value from ini file");
+    this->functions.insert("get_script_path", "(): returns a path / URL of this script");
+    this->functions.insert("has_function", "(string function_name): return true or false whether function is present");
+    this->functions.insert("get_context", "(): return execution context, either core or GrumpyChat (core doesn't have ui functions and hooks)");
+    this->functions.insert("debug_log", "(string text, int verbosity): prints to debug log");
+    this->functions.insert("error_log", "(string text): prints to system error log");
+    this->functions.insert("warning_log", "(string text): prints to warning log");
+    this->functions.insert("log", "(string text): prints to log");
+    this->functions.insert("register_hook", "(string hook, string function_id): creates a hook");
+    this->functions.insert("unregister_hook", "(string hook): removes hook");
+}
 
+QHash<QString, QString> HuggleJS::GetFunctions()
+{
+    return this->functions;
 }
 
 QString HuggleJS::get_context()

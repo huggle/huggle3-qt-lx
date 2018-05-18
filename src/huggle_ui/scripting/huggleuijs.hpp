@@ -29,7 +29,9 @@ namespace Huggle
             Q_INVOKABLE bool mainwindow_is_loaded();
             Q_INVOKABLE int message_box(QString title, QString text, int messagebox_type = 0, bool pause = false);
             Q_INVOKABLE bool render_html(QString html, bool lock_page = false);
+            QHash<QString, QString> GetFunctions();
         private:
+            QHash<QString, QString> function_help;
             UiScript *ui_script;
     };
 }
