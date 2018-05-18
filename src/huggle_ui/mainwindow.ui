@@ -133,8 +133,9 @@
      <addaction name="actionWrite_text_to_HAN"/>
      <addaction name="actionThrow"/>
     </widget>
-    <addaction name="actionIntroduction"/>
     <addaction name="actionContents"/>
+    <addaction name="actionIntroduction"/>
+    <addaction name="actionWelcome_page"/>
     <addaction name="actionQueue_legend"/>
     <addaction name="separator"/>
     <addaction name="actionFeedback"/>
@@ -1149,6 +1150,11 @@
   <action name="actionThrow">
    <property name="text">
     <string>Throw</string>
+   </property>
+  </action>
+  <action name="actionWelcome_page">
+   <property name="text">
+    <string>Welcome page</string>
    </property>
   </action>
  </widget>

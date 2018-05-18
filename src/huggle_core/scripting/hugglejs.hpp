@@ -29,6 +29,8 @@ namespace Huggle
 {
     /*!
      * \brief The HuggleJS class has C++ exports for JS engine (maps C++ functions to JS)
+     *        it implements all functions that are available in JS script
+     *        in "huggle" namespace
      */
     class HuggleJS : public GenericJSClass
     {

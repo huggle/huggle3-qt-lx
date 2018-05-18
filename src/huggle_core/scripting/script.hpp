@@ -19,6 +19,12 @@
 #include "../exception.hpp"
 #include <QJSEngine>
 
+// This is here for performance reasons only, we could have a list of attached hooks as list of strings
+// but strings usually perform way worse than hash of integers, so we just use integers instead
+// If you add anything here don't forget to edit the GetHookID functions
+
+// If you are working in different context than core, you can define your own IDs, but each context is prefixed
+// with some number so that you never get a conflicting number
 #define HUGGLE_SCRIPT_HOOK_SHUTDOWN                             0
 #define HUGGLE_SCRIPT_HOOK_EDIT_PRE_PROCESS                     1
 #define HUGGLE_SCRIPT_HOOK_EDIT_BEFORE_POST_PROCESS             2

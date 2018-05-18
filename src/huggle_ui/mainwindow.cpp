@@ -221,6 +221,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
                 break;
         }
     }
+    if (hcfg->DeveloperMode)
+    {
+        this->ui->actionResume_provider->setVisible(true);
+        this->ui->actionStop_provider->setVisible(false);
+        this->PauseQueue();
+    }
     HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@providers");
     this->reloadInterface();
     this->tabifyDockWidget(this->SystemLog, this->Queries);
@@ -1196,6 +1202,12 @@ void MainWindow::on_actionExit_triggered()
 
 void MainWindow::DisplayWelcomeMessage()
 {
+    if (hcfg->DeveloperMode)
+    {
+        this->Browser->RenderHtml(Resources::GetResource("/huggle/resources/Resources/html/dev.html"));
+        this->LockPage();
+        return;
+    }
     WikiPage *welcome = new WikiPage(hcfg->ProjectConfig->WelcomeMP);
     this->Browser->DisplayPreFormattedPage(welcome);
     this->LockPage();
@@ -1377,11 +1389,13 @@ void MainWindow::OnMainTimerTick()
             RetrieveEdit = false;
         } else
         {
-            this->ResumeQueue();
+            if (this->ui->actionStop_provider->isVisible())
+                this->ResumeQueue();
             this->Queue1->Trim();
         }
-    } else
+    } else if (this->ui->actionStop_feed->isChecked() && this->ui->actionStop_provider->isVisible())
     {
+        // Automaticall resume the queue in case it was paused due to auto-stop feature
         if (this->QueueIsNowPaused)
             this->ResumeQueue();
     }
@@ -1816,6 +1830,7 @@ void MainWindow::Exit()
     if (Configuration::HuggleConfiguration->DeveloperMode)
     {
         this->tCheck->stop();
+        this->tStatusBarRefreshTimer->stop();
         this->GeneralTimer->stop();
         this->deleteLater();
         this->close();
@@ -3533,7 +3548,12 @@ void MainWindow::OnError(QString title, QString text)
     UiGeneric::MessageBox(title, text, MessageBoxStyleError);
 }
 
-void Huggle::MainWindow::on_actionThrow_triggered()
+void MainWindow::on_actionThrow_triggered()
 {
     throw new Huggle::Exception("Test exception (from menu)", BOOST_CURRENT_FUNCTION);
+}
+
+void MainWindow::on_actionWelcome_page_triggered()
+{
+    this->DisplayWelcomeMessage();
 }

@@ -382,6 +382,8 @@ namespace Huggle
             void OnQuestion(QString title, QString text, bool *y);
             void OnError(QString title, QString text);
             void on_actionThrow_triggered();
+            void on_actionWelcome_page_triggered();
+
         private:
             void closeTab(int tab);
             void DisplayWelcomeMessage();

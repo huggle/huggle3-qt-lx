@@ -239,6 +239,12 @@ void HuggleFeedProviderXml::insertEdit(WikiEdit *edit)
 
 void HuggleFeedProviderXml::processBufs()
 {
+    // If this is paused let's just drop the edits
+    if (this->IsPaused())
+    {
+        this->bufferedLines.clear();
+        return;
+    }
     while (!this->bufferedLines.isEmpty())
     {
         QString data = this->bufferedLines.at(0);
