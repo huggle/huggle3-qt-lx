@@ -106,10 +106,10 @@ unsigned int UiScript::GetContextID()
     return HUGGLE_SCRIPT_CONTEXT_UI;
 }
 
-int UiScript::RegisterMenu(QMenu *parent, QString title, QString fc)
+int UiScript::RegisterMenu(QMenu *parent, QString title, QString fc, bool checkable)
 {
     int id = this->lastMenu++;
-    ScriptMenu *menu = new ScriptMenu(this, parent, title, fc);
+    ScriptMenu *menu = new ScriptMenu(this, parent, title, fc, checkable);
     this->scriptMenusByAction.insert(menu->GetAction(), menu);
     this->scriptMenus.insert(id, menu);
     return id;
@@ -129,6 +129,13 @@ void UiScript::UnregisterMenu(int menu)
             s->GetParent()->removeAction(s->GetAction());
     }
     delete s;
+}
+
+void UiScript::ToggleMenuCheckState(int menu, bool checked)
+{
+    if (!this->scriptMenus.contains(menu))
+        return;
+    this->scriptMenus[menu]->SetChecked(checked);
 }
 
 bool UiScript::OwnMenu(int menu_id)
@@ -183,13 +190,14 @@ void UiScript::registerFunctions()
     Script::registerFunctions();
 }
 
-ScriptMenu::ScriptMenu(UiScript *s, QMenu *parent, QString text, QString fc, QAction *before)
+ScriptMenu::ScriptMenu(UiScript *s, QMenu *parent, QString text, QString fc, bool checkable, QAction *before)
 {
     this->callback = fc;
     this->script = s;
     this->parentMenu = parent;
     this->title = text;
     this->item = new QAction(text, (QObject*)parent);
+    this->item->setCheckable(checkable);
     if (parent)
         parent->insertAction(before, this->item);
     UiScript::connect(this->item, SIGNAL(triggered()), this->script, SLOT(MenuClicked()));
@@ -203,6 +211,11 @@ ScriptMenu::~ScriptMenu()
 QAction *ScriptMenu::GetAction()
 {
     return this->item;
+}
+
+void ScriptMenu::SetChecked(bool checked)
+{
+    this->item->setChecked(checked);
 }
 
 QString ScriptMenu::GetCallback()

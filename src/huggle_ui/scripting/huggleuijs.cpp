@@ -21,15 +21,16 @@ using namespace Huggle;
 HuggleUIJS::HuggleUIJS(Script *s) : GenericJSClass(s)
 {
     this->ui_script = (UiScript*) s;
-    this->function_help.insert("huggle_ui.render_html", "(string html, [bool lock_page]): Renders html in current tab");
-    this->function_help.insert("huggle_ui.mainwindow_is_loaded", "(): Returns true if main window is loaded");
-    this->function_help.insert("huggle_ui.delete_menu", "(int menu_id): remove a menu that was created by this script");
-    this->function_help.insert("huggle_ui.create_menu", "(int parent, string name, string function_name): Creates a new menu item in main window, "\
+    this->function_help.insert("render_html", "(string html, [bool lock_page]): Renders html in current tab");
+    this->function_help.insert("mainwindow_is_loaded", "(): Returns true if main window is loaded");
+    this->function_help.insert("menu_item_set_checked", "(int menu_id, bool state): toggles menu checked state");
+    this->function_help.insert("delete_menu_item", "(int menu_id): remove a menu that was created by this script");
+    this->function_help.insert("create_menu_item", "(int parent, string name, string function_name): Creates a new menu item in main window, "\
                                                                     "this function works only if main window is loaded");
-    this->function_help.insert("huggle_ui.message_box", "(string title, string text, [int type], [enforce_stop]): Show a message box");
+    this->function_help.insert("message_box", "(string title, string text, [int type], [enforce_stop]): Show a message box");
 }
 
-int HuggleUIJS::create_menu(int parent, QString name, QString function)
+int HuggleUIJS::create_menu_item(int parent, QString name, QString function, bool checkable)
 {
     if (!Huggle::MainWindow::HuggleMain)
     {
@@ -53,11 +54,11 @@ int HuggleUIJS::create_menu(int parent, QString name, QString function)
         return -1;
     }
 
-    int menu = this->ui_script->RegisterMenu(parentMenu, name, function);
+    int menu = this->ui_script->RegisterMenu(parentMenu, name, function, checkable);
     return menu;
 }
 
-bool HuggleUIJS::delete_menu(int menu_id)
+bool HuggleUIJS::delete_menu_item(int menu_id)
 {
     if (!Huggle::MainWindow::HuggleMain)
     {
@@ -73,6 +74,23 @@ bool HuggleUIJS::delete_menu(int menu_id)
 
     this->ui_script->UnregisterMenu(menu_id);
     return true;
+}
+
+bool HuggleUIJS::menu_item_set_checked(int menu, bool checked)
+{
+    if (!Huggle::MainWindow::HuggleMain)
+    {
+        HUGGLE_ERROR(this->ui_script->GetName() + ": menu_item_set_checked(menu, checked): mainwindow is not loaded yet");
+        return false;
+    }
+
+    if (!this->ui_script->OwnMenu(menu))
+    {
+        HUGGLE_ERROR(this->ui_script->GetName() + ": menu_item_set_checked(menu, checked): request to toggle state of menu that is not owned by this script");
+        return false;
+    }
+
+    this->ui_script->ToggleMenuCheckState(menu, checked);
 }
 
 bool HuggleUIJS::mainwindow_is_loaded()

@@ -29,9 +29,10 @@ namespace Huggle
     class HUGGLE_EX_UI ScriptMenu
     {
         public:
-            ScriptMenu(UiScript *s, QMenu *parent, QString text, QString fc, QAction *before = nullptr);
+            ScriptMenu(UiScript *s, QMenu *parent, QString text, QString fc, bool checkable, QAction *before = nullptr);
             ~ScriptMenu();
             QAction *GetAction();
+            void SetChecked(bool checked);
             QString GetCallback();
             QMenu *GetParent();
 
@@ -54,8 +55,9 @@ namespace Huggle
             ~UiScript();
             QString GetContext();
             unsigned int GetContextID();
-            int RegisterMenu(QMenu *parent, QString title, QString fc);
+            int RegisterMenu(QMenu *parent, QString title, QString fc, bool checkable);
             void UnregisterMenu(int menu);
+            void ToggleMenuCheckState(int menu, bool checked);
             bool OwnMenu(int menu_id);
             void Hook_OnMain();
             void Hook_OnLogin();
