@@ -2419,6 +2419,9 @@ void MainWindow::ChangeProvider(WikiSite *site, HuggleFeed *provider)
         Syslog::HuggleLogs->ErrorLog(_l("provider-failure", provider->ToString(), site->Name));
         // provider didn't start so we need to find alternative
         this->SwitchAlternativeFeedProvider(site);
+    } else if (this->QueueIsNowPaused)
+    {
+        site->Provider->Pause();
     }
 }
 
