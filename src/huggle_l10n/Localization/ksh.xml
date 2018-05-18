@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Authors:
+* Purodha
+-->
+<resources>
+  <string name="name">Änglesch</string>
+  <string name="isrtl">false</string>
+  <string name="add">Dobeidonn</string>
+  <string name="cancel">Ophüre</string>
+  <string name="clear">Läddesch maache</string>
+  <string name="close">Zohmaache</string>
+  <string name="continue">Wiggermaache</string>
+  <string name="copy">Kopehre</string>
+  <string name="delete">Fottschmiiße</string>
+  <string name="deleted">Fottjeschmeße</string>
+  <string name="error">Fähler</string>
+  <string name="exit">Zohmaache</string>
+  <string name="done">Jedonn</string>
+  <string name="no">Nää</string>
+  <string name="ok">Johd</string>
+  <string name="remove">Fottnämme</string>
+  <string name="rename">Ömbenänne</string>
+  <string name="reload">neu Lahde</string>
+  <string name="project">Projäk</string>
+  <string name="result">Erus jekumme es</string>
+  <string name="save">Faßhalde</string>
+  <string name="show">Zeije</string>
+  <string name="undo">Zeröcknämme</string>
+  <string name="yes">Joh</string>
+  <string name="editing-page">ben di Sigg aam änndere</string>
+  <string name="successful">Jeschaff</string>
+  <string name="summary">Zosammejefaß</string>
+  <string name="id">Kännong</string>
+  <string name="type">Zoot</string>
+  <string name="target">Zihl</string>
+  <string name="user">Metmaacher</string>
+  <string name="size">Ömfang</string>
+  <string name="date">Dattom</string>
+  <string name="page">Sigg</string>
+  <string name="time">Zigg</string>
+  <string name="version">Väsjohn</string>
+  <string name="general-name">Nahme</string>
+  <string name="author">Schrihver</string>
+  <string name="description">Beschrevve met</string>
+  <string name="status">Zohschtand</string>
+  <string name="link">Lengk</string>
+  <string name="reason">Jrond</string>
+  <string name="diffid">Kännong vum Ongerscheid</string>
+  <string name="expiry-time">Dattom un Zigg fun de Haltbakeid!!FUZYY!!</string>
+  <string name="duration">Dohr</string>
+  <string name="enable">Enschallde</string>
+  <string name="disable">Ußschallde</string>
+  <string name="flags">Fähnsche</string>
+  <string name="browser-none" fuzzy="true">Kein Sigg weed em Momang aanjezeisch</string>
+  <string name="browser-miss-summ">Kein Zosammefaßong</string>
+  <string name="browser-fail">Kann keine Ongerscheid afrohfe: $1</string>
+  <string name="about-contributors">Äntweckler:</string>
+  <string name="block-not">Dä Metmaacher es nit jeschpächt</string>
+  <string name="block-title">Scpär $1</string>
+  <string name="block-reason">Jrond:</string>
+  <string name="block-duration">De Dohr:</string>
+  <string name="block-message">Meddeilong för op de Klaafsigg:</string>
+  <string name="block-message-user">Schegg en Nohreesch aan dä Zihl_Metmaacher med en Äkliehrong vör di Schpär.</string>
+  <string name="block-anononly">Schpär bloß de nahmelose Metmaacher</string>
+  <string name="block-creation">Donn et Neu_Aanlöhle vun Zohjäng föt Metmaacher zum Wikki affschallde.</string>
+  <string name="block-autoblock">Autoattesche Scpärre zohlohße</string>
+  <string name="block-email">De &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„de eläktrohnesche Poß“\"&gt;e-mail&lt;/i&gt; schpärre</string>
+  <string name="block-usertalk">Klaaf</string>
+  <string name="block-usercontribs">Beijdrähsch</string>
+  <string name="block-blockloglabel">Logbohch met Metmaacher-Schpärre:</string>
+  <string name="block-warnloglabel">Warnonge:</string>
+  <string name="block-sharedipwarning">Opjepaß: $ es als en vun ville jenözde udder dünahmesche &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Internet Protocol\"&gt;IP&lt;/i&gt;-Adräß amkkehrt.</string>
+  <string name="block-fail">Dä Metmaacher $1 löht sesch nit schpärre.</string>
+  <string name="block-error-no-info" fuzzy="true">Keine Metmaacher wohr en dä Affrohch — beß De ene Wikki_Köhbeß?</string>
+  <string name="block-type">Schärre / Freijävve</string>
+  <string name="block-admin" fuzzy="true">Dä Wikki_Köhbeß, dä jeschpächt hät</string>
+  <string name="block-none" fuzzy="true">Mer han keine Metmaacher zum Schpärre.</string>
+  <string name="contribution-browser-user-info">Mer zeije de neujere Beijdrähsch vum Metmaacher $1 aan</string>
+  <string name="config-function">Funxjuhn</string>
+  <string name="config-description">Beschrevve!!FUZZYY!!</string>
+  <string name="config-shortcut">Affköözong</string>
+  <string name="config-queue-filter-ignore">Övverjonn (Bedügg nix)</string>
+  <string name="config-queue-filter-exclude">Ußschlehße (Dat moß nit)</string>
+  <string name="config-queue-filter-require">Nüüdesch maache (Dat moß)</string>
+  <string name="config-summ">Fäädejje Zosammefaßonge för Änderonge vun Schablohne retuhr ze maache</string>
+  <string name="config-title">Ennshtällonge</string>
+  <string name="config-already-in-use">Heh di Taßekumbinazjuhn schteihd ald för $1. Bes esu johd un söhg en anndere us.</string>
+  <string name="config-openinbrowser">Donn em Brauser de Lengks en enem neue Finster opmaache</string>
+  <string name="config-shownewedits">Zeisch de neue Änderonge vun dä ußjewählte Sigg aan, sobald se jemaat woode sen</string>
+  <string name="config-ircmode">Nämm dä &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Internet Relay Chat\"&gt;IRC&lt;/i&gt;-Kannahl för de neußte Änderonge, wann müjjelesch</string>
+  <string name="config-ircport">\n&lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Internet Relay Chat\"&gt;IRC&lt;/i&gt;_Pooz</string>
+  <string name="config-difffontsize">De Schreffjrühße för de Ongerscheide</string>
+  <string name="config-logfile">Logdatteij</string>
+  <string name="config-viewlocalconfig">Belohr et Verzeijschneß met de Enschtällonge om eije Rääschner</string>
+  <string name="config-trayicon" fuzzy="true">Zeijsch et tray icon</string>
+  <string name="config-startupmessage">Zesch en Meddeijlong beim ejenne aan</string>
+  <string name="config-shownewmessages">Zesch ene Kaßte met neuje Meddeijlonge</string>
+  <string name="config-shortcutlist">Taßekumbinazjuhne zom Beschleuneje</string>
+  <string name="config-shortcutaction">Akßjuhn</string>
+  <string name="config-changeshortcut">Änder de Taßekumbinazjuhnför $1</string>
+  <string name="config-noshortcut">Keine</string>
+  <string name="config-defaults">Schtandatts</string>
+  <string name="config-minor">Als kein Minni-Änderong makehre</string>
+  <string name="config-watchlist">Op de Oppaßleß säze</string>
+  <string name="config-defaultsummary">Schtandatt_Zosammefaßong för Änderonge vun Hand</string>
+  <string name="config-undosummary">Zosammefaßong beim Retuhr_Nämme vun de eije Änderonge</string>
+  <string name="config-confirm-talk">Bruch en Beschtähtejong för et Retuhrnämme vun ene Änderong obb ene Klaafsigg</string>
+  <string name="config-revert">Retuhr_Nämme</string>
+  <string name="config-change-all" fuzzy="true">Donn alle Enschtällonge esu änndere, dat se mih zoh dä Projramm_Väsjohn 2 paße</string>
+  <string name="config-merge-messages">Donn Ding Nohreeschte met andere en de vörhande Afschnedde zersamme schmiiße</string>
+  <string name="config-months-name">Nämm Mohnde als Övverchreffte un nit de Övverschrefte vun de Sigge</string>
+  <string name="config-enable-irc">Donn der &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Internet Relay Chat\"&gt;IRC&lt;/i&gt; aanschallde</string>
+  <string name="config-remove-reverted" fuzzy="true">Donn di Änderonge fott lohße, di ene ander ald zerök jenumme hät</string>
+  <string name="config-remove-old" fuzzy="true">Donn de älldere Änderonge fott lohße, wann en neuere Änderong för desällve Sigg beärbeidt weed</string>
+  <string name="config-auto-load-history">Donn de Verjangeheid un de Dahte övver dä Metmaacher automttesch lahde — dat scheck ävver öhndlesch Dahte övver et Näzwärk.</string>
+  <string name="config-last-revision" fuzzy="true">Zeijsch de läzde Väsjohn vun dä Sigg wann de jelahde Änderong nit de läzde Väsjohn es — se weed spähder eronger jelahde, aam &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„Zwescheschpeijscher “\"&gt;cache&lt;/i&gt; vörbei.</string>
+  <string name="config-retrieve-edit">De eije Änderong holle</string>
+  <string name="config-nothing">Nix</string>
+  <string name="config-bot-edits">De Bots iehr Änderonge (b)</string>
+  <string name="config-own-edits">Eije Änderonge</string>
+  <string name="config-reverts">Retuhrjenumme</string>
+  <string name="config-new-page">Neu Sigg</string>
+  <string name="config-whitelisted">En de „wiiße Leß“ jedonn</string>
+  <string name="config-friend">Fründ</string>
+  <string name="config-userspace">Appachtemang för de Metmaacher</string>
+  <string name="config-talk">Klaafsigg</string>
+  <string name="config-warning-api">Zeijsch Warnonge för de Affrohre vun de &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Application Programming Interface\"&gt;API&lt;/i&gt;</string>
+  <string name="config-title-diff">Sigge_Övverschreffte en jehdem Ongescheijd — jruhße Täx, dä jrahd de Övverschreff em Koppberett vun jehdem Ongerscheid zeijsch.</string>
+  <string name="config-updates">Op neu Väsohne prööve</string>
+  <string name="config-beta">Pröhf op Pröhväsjohne</string>
+  <string name="config-html-messages" fuzzy="true">HAN kann HTML aanzeije (jevährlesch)</string>
+  <string name="config-close-without">Zohmaache der ohne jät ze seschere</string>
+  <string name="config-reportnone">Donn nix</string>
+  <string name="config-reportprompt">Frohch öm ene Bereesch</string>
+  <string name="config-templatetext">Zeijsch dä Täx</string>
+  <string name="config-template">Schablohn</string>
+  <string name="config-blockreason">Der Schtandattjrond för et Schpärre</string>
+  <string name="config-blocktime" fuzzy="true">De Schtandattzigg för et Schpärre</string>
+  <string name="config-blocktimeanon">Nahmeloose Metmaacher</string>
+  <string name="config-blocktimereg">Ennjelogg Metmaacher</string>
+  <string name="config-summaryprompt">Jivv en Zosammefaßong en</string>
+  <string name="config-history">Donn de jannze Verjangeheid vun alle Sigge lahde</string>
+  <string name="config-defaultsprompt">De Schtandatt_Enschtällonge widder holle?</string>
+  <string name="config-logbrowsetitle">Der Paz för de Logdatteij</string>
+  <string name="config-no-colon" fuzzy="true">mer kann nen Dubbelpongk (:) nid em Nahme vun ene Wahdeschlang bruche</string>
+  <string name="config-notify-update">Op neu Väsohne pröhve</string>
+  <string name="config-notify-beta">Noh Pröhv_Väsjohne lohre, wann müjjelesch</string>
+  <string name="delete-title">Schmiiß $1 fott</string>
+  <string name="delete-reason">Jrond:</string>
+  <string name="delete-deletionlog">Et Logbohch met de fottjeschmeße Sigge:</string>
+  <string name="delete-rem-talk">schmiiß der Klaaf dohzoh fott</string>
+  <string name="delete-notify">Donn dä Aanlähjer benohreeschtejje</string>
+  <string name="delete-e1">Di Sigg kam_mer nit fott schmiiße: $1</string>
+  <string name="delete-e2">Mer künne di Sigg nit fott schmiiße.</string>
+  <string name="delete-edsc">Mer künne di Sigg nit fott schmiiße, weil $1</string>
+  <string name="extension-kl">Leuf nit</string>
+  <string name="extension-ok">Jelahde un aam Loufe</string>
+  <string name="historyform-no-info" fuzzy="true">Kein Aanjahbe övvver de Änderong &lt;!--    https://translatewiki.net/wiki/Thread:Support/About_Huggle:Historyform-no-info/ksh --&gt;</string>
+  <string name="historyform-title">Verjangeheit</string>
+  <string name="historyform-retrieve-history">De ällder Väsjohne holle</string>
+  <string name="historyform-retrieving-history">Ben de ällder Väsjohne aam holle</string>
+  <string name="history-error-message-title">Künne mer nit retuhr maache</string>
+  <string name="history-failure">Mer kunnte de ällder Väsjohne nit holle</string>
+  <string name="userhistory-title">Ding ällder Väsjohne</string>
+  <string name="login-tab-login" fuzzy="true">Enlogge</string>
+  <string name="login-language">De Schprohch:</string>
+  <string name="login-project">Et Projäk:</string>
+  <string name="login-username">Dä Metmaacher_Nahme:</string>
+  <string name="login-password">Et Paßwoot:</string>
+  <string name="login-proxygroup">Enschtällonge för der &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„ene ẞööver en de Nohberschaff, ene Zweschedrääjer udder Zwescheschpeijscher, ene Vermeddelongsrääschner“\"&gt;proxy&lt;/i&gt;</string>
+  <string name="login-proxy" fuzzy="true">Donn ene &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„ene ẞööver en de Nohberschaff, ene Zweschedrääjer udder Zwescheschpeijscher, ene Vermeddelongsrääschner“\"&gt;proxy&lt;/i&gt;-ẞööver bruche</string>
+  <string name="login-proxyaddress">Adräß:</string>
+  <string name="login-proxyport">Pooz (&lt;i lang=\"en\"&gt;port&lt;/i&gt;)</string>
+  <string name="login-proxydomain">Domähn:</string>
+  <string name="login-retrieving-user-conf">Ben dem Metmaacher sing Enschtällonge aam holle</string>
+  <string name="login-retrieving-info">Ben de Aanjahbe övver dä metmaacher $1 aam holle</string>
+  <string name="login-password-empty">Do häs e läddesch Paßwood enjejovve</string>
+  <string name="login-fail-wrong-name" fuzzy="true">Do häs keine reeschtejje Metmaacher_Nahme för zom Enlogge enjejovve</string>
+  <string name="login-start">Enlogge</string>
+  <string name="login-oauth-notsupported">Di Metohd es em Momang nit ongerschtöz</string>
+  <string name="login-translate">Huggle övversäze</string>
+  <string name="login-progress-start" fuzzy="true">Ben op $1 aam enlogge.</string>
+  <string name="login-progress-retrieve-mw">Mer holle Aanjahbe övver MehdijaWikki för $1</string>
+  <string name="login-progress-language">Ben de Datteije met de Täxte un Nohreeschte op der neuje Schtand aam bränge …</string>
+  <string name="login-progress-global">Ben de alljemeine Enschtällonge aam pröhfe</string>
+  <string name="login-progress-config">Ben de Sigge met de Enschtällonge aam pröhfe</string>
+  <string name="login-progress-local">Ben de hiisejje Enschtällonge aam pröhfe för $1</string>
+  <string name="login-progress-user">Ben de Metmaacher_Enschtällonge aam pröhfe för $1</string>
+  <string name="login-progress-user-info">Ben de Aanjahbe övver dä Metmaacher $1 aam pröhfe</string>
+  <string name="login-progress-whitelist">Ben dem Metmaacher sing „wiiße Leß“ aam holle</string>
+  <string name="login-remember-password">Donn et Paßwood märke</string>
+  <string name="login-ssl" fuzzy="true">Donn &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"HyperText Transfer Protocol Secure - HTTP övver SSL - HTTP övver TSL\"&gt;HTTPS&lt;/i&gt; bruche — derföhr es &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Open Secure Sockets Layer\"&gt;OpenSSL&lt;/i&gt; nühdesch.</string>
+  <string name="login-fail">Et Ennlogge es donävve jejange op $1</string>
+  <string name="login-error-alldisabled" fuzzy="true"> Huggle es em Momang op alle Projäkte afjeschalldt.</string>
+  <string name="login-error-approval" fuzzy="true">Huggle op $1 ze bruche hädd_en Zohschtemmong nüdesch.</string>
+  <string name="login-error-cancelled">Affjebroche.</string>
+  <string name="login-error-invalid">Dä Metmaacher-Nahme es onjöltesch</string>
+  <string name="login-error-nouser">Dä Metmaacher-Nahme jidd_et nit</string>
+  <string name="login-error-password">Dat paßwood es verkihrt</string>
+  <string name="login-error-projdisabled">Huggle es em Momang op $1 affjeschalldt.</string>
+  <string name="login-error-unknown" fuzzy="true">Mer künne op $1 nit enlogge.</string>
+  <string name="main-page">Sigg</string>
+  <string name="main-user">Metmaacher</string>
+  <string name="main-contribs">Beijdrähsch</string>
+  <string name="main-history">Väsjohne</string>
+  <string name="main-system">Süßtehm</string>
+  <string name="main-status-bar">Mer sin &lt;b&gt;$1&lt;/b&gt; Änderonge un &lt;b&gt;$2&lt;/b&gt; Frohre aam Beärbeide. Zohjelohße Metmaacher: &lt;b&gt;$3&lt;/b&gt; Endrääsch en de Waadeschlang: &lt;b&gt;$4&lt;/b&gt; Schtateßteke för $6: $5</string>
+  <string name="main-system-messages">Zeijsch neu Täxte udder Nohreeschte aan</string>
+  <string name="main-system-statistics">Schtateßteke …</string>
+  <string name="main-system-options">Enschtällonge …</string>
+  <string name="main-system-logout">Ußlogge</string>
+  <string name="main-system-abort">Afbräsche</string>
+  <string name="main-system-change-provider-irc">\n&lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Internet Relay Chat\"&gt;IRC&lt;/i&gt;</string>
+  <string name="main-system-change-provider-wiki">Wikki</string>
+  <string name="main-system-exit">Zohmaache</string>
+  <string name="main-queue">Waadeschlang</string>
+  <string name="main-queue-next">Näx</string>
+  <string name="main-queue-count">$1 Enndrähsch en de Wahdeschlang met Frohre</string>
+  <string name="main-queue-reset">Zeröcksäze</string>
+  <string name="main-queue-options">Waadeschlange verwallde …</string>
+  <string name="main-goto">Jangk noh</string>
+  <string name="main-goto-mytalk">Ming Klaafsigg</string>
+  <string name="main-goto-mycontribs">Ming Beijdrähsch</string>
+  <string name="main-revision-decline">Donn de Väsjohn afflehne</string>
+  <string name="main-revision">Väsjohn</string>
+  <string name="main-revision-view">Lohr</string>
+  <string name="main-revision-revert">Nämm di jrahd aanjeijschte Änderong zerök</string>
+  <string name="main-revision-rv-stay">Donn dih Änderong zerök nämme un blihv op dä Sigg</string>
+  <string name="main-revision-revert-warn">Nämm di jrahd aanjeijschte Änderong zerök un donn dä Metmaacher warne</string>
+  <string name="main-revision-rws">Nämm di jrahd aanjeijschte Änderong zerök un donn dä Metmaacher warne un blihv op dä Sigg</string>
+  <string name="main-revision-faith">Nämm zerök un gleuv, dat dat johd jemeint wohr</string>
+  <string name="main-revision-previous">Vörijje</string>
+  <string name="main-revision-next">Näx</string>
+  <string name="main-revision-latest">Neuste</string>
+  <string name="main-tools">Wärkzüsch</string>
+  <string name="main-page-next">Näx</string>
+  <string name="main-page-switchtotalk">Jank op di Klaafsigg</string>
+  <string name="main-page-viewlatest">De neuste Väsjohn belohre</string>
+  <string name="main-page-history">De ällder Väsjohne holle</string>
+  <string name="main-page-historypage">Zeijsch de Sigg met de ahle Väsjohne</string>
+  <string name="main-page-edit">Donn di Sigg em Brauser ändere</string>
+  <string name="main-page-tag">Makkehrong</string>
+  <string name="main-page-reqdeletion">Flöck Föttschmiiße vorschlonn</string>
+  <string name="main-page-reqprotection">Vorschlonn, di Sigg ze schöze</string>
+  <string name="main-page-watch">Drobb oppaßße</string>
+  <string name="main-page-unwatch">Nimmih drobb oppaßße</string>
+  <string name="main-page-purge">Donn dä Zwescheschpeicher läddisch maache</string>
+  <string name="main-page-curr-disp">Em Momang aanjezeisch</string>
+  <string name="main-page-display">donn heh di Sigg aanzeje</string>
+  <string name="main-page-patrol">Nohjeluurt. Dun dat fasshallde.</string>
+  <string name="main-page-move">Ömbenänne …</string>
+  <string name="main-page-protect">Schöze</string>
+  <string name="main-page-delete">Fottschmiiße</string>
+  <string name="main-page-load">Lahde</string>
+  <string name="main-page-restore">Holl hhe di Väsjohn zerök</string>
+  <string name="main-user-info">Aanjahbe övver dä Metmaacher aanzeije</string>
+  <string name="main-user-ignore">Övverjonn</string>
+  <string name="main-user-unignore">nit mih övverjonn</string>
+  <string name="main-user-contribs">Donn däm Metmaacher sing Beijdrähsch em Brauser aanzeije</string>
+  <string name="main-user-clear-talk">Donn däm Metmaacher sing Klaafsigg läddesch maache</string>
+  <string name="main-user-talk">De Klaafsigg belohre</string>
+  <string name="main-user-message">Nohreesch …</string>
+  <string name="main-user-warn">Warne …</string>
+  <string name="main-user-db">Däm Metmaacher sing „Schlääschteschkeid“ eronger säze</string>
+  <string name="main-user-report">Bereeschte</string>
+  <string name="main-user-ib">Däm Metmaacher sing „Schlääschteschkeid“ erop säze</string>
+  <string name="main-user-clear-tp">Däm Metmaacher sing Klaafsigg läddesch maache</string>
+  <string name="main-user-retrieving-tp">Ben de Klaafsigg vum $1 aam holle …</string>
+  <string name="main-user-block">Schpärre …</string>
+  <string name="main-browser-back">Retuhr</string>
+  <string name="main-browser-forward">Förahn</string>
+  <string name="main-browser-open">Donn dat en enem extra Brauser belohre</string>
+  <string name="main-browser-newedits">Zeijsch den neue Änderonge aan dä Sigg aan</string>
+  <string name="main-browser-newcontribs">Zeijsch den neue Änderonge vun dämm Metmaacher aan</string>
+  <string name="main-han">HAN</string>
+  <string name="main-han-disconnect">Verbendong oplühse</string>
+  <string name="main-han-connect">Verbendong opnämme</string>
+  <string name="main-help">Hölp</string>
+  <string name="main-han-display-bot-data">Dahe vun de Bots aanzeije</string>
+  <string name="main-han-display-user-messages">Nohreeschte vum Metmaacher aanzeije</string>
+  <string name="main-han-display-user-data">Dahte vum Metmaacher aanzeije</string>
+  <string name="main-help-documentation">Dokkemäntazjuhn</string>
+  <string name="main-help-feedback">Röckmälldonge</string>
+  <string name="main-help-about">Övver Huggle …</string>
+  <string name="main-addqueue">Derbei donn …</string>
+  <string name="main-savelogtitle">Et Logbohch faßhallde</string>
+  <string name="main-usermessageother">Ander Nohreesch …</string>
+  <string name="main-advanced">Fottjeschredde …</string>
+  <string name="main-display-whitelist">De „wiiße Leß“ aanzeije</string>
+  <string name="main-tip-pagedelete">Schmiiß heh di Sigg fott</string>
+  <string name="main-tip-userreport">Donn heh dä Metmaacher mällde</string>
+  <string name="main-tip-userblock">Donn heh dä Metmaacher schpärre</string>
+  <string name="main-revision-acceptpend">Donn heh di Änderong aannämme</string>
+  <string name="main-revert-null">Dat künne mer nit zerök nämme, et es nix verändert woode.</string>
+  <string name="main-revert-newpage-title">Dat künne mer nit zerök nämme.</string>
+  <string name="message-title">Nohreesch $1</string>
+  <string name="message-subject">Övver:</string>
+  <string name="message-message">Nohreesch:</string>
+  <string name="message-summary">Zosammefaßong:</string>
+  <string name="message-autosign">„Ongerschreff“ automattesch aanhänge</string>
+  <string name="message-fail-retrieve-talk" fuzzy="true">mer künne däm Metmaacher sing Klaafsigg nit holle.</string>
+  <string name="protect-reason">Jrond:</string>
+  <string name="protect-expiry">Leuf aff:</string>
+  <string name="protect-log">Et Logbohch vum Sigge_Schötze:</string>
+  <string name="protect-none">Kein</string>
+  <string name="queue-title">Wahdeschlange</string>
+  <string name="queue-queues">Waadeschlange:</string>
+  <string name="queue-typegroup">Waadeschlangezoot</string>
+  <string name="queue-listselector">Leß:</string>
+  <string name="queue-sortorder">Reijefollesch zom Zoteere:</string>
+  <string name="queue-diffsgroup">Ongerscheijde</string>
+  <string name="queue-namespaces">Appachtemangs:</string>
+  <string name="queue-editfiltersgroup">Feltere för Änderonge</string>
+  <string name="queue-userregex">Dä Metmaacher_Nahme pass_obb_ene &lt;span title=\"E Süßtehm woh mer Plazhallder för Jroppe vun Bohchschtahbe un Zeijsche ennsäz, öm en en koote Fazzung jannze Knubbele vun Ußdröck, Wööter udder Säz zesamme ze beschriehve.\"&gt;rejolähre Ußdrok&lt;/span&gt;:</string>
+  <string name="queue-summaryregex">Dä Zosammefaßong pass_obb_ene &lt;span title=\"E Süßtehm woh mer Plazhallder för Jroppe vun Bohchschtahbe un Zeijsche ennsäz, öm en en koote Fazzung jannze Knubbele vun Ußdröck, Wööter udder Säz zesamme ze beschriehve.\"&gt;rejolähre Ußdrok&lt;/span&gt;:</string>
+  <string name="queue-filternewpage">Neu Sigg</string>
+  <string name="queue-filterownuserspace">Däm Metmaacher singe eieje Metmaacher_Sigge</string>
+  <string name="queue-filteranonymous">Nahmeloose Metmaacher</string>
+  <string name="queue-filterignored">Övverjange Metmaacher</string>
+  <string name="queue-filterreverts">Retuhr_Nämme</string>
+  <string name="queue-filternotifications">Meddeilong</string>
+  <string name="queue-filterwarnings">Warnong</string>
+  <string name="queue-filtertags">Makkehrong</string>
+  <string name="queue-filterbot">enem Bot sing Änderong</string>
+  <string name="queue-filterme">Ming Änderong</string>
+  <string name="queue-examplelabel1">Maach heh di Eijeschaff nüüdesch</string>
+  <string name="queue-examplelabel2">Donn heh di Eijeschaff ußschlehße</string>
+  <string name="queue-examplelabel3">Donn heh di Eijeschaff nit pröhfe</string>
+  <string name="queue-usergroup">Zeijsch blohß de Änderonge vun heh dä Metmaacher</string>
+  <string name="report-title" fuzzy="true">$1 bereeschte</string>
+  <string name="report-tu">Donn heh dä Metmaacher mällde</string>
+  <string name="report-reason">Jrond:</string>
+  <string name="report-message">Nohreesch:</string>
+  <string name="report-log">warnong för heh dä Metmaacher:</string>
+  <string name="report-include">em bereesch ennschlehße</string>
+  <string name="report-write" fuzzy="true">Schriive</string>
+  <string name="report-done">Jemäldt</string>
+  <string name="report-user">Bereesch</string>
+  <string name="score-score">Punkte</string>
+  <string name="score-word">Woot</string>
+  <string name="score-range">Berett</string>
+  <string name="score-take-any-no-talk-word">Pass op jehdes Wood en ene Sigg, di kein Klaafsigg es.</string>
+  <string name="score-take-whole-no-talk-word">Pass op jehdes Wood en ene Sigg, di kein Klaafsigg es.</string>
+  <string name="score-only-whole-word">Treff blohß jannze Wöht</string>
+  <string name="score-take-any-word">Treff jehdes Woot, met dä Zeijsche em Zosammehang dren</string>
+  <string name="ssl-is-not-supported" fuzzy="true">Do wullts &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Secure Sockets Layer\"&gt;SSL&lt;/i&gt; han, ävver $1 kann dat nit.</string>
+  <string name="ssl-required" fuzzy="true">{{ucfirst:{{GRAMMAR: Genitive s m |{{ucfirst:{{$1}}}}}}}} Wäßööver bruch &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Secure Sockets Layer\"&gt;SSL&lt;/i&gt;. Donn dat ennschallde un ersöhg et norr_ens. Wann De dat it kanns, för e Beijschpell, weil dat Käßje för e Höhksche eren ze maache op jrau jeschtalld es, dann moß De velleijsch de Projramme vum &lt;i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Open Secure Sockets Layer\"&gt;OpenSSL&lt;/i&gt; op Dingem Rääscher enschtallehre.</string>
+  <string name="uaa-nr">Keine Jrond wohd aanjejovve</string>
+  <string name="revert-only" fuzzy="true">Heh di Änderong es de einzejje Änderong aan dä Sigg</string>
+  <string name="revert-creator">Heh di Änderong wood vom Aanlähjer vun dä Sigg jemaat, $1</string>
+  <string name="revert-conflict">Heh di Änderong wood von enem Metmaacher op de „wiiße Leß“ jemaat, $1</string>
+  <string name="speedy-reason">Jrond:</string>
+  <string name="speedy-parameters">Parramehtere:</string>
+  <string name="speedy-notifycreator">Saach däm Bescheid, dä di Sigg aanjelähsch hätt</string>
+  <string name="tag-title">Makkehr $1</string>
+  <string name="tag-tagselector">Makkehrong dobei donn</string>
+  <string name="tag-tags">Makkehrong(e)</string>
+  <string name="tag-parameter">Parramehter</string>
+  <string name="tag-summary">Zosammefaßong:</string>
+  <string name="update-title">Et sin neu Väsjohne doh</string>
+  <string name="update-progress" fuzzy="true">Ben neu Väsjohne aam eronger lahde …</string>
+  <string name="update-error">Kunnt de neu Väsjohn nit eronger lahde</string>
+  <string name="updater-title">En neu Väsjohn vun Huggle es doh</string>
+  <string name="updater-update">Op der neuste Schtand bränge</string>
+  <string name="updater-update-available" fuzzy="true">En neujer Väsjohn $1 vum Huggle es verföhschbaar.</string>
+  <string name="updater-open-manualdownloadpage">De Sigg zom eronger Lahde opmaache</string>
+  <string name="updater-close">Zohmaache</string>
+  <string name="user-history-fail" fuzzy="true">kann de verjangeheid vum Metmaacher $1 nit affrohfe</string>
+  <string name="userinfo-generic">Aanjahbe zom Metmaacher</string>
+  <string name="userinfo-retrieve">Aanjahbe holle</string>
+  <string name="shortcut-page-patrol-edit">Ännderonge nohlohre</string>
+  <string name="shortcut-report-username">Donn enem Metmaacher singe Nahme mällde</string>
+  <string name="shortcut-report-user">Donn ene Metmaacher mällde</string>
+  <string name="shortcut-my-talk">Ming Klaafsigg</string>
+  <string name="shortcut-raw">Donn di Änderong zerök nämme un dä Metmaacher warrne</string>
+  <string name="shortcut-contrib">Zeijsch dä Beijdraach vum Metmaacher, dä di jrahd aanjezeijschte Änderong jemaht hät.</string>
+  <string name="shortcut-exit" fuzzy="true">Donn Huggle om nommahle Wääsch be\'ände.</string>
+  <string name="shortcut-next">Jangk op de nähxte Änderong</string>
+  <string name="shortcut-revert">Donn de Änderong zeröknämme</string>
+  <string name="shortcut-watch" fuzzy="true">Donn en aanjezescijschte Sigg en en Oppaßleß eren</string>
+  <string name="shortcut-unwatch" fuzzy="true">Donn en aanjezescijschte Sigg uss_en Oppaßleß eruß nämme</string>
+  <string name="warning-title">Donn dä Metmaacher $1 warne</string>
+  <string name="warning-levelgroup">Et Nivoh vun de Warnonge</string>
+  <string name="warning-levelauto">Automattesch</string>
+  <string name="warning-level1">Kleinste un eezde Nivvoh</string>
+  <string name="warning-level2">Zwaite Nivvoh</string>
+  <string name="warning-level3">Drette Nivvoh</string>
+  <string name="warning-level4">Vehte un läzde Nivoh</string>
+  <string name="warning-submit">Lohß jonn!</string>
+  <string name="speedy-finished">Fähdesch</string>
+  <string name="whitelist-download">Ben en neu „wiiße Leß“ eronger aam Lahde</string>
+  <string name="wait">Ene Momang …</string>
+  <string name="updating-wl">Ben de „wiiße Leß“ op der neue Schtand aam bränge …</string>
+  <string name="preferences-extension-disabled-restart" fuzzy="true">Dat Zohsazprojramm es esu enschtallt, dadd_et beim nähkst Molh, woh Huggle opjerohfe weed, affjeschalld es.</string>
+  <string name="preferences-watchlist-watch">En de Oppaßleß don</string>
+  <string name="preferences-watchlist-unwatch">Us de Oppaßleß nämme</string>
+  <string name="preferences-watchlist-nochange">Donn nix</string>
+  <string name="page-unknown">Onbikannte Sigg</string>
+  <string name="summary-edit-range">De Ongerscheide zwesche de Väsjohne $1 bes $2</string>
+  <string name="namespace">Appachtemang</string>
+  <string name="report-unable" fuzzy="true">Mer künne dä Metmaacher nit mällde.</string>
+  <string name="about-qt">, övversaz met QT $1 un leuf op QT $1</string>
+  <string name="error-unknown-code">Ene onbikannte Fähler es opjetrodde: $1</string>
+  <string name="relogin-fail">Mer künne em Wikki nit enlogge, weil: $1</string>
+  <string name="projects">Projäkte</string>
+  <string name="developer-mode-enter-title">Auwieh!</string>
+  <string name="title-on">op $1</string>
+</resources>

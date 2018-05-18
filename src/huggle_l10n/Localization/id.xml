@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Authors:
+* Ahdan
+* Arief
+* Arifin.wijaya
+* Hidayatsrf
+* Irus
+* Kenrick95
+* Macofe
+* Rachmat04
+* Raynasution
+-->
+<resources>
+  <string name="name">Bahasa Indonesia</string>
+  <string name="autorelog">Lakukan dan jangan tanyakan lagi lain kali.</string>
+  <string name="isrtl">salah</string>
+  <string name="add">Tambah</string>
+  <string name="cancel">Batal</string>
+  <string name="clear">Kosongkan</string>
+  <string name="close">Tutup</string>
+  <string name="continue">Lanjutkan</string>
+  <string name="copy">Salin</string>
+  <string name="delete">Hapus</string>
+  <string name="deleted">Telah dihapus</string>
+  <string name="error">Galat</string>
+  <string name="exit">Keluar</string>
+  <string name="done">Selesai</string>
+  <string name="no">Tidak</string>
+  <string name="ok">Oke</string>
+  <string name="remove">Buang</string>
+  <string name="rename">Ubah nama</string>
+  <string name="reload">Muat ulang</string>
+  <string name="project">Proyek</string>
+  <string name="warning">Peringatan</string>
+  <string name="result">Hasil</string>
+  <string name="save">Simpan</string>
+  <string name="show">Tampilkan</string>
+  <string name="no-instant" fuzzy="true">Peringatan instan tidak diaktifkan di proyek $1, jadi pesan ke $2 tidak terkirim. Silakan pilih tingkat peringatan berbeda</string>
+  <string name="undo">Balikkan</string>
+  <string name="yes">Ya</string>
+  <string name="editing-page">Menyunting halaman</string>
+  <string name="agf">Batalkan dan tandai sebagai suntingan berniat baik tanpa alasan spesifik</string>
+  <string name="successful">Berhasil</string>
+  <string name="summary">Ringkasan</string>
+  <string name="id">ID</string>
+  <string name="type">Jenis</string>
+  <string name="target">Target</string>
+  <string name="user">Pengguna</string>
+  <string name="size">Ukuran</string>
+  <string name="date">Tanggal</string>
+  <string name="page">Halaman</string>
+  <string name="time">Waktu</string>
+  <string name="version">Versi</string>
+  <string name="general-name">Nama</string>
+  <string name="author">Pembuat</string>
+  <string name="description">Deskripsi</string>
+  <string name="status">Status</string>
+  <string name="link">Pranala</string>
+  <string name="reason">Alasan</string>
+  <string name="diffid">DiffID</string>
+  <string name="whitelisted" fuzzy="true">$1 dengan skor $2 pada $3 telah disisipkan ke daftar pentauan</string>
+  <string name="expiry-time">Waktu kedaluwarsa</string>
+  <string name="duration">Durasi</string>
+  <string name="enable">Aktif</string>
+  <string name="disable">Matikan</string>
+  <string name="no-token">Tidak ada token</string>
+  <string name="flags">Tanda</string>
+  <string name="gracetime" fuzzy="true">Menunggu untuk permintaan yang melakukan beberapa penyuntingan berakhir...</string>
+  <string name="browser-none" fuzzy="true">Tidak ada halaman ditampilkan sekarang</string>
+  <string name="browser-load" fuzzy="true">Mengunduh diff menggunakan sebuah sistem pengambil web, mohon menunggu...</string>
+  <string name="browser-miss-summ">Tidak ada ringkasan</string>
+  <string name="browser-diff">Perbedaan halaman: $1 (nilai: $2)</string>
+  <string name="browser-fail">Tidak dapat mengambil perbedaan: $1</string>
+  <string name="about-contributors">Pengembang:</string>
+  <string name="block-not">Pengguna tidak diblokir</string>
+  <string name="block-title">Memblokir $1</string>
+  <string name="block-reason">Alasan:</string>
+  <string name="block-duration">Jangka waktu:</string>
+  <string name="block-message">Pesan halaman pembicaraan:</string>
+  <string name="block-message-user">Kirim pesan kepada pengguna dengan penjelasan pemblokiran</string>
+  <string name="block-anononly">Hanya blokir pengguna anonim</string>
+  <string name="block-creation">Pembuatan akun blokir</string>
+  <string name="block-autoblock">Mengaktifkan blokir otomatis</string>
+  <string name="block-email">Blokir surel</string>
+  <string name="block-usertalk">Pembicaraan</string>
+  <string name="block-usercontribs">Kontribusi</string>
+  <string name="block-blockloglabel">Log pemblokiran:</string>
+  <string name="block-warnloglabel">Peringatan:</string>
+  <string name="block-sharedipwarning">Catatan: $1 ditandai sebagai alamat IP yang bersama atau dinamis.</string>
+  <string name="block-rangeblockwarning">$1 sudah terkena pemblokiran rentang pada $2.\nPemblokiran ini akan menggantikan efek pemblokiran rentang. Lanjutkan?</string>
+  <string name="block-token-1">Mengambil token untuk memblokir $1</string>
+  <string name="block-fail">Tidak dapat memblokir pengguna, $1</string>
+  <string name="block-token-e1">Token tidak dapat diambil: $1</string>
+  <string name="block-error-no-info" fuzzy="true">Tidak informasi pengguna dalam permintaan (apakah anda pengurus?)</string>
+  <string name="block-type">Memblokir/membuka blokir</string>
+  <string name="block-admin" fuzzy="true">Pengurus pemblokir</string>
+  <string name="block-none" fuzzy="true">Tidak pengguna untuk diblokir.</string>
+  <string name="contribution-browser-user-info">Menampilkan kontribusi terkini pengguna $1</string>
+  <string name="config-function">Fungsi</string>
+  <string name="config-description">Deskripsi</string>
+  <string name="config-shortcut">Jalan pintas</string>
+  <string name="config-queue-filter-ignore">Abaikan (tidak masalah)</string>
+  <string name="config-queue-filter-exclude">Kecuali (tidak harus)</string>
+  <string name="config-queue-filter-require">Dibutuhkan (harus)</string>
+  <string name="config-summ">Ringkasan pembalikan tersuai untuk templat</string>
+  <string name="config-title">Pilihan</string>
+  <string name="config-already-in-use">Jalan pintas ini sudah digunakan oleh $1, silakan pilih yang berbeda</string>
+  <string name="config-openinbrowser">Buka pranala peramban di jendela peramban baru</string>
+  <string name="config-shownewedits">Tampilkan suntingan baru untuk halaman yang dipilih seperti yang dibuat</string>
+  <string name="config-ircmode">Gunakan umpan IRC untuk perubahan terbaru jika memungkinkan</string>
+  <string name="config-ircport">Porta IRC</string>
+  <string name="config-difffontsize">Perbedaan ukuran huruf</string>
+  <string name="config-logfile">Berkas log</string>
+  <string name="config-viewlocalconfig">Lihat konfigurasi lokal folder</string>
+  <string name="config-trayicon">Tampilkan baki ikon</string>
+  <string name="config-startupmessage">Tampilkan pesan pembuka</string>
+  <string name="config-shownewmessages">Tampilkan bar pesan baru</string>
+  <string name="config-shortcutlist">Pintasan papan tombol</string>
+  <string name="config-shortcutaction">Tindakan</string>
+  <string name="config-changeshortcut">Ubah pintasan $1</string>
+  <string name="config-noshortcut">Tidak ada</string>
+  <string name="config-defaults">Baku</string>
+  <string name="config-minor">Tandakan sebagai suntingan kecil</string>
+  <string name="config-ip">Pengguna anonim (pengguna IP)</string>
+  <string name="config-watchlist">Tambahkan ke daftar pantauan</string>
+  <string name="config-defaultsummary">Ringkasan baku untuk suntingan manual</string>
+  <string name="config-undosummary">Ringkasan ketika membalikkan suntingan sendiri</string>
+  <string name="config-confirm-user">Perlu konfirmasi untuk mengembalikan suntingan yang dibuat dalam ruang pengguna</string>
+  <string name="config-confirm-wl">Perlu konfirmasi untuk mengembalikan suntingan yang dibuat oleh pengguna yang masuk daftar putih</string>
+  <string name="config-confirm-talk">Perlu konfirmasi untuk mengembalikan halaman pembicaraan</string>
+  <string name="config-use-rollback">Gunakan pengembalian perangkat lunak</string>
+  <string name="config-welcome-empty-page">Kirim ucapan selamat datang kepada pengguna dengan halaman pembicaraan kosong atas suntingan bagusnya</string>
+  <string name="config-conflicts-revert" fuzzy="true">Selesaikan konflik secara otomatis dengan pengguna-pengguna lain yang membalikkan atau mengedit halaman tersebut</string>
+  <string name="config-instant-reverts">Gunakan pengembalian segera (sangat cepat tetapi tidak bisa dibatalkan dalam sekali perlakuan)</string>
+  <string name="config-revert-wait" fuzzy="true">Waktu tunggu pembalikan (detik)</string>
+  <string name="config-revert">Batalkan</string>
+  <string name="config-skip">Lewati</string>
+  <string name="config-revert-diff">Batalkan suntingan ke halaman yang lebih baru daripada yang ditampilkan oleh perbedaan (diff) jika suntingan itu dibuat oleh pengguna vandalisme yang sama</string>
+  <string name="config-change-all">Ubah semua pengaturan Huggle untuk bekerja seperti Huggle 2</string>
+  <string name="config-merge-messages">Gabungkan pesan-pesan Anda dengan pesan lain dalam bagian yang ada</string>
+  <string name="config-months-name">Gunakan bulan sebagai judul kepada alih-alih nama halaman</string>
+  <string name="config-automatic-warning">Gunakan jenis dan tingkat peringatan otomatis pada fungsi \"kirimkan peringatan\"</string>
+  <string name="config-enable-irc">Aktifkan IRC</string>
+  <string name="config-remove-reverted" fuzzy="true">Hapus suntingan yang sudah dibalikkan oleh pengguna lain</string>
+  <string name="config-remove-old" fuzzy="true">Hapus suntingan lain jika suntingan baru pada halaman yang sama terurai</string>
+  <string name="config-auto-load-history">Muat sejarah dan informasi pengguna secara otomatis (membutuhkan banyak bandwidth jaringan)</string>
+  <string name="config-last-revision" fuzzy="true">Tampilkan revisi terakhir halaman jika suntingan yang termuat saat ini bukan revisi terbaru (akan diunduh tanpa tembolok)</string>
+  <string name="config-wait-edit">Penundaan, dalam detik, hingga fitus tulis diaktifkan:</string>
+  <string name="config-retrieve-edit">Ambil suntingan sendiri</string>
+  <string name="config-nothing">Tidak ada</string>
+  <string name="config-bot-edits">Suntingan bot (b)</string>
+  <string name="config-own-edits">Suntingan sendiri</string>
+  <string name="config-reverts">Batalkan</string>
+  <string name="config-new-page">Halaman baru</string>
+  <string name="config-whitelisted">Daftar putih</string>
+  <string name="config-friend">Teman</string>
+  <string name="config-userspace">Ruang nama pengguna</string>
+  <string name="config-talk">Halaman pembicaraan</string>
+  <string name="config-warning-api">Tampilkan peringatan untuk kueri API</string>
+  <string name="config-updates">Periksa pembaruan</string>
+  <string name="config-beta">Periksa versi beta</string>
+  <string name="config-html-messages" fuzzy="true">HAN dapat merender pesan HTML (berbahaya)</string>
+  <string name="config-close-without">Tutup tanpa menyimpan</string>
+  <string name="config-userollback">Gunakan pengembalian jika tersedia</string>
+  <string name="config-reportnone">Jangan lakukan apa pun</string>
+  <string name="config-templates">Templat pesan pengguna</string>
+  <string name="config-templatetext">Tampilkan teks</string>
+  <string name="config-template">Templat</string>
+  <string name="config-blockreason">Alasan pemblokiran baku</string>
+  <string name="config-blocktime" fuzzy="true">Durasi pemblokiran baku selama</string>
+  <string name="config-blocktimeanon">pengguna anonim</string>
+  <string name="config-blocktimereg">pengguna terdaftar</string>
+  <string name="config-summaryprompt">Masukan ringkasan</string>
+  <string name="config-history">Unduh seluruh riwayat dari semua artikel</string>
+  <string name="config-defaultsprompt">Kembalikan ke semula?</string>
+  <string name="config-logbrowsetitle">Lokasi file log</string>
+  <string name="config-notify-update">Periksa pembaruan</string>
+  <string name="delete-title">Hapus $1</string>
+  <string name="delete-reason">Alasan:</string>
+  <string name="delete-deletionlog">Log penghapusan:</string>
+  <string name="delete-rem-talk">Hapus pembicaraan terkait</string>
+  <string name="delete-notify">Beri tahu pembuat</string>
+  <string name="delete-failed-no-info" fuzzy="true">Tidak ada informasi pengguna dalam permintaan (apakah anda pengurus?)</string>
+  <string name="extension-kl">Tidak bekerja</string>
+  <string name="extension-ok">Memuat tidak bekerja</string>
+  <string name="historyform-no-info">Tidak ada info suntingan</string>
+  <string name="historyform-title">Riwayat</string>
+  <string name="historyform-retrieve-history">Lihat riwayat</string>
+  <string name="historyform-retrieving-history">Mengambil riwayat</string>
+  <string name="history-error-message-title">Tidak bisa membatalkan</string>
+  <string name="userhistory-title">Riwayat perubahan Anda</string>
+  <string name="login-tab-botp">Kata sandi bot</string>
+  <string name="login-tab-login" fuzzy="true">Masuk log</string>
+  <string name="login-language">Bahasa:</string>
+  <string name="login-project">Proyek:</string>
+  <string name="login-username">Nama pengguna:</string>
+  <string name="login-password">Kata sandi:</string>
+  <string name="login-proxygroup">Pengaturan proxy</string>
+  <string name="login-proxy" fuzzy="true">Gunakan proksi peladen</string>
+  <string name="login-proxyaddress">Alamat:</string>
+  <string name="login-proxy-remember-this">Ingat pengaturan ini untuk waktu yang akan datang</string>
+  <string name="login-proxyport">Port:</string>
+  <string name="login-proxydomain">Domain:</string>
+  <string name="login-start">Masuk log</string>
+  <string name="login-oauth-notsupported">Metode ini belum didukung saat ini</string>
+  <string name="login-translate">Terjemahkan Huggle</string>
+  <string name="login-progress-start" fuzzy="true">Masuk log sebagai $1</string>
+  <string name="login-progress-retrieve-mw">Mengambil informasi tentang MediaWiki untuk $1</string>
+  <string name="login-progress-language">Memperbarui berkas pesan...</string>
+  <string name="login-progress-config">Memeriksa halaman konfigurasi...</string>
+  <string name="login-progress-local">Memerisa konfigurasi lokal untuk $1</string>
+  <string name="login-progress-user">Memeriksa konfigurasi pengguna untuk $1</string>
+  <string name="login-progress-user-info">Memeriksa info pengguna untuk $1</string>
+  <string name="login-progress-whitelist">Mengambil daftar putih pengguna...</string>
+  <string name="login-remember-password">Ingat kata sandi</string>
+  <string name="login-ssl" fuzzy="true">Gunakan HTTPS (memerlukan OpenSSL)</string>
+  <string name="login-fail">Masuk log gagal pada $1</string>
+  <string name="login-error-admin">Penggunaan Huggle di proyek ini memerlukan akun pengurus.</string>
+  <string name="login-error-cancelled">Telah dibatalkan</string>
+  <string name="login-error-invalid">Nama pengguna tidak sah</string>
+  <string name="login-error-nouser">Pengguna tidak ada</string>
+  <string name="login-error-password">Kata sandi salah</string>
+  <string name="main-menu-provider-stop">Hentikan penyedia</string>
+  <string name="main-page">Halaman</string>
+  <string name="main-user">Pengguna</string>
+  <string name="main-contribs">Kontribusi</string>
+  <string name="main-history">Riwayat</string>
+  <string name="main-system">Sistem</string>
+  <string name="main-system-messages">Tampilkan pesan baru</string>
+  <string name="main-system-reconnectirc">Hubungkan kembali umpan IRC</string>
+  <string name="main-system-savelog">Menyimpan catatan (log)...</string>
+  <string name="main-system-statistics">Statistik...</string>
+  <string name="main-system-showqueue">Tampilkan antrean</string>
+  <string name="main-system-options">Pilihan...</string>
+  <string name="main-system-logout">Keluar log</string>
+  <string name="main-system-abort">Batalkan</string>
+  <string name="main-system-change-provider">Ubah penyedia</string>
+  <string name="main-system-change-provider-irc">IRC</string>
+  <string name="main-system-change-provider-wiki">Wiki</string>
+  <string name="main-system-exit">Keluar</string>
+  <string name="main-queue">Antrean</string>
+  <string name="main-queue-next">Selanjutnya</string>
+  <string name="main-queue-reset">Atur ulang</string>
+  <string name="main-queue-clearall">Hapus semua</string>
+  <string name="main-queue-options">Mengelola antrean...</string>
+  <string name="main-goto">Pergi ke</string>
+  <string name="main-goto-mytalk">Halaman pembicaraan saya</string>
+  <string name="main-goto-mycontribs">Kontribusi saya</string>
+  <string name="main-revision-decline">Tolak revisi</string>
+  <string name="main-revision">Revisi</string>
+  <string name="main-revision-view">Tampilan</string>
+  <string name="main-revision-revert">Kembalikan suntingan yang ditampilkan sekarang</string>
+  <string name="main-revision-rv-stay">Kembalikan suntingan dan tetap di halaman ini</string>
+  <string name="main-revision-previous">Sebelumnya</string>
+  <string name="main-revision-next">Berikutnya</string>
+  <string name="main-revision-latest">Terakhir</string>
+  <string name="main-tools">Peralatan</string>
+  <string name="main-tools-sess">Tampilkan sesi data</string>
+  <string name="main-page-next">Selanjutnya</string>
+  <string name="main-page-switchtoarticle">Alih ke artikel</string>
+  <string name="main-page-viewlatest">Lihat revisi terakhir</string>
+  <string name="main-page-history">Mengambil riwayat</string>
+  <string name="main-page-historypage">Lihat riwayat</string>
+  <string name="main-page-edit">Sunting halaman dalam browser</string>
+  <string name="main-page-tag">Tag</string>
+  <string name="main-page-reqdeletion">Minta penghapusan cepat</string>
+  <string name="main-page-reqprotection">Minta perlindungan halaman</string>
+  <string name="main-page-watch">Pantau</string>
+  <string name="main-page-unwatch">Batal pantau</string>
+  <string name="main-page-purge">Bersihkan</string>
+  <string name="main-page-curr-disp">Ditampilkan saat ini</string>
+  <string name="main-page-display">Tampilkan halaman ini</string>
+  <string name="main-page-patrol">Tandai telah dipatroli</string>
+  <string name="main-page-move">Pindahkan...</string>
+  <string name="main-page-protect">Lindungi</string>
+  <string name="main-page-delete">Hapus</string>
+  <string name="main-page-load">Memuat</string>
+  <string name="main-page-restore">Kembalikan revisi ini</string>
+  <string name="main-user-info">Tampilkan info pengguna</string>
+  <string name="main-user-ignore">Abaikan</string>
+  <string name="main-user-talk">Lihat halaman pembicaraan</string>
+  <string name="main-user-message">Memberi pesan...</string>
+  <string name="main-user-warn">Memperingati...</string>
+  <string name="main-user-report">Laporkan</string>
+  <string name="main-user-block">Blokir...</string>
+  <string name="main-browser-back">Kembali</string>
+  <string name="main-browser-forward">Teruskan</string>
+  <string name="main-han">HAN</string>
+  <string name="main-han-disconnect">Putuskan</string>
+  <string name="main-han-connect">Hubungkan</string>
+  <string name="main-help">Bantuan</string>
+  <string name="main-han-display-bot-data">Tampilkan data bot</string>
+  <string name="main-han-display-user-messages">Tampilkan pesan pengguna</string>
+  <string name="main-han-display-user-data">Tampilkan data pengguna</string>
+  <string name="main-help-documentation">Dokumentasi</string>
+  <string name="main-help-feedback">Umpan balik</string>
+  <string name="main-help-about">Tentang Huggle</string>
+  <string name="main-addqueue">Tambahkan...</string>
+  <string name="main-savelogtitle">Simpan catatan (log)</string>
+  <string name="main-usermessageother">Pesan lain...</string>
+  <string name="main-advanced">Lanjutan...</string>
+  <string name="main-stats">$1 suntingan per menit, $2 pengembalian per menit</string>
+  <string name="main-display-session-data">Tampilkan sesi data</string>
+  <string name="main-display-whitelist">Tampilkan daftar putih</string>
+  <string name="main-tip-pagetagdelete">Nominasikan halaman ini untuk penghapusan</string>
+  <string name="main-tip-pagedelete">Hapus halaman ini</string>
+  <string name="main-tip-userreport">Laporkan pengguna ini</string>
+  <string name="main-tip-userblock">Blokir pengguna ini</string>
+  <string name="main-revision-acceptpend">Terima perubahan tertunda ini</string>
+  <string name="main-revert-newpage-title">Tidak dapat mengembalikan ini</string>
+  <string name="message-title">Pesan $1</string>
+  <string name="message-subject">Subyek:</string>
+  <string name="message-message">Pesan:</string>
+  <string name="message-summary">Ringkasan:</string>
+  <string name="protect-reason">Alasan:</string>
+  <string name="protect-expiry">Kadaluarsa:</string>
+  <string name="protect-log">Log pelindungan:</string>
+  <string name="protect-currentlevel">Level perlindungan saat ini</string>
+  <string name="protect-type">Jenis perlindungan:</string>
+  <string name="protect-none">Tidak ada</string>
+  <string name="protect-semiprotection">Perlindungan semi</string>
+  <string name="protect-fullprotection">Perlindungan penuh</string>
+  <string name="protect-message-title-fail">Tidak dapat melindungi</string>
+  <string name="queue-title">Antrean</string>
+  <string name="queue-queues">Antrean:</string>
+  <string name="queue-listselector">Daftar</string>
+  <string name="queue-diffsgroup">Beda</string>
+  <string name="queue-namespaces">Ruangnama</string>
+  <string name="queue-filternewpage">Halaman baru</string>
+  <string name="queue-filteranonymous">Pengguna anonim</string>
+  <string name="queue-filterreverts">Batalkan</string>
+  <string name="queue-filternotifications">Pemberitahuan</string>
+  <string name="queue-filterwarnings">Peringatan</string>
+  <string name="queue-filtertags">Penanda</string>
+  <string name="queue-filterbot">Suntingan bot</string>
+  <string name="queue-filterhuggle">Suntingan Huggle</string>
+  <string name="queue-filterme">Suntingan saya</string>
+  <string name="report-title">Laporkan $1</string>
+  <string name="report-reason">Alasan:</string>
+  <string name="report-message">Pesan:</string>
+  <string name="report-write">Menulis</string>
+  <string name="report-done">Telah dilaporkan</string>
+  <string name="report-user">Laporan</string>
+  <string name="score-score">Nilai</string>
+  <string name="score-word">Kata</string>
+  <string name="score-range">Rentang</string>
+  <string name="score-only-whole-word">Hanya cocokkan dengan keseluruhan kata</string>
+  <string name="score-take-any-word">Cocokkan segala kata yang berisi string ini</string>
+  <string name="shortcut-browser-close-tab">Menutup browser tab</string>
+  <string name="shortcut-tab">Buka tab baru</string>
+  <string name="projects">Proyek</string>
+  <string name="login-no-userinfo">Situs tidak mengembalikan setiap informasi pengguna</string>
+  <string name="login-invalid-register-date" fuzzy="true">Tanggal pendaftaran tidak valid, dikembalikan oleh mediawiki</string>
+  <string name="login-no-site-info-returned">Tidak ada situs Info dikembalikan untuk wiki ini</string>
+  <string name="loading-main-window" fuzzy="true">Memuat jendela Huggle utama</string>
+  <string name="login-username-doesnt-exist">Nama pengguna ini tidak ada</string>
+  <string name="developer-mode-enter-title">Kapan</string>
+  <string name="developer-mode-enter-message" fuzzy="true">anda memasuki mode pengembang!</string>
+  <string name="unimplemented" fuzzy="true">Fitur ini belum diimplementasikan</string>
+  <string name="unknown-item">hal tidak dikenal</string>
+  <string name="title-multiple-projects">beberapa proyek ($1)</string>
+  <string name="title-on">di $1</string>
+  <string name="main-revert-custom-reason-text">Tidak ada alasan diberikan</string>
+  <string name="main-revert-already-pending-title">Perubahan ini sudah dikembalikan</string>
+  <string name="main-revert-already-pending-text">nda tidak dapat kembali mengedit ini, karena itu sudah dipulihkan kembali. Mohon tunggu!</string>
+  <string name="main-revert-type-unknown">tidak diketahui</string>
+  <string name="main-revert-type-in-userspace">di ruang pengguna</string>
+  <string name="main-revert-type-made-by-you">Dibuat oleh Anda</string>
+  <string name="main-revert-type-made-on-talk-page">Dibuat pada halaman bicara</string>
+  <string name="main-revert-type-made-white-list">Dibuat oleh pengguna yang ada di daftar putih</string>
+</resources>

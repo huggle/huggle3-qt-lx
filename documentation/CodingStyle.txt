@@ -191,7 +191,7 @@ libraries as possible. If it's inevitable to use some, make sure that it:
 * Is maintained
 * Supports C++11 and C++14
 * Is open source
-* Works with Qt4 and Qt5
+* Works with Qt5 and newer
 
 Each library is packed both as git submodule and static zip file that contains
 the content of library as a fallback in case that user isn't able to download

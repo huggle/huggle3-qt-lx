@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ProtectPage</class>
+ <widget class="QDialog" name="ProtectPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>399</width>
+    <height>220</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Protect page</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../huggle_res/pictures.qrc">
+    <normaloff>:/huggle/pictures/Resources/huggle3_small.ico</normaloff>:/huggle/pictures/Resources/huggle3_small.ico</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>Protection duration:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QComboBox" name="comboBox_2">
+     <item>
+      <property name="text">
+       <string>3 days</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>1 week</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>2 weeks</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>1 month</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>3 months</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>6 months</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>1 year</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>indefinite</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Protection reason:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QComboBox" name="comboBox">
+     <property name="editable">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+      <string>Protection:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QComboBox" name="comboBox_3">
+     <property name="editable">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="text">
+        <string>Protect</string>
+       </property>
+       <property name="default">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../huggle_res/pictures.qrc"/>
+ </resources>
+ <connections/>
+</ui>

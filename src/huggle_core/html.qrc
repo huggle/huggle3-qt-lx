@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/huggle/resources">
+        <file>Resources/html/Header.html</file>
+        <file>Resources/html/Message.html</file>
+        <file>Resources/Definitions.xml</file>
+        <file>Resources/html/DiffBeginning.html</file>
+        <file>Resources/html/PageEnd.html</file>
+        <file>Resources/html/StopFire.html</file>
+        <file>Resources/html/DiffEnd.html</file>
+        <file>Resources/html/RTL.css</file>
+        <file>Resources/html/empty_tab.html</file>
+        <file>Resources/DefaultConfig.txt</file>
+        <file>Resources/html/dev.html</file>
+        <file>Resources/html/empty.html</file>
+    </qresource>
+</RCC>

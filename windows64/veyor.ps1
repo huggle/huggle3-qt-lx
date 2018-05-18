@@ -33,7 +33,7 @@ param
 (
     [string]$msbuild_path = "C:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild.exe",
     [string]$root_path = $PWD,
-    [string]$qt5_path = "C:\Qt\5.8\msvc2015_64\",
+    [string]$qt5_path = "C:\Qt\5.10\msvc2015_64\",
     #[string]$qt5_path = "D:\libs\Qt\5.9.1\msvc2015_64\",
     [string]$openssl_path = "C:\OpenSSL-Win64",
     [string]$cmake_generator = "Visual Studio 14 2015 Win64",
@@ -96,7 +96,7 @@ if (!(Test-Path "gpl.txt"))
     exit 1
 }
 
-if (!(Test-Path "../huggle/configure.ps1"))
+if (!(Test-Path "../src/huggle_core/configure.ps1"))
 {
     echo "ERROR"
     echo "This isn't a huggle windows folder, you need to run this script from within the ROOT/windows folder"
@@ -148,7 +148,7 @@ echo "OK"
 
 echo "Configuring the project..."
 
-cd ..\huggle
+cd ..\src\huggle_core
 if ($git_enabled -and (Test-Path("..\.git")))
 {
     $rev_list = git rev-list HEAD --count | Out-String
@@ -160,6 +160,7 @@ if ($git_enabled -and (Test-Path("..\.git")))
 {
     echo "build: non-git build (windows)" > version.txt
 }
+
 if (!(Test-Path("definitions.hpp")))
 {
     cp "definitions_prod.hpp" "definitions.hpp"
@@ -173,15 +174,7 @@ cd build
 
 # Hack to fix crappy new cmake
 $ErrorActionPreference = "Continue"
-
-if ($python)
-{
-    cmake ..\..\huggle\ -G "$cmake_generator" -DWEB_ENGINE=true -DPYTHON_BUILD=true -DCMAKE_PREFIX_PATH:STRING=$qt5_path -Wno-dev=true -DHUGGLE_EXT=true -DQT5_BUILD=true $cmake_param
-} else
-{
-    cmake ..\..\huggle\ -G "$cmake_generator" -DWEB_ENGINE=true -DPYTHON_BUILD=false -DCMAKE_PREFIX_PATH:STRING=$qt5_path -Wno-dev=true -DHUGGLE_EXT=true -DQT5_BUILD=true $cmake_param
-}
-
+cmake ..\..\src\ -G "$cmake_generator" -DWEB_ENGINE=true -DPYTHON_BUILD=false -DCMAKE_PREFIX_PATH:STRING=$qt5_path -Wno-dev -DHUGGLE_EXT=true $cmake_param
 $ErrorActionPreference = "Stop"
 
 if ($mingw)
@@ -189,7 +182,7 @@ if ($mingw)
     & mingw32-make.exe
 } else
 {
-    & $msbuild_path "huggle.sln" "/p:Configuration=Release" "/v:minimal"
+    & $msbuild_path "HuggleProject.sln" "/p:Configuration=Release" "/v:minimal"
 }
 cd $root_path
 echo "Preparing the package structure"
@@ -197,25 +190,28 @@ mkdir release | Out-Null
 mkdir release\platforms | Out-Null
 mkdir release\extensions | Out-Null
 cp .\build\Release\*.dll release
+cp .\build\huggle_core\Release\*.dll release
+cp .\build\huggle_ui\Release\*.dll release
+cp .\build\huggle_res\Release\*.dll release
+cp .\build\huggle_l10n\Release\*.dll release
+cp ..\src\scripts\*.js release\extensions
 cp .\build\Release\extensions\*.dll release\extensions
-cp .\build\Release\*.lib release
-cp .\build\Release\huggle.exe release
-if ($python)
-{
-    cp .\build\Release\py_hug.exe release
-}
+cp .\build\huggle\Release\huggle.exe release
+
 # get openssl packs
 local_wget "http://petr.insw.cz/devel/ssl/ssleay32.dll" "ssleay32.dll"
 local_wget "http://petr.insw.cz/devel/ssl/libeay32.dll" "libeay32.dll"
 
 # get the qt
-cp ..\huggle\Resources\huggle.ico huggle.ico
-cp ..\huggle\Resources\huggle.ico release
+cp ..\src\huggle_res\Resources\huggle.ico huggle.ico
+cp ..\src\huggle_res\Resources\huggle.ico release
 cp ssleay32.dll release
 cp libeay32.dll release
 
 # Set the environment variable needed by windeployqt, todo: check if it's already set
 $env:VCINSTALLDIR = $vcinstall_path
 
-Invoke-Expression "$qt5_path\bin\windeployqt.exe release\huggle.exe"
+Invoke-Expression "$qt5_path\bin\windeployqt.exe release\huggle_ui.dll"
 
+# Weird hack needed because qtdeploy has bugs
+cp "$qt5_path\bin\Qt5Multimedia.dll" release\

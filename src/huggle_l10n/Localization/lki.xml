@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Authors:
+* Hosseinblue
+* Lakzon
+-->
+<resources>
+  <string name="name">انگلیسی</string>
+  <string name="isrtl">نادرست</string>
+  <string name="add">افزودن</string>
+  <string name="cancel">ئآهووسانن/لغو</string>
+  <string name="clear">تمیرکردن</string>
+  <string name="close">ئآنیائن-بستِن</string>
+  <string name="continue">ادامه-دؤم گرتن</string>
+  <string name="copy">رونوشت</string>
+  <string name="delete">حۀذف کردن/پاک کردن</string>
+  <string name="deleted">پاک بیا-حذف بی</string>
+  <string name="error">خطا</string>
+  <string name="exit">دةر چئن/خروج</string>
+  <string name="done">انجؤم بی</string>
+  <string name="no">نة-نةخئر</string>
+  <string name="ok">خوو/ باشد</string>
+  <string name="remove">پاکاکردن/حةذف کردن</string>
+  <string name="rename">دووارة نام نیائن</string>
+  <string name="reload">بارگزاری دوواره</string>
+  <string name="project">پروژۀ</string>
+  <string name="result">نتیجه</string>
+  <string name="save">هیشتن(ذخیره)</string>
+  <string name="show">نیشان دائن</string>
+  <string name="no-instant" fuzzy="true">خطای فوری در پروژه $1 فعال نشده‌است، پیام به $2 ارسال نشود، سطح هشدار دیگری را انتخاب کنید</string>
+  <string name="undo">واگردانی/گِلآ دائن</string>
+  <string name="yes">أرێ-بةلئ</string>
+  <string name="editing-page">دەسکاری کردن وەڵگە</string>
+  <string name="agf">واگردانی با فرض حسن نیت و دلیل مشهود</string>
+  <string name="successful">! موفق بی-پیرووز بی</string>
+  <string name="summary">خلاصه</string>
+  <string name="id">id نیشانة</string>
+  <string name="type">نوع</string>
+  <string name="target">هةدةف</string>
+  <string name="user">کاربۀر</string>
+  <string name="size">اندازۀ</string>
+  <string name="date">تاریخ</string>
+  <string name="page">وةڵگە(پەڕە)</string>
+  <string name="time">وةخت</string>
+  <string name="version">نسخه</string>
+  <string name="general-name">نۆم</string>
+  <string name="author">نویسنده</string>
+  <string name="description">توضیحةل</string>
+  <string name="status">وضعیت</string>
+  <string name="link">لینک</string>
+  <string name="reason">دةلیل</string>
+  <string name="diffid">شناسه تفاوت</string>
+  <string name="whitelisted" fuzzy="true">$1 با شماره $2 بر $3 به فهرست سفید افزوده شد</string>
+  <string name="expiry-time">زمان انقضاء</string>
+  <string name="duration">مدت</string>
+  <string name="enable">فعال/کارکةر</string>
+  <string name="disable">ئەژ کار کەتن(غیرفعال‌سازی)</string>
+  <string name="no-token">بدون رمز</string>
+  <string name="flags">پةرچةمةل</string>
+  <string name="browser-none" fuzzy="true">هیچ صفحه‌ای نمایش داده نشد</string>
+  <string name="browser-load" fuzzy="true">بارگیری تفاوت با استفاده از رندر وب، لطفاً صبر کنید....</string>
+  <string name="browser-miss-summ">هیچ خلاصه‌ای ارائه نشده است</string>
+  <string name="browser-diff">تفاوت صفحه:  $1  (امتیاز:  $2 )</string>
+  <string name="browser-fail">ناتوان در بازیابی تفاوت: $1</string>
+  <string name="about-contributors">:کلنگاکرۀل/رشدهندگان</string>
+  <string name="block-not">کاربر بسته نیست</string>
+  <string name="block-title">بستن $1</string>
+  <string name="block-reason">:دةلیل</string>
+  <string name="block-duration">مدت:</string>
+  <string name="block-message">پیام صفحهٔ بحث:</string>
+  <string name="block-message-user">ارسال پیام به کاربر مورد نظر همراه توضیح برای مسدودشدن</string>
+  <string name="block-anononly">بستن کاربرهای ناشناس فقط</string>
+  <string name="block-creation">بستن ایجاد حساب</string>
+  <string name="block-autoblock">فعال کردن‌بستن خودکار</string>
+  <string name="block-email">بستن ایمیل</string>
+  <string name="block-usertalk">گەپ(قسە)</string>
+  <string name="block-usercontribs">هؤمکاریۀل</string>
+  <string name="block-blockloglabel">سیاههٔ بستن:</string>
+  <string name="block-warnloglabel">هشدارها:</string>
+  <string name="block-sharedipwarning">توجه: $1 به عنوان آی‌پی مشترک یا پویا برچسب خورده است.</string>
+  <string name="block-rangeblockwarning">$1 هم‌اکنون نیز تحت تاثیر بندایش بر گستره $2 قرار دارد.\nاین بندایش تاثیر بندایش بر گستره را دور خواهد زد. ادامه خواهید داد؟</string>
+  <string name="block-token-1">گرفتن توکن برای بستن $1</string>
+  <string name="block-fail">ناتوان در مسدود کردن کاربر، $1</string>
+  <string name="block-token-e1">توکن را نمی‌تواند بازیابی کند :$1</string>
+  <string name="block-error-no-info" fuzzy="true">هیچ اطلاعات کاربری در کوئری موجود نبود (آیا شما مدیر هستید؟)</string>
+  <string name="block-type">بستن/بازکردن</string>
+  <string name="block-admin" fuzzy="true">بستن مدیر</string>
+  <string name="block-none" fuzzy="true">هیچ کاربری برای بستن نیست.</string>
+  <string name="config-function">توابع</string>
+  <string name="config-description">توضیحةل</string>
+  <string name="config-shortcut">میانبر</string>
+  <string name="config-queue-filter-ignore">چشم‌پوشی (مهم نیست)</string>
+  <string name="config-queue-filter-exclude">کنار گذاشتن (هرگز نباید باشد)</string>
+  <string name="config-queue-filter-require">لازم (باید باشد)</string>
+  <string name="config-summ">خلاصه ویرایش سفارشی برای الگوها</string>
+  <string name="config-title">اختیارةل</string>
+  <string name="config-already-in-use">این میانبر هم‌اکنون توسط $1 استفاده می‌شود، لطفاً یکی دیگر برگزینید</string>
+  <string name="config-openinbrowser">پیوندهای مرورگر باز در پنجره‌ای نو</string>
+  <string name="config-shownewedits">ویرایش‌های جدید بر نوشتار انتخاب شده را نشان بده</string>
+  <string name="config-ircmode">در صورت امکان از IRC برای تغییرات اخیر بهره بگیر</string>
+  <string name="config-ircport">دەرووازە آی‌آر‌سی</string>
+  <string name="config-difffontsize">اندازهٔ قلم تفاوت</string>
+  <string name="config-logfile">سیاهه پرونده</string>
+  <string name="config-viewlocalconfig">مشاهده پوشه تنظیمات محلی</string>
+  <string name="config-trayicon">نمایش آیکون سینی</string>
+  <string name="config-startupmessage">نمایش پیام هنگام راه‌اندازی</string>
+  <string name="config-shownewmessages">نشان دادن نوار پیام‌های جدید</string>
+  <string name="config-shortcutlist">میانبرهای صفحه‌کلید</string>
+  <string name="config-shortcutaction">کار</string>
+  <string name="config-changeshortcut">گؤەڕانن/تغییر میان‌بر برای $1</string>
+  <string name="config-noshortcut">هؤیچ کام</string>
+  <string name="config-defaults">پیش‌فرضةل</string>
+  <string name="config-minor">نشانه‌گذاری به عنوان جزئی</string>
+  <string name="config-watchlist">افزودن به پی‌گیری‌ها</string>
+  <string name="config-defaultsummary">خلاصه ویرایش پیش‌فرض برای ویرایش‌های دستی</string>
+  <string name="config-undosummary">خلاصه ویرایش برای واگردانی ویرایش‌های خودتان</string>
+  <string name="config-confirm-user">نیاز به تأیید برای واگردانی ویرایشی که در فضای کاربری صورت گرفته‌است</string>
+  <string name="config-confirm-wl">نیاز به تایید برای واگردانی ویرایشی کهتوسط کاربر فهرست سفید انجام شده‌است</string>
+  <string name="config-confirm-talk">نیاز به تأیید برای واگردانی صفحهٔ بحث</string>
+  <string name="config-use-rollback">استفاده از خنثی‌سازی نرم‌افزار</string>
+  <string name="config-welcome-empty-page">ارسال پیام‌های خوش‌آمدگویی به کاربرانی با صفحه بحث خالی بابت ویرایش خوب</string>
+  <string name="config-conflicts-revert" fuzzy="true">خودکار رفع‌کردن ناسازگاری‌ها با دیگر کاربرانی که واگردانی می‌کنند یا صفحه را تغییر می‌دهند</string>
+  <string name="config-instant-reverts">استفاده از واگردانی‌های فوری (بسیار سریع، اما زمانی که اجرا شد نمی‌تواند لغو شود)</string>
+  <string name="config-revert-wait" fuzzy="true">انتظار واگردانی (به ثانیه)</string>
+  <string name="config-revert">واگردانی/گِلآ دائن</string>
+  <string name="config-revert-diff">واگردانی ویرایش‌های تازه‌تر صفحه نسبت به تفاوت نمایش داده‌شده در حالتی که توسط همان کاربر خرابکار صورت گرفته‌باشد</string>
+  <string name="config-change-all" fuzzy="true">تغییر همه تنظیمات هاگل برای بیشتر شبیه هاگل ۲ رفتارکردن</string>
+  <string name="config-merge-messages">ادغام‌کردن پیام‌های شما با دیگران در بخش‌های موجود</string>
+  <string name="config-months-name">استفاده از ماه‌ها به عنوان نام سربرگ جای نام صفحه</string>
+  <string name="config-automatic-warning">استفادهٔ خودکار از نوع هشدار و سطح کارکرد «ارسال هشدار»</string>
+  <string name="config-enable-irc">فعال کردن آی‌آرسی</string>
+  <string name="config-remove-reverted" fuzzy="true">حذف ویرایش‌هایی که از پیش توسط شخص دیگری واگردانی شده‌اند</string>
+  <string name="config-remove-old" fuzzy="true">حذف ویرایش‌های قدیمی اگر ویرایش تازه‌تری در همان صفحه صورت گرفته‌است</string>
+  <string name="config-auto-load-history">فراخوانی خودکار تاریخچه و اطلاعات کاربر (به مقدار زیادی پنهای شبکه نیاز دارد)</string>
+  <string name="config-last-revision" fuzzy="true">نمایش بازبینی آخر از صفحه در حالتی که ویرایش فراخوانی‌شدهٔ جاری بازبینی آخر نیست (پس از گذشتن از نهان‌گاه دریافتش می‌کند)</string>
+  <string name="config-require-delay">به یک تأخیر پس از هر بارگیری از ویرایش بعدی نیاز است، به این دلیل که ممکن نیست از هر ویژگی نوشتن استفاده شود (کاربردی زمانی  که باید اشکال چند فشار صفحه کلید رفع شود)</string>
+  <string name="config-retrieve-edit">بازیابی ویرایش خودتان</string>
+  <string name="config-nothing">هیچ‌چیز</string>
+  <string name="config-bot-edits">ویرایش‌های ربات (ر)</string>
+  <string name="config-own-edits">دةسکاریةل ووِژم</string>
+  <string name="config-reverts">واگردانی/گِلآ دائن</string>
+  <string name="config-new-page">وةڵگة  تازۀ</string>
+  <string name="config-whitelisted">فهرست سفید/چةرمێ</string>
+  <string name="config-friend">دوست</string>
+  <string name="config-userspace">فضای نام کاربر</string>
+  <string name="config-talk">وةڵگة گةپ</string>
+  <string name="config-columns-dynamic" fuzzy="true">پویاساختن ستون‌های فهرست‌ها (بر اساس آیتم‌ها تغییر اندازه می‌دهند) یا تنظیم به صورت دستی (کاربر می‌تواند اندازه آنها را تغییر دهد)</string>
+  <string name="config-message-notification">نمایش یک اطلاعیه زمانی که پیام تازه‌ای در صفحهٔ بحث‌تان دریافت کردید</string>
+  <string name="config-warning-api">نمایش هشدارهای کوئری‌های رابط برنامه‌نویسی</string>
+  <string name="config-updates">بررسی برای به‌روزرسانی‌ها</string>
+  <string name="config-beta">بررسی برای نگارش‌های آزمایشی</string>
+  <string name="config-html-messages" fuzzy="true">اچ‌ای‌ان می‌تواند پیام‌های اچ‌تی‌ام‌ال را اجرا کند (خطرناک است)</string>
+  <string name="config-summary-present">برجسته‌کردن خلاصه زمانی که موجود است جای زمانی که موجود نیست</string>
+  <string name="config-close-without">بستن بدون ذخیره‌سازی</string>
+  <string name="config-confirmmultiple">واگردانی‌های متعدد یک ویرایش توسط همان کاربر را تائید کن</string>
+  <string name="config-confirmsame">تائید واگردانی ویرایش کاربر واگردانی شده</string>
+  <string name="config-confirmselfrevert">تائید واگردانی ویرایش خودم (به جز خنثی‌سازی)</string>
+  <string name="config-confirmwarned">تائید واگردانی ویرایش کاربر هشدار داده‌شده</string>
+  <string name="config-confirmrange" fuzzy="true">تائید واگردانی ویرایش آی‌پی در رنج  /16 مانند کاربر واگردانی شده</string>
+  <string name="config-confirmpage" fuzzy="true">تائید واگردانی صفحات رها شده</string>
+  <string name="config-autoadvance">بعد از واگردانی به ویرایش بعدی برو</string>
+  <string name="config-userollback">استفاده از واگردانی در صورت موجود بودن</string>
+  <string name="config-revertsummaries">برگرداندن خلاصه موجود در منوی</string>
+  <string name="config-extendreports">گسترش گزارش‌ها در پی خرابکاری‌های بیشتر</string>
+  <string name="config-autoreport">هنگامی که در مورد دادن هشدار نهایی به کاربر پرسیده می‌شود</string>
+  <string name="config-reportnone">کاری نکن</string>
+  <string name="config-reportprompt">اعلام آمادگی برای گزارش</string>
+  <string name="config-reportauto">به شکل خودکار موضوع را گزارش کن</string>
+  <string name="config-templates">الگوی پیام‌های کاربر</string>
+  <string name="config-templatetext">نمایش متن</string>
+  <string name="config-template">الگو</string>
+  <string name="config-promptforblock">درخواست برای قطع دسترسی در صورتی که خواسته شد به کاربری هشدار نهایی داده شود</string>
+  <string name="config-blockreason">دلیل پیش‌فرض بستن</string>
+  <string name="config-blocktime" fuzzy="true">طول مدت بستن پیش فرض</string>
+  <string name="config-blocktimeanon"> کاربرۀل ناشنا/نادیاری</string>
+  <string name="config-blocktimereg"> کاربرۀل نام نؤیسی کِریا</string>
+  <string name="config-summaryprompt">ورود توضیحات</string>
+  <string name="config-history">دانلود تمام تاریخچه همهٔ مقالات</string>
+  <string name="config-defaultsprompt">برگرداندن پیش‌فرض‌ها؟</string>
+  <string name="config-logbrowsetitle">موقعیت سیاهه پرونده</string>
+  <string name="config-shortcutconflict">میانبر \' $1 \'در تعارض با میانبر موجود برای\' $1 \' است.</string>
+  <string name="config-no-colon" fuzzy="true">نمی توانید از : در نام صف استفاده کنید</string>
+  <string name="config-notify-update">بررسی برای بروز‌رسانی</string>
+  <string name="config-notify-beta">بررسی برای نسخه های بتا در صورت موجود بودن</string>
+  <string name="delete-title">حذف $1</string>
+  <string name="delete-reason">:دةلیل</string>
+  <string name="delete-deletionlog">سیاههٔ حذف:</string>
+  <string name="delete-rem-talk">حذف کردن بحث مربوط به آن</string>
+  <string name="delete-notify">اطلاع‌رسانی به ایجادکننده</string>
+  <string name="delete-error-token">خطا: دریافت اصالت‌سنج حذف نافرجام ماند. دلیل ذکرشده چنین است:</string>
+  <string name="delete-token01">گرفتن رمز برای حذف $1</string>
+  <string name="delete-token02">هیچ‌گونه توکن توسط کوئری بازگردانده نشد</string>
+  <string name="delete-e1">صفحه قابل حذف‌شدن نیست: $1</string>
+  <string name="delete-e2">نمآوو وةڵگة حةذف کِین</string>
+  <string name="delete-edsc">نمی‌توان صفحه را حذف به دلیل: $1</string>
+  <string name="delete-failed-no-info" fuzzy="true">هیچ اطلاعات صفحه‌ای در این کوئری نیست (آیا مدیر هستید؟)</string>
+  <string name="extension-kl">اجرا نمی‌شود</string>
+  <string name="extension-ok">بارگیری‌شده و در حال اجرا</string>
+  <string name="historyform-no-info">اطلاعات ویرایش وجود ندارد</string>
+  <string name="historyform-title">تاریخچه</string>
+  <string name="historyform-retrieve-history">گرفتن تاریخچه</string>
+  <string name="historyform-retrieving-history">در حال گرفتن تاریخچه</string>
+  <string name="login-tab-login">ڤە نۆم هەتن عادی</string>
+  <string name="login-reload-tool-tip" fuzzy="true">بارگیری دوبارهٔ فهرست پروژه‌های موجود که می‌تواند مورد استفادهٔ هاگل قرار گیرد. در صورتی که هاگل در پروژه‌ای به تازگی فعال شده این گزینه می‌تواند مفید باشد.</string>
+  <string name="login-language">:زوون</string>
+  <string name="login-project">پروژه:</string>
+  <string name="login-username">:نۆم کاربەری</string>
+  <string name="login-password">:رمز</string>
+  <string name="login-proxygroup">تنظیمات پراکسی</string>
+  <string name="login-proxy" fuzzy="true">استفاده از سرور پراکسی</string>
+  <string name="login-proxyaddress">نشانی:</string>
+  <string name="login-proxyport">دەرووازە:</string>
+  <string name="login-proxydomain">دامنه:</string>
+  <string name="login-retrieving-user-conf">واگردانی تنظیمات کاربر</string>
+  <string name="login-fail-css">ورود به سیستم انجام نشد. دریافت پیکربندی کاربر ناممکن بود. Special:MyPage/huggle3.css یافت نشد. آیا Huggle3.css را در فضای کاربری خودتان ساخته‌اید؟</string>
+  <string name="login-fail-enable-true">ورود ناموفق در $1: شما مقدار enable:true را در پیکربندی شخصی خود ندارید.</string>
+  <string name="login-fail-no-info">ورود ناموفق در $1: امکان دریافت اطلاعات کاربر نبود: $2</string>
+  <string name="login-fail-parse-config">ورود ناموفق در $1: قادر به تجزیهٔ پیکربندی کاربر نبود. برای جزئیات بیشتر سیاههٔ اشکال‌زدایی را ببینید.</string>
+  <string name="login-fail-user-data">ورود ناموفق در $1: قادر به دریافت اطلاعات کاربر نبود. پرس‌وجو از API هیچ داده‌ای را برنگرداند.</string>
+  <string name="login-fail-rollback-rights">ورود ناموفق در $1: شما در این پروژه دسترسی واگردانی ندارید.</string>
+  <string name="login-failed-autoconfirm-rights">ورود ناموفق در $1: شما روی این پروژه تأیید خودکار نیستید.</string>
+  <string name="login-failed-edit">ورود ناموفق در $1: ویرایش‌های شما در این پروژه کافی نیست.</string>
+  <string name="login-retrieving-info">دریافت اطلاعات کاربر روی $1</string>
+  <string name="login-password-empty">پسوردی که وارد کرده‌اید خالی است.</string>
+  <string name="login-fail-wrong-name" fuzzy="true">شما هیچ نام کاربری برای لاگین وارد نکرده‌اید</string>
+  <string name="login-api">خطا: api.php با نتیجه‌ای ناشناخته داد: $1</string>
+  <string name="login-start">ڤەنۆم هەتن</string>
+  <string name="login-oauth-notsupported">این روش همکنون پشتیبانی نمی‌شود</string>
+  <string name="login-translate">چاوواشەکِردن هاگل</string>
+  <string name="login-progress-start" fuzzy="true">ورود به $1</string>
+  <string name="login-progress-retrieve-mw">دریافت اطلاعات درباره مدیاویکی برای $1</string>
+  <string name="login-progress-language">به روزرسانی فایل‌های پیام...</string>
+  <string name="login-progress-global">چک کردن تنظیمات کلی...</string>
+  <string name="login-progress-config">چک کردن صفحه تنظیمات...</string>
+  <string name="login-progress-local">بررسی تنظیمات محلی برای $1</string>
+  <string name="login-progress-user">بررسی پیکربندی کاربر برای $1</string>
+  <string name="login-progress-user-info">بررسی اطلاعات کاربر برای $1</string>
+  <string name="login-progress-whitelist">بازیابی کاربر فهرست سفید...</string>
+  <string name="login-remember-password">گذرواژه را به خاطر بسپار</string>
+  <string name="login-ssl" fuzzy="true">اجرای اچ‌تی‌تی‌پی‌اس (openssl نیاز دارد)</string>
+  <string name="login-fail">ثبت ورود در $1 نافرجام ماند</string>
+  <string name="login-error-admin">استفاده از هاگل در این پروژه نیازمند دسترسی مدیریت است.</string>
+  <string name="login-error-age" fuzzy="true">استفاده از هاگل در این پروژه نیازمند حسابی با قدمت حداقل $1 روز است.</string>
+  <string name="login-error-alldisabled">هاگل اکنون در همه پروژه‌ها غیرفعال است.</string>
+  <string name="login-error-approval">استفاده از هاگل در $1 نیازمند تأیید است.</string>
+  <string name="login-error-cancelled">لغو شد.</string>
+  <string name="login-error-config">ثبت ورود نافرجام ماند، امکان تجزیهٔ پیکربندی برای $1 نبود: $2</string>
+  <string name="login-error-count">استفاده از هاگل در این پروژه نیازمند حداقل $1 ویرایش است.</string>
+  <string name="login-error-disabled" fuzzy="true">هاگل برای حساب کاربری شما در $1 فعال نشده است؛ صفحه پیکربندی حساب کاربری را بررسی کنید.</string>
+  <string name="main-system-logout">دەرچێن|خروج</string>
+  <string name="page-tag-nodescription" fuzzy="true">توضیحی برای این برچسب وجود ندارد /:</string>
+</resources>

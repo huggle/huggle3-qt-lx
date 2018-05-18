@@ -1,5 +1,5 @@
 name: huggle
-version: "3.3.4"
+version: "3.4.0"
 summary: Diff browser for MediaWiki based websites intended to deal with vandalism
 description: Diff browser for MediaWiki based websites intended to deal with vandalism
 confinement: strict
@@ -24,12 +24,16 @@ parts:
     plugin: cmake
     configflags:
       - -DQT5_BUILD=true
-      - -DPYTHON_BUILD=true
       - -DLINUX_SNAP=true
       - -DHUGGLE_EXT=true
-    source: huggle/
+    source: src/
     stage-packages:
-      - libpython3.5
+      - libxkbcommon0
+      - ttf-ubuntu-font-family
+      - dmz-cursor-theme
+      - light-themes
+      - locales-all
+      - shared-mime-info
       - libqt5gui5
       - libqt5core5a
       - libqt5webkit5
@@ -41,8 +45,8 @@ parts:
       - libqt5network5
       - libqt5multimediaquick-p5
       - libqt5multimediawidgets5
+      - libqt5xml5
     build-packages:
-      - libpython3-dev
       - libgtk2.0-0
       - libdrm-dev
       - libegl1-mesa-dev

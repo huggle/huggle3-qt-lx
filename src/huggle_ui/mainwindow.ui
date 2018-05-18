@@ -1,0 +1,1166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>794</width>
+    <height>482</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Huggle is loading, please wait</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../huggle_res/pictures.qrc">
+    <normaloff>:/huggle/pictures/Resources/huggle3_small.ico</normaloff>:/huggle/pictures/Resources/huggle3_small.ico</iconset>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>40</width>
+    <height>40</height>
+   </size>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="contextMenuPolicy">
+       <enum>Qt::CustomContextMenu</enum>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <property name="tabsClosable">
+       <bool>false</bool>
+      </property>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>+</string>
+       </attribute>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>794</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <widget class="QMenu" name="menuChange_provider">
+     <property name="title">
+      <string>Change provider</string>
+     </property>
+     <addaction name="actionIRC"/>
+     <addaction name="actionWiki"/>
+     <addaction name="actionXmlRcs"/>
+    </widget>
+    <addaction name="actionPreferences"/>
+    <addaction name="actionReconnect_IRC"/>
+    <addaction name="actionShow_talk"/>
+    <addaction name="actionAbort_2"/>
+    <addaction name="separator"/>
+    <addaction name="menuChange_provider"/>
+    <addaction name="actionStop_provider"/>
+    <addaction name="actionResume_provider"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <widget class="QMenu" name="menuDebug_2">
+     <property name="title">
+      <string>Debug</string>
+     </property>
+     <addaction name="actionResort_queue"/>
+     <addaction name="actionEdit_info"/>
+     <addaction name="actionList_all_QGC_items"/>
+     <addaction name="actionSimulate_message"/>
+     <addaction name="actionHtml_dump"/>
+     <addaction name="actionEnforce_sysop_rights"/>
+     <addaction name="actionRelog"/>
+     <addaction name="actionDryMode"/>
+     <addaction name="actionReload_menus"/>
+     <addaction name="actionVerbosity"/>
+     <addaction name="actionVerbosity_2"/>
+     <addaction name="actionReload_tokens"/>
+     <addaction name="actionLog_out"/>
+     <addaction name="actionPrint_API_for_diff"/>
+     <addaction name="actionCheck_for_dups"/>
+     <addaction name="actionShow_score_debug"/>
+     <addaction name="actionWrite_text_to_HAN"/>
+     <addaction name="actionThrow"/>
+    </widget>
+    <addaction name="actionContents"/>
+    <addaction name="actionIntroduction"/>
+    <addaction name="actionWelcome_page"/>
+    <addaction name="actionQueue_legend"/>
+    <addaction name="separator"/>
+    <addaction name="actionFeedback"/>
+    <addaction name="actionAbout"/>
+    <addaction name="menuDebug_2"/>
+   </widget>
+   <widget class="QMenu" name="menuPage">
+    <property name="title">
+     <string>Page</string>
+    </property>
+    <addaction name="actionRefresh"/>
+    <addaction name="actionNext_2"/>
+    <addaction name="separator"/>
+    <addaction name="actionRevert_currently_displayed_edit"/>
+    <addaction name="actionRevert_currently_displayed_edit_and_stay_on_page"/>
+    <addaction name="actionRevert_currently_displayed_edit_and_warn_the_user"/>
+    <addaction name="actionRevert_currently_displayed_edit_warn_user_and_stay_on_page"/>
+    <addaction name="actionRevert_AGF"/>
+    <addaction name="actionRevert_only_this_revision"/>
+    <addaction name="actionRevert_only_this_revision_assuming_good_faith"/>
+    <addaction name="actionRevert_edit_using_custom_reason"/>
+    <addaction name="actionWarn_the_user"/>
+    <addaction name="separator"/>
+    <addaction name="actionPatrol"/>
+    <addaction name="actionDisplay_this_page_in_browser"/>
+    <addaction name="actionDisplay_this_page"/>
+    <addaction name="actionDisplay_history_in_browser"/>
+    <addaction name="actionEdit_page_in_browser"/>
+    <addaction name="separator"/>
+    <addaction name="actionFlag_as_suspicious_edit"/>
+    <addaction name="actionFlag_as_a_good_edit"/>
+    <addaction name="separator"/>
+    <addaction name="actionTag_2"/>
+    <addaction name="separator"/>
+    <addaction name="actionRequest_speedy_deletion"/>
+    <addaction name="actionDelete"/>
+    <addaction name="separator"/>
+    <addaction name="actionProtect"/>
+    <addaction name="actionRequest_protection"/>
+    <addaction name="actionRestore_this_revision"/>
+    <addaction name="separator"/>
+    <addaction name="actionInsert_page_to_a_watchlist"/>
+    <addaction name="actionRemove_page_from_a_watchlist"/>
+    <addaction name="separator"/>
+    <addaction name="actionClose_current_tab"/>
+    <addaction name="actionOpen_new_tab"/>
+   </widget>
+   <widget class="QMenu" name="menuTools">
+    <property name="title">
+     <string>Tools</string>
+    </property>
+    <addaction name="actionShow_ignore_list_of_current_wiki"/>
+    <addaction name="actionShow_list_of_score_words"/>
+    <addaction name="separator"/>
+    <addaction name="actionDisplay_a_session_data"/>
+    <addaction name="actionDisplay_whitelist"/>
+   </widget>
+   <widget class="QMenu" name="menuUser">
+    <property name="title">
+     <string>User</string>
+    </property>
+    <widget class="QMenu" name="menuManual_template">
+     <property name="title">
+      <string>Manual template</string>
+     </property>
+     <addaction name="actionWarning_1"/>
+     <addaction name="actionWarning_2"/>
+     <addaction name="actionWarning_3"/>
+     <addaction name="actionWarning_4"/>
+     <addaction name="actionFinal"/>
+    </widget>
+    <addaction name="actionIncrease_badness_score_by_20"/>
+    <addaction name="actionDecrease_badness_score_by_20"/>
+    <addaction name="separator"/>
+    <addaction name="actionTalk_page"/>
+    <addaction name="actionUser_page"/>
+    <addaction name="actionClear_talk_page_of_user"/>
+    <addaction name="actionContribution_browser"/>
+    <addaction name="actionUser_contributions"/>
+    <addaction name="separator"/>
+    <addaction name="actionWelcome_user_2"/>
+    <addaction name="separator"/>
+    <addaction name="actionBlock_user"/>
+    <addaction name="separator"/>
+    <addaction name="actionReport_username"/>
+    <addaction name="actionReport_user_2"/>
+    <addaction name="separator"/>
+    <addaction name="menuManual_template"/>
+    <addaction name="actionEdit_user_talk"/>
+    <addaction name="actionPost_a_custom_message"/>
+   </widget>
+   <widget class="QMenu" name="menuQueue">
+    <property name="title">
+     <string>Queue</string>
+    </property>
+    <widget class="QMenu" name="menuWhen_queue_is_full">
+     <property name="title">
+      <string>When queue is full</string>
+     </property>
+     <addaction name="actionStop_feed"/>
+     <addaction name="actionRemove_old_edits"/>
+    </widget>
+    <addaction name="menuWhen_queue_is_full"/>
+    <addaction name="actionClear"/>
+    <addaction name="actionRemove_edits_made_by_whitelisted_users"/>
+    <addaction name="actionDelete_all_edits_with_score_lower_than_200"/>
+   </widget>
+   <widget class="QMenu" name="menuHAN">
+    <property name="title">
+     <string>HAN</string>
+    </property>
+    <addaction name="actionConnect"/>
+    <addaction name="actionDisconnect"/>
+    <addaction name="separator"/>
+    <addaction name="actionDisplay_user_messages"/>
+    <addaction name="actionDisplay_user_data"/>
+    <addaction name="actionDisplay_bot_data"/>
+   </widget>
+   <widget class="QMenu" name="menuGo_to">
+    <property name="title">
+     <string>Go to</string>
+    </property>
+    <addaction name="actionMy_talk_page"/>
+    <addaction name="actionMy_Contributions"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuTools"/>
+   <addaction name="menuPage"/>
+   <addaction name="menuQueue"/>
+   <addaction name="menuHAN"/>
+   <addaction name="menuUser"/>
+   <addaction name="menuGo_to"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <property name="windowTitle">
+    <string>Toolbar</string>
+   </property>
+   <property name="accessibleName">
+    <string>Toolbar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionBack"/>
+   <addaction name="actionForward"/>
+   <addaction name="actionNext"/>
+   <addaction name="separator"/>
+   <addaction name="actionGood_edit"/>
+   <addaction name="actionRevert_and_warn"/>
+   <addaction name="actionRevert"/>
+   <addaction name="actionWarn"/>
+   <addaction name="separator"/>
+   <addaction name="actionWelcome_user"/>
+   <addaction name="actionDisplay_talk"/>
+   <addaction name="actionReport_user"/>
+   <addaction name="actionBlock_user_2"/>
+   <addaction name="separator"/>
+   <addaction name="actionDelete_page"/>
+   <addaction name="actionOpen_in_a_browser"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar">
+   <property name="font">
+    <font>
+     <family>DejaVu Sans Mono</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </widget>
+  <action name="actionPreferences">
+   <property name="text">
+    <string notr="true">Preferences</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string notr="true">Exit</string>
+   </property>
+  </action>
+  <action name="actionContents">
+   <property name="text">
+    <string notr="true">Contents</string>
+   </property>
+   <property name="shortcut">
+    <string>F1</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string notr="true">About</string>
+   </property>
+  </action>
+  <action name="actionRevert_and_warn">
+   <property name="icon">
+    <iconset resource="../huggle_res/pictures.qrc">
+     <normaloff>:/huggle/pictures/Resources/diff-revert-warn.png</normaloff>:/huggle/pictures/Resources/diff-revert-warn.png</iconset>
+   </property>
+   <property name="text">
+    <string notr="true">Revert and warn (Q)</string>
+   </property>
+   <property name="toolTip">
+    <string>Revert and warn (Q)</string>
+   </property>
+  </action>
+  <action name="actionRevert">
+   <property name="icon">
+    <iconset resource="../huggle_res/pictures.qrc">
+     <normaloff>:/huggle/pictures/Resources/diff-revert.png</normaloff>:/huggle/pictures/Resources/diff-revert.png</iconset>
+   </property>
+   <property name="text">
+    <string notr="true">Revert (R)</string>
+   </property>
+   <property name="toolTip">
+    <string>Revert (R)</string>
+   </property>
+  </action>
+  <action name="actionWarn">
+   <property name="icon">
+    <iconset resource="../huggle_res/pictures.qrc">
+     <normaloff>:/huggle/pictures/Resources/user-warn.png</normaloff>:/huggle/pictures/Resources/user-warn.png</iconset>
+   </property>
+   <property name="text">
+    <string notr="true">Warn (W)</string>
+   </property>
+  </action>
+  <action name="actionNext">
+   <property name="icon">
+    <iconset resource="../huggle_res/pictures.qrc">
+     <normaloff>:/huggle/pictures/Resources/diff-next.png</normaloff>:/huggle/pictures/Resources/diff-next.png</iconset>
+   </property>
+   <property name="text">
+    <string notr="true">Next (Space)</string>
+   </property>
+   <property name="toolTip">
+    <string>Next (Space)</string>
+   </property>
+  </action>
+  <action name="actionNext_2">
+   <property name="text">
+    <string notr="true">Next</string>
+   </property>
+   <property name="shortcut">
+    <string>Space</string>
+   </property>
+  </action>
+  <action name="actionRevert_currently_displayed_edit">
+   <property name="text">
+    <string notr="true">Revert currently displayed edit</string>
+   </property>
+   <property name="shortcut">
+    <string>R</string>
+   </property>
+  </action>
+  <action name="actionRevert_currently_displayed_edit_and_warn_the_user">
+   <property name="text">
+    <string notr="true">Revert currently displayed edit and warn the user</string>
+   </property>
+   <property name="shortcut">
+    <string>Q</string>
+   </property>
+  </action>
+  <action name="actionWarn_the_user">
+   <property name="text">
+    <string notr="true">Warn the user</string>
+   </property>
+   <property name="shortcut">
+    <string>W</string>
+   </property>
+  </action>
+  <action name="actionBack">
+   <property name="icon">
+    <iconset resource="../huggle_res/pictures.qrc">
+     <normaloff>:/huggle/pictures/Resources/browser-prev.png</normaloff>:/huggle/pictures/Resources/browser-prev.png</iconset>
+   </property>
+   <property name="text">
+    <string notr="true">Back ( [ )</string>
+   </property>
+   <property name="toolTip">
+    <string>Back ( [ )</string>
+   </property>
+   <property name="shortcut">
+    <string>[</string>
+   </property>
+  </action>
+  <action name="actionForward">
+   <property name="icon">
+    <iconset resource="../huggle_res/pictures.qrc">
+     <normaloff>:/huggle/pictures/Resources/browser-next.png</normaloff>:/huggle/pictures/Resources/browser-next.png</iconset>
+   </property>
+   <property name="text">
+    <string notr="true">Forward ( ])</string>
+   </property>
+   <property name="shortcut">
+    <string>]</string>
+   </property>
+  </action>
+  <action name="actionShow_ignore_list_of_current_wiki">
+   <property name="text">
+    <string notr="true">Show ignore list of current wiki</string>
+   </property>
+  </action>
+  <action name="actionWelcome_user">
+   <property name="icon">
+    <iconset resource="../huggle_res/pictures.qrc">
+     <normaloff>:/huggle/pictures/Resources/user-welcome.png</normaloff>:/huggle/pictures/Resources/user-welcome.png</iconset>
+   </property>
+   <property name="text">
+    <string notr="true">Welcome user (Ctrl-H)</string>
+   </property>
+  </action>
+  <action name="actionOpen_page_in_browser">
+   <property name="text">
+    <string>Open page in browser</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionOpen_in_a_browser">
+   <property name="icon">
+    <iconset resource="../huggle_res/pictures.qrc">
+     <normaloff>:/huggle/pictures/Resources/browser-open.png</normaloff>:/huggle/pictures/Resources/browser-open.png</iconset>
+   </property>
+   <property name="text">
+    <string notr="true">Open in a browser (O)</string>
+   </property>
+  </action>
+  <action name="actionOpen_page_history_in_browser">
+   <property name="text">
+    <string>Open page history in browser</string>
+   </property>
+  </action>
+  <action name="actionIncrease_badness_score_by_20">
+   <property name="text">
+    <string notr="true">Increase badness score</string>
+   </property>
+   <property name="iconText">
+    <string>Increase badness score</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+I</string>
+   </property>
+  </action>
+  <action name="actionDecrease_badness_score_by_20">
+   <property name="text">
+    <string notr="true">Decrease badness score</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+D</string>
+   </property>
+  </action>
+  <action name="actionGood_edit">
+   <property name="icon">
+    <iconset resource="../huggle_res/pictures.qrc">
+     <normaloff>:/huggle/pictures/Resources/sight-and-next.png</normaloff>:/huggle/pictures/Resources/sight-and-next.png</iconset>
+   </property>
+   <property name="text">
+    <string notr="true">Good edit (G)</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::WindowShortcut</enum>
+   </property>
+  </action>
+  <action name="actionTalk_page">
+   <property name="text">
+    <string notr="true">Talk page</string>
+   </property>
+   <property name="shortcut">
+    <string>T</string>
+   </property>
+  </action>
+  <action name="actionUser_page">
+   <property name="text">
+    <string notr="true">User page</string>
+   </property>
+  </action>
+  <action name="actionPatrol">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string notr="true">Patrol</string>
+   </property>
+   <property name="toolTip">
+    <string notr="true">Patrol</string>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionDisplay_this_page_in_browser">
+   <property name="text">
+    <string notr="true">Display this page in browser</string>
+   </property>
+   <property name="shortcut">
+    <string>O</string>
+   </property>
+  </action>
+  <action name="actionDisplay_history_in_browser">
+   <property name="text">
+    <string notr="true">Display history in browser</string>
+   </property>
+   <property name="shortcut">
+    <string>H</string>
+   </property>
+  </action>
+  <action name="actionEdit_page_in_browser">
+   <property name="text">
+    <string notr="true">Edit page in browser</string>
+   </property>
+   <property name="shortcut">
+    <string>E</string>
+   </property>
+  </action>
+  <action name="actionFlag_as_a_good_edit">
+   <property name="text">
+    <string notr="true">Flag as a good edit (this action give -200 score to user)</string>
+   </property>
+   <property name="shortcut">
+    <string>G</string>
+   </property>
+  </action>
+  <action name="actionStop_feed">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string notr="true">Stop feed</string>
+   </property>
+  </action>
+  <action name="actionRemove_old_edits">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string notr="true">Remove old edits</string>
+   </property>
+  </action>
+  <action name="actionQueue">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Queue</string>
+   </property>
+  </action>
+  <action name="actionHistory">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>History logs</string>
+   </property>
+  </action>
+  <action name="actionSystem_log">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>System log</string>
+   </property>
+  </action>
+  <action name="actionProcesses">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Processes</string>
+   </property>
+  </action>
+  <action name="actionTools_dock">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Tools box</string>
+   </property>
+  </action>
+  <action name="actionClear_talk_page_of_user">
+   <property name="text">
+    <string notr="true">Clear talk page of user</string>
+   </property>
+  </action>
+  <action name="actionList_all_QGC_items">
+   <property name="text">
+    <string notr="true">List all QGC items</string>
+   </property>
+  </action>
+  <action name="actionRevert_currently_displayed_edit_and_stay_on_page">
+   <property name="text">
+    <string notr="true">Revert currently displayed edit and stay on page</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+R</string>
+   </property>
+  </action>
+  <action name="actionRevert_currently_displayed_edit_warn_user_and_stay_on_page">
+   <property name="text">
+    <string notr="true">Revert currently displayed edit, warn user and stay on page</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+Q</string>
+   </property>
+  </action>
+  <action name="actionFeedback">
+   <property name="text">
+    <string notr="true">Feedback</string>
+   </property>
+  </action>
+  <action name="actionWelcome_user_2">
+   <property name="text">
+    <string notr="true">Welcome user</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+H</string>
+   </property>
+  </action>
+  <action name="actionReport_user">
+   <property name="icon">
+    <iconset resource="../huggle_res/pictures.qrc">
+     <normaloff>:/huggle/pictures/Resources/user-report.png</normaloff>:/huggle/pictures/Resources/user-report.png</iconset>
+   </property>
+   <property name="text">
+    <string notr="true">Report user (Ctrl+R)</string>
+   </property>
+   <property name="toolTip">
+    <string>Report user (Ctrl+R)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="actionReport_user_2">
+   <property name="text">
+    <string notr="true">Report user</string>
+   </property>
+  </action>
+  <action name="actionClear_template_meta_data">
+   <property name="text">
+    <string notr="true">Clear template meta data</string>
+   </property>
+  </action>
+  <action name="actionWarning_1">
+   <property name="text">
+    <string notr="true">Warning 1</string>
+   </property>
+  </action>
+  <action name="actionWarning_2">
+   <property name="text">
+    <string notr="true">Warning 2</string>
+   </property>
+  </action>
+  <action name="actionWarning_3">
+   <property name="text">
+    <string notr="true">Warning 3</string>
+   </property>
+  </action>
+  <action name="actionWarning_4">
+   <property name="text">
+    <string notr="true">Warning 4</string>
+   </property>
+  </action>
+  <action name="actionEdit_user_talk">
+   <property name="text">
+    <string notr="true">Edit user talk</string>
+   </property>
+  </action>
+  <action name="actionReconnect_IRC">
+   <property name="text">
+    <string notr="true">Reconnect IRC</string>
+   </property>
+  </action>
+  <action name="actionTag_2">
+   <property name="text">
+    <string notr="true">Tag</string>
+   </property>
+  </action>
+  <action name="actionRequest_speedy_deletion">
+   <property name="text">
+    <string notr="true">Request speedy deletion</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionDelete">
+   <property name="text">
+    <string notr="true">Delete</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
+   </property>
+  </action>
+  <action name="actionBlock_user">
+   <property name="text">
+    <string notr="true">Block user</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+B</string>
+   </property>
+  </action>
+  <action name="actionIRC">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string notr="true">IRC</string>
+   </property>
+  </action>
+  <action name="actionWiki">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string notr="true">Wiki</string>
+   </property>
+  </action>
+  <action name="actionShow_talk">
+   <property name="text">
+    <string notr="true">Show talk</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+M</string>
+   </property>
+  </action>
+  <action name="actionProtect">
+   <property name="text">
+    <string notr="true">Protect</string>
+   </property>
+  </action>
+  <action name="actionDisconnect">
+   <property name="text">
+    <string notr="true">Disconnect</string>
+   </property>
+  </action>
+  <action name="actionDisplay_user_messages">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string notr="true">Display user messages</string>
+   </property>
+  </action>
+  <action name="actionDisplay_user_data">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string notr="true">Display user data</string>
+   </property>
+  </action>
+  <action name="actionEdit_info">
+   <property name="text">
+    <string notr="true">Edit info</string>
+   </property>
+  </action>
+  <action name="actionFlag_as_suspicious_edit">
+   <property name="text">
+    <string notr="true">Flag as suspicious edit (this action give +1 score to user)</string>
+   </property>
+   <property name="shortcut">
+    <string>S</string>
+   </property>
+  </action>
+  <action name="actionReport_username">
+   <property name="text">
+    <string notr="true">Report username</string>
+   </property>
+  </action>
+  <action name="actionShow_list_of_score_words">
+   <property name="text">
+    <string notr="true">Show list of score words</string>
+   </property>
+  </action>
+  <action name="actionRevert_AGF">
+   <property name="text">
+    <string notr="true">Revert assuming good faith</string>
+   </property>
+   <property name="shortcut">
+    <string>Y</string>
+   </property>
+  </action>
+  <action name="actionDisplay_a_session_data">
+   <property name="text">
+    <string notr="true">Display a session data</string>
+   </property>
+  </action>
+  <action name="actionDisplay_whitelist">
+   <property name="text">
+    <string notr="true">Display whitelist</string>
+   </property>
+  </action>
+  <action name="actionResort_queue">
+   <property name="text">
+    <string>Resort queue</string>
+   </property>
+  </action>
+  <action name="actionRestore_this_revision">
+   <property name="text">
+    <string>Restore this revision</string>
+   </property>
+  </action>
+  <action name="actionClear">
+   <property name="text">
+    <string>Remove all edits</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Space</string>
+   </property>
+  </action>
+  <action name="actionDelete_page">
+   <property name="icon">
+    <iconset resource="../huggle_res/pictures.qrc">
+     <normaloff>:/huggle/pictures/Resources/page-delete.png</normaloff>:/huggle/pictures/Resources/page-delete.png</iconset>
+   </property>
+   <property name="text">
+    <string>Delete page</string>
+   </property>
+  </action>
+  <action name="actionBlock_user_2">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../huggle_res/pictures.qrc">
+     <normaloff>:/huggle/pictures/Resources/user-block.png</normaloff>:/huggle/pictures/Resources/user-block.png</iconset>
+   </property>
+   <property name="text">
+    <string>Block user</string>
+   </property>
+  </action>
+  <action name="actionDisplay_talk">
+   <property name="icon">
+    <iconset resource="../huggle_res/pictures.qrc">
+     <normaloff>:/huggle/pictures/Resources/user-talk.png</normaloff>:/huggle/pictures/Resources/user-talk.png</iconset>
+   </property>
+   <property name="text">
+    <string>Display talk</string>
+   </property>
+  </action>
+  <action name="actionSimulate_message">
+   <property name="text">
+    <string>Simulate new message info</string>
+   </property>
+  </action>
+  <action name="actionHtml_dump">
+   <property name="text">
+    <string>Dump page</string>
+   </property>
+  </action>
+  <action name="actionEnforce_sysop_rights">
+   <property name="text">
+    <string>Enforce sysop rights</string>
+   </property>
+  </action>
+  <action name="actionConnect">
+   <property name="text">
+    <string>Connect</string>
+   </property>
+  </action>
+  <action name="actionDisplay_bot_data">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Display bot data</string>
+   </property>
+  </action>
+  <action name="actionRequest_protection">
+   <property name="text">
+    <string>Request protection of page</string>
+   </property>
+  </action>
+  <action name="actionRemove_edits_made_by_whitelisted_users">
+   <property name="text">
+    <string>Remove edits made by whitelisted users</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+W</string>
+   </property>
+  </action>
+  <action name="actionDelete_all_edits_with_score_lower_than_200">
+   <property name="text">
+    <string>Delete edits with score lower than -200</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+D</string>
+   </property>
+  </action>
+  <action name="actionRelog">
+   <property name="text">
+    <string>Re_login</string>
+   </property>
+  </action>
+  <action name="actionAbort">
+   <property name="text">
+    <string>Abort</string>
+   </property>
+  </action>
+  <action name="actionAbort_2">
+   <property name="text">
+    <string>Abort</string>
+   </property>
+   <property name="shortcut">
+    <string>Esc</string>
+   </property>
+  </action>
+  <action name="actionUser_contributions">
+   <property name="text">
+    <string>User contributions</string>
+   </property>
+  </action>
+  <action name="actionDisplay_this_page">
+   <property name="text">
+    <string>Display this page</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+O</string>
+   </property>
+  </action>
+  <action name="actionStop_provider">
+   <property name="text">
+    <string>Stop provider</string>
+   </property>
+  </action>
+  <action name="actionResume_provider">
+   <property name="text">
+    <string>Resume provider</string>
+   </property>
+   <property name="visible">
+    <bool>false</bool>
+   </property>
+  </action>
+  <action name="actionDryMode">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>DryMode</string>
+   </property>
+  </action>
+  <action name="actionRevert_only_this_revision">
+   <property name="text">
+    <string>Revert only this revision</string>
+   </property>
+  </action>
+  <action name="actionReload_menus">
+   <property name="text">
+    <string>Reload menus</string>
+   </property>
+  </action>
+  <action name="actionInsert_page_to_a_watchlist">
+   <property name="text">
+    <string>Insert page to a watchlist</string>
+   </property>
+  </action>
+  <action name="actionRemove_page_from_a_watchlist">
+   <property name="text">
+    <string>Remove page from a watchlist</string>
+   </property>
+  </action>
+  <action name="actionMy_talk_page">
+   <property name="text">
+    <string>My talk page</string>
+   </property>
+  </action>
+  <action name="actionMy_Contributions">
+   <property name="text">
+    <string>My Contributions</string>
+   </property>
+  </action>
+  <action name="actionRevert_only_this_revision_assuming_good_faith">
+   <property name="text">
+    <string>Revert only this revision assuming good faith</string>
+   </property>
+  </action>
+  <action name="actionClose_current_tab">
+   <property name="text">
+    <string>Close current tab</string>
+   </property>
+   <property name="toolTip">
+    <string>Close tab</string>
+   </property>
+  </action>
+  <action name="actionOpen_new_tab">
+   <property name="text">
+    <string>Open new tab</string>
+   </property>
+  </action>
+  <action name="actionVerbosity">
+   <property name="text">
+    <string>verbosity--</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+-</string>
+   </property>
+  </action>
+  <action name="actionVerbosity_2">
+   <property name="text">
+    <string>verbosity++</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl++</string>
+   </property>
+  </action>
+  <action name="actionReload_tokens">
+   <property name="text">
+    <string>Reload tokens</string>
+   </property>
+  </action>
+  <action name="actionLog_out">
+   <property name="text">
+    <string>Log out</string>
+   </property>
+  </action>
+  <action name="actionXmlRcs">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>XmlRcs</string>
+   </property>
+  </action>
+  <action name="actionQueue_legend">
+   <property name="text">
+    <string>Queue legend</string>
+   </property>
+  </action>
+  <action name="actionFinal">
+   <property name="text">
+    <string>Final</string>
+   </property>
+  </action>
+  <action name="actionPrint_API_for_diff">
+   <property name="text">
+    <string>Print API for diff</string>
+   </property>
+  </action>
+  <action name="actionContribution_browser">
+   <property name="text">
+    <string>Contribution browser</string>
+   </property>
+  </action>
+  <action name="actionCheck_for_dups">
+   <property name="text">
+    <string>Check for duplicates in current queue</string>
+   </property>
+  </action>
+  <action name="actionIntroduction">
+   <property name="text">
+    <string>Introduction</string>
+   </property>
+  </action>
+  <action name="actionRevert_edit_using_custom_reason">
+   <property name="text">
+    <string>Revert edit using custom reason</string>
+   </property>
+  </action>
+  <action name="actionRefresh">
+   <property name="text">
+    <string>Refresh</string>
+   </property>
+  </action>
+  <action name="actionShow_score_debug">
+   <property name="text">
+    <string>Show score debug</string>
+   </property>
+  </action>
+  <action name="actionPost_a_custom_message">
+   <property name="text">
+    <string>Post a custom message</string>
+   </property>
+  </action>
+  <action name="actionWrite_text_to_HAN">
+   <property name="text">
+    <string>Write text to HAN</string>
+   </property>
+  </action>
+  <action name="actionThrow">
+   <property name="text">
+    <string>Throw</string>
+   </property>
+  </action>
+  <action name="actionWelcome_page">
+   <property name="text">
+    <string>Welcome page</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="../huggle_res/pictures.qrc"/>
+ </resources>
+ <connections/>
+</ui>

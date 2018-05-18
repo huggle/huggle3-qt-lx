@@ -82,7 +82,7 @@ if (!(Test-Path "gpl.txt"))
     exit 1
 }
 
-if (!(Test-Path "../huggle/configure.ps1"))
+if (!(Test-Path "../src/huggle_core/configure.ps1"))
 {
     echo "ERROR"
     echo "This isn't a huggle windows folder, you need to run this script from within the ROOT/windows folder"
@@ -142,7 +142,7 @@ echo "OK"
 
 echo "Configuring the project..."
 
-cd ..\huggle
+cd ..\src
 if ($git_enabled -and (Test-Path("..\.git")))
 {
     $rev_list = git rev-list HEAD --count | Out-String
@@ -154,9 +154,9 @@ if ($git_enabled -and (Test-Path("..\.git")))
 {
     echo "build: non-git build (windows)" > version.txt
 }
-if (!(Test-Path("definitions.hpp")))
+if (!(Test-Path("huggle_core\definitions.hpp")))
 {
-    cp "definitions_prod.hpp" "definitions.hpp"
+    cp "huggle_core\definitions_prod.hpp" "huggle_core\definitions.hpp"
 }
 
 #let's try to invoke cmake now
@@ -166,17 +166,17 @@ mkdir build | Out-Null
 cd build
 if ($python)
 {
-    cmake ..\..\huggle\ -G "$cmake_generator" -DWEB_ENGINE=true -DPYTHON_BUILD=true -DCMAKE_PREFIX_PATH:STRING=$qt5_path -Wno-dev=true -DHUGGLE_EXT=true -DQT5_BUILD=true $cmake_param
+    cmake ..\..\src\ -G "$cmake_generator" -DWEB_ENGINE=true -DPYTHON_BUILD=true -DCMAKE_PREFIX_PATH:STRING=$qt5_path -Wno-dev -DHUGGLE_EXT=true $cmake_param
 } else
 {
-    cmake ..\..\huggle\ -G "$cmake_generator" -DWEB_ENGINE=true -DPYTHON_BUILD=false -DCMAKE_PREFIX_PATH:STRING=$qt5_path -Wno-dev=true -DHUGGLE_EXT=true -DQT5_BUILD=true $cmake_param
+    cmake ..\..\src\ -G "$cmake_generator" -DWEB_ENGINE=true -DPYTHON_BUILD=false -DCMAKE_PREFIX_PATH:STRING=$qt5_path -Wno-dev -DHUGGLE_EXT=true $cmake_param
 }
 if ($mingw)
 {
     & mingw32-make.exe
 } else
 {
-    & $msbuild_path "huggle.sln" "/p:Configuration=Release" "/v:minimal"
+    & $msbuild_path "HuggleProject.sln" "/p:Configuration=Release" "/v:minimal"
 }
 cd $root_path
 echo "Preparing the package structure"
@@ -187,6 +187,7 @@ cp .\build\Release\*.dll release
 cp .\build\Release\extensions\*.dll release\extensions
 cp .\build\Release\*.lib release
 cp .\build\Release\huggle.exe release
+cp ..\src\scripts\*.js release\extensions
 if ($python)
 {
     cp .\build\Release\py_hug.exe release
@@ -200,7 +201,7 @@ cp $openssl_path\bin\libeay32.dll release
 # Set the environment variable needed by windeployqt, todo: check if it's already set
 $env:VCINSTALLDIR = $vcinstall_path
 
-Invoke-Expression "$qt5_path\bin\windeployqt.exe release\huggle.exe"
+Invoke-Expression "$qt5_path\bin\windeployqt.exe release\huggle_ui.dll"
 
 echo "Making package out of this"
 

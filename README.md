@@ -1,7 +1,7 @@
 huggle3-qt-lx
 =============
 
-Huggle 3 is an anti-vandalism tool for use on [Wikipedia](https://wikipedia.org) and other [MediaWiki](https://mediawiki.org) sites, written in C++ (QT framework). It is officialy supported for Windows (2000 or newer), MacOS and Linux (debian/ubuntu).
+Huggle 3 is an anti-vandalism tool for use on [Wikipedia](https://wikipedia.org) and other [MediaWiki](https://mediawiki.org) sites, written in C++ (QT framework). It is officially supported for Windows (2000 or newer), MacOS and Linux (debian/ubuntu).
 
 [![Build Status](https://api.travis-ci.org/huggle/huggle3-qt-lx.png?branch=master)](https://travis-ci.org/huggle/huggle3-qt-lx/)
 [![Build status](https://ci.appveyor.com/api/projects/status/huy2phxnc95m77sl?svg=true)](https://ci.appveyor.com/project/benapetr/huggle3-qt-lx)
@@ -17,16 +17,14 @@ git submodule init
 git submodule update
 ```
 
-If you didn't download this repository using git, there should be a guide on where you can download the libraries from in the respective folders.
+If you did not download this repository using git, there should be a guide on where you can download the libraries from in the respective folders.
 
 Libraries and tools you need to have to build:
 * C++11 compiler
 * [CMake](https://github.com/Kitware/CMake) 2.8.9 or higher is required
-* QT4 sdk (libqt4-dev libqt4-webkit libqt4-network qt4-qmake libqtwebkit-dev libqt4-dev-bin qt4-dev-tools)
-* (optional) QT5 sdk (libqt5webkit5-dev qt5-default qtquick1-5-dev qtlocation5-dev qtsensors5-dev qtscript5-dev qtdeclarative5-dev)
-* (optional) Python (libpython-dev)
+* QT5 sdk (recommended 5.7 or newer, with WebEngine and QJSEngine)
 
-[NEW] It's now possible to use a VirtualBox VM as a portable development environment for Huggle. [» Wiki page](https://github.com/huggle/huggle3-qt-lx/wiki/Portable-development-environment)
+[NEW] It is now possible to use a VirtualBox VM as a portable development environment for Huggle. [» Wiki page](https://github.com/huggle/huggle3-qt-lx/wiki/Portable-development-environment)
 
 Windows
 -------------
@@ -35,17 +33,18 @@ Windows
 Linux
 -------------
 * checkout this repository
-* cd REPO/huggle, execute
+* enter the repository folder, then execute:
 
 ```sh
 # IMPORTANT
 # The --extension option works only if you cloned this repository using git
 # if you downloaded a gzip file, you can only use it after downloading them
 # by hand into 'huggle/extension_list' folder
-./configure --extension --qt4 #you can use --qt5 in case you have it
+./configure --extension --web-engine
 cd huggle_release
 make
 sudo make install
+sudo ldconfig
 ```
 
 MacOS
@@ -54,33 +53,15 @@ MacOS
 
 WebKit vs Chromium
 -------------------
-Qt4 - Qt5.4 supports WebKit, which is a default backend for Huggle. Newer Qt support only Chromium backend (code named WebEngine)
+Qt5.0 - Qt5.4 supports WebKit, which is a default backend for Huggle. Newer Qt support only Chromium backend (code named WebEngine)
 
 If you want to build Huggle with Qt newer than 5.4 you will have to enable it like this:
 
 ```
-./configure --qt5 --web-engine
+./configure --web-engine
 ```
 
 Or alternatively if you are starting cmake by hand, just pass it `-DWEB_ENGINE=true` parameter
-
-Python
-------------
-To enable python engine you need to:
-
-On linux / mac:
-run ./configure with --python option, for example
-```
-./configure --qt5 --python
-```
-Note: you need to have cmake 3.0.0 or newer for this to work
-
-On windows you need to run cmake with -DHUGGLE_PYTHON=TRUE for it to work
-
-Now rebuild Huggle and hope for the best!
-
-If you manage to compile it, you can insert your .py extensions to HUGGLEROOT/extensions, for more
-information ask for help on our irc channel.
 
 Documentation
 =============
