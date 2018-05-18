@@ -315,6 +315,7 @@
   <string name="wikis-db-download-fail">Unable to download a db of wikis: $1</string>
   <string name="no-projects-defined-in-list">There are no projects defined in a list you need to set up some on global wiki</string>
   <string name="api-query-no-data">the api query returned no data</string>
+  <string name="not-implemented">This functionality is not yet implemented. Please contact developers at huggle@lists.wikimedia.org.</string>
   <string name="main-stat">$1 edits per minute, $2 reverts per minute, level $3</string>
   <string name="main-menu-provider-stop">Stop provider</string>
   <string name="main-menu-provider-resume">Resume provider</string>

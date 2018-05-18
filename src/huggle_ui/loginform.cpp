@@ -579,21 +579,20 @@ void LoginForm::performLoginPart2(WikiSite *site)
     this->Statuses[site] = WaitingForToken;
     this->LoginQueries.remove(site);
     query->DecRef();
-    query = new ApiQuery(ActionLogin, site);
+    query = new ApiQuery(ActionClientLogin, site);
     this->LoginQueries.insert(site, query);
-    query->HiddenQuery = true;
+    //query->HiddenQuery = true;
     query->IncRef();
     if (hcfg->SystemConfig_BotPassword)
     {
-        query->Parameters = "lgname=" + QUrl::toPercentEncoding(hcfg->SystemConfig_BotLogin)
-                + "&lgpassword=" + QUrl::toPercentEncoding(hcfg->TemporaryConfig_Password)
-                + "&lgtoken=" + QUrl::toPercentEncoding(token);
+        query->Parameters = "username=" + QUrl::toPercentEncoding(hcfg->SystemConfig_BotLogin)
+                + "&password=" + QUrl::toPercentEncoding(hcfg->TemporaryConfig_Password);
     } else
     {
-        query->Parameters = "lgname=" + QUrl::toPercentEncoding(hcfg->SystemConfig_Username)
-                + "&lgpassword=" + QUrl::toPercentEncoding(hcfg->TemporaryConfig_Password)
-                + "&lgtoken=" + QUrl::toPercentEncoding(token);
+        query->Parameters = "username=" + QUrl::toPercentEncoding(hcfg->SystemConfig_Username)
+                + "&password=" + QUrl::toPercentEncoding(hcfg->TemporaryConfig_Password);
     }
+    query->Parameters = query->Parameters + "&loginreturnurl=http://example.com/&rememberMe=1&logintoken=" + QUrl::toPercentEncoding(token);
     query->UsingPOST = true;
     query->Process();
 }
@@ -1338,9 +1337,10 @@ bool LoginForm::processOutput(WikiSite *site)
     ApiQuery *query = this->LoginQueries[site];
     // Check what the result was
     ApiQueryResult *result = query->GetApiQueryResult();
-    ApiQueryResultNode *ln = result->GetNode("login");
+    ApiQueryResultNode *ln = result->GetNode("clientlogin");
     QString result_code = ln->GetAttribute("result");
     QString reason = ln->GetAttribute("reason");
+    QString status = ln->GetAttribute("status");
     if (result_code.isEmpty())
     {
         this->displayError(_l("api.php-invalid-response"));
@@ -1348,32 +1348,72 @@ bool LoginForm::processOutput(WikiSite *site)
     }
     if (result_code == "Success")
         return true;
-    if (result_code == "EmptyPass")
+
+    if (status == "PASS")
+        return true;
+
+    if (status == "UI")
     {
-        this->displayError(_l("login-password-empty"));
+        // Need a user interaction like captacha or 2FA
+        //QString v_id = ln->ChildNodes.at(0)->GetAttribute("id", "unknown");
+        //if (v_id == "TOTPAuthenticationRequest"){
+        if (true)
+        {
+            // 2FA is requierd (TOTP code needed)
+            QString totp = QInputDialog::getText(this, "Two factor authentification", "Please enter the 2FA code from your device:");
+            query = new ApiQuery(ActionClientLogin, site);
+            //query->HiddenQuery = true;
+            query->IncRef();
+            query->Parameters = "username=" + QUrl::toPercentEncoding(hcfg->SystemConfig_BotLogin)
+                        + "&password=" + QUrl::toPercentEncoding(hcfg->TemporaryConfig_Password)
+                        + "&OATHToken=" + totp +
+                        + "&logintoken=" + QUrl::toPercentEncoding(this->Tokens[site])
+                        + "&logincontinue=1&rememberMe=1";
+            query->UsingPOST = true;
+            query->Process();
+            ApiQueryResult *result = query->GetApiQueryResult();
+            ApiQueryResultNode *ln = result->GetNode("clientlogin");
+        }
         return false;
     }
-    if (result_code == "WrongPass")
+    if (status == "REDIRECT")
     {
-        /// \bug This sometimes doesn't work properly
-        this->ui->lineEdit_password->setFocus();
-        this->displayError(_l("login-error-password"));
+        // Need to login using another web service
+        this->DisplayError(_l("not-implemented"));
         return false;
     }
-    if (result_code == "NoName")
+    if (status == "FAIL")
     {
-        this->displayError(_l("login-fail-wrong-name"));
+        QString message = ln->GetAttribute("message");
+        QString message_code = ln->GetAttribute("messagecode");
+        if (message_code == "wrongpassword")
+        {
+            /// \bug This sometimes doesn't work properly
+            this->ui->lineEdit_password->setFocus();
+            this->DisplayError(_l("login-error-password"));
+            return false;
+        }
+        /// \todo Verify these error codes
+        if (message_code == "EmptyPass")
+        {
+            this->DisplayError(_l("login-password-empty"));
+            return false;
+        }
+        if (message_code == "NoName")
+        {
+            this->DisplayError(_l("login-fail-wrong-name"));
+            return false;
+        }
+        if (message_code == "NotExists")
+        {
+            this->DisplayError(_l("login-username-doesnt-exist"));
+            return false;
+        }
+        if (message.isEmpty())
+            message = message_code;
+        this->DisplayError(_l("login-api", message));
         return false;
     }
-    if (result_code == "NotExists")
-    {
-        this->displayError(_l("login-username-doesnt-exist"));
-        return false;
-    }
-    if (reason.isEmpty())
-        reason = result_code;
-    this->displayError(_l("login-api", reason));
-    return false;
 }
 
 void LoginForm::on_ButtonOK_clicked()

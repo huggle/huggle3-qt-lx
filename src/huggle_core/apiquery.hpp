@@ -32,6 +32,7 @@ namespace Huggle
         ActionCompare,
         ActionQuery,
         ActionLogin,
+        ActionClientLogin,
         ActionLogout,
         //ActionTokens,
         ActionPurge,
