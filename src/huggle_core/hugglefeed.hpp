@@ -44,6 +44,7 @@ namespace Huggle
             static QList<HuggleFeed*> GetProviders();
             static QList<HuggleFeed*> GetProvidersForSite(WikiSite *site);
             static HuggleFeed *GetAlternativeFeedProvider(HuggleFeed *provider);
+            static HuggleFeed *GetProviderByID(WikiSite *site, int id);
 
             HuggleFeed(WikiSite *site);
             virtual ~HuggleFeed();

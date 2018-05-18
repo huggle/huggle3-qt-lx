@@ -21,9 +21,9 @@
 #include "exception.hpp"
 #include "wikipage.hpp"
 
-bool Huggle::Hooks::EditBeforeScore(Huggle::WikiEdit *Edit)
+bool Huggle::Hooks::EditBeforeScore(Huggle::WikiEdit *edit)
 {
-    if (Edit == nullptr)
+    if (edit == nullptr)
         throw new Huggle::NullPointerException("Huggle::WikiEdit *Edit", BOOST_CURRENT_FUNCTION);
 
     bool result = true;
@@ -31,140 +31,140 @@ bool Huggle::Hooks::EditBeforeScore(Huggle::WikiEdit *Edit)
     {
         if (extension->IsWorking())
         {
-            if (!extension->Hook_EditBeforeScore((void*)Edit))
+            if (!extension->Hook_EditBeforeScore((void*)edit))
                 result = false;
         }
     }
     return result;
 }
 
-void Huggle::Hooks::EditPreProcess(Huggle::WikiEdit *Edit)
+void Huggle::Hooks::EditPreProcess(Huggle::WikiEdit *edit)
 {
-    if (Edit == nullptr)
+    if (edit == nullptr)
         throw new Huggle::NullPointerException("Huggle::WikiEdit *Edit", BOOST_CURRENT_FUNCTION);
 
     foreach(Huggle::iExtension *extension, Huggle::Core::HuggleCore->Extensions)
     {
         if (extension->IsWorking())
-            extension->Hook_EditPreProcess((void*)Edit);
+            extension->Hook_EditPreProcess((void*)edit);
     }
     foreach (Script *s, Script::GetScripts())
     {
         if (s->IsWorking())
-            s->Hook_EditPreProcess(Edit);
+            s->Hook_EditPreProcess(edit);
     }
 }
 
-void Huggle::Hooks::EditBeforePostProcess(Huggle::WikiEdit *Edit)
+void Huggle::Hooks::EditBeforePostProcess(Huggle::WikiEdit *edit)
 {
-    if (Edit == nullptr)
+    if (edit == nullptr)
         throw new Huggle::NullPointerException("Huggle::WikiEdit *Edit", BOOST_CURRENT_FUNCTION);
 
     foreach(Huggle::iExtension *extension, Huggle::Core::HuggleCore->Extensions)
     {
         if (extension->IsWorking())
-            extension->Hook_EditBeforePostProcessing((void*)Edit);
+            extension->Hook_EditBeforePostProcessing((void*)edit);
     }
     foreach (Script *s, Script::GetScripts())
     {
         if (s->IsWorking())
-            s->Hook_EditBeforePostProcess(Edit);
+            s->Hook_EditBeforePostProcess(edit);
     }
 }
 
-bool Huggle::Hooks::RevertPreflight(Huggle::WikiEdit *Edit)
+bool Huggle::Hooks::RevertPreflight(Huggle::WikiEdit *edit)
 {
     bool result = true;
     foreach(Huggle::iExtension *extension, Huggle::Core::HuggleCore->Extensions)
     {
         if (extension->IsWorking())
         {
-            if (!extension->Hook_RevertPreflight((void*)Edit))
+            if (!extension->Hook_RevertPreflight((void*)edit))
                 result = false;
         }
     }
     return result;
 }
 
-void Huggle::Hooks::EditPostProcess(Huggle::WikiEdit *Edit)
+void Huggle::Hooks::EditPostProcess(Huggle::WikiEdit *edit)
 {
-    if (Edit == nullptr)
+    if (edit == nullptr)
         throw new NullPointerException("Huggle::WikiEdit *Edit", BOOST_CURRENT_FUNCTION);
 
     foreach(Huggle::iExtension *extension, Huggle::Core::HuggleCore->Extensions)
     {
         if (extension->IsWorking())
-            extension->Hook_EditPostProcess((void*)Edit);
+            extension->Hook_EditPostProcess((void*)edit);
     }
     foreach (Script *s, Script::GetScripts())
     {
         if (s->IsWorking())
-            s->Hook_EditPostProcess(Edit);
+            s->Hook_EditPostProcess(edit);
     }
 }
 
-bool Huggle::Hooks::OnEditLoadToQueue(Huggle::WikiEdit *Edit)
+bool Huggle::Hooks::OnEditLoadToQueue(Huggle::WikiEdit *edit)
 {
     foreach(Huggle::iExtension *extension, Huggle::Core::HuggleCore->Extensions)
     {
         if (extension->IsWorking())
-            if (!extension->Hook_OnEditLoadToQueue((void*)Edit))
+            if (!extension->Hook_OnEditLoadToQueue((void*)edit))
                 return false;
     }
     foreach (Script *s, Script::GetScripts())
     {
         if (s->IsWorking())
-            if (!s->Hook_EditLoadToQueue(Edit))
+            if (!s->Hook_EditLoadToQueue(edit))
                 return false;
     }
     return true;
 }
 
-void Huggle::Hooks::OnGood(Huggle::WikiEdit *Edit)
+void Huggle::Hooks::OnGood(Huggle::WikiEdit *edit)
 {
-    Events::Global->on_WEGood(Edit);
+    Events::Global->on_WEGood(edit);
     foreach(Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
     {
         if (e->IsWorking())
-            e->Hook_GoodEdit((void*)Edit);
+            e->Hook_GoodEdit((void*)edit);
     }
 }
 
-void Huggle::Hooks::OnRevert(Huggle::WikiEdit *Edit)
+void Huggle::Hooks::OnRevert(Huggle::WikiEdit *edit)
 {
-    Events::Global->on_WERevert(Edit);
+    Events::Global->on_WERevert(edit);
 }
 
-bool Huggle::Hooks::EditCheckIfReady(Huggle::WikiEdit *Edit)
+bool Huggle::Hooks::EditCheckIfReady(Huggle::WikiEdit *edit)
 {
     bool result = true;
     foreach(Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
     {
-        if (e->IsWorking() && !e->Hook_EditIsReady((void*)Edit))
+        if (e->IsWorking() && !e->Hook_EditIsReady((void*)edit))
             result = false;
     }
     return result;
 }
 
-void Huggle::Hooks::OnWarning(Huggle::WikiUser *User)
+void Huggle::Hooks::OnWarning(Huggle::WikiUser *user)
 {
-    Events::Global->on_WEWarningSent(User, User->GetWarningLevel());
+    Events::Global->on_WEWarningSent(user, user->GetWarningLevel());
 }
 
-void Huggle::Hooks::Suspicious(Huggle::WikiEdit *Edit)
+void Huggle::Hooks::Suspicious(Huggle::WikiEdit *edit)
 {
-    Events::Global->on_WESuspicious(Edit);
+    Events::Global->on_WESuspicious(edit);
 }
 
-void Huggle::Hooks::BadnessScore(Huggle::WikiUser *User, int Score)
+void Huggle::Hooks::BadnessScore(Huggle::WikiUser *user, int score)
 {
-    if (User == nullptr)
+    if (user == nullptr)
         throw new NullPointerException("Huggle::WikiUser *User", BOOST_CURRENT_FUNCTION);
 
     foreach(Huggle::iExtension *extension, Huggle::Core::HuggleCore->Extensions)
     {
         if (extension->IsWorking())
-            extension->Hook_BadnessScore((void*)User, Score);
+            extension->Hook_BadnessScore((void*)user, score);
     }
 }
 
@@ -177,14 +177,30 @@ void Huggle::Hooks::Shutdown()
     }
 }
 
-Huggle::Message *Huggle::Hooks::MessageUser(Huggle::WikiUser *User, QString Text, QString Title, QString Summary, bool InsertSection, Query *Dependency, bool NoSuffix,
-                                bool SectionKeep, bool Autoremove, QString BaseTimestamp, bool CreateOnly, bool FreshOnly)
+void Huggle::Hooks::FeedProvidersOnInit(Huggle::WikiSite *site)
+{
+    foreach(Huggle::iExtension *extension, Huggle::Core::HuggleCore->Extensions)
+    {
+        if (extension->IsWorking())
+            extension->Hook_FeedProvidersOnInit((void*)site);
+    }
+    foreach (Script *s, Script::GetScripts())
+    {
+        if (s->IsWorking())
+            s->Hook_FeedProvidersOnInit(site);
+    }
+}
+
+Huggle::Message *Huggle::Hooks::MessageUser(Huggle::WikiUser *user, QString text, QString title, QString summary, bool insert_section,
+                                            Query *dependency, bool no_suffix, bool section_keep, bool autoremove,
+                                            QString base_timestamp, bool create_only, bool fresh_only)
 {
     foreach(Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
     {
         if (e->IsWorking())
         {
-            void *result = e->Hook_MessageUser((void*)User, Text, Title, Summary, InsertSection, (void*)Dependency, NoSuffix, SectionKeep, Autoremove, BaseTimestamp, CreateOnly, FreshOnly);
+            void *result = e->Hook_MessageUser((void*)user, text, title, summary, insert_section, (void*)dependency, no_suffix,
+                                               section_keep, autoremove, base_timestamp, create_only, fresh_only);
             if (result != nullptr)
                 return (Huggle::Message*)result;
         }

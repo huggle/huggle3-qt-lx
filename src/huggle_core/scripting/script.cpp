@@ -260,6 +260,15 @@ bool Script::Hook_EditLoadToQueue(WikiEdit *edit)
     return this->executeFunctionAsBool(this->attachedHooks[HUGGLE_SCRIPT_HOOK_EDIT_LOAD_TO_QUEUE], parameters);
 }
 
+void Script::Hook_FeedProvidersOnInit(WikiSite *site)
+{
+    if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_FEED_PROVIDERS_ON_INIT))
+        return;
+    QJSValueList parameters;
+    parameters.append(JSMarshallingHelper::FromSite(site, this->engine));
+    this->executeFunctionAsBool(this->attachedHooks[HUGGLE_SCRIPT_HOOK_FEED_PROVIDERS_ON_INIT], parameters);
+}
+
 void Script::SubscribeHook(int hook, QString function_name)
 {
     if (this->attachedHooks.contains(hook))

@@ -67,6 +67,7 @@ WikiSite::WikiSite(const WikiSite &w)
     this->UserConfig = w.UserConfig;
     this->ProjectConfig = w.ProjectConfig;
     this->WhiteList = w.WhiteList;
+    this->Provider = w.Provider;
 }
 
 WikiSite::WikiSite(WikiSite *w)
@@ -87,6 +88,7 @@ WikiSite::WikiSite(WikiSite *w)
     this->UserConfig = w->UserConfig;
     this->SupportHttps = w->SupportHttps;
     this->ScriptPath = w->ScriptPath;
+    this->Provider = w->Provider;
 }
 
 WikiSite::WikiSite(QString name, QString url)

@@ -19,6 +19,7 @@ namespace Huggle
 {
     class ApiQuery;
     class WikiUser;
+    class WikiSite;
     class WikiEdit;
     class Shortcut;
     class Exception;
@@ -30,29 +31,29 @@ namespace Huggle
     class HUGGLE_EX_CORE Hooks
     {
         public:
-            static bool EditBeforeScore(WikiEdit *Edit);
+            static bool EditBeforeScore(WikiEdit *edit);
             /*!
              * \brief Event that is called after edit pre process
              * \param Edit that was just pre processed
              */
-            static void EditPreProcess(WikiEdit *Edit);
-            static void EditBeforePostProcess(WikiEdit *Edit);
+            static void EditPreProcess(WikiEdit *edit);
+            static void EditBeforePostProcess(WikiEdit *edit);
             /*!
              * \brief Event that is called after edit is post processed by internal edit processor
              * \param Edit was just post processed by huggle internal edit processor
              */
-            static void EditPostProcess(WikiEdit *Edit);
-            static bool OnEditLoadToQueue(WikiEdit *Edit);
+            static void EditPostProcess(WikiEdit *edit);
+            static bool OnEditLoadToQueue(WikiEdit *edit);
             /*!
              * \brief Event that happens when edit is marked as good
              * \param Edit
              */
-            static void OnGood(WikiEdit *Edit);
+            static void OnGood(WikiEdit *edit);
             /*!
              * \brief Event that happens when edit is queued for revert
              * \param Edit
              */
-            static void OnRevert(WikiEdit *Edit);
+            static void OnRevert(WikiEdit *edit);
             /*!
              * \brief Event that checks if edit can be considered processed
              *
@@ -65,27 +66,27 @@ namespace Huggle
              * \param Edit
              * \return
              */
-            static bool EditCheckIfReady(WikiEdit *Edit);
-            static bool RevertPreflight(WikiEdit *Edit);
+            static bool EditCheckIfReady(WikiEdit *edit);
+            static bool RevertPreflight(WikiEdit *edit);
             /*!
              * \brief Event that happens when user attempt to send a warning to editor of page
              * \param User
              */
-            static void OnWarning(WikiUser *User);
+            static void OnWarning(WikiUser *user);
             /*!
              * \brief Event that happens when edit is flagged as suspicious modification
              * \param Edit
              */
-            static void Suspicious(WikiEdit *Edit);
+            static void Suspicious(WikiEdit *edit);
             /*!
              * \brief When the score of user is changed
              * \param User pointer to user whom score is changed
              * \param Score New score of user
              */
-            static void BadnessScore(WikiUser *User, int Score);
-            static Message *MessageUser(WikiUser *User, QString Text, QString Title, QString Summary, bool InsertSection = true,
-                                    Query *Dependency = nullptr, bool NoSuffix = false, bool SectionKeep = false,
-                                    bool Autoremove = true, QString BaseTimestamp = "", bool CreateOnly = false, bool FreshOnly = false);
+            static void BadnessScore(WikiUser *user, int score);
+            static Message *MessageUser(WikiUser *user, QString text, QString title, QString summary, bool insert_section = true,
+                                    Query *dependency = nullptr, bool no_suffix = false, bool section_keep = false,
+                                    bool autoremove = true, QString base_timestamp = "", bool create_only = false, bool fresh_only = false);
             static void WikiUser_Updated(WikiUser *user);
             static void WikiEdit_OnNewHistoryItem(HistoryItem *history_item);
             static void QueryPool_Remove(Query *q);
@@ -97,6 +98,8 @@ namespace Huggle
             static void ShowWarning(QString title, QString message);
             static bool ShowYesNoQuestion(QString title, QString message, bool default_answer);
             static void Shutdown();
+            //! Called on initialization of feed providers
+            static void FeedProvidersOnInit(WikiSite *site);
     };
 }
 

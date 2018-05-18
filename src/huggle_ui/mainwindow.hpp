@@ -113,7 +113,7 @@ namespace Huggle
             ~MainWindow();
             //! Returns true if current page can be edited
             bool BrowserPageIsEditable();
-            void ChangeProvider(WikiSite *site, HuggleFeed *provider);
+            void ChangeProvider(WikiSite *site, int id);
             //! Check if huggle is shutting down or not, in case it is, message box is shown as well
             //! this function should be called before every action user can trigger
             bool CheckExit();
@@ -408,6 +408,7 @@ namespace Huggle
             QString WikiScriptURL();
             QString ProjectURL();
             bool keystrokeCheck(int id);
+            QList<HuggleFeed*> huggleFeeds;
             WikiSite *PreviousSite = nullptr;
             QList<QAction*> RevertAndWarnItems;
             QList<QAction*> RevertItems;

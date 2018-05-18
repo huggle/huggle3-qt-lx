@@ -207,18 +207,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
             menu->addAction(provider_irc);
             menu->addAction(provider_wiki);
         }
-        switch (hcfg->UserConfig->PreferredProvider)
-        {
-            case 0:
-                this->ChangeProvider(site, new HuggleFeedProviderWiki(site));
-                break;
-            case 2:
-                this->ChangeProvider(site, new HuggleFeedProviderXml(site));
-                break;
-            default:
-                this->ChangeProvider(site, new HuggleFeedProviderIRC(site));
-                break;
-        }
+        // Create basic providers
+        this->huggleFeeds.append(new HuggleFeedProviderWiki(site));
+        this->huggleFeeds.append(new HuggleFeedProviderIRC(site));
+        this->huggleFeeds.append(new HuggleFeedProviderXml(site));
+        Hooks::FeedProvidersOnInit(site);
+        this->ChangeProvider(site, hcfg->UserConfig->PreferredProvider);
     }
     if (hcfg->DeveloperMode)
     {
@@ -359,6 +353,12 @@ MainWindow::~MainWindow()
     delete this->fUaaReportForm;
     delete this->ui;
     delete this->tb;
+    if (hcfg)
+    {
+        foreach (WikiSite *site, hcfg->Projects)
+            site->Provider = nullptr;
+    }
+    qDeleteAll(this->huggleFeeds);
 }
 
 void MainWindow::DisplayReportUserWindow(WikiUser *User)
@@ -2208,24 +2208,19 @@ void MainWindow::SwitchAlternativeFeedProvider(WikiSite *site)
 {
     if (site->Provider == nullptr)
     {
-        this->ChangeProvider(site, new HuggleFeedProviderXml(site));
+        this->ChangeProvider(site, HUGGLE_FEED_PROVIDER_XMLRPC);
         return;
     }
-    switch (site->Provider->GetID())
+
+    HuggleFeed *provider = HuggleFeed::GetAlternativeFeedProvider(site->Provider);
+
+    if (!provider)
     {
-        case HUGGLE_FEED_PROVIDER_IRC:
-            // fallback to wiki provider
-            this->ChangeProvider(site, new HuggleFeedProviderWiki(site));
-            return;
-        case HUGGLE_FEED_PROVIDER_WIKI:
-            // no more solutions
-            Syslog::HuggleLogs->ErrorLog("No more solutions for alternative provider for " + site->Name);
-            return;
-        case HUGGLE_FEED_PROVIDER_XMLRPC:
-            // fallback to irc provider
-            this->ChangeProvider(site, new HuggleFeedProviderIRC(site));
-            return;
+        Syslog::HuggleLogs->ErrorLog("No more solutions to find alternative feed provider for site " + site->Name);
+        return;
     }
+
+    this->ChangeProvider(site, provider->GetID());
 }
 
 void MainWindow::RenderPage(QString Page)
@@ -2336,11 +2331,15 @@ void MainWindow::welcomeCurrentUser(QString message)
                           false, false, true, this->CurrentEdit->TPRevBaseTime, create_only);
 }
 
-void MainWindow::ChangeProvider(WikiSite *site, HuggleFeed *provider)
+void MainWindow::ChangeProvider(WikiSite *site, int id)
 {
     if (!this->CheckExit())
+        return;
+
+    HuggleFeed *provider = HuggleFeed::GetProviderByID(site, id);
+    if (!provider)
     {
-        delete provider;
+        HUGGLE_ERROR("Provider not found: id " + QString::number(id));
         return;
     }
 
@@ -2348,9 +2347,6 @@ void MainWindow::ChangeProvider(WikiSite *site, HuggleFeed *provider)
     {
         if (site->Provider->IsWorking())
             site->Provider->Stop();
-        // we should be safe to delete here, although some providers
-        // might need to be checked if they actually stopped :/
-        delete site->Provider;
     }
 
     site->Provider = provider;
@@ -2729,7 +2725,7 @@ void Huggle::MainWindow::on_actionBlock_user_triggered()
 void Huggle::MainWindow::on_actionIRC_triggered()
 {
     WikiSite *site = this->GetCurrentWikiSite();
-    this->ChangeProvider(site, new HuggleFeedProviderIRC(site));
+    this->ChangeProvider(site, HUGGLE_FEED_PROVIDER_IRC);
 }
 
 void Huggle::MainWindow::on_actionWiki_triggered()
@@ -2745,7 +2741,7 @@ void Huggle::MainWindow::on_actionWiki_triggered()
         Syslog::HuggleLogs->Log(_l("irc-stop", this->GetCurrentWikiSite()->Name));
         Sleeper::usleep(200000);
     }
-    this->ChangeProvider(this->GetCurrentWikiSite(), new HuggleFeedProviderWiki(this->GetCurrentWikiSite()));
+    this->ChangeProvider(this->GetCurrentWikiSite(), HUGGLE_FEED_PROVIDER_WIKI);
     this->GetCurrentWikiSite()->Provider->Start();
 }
 
@@ -3133,7 +3129,7 @@ void MainWindow::SetProviderIRC()
     if (!this->ActionSites.contains(action))
         throw new Huggle::Exception("There is no such a site in hash table", BOOST_CURRENT_FUNCTION);
     WikiSite *wiki = this->ActionSites[action];
-    this->ChangeProvider(wiki, new HuggleFeedProviderIRC(wiki));
+    this->ChangeProvider(wiki, HUGGLE_FEED_PROVIDER_IRC);
 }
 
 void MainWindow::SetProviderWiki()
@@ -3142,7 +3138,7 @@ void MainWindow::SetProviderWiki()
     if (!this->ActionSites.contains(action))
         throw new Huggle::Exception("There is no such a site in hash table", BOOST_CURRENT_FUNCTION);
     WikiSite *wiki = this->ActionSites[action];
-    this->ChangeProvider(wiki, new HuggleFeedProviderWiki(wiki));
+    this->ChangeProvider(wiki, HUGGLE_FEED_PROVIDER_WIKI);
 }
 
 void MainWindow::SetProviderXml()
@@ -3151,7 +3147,7 @@ void MainWindow::SetProviderXml()
     if (!this->ActionSites.contains(action))
         throw new Huggle::Exception("There is no such a site in hash table", BOOST_CURRENT_FUNCTION);
     WikiSite *wiki = this->ActionSites[action];
-    this->ChangeProvider(wiki, new HuggleFeedProviderXml(wiki));
+    this->ChangeProvider(wiki, HUGGLE_FEED_PROVIDER_XMLRPC);
 }
 
 void MainWindow::on_actionInsert_page_to_a_watchlist_triggered()
@@ -3274,7 +3270,7 @@ void MainWindow::on_actionReload_tokens_triggered()
 void MainWindow::on_actionXmlRcs_triggered()
 {
     WikiSite *site = this->GetCurrentWikiSite();
-    this->ChangeProvider(site, new HuggleFeedProviderXml(site));
+    this->ChangeProvider(site, HUGGLE_FEED_PROVIDER_XMLRPC);
 }
 
 void MainWindow::OnStatusBarRefreshTimerTick()

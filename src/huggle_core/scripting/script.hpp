@@ -30,12 +30,14 @@
 #define HUGGLE_SCRIPT_HOOK_EDIT_BEFORE_POST_PROCESS             2
 #define HUGGLE_SCRIPT_HOOK_EDIT_POST_PROCESS                    3
 #define HUGGLE_SCRIPT_HOOK_EDIT_LOAD_TO_QUEUE                   4
+#define HUGGLE_SCRIPT_HOOK_FEED_PROVIDERS_ON_INIT               5
 
 namespace Huggle
 {
     class GenericJSClass;
     class Script;
     class WikiEdit;
+    class WikiSite;
     class WikiUser;
     class WikiPage;
     class HUGGLE_EX_CORE ScriptException : public Exception
@@ -81,6 +83,7 @@ namespace Huggle
             void Hook_EditBeforePostProcess(WikiEdit *edit);
             void Hook_EditPostProcess(WikiEdit *edit);
             bool Hook_EditLoadToQueue(WikiEdit *edit);
+            void Hook_FeedProvidersOnInit(WikiSite *site);
             void SubscribeHook(int hook, QString function_name);
             void UnsubscribeHook(int hook);
             bool HookSubscribed(int hook);

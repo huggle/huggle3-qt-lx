@@ -44,6 +44,17 @@ HuggleFeed *HuggleFeed::GetAlternativeFeedProvider(HuggleFeed *provider)
     return nullptr;
 }
 
+HuggleFeed *HuggleFeed::GetProviderByID(WikiSite *site, int id)
+{
+    QList<HuggleFeed*> providers = HuggleFeed::GetProvidersForSite(site);
+    foreach (HuggleFeed *provider, providers)
+    {
+        if (provider->GetID() == id)
+            return provider;
+    }
+    return nullptr;
+}
+
 HuggleFeed::HuggleFeed(WikiSite *site)
 {
     this->statisticsMutex = new QMutex(QMutex::Recursive);
