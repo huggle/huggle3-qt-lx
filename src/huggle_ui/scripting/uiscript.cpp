@@ -71,10 +71,10 @@ void UiScript::Autostart()
             UiScript *script = new UiScript();
             if (script->Load(name, &er))
             {
-                Huggle::Syslog::HuggleLogs->Log("Loaded JS script: " + name);
+                HUGGLE_LOG("Loaded JS script: " + name);
             } else
             {
-                Huggle::Syslog::HuggleLogs->Log("Failed to load a JS script: " + er);
+                HUGGLE_ERROR("Failed to load a JS script: " + er);
                 delete script;
             }
         }

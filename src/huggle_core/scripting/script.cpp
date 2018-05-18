@@ -12,7 +12,7 @@
 
 #include "script.hpp"
 #include "jsmarshallinghelper.hpp"
-#include "genericjsclass.hpp"
+#include "huggleunsafejs.hpp"
 #include "hugglejs.hpp"
 #include "../configuration.hpp"
 #include "../localization.hpp"
@@ -426,6 +426,11 @@ void Script::registerClass(QString name, GenericJSClass *c)
 
 void Script::registerClasses()
 {
+    // Check if extension should have access to extra functions
+    if (this->IsUnsafe())
+    {
+        this->registerClass("huggle_unsafe", new HuggleUnsafeJS(this));
+    }
     this->registerClass("huggle", new HuggleJS(this));
 }
 
