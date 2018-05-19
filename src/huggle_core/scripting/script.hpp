@@ -115,6 +115,7 @@ namespace Huggle
             QString scriptDesc;
             QString scriptAuthor;
             QString scriptVers;
+            QList<GenericJSClass*> classes;
             bool isWorking;
             bool isLoaded;
             bool isUnsafe;

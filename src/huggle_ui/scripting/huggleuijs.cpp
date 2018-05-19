@@ -14,6 +14,7 @@
 #include "uiscript.hpp"
 #include "../uigeneric.hpp"
 #include "../mainwindow.hpp"
+#include <huggle_core/scripting/jsmarshallinghelper.hpp>
 #include <huggle_core/syslog.hpp>
 
 using namespace Huggle;
@@ -24,8 +25,9 @@ HuggleUIJS::HuggleUIJS(Script *s) : GenericJSClass(s)
     this->function_help.insert("render_html", "(string html, [bool lock_page]): Renders html in current tab");
     this->function_help.insert("mainwindow_is_loaded", "(): Returns true if main window is loaded");
     this->function_help.insert("menu_item_set_checked", "(int menu_id, bool state): toggles menu checked state");
+    this->function_help.insert("get_current_wiki_edit", "(): returns a copy of currently displayed edit");
     this->function_help.insert("delete_menu_item", "(int menu_id): remove a menu that was created by this script");
-    this->function_help.insert("create_menu_item", "(int parent, string name, string function_name): Creates a new menu item in main window, "\
+    this->function_help.insert("create_menu_item", "(int parent, string name, string function_name, [bool checkable = false]): Creates a new menu item in main window, "\
                                                                     "this function works only if main window is loaded");
     this->function_help.insert("message_box", "(string title, string text, [int type], [enforce_stop]): Show a message box");
 }
@@ -91,6 +93,7 @@ bool HuggleUIJS::menu_item_set_checked(int menu, bool checked)
     }
 
     this->ui_script->ToggleMenuCheckState(menu, checked);
+    return true;
 }
 
 bool HuggleUIJS::mainwindow_is_loaded()
@@ -124,6 +127,21 @@ bool HuggleUIJS::render_html(QString html, bool lock_page)
         MainWindow::HuggleMain->LockPage();
 
     return true;
+}
+
+QJSValue HuggleUIJS::get_current_wiki_edit()
+{
+    if (!Huggle::MainWindow::HuggleMain)
+    {
+        HUGGLE_ERROR(this->script->GetName() + ": render_html(html): mainwindow is not loaded yet");
+        return QJSValue(false);
+    }
+
+    WikiEdit *edit = Huggle::MainWindow::HuggleMain->GetCurrentWikiEdit();
+    if (!edit)
+        return QJSValue(QJSValue::SpecialValue::NullValue);
+
+    return JSMarshallingHelper::FromEdit(edit, this->GetScript()->GetEngine());
 }
 
 QHash<QString, QString> HuggleUIJS::GetFunctions()

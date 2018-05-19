@@ -16,6 +16,7 @@
 #include <huggle_core/definitions.hpp>
 #include <huggle_core/scripting/genericjsclass.hpp>
 #include <QHash>
+#include <QJSValue>
 
 namespace Huggle
 {
@@ -31,6 +32,7 @@ namespace Huggle
             Q_INVOKABLE bool mainwindow_is_loaded();
             Q_INVOKABLE int message_box(QString title, QString text, int messagebox_type = 0, bool pause = false);
             Q_INVOKABLE bool render_html(QString html, bool lock_page = false);
+            Q_INVOKABLE QJSValue get_current_wiki_edit();
             QHash<QString, QString> GetFunctions();
         private:
             QHash<QString, QString> function_help;

@@ -14,6 +14,7 @@
 #include "jsmarshallinghelper.hpp"
 #include "huggleunsafejs.hpp"
 #include "hugglejs.hpp"
+#include "huggleeditingjs.hpp"
 #include "../configuration.hpp"
 #include "../localization.hpp"
 #include "../resources.hpp"
@@ -80,6 +81,7 @@ Script::~Script()
         Script::loadedPaths.removeAll(this->scriptPath);
     if (this->isLoaded && Script::scripts.contains(this->GetName()))
         Script::scripts.remove(this->scriptName);
+    this->classes.clear();
 }
 
 bool Script::Load(QString path, QString *error)
@@ -423,13 +425,13 @@ QJSValue Script::executeFunction(QString function)
 void Script::registerClass(QString name, GenericJSClass *c)
 {
     QHash<QString, QString> functions = c->GetFunctions();
-
     foreach (QString function, functions.keys())
     {
         this->functionsExported.append(name + "." + function);
         this->functionsHelp.insert(name + "." + function, functions[function]);
     }
-
+    // Register this class for later removal
+    this->classes.append(c);
     this->engine->globalObject().setProperty(name, engine->newQObject(c));
 }
 
@@ -441,6 +443,7 @@ void Script::registerClasses()
         this->registerClass("huggle_unsafe", new HuggleUnsafeJS(this));
     }
     this->registerClass("huggle", new HuggleJS(this));
+    this->registerClass("huggle_editing", new HuggleEditingJS(this));
 }
 
 void Script::registerFunction(QString name, QString help, bool is_unsafe)
