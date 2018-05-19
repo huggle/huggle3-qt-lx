@@ -260,6 +260,12 @@
     <addaction name="actionMy_talk_page"/>
     <addaction name="actionMy_Contributions"/>
    </widget>
+   <widget class="QMenu" name="menuScripting">
+    <property name="title">
+     <string>Scripting</string>
+    </property>
+    <addaction name="actionScripts_manager"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuTools"/>
    <addaction name="menuPage"/>
@@ -267,6 +273,7 @@
    <addaction name="menuHAN"/>
    <addaction name="menuUser"/>
    <addaction name="menuGo_to"/>
+   <addaction name="menuScripting"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -1154,6 +1161,11 @@
   <action name="actionWelcome_page">
    <property name="text">
     <string>Welcome page</string>
+   </property>
+  </action>
+  <action name="actionScripts_manager">
+   <property name="text">
+    <string>Scripts manager</string>
    </property>
   </action>
  </widget>

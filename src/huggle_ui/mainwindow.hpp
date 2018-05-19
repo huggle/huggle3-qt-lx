@@ -32,6 +32,7 @@
 #define HUGGLE_MW_MENU_HAN          6
 #define HUGGLE_MW_MENU_GOTO         7
 #define HUGGLE_MW_MENU_HELP         8
+#define HUGGLE_MW_MENU_SCRIPTING    9
 
 #define HUGGLE_MW_MENUITEM_EXIT     1
 
@@ -78,6 +79,7 @@ namespace Huggle
     class ProtectPage;
     class UAAReport;
     class ScoreWordsDbForm;
+    class ScriptingManager;
     class WaitingForm;
     class WarningList;
     class WLQuery;
@@ -382,6 +384,7 @@ namespace Huggle
             void OnError(QString title, QString text);
             void on_actionThrow_triggered();
             void on_actionWelcome_page_triggered();
+            void on_actionScripts_manager_triggered();
 
         private:
             void closeTab(int tab);
@@ -449,6 +452,7 @@ namespace Huggle
             //! reviewed when it's done (for example when they rollback an edit and they want to
             //! display it, instead of next one)
             WikiPage *OnNext_EvPage = nullptr;
+            ScriptingManager *fScripting = nullptr;
     };
 }
 #endif // MAINWINDOW_H

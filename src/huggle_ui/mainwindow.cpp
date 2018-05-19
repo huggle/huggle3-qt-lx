@@ -24,6 +24,7 @@
 #include "vandalnw.hpp"
 #include "whitelistform.hpp"
 #include "sessionform.hpp"
+#include "scripting/scriptingmanager.hpp"
 #include "historyform.hpp"
 #include "scorewordsdbform.hpp"
 #include "preferences.hpp"
@@ -351,6 +352,7 @@ MainWindow::~MainWindow()
     delete this->fWarningList;
     delete this->fDeleteForm;
     delete this->fUaaReportForm;
+    delete this->fScripting;
     delete this->ui;
     delete this->tb;
     if (hcfg)
@@ -455,6 +457,8 @@ QMenu *MainWindow::GetMenu(int menu_id)
             return this->ui->menuTools;
         case HUGGLE_MW_MENU_HAN:
             return this->ui->menuHAN;
+        case HUGGLE_MW_MENU_SCRIPTING:
+            return this->ui->menuScripting;
         case HUGGLE_MW_MENU_HELP:
             return this->ui->menuHelp;
         default:
@@ -3546,4 +3550,13 @@ void MainWindow::on_actionThrow_triggered()
 void MainWindow::on_actionWelcome_page_triggered()
 {
     this->DisplayWelcomeMessage();
+}
+
+void MainWindow::on_actionScripts_manager_triggered()
+{
+    if (this->fScripting)
+        delete this->fScripting;
+
+    this->fScripting = new ScriptingManager(this);
+    this->fScripting->show();
 }

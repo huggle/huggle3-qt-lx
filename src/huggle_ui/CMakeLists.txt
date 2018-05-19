@@ -31,7 +31,7 @@ include_directories(${QT_INCLUDES})
 
 file(GLOB srcx "*.cpp" "scripting/*.cpp")
 file(GLOB resx "*.qrc")
-file(GLOB uixx "*.ui")
+file(GLOB uixx "*.ui" "scripting/*.ui")
 file(GLOB headers "*.hpp" "scripting/*.hpp")
 
 if (NOT WEB_ENGINE)

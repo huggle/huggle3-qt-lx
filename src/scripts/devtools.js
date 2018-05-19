@@ -74,14 +74,19 @@ function print_help()
 
 function ext_init()
 {
-    // Register hook to run when main window is loaded
-    if (!huggle.register_hook("main_open", "ext_on_main_open"))
+    // Check if main window already exists, if yes, just register menu, if not wait for it
+    if (huggle_ui.mainwindow_is_loaded())
+    {
+        ext_on_main_open()
+    } else if (!huggle.register_hook("main_open", "ext_on_main_open"))
+    {
         return false;
+    }
 
     return true;
 }
 
 function ext_on_main_open()
 {
-    huggle_ui.create_menu_item(huggle_ui_menu_help, "Show scipting manual", "print_help");
+    huggle_ui.create_menu_item(huggle_ui_menu_scripting, "Show scipting manual", "print_help");
 }
