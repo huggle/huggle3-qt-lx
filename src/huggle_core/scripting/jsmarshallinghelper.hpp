@@ -26,12 +26,12 @@ namespace Huggle
     class WikiUser;
     namespace JSMarshallingHelper
     {
-        QJSValue FromSite(WikiSite *site, QJSEngine *engine);
-        QJSValue FromUser(WikiUser *user, QJSEngine *engine);
-        QJSValue FromEdit(WikiEdit *edit, QJSEngine *engine);
-        QJSValue FromPage(WikiPage *page, QJSEngine *engine);
-        QJSValue FromVersion(Version *version, QJSEngine *engine);
-        QJSValue FromNS(WikiPageNS *ns, QJSEngine *engine);
+        HUGGLE_EX_CORE QJSValue FromSite(WikiSite *site, QJSEngine *engine);
+        HUGGLE_EX_CORE QJSValue FromUser(WikiUser *user, QJSEngine *engine);
+        HUGGLE_EX_CORE QJSValue FromEdit(WikiEdit *edit, QJSEngine *engine);
+        HUGGLE_EX_CORE QJSValue FromPage(WikiPage *page, QJSEngine *engine);
+        HUGGLE_EX_CORE QJSValue FromVersion(Version *version, QJSEngine *engine);
+        HUGGLE_EX_CORE QJSValue FromNS(WikiPageNS *ns, QJSEngine *engine);
     }
 }
 
