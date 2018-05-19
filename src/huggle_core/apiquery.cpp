@@ -226,7 +226,7 @@ static void WriteIn(ApiQuery *q, QNetworkReply *reply)
         QList<QByteArray> headerList = reply->rawHeaderList();
         foreach(QByteArray head, headerList)
             header_list += head + ": " + reply->rawHeader(head) + "\n";
-        WriteFile("======================================\n" + QString::number(q->QueryID()) + " IN " + QDateTime::currentDateTime().toString() + "\n======================================\nHEADERS:\n" +
+        WriteFile("======================================\n" + QString::number(q->QueryID()) + " IN " + q->GetSite()->Name + " " + QDateTime::currentDateTime().toString() + "\n======================================\nHEADERS:\n" +
             header_list + "\n\nDATA:\n" + q->Result->Data);
     }
 }
@@ -235,7 +235,7 @@ static void WriteOut(ApiQuery *q, QNetworkRequest *request)
 {
     if (!hcfg->QueryDebugging)
         return;
-    QString id = "======================================\n" + QString::number(q->QueryID()) + " OUT " + QDateTime::currentDateTime().toString() + "\n======================================\n";
+    QString id = "======================================\n" + QString::number(q->QueryID()) + " OUT " + q->GetSite()->Name + " " + QDateTime::currentDateTime().toString() + "\n======================================\n";
     QString header_list;
     QList<QByteArray> headerList = request->rawHeaderList();
     foreach(QByteArray head, headerList)

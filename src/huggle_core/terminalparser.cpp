@@ -271,7 +271,7 @@ void TerminalParser::DisplayHelp()
             "                   developers and people who create localization files\n"\
             "  --dot:           Debug on terminal only mode\n"\
             "  --qd [file]:     Write all transferred data to a file\n"\
-            "  --override-conf [url]:\n"\
+            "  --override-conf [page]:\n"\
             "                   Will override the wiki configuration path, useful for testing of new config\n"\
             "\nPython related:\n"\
             "  --pylibs-dump:   Dump all built-in python libraries to std out\n"\
