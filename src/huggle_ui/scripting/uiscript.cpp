@@ -22,6 +22,7 @@
 #include <huggle_core/generic.hpp>
 #include <huggle_core/syslog.hpp>
 #include <huggle_core/exception.hpp>
+#include <huggle_core/scripting/jsmarshallinghelper.hpp>
 
 using namespace Huggle;
 
@@ -155,8 +156,22 @@ void UiScript::Hook_OnLogin()
         this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_LOGIN_OPEN]);
 }
 
+void UiScript::Hook_OnSpeedyFinished(WikiEdit *edit, QString tags, bool success)
+{
+    if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_SPEEDY_FINISHED))
+        return;
+
+    QJSValueList parameters;
+    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine));
+    parameters.append(QJSValue(tags));
+    parameters.append(QJSValue(success));
+    this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_SPEEDY_FINISHED], parameters);
+}
+
 int UiScript::GetHookID(QString hook)
 {
+    if (hook == "speedy_finished")
+        return HUGGLE_SCRIPT_HOOK_SPEEDY_FINISHED;
     if (hook == "main_open")
         return HUGGLE_SCRIPT_HOOK_MAIN_OPEN;
     if (hook == "login_open")
@@ -184,6 +199,7 @@ void UiScript::registerClasses()
 
 void UiScript::registerFunctions()
 {
+    this->registerHook("speedy_finished", 0, "(WikiEdit edit, string tags, bool success): when speedy finish");
     this->registerHook("login_open", 0, "(): Called when login form is loaded");
     this->registerHook("main_open", 0, "(): Called when main window is loaded");
 

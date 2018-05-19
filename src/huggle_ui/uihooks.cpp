@@ -54,7 +54,8 @@ void UiHooks::MainWindow_OnLoad(Huggle::MainWindow *window)
     }
     foreach (UiScript *sc, UiScript::GetAllUiScripts())
     {
-        sc->Hook_OnMain();
+        if (sc->IsWorking())
+            sc->Hook_OnMain();
     }
 }
 
@@ -78,6 +79,11 @@ void UiHooks::Speedy_Finished(WikiEdit *edit, QString tags, bool success)
     {
         if (e->IsWorking())
             e->Hook_SpeedyFinished((void*)edit, tags, success);
+    }
+    foreach (UiScript *sc, UiScript::GetAllUiScripts())
+    {
+        if (sc->IsWorking())
+            sc->Hook_OnSpeedyFinished(edit, tags, success);
     }
 }
 

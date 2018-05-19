@@ -31,6 +31,9 @@
 #define HUGGLE_SCRIPT_HOOK_EDIT_POST_PROCESS                    3
 #define HUGGLE_SCRIPT_HOOK_EDIT_LOAD_TO_QUEUE                   4
 #define HUGGLE_SCRIPT_HOOK_FEED_PROVIDERS_ON_INIT               5
+#define HUGGLE_SCRIPT_HOOK_EDIT_ON_REVERT                       6
+#define HUGGLE_SCRIPT_HOOK_EDIT_ON_GOOD                         7
+#define HUGGLE_SCRIPT_HOOK_EDIT_ON_SUSPICIOUS                   8
 
 namespace Huggle
 {
@@ -84,6 +87,9 @@ namespace Huggle
             void Hook_EditPostProcess(WikiEdit *edit);
             bool Hook_EditLoadToQueue(WikiEdit *edit);
             void Hook_FeedProvidersOnInit(WikiSite *site);
+            void Hook_OnRevert(WikiEdit *edit);
+            void Hook_OnGood(WikiEdit *edit);
+            void Hook_OnSuspicious(WikiEdit *edit);
             void SubscribeHook(int hook, QString function_name);
             void UnsubscribeHook(int hook);
             bool HookSubscribed(int hook);

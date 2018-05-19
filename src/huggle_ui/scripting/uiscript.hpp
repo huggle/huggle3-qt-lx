@@ -19,8 +19,9 @@
 class QAction;
 class QMenu;
 
-#define HUGGLE_SCRIPT_HOOK_LOGIN_OPEN 20000
-#define HUGGLE_SCRIPT_HOOK_MAIN_OPEN  20001
+#define HUGGLE_SCRIPT_HOOK_LOGIN_OPEN                   20000
+#define HUGGLE_SCRIPT_HOOK_MAIN_OPEN                    20001
+#define HUGGLE_SCRIPT_HOOK_SPEEDY_FINISHED              20010
 
 namespace Huggle
 {
@@ -61,6 +62,7 @@ namespace Huggle
             bool OwnMenu(int menu_id);
             void Hook_OnMain();
             void Hook_OnLogin();
+            void Hook_OnSpeedyFinished(WikiEdit *edit, QString tags, bool success);
             int GetHookID(QString hook);
         public slots:
             void MenuClicked();

@@ -271,6 +271,36 @@ void Script::Hook_FeedProvidersOnInit(WikiSite *site)
     this->executeFunctionAsBool(this->attachedHooks[HUGGLE_SCRIPT_HOOK_FEED_PROVIDERS_ON_INIT], parameters);
 }
 
+void Script::Hook_OnRevert(WikiEdit *edit)
+{
+    if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_EDIT_ON_REVERT))
+        return;
+
+    QJSValueList parameters;
+    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine));
+    this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_EDIT_ON_REVERT], parameters);
+}
+
+void Script::Hook_OnGood(WikiEdit *edit)
+{
+    if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_EDIT_ON_GOOD))
+        return;
+
+    QJSValueList parameters;
+    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine));
+    this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_EDIT_ON_GOOD], parameters);
+}
+
+void Script::Hook_OnSuspicious(WikiEdit *edit)
+{
+    if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_EDIT_ON_SUSPICIOUS))
+        return;
+
+    QJSValueList parameters;
+    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine));
+    this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_EDIT_ON_SUSPICIOUS], parameters);
+}
+
 void Script::SubscribeHook(int hook, QString function_name)
 {
     if (this->attachedHooks.contains(hook))
@@ -304,6 +334,12 @@ int Script::GetHookID(QString hook)
         return HUGGLE_SCRIPT_HOOK_EDIT_LOAD_TO_QUEUE;
     if (hook == "edit_post_process")
         return HUGGLE_SCRIPT_HOOK_EDIT_POST_PROCESS;
+    if (hook == "edit_on_revert")
+        return HUGGLE_SCRIPT_HOOK_EDIT_ON_REVERT;
+    if (hook == "edit_on_suspicious")
+        return HUGGLE_SCRIPT_HOOK_EDIT_ON_SUSPICIOUS;
+    if (hook == "edit_on_good")
+        return HUGGLE_SCRIPT_HOOK_EDIT_ON_GOOD;
     return -1;
 }
 
@@ -475,6 +511,9 @@ void Script::registerFunctions()
     this->registerHook("edit_pre_process", 1, "(WikiEdit edit): called when edit is pre processed");
     this->registerHook("edit_post_process", 1, "(WikiEdit edit): called when edit is post processed");
     this->registerHook("bool edit_load_to_queue", 1, "(WikiEdit edit): called when edit is loaded to queue, if returns false, edit will be removed");
+    this->registerHook("edit_on_suspicious", 1, "(WikiEdit edit): when suspicious edit is spotted");
+    this->registerHook("edit_on_good", 1, "(WikiEdit edit): on good edit");
+    this->registerHook("edit_on_revert", 1, "(WikiEdit edit): edit reverted");
 }
 
 ScriptException::ScriptException(QString text, QString source, Script *scr, bool is_recoverable) : Exception(text, source, is_recoverable)

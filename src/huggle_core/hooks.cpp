@@ -128,11 +128,21 @@ void Huggle::Hooks::OnGood(Huggle::WikiEdit *edit)
         if (e->IsWorking())
             e->Hook_GoodEdit((void*)edit);
     }
+    foreach (Script *s, Script::GetScripts())
+    {
+        if (s->IsWorking())
+            s->Hook_OnGood(edit);
+    }
 }
 
 void Huggle::Hooks::OnRevert(Huggle::WikiEdit *edit)
 {
     Events::Global->on_WERevert(edit);
+    foreach (Script *s, Script::GetScripts())
+    {
+        if (s->IsWorking())
+            s->Hook_OnRevert(edit);
+    }
 }
 
 bool Huggle::Hooks::EditCheckIfReady(Huggle::WikiEdit *edit)
@@ -154,6 +164,11 @@ void Huggle::Hooks::OnWarning(Huggle::WikiUser *user)
 void Huggle::Hooks::Suspicious(Huggle::WikiEdit *edit)
 {
     Events::Global->on_WESuspicious(edit);
+    foreach (Script *s, Script::GetScripts())
+    {
+        if (s->IsWorking())
+            s->Hook_OnSuspicious(edit);
+    }
 }
 
 void Huggle::Hooks::BadnessScore(Huggle::WikiUser *user, int score)
