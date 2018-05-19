@@ -431,6 +431,7 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
             i++;
         }
     }
+    this->ReportUserCheckPattern = HuggleParser::ConfigurationParse("report-user-check-pattern", config, this->ReportUserCheckPattern);
     this->AlternativeMonths.clear();
     QStringList AMH_ = HuggleParser::ConfigurationParse_QL("alternative-months", config);
     int month_ = 1;
@@ -770,6 +771,7 @@ bool ProjectConfiguration::ParseYAML(QString yaml_src, QString *reason, WikiSite
     this->RFPP_Summary = HuggleParser::YAML2String("protection-request-summary", yaml, "Request to protect page");
     this->RFPP = (this->RFPP_Template.length() && this->RFPP_Regex.length());
     this->RFPP_TemplateUser = HuggleParser::YAML2String("rfpp-template-user", yaml);
+    this->ReportUserCheckPattern = HuggleParser::YAML2String("report-user-check-patter", yaml, this->ReportUserCheckPattern);
     this->WarningSummaries.clear();
     this->WarningSummaries.insert(1, HuggleParser::YAML2String("warn-summary", yaml, "Message re. [[$1]]"));
     this->WarningSummaries.insert(2, HuggleParser::YAML2String("warn-summary-2", yaml, "Level 2 re. [[$1]]"));

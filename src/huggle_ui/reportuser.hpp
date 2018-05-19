@@ -58,9 +58,9 @@ namespace Huggle
             void SilentReport();
             ~ReportUser();
         private slots:
-            void Tick();
-            void On_DiffTick();
-            void Test();
+            void OnReportUserTimer();
+            void OnPageDiffTimer();
+            void OnReportCheckTimer();
             void on_pushButton_clicked();
             void on_pushButton_2_clicked();
             void on_tableWidget_clicked(const QModelIndex &index);
@@ -70,18 +70,18 @@ namespace Huggle
             void on_pushButton_6_clicked();
             void on_pushButton_7_clicked();
         private:
-            bool CheckUser();
-            void InsertUser();
-            void Report();
+            bool checkUserIsReported();
+            void insertUser();
+            void reportUser();
             //! Stop all operations
-            void Kill();
-            void failCheck(QString reason);
+            void kill();
+            void errorMessage(QString reason);
             HuggleWeb        *webView = nullptr;
             bool isBrowser = false;
             bool flagSilent = false;
             Ui::ReportUser *ui;
             //! Reported user
-            WikiUser *ReportedUser;
+            WikiUser *reportedUser;
             //! This query is used to retrieve a history of user
             Collectable_SmartPtr<ApiQuery> qHistory;
             Collectable_SmartPtr<ApiQuery> qCheckIfBlocked;
@@ -92,15 +92,15 @@ namespace Huggle
             //! Used to retrieve a diff of page
             QTimer *tPageDiff;
             Collectable_SmartPtr<EditQuery> qEdit;
-            QList <QCheckBox*> CheckBoxes;
+            QList <QCheckBox*> checkBoxes;
             //! Text of report to send to AIV page
-            QString ReportText;
+            QString reportText;
             //! Content of report
-            QString ReportContent;
-            QString ReportTs;
-            bool Loading;
-            bool Messaging;
-            BlockUserForm *BlockForm;
+            QString reportContent;
+            QString reportTs;
+            bool loading;
+            bool isSendingMessageNow;
+            BlockUserForm *blockUser;
             //! This query is used to get a block history
             Collectable_SmartPtr<ApiQuery> qBlockHistory;
             //! This is used to retrieve current report page and write to it

@@ -149,6 +149,7 @@ namespace Huggle
             QString         RFPP_Mark = "";
             QString         RFPP_Regex = "";
             QString         RFPP_Page = "";
+            QString         ReportUserCheckPattern = ".*$username.*";
             ReportType      ReportMode = ReportType_DefaultAuto;
             QString         ReportAIV = "";
             QString         Feedback = "";

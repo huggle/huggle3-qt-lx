@@ -67,14 +67,12 @@ void RequestProtect::Tick()
         this->Timestamp = e.attribute("timestamp");
         QString PageText = e.text();
         // make a regex out of the pattern string
-        QRegExp *rx = new QRegExp(this->page->GetSite()->GetProjectConfig()->RFPP_Regex);
-        if (rx->exactMatch(PageText))
+        QRegExp rx(this->page->GetSite()->GetProjectConfig()->RFPP_Regex);
+        if (rx.exactMatch(PageText))
         {
             this->Fail(_l("reqprotection-duplicate"));
-            delete rx;
             return;
         }
-        delete rx;
         QString report = this->page->GetSite()->GetProjectConfig()->RFPP_Template;
         if ((this->page->IsUserpage() || this->page->GetNS()->GetCanonicalName() == "User talk") &&
             this->page->GetSite()->GetProjectConfig()->RFPP_TemplateUser.size() > 0)
