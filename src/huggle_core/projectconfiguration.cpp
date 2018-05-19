@@ -651,7 +651,7 @@ bool ProjectConfiguration::ParseYAML(QString yaml_src, QString *reason, WikiSite
     this->WelcomeMP = HuggleParser::YAML2String("startup-message-location", yaml, "Project:Huggle/Message");
     this->WelcomeGood = HuggleParser::YAML2Bool("welcome-on-good-edit", yaml, true);
     this->WelcomeAnon = HuggleParser::YAML2String("welcome-anon", yaml, "{{subst:welcome-anon}}");
-    this->WelcomeTypes = temp_compat_hash2list(HuggleParser::YAML2QStringHash("welcome-messages", yaml));
+    this->WelcomeTypes = temp_compat_hash2list(HuggleParser::YAML2QStringHash("welcome-messages", yaml), true);
     // Reporting
     this->SpeedyEditSummary = HuggleParser::YAML2String("speedy-summary", yaml, "Tagging page for deletion");
     this->SpeedyWarningSummary = HuggleParser::YAML2String("speedy-message-summary", yaml, "Notification: [[$1]] has been listed for deletion");

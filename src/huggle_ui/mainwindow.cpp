@@ -2457,9 +2457,11 @@ void MainWindow::reloadInterface()
         }
     }
 
+    delete this->WelcomeMenu;
     this->WelcomeMenu = new QMenu(this);
 
-    if (conf->WelcomeTypes.count() > 0) {
+    if (conf->WelcomeTypes.count() > 0)
+    {
         int r = 0;
         while (r < conf->WelcomeTypes.count())
         {
