@@ -45,7 +45,8 @@ HuggleJS::HuggleJS(Script *s) : GenericJSClass(s)
 
 HuggleJS::~HuggleJS()
 {
-
+    qDeleteAll(this->timers);
+    this->timerFunctions.clear();
 }
 
 QHash<QString, QString> HuggleJS::GetFunctions()
