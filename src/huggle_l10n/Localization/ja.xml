@@ -243,7 +243,6 @@
   <string name="main-space">ページ名の末尾は空白にはできません。ページ名を修正してください。</string>
   <string name="main-system">システム</string>
   <string name="main-system-messages">新着メッセージを表示</string>
-  <string name="main-system-reconnectirc">IRCに再接続</string>
   <string name="main-system-savelog">ログを保存...</string>
   <string name="main-system-statistics">統計...</string>
   <string name="main-system-showqueue">キューを表示</string>

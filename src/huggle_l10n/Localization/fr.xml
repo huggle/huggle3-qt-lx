@@ -354,7 +354,6 @@
   <string name="main-metric-bar">Temps de réponse moyen de l\'API : $1ms</string>
   <string name="main-shutting-down">Huggle est en cours d’arrêt, ignoré</string>
   <string name="main-system-messages">Montrer les nouveaux messages</string>
-  <string name="main-system-reconnectirc">Reconnecter le fil IRC</string>
   <string name="main-system-savelog">Enregistrer le journal...</string>
   <string name="main-system-statistics">Statistiques...</string>
   <string name="main-system-showqueue">Afficher la file d’attente</string>

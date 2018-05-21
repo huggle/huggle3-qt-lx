@@ -229,7 +229,6 @@
   <string name="main-system">{{Identical|System}}</string>
   <string name="main-status-bar">Parameters:\n* $1 - number of edits\n* $2 - number of queries\n* $3 - number of users in the whitelist\n* $4 - number of items in the queue\n* $5 - statistics (in English)\n* $6 - sitename</string>
   <string name="main-system-messages">Menu</string>
-  <string name="main-system-reconnectirc">Menu item (in system menu)</string>
   <string name="main-system-statistics">{{Identical|Statistics}}</string>
   <string name="main-system-options">{{Identical|Options}}</string>
   <string name="main-system-logout">{{Identical|Log out}}</string>

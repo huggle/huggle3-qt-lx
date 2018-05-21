@@ -339,7 +339,6 @@
   <string name="main-metric-bar">평균 API 응답 시간: $1ms</string>
   <string name="main-shutting-down">허글이 종료되고, 무시됩니다</string>
   <string name="main-system-messages">새 메시지 보이기</string>
-  <string name="main-system-reconnectirc">IRC 피드 다시 연결</string>
   <string name="main-system-savelog">기록 저장...</string>
   <string name="main-system-statistics">통계...</string>
   <string name="main-system-showqueue">대기열 보기</string>

@@ -289,7 +289,6 @@
   <string name="main-new-messages">Du har nya meddelanden. Välj System -&gt; Visa nya meddelanden eller tryck M för att visa dem.</string>
   <string name="main-system">System</string>
   <string name="main-system-messages">Visa nya meddelanden</string>
-  <string name="main-system-reconnectirc">Återanslut IRC-flödet</string>
   <string name="main-system-savelog">Spara logg...</string>
   <string name="main-system-statistics">Statistik...</string>
   <string name="main-system-showqueue">Visa kö</string>

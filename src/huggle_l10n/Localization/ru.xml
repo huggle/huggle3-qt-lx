@@ -363,7 +363,6 @@
   <string name="main-metric-bar">Среднее время отклика API: $1ms</string>
   <string name="main-shutting-down">Huggle завершает работу, проигнорировано</string>
   <string name="main-system-messages">Показать новые сообщения</string>
-  <string name="main-system-reconnectirc">Переподключиться к ленте IRC</string>
   <string name="main-system-savelog">Сохранить журнал...</string>
   <string name="main-system-statistics">Статистика...</string>
   <string name="main-system-showqueue">Показать очередь</string>

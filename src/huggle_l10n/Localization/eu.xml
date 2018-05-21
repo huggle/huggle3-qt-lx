@@ -312,7 +312,6 @@
   <string name="main-system">Sistema</string>
   <string name="main-shutting-down">Huggle itzaltzen ari da, ezikusita</string>
   <string name="main-system-messages">Erakutsi mezu berriak</string>
-  <string name="main-system-reconnectirc">IRC jariora birkonektatu</string>
   <string name="main-system-savelog">Kargatzea gorde</string>
   <string name="main-system-statistics">Estatistikak...</string>
   <string name="main-system-showqueue">Ilara erakutsi</string>

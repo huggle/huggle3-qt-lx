@@ -358,7 +358,6 @@
   <string name="main-metric-bar">Ortalama API yanıt süresi: $1ms</string>
   <string name="main-shutting-down">Huggle kapatılıyor, yoksayıldı.</string>
   <string name="main-system-messages">Yeni iletileri göster</string>
-  <string name="main-system-reconnectirc">IRC beslemesine yeniden bağlan.</string>
   <string name="main-system-savelog">Günlüğü kaydet.</string>
   <string name="main-system-statistics">İstatistikler...</string>
   <string name="main-system-showqueue">Sırayı göster</string>

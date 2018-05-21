@@ -214,7 +214,6 @@
   <string name="main-system">Жүйе</string>
   <string name="main-shutting-down">Huggle өшті, елемеді</string>
   <string name="main-system-messages">Жаңа хабарламаларды көрсету</string>
-  <string name="main-system-reconnectirc">IRC тізбегіне қайта байланысу</string>
   <string name="main-system-savelog">Журналды сақтау...</string>
   <string name="main-system-statistics">Статистикалар:</string>
   <string name="main-system-showqueue">Кезекті көрсету</string>

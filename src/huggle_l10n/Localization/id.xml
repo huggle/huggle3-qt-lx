@@ -227,7 +227,6 @@
   <string name="main-history">Riwayat</string>
   <string name="main-system">Sistem</string>
   <string name="main-system-messages">Tampilkan pesan baru</string>
-  <string name="main-system-reconnectirc">Hubungkan kembali umpan IRC</string>
   <string name="main-system-savelog">Menyimpan catatan (log)...</string>
   <string name="main-system-statistics">Statistik...</string>
   <string name="main-system-showqueue">Tampilkan antrean</string>

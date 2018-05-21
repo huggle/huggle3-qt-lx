@@ -127,7 +127,6 @@
   <string name="main-new-messages" fuzzy="true">Du har nye meldinger; Gå til System -&gt; Vis nye meldinger eller trykk M for å vise dem.</string>
   <string name="main-system">System</string>
   <string name="main-system-messages">Vis nye meldinger</string>
-  <string name="main-system-reconnectirc">Koble til IRC-strøm på nytt</string>
   <string name="main-system-savelog">Lagre logg...</string>
   <string name="main-system-statistics">Statistikk...</string>
   <string name="main-system-showqueue">Vis kø</string>

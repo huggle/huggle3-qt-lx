@@ -347,7 +347,6 @@
   <string name="main-metric-bar">Durchschnittliche API-Antwortzeit: $1 ms</string>
   <string name="main-shutting-down">Huggle fährt herunter, ignoriert</string>
   <string name="main-system-messages">Neue Nachrichten anzeigen</string>
-  <string name="main-system-reconnectirc">IRC-Feed neu verbinden</string>
   <string name="main-system-savelog">Log speichern ...</string>
   <string name="main-system-statistics">Statistiken ...</string>
   <string name="main-system-showqueue">Warteschlange anzeigen</string>

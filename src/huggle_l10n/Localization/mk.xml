@@ -332,7 +332,6 @@
   <string name="main-metric-bar">Просечно одѕивно време на прилогот: $1 мс</string>
   <string name="main-shutting-down">Huggle се затвора. Занемарено.</string>
   <string name="main-system-messages">Прикажи нови пораки</string>
-  <string name="main-system-reconnectirc">Преповрзи се со IRC-тековникот</string>
   <string name="main-system-savelog">Зачувај го записникот...</string>
   <string name="main-system-statistics">Статистики...</string>
   <string name="main-system-showqueue">Прикажи редица</string>

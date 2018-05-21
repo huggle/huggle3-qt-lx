@@ -352,7 +352,6 @@
   <string name="main-metric-bar">Tiempo promediado de respuesta de API: $1 ms</string>
   <string name="main-shutting-down">Huggle se está cerrando, ignorado</string>
   <string name="main-system-messages">Mostrar nuevos mensajes</string>
-  <string name="main-system-reconnectirc">Reconectar con el suministro IRC</string>
   <string name="main-system-savelog">Guardar registro...</string>
   <string name="main-system-statistics">Estadísticas...</string>
   <string name="main-system-showqueue">Mostrar cola de ediciones</string>

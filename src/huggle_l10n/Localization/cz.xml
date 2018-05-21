@@ -286,7 +286,6 @@
   <string name="main-status-bar">&lt;b&gt;$1&lt;/b&gt; editací a &lt;b&gt;$2&lt;/b&gt; dotazů. Ignoruji &lt;b&gt;$3&lt;/b&gt; uživatelů, velikost fronty: &lt;b&gt;$4&lt;/b&gt; Statistiky pro $6: $5</string>
   <string name="main-shutting-down">Huggle se vypíná, požadavek ignorován</string>
   <string name="main-system-messages">Zobrazit nové zprávy</string>
-  <string name="main-system-reconnectirc">Připojit k IRC</string>
   <string name="main-system-savelog">Uložit log...</string>
   <string name="main-system-statistics">Statistiky...</string>
   <string name="main-system-showqueue">Zobrazit frontu</string>

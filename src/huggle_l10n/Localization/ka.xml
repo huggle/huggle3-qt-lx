@@ -153,7 +153,6 @@
   <string name="main-new-messages" fuzzy="true">თქვენ გაქვთ ახალი შეტყობინებები. აირჩიეთ სისტემა -&gt; ახალი შეტყობინებების ჩვენება ან მათ სანახავად დააჭირეთ M-ს.</string>
   <string name="main-system">Система</string>
   <string name="main-system-messages">Показать новые сообщения</string>
-  <string name="main-system-reconnectirc">Переподключиться к ленте IRC</string>
   <string name="main-system-savelog">Сохранить журнал...</string>
   <string name="main-system-statistics">Статистика...</string>
   <string name="main-system-showqueue">Показать очередь</string>

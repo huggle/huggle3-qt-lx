@@ -343,7 +343,6 @@
   <string name="main-metric-bar">平均API响应时间：$1ms</string>
   <string name="main-shutting-down">Huggle已关闭，忽略</string>
   <string name="main-system-messages">显示新消息</string>
-  <string name="main-system-reconnectirc">重新连接IRC</string>
   <string name="main-system-savelog">保存日志...</string>
   <string name="main-system-statistics">统计...</string>
   <string name="main-system-showqueue">显示队列</string>

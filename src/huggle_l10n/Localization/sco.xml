@@ -208,7 +208,6 @@
   <string name="main-status-bar">Processin &lt;b&gt;$1&lt;/b&gt; eedits an &lt;b&gt;$2&lt;/b&gt; queries. Whiteleeted uisers: &lt;b&gt;$3&lt;/b&gt; Queue size: &lt;b&gt;$4&lt;/b&gt; Stateestics for $6: $5</string>
   <string name="main-shutting-down">Huggle is shuttin doun, ignored</string>
   <string name="main-system-messages">Shaw new messages</string>
-  <string name="main-system-reconnectirc">Reconnect IRC feed</string>
   <string name="main-system-savelog">Save log...</string>
   <string name="main-system-statistics">Stateestics...</string>
   <string name="main-system-showqueue">Shaw queue</string>

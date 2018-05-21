@@ -294,7 +294,6 @@
   <string name="main-system">النظام</string>
   <string name="main-shutting-down">جارٍ إغلاق هغل; تم التجاهل</string>
   <string name="main-system-messages">اعرض الرسائل الجديدة</string>
-  <string name="main-system-reconnectirc">عاود الاتصال بتلقيم آي آر سي</string>
   <string name="main-system-savelog">احفظ السجل...</string>
   <string name="main-system-statistics">إحصائيات...</string>
   <string name="main-system-showqueue">أظهر الطابور</string>

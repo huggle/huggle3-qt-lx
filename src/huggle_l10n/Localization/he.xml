@@ -300,7 +300,6 @@
   <string name="main-status-bar">עיבוד &lt;b&gt;$1&lt;/b&gt; עריכות ו־&lt;b&gt;$2&lt;/b&gt; שאילתות. משתמשים ברשימה הלבנה: &lt;b&gt;$3&lt;/b&gt; גודל התור: &lt;b&gt;$4&lt;/b&gt; סטטיסטיקה עבור $6: $5</string>
   <string name="main-shutting-down">מתבצעת יציאה מהאגל, הפעולה לא תתבצע</string>
   <string name="main-system-messages">הצגת ההודעת החדשות</string>
-  <string name="main-system-reconnectirc">להתחבר מחדש להזנת IRC</string>
   <string name="main-system-savelog">שמירת יומן...</string>
   <string name="main-system-statistics">סטטיסטיקה...</string>
   <string name="main-system-showqueue">הצגת תור</string>

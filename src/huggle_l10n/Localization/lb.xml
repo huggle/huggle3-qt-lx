@@ -209,7 +209,6 @@
   <string name="main-system">System</string>
   <string name="main-metric-bar">Duerchschnëttlech API-Äntwertzäit: $1</string>
   <string name="main-system-messages">Nei Message weisen</string>
-  <string name="main-system-reconnectirc">IRC-Feed nei verbannen</string>
   <string name="main-system-savelog">Logbuch späicheren...</string>
   <string name="main-system-statistics">Statistiken..</string>
   <string name="main-system-options">Astellungen...</string>

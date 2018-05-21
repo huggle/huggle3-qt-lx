@@ -354,7 +354,6 @@
   <string name="main-metric-bar">زمان متوسط پاسخ API برابر است با: $1ms</string>
   <string name="main-shutting-down">هاگل در حال خاموش‌شدن است، نادیده گرفته شد</string>
   <string name="main-system-messages">نمایش پیام‌های تازه</string>
-  <string name="main-system-reconnectirc">ارتباط دوباره با فید آی‌آرسی</string>
   <string name="main-system-savelog">ذخیره سیاهه ...</string>
   <string name="main-system-statistics">آمارها...</string>
   <string name="main-system-showqueue">نمایش صف</string>
