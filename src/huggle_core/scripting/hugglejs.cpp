@@ -15,6 +15,7 @@
 #include "jsmarshallinghelper.hpp"
 #include "../configuration.hpp"
 #include "../syslog.hpp"
+#include <QTimer>
 
 using namespace Huggle;
 
@@ -36,6 +37,15 @@ HuggleJS::HuggleJS(Script *s) : GenericJSClass(s)
     this->functions.insert("log", "(string text): prints to log");
     this->functions.insert("register_hook", "(string hook, string function_id): creates a hook");
     this->functions.insert("unregister_hook", "(string hook): removes hook");
+    this->functions.insert("create_timer", "(int interval, string function, [bool start = true]): creates a timer");
+    this->functions.insert("start_timer", "(uint timer)");
+    this->functions.insert("destroy_timer", "(uint timer)");
+    this->functions.insert("stop_timer", "(uint timer");
+}
+
+HuggleJS::~HuggleJS()
+{
+
 }
 
 QHash<QString, QString> HuggleJS::GetFunctions()
@@ -149,4 +159,52 @@ void HuggleJS::error_log(QString text)
 void HuggleJS::debug_log(QString text, int verbosity)
 {
     HUGGLE_DEBUG(this->script->GetName() + ": " + text, static_cast<unsigned int>(verbosity));
+}
+
+unsigned int HuggleJS::create_timer(int interval, QString function, bool start)
+{
+    unsigned int timer_id = this->lastTimer++;
+    QTimer *timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(OnTime()));
+    this->timers.insert(timer_id, timer);
+    this->timerFunctions.insert(timer, function);
+    if (start)
+        timer->start(interval);
+    return timer_id;
+}
+
+bool HuggleJS::destroy_timer(unsigned int timer)
+{
+    if (!this->timers.contains(timer))
+        return false;
+    delete this->timers[timer];
+    this->timerFunctions.remove(this->timers[timer]);
+    this->timers.remove(timer);
+    return true;
+}
+
+bool HuggleJS::start_timer(unsigned int timer, int interval)
+{
+    if (!this->timers.contains(timer))
+        return false;
+    this->timers[timer]->start(interval);
+
+    return true;
+}
+
+bool HuggleJS::stop_timer(unsigned int timer)
+{
+    if (!this->timers.contains(timer))
+        return false;
+
+    this->timers[timer]->stop();
+    return true;
+}
+
+void HuggleJS::OnTime()
+{
+    QTimer *timer = (QTimer*) QObject::sender();
+    if (!this->timerFunctions.contains(timer))
+        return;
+    this->GetScript()->ExecuteFunction(this->timerFunctions[timer], QJSValueList());
 }

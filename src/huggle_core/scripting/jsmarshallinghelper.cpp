@@ -17,6 +17,8 @@
 #include "../wikipage.hpp"
 #include "../wikiuser.hpp"
 #include "../wikisite.hpp"
+#include "../apiquery.hpp"
+#include "../apiqueryresult.hpp"
 
 using namespace Huggle;
 
@@ -122,5 +124,35 @@ QJSValue JSMarshallingHelper::FromNS(WikiPageNS *ns, QJSEngine *engine)
     o.setProperty("ID", QJSValue(ns->GetID()));
     o.setProperty("Name", QJSValue(ns->GetName()));
     o.setProperty("IsTalkPage", QJSValue(ns->IsTalkPage()));
+    return o;
+}
+
+QJSValue JSMarshallingHelper::FromQuery(Query *query, QJSEngine *engine)
+{
+    QJSValue o = engine->newObject();
+    o.setProperty("FailureReason", query->GetFailureReason());
+    o.setProperty("ExecutionTime", static_cast<int>(query->ExecutionTime()));
+    o.setProperty("CustomStatus", query->CustomStatus);
+    o.setProperty("HiddenQuery", query->HiddenQuery);
+    o.setProperty("IsFailed", query->IsFailed());
+    return o;
+}
+
+QJSValue JSMarshallingHelper::FromApiQuery(ApiQuery *query, QJSEngine *engine)
+{
+    QJSValue o = FromQuery(query, engine);
+
+    return o;
+}
+
+QJSValue JSMarshallingHelper::FromApiQueryResult(ApiQueryResult *res, QJSEngine *engine)
+{
+    QJSValue o = engine->newObject();
+    o.setProperty("Data", res->Data);
+    o.setProperty("ErrorCode", res->ErrorCode);
+    o.setProperty("ErrorMessage", res->ErrorMessage);
+    o.setProperty("HasErrors", res->HasErrors);
+    o.setProperty("IsFailed", res->IsFailed());
+    o.setProperty("Warning", res->Warning);
     return o;
 }

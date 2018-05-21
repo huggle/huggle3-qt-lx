@@ -260,6 +260,7 @@ void ApiQuery::finished()
     ApiQueryResult *result = (ApiQueryResult*)this->Result;
     this->temp += this->reply->readAll();
     result->Data = QString(this->temp);
+    Query::bytesReceived += static_cast<unsigned long>(this->temp.size());
     // remove the temporary data so that we save the ram
     this->temp.clear();
     // now we need to check if request was successful or not
@@ -350,6 +351,16 @@ void ApiQuery::Process()
                                 ") " + this->URL + "\ndata: " + QUrl::fromPercentEncoding(this->Parameters.toUtf8()));
         return;
     }
+    // Calculate size of outgoing request
+    int request_size = 0;
+    QList<QByteArray> headerList = request.rawHeaderList();
+    foreach(QByteArray header, headerList)
+        request_size += header.size();
+    if (this->UsingPOST)
+        request_size += this->Parameters.size() + this->URL.size();
+    else
+        request_size += this->URL.size();
+    Query::bytesSent += static_cast<unsigned long>(request_size);
     WriteOut(this, &request);
     if (this->UsingPOST)
     {

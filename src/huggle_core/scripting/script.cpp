@@ -13,6 +13,7 @@
 #include "script.hpp"
 #include "jsmarshallinghelper.hpp"
 #include "huggleunsafejs.hpp"
+#include "hugglequeryjs.hpp"
 #include "hugglejs.hpp"
 #include "huggleeditingjs.hpp"
 #include "../configuration.hpp"
@@ -480,6 +481,7 @@ void Script::registerClasses()
     }
     this->registerClass("huggle", new HuggleJS(this));
     this->registerClass("huggle_editing", new HuggleEditingJS(this));
+    this->registerClass("huggle_query", new HuggleQueryJS(this));
 }
 
 void Script::registerFunction(QString name, QString help, bool is_unsafe)

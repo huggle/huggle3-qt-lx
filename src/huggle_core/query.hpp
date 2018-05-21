@@ -69,6 +69,12 @@ namespace Huggle
                 StatusIsSuspended
             };
 
+            // IMPORTANT: These functions for how many bytes were transferred are not reliable and show only
+            //            estimates, also the bytes are counted before compression.
+            //! Returns approximate of how many bytes were received since startup of Huggle
+            static unsigned long GetBytesReceivedSinceStartup();
+            //! Returns approximate of how many bytes were sent since startup of Huggle
+            static unsigned long GetBytesSentSinceStartup();
             //! List of queries that need to be restarted, used for relogin so that operation that was to be executed can be resumed
             static QList<Collectable_SmartPtr<Query>> PendingRestart;
             //! We need to have a shared network manager for all queries, otherwise mediawiki sessions will not work
@@ -156,10 +162,14 @@ namespace Huggle
             Query *Dependency = nullptr;
 
         protected:
+            static unsigned long bytesReceived;
+            static unsigned long bytesSent;
             //! If you inherit query you should allways call this from a signal that
             //! you receive when the query finish
             void processCallback();
             void processFailure();
+            void incrReceived(unsigned long bytes) { bytesReceived += bytes; }
+            void incrSent(unsigned long bytes) { bytesSent += bytes; }
             //! When a query fail and retry this is changed to true so that it doesn't endlessly restart
             bool isRepeated;
             QString failureReason;

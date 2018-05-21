@@ -16,9 +16,21 @@
 
 using namespace Huggle;
 
+unsigned long Query::bytesReceived = 0;
+unsigned long Query::bytesSent =     0;
 QList<Collectable_SmartPtr<Query>> Query::PendingRestart;
 unsigned int Query::lastID = 0;
 QNetworkAccessManager *Query::NetworkManager = nullptr;
+
+unsigned long Query::GetBytesReceivedSinceStartup()
+{
+    return Query::bytesReceived;
+}
+
+unsigned long Query::GetBytesSentSinceStartup()
+{
+    return Query::bytesSent;
+}
 
 Query::Query()
 {

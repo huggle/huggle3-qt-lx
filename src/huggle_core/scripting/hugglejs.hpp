@@ -25,6 +25,8 @@
 // Since QJSEngine doesn't have newFunction yet https://bugreports.qt.io/browse/QTBUG-45246
 // we need to use this workaround: https://forum.qt.io/topic/64407/newfunction-in-qjsengine-missing/6
 
+class QTimer;
+
 namespace Huggle
 {
     /*!
@@ -37,6 +39,7 @@ namespace Huggle
             Q_OBJECT
         public:
             HuggleJS(Script *s);
+            ~HuggleJS();
             QHash<QString, QString> GetFunctions();
             Q_INVOKABLE QString get_context();
             Q_INVOKABLE int get_context_id();
@@ -57,7 +60,16 @@ namespace Huggle
             Q_INVOKABLE void warning_log(QString text);
             Q_INVOKABLE void error_log(QString text);
             Q_INVOKABLE void debug_log(QString text, int verbosity);
+            Q_INVOKABLE unsigned int create_timer(int interval, QString function, bool start = true);
+            Q_INVOKABLE bool destroy_timer(unsigned int timer);
+            Q_INVOKABLE bool start_timer(unsigned int timer, int interval);
+            Q_INVOKABLE bool stop_timer(unsigned int timer);
+        private slots:
+            void OnTime();
         private:
+            unsigned int lastTimer = 0;
+            QHash<unsigned int, QTimer*> timers;
+            QHash<QTimer*, QString> timerFunctions;
             QHash<QString, QString> functions;
     };
 }

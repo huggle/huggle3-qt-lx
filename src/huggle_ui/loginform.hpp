@@ -24,7 +24,6 @@
 #include <QTimer>
 #include "hw.hpp"
 
-
 class QCheckBox;
 
 namespace Ui
