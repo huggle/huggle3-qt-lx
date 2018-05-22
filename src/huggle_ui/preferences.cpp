@@ -799,6 +799,7 @@ void Preferences::ResetItems()
     this->ui->cb_AutoRefresh->setChecked(hcfg->UserConfig->AutomaticRefresh);
     this->ui->cb_WatchWarn->setChecked(hcfg->UserConfig->AutomaticallyWatchlistWarnedUsers);
     this->ui->le_KeystrokeRate->setText(QString::number(hcfg->SystemConfig_KeystrokeMultiPressRate));
+    this->ui->checkBox_unsafe->setChecked(hcfg->SystemConfig_UnsafeExts);
     this->ui->cbKeystrokeFix->setChecked(hcfg->SystemConfig_KeystrokeMultiPressFix);
 
 #ifdef HUGGLE_NOAUDIO
