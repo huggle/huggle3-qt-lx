@@ -15,6 +15,7 @@
 #include "ui_scriptingmanager.h"
 #include "../uigeneric.hpp"
 #include "uiscript.hpp"
+#include <QMessageBox>
 #include <QFile>
 #include <QFileDialog>
 #include <QMenu>
@@ -116,16 +117,14 @@ void ScriptingManager::on_bReload_clicked()
 void ScriptingManager::on_tableWidget_customContextMenuRequested(const QPoint &pos)
 {
     QMenu menu;
-
+    QPoint global = this->ui->tableWidget->mapToGlobal(pos);
     QAction *unload = new QAction("Unload", &menu);
     QAction *reload = new QAction("Reload", &menu);
     QAction *delete_file = new QAction("Delete from disk", &menu);
-    reload->setEnabled(false);
-    delete_file->setEnabled(false);
     menu.addAction(unload);
     menu.addAction(reload);
     menu.addAction(delete_file);
-    QAction *selection = menu.exec(pos);
+    QAction *selection = menu.exec(global);
     if (selection == unload)
     {
         this->unloadSelectSc();
@@ -134,7 +133,7 @@ void ScriptingManager::on_tableWidget_customContextMenuRequested(const QPoint &p
         this->deleteSelectSc();
     } else if (selection == reload)
     {
-
+        this->reloadSelectSc();
     }
 }
 
@@ -165,7 +164,55 @@ void ScriptingManager::unloadSelectSc()
 
 void ScriptingManager::deleteSelectSc()
 {
+    if (UiGeneric::pMessageBox(this, "Delete files", "Are you sure you want to permanently delete selected files?", MessageBoxStyleQuestion)
+            == QMessageBox::No)
+        return;
 
+    QList<int> selected = selectedRows();
+    foreach (int i, selected)
+    {
+        QString script_name = this->ui->tableWidget->item(i, 0)->text();
+        Script *script = Script::GetScriptByName(script_name);
+        if (!script)
+        {
+            UiGeneric::pMessageBox(this, "Error", "Unable to unload " + script_name + " script not found in memory", MessageBoxStyleError);
+            continue;
+        }
+        QString path = script->GetPath();
+        script->Unload();
+        delete script;
+        QFile file(path);
+        if (!file.remove())
+            UiGeneric::pMessageBox(this, "Error", "Unable to remove " + path, MessageBoxStyleError);
+    }
+    this->Reload();
+}
+
+void ScriptingManager::reloadSelectSc()
+{
+    QList<int> selected = selectedRows();
+    foreach (int i, selected)
+    {
+        QString script_name = this->ui->tableWidget->item(i, 0)->text();
+        QString error;
+        Script *script = Script::GetScriptByName(script_name);
+        if (!script)
+        {
+            UiGeneric::pMessageBox(this, "Error", "Unable to reload " + script_name + " script not found in memory", MessageBoxStyleError);
+            continue;
+        }
+        QString file = script->GetPath();
+        script->Unload();
+        delete script;
+        UiScript *s = new UiScript();
+        if (!s->Load(file, &error))
+        {
+            UiGeneric::MessageBox("Failed to reload script", "Failed to reload " + script_name + ": " + error, MessageBoxStyleError);
+            delete s;
+            continue;
+        }
+    }
+    this->Reload();
 }
 
 QList<int> ScriptingManager::selectedRows()

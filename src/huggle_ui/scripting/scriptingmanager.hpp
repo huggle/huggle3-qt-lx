@@ -41,6 +41,7 @@ namespace Huggle
         private:
             void unloadSelectSc();
             void deleteSelectSc();
+            void reloadSelectSc();
             QList<int> selectedRows();
             Ui::ScriptingManager *ui;
     };
