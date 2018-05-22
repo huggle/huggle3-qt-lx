@@ -19,7 +19,6 @@
 #include <QFile>
 #include <QDir>
 #include <QMenu>
-#include <huggle_core/scripting/script.hpp>
 #include <huggle_core/core.hpp>
 #include <huggle_core/configuration.hpp>
 #include <huggle_core/exception.hpp>
@@ -119,22 +118,6 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
         this->ui->tableWidget->setItem(c, 3, new QTableWidgetItem(status));
         this->ui->tableWidget->setItem(c, 4, new QTableWidgetItem(extension->GetExtensionVersion()));
         c++;
-    }
-
-    foreach (Script *s, Script::GetScripts())
-    {
-        this->ui->tableWidget->insertRow(0);
-        this->ui->tableWidget->setItem(0, 0, new QTableWidgetItem(s->GetName()));
-        this->ui->tableWidget->setItem(0, 1, new QTableWidgetItem(s->GetAuthor()));
-        this->ui->tableWidget->setItem(0, 2, new QTableWidgetItem(s->GetDescription()));
-        if (s->IsWorking())
-        {
-            this->ui->tableWidget->setItem(0, 3, new QTableWidgetItem(_l("extension-ok")));
-        } else
-        {
-            this->ui->tableWidget->setItem(0, 3, new QTableWidgetItem(_l("extension-kl")));
-        }
-        this->ui->tableWidget->setItem(0, 4, new QTableWidgetItem(s->GetVersion()));
     }
 
     this->EnableQueues(false);
