@@ -3,5 +3,6 @@
     <file>ecma/help.js</file>
     <file>ecma/huggle.js</file>
     <file>ecma/types.js</file>
+    <file>ecma/template</file>
   </qresource>
 </RCC>

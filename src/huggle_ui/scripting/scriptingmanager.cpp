@@ -11,11 +11,13 @@
 // Copyright (c) Petr Bena 2018
 
 #include "scriptingmanager.hpp"
+#include "scriptform.hpp"
 #include "ui_scriptingmanager.h"
 #include "../uigeneric.hpp"
 #include "uiscript.hpp"
 #include <QFile>
 #include <QFileDialog>
+#include <QMenu>
 #include <huggle_core/apiquery.hpp>
 #include <huggle_core/generic.hpp>
 #include <huggle_core/webserverquery.hpp>
@@ -109,4 +111,70 @@ void ScriptingManager::on_bReload_clicked()
         }
     }
     this->Reload();
+}
+
+void ScriptingManager::on_tableWidget_customContextMenuRequested(const QPoint &pos)
+{
+    QMenu menu;
+
+    QAction *unload = new QAction("Unload", &menu);
+    QAction *reload = new QAction("Reload", &menu);
+    QAction *delete_file = new QAction("Delete from disk", &menu);
+    reload->setEnabled(false);
+    delete_file->setEnabled(false);
+    menu.addAction(unload);
+    menu.addAction(reload);
+    menu.addAction(delete_file);
+    QAction *selection = menu.exec(pos);
+    if (selection == unload)
+    {
+        this->unloadSelectSc();
+    } else if (selection == delete_file)
+    {
+        this->deleteSelectSc();
+    } else if (selection == reload)
+    {
+
+    }
+}
+
+void ScriptingManager::on_pushScript_clicked()
+{
+    ScriptForm sf;
+    sf.exec();
+    this->Reload();
+}
+
+void ScriptingManager::unloadSelectSc()
+{
+    QList<int> selected = selectedRows();
+    foreach (int i, selected)
+    {
+        QString script_name = this->ui->tableWidget->item(i, 0)->text();
+        Script *script = Script::GetScriptByName(script_name);
+        if (!script)
+        {
+            UiGeneric::pMessageBox(this, "Error", "Unable to unload " + script_name + " script not found in memory", MessageBoxStyleError);
+            continue;
+        }
+        script->Unload();
+        delete script;
+    }
+    this->Reload();
+}
+
+void ScriptingManager::deleteSelectSc()
+{
+
+}
+
+QList<int> ScriptingManager::selectedRows()
+{
+    QList<int> selection;
+    foreach (QTableWidgetItem *i, this->ui->tableWidget->selectedItems())
+    {
+        if (!selection.contains(i->row()))
+            selection.append(i->row());
+    }
+    return selection;
 }

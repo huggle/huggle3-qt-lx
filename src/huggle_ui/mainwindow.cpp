@@ -3583,5 +3583,5 @@ void MainWindow::on_actionScripts_manager_triggered()
         delete this->fScripting;
 
     this->fScripting = new ScriptingManager(this);
-    this->fScripting->show();
+    this->fScripting->exec();
 }

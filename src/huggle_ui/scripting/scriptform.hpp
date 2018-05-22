@@ -10,40 +10,34 @@
 
 // Copyright (c) Petr Bena 2018
 
-#ifndef SCRIPTINGMANAGER_HPP
-#define SCRIPTINGMANAGER_HPP
+#ifndef SCRIPTFORM_HPP
+#define SCRIPTFORM_HPP
 
 #include <huggle_core/definitions.hpp>
 #include <QDialog>
 
 namespace Ui
 {
-    class ScriptingManager;
+    class ScriptForm;
 }
 
 namespace Huggle
 {
-    class ScriptingManager : public QDialog
+    class ScriptForm : public QDialog
     {
             Q_OBJECT
+
         public:
-            explicit ScriptingManager(QWidget *parent = 0);
-            ~ScriptingManager();
-            void Reload();
-            void LoadFile(QString path);
+            explicit ScriptForm(QWidget *parent = 0);
+            ~ScriptForm();
 
         private slots:
-            void on_bLoad_clicked();
-            void on_bReload_clicked();
-            void on_tableWidget_customContextMenuRequested(const QPoint &pos);
-            void on_pushScript_clicked();
+            void on_pushButton_2_clicked();
+            void on_pushButton_clicked();
 
         private:
-            void unloadSelectSc();
-            void deleteSelectSc();
-            QList<int> selectedRows();
-            Ui::ScriptingManager *ui;
+            Ui::ScriptForm *ui;
     };
 }
 
-#endif // SCRIPTINGMANAGER_HPP
+#endif // SCRIPTFORM_HPP
