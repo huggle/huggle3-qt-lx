@@ -263,7 +263,7 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
         Shortcut s_ = Configuration::HuggleConfiguration->Shortcuts[key];
         if (s_.Modified)
         {
-            si += "  " + s_.Name + ": " + s_.QAccel + "\n";
+            si += "    '" + s_.Name + "': " + s_.QAccel + "\n";
             modified_++;
         }
     }
@@ -620,23 +620,16 @@ bool UserConfiguration::ParseYAML(QString config, ProjectConfiguration *ProjectC
             this->ShortcutHash = hash;
             return true;
         }
-        QStringList shortcuts = YAML2QStringList("shortcut-list", yaml);
-        foreach (QString line, shortcuts)
+        QHash<QString, QString> shortcuts = HuggleParser::YAML2QStringHash("shortcut-list", yaml);
+        foreach (QString id, shortcuts.keys())
         {
-            if (!line.contains(";"))
-            {
-                Syslog::HuggleLogs->WarningLog("Invalid line in user configuration (shortcut-list): " + line);
-                continue;
-            }
-            QStringList parts = line.split(';');
-            QString id = parts[0];
             if (!hcfg->Shortcuts.contains(id))
             {
-                Syslog::HuggleLogs->WarningLog("Invalid shortcut in user configuration (missing id): " + line);
+                Syslog::HuggleLogs->WarningLog("Invalid shortcut in user configuration (unknown id): " + id);
                 continue;
             }
             hcfg->Shortcuts[id].Modified = true;
-            hcfg->Shortcuts[id].QAccel = QKeySequence(parts[1]).toString();
+            hcfg->Shortcuts[id].QAccel = QKeySequence(shortcuts[id]).toString();
         }
     }
 
