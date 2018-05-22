@@ -170,6 +170,11 @@ bool Script::IsWorking()
     return this->executeFunctionAsBool("ext_is_working");
 }
 
+QJSValue Script::ExecuteFunction(QString function)
+{
+    return this->executeFunction(function);
+}
+
 QJSValue Script::ExecuteFunction(QString function, QJSValueList parameters)
 {
     return this->executeFunction(function, parameters);

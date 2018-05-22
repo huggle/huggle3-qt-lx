@@ -28,3 +28,22 @@ var huggle_ui_menu_help       = -8;
 var huggle_ui_menu_scripting  = -9;
 
 var huggle_ui_menuitem_exit = -1;
+
+var huggle_api_action_clear_has_msg = 0;
+var huggle_api_action_compare       = 1;
+var huggle_api_action_query         = 2;
+var huggle_api_action_login         = 3;
+var huggle_api_action_logout        = 4;
+var huggle_api_action_purge         = 5;
+var huggle_api_action_rollback      = 6;
+var huggle_api_action_delete        = 7;
+var huggle_api_action_undelete      = 8;
+var huggle_api_action_block         = 9;
+var huggle_api_action_patrol        = 10;
+var huggle_api_action_review        = 11;
+var huggle_api_action_parse         = 12;
+var huggle_api_action_protect       = 13;
+var huggle_api_action_edit          = 14;
+var huggle_api_action_unwatch       = 15;
+var huggle_api_action_watch         = 16;
+var huggle_api_action_custom        = 17;

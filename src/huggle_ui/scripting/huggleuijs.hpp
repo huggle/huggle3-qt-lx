@@ -31,7 +31,12 @@ namespace Huggle
             Q_INVOKABLE bool menu_item_set_checked(int menu, bool checked);
             Q_INVOKABLE bool mainwindow_is_loaded();
             Q_INVOKABLE int message_box(QString title, QString text, int messagebox_type = 0, bool pause = false);
+            Q_INVOKABLE bool show_tray_message(QString heading, QString message);
+            Q_INVOKABLE bool show_tooltip_message(QString message);
             Q_INVOKABLE bool render_html(QString html, bool lock_page = false);
+            Q_INVOKABLE bool navigate_next();
+            Q_INVOKABLE bool navigate_forward();
+            Q_INVOKABLE bool navigate_backward();
             Q_INVOKABLE QJSValue get_current_wiki_edit();
             QHash<QString, QString> GetFunctions();
         private:

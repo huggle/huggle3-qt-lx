@@ -113,6 +113,24 @@ int HuggleUIJS::message_box(QString title, QString text, int messagebox_type, bo
     return UiGeneric::MessageBox(title, text, type, pause);
 }
 
+bool HuggleUIJS::show_tray_message(QString heading, QString message)
+{
+    if (!MainWindow::HuggleMain)
+        return false;
+    MainWindow::HuggleMain->TrayMessage(heading, message);
+    return true;
+}
+
+bool HuggleUIJS::show_tooltip_message(QString message)
+{
+    if (!MainWindow::HuggleMain)
+        return false;
+
+    // Show tooltip
+    MainWindow::HuggleMain->ShowToolTip(message);
+    return true;
+}
+
 bool HuggleUIJS::render_html(QString html, bool lock_page)
 {
     if (!Huggle::MainWindow::HuggleMain)
@@ -126,6 +144,39 @@ bool HuggleUIJS::render_html(QString html, bool lock_page)
     if (lock_page)
         MainWindow::HuggleMain->LockPage();
 
+    return true;
+}
+
+bool HuggleUIJS::navigate_next()
+{
+    if (!Huggle::MainWindow::HuggleMain)
+    {
+        HUGGLE_ERROR(this->script->GetName() + ": navigate_next(): mainwindow is not loaded yet");
+        return false;
+    }
+    Huggle::MainWindow::HuggleMain->DisplayNext();
+    return true;
+}
+
+bool HuggleUIJS::navigate_forward()
+{
+    if (!Huggle::MainWindow::HuggleMain)
+    {
+        HUGGLE_ERROR(this->script->GetName() + ": navigate_forward(): mainwindow is not loaded yet");
+        return false;
+    }
+    Huggle::MainWindow::HuggleMain->GoForward();
+    return true;
+}
+
+bool HuggleUIJS::navigate_backward()
+{
+    if (!Huggle::MainWindow::HuggleMain)
+    {
+        HUGGLE_ERROR(this->script->GetName() + ": navigate_backward(): mainwindow is not loaded yet");
+        return false;
+    }
+    Huggle::MainWindow::HuggleMain->GoBackward();
     return true;
 }
 

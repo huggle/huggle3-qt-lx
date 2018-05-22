@@ -80,6 +80,7 @@
 #include <QMutex>
 #include <QMenu>
 #include <QLabel>
+#include <QToolTip>
 #include <QTimer>
 #include <QCloseEvent>
 #include <QThread>
@@ -724,6 +725,26 @@ void MainWindow::IncreaseBS()
 {
     if (this->CurrentEdit != nullptr)
         this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore() + 200);
+}
+
+void MainWindow::GoForward()
+{
+    if (this->CurrentEdit == nullptr || this->CurrentEdit->Next == nullptr)
+        return;
+    this->ProcessEdit(this->CurrentEdit->Next, true);
+}
+
+void MainWindow::GoBackward()
+{
+    if (this->CurrentEdit == nullptr || this->CurrentEdit->Previous == nullptr)
+        return;
+    this->ProcessEdit(this->CurrentEdit->Previous, true);
+}
+
+void MainWindow::ShowToolTip(QString text)
+{
+    QPoint pntr(this->pos().x() + (this->width() / 2), this->pos().y() + 100);
+    QToolTip::showText(pntr, text, this);
 }
 
 void MainWindow::ReloadSc()
@@ -1726,18 +1747,16 @@ void MainWindow::on_actionForward_triggered()
 {
     if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_FORWARD))
         return;
-    if (this->CurrentEdit == nullptr || this->CurrentEdit->Next == nullptr)
-        return;
-    this->ProcessEdit(this->CurrentEdit->Next, true);
+    // Navigate to next edit if there is some
+    this->GoForward();
 }
 
 void MainWindow::on_actionBack_triggered()
 {
     if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_BACK))
         return;
-    if (this->CurrentEdit == nullptr || this->CurrentEdit->Previous == nullptr)
-        return;
-    this->ProcessEdit(this->CurrentEdit->Previous, true);
+    // Navigate back in chain
+    this->GoBackward();
 }
 
 void MainWindow::CustomWelcome()

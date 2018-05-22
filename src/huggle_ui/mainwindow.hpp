@@ -162,6 +162,7 @@ namespace Huggle
             void ShowEmptyQueuePage();
             void RenderHtml(QString html);
             void DeletePage();
+            void DisplayWelcomeMessage();
             void DisplayTalk();
             /*!
              * \brief DisplayRevid Try to display a revision as a diff in huggle main window
@@ -189,6 +190,9 @@ namespace Huggle
             bool EditingChecks();
             void DecreaseBS();
             void IncreaseBS();
+            void GoForward();
+            void GoBackward();
+            void ShowToolTip(QString text);
             //! List of edits that are being saved
             QList<WikiEdit*> PendingEdits;
             //! Pointer to syslog
@@ -388,7 +392,6 @@ namespace Huggle
 
         private:
             void closeTab(int tab);
-            void DisplayWelcomeMessage();
             void finishRestore();
             void createBrowserTab(QString name, int index);
             void changeCurrentBrowserTabTitle(QString name);

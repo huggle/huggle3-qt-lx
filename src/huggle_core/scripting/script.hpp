@@ -71,6 +71,7 @@ namespace Huggle
             QString GetPath();
             QString GetAuthor();
             bool IsWorking();
+            QJSValue ExecuteFunction(QString function);
             QJSValue ExecuteFunction(QString function, QJSValueList parameters);
             virtual unsigned int GetContextID();
             virtual QString GetContext();

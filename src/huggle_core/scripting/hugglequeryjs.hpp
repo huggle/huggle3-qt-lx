@@ -26,6 +26,7 @@
 namespace Huggle
 {
     class ApiQuery;
+    class WikiSite;
     class Query;
 
     class HuggleQueryJS : public GenericJSClass
@@ -33,13 +34,29 @@ namespace Huggle
             Q_OBJECT
         public:
             HuggleQueryJS(Script *s);
+            ~HuggleQueryJS();
             QHash<QString, QString> GetFunctions() { return functions; }
             Q_INVOKABLE QJSValue get_all_bytes_sent();
             Q_INVOKABLE QJSValue get_all_bytes_received();
+            Q_INVOKABLE int create_api_query(int type, QString site, QString parameters, bool using_post = false, bool auto_delete = false);
+            Q_INVOKABLE bool register_api_success_callback(int query, QString callback);
+            Q_INVOKABLE bool register_api_failure_callback(int query, QString callback);
+            Q_INVOKABLE bool process_api_query(int query);
+            Q_INVOKABLE bool kill_api_query(int query);
+            Q_INVOKABLE QJSValue get_api_query_info(int query);
+            Q_INVOKABLE bool destroy_api_query(int query);
+            void ProcessSuccessCallback(Query *query);
+            void ProcessFailureCallback(Query *query);
 
         private:
-            QHash<unsigned int, Collectable_SmartPtr<ApiQuery>> apiQueries;
+            int getApiByPtr(ApiQuery *query);
+            void removeApiQueryById(int id);
+            QHash<int, Collectable_SmartPtr<ApiQuery>> apiQueries;
+            QHash<int, QString> successCallbacks;
+            QHash<int, QString> failureCallbacks;
+            QList<ApiQuery*> autoDeletes;
             QHash<QString, QString> functions;
+            int lastAPI = 0;
     };
 }
 

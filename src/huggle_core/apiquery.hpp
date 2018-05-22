@@ -26,27 +26,28 @@ namespace Huggle
     class RevertQuery;
     class WikiSite;
 
+    // IMPORTANT: when you change this enum, update scripting/ecma/types.js as well!!
     enum Action
     {
-        ActionClearHasMsg,
-        ActionCompare,
-        ActionQuery,
-        ActionLogin,
-        ActionLogout,
+        ActionClearHasMsg = 0,
+        ActionCompare = 1,
+        ActionQuery = 2,
+        ActionLogin = 3,
+        ActionLogout = 4,
         //ActionTokens,
-        ActionPurge,
-        ActionRollback,
-        ActionDelete,
-        ActionUndelete,
-        ActionBlock,
-        ActionPatrol,
-        ActionReview, // FlaggedRevs
-        ActionParse,
-        ActionProtect,
-        ActionEdit,
-        ActionUnwatch,
-        ActionWatch,
-        ActionCustom
+        ActionPurge = 5,
+        ActionRollback = 6,
+        ActionDelete = 7,
+        ActionUndelete = 8,
+        ActionBlock = 9,
+        ActionPatrol = 10,
+        ActionReview = 11, // FlaggedRevs
+        ActionParse = 12,
+        ActionProtect = 13,
+        ActionEdit = 14,
+        ActionUnwatch = 15,
+        ActionWatch = 16,
+        ActionCustom = 17
     };
 
     //! This class can be used to execute any kind of api query on any MW wiki
