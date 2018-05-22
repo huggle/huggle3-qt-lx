@@ -556,7 +556,7 @@ bool UserConfiguration::ParseYAML(QString config, ProjectConfiguration *ProjectC
     ProjectConfig->WarningTypes = this->SetUserOptionListYAML("warning-types", yaml, ProjectConfig->WarningTypes);
     ProjectConfig->ScoreChange = this->SetOptionYAML("score-change", yaml, ProjectConfig->ScoreChange).toLongLong();
     ProjectConfig->ScoreUser = this->SetOptionYAML("score-user", yaml, ProjectConfig->ScoreUser).toLongLong();
-    this->SummaryMode = YAML2Int("SummaryMode", yaml, this->SummaryMode);
+    this->SummaryMode = YAML2Int("summary-mode", yaml, this->SummaryMode);
     ProjectConfig->ScoreTalk = this->SetOptionYAML("score-talk", yaml, ProjectConfig->ScoreTalk).toLongLong();
     ProjectConfig->WarningDefs = this->SetUserOptionListYAML("warning-template-tags", yaml, ProjectConfig->WarningDefs);
     ProjectConfig->BotScore = this->SetOptionYAML("score-bot", yaml, ProjectConfig->BotScore).toLongLong();
@@ -567,40 +567,40 @@ bool UserConfiguration::ParseYAML(QString config, ProjectConfiguration *ProjectC
     ProjectConfig->ConfirmTalk = YAML2Bool("confirm-talk", yaml, ProjectConfig->ConfirmTalk);
     ProjectConfig->ConfirmOnSelfRevs = YAML2Bool("confirm-self-revert", yaml, ProjectConfig->ConfirmOnSelfRevs);
     ProjectConfig->ConfirmWL = YAML2Bool("confirm-whitelist", yaml, ProjectConfig->ConfirmWL);
-    this->DisplayTitle = YAML2Bool("DisplayTitle", yaml, this->DisplayTitle);
-    this->TruncateEdits = YAML2Bool("TruncateEdits", yaml, this->TruncateEdits);
-    this->HistoryLoad = YAML2Bool("HistoryLoad", yaml, this->HistoryLoad);
-    this->LastEdit = YAML2Bool("SkipToLastEdit", yaml, this->LastEdit);
-    this->PreferredProvider = YAML2Int("PreferredProvider", yaml, this->PreferredProvider);
-    this->CheckTP = YAML2Bool("CheckTP", yaml, this->CheckTP);
-    this->RetrieveFounder = YAML2Bool("RetrieveFounder", yaml, this->RetrieveFounder);
-    this->HAN_DisplayBots = YAML2Bool("HAN_DisplayBots", yaml, this->HAN_DisplayBots);
-    this->HAN_DisplayUser = YAML2Bool("HAN_DisplayUser", yaml, this->HAN_DisplayUser);
-    this->ManualWarning = YAML2Bool("ManualWarning", yaml, this->ManualWarning);
-    this->RemoveAfterTrustedEdit = YAML2Bool("RemoveAfterTrustedEdit", yaml, this->RemoveAfterTrustedEdit);
-    this->HAN_DisplayUserTalk = YAML2Bool("HAN_DisplayUserTalk", yaml, this->HAN_DisplayUserTalk);
-    this->HtmlAllowedInIrc = YAML2Bool("HAN_Html", yaml, this->HtmlAllowedInIrc);
-    this->Watchlist = WatchlistOptionFromString(YAML2String("Watchlist", yaml));
-    this->AutomaticallyGroup = YAML2Bool("AutomaticallyGroup", yaml, this->AutomaticallyGroup);
-    this->TalkPageFreshness = static_cast<unsigned int>(YAML2Int("TalkpageFreshness", yaml, this->TalkPageFreshness));
-    this->RemoveOldQueueEdits = YAML2Bool("RemoveOldestQueueEdits", yaml, this->RemoveOldQueueEdits);
-    this->QueueID = YAML2String("QueueID", yaml);
-    this->GoNext = static_cast<Configuration_OnNext>(YAML2Int("OnNext", yaml, 1));
-    this->DeleteEditsAfterRevert = YAML2Bool("DeleteEditsAfterRevert", yaml, this->DeleteEditsAfterRevert);
+    this->DisplayTitle = YAML2Bool("display-title", yaml, this->DisplayTitle);
+    this->TruncateEdits = YAML2Bool("truncate-edits", yaml, this->TruncateEdits);
+    this->HistoryLoad = YAML2Bool("history-load", yaml, this->HistoryLoad);
+    this->LastEdit = YAML2Bool("skip-to-last-edit", yaml, this->LastEdit);
+    this->PreferredProvider = YAML2Int("preferred-provider", yaml, this->PreferredProvider);
+    this->CheckTP = YAML2Bool("check-tp", yaml, this->CheckTP);
+    this->RetrieveFounder = YAML2Bool("retrieve-founder", yaml, this->RetrieveFounder);
+    this->HAN_DisplayBots = YAML2Bool("han_display-bots", yaml, this->HAN_DisplayBots);
+    this->HAN_DisplayUser = YAML2Bool("han_display-user", yaml, this->HAN_DisplayUser);
+    this->HAN_DisplayUserTalk = YAML2Bool("han-display-user-talk", yaml, this->HAN_DisplayUserTalk);
+    this->HtmlAllowedInIrc = YAML2Bool("han-html", yaml, this->HtmlAllowedInIrc);
+    this->ManualWarning = YAML2Bool("manual-warning", yaml, this->ManualWarning);
+    this->RemoveAfterTrustedEdit = YAML2Bool("remove-after-trusted-edit", yaml, this->RemoveAfterTrustedEdit);
+    this->Watchlist = WatchlistOptionFromString(YAML2String("watchlist", yaml));
+    this->AutomaticallyGroup = YAML2Bool("automatically-group", yaml, this->AutomaticallyGroup);
+    this->TalkPageFreshness = static_cast<unsigned int>(YAML2Int("talkpage-freshness", yaml, this->TalkPageFreshness));
+    this->RemoveOldQueueEdits = YAML2Bool("remove-oldest-queue-edits", yaml, this->RemoveOldQueueEdits);
+    this->QueueID = YAML2String("queue-id", yaml);
+    this->GoNext = static_cast<Configuration_OnNext>(YAML2Int("on-next", yaml, 1));
+    this->DeleteEditsAfterRevert = YAML2Bool("delete-edits-after-revert", yaml, this->DeleteEditsAfterRevert);
     this->WelcomeGood = this->SetOptionYAML("welcome-good", yaml, ProjectConfig->WelcomeGood).toBool();
-    this->AutomaticReports = YAML2Bool("AutomaticReports", yaml, this->AutomaticReports);
-    this->PageEmptyQueue = YAML2String("PageEmptyQueue", yaml);
+    this->AutomaticReports = YAML2Bool("automatic-reports", yaml, this->AutomaticReports);
+    this->PageEmptyQueue = YAML2String("page-empty-queue", yaml);
     delete this->Previous_Version;
     this->Previous_Version = new Version(YAML2String("version", yaml, HUGGLE_VERSION));
-    this->AutomaticallyWatchlistWarnedUsers = YAML2Bool("AutomaticallyWatchlistWarnedUsers", yaml, this->AutomaticallyWatchlistWarnedUsers);
+    this->AutomaticallyWatchlistWarnedUsers = YAML2Bool("automatically-watchlist-warned-users", yaml, this->AutomaticallyWatchlistWarnedUsers);
     // Score range
-    this->EnableMaxScore = YAML2Bool("EnableMaxScore", yaml, this->EnableMaxScore);
-    this->MinScore = YAML2LongLong("MinScore", yaml, this->MinScore);
-    this->MaxScore = YAML2LongLong("MaxScore", yaml, this->MaxScore);
-    this->EnableMinScore = YAML2Bool("EnableMinScore", yaml, this->EnableMinScore);
-    this->AutomaticRefresh = YAML2Bool("AutomaticRefresh", yaml, this->AutomaticRefresh);
-    this->ShortcutHash = YAML2String("ShortcutHash", yaml, "null");
-    this->ShowWarningIfNotOnLastRevision = YAML2Bool("ShowWarningIfNotOnLastRevision", yaml, this->ShowWarningIfNotOnLastRevision);
+    this->EnableMaxScore = YAML2Bool("enable-max-score", yaml, this->EnableMaxScore);
+    this->MinScore = YAML2LongLong("min-score", yaml, this->MinScore);
+    this->MaxScore = YAML2LongLong("max-score", yaml, this->MaxScore);
+    this->EnableMinScore = YAML2Bool("enable-min-score", yaml, this->EnableMinScore);
+    this->AutomaticRefresh = YAML2Bool("automatic-refresh", yaml, this->AutomaticRefresh);
+    this->ShortcutHash = YAML2String("shortcut-hash", yaml, "null");
+    this->ShowWarningIfNotOnLastRevision = YAML2Bool("show-warning-if-not-on-last-revision", yaml, this->ShowWarningIfNotOnLastRevision);
     // for now we do this only for home wiki but later we need to make it for every wiki
     if (IsHome)
     {
@@ -620,12 +620,12 @@ bool UserConfiguration::ParseYAML(QString config, ProjectConfiguration *ProjectC
             this->ShortcutHash = hash;
             return true;
         }
-        QStringList shortcuts = YAML2QStringList("ShortcutList", yaml);
+        QStringList shortcuts = YAML2QStringList("shortcut-list", yaml);
         foreach (QString line, shortcuts)
         {
             if (!line.contains(";"))
             {
-                Syslog::HuggleLogs->WarningLog("Invalid line in user configuration (shortcuts): " + line);
+                Syslog::HuggleLogs->WarningLog("Invalid line in user configuration (shortcut-list): " + line);
                 continue;
             }
             QStringList parts = line.split(';');
