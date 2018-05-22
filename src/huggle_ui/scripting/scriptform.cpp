@@ -17,6 +17,7 @@
 #include <huggle_core/configuration.hpp>
 #include <huggle_core/resources.hpp>
 #include <huggle_core/scripting/script.hpp>
+#include <QFontDatabase>
 #include <QFile>
 #include <QFileDialog>
 
@@ -26,6 +27,7 @@ ScriptForm::ScriptForm(QWidget *parent) : QDialog(parent), ui(new Ui::ScriptForm
 {
     this->ui->setupUi(this);
     this->ui->textEdit->setText(Resources::GetResource("/huggle/text/ecma/template"));
+    this->ui->textEdit->setFont(QFontDatabase::systemFont(QFontDatabase::FixedFont));
     QString file_name = Configuration::GetExtensionsRootPath() + "new_script.js";
     int file_id = 1;
     while (QFile(file_name).exists())
