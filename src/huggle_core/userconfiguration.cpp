@@ -574,8 +574,8 @@ bool UserConfiguration::ParseYAML(QString config, ProjectConfiguration *ProjectC
     this->PreferredProvider = YAML2Int("preferred-provider", yaml, this->PreferredProvider);
     this->CheckTP = YAML2Bool("check-tp", yaml, this->CheckTP);
     this->RetrieveFounder = YAML2Bool("retrieve-founder", yaml, this->RetrieveFounder);
-    this->HAN_DisplayBots = YAML2Bool("han_display-bots", yaml, this->HAN_DisplayBots);
-    this->HAN_DisplayUser = YAML2Bool("han_display-user", yaml, this->HAN_DisplayUser);
+    this->HAN_DisplayBots = YAML2Bool("han-display-bots", yaml, this->HAN_DisplayBots);
+    this->HAN_DisplayUser = YAML2Bool("han-display-user", yaml, this->HAN_DisplayUser);
     this->HAN_DisplayUserTalk = YAML2Bool("han-display-user-talk", yaml, this->HAN_DisplayUserTalk);
     this->HtmlAllowedInIrc = YAML2Bool("han-html", yaml, this->HtmlAllowedInIrc);
     this->ManualWarning = YAML2Bool("manual-warning", yaml, this->ManualWarning);
