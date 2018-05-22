@@ -157,9 +157,16 @@ QVariant UserConfiguration::SetOptionYAML(QString key, YAML::Node &config, QVari
     return h->GetVariant();
 }
 
+QString SanitizeString(QString s)
+{
+    s.replace("\\", "\\\\");
+    s.replace("\"", "\\\"");
+    return s;
+}
+
 void AppendConf(QString *conf, QString key, QString value)
 {
-    conf->append(key + ": \"" + value + "\"\n");
+    conf->append(key + ": \"" + SanitizeString(value) + "\"\n");
 }
 
 void AppendConf(QString *conf, QString key, bool value)
@@ -185,13 +192,6 @@ void AppendComment(QString *conf, QString text)
 void AppendConf(QString *conf, QString key, long long value)
 {
     conf->append(key + ": " + QString::number(value) + "\n");
-}
-
-QString SanitizeString(QString s)
-{
-    s.replace("'", "_");
-    s.replace("\"", "_");
-    return s;
 }
 
 QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
@@ -320,22 +320,22 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
         c++;
         if (fltr->IsChangeable())
         {
-            configuration += "    '" + SanitizeString(fltr->QueueName) + "':\n";
-            configuration += "        filter-ignored: '" + Bool2ExcludeRequire(fltr->getIgnoreWL()) + "'\n";
-            configuration += "        filter-bots: '" + Bool2ExcludeRequire(fltr->getIgnoreBots()) + "'\n";
-            configuration += "        filter-assisted: '" + Bool2ExcludeRequire(fltr->getIgnoreFriends()) + "'\n";
-            configuration += "        filter-ip: '" + Bool2ExcludeRequire(fltr->getIgnoreIP()) + "'\n";
-            configuration += "        filter-minor: '" + Bool2ExcludeRequire(fltr->getIgnoreMinor()) + "'\n";
-            configuration += "        filter-new-pages: '" + Bool2ExcludeRequire(fltr->getIgnoreNP()) + "'\n";
-            configuration += "        filter-me: '" + Bool2ExcludeRequire(fltr->getIgnoreSelf()) + "'\n";
-            configuration += "        nsfilter-user: '" + Bool2ExcludeRequire(fltr->getIgnore_UserSpace()) + "'\n";
-            configuration += "        filter-talk: '" + Bool2ExcludeRequire(fltr->getIgnoreTalk()) + "'\n";
-            configuration += "        filter-watched: '" + Bool2ExcludeRequire(fltr->getIgnoreWatched()) + "'\n";
-            configuration += "        filter-reverts: '" + Bool2ExcludeRequire(fltr->getIgnoreReverts()) + "'\n";
-            configuration += "        ignored-tags: '" + fltr->GetIgnoredTags_CommaSeparated() + "'\n";
-            configuration += "        required-tags: '" + fltr->GetRequiredTags_CommaSeparated() + "'\n";
-            configuration += "        ignored-categories: '" + fltr->GetIgnoredCategories_CommaSeparated() + "'\n";
-            configuration += "        required-categories: '" + fltr->GetRequiredCategories_CommaSeparated() + "'\n";
+            configuration += "    \"" + SanitizeString(fltr->QueueName) + "\":\n";
+            configuration += "        filter-ignored: \"" + Bool2ExcludeRequire(fltr->getIgnoreWL()) + "\"\n";
+            configuration += "        filter-bots: \"" + Bool2ExcludeRequire(fltr->getIgnoreBots()) + "\"\n";
+            configuration += "        filter-assisted: \"" + Bool2ExcludeRequire(fltr->getIgnoreFriends()) + "\"\n";
+            configuration += "        filter-ip: \"" + Bool2ExcludeRequire(fltr->getIgnoreIP()) + "\"\n";
+            configuration += "        filter-minor: \"" + Bool2ExcludeRequire(fltr->getIgnoreMinor()) + "\"\n";
+            configuration += "        filter-new-pages: \"" + Bool2ExcludeRequire(fltr->getIgnoreNP()) + "\"\n";
+            configuration += "        filter-me: \"" + Bool2ExcludeRequire(fltr->getIgnoreSelf()) + "\"\n";
+            configuration += "        nsfilter-user: \"" + Bool2ExcludeRequire(fltr->getIgnore_UserSpace()) + "\"\n";
+            configuration += "        filter-talk: \"" + Bool2ExcludeRequire(fltr->getIgnoreTalk()) + "\"\n";
+            configuration += "        filter-watched: \"" + Bool2ExcludeRequire(fltr->getIgnoreWatched()) + "\"\n";
+            configuration += "        filter-reverts: \"" + Bool2ExcludeRequire(fltr->getIgnoreReverts()) + "\"\n";
+            configuration += "        ignored-tags: \"" + SanitizeString(fltr->GetIgnoredTags_CommaSeparated()) + "\"\n";
+            configuration += "        required-tags: \"" + SanitizeString(fltr->GetRequiredTags_CommaSeparated()) + "\"\n";
+            configuration += "        ignored-categories: \"" + SanitizeString(fltr->GetIgnoredCategories_CommaSeparated()) + "\"\n";
+            configuration += "        required-categories: \"" + SanitizeString(fltr->GetRequiredCategories_CommaSeparated()) + "\"\n";
             QString ns = "";
             QList<int> filter_keys = fltr->Namespaces.keys();
             qSort(filter_keys);
@@ -345,7 +345,7 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
                     ns += QString::number(nsid) + ",";
             }
             if (!ns.isEmpty())
-                configuration += "        filtered-ns: '" + ns + "'\n";
+                configuration += "        filtered-ns: \"" + SanitizeString(ns) + "\"\n";
             configuration += "\n";
         }
     }
