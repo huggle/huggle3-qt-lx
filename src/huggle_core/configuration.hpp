@@ -372,8 +372,9 @@ namespace Huggle
             QString     GlobalConfig_LocalConfigYAMLPath = "Project:Huggle/Config.yaml";
             //! Specified with startup option in order to set alternative project config page, useful when you need to test new config page
             QString     GlobalConfig_OverrideConfigYAMLPath;
-            QString     GlobalConfig_UserConf = "User:$1/huggle3.css";
-            QString     GlobalConfig_UserConf_old = "User:$1/huggle.css";
+            //! Since Huggle 3.4.0 we use huggle.json
+            QString     GlobalConfig_UserConf = "User:$1/huggle.yaml.js";
+            QString     GlobalConfig_UserConf_old = "User:$1/huggle3.css";
             QString     GlobalConfig_Whitelist = "http://huggle.wmflabs.org/data/";
             bool        GlobalConfigWasLoaded = false;
             QString     GlobalConfig_Xmlrcs = "huggle-rc.wmflabs.org";

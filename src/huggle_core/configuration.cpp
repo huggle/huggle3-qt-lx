@@ -507,8 +507,8 @@ bool Configuration::ParseGlobalConfig(QString config)
     this->GlobalConfig_LocalConfigYAMLPath = HuggleParser::YAML2String("config-yml", yaml, this->GlobalConfig_LocalConfigYAMLPath);
     this->GlobalConfig_LocalConfigWikiPath = HuggleParser::YAML2String("config", yaml, this->GlobalConfig_LocalConfigWikiPath);
     // Sanitize page titles (huggle2 done sth. similiar at Page.SanitizeTitle before requesting them)
-    this->GlobalConfig_UserConf = ReplaceSpecialUserPage(HuggleParser::YAML2String("user-config-hg3", yaml));
-    this->GlobalConfig_UserConf_old = ReplaceSpecialUserPage(HuggleParser::YAML2String("user-config", yaml));
+    this->GlobalConfig_UserConf = ReplaceSpecialUserPage(HuggleParser::YAML2String("user-config-yaml", yaml, this->GlobalConfig_UserConf));
+    this->GlobalConfig_UserConf_old = ReplaceSpecialUserPage(HuggleParser::YAML2String("user-config-hg3", yaml, this->GlobalConfig_UserConf_old));
     this->GlobalConfig_Xmlrcs = HuggleParser::YAML2String("xmlrcs", yaml, "huggle-rc.wmflabs.org");
     this->GlobalConfig_XmlrcsPort = HuggleParser::YAML2Int("xmlrcs-port", yaml, 8822);
     this->HANMask = HuggleParser::YAML2String("han-mask", yaml, this->HANMask);

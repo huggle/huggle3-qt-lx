@@ -261,6 +261,7 @@
   <string name="login-fail-no-info">Login failed on $1: Unable to retrieve user info: $2</string>
   <string name="login-bot">What is the difference between BotPassword and legacy login?</string>
   <string name="login-fail-parse-config">Login failed on $1: Unable to parse the user configuration. See the debug log for more details.</string>
+  <string name="login-fail-parse-config-yaml">Login failed on $1: Unable to parse the user configuration: $2</string>
   <string name="login-fail-user-data">Login failed on $1: Unable to retrieve user info. The API query returned no data.</string>
   <string name="login-fail-rollback-rights">Login failed on $1: You don&apos;t have rollback permissions on this project.</string>
   <string name="login-failed-autoconfirm-rights">Login failed on $1: You are not autoconfirmed on this project.</string>

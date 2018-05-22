@@ -21,6 +21,13 @@
 #include "version.hpp"
 #include <QKeySequence>
 
+// Nasty hack to get yaml-cpp to work on OSX
+#define _hl Huggle::Localizations::HuggleLocalizations->Localize
+#undef _l
+
+#include <string>
+#include <yaml-cpp/yaml.h>
+
 using namespace Huggle;
 using namespace Huggle::Generic;
 using namespace Huggle::HuggleParser;
@@ -78,6 +85,7 @@ Huggle::UserConfiguration::UserConfiguration()
 Huggle::UserConfiguration::~UserConfiguration()
 {
     delete this->Previous_Version;
+    delete this->yaml_node;
     QStringList ol = this->UserOptions.keys();
     while (ol.count())
     {
@@ -97,105 +105,153 @@ HuggleOption *UserConfiguration::GetOption(QString key)
     return nullptr;
 }
 
-QVariant UserConfiguration::SetOption(QString key_, QString config_, QVariant default_)
+QVariant UserConfiguration::SetOption(QString key, QString config, QVariant def)
 {
-    if (this->UserOptions.contains(key_))
+    if (this->UserOptions.contains(key))
     {
         // we must not add 2 same
         throw new Huggle::Exception("This option is already in a list you can't have multiple same keys in it", BOOST_CURRENT_FUNCTION);
     }
-    QString d_ = default_.toString();
-    QString value = ConfigurationParse(key_, config_, d_);
+    QString d_ = def.toString();
+    QString value = ConfigurationParse(key, config, d_);
     HuggleOption *h;
-    switch (default_.type())
+    switch (def.type())
     {
         case QVariant::Int:
-            h = new HuggleOption(key_, value.toInt(), value == d_);
+            h = new HuggleOption(key, value.toInt(), value == d_);
             break;
         case QVariant::Bool:
-            h = new HuggleOption(key_, Generic::SafeBool(value), value == d_);
+            h = new HuggleOption(key, Generic::SafeBool(value), value == d_);
             break;
         default:
-            h = new HuggleOption(key_, value, value == d_);
+            h = new HuggleOption(key, value, value == d_);
             break;
     }
-    this->UserOptions.insert(key_, h);
+    this->UserOptions.insert(key, h);
     return h->GetVariant();
+}
+
+QVariant UserConfiguration::SetOptionYAML(QString key, YAML::Node &config, QVariant def)
+{
+    if (this->UserOptions.contains(key))
+    {
+        // we must not add 2 same
+        throw new Huggle::Exception("This option is already in a list you can't have multiple same keys in it", BOOST_CURRENT_FUNCTION);
+    }
+    QString default_str = def.toString();
+    QString value = YAML2String(key, config, default_str);
+    HuggleOption *h;
+    switch (def.type())
+    {
+        case QVariant::Int:
+            h = new HuggleOption(key, value.toInt(), value == default_str);
+            break;
+        case QVariant::Bool:
+            h = new HuggleOption(key, Generic::SafeBool(value), value == default_str);
+            break;
+        default:
+            h = new HuggleOption(key, value, value == default_str);
+            break;
+    }
+    this->UserOptions.insert(key, h);
+    return h->GetVariant();
+}
+
+QString SanitizeString(QString s)
+{
+    s.replace("\\", "\\\\");
+    s.replace("\"", "\\\"");
+    return s;
+}
+
+void AppendConf(QString *conf, QString key, QString value)
+{
+    conf->append(key + ": \"" + SanitizeString(value) + "\"\n");
+}
+
+void AppendConf(QString *conf, QString key, bool value)
+{
+    conf->append(key + ": " + Bool2String(value) + "\n");
+}
+
+void AppendConf(QString *conf, QString key, int value)
+{
+    conf->append(key + ": " + QString::number(value) + "\n");
+}
+
+void AppendConf(QString *conf, QString key, unsigned int value)
+{
+    conf->append(key + ": " + QString::number(value) + "\n");
+}
+
+void AppendComment(QString *conf, QString text)
+{
+    conf->append("# // " + text + "\n");
+}
+
+void AppendConf(QString *conf, QString key, long long value)
+{
+    conf->append(key + ": " + QString::number(value) + "\n");
 }
 
 QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
 {
-    QString configuration_ = "<nowiki>\n";
-    configuration_ += "// This is a configuration of huggle, do not change it unless you know what you are doing.\n";
-    configuration_ += "enable:true\n";
-    configuration_ += "// Last version of huggle that wrote into this configuration file (sanity check)\n";
-    configuration_ += "version:" + hcfg->HuggleVersion + "\n\n";
-    configuration_ += "speedy-message-title:Speedy deleted\n";
-    configuration_ += "report-summary:" + Project->ReportSummary + "\n";
-    configuration_ += "prod-message-summary:Notification: Proposed deletion of [[$1]]\n";
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Huggle 2 options
-    configuration_ += "auto-advance:false\n";
-    configuration_ += "auto-whitelist:true\n";
-    configuration_ += "username-listed:true\n";
-    configuration_ += "admin:true\n";
-    configuration_ += "patrol-speedy:true\n";
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    configuration_ += "confirm-multiple:" + Bool2String(Project->ConfirmMultipleEdits) + "\n";
-    configuration_ += "confirm-talk:" + Bool2String(Project->ConfirmTalk) + "\n";
-    // configuration_ += "confirm-page:" + Bool2String(HuggleConfiguration->ProjectConfig->ConfirmPage) + "\n";
-    // configuration_ += "confirm-same:" + Bool2String(HuggleConfiguration->ProjectConfig->ConfirmSame) + "\n";
-    configuration_ += "confirm-self-revert:" + Bool2String(Project->ConfirmOnSelfRevs) + "\n";
-    configuration_ += "confirm-whitelist:" + Bool2String(Project->ConfirmWL) + "\n";
-    //configuration_ += "confirm-warned:" + Bool2String(HuggleConfiguration->ProjectConfig->ConfirmWarned) + "\n";
-    // configuration_ += "confirm-range:" + Bool2String(HuggleConfiguration->ProjectConfig->ConfirmRange) + "\n";
+    QString configuration = "---\n# // This is a configuration of huggle, do not change it unless you know what you are doing.\n";
+    AppendConf(&configuration, "enable", true);
+    AppendComment(&configuration, "Last version of huggle that wrote into this configuration file (sanity check)");
+    AppendConf(&configuration, "version", hcfg->HuggleVersion);
+    AppendConf(&configuration, "report-summary", Project->ReportSummary);
+    AppendConf(&configuration, "confirm-multiple", Project->ConfirmMultipleEdits);
+    AppendConf(&configuration, "confirm-talk", Project->ConfirmTalk);
+    AppendConf(&configuration, "confirm-self-revert", Project->ConfirmOnSelfRevs);
+    AppendConf(&configuration, "confirm-whitelist", Project->ConfirmWL);
     // Save this only if it differs from project config so that project config can change in future and it's reflected
     if (Project->DefaultSummary != this->DefaultSummary)
-        configuration_ += "default-summary:" + this->DefaultSummary + "\n";
+        AppendConf(&configuration, "default-summary", this->DefaultSummary);
     if (Project->RollbackSummary != this->RollbackSummary)
-        configuration_ += "rollback-summary:" + this->RollbackSummary + "\n";
+        AppendConf(&configuration, "rollback-summary", this->RollbackSummary);
     if (Project->RollbackSummaryUnknownTarget != this->RollbackSummaryUnknownTarget)
-        configuration_ += "rollback-summary-unknown:" + this->RollbackSummaryUnknownTarget + "\n";
-    configuration_ += "// This option will change the behaviour of automatic resolution, be carefull\n";
-    configuration_ += "revert-auto-multiple-edits:" + Bool2String(this->RevertOnMultipleEdits) + "\n";
-    configuration_ += "automatically-resolve-conflicts:" + Bool2String(this->AutomaticallyResolveConflicts) + "\n";
-    configuration_ += "software-rollback:" + Bool2String(this->EnforceManualSoftwareRollback) + "\n";
-    configuration_ += "HistoryLoad:" + Bool2String(this->HistoryLoad) + "\n";
-    configuration_ += "OnNext:" + QString::number(static_cast<int>(this->GoNext)) + "\n";
-    configuration_ += "DeleteEditsAfterRevert:" + Bool2String(this->DeleteEditsAfterRevert) + "\n";
-    configuration_ += "SkipToLastEdit:" + Bool2String(this->LastEdit) + "\n";
-    configuration_ += "PreferredProvider:" + QString::number(this->PreferredProvider) + "\n";
-    configuration_ += "RemoveOldestQueueEdits:" + Bool2String(this->RemoveOldQueueEdits) + "\n";
-    configuration_ += "TruncateEdits:" + Bool2String(this->TruncateEdits) + "\n";
-    configuration_ += "TalkpageFreshness:" + QString::number(this->TalkPageFreshness) + "\n";
-    configuration_ += "RemoveAfterTrustedEdit:" + Bool2String(this->RemoveAfterTrustedEdit) + "\n";
-    configuration_ += "// Get original creator of every page so that you can G7 instead of reverting the page\n";
-    configuration_ += "RetrieveFounder:" + Bool2String(this->RetrieveFounder) + "\n";
-    configuration_ += "DisplayTitle:" + Bool2String(this->DisplayTitle) + "\n";
-    configuration_ += "// Periodically check if you received new messages and display a notification box if you get them\n";
-    configuration_ += "CheckTP:" + Bool2String(this->CheckTP) + "\n";
-    configuration_ += "ManualWarning:" + Bool2String(this->ManualWarning) + "\n";
-    configuration_ += "SummaryMode:" + QString::number(this->SummaryMode) + "\n";
-    configuration_ += "AutomaticReports:" + Bool2String(this->AutomaticReports) + "\n";
-    configuration_ += "// HAN\n";
-    configuration_ += "HAN_Html:" + Bool2String(hcfg->UserConfig->HtmlAllowedInIrc) + "\n";
-    configuration_ += "HAN_DisplayUserTalk:" + Bool2String(this->HAN_DisplayUserTalk) + "\n";
-    configuration_ += "HAN_DisplayBots:" + Bool2String(this->HAN_DisplayBots) + "\n";
-    configuration_ += "HAN_DisplayUser:" + Bool2String(this->HAN_DisplayUser) + "\n";
-    configuration_ += "Watchlist:" + WatchListOptionToString(this->Watchlist) + "\n";
-    configuration_ += "// Whether edits made by same user should be grouped up together in page\n";
-    configuration_ += "AutomaticallyGroup:" + Bool2String(this->AutomaticallyGroup) + "\n";
-    configuration_ += "QueueID:" + this->QueueID + "\n";
-    configuration_ += "// Location of page (wiki page name, for example WP:Huggle) that should be displayed when you hit next and queue is empty. Leave empty for default page.\n";
-    configuration_ += "PageEmptyQueue:" + this->PageEmptyQueue + "\n";
-    configuration_ += "EnableMaxScore:" + Bool2String(this->EnableMaxScore) + "\n";
-    configuration_ += "MaxScore:" + QString::number(this->MaxScore) + "\n";
-    configuration_ += "EnableMinScore:" + Bool2String(this->EnableMinScore) + "\n";
-    configuration_ += "MinScore:" + QString::number(this->MinScore) + "\n";
-    configuration_ += "AutomaticRefresh:" + Bool2String(this->AutomaticRefresh) + "\n";
-    configuration_ += "AutomaticallyWatchlistWarnedUsers:" + Bool2String(this->AutomaticallyWatchlistWarnedUsers) + "\n";
-    configuration_ += "ShortcutHash:" + this->ShortcutHash + "\n";
-    configuration_ += "ShowWarningIfNotOnLastRevision:" + Bool2String(this->ShowWarningIfNotOnLastRevision) + "\n";
+        AppendConf(&configuration, "rollback-summary-unknown", this->RollbackSummaryUnknownTarget);
+    AppendComment(&configuration, "This option will change the behaviour of automatic resolution, be carefull");
+    AppendConf(&configuration, "revert-auto-multiple-edits", this->RevertOnMultipleEdits);
+    AppendConf(&configuration, "automatically-resolve-conflicts", this->AutomaticallyResolveConflicts);
+    AppendConf(&configuration, "software-rollback", this->EnforceManualSoftwareRollback);
+    AppendConf(&configuration, "history-load", this->HistoryLoad);
+    AppendConf(&configuration, "on-next", static_cast<int>(this->GoNext));
+    AppendConf(&configuration, "delete-edits-after-revert", this->DeleteEditsAfterRevert);
+    AppendConf(&configuration, "skip-to-last-edit", this->LastEdit);
+    AppendConf(&configuration, "preferred-provider", this->PreferredProvider);
+    AppendConf(&configuration, "remove-oldest-queue-edits", this->RemoveOldQueueEdits);
+    AppendConf(&configuration, "truncate-edits", this->TruncateEdits);
+    AppendConf(&configuration, "talkpage-freshness", this->TalkPageFreshness);
+    AppendConf(&configuration, "remove-after-trusted-edit", this->RemoveAfterTrustedEdit);
+    AppendComment(&configuration, "Get original creator of every page so that you can G7 instead of reverting the page");
+    AppendConf(&configuration, "retrieve-founder", this->RetrieveFounder);
+    AppendConf(&configuration, "display-title", this->DisplayTitle);
+    AppendComment(&configuration, "Periodically check if you received new messages and display a notification box if you get them");
+    AppendConf(&configuration, "check-tp", this->CheckTP);
+    AppendConf(&configuration, "manual-warning", this->ManualWarning);
+    AppendConf(&configuration, "summary-mode", this->SummaryMode);
+    AppendConf(&configuration, "automatic-reports", this->AutomaticReports);
+    AppendComment(&configuration, "HAN");
+    AppendConf(&configuration, "han-html", hcfg->UserConfig->HtmlAllowedInIrc);
+    AppendConf(&configuration, "han-display-user-talk", this->HAN_DisplayUserTalk);
+    AppendConf(&configuration, "han-display-bots", this->HAN_DisplayBots);
+    AppendConf(&configuration, "han-display-user", this->HAN_DisplayUser);
+    AppendConf(&configuration, "watchlist", WatchListOptionToString(this->Watchlist));
+    AppendComment(&configuration, "Whether edits made by same user should be grouped up together in page");
+    AppendConf(&configuration, "automatically-group", this->AutomaticallyGroup);
+    AppendConf(&configuration, "queue-id", this->QueueID);
+    AppendComment(&configuration, "Location of page (wiki page name, for example WP:Huggle) that should be displayed when you hit next and queue is empty. Leave empty for default page.");
+    AppendConf(&configuration, "page-empty-queue", this->PageEmptyQueue);
+    AppendConf(&configuration, "enable-max-score", this->EnableMaxScore);
+    AppendConf(&configuration, "max-score", this->MaxScore);
+    AppendConf(&configuration, "enable-min-score", this->EnableMinScore);
+    AppendConf(&configuration, "min-score", this->MinScore);
+    AppendConf(&configuration, "automatic-refresh", this->AutomaticRefresh);
+    AppendConf(&configuration, "automatically-watchlist-warned-users", this->AutomaticallyWatchlistWarnedUsers);
+    AppendConf(&configuration, "shortcut-hash", this->ShortcutHash);
+    AppendConf(&configuration, "show-warning-if-not-on-last-revision", this->ShowWarningIfNotOnLastRevision);
     // shortcuts
     QStringList shortcuts = Configuration::HuggleConfiguration->Shortcuts.keys();
     // we need to do this otherwise huggle may sort the items differently every time and spam wiki
@@ -207,7 +263,7 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
         Shortcut s_ = Configuration::HuggleConfiguration->Shortcuts[key];
         if (s_.Modified)
         {
-            si += "  " + s_.Name + ";" + s_.QAccel + ",\n";
+            si += "    '" + s_.Name + "': " + s_.QAccel + "\n";
             modified_++;
         }
     }
@@ -218,7 +274,7 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
         si += "\n";
     }
     if (modified_)
-        configuration_ += "ShortcutList:\n" + si + "\n";
+        configuration += "shortcut-list:\n" + si + "\n";
     QStringList kl = this->UserOptions.keys();
     kl.sort();
     foreach (QString item, kl)
@@ -234,27 +290,27 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
             if (option->GetVariant().type() != QVariant::StringList)
             {
                 // in case we modified this item we store it
-                configuration_ += item + ":" + option->GetVariant().toString() + "\n";
+                AppendConf(&configuration, item, option->GetVariant().toString());
             } else
             {
                 QStringList list = option->GetVariant().toStringList();
-                configuration_ += item + ":\n";
+                configuration += item + ":\n";
                 int x = 0;
                 while (x < list.count())
                 {
                     if (x+1 < list.count())
                     {
-                        configuration_ += "    " + list.at(x) + ",\n";
+                        configuration += "    - '" + list.at(x) + "'\n";
                     } else
                     {
-                        configuration_ += "    " + list.at(x) + "\n\n";
+                        configuration += "    - '" + list.at(x) + "'\n\n";
                     }
                     x++;
                 }
             }
         }
     }
-    configuration_ += "// queues\nqueues:\n";
+    configuration += "queues:\n";
     int c = 0;
     if (!HuggleQueueFilter::Filters.contains(Project->Site))
         throw new Huggle::Exception("There is no such a site in queue filters", BOOST_CURRENT_FUNCTION);
@@ -264,22 +320,22 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
         c++;
         if (fltr->IsChangeable())
         {
-            configuration_ += "    " + fltr->QueueName + ":\n";
-            configuration_ += "        filter-ignored:" + Bool2ExcludeRequire(fltr->getIgnoreWL()) + "\n";
-            configuration_ += "        filter-bots:" + Bool2ExcludeRequire(fltr->getIgnoreBots()) + "\n";
-            configuration_ += "        filter-assisted:" + Bool2ExcludeRequire(fltr->getIgnoreFriends()) + "\n";
-            configuration_ += "        filter-ip:" + Bool2ExcludeRequire(fltr->getIgnoreIP()) + "\n";
-            configuration_ += "        filter-minor:" + Bool2ExcludeRequire(fltr->getIgnoreMinor()) + "\n";
-            configuration_ += "        filter-new-pages:" + Bool2ExcludeRequire(fltr->getIgnoreNP()) + "\n";
-            configuration_ += "        filter-me:" + Bool2ExcludeRequire(fltr->getIgnoreSelf()) + "\n";
-            configuration_ += "        nsfilter-user:" + Bool2ExcludeRequire(fltr->getIgnore_UserSpace()) + "\n";
-            configuration_ += "        filter-talk:" + Bool2ExcludeRequire(fltr->getIgnoreTalk()) + "\n";
-            configuration_ += "        filter-watched:" + Bool2ExcludeRequire(fltr->getIgnoreWatched()) + "\n";
-            configuration_ += "        filter-reverts:" + Bool2ExcludeRequire(fltr->getIgnoreReverts()) + "\n";
-            configuration_ += "        ignored-tags:" + fltr->GetIgnoredTags_CommaSeparated() + "\n";
-            configuration_ += "        required-tags:" + fltr->GetRequiredTags_CommaSeparated() + "\n";
-            configuration_ += "        ignored-categories:" + fltr->GetIgnoredCategories_CommaSeparated() + "\n";
-            configuration_ += "        required-categories:" + fltr->GetRequiredCategories_CommaSeparated() + "\n";
+            configuration += "    \"" + SanitizeString(fltr->QueueName) + "\":\n";
+            configuration += "        filter-ignored: \"" + Bool2ExcludeRequire(fltr->getIgnoreWL()) + "\"\n";
+            configuration += "        filter-bots: \"" + Bool2ExcludeRequire(fltr->getIgnoreBots()) + "\"\n";
+            configuration += "        filter-assisted: \"" + Bool2ExcludeRequire(fltr->getIgnoreFriends()) + "\"\n";
+            configuration += "        filter-ip: \"" + Bool2ExcludeRequire(fltr->getIgnoreIP()) + "\"\n";
+            configuration += "        filter-minor: \"" + Bool2ExcludeRequire(fltr->getIgnoreMinor()) + "\"\n";
+            configuration += "        filter-new-pages: \"" + Bool2ExcludeRequire(fltr->getIgnoreNP()) + "\"\n";
+            configuration += "        filter-me: \"" + Bool2ExcludeRequire(fltr->getIgnoreSelf()) + "\"\n";
+            configuration += "        nsfilter-user: \"" + Bool2ExcludeRequire(fltr->getIgnore_UserSpace()) + "\"\n";
+            configuration += "        filter-talk: \"" + Bool2ExcludeRequire(fltr->getIgnoreTalk()) + "\"\n";
+            configuration += "        filter-watched: \"" + Bool2ExcludeRequire(fltr->getIgnoreWatched()) + "\"\n";
+            configuration += "        filter-reverts: \"" + Bool2ExcludeRequire(fltr->getIgnoreReverts()) + "\"\n";
+            configuration += "        ignored-tags: \"" + SanitizeString(fltr->GetIgnoredTags_CommaSeparated()) + "\"\n";
+            configuration += "        required-tags: \"" + SanitizeString(fltr->GetRequiredTags_CommaSeparated()) + "\"\n";
+            configuration += "        ignored-categories: \"" + SanitizeString(fltr->GetIgnoredCategories_CommaSeparated()) + "\"\n";
+            configuration += "        required-categories: \"" + SanitizeString(fltr->GetRequiredCategories_CommaSeparated()) + "\"\n";
             QString ns = "";
             QList<int> filter_keys = fltr->Namespaces.keys();
             qSort(filter_keys);
@@ -289,12 +345,11 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
                     ns += QString::number(nsid) + ",";
             }
             if (!ns.isEmpty())
-                configuration_ += "        filtered-ns:" + ns + "\n";
-            configuration_ += "\n";
+                configuration += "        filtered-ns: \"" + SanitizeString(ns) + "\"\n";
+            configuration += "\n";
         }
     }
-    configuration_ += "</nowiki>";
-    return configuration_;
+    return configuration;
 }
 
 bool UserConfiguration::EnforceSoftwareRollback()
@@ -302,20 +357,33 @@ bool UserConfiguration::EnforceSoftwareRollback()
     return this->EnforceManualSoftwareRollback || this->EnforceManualSRT;
 }
 
-QStringList UserConfiguration::SetUserOptionList(QString key_, QString config_, QStringList default_, bool CS)
+QStringList UserConfiguration::SetUserOptionList(QString key, QString config, QStringList def, bool CS)
 {
-    if (this->UserOptions.contains(key_))
+    if (this->UserOptions.contains(key))
     {
         // we must not add 2 same
         throw new Huggle::Exception("This option is already in a list you can't have multiple same keys in it", BOOST_CURRENT_FUNCTION);
     }
-    QStringList value = HuggleParser::ConfigurationParse_QL(key_, config_, default_, CS);
-    HuggleOption *h = new HuggleOption(key_, value, value == default_);
-    this->UserOptions.insert(key_, h);
+    QStringList value = HuggleParser::ConfigurationParse_QL(key, config, def, CS);
+    HuggleOption *h = new HuggleOption(key, value, value == def);
+    this->UserOptions.insert(key, h);
     return value;
 }
 
-bool UserConfiguration::ParseUserConfig(QString config, ProjectConfiguration *ProjectConfig, bool IsHome)
+QStringList UserConfiguration::SetUserOptionListYAML(QString key, YAML::Node &config, QStringList def)
+{
+    if (this->UserOptions.contains(key))
+    {
+        // we must not add 2 same
+        throw new Huggle::Exception("This option is already in a list you can't have multiple same keys in it", BOOST_CURRENT_FUNCTION);
+    }
+    QStringList value = YAML2QStringList(key, config, def);
+    HuggleOption *h = new HuggleOption(key, value, value == def);
+    this->UserOptions.insert(key, h);
+    return value;
+}
+
+bool UserConfiguration::Parse(QString config, ProjectConfiguration *ProjectConfig, bool IsHome)
 {
     this->RevertOnMultipleEdits = SafeBool(ConfigurationParse("RevertOnMultipleEdits", config));
     ProjectConfig->EnableAll = SafeBool(ConfigurationParse("enable", config));
@@ -401,7 +469,7 @@ bool UserConfiguration::ParseUserConfig(QString config, ProjectConfiguration *Pr
         {
             // Suppress this warning in case there is no record yet, this is first run of Huggle by new user
             if (!this->ShortcutHash.isEmpty() && this->ShortcutHash != "null")
-                Hooks::ShowWarning(_l("warning"), _l("config-reset-menu"));
+                Hooks::ShowWarning(_hl("warning"), _hl("config-reset-menu"));
             hcfg->ResetMenuShortcuts();
             this->ShortcutHash = hash;
             return true;
@@ -437,25 +505,164 @@ bool UserConfiguration::ParseUserConfig(QString config, ProjectConfiguration *Pr
     return true;
 }
 
-int Huggle::UserConfiguration::GetSafeUserInt(QString key_, int default_value)
+bool UserConfiguration::ParseYAML(QString config, ProjectConfiguration *ProjectConfig, bool IsHome, QString *reason)
 {
-    HuggleOption *option = this->GetOption(key_);
+    // Fetch the YAML
+    std::string config_std = HuggleParser::FetchYAML(config).toStdString();
+    YAML::Node yaml;
+    try
+    {
+        yaml = YAML::Load(config_std);
+    } catch (YAML::Exception exception)
+    {
+        *reason = QString(exception.what());
+        return false;
+    }
+    if (yaml.IsNull())
+    {
+        *reason = "document is NULL";
+        return false;
+    }
+
+    // Make a copy of YAML node so that we can fetch keys later without need to reparse whole config file
+    delete this->yaml_node;
+    this->yaml_node = new YAML::Node(yaml);
+
+    this->RevertOnMultipleEdits = YAML2Bool("revert-on-multiple-edits", yaml, this->RevertOnMultipleEdits);
+    // In case that user has "enable: false" in their config page, huggle is disabled for them, so let's override the Project config here
+    if (!YAML2Bool("enable", yaml, true))
+        ProjectConfig->EnableAll = false;
+    ProjectConfig->Ignores = YAML2QStringList("ignore", yaml, ProjectConfig->Ignores);
+    // SetOption functions allow us to preserve information whether the value was changed or is default, this is there because some options
+    // which are in project config can be overloaded by user config, but we only want to store them in user config if they were modified
+    // by user, so that by default we are always using the project config version (unless user wanted to modify them)
+    ProjectConfig->IPScore = this->SetOptionYAML(ProjectConfig_IPScore_Key, yaml, ProjectConfig->IPScore).toLongLong();
+    ProjectConfig->ScoreFlag = this->SetOptionYAML("score-flag", yaml, ProjectConfig->ScoreFlag).toLongLong();
+    this->EnforceManualSoftwareRollback = YAML2Bool("software-rollback", yaml, this->EnforceManualSoftwareRollback);
+    if (ProjectConfig->WarningSummaries.contains(1))
+        ProjectConfig->WarningSummaries[1] = this->SetOptionYAML("warn-summary", yaml, ProjectConfig->WarningSummaries[1]).toString();
+    if (ProjectConfig->WarningSummaries.contains(2))
+        ProjectConfig->WarningSummaries[2] = this->SetOptionYAML("warn-summary-2", yaml, ProjectConfig->WarningSummaries[2]).toString();
+    if (ProjectConfig->WarningSummaries.contains(3))
+        ProjectConfig->WarningSummaries[3] = this->SetOptionYAML("warn-summary-3", yaml, ProjectConfig->WarningSummaries[3]).toString();
+    if (ProjectConfig->WarningSummaries.contains(4))
+        ProjectConfig->WarningSummaries[4] = this->SetOptionYAML("warn-summary-4", yaml, ProjectConfig->WarningSummaries[4]).toString();
+    this->AutomaticallyResolveConflicts = YAML2Bool("automatically-resolve-conflicts", yaml, this->AutomaticallyResolveConflicts);
+    this->DefaultSummary = YAML2String("default-summary", yaml, ProjectConfig->DefaultSummary);
+    this->RollbackSummary = YAML2String("rollback-summary", yaml, ProjectConfig->RollbackSummary);
+    this->RollbackSummaryUnknownTarget = YAML2String("rollback-summary-unknown", yaml, ProjectConfig->RollbackSummaryUnknownTarget);
+    ProjectConfig->TemplateAge = this->SetOptionYAML("template-age", yaml, ProjectConfig->TemplateAge).toInt();
+    ProjectConfig->RevertSummaries = this->SetUserOptionListYAML("template-summ", yaml, ProjectConfig->RevertSummaries);
+    ProjectConfig->WarningTypes = this->SetUserOptionListYAML("warning-types", yaml, ProjectConfig->WarningTypes);
+    ProjectConfig->ScoreChange = this->SetOptionYAML("score-change", yaml, ProjectConfig->ScoreChange).toLongLong();
+    ProjectConfig->ScoreUser = this->SetOptionYAML("score-user", yaml, ProjectConfig->ScoreUser).toLongLong();
+    this->SummaryMode = YAML2Int("summary-mode", yaml, this->SummaryMode);
+    ProjectConfig->ScoreTalk = this->SetOptionYAML("score-talk", yaml, ProjectConfig->ScoreTalk).toLongLong();
+    ProjectConfig->WarningDefs = this->SetUserOptionListYAML("warning-template-tags", yaml, ProjectConfig->WarningDefs);
+    ProjectConfig->BotScore = this->SetOptionYAML("score-bot", yaml, ProjectConfig->BotScore).toLongLong();
+    if (!HuggleQueueFilter::Filters.contains(ProjectConfig->Site))
+        throw new Huggle::Exception("There is no such a wiki in queue filters hash table", BOOST_CURRENT_FUNCTION);
+    (*HuggleQueueFilter::Filters[ProjectConfig->Site]) += HuggleParser::ConfigurationParseQueueList_YAML(yaml, false);
+    ProjectConfig->ConfirmMultipleEdits = YAML2Bool("confirm-multiple", yaml, ProjectConfig->ConfirmMultipleEdits);
+    ProjectConfig->ConfirmTalk = YAML2Bool("confirm-talk", yaml, ProjectConfig->ConfirmTalk);
+    ProjectConfig->ConfirmOnSelfRevs = YAML2Bool("confirm-self-revert", yaml, ProjectConfig->ConfirmOnSelfRevs);
+    ProjectConfig->ConfirmWL = YAML2Bool("confirm-whitelist", yaml, ProjectConfig->ConfirmWL);
+    this->DisplayTitle = YAML2Bool("display-title", yaml, this->DisplayTitle);
+    this->TruncateEdits = YAML2Bool("truncate-edits", yaml, this->TruncateEdits);
+    this->HistoryLoad = YAML2Bool("history-load", yaml, this->HistoryLoad);
+    this->LastEdit = YAML2Bool("skip-to-last-edit", yaml, this->LastEdit);
+    this->PreferredProvider = YAML2Int("preferred-provider", yaml, this->PreferredProvider);
+    this->CheckTP = YAML2Bool("check-tp", yaml, this->CheckTP);
+    this->RetrieveFounder = YAML2Bool("retrieve-founder", yaml, this->RetrieveFounder);
+    this->HAN_DisplayBots = YAML2Bool("han-display-bots", yaml, this->HAN_DisplayBots);
+    this->HAN_DisplayUser = YAML2Bool("han-display-user", yaml, this->HAN_DisplayUser);
+    this->HAN_DisplayUserTalk = YAML2Bool("han-display-user-talk", yaml, this->HAN_DisplayUserTalk);
+    this->HtmlAllowedInIrc = YAML2Bool("han-html", yaml, this->HtmlAllowedInIrc);
+    this->ManualWarning = YAML2Bool("manual-warning", yaml, this->ManualWarning);
+    this->RemoveAfterTrustedEdit = YAML2Bool("remove-after-trusted-edit", yaml, this->RemoveAfterTrustedEdit);
+    this->Watchlist = WatchlistOptionFromString(YAML2String("watchlist", yaml));
+    this->AutomaticallyGroup = YAML2Bool("automatically-group", yaml, this->AutomaticallyGroup);
+    this->TalkPageFreshness = static_cast<unsigned int>(YAML2Int("talkpage-freshness", yaml, this->TalkPageFreshness));
+    this->RemoveOldQueueEdits = YAML2Bool("remove-oldest-queue-edits", yaml, this->RemoveOldQueueEdits);
+    this->QueueID = YAML2String("queue-id", yaml);
+    this->GoNext = static_cast<Configuration_OnNext>(YAML2Int("on-next", yaml, 1));
+    this->DeleteEditsAfterRevert = YAML2Bool("delete-edits-after-revert", yaml, this->DeleteEditsAfterRevert);
+    this->WelcomeGood = this->SetOptionYAML("welcome-good", yaml, ProjectConfig->WelcomeGood).toBool();
+    this->AutomaticReports = YAML2Bool("automatic-reports", yaml, this->AutomaticReports);
+    this->PageEmptyQueue = YAML2String("page-empty-queue", yaml);
+    delete this->Previous_Version;
+    this->Previous_Version = new Version(YAML2String("version", yaml, HUGGLE_VERSION));
+    this->AutomaticallyWatchlistWarnedUsers = YAML2Bool("automatically-watchlist-warned-users", yaml, this->AutomaticallyWatchlistWarnedUsers);
+    // Score range
+    this->EnableMaxScore = YAML2Bool("enable-max-score", yaml, this->EnableMaxScore);
+    this->MinScore = YAML2LongLong("min-score", yaml, this->MinScore);
+    this->MaxScore = YAML2LongLong("max-score", yaml, this->MaxScore);
+    this->EnableMinScore = YAML2Bool("enable-min-score", yaml, this->EnableMinScore);
+    this->AutomaticRefresh = YAML2Bool("automatic-refresh", yaml, this->AutomaticRefresh);
+    this->ShortcutHash = YAML2String("shortcut-hash", yaml, "null");
+    this->ShowWarningIfNotOnLastRevision = YAML2Bool("show-warning-if-not-on-last-revision", yaml, this->ShowWarningIfNotOnLastRevision);
+    // for now we do this only for home wiki but later we need to make it for every wiki
+    if (IsHome)
+    {
+        // Verify a shortcut hash first
+        QString types = "";
+        QStringList sorted_types = ProjectConfig->WarningTypes;
+        sorted_types.sort();
+        foreach (QString t, sorted_types)
+            types += t + ",";
+        QString hash = Generic::MD5(types);
+        if (hash != this->ShortcutHash)
+        {
+            // Suppress this warning in case there is no record yet, this is first run of Huggle by new user
+            if (!this->ShortcutHash.isEmpty() && this->ShortcutHash != "null")
+                Hooks::ShowWarning(_hl("warning"), _hl("config-reset-menu"));
+            hcfg->ResetMenuShortcuts();
+            this->ShortcutHash = hash;
+            return true;
+        }
+        QHash<QString, QString> shortcuts = HuggleParser::YAML2QStringHash("shortcut-list", yaml);
+        foreach (QString id, shortcuts.keys())
+        {
+            if (!hcfg->Shortcuts.contains(id))
+            {
+                Syslog::HuggleLogs->WarningLog("Invalid shortcut in user configuration (unknown id): " + id);
+                continue;
+            }
+            hcfg->Shortcuts[id].Modified = true;
+            hcfg->Shortcuts[id].QAccel = QKeySequence(shortcuts[id]).toString();
+        }
+    }
+
+    // Sanitize
+    if (this->DefaultSummary.isEmpty())
+        this->DefaultSummary = ProjectConfig->DefaultSummary;
+    if (this->RollbackSummary.isEmpty())
+        this->RollbackSummary = ProjectConfig->RollbackSummary;
+    if (this->RollbackSummaryUnknownTarget.isEmpty())
+        this->RollbackSummaryUnknownTarget = ProjectConfig->RollbackSummaryUnknownTarget;
+
+    return true;
+}
+
+int Huggle::UserConfiguration::GetSafeUserInt(QString key, int default_value)
+{
+    HuggleOption *option = this->GetOption(key);
     if (option != nullptr)
         return option->GetVariant().toInt();
     return default_value;
 }
 
-bool Huggle::UserConfiguration::GetSafeUserBool(QString key_, bool default_value)
+bool Huggle::UserConfiguration::GetSafeUserBool(QString key, bool default_value)
 {
-    HuggleOption *option = this->GetOption(key_);
+    HuggleOption *option = this->GetOption(key);
     if (option != nullptr)
         return option->GetVariant().toBool();
     return default_value;
 }
 
-QString Huggle::UserConfiguration::GetSafeUserString(QString key_, QString default_value)
+QString Huggle::UserConfiguration::GetSafeUserString(QString key, QString default_value)
 {
-    HuggleOption *option = this->GetOption(key_);
+    HuggleOption *option = this->GetOption(key);
     if (option != nullptr)
         return option->GetVariant().toString();
 

@@ -1625,6 +1625,10 @@ void MainWindow::OnTimerTick0()
             {
                 if (this->StorageQueries[site]->IsProcessed())
                 {
+                    if (this->StorageQueries[site]->IsFailed())
+                    {
+                        HUGGLE_ERROR("Unable to save personal config on " + site->Name + ": " + this->StorageQueries[site]->GetFailureReason());
+                    }
                     this->StorageQueries[site]->DecRef();
                     this->StorageQueries.remove(site);
                 } else
