@@ -750,6 +750,24 @@ double HuggleParser::YAML2Double(QString key, YAML::Node &node, double missing)
     return missing;
 }
 
+long long HuggleParser::YAML2LongLong(QString key, YAML::Node &node, long long missing)
+{
+    try
+    {
+        if (!node)
+            throw new Huggle::NullPointerException("YAML::Node *node", BOOST_CURRENT_FUNCTION);
+
+        if (!node[key.toStdString()])
+            return missing;
+
+        return node[key.toStdString()].as<long long>(missing);
+    } catch (YAML::Exception exception)
+    {
+        HUGGLE_ERROR("YAML Parsing error (" + key + "): " + QString(exception.what()));
+    }
+    return missing;
+}
+
 QStringList HuggleParser::YAML2QStringList(YAML::Node &node, bool *ok)
 {
     QStringList missing;

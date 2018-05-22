@@ -489,7 +489,7 @@ void LoginForm::pressOK()
     this->loadingForm = new LoadingForm(this);
     LoadingForm::IsKilled = false;
     // set new status for all projects
-    this->loadedOldConfigs.clear();
+    this->usingOldUserConfig.clear();
     this->Statuses.clear();
     hcfg->ProjectString.clear();
     this->processedLogin.clear();
@@ -502,7 +502,7 @@ void LoginForm::pressOK()
         wiki->UserConfig = new UserConfiguration();
         delete wiki->ProjectConfig;
         wiki->ProjectConfig = new ProjectConfiguration(wiki->Name);
-        this->loadedOldConfigs.insert(wiki, false);
+        this->usingOldUserConfig.insert(wiki, false);
         this->Statuses.insert(wiki, LoggingIn);
         this->processedLogin.insert(wiki, false);
         this->processedSiteinfos.insert(wiki, false);
@@ -894,12 +894,13 @@ void LoginForm::retrieveUserConfig(WikiSite *site)
             if (data == nullptr) // page is missing
             {
                 HUGGLE_DEBUG("User config is missing on " + site->Name, 2);
-                if (this->loadedOldConfigs[site] == false && !hcfg->GlobalConfig_UserConf_old.isEmpty())
+                if (this->usingOldUserConfig[site] == false && !hcfg->GlobalConfig_UserConf_old.isEmpty())
                 {
+                    // There is no user config page, let's try to fallback to old user config page
                     // try first with old location of config, we don't need to switch the login step here we just
                     // replace the old query with new query that retrieves the old config and call this function
                     // once more, trying to parse the old config
-                    this->loadedOldConfigs[site] = true;
+                    this->usingOldUserConfig[site] = true;
                     HUGGLE_DEBUG1("couldn't find user config for " + site->Name + " at new location, trying old one");
                     q->DecRef();
                     // let's get an old configuration instead
@@ -927,27 +928,34 @@ void LoginForm::retrieveUserConfig(WikiSite *site)
             QString val_ = data->Value;
             this->LoginQueries.remove(site);
             q->DecRef();
-            if (site->GetUserConfig()->ParseUserConfig(val_, site->GetProjectConfig(), site == hcfg->Project))
+            if (this->usingOldUserConfig[site])
             {
-                if (this->loadedOldConfigs[site])
+                if (!site->GetUserConfig()->Parse(val_, site->GetProjectConfig(), site == hcfg->Project))
                 {
-                    // if we loaded the old config we write that to debug log because othewise we hardly check this
-                    // piece of code really works
-                    Syslog::HuggleLogs->DebugLog("We successfully loaded and converted the old config for " + site->Name + " (huggle.css) :)");
-                }
-                if (!site->ProjectConfig->EnableAll)
-                {
-                    this->displayError(_l("login-fail-enable-true", site->Name));
+                    Syslog::HuggleLogs->DebugLog(val_);
+                    this->displayError(_l("login-fail-parse-config", site->Name));
                     return;
                 }
-                hcfg->NormalizeConf(site);
-                this->loadingForm->ModifyIcon(this->GetRowIDForSite(site, LOGINFORM_USERCONFIG), LoadingForm_Icon_Success);
-                this->Statuses[site] = RetrievingUser;
+                Syslog::HuggleLogs->DebugLog("We successfully loaded and converted the old config for " + site->Name + " (huggle.css) :)");
+            } else
+            {
+                QString error;
+                if (!site->GetUserConfig()->ParseYAML(val_, site->GetProjectConfig(), site == hcfg->Project, &error))
+                {
+                    Syslog::HuggleLogs->DebugLog(val_);
+                    this->displayError(_l("login-fail-parse-config-yaml", site->Name, error));
+                    return;
+                }
+            }
+            if (!site->ProjectConfig->EnableAll)
+            {
+                this->displayError(_l("login-fail-enable-true", site->Name));
                 return;
             }
-            // failed unable to parse the user config
-            Syslog::HuggleLogs->DebugLog(val_);
-            this->displayError(_l("login-fail-parse-config", site->Name));
+            hcfg->NormalizeConf(site);
+            this->loadingForm->ModifyIcon(this->GetRowIDForSite(site, LOGINFORM_USERCONFIG), LoadingForm_Icon_Success);
+            this->Statuses[site] = RetrievingUser;
+            return;
         }
         return;
     }

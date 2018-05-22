@@ -19,6 +19,11 @@
 #include <QStringList>
 #include <QHash>
 
+namespace YAML
+{
+    class Node;
+}
+
 namespace Huggle
 {
     //! This enum defines what action should be done when revert etc
@@ -45,6 +50,7 @@ namespace Huggle
     class Version;
 
     //! User configuration, for a user per project
+    //! This class was historically used to parse the huggle3.css config file, since 3.4.0 it's used to parse the huggle.yaml file by default
     class HUGGLE_EX_CORE UserConfiguration
     {
         public:
@@ -53,7 +59,9 @@ namespace Huggle
 
             UserConfiguration();
             ~UserConfiguration();
-            bool ParseUserConfig(QString config, ProjectConfiguration *ProjectConfig, bool IsHome);
+            //! This function is obsolete and used only to read the old format huggle3.css file, new versions should only use YAML formats
+            bool Parse(QString config, ProjectConfiguration *ProjectConfig, bool IsHome);
+            bool ParseYAML(QString config, ProjectConfiguration *ProjectConfig, bool IsHome, QString *error);
             /*!
              * \brief Returns a data for given key
              * \param key
@@ -66,12 +74,14 @@ namespace Huggle
              * \param config_ Config file text
              * \param default_ Value that is used in case there is no such a key
              */
-            QVariant SetOption(QString key_, QString config_, QVariant default_);
-            QStringList SetUserOptionList(QString key_, QString config_, QStringList default_, bool CS = false);
-            int GetSafeUserInt(QString key_, int default_value = 0);
-            bool GetSafeUserBool(QString key_, bool default_value = false);
-            QString GetSafeUserString(QString key_, QString default_value = "");
-            //! This function creates a user configuration that is stored on wiki
+            QVariant SetOption(QString key, QString config, QVariant def);
+            QVariant SetOptionYAML(QString key, YAML::Node &config, QVariant def);
+            QStringList SetUserOptionList(QString key, QString config, QStringList def, bool CS = false);
+            QStringList SetUserOptionListYAML(QString key, YAML::Node &config, QStringList def);
+            int GetSafeUserInt(QString key, int default_value = 0);
+            bool GetSafeUserBool(QString key, bool default_value = false);
+            QString GetSafeUserString(QString key, QString default_value = "");
+            //! This function creates a user configuration in YAML format that is stored on wiki
             QString MakeLocalUserConfig(ProjectConfiguration *Project);
             bool            EnforceSoftwareRollback();
             QHash<QString, HuggleOption*> UserOptions;
@@ -142,6 +152,8 @@ namespace Huggle
             QString                 PageEmptyQueue;
             Version*                Previous_Version;
             WatchlistOption         Watchlist;
+        private:
+            YAML::Node              *yaml_node = nullptr;
     };
 }
 

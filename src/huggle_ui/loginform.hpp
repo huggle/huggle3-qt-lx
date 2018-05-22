@@ -157,7 +157,7 @@ namespace Huggle
             //! The tokens obtained from login
             QHash<WikiSite*, QString> loginTokens;
             //! for RetrievePrivateConfig, if we should try to load from old config pages
-            QHash <WikiSite*,bool> loadedOldConfigs;
+            QHash <WikiSite*,bool> usingOldUserConfig;
     };
 }
 
