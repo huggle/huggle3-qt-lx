@@ -167,10 +167,10 @@ void BlockUserForm::on_pushButton_clicked()
     if (!this->ui->checkBox->isChecked())
         allowusertalk = "&allowusertalk=";
     this->qUser->Parameters = "action=block&user=" +  QUrl::toPercentEncoding(this->user->Username) + "&reason="
-            + QUrl::toPercentEncoding(Configuration::GenerateSuffix(this->ui->comboBox->currentText(),
-                                                                    this->user->GetSite()->GetProjectConfig()))
-            + "&expiry=" + QUrl::toPercentEncoding(this->ui->comboBox_2->currentText()) + nocreate + anononly
-            + noemail + autoblock + allowusertalk + "&token=" + QUrl::toPercentEncoding(this->user->GetSite()->GetProjectConfig()->Token_Csrf);
+            + QUrl::toPercentEncoding(this->ui->comboBox->currentText()) + "&expiry="
+            + QUrl::toPercentEncoding(this->ui->comboBox_2->currentText())
+            + nocreate + anononly + noemail + autoblock + allowusertalk + "&token="
+            + QUrl::toPercentEncoding(this->user->GetSite()->GetProjectConfig()->Token_Csrf);
     this->qUser->Target = _l("block-progress", this->user->Username);
     this->qUser->UsingPOST = true;
     QueryPool::HugglePool->AppendQuery(this->qUser);
