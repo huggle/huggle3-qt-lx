@@ -118,12 +118,16 @@ void ScriptingManager::on_tableWidget_customContextMenuRequested(const QPoint &p
 {
     QMenu menu;
     QPoint global = this->ui->tableWidget->mapToGlobal(pos);
+    QAction *edit = new QAction("Edit", &menu);
     QAction *unload = new QAction("Unload", &menu);
     QAction *reload = new QAction("Reload", &menu);
     QAction *delete_file = new QAction("Delete from disk", &menu);
     menu.addAction(unload);
     menu.addAction(reload);
+    menu.addSeparator();
     menu.addAction(delete_file);
+    menu.addSeparator();
+    menu.addAction(edit);
     QAction *selection = menu.exec(global);
     if (selection == unload)
     {
@@ -134,6 +138,24 @@ void ScriptingManager::on_tableWidget_customContextMenuRequested(const QPoint &p
     } else if (selection == reload)
     {
         this->reloadSelectSc();
+    } else if (selection == edit)
+    {
+        QList<int> selected_sc = this->selectedRows();
+        if (selected_sc.count() != 1)
+        {
+            UiGeneric::pMessageBox(this, "Error", "Please select 1 script to edit", MessageBoxStyleError);
+            return;
+        }
+        QString script_name = this->ui->tableWidget->item(selected_sc[0], 0)->text();
+        Script *script = Script::GetScriptByName(script_name);
+        if (!script)
+        {
+            UiGeneric::pMessageBox(this, "Error", "Unable to edit " + script_name + " script not found in memory", MessageBoxStyleError);
+            return;
+        }
+        ScriptForm sf;
+        sf.EditScript(script->GetPath(), script->GetName());
+        sf.exec();
     }
 }
 

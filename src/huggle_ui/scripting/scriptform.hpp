@@ -30,12 +30,15 @@ namespace Huggle
         public:
             explicit ScriptForm(QWidget *parent = 0);
             ~ScriptForm();
+            void EditScript(QString path, QString script_name);
 
         private slots:
             void on_pushButton_2_clicked();
             void on_pushButton_clicked();
 
         private:
+            QString editingName;
+            bool editing = false;
             Ui::ScriptForm *ui;
     };
 }

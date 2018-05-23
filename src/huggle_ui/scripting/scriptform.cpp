@@ -42,6 +42,21 @@ ScriptForm::~ScriptForm()
     delete this->ui;
 }
 
+void ScriptForm::EditScript(QString path, QString script_name)
+{
+    QFile file(path);
+    if (!file.open(QIODevice::ReadWrite))
+    {
+        UiGeneric::pMessageBox(this, "Error", "Unable to open " + path + " for writing", MessageBoxStyleError);
+        return;
+    }
+    this->ui->textEdit->setText(QString(file.readAll()));
+    this->editing = true;
+    this->editingName = script_name;
+    this->ui->lineEdit_2->setText(path);
+    this->ui->pushButton->setText("Save, reload and close");
+}
+
 void Huggle::ScriptForm::on_pushButton_2_clicked()
 {
     QFileDialog file_dialog(this);
@@ -71,6 +86,17 @@ void Huggle::ScriptForm::on_pushButton_clicked()
     }
 
     f.close();
+
+    // In case we are editing some script, let's unload it now
+    if (this->editing)
+    {
+        Script *previous = Script::GetScriptByName(this->editingName);
+        if (previous)
+        {
+            previous->Unload();
+            delete previous;
+        }
+    }
 
     QString er;
     UiScript *script = new UiScript();
