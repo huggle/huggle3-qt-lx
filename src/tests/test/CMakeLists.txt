@@ -23,6 +23,7 @@ set(QT_INCLUDES
     ${Qt5Svg_INCLUDE_DIRS}
 )
 if (NOT WEB_ENGINE)
+    find_package(Qt5WebKitWidgets REQUIRED)
     find_package(Qt5WebKit REQUIRED)
     set(QT_INCLUDES ${QT_INCLUDES} ${Qt5WebKit_INCLUDE_DIRS})
 else()
