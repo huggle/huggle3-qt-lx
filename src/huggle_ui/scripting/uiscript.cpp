@@ -75,7 +75,7 @@ void UiScript::Autostart()
                 HUGGLE_LOG("Loaded JS script: " + name);
             } else
             {
-                HUGGLE_ERROR("Failed to load a JS script: " + er);
+                HUGGLE_ERROR("Failed to load a JS script (" + name + "): " + er);
                 delete script;
             }
         }

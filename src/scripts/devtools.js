@@ -5,24 +5,14 @@ function ext_is_working()
     return true;
 }
 
-function ext_get_desc()
+function ext_get_info()
 {
-    return "Developer tools";
-}
-
-function ext_get_name()
-{
-    return "devtools";
-}
-
-function ext_get_version()
-{
-    return "1.0.0";
-}
-
-function ext_get_author()
-{
-    return "Petr Bena";
+    var info = {};
+    info["name"] = "devtools";
+    info["version"] = "1.0.0";
+    info["description"] = "Developer tools";
+    info["author"] = "Petr Bena";
+    return info;
 }
 
 function print_help()

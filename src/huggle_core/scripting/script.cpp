@@ -380,14 +380,29 @@ bool Script::loadSource(QString source, QString *error)
         return false;
     }
 
-    this->scriptAuthor = this->executeFunctionAsString("ext_get_author");
-    this->scriptDesc = this->executeFunctionAsString("ext_get_desc");
-    this->scriptName = this->executeFunctionAsString("ext_get_name");
-    this->scriptVers = this->executeFunctionAsString("ext_get_version");
+    QJSValue info = this->executeFunction("ext_get_info");
+    if (info.isUndefined() || info.isNull())
+    {
+        *error = "Unable to load script, ext_get_info() didn't return valid object";
+        this->isWorking = false;
+        return false;
+    }
+
+    if (!info.hasProperty("author") || !info.hasProperty("description") || !info.hasProperty("version") || !info.hasProperty("name"))
+    {
+        *error = "Unable to load script, ext_get_info() didn't contain some of these properties: name, author, description, version";
+        this->isWorking = false;
+        return false;
+    }
+
+    this->scriptAuthor = info.property("author").toString();
+    this->scriptDesc = info.property("description").toString();
+    this->scriptName = info.property("name").toString();
+    this->scriptVers = info.property("version").toString();
 
     if (this->scriptName.isEmpty())
     {
-        *error = "Unable to load script, ext_get_name returned nothing";
+        *error = "Unable to load script, invalid extension name (name must be a string)";
         this->isWorking = false;
         return false;
     }
@@ -508,10 +523,7 @@ void Script::registerHook(QString name, int parameters, QString help, bool is_un
 void Script::registerFunctions()
 {
     this->registerHook("ext_init", 0, "(): called on start, must return true, otherwise load of extension is considered as failure");
-    this->registerHook("ext_get_name", 0, "(): should return a name of this extension");
-    this->registerHook("ext_get_desc", 0, "(): should return description");
-    this->registerHook("ext_get_author", 0, "(): should contain name of creator");
-    this->registerHook("ext_desc_version", 0, "(): should return version");
+    this->registerHook("ext_get_info", 0, "(): should return a dictionary with properties name, author, description, version (all strings)");
     this->registerHook("ext_unload", 0, "(): called when extension is being unloaded from system");
     this->registerHook("ext_is_working", 0, "(): must exist and must return true, if returns false, extension is considered crashed");
     this->registerHook("shutdown", 0, "(): called on exit of Huggle");
