@@ -141,8 +141,14 @@ namespace Huggle
              * \return
              */
             Collectable_SmartPtr<RevertQuery> Revert(QString summary = "", bool next = true, bool single_rv = false);
-            //! Warn a current user
-            bool Warn(QString WarningType, RevertQuery *dependency, WikiEdit *related_edit);
+            /*!
+             * \brief Warn - send warning template to user because of related_edit, in case user is already max level, it will report them instead
+             * \param warning_type - type of warning to send
+             * \param dependency - in case this warning is depending on some revert, put a pointer to it there
+             * \param related_edit - edit in question
+             * \return true on success, otherwise false
+             */
+            bool Warn(QString warning_type, RevertQuery *dependency, WikiEdit *related_edit);
             void EnableDev();
             //! Send a template to user no matter if they can be messaged or not
             void ForceWarn(int level);

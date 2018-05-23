@@ -251,9 +251,8 @@ void UserinfoForm::JumpToSpecificContrib(long revid, QString page)
     // there is no such edit, let's get it
     this->edit = new WikiEdit();
     this->edit->User = new WikiUser(this->User);
-    this->edit->Page = new WikiPage(page);
+    this->edit->Page = new WikiPage(page, this->User->GetSite());
     this->edit->RevID = revid;
-    this->edit->Page->Site = this->User->GetSite();
     QueryPool::HugglePool->PreProcessEdit(this->edit);
     QueryPool::HugglePool->PostProcessEdit(this->edit);
     MainWindow::HuggleMain->Browser->RenderHtml(_l("wait"));

@@ -320,15 +320,13 @@ void HuggleFeedProviderXml::processBufs()
 
         // now we can create an edit
         edit = new WikiEdit();
-        edit->Page = new WikiPage(element.attribute("title"));
-        edit->Page->Site = this->GetSite();
+        edit->Page = new WikiPage(element.attribute("title"), this->GetSite());
         edit->IncRef();
         edit->Bot = Generic::SafeBool(element.attribute("bot"));
         edit->NewPage = (element.attribute("type") == "new");
         edit->Minor = Generic::SafeBool(element.attribute("minor"));
         edit->RevID = element.attribute("revid").toLong();
-        edit->User = new WikiUser(element.attribute("user"));
-        edit->User->Site = this->GetSite();
+        edit->User = new WikiUser(element.attribute("user"), this->GetSite());
         edit->Summary = element.attribute("summary");
         if (element.attributes().contains("length_new")
                && element.attributes().contains("length_old"))

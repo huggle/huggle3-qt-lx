@@ -27,8 +27,8 @@ namespace Huggle
     {
         public:
             //! Create new empty instance of wiki page
-            WikiPage();
-            WikiPage(const QString &name);
+            WikiPage(WikiSite *site);
+            WikiPage(const QString &name, WikiSite *site);
             WikiPage(WikiPage *page);
             WikiPage(const WikiPage& page);
             QString SanitizedName();

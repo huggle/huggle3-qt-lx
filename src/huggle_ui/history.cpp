@@ -182,10 +182,8 @@ void History::ContextMenu(const QPoint &position)
                 {
                     // if we don't know it we need to create it
                     edit = new WikiEdit();
-                    edit->Page = new WikiPage(page);
-                    edit->Page->Site = hi->GetSite();
-                    edit->User = new WikiUser(Configuration::HuggleConfiguration->SystemConfig_Username);
-                    edit->User->Site = hi->GetSite();
+                    edit->Page = new WikiPage(page, hi->GetSite());
+                    edit->User = new WikiUser(hcfg->SystemConfig_Username, hi->GetSite());
                     edit->RevID = hi->RevID;
                 }
                 break;
@@ -262,6 +260,7 @@ void History::Tick()
         QString user, title;
         long revid;
         QString result = WikiUtil::EvaluateWikiPageContents(this->qEdit, &failed, nullptr, nullptr, &user, &revid, nullptr, &title);
+        WikiSite *site = this->qEdit->GetSite();
         this->qEdit.Delete();
         if (failed)
         {
@@ -273,12 +272,12 @@ void History::Tick()
         Collectable_SmartPtr<WikiEdit> edit = new WikiEdit();
         if (this->RevertingItem->Type == HistoryMessage)
         {
-            edit->Page = new WikiPage("User_talk:" + this->RevertingItem->Target);
+            edit->Page = new WikiPage("User_talk:" + this->RevertingItem->Target, site);
         } else
         {
-            edit->Page = new WikiPage(this->RevertingItem->Target);
+            edit->Page = new WikiPage(this->RevertingItem->Target, site);
         }
-        edit->User = new WikiUser(Configuration::HuggleConfiguration->SystemConfig_Username);
+        edit->User = new WikiUser(Configuration::HuggleConfiguration->SystemConfig_Username, site);
         edit->Page->Contents = result;
         edit->RevID = revid;
         if (this->RevertingItem->NewPage && this->RevertingItem->Type == HistoryMessage)

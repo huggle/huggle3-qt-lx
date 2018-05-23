@@ -186,8 +186,7 @@ void HuggleFeedProviderWiki::processData(QString data)
 void HuggleFeedProviderWiki::processEdit(QDomElement item)
 {
     WikiEdit *edit = new WikiEdit();
-    edit->Page = new WikiPage(item.attribute("title"));
-    edit->Page->Site = this->GetSite();
+    edit->Page = new WikiPage(item.attribute("title"), this->GetSite());
     QString type = item.attribute("type");
     if (type == "new")
         edit->NewPage = true;
@@ -195,10 +194,9 @@ void HuggleFeedProviderWiki::processEdit(QDomElement item)
         edit->SetSize(item.attribute("newlen").toLong() - item.attribute("oldlen").toLong());
     if (item.attributes().contains("user"))
     {
-        edit->User = new WikiUser(item.attribute("user"));
+        edit->User = new WikiUser(item.attribute("user"), this->GetSite());
         if (item.attributes().contains("anon"))
             edit->User->ForceIP();
-        edit->User->Site = this->GetSite();
     }
     if (item.attributes().contains("comment"))
         edit->Summary = item.attribute("comment");

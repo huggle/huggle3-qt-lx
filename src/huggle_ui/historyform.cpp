@@ -398,8 +398,7 @@ void HistoryForm::GetEdit(long revid, QString prev, QString user, QString html, 
         w->DiffTo = QString::number(revid);
         w->RevID = prev.toLongLong();
     }
-    w->User = new WikiUser(user);
-    w->User->Site = this->CurrentEdit->GetSite();
+    w->User = new WikiUser(user, this->CurrentEdit->GetSite());
     w->Page = new WikiPage(this->CurrentEdit->Page);
     if (QueryPool::HugglePool == nullptr)
     {

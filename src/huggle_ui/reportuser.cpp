@@ -89,13 +89,7 @@ ReportUser::ReportUser(QWidget *parent, bool browser) : HW("reportuser", this, p
     this->blockUser = nullptr;
     this->reportText = "";
     this->loading = false;
-#if QT_VERSION >= 0x050000
-// Qt5 code
     this->ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-#else
-// Qt4 code
-    this->ui->tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-#endif
     this->ui->tableWidget->setShowGrid(false);
     QStringList header_bl;
     this->ui->tableWidget_2->setColumnCount(8);
@@ -110,13 +104,7 @@ ReportUser::ReportUser(QWidget *parent, bool browser) : HW("reportuser", this, p
     this->ui->tableWidget_2->setHorizontalHeaderLabels(header_bl);
     this->ui->tableWidget_2->verticalHeader()->setVisible(false);
     this->ui->tableWidget_2->setEditTriggers(QAbstractItemView::NoEditTriggers);
-#if QT_VERSION >= 0x050000
-// Qt5 code
     this->ui->tableWidget_2->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-#else
-// Qt4 code
-    this->ui->tableWidget_2->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
-#endif
     this->ui->tableWidget_2->setShowGrid(false);
     this->tReportUser = nullptr;
     this->RestoreWindow();
@@ -368,8 +356,7 @@ void ReportUser::OnReportUserTimer()
             // everything is ok we report user
             QString summary = this->reportedUser->GetSite()->GetProjectConfig()->ReportSummary;
             summary = summary.replace("$1", this->reportedUser->Username);
-            this->qEdit = WikiUtil::EditPage(this->reportedUser->GetSite()->GetProjectConfig()->AIVP, this->reportContent, summary,
-                                             false, this->reportTs);
+            this->qEdit = WikiUtil::EditPage(this->reportedUser->GetSite()->GetProjectConfig()->AIVP, this->reportContent, summary, false, this->reportTs);
             this->ui->pushButton->setText(_l("report-write"));
             this->qHistory.Delete();
         }

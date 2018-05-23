@@ -149,8 +149,7 @@ Collectable_SmartPtr<EditQuery> WikiUtil::AppendTextToPage(QString page, QString
     if (!site)
         site = hcfg->Project;
     Collectable_SmartPtr<EditQuery> eq = new EditQuery();
-    eq->Page = new WikiPage(page);
-    eq->Page->Site = site;
+    eq->Page = new WikiPage(page, site);
     eq->Text = text;
     summary = Configuration::GenerateSuffix(summary, eq->Page->GetSite()->GetProjectConfig());
     eq->Summary = summary;
@@ -164,9 +163,9 @@ Collectable_SmartPtr<EditQuery> WikiUtil::AppendTextToPage(QString page, QString
 
 Collectable_SmartPtr<EditQuery> WikiUtil::EditPage(QString page, QString text, QString summary, bool minor, QString BaseTimestamp, unsigned int section, WikiSite *site)
 {
-    WikiPage tp(page);
-    if (site != nullptr)
-        tp.Site = site;
+    if (site == nullptr)
+        throw new Huggle::NullPointerException("WikiSite *site", BOOST_CURRENT_FUNCTION);
+    WikiPage tp(page, site);
     return EditPage(&tp, text, summary, minor, BaseTimestamp, section);
 }
 
@@ -245,8 +244,7 @@ Collectable_SmartPtr<EditQuery> WikiUtil::PrependTextToPage(QString page, QStrin
     if (!site)
         site = hcfg->Project;
     Collectable_SmartPtr<EditQuery> eq = new EditQuery();
-    eq->Page = new WikiPage(page);
-    eq->Page->Site = site;
+    eq->Page = new WikiPage(page, site);
     eq->Text = text;
     summary = Configuration::GenerateSuffix(summary, eq->Page->GetSite()->GetProjectConfig());
     eq->Summary = summary;
@@ -343,43 +341,41 @@ class RetrieveEditByRevid_SourceInfo
 static void RetrieveEditByRevid_Page_OK(Query *query)
 {
     ApiQuery *result = (ApiQuery*) query;
-    RetrieveEditByRevid_SourceInfo *x = (RetrieveEditByRevid_SourceInfo*)query->CallbackOwner;
+    RetrieveEditByRevid_SourceInfo *source_info = (RetrieveEditByRevid_SourceInfo*)query->CallbackOwner;
     ApiQueryResultNode *page = result->GetApiQueryResult()->GetNode("page");
     ApiQueryResultNode *revision_data = result->GetApiQueryResult()->GetNode("rev");
     ApiQueryResultNode *diff_text = result->GetApiQueryResult()->GetNode("diff");
     if (diff_text == nullptr)
     {
-        x->error(x->edit, x->source, "No diff was returned for query");
+        source_info->error(source_info->edit, source_info->source, "No diff was returned for query");
     }
     if (revision_data == nullptr)
     {
-        x->error(x->edit, x->source, "No revision was returned by query");
+        source_info->error(source_info->edit, source_info->source, "No revision was returned by query");
         goto exit;
     }
     if (page == nullptr)
     {
         // whoa, this is an error!
-        x->error(x->edit, x->source, "No page info was returned by query");
+        source_info->error(source_info->edit, source_info->source, "No page info was returned by query");
         goto exit;
     }
-    x->edit->Page = new WikiPage(page->GetAttribute("title"));
-    x->edit->Page->Site = result->GetSite();
-    x->edit->SetSize(revision_data->GetAttribute("size", "0").toLong());
-    x->edit->Summary = revision_data->GetAttribute("comment");
-    x->edit->Time = MediaWiki::FromMWTimestamp(revision_data->GetAttribute("timestamp"));
-    x->edit->User = new WikiUser(revision_data->GetAttribute("user"));
-    x->edit->User->Site = result->GetSite();
+    source_info->edit->Page = new WikiPage(page->GetAttribute("title"), result->GetSite());
+    source_info->edit->SetSize(revision_data->GetAttribute("size", "0").toLong());
+    source_info->edit->Summary = revision_data->GetAttribute("comment");
+    source_info->edit->Time = MediaWiki::FromMWTimestamp(revision_data->GetAttribute("timestamp"));
+    source_info->edit->User = new WikiUser(revision_data->GetAttribute("user"), result->GetSite());
     // pre process the edit
-    QueryPool::HugglePool->PreProcessEdit(x->edit);
+    QueryPool::HugglePool->PreProcessEdit(source_info->edit);
     // \bug now put the diff into the diff store, keep in mind that edit is still not postprocessed so many things are probably not going to be evaluated
     // we need to wait for post processing to finish here, it's just that there isn't really any simple way to accomplish that
-    x->edit->DiffText = diff_text->Value;
+    source_info->edit->DiffText = diff_text->Value;
     // this is true hack as it's async call, but we don't really need to have the edit post processed for it
     // to be rendered, let's just call it to be safe, as having unprocessed edits in buffer is a bad thing
-    QueryPool::HugglePool->PostProcessEdit(x->edit);
-    x->success(x->edit, x->source, "");
+    QueryPool::HugglePool->PostProcessEdit(source_info->edit);
+    source_info->success(source_info->edit, source_info->source, "");
 exit:
-    delete x;
+    delete source_info;
     query->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
 }
 
@@ -435,8 +431,7 @@ Collectable_SmartPtr<ApiQuery> WikiUtil::APIRequest(Action action, WikiSite *sit
 
 ApiQuery *WikiUtil::RetrieveWikiPageContents(QString page, WikiSite *site, bool parse)
 {
-    WikiPage pt(page);
-    pt.Site = site;
+    WikiPage pt(page, site);
     return RetrieveWikiPageContents(&pt, parse);
 }
 

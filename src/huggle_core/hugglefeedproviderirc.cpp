@@ -150,8 +150,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
         return;
     }
     WikiEdit *edit = new WikiEdit();
-    edit->Page = new WikiPage(line.mid(0, line.indexOf(QString(QChar(003)) + "14")));
-    edit->Page->Site = this->GetSite();
+    edit->Page = new WikiPage(line.mid(0, line.indexOf(QString(QChar(003)) + "14")), this->GetSite());
     edit->IncRef();
     if (!line.contains(QString(QChar(003)) + "4 "))
     {
@@ -236,8 +235,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
         edit->DecRef();
         return;
     }
-    edit->User = new WikiUser(name);
-    edit->User->Site = this->GetSite();
+    edit->User = new WikiUser(name, this->GetSite());
     if (line.contains(QString(QChar(3)) + " ("))
     {
         line = line.mid(line.indexOf(QString(QChar(3)) + " (") + 3);

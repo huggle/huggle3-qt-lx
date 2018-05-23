@@ -113,7 +113,7 @@ bool WikiEdit::finalizePostProcessing()
             QStringList categoryStringList;
             foreach (ApiQueryResultNode *cat, categories)
             {
-                categoryStringList.append(WikiPage(cat->GetAttribute("title")).RootName());
+                categoryStringList.append(WikiPage(cat->GetAttribute("title"), this->GetSite()).RootName());
             }
             this->Page->SetCategories(categoryStringList);
 

@@ -10,7 +10,7 @@
 
 #include "wikiuser.hpp"
 #include <QMutex>
-#include "configuration.hpp"
+#include "projectconfiguration.hpp"
 #include "exception.hpp"
 #include "huggleparser.hpp"
 #include "localization.hpp"
@@ -160,7 +160,7 @@ void WikiUser::UpdateWl(WikiUser *us, long score)
     }
 }
 
-WikiUser::WikiUser()
+WikiUser::WikiUser(WikiSite *site)
 {
     this->userMutex = new QMutex(QMutex::Recursive);
     this->Username = "";
@@ -174,7 +174,7 @@ WikiUser::WikiUser()
     this->talkPageWasRetrieved = false;
     this->whitelistInfo = HUGGLE_WL_UNKNOWN;
     this->EditCount = -1;
-    this->Site = Configuration::HuggleConfiguration->Project;
+    this->Site = site;
     this->RegistrationDate = "";
     this->isBot = false;
 }
@@ -215,7 +215,7 @@ WikiUser::WikiUser(const WikiUser &u) : MediaWikiObject(u)
     this->RegistrationDate = u.RegistrationDate;
 }
 
-WikiUser::WikiUser(QString user)
+WikiUser::WikiUser(QString user, WikiSite *site)
 {
     this->userMutex = new QMutex(QMutex::Recursive);
     this->IP = false;
@@ -235,7 +235,7 @@ WikiUser::WikiUser(QString user)
     this->talkPageWasRetrieved = false;
     this->dateOfTalkPage = InvalidTime;
     this->contentsOfTalkPage = "";
-    this->Site = Configuration::HuggleConfiguration->Project;
+    this->Site = site;
     this->EditCount = -1;
     this->isBot = false;
     this->RegistrationDate = "";
@@ -358,19 +358,18 @@ WikiPage *WikiUser::GetTalkPage()
         return this->wpTalkPage;
     }
 
-    WikiPage *page = new WikiPage(this->GetTalk());
-    page->Site = this->GetSite();
+    WikiPage *page = new WikiPage(this->GetTalk(), this->Site);
     this->wpTalkPage = page;
     return page;
 }
 
 bool WikiUser::TalkPage_ContainsSharedIPTemplate()
 {
-    if (Configuration::HuggleConfiguration->ProjectConfig->SharedIPTemplateTags.length() < 1)
+    if (this->GetSite()->GetProjectConfig()->SharedIPTemplateTags.length() < 1)
         return false;
     if (this->TalkPage_WasRetrieved())
     {
-        return this->TalkPage_GetContents().contains(Configuration::HuggleConfiguration->ProjectConfig->SharedIPTemplateTags);
+        return this->TalkPage_GetContents().contains(this->Site->ProjectConfig->SharedIPTemplateTags);
     }
     return false;
 }

@@ -49,7 +49,6 @@ QString sanitize_page_name(QString page_name)
 {
     if (page_name.startsWith("/"))
     {
-        HUGGLE_LOG("meh");
         return ":" + page_name;
     }
     return page_name;
@@ -95,60 +94,61 @@ PendingWarning *Warnings::WarnUser(QString warning_type, RevertQuery *dependency
         return nullptr;
     }
 
-    // get a template
     edit->User->IncrementWarningLevel();
-    // we need to update the user so that new level gets propagated everywhere on interface of huggle
+    // We need to update the user so that new user warning level gets propagated everywhere on interface of huggle
     edit->User->Update();
-    QString Template_ = warning_type + QString::number(edit->User->GetWarningLevel());
-    QString MessageText_ = Warnings::RetrieveTemplateToWarn(Template_, edit->GetSite());
 
-    if (!MessageText_.size())
+    // Create a warning template and message to send
+    QString message_template = warning_type + QString::number(edit->User->GetWarningLevel());
+    QString message_text = Warnings::RetrieveTemplateToWarn(message_template, edit->GetSite());
+
+    // In case that message is empty, stop and show error
+    if (!message_text.size())
     {
-        Syslog::HuggleLogs->Log(_l("missing-warning",Template_));
+        Syslog::HuggleLogs->ErrorLog(_l("missing-warning", message_template));
         return nullptr;
     }
 
-    MessageText_ = MessageText_.replace("$2", edit->GetFullUrl()).replace("$1", edit->Page->PageName);
-    QString Summary_;
+    message_text = message_text.replace("$2", edit->GetFullUrl()).replace("$1", edit->Page->PageName);
+    QString message_summary;
     if (!edit->GetSite()->GetProjectConfig()->WarningSummaries.contains(edit->User->GetWarningLevel()))
     {
-        Summary_ = edit->GetSite()->GetProjectConfig()->WarningSummaries[1];
+        message_summary = edit->GetSite()->GetProjectConfig()->WarningSummaries[1];
     } else
     {
-        Summary_ = edit->GetSite()->GetProjectConfig()->WarningSummaries[edit->User->GetWarningLevel()];
+        message_summary = edit->GetSite()->GetProjectConfig()->WarningSummaries[edit->User->GetWarningLevel()];
     }
-    Summary_ = Summary_.replace("$1", sanitize_page_name(edit->Page->PageName));
-    QString HeadingText_ = edit->GetSite()->GetProjectConfig()->TemplateHeader;
-    HeadingText_ = HeadingText_.replace("$1", sanitize_page_name(edit->Page->PageName));
+    message_summary = message_summary.replace("$1", sanitize_page_name(edit->Page->PageName));
+
+    // Configure message heading as defined in project config
+    QString message_head = edit->GetSite()->GetProjectConfig()->TemplateHeader;
+    message_head = message_head.replace("$1", sanitize_page_name(edit->Page->PageName));
     if (edit->GetSite()->GetProjectConfig()->MessageHeadings == HeadingsStandard)
     {
-        QDateTime d = edit->GetSite()->GetProjectConfig()->ServerTime();
-        HeadingText_ = WikiUtil::MonthText(d.date().month(), edit->GetSite()) + " " + QString::number(d.date().year());
+        QDateTime server_time = edit->GetSite()->GetProjectConfig()->ServerTime();
+        message_head = WikiUtil::MonthText(server_time.date().month(), edit->GetSite()) + " " + QString::number(server_time.date().year());
     } else if (edit->GetSite()->GetProjectConfig()->MessageHeadings == HeadingsNone)
     {
-        HeadingText_ = "";
+        message_head = "";
     }
-    MessageText_ = Warnings::UpdateSharedIPTemplate(edit->User, MessageText_, edit->GetSite());
-    bool CreateOnly = false;
-    if (edit->User->TalkPage_GetContents().isEmpty())
-    {
-        CreateOnly = true;
-    }
+    message_text = Warnings::UpdateSharedIPTemplate(edit->User, message_text, edit->GetSite());
+
+    // Create only - safety check for API in case that user didn't have a user talk page, we use this parameter for API so that is fails in case someone creates a talk page meanwhile
+    bool create_only = edit->User->TalkPage_GetContents().isEmpty();
     if (hcfg->UserConfig->AutomaticallyWatchlistWarnedUsers)
         WikiUtil::Watchlist(edit->User->GetTalkPage());
-    PendingWarning *pw = new PendingWarning(WikiUtil::MessageUser(edit->User, MessageText_, HeadingText_, Summary_, true, dependency, false,
-                                                                  Configuration::HuggleConfiguration->UserConfig->SectionKeep, false,
-                                                                  edit->TPRevBaseTime, CreateOnly, true), warning_type, edit);
+    PendingWarning *pw = new PendingWarning(WikiUtil::MessageUser(edit->User, message_text, message_head, message_summary, true, dependency, false, hcfg->UserConfig->SectionKeep, false,
+                                                                  edit->TPRevBaseTime, create_only, true), warning_type, edit);
     Hooks::OnWarning(edit->User);
     return pw;
 }
 
 void Warnings::ResendWarnings()
 {
-    int x = 0;
-    while (x < PendingWarning::PendingWarnings.count())
+    int warning_ix = 0;
+    while (warning_ix < PendingWarning::PendingWarnings.count())
     {
-        PendingWarning *warning = PendingWarning::PendingWarnings.at(x);
+        PendingWarning *warning = PendingWarning::PendingWarnings.at(warning_ix);
         if (warning->Query != nullptr)
         {
             // we are already getting talk page so we need to check if it finished here
@@ -161,15 +161,15 @@ void Warnings::ResendWarnings()
                     // in doing anything else to fix it.
                     Syslog::HuggleLogs->ErrorLog("Unable to retrieve a new version of talk page for user " + warning->RelatedEdit->User->Username
                                      + " the warning will not be delivered to this user");
-                    PendingWarning::PendingWarnings.removeAt(x);
+                    PendingWarning::PendingWarnings.removeAt(warning_ix);
                     delete warning;
                     continue;
                 }
                 // we get the new talk page
-                QDomDocument TalkPage_;
-                TalkPage_.setContent(warning->Query->Result->Data);
-                QDomNodeList revisions_ = TalkPage_.elementsByTagName("rev");
-                QDomNodeList pages_ = TalkPage_.elementsByTagName("page");
+                QDomDocument talk_page;
+                talk_page.setContent(warning->Query->Result->Data);
+                QDomNodeList revisions_ = talk_page.elementsByTagName("rev");
+                QDomNodeList pages_ = talk_page.elementsByTagName("page");
                 QString TPRevBaseTime = "";
                 if (pages_.count() > 0)
                 {
@@ -180,7 +180,7 @@ void Warnings::ResendWarnings()
                         Syslog::HuggleLogs->ErrorLog("Unable to retrieve a new version of talk page for user "
                                                      + warning->RelatedEdit->User->Username
                                                      + " because it was deleted meanwhile, the warning will not be delivered to this user");
-                        PendingWarning::PendingWarnings.removeAt(x);
+                        PendingWarning::PendingWarnings.removeAt(warning_ix);
                         delete warning;
                         continue;
                     }
@@ -195,7 +195,7 @@ void Warnings::ResendWarnings()
                         {
                             Huggle::Syslog::HuggleLogs->ErrorLog("Talk page timestamp of " + warning->RelatedEdit->User->Username +
                                                                  " couldn't be retrieved, mediawiki returned no data for it");
-                            PendingWarning::PendingWarnings.removeAt(x);
+                            PendingWarning::PendingWarnings.removeAt(warning_ix);
                             delete warning;
                             continue;
                         } else
@@ -211,7 +211,7 @@ void Warnings::ResendWarnings()
                                                      + warning->RelatedEdit->User->Username
                                                      + " the warning will not be delivered to this user, check debug logs for more");
                         Syslog::HuggleLogs->DebugLog(warning->Query->Result->Data);
-                        PendingWarning::PendingWarnings.removeAt(x);
+                        PendingWarning::PendingWarnings.removeAt(warning_ix);
                         delete warning;
                         continue;
                     }
@@ -222,7 +222,7 @@ void Warnings::ResendWarnings()
                     Syslog::HuggleLogs->ErrorLog("Unable to retrieve a new version of talk page for user " + warning->RelatedEdit->User->Username
                                         + " the warning will not be delivered to this user, check debug logs for more");
                     Syslog::HuggleLogs->DebugLog(warning->Query->Result->Data);
-                    PendingWarning::PendingWarnings.removeAt(x);
+                    PendingWarning::PendingWarnings.removeAt(warning_ix);
                     delete warning;
                     continue;
                 }
@@ -252,12 +252,12 @@ void Warnings::ResendWarnings()
                     PendingWarning::PendingWarnings.append(ptr_warning_);
 
                 // we can delete this warning now because we created another one
-                PendingWarning::PendingWarnings.removeAt(x);
+                PendingWarning::PendingWarnings.removeAt(warning_ix);
                 delete warning;
                 continue;
             }
             // in case that it isn't processed yet we can continue on next warning
-            x++;
+            warning_ix++;
             continue;
         }
 
@@ -266,7 +266,7 @@ void Warnings::ResendWarnings()
             if (!warning->Warning->IsFailed())
             {
                 // we no longer need to care about this one
-                PendingWarning::PendingWarnings.removeAt(x);
+                PendingWarning::PendingWarnings.removeAt(warning_ix);
                 delete warning;
                 continue;
             }
@@ -301,12 +301,12 @@ void Warnings::ResendWarnings()
                 warning->Query->Process();
             } else
             {
-                PendingWarning::PendingWarnings.removeAt(x);
+                PendingWarning::PendingWarnings.removeAt(warning_ix);
                 delete warning;
                 continue;
             }
         }
-        x++;
+        warning_ix++;
         continue;
     }
 }
@@ -336,39 +336,37 @@ void Warnings::ForceWarn(int level, WikiEdit *edit)
     if (edit == nullptr)
         return;
 
-    QString _template = edit->GetSite()->GetProjectConfig()->DefaultTemplate + QString::number(level);
-    QString MessageText_ = Warnings::RetrieveTemplateToWarn(_template, edit->GetSite(), instant);
+    QString warning_template = edit->GetSite()->GetProjectConfig()->DefaultTemplate + QString::number(level);
+    QString message_text = Warnings::RetrieveTemplateToWarn(warning_template, edit->GetSite(), instant);
 
-    if (!MessageText_.size())
+    if (!message_text.size())
     {
         // this is very rare error no need to translate it
-        Syslog::HuggleLogs->Log("There is no such warning template " + _template);
+        Syslog::HuggleLogs->Log("There is no such warning template " + warning_template);
         return;
     }
 
-    MessageText_ = MessageText_.replace("$2", edit->GetFullUrl()).replace("$1", edit->Page->PageName);
-    QString Summary_;
+    message_text = message_text.replace("$2", edit->GetFullUrl()).replace("$1", edit->Page->PageName);
+    QString message_summary;
     if (!edit->GetSite()->GetProjectConfig()->WarningSummaries.contains(edit->User->GetWarningLevel()))
     {
-        Summary_ = edit->GetSite()->GetProjectConfig()->WarningSummaries[1];
+        message_summary = edit->GetSite()->GetProjectConfig()->WarningSummaries[1];
     } else
     {
-        Summary_ = edit->GetSite()->GetProjectConfig()->WarningSummaries[edit->User->GetWarningLevel()];
+        message_summary = edit->GetSite()->GetProjectConfig()->WarningSummaries[edit->User->GetWarningLevel()];
     }
-    Summary_ = Summary_.replace("$1", sanitize_page_name(edit->Page->PageName));
-    QString id = edit->GetSite()->GetProjectConfig()->TemplateHeader;
-    id = id.replace("$1", sanitize_page_name(edit->Page->PageName));
-    if (Configuration::HuggleConfiguration->UserConfig->EnforceMonthsAsHeaders)
+    message_summary = message_summary.replace("$1", sanitize_page_name(edit->Page->PageName));
+    QString message_head = edit->GetSite()->GetProjectConfig()->TemplateHeader;
+    message_head = message_head.replace("$1", sanitize_page_name(edit->Page->PageName));
+    if (hcfg->UserConfig->EnforceMonthsAsHeaders)
     {
         QDateTime date_ = edit->GetSite()->GetProjectConfig()->ServerTime();
-        id = WikiUtil::MonthText(date_.date().month(), edit->GetSite()) + " " + QString::number(date_.date().year());
+        message_head = WikiUtil::MonthText(date_.date().month(), edit->GetSite()) + " " + QString::number(date_.date().year());
     }
-    MessageText_ = Warnings::UpdateSharedIPTemplate(edit->User, MessageText_, edit->GetSite());
+    message_text = Warnings::UpdateSharedIPTemplate(edit->User, message_text, edit->GetSite());
     if (hcfg->UserConfig->AutomaticallyWatchlistWarnedUsers)
         WikiUtil::Watchlist(edit->User->GetTalkPage());
-    WikiUtil::MessageUser(edit->User, MessageText_, id, Summary_, true, nullptr, false,
-                              Configuration::HuggleConfiguration->UserConfig->SectionKeep,
-                              true, edit->TPRevBaseTime);
+    WikiUtil::MessageUser(edit->User, message_text, message_head, message_summary, true, nullptr, false, hcfg->UserConfig->SectionKeep, true, edit->TPRevBaseTime);
 }
 
 QString Warnings::RetrieveTemplateToWarn(QString type, WikiSite *site, bool force)

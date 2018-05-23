@@ -59,10 +59,10 @@ namespace Huggle
             static QMutex ProblematicUserListLock;
             static QDateTime InvalidTime;
 
-            WikiUser();
+            WikiUser(WikiSite *site);
             WikiUser(WikiUser *u);
             WikiUser(const WikiUser& u);
-            WikiUser(QString user);
+            WikiUser(QString user, WikiSite *site);
             ~WikiUser();
             /*!
              * \brief GetContentsOfTalkPage returns a precached content of this user's talk page

@@ -93,9 +93,6 @@ void Core::Init()
     hcfg->WebRequest_UserAgent = QString("Huggle/" + QString(HUGGLE_VERSION) + " (http://en.wikipedia.org/wiki/WP:Huggle; " + hcfg->HuggleVersion + ")").toUtf8();
     HUGGLE_DEBUG1("UserAgent: " + QString(hcfg->WebRequest_UserAgent));
     HUGGLE_PROFILER_PRINT_TIME("Core::Init()@conf");
-    HUGGLE_DEBUG1("Loading defs");
-    this->LoadDefs();
-    HUGGLE_PROFILER_PRINT_TIME("Core::Init()@defs");
     HUGGLE_DEBUG1("Loading wikis");
     this->LoadDB();
     HUGGLE_DEBUG1("Loading queue");
@@ -200,94 +197,6 @@ void Core::LoadDB()
         Configuration::HuggleConfiguration->ProjectList.append(site);
         xx++;
     }
-}
-
-void Core::SaveDefs()
-{
-    QFile file(Configuration::GetConfigurationPath() + "users.xml");
-    if (QFile(Configuration::GetConfigurationPath() + "users.xml").exists())
-    {
-        QFile(Configuration::GetConfigurationPath() + "users.xml").copy(Configuration::GetConfigurationPath() + "users.xml~");
-        QFile(Configuration::GetConfigurationPath() + "users.xml").remove();
-    }
-    if (!file.open(QIODevice::Truncate | QIODevice::WriteOnly))
-    {
-        Huggle::Syslog::HuggleLogs->ErrorLog("Can't open " + Configuration::GetConfigurationPath() + "users.xml");
-        return;
-    }
-    WikiUser::TrimProblematicUsersList();
-    int x = 0;
-    QXmlStreamWriter *writer = new QXmlStreamWriter();
-    writer->setDevice(&file);
-    writer->setAutoFormatting(true);
-    writer->writeStartDocument();
-    writer->writeStartElement("definitions");
-    WikiUser::ProblematicUserListLock.lock();
-    while (x<WikiUser::ProblematicUsers.count())
-    {
-        writer->writeStartElement("user");
-        writer->writeAttribute("name", WikiUser::ProblematicUsers.at(x)->Username);
-        writer->writeAttribute("badness", QString::number(WikiUser::ProblematicUsers.at(x)->GetBadnessScore(false)));
-        writer->writeEndElement();
-        x++;
-    }
-    WikiUser::ProblematicUserListLock.unlock();
-    writer->writeEndElement();
-    writer->writeEndDocument();
-    file.close();
-    delete writer;
-    QFile().remove(Configuration::GetConfigurationPath() + "users.xml~");
-}
-
-void Core::LoadDefs()
-{
-    QFile defs(Configuration::GetConfigurationPath() + "users.xml");
-    if (QFile(Configuration::GetConfigurationPath() + "users.xml~").exists())
-    {
-        Huggle::Syslog::HuggleLogs->Log("WARNING: recovering definitions from last session");
-        QFile(Configuration::GetConfigurationPath() + "users.xml").remove();
-        if (QFile(Configuration::GetConfigurationPath() + "users.xml~").copy(Configuration::GetConfigurationPath() + "users.xml"))
-        {
-            QFile().remove(Configuration::GetConfigurationPath() + "users.xml~");
-        } else
-        {
-            Huggle::Syslog::HuggleLogs->Log("WARNING: Unable to recover the definitions");
-        }
-    }
-    if (!defs.exists())
-    {
-        return;
-    }
-    defs.open(QIODevice::ReadOnly);
-    QString Contents(defs.readAll());
-    QDomDocument list;
-    list.setContent(Contents);
-    QDomNodeList l = list.elementsByTagName("user");
-    if (l.count() > 0)
-    {
-        int i=0;
-        while (i<l.count())
-        {
-            WikiUser *user;
-            QDomElement e = l.at(i).toElement();
-            if (!e.attributes().contains("name"))
-            {
-                i++;
-                continue;
-            }
-            user = new WikiUser();
-            user->Username = e.attribute("name");
-            if (e.attributes().contains("badness"))
-            {
-                // do not resync this user while we init the db, this is first time it's written to it so there is no point in that
-                user->SetBadnessScore(e.attribute("badness").toInt(), false, false);
-            }
-            WikiUser::ProblematicUsers.append(user);
-            i++;
-        }
-    }
-    HUGGLE_DEBUG1("Loaded " + QString::number(WikiUser::ProblematicUsers.count()) + " records from last session");
-    defs.close();
 }
 
 void Core::ExtensionLoad()
@@ -417,10 +326,8 @@ void Core::Shutdown()
     Syslog::HuggleLogs->Log("SHUTDOWN: giving a gracetime to other threads to finish");
     Sleeper::msleep(200);
     if (this->processorThread->isRunning())
-    {
         this->processorThread->exit();
-    }
-    Core::SaveDefs();
+
     // We need to make a copy of list here, because calling delete would remove the pointer from original list
     // that could cause some issues.
     QList<Script*> sl = Script::GetScripts();

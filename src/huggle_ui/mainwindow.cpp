@@ -1195,25 +1195,31 @@ bool MainWindow::preflightCheck(WikiEdit *_e)
     return true;
 }
 
-bool MainWindow::Warn(QString WarningType, RevertQuery *dependency, WikiEdit *related_edit)
+bool MainWindow::Warn(QString warning_type, RevertQuery *dependency, WikiEdit *related_edit)
 {
     if (related_edit == nullptr)
         return false;
-    bool Report_ = false;
-    PendingWarning *ptr_Warning_ = Warnings::WarnUser(WarningType, dependency, related_edit, &Report_);
-    if (Report_)
+    bool report_user = false;
+    // Call to WarnUser will change report_user to true in case that user already reached max warning level
+    PendingWarning *ptr_warning = Warnings::WarnUser(warning_type, dependency, related_edit, &report_user);
+    if (report_user)
     {
-        if ((hcfg->UserConfig->AutomaticReports && related_edit->GetSite()->GetProjectConfig()->ReportMode != ReportType_StrictManual) || related_edit->GetSite()->GetProjectConfig()->ReportMode == ReportType_StrictAuto)
+        // User already reached maximum level, so we need to report them instead - check if current project supports reporting,
+        // whether we use silent reports, or if strict manual reports are enforced by project config
+        if ((hcfg->UserConfig->AutomaticReports && related_edit->GetSite()->GetProjectConfig()->ReportMode != ReportType_StrictManual) ||
+                related_edit->GetSite()->GetProjectConfig()->ReportMode == ReportType_StrictAuto)
         {
+            // Silent reports are enabled, so just report user without asking Huggle user for input
             ReportUser::SilentReport(related_edit->User);
         } else
         {
             this->DisplayReportUserWindow(related_edit->User);
         }
     }
-    if (ptr_Warning_ != nullptr)
+    if (ptr_warning != nullptr)
     {
-        PendingWarning::PendingWarnings.append(ptr_Warning_);
+        // Warning is processed on background, so we just store it for later check of results
+        PendingWarning::PendingWarnings.append(ptr_warning);
         return true;
     }
     return false;
@@ -1232,7 +1238,7 @@ void MainWindow::DisplayWelcomeMessage()
         this->LockPage();
         return;
     }
-    WikiPage *welcome = new WikiPage(hcfg->ProjectConfig->WelcomeMP);
+    WikiPage *welcome = new WikiPage(hcfg->ProjectConfig->WelcomeMP, hcfg->Project);
     this->Browser->DisplayPreFormattedPage(welcome);
     this->LockPage();
     delete welcome;
@@ -1627,10 +1633,9 @@ void MainWindow::OnTimerTick0()
                                                MessageBoxStyleQuestion, true) == QMessageBox::No)
                         continue;
                 }
-                WikiPage *uc = new WikiPage(page);
+                WikiPage *uc = new WikiPage(page, site);
                 uc->Site = site;
-                Collectable_SmartPtr<EditQuery> temp = WikiUtil::EditPage(uc, site->GetUserConfig()->MakeLocalUserConfig(site->GetProjectConfig()),
-                                                                          _l("saveuserconfig-progress"), true);
+                Collectable_SmartPtr<EditQuery> temp = WikiUtil::EditPage(uc, site->GetUserConfig()->MakeLocalUserConfig(site->GetProjectConfig()), _l("saveuserconfig-progress"), true);
                 temp->IncRef();
                 this->StorageQueries.insert(site, temp.GetPtr());
                 delete uc;
@@ -2122,7 +2127,7 @@ void MainWindow::ShowEmptyQueuePage()
 {
     if(!hcfg->UserConfig->PageEmptyQueue.isEmpty())
     {
-        WikiPage empty(hcfg->UserConfig->PageEmptyQueue);
+        WikiPage empty(hcfg->UserConfig->PageEmptyQueue, hcfg->Project);
         this->Browser->DisplayPreFormattedPage(&empty);
         //this->Render();
     }
@@ -2159,7 +2164,7 @@ void MainWindow::DisplayTalk()
     if (this->CurrentEdit == nullptr)
         return;
     // display a talk page
-    WikiPage *page = new WikiPage(this->CurrentEdit->User->GetTalk());
+    WikiPage *page = new WikiPage(this->CurrentEdit->User->GetTalk(), this->CurrentEdit->GetSite());
     this->Browser->DisplayPreFormattedPage(page);
     this->LockPage();
     delete page;
@@ -2252,8 +2257,7 @@ void MainWindow::SwitchAlternativeFeedProvider(WikiSite *site)
 
 void MainWindow::RenderPage(QString Page)
 {
-    WikiPage *page = new WikiPage(Page);
-    page->Site = this->GetCurrentWikiSite();
+    WikiPage *page = new WikiPage(Page, this->GetCurrentWikiSite());
     this->tb->SetPage(page);
     delete page;
     this->tb->DownloadEdit();
@@ -2647,7 +2651,7 @@ void MainWindow::on_actionClear_talk_page_of_user_triggered()
         Syslog::HuggleLogs->Log(_l("feature-nfru"));
         return;
     }
-    WikiPage *page = new WikiPage(this->CurrentEdit->User->GetTalk());
+    WikiPage *page = new WikiPage(this->CurrentEdit->User->GetTalk(), this->CurrentEdit->GetSite());
     /// \todo LOCALIZE ME
     WikiUtil::EditPage(page, this->GetCurrentWikiSite()->ProjectConfig->ClearTalkPageTemp
                        + "\n" + this->GetCurrentWikiSite()->ProjectConfig->WelcomeAnon + " ~~~~",
@@ -3478,7 +3482,7 @@ void Huggle::MainWindow::on_actionUser_page_triggered()
     if (this->CurrentEdit == nullptr)
         return;
 
-    WikiPage *page = new WikiPage(this->CurrentEdit->User->GetUserPage());
+    WikiPage *page = new WikiPage(this->CurrentEdit->User->GetUserPage(), this->CurrentEdit->GetSite());
     this->Browser->DisplayPreFormattedPage(page);
     this->LockPage();
     delete page;

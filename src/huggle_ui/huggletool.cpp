@@ -177,10 +177,8 @@ void HuggleTool::FinishPage()
             return;
         }
         this->edit = new WikiEdit();
-        this->edit->Page = new WikiPage(item->GetAttribute("title"));
-        this->edit->Page->Site = this->query->GetSite();
-        this->edit->User = new WikiUser(item->GetAttribute("user"));
-        this->edit->User->Site = this->query->GetSite();
+        this->edit->Page = new WikiPage(item->GetAttribute("title"), this->query->GetSite());
+        this->edit->User = new WikiUser(item->GetAttribute("user"), this->query->GetSite());
         this->edit->RevID = item->GetAttribute("revid").toInt();
         QueryPool::HugglePool->PreProcessEdit(this->edit);
         QueryPool::HugglePool->PostProcessEdit(this->edit);
@@ -188,8 +186,7 @@ void HuggleTool::FinishPage()
     } else
     {
         this->edit = new WikiEdit();
-        this->edit->Page = new WikiPage(this->ui->lineEdit_3->text());
-        this->edit->Page->Site = this->query->GetSite();
+        this->edit->Page = new WikiPage(this->ui->lineEdit_3->text(), this->query->GetSite());
         ApiQueryResultNode *rev = this->query->GetApiQueryResult()->GetNode("rev");
         if (rev)
         {
@@ -205,16 +202,14 @@ void HuggleTool::FinishPage()
             }
             if (rev->Attributes.contains("user"))
             {
-                this->edit->User = new WikiUser(rev->GetAttribute("user"));
-                this->edit->User->Site = this->GetSite();
+                this->edit->User = new WikiUser(rev->GetAttribute("user"), this->query->GetSite());
             }
             if (rev->Attributes.contains("revid"))
                 this->edit->RevID = rev->GetAttribute("revid").toInt();
         }
         if (this->edit->User == nullptr)
         {
-            this->edit->User = new WikiUser();
-            this->edit->User->Site = this->query->GetSite();
+            this->edit->User = new WikiUser(this->query->GetSite());
         }
         QueryPool::HugglePool->PreProcessEdit(this->edit);
         QueryPool::HugglePool->PostProcessEdit(this->edit);

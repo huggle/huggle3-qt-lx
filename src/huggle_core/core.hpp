@@ -78,10 +78,6 @@ namespace Huggle
             void Shutdown();
             void TestLanguages();
             void LoadDB();
-            //! Load a definitions of problematic users, see WikiUser::ProblematicUsers for details
-            void LoadDefs();
-            //! Store a definitions of problematic users, see WikiUser::ProblematicUsers for details
-            void SaveDefs();
             qint64 GetUptimeInSeconds();
             void LoadLocalizations();
             void InstallNewExceptionHandler(ExceptionHandler *eh);

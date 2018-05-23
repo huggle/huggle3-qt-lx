@@ -10,15 +10,14 @@
 
 #include "wikipage.hpp"
 #include <QUrl>
-#include "configuration.hpp"
 #include "exception.hpp"
 #include "wikisite.hpp"
 #include "localization.hpp"
 using namespace Huggle;
 
-WikiPage::WikiPage()
+WikiPage::WikiPage(WikiSite *site)
 {
-    this->Site = Configuration::HuggleConfiguration->Project;
+    this->Site = site;
     this->PageName = _l("page-unknown");
     this->Contents = "";
     if (!this->Site)
@@ -26,10 +25,10 @@ WikiPage::WikiPage()
     this->NS = this->Site->Unknown;
 }
 
-WikiPage::WikiPage(const QString &name)
+WikiPage::WikiPage(const QString &name, WikiSite *site)
 {
     this->PageName = name;
-    this->Site = Configuration::HuggleConfiguration->Project;
+    this->Site = site;
     this->Contents = "";
     if (!this->Site)
         throw new Huggle::NullPointerException("local Site", BOOST_CURRENT_FUNCTION);
@@ -71,7 +70,7 @@ WikiPage *WikiPage::RetrieveTalk()
         }
     }
     prefix += ":";
-    return new WikiPage(prefix + this->RootName());
+    return new WikiPage(prefix + this->RootName(), this->Site);
 }
 
 bool WikiPage::FounderKnown()
