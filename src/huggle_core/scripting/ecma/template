@@ -16,5 +16,8 @@ function ext_get_info()
     info["version"] = "1.0.0";
     info["description"] = "";
     info["author"] = "";
+    // info["min_huggle_version"] = "3.4.0";
+    // info["required_context"] = "huggle_ui";
+    // info["requires_unsafe"] = false;
     return info;
 }

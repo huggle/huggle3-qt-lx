@@ -21,6 +21,7 @@
 #include "../resources.hpp"
 #include "../generic.hpp"
 #include "../syslog.hpp"
+#include "../version.hpp"
 #include <QFile>
 #include <QTimer>
 
@@ -412,6 +413,38 @@ bool Script::loadSource(QString source, QString *error)
     if (this->scripts.contains(this->scriptName))
     {
         *error = this->scriptName + " is already loaded";
+        this->isWorking = false;
+        return false;
+    }
+
+    if (info.hasProperty("min_huggle_version"))
+    {
+        Version huggle_version(HUGGLE_VERSION);
+        Version min_version(info.property("min_huggle_version").toString());
+        if (!min_version.IsValid())
+        {
+            *error = "Unable to load script, min_huggle_version is invalid version string";
+            this->isWorking = false;
+            return false;
+        }
+        if (huggle_version < min_version)
+        {
+            *error = "Unable to load script, this extension requires Huggle version " + min_version.ToString() + " or newer";
+            this->isWorking = false;
+            return false;
+        }
+    }
+
+    if (info.hasProperty("requires_unsafe") && info.property("requires_unsafe").toBool() == true && !this->IsUnsafe())
+    {
+        *error = "Unable to load script, access to unsafe methods is required by this script";
+        this->isWorking = false;
+        return false;
+    }
+
+    if (info.hasProperty("required_context") && info.property("required_context").toString() != this->GetContext())
+    {
+        *error = "Unable to load script, this extension doesn't work in this context of execution";
         this->isWorking = false;
         return false;
     }
