@@ -43,6 +43,11 @@ void UiHooks::MainWindow_OnRender()
         if (e->IsWorking())
             e->Hook_MainWindowOnRender();
     }
+    foreach (UiScript *sc, UiScript::GetAllUiScripts())
+    {
+        if (sc->IsWorking())
+            sc->Hook_OnRender();
+    }
 }
 
 void UiHooks::MainWindow_OnLoad(Huggle::MainWindow *window)

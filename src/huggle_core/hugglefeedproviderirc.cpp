@@ -162,7 +162,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
     QString flags = line.mid(0, line.indexOf(QChar(003)));
     edit->Bot = flags.contains("B");
     edit->NewPage = flags.contains("N");
-    edit->Minor = flags.contains("M");
+    edit->IsMinor = flags.contains("M");
     // this below looks like a nasty hack to filter out just what we need
     // but I will later use all of these actions for something too
     if (flags.contains("thank")    || flags.contains("modify") ||

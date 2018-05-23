@@ -324,7 +324,7 @@ void HuggleFeedProviderXml::processBufs()
         edit->IncRef();
         edit->Bot = Generic::SafeBool(element.attribute("bot"));
         edit->NewPage = (element.attribute("type") == "new");
-        edit->Minor = Generic::SafeBool(element.attribute("minor"));
+        edit->IsMinor = Generic::SafeBool(element.attribute("minor"));
         edit->RevID = element.attribute("revid").toLong();
         edit->User = new WikiUser(element.attribute("user"), this->GetSite());
         edit->Summary = element.attribute("summary");

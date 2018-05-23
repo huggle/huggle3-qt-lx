@@ -79,6 +79,19 @@ QJSValue JSMarshallingHelper::FromEdit(WikiEdit *edit, QJSEngine *engine)
     o.setProperty("DiffText_New", QJSValue(edit->DiffText_New));
     o.setProperty("DiffText_Old", QJSValue(edit->DiffText_Old));
     o.setProperty("DiffTo", QJSValue(edit->DiffTo));
+    o.setProperty("EditMadeByHuggle", QJSValue(edit->EditMadeByHuggle));
+    o.setProperty("FullUrl", QJSValue(edit->GetFullUrl()));
+    o.setProperty("SiteName", QJSValue(edit->GetSite()->Name));
+    o.setProperty("Size", QJSValue(static_cast<int>(edit->GetSize())));
+    o.setProperty("GoodfaithScore", QJSValue(static_cast<int>(edit->GoodfaithScore)));
+    o.setProperty("IsRangeOfEdits", QJSValue(edit->IsRangeOfEdits()));
+    o.setProperty("IsRevert", QJSValue(edit->IsRevert));
+    o.setProperty("IsValid", QJSValue(edit->IsValid));
+    o.setProperty("IsMinor", QJSValue(edit->IsMinor));
+    o.setProperty("NewPage", QJSValue(edit->NewPage));
+    o.setProperty("OwnEdit", QJSValue(edit->OwnEdit));
+    o.setProperty("Page", FromPage(edit->Page, engine));
+    o.setProperty("User", FromUser(edit->User, engine));
     return o;
 }
 

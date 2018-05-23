@@ -156,6 +156,12 @@ void UiScript::Hook_OnLogin()
         this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_LOGIN_OPEN]);
 }
 
+void UiScript::Hook_OnRender()
+{
+    if (this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_ON_RENDER))
+        this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_ON_RENDER]);
+}
+
 void UiScript::Hook_OnSpeedyFinished(WikiEdit *edit, QString tags, bool success)
 {
     if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_SPEEDY_FINISHED))
@@ -170,6 +176,8 @@ void UiScript::Hook_OnSpeedyFinished(WikiEdit *edit, QString tags, bool success)
 
 int UiScript::GetHookID(QString hook)
 {
+    if (hook == "render_edit")
+        return HUGGLE_SCRIPT_HOOK_ON_RENDER;
     if (hook == "speedy_finished")
         return HUGGLE_SCRIPT_HOOK_SPEEDY_FINISHED;
     if (hook == "main_open")
@@ -202,6 +210,7 @@ void UiScript::registerFunctions()
     this->registerHook("speedy_finished", 0, "(WikiEdit edit, string tags, bool success): when speedy finish");
     this->registerHook("login_open", 0, "(): Called when login form is loaded");
     this->registerHook("main_open", 0, "(): Called when main window is loaded");
+    this->registerHook("render_edit", 0, "(): Called when edit (diff) is displayed in main window");
 
     Script::registerFunctions();
 }

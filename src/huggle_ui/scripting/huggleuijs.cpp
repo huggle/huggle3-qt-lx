@@ -29,7 +29,12 @@ HuggleUIJS::HuggleUIJS(Script *s) : GenericJSClass(s)
     this->function_help.insert("delete_menu_item", "(int menu_id): remove a menu that was created by this script");
     this->function_help.insert("create_menu_item", "(int parent, string name, string function_name, [bool checkable = false]): Creates a new menu item in main window, "\
                                                                     "this function works only if main window is loaded");
+    this->function_help.insert("show_tray_message", "(string title, string text): shows a message in tray");
+    this->function_help.insert("show_tooltip_message", "(string message): shows a tooltip");
     this->function_help.insert("message_box", "(string title, string text, [int type], [enforce_stop]): Show a message box");
+    this->function_help.insert("navigate_next", "(): move to next edit in queue");
+    this->function_help.insert("navigate_backward", "(): move to previous edit");
+    this->function_help.insert("navigate_forward", "(): move to next edit in history");
 }
 
 int HuggleUIJS::create_menu_item(int parent, QString name, QString function, bool checkable)

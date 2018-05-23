@@ -210,7 +210,7 @@ void HuggleFeedProviderWiki::processEdit(QDomElement item)
 
     }
     if (item.attributes().contains("minor"))
-        edit->Minor = true;
+        edit->IsMinor = true;
     edit->IncRef();
     this->insertEdit(edit);
 }

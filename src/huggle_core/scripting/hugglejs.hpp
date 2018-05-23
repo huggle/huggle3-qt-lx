@@ -47,6 +47,7 @@ namespace Huggle
             Q_INVOKABLE QList<QString> get_function_list();
             Q_INVOKABLE QString get_function_help(QString function_name);
             Q_INVOKABLE QJSValue get_version();
+            Q_INVOKABLE QString get_username();
             Q_INVOKABLE bool is_unsafe();
             Q_INVOKABLE bool has_function(QString function_name);
             Q_INVOKABLE bool register_hook(QString hook, QString function_name);
@@ -64,6 +65,9 @@ namespace Huggle
             Q_INVOKABLE bool destroy_timer(unsigned int timer);
             Q_INVOKABLE bool start_timer(unsigned int timer, int interval);
             Q_INVOKABLE bool stop_timer(unsigned int timer);
+            Q_INVOKABLE QJSValue get_site_by_name(QString site);
+            Q_INVOKABLE QList<QString> get_sites();
+            Q_INVOKABLE QString localize(QString id);
         private slots:
             void OnTime();
         private:

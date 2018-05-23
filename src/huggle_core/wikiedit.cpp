@@ -33,7 +33,7 @@ WikiEdit::WikiEdit()
 {
     this->Bot = false;
     this->User = nullptr;
-    this->Minor = false;
+    this->IsMinor = false;
     this->NewPage = false;
     this->diffSize = 0;
     this->Diff = 0;

@@ -109,7 +109,7 @@ namespace Huggle
             //! User who changed the page
             WikiUser *User;
             //! Edit is a minor edit
-            bool Minor;
+            bool IsMinor;
             //! Edit is a bot edit
             bool Bot;
             //! Edit is a new page

@@ -15,6 +15,8 @@
 #include "jsmarshallinghelper.hpp"
 #include "../configuration.hpp"
 #include "../syslog.hpp"
+#include "../localization.hpp"
+#include "../wikisite.hpp"
 #include <QTimer>
 
 using namespace Huggle;
@@ -41,6 +43,8 @@ HuggleJS::HuggleJS(Script *s) : GenericJSClass(s)
     this->functions.insert("start_timer", "(uint timer)");
     this->functions.insert("destroy_timer", "(uint timer)");
     this->functions.insert("stop_timer", "(uint timer");
+    this->functions.insert("get_sites", "(): return string list of sites this user is logged to");
+    this->functions.insert("localize", "(string key): return localized key");
 }
 
 HuggleJS::~HuggleJS()
@@ -92,6 +96,11 @@ QJSValue HuggleJS::get_version()
     version.setProperty("Revision", QJSValue(revision));
     version.setProperty("String", QJSValue(hcfg->HuggleVersion));
     return version;
+}
+
+QString HuggleJS::get_username()
+{
+    return hcfg->SystemConfig_Username;
 }
 
 bool HuggleJS::is_unsafe()
@@ -200,6 +209,31 @@ bool HuggleJS::stop_timer(unsigned int timer)
 
     this->timers[timer]->stop();
     return true;
+}
+
+QJSValue HuggleJS::get_site_by_name(QString site)
+{
+    foreach (WikiSite *wiki, hcfg->Projects)
+    {
+        if (wiki->Name == site)
+            return JSMarshallingHelper::FromSite(wiki, this->script->GetEngine());
+    }
+    return QJSValue(QJSValue::SpecialValue::NullValue);
+}
+
+QList<QString> HuggleJS::get_sites()
+{
+    // List of sites
+    QList<QString> sl;
+    foreach (WikiSite *wiki, hcfg->Projects)
+        sl.append(wiki->Name);
+
+    return sl;
+}
+
+QString HuggleJS::localize(QString id)
+{
+    return _l(id);
 }
 
 void HuggleJS::OnTime()

@@ -131,9 +131,9 @@ bool HuggleQueueFilter::Matches(WikiEdit *edit)
     }
     if (this->Minor != HuggleQueueFilterMatchIgnore)
     {
-        if (this->Minor == HuggleQueueFilterMatchExclude && edit->Minor)
+        if (this->Minor == HuggleQueueFilterMatchExclude && edit->IsMinor)
             return false;
-        if (this->Minor == HuggleQueueFilterMatchRequire && !edit->Minor)
+        if (this->Minor == HuggleQueueFilterMatchRequire && !edit->IsMinor)
             return false;
     }
     if (this->Reverts != HuggleQueueFilterMatchIgnore)
