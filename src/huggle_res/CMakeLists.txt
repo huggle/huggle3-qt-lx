@@ -39,7 +39,7 @@ if (WIN32)
     target_link_libraries(huggle_res dbghelp)
 endif()
 
-qt5_use_modules(huggle_res Core Xml)
+target_link_libraries(huggle_res Qt5::Core Qt5::Xml)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 INSTALL(TARGETS huggle_res DESTINATION lib)

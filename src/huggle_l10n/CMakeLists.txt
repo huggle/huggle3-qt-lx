@@ -36,9 +36,7 @@ if (WIN32)
     target_link_libraries(huggle_l10n dbghelp)
 endif()
 
-target_link_libraries(huggle_l10n)
-
-qt5_use_modules(huggle_l10n Core Xml)
+target_link_libraries(huggle_l10n Qt5::Core Qt5::Xml)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 IF (NOT WIN32)

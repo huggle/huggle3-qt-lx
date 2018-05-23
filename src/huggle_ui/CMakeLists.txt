@@ -68,13 +68,14 @@ endif()
 target_link_libraries(huggle_ui huggle_core huggle_res irc ircclient yaml-cpp)
 
 if (NOT WEB_ENGINE)
-    qt5_use_modules(huggle_ui Core Gui Qml Widgets WebKitWidgets WebKit Network Xml)
+    target_link_libraries(huggle_ui Qt5::Core Qt5::Gui Qt5::Qml Qt5::Widgets
+        Qt5::WebKitWidgets Qt5::WebKit Qt5::Network Qt5::Xml)
 else()
-    qt5_use_modules(huggle_ui Core Gui Script Widgets WebEngineWidgets WebEngine Network Xml)
+    target_link_libraries(huggle_ui Qt5::Core Qt5::Gui Qt5::Widgets Qt5::WebEngineWidgets Qt5::WebEngine Qt5::Network Qt5::Xml)
 endif()
 
 if (AUDIO)
-    qt5_use_modules(huggle_ui Multimedia)
+    target_link_libraries(huggle_ui Qt5::Multimedia)
 endif()
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})

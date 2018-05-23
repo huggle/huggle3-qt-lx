@@ -44,11 +44,9 @@ if (WIN32)
 endif()
 
 target_link_libraries(huggle_core huggle_l10n irc ircclient yaml-cpp)
-
-qt5_use_modules(huggle_core Core Network Xml Qml)
-
+target_link_libraries(huggle_core Qt5::Core Qt5::Network Qt5::Xml Qt5::Qml)
 if (AUDIO)
-    qt5_use_modules(huggle_core Multimedia)
+    target_link_libraries(huggle_core Qt5::Multimedia)
 endif()
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
