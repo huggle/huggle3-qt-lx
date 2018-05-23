@@ -23,6 +23,7 @@ set(QT_INCLUDES
     ${Qt5Svg_INCLUDE_DIRS}
 )
 if (NOT WEB_ENGINE)
+    find_package(Qt5WebKitWidgets REQUIRED)
     find_package(Qt5WebKit REQUIRED)
     set(QT_INCLUDES ${QT_INCLUDES} ${Qt5WebKit_INCLUDE_DIRS})
 else()
@@ -56,8 +57,8 @@ TARGET_LINK_LIBRARIES(tst_testmain ${QT_LIBRARIES})
 TARGET_LINK_LIBRARIES(tst_testmain huggle_core irc ircclient yaml-cpp)
 
 if (NOT WEB_ENGINE)
-    qt5_use_modules(tst_testmain Core Test Gui Widgets WebKitWidgets WebKit Network Xml)
+    TARGET_LINK_LIBRARIES(tst_testmain Qt5::Core Qt5::Test Qt5::Gui Qt5::Widgets Qt5::WebKitWidgets Qt5::WebKit Qt5::Network Qt5::Xml)
 else()
-    qt5_use_modules(tst_testmain Core Test Gui Widgets WebEngineWidgets WebEngine Network Xml)
+    TARGET_LINK_LIBRARIES(tst_testmain Qt5::Core Qt5::Test Qt5::Gui Qt5::Widgets Qt5::WebEngineWidgets Qt5::WebEngine Qt5::Network Qt5::Xml)
 endif()
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})

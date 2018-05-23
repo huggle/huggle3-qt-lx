@@ -37,7 +37,7 @@ endif()
 
 target_link_libraries(huggle huggle_l10n huggle_res huggle_core huggle_ui)
 
-qt5_use_modules(huggle Core Gui Widgets)
+target_link_libraries(huggle Qt5::Core Qt5::Gui Qt5::Widgets)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 install(FILES ${CMAKE_SOURCE_DIR}/huggle/man/huggle.1 DESTINATION share/man/man1)
