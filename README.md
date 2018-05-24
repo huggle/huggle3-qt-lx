@@ -41,7 +41,7 @@ Linux
 # if you downloaded a gzip file, you can only use it after downloading them
 # by hand into 'huggle/extension_list' folder
 ./configure --extension --web-engine
-cd huggle_release
+cd release/huggle
 make
 sudo make install
 sudo ldconfig
