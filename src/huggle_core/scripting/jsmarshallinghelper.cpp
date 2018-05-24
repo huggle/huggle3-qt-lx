@@ -15,6 +15,8 @@
 #include "../apiqueryresult.hpp"
 #include "../editquery.hpp"
 #include "../generic.hpp"
+#include "../userconfiguration.hpp"
+#include "../projectconfiguration.hpp"
 #include "../version.hpp"
 #include "../wlquery.hpp"
 #include "../wikiedit.hpp"
@@ -39,6 +41,8 @@ QJSValue JSMarshallingHelper::FromSite(WikiSite *site, QJSEngine *engine)
     o.setProperty("ScriptPath", QJSValue(site->ScriptPath));
     o.setProperty("SupportHttps", QJSValue(site->SupportHttps));
     o.setProperty("URL", QJSValue(site->URL));
+    o.setProperty("UserConfig", FromSiteUserConfig(site->GetUserConfig(), engine));
+    o.setProperty("ProjectConfig", FromSiteProjectConfig(site->GetProjectConfig(), engine));
     return o;
 }
 
@@ -52,7 +56,7 @@ QJSValue JSMarshallingHelper::FromUser(WikiUser *user, QJSEngine *engine)
     // CPU expensive
     // o.setProperty("Flags", QScriptValue(engine, user->Flags()));
     o.setProperty("BadnessScore", QJSValue(static_cast<int>(user->GetBadnessScore())));
-    o.setProperty("Site", FromSite(user->GetSite(), engine));
+    o.setProperty("SiteName", user->GetSite()->Name);
     o.setProperty("TalkPageName", QJSValue(user->GetTalk()));
     o.setProperty("UserPageName", QJSValue(user->GetUserPage()));
     o.setProperty("WarningLevel", QJSValue(static_cast<int>(user->GetWarningLevel())));
@@ -120,7 +124,7 @@ QJSValue JSMarshallingHelper::FromPage(WikiPage *page, QJSEngine *engine)
     o.setProperty("FounderKnown", QJSValue(page->FounderKnown()));
     o.setProperty("Founder", QJSValue(page->GetFounder()));
     o.setProperty("NS", FromNS(page->GetNS(), engine));
-    o.setProperty("Site", FromSite(page->GetSite(), engine));
+    o.setProperty("SiteName", page->GetSite()->Name);
     o.setProperty("IsTalk", QJSValue(page->IsTalk()));
     o.setProperty("IsUserpage", QJSValue(page->IsUserpage()));
     o.setProperty("IsWatched", QJSValue(page->IsWatched()));
@@ -135,7 +139,7 @@ QJSValue JSMarshallingHelper::FromNS(WikiPageNS *ns, QJSEngine *engine)
     if (!ns)
         return QJSValue(false);
     QJSValue o = engine->newObject();
-    o.setProperty("CanonicalName", QJSValue(ns->GetCanonicalName()));
+    o.setProperty("CanonicalName", ns->GetCanonicalName());
     o.setProperty("ID", QJSValue(ns->GetID()));
     o.setProperty("Name", QJSValue(ns->GetName()));
     o.setProperty("IsTalkPage", QJSValue(ns->IsTalkPage()));
@@ -180,5 +184,49 @@ QJSValue JSMarshallingHelper::FromEditQuery(EditQuery *eq, QJSEngine *engine)
     o.setProperty("Append", QJSValue(eq->Append));
     o.setProperty("BaseTimestamp", QJSValue(eq->BaseTimestamp));
     o.setProperty("Page", JSMarshallingHelper::FromPage(eq->Page, engine));
+    return o;
+}
+
+QJSValue JSMarshallingHelper::FromSiteProjectConfig(ProjectConfiguration *config, QJSEngine *engine)
+{
+    QJSValue o = engine->newObject();
+    o.setProperty("AgfRevert", config->AgfRevert);
+    o.setProperty("AIV", config->AIV);
+    o.setProperty("AIVP", FromPage(config->AIVP, engine));
+    o.setProperty("Approval", config->Approval);
+    o.setProperty("ApprovalPage", config->ApprovalPage);
+    o.setProperty("AutomaticallyResolveConflicts", config->AutomaticallyResolveConflicts);
+    o.setProperty("ConfirmMultipleEdits", config->ConfirmMultipleEdits);
+    o.setProperty("ConfirmOnSelfRevs", config->ConfirmOnSelfRevs);
+    o.setProperty("ConfirmTalk", config->ConfirmTalk);
+    o.setProperty("ConfirmWL", config->ConfirmWL);
+    o.setProperty("DefaultSummary", config->DefaultSummary);
+    o.setProperty("DefaultTemplate", config->DefaultTemplate);
+    o.setProperty("EditSuffixOfHuggle", config->EditSuffixOfHuggle);
+    o.setProperty("EnableAll", config->EnableAll);
+    o.setProperty("IsLoggedIn", config->IsLoggedIn);
+    o.setProperty("MinimalVersion", config->MinimalVersion);
+    o.setProperty("Patrolling", config->Patrolling);
+    o.setProperty("Token_Csrf", config->Token_Csrf);
+    o.setProperty("Token_Patrol", config->Token_Patrol);
+    o.setProperty("Token_Rollback", config->Token_Rollback);
+    o.setProperty("Token_Watch", config->Token_Watch);
+    return o;
+}
+
+QJSValue JSMarshallingHelper::FromSiteUserConfig(UserConfiguration *config, QJSEngine *engine)
+{
+    QJSValue o = engine->newObject();
+    o.setProperty("AutomaticallyGroup", config->AutomaticallyGroup);
+    o.setProperty("AutomaticallyResolveConflicts", config->AutomaticallyResolveConflicts);
+    o.setProperty("AutomaticallyWatchlistWarnedUsers", config->AutomaticallyWatchlistWarnedUsers);
+    o.setProperty("AutomaticRefresh", config->AutomaticRefresh);
+    o.setProperty("AutomaticReports", config->AutomaticReports);
+    o.setProperty("CheckTP", config->CheckTP);
+    o.setProperty("DefaultSummary", config->DefaultSummary);
+    o.setProperty("DeleteEditsAfterRevert", config->DeleteEditsAfterRevert);
+    o.setProperty("DisplayTitle", config->DisplayTitle);
+    o.setProperty("EnableMaxScore", config->EnableMaxScore);
+    o.setProperty("EnableMinScore", config->EnableMinScore);
     return o;
 }

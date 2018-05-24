@@ -14,9 +14,12 @@
 #include "script.hpp"
 #include "jsmarshallinghelper.hpp"
 #include "../configuration.hpp"
+#include "../core.hpp"
+#include "../generic.hpp"
 #include "../syslog.hpp"
 #include "../localization.hpp"
 #include "../wikisite.hpp"
+#include <QJSValueIterator>
 #include <QTimer>
 
 using namespace Huggle;
@@ -42,9 +45,12 @@ HuggleJS::HuggleJS(Script *s) : GenericJSClass(s)
     this->functions.insert("create_timer", "(int interval, string function, [bool start = true]): creates a timer");
     this->functions.insert("start_timer", "(uint timer)");
     this->functions.insert("destroy_timer", "(uint timer)");
+    this->functions.insert("get_startup_date_time", "(): returns time of Huggle startup");
     this->functions.insert("stop_timer", "(uint timer");
     this->functions.insert("get_sites", "(): return string list of sites this user is logged to");
+    this->functions.insert("get_site_by_name", "(string site_name): returns a site info for site with this name");
     this->functions.insert("localize", "(string key): return localized key");
+    this->functions.insert("dump_obj", "(object): dumps an object to string");
 }
 
 HuggleJS::~HuggleJS()
@@ -236,10 +242,90 @@ QString HuggleJS::localize(QString id)
     return _l(id);
 }
 
+QDateTime HuggleJS::get_startup_date_time()
+{
+    return Core::HuggleCore->StartupTime;
+}
+
+QString HuggleJS::dump_obj(QJSValue object, unsigned int indent)
+{
+    QString indent_prefix = "";
+    unsigned int pref = indent;
+    while (pref-- > 0)
+        indent_prefix += " ";
+    QString object_desc = indent_prefix;
+    if (object.isArray())
+    {
+        object_desc += "array [ \n";
+        int length = object.property("length").toInt();
+        int i = 0;
+        while (i < length)
+        {
+            object_desc += "    " + indent_prefix + dump_obj(object.property(i++), indent + 4) + "\n";
+        }
+        object_desc += indent_prefix + " ]";
+    } else if (object.isBool())
+    {
+        object_desc += "bool (" + Generic::Bool2String(object.toBool()) + ")";
+    } else if (object.isCallable())
+    {
+        object_desc += "callable()";
+    } else if (object.isDate())
+    {
+        object_desc += "datetime (" + object.toDateTime().toString() + ")";
+    } else if (object.isError())
+    {
+        object_desc += "error type";
+    } else if (object.isNull())
+    {
+        object_desc += "null type";
+    } else if (object.isNumber())
+    {
+        object_desc += "int (" + QString::number(object.toInt()) + ")";
+    } else if (object.isUndefined())
+    {
+        object_desc += "undefined type";
+    } else if (object.isVariant())
+    {
+        object_desc += "variant";
+    } else if (object.isString())
+    {
+        object_desc += "string (" + object.toString() + ")";
+    } else if (object.isQObject())
+    {
+        object_desc += "qobject";
+    } else if (object.isObject())
+    {
+        object_desc += "object { \n";
+        QJSValueIterator it(object);
+        while (it.hasNext())
+        {
+            it.next();
+            object_desc += "    " + indent_prefix + it.name() + ": " + dump_obj(it.value(), indent + 4) + "\n";
+        }
+        object_desc += indent_prefix + " }";
+    } else
+    {
+        object_desc += "unknown type";
+    }
+
+    return object_desc;
+}
+
 void HuggleJS::OnTime()
 {
     QTimer *timer = (QTimer*) QObject::sender();
     if (!this->timerFunctions.contains(timer))
         return;
     this->GetScript()->ExecuteFunction(this->timerFunctions[timer], QJSValueList());
+}
+
+WikiSite *HuggleJS::getSiteByName(QString name)
+{
+    foreach (WikiSite *site, hcfg->Projects)
+    {
+        if (site->Name == name)
+            return site;
+    }
+    return nullptr;
 }

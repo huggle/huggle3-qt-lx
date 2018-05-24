@@ -1,4 +1,4 @@
-//This program is free software: you can redistribute it and/or modify
+﻿//This program is free software: you can redistribute it and/or modify
 //it under the terms of the GNU Lesser General Public License as published by
 //the Free Software Foundation, either version 3 of the License, or
 //(at your option) any later version.
@@ -29,6 +29,7 @@ class QTimer;
 
 namespace Huggle
 {
+    class WikiSite;
     /*!
      * \brief The HuggleJS class has C++ exports for JS engine (maps C++ functions to JS)
      *        it implements all functions that are available in JS script
@@ -68,9 +69,13 @@ namespace Huggle
             Q_INVOKABLE QJSValue get_site_by_name(QString site);
             Q_INVOKABLE QList<QString> get_sites();
             Q_INVOKABLE QString localize(QString id);
+            Q_INVOKABLE QDateTime get_startup_date_time();
+            // Misc
+            Q_INVOKABLE QString dump_obj(QJSValue object, unsigned int indent = 0);
         private slots:
             void OnTime();
         private:
+            WikiSite *getSiteByName(QString name);
             unsigned int lastTimer = 0;
             QHash<unsigned int, QTimer*> timers;
             QHash<QTimer*, QString> timerFunctions;
