@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>388</width>
-    <height>462</height>
+    <height>480</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -24,8 +24,8 @@
   </property>
   <property name="maximumSize">
    <size>
-    <width>600</width>
-    <height>800</height>
+    <width>800</width>
+    <height>1200</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -34,6 +34,9 @@
   <property name="windowIcon">
    <iconset resource="../huggle_res/pictures.qrc">
     <normaloff>:/huggle/pictures/Resources/huggle3_small.ico</normaloff>:/huggle/pictures/Resources/huggle3_small.ico</iconset>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>false</bool>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="bottomMargin">
