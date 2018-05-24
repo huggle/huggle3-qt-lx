@@ -38,8 +38,9 @@ bool Huggle::Hooks::EditBeforeScore(Huggle::WikiEdit *edit)
     return result;
 }
 
-void Huggle::Hooks::EditPreProcess(Huggle::WikiEdit *edit)
+void Huggle::Hooks::EditAfterPreProcess(Huggle::WikiEdit *edit)
 {
+    Events::Global->on_QueryPoolFinishWEPreprocess(edit);
     if (edit == nullptr)
         throw new Huggle::NullPointerException("Huggle::WikiEdit *Edit", BOOST_CURRENT_FUNCTION);
 
@@ -86,8 +87,9 @@ bool Huggle::Hooks::RevertPreflight(Huggle::WikiEdit *edit)
     return result;
 }
 
-void Huggle::Hooks::EditPostProcess(Huggle::WikiEdit *edit)
+void Huggle::Hooks::EditAfterPostProcess(Huggle::WikiEdit *edit)
 {
+    Events::Global->on_QueryPoolFinishWEPostprocess(edit);
     if (edit == nullptr)
         throw new NullPointerException("Huggle::WikiEdit *Edit", BOOST_CURRENT_FUNCTION);
 

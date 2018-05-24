@@ -44,6 +44,16 @@ void Events::on_WESuspicious(WikiEdit *e)
     emit this->WikiEdit_OnSuspicious(e);
 }
 
+void Events::on_QueryPoolFinishWEPreprocess(WikiEdit *e)
+{
+    emit this->QueryPool_FinishPreprocess(e);
+}
+
+void Events::on_QueryPoolFinishWEPostprocess(WikiEdit *e)
+{
+    emit this->QueryPool_FinishPostprocess(e);
+}
+
 void Events::on_QueryPoolRemove(Query *q)
 {
     emit this->QueryPool_Remove(q);

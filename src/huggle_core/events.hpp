@@ -44,6 +44,8 @@ namespace Huggle
             void WikiEdit_OnSuspicious(WikiEdit *wiki_edit);
             void QueryPool_Remove(Query *q);
             void QueryPool_Update(Query *q);
+            void QueryPool_FinishPreprocess(WikiEdit *wiki_edit);
+            void QueryPool_FinishPostprocess(WikiEdit *wiki_edit);
             void Reporting_SilentReport(WikiUser *wiki_user);
             void Reporting_Report(WikiUser *wiki_user);
             void System_Message(QString title, QString text);
@@ -59,6 +61,8 @@ namespace Huggle
             void on_WENewHistoryItem(HistoryItem *hi);
             void on_WEWarningSent(WikiUser *u, byte_ht wl);
             void on_WESuspicious(WikiEdit *e);
+            void on_QueryPoolFinishWEPreprocess(WikiEdit *e);
+            void on_QueryPoolFinishWEPostprocess(WikiEdit *e);
             void on_QueryPoolRemove(Query *q);
             void on_QueryPoolUpdate(Query *q);
             void on_Report(WikiUser *u);

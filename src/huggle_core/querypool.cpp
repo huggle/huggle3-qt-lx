@@ -87,12 +87,12 @@ void QueryPool::PreProcessEdit(WikiEdit *edit)
     if (edit->Bot)
         edit->User->SetBot(true);
 
-    edit->EditMadeByHuggle = edit->Summary.contains(Configuration::HuggleConfiguration->ProjectConfig->EditSuffixOfHuggle);
+    edit->EditMadeByHuggle = edit->Summary.contains(hcfg->ProjectConfig->EditSuffixOfHuggle);
 
     int x = 0;
     while (x < Configuration::HuggleConfiguration->ProjectConfig->Assisted.count())
     {
-        if (edit->Summary.contains(Configuration::HuggleConfiguration->ProjectConfig->Assisted.at(x)))
+        if (edit->Summary.contains(hcfg->ProjectConfig->Assisted.at(x)))
         {
             edit->TrustworthEdit = true;
             break;
@@ -112,12 +112,12 @@ void QueryPool::PreProcessEdit(WikiEdit *edit)
             this->UncheckedReverts.append(edit);
         }
     }
+
     if (hcfg->UserConfig->RemoveAfterTrustedEdit && edit->User->IsWhitelisted() && EditQueue::Primary)
         EditQueue::Primary->DeleteOlder(edit);
-    // In case we are currently looking at this page in main window, let's refresh
-    //if (hcfg->UserConfig->AutomaticRefresh && MainWindow::HuggleMain->CurrentEdit != nullptr && edit->Page->PageName == MainWindow::HuggleMain->CurrentEdit->Page->PageName)
-    //    MainWindow::HuggleMain->RefreshPage();
+
     edit->Status = StatusProcessed;
+    Hooks::EditAfterPreProcess(edit);
 }
 
 void QueryPool::PostProcessEdit(WikiEdit *edit)

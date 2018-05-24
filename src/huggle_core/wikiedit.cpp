@@ -851,7 +851,7 @@ void WikiEdit_ProcessorThread::Process(WikiEdit *edit)
         }
 #ifndef HUGGLE_SDK
     }
-    Hooks::EditPostProcess(edit);
+    Hooks::EditAfterPostProcess(edit);
 #endif
     edit->postProcessing = false;
     edit->processedByWorkerThread = true;

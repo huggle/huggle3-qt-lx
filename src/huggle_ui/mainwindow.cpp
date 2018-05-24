@@ -295,6 +295,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->tStatusBarRefreshTimer->start(500);
     if (!Events::Global)
         throw new Exception("Global events aren't instantiated now", BOOST_CURRENT_FUNCTION);
+    connect(Events::Global, SIGNAL(QueryPool_FinishPreprocess(WikiEdit*)), this, SLOT(OnFinishPreProcess(WikiEdit*)));
     connect(Events::Global, SIGNAL(WikiEdit_OnNewHistoryItem(HistoryItem*)), this, SLOT(OnWikiEditHist(HistoryItem*)));
     connect(Events::Global, SIGNAL(WikiUser_Updated(WikiUser*)), this, SLOT(OnWikiUserUpdate(WikiUser*)));
     connect(Events::Global, SIGNAL(System_ErrorMessage(QString,QString)), this, SLOT(OnError(QString,QString)));
@@ -3588,4 +3589,11 @@ void MainWindow::on_actionScripts_manager_triggered()
 
     this->fScripting = new ScriptingManager(this);
     this->fScripting->exec();
+}
+
+void MainWindow::OnFinishPreProcess(WikiEdit *ed)
+{
+    // In case we are currently looking at this page in main window, let's refresh
+    if (hcfg->UserConfig->AutomaticRefresh && this->CurrentEdit != nullptr && ed->Page->PageName == this->CurrentEdit->Page->PageName)
+        this->RefreshPage();
 }

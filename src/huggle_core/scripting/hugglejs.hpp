@@ -19,6 +19,7 @@
 #include <QVariant>
 #include <QHash>
 #include <QObject>
+#include <QDateTime>
 #include <QString>
 #include <QJSEngine>
 

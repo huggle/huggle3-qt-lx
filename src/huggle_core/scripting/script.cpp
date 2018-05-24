@@ -333,7 +333,7 @@ int Script::GetHookID(QString hook)
     // If doesn't exist, return -1
     if (hook == "shutdown")
         return HUGGLE_SCRIPT_HOOK_SHUTDOWN;
-    if (hook == "edit_pre_process")
+    if (hook == "edit_after_pre_process")
         return HUGGLE_SCRIPT_HOOK_EDIT_PRE_PROCESS;
     if (hook == "edit_before_post_process")
         return HUGGLE_SCRIPT_HOOK_EDIT_BEFORE_POST_PROCESS;
@@ -560,8 +560,8 @@ void Script::registerFunctions()
     this->registerHook("ext_unload", 0, "(): called when extension is being unloaded from system");
     this->registerHook("ext_is_working", 0, "(): must exist and must return true, if returns false, extension is considered crashed");
     this->registerHook("shutdown", 0, "(): called on exit of Huggle");
-    this->registerHook("edit_pre_process", 1, "(WikiEdit edit): called when edit is pre processed");
-    this->registerHook("edit_post_process", 1, "(WikiEdit edit): called when edit is post processed");
+    this->registerHook("edit_after_pre_process", 1, "(WikiEdit edit): called when edit is pre processed");
+    this->registerHook("edit_before_post_process", 1, "(WikiEdit edit): called when edit is post processed");
     this->registerHook("bool edit_load_to_queue", 1, "(WikiEdit edit): called when edit is loaded to queue, if returns false, edit will be removed");
     this->registerHook("edit_on_suspicious", 1, "(WikiEdit edit): when suspicious edit is spotted");
     this->registerHook("edit_on_good", 1, "(WikiEdit edit): on good edit");
