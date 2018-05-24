@@ -11,14 +11,16 @@
 // Copyright (c) Petr Bena 2018
 
 #include "jsmarshallinghelper.hpp"
+#include "../apiquery.hpp"
+#include "../apiqueryresult.hpp"
+#include "../editquery.hpp"
 #include "../generic.hpp"
 #include "../version.hpp"
+#include "../wlquery.hpp"
 #include "../wikiedit.hpp"
 #include "../wikipage.hpp"
 #include "../wikiuser.hpp"
 #include "../wikisite.hpp"
-#include "../apiquery.hpp"
-#include "../apiqueryresult.hpp"
 
 using namespace Huggle;
 
@@ -154,7 +156,9 @@ QJSValue JSMarshallingHelper::FromQuery(Query *query, QJSEngine *engine)
 QJSValue JSMarshallingHelper::FromApiQuery(ApiQuery *query, QJSEngine *engine)
 {
     QJSValue o = FromQuery(query, engine);
-
+    o.setProperty("CustomStatus", QJSValue(query->CustomStatus));
+    o.setProperty("EditingQuery", QJSValue(query->EditingQuery));
+    o.setProperty("HiddenQuery", QJSValue(query->HiddenQuery));
     return o;
 }
 
@@ -167,5 +171,14 @@ QJSValue JSMarshallingHelper::FromApiQueryResult(ApiQueryResult *res, QJSEngine 
     o.setProperty("HasErrors", res->HasErrors);
     o.setProperty("IsFailed", res->IsFailed());
     o.setProperty("Warning", res->Warning);
+    return o;
+}
+
+QJSValue JSMarshallingHelper::FromEditQuery(EditQuery *eq, QJSEngine *engine)
+{
+    QJSValue o = FromQuery(eq, engine);
+    o.setProperty("Append", QJSValue(eq->Append));
+    o.setProperty("BaseTimestamp", QJSValue(eq->BaseTimestamp));
+    o.setProperty("Page", JSMarshallingHelper::FromPage(eq->Page, engine));
     return o;
 }

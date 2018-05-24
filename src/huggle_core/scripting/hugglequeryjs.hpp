@@ -26,6 +26,7 @@
 namespace Huggle
 {
     class ApiQuery;
+    class EditQuery;
     class WikiSite;
     class Query;
 
@@ -38,6 +39,7 @@ namespace Huggle
             QHash<QString, QString> GetFunctions() { return functions; }
             Q_INVOKABLE QJSValue get_all_bytes_sent();
             Q_INVOKABLE QJSValue get_all_bytes_received();
+            // Query - API
             Q_INVOKABLE int create_api_query(int type, QString site, QString parameters, bool using_post = false, bool auto_delete = false);
             Q_INVOKABLE bool register_api_success_callback(int query, QString callback);
             Q_INVOKABLE bool register_api_failure_callback(int query, QString callback);
@@ -45,18 +47,32 @@ namespace Huggle
             Q_INVOKABLE bool kill_api_query(int query);
             Q_INVOKABLE QJSValue get_api_query_info(int query);
             Q_INVOKABLE bool destroy_api_query(int query);
-            void ProcessSuccessCallback(Query *query);
-            void ProcessFailureCallback(Query *query);
+            void ProcessAQSuccessCallback(Query *query);
+            void ProcessAQFailureCallback(Query *query);
+            // Query - edit
+            Q_INVOKABLE int edit_page_append_text(QString page_name, QString text, QString summary, bool minor = false, bool auto_delete = true);
+            Q_INVOKABLE int edit_page(QString page, QString text, QString summary, QString site_name, bool minor = false, QString base_timestamp = "", unsigned int section = 0, bool auto_delete = true);
+            Q_INVOKABLE bool register_edit_success_callback(int query, QString callback);
+            Q_INVOKABLE bool register_edit_failure_callback(int query, QString callback);
+            Q_INVOKABLE bool kill_edit_query(int query);
+            Q_INVOKABLE QJSValue get_edit_query_info(int query);
+            Q_INVOKABLE bool destroy_edit_query(int query);
+            void ProcessEQSuccessCallback(Query *query);
+            void ProcessEQFailureCallback(Query *query);
 
         private:
             int getApiByPtr(ApiQuery *query);
+            int getEQByPtr(EditQuery *query);
+            void removeEditQueryById(int id);
             void removeApiQueryById(int id);
             QHash<int, Collectable_SmartPtr<ApiQuery>> apiQueries;
+            QHash<int, Collectable_SmartPtr<EditQuery>> editQueries;
             QHash<int, QString> successCallbacks;
             QHash<int, QString> failureCallbacks;
-            QList<ApiQuery*> autoDeletes;
+            //! List of queries that can be auto deleted when finish
+            QList<Query*> autoDeletes;
             QHash<QString, QString> functions;
-            int lastAPI = 0;
+            int lastQuery = 0;
     };
 }
 

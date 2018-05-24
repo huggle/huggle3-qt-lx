@@ -20,8 +20,9 @@ namespace Huggle
 {
     class ApiQuery;
     class ApiQueryResult;
-    class Query;
+    class EditQuery;
     class Version;
+    class Query;
     class WikiEdit;
     class WikiSite;
     class WikiPage;
@@ -38,6 +39,7 @@ namespace Huggle
         HUGGLE_EX_CORE QJSValue FromQuery(Query *query, QJSEngine *engine);
         HUGGLE_EX_CORE QJSValue FromApiQueryResult(ApiQueryResult *res, QJSEngine *engine);
         HUGGLE_EX_CORE QJSValue FromApiQuery(ApiQuery *query, QJSEngine *engine);
+        HUGGLE_EX_CORE QJSValue FromEditQuery(EditQuery *eq, QJSEngine *engine);
     }
 }
 

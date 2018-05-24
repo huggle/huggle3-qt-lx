@@ -16,6 +16,10 @@
 #include "../apiquery.hpp"
 #include "../configuration.hpp"
 #include "../syslog.hpp"
+#include "../querypool.hpp"
+#include "../wikiedit.hpp"
+#include "../wikipage.hpp"
+#include "../wikiutil.hpp"
 #include "../wikisite.hpp"
 
 using namespace Huggle;
@@ -31,6 +35,11 @@ HuggleQueryJS::HuggleQueryJS(Script *s) : GenericJSClass(s)
     this->functions.insert("bool kill_api_query", "(int query)");
     this->functions.insert("hash get_api_query_info", "(int query)");
     this->functions.insert("bool destroy_api_query", "(int query)");
+    this->functions.insert("edit_page", "(string page, string text, string summary, string site_name, bool minor, [string base_timestamp], [unsigned int section = 0], [bool auto_delete = true])");
+    this->functions.insert("int edit_page_append_text", "(string page_name, string text, string summary, [bool minor = false], [bool auto_delete = true]): appends text to a wiki page");
+    this->functions.insert("bool kill_edit_query", "(int query)");
+    this->functions.insert("hash get_edit_query_info", "(int query)");
+    this->functions.insert("bool destroy_edit_query", "(int query)");
 }
 
 HuggleQueryJS::~HuggleQueryJS()
@@ -50,13 +59,13 @@ QJSValue HuggleQueryJS::get_all_bytes_received()
 
 static void apifailed(Query *qr)
 {
-    ((HuggleQueryJS*)qr->CallbackOwner)->ProcessFailureCallback(qr);
+    ((HuggleQueryJS*)qr->CallbackOwner)->ProcessAQFailureCallback(qr);
     qr->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
 }
 
 static void apisuccess(Query *qr)
 {
-    ((HuggleQueryJS*)qr->CallbackOwner)->ProcessSuccessCallback(qr);
+    ((HuggleQueryJS*)qr->CallbackOwner)->ProcessAQSuccessCallback(qr);
     qr->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
 }
 
@@ -82,7 +91,7 @@ int HuggleQueryJS::create_api_query(int type, QString site, QString parameters, 
         return -1;
     }
     Action action = static_cast<Action>(type);
-    int query_id = this->lastAPI++;
+    int query_id = this->lastQuery++;
     Collectable_SmartPtr<ApiQuery> query = new ApiQuery(action, s);
     query->CallbackOwner = this;
     query->SuccessCallback = (Callback)apisuccess;
@@ -153,25 +162,150 @@ bool HuggleQueryJS::destroy_api_query(int query)
     return true;
 }
 
-void HuggleQueryJS::ProcessSuccessCallback(Query *query)
+static void editfailed(Query *qr)
+{
+    ((HuggleQueryJS*)qr->CallbackOwner)->ProcessEQFailureCallback(qr);
+    qr->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
+}
+
+static void editsuccess(Query *qr)
+{
+    ((HuggleQueryJS*)qr->CallbackOwner)->ProcessEQSuccessCallback(qr);
+    qr->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
+}
+
+int HuggleQueryJS::edit_page_append_text(QString page_name, QString text, QString summary, bool minor, bool auto_delete)
+{
+    int query_id = this->lastQuery++;
+    Collectable_SmartPtr<EditQuery> edit = WikiUtil::AppendTextToPage(page_name, text, summary, minor);
+    QueryPool::HugglePool->AppendQuery(edit);
+    this->editQueries.insert(query_id, edit);
+    edit->CallbackOwner = this;
+    edit->SuccessCallback = (Callback) editsuccess;
+    edit->FailureCallback = (Callback) editfailed;
+    if (auto_delete)
+        this->autoDeletes.append(edit.GetPtr());
+    return query_id;
+}
+
+int HuggleQueryJS::edit_page(QString page, QString text, QString summary, QString site_name, bool minor, QString base_timestamp, unsigned int section, bool auto_delete)
+{
+    WikiSite *site = nullptr;
+    foreach (WikiSite *s, hcfg->Projects)
+    {
+        if (site_name == s->Name)
+        {
+            site = s;
+            break;
+        }
+    }
+    if (site == nullptr)
+    {
+        HUGGLE_ERROR(this->script->GetName() + ": edit_page(...): invalid site");
+        return -1;
+    }
+    int query_id = this->lastQuery++;
+    Collectable_SmartPtr<EditQuery> edit = WikiUtil::EditPage(page, text, summary, minor, base_timestamp, section, site);
+    QueryPool::HugglePool->AppendQuery(edit);
+    this->editQueries.insert(query_id, edit);
+    edit->CallbackOwner = this;
+    edit->SuccessCallback = (Callback) editsuccess;
+    edit->FailureCallback = (Callback) editfailed;
+    if (auto_delete)
+        this->autoDeletes.append(edit.GetPtr());
+    return query_id;
+}
+
+bool HuggleQueryJS::register_edit_success_callback(int query, QString callback)
+{
+    if (!this->editQueries.contains(query))
+        return false;
+
+    if (this->successCallbacks.contains(query))
+        this->successCallbacks[query] = callback;
+    else
+        this->successCallbacks.insert(query, callback);
+    return true;
+}
+
+bool HuggleQueryJS::register_edit_failure_callback(int query, QString callback)
+{
+    if (!this->editQueries.contains(query))
+        return false;
+
+    if (this->failureCallbacks.contains(query))
+        this->failureCallbacks[query] = callback;
+    else
+        this->failureCallbacks.insert(query, callback);
+    return true;
+}
+
+bool HuggleQueryJS::kill_edit_query(int query)
+{
+    if (!this->editQueries.contains(query))
+        return false;
+
+    this->editQueries[query]->Kill();
+    return true;
+}
+
+QJSValue HuggleQueryJS::get_edit_query_info(int query)
+{
+    if (!this->editQueries.contains(query))
+        return QJSValue(QJSValue::SpecialValue::NullValue);
+    return JSMarshallingHelper::FromEditQuery(this->editQueries[query].GetPtr(), this->script->GetEngine());
+}
+
+bool HuggleQueryJS::destroy_edit_query(int query)
+{
+    if (!this->editQueries.contains(query))
+        return false;
+
+    this->removeEditQueryById(query);
+    return true;
+}
+
+void HuggleQueryJS::ProcessEQSuccessCallback(Query *query)
+{
+    int id = this->getEQByPtr((EditQuery*)query);
+    if (id < 0)
+        return;
+    if (this->successCallbacks.contains(id))
+        this->GetScript()->ExecuteFunction(this->successCallbacks[id]);
+    if (this->autoDeletes.contains(query))
+        this->removeEditQueryById(id);
+}
+
+void HuggleQueryJS::ProcessEQFailureCallback(Query *query)
+{
+    int id = this->getEQByPtr((EditQuery*)query);
+    if (id < 0)
+        return;
+    if (this->failureCallbacks.contains(id))
+        this->GetScript()->ExecuteFunction(this->failureCallbacks[id]);
+    if (this->autoDeletes.contains(query))
+        this->removeEditQueryById(id);
+}
+
+void HuggleQueryJS::ProcessAQSuccessCallback(Query *query)
 {
     int id = this->getApiByPtr((ApiQuery*)query);
     if (id < 0)
         return;
     if (this->successCallbacks.contains(id))
         this->GetScript()->ExecuteFunction(this->successCallbacks[id]);
-    if (this->autoDeletes.contains((ApiQuery*)query))
+    if (this->autoDeletes.contains(query))
         this->removeApiQueryById(id);
 }
 
-void HuggleQueryJS::ProcessFailureCallback(Query *query)
+void HuggleQueryJS::ProcessAQFailureCallback(Query *query)
 {
     int id = this->getApiByPtr((ApiQuery*)query);
     if (id < 0)
         return;
     if (this->failureCallbacks.contains(id))
         this->GetScript()->ExecuteFunction(this->failureCallbacks[id]);
-    if (this->autoDeletes.contains((ApiQuery*)query))
+    if (this->autoDeletes.contains(query))
         this->removeApiQueryById(id);
 }
 
@@ -183,6 +317,27 @@ int HuggleQueryJS::getApiByPtr(ApiQuery *query)
             return id;
     }
     return -1;
+}
+
+int HuggleQueryJS::getEQByPtr(EditQuery *query)
+{
+    foreach (int id, this->editQueries.keys())
+    {
+        if (this->editQueries[id].GetPtr() == query)
+            return id;
+    }
+    return -1;
+}
+
+void HuggleQueryJS::removeEditQueryById(int id)
+{
+    if (!this->editQueries.contains(id))
+        return;
+
+    this->autoDeletes.removeAll(this->editQueries[id].GetPtr());
+    this->editQueries.remove(id);
+    this->failureCallbacks.remove(id);
+    this->successCallbacks.remove(id);
 }
 
 void HuggleQueryJS::removeApiQueryById(int id)
