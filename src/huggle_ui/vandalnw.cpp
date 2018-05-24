@@ -326,20 +326,23 @@ void VandalNw::Rescore(WikiEdit *edit)
     }
 }
 
-void VandalNw::Message()
+void VandalNw::SendMessage()
 {
-    if (this->ui->lineEdit->text().isEmpty())
+    this->SendMessage(this->ui->lineEdit->text());
+    this->ui->lineEdit->setText("");
+}
+
+void VandalNw::SendMessage(QString text)
+{
+    if (text.isEmpty())
         return;
     if (this->Irc->IsConnected())
     {
-        this->Irc->SendMessage(this->ui->lineEdit->text(), this->Site2Channel[Configuration::HuggleConfiguration->Project]);
-        QString text = ui->lineEdit->text();
+        this->Irc->SendMessage(text, this->Site2Channel[hcfg->Project]);
         if (!hcfg->UserConfig->HtmlAllowedInIrc)
             text = SafeHtml(text);
-        this->Insert(Configuration::HuggleConfiguration->SystemConfig_Username + ": " + text,
-                     HAN::MessageType_UserTalk);
+        this->Insert(hcfg->SystemConfig_Username + ": " + text, HAN::MessageType_UserTalk);
     }
-    this->ui->lineEdit->setText("");
 }
 
 void VandalNw::WriteTest(WikiEdit *edit)
@@ -559,7 +562,7 @@ void VandalNw::Insert(QString text, HAN::MessageType type)
 
 void Huggle::VandalNw::on_pushButton_clicked()
 {
-    this->Message();
+    this->SendMessage();
 }
 
 HAN::RescoreItem::RescoreItem(WikiSite *site, int _revID, int _score, QString _user) : GenericItem(site, _revID, _user)
@@ -607,7 +610,7 @@ HAN::GenericItem::GenericItem(HAN::GenericItem *i)
 
 void VandalNw::on_lineEdit_returnPressed()
 {
-    this->Message();
+    this->SendMessage();
 }
 
 void VandalNw::TextEdit_anchorClicked(QString link)

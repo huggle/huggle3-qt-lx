@@ -15,6 +15,7 @@
 #include <huggle_core/wikipage.hpp>
 #include <huggle_core/configuration.hpp>
 #include <huggle_core/editquery.hpp>
+#include <huggle_core/querypool.hpp>
 #include <huggle_core/wikiutil.hpp>
 
 using namespace Huggle;
@@ -31,5 +32,5 @@ QHash<QString, QString> HuggleEditingJS::GetFunctions()
 
 void HuggleEditingJS::append_text(QString page_name, QString text, QString summary, bool minor)
 {
-    WikiUtil::AppendTextToPage(page_name, text, summary, minor);
+    QueryPool::HugglePool->AppendQuery(WikiUtil::AppendTextToPage(page_name, text, summary, minor).GetPtr());
 }

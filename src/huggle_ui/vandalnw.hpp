@@ -122,7 +122,8 @@ namespace Huggle
             void GetChannel();
             bool IsParsed(WikiEdit *edit);
             void Rescore(WikiEdit *edit);
-            void Message();
+            void SendMessage();
+            void SendMessage(QString text);
             //! For debugging only
             void WriteTest(WikiEdit *edit);
             QHash<QString,WikiSite*> Ch2Site;

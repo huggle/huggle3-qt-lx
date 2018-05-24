@@ -106,6 +106,7 @@ bool EditQuery::IsProcessed()
         this->qRetrieve.Delete();
         if (failed)
         {
+            HUGGLE_DEBUG1("Unable to retrieve text of page " + this->Page->PageName + ": " + this->originalText);
             this->setError(_l("editquery-error-retrieve-prev", this->originalText));
             return true;
         }
