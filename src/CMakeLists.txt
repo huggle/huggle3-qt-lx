@@ -18,6 +18,7 @@ endif()
 
 option(LINUX_SNAP "Enable support for snap, use this option only if you are building snapshotable version" false)
 option(QT5_BUILD "Build Huggle using the Qt5 framework" true)
+option(HUGGLE_PROFILING "Enable profiler" false)
 option(HUGGLE_EXT "Build Huggle extensions" false)
 option(HUGGLE_TEST "Unit tests" false)
 option(WEB_ENGINE "Use Qt WebEngine instead of WebKit library" false)
@@ -31,6 +32,10 @@ endif()
 
 if (WEB_ENGINE)
     add_definitions(-DHUGGLE_WEBEN)
+endif()
+
+if (HUGGLE_PROFILING)
+    add_definitions(-DHUGGLE_PROFILING)
 endif()
 
 if (LINUX_SNAP)

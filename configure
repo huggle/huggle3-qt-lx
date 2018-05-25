@@ -60,6 +60,7 @@ do
         echo " --no-audio: don't build huggle with audio engine"
         echo " --no-colors: suppress colors"
         echo " --prefix: specify prefix for installation path"
+        echo " --enable-profiler: compile built-in profiler"
         echo " --tests: unit tests"
         echo " --web-engine: use web engine instead of web kit"
         echo " --version: show version"
@@ -115,6 +116,10 @@ do
     fi
     if [ "$var" = "--web-engine" ];then
         CMAKE_ARGS="$CMAKE_ARGS -DWEB_ENGINE=true"
+        continue
+    fi
+    if [ "$var" = "--enable-profiler" ];then
+        CMAKE_ARGS="$CMAKE_ARGS -DHUGGLE_PROFILING=true"
         continue
     fi
     if [ "$var" = "--disable-dependency-tracking" ];then
