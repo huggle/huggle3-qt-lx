@@ -283,6 +283,7 @@
   <string name="login-fail-no-info">Échec à la connexion sur $1 : impossible de récupérer les informations sur l’utilisateur : $2</string>
   <string name="login-bot">Quelle est la différence entre la connexion par BotPassword (robot) et la connexion classique manuelle ?</string>
   <string name="login-fail-parse-config">Échec à la connexion sur $1 : impossible d’analyser la configuration utilisateur. Voyez la trace de débogage pour plus de détails.</string>
+  <string name="login-fail-parse-config-yaml">Echec de connexion sur $1: impossible d\'analyser la configuration de l\'utilisateur : $2</string>
   <string name="login-fail-user-data">Échec à la connexion sur $1 : impossible de récupérer les informations sur l’utilisateur. La requête à l’API n’a renvoyé aucune donnée.</string>
   <string name="login-fail-rollback-rights">Échec à la connexion sur $1 : vous n’avez pas de droit de retour arrière sur ce projet.</string>
   <string name="login-failed-autoconfirm-rights">Échec à la connexion sur $1 : vous n’êtes pas auto-confirmé sur ce projet.</string>

@@ -287,6 +287,7 @@
   <string name="login-fail-no-info">Início de sessão em $1 falhou: Não foi possível recuperar a informação de usuário: $2</string>
   <string name="login-bot">Qual é a diferença entre BotPassword e o acesso antigo?</string>
   <string name="login-fail-parse-config">Início de sessão em $1 falhou: Não foi possível analisar a configuração de usuário. Veja o registro de depuração para mais detalhes.</string>
+  <string name="login-fail-parse-config-yaml">O início de sessão em $1 falhou: Não foi possível fazer a análise sintática da configuração de usuário: $2</string>
   <string name="login-fail-user-data">Início de sessão em $1 falhou: Não foi possível recuperar a informação de usuário, a consulta de API não retornou nenhum dado.</string>
   <string name="login-fail-rollback-rights">Autenticação falhou em $1: Você não tem a permissão de reversão neste projeto</string>
   <string name="login-failed-autoconfirm-rights">Autenticação falhou em $1: Você não é autoconfirmado neste projeto</string>

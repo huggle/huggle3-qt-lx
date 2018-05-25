@@ -276,6 +276,7 @@
   <string name="login-fail-no-info">Anmeldung auf $1 fehlgeschlagen: Benutzerinformation konnte nicht abgerufen werden: $2</string>
   <string name="login-bot">Was ist der Unterschied zwischen der Botpasswort- und veralteten Anmeldung?</string>
   <string name="login-fail-parse-config">Anmeldung auf $1 fehlgeschlagen: Die Benutzerkonfiguration konnte nicht geparst werden. Siehe das Debug-Logbuch für weitere Einzelheiten.</string>
+  <string name="login-fail-parse-config-yaml">Anmeldung bei $1 fehlgeschlagen: Die Benutzerkonfiguration konnte nicht geparst werden: $2</string>
   <string name="login-fail-user-data">Anmeldung auf $1 fehlgeschlagen: Die Benutzerinformation konnte nicht abgerufen werden. Die API-Abfrage hat keine Daten zurückgegeben.</string>
   <string name="login-fail-rollback-rights">Anmeldung auf $1 fehlgeschlagen: Du hast keine Zurücksetzungsrechte auf diesem Projekt.</string>
   <string name="login-failed-autoconfirm-rights">Anmeldung auf $1 fehlgeschlagen: Du bist auf diesem Projekt nicht automatisch bestätigt.</string>
