@@ -370,6 +370,8 @@
   <string name="main-revision-revert-warn">Revert the currently displayed edit and warn the user</string>
   <string name="main-revision-rws">Revert the currently displayed edit, warn the user and stay on the page</string>
   <string name="main-revision-faith">Revert assuming good faith</string>
+  <string name="main-revision-revert-only-this">Revert only this revision</string>
+  <string name="main-revision-revert-agf">Revert only this revision assuming good faith</string>
   <string name="main-revision-previous">Previous</string>
   <string name="main-revision-next">Next</string>
   <string name="main-revision-latest">Latest</string>
@@ -400,11 +402,14 @@
   <string name="main-page-delete">Delete</string>
   <string name="main-page-load">Load</string>
   <string name="main-patrol-not-enabled">Patrolling is not enabled on $1</string>
+  <string name="main-page-refresh">Refresh</string>
   <string name="main-page-restore">Restore this revision</string>
   <string name="main-page-watchlist-add">Add page to a watchlist</string>
   <string name="main-page-tab-close">Close the current tab</string>
   <string name="main-page-tab-open">Open a new tab</string>
   <string name="main-page-watchlist-remove">Remove page from a watchlist</string>
+  <string name="main-scripting">Scripting</string>
+  <string name="main-scripting-script-manager">Scripts manager</string>
   <string name="main-user-info">Show user info</string>
   <string name="main-user-ignore">Ignore</string>
   <string name="main-user-unignore">Unignore</string>
@@ -417,6 +422,7 @@
   <string name="main-user-db">Decrease badness score of user</string>
   <string name="main-user-report">Report</string>
   <string name="main-user-ib">Increase badness score</string>
+  <string name="main-user-contribution-browser">Contribution browser</string>
   <string name="main-user-clear-tp">Clear talk page of user</string>
   <string name="main-user-retrieving-tp">Retrieving Talk Page of $1</string>
   <string name="main-user-block">Block...</string>
@@ -439,6 +445,7 @@
   <string name="main-help-feedback">Feedback</string>
   <string name="main-help-about">About Huggle...</string>
   <string name="main-help-introduction">Introduction</string>
+  <string name="main-help-welcome-page">Welcome page</string>
   <string name="main-help-contents">Contents</string>
   <string name="main-help-queuelegend">Queue legend</string>
   <string name="main-addqueue">Add...</string>
