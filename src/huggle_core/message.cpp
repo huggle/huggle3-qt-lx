@@ -217,10 +217,9 @@ void Message::Finish()
                 {
                     Huggle::Syslog::HuggleLogs->Log(_l("message-done", this->User->Username, this->User->GetSite()->Name));
                     sent = true;
-                    HistoryItem *item = new HistoryItem();
+                    HistoryItem *item = new HistoryItem(this->User->GetSite());
                     item->Result = _l("successful");
                     item->NewPage = this->CreateOnly;
-                    item->Site = this->User->GetSite();
                     item->Type = HistoryMessage;
                     item->Target = User->Username;
                     if (this->Dependency != nullptr && this->Dependency->HI != nullptr)

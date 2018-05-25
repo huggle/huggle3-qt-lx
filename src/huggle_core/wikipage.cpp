@@ -15,9 +15,8 @@
 #include "localization.hpp"
 using namespace Huggle;
 
-WikiPage::WikiPage(WikiSite *site)
+WikiPage::WikiPage(WikiSite *site) : MediaWikiObject(site)
 {
-    this->Site = site;
     this->PageName = _l("page-unknown");
     this->Contents = "";
     if (!this->Site)
@@ -25,10 +24,9 @@ WikiPage::WikiPage(WikiSite *site)
     this->NS = this->Site->Unknown;
 }
 
-WikiPage::WikiPage(const QString &name, WikiSite *site)
+WikiPage::WikiPage(const QString &name, WikiSite *site) : MediaWikiObject(site)
 {
     this->PageName = name;
-    this->Site = site;
     this->Contents = "";
     if (!this->Site)
         throw new Huggle::NullPointerException("local Site", BOOST_CURRENT_FUNCTION);

@@ -40,9 +40,8 @@ namespace Huggle
         public:
             static QString GetCustomRevertStatus(QueryResult *result_data, WikiSite *site, bool *failed, bool *suspend);
 
-            RevertQuery();
-            RevertQuery(WikiEdit *Edit);
-            RevertQuery(WikiEdit *Edit, WikiSite *site);
+            RevertQuery(WikiSite *site);
+            RevertQuery(WikiEdit *edit, WikiSite *site);
             ~RevertQuery();
             void Process();
             void Restart();
@@ -81,7 +80,7 @@ namespace Huggle
             Collectable_SmartPtr<ApiQuery> qHistoryInfo;
             Collectable_SmartPtr<ApiQuery> qRetrieve;
             Collectable_SmartPtr<EditQuery> eqSoftwareRollback;
-            Collectable_SmartPtr<WikiEdit> edit;
+            Collectable_SmartPtr<WikiEdit> editToBeReverted;
             QTimer *timer = nullptr;
             //! Revert only and only last edit
             bool OneEditOnly = false;
@@ -95,7 +94,7 @@ namespace Huggle
     inline WikiSite *RevertQuery::GetSite()
     {
         if (this->Site == nullptr)
-            return (this->edit->GetSite());
+            return (this->editToBeReverted->GetSite());
 
         // we know the site and despite it may be inconsistent we return it because that is what
         // programmer wanted (by inconsistent I mean the query could have different site

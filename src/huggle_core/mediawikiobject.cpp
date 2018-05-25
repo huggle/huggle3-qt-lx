@@ -9,13 +9,14 @@
 //GNU General Public License for more details.
 
 #include "mediawikiobject.hpp"
+#include "exception.hpp"
 #include "configuration.hpp"
 #include "wikisite.hpp"
 using namespace Huggle;
 
-MediaWikiObject::MediaWikiObject()
+MediaWikiObject::MediaWikiObject(WikiSite *site)
 {
-    this->Site = nullptr;
+    this->Site = site;
 }
 
 MediaWikiObject::MediaWikiObject(MediaWikiObject *m)
@@ -36,6 +37,6 @@ MediaWikiObject::~MediaWikiObject()
 WikiSite *MediaWikiObject::GetSite()
 {
     if (this->Site == nullptr)
-        return Configuration::HuggleConfiguration->Project;
+        throw new Huggle::NullPointerException("this->Site", BOOST_CURRENT_FUNCTION);
     return this->Site;
 }

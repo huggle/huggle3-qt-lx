@@ -155,7 +155,7 @@ void UserinfoForm::OnTick()
                 QDomElement edit = results.at(xx).toElement();
                 if (!edit.attributes().contains("user"))
                     continue;
-                UserInfoFormHistoryItem item;
+                UserInfoFormHistoryItem item(this->User->GetSite());
                 item.Top = edit.attributes().contains("top");
                 item.Name = this->User->Username;
                 if (this->User->IsIP())
@@ -263,4 +263,9 @@ void UserinfoForm::on_tableWidget_clicked(const QModelIndex &index)
 {
     this->JumpToSpecificContrib(this->ui->tableWidget->item(index.row(), 2)->text().toLong(),
                  this->ui->tableWidget->item(index.row(), 0)->text());
+}
+
+UserInfoFormHistoryItem::UserInfoFormHistoryItem(WikiSite *site) : MediaWikiObject(site)
+{
+
 }

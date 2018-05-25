@@ -160,7 +160,7 @@ void WikiUser::UpdateWl(WikiUser *us, long score)
     }
 }
 
-WikiUser::WikiUser(WikiSite *site)
+WikiUser::WikiUser(WikiSite *site) : MediaWikiObject(site)
 {
     this->userMutex = new QMutex(QMutex::Recursive);
     this->Username = "";
@@ -174,7 +174,6 @@ WikiUser::WikiUser(WikiSite *site)
     this->talkPageWasRetrieved = false;
     this->whitelistInfo = HUGGLE_WL_UNKNOWN;
     this->EditCount = -1;
-    this->Site = site;
     this->RegistrationDate = "";
     this->isBot = false;
 }
@@ -215,7 +214,7 @@ WikiUser::WikiUser(const WikiUser &u) : MediaWikiObject(u)
     this->RegistrationDate = u.RegistrationDate;
 }
 
-WikiUser::WikiUser(QString user, WikiSite *site)
+WikiUser::WikiUser(QString user, WikiSite *site) : MediaWikiObject(site)
 {
     this->userMutex = new QMutex(QMutex::Recursive);
     this->IP = false;
@@ -235,7 +234,6 @@ WikiUser::WikiUser(QString user, WikiSite *site)
     this->talkPageWasRetrieved = false;
     this->dateOfTalkPage = InvalidTime;
     this->contentsOfTalkPage = "";
-    this->Site = site;
     this->EditCount = -1;
     this->isBot = false;
     this->RegistrationDate = "";

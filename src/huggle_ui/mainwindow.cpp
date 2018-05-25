@@ -1960,8 +1960,7 @@ void MainWindow::PatrolEdit(WikiEdit *e)
     }
 
     // we can execute patrol now
-    query = new ApiQuery();
-    query->Site = this->GetCurrentWikiSite();
+    query = new ApiQuery(ActionReview, this->GetCurrentWikiSite());
     query->UsingPOST = true;
     if (flaggedrevs)
     {

@@ -110,7 +110,7 @@ void ProtectPage::Protect()
         return;
     }
     Huggle::Syslog::HuggleLogs->DebugLog("The page " + PageToProtect->PageName + " has successfully been protected");
-    HistoryItem *item = new HistoryItem();
+    HistoryItem *item = new HistoryItem(this->PageToProtect->GetSite());
     item->Type = HistoryProtect;
     item->Target = this->PageToProtect->PageName;
     item->Result = _l("successful");

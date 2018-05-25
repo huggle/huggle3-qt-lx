@@ -168,7 +168,7 @@ bool EditQuery::IsProcessed()
                 if (edit->Attributes["result"] == "Success")
                 {
                     failed = false;
-                    HistoryItem *item = new HistoryItem();
+                    HistoryItem *item = new HistoryItem(this->Page->GetSite());
                     item->Result = _l("successful");
                     item->Type = HistoryEdit;
                     item->Target = this->Page->PageName;

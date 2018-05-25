@@ -23,16 +23,9 @@
 
 using namespace Huggle;
 
-ApiQuery::ApiQuery()
+ApiQuery::ApiQuery(Action action, WikiSite *site) : MediaWikiObject(site)
 {
     this->RequestFormat = XML;
-    this->Type = QueryApi;
-}
-
-ApiQuery::ApiQuery(Action action, WikiSite *site)
-{
-    this->RequestFormat = XML;
-    this->Site = site;
     this->Type = QueryApi;
     this->SetAction(action);
 }

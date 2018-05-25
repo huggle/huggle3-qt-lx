@@ -87,7 +87,7 @@ void DeleteForm::Delete()
     this->ui->pushButton->setText(_l("deleted"));
     this->tDelete->stop();
     HUGGLE_DEBUG("Deletion result: " + this->qDelete->Result->Data, 2);
-    HistoryItem *hi = new HistoryItem();
+    HistoryItem *hi = new HistoryItem(this->page->GetSite());
     hi->IsRevertable = false;
     hi->Result = _l("successful");
     hi->Target = this->page->PageName;

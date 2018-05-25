@@ -39,6 +39,7 @@ namespace Huggle
     class HUGGLE_EX_UI WikiPageHistoryItem : public MediaWikiObject
     {
         public:
+            WikiPageHistoryItem(WikiSite *site);
             //! Name of a page that we have this history item for
             QString Name;
             QString RevID;

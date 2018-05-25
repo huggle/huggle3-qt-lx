@@ -17,7 +17,7 @@
 #include <QString>
 #include <QHash>
 #include <QList>
-#include "mediawikiobject.hpp"
+//#include "mediawikiobject.hpp"
 
 namespace Huggle
 {
@@ -35,7 +35,7 @@ namespace Huggle
     class WikiSite;
 
     //! Filter that can be applied to edit queue
-    class HUGGLE_EX_CORE HuggleQueueFilter : public MediaWikiObject
+    class HUGGLE_EX_CORE HuggleQueueFilter// : public MediaWikiObject
     {
         public:
             static void Delete();

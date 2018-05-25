@@ -13,7 +13,7 @@
 
 using namespace Huggle;
 long HistoryItem::Last = 0;
-HistoryItem::HistoryItem()
+HistoryItem::HistoryItem(WikiSite *site) : MediaWikiObject(site)
 {
     HistoryItem::Last++;
     this->Target = "Unknown target";

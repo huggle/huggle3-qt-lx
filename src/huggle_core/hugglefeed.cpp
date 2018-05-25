@@ -55,10 +55,9 @@ HuggleFeed *HuggleFeed::GetProviderByID(WikiSite *site, int id)
     return nullptr;
 }
 
-HuggleFeed::HuggleFeed(WikiSite *site)
+HuggleFeed::HuggleFeed(WikiSite *site) : MediaWikiObject(site)
 {
     this->statisticsMutex = new QMutex(QMutex::Recursive);
-    this->Site = site;
     this->statisticsBlocks.append(new StatisticsBlock());
     this->editCounter = 0;
     this->rvCounter = 0;

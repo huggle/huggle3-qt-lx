@@ -160,7 +160,7 @@ void HistoryForm::onTick01()
     while (x < revision_data.count())
     {
         ApiQueryResultNode *rv = revision_data.at(x);
-        WikiPageHistoryItem *item = new WikiPageHistoryItem();
+        WikiPageHistoryItem *item = new WikiPageHistoryItem(this->query->GetSite());
         if (rv->Attributes.contains("revid"))
         {
             item->RevID = rv->GetAttribute("revid");
@@ -450,7 +450,7 @@ void HistoryForm::MakeSelectedRowBold()
     }
 }
 
-void Huggle::HistoryForm::on_tableWidget_itemSelectionChanged()
+void HistoryForm::on_tableWidget_itemSelectionChanged()
 {
     if (this->IgnoreSelectionChanges)
     {
@@ -488,4 +488,9 @@ void Huggle::HistoryForm::on_tableWidget_itemSelectionChanged()
         }
         this->GetEdit(max, min, rows[0], _l("wait"));
     }
+}
+
+WikiPageHistoryItem::WikiPageHistoryItem(WikiSite *site) : MediaWikiObject(site)
+{
+
 }

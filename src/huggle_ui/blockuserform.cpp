@@ -124,7 +124,7 @@ void BlockUserForm::Block()
     // let's assume the user was blocked
     this->ui->pushButton->setText(_l("block-done", this->user->Username));
     HUGGLE_DEBUG("block result: " + this->qUser->Result->Data, 2);
-    HistoryItem *history = new HistoryItem();
+    HistoryItem *history = new HistoryItem(this->user->GetSite());
     history->Result = _l("successful");
     history->Type = HistoryBlock;
     history->IsRevertable = false;

@@ -23,7 +23,7 @@ namespace Huggle
     class HUGGLE_EX_CORE MediaWikiObject
     {
         public:
-            MediaWikiObject();
+            MediaWikiObject(WikiSite *site);
             MediaWikiObject(MediaWikiObject *m);
             MediaWikiObject(const MediaWikiObject &m);
             virtual ~MediaWikiObject();

@@ -39,6 +39,7 @@ namespace Huggle
     class HUGGLE_EX_UI UserInfoFormHistoryItem : public MediaWikiObject
     {
         public:
+            UserInfoFormHistoryItem(WikiSite *site);
             QString  Page;
             QString  Name;
             QString  Date;

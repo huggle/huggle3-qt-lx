@@ -41,7 +41,7 @@ namespace Huggle
             static QString TypeToString(HistoryType type);
             static long Last;
 
-            HistoryItem();
+            HistoryItem(WikiSite *site);
             HistoryItem(const HistoryItem &item);
             HistoryItem(HistoryItem * item);
             //! Unique ID of this item
