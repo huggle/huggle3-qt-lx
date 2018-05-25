@@ -223,7 +223,7 @@ namespace Huggle
             QStringList     NewWhitelist;
 
             QString         ReportSummary;
-            QString         RestoreSummary = "Restored revision $1 made by $2";
+            QString         RestoreSummary = "Restored revision $1 made by $2: $3";
             bool            WelcomeGood = true;
 
             // Blocking users

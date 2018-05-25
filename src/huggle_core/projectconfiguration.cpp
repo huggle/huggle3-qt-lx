@@ -287,7 +287,7 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
     this->ReportSummary = HuggleParser::ConfigurationParse("report-summary", config);
     this->ReportAutoSummary = HuggleParser::ConfigurationParse("report-auto-summary", config, "This user was automatically reported by Huggle due to reverted vandalism after four warnings, please verify their"\
                                                                                               " contributions carefully, it may be a false positive");
-    //this->SpeedyTemplates = HuggleParser::ConfigurationParse_QL("speedy-options", config);
+    this->RestoreSummary = HuggleParser::ConfigurationParse("restore-summary", config, this->RestoreSummary);
     this->SpeedyTemplates.clear();
     QStringList speedies = HuggleParser::ConfigurationParse_QL("speedy-options", config);
     foreach (QString speedy, speedies)
@@ -771,6 +771,7 @@ bool ProjectConfiguration::ParseYAML(QString yaml_src, QString *reason, WikiSite
     this->RFPP_Summary = HuggleParser::YAML2String("protection-request-summary", yaml, "Request to protect page");
     this->RFPP = (this->RFPP_Template.length() && this->RFPP_Regex.length());
     this->RFPP_TemplateUser = HuggleParser::YAML2String("rfpp-template-user", yaml);
+    this->RestoreSummary = HuggleParser::YAML2String("restore-summary", yaml, this->RestoreSummary);
     this->ReportUserCheckPattern = HuggleParser::YAML2String("report-user-check-patter", yaml, this->ReportUserCheckPattern);
     this->WarningSummaries.clear();
     this->WarningSummaries.insert(1, HuggleParser::YAML2String("warn-summary", yaml, "Message re. [[$1]]"));
