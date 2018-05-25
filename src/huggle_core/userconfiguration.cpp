@@ -231,7 +231,7 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
     AppendComment(&configuration, "Periodically check if you received new messages and display a notification box if you get them");
     AppendConf(&configuration, "check-tp", this->CheckTP);
     AppendConf(&configuration, "manual-warning", this->ManualWarning);
-    AppendConf(&configuration, "summary-mode", this->SummaryMode);
+    AppendConf(&configuration, "summary-mode", this->HighlightSummaryIfExists);
     AppendConf(&configuration, "automatic-reports", this->AutomaticReports);
     AppendComment(&configuration, "HAN");
     AppendConf(&configuration, "han-html", hcfg->UserConfig->HtmlAllowedInIrc);
@@ -410,7 +410,7 @@ bool UserConfiguration::Parse(QString config, ProjectConfiguration *ProjectConfi
     ProjectConfig->WarningTypes = this->SetUserOptionList("warning-types", config, ProjectConfig->WarningTypes);
     ProjectConfig->ScoreChange = this->SetOption("score-change", config, ProjectConfig->ScoreChange).toLongLong();
     ProjectConfig->ScoreUser = this->SetOption("score-user", config, ProjectConfig->ScoreUser).toLongLong();
-    this->SummaryMode = ConfigurationParse("SummaryMode", config, QString::number(this->SummaryMode)).toInt();
+    this->HighlightSummaryIfExists = SafeBool(ConfigurationParse("SummaryMode", config), this->HighlightSummaryIfExists);
     ProjectConfig->ScoreTalk = this->SetOption("score-talk", config, ProjectConfig->ScoreTalk).toLongLong();
     ProjectConfig->WarningDefs = this->SetUserOptionList("warning-template-tags", config, ProjectConfig->WarningDefs);
     ProjectConfig->BotScore = this->SetOption("score-bot", config, ProjectConfig->BotScore).toLongLong();
@@ -556,7 +556,7 @@ bool UserConfiguration::ParseYAML(QString config, ProjectConfiguration *ProjectC
     ProjectConfig->WarningTypes = this->SetUserOptionListYAML("warning-types", yaml, ProjectConfig->WarningTypes);
     ProjectConfig->ScoreChange = this->SetOptionYAML("score-change", yaml, ProjectConfig->ScoreChange).toLongLong();
     ProjectConfig->ScoreUser = this->SetOptionYAML("score-user", yaml, ProjectConfig->ScoreUser).toLongLong();
-    this->SummaryMode = YAML2Int("summary-mode", yaml, this->SummaryMode);
+    this->HighlightSummaryIfExists = YAML2Bool("summary-mode", yaml, this->HighlightSummaryIfExists);
     ProjectConfig->ScoreTalk = this->SetOptionYAML("score-talk", yaml, ProjectConfig->ScoreTalk).toLongLong();
     ProjectConfig->WarningDefs = this->SetUserOptionListYAML("warning-template-tags", yaml, ProjectConfig->WarningDefs);
     ProjectConfig->BotScore = this->SetOptionYAML("score-bot", yaml, ProjectConfig->BotScore).toLongLong();

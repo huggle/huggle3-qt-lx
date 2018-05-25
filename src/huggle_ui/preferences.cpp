@@ -336,10 +336,7 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     hcfg->SystemConfig_PlaySoundOnQueue = this->ui->cbPlayOnNewItem->isChecked();
     hcfg->SystemConfig_CatScansAndWatched = this->ui->cbCatScansAndWatched->isChecked();
     hcfg->UserConfig->ShowWarningIfNotOnLastRevision = this->ui->cbShowWarningIfNotOnLastRevision->isChecked();
-    if (this->ui->checkBox_7->isChecked())
-        hcfg->UserConfig->SummaryMode = 1;
-    else
-        hcfg->UserConfig->SummaryMode = 0;
+    hcfg->UserConfig->HighlightSummaryIfExists = this->ui->checkBox_7->isChecked();
     hcfg->SystemConfig_FontSize = this->ui->sxFontSize->value();
 
     if (hcfg->SystemConfig_FontSize < 1)
@@ -799,6 +796,7 @@ void Preferences::ResetItems()
     this->ui->cb_AutoRefresh->setChecked(hcfg->UserConfig->AutomaticRefresh);
     this->ui->cb_WatchWarn->setChecked(hcfg->UserConfig->AutomaticallyWatchlistWarnedUsers);
     this->ui->le_KeystrokeRate->setText(QString::number(hcfg->SystemConfig_KeystrokeMultiPressRate));
+    this->ui->checkBox_7->setChecked(hcfg->UserConfig->HighlightSummaryIfExists);
     this->ui->checkBox_unsafe->setChecked(hcfg->SystemConfig_UnsafeExts);
     this->ui->cbKeystrokeFix->setChecked(hcfg->SystemConfig_KeystrokeMultiPressFix);
 

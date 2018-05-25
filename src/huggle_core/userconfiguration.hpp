@@ -126,7 +126,8 @@ namespace Huggle
             bool                    SectionKeep = true;
             unsigned int            HistoryMax = 50;
             bool                    TruncateEdits = false;
-            int                     SummaryMode = 0;
+            //! By default Huggle highlights "Missing summary", if this is set to true, it's highlighted instead when it's there
+            bool                    HighlightSummaryIfExists = false;
             //! TODO: this probably should be merged with RevertOnMultipleEdits
             bool                    RevertNewBySame = true;
             //! If this is set to false the warning will be selected by huggle when user decide to

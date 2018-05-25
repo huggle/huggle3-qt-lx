@@ -99,13 +99,13 @@ static QString GenerateEditSumm(WikiEdit *edit)
     }
     if (edit->Summary.isEmpty())
     {
-        if (hcfg->UserConfig->SummaryMode)
+        if (hcfg->UserConfig->HighlightSummaryIfExists)
             return prefix + _l("browser-miss-summ");
         else
             return prefix + "<font color=red> " + _l("browser-miss-summ") + "</font>";
     } else
     {
-        if (hcfg->UserConfig->SummaryMode)
+        if (hcfg->UserConfig->HighlightSummaryIfExists)
             return prefix + "<font color=red> " + Generic::HtmlEncode(edit->Summary) + "</font>";
         else
             return prefix + "<font> " + Generic::HtmlEncode(edit->Summary) + "</font>";
