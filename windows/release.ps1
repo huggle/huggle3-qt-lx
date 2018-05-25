@@ -184,17 +184,18 @@ mkdir release | Out-Null
 mkdir release\platforms | Out-Null
 mkdir release\extensions | Out-Null
 cp .\build\Release\*.dll release
-cp .\build\Release\extensions\*.dll release\extensions
-cp .\build\Release\*.lib release
-cp .\build\Release\huggle.exe release
+cp .\build\Release\extensions\huggle*.dll release\extensions
+cp .\build\huggle\Release\huggle.exe release
+cp .\build\huggle_res\Release\huggle_res.dll release
+cp .\build\huggle_ui\Release\huggle_ui.dll release
+cp .\build\huggle_core\Release\huggle_core.dll release
+cp .\build\huggle_l10n\Release\huggle_l10n.dll release
 cp ..\src\scripts\*.js release\extensions
-if ($python)
-{
-    cp .\build\Release\py_hug.exe release
-}
 # get the qt
-cp ..\huggle\Resources\huggle.ico huggle.ico
-cp ..\huggle\Resources\huggle.ico release
+cp ..\src\huggle_res\Resources\huggle.ico huggle.ico
+cp ..\src\huggle_res\Resources\huggle.ico release
+# missing Qt dll, bug in winqtdeploy :/
+cp $qt5_path\bin\Qt5Multimedia.dll release
 cp $openssl_path\bin\ssleay32.dll release
 cp $openssl_path\bin\libeay32.dll release
 
