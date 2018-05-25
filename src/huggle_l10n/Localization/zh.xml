@@ -272,6 +272,7 @@
   <string name="login-fail-no-info">登录$1失败：无法检索用户信息：$2</string>
   <string name="login-bot">机器人密码和传统登录之间有什么不同么？</string>
   <string name="login-fail-parse-config">登录$1失败：无法解析用户配置。请参见调试日志获取更多详细信息。</string>
+  <string name="login-fail-parse-config-yaml">在$1登录失败：无法解析用户配置：$2</string>
   <string name="login-fail-user-data">登录$1失败：无法检索用户信息。API 查询未返回任何数据。</string>
   <string name="login-fail-rollback-rights">登录$1失败：您在这个wiki上没有回退权限。</string>
   <string name="login-failed-autoconfirm-rights">登录$1失败：您在此项目不是自动确认用户。</string>

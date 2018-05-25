@@ -271,6 +271,7 @@
   <string name="login-fail-no-info">사용자 정보를 얻을 수 없어 $1에 로그인에 실패했습니다: $2</string>
   <string name="login-bot">BotPassword와 레거시 로그인 간에 차이가 있나요?</string>
   <string name="login-fail-parse-config">사용자 설정을 구문 분석할 수 없어 $1에 로그인에 실패했습니다, 더 많은 자세한 사항은 디버그 기록을 보세요</string>
+  <string name="login-fail-parse-config-yaml">$1의 로그인을 실패했습니다: 사용자 구성의 구문을 분석할 수 없습니다: $2</string>
   <string name="login-fail-user-data">사용자 정보를 얻을 수 없어 $1에 로그인에 실패했으며, api 쿼리는 반환한 데이터가 없습니다</string>
   <string name="login-fail-rollback-rights">당신은 이 프로젝트에 되돌리기 권한이 없기 때문에 $1에 로그인에 실패했습니다</string>
   <string name="login-failed-autoconfirm-rights">당신은 이 프로젝트에 자동 인증되지 않았기 때문에 $1에 로그인에 실패했습니다</string>

@@ -275,6 +275,7 @@
   <string name="login-fail-no-info">登入 $1 失敗：無法取得使用者資訊：$2</string>
   <string name="login-bot">機器人密碼登入和舊式登入有何差異？</string>
   <string name="login-fail-parse-config">登入 $1 失敗：無法解析使用者設定。 請參考除錯日誌以了解詳細資訊。</string>
+  <string name="login-fail-parse-config-yaml">在 $1 登入失敗：無法解析使用者設置：$2</string>
   <string name="login-fail-user-data">登入 $1 失敗：無法取得使用者資訊。 查詢 API 未回傳資料。</string>
   <string name="login-fail-rollback-rights">登入 $1 失敗：您於此項目沒有回退的權限。</string>
   <string name="login-failed-autoconfirm-rights">登入 $1 失敗：您於此項目並非已自動確認的使用者。</string>

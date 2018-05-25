@@ -276,6 +276,7 @@
   <string name="login-fail-no-info">Início de sessão em $1 falhou: Não foi possível aceder à informação de utilizador: $2</string>
   <string name="login-bot">Qual é a diferença entre BotPassword e a entrada antiga?</string>
   <string name="login-fail-parse-config">Início de sessão em $1 falhou: Não foi possível analisar a configuração de utilizador. Veja o registo de depuração para mais detalhes.</string>
+  <string name="login-fail-parse-config-yaml">O início de sessão em $1 falhou: Não foi possível fazer a análise sintática da configuração de utilizador: $2</string>
   <string name="login-fail-user-data">Início de sessão em $1 falhou: Não foi possível aceder à informação de utilizador, a consulta de API não devolveu nenhum dado.</string>
   <string name="login-fail-rollback-rights">Início de sessão em $1 falhou: Não possui privilégios de reversor neste projeto.</string>
   <string name="login-failed-autoconfirm-rights">Início de sessão em $1 falhou: Não possui uma conta autoconfirmada neste projeto.</string>
