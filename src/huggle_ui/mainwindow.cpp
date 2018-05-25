@@ -2074,7 +2074,7 @@ void MainWindow::Localize()
     this->ui->actionWelcome_page->setText(_l("main-help-welcome-page"));
     this->ui->actionContribution_browser->setText(_l("main-user-contribution-browser"));
     this->ui->actionRevert_only_this_revision_assuming_good_faith->setText(_l("main-revision-revert-agf"));
-    this->ui->actionRevert_only_this_revision->setText(_("main-revision-revert-only-this"));
+    this->ui->actionRevert_only_this_revision->setText(_l("main-revision-revert-only-this"));
 
     // arrows icons should be mirrored for RTL languages
     if (Localizations::HuggleLocalizations->IsRTL())
