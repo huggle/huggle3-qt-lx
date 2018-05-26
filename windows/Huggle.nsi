@@ -9,7 +9,7 @@
 !define APP_NAME "Huggle"
 !define COMP_NAME "Wikimedia Project"
 !define WEB_SITE "http://en.wikipedia.org/wiki/Wikipedia:Huggle"
-!define VERSION "3.4.0.0"
+!define VERSION "3.4.1.0"
 !define COPYRIGHT "GPL"
 !define DESCRIPTION "Application"
 !define LICENSE_TXT "gpl.txt"
@@ -134,7 +134,6 @@ WriteUninstaller "$INSTDIR\uninstall.exe"
 !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
 CreateDirectory "$SMPROGRAMS\$SM_Folder"
 CreateShortCut "$SMPROGRAMS\$SM_Folder\${APP_NAME}.lnk" "$INSTDIR\${MAIN_APP_EXE}" "" "$INSTDIR\huggle.ico" 0
-CreateShortCut "$SMPROGRAMS\$SM_Folder\PyHuggle.lnk" "$INSTDIR\py_hug.exe" "" "$INSTDIR\huggle.ico" 0
 CreateShortCut "$DESKTOP\${APP_NAME}.lnk" "$INSTDIR\${MAIN_APP_EXE}" "" "$INSTDIR\huggle.ico" 0
 CreateShortCut "$SMPROGRAMS\$SM_Folder\Uninstall ${APP_NAME}.lnk" "$INSTDIR\uninstall.exe"
 
