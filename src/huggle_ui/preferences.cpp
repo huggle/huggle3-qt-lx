@@ -309,7 +309,7 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     hcfg->SystemConfig_DynamicColsInList = this->ui->checkBox_22->isChecked();
     hcfg->UserConfig->DisplayTitle = this->ui->checkBox_23->isChecked();
     hcfg->UserConfig->PreferredProvider = this->ui->cbProviders->currentIndex();
-    hcfg->UserConfig->ManualWarning = this->ui->checkBox_AutoWarning->isChecked();
+    hcfg->UserConfig->ManualWarning = !this->ui->checkBox_AutoWarning->isChecked();
     hcfg->UserConfig->RetrieveFounder = this->ui->checkBox_8->isChecked();
     hcfg->UserConfig->CheckTP = this->ui->checkBox_25->isChecked();
     hcfg->SystemConfig_RequestDelay = this->ui->checkBox_26->isChecked();
@@ -769,7 +769,7 @@ void Preferences::ResetItems()
     this->ui->checkBox_20->setChecked(hcfg->UserConfig->RevertNewBySame);
     this->ui->radioButton->setEnabled(this->ui->checkBox_AutoResolveConflicts->isChecked());
     this->ui->lineEdit_3->setText(QString::number(hcfg->SystemConfig_RevertDelay));
-    this->ui->checkBox_AutoWarning->setChecked(hcfg->UserConfig->ManualWarning);
+    this->ui->checkBox_AutoWarning->setChecked(!hcfg->UserConfig->ManualWarning);
     this->ui->checkBox_25->setChecked(hcfg->UserConfig->CheckTP);
     this->ui->checkBox_27->setChecked(hcfg->SystemConfig_InstantReverts);
     this->ui->checkBox_22->setChecked(hcfg->SystemConfig_DynamicColsInList);
