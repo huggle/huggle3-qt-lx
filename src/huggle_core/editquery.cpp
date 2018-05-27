@@ -182,7 +182,10 @@ bool EditQuery::IsProcessed()
         this->Result = new QueryResult();
         if (failed)
         {
-            this->Result->SetError(this->qEdit->Result->Data);
+            if (this->qEdit->IsFailed())
+                this->Result->SetError(this->qEdit->GetFailureReason());
+            else
+                this->Result->SetError(this->qEdit->Result->Data);
             this->processFailure();
         }
         this->qEdit = nullptr;
