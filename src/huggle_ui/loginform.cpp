@@ -1492,7 +1492,7 @@ void LoginForm::OnTimerTick()
 void LoginForm::on_pushButton_clicked()
 {
     this->disableForm();
-    this->qDatabase = new ApiQuery(ActionQuery, nullptr);
+    this->qDatabase = new ApiQuery(ActionQuery, hcfg->Project);
     this->Refreshing = true;
     hcfg->SystemConfig_UsingSSL = this->ui->checkBox->isChecked();
     this->timer->start(HUGGLE_TIMER);
