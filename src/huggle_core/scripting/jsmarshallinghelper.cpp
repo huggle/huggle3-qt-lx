@@ -69,6 +69,7 @@ QJSValue JSMarshallingHelper::FromUser(WikiUser *user, QJSEngine *engine)
     o.setProperty("Site", FromSite(user->Site, engine));
     o.setProperty("TalkPageContents", QJSValue(user->TalkPage_GetContents()));
     o.setProperty("TalkPage_RetrievalTime", QJSValue(user->TalkPage_RetrievalTime().toString()));
+    o.setProperty("TalkPage_WasRetrieved", user->TalkPage_WasRetrieved());
     return o;
 }
 
@@ -87,8 +88,12 @@ QJSValue JSMarshallingHelper::FromEdit(WikiEdit *edit, QJSEngine *engine)
     o.setProperty("DiffTo", QJSValue(edit->DiffTo));
     o.setProperty("EditMadeByHuggle", QJSValue(edit->EditMadeByHuggle));
     o.setProperty("FullUrl", QJSValue(edit->GetFullUrl()));
+    o.setProperty("Score", static_cast<int>(edit->Score));
+    o.setProperty("ScoreWords", FromQStringList(edit->ScoreWords, engine));
     o.setProperty("SiteName", QJSValue(edit->GetSite()->Name));
+    o.setProperty("SizeIsKnown", edit->SizeIsKnown);
     o.setProperty("Size", QJSValue(static_cast<int>(edit->GetSize())));
+    o.setProperty("Summary", edit->Summary);
     o.setProperty("GoodfaithScore", QJSValue(static_cast<int>(edit->GoodfaithScore)));
     o.setProperty("IsRangeOfEdits", QJSValue(edit->IsRangeOfEdits()));
     o.setProperty("IsRevert", QJSValue(edit->IsRevert));
@@ -98,6 +103,11 @@ QJSValue JSMarshallingHelper::FromEdit(WikiEdit *edit, QJSEngine *engine)
     o.setProperty("OwnEdit", QJSValue(edit->OwnEdit));
     o.setProperty("Page", FromPage(edit->Page, engine));
     o.setProperty("User", FromUser(edit->User, engine));
+    o.setProperty("RevID", static_cast<int>(edit->RevID));
+    o.setProperty("Tags", FromQStringList(edit->Tags, engine));
+    o.setProperty("Time", edit->Time.toString());
+    o.setProperty("TPRevBaseTime", edit->TPRevBaseTime);
+    o.setProperty("TrustworthEdit", edit->TrustworthEdit);
     return o;
 }
 
@@ -131,6 +141,7 @@ QJSValue JSMarshallingHelper::FromPage(WikiPage *page, QJSEngine *engine)
     o.setProperty("PageName", QJSValue(page->PageName));
     o.setProperty("RootName", QJSValue(page->RootName()));
     o.setProperty("SanitizedName", QJSValue(page->SanitizedName()));
+    o.setProperty("Categories", FromQStringList(page->GetCategories(), engine));
     return o;
 }
 
@@ -228,5 +239,17 @@ QJSValue JSMarshallingHelper::FromSiteUserConfig(UserConfiguration *config, QJSE
     o.setProperty("DisplayTitle", config->DisplayTitle);
     o.setProperty("EnableMaxScore", config->EnableMaxScore);
     o.setProperty("EnableMinScore", config->EnableMinScore);
+    return o;
+}
+
+QJSValue JSMarshallingHelper::FromQStringList(QStringList string_list, QJSEngine *engine)
+{
+    QJSValue o = engine->newArray(string_list.size());
+    int i = 0;
+    while (i < string_list.size())
+    {
+        o.setProperty(i, string_list.at(i));
+        i++;
+    }
     return o;
 }
