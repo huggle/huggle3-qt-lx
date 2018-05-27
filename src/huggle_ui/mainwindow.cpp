@@ -2558,6 +2558,8 @@ void MainWindow::on_actionWelcome_user_triggered()
 
 void MainWindow::on_actionOpen_in_a_browser_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_OPEN_IN_BROWSER))
+        return;
     if (this->CurrentEdit != nullptr)
     {
         if (this->CurrentEdit->NewPage)
@@ -3482,6 +3484,8 @@ void Huggle::MainWindow::on_actionRevert_edit_using_custom_reason_triggered()
 
 void Huggle::MainWindow::on_actionRefresh_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_REFRESH))
+        return;
     this->RefreshPage();
 }
 
