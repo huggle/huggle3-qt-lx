@@ -102,6 +102,6 @@ void Events::on_SError(QString title, QString text)
 bool Events::on_SYesNoQs(QString title, QString text, bool d)
 {
     bool result = d;
-    emit this->System_YesNoQuestion(title, text, &d);
+    emit this->System_YesNoQuestion(title, text, &result);
     return result;
 }

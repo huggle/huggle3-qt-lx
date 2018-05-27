@@ -3568,7 +3568,7 @@ void MainWindow::OnWarning(QString title, QString text)
 void MainWindow::OnQuestion(QString title, QString text, bool *y)
 {
     int result = UiGeneric::MessageBox(title, text, MessageBoxStyleQuestion);
-    if (result)
+    if (result == QMessageBox::Yes)
         *y = true;
     else
         *y = false;
