@@ -199,10 +199,12 @@ bool WikiEdit::finalizePostProcessing()
                 ++x;
             }
             this->recordScore("ScoreFlag", this->GetSite()->ProjectConfig->ScoreFlag * this->User->Groups.count());
+            // This check is already in post processing but we do it again, now against user group instead of edit flags
+            // some bots like ClueBot, are in group but don't flag their edits as "bots"
             if (this->User->Groups.contains("bot"))
             {
-                // if it's a flagged bot we likely don't need to watch them
-                this->recordScore("BotScore", this->GetSite()->ProjectConfig->BotScore);
+                // If it's a flagged bot we likely don't need to watch them
+                this->recordScore("BotScore_flag", this->GetSite()->ProjectConfig->BotScore);
             }
             // let's delete it now
             this->qUser = nullptr;
