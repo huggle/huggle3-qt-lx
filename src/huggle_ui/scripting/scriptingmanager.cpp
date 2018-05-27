@@ -156,6 +156,7 @@ void ScriptingManager::on_tableWidget_customContextMenuRequested(const QPoint &p
         ScriptForm sf;
         sf.EditScript(script->GetPath(), script->GetName());
         sf.exec();
+        this->Reload();
     }
 }
 
