@@ -740,11 +740,7 @@ bool WikiEdit::IsRangeOfEdits()
 
 bool WikiEdit::IsReady()
 {
-#ifdef HUGGLE_SDK
-    return true;
-#else
     return Hooks::EditCheckIfReady(this);
-#endif
 }
 
 QMutex WikiEdit_ProcessorThread::EditLock(QMutex::Recursive);
@@ -770,10 +766,8 @@ void WikiEdit_ProcessorThread::run()
 
 void WikiEdit_ProcessorThread::Process(WikiEdit *edit)
 {
-#ifndef HUGGLE_SDK
     if (Hooks::EditBeforeScore(edit))
     {
-#endif
         bool IgnoreWords = false;
         ProjectConfiguration *conf = edit->GetSite()->GetProjectConfig();
         if (edit->IsRevert)
@@ -849,10 +843,8 @@ void WikiEdit_ProcessorThread::Process(WikiEdit *edit)
                 edit->CurrentUserWarningLevel = WarningLevel4;
                 break;
         }
-#ifndef HUGGLE_SDK
     }
     Hooks::EditAfterPostProcess(edit);
-#endif
     edit->postProcessing = false;
     edit->processedByWorkerThread = true;
     edit->Status = StatusPostProcessed;

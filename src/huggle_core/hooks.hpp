@@ -13,6 +13,7 @@
 
 #include "definitions.hpp"
 
+#include <QHash>
 #include <QString>
 
 namespace Huggle
@@ -67,6 +68,8 @@ namespace Huggle
              * \return
              */
             static bool EditCheckIfReady(WikiEdit *edit);
+            //! This exists for JS to allow scoring of edit by user, called after post processing from main thread
+            static void WikiEdit_ScoreJS(WikiEdit *edit);
             static bool RevertPreflight(WikiEdit *edit);
             /*!
              * \brief Event that happens when user attempt to send a warning to editor of page

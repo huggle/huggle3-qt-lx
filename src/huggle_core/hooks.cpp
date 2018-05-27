@@ -158,6 +158,21 @@ bool Huggle::Hooks::EditCheckIfReady(Huggle::WikiEdit *edit)
     return result;
 }
 
+void Huggle::Hooks::WikiEdit_ScoreJS(Huggle::WikiEdit *edit)
+{
+    foreach (Script *s, Script::GetScripts())
+    {
+        if (s->IsWorking())
+        {
+            int score = s->Hook_EditRescore(edit);
+            if (!score)
+                continue;
+            edit->Score += static_cast<long>(score);
+            edit->PropertyBag.insert("score_js_" + s->GetName(), score);
+        }
+    }
+}
+
 void Huggle::Hooks::OnWarning(Huggle::WikiUser *user)
 {
     Events::Global->on_WEWarningSent(user, user->GetWarningLevel());

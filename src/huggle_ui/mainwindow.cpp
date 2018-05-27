@@ -1466,6 +1466,7 @@ void MainWindow::OnMainTimerTick()
             if (this->PendingEdits.at(c)->IsReady() && this->PendingEdits.at(c)->IsPostProcessed())
             {
                 WikiEdit *edit = this->PendingEdits.at(c);
+                Hooks::WikiEdit_ScoreJS(edit);
                 // We need to check the edit against filter once more, because some of the checks work
                 // only on post processed edits
                 if (edit->GetSite()->CurrentFilter->Matches(edit))

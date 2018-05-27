@@ -308,6 +308,22 @@ void Script::Hook_OnSuspicious(WikiEdit *edit)
     this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_EDIT_ON_SUSPICIOUS], parameters);
 }
 
+int Script::Hook_EditRescore(WikiEdit *edit)
+{
+    if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_EDIT_RESCORE))
+        return 0;
+
+    QJSValueList parameters;
+    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine));
+    QJSValue result = this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_EDIT_RESCORE], parameters);
+    if (!result.isNumber())
+    {
+        HUGGLE_ERROR("JS error (" + this->GetName() + "): edit_rescore must return a number");
+        return 0;
+    }
+    return result.toInt();
+}
+
 void Script::SubscribeHook(int hook, QString function_name)
 {
     if (this->attachedHooks.contains(hook))
@@ -339,6 +355,8 @@ int Script::GetHookID(QString hook)
         return HUGGLE_SCRIPT_HOOK_EDIT_BEFORE_POST_PROCESS;
     if (hook == "edit_load_to_queue")
         return HUGGLE_SCRIPT_HOOK_EDIT_LOAD_TO_QUEUE;
+    if (hook == "edit_rescore")
+        return HUGGLE_SCRIPT_HOOK_EDIT_RESCORE;
     if (hook == "edit_post_process")
         return HUGGLE_SCRIPT_HOOK_EDIT_POST_PROCESS;
     if (hook == "edit_on_revert")
@@ -566,6 +584,7 @@ void Script::registerFunctions()
     this->registerHook("edit_on_suspicious", 1, "(WikiEdit edit): when suspicious edit is spotted");
     this->registerHook("edit_on_good", 1, "(WikiEdit edit): on good edit");
     this->registerHook("edit_on_revert", 1, "(WikiEdit edit): edit reverted");
+    this->registerHook("int edit_rescore", 1, "(WikiEdit edit): called after post processing the edit, number returned will be added to final score (3.4.2)");
 }
 
 ScriptException::ScriptException(QString text, QString source, Script *scr, bool is_recoverable) : Exception(text, source, is_recoverable)
