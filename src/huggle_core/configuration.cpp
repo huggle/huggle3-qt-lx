@@ -91,6 +91,7 @@ Configuration::~Configuration()
         delete this->ProjectList.at(0);
         this->ProjectList.removeAt(0);
     }
+    delete this->GlobalWiki;
 }
 
 QString Configuration::GenerateSuffix(QString text, ProjectConfiguration *conf)

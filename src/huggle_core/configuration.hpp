@@ -252,6 +252,7 @@ namespace Huggle
             bool              SystemConfig_Multiple = false;
             bool              SystemConfig_UM = false;
             QString           UpdaterRoot;
+            WikiSite         *GlobalWiki = nullptr;
             //! Every site in which the user is currently logged to
             QList<WikiSite *> Projects;
             //! currently selected project

@@ -635,7 +635,7 @@ bool LoginForm::retrieveGlobalConfig()
     }
     this->loadingForm->ModifyIcon(this->loadingFormGlobalConfigRow, LoadingForm_Icon_Loading);
     this->Update(_l("[[login-progress-global]]"));
-    this->qConfig = new ApiQuery(ActionQuery, hcfg->Project);
+    this->qConfig = new ApiQuery(ActionQuery, hcfg->GlobalWiki);
     this->qConfig->OverrideWiki = hcfg->GlobalConfigurationWikiAddress;
     this->qConfig->Parameters = "prop=revisions&rvprop=content&rvlimit=1&titles=" + hcfg->SystemConfig_GlobalConfigYAML;
     this->qConfig->Process();
@@ -1492,7 +1492,7 @@ void LoginForm::OnTimerTick()
 void LoginForm::on_pushButton_clicked()
 {
     this->disableForm();
-    this->qDatabase = new ApiQuery(ActionQuery, hcfg->Project);
+    this->qDatabase = new ApiQuery(ActionQuery, hcfg->GlobalWiki);
     this->Refreshing = true;
     hcfg->SystemConfig_UsingSSL = this->ui->checkBox->isChecked();
     this->timer->start(HUGGLE_TIMER);

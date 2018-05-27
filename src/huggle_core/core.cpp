@@ -56,8 +56,8 @@ void Core::Init()
     Events::Global = new Events();
 
     // preload of config
-    Configuration::HuggleConfiguration->WikiDB = Generic::SanitizePath(Configuration::GetConfigurationPath() + "wikidb.xml");
-    if (Configuration::HuggleConfiguration->SystemConfig_SafeMode)
+    hcfg->WikiDB = Generic::SanitizePath(Configuration::GetConfigurationPath() + "wikidb.xml");
+    if (hcfg->SystemConfig_SafeMode)
     {
         Syslog::HuggleLogs->Log("DEBUG: Huggle is running in a safe mode");
     }
@@ -92,15 +92,17 @@ void Core::Init()
     }
     hcfg->WebRequest_UserAgent = QString("Huggle/" + QString(HUGGLE_VERSION) + " (http://en.wikipedia.org/wiki/WP:Huggle; " + hcfg->HuggleVersion + ")").toUtf8();
     HUGGLE_DEBUG1("UserAgent: " + QString(hcfg->WebRequest_UserAgent));
+    // Create a global wiki, now that we loaded the configuration which is only place where it can be changed
+    hcfg->GlobalWiki = new WikiSite("GlobalWiki", hcfg->GlobalConfigurationWikiAddress);
     HUGGLE_PROFILER_PRINT_TIME("Core::Init()@conf");
     HUGGLE_DEBUG1("Loading wikis");
     this->LoadDB();
     HUGGLE_DEBUG1("Loading queue");
     // These are separators that we use to parse individual words, too many items will have negative impact on performance,
     // so despite it would help us detect vandals, we need to keep it low, but precise enough!!
-    Configuration::HuggleConfiguration->SystemConfig_WordSeparators << " " << "." << "," << "(" << ")" << ":" << ";" << "!"
-                                                                    << "?" << "/" << "<" << ">" << "[" << "]";
-    if (!Configuration::HuggleConfiguration->SystemConfig_SafeMode)
+    hcfg->SystemConfig_WordSeparators << " " << "." << "," << "(" << ")" << ":" << ";" << "!"
+                                      << "?" << "/" << "<" << ">" << "[" << "]";
+    if (!hcfg->SystemConfig_SafeMode)
     {
 #ifdef HUGGLE_GLOBAL_EXTENSION_PATH
         Syslog::HuggleLogs->Log("Loading plugins in " + Generic::SanitizePath(QString(HUGGLE_GLOBAL_EXTENSION_PATH)) + " and " + Configuration::GetExtensionsRootPath());
