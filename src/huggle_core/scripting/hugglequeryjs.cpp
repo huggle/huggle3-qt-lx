@@ -205,7 +205,7 @@ int HuggleQueryJS::edit_page(QString page, QString text, QString summary, QStrin
         return -1;
     }
     int query_id = this->lastQuery++;
-    Collectable_SmartPtr<EditQuery> edit = WikiUtil::EditPage(page, text, summary, minor, base_timestamp, section, site);
+    Collectable_SmartPtr<EditQuery> edit = WikiUtil::EditPage(site, page, text, summary, minor, base_timestamp, section);
     QueryPool::HugglePool->AppendQuery(edit);
     this->editQueries.insert(query_id, edit);
     edit->CallbackOwner = this;

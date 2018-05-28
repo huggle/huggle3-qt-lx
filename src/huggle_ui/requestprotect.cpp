@@ -115,11 +115,11 @@ void RequestProtect::Tick()
         // let's edit the page now
         if (this->page->GetSite()->GetProjectConfig()->RFPP_Section == 0)
         {
-            this->qEditRFP = WikiUtil::EditPage(this->page->GetSite()->GetProjectConfig()->RFPP_Page, PageText,
+            this->qEditRFP = WikiUtil::EditPage(this->page->GetSite(), this->page->GetSite()->GetProjectConfig()->RFPP_Page, PageText,
                                                 summary_, false, this->Timestamp);
         } else
         {
-            this->qEditRFP = WikiUtil::EditPage(this->page->GetSite()->GetProjectConfig()->RFPP_Page, PageText,
+            this->qEditRFP = WikiUtil::EditPage(this->page->GetSite(), this->page->GetSite()->GetProjectConfig()->RFPP_Page, PageText,
                                                 summary_, false, this->Timestamp,
                                                 this->page->GetSite()->GetProjectConfig()->RFPP_Section);
         }

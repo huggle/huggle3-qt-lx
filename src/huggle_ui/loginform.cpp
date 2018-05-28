@@ -1012,7 +1012,7 @@ void LoginForm::retrieveUserInfo(WikiSite *site)
                     result += "\n" + line;
                     QString summary = site->GetProjectConfig()->UserlistUpdateSummary;
                     summary.replace("$1", hcfg->SystemConfig_Username);
-                    WikiUtil::EditPage(site->GetProjectConfig()->ApprovalPage, result, summary, false, "", 0, site);
+                    WikiUtil::EditPage(site, site->GetProjectConfig()->ApprovalPage, result, summary);
                     //WikiUtil::AppendTextToPage(site->GetProjectConfig()->ApprovalPage, line, site->GetProjectConfig()->UserlistUpdateSummary, true, site);
                 }
             }

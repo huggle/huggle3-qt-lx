@@ -113,8 +113,8 @@ namespace Huggle
          * \param section
          * \return New instance of edit query
          */
-        HUGGLE_EX_CORE Collectable_SmartPtr<EditQuery> EditPage(QString page, QString text, QString summary = "Edited using huggle", bool minor = false,
-                                                           QString BaseTimestamp = "", unsigned int section = 0, WikiSite *site = nullptr);
+        HUGGLE_EX_CORE Collectable_SmartPtr<EditQuery> EditPage(WikiSite *site, QString page, QString text, QString summary = "Edited using huggle", bool minor = false,
+                                                           QString BaseTimestamp = "", unsigned int section = 0);
         HUGGLE_EX_CORE Collectable_SmartPtr<EditQuery> EditPage(WikiPage *page, QString text, QString summary = "Edited using huggle", bool minor = false,
                                                            QString BaseTimestamp = "", unsigned int section = 0);
         /*!

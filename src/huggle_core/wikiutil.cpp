@@ -161,7 +161,7 @@ Collectable_SmartPtr<EditQuery> WikiUtil::AppendTextToPage(QString page, QString
     return eq;
 }
 
-Collectable_SmartPtr<EditQuery> WikiUtil::EditPage(QString page, QString text, QString summary, bool minor, QString BaseTimestamp, unsigned int section, WikiSite *site)
+Collectable_SmartPtr<EditQuery> WikiUtil::EditPage(WikiSite *site, QString page, QString text, QString summary, bool minor, QString BaseTimestamp, unsigned int section)
 {
     if (site == nullptr)
         throw new Huggle::NullPointerException("WikiSite *site", BOOST_CURRENT_FUNCTION);
