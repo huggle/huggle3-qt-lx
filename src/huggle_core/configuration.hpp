@@ -111,6 +111,8 @@ class QXmlStreamWriter;
 #define HUGGLE_ACCEL_MAIN_CONTRIB_BROWSER       52
 #define HUGGLE_ACCEL_MAIN_REFRESH               54
 #define HUGGLE_ACCEL_MAIN_USER_CUSTOM_MSG       55
+#define HUGGLE_ACCEL_MAIN_ESC                   56
+#define HUGGLE_ACCEL_MAIN_REVERT_THIS           60
 #define HUGGLE_ACCEL_CLOSE_TAB                  200
 #define HUGGLE_ACCEL_CREATE_NEW_TAB             206
 #define HUGGLE_ACCEL_USER_REPORT_USER_NAME      300

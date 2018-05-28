@@ -2617,6 +2617,8 @@ void MainWindow::on_actionFlag_as_a_good_edit_triggered()
 
 void MainWindow::on_actionDisplay_this_page_in_browser_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_OPEN_IN_BROWSER))
+        return;
     if (this->CurrentEdit != nullptr)
     {
         if (this->CurrentEdit->Diff > 0)
@@ -2633,12 +2635,16 @@ void MainWindow::on_actionDisplay_this_page_in_browser_triggered()
 
 void MainWindow::on_actionEdit_page_in_browser_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_OPEN_IN_BROWSER))
+        return;
     if (this->CurrentEdit != nullptr)
         QDesktopServices::openUrl(QUrl::fromEncoded(QString(this->ProjectURL() + this->CurrentEdit->Page->EncodedName() + "?action=edit").toUtf8()));
 }
 
 void MainWindow::on_actionDisplay_history_in_browser_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_OPEN_IN_BROWSER))
+        return;
     if (this->CurrentEdit != nullptr)
         QDesktopServices::openUrl(QUrl::fromEncoded(QString(this->ProjectURL() + this->CurrentEdit->Page->EncodedName() + "?action=history").toUtf8()));
 }
@@ -3102,6 +3108,8 @@ void Huggle::MainWindow::on_actionRelog_triggered()
 
 void Huggle::MainWindow::on_actionAbort_2_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_ESC))
+        return;
     if (!this->RevertStack.count())
     {
         //! \todo Localize me
@@ -3150,6 +3158,8 @@ void Huggle::MainWindow::on_actionStop_provider_triggered()
 
 void Huggle::MainWindow::on_actionRevert_only_this_revision_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_REVERT_THIS))
+        return;
     if (this->EditingChecks())
         this->Revert("", true, true);
 }
@@ -3200,6 +3210,9 @@ void MainWindow::SetProviderXml()
 
 void MainWindow::on_actionInsert_page_to_a_watchlist_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_WATCH))
+        return;
+
     if (!this->CheckEditableBrowserPage())
         return;
 
@@ -3210,6 +3223,9 @@ void MainWindow::on_actionInsert_page_to_a_watchlist_triggered()
 
 void MainWindow::on_actionRemove_page_from_a_watchlist_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_UNWATCH))
+        return;
+
     if (!this->CheckEditableBrowserPage())
         return;
 
@@ -3220,6 +3236,8 @@ void MainWindow::on_actionRemove_page_from_a_watchlist_triggered()
 
 void MainWindow::on_actionMy_talk_page_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_TALK))
+        return;
     if (Configuration::HuggleConfiguration->DeveloperMode)
         return;
     this->LockPage();
@@ -3229,6 +3247,8 @@ void MainWindow::on_actionMy_talk_page_triggered()
 
 void MainWindow::on_actionMy_Contributions_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_CONTRIB_BROWSER))
+        return;
     if (Configuration::HuggleConfiguration->DeveloperMode)
         return;
     this->LockPage();
