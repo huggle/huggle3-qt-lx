@@ -194,6 +194,7 @@ namespace Huggle
             void UpdateStatusBarData();
             //! Perform all common tests that are needed before a page can be edited and return false if they fail
             bool EditingChecks();
+            void ReloadInterface();
             void DecreaseBS();
             void IncreaseBS();
             void GoForward();
@@ -410,7 +411,6 @@ namespace Huggle
             bool preflightCheck(WikiEdit *_e);
             //! Welcome user
             void welcomeCurrentUser(QString message);
-            void reloadInterface();
             void RevertAgf(bool only);
             //! This function is called by main thread and is used to remove edits that were already reverted
             void TruncateReverts();
@@ -447,6 +447,7 @@ namespace Huggle
             WaitingForm *fWaiting = nullptr;
             RequestProtect *fRFProtection = nullptr;
             QHash<QAction*, WikiSite*> ActionSites;
+            QHash<QAction*, QString> actionKeys;
             QHash<WikiSite*, QAction*> lXml;
             QHash<WikiSite*, QAction*> lIRC;
             QHash<WikiSite*, QAction*> lWikis;

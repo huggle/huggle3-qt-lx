@@ -252,6 +252,7 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
     AppendConf(&configuration, "automatically-watchlist-warned-users", this->AutomaticallyWatchlistWarnedUsers);
     AppendConf(&configuration, "shortcut-hash", this->ShortcutHash);
     AppendConf(&configuration, "show-warning-if-not-on-last-revision", this->ShowWarningIfNotOnLastRevision);
+    AppendConf(&configuration, "number-dropdown-menu-items", this->NumberDropdownMenuItems);
     // shortcuts
     QStringList shortcuts = Configuration::HuggleConfiguration->Shortcuts.keys();
     // we need to do this otherwise huggle may sort the items differently every time and spam wiki
@@ -598,6 +599,7 @@ bool UserConfiguration::ParseYAML(QString config, ProjectConfiguration *ProjectC
     this->MinScore = YAML2LongLong("min-score", yaml, this->MinScore);
     this->MaxScore = YAML2LongLong("max-score", yaml, this->MaxScore);
     this->EnableMinScore = YAML2Bool("enable-min-score", yaml, this->EnableMinScore);
+    this->NumberDropdownMenuItems = YAML2Bool("number-dropdown-menu-items", yaml, this->NumberDropdownMenuItems);
     this->AutomaticRefresh = YAML2Bool("automatic-refresh", yaml, this->AutomaticRefresh);
     this->ShortcutHash = YAML2String("shortcut-hash", yaml, "null");
     this->ShowWarningIfNotOnLastRevision = YAML2Bool("show-warning-if-not-on-last-revision", yaml, this->ShowWarningIfNotOnLastRevision);

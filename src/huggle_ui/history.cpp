@@ -292,7 +292,7 @@ void History::Tick()
                     this->Fail();
                     return;
                 }
-                QString message = HuggleParser::GetValueFromKey(edit->GetSite()->ProjectConfig->WelcomeTypes.at(0));
+                QString message = HuggleParser::GetValueFromSSItem(edit->GetSite()->ProjectConfig->WelcomeTypes.at(0));
                 if (!message.size())
                 {
                     // This error should never happen so we don't need to localize this

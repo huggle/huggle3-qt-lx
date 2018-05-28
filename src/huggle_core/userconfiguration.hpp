@@ -124,6 +124,7 @@ namespace Huggle
             //! it get automatically loaded instead of cached version
             bool                    LastEdit = false;
             bool                    SectionKeep = true;
+            bool                    NumberDropdownMenuItems = true;
             unsigned int            HistoryMax = 50;
             bool                    TruncateEdits = false;
             //! By default Huggle highlights "Missing summary", if this is set to true, it's highlighted instead when it's there

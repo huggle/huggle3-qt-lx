@@ -59,7 +59,7 @@ QString HuggleParser::GetSummaryOfWarningTypeFromWarningKey(QString key, Project
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     foreach (QString line, project_conf->RevertSummaries)
         if (line.startsWith(key + ";"))
-            return HuggleParser::GetValueFromKey(line);
+            return HuggleParser::GetValueFromSSItem(line);
     if (!user_conf)
         return project_conf->DefaultSummary;
 
@@ -72,7 +72,7 @@ QString HuggleParser::GetNameOfWarningTypeFromWarningKey(QString key, ProjectCon
     // get a key
     foreach (QString line, project_conf->WarningTypes)
         if (line.startsWith(key + ";"))
-            return HuggleParser::GetValueFromKey(line);
+            return HuggleParser::GetValueFromSSItem(line);
     return key;
 }
 
@@ -83,7 +83,7 @@ QString HuggleParser::GetKeyOfWarningTypeFromWarningName(QString id, ProjectConf
     {
         if (line.endsWith(id) || line.endsWith(id + ","))
         {
-            return HuggleParser::GetKeyFromValue(line);
+            return HuggleParser::GetKeyFromSSItem(line);
         }
     }
     return id;
@@ -157,7 +157,7 @@ void HuggleParser::ParseWords(QString text, WikiSite *site)
     site->ProjectConfig->ScoreWords = ParseScoreWords(text, "score-words");
 }
 
-QString HuggleParser::GetValueFromKey(QString item)
+QString HuggleParser::GetValueFromSSItem(QString item)
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     if (item.contains(";"))
@@ -172,7 +172,7 @@ QString HuggleParser::GetValueFromKey(QString item)
     return item;
 }
 
-QString HuggleParser::GetKeyFromValue(QString item)
+QString HuggleParser::GetKeyFromSSItem(QString item)
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     if (item.contains(";"))
@@ -322,7 +322,7 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt, WikiSite *site)
     {
         foreach (QString df, site->ProjectConfig->WarningDefs)
         {
-            if (HuggleParser::GetKeyFromValue(df).toInt() == level && page.contains(HuggleParser::GetValueFromKey(df)))
+            if (HuggleParser::GetKeyFromSSItem(df).toInt() == level && page.contains(HuggleParser::GetValueFromSSItem(df)))
             {
                 return level;
             }

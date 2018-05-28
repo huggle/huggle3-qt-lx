@@ -484,7 +484,7 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
     int CurrentTemplate=0;
     while (CurrentTemplate<this->WarningTypes.count())
     {
-        QString type = HuggleParser::GetKeyFromValue(this->WarningTypes.at(CurrentTemplate));
+        QString type = HuggleParser::GetKeyFromSSItem(this->WarningTypes.at(CurrentTemplate));
         int CurrentWarning = 1;
         while (CurrentWarning <= 4)
         {
@@ -848,7 +848,7 @@ bool ProjectConfiguration::ParseYAML(QString yaml_src, QString *reason, WikiSite
     int CurrentTemplate=0;
     while (CurrentTemplate<this->WarningTypes.count())
     {
-        QString type = HuggleParser::GetKeyFromValue(this->WarningTypes.at(CurrentTemplate));
+        QString type = HuggleParser::GetKeyFromSSItem(this->WarningTypes.at(CurrentTemplate));
         int CurrentWarning = 1;
         while (CurrentWarning <= 4)
         {

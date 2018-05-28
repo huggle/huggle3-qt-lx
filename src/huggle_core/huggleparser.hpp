@@ -104,9 +104,9 @@ namespace Huggle
         HUGGLE_EX_CORE void ParseNoTalkWords_yaml(YAML::Node &node, WikiSite *site);
         HUGGLE_EX_CORE void ParseNoTalkPatterns_yaml(YAML::Node &node, WikiSite *site);
         //! \todo This function needs a unit test
-        HUGGLE_EX_CORE QString GetValueFromKey(QString item);
+        HUGGLE_EX_CORE QString GetValueFromSSItem(QString item);
         //! \todo This function needs a unit test
-        HUGGLE_EX_CORE QString GetKeyFromValue(QString item);
+        HUGGLE_EX_CORE QString GetKeyFromSSItem(QString item);
         /*!
          * \brief Process content of talk page in order to figure which user level they have
          * \param page The content of talk page

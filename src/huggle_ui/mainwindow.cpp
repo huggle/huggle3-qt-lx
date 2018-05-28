@@ -228,7 +228,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         this->PauseQueue();
     }
     HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@providers");
-    this->reloadInterface();
+    this->ReloadInterface();
     this->tabifyDockWidget(this->SystemLog, this->Queries);
     this->generalTimer = new QTimer(this);
     //this->ui->actionTag_2->setVisible(false);
@@ -570,7 +570,7 @@ void MainWindow::Render(bool KeepHistory, bool KeepUser)
         this->changeCurrentBrowserTabTitle(this->CurrentEdit->Page->PageName);
         if (this->previousSite != this->GetCurrentWikiSite())
         {
-            this->reloadInterface();
+            this->ReloadInterface();
             this->previousSite = this->GetCurrentWikiSite();
         }
         this->tb->SetTitle(this->CurrentEdit->Page->PageName);
@@ -1339,7 +1339,7 @@ void MainWindow::triggerWelcome()
         if (!conf->Welcome.isEmpty())
             message = conf->Welcome;
         else
-           message = HuggleParser::GetValueFromKey(conf->WelcomeTypes.at(0));
+           message = HuggleParser::GetValueFromSSItem(conf->WelcomeTypes.at(0));
         message += " ~~~~";
     }
     this->welcomeCurrentUser(message);
@@ -1776,7 +1776,7 @@ void MainWindow::CustomWelcome()
     if (!this->EditingChecks())
         return;
     QAction *welcome = (QAction*) QObject::sender();
-    this->welcomeCurrentUser(HuggleParser::GetValueFromKey(welcome->data().toString()));
+    this->welcomeCurrentUser(HuggleParser::GetValueFromSSItem(welcome->data().toString()));
 }
 
 void MainWindow::CustomRevert()
@@ -1788,7 +1788,9 @@ void MainWindow::CustomRevert()
     QAction *revert = (QAction*) QObject::sender();
     ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
     UserConfiguration *ucf = this->GetCurrentWikiSite()->GetUserConfig();
-    QString key = HuggleParser::GetKeyOfWarningTypeFromWarningName(revert->text(), conf);
+    if (!this->actionKeys.contains(revert))
+        throw new Huggle::Exception("QAction was not found in this->actionKeys", BOOST_CURRENT_FUNCTION);
+    QString key = this->actionKeys[revert];
     QString summary = HuggleParser::GetSummaryOfWarningTypeFromWarningKey(key, conf, ucf);
     summary = Huggle::Configuration::GenerateSuffix(summary, conf);
     this->Revert(summary);
@@ -1803,7 +1805,9 @@ void MainWindow::CustomRevertWarn()
     QAction *revert = (QAction*) QObject::sender();
     ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
     UserConfiguration *uconf = this->GetCurrentWikiSite()->GetUserConfig();
-    QString key = HuggleParser::GetKeyOfWarningTypeFromWarningName(revert->text(), conf);
+    if (!this->actionKeys.contains(revert))
+        throw new Huggle::Exception("QAction was not found in this->actionKeys", BOOST_CURRENT_FUNCTION);
+    QString key = this->actionKeys[revert];
     QString summary = HuggleParser::GetSummaryOfWarningTypeFromWarningKey(key, conf, uconf);
     summary = Huggle::Configuration::GenerateSuffix(summary, conf);
     Collectable_SmartPtr<RevertQuery> result = this->Revert(summary, false);
@@ -1823,10 +1827,11 @@ void MainWindow::CustomWarn()
         return;
     if (!this->EditingChecks())
         return;
-    ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
     QAction *revert = (QAction*) QObject::sender();
-    QString k = HuggleParser::GetKeyOfWarningTypeFromWarningName(revert->text(), conf);
-    this->Warn(k, nullptr, this->CurrentEdit);
+    if (!this->actionKeys.contains(revert))
+        throw new Huggle::Exception("QAction was not found in this->actionKeys", BOOST_CURRENT_FUNCTION);
+    QString key = this->actionKeys[revert];
+    this->Warn(key, nullptr, this->CurrentEdit);
 }
 
 void MainWindow::EnableDev()
@@ -2462,13 +2467,14 @@ void MainWindow::ChangeProvider(WikiSite *site, int id)
     }
 }
 
-void MainWindow::reloadInterface()
+void MainWindow::ReloadInterface()
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
     this->warnItems.clear();
     this->revertAndWarnItems.clear();
     this->revertItems.clear();
+    this->actionKeys.clear();
     delete this->RevertSummaries;
     delete this->WarnMenu;
     delete this->RevertWarn;
@@ -2481,9 +2487,17 @@ void MainWindow::reloadInterface()
         int r=0;
         while (r< conf->WarningTypes.count())
         {
-            QAction *action = new QAction(HuggleParser::GetValueFromKey(conf->WarningTypes.at(r)), this->RevertSummaries);
-            QAction *actiona = new QAction(HuggleParser::GetValueFromKey(conf->WarningTypes.at(r)), this->RevertWarn);
-            QAction *actionb = new QAction(HuggleParser::GetValueFromKey(conf->WarningTypes.at(r)), this->WarnMenu);
+            QString prefix = QString::number(r) + ": ";
+            if (!hcfg->UserConfig->NumberDropdownMenuItems)
+                prefix = "";
+            QString name = HuggleParser::GetValueFromSSItem(conf->WarningTypes.at(r));
+            QString key = HuggleParser::GetKeyFromSSItem(conf->WarningTypes.at(r));
+            QAction *action = new QAction(prefix + name, this->RevertSummaries);
+            QAction *actiona = new QAction(prefix + name, this->RevertWarn);
+            QAction *actionb = new QAction(prefix + name, this->WarnMenu);
+            this->actionKeys.insert(action, key);
+            this->actionKeys.insert(actiona, key);
+            this->actionKeys.insert(actionb, key);
             this->revertAndWarnItems.append(actiona);
             this->warnItems.append(actionb);
             this->revertItems.append(action);
@@ -2505,7 +2519,7 @@ void MainWindow::reloadInterface()
         int r = 0;
         while (r < conf->WelcomeTypes.count())
         {
-            QAction *action = new QAction(HuggleParser::GetKeyFromValue(conf->WelcomeTypes.at(r)), this->WelcomeMenu);
+            QAction *action = new QAction(HuggleParser::GetKeyFromSSItem(conf->WelcomeTypes.at(r)), this->WelcomeMenu);
             QVariant qv(conf->WelcomeTypes.at(r));
             action->setData(qv);
             this->WelcomeMenu->addAction(action);
@@ -3178,7 +3192,7 @@ void MainWindow::on_actionTag_2_triggered()
 
 void MainWindow::on_actionReload_menus_triggered()
 {
-    this->reloadInterface();
+    this->ReloadInterface();
 }
 
 void MainWindow::SetProviderIRC()

@@ -41,7 +41,7 @@ WarningList::WarningList(WikiEdit *edit, QWidget *parent) : QDialog(parent), ui(
         int r=0;
         while (r<Configuration::HuggleConfiguration->ProjectConfig->WarningTypes.count())
         {
-            this->ui->comboBox->addItem(HuggleParser::GetValueFromKey(Configuration::HuggleConfiguration->ProjectConfig->WarningTypes.at(r)));
+            this->ui->comboBox->addItem(HuggleParser::GetValueFromSSItem(Configuration::HuggleConfiguration->ProjectConfig->WarningTypes.at(r)));
             r++;
         }
         this->ui->comboBox->setCurrentIndex(0);

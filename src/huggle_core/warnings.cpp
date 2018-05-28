@@ -375,9 +375,9 @@ QString Warnings::RetrieveTemplateToWarn(QString type, WikiSite *site, bool forc
     QString result = "";
     while (x < site->GetProjectConfig()->WarningTemplates.count())
     {
-        if (HuggleParser::GetKeyFromValue(site->GetProjectConfig()->WarningTemplates.at(x)) == type)
+        if (HuggleParser::GetKeyFromSSItem(site->GetProjectConfig()->WarningTemplates.at(x)) == type)
         {
-            result = HuggleParser::GetValueFromKey(site->GetProjectConfig()->WarningTemplates.at(x));
+            result = HuggleParser::GetValueFromSSItem(site->GetProjectConfig()->WarningTemplates.at(x));
             if (force)
                 result += "im";
             return result;

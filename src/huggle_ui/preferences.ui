@@ -1019,6 +1019,13 @@
         </widget>
        </item>
        <item>
+        <widget class="QCheckBox" name="cbNumberMenus">
+         <property name="text">
+          <string>Number items in dropdown menus</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QCheckBox" name="cbShowWarningIfNotOnLastRevision">
          <property name="text">
           <string>ShowWarningIfNotOnLastRevision</string>

@@ -324,6 +324,7 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     hcfg->UserConfig->EnableMinScore = this->ui->cbMinScore->isChecked();
     hcfg->UserConfig->MinScore = this->ui->leMinScore->text().toLongLong();
     hcfg->UserConfig->MaxScore = this->ui->leMaxScore->text().toLongLong();
+    hcfg->UserConfig->NumberDropdownMenuItems = this->ui->cbNumberMenus->isChecked();
     hcfg->UserConfig->EnableMaxScore = this->ui->cbMaxScore->isChecked();
     hcfg->SystemConfig_QueueSize = this->ui->le_QueueSize->text().toInt();
     hcfg->UserConfig->AutomaticallyWatchlistWarnedUsers = this->ui->cb_WatchWarn->isChecked();
@@ -377,6 +378,7 @@ void Huggle::Preferences::on_pushButton_2_clicked()
         hcfg->ReloadOfMainformNeeded = true;
     }
     Configuration::SaveSystemConfig();
+    MainWindow::HuggleMain->ReloadInterface();
     this->hide();
 }
 
@@ -797,6 +799,7 @@ void Preferences::ResetItems()
     this->ui->cb_WatchWarn->setChecked(hcfg->UserConfig->AutomaticallyWatchlistWarnedUsers);
     this->ui->le_KeystrokeRate->setText(QString::number(hcfg->SystemConfig_KeystrokeMultiPressRate));
     this->ui->checkBox_7->setChecked(hcfg->UserConfig->HighlightSummaryIfExists);
+    this->ui->cbNumberMenus->setChecked(hcfg->UserConfig->NumberDropdownMenuItems);
     this->ui->checkBox_unsafe->setChecked(hcfg->SystemConfig_UnsafeExts);
     this->ui->cbKeystrokeFix->setChecked(hcfg->SystemConfig_KeystrokeMultiPressFix);
 
