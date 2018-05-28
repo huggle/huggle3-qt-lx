@@ -385,6 +385,8 @@
   <string name="main-revision-revert-warn">Reverter edição exibida atualmente e avisar o utilizador</string>
   <string name="main-revision-rws">Reverter edição exibida atualmente, avisar utilizador e permanecer na página</string>
   <string name="main-revision-faith">Reverter com boa fé</string>
+  <string name="main-revision-revert-only-this">Reverter apenas esta revisão</string>
+  <string name="main-revision-revert-agf">Reverter somente esta edição, assumindo boa fé</string>
   <string name="main-revision-previous">Anterior</string>
   <string name="main-revision-next">Seguinte</string>
   <string name="main-revision-latest">Última</string>
@@ -415,11 +417,14 @@
   <string name="main-page-delete">Eliminar</string>
   <string name="main-page-load">Carregar</string>
   <string name="main-patrol-not-enabled">O patrulhamento não está disponível em $1</string>
+  <string name="main-page-refresh">Atualizar</string>
   <string name="main-page-restore">Restaurar esta versão</string>
   <string name="main-page-watchlist-add">Adicionar página à lista de páginas vigiadas</string>
   <string name="main-page-tab-close">Fechar o separador atual</string>
   <string name="main-page-tab-open">Abrir num separador novo</string>
   <string name="main-page-watchlist-remove">Retirar esta página da lista de páginas vigiadas</string>
+  <string name="main-scripting">Ficheiro de comandos</string>
+  <string name="main-scripting-script-manager">Gestor do ficheiro de comandos</string>
   <string name="main-user-info">Mostrar informações do(a) utilizador(a)</string>
   <string name="main-user-ignore">Ignorar</string>
   <string name="main-user-unignore">Deixar de ignorar</string>
@@ -432,6 +437,7 @@
   <string name="main-user-db">Reduzir pontuação de suspeição do utilizador</string>
   <string name="main-user-report">Denunciar</string>
   <string name="main-user-ib">Aumentar pontuação de suspeição</string>
+  <string name="main-user-contribution-browser">Navegador de contribuições</string>
   <string name="main-user-clear-tp">Limpar página de discussão de utilizador(a)</string>
   <string name="main-user-retrieving-tp">A obter a página de discussão de $1</string>
   <string name="main-user-block">Bloquear...</string>
@@ -454,6 +460,7 @@
   <string name="main-help-feedback">Comentários</string>
   <string name="main-help-about">Sobre o Huggle...</string>
   <string name="main-help-introduction">Introdução</string>
+  <string name="main-help-welcome-page">Página de boas-vindas</string>
   <string name="main-help-contents">Conteúdo</string>
   <string name="main-help-queuelegend">Legenda da fila</string>
   <string name="main-addqueue">Adicionar...</string>

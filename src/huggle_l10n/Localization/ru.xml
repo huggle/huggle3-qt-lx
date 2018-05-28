@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
+* Abiyoyo
 * Alexey zakharenkov
 * Av6
 * Biathlon
@@ -127,7 +128,7 @@
   <string name="config-title">Настройки</string>
   <string name="config-already-in-use">Это сочетание клавиш уже используется для $1, пожалуйста, выберите другое</string>
   <string name="config-openinbrowser">Открывать ссылки в новом окне браузера</string>
-  <string name="config-shownewedits">Показывать новые изменения на выбранной странице автоматически</string>
+  <string name="config-shownewedits">Показывать новые правки на выбранной странице автоматически</string>
   <string name="config-ircmode">Использовать IRC-канал со свежими правками, если это возможно</string>
   <string name="config-ircport">Порт IRC</string>
   <string name="config-difffontsize">Размер шрифта различия между версиями</string>
@@ -145,15 +146,15 @@
   <string name="config-ip">Анонимные участники</string>
   <string name="config-watchlist">Добавлять в список наблюдения</string>
   <string name="config-defaultsummary">Описание по умолчанию для ручных правок</string>
-  <string name="config-undosummary">Описание правки при отмене собственных изменений</string>
+  <string name="config-undosummary">Описание при отмене собственных правок</string>
   <string name="config-confirm-user">Запрашивать подтверждение перед откатом правки, сделанной в пространстве участника</string>
   <string name="config-confirm-wl">Запрашивать подтверждение перед откатом правки, сделанной пользователем из белого списка</string>
   <string name="config-confirm-talk">Запрашивать подтверждение перед откатом правки, сделанной на странице обсуждения</string>
   <string name="config-use-rollback">Использовать программные откаты</string>
   <string name="config-welcome-empty-page">Отправлять приветственные сообщения для пользователей с пустыми страницами обсуждений при добросовестных правках</string>
-  <string name="config-conflicts-revert">Автоматически разрешать конфликты редактирования с другими пользователями, которые произвели откат или внесли изменения на той же странице</string>
+  <string name="config-conflicts-revert">Автоматически разрешать конфликты редактирования с другими пользователями, которые произвели откат или внесли правки на той же странице</string>
   <string name="config-instant-reverts">Использовать мгновенные откаты (очень быстро, но они не могут быть отменены после того, как запущены)</string>
-  <string name="config-reverts-multiple">При отмене нескольких изменений тем же пользователем:</string>
+  <string name="config-reverts-multiple">При откате нескольких правок тем же пользователем:</string>
   <string name="config-revert-wait">Задержка отката (в секундах)</string>
   <string name="config-revert">Откатить</string>
   <string name="config-skip">Пропустить</string>
@@ -163,7 +164,7 @@
   <string name="config-months-name">Использовать месяцы в качестве заголовков вместо имён страниц</string>
   <string name="config-automatic-warning">Использовать автоматический тип и уровень предупреждения в функции «отправки предупреждения»</string>
   <string name="config-enable-irc">Включить IRC</string>
-  <string name="config-remove-reverted">Удалять из очереди изменения, которые уже были отменены кем-то другим</string>
+  <string name="config-remove-reverted">Удалять из очереди правки, которые уже были откачены кем-то другим</string>
   <string name="config-remove-old">Удалять более старые правки из очереди, если проанализирована новая правка к той же странице</string>
   <string name="config-auto-load-history">Автоматически загружать историю и информацию об участнике (требует много трафика)</string>
   <string name="config-last-revision">Переключить на последнюю версию страницы в случае, когда текущая загруженная правка не является последней (будет выполнена дозагрузка, что замедлит Huggle)</string>
@@ -199,7 +200,7 @@
   <string name="config-autoadvance">После отката, сразу переходить к следующей правке в очереди</string>
   <string name="config-userollback">Использовать функции отката, если доступно</string>
   <string name="config-revertsummaries">Описания откатов доступны в меню</string>
-  <string name="config-auto-refresh">Автоматически обновлять страницу, если было кто-то внёс изменение</string>
+  <string name="config-auto-refresh">Автоматически обновлять страницу, если кто-то сделал правку</string>
   <string name="config-extendreports">Добавлять в отчёт повторяющиеся вандальные правки</string>
   <string name="config-autoreport">При простановке предупреждения пользователю с последним предупреждением</string>
   <string name="config-reportnone">Ничего не делать</string>
@@ -222,7 +223,7 @@
   <string name="config-notify-update">Проверять на наличие обновлений</string>
   <string name="config-notify-beta">Проверять на наличие бета-версий, если возможно</string>
   <string name="custommessage-title">Отправить сообщение to $1</string>
-  <string name="custommessage-summary">Описание изменений (тег Huggle автоматически будет вставлен)</string>
+  <string name="custommessage-summary">Описание правки (с автоподставленным тегом \"Huggle\")</string>
   <string name="custommessage-subject">Заголовок</string>
   <string name="custommessage-menu">Отправить своё сообщение</string>
   <string name="custommessage-send">Отправить сообщение</string>
@@ -256,7 +257,7 @@
   <string name="historyform-retrieving-history">Получение истории</string>
   <string name="historyform-not-latest-tip">Это не последняя версия данной страницы. Убедитесь, что вы просмотрели и более новые версии. Также имейте в виду, что откат с этой точки может быть невозможен.</string>
   <string name="history-error-message-title">Невозможно отменить</string>
-  <string name="history-error">Этот пункт не может быть отменён. Возможно, страница была изменена или удалена за это время, и Huggle не в состоянии выполнить откат от этой точки. Если вы действительно хотите отменить это изменение, необходимо будет сделать это вручную, используя интерфейс MediaWiki.</string>
+  <string name="history-error">Этот пункт не может быть отменён. Возможно, страница уже была изменена или удалена, и Huggle не в состоянии выполнить откат. Если вы действительно хотите отменить это изменение, необходимо будет сделать это вручную, используя интерфейс MediaWiki.</string>
   <string name="history-failure">Не удалось получить историю</string>
   <string name="userhistory-title">История ваших изменений</string>
   <string name="irc-connected">$1: Подключились к IRC-каналу свежих правок</string>
@@ -285,7 +286,7 @@
   <string name="login-proxy-remember-this">Запомнить эту настройку на будущее</string>
   <string name="login-proxyport">Порт:</string>
   <string name="login-proxydomain">Домен:</string>
-  <string name="proxy-restart">Возможно, потребуется перезапустить Huggle, чтобы эти изменения вступили в силу</string>
+  <string name="proxy-restart">Возможно, потребуется перезапустить Huggle, чтобы эти изменения вступили в силу.</string>
   <string name="login-retrieving-user-conf">Получение пользовательских настроек</string>
   <string name="login-fail-css">Ошибка входа на $1: Не удалось получить настройки пользователя. Страница Special:MyPage/huggle3.css отсутствует. Вы создали подстраницу huggle3.css в своём пространстве?</string>
   <string name="login-fail-enable-true">Ошибка входа на $1: Отсутствует enable:true в настройках.</string>
@@ -396,11 +397,13 @@
   <string name="main-revision-decline">Отклонить правку</string>
   <string name="main-revision">Правка</string>
   <string name="main-revision-view">Просмотр</string>
-  <string name="main-revision-revert">Отменить отображаемую сейчас правку</string>
+  <string name="main-revision-revert">Откатить отображаемую сейчас правку</string>
   <string name="main-revision-rv-stay">Отменить эту правку и остаться на странице</string>
   <string name="main-revision-revert-warn">Откатить текущую показанную правку и предупредить пользователя</string>
   <string name="main-revision-rws">Откатить текущую показанную правку, предупредить пользователя и остаться на странице</string>
-  <string name="main-revision-faith">Вернуть, предполагая добрые намерения</string>
+  <string name="main-revision-faith">Откатить, предполагая добрые намерения</string>
+  <string name="main-revision-revert-only-this">Отменить только эту правку</string>
+  <string name="main-revision-revert-agf">Откатить только эту правку, предполагая добрые намерения</string>
   <string name="main-revision-previous">Предыдущая</string>
   <string name="main-revision-next">Следующая</string>
   <string name="main-revision-latest">Последняя</string>
@@ -431,11 +434,14 @@
   <string name="main-page-delete">Удалить</string>
   <string name="main-page-load">Загрузить</string>
   <string name="main-patrol-not-enabled">Патрулирование не включено на $1</string>
+  <string name="main-page-refresh">Обновить</string>
   <string name="main-page-restore">Восстановить эту версию</string>
   <string name="main-page-watchlist-add">Добавить страницу в список наблюдения</string>
   <string name="main-page-tab-close">Закрыть текущую вкладку</string>
   <string name="main-page-tab-open">Открыть новую вкладку</string>
   <string name="main-page-watchlist-remove">Удалить эту страницу из списка наблюдения</string>
+  <string name="main-scripting">Скрипты</string>
+  <string name="main-scripting-script-manager">Менеджер скриптов</string>
   <string name="main-user-info">Показать информацию об участнике</string>
   <string name="main-user-ignore">Добавить в белый список</string>
   <string name="main-user-unignore">Удалить из белого списка</string>
@@ -448,6 +454,7 @@
   <string name="main-user-db">Уменьшить штрафные баллы участника</string>
   <string name="main-user-report">Сообщить</string>
   <string name="main-user-ib">Увеличить штрафные баллы участника</string>
+  <string name="main-user-contribution-browser">Браузер вклада</string>
   <string name="main-user-clear-tp">Очистить страницу обсуждения участника</string>
   <string name="main-user-retrieving-tp">Получение страницы обсуждения для $1</string>
   <string name="main-user-block">Блокировать...</string>
@@ -470,6 +477,7 @@
   <string name="main-help-feedback">Отзыв</string>
   <string name="main-help-about">О Huggle...</string>
   <string name="main-help-introduction">Введение</string>
+  <string name="main-help-welcome-page">Страница приветствия</string>
   <string name="main-help-contents">Содержание</string>
   <string name="main-help-queuelegend">Обозначения в очереди</string>
   <string name="main-addqueue">Добавить...</string>
@@ -493,8 +501,8 @@
   <string name="main-restore-text-fail">Невозможно восстановить эту версию, поскольку для неё недоступен текст</string>
   <string name="main-restore-data-fail">Невозможно восстановить эту версию, поскольку вики не предоставила данных о выбранной версии</string>
   <string name="main-welcome-user">Добро пожаловать, пользователь</string>
-  <string name="main-custom-reason-title">Отменить изменение с указанием причины</string>
-  <string name="main-custom-reason-text">Укажите причину, по которой вы хотите отменить эту правку</string>
+  <string name="main-custom-reason-title">Откатить правку с указанием причины</string>
+  <string name="main-custom-reason-text">Укажите причину, по которой вы хотите откатить эту правку</string>
   <string name="main-custom-reason-fail">Вы не указали подходящую причину</string>
   <string name="main-report-username">Пожаловаться на имя участника</string>
   <string name="main-report-user">Сообщить о нарушении</string>
@@ -504,7 +512,7 @@
   <string name="main-statistics-none">ничего</string>
   <string name="main-tab-welcome-title">Страница приветствия</string>
   <string name="message-title">Сообщение $1</string>
-  <string name="message-help">Укажите Заголовок и Текст сообщения. Если поле Описание изменений останется пустым, то в него подставится Заголовок сообщения. Если Заголовок сообщения останется пустым, то он не будет сгенерирован и останется пустым.</string>
+  <string name="message-help">Укажите заголовок и\или описание. Если поле \"Описание\" изменений останется пустым, то в него будет подставлен \"Заголовок\". Если заголовок сообщения останется пустым, то он не будет сгенерирован и останется пустым.</string>
   <string name="message-subject">Заголовок:</string>
   <string name="message-message">Текст:</string>
   <string name="message-summary">Описание изменений:</string>
@@ -540,8 +548,8 @@
   <string name="queue-listbuilder">Конструктор списков...</string>
   <string name="queue-sortorder">Сортировать по:</string>
   <string name="queue-removeviewed">Удалять правку при просмотре</string>
-  <string name="queue-removeold">Удалять старые изменения на ту же страницу</string>
-  <string name="queue-ignorepages">Игнорировать изменения на страницах «игнор-листа»</string>
+  <string name="queue-removeold">Удалять старые правки на той же странице</string>
+  <string name="queue-ignorepages">Игнорировать правки на страницах из «игнор-листа»</string>
   <string name="queue-traynotification">Показывать уведомление в трее при добавлении правки в очередь</string>
   <string name="queue-diffsgroup">Различия в версиях</string>
   <string name="queue-pagefiltersgroup">Фильтры по названию страниц</string>
@@ -567,7 +575,7 @@
   <string name="queue-examplelabel3">Не проверять этот атрибут</string>
   <string name="queue-usergroup">Показать правки только этих пользователей</string>
   <string name="report-title">Отчёт $1</string>
-  <string name="report-warn">Этот пользователь уже достиг 4 уровня предупреждения, поэтому никакие дальнейшие шаблоны не будут доставлены к нему. Вы можете пожаловаться на этого пользователя сейчас, но, пожалуйста, убедитесь, что он уже достиг соответствующего количества предупреждений! Вы можете сделать это, нажав на кнопку \"страница обсуждения\" в следующей форме. Имейте в виду, что эта форма и это предупреждение отображает, был ли ваш возврат успешным или нет, так как он может конфликтовать с другими пользователями (проверьте, если на пользователя уже пожаловались). Вы хотите пожаловаться на этого пользователя?</string>
+  <string name="report-warn">Этот пользователь уже достиг 4 уровня предупреждения, поэтому никакие дальнейшие шаблоны не будут доставлены к нему. Вы можете пожаловаться на этого пользователя сейчас, но, пожалуйста, убедитесь, что он уже достиг соответствующего количества предупреждений! Вы можете сделать это, нажав на кнопку \"страница обсуждения\" в следующей форме. Учтите, что эта форма и это предупреждение отображает, был ли ваш откат успешным или нет, так как он может конфликтовать с другими пользователями (проверьте, если на пользователя уже пожаловались). Вы хотите пожаловаться на этого пользователя?</string>
   <string name="report-tu">Сообщить о пользователе</string>
   <string name="report-reason">Причина:</string>
   <string name="report-auto">Сообщено $1</string>
@@ -649,12 +657,12 @@
   <string name="userinfo-generic">Информация об участнике</string>
   <string name="userinfo-retrieve">Получить информацию</string>
   <string name="userinfo-no-user">Нет пользователя</string>
-  <string name="shortcut-refresh">Обновить отображаемую сейчас страницу (перезагрузить историю и перейти к последнему изменению)</string>
+  <string name="shortcut-refresh">Обновить отображаемую сейчас страницу (перезагрузить историю и перейти к последней правке)</string>
   <string name="shortcut-page-patrol-edit">Отпатрулировать правку</string>
   <string name="shortcut-report-username">Пожаловаться на имя учётной записи</string>
   <string name="shortcut-report-user">Сообщить о нарушении</string>
   <string name="shortcut-my-talk">Моя страница обсуждения</string>
-  <string name="shortcut-raw">Отменить редактирование и предупредить пользователя</string>
+  <string name="shortcut-raw">Откатить правку и предупредить пользователя</string>
   <string name="shortcut-contrib">Показать вклад пользователя, который внёс отображаемую правку</string>
   <string name="shortcut-custom-msg">Открытие формы для отправки сообщения текущему участнику</string>
   <string name="shortcut-exit">Завершить Huggle в обычном режиме</string>
@@ -663,13 +671,13 @@
   <string name="shortcut-back">Перейти к ранее показанной правке</string>
   <string name="shortcut-forward">Перейти к загруженной в прошлом, но пропущенной правке</string>
   <string name="shortcut-warn">Отправить предупреждение участнику без отката правки</string>
-  <string name="shortcut-revert">Отменить правку</string>
+  <string name="shortcut-revert">Откатить правку</string>
   <string name="shortcut-x-raw">Вызвать N-ый пункт в меню отката и предупреждений</string>
   <string name="shortcut-x-revert">Вызвать N-ый пункт в меню отката</string>
   <string name="shortcut-watch">Добавляет отображаемую страницу в ваш список наблюдения</string>
   <string name="shortcut-unwatch">Удаляет отображаемую страницу из вашего списка наблюдения</string>
   <string name="shortcut-x-warn">Вызвать N-ый пункт в меню предупреждений</string>
-  <string name="shortcut-good">Пометить текущее показанное изменение как хорошее</string>
+  <string name="shortcut-good">Пометить текущую отображаемую правку как \"хорошую\"</string>
   <string name="shortcut-open-in-huggle">Открывает страницу которая сейчас показана</string>
   <string name="shortcut-open">Открывает текущую показанную правку в браузере</string>
   <string name="shortcut-talk">Показать страницу обсуждения участника, выполнившего это изменение</string>
@@ -678,7 +686,7 @@
   <string name="shortcut-tab">Открывает новую вкладку</string>
   <string name="shortcut-rw-stay">Откатить текущую правку, предупредить пользователя и остаться на странице</string>
   <string name="shortcut-revert-and-stay">Откатить текущую правку и остаться на странице</string>
-  <string name="shortcut-custom-reason">Отменить правку с собственным описанием</string>
+  <string name="shortcut-custom-reason">Откатить правку с собственным описанием</string>
   <string name="shortcut-user-contribs-browser">Открыть вклад пользователя в браузере</string>
   <string name="shortcut-user-clear-talk">Очистить страницу обсуждения текущего участника</string>
   <string name="warning-title">Предупредить $1</string>
@@ -724,7 +732,7 @@
   <string name="deletelog-none">Журнал удалений страницы \'$1\' пуст</string>
   <string name="deletelog-progress">Открывается журнал удалений страницы \'$1\'...</string>
   <string name="edit-bar-top">Эта правка — последняя версия</string>
-  <string name="edit-fail">Изменения страницы \'$1\' не сохранены</string>
+  <string name="edit-fail">Правка страницы \'$1\' не сохранена</string>
   <string name="edit-progress">Редактирование \'$1\'...</string>
   <string name="history-fail">Не удалось получить историю правок \'$1\'</string>
   <string name="history-progress">Открывается история правок страницы \'$1\' ($2)...</string>
@@ -734,14 +742,14 @@
   <string name="history-another-edit">Отменяется другая правка, пожалуйста, подождите...</string>
   <string name="history-not-found">Ничего не найдено для отмены</string>
   <string name="history-already-done">Это уже отменено</string>
-  <string name="history-message-revert-body">Это было послание, на которое ссылается откат, вы уверены, что хотите отменить только шаблон и даже не редактировать страницу? (вам нужно отменить откат в случае, если вы хотите вернуть обе эти)</string>
+  <string name="history-message-revert-body">Это было сообщение, на которое ссылается откат. Вы уверены, что хотите отменить только шаблон, но не редактировать страницу? (вам нужно отменить откат в случае, если вы хотите откатить обе правки)</string>
   <string name="history-revert-fail">Не удалось отменить вашу правку на странице $1, так как обнаружена следующая ошибка: $2</string>
   <string name="history-undone">Успешно отменена правка на странице $1</string>
   <string name="history-retrieve-fail">Невозможно получить содержимое страницы, на которой мы хотели отменить собственную правку, из-за ошибки: $1</string>
   <string name="history-welcome-msg-title">Отправить вместо этого приветственное сообщение?</string>
   <string name="history-welcome-msg">Вы создали эту страницу обсуждения, поэтому действие не может быть отменено. Вы действительно хотите вместо этого вставить шаблон приветствия?</string>
   <string name="newtab-title">Это новая вкладка!</string>
-  <string name="newtab-text">Вкладуи в Huggle работают примерно как в веб-браузере. Все вкладки имеют общую очередь, но могут быть полезны если вы хотели бы присматривать за какой-либо страницей, или проверить изменение позже.</string>
+  <string name="newtab-text">Вкладки в Huggle работают примерно как в веб-браузере. Все вкладки имеют общую очередь, но могут быть полезны если вы хотели бы присматривать за какой-либо страницей, или проверить правку позже.</string>
   <string name="notify-fail">Автор страницы \'$1\' не уведомлён</string>
   <string name="notify-unknowncreator">Автор страницы не известен</string>
   <string name="protect-done">Изменён уровень защиты для \'$1\'</string>
@@ -791,11 +799,11 @@
   <string name="welcome-show">Показывать это сообщение и в следующий раз вы запустите на Huggle</string>
   <string name="welcome-tp-empty-fail">У этого участника не пустая страница обсуждения. Вы уверены, что хотите отправить ему сообщение?</string>
   <string name="welcome-page-miss-fail">Huggle не удалось получить содержимое страницы обсуждения участника. Вы уверены, что хотите отправить ему приветственное сообщение?</string>
-  <string name="cr-newer-edits">Конфликт разрешён: отменены все изменения, включая новые правки. Правки были от одного пользователя: $1.</string>
-  <string name="cr-resolved-same-user">Конфликт разрешён: отменены все изменения, включая новые правки, сделанные теми же участниками: $1</string>
+  <string name="cr-newer-edits">Конфликт разрешён: откачены все правки, включая новые. Правки были от одного пользователя: $1.</string>
+  <string name="cr-resolved-same-user">Конфликт разрешён: откачены все правки, включая новые, сделанные теми же участниками: $1</string>
   <string name="cr-stop-new-edit">Конфликт разрешён: не выполнялись никакие действия - есть новые правки $1</string>
   <string name="cr-stop-multiple-same">Конфликт разрешён: не выполнялись никакие действия - есть несколько правок от одного пользователя в $1</string>
-  <string name="cr-revert-same-user">Конфликт разрешён: отменены все правки - есть несколько правок от одного пользователя в $1</string>
+  <string name="cr-revert-same-user">Конфликт разрешён: откачены все правки - есть несколько правок от одного пользователя в $1</string>
   <string name="cr-message-same">Есть несколько правок в $1 от одного участника, вы уверены, что хотите откатить их?</string>
   <string name="cr-message-new">Есть более новые правки в $1. Вы уверены, что действительно хотите откатить их?</string>
   <string name="cr-message-not-same">Существуют более новые правки, внесенные в $1 другим участником. Вы уверены, что хотите откатить их все? (В любом случае, это, скорее всего, не получится сделать, из-за старого маркера.)</string>
@@ -872,7 +880,7 @@
   <string name="main-revert-type-made-on-talk-page">сделал на странице обсуждения</string>
   <string name="main-revert-type-made-white-list">за авторством участника из белого списка</string>
   <string name="query-result-nodata">Результат запроса не содержит данных</string>
-  <string name="main-revert-warn">Эта правка - $1, поэтому даже если она выглядит как вандализм, она может не быть им. Уверены, что хотите отменить её?</string>
+  <string name="main-revert-warn">Эта правка - $1, поэтому даже если она выглядит как вандализм, она может не быть им. Уверены, что хотите откатить её?</string>
   <string name="query-request-noaction">Для запроса API не определены действия</string>
   <string name="query-login-undefined">Маркер входа требует значения определенного пользователем, он не хранится в памяти</string>
   <string name="query-protected-link">Защищенная ссылка</string>
@@ -887,10 +895,10 @@
   <string name="tip6">Возвращение Huggle может быть сделано намного быстрее, если вы опытный пользователь, который никогда не ошибается;) открывайте настройки и проверяйте \"Мгновенные реверты\",</string>
   <string name="tip7">Вы можете создавать свои собственные фильтры очереди в своих предпочтениях. Они хранятся на вашей странице конфигурации вики.</string>
   <string name="tip8">Нажатие \'G\' будет отмечать это редактирование как \"хорошее\". Это уведомит других о том, что редактирование может быть проигнорировано; будут уменьшены штрафные баллы участника, и, опционально, будет отправлено ему приветственное сообщение.</string>
-  <string name="tip9">При нажатии кнопки S будет отображаться как \"подозрительное редактирование\". Это уведомит других о том, что это редактирование требует внимания и добавляет его в очередь подозрительных изменений для последующего анализа экспертами.</string>
+  <string name="tip9">При нажатии на кнопку S правка будет помечена как подозрительная. Это уведомит других о том, что её проверка требует особого внимания.</string>
   <string name="tip10">Большинство ярлыков можно изменить в ваших настройках.</string>
   <string name="tip11">Перемещение виджета на экране Huggle поверх другого виджета объединит их в один, разделенный вкладками.</string>
-  <string name="tip12">Сделал ошибку? Нет проблем, щелкнув правой кнопкой мыши любое редактирование, сделанное вами в \"История ваших изменений\", открывается всплывающее окно, которое предлагает возможность отменить ваши собственные изменения.</string>
-  <string name="tip13">Вы можете открыть \"браузер вклада\" для пользователя, который создал отображаемое в данный момент редактирование, нажав Shift + C (по умолчанию) или в меню пользователя. Он позволяет быстро просматривать последние изменения, сделанные этим пользователем.</string>
+  <string name="tip12">Допустили ошибку? Нет проблем, щёлкнув правой кнопкой мыши  в «Истории ваших правок» по любой сделанной правке, откроется всплывающее окно, которое предложит возможность отменить ваши собственные правки.</string>
+  <string name="tip13">Вы можете открыть «браузер вклада» для пользователя, который сделал отображаемую в данный момент правку, нажав Shift + C (по умолчанию) или в меню пользователя. Он позволяет быстро просматривать последние правки пользователя.</string>
   <string name="tip14">Вы можете общаться с другими активными пользователями Huggle, которые сейчас используют программу. Вы увидите их в окне \"Сеть\", если они находятся в сети.</string>
 </resources>

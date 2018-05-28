@@ -392,6 +392,8 @@
   <string name="main-revision-revert-warn">Annuler la modification actuellement affichée et avertir l’utilisateur</string>
   <string name="main-revision-rws">Annuler la modification actuellement affichée et avertir l’utilisateur et rester sur la page</string>
   <string name="main-revision-faith">Révoquer la présomption de bonne foi</string>
+  <string name="main-revision-revert-only-this">Annuler seulement cette révision</string>
+  <string name="main-revision-revert-agf">Annuler seulement cette révision en supposant la bonne foi</string>
   <string name="main-revision-previous">Précédente</string>
   <string name="main-revision-next">Suivante</string>
   <string name="main-revision-latest">Dernière</string>
@@ -422,11 +424,14 @@
   <string name="main-page-delete">Supprimer</string>
   <string name="main-page-load">Charger</string>
   <string name="main-patrol-not-enabled">Patrouiller n’est pas activé sur $1</string>
+  <string name="main-page-refresh">Rafraîchir</string>
   <string name="main-page-restore">Rétablir cette révision</string>
   <string name="main-page-watchlist-add">Ajouter une page dans la liste de suivi</string>
   <string name="main-page-tab-close">Fermer l’onglet courant</string>
   <string name="main-page-tab-open">Ouvrir un nouvel onglet</string>
   <string name="main-page-watchlist-remove">Supprimer une page d’une liste de suivi</string>
+  <string name="main-scripting">Scripts</string>
+  <string name="main-scripting-script-manager">Gestionnaire de scripts</string>
   <string name="main-user-info">Afficher les informations de l’utilisateur</string>
   <string name="main-user-ignore">Ignorer</string>
   <string name="main-user-unignore">Ne plus ignorer</string>
@@ -439,6 +444,7 @@
   <string name="main-user-db">Décrémenter la note de mauvaise conduite de l’utilisateur</string>
   <string name="main-user-report">Signaler</string>
   <string name="main-user-ib">Augmenter le pointage de mauvaise conduite</string>
+  <string name="main-user-contribution-browser">Pointage des contributions</string>
   <string name="main-user-clear-tp">Nettoyer la page de discussion de l’utilisateur</string>
   <string name="main-user-retrieving-tp">Récupération de la page de discussion de $1</string>
   <string name="main-user-block">Bloquer...</string>
@@ -461,6 +467,7 @@
   <string name="main-help-feedback">Donner votre avis</string>
   <string name="main-help-about">À propos de Huggle...</string>
   <string name="main-help-introduction">Introduction</string>
+  <string name="main-help-welcome-page">Page d’accueil</string>
   <string name="main-help-contents">Sommaire</string>
   <string name="main-help-queuelegend">Mettre la légende en file d’attente</string>
   <string name="main-addqueue">Ajouter...</string>

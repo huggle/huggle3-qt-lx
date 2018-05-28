@@ -396,6 +396,8 @@
   <string name="main-revision-revert-warn">Reverter a edição exibida atualmente e avisar o usuário</string>
   <string name="main-revision-rws">Reverter a edição exibida atualmente, avisar usuário e permanecer na página</string>
   <string name="main-revision-faith">Reverter assumindo boa-fé</string>
+  <string name="main-revision-revert-only-this">Reverter apenas esta revisão</string>
+  <string name="main-revision-revert-agf">Reverter somente esta revisão assumindo boa fé</string>
   <string name="main-revision-previous">Anterior</string>
   <string name="main-revision-next">Seguinte</string>
   <string name="main-revision-latest">Última</string>
@@ -426,11 +428,13 @@
   <string name="main-page-delete">Eliminar</string>
   <string name="main-page-load">Carregar</string>
   <string name="main-patrol-not-enabled">Patrulhamento não está habilitado em $1</string>
+  <string name="main-page-refresh">Atualizar</string>
   <string name="main-page-restore">Restaurar revisão</string>
   <string name="main-page-watchlist-add">Adicionar página à lista de páginas vigiadas</string>
   <string name="main-page-tab-close">Fechar a atual guia</string>
   <string name="main-page-tab-open">Abrir uma nova aba</string>
   <string name="main-page-watchlist-remove">Retirar esta página da lista de páginas vigiadas</string>
+  <string name="main-scripting-script-manager">Gerente de Scripts</string>
   <string name="main-user-info">Mostrar informações do usuário</string>
   <string name="main-user-ignore">Ignorar edições deste usuário</string>
   <string name="main-user-unignore">Deixar de ignorar edições deste usuário</string>
@@ -443,6 +447,7 @@
   <string name="main-user-db">Reduzir pontuação de suspeita do usuário</string>
   <string name="main-user-report">Reportar</string>
   <string name="main-user-ib">Aumentar pontuação de suspeita do usuário</string>
+  <string name="main-user-contribution-browser">Navegador de contribuição</string>
   <string name="main-user-clear-tp">Limpar página de discussão do(a) usuário(a)</string>
   <string name="main-user-retrieving-tp">Obtendo a Página de Discussão de $1</string>
   <string name="main-user-block">Bloquear...</string>
@@ -465,6 +470,7 @@
   <string name="main-help-feedback">Feedback</string>
   <string name="main-help-about">Sobre o Huggle...</string>
   <string name="main-help-introduction">Introdução</string>
+  <string name="main-help-welcome-page">Página de boas-vindas</string>
   <string name="main-help-contents">Conteúdo</string>
   <string name="main-help-queuelegend">Legenda da fila</string>
   <string name="main-addqueue">Adicionar...</string>

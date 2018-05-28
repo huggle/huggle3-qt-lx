@@ -230,6 +230,7 @@
   <string name="main-revision-view">Weisen</string>
   <string name="main-revision-revert">Déi Ännerung déi elo gewise gëtt zrécksetzen</string>
   <string name="main-revision-rv-stay">Dës Ännerung zrécksetzen an op enger Säit bleiwen</string>
+  <string name="main-revision-revert-only-this">Nëmmen dës Versioun zrécksetzen</string>
   <string name="main-revision-previous">Vireg</string>
   <string name="main-revision-next">Nächst</string>
   <string name="main-revision-latest">Lescht</string>
@@ -254,6 +255,7 @@
   <string name="main-page-delete">Läschen</string>
   <string name="main-page-load">Lueden</string>
   <string name="main-patrol-not-enabled">D\'Nokucken ass op $1 net aktivéiert</string>
+  <string name="main-page-refresh">Aktualiséieren</string>
   <string name="main-page-restore">Dës Versioun restauréieren</string>
   <string name="main-page-watchlist-add">Säit op eng Iwwerwaachungslëscht derbäisetzen</string>
   <string name="main-page-tab-close">Aktuellen Tab zoumaachen</string>
@@ -285,6 +287,7 @@
   <string name="main-help-feedback">Feedback</string>
   <string name="main-help-about">Iwwer Huggle...</string>
   <string name="main-help-introduction">Aféierung</string>
+  <string name="main-help-welcome-page">Begréissungssäit</string>
   <string name="main-help-contents">Inhalter</string>
   <string name="main-addqueue">Derbäisetzen...</string>
   <string name="main-savelogtitle">Logbuch späicheren</string>

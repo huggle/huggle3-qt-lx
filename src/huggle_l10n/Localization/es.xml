@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
 * 2axterix2
+* Adjen
 * AlvaroMolina
 * Dgstranz
 * Fitoschido
@@ -281,6 +282,7 @@
   <string name="login-fail-no-info">Falló el acceso a $1: no se pudo obtener la información de la cuenta ($2)</string>
   <string name="login-bot">¿Cuál es la diferencia entre BotPassword y el acceso heredado?</string>
   <string name="login-fail-parse-config">Error de inicio de sesión en $1: no se puede analizar la configuración de usuario. Ver el registro de depuración para obtener más detalles.</string>
+  <string name="login-fail-parse-config-yaml">Inicion fallido en $1: Incapaz de parse la configuration del usario: $2</string>
   <string name="login-fail-user-data">Error de inicio de sesión en $1: no se puede recuperar la información de usuario. La API de consulta no devuelve datos.</string>
   <string name="login-fail-rollback-rights">Falló el acceso a $1: no tienes el permiso de reversor en este proyecto.</string>
   <string name="login-failed-autoconfirm-rights">Falló el acceso a $1: no tienes el permiso de autoconfirmado en este proyecto.</string>
@@ -389,6 +391,8 @@
   <string name="main-revision-revert-warn">Revertir la edición acutualmente mostrada y advertir al usuario</string>
   <string name="main-revision-rws">Revertir la edición acutualmente mostrada, advertir al usuario y permanecer en la página</string>
   <string name="main-revision-faith">Revertir suponiendo buena fe</string>
+  <string name="main-revision-revert-only-this"> Sólo revertir esta revisión</string>
+  <string name="main-revision-revert-agf">Revertir solamente esta revisión, asumiendo buena fe</string>
   <string name="main-revision-previous">Previa</string>
   <string name="main-revision-next">Siguiente</string>
   <string name="main-revision-latest">Última</string>
@@ -419,11 +423,14 @@
   <string name="main-page-delete">Borrar</string>
   <string name="main-page-load">Cargar</string>
   <string name="main-patrol-not-enabled">La verificación no está activada en $1</string>
+  <string name="main-page-refresh">Actualizar</string>
   <string name="main-page-restore">Restaurar esta revisión</string>
   <string name="main-page-watchlist-add">Añadir la página a una lista de seguimiento</string>
   <string name="main-page-tab-close">Cerrar la pestaña actual</string>
   <string name="main-page-tab-open">Abrir una pestaña nueva</string>
   <string name="main-page-watchlist-remove">Quitar página de una lista de seguimiento</string>
+  <string name="main-scripting">Automatización</string>
+  <string name="main-scripting-script-manager">Gestor de secuencias de órdenes</string>
   <string name="main-user-info">Mostrar información</string>
   <string name="main-user-ignore">Ignorar</string>
   <string name="main-user-unignore">Dejar de ignorar</string>
@@ -436,6 +443,7 @@
   <string name="main-user-db">Disminuir la puntuacion de maldad del usuario</string>
   <string name="main-user-report">Denunciar</string>
   <string name="main-user-ib">Aumentar la puntuación de maldad</string>
+  <string name="main-user-contribution-browser">Navegador de contribuciones</string>
   <string name="main-user-clear-tp">Vaciar página de discusión del usuario</string>
   <string name="main-user-retrieving-tp">Consultando página de discusión de $1</string>
   <string name="main-user-block">Bloquear...</string>
@@ -458,6 +466,7 @@
   <string name="main-help-feedback">Comentarios</string>
   <string name="main-help-about">Acerca de Huggle...</string>
   <string name="main-help-introduction">Introducción</string>
+  <string name="main-help-welcome-page">Página de bienvenida</string>
   <string name="main-help-contents">Contenido</string>
   <string name="main-addqueue">Añadir...</string>
   <string name="main-savelogtitle">Guardar registro</string>

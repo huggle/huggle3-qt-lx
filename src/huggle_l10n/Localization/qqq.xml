@@ -268,6 +268,7 @@
   <string name="main-page-protect">Used as label for the button.\n{{Identical|Protect}}</string>
   <string name="main-page-delete">Used as label for the button.\n\nSee also:\n* {{msg-huggle|Main-page-reqdeletion}}\n{{Identical|Delete}}</string>
   <string name="main-page-load">{{Identical|Load}}</string>
+  <string name="main-page-refresh">{{Identical|Refresh}}</string>
   <string name="main-page-restore">Used as label for the button.</string>
   <string name="main-user-ignore">{{Identical|Ignore}}</string>
   <string name="main-user-unignore">{{Identical|Unignore}}</string>

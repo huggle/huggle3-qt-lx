@@ -374,6 +374,8 @@
   <string name="main-revision-revert-warn">현재 표시되는 편집을 되돌리고 사용자에게 경고</string>
   <string name="main-revision-rws">현재 표시되는 편집을 되돌리고, 사용자를 경고하고 문서에 머물기</string>
   <string name="main-revision-faith">좋은 뜻으로 보지만 되돌리기</string>
+  <string name="main-revision-revert-only-this">이 판만 되돌리기</string>
+  <string name="main-revision-revert-agf">좋은 뜻으로 이 판만 되돌리기</string>
   <string name="main-revision-previous">이전</string>
   <string name="main-revision-next">다음</string>
   <string name="main-revision-latest">최신</string>
@@ -404,11 +406,14 @@
   <string name="main-page-delete">삭제</string>
   <string name="main-page-load">불러오기</string>
   <string name="main-patrol-not-enabled">점검은 $1에 사용되지 않습니다</string>
+  <string name="main-page-refresh">새로 고침</string>
   <string name="main-page-restore">이 판을 되살리기</string>
   <string name="main-page-watchlist-add">문서를 주시문서 목록에 추가</string>
   <string name="main-page-tab-close">현재 탭 닫기</string>
   <string name="main-page-tab-open">새 탭 열기</string>
   <string name="main-page-watchlist-remove">문서를 주시문서 목록에서 제거하기</string>
+  <string name="main-scripting">스크립트</string>
+  <string name="main-scripting-script-manager">스크립트 관리자</string>
   <string name="main-user-info">사용자 정보 보기</string>
   <string name="main-user-ignore">무시</string>
   <string name="main-user-unignore">무시 해제</string>
@@ -421,6 +426,7 @@
   <string name="main-user-db">사용자의 나쁜 점수 내리기</string>
   <string name="main-user-report">보고</string>
   <string name="main-user-ib">나쁜 점수 올리기</string>
+  <string name="main-user-contribution-browser">기여 브라우저</string>
   <string name="main-user-clear-tp">사용자의 토론 문서 지우기</string>
   <string name="main-user-retrieving-tp">$1의 토론 문서를 가져옵니다</string>
   <string name="main-user-block">차단...</string>
@@ -442,6 +448,7 @@
   <string name="main-help-feedback">피드백</string>
   <string name="main-help-about">Huggle 정보...</string>
   <string name="main-help-introduction">소개</string>
+  <string name="main-help-welcome-page">환영 페이지</string>
   <string name="main-addqueue">추가...</string>
   <string name="main-savelogtitle">기록 저장</string>
   <string name="main-usermessageother">다른 메시지...</string>

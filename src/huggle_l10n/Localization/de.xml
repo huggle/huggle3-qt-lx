@@ -385,6 +385,8 @@
   <string name="main-revision-revert-warn">Derzeit angezeigte Bearbeitung zurücksetzen und Benutzer warnen</string>
   <string name="main-revision-rws">Derzeit angezeigte Bearbeitung zurücksetzen, Benutzer warnen und auf einer Seite bleiben</string>
   <string name="main-revision-faith">Gut gemeinte Änderung zurücksetzen</string>
+  <string name="main-revision-revert-only-this">Nur diese Version zurücksetzen</string>
+  <string name="main-revision-revert-agf">Nur diese Version zurücksetzen, von guten Absichten ausgehen</string>
   <string name="main-revision-previous">Vorherige</string>
   <string name="main-revision-next">Nächste</string>
   <string name="main-revision-latest">Aktuellste</string>
@@ -415,11 +417,14 @@
   <string name="main-page-delete">Seite löschen</string>
   <string name="main-page-load">Laden</string>
   <string name="main-patrol-not-enabled">Das Überprüfen auf $1 ist nicht aktiviert</string>
+  <string name="main-page-refresh">Aktualisieren</string>
   <string name="main-page-restore">Diese Artikelversion wiederherstellen</string>
   <string name="main-page-watchlist-add">Seite einer Beobachtungsliste hinzufügen</string>
   <string name="main-page-tab-close">Aktuelle Registerkarte schließen</string>
   <string name="main-page-tab-open">Neue Registerkarte öffnen</string>
   <string name="main-page-watchlist-remove">Seite von der Beobachtungsliste entfernen</string>
+  <string name="main-scripting">Verschriftung</string>
+  <string name="main-scripting-script-manager">Schriftverwaltung</string>
   <string name="main-user-info">Benutzerinformation anzeigen</string>
   <string name="main-user-ignore">Ignoriere</string>
   <string name="main-user-unignore">Nicht mehr ignorieren</string>
@@ -432,6 +437,7 @@
   <string name="main-user-db">Schlechtheits-Score des Benutzers verringern</string>
   <string name="main-user-report">Melde</string>
   <string name="main-user-ib">Schlechtheits-Score erhöhen</string>
+  <string name="main-user-contribution-browser">Beitragsbrowser</string>
   <string name="main-user-clear-tp">Diskussionsseite des Benutzers leeren</string>
   <string name="main-user-retrieving-tp">Rufe Diskussionsseite von $1 ab</string>
   <string name="main-user-block">Sperre Benutzer...</string>
@@ -454,6 +460,7 @@
   <string name="main-help-feedback">Rückmeldung</string>
   <string name="main-help-about">Über Huggle...</string>
   <string name="main-help-introduction">Einführung</string>
+  <string name="main-help-welcome-page">Willkommensseite</string>
   <string name="main-help-contents">Inhalte</string>
   <string name="main-help-queuelegend">Warteschlangenlegende</string>
   <string name="main-addqueue">Hinzufügen...</string>

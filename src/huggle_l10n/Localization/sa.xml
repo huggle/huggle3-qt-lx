@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
+* Charunandan16
 * Macofe
 * NehalDaveND
 -->
@@ -148,6 +149,7 @@
   <string name="main-page-protect">संरक्ष्यताम्</string>
   <string name="main-page-delete">अपाक्रियताम्</string>
   <string name="main-page-load">आरोपणम्</string>
+  <string name="main-page-refresh">पुनःसज्जता</string>
   <string name="main-page-restore">संस्करणं पुनस्थाप्यताम्</string>
   <string name="main-user-info">सदस्यस्य विवरणं दृश्यताम्</string>
   <string name="main-user-ignore">अवगण्यताम्</string>
@@ -161,6 +163,7 @@
   <string name="main-help-documentation">प्रलेखनम्</string>
   <string name="main-help-feedback">प्रतिक्रिया</string>
   <string name="main-help-about">Huggle विषये...</string>
+  <string name="main-help-welcome-page">स्वागतपृष्ठम्</string>
   <string name="main-addqueue">योज्यताम्...</string>
   <string name="main-savelogtitle">सञ्चितावलिः (log) रक्ष्यताम्</string>
   <string name="message-title">सन्देशः $1</string>

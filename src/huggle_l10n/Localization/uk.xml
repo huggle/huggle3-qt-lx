@@ -5,6 +5,7 @@
 * Andriykopanytsia
 * Base
 * Gluck
+* Movses
 * Olvin
 * Piramidion
 * Renamerr
@@ -146,7 +147,7 @@
   <string name="config-remove-reverted">Прибирати з черги редагування, що вже скасовані кимось іншим</string>
   <string name="config-remove-old">Прибирати з черги старіші редагування, якщо отримано нове редагування тієї ж сторінки</string>
   <string name="config-auto-load-history">Автоматично завантажувати історію редагувань та останні редагування користувача (потребує багато трафіку)</string>
-  <string name="config-last-revision" fuzzy="true">Показувати останню версію сторінки, якщо поточне редагування не є найновішим (завантаження буде виконано оминаючи кеш)</string>
+  <string name="config-last-revision">Переключити на останню версію сторінки, якщо поточне редагування не є найновішим (буде виконано дозавантаження, що сповільнить Huggle)</string>
   <string name="config-require-delay">Встановити затримку після кожного завантаження наступного редагування, під час якої неможливо внести зміни (корисно для вирішення проблеми з натисканням кількох клавіш одразу)</string>
   <string name="config-wait-edit">Скільки потрібно чекати до ввімкнення можливості редагування (в секундах):</string>
   <string name="config-display-next">Показати наступне</string>
@@ -243,7 +244,7 @@
   <string name="login-username">Ім’я користувача:</string>
   <string name="login-password">Пароль:</string>
   <string name="login-proxygroup">Налаштування проксі</string>
-  <string name="login-proxy" fuzzy="true">Використовувати проксі</string>
+  <string name="login-proxy">Використовувати проксі</string>
   <string name="login-proxyaddress">Адреса:</string>
   <string name="login-proxy-remember-this">Запам\'ятати це налаштування на наступний раз</string>
   <string name="login-proxyport">Порт:</string>
@@ -278,20 +279,21 @@
   <string name="login-ssl">Використовувати HTTPS для входу (потрібна OpenSSL)</string>
   <string name="login-fail">Помилка входу до $1</string>
   <string name="login-error-admin">Для використання Huggle у цьому проекті потрібні права адміністратора.</string>
-  <string name="login-error-age" fuzzy="true">Для використання Huggle у цьому проекті потрібен обліковий запис, створений щонайменше $1 днів назад.</string>
+  <string name="login-error-age">Для використання Huggle у цьому проекті потрібно, щоб ваш обліковий запис, був створений щонайменше $1 днів тому.</string>
   <string name="login-error-alldisabled">Huggle у даний час відключений у всіх проектах.</string>
   <string name="login-error-approval">Використання Huggle у $1 вимагає схвалення заявки.</string>
   <string name="login-error-cancelled">Скасовано.</string>
   <string name="login-error-config">Помилка входу до $1: не вдалося розібрати локальні налаштування: $2</string>
+  <string name="login-error-config-retrieve">Помилка входу. Неможливо отримати користувацькі налаштування: $1</string>
   <string name="login-error-count">Для використання Huggle у цьому проекті потрібно зробити щонайменше $1 редагувань.</string>
-  <string name="login-error-disabled" fuzzy="true">Huggle не ввімкнено для Вашого облікового запису в $1. Перевірте сторінку користувацьких налаштувань.</string>
+  <string name="login-error-disabled">Huggle не ввімкнено для Вашого облікового запису в $1. Перевірте свою сторінку користувацьких налаштувань.</string>
   <string name="login-error-global">Помилка входу: Не вдалося розібрати глобальні налаштування. Дивіться налагоджувальний журнал для отримання детальної інформації.</string>
   <string name="login-error-invalid">Неправильне ім’я користувача</string>
   <string name="login-error-noconfig">В $1 відсутня сторінка налаштувань Huggle</string>
   <string name="login-error-nouser">Такого користувача не існує</string>
   <string name="login-error-password">Неправильний пароль</string>
   <string name="login-error-projdisabled">В даний момент Huggle відключений для $1.</string>
-  <string name="login-error-unknown" fuzzy="true">Не вдалося увійти до $1.</string>
+  <string name="login-error-unknown">Не вдалося увійти до $1.</string>
   <string name="login-error-version">Ця версія застаріла. Оновіться до останньої версії.</string>
   <string name="login-error-whitelist">Не вдалося завантажити білий список для $1.</string>
   <string name="main-menu-provider-stop">Припинити постачання</string>
@@ -500,7 +502,7 @@
   <string name="reportuser-not">Про цього користувача поки не повідомлялося</string>
   <string name="report-evidence-none-provid">Ви не відмітили жодне редагування, що можна було б надати адміністраторам як доказ. Вам краще відмітити кілька редагувань з порушеннями перед тим, як повідомити адміністраторів про користувача. Ви впевнені, що хочете продовжити без доказів?</string>
   <string name="report-duplicate">Про цього користувача повідомлено</string>
-  <string name="report-fail2" fuzzy="true">Неможливо знайти сторінку $1</string>
+  <string name="report-fail2">Неможливо отримати сторінку повідомлень про вандалізм за $1</string>
   <string name="report-progress">Повідомляю про $1…</string>
   <string name="report-retrieving">Завантажую сторінку з повідомленнями…</string>
   <string name="report-done">Повідомлено</string>
@@ -702,7 +704,7 @@
   <string name="preferences-extension-disabled" fuzzy="true">Дане розширення вже планується вимкнути при наступному запуску Huggle</string>
   <string name="preferences-extension-disabled-restart" fuzzy="true">Дане розширення вже планується вимкнути при наступному запуску Huggle</string>
   <string name="preferences-extension-enabled" fuzzy="true">Дане розширення не планується вимкнути при наступному запуску Huggle</string>
-  <string name="preferences-extension-enabled-restart" fuzzy="true">Розширення буде включено, але для цього потрібно перезапустити Huggle</string>
+  <string name="preferences-extension-enabled-restart">Розширення буде включено. Ви маєте перезапустити Huggle, щоб зміни набули сили.</string>
   <string name="preferences-watchlist-watch">Додати до списку спостереження</string>
   <string name="preferences-watchlist-unwatch">Прибрати зі списку спостереження</string>
   <string name="preferences-watchlist-preferences">Дотримуватися ваших налаштувань on-wiki</string>
@@ -711,7 +713,7 @@
   <string name="request">Запит</string>
   <string name="requesting">Роблю запит</string>
   <string name="requested">Запит виконано</string>
-  <string name="protect-request-fail">Не вдалося завантажити сторінку для повідомлення адміністраторів: $1</string>
+  <string name="protect-request-fail">Не вдалося завантажити сторінку повідомлень про вандалізм: $1</string>
   <string name="protect-request-fail-notext">Не вдалося завантажити сторінку для повідомлення адміністраторів, оскільки запит не повертає текст для цієї сторінки</string>
   <string name="protect-request-fail-notime">Запит не повертає дату та час. Можливо, через помилку MediaWiki. Перериваю запит.</string>
   <string name="message-fail">Не вдалося залишити повідомлення</string>
@@ -726,9 +728,9 @@
   <string name="namespace">Простір назв</string>
   <string name="block-alreadyblocked">Користувача вже заблоковано</string>
   <string name="report-fail">Не вдалося повідомити про користувача, оскільки: $1</string>
-  <string name="report-page-fail">Помилка: не вдалося завантажити сторінку для повідомлення адміністраторів в $1</string>
-  <string name="report-page-fail-time" fuzzy="true">Не вдалося завантажити дату та час сторінки для повідомлення адміністраторів, збій API:\n\n$1</string>
-  <string name="report-unable" fuzzy="true">Не вдалося повідомити про користувача :(</string>
+  <string name="report-page-fail">Помилка: не вдалося завантажити сторінку повідомлень про вандалізм за $1</string>
+  <string name="report-page-fail-time">Не вдалося завантажити дату та час сторінки повідомлень про вандалізм, збій API:\n\n$1</string>
+  <string name="report-unable">Не вдалося повідомити про користувача</string>
   <string name="about-qt">, зкомпільовано з використанням QT $1 Працює на QT $1</string>
   <string name="about-info">, на основі $1, цільова платформа: $2</string>
   <string name="error-unknown-code">Невідома помилка: $1</string>

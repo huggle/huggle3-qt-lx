@@ -384,6 +384,8 @@
   <string name="main-revision-revert-warn">回退目前顯示的編輯並警告該使用者</string>
   <string name="main-revision-rws">回退目前顯示的編輯並在警告用戶後停留在此頁面</string>
   <string name="main-revision-faith">假定善意回退</string>
+  <string name="main-revision-revert-only-this">僅回退此修訂</string>
+  <string name="main-revision-revert-agf">依據假定善意僅回退此修訂</string>
   <string name="main-revision-previous">前一頁</string>
   <string name="main-revision-next">下一頁</string>
   <string name="main-revision-latest">最新</string>
@@ -414,11 +416,14 @@
   <string name="main-page-delete">刪除</string>
   <string name="main-page-load">載入</string>
   <string name="main-patrol-not-enabled">沒有在$1啟動巡查</string>
+  <string name="main-page-refresh">重新整理</string>
   <string name="main-page-restore">還原此修訂</string>
   <string name="main-page-watchlist-add">新增頁面至監視清單裡</string>
   <string name="main-page-tab-close">關閉目前頁籤</string>
   <string name="main-page-tab-open">開啟新頁籤</string>
   <string name="main-page-watchlist-remove">從監視清單移除頁面</string>
+  <string name="main-scripting">手稿</string>
+  <string name="main-scripting-script-manager">手稿管理</string>
   <string name="main-user-info">顯示使用者資訊</string>
   <string name="main-user-ignore">忽略</string>
   <string name="main-user-unignore">取消忽略</string>
@@ -431,6 +436,7 @@
   <string name="main-user-db">降低使用者的不良記分</string>
   <string name="main-user-report">回報</string>
   <string name="main-user-ib">提高不良記分</string>
+  <string name="main-user-contribution-browser">貢獻瀏覽</string>
   <string name="main-user-clear-tp">清除使用者的對話頁</string>
   <string name="main-user-retrieving-tp">取得 $1 的對話頁面</string>
   <string name="main-user-block">封禁...</string>
@@ -453,6 +459,7 @@
   <string name="main-help-feedback">意見回饋</string>
   <string name="main-help-about">關於Huggle…</string>
   <string name="main-help-introduction">介紹</string>
+  <string name="main-help-welcome-page">歡迎頁面</string>
   <string name="main-help-contents">內容</string>
   <string name="main-help-queuelegend">佇列說明</string>
   <string name="main-addqueue">增加…</string>

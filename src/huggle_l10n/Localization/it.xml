@@ -384,6 +384,7 @@
   <string name="main-page-delete">Cancella</string>
   <string name="main-page-load">Carica</string>
   <string name="main-patrol-not-enabled">Il patrolling non è abilitato su  $1</string>
+  <string name="main-page-refresh">Aggiorna</string>
   <string name="main-page-restore">Ripristina questa versione</string>
   <string name="main-page-watchlist-add">Aggiungi pagina agli osservati speciali</string>
   <string name="main-page-tab-close">Chiudi la scheda corrente</string>
@@ -421,6 +422,7 @@
   <string name="main-help-feedback">Feedback</string>
   <string name="main-help-about">A proposito di Huggle...</string>
   <string name="main-help-introduction">Introduzione</string>
+  <string name="main-help-welcome-page">Pagina di benvenuto</string>
   <string name="main-addqueue">Aggiungi...</string>
   <string name="main-savelogtitle">Salva registro</string>
   <string name="main-usermessageother">Altro messaggio...</string>
