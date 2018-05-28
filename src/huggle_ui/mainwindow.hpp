@@ -422,19 +422,19 @@ namespace Huggle
             QString ProjectURL();
             bool keystrokeCheck(int id);
             QList<HuggleFeed*> huggleFeeds;
-            WikiSite *PreviousSite = nullptr;
-            QList<QAction*> RevertAndWarnItems;
-            QList<QAction*> RevertItems;
-            QList<QAction*> WarnItems;
+            WikiSite *previousSite = nullptr;
+            QList<QAction*> revertAndWarnItems;
+            QList<QAction*> revertItems;
+            QList<QAction*> warnItems;
             //! This timer periodically executes various jobs that needs to be executed in main thread loop
-            QTimer *GeneralTimer;
+            QTimer *generalTimer;
             QTimer *tStatusBarRefreshTimer;
-            QHash<WikiSite*, EditQuery*> StorageQueries;
+            QHash<WikiSite*, EditQuery*> storageQueries;
             QToolButton *warnToolButtonMenu = nullptr;
             QToolButton *rtToolButtonMenu = nullptr;
             QToolButton *rwToolButtonMenu = nullptr;
             QToolButton *welcomeToolButtonMenu = nullptr;
-            QDateTime EditLoad;
+            QDateTime editLoadDateTime;
             QString RestoreEdit_RevertReason;
             ReloginForm *fRelogin = nullptr;
             QTimer *wlt = nullptr;

@@ -103,7 +103,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     MainWindow::HuggleMain = this;
     HUGGLE_PROFILER_RESET;
     this->LastTPRevID = WIKI_UNKNOWN_REVID;
-    this->EditLoad = QDateTime::currentDateTime();
+    this->editLoadDateTime = QDateTime::currentDateTime();
     this->Shutdown = ShutdownOpRunning;
     this->ShuttingDown = false;
     this->ui->setupUi(this);
@@ -113,6 +113,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         this->ui->actionStop_provider->setVisible(false);
         this->ui->actionIRC->setVisible(false);
         this->ui->actionWiki->setVisible(false);
+        this->ui->actionXmlRcs->setVisible(false);
     }
     this->Status = new QLabel();
     this->Status->setTextInteractionFlags(Qt::TextSelectableByMouse);
@@ -209,6 +210,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
             menu->addAction(provider_xml);
             menu->addAction(provider_irc);
             menu->addAction(provider_wiki);
+            this->ActionSites.insert(provider_xml, site);
+            this->ActionSites.insert(provider_irc, site);
+            this->ActionSites.insert(provider_wiki, site);
         }
         // Create basic providers
         this->huggleFeeds.append(new HuggleFeedProviderWiki(site));
@@ -226,10 +230,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@providers");
     this->reloadInterface();
     this->tabifyDockWidget(this->SystemLog, this->Queries);
-    this->GeneralTimer = new QTimer(this);
+    this->generalTimer = new QTimer(this);
     //this->ui->actionTag_2->setVisible(false);
-    connect(this->GeneralTimer, SIGNAL(timeout()), this, SLOT(OnMainTimerTick()));
-    this->GeneralTimer->start(HUGGLE_TIMER);
+    connect(this->generalTimer, SIGNAL(timeout()), this, SLOT(OnMainTimerTick()));
+    this->generalTimer->start(HUGGLE_TIMER);
     QFile *layout;
     if (QFile().exists(Configuration::GetConfigurationPath() + "mainwindow_state"))
     {
@@ -536,7 +540,7 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
     e->User->Resync();
     Configuration::HuggleConfiguration->ForceNoEditJump = ForcedJump;
     this->CurrentEdit = e;
-    this->EditLoad = QDateTime::currentDateTime();
+    this->editLoadDateTime = QDateTime::currentDateTime();
     this->Browser->DisplayDiff(e);
     this->Render(KeepHistory, KeepUser);
     e->DecRef();
@@ -564,10 +568,10 @@ void MainWindow::Render(bool KeepHistory, bool KeepUser)
                 this->wHistory->Read();
         }
         this->changeCurrentBrowserTabTitle(this->CurrentEdit->Page->PageName);
-        if (this->PreviousSite != this->GetCurrentWikiSite())
+        if (this->previousSite != this->GetCurrentWikiSite())
         {
             this->reloadInterface();
-            this->PreviousSite = this->GetCurrentWikiSite();
+            this->previousSite = this->GetCurrentWikiSite();
         }
         this->tb->SetTitle(this->CurrentEdit->Page->PageName);
         this->tb->SetPage(this->CurrentEdit->Page);
@@ -815,193 +819,193 @@ void MainWindow::ReloadShort(QString id)
             q = this->ui->actionRemove_page_from_a_watchlist;
             break;
         case HUGGLE_ACCEL_MAIN_REVERT_AND_WARN0:
-            ReloadIndexedMenuShortcut(this->RevertAndWarnItems, 0, s);
+            ReloadIndexedMenuShortcut(this->revertAndWarnItems, 0, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_AND_WARN1:
-            ReloadIndexedMenuShortcut(this->RevertAndWarnItems, 1, s);
+            ReloadIndexedMenuShortcut(this->revertAndWarnItems, 1, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_AND_WARN2:
-            ReloadIndexedMenuShortcut(this->RevertAndWarnItems, 2, s);
+            ReloadIndexedMenuShortcut(this->revertAndWarnItems, 2, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_AND_WARN3:
-            ReloadIndexedMenuShortcut(this->RevertAndWarnItems, 3, s);
+            ReloadIndexedMenuShortcut(this->revertAndWarnItems, 3, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_AND_WARN4:
-            ReloadIndexedMenuShortcut(this->RevertAndWarnItems, 4, s);
+            ReloadIndexedMenuShortcut(this->revertAndWarnItems, 4, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_AND_WARN5:
-            ReloadIndexedMenuShortcut(this->RevertAndWarnItems, 5, s);
+            ReloadIndexedMenuShortcut(this->revertAndWarnItems, 5, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_AND_WARN6:
-            ReloadIndexedMenuShortcut(this->RevertAndWarnItems, 6, s);
+            ReloadIndexedMenuShortcut(this->revertAndWarnItems, 6, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_AND_WARN7:
-            ReloadIndexedMenuShortcut(this->RevertAndWarnItems, 7, s);
+            ReloadIndexedMenuShortcut(this->revertAndWarnItems, 7, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_AND_WARN8:
-            ReloadIndexedMenuShortcut(this->RevertAndWarnItems, 8, s);
+            ReloadIndexedMenuShortcut(this->revertAndWarnItems, 8, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_AND_WARN9:
-            ReloadIndexedMenuShortcut(this->RevertAndWarnItems, 9, s);
+            ReloadIndexedMenuShortcut(this->revertAndWarnItems, 9, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_AND_WARN10:
-            ReloadIndexedMenuShortcut(this->RevertAndWarnItems, 10, s);
+            ReloadIndexedMenuShortcut(this->revertAndWarnItems, 10, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_AND_WARN11:
-            ReloadIndexedMenuShortcut(this->RevertAndWarnItems, 11, s);
+            ReloadIndexedMenuShortcut(this->revertAndWarnItems, 11, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_AND_WARN12:
-            ReloadIndexedMenuShortcut(this->RevertAndWarnItems, 12, s);
+            ReloadIndexedMenuShortcut(this->revertAndWarnItems, 12, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_AND_WARN13:
-            ReloadIndexedMenuShortcut(this->RevertAndWarnItems, 13, s);
+            ReloadIndexedMenuShortcut(this->revertAndWarnItems, 13, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_AND_WARN14:
-            ReloadIndexedMenuShortcut(this->RevertAndWarnItems, 14, s);
+            ReloadIndexedMenuShortcut(this->revertAndWarnItems, 14, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_AND_WARN15:
-            ReloadIndexedMenuShortcut(this->RevertAndWarnItems, 15, s);
+            ReloadIndexedMenuShortcut(this->revertAndWarnItems, 15, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_AND_WARN16:
-            ReloadIndexedMenuShortcut(this->RevertAndWarnItems, 16, s);
+            ReloadIndexedMenuShortcut(this->revertAndWarnItems, 16, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_AND_WARN17:
-            ReloadIndexedMenuShortcut(this->RevertAndWarnItems, 17, s);
+            ReloadIndexedMenuShortcut(this->revertAndWarnItems, 17, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_AND_WARN18:
-            ReloadIndexedMenuShortcut(this->RevertAndWarnItems, 18, s);
+            ReloadIndexedMenuShortcut(this->revertAndWarnItems, 18, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_AND_WARN19:
-            ReloadIndexedMenuShortcut(this->RevertAndWarnItems, 19, s);
+            ReloadIndexedMenuShortcut(this->revertAndWarnItems, 19, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_AND_WARN20:
-            ReloadIndexedMenuShortcut(this->RevertAndWarnItems, 20, s);
+            ReloadIndexedMenuShortcut(this->revertAndWarnItems, 20, s);
             return;
         case HUGGLE_ACCEL_MAIN_WARN0:
-            ReloadIndexedMenuShortcut(this->WarnItems, 0, s);
+            ReloadIndexedMenuShortcut(this->warnItems, 0, s);
             return;
         case HUGGLE_ACCEL_MAIN_WARN1:
-            ReloadIndexedMenuShortcut(this->WarnItems, 1, s);
+            ReloadIndexedMenuShortcut(this->warnItems, 1, s);
             return;
         case HUGGLE_ACCEL_MAIN_WARN2:
-            ReloadIndexedMenuShortcut(this->WarnItems, 2, s);
+            ReloadIndexedMenuShortcut(this->warnItems, 2, s);
             return;
         case HUGGLE_ACCEL_MAIN_WARN3:
-            ReloadIndexedMenuShortcut(this->WarnItems, 3, s);
+            ReloadIndexedMenuShortcut(this->warnItems, 3, s);
             return;
         case HUGGLE_ACCEL_MAIN_WARN4:
-            ReloadIndexedMenuShortcut(this->WarnItems, 4, s);
+            ReloadIndexedMenuShortcut(this->warnItems, 4, s);
             return;
         case HUGGLE_ACCEL_MAIN_WARN5:
-            ReloadIndexedMenuShortcut(this->WarnItems, 5, s);
+            ReloadIndexedMenuShortcut(this->warnItems, 5, s);
             return;
         case HUGGLE_ACCEL_MAIN_WARN6:
-            ReloadIndexedMenuShortcut(this->WarnItems, 6, s);
+            ReloadIndexedMenuShortcut(this->warnItems, 6, s);
             return;
         case HUGGLE_ACCEL_MAIN_WARN7:
-            ReloadIndexedMenuShortcut(this->WarnItems, 7, s);
+            ReloadIndexedMenuShortcut(this->warnItems, 7, s);
             return;
         case HUGGLE_ACCEL_MAIN_WARN8:
-            ReloadIndexedMenuShortcut(this->WarnItems, 8, s);
+            ReloadIndexedMenuShortcut(this->warnItems, 8, s);
             return;
         case HUGGLE_ACCEL_MAIN_WARN9:
-            ReloadIndexedMenuShortcut(this->WarnItems, 9, s);
+            ReloadIndexedMenuShortcut(this->warnItems, 9, s);
             return;
         case HUGGLE_ACCEL_MAIN_WARN10:
-            ReloadIndexedMenuShortcut(this->WarnItems, 10, s);
+            ReloadIndexedMenuShortcut(this->warnItems, 10, s);
             return;
         case HUGGLE_ACCEL_MAIN_WARN11:
-            ReloadIndexedMenuShortcut(this->WarnItems, 11, s);
+            ReloadIndexedMenuShortcut(this->warnItems, 11, s);
             return;
         case HUGGLE_ACCEL_MAIN_WARN12:
-            ReloadIndexedMenuShortcut(this->WarnItems, 12, s);
+            ReloadIndexedMenuShortcut(this->warnItems, 12, s);
             return;
         case HUGGLE_ACCEL_MAIN_WARN13:
-            ReloadIndexedMenuShortcut(this->WarnItems, 13, s);
+            ReloadIndexedMenuShortcut(this->warnItems, 13, s);
             return;
         case HUGGLE_ACCEL_MAIN_WARN14:
-            ReloadIndexedMenuShortcut(this->WarnItems, 14, s);
+            ReloadIndexedMenuShortcut(this->warnItems, 14, s);
             return;
         case HUGGLE_ACCEL_MAIN_WARN15:
-            ReloadIndexedMenuShortcut(this->WarnItems, 15, s);
+            ReloadIndexedMenuShortcut(this->warnItems, 15, s);
             return;
         case HUGGLE_ACCEL_MAIN_WARN16:
-            ReloadIndexedMenuShortcut(this->WarnItems, 16, s);
+            ReloadIndexedMenuShortcut(this->warnItems, 16, s);
             return;
         case HUGGLE_ACCEL_MAIN_WARN17:
-            ReloadIndexedMenuShortcut(this->WarnItems, 17, s);
+            ReloadIndexedMenuShortcut(this->warnItems, 17, s);
             return;
         case HUGGLE_ACCEL_MAIN_WARN18:
-            ReloadIndexedMenuShortcut(this->WarnItems, 18, s);
+            ReloadIndexedMenuShortcut(this->warnItems, 18, s);
             return;
         case HUGGLE_ACCEL_MAIN_WARN19:
-            ReloadIndexedMenuShortcut(this->WarnItems, 19, s);
+            ReloadIndexedMenuShortcut(this->warnItems, 19, s);
             return;
         case HUGGLE_ACCEL_MAIN_WARN20:
-            ReloadIndexedMenuShortcut(this->WarnItems, 20, s);
+            ReloadIndexedMenuShortcut(this->warnItems, 20, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_0:
-            ReloadIndexedMenuShortcut(this->RevertItems, 0, s);
+            ReloadIndexedMenuShortcut(this->revertItems, 0, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_1:
-            ReloadIndexedMenuShortcut(this->RevertItems, 1, s);
+            ReloadIndexedMenuShortcut(this->revertItems, 1, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_2:
-            ReloadIndexedMenuShortcut(this->RevertItems, 2, s);
+            ReloadIndexedMenuShortcut(this->revertItems, 2, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_3:
-            ReloadIndexedMenuShortcut(this->RevertItems, 3, s);
+            ReloadIndexedMenuShortcut(this->revertItems, 3, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_4:
-            ReloadIndexedMenuShortcut(this->RevertItems, 4, s);
+            ReloadIndexedMenuShortcut(this->revertItems, 4, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_5:
-            ReloadIndexedMenuShortcut(this->RevertItems, 5, s);
+            ReloadIndexedMenuShortcut(this->revertItems, 5, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_6:
-            ReloadIndexedMenuShortcut(this->RevertItems, 6, s);
+            ReloadIndexedMenuShortcut(this->revertItems, 6, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_7:
-            ReloadIndexedMenuShortcut(this->RevertItems, 7, s);
+            ReloadIndexedMenuShortcut(this->revertItems, 7, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_8:
-            ReloadIndexedMenuShortcut(this->RevertItems, 8, s);
+            ReloadIndexedMenuShortcut(this->revertItems, 8, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_9:
-            ReloadIndexedMenuShortcut(this->RevertItems, 9, s);
+            ReloadIndexedMenuShortcut(this->revertItems, 9, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_10:
-            ReloadIndexedMenuShortcut(this->RevertItems, 10, s);
+            ReloadIndexedMenuShortcut(this->revertItems, 10, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_11:
-            ReloadIndexedMenuShortcut(this->RevertItems, 11, s);
+            ReloadIndexedMenuShortcut(this->revertItems, 11, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_12:
-            ReloadIndexedMenuShortcut(this->RevertItems, 12, s);
+            ReloadIndexedMenuShortcut(this->revertItems, 12, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_13:
-            ReloadIndexedMenuShortcut(this->RevertItems, 13, s);
+            ReloadIndexedMenuShortcut(this->revertItems, 13, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_14:
-            ReloadIndexedMenuShortcut(this->RevertItems, 14, s);
+            ReloadIndexedMenuShortcut(this->revertItems, 14, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_15:
-            ReloadIndexedMenuShortcut(this->RevertItems, 15, s);
+            ReloadIndexedMenuShortcut(this->revertItems, 15, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_16:
-            ReloadIndexedMenuShortcut(this->RevertItems, 16, s);
+            ReloadIndexedMenuShortcut(this->revertItems, 16, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_17:
-            ReloadIndexedMenuShortcut(this->RevertItems, 17, s);
+            ReloadIndexedMenuShortcut(this->revertItems, 17, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_18:
-            ReloadIndexedMenuShortcut(this->RevertItems, 18, s);
+            ReloadIndexedMenuShortcut(this->revertItems, 18, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_19:
-            ReloadIndexedMenuShortcut(this->RevertItems, 19, s);
+            ReloadIndexedMenuShortcut(this->revertItems, 19, s);
             return;
         case HUGGLE_ACCEL_MAIN_REVERT_20:
-            ReloadIndexedMenuShortcut(this->RevertItems, 20, s);
+            ReloadIndexedMenuShortcut(this->revertItems, 20, s);
             return;
         case HUGGLE_ACCEL_SUSPICIOUS_EDIT:
             q = this->ui->actionFlag_as_suspicious_edit;
@@ -1640,7 +1644,7 @@ void MainWindow::OnTimerTick0()
                 uc->Site = site;
                 Collectable_SmartPtr<EditQuery> temp = WikiUtil::EditPage(uc, site->GetUserConfig()->MakeLocalUserConfig(site->GetProjectConfig()), _l("saveuserconfig-progress"), true);
                 temp->IncRef();
-                this->StorageQueries.insert(site, temp.GetPtr());
+                this->storageQueries.insert(site, temp.GetPtr());
                 delete uc;
             }
             return;
@@ -1650,16 +1654,16 @@ void MainWindow::OnTimerTick0()
         // we need to check if config was written
         foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
         {
-            if (this->StorageQueries.contains(site))
+            if (this->storageQueries.contains(site))
             {
-                if (this->StorageQueries[site]->IsProcessed())
+                if (this->storageQueries[site]->IsProcessed())
                 {
-                    if (this->StorageQueries[site]->IsFailed())
+                    if (this->storageQueries[site]->IsFailed())
                     {
-                        HUGGLE_ERROR("Unable to save personal config on " + site->Name + ": " + this->StorageQueries[site]->GetFailureReason());
+                        HUGGLE_ERROR("Unable to save personal config on " + site->Name + ": " + this->storageQueries[site]->GetFailureReason());
                     }
-                    this->StorageQueries[site]->DecRef();
-                    this->StorageQueries.remove(site);
+                    this->storageQueries[site]->DecRef();
+                    this->storageQueries.remove(site);
                 } else
                 {
                     return;
@@ -1668,7 +1672,7 @@ void MainWindow::OnTimerTick0()
         }
         this->wlt->stop();
         this->tStatusBarRefreshTimer->stop();
-        this->GeneralTimer->stop();
+        this->generalTimer->stop();
         this->tCheck->stop();
         this->close();
         Core::HuggleCore->Shutdown();
@@ -1865,7 +1869,7 @@ void MainWindow::Exit()
     {
         this->tCheck->stop();
         this->tStatusBarRefreshTimer->stop();
-        this->GeneralTimer->stop();
+        this->generalTimer->stop();
         this->deleteLater();
         this->close();
         MainWindow::HuggleMain = nullptr;
@@ -1903,7 +1907,7 @@ bool MainWindow::CheckEditableBrowserPage()
     }
     if (Configuration::HuggleConfiguration->SystemConfig_RequestDelay)
     {
-        qint64 wt = QDateTime::currentDateTime().msecsTo(this->EditLoad.addSecs(hcfg->SystemConfig_DelayVal));
+        qint64 wt = QDateTime::currentDateTime().msecsTo(this->editLoadDateTime.addSecs(hcfg->SystemConfig_DelayVal));
         if (wt > 0)
         {
             Syslog::HuggleLogs->WarningLog("Ignoring edit request because you are too fast, please wait " +
@@ -2462,9 +2466,9 @@ void MainWindow::reloadInterface()
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
-    this->WarnItems.clear();
-    this->RevertAndWarnItems.clear();
-    this->RevertItems.clear();
+    this->warnItems.clear();
+    this->revertAndWarnItems.clear();
+    this->revertItems.clear();
     delete this->RevertSummaries;
     delete this->WarnMenu;
     delete this->RevertWarn;
@@ -2480,9 +2484,9 @@ void MainWindow::reloadInterface()
             QAction *action = new QAction(HuggleParser::GetValueFromKey(conf->WarningTypes.at(r)), this->RevertSummaries);
             QAction *actiona = new QAction(HuggleParser::GetValueFromKey(conf->WarningTypes.at(r)), this->RevertWarn);
             QAction *actionb = new QAction(HuggleParser::GetValueFromKey(conf->WarningTypes.at(r)), this->WarnMenu);
-            this->RevertAndWarnItems.append(actiona);
-            this->WarnItems.append(actionb);
-            this->RevertItems.append(action);
+            this->revertAndWarnItems.append(actiona);
+            this->warnItems.append(actionb);
+            this->revertItems.append(action);
             this->RevertWarn->addAction(actiona);
             this->WarnMenu->addAction(actionb);
             this->RevertSummaries->addAction(action);
