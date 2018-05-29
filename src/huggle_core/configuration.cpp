@@ -313,6 +313,7 @@ void Configuration::LoadSystemConfig(QString fn)
         RCB(WarnUserSpaceRoll);
         RCB(EnableUpdates);
         RCB(NotifyBeta);
+        RCB(ParallelLogin);
         RCB(QueueNewEditsUp);
         if (key == "IndexOfLastWiki")
         {
@@ -424,6 +425,7 @@ void Configuration::SaveSystemConfig()
     INSERT_CONFIG_B(CatScansAndWatched);
     INSERT_CONFIG_N(PlaySoundQueueScore);
     INSERT_CONFIG_B(PlaySoundOnQueue);
+    INSERT_CONFIG_B(ParallelLogin);
     INSERT_CONFIG_B(PlaySoundOnIRCUserMsg);
     INSERT_CONFIG_N(KeystrokeMultiPressRate);
     INSERT_CONFIG_B(KeystrokeMultiPressFix);

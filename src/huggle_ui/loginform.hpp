@@ -15,10 +15,7 @@
 
 #include <huggle_core/definitions.hpp>
 
-#include <huggle_core/apiquery.hpp>
 #include <huggle_core/collectable_smartptr.hpp>
-#include <huggle_core/oauthloginquery.hpp>
-#include <huggle_core/wlquery.hpp>
 #include <QThread>
 #include <QHash>
 #include <QTimer>
@@ -144,6 +141,7 @@ namespace Huggle
             QHash<WikiSite*, ApiQuery*> qSiteInfo;
             QHash<WikiSite*, ApiQuery*> qTokenInfo;
             QHash<WikiSite*, ApiQuery*> LoginQueries;
+            Collectable_SmartPtr<ApiQuery> qCurrentLoginRequest;
             LoadingForm *loadingForm = nullptr;
             //! True until the login form is fully loaded
             bool isLoading;

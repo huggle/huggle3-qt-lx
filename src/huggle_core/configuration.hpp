@@ -326,6 +326,7 @@ namespace Huggle
             bool            SystemConfig_NotifyBeta = false;
             //! If true huggle will perform a sanity check of its language files on startup
             bool            SystemConfig_LanguageSanity = false;
+            bool            SystemConfig_ParallelLogin = false;
             bool            SystemConfig_RequestDelay = false;
             bool            SystemConfig_SuppressWarnings = true;
             unsigned int    SystemConfig_DelayVal = 0;

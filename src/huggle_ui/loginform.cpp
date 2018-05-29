@@ -253,6 +253,7 @@ void LoginForm::removeQueries()
     this->qApproval.clear();
     this->wlQueries.clear();
     this->LoginQueries.clear();
+    this->qCurrentLoginRequest.Delete();
 }
 
 void LoginForm::CancelLogin()
@@ -550,6 +551,7 @@ void LoginForm::performLogin(WikiSite *site)
     // we create an api request to login
     this->LoginQueries.insert(site, new ApiQuery(ActionQuery, site));
     ApiQuery *qr = this->LoginQueries[site];
+    this->qCurrentLoginRequest = qr;
     qr->IncRef();
     qr->Parameters = "meta=tokens&type=login";
     qr->Process();
@@ -714,6 +716,8 @@ void LoginForm::finishLogin(WikiSite *site)
         qr->Process();
         this->Statuses[site] = RetrievingProjectYAMLConfig;
     }
+    // Let other huggle continue login process for other projects if there are some
+    this->qCurrentLoginRequest = nullptr;
 }
 
 void LoginForm::retrieveWhitelist(WikiSite *site)
@@ -1442,6 +1446,11 @@ void LoginForm::OnTimerTick()
                     continue;
             }
         }
+        // Check if there isn't any ongoing request to login to other project, per https://phabricator.wikimedia.org/T195109
+        // in case there is some we need to wait because MW doesn't support simultaneous logins to multiple projects
+        if (!hcfg->SystemConfig_ParallelLogin && this->qCurrentLoginRequest != nullptr && this->qCurrentLoginRequest->GetSite() != site)
+                continue;
+
         switch(this->Statuses[site])
         {
             case LoggingIn:
