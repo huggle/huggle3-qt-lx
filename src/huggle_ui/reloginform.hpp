@@ -47,7 +47,7 @@ namespace Huggle
             void Fail(QString why);
             void Localize();
             void reject();
-            WikiSite *Site;
+            WikiSite *loginSite;
             //! This is just a timer, it's called little and cute because I was bored when writing this piece of code
             QTimer *little_cute_timer;
             Collectable_SmartPtr<ApiQuery> qReloginTokenReq;

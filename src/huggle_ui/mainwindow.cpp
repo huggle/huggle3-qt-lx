@@ -753,6 +753,16 @@ void MainWindow::ShowToolTip(QString text)
     QToolTip::showText(pntr, text, this);
 }
 
+void MainWindow::ShutdownForm()
+{
+    this->wlt->stop();
+    this->tStatusBarRefreshTimer->stop();
+    this->generalTimer->stop();
+    this->tCheck->stop();
+    this->deleteLater();
+    this->close();
+}
+
 void MainWindow::ReloadSc()
 {
     Configuration::HuggleConfiguration->ReloadOfMainformNeeded = false;
@@ -1386,16 +1396,19 @@ void MainWindow::on_actionAbout_triggered()
 
 void MainWindow::OnMainTimerTick()
 {
-    ProjectConfiguration *cfg = this->GetCurrentWikiSite()->GetProjectConfig();
-    if (!cfg->IsLoggedIn && !cfg->RequestingLogin && !hcfg->DeveloperMode)
+    foreach (WikiSite *site, hcfg->Projects)
     {
-        delete this->fRelogin;
-        // we need to flag it here so that we don't reload the form next tick
-        cfg->RequestingLogin = true;
-        this->fRelogin = new ReloginForm(this->GetCurrentWikiSite(), this);
-        // exec to freeze
-        this->fRelogin->exec();
-        return;
+        ProjectConfiguration *cfg = site->GetProjectConfig();
+        if (!cfg->IsLoggedIn && !cfg->RequestingLogin && !hcfg->DeveloperMode)
+        {
+            delete this->fRelogin;
+            // we need to flag it here so that we don't reload the form next tick
+            cfg->RequestingLogin = true;
+            this->fRelogin = new ReloginForm(site, this);
+            // exec to freeze
+            this->fRelogin->exec();
+            return;
+        }
     }
     if (Configuration::HuggleConfiguration->ReloadOfMainformNeeded)
         this->ReloadSc();
@@ -1670,11 +1683,7 @@ void MainWindow::OnTimerTick0()
                 }
             }
         }
-        this->wlt->stop();
-        this->tStatusBarRefreshTimer->stop();
-        this->generalTimer->stop();
-        this->tCheck->stop();
-        this->close();
+        this->ShutdownForm();
         Core::HuggleCore->Shutdown();
     }
 }
@@ -1872,11 +1881,7 @@ void MainWindow::Exit()
     }
     if (Configuration::HuggleConfiguration->DeveloperMode)
     {
-        this->tCheck->stop();
-        this->tStatusBarRefreshTimer->stop();
-        this->generalTimer->stop();
-        this->deleteLater();
-        this->close();
+        this->ShutdownForm();
         MainWindow::HuggleMain = nullptr;
         Core::HuggleCore->Shutdown();
         return;

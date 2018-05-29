@@ -575,7 +575,7 @@ bool Configuration::ExtensionConfigContainsKey(QString extension, QString name)
 
 QString Configuration::GetProjectURL(WikiSite *Project)
 {
-    return hcfg->GetURLProtocolPrefix() + Project->URL;
+    return hcfg->GetURLProtocolPrefix(Project) + Project->URL;
 }
 
 QString Configuration::GetProjectWikiURL(WikiSite *Project)

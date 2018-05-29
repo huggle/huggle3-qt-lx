@@ -200,6 +200,7 @@ namespace Huggle
             void GoForward();
             void GoBackward();
             void ShowToolTip(QString text);
+            void ShutdownForm();
             //! List of edits that are being saved
             QList<WikiEdit*> PendingEdits;
             //! Pointer to syslog

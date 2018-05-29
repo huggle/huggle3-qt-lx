@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 #include "reloginform.hpp"
+#include "mainwindow.hpp"
 #include <huggle_core/apiquery.hpp>
 #include <huggle_core/apiqueryresult.hpp>
 #include <huggle_core/core.hpp>
@@ -25,7 +26,7 @@ using namespace Huggle;
 ReloginForm::ReloginForm(WikiSite *site, QWidget *parent) : QDialog(parent), ui(new Ui::ReloginForm)
 {
     this->ui->setupUi(this);
-    this->Site = site;
+    this->loginSite = site;
     this->little_cute_timer = new QTimer();
     if (hcfg->SystemConfig_StorePassword)
         this->ui->lineEdit->setText(hcfg->SystemConfig_RememberedPassword);
@@ -41,15 +42,13 @@ ReloginForm::ReloginForm(WikiSite *site, QWidget *parent) : QDialog(parent), ui(
 
 ReloginForm::~ReloginForm()
 {
-    // We store it when we destroy the window because sometimes user wants to cancel the login and also prevent it
-    // from auto-relogging you (especially if stored pw is wrong). So this way it's possible.
-    hcfg->SystemConfig_Autorelog = this->ui->checkBox->isChecked();
     delete this->little_cute_timer;
     delete this->ui;
 }
 
 void Huggle::ReloginForm::on_pushButton_clicked()
 {
+    MainWindow::HuggleMain->ShutdownForm();
     Core::HuggleCore->Shutdown();
 }
 
@@ -58,7 +57,7 @@ void Huggle::ReloginForm::on_pushButton_2_clicked()
     hcfg->SystemConfig_StorePassword = this->ui->checkBox_RemeberPw->isChecked();
     this->ui->pushButton_2->setEnabled(false);
     this->ui->lineEdit->setEnabled(false);
-    this->qReloginTokenReq = new ApiQuery(ActionLogin, this->Site);
+    this->qReloginTokenReq = new ApiQuery(ActionLogin, this->loginSite);
     this->little_cute_timer->start(HUGGLE_TIMER);
     this->qReloginTokenReq->Parameters = "lgname=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_Username);
     this->qReloginTokenReq->HiddenQuery = true;
@@ -95,11 +94,11 @@ void ReloginForm::LittleTick()
         if (Result == "Success")
         {
             // we are logged back in
-            Configuration::HuggleConfiguration->ProjectConfig->IsLoggedIn = true;
-            Configuration::HuggleConfiguration->ProjectConfig->RequestingLogin = false;
+            this->loginSite->ProjectConfig->IsLoggedIn = true;
+            this->loginSite->ProjectConfig->RequestingLogin = false;
             this->close();
             this->little_cute_timer->stop();
-            WikiUtil::RetrieveTokens(this->Site);
+            WikiUtil::RetrieveTokens(this->loginSite);
             this->qReloginPw.Delete();
             return;
         }
@@ -155,7 +154,7 @@ void ReloginForm::LittleTick()
             return;
         }
         QString token = login_->GetAttribute("token");
-        this->qReloginPw = new ApiQuery(ActionLogin, hcfg->Project);
+        this->qReloginPw = new ApiQuery(ActionLogin, this->loginSite);
         this->qReloginPw->HiddenQuery = true;
         this->qReloginPw->Parameters = "lgname=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_Username)
             + "&lgpassword=" + QUrl::toPercentEncoding(this->ui->lineEdit->text()) + "&lgtoken=" + QUrl::toPercentEncoding(token);
@@ -171,8 +170,7 @@ void ReloginForm::Fail(QString why)
     this->qReloginTokenReq.Delete();
     this->ui->lineEdit->setEnabled(true);
     this->qReloginPw.Delete();
-    UiGeneric::MessageBox(_l("fail"), _l("relogin-fail", why),
-                          MessageBoxStyleWarning, true);
+    UiGeneric::MessageBox(_l("fail"), _l("relogin-fail", why), MessageBoxStyleWarning, true);
     this->ui->pushButton_2->setEnabled(true);
 }
 
@@ -184,10 +182,18 @@ void ReloginForm::Localize()
 
 void ReloginForm::reject()
 {
-    if (!this->Site->GetProjectConfig()->IsLoggedIn)
+    // We store it when we destroy the window because sometimes user wants to cancel the login and also prevent it
+    // from auto-relogging you (especially if stored pw is wrong). So this way it's possible.
+    hcfg->SystemConfig_Autorelog = this->ui->checkBox->isChecked();
+    if (!this->loginSite->GetProjectConfig()->IsLoggedIn)
+    {
+        MainWindow::HuggleMain->ShutdownForm();
         Core::HuggleCore->Shutdown();
+    }
     else
+    {
         QDialog::reject();
+    }
 }
 
 void Huggle::ReloginForm::on_checkBox_RemeberPw_toggled(bool checked)
