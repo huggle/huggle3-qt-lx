@@ -1336,7 +1336,7 @@ void MainWindow::triggerWelcome()
     QString message;
     if (this->CurrentEdit->User->IsIP() && !conf->WelcomeAnon.isEmpty())
     {
-        message = conf->WelcomeAnon;
+        message = conf->WelcomeAnon + " ~~~~";
     }
     if (message.isEmpty())
     {
@@ -1350,6 +1350,7 @@ void MainWindow::triggerWelcome()
             message = conf->Welcome;
         else
            message = HuggleParser::GetValueFromSSItem(conf->WelcomeTypes.at(0));
+        message += " ~~~~";
     }
     this->welcomeCurrentUser(message);
 }
@@ -2693,7 +2694,7 @@ void MainWindow::on_actionClear_talk_page_of_user_triggered()
     WikiPage *page = new WikiPage(this->CurrentEdit->User->GetTalk(), this->CurrentEdit->GetSite());
     /// \todo LOCALIZE ME
     WikiUtil::EditPage(page, this->GetCurrentWikiSite()->ProjectConfig->ClearTalkPageTemp
-                       + "\n" + this->GetCurrentWikiSite()->ProjectConfig->WelcomeAnon,
+                       + "\n" + this->GetCurrentWikiSite()->ProjectConfig->WelcomeAnon + " ~~~~",
                        Configuration::GenerateSuffix("Cleaned old templates from talk page", this->GetCurrentWikiSite()->ProjectConfig));
     delete page;
 }
