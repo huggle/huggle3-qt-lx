@@ -91,6 +91,7 @@ namespace Huggle
                                     Query *dependency = nullptr, bool no_suffix = false, bool section_keep = false,
                                     bool autoremove = true, QString base_timestamp = "", bool create_only = false, bool fresh_only = false);
             static void WikiUser_Updated(WikiUser *user);
+            static void WarningFinished(WikiEdit *edit);
             static void WikiEdit_OnNewHistoryItem(HistoryItem *history_item);
             static void QueryPool_Remove(Query *q);
             static void QueryPool_Update(Query *q);

@@ -324,6 +324,16 @@ int Script::Hook_EditRescore(WikiEdit *edit)
     return result.toInt();
 }
 
+void Script::Hook_WarningFinished(WikiEdit *edit)
+{
+    if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_WARNING_FINISHED))
+        return;
+
+    QJSValueList parameters;
+    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine));
+    this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_WARNING_FINISHED], parameters);
+}
+
 void Script::SubscribeHook(int hook, QString function_name)
 {
     if (this->attachedHooks.contains(hook))
@@ -365,6 +375,8 @@ int Script::GetHookID(QString hook)
         return HUGGLE_SCRIPT_HOOK_EDIT_ON_SUSPICIOUS;
     if (hook == "edit_on_good")
         return HUGGLE_SCRIPT_HOOK_EDIT_ON_GOOD;
+    if (hook == "warning_finished")
+        return HUGGLE_SCRIPT_HOOK_WARNING_FINISHED;
     return -1;
 }
 

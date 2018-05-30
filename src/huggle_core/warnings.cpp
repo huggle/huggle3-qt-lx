@@ -265,6 +265,7 @@ void Warnings::ResendWarnings()
         {
             if (!warning->Warning->IsFailed())
             {
+                Hooks::WarningFinished(warning->RelatedEdit);
                 // we no longer need to care about this one
                 PendingWarning::PendingWarnings.removeAt(warning_ix);
                 delete warning;

@@ -248,6 +248,20 @@ void Huggle::Hooks::WikiUser_Updated(Huggle::WikiUser *user)
     Events::Global->on_UpdateUser(user);
 }
 
+void Huggle::Hooks::WarningFinished(Huggle::WikiEdit *edit)
+{
+    foreach(Huggle::iExtension *extension, Huggle::Core::HuggleCore->Extensions)
+    {
+        if (extension->IsWorking())
+            extension->Hook_WarningFinished((void*)edit);
+    }
+    foreach (Script *s, Script::GetScripts())
+    {
+        if (s->IsWorking())
+            s->Hook_WarningFinished(edit);
+    }
+}
+
 void Huggle::Hooks::WikiEdit_OnNewHistoryItem(Huggle::HistoryItem *history_item)
 {
     if (!Events::Global)
