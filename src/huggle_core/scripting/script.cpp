@@ -308,6 +308,15 @@ void Script::Hook_OnSuspicious(WikiEdit *edit)
     this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_EDIT_ON_SUSPICIOUS], parameters);
 }
 
+bool Script::Hook_OnRevertPreflight(WikiEdit *edit)
+{
+    if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_REVERT_PREFLIGHT))
+        return true;
+    QJSValueList parameters;
+    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine));
+    return this->executeFunctionAsBool(this->attachedHooks[HUGGLE_SCRIPT_HOOK_REVERT_PREFLIGHT], parameters);
+}
+
 int Script::Hook_EditRescore(WikiEdit *edit)
 {
     if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_EDIT_RESCORE))
@@ -377,6 +386,8 @@ int Script::GetHookID(QString hook)
         return HUGGLE_SCRIPT_HOOK_EDIT_ON_GOOD;
     if (hook == "warning_finished")
         return HUGGLE_SCRIPT_HOOK_WARNING_FINISHED;
+    if (hook == "revert_preflight")
+        return HUGGLE_SCRIPT_HOOK_REVERT_PREFLIGHT;
     return -1;
 }
 
@@ -597,6 +608,8 @@ void Script::registerFunctions()
     this->registerHook("edit_on_good", 1, "(WikiEdit edit): on good edit");
     this->registerHook("edit_on_revert", 1, "(WikiEdit edit): edit reverted");
     this->registerHook("int edit_rescore", 1, "(WikiEdit edit): called after post processing the edit, number returned will be added to final score (3.4.2)");
+    this->registerHook("warning_finished", 1, "(WikiEdit edit): called when warning to user is sent");
+    this->registerHook("bool revert_preflight", 1, "(WikiEdit edit): run before edit is reverted, if false is returned, revert is stopped");
 }
 
 ScriptException::ScriptException(QString text, QString source, Script *scr, bool is_recoverable) : Exception(text, source, is_recoverable)

@@ -2577,6 +2577,8 @@ void MainWindow::ReloadInterface()
 
 void MainWindow::on_actionWelcome_user_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_WELCOME))
+        return;
     this->triggerWelcome();
 }
 
@@ -2600,21 +2602,29 @@ void MainWindow::on_actionOpen_in_a_browser_triggered()
 
 void MainWindow::on_actionIncrease_badness_score_by_20_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_INCREASE_BS))
+        return;
     this->IncreaseBS();
 }
 
 void MainWindow::on_actionDecrease_badness_score_by_20_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_DECREASE_BS))
+        return;
     this->DecreaseBS();
 }
 
 void MainWindow::on_actionGood_edit_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_GOOD))
+        return;
     this->FlagGood();
 }
 
 void MainWindow::on_actionUser_contributions_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_USER_CONTRIBUTIONS))
+        return;
     if (this->CurrentEdit != nullptr)
     {
         QDesktopServices::openUrl(QUrl::fromEncoded(QString(this->ProjectURL() + "Special:Contributions/" +
@@ -2624,6 +2634,8 @@ void MainWindow::on_actionUser_contributions_triggered()
 
 void MainWindow::on_actionTalk_page_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_TALK))
+        return;
     this->DisplayTalk();
 }
 
@@ -2684,6 +2696,8 @@ void MainWindow::on_actionRemove_old_edits_triggered()
 
 void MainWindow::on_actionClear_talk_page_of_user_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_USER_CLEAR_TALK))
+        return;
     if (!this->EditingChecks())
         return;
     if (!this->CurrentEdit->User->IsIP())
@@ -2714,6 +2728,8 @@ void MainWindow::on_actionList_all_QGC_items_triggered()
 
 void MainWindow::on_actionRevert_currently_displayed_edit_warn_user_and_stay_on_page_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_REVERT))
+        return;
     if (!this->EditingChecks() || !this->CheckRevertable())
         return;
     Collectable_SmartPtr<RevertQuery> result = this->Revert("", false);
@@ -2723,6 +2739,8 @@ void MainWindow::on_actionRevert_currently_displayed_edit_warn_user_and_stay_on_
 
 void MainWindow::on_actionRevert_currently_displayed_edit_and_stay_on_page_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_REVERT))
+        return;
     if (!this->EditingChecks() || !this->CheckRevertable())
         return;
     this->Revert("", false);
@@ -2730,6 +2748,8 @@ void MainWindow::on_actionRevert_currently_displayed_edit_and_stay_on_page_trigg
 
 void MainWindow::on_actionWelcome_user_2_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_WELCOME))
+        return;
     this->triggerWelcome();
 }
 

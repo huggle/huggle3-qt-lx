@@ -110,6 +110,9 @@ namespace Huggle
             virtual void Hook_EditBeforePostProcessing(void *edit) {}
             virtual void Hook_WarningFinished(void *edit) {}
             virtual bool Hook_OnEditLoadToQueue(void *edit) { return true; }
+            virtual void Hook_OnRevert(void *edit) {}
+            virtual void Hook_GoodEdit(void *edit) {}
+            virtual void Hook_OnSuspicious(void *edit) {}
             /*!
              * \brief Hook_EditIsReady Event that checks if edit can be considered processed
              *
@@ -145,7 +148,6 @@ namespace Huggle
              */
             virtual void* Hook_MessageUser(void *User, QString Text, QString Title, QString Summary, bool InsertSection = true, void *Dependency = nullptr, bool NoSuffix = false, bool SectionKeep = false,
                                            bool Autoremove = true, QString BaseTimestamp = "", bool CreateOnly = false, bool FreshOnly = false) { return nullptr; }
-            virtual void Hook_GoodEdit(void *edit) {}
             /*!
              * \brief Hook_RevertPreflight is called before preflight check is executed and if
              * false is returned, the revert is cancelled with no warnings

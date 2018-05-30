@@ -84,6 +84,12 @@ bool Huggle::Hooks::RevertPreflight(Huggle::WikiEdit *edit)
                 result = false;
         }
     }
+    foreach (Script *s, Script::GetScripts())
+    {
+        if (s->IsWorking())
+            if (!s->Hook_OnRevertPreflight(edit))
+                result = false;
+    }
     return result;
 }
 
@@ -140,6 +146,11 @@ void Huggle::Hooks::OnGood(Huggle::WikiEdit *edit)
 void Huggle::Hooks::OnRevert(Huggle::WikiEdit *edit)
 {
     Events::Global->on_WERevert(edit);
+    foreach(Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
+    {
+        if (e->IsWorking())
+            e->Hook_OnRevert((void*)edit);
+    }
     foreach (Script *s, Script::GetScripts())
     {
         if (s->IsWorking())
@@ -181,6 +192,11 @@ void Huggle::Hooks::OnWarning(Huggle::WikiUser *user)
 void Huggle::Hooks::Suspicious(Huggle::WikiEdit *edit)
 {
     Events::Global->on_WESuspicious(edit);
+    foreach(Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
+    {
+        if (e->IsWorking())
+            e->Hook_OnSuspicious((void*)edit);
+    }
     foreach (Script *s, Script::GetScripts())
     {
         if (s->IsWorking())

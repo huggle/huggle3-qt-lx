@@ -36,6 +36,7 @@
 #define HUGGLE_SCRIPT_HOOK_EDIT_ON_SUSPICIOUS                   8
 #define HUGGLE_SCRIPT_HOOK_EDIT_RESCORE                         9
 #define HUGGLE_SCRIPT_HOOK_WARNING_FINISHED                     10
+#define HUGGLE_SCRIPT_HOOK_REVERT_PREFLIGHT                     11
 
 namespace Huggle
 {
@@ -93,6 +94,7 @@ namespace Huggle
             void Hook_OnRevert(WikiEdit *edit);
             void Hook_OnGood(WikiEdit *edit);
             void Hook_OnSuspicious(WikiEdit *edit);
+            bool Hook_OnRevertPreflight(WikiEdit *edit);
             int Hook_EditRescore(WikiEdit *edit);
             void Hook_WarningFinished(WikiEdit *edit);
             void SubscribeHook(int hook, QString function_name);
