@@ -264,7 +264,7 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
         Shortcut s_ = Configuration::HuggleConfiguration->Shortcuts[key];
         if (s_.Modified)
         {
-            si += "    '" + s_.Name + "': " + s_.QAccel + "\n";
+            si += "    '" + s_.Name + "': '" + s_.QAccel + "'\n";
             modified_++;
         }
     }
