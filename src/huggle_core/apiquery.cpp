@@ -376,6 +376,14 @@ void ApiQuery::Kill()
         QObject::disconnect(this->reply, SIGNAL(readyRead()), this, SLOT(readData()));
         if (this->status == StatusProcessing)
         {
+            if (this->Result == nullptr)
+            {
+                // Create a dummy result otherwise we might get segfault from other queries
+                // trying to directly access it which would result in a very nasty
+                // hard to debug crash
+                this->Result = new ApiQueryResult();
+                this->Result->SetError(HUGGLE_EKILLED, "Killed");
+            }
             this->status = StatusKilled;
             this->disconnect(this->reply);
             this->reply->abort();
