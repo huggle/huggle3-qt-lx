@@ -19,6 +19,7 @@
 #include "../syslog.hpp"
 #include "../localization.hpp"
 #include "../wikisite.hpp"
+#include "../resources.hpp"
 #include <QJSValueIterator>
 #include <QTimer>
 
@@ -51,6 +52,7 @@ HuggleJS::HuggleJS(Script *s) : GenericJSClass(s)
     this->functions.insert("get_site_by_name", "(string site_name): returns a site info for site with this name");
     this->functions.insert("localize", "(string key): return localized key");
     this->functions.insert("dump_obj", "(object): dumps an object to string");
+    this->functions.insert("play_file", "(string file): play internal file");
 }
 
 HuggleJS::~HuggleJS()
@@ -245,6 +247,11 @@ QString HuggleJS::localize(QString id)
 QDateTime HuggleJS::get_startup_date_time()
 {
     return Core::HuggleCore->StartupTime;
+}
+
+void HuggleJS::play_file(QString name)
+{
+    Resources::PlayEmbeddedSoundFile(name);
 }
 
 QString HuggleJS::dump_obj(QJSValue object, unsigned int indent)

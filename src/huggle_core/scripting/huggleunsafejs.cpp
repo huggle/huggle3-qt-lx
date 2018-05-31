@@ -14,6 +14,7 @@
 #include "script.hpp"
 #include "../configuration.hpp"
 #include "../syslog.hpp"
+#include "../resources.hpp"
 #include <QTextStream>
 #include <QFile>
 
@@ -25,6 +26,7 @@ HuggleUnsafeJS::HuggleUnsafeJS(Script *s) : GenericJSClass(s)
     this->function_help.insert("read_file_to_list", "(string path): read a file as lines in a list");
     this->function_help.insert("write_string_to_file", "(string text, string file): writes text to a file");
     this->function_help.insert("append_string_to_file", "(string text, string file): appends text to file");
+    this->function_help.insert("play_file", "(string file)");
 }
 
 bool HuggleUnsafeJS::append_string_to_file(QString text, QString file_path)
@@ -79,4 +81,9 @@ bool HuggleUnsafeJS::write_string_to_file(QString text, QString file_path)
     QTextStream st(&file);
     st << text;
     return true;
+}
+
+void HuggleUnsafeJS::play_file(QString file)
+{
+    Resources::PlayExternalSoundFile(file);
 }

@@ -26,6 +26,7 @@ var huggle_ui_menu_han        = -6;
 var huggle_ui_menu_goto       = -7;
 var huggle_ui_menu_help       = -8;
 var huggle_ui_menu_scripting  = -9;
+var huggle_ui_menu_debug      = -10;
 
 var huggle_ui_menuitem_exit = -1;
 

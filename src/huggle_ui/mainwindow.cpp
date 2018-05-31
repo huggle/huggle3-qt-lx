@@ -466,6 +466,8 @@ QMenu *MainWindow::GetMenu(int menu_id)
             return this->ui->menuHAN;
         case HUGGLE_MW_MENU_SCRIPTING:
             return this->ui->menuScripting;
+        case HUGGLE_MW_MENU_DEBUG:
+            return this->ui->menuDebug_2;
         case HUGGLE_MW_MENU_HELP:
             return this->ui->menuHelp;
         default:

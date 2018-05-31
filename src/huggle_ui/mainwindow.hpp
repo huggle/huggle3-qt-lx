@@ -33,6 +33,7 @@
 #define HUGGLE_MW_MENU_GOTO         7
 #define HUGGLE_MW_MENU_HELP         8
 #define HUGGLE_MW_MENU_SCRIPTING    9
+#define HUGGLE_MW_MENU_DEBUG       10
 
 #define HUGGLE_MW_MENUITEM_EXIT     1
 
