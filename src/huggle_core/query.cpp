@@ -158,6 +158,11 @@ bool Query::IsFailed()
     return false;
 }
 
+bool Query::IsKilled()
+{
+    return this->status == Query::StatusKilled;
+}
+
 QString Query::GetFailureReason()
 {
     if (this->status == Query::StatusKilled)

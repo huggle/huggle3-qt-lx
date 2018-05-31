@@ -107,6 +107,7 @@ namespace Huggle
             //! this function returns that
             unsigned int QueryID();
             virtual bool IsFailed();
+            virtual bool IsKilled();
             virtual QString GetFailureReason();
             virtual QString DebugURL();
             void ThrowOnValidResult();

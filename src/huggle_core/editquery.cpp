@@ -120,6 +120,14 @@ bool EditQuery::IsProcessed()
     {
         if (!this->qEdit->IsProcessed())
             return false;
+        if (this->qEdit->IsKilled())
+        {
+            // We don't want to process failure in case the query was suspended
+            this->Result = new QueryResult(true);
+            this->Result->SetError(HUGGLE_EKILLED, "Underlying query killed");
+            this->processFailure();
+            return true;
+        }
 
         ApiQueryResultNode *err = this->qEdit->GetApiQueryResult()->GetNode("error");
         ApiQueryResultNode *edit = this->qEdit->GetApiQueryResult()->GetNode("edit");
