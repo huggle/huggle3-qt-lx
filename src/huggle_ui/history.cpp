@@ -373,3 +373,10 @@ void History::Fail()
     this->RevertingItem = nullptr;
     this->timerRetrievePageInformation->stop();
 }
+
+void History::on_tableWidget_itemSelectionChanged()
+{
+    if (this->ui->tableWidget->selectedItems().isEmpty())
+        return;
+    this->CurrentItem = this->ui->tableWidget->selectedItems().at(0)->row();
+}

@@ -55,6 +55,7 @@ namespace Huggle
             void Tick();
             void Display();
             void on_tableWidget_clicked(const QModelIndex &index);
+            void on_tableWidget_itemSelectionChanged();
 
         private:
             void DeleteItems();
