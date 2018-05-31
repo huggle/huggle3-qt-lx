@@ -287,6 +287,7 @@
   <string name="login-fail-no-info">$1 üzerinde giriş başarısız: Kullanıcı bilgisi alınamadı: $2</string>
   <string name="login-bot">BotPassword ve eski giriş arasındaki fark nedir?</string>
   <string name="login-fail-parse-config">$1 üzerinde oturum açma başarısız oldu: Kullanıcı yapılandırması ayrıştırılamadı. Ayrıntılı bilgi için hata ayıklama kayıtlarına bakınız.</string>
+  <string name="login-fail-parse-config-yaml">$1 üzerindeki giriş başarısız oldu: Kullanıcı yapılandırması ayrıştırılamıyor: $2</string>
   <string name="login-fail-user-data">$1 üzerinde oturum açma başarısız oldu: Kullanıcı bilgisi alınamıyor. API sorgusunda veri elde edilemedi.</string>
   <string name="login-fail-rollback-rights">$1 üzerinde geri alma yetkiniz olmadığı için oturum açma başarısız oldu.</string>
   <string name="login-failed-autoconfirm-rights">$1 üzerinde \"otomatik onaylanmış kullanıcı\" olmadığınız için oturum açma başarısız oldu.</string>
@@ -395,6 +396,8 @@
   <string name="main-revision-revert-warn">Görüntülenen düzenlemeyi geri al ve kullanıcıyı uyar</string>
   <string name="main-revision-rws">Görüntülenen düzenlemeyi geri al, kullanıcıyı uyar ve bu sayfada kal</string>
   <string name="main-revision-faith">İyi niyetli düzenleme olarak varsay ve geri al</string>
+  <string name="main-revision-revert-only-this">Sadece bu revizyonu geri al</string>
+  <string name="main-revision-revert-agf">İyi niyetli olduğunu düşünerek bu revizyonu geri al</string>
   <string name="main-revision-previous">Önceki</string>
   <string name="main-revision-next">Sonraki</string>
   <string name="main-revision-latest">En son</string>
@@ -425,11 +428,14 @@
   <string name="main-page-delete">Sil</string>
   <string name="main-page-load">Yükle</string>
   <string name="main-patrol-not-enabled">$1\'de devriyelik devre dışı</string>
+  <string name="main-page-refresh">Yenile</string>
   <string name="main-page-restore">Bu sürümü geri getir</string>
   <string name="main-page-watchlist-add">Sayfaları izleme listesine ekle</string>
   <string name="main-page-tab-close">Geçerli sekmeyi kapat</string>
   <string name="main-page-tab-open">Yeni sekme aç</string>
   <string name="main-page-watchlist-remove">Sayfayı izleme listesinden çıkar</string>
+  <string name="main-scripting">Komut dosyası oluşturuluyor</string>
+  <string name="main-scripting-script-manager">Komut dosyası yöneticisi</string>
   <string name="main-user-info">Kullanıcı bilgisini göster</string>
   <string name="main-user-ignore">Yoksay</string>
   <string name="main-user-unignore">Yoksaymayı geri al</string>
@@ -442,6 +448,7 @@
   <string name="main-user-db">Kullanıcının hata puanlarını azalt</string>
   <string name="main-user-report">Raporla</string>
   <string name="main-user-ib">Hata puanlarını arttır</string>
+  <string name="main-user-contribution-browser">Katkı tarayıcısı</string>
   <string name="main-user-clear-tp">Kullanıcının mesaj sayfasını temizle</string>
   <string name="main-user-retrieving-tp">$1 Kullanıcısının Mesaj Sayfası Getiriliyor</string>
   <string name="main-user-block">Engelle...</string>
@@ -464,6 +471,7 @@
   <string name="main-help-feedback">Geri bildirim</string>
   <string name="main-help-about">Huggle hakkında...</string>
   <string name="main-help-introduction">Giriş</string>
+  <string name="main-help-welcome-page">Sayfaya hoş geldiniz</string>
   <string name="main-help-contents">İçindekiler</string>
   <string name="main-help-queuelegend">Kuyruk efsanesi</string>
   <string name="main-addqueue">Ekle...</string>

@@ -65,7 +65,7 @@
   <string name="duration">Тривалість</string>
   <string name="enable">Увімкнено</string>
   <string name="disable">Вимкнено</string>
-  <string name="no-token">Немає маркера</string>
+  <string name="no-token">Немає токена</string>
   <string name="flags">Прапорці</string>
   <string name="gracetime">Очікування на завершення запитів, які виконують редагування…</string>
   <string name="browser-none">Іще немає сторінки для показу.</string>
@@ -161,7 +161,7 @@
   <string name="config-friend">Інструмент</string>
   <string name="config-userspace">Простір користувача</string>
   <string name="config-talk">Сторінка обговорення</string>
-  <string name="config-columns-dynamic" fuzzy="true">Зробити стовпці списків динамічними (змінюватимуть розмір залежно від розміру елементів списку) чи ручними (користувач зможе змінювати їх розмір вручну)</string>
+  <string name="config-columns-dynamic">Зробити стовпці списків або динамічними (змінюватимуть розмір залежно від розміру елементів списку), або  ручними (користувач зможе змінювати їх розмір вручну)</string>
   <string name="config-message-notification">Сповіщувати, якщо Ви отримаєте нове повідомлення на своїй сторінці обговорення</string>
   <string name="config-warning-api">Показувати попередження для API-запитів</string>
   <string name="config-title-diff">Назва сторінки у вікні змін (просто назва сторінки великим шрифтом угорі над порівнянням версій)</string>
@@ -174,8 +174,8 @@
   <string name="config-confirmsame">Вимагати підтвердження для скасування редагувань до версії цього ж користувача</string>
   <string name="config-confirmselfrevert">Вимагати підтвердження для скасування власних редагувань (окрім відкотів)</string>
   <string name="config-confirmwarned">Вимагати підтвердження для скасування редагувань до версії попередженого користувача</string>
-  <string name="config-confirmrange" fuzzy="true">Вимагати підтвердження для скасування редагувань до версії аноніма з того ж /16 діапазону, користувачі з якого вже відкочувались</string>
-  <string name="config-confirmpage" fuzzy="true">Вимагати підтвердження для скасування редагувань на сторінці, що ігнорується</string>
+  <string name="config-confirmrange">Вимагати підтвердження для скасування до редагувань анонімних користувачів з того ж /16 діапазону, що і користувач, який вже відкочувався</string>
+  <string name="config-confirmpage">Вимагати підтвердження для скасування редагувань на сторінці, що ігнорується</string>
   <string name="config-autoadvance">Після відкоту одразу ж переходити до нового редагування в черзі</string>
   <string name="config-userollback">За можливості використовувати відкіт</string>
   <string name="config-revertsummaries">Описи редагувань для відкотів доступні в меню</string>
@@ -205,13 +205,13 @@
   <string name="delete-deletionlog">Журнал вилучень</string>
   <string name="delete-rem-talk">Вилучити пов’язану сторінку обговорення</string>
   <string name="delete-notify">Повідомити автора</string>
-  <string name="delete-error-token">Помилка: не вдалося отримати маркер вилучення. Причина відмови: $1</string>
+  <string name="delete-error-token">Помилка: не вдалося отримати токен вилучення. Причина відмови: $1</string>
   <string name="delete-token01">Отримання маркера для вилучення $1</string>
-  <string name="delete-token02">В результаті запиту маркер не отримано</string>
+  <string name="delete-token02">В результаті запиту токена не отримано</string>
   <string name="delete-e1">Неможливо вилучити сторінку: $1</string>
   <string name="delete-e2">Неможливо вилучити сторінку</string>
   <string name="delete-edsc">Неможливо вилучити сторінку, оскільки $1</string>
-  <string name="delete-failed-no-info" fuzzy="true">У запиті відсутня інформація про сторінку (Ви точно адміністратор?)</string>
+  <string name="delete-failed-no-info">У запиті відсутня інформація про сторінку (Ви точно адміністратор?)</string>
   <string name="extension-kl">Не запущено</string>
   <string name="extension-ok">Завантажено та запущено</string>
   <string name="historyform-no-info">Немає інформації про редагування</string>
@@ -220,7 +220,7 @@
   <string name="historyform-retrieving-history">Завантаження історії</string>
   <string name="historyform-not-latest-tip">Це не остання версія сторінки. Переконайтеся, що Ви переглянули й новіші версії. Будь ласка, майте також на увазі, що відкидання редагувань може бути недоступним з цієї позиції.</string>
   <string name="history-error-message-title">Неможливо скасувати</string>
-  <string name="history-error" fuzzy="true">Редагування не може бути скасовано. Можливо, сторінку було змінено чи вилучено. Якщо Ви хочете переконатися в тому, що редагування скасовано, скористайтеся звичайним браузерним інтерфейсом MediaWiki</string>
+  <string name="history-error">Редагування не може бути скасовано. Можливо, сторінку вже було змінено чи вилучено. Якщо Ви все ж хочете скасувати редагування, то потрібно скористатись звичайним браузерним інтерфейсом MediaWiki.</string>
   <string name="history-failure">Не вдалось завантажити історію</string>
   <string name="userhistory-title">Ваші редагування</string>
   <string name="irc-connected">$1: Виконано підключення до IRC-каналу нових редагувань</string>
@@ -238,7 +238,7 @@
   <string name="invalid-bot-user-name">Це не є дійсним іменем бота. Приклад коректного імені бота: Jimbo@Huggle</string>
   <string name="login-tab-botp">Пароль бота</string>
   <string name="login-tab-login">Старий спосіб</string>
-  <string name="login-reload-tool-tip" fuzzy="true">Перезавантажити список проектів, у яких можна використовувати Huggle. Це може бути корисним, якщо Ви хочете використовувати Huggle у проекті, для котрого його було підключено лише нещодавно.</string>
+  <string name="login-reload-tool-tip">Перезавантажити список проектів, у яких можна використовувати Huggle. Це може бути корисним, якщо Ви хочете використовувати Huggle у проекті, для котрого Huggle було підключено лише нещодавно.</string>
   <string name="login-language">Мова інтерфейсу:</string>
   <string name="login-project">Проект:</string>
   <string name="login-username">Ім’я користувача:</string>
@@ -253,7 +253,7 @@
   <string name="login-fail-css">Помилка входу до $1: Не вдалося отримати користувацькі налаштування. Відсутня сторінка Special:MyPage/huggle3.css. Ви точно створили підсторінку huggle3.css у своєму просторі користувача?</string>
   <string name="login-fail-enable-true">Помилка входу до $1: Відсутній рядок enable:true у Ваших користувацьких налаштуваннях.</string>
   <string name="login-fail-no-info">Помилка входу до $1: Не вдалося отримати інформацію про користувача: $2</string>
-  <string name="login-bot" fuzzy="true">Яка різниця між старим способом входу і входом бота?</string>
+  <string name="login-bot">Яка різниця між входом бота (BotPassword) і старим способом входу?</string>
   <string name="login-fail-parse-config">Помилка входу до $1: Не вдалося розібрати користувацькі налаштування. Дивіться налагоджувальний журнал для отримання детальної інформації.</string>
   <string name="login-fail-user-data">Помилка входу до $1: Не вдалося отримати інформацію про користувача. API-запит не повертає даних.</string>
   <string name="login-fail-rollback-rights">Помилка входу до $1: Ви не маєте прав відкочувача у цьому проекті.</string>
@@ -300,12 +300,12 @@
   <string name="main-menu-provider-resume">Відновити постачання</string>
   <string name="provider-up">Підключаюся до трансляції нових редагувань для $2 через постачальника $1</string>
   <string name="main-no-reason">Користувач не вказав причину</string>
-  <string name="main-restoring-slap" fuzzy="true">Зараз я відновлюю інше редагування. Зачекайте, будь ласка…</string>
+  <string name="main-restoring-slap">Зараз відновлюється інше редагування. Зачекайте, будь ласка…</string>
   <string name="main-page">Сторінка</string>
   <string name="main-user">Користувач</string>
   <string name="main-contribs">Внесок</string>
   <string name="main-history">Історія</string>
-  <string name="main-new-messages" fuzzy="true">У Вас є нові повідомлення. Виберіть Система -&gt; Показати нові повідомлення або натисніть клавішу M для перегляду.</string>
+  <string name="main-new-messages">У Вас є нові повідомлення. Виберіть \"Система\" -&gt; \"Показати нові повідомлення\" або натисніть клавішу \"M\" для перегляду.</string>
   <string name="main-space">Назва сторінки не може закінчуватись пробілом. Будь ласка, виправте це</string>
   <string name="main-system">Система</string>
   <string name="main-status-bar">Обробляється &lt;b&gt;$1&lt;/b&gt; редагувань та &lt;b&gt;$2&lt;/b&gt; запитів. Користувачів у білому списку: &lt;b&gt;$3&lt;/b&gt; Редагувань у черзі: &lt;b&gt;$4&lt;/b&gt; Статистика для $6: $5</string>
@@ -357,7 +357,7 @@
   <string name="main-page-history">Завантажити історію</string>
   <string name="main-page-historypage">Показати історію</string>
   <string name="main-page-edit">Редагувати сторінку в браузері</string>
-  <string name="main-page-tag">Шаблон</string>
+  <string name="main-page-tag">Мітка</string>
   <string name="main-page-reqdeletion">Запит швидкого вилучення</string>
   <string name="main-page-reqprotection">Запит захисту сторінки</string>
   <string name="main-page-watch">Спостерігати</string>
@@ -367,8 +367,8 @@
   <string name="main-page-display">Показати сторінку</string>
   <string name="main-page-patrol">Позначити версію як перевірену</string>
   <string name="main-page-move">Перейменувати…</string>
-  <string name="main-page-flag-suspicious-edit">Позначити як підозріле редагування (+1 бал користувачеві)</string>
-  <string name="main-page-flag-good-edit" fuzzy="true">Позначити як добре редагування (-200 балів користувачеві)</string>
+  <string name="main-page-flag-suspicious-edit">Позначити як підозріле редагування (+1 штрафний бал користувачеві)</string>
+  <string name="main-page-flag-good-edit">Позначити як добре редагування (зменшити штрафні бали користувача на 200 пунктів)</string>
   <string name="main-page-protect">Захистити</string>
   <string name="main-page-delete">Вилучити</string>
   <string name="main-page-load">Показати</string>
@@ -393,8 +393,8 @@
   <string name="main-browser-open">Відкрити в браузері</string>
   <string name="main-browser-newedits">Показати нові редагування сторінки</string>
   <string name="main-browser-newcontribs">Показати новий внесок користувача</string>
-  <string name="main-browser-lasttab" fuzzy="true">Оскільки це остання вкладка, її неможливо закрити. Хоча б одна вкладка має бути відкритою</string>
-  <string name="main-revert-manual">Немає маркеру відкоту, переходжу на ручне скасування редагувань на сторінці $1</string>
+  <string name="main-browser-lasttab">Оскільки це остання вкладка, її неможливо закрити. Хоча б одна вкладка має бути відкритою</string>
+  <string name="main-revert-manual">Немає токена відкоту, переходжу на ручне скасування редагувань на сторінці $1</string>
   <string name="main-han">HAN</string>
   <string name="main-han-disconnect">Відключитися</string>
   <string name="main-han-connect">Підключитися</string>
@@ -412,9 +412,9 @@
   <string name="main-stats">$1 редагувань на хвилину, $2 скасувань на хвилину</string>
   <string name="main-display-session-data">Інформація про сеанс</string>
   <string name="main-display-whitelist">Показати білий список</string>
-  <string name="main-revert-custom-reson" fuzzy="true">Будь ласка, вкажіть причину скасування редагування</string>
+  <string name="main-revert-custom-reson">Будь ласка, вкажіть причину скасування редагування</string>
   <string name="main-log1">Відновлюю вибрану версію сторінки $1</string>
-  <string name="main-tip-pagetagdelete">Номінувати цю сторінку на вилучення</string>
+  <string name="main-tip-pagetagdelete">Поставити мітку на вилучення сторінки</string>
   <string name="main-tip-pagedelete">Вилучити сторінку</string>
   <string name="main-tip-userreport">Повідомити про користувача</string>
   <string name="main-tip-userblock">Заблокувати користувача</string>
@@ -422,7 +422,7 @@
   <string name="main-no-page" fuzzy="true">Для виконання цієї дії потрібно спочатку обрати редагування.</string>
   <string name="main-revert-null">Неможливо скасувати: пусте редагування</string>
   <string name="main-revert-newpage-title">Неможливо це скасувати</string>
-  <string name="main-revert-newpage">Це нова сторінка, тому редагування не може бути скасоване. Ви можете додати шаблон, номінувати сторінку на вилучення чи самостійно вилучити її (за наявності прав).</string>
+  <string name="main-revert-newpage">Це нова сторінка, тому редагування не може бути скасоване. Ви можете додати мітку на вилучення сторінки чи самостійно вилучити її (за наявності прав).</string>
   <string name="main-restore-text-fail">Неможливо відновити версію, оскільки для неї відсутній текст</string>
   <string name="main-restore-data-fail" fuzzy="true">Неможливо відновити версію, оскільки wiki не надала дані про неї</string>
   <string name="message-title">Повідомлення $1</string>
@@ -431,14 +431,14 @@
   <string name="message-message">Текст повідомлення:</string>
   <string name="message-summary">Опис редагування</string>
   <string name="message-autosign">Автоматично додавати підпис</string>
-  <string name="message-retrieve-new-token">Отримую маркер для редагування $1</string>
+  <string name="message-retrieve-new-token">Отримую токен для редагування $1</string>
   <string name="message-fail-re-user-tp">Не вдалося завантажити $1. Зупиняю відправлення повідомлення цьому користувачеві</string>
   <string name="message-er">Не вдалося залишити повідомлення для $1: $2</string>
   <string name="message-error">Не вдалося залишити повідомлення для $1! Будь ласка, перевірте журнал!</string>
   <string name="message-fail-retrieve-talk" fuzzy="true">не вдається завантажити сторінку обговорення користувача</string>
   <string name="message-done">Успішно залишено повідомлення для $1 в $2</string>
-  <string name="message-fail-token-1" fuzzy="true">не вдалося отримати маркер редагування</string>
-  <string name="message-fail-token-2" fuzzy="true">після запиту не було отримано токен</string>
+  <string name="message-fail-token-1">Не вдалося отримати токен редагування</string>
+  <string name="message-fail-token-2">Після запиту не було отримано токен</string>
   <string name="protect-request-title">Запит захисту для $1</string>
   <string name="protect-reason">Причина:</string>
   <string name="protect-expiry">Термін:</string>
@@ -446,14 +446,14 @@
   <string name="protect-currentlevel">Поточний рівень захисту:</string>
   <string name="protect-type">Тип захисту:</string>
   <string name="protect-none">Немає</string>
-  <string name="protect-token">Неможливо отримати маркер. Причина: $1</string>
+  <string name="protect-token">Неможливо отримати токен. Причина: $1</string>
   <string name="protect-semiprotection">Частковий захист</string>
   <string name="protect-error">Неможливо захистити сторінку, оскільки $1</string>
   <string name="protect-fail-no-info">Інформація про сторінку недоступна (Ви точно адміністратор?)</string>
   <string name="protect-fullprotection">Повний захист</string>
   <string name="protect-message-title-fail">Неможливо захистити</string>
   <string name="protect-moveprotection">Захист від перейменування</string>
-  <string name="protect-ft">Отримую маркер для захисту $1</string>
+  <string name="protect-ft">Отримую токен для захисту $1</string>
   <string name="protect-request-proj-fail">Цей проект не підтримує запити на захист сторінок</string>
   <string name="queue-title">Черга</string>
   <string name="queue-queues">Черга:</string>
@@ -507,7 +507,7 @@
   <string name="report-retrieving">Завантажую сторінку з повідомленнями…</string>
   <string name="report-done">Повідомлено</string>
   <string name="report-user">Повідомити</string>
-  <string name="score-score">Бали</string>
+  <string name="score-score">Штрафні бали</string>
   <string name="score-word">Слово</string>
   <string name="score-range">Правило застосування</string>
   <string name="score-take-any-no-talk-word">Будь-яке включення поза сторінками обговорення</string>
@@ -534,7 +534,7 @@
   <string name="revert-creator">Останнє редагування було зроблене автором сторінки, користувачем $1.</string>
   <string name="revert-preflightcheck">Попередня перевірка</string>
   <string name="revert-delete-instead">Хочете замість цього вилучити сторінку?</string>
-  <string name="revert-speedy-instead">Хочете замість цього номінувати сторінку на швидке вилучення?</string>
+  <string name="revert-speedy-instead">Хочете замість цього поставити мітку про швидке вилучення сторінки?</string>
   <string name="revert-cannotundo" fuzzy="true">Неможливо скасувати через конфлікт з проміжними редагуваннями</string>
   <string name="revert-conflict">Сторінку відредагував користувач \'$1\' з білого списку</string>
   <string name="revert-fail">Не вдалося відкинути $1: $2</string>
@@ -545,8 +545,8 @@
   <string name="speedy-notifycreator">Повідомити автора сторінки</string>
   <string name="rollback">Відкидання редагувань на сторінці $1</string>
   <string name="software-rollback">Ви не маєте прав відкочувача, переходжу на власний відкочувач Huggle</string>
-  <string name="tag-title">Проставляння шаблонів на сторінці $1</string>
-  <string name="tag-tagselector">Додати шаблон:</string>
+  <string name="tag-title">Проставляння міток на сторінці $1</string>
+  <string name="tag-tagselector">Додати мітку:</string>
   <string name="tag-tags">Шаблон(и):</string>
   <string name="tag-parameter">Параметр</string>
   <string name="tag-summary">Опис редагування</string>
@@ -663,17 +663,17 @@
   <string name="reqprotection-progress">Відправляю запит на захист сторінки \'$1\'…</string>
   <string name="speedy-fail">Неможливо номінувати сторінку на швидке вилучення: $1</string>
   <string name="speedy-progress">Номіную сторінку $1 на швидке вилучення…</string>
-  <string name="speedy-wrong">Запитуваний шаблон некоректний. Будь ласка, оберіть іншу причину вилучення.</string>
+  <string name="speedy-wrong">Запитувана мітка некоректна. Будь ласка, оберіть іншу причину вилучення.</string>
   <string name="speedy-finished">Виконано</string>
   <string name="warn-alreadyblocked">Цього користувача вже заблоковано</string>
   <string name="editquery-success">Успішно відредаговано сторінку $1 в $2</string>
-  <string name="editquery-token">Отримую маркер для редагування $1</string>
-  <string name="editquery-token-error">Не вдалося отримати маркер редагування</string>
+  <string name="editquery-token">Отримую токен для редагування $1</string>
+  <string name="editquery-token-error">Не вдалося отримати токен редагування</string>
   <string name="editquery-nocsrft">Відсутній токен CSRF</string>
   <string name="editquery-error-retrieve-prev">Не вдалося отримати попередній вміст сторінки: $1</string>
   <string name="editquery-error-append" fuzzy="true">Ви не можете використовувати одночасно Append і Prepend для редагування сторінки</string>
   <string name="editquery-error-badtoken">Поганий токен</string>
-  <string name="editquery-invalid-token">Не вдалося відредагувати $1, оскільки маркер, що було збережено в кеші, більше не дійсний. Будь ласка, спробуйте відредагувати сторінку ще раз.</string>
+  <string name="editquery-invalid-token">Не вдалося відредагувати $1, оскільки токен, що було збережено в кеші, більше не дійсний. Будь ласка, спробуйте відредагувати сторінку ще раз.</string>
   <string name="provider-failure">Збій у роботі постачальника списку нових редагувань $1 для $2. Спробую знайти іншого постачальника.</string>
   <string name="provider-primary-failure">Збій у роботі основного постачальника списку нових редагувань. Переходжу на отримання списку через wiki.</string>
   <string name="rc-error">Не вдалося отримати дані про нові редагування з wiki. Остання помилка: $1</string>
@@ -692,14 +692,14 @@
   <string name="welcome-show" fuzzy="true">Показати це повідомлення також при наступному Вашому вході у Huggle</string>
   <string name="welcome-tp-empty-fail" fuzzy="true">Сторінка обговорення цього користувача не порожня. Ви впевнені, що хочете привітати його?</string>
   <string name="welcome-page-miss-fail">Huggle не зміг отримати вміст сторінки обговорення цього користувача. Ви впевнені, що хочете привітати його?</string>
-  <string name="cr-newer-edits" fuzzy="true">Конфлікт вирішено: відкинуто всі зміни, включно з новими редагуваннями. Усі редагування були від одного користувача: $1.</string>
-  <string name="cr-resolved-same-user" fuzzy="true">Конфлікт вирішено: відкинуто всі зміни, включно з новими редагуваннями, зробленими тими ж користувачами. Усі редагування були зроблені одними й тими ж користувачами: $1.</string>
+  <string name="cr-newer-edits">Конфлікт вирішено: відкинуто всі зміни, включно з новими редагуваннями. Усі редагування були від одного користувача: $1.</string>
+  <string name="cr-resolved-same-user">Конфлікт вирішено: відкинуто всі зміни, включно з новими редагуваннями, зробленими тими ж користувачами: $1</string>
   <string name="cr-stop-new-edit">Конфлікт вирішено: не виконано ніяких дій. На сторінці $1 з’явилися нові редагування.</string>
   <string name="cr-stop-multiple-same" fuzzy="true">Конфлікт вирішено: не виконано ніяких дій. На сторінці $1 є редагування від одного й того ж користувача.</string>
-  <string name="cr-revert-same-user" fuzzy="true">Конфлікт вирішено: відкинуто всі зміни. На сторінці $1 є редагування від одного й того ж користувача.</string>
+  <string name="cr-revert-same-user">Конфлікт вирішено: відкинуто всі редагування. Є декілька редагувань тільки від одного користувача на сторінці $1.</string>
   <string name="cr-message-same" fuzzy="true">На сторінці $1 є редагування від одного й того ж користувача. Ви впевнені, що хочете відкинути їх?</string>
   <string name="cr-message-new">На сторінці $1 з’явилися нові редагування. Ви впевнені, що хочете відкинути їх?</string>
-  <string name="cr-message-not-same" fuzzy="true">На сторінці $1 з’явилися нові редагування, зроблені різними користувачами. Ви впевнені, що хочете відкинути їх? (Це швидше за все все одно не спрацює через старий маркер сесії.)</string>
+  <string name="cr-message-not-same">На сторінці $1 з’явилися нові редагування, зроблені іншим користувачем. Ви впевнені, що хочете відкинути їх? Це, швидше за все, не спрацює через старий токен сесії.</string>
   <string name="preferences-delete-using-filter">Ви не можете видалити фільтр, що використовується в даний момент</string>
   <string name="preferences-extension-disabled" fuzzy="true">Дане розширення вже планується вимкнути при наступному запуску Huggle</string>
   <string name="preferences-extension-disabled-restart" fuzzy="true">Дане розширення вже планується вимкнути при наступному запуску Huggle</string>
@@ -718,13 +718,13 @@
   <string name="protect-request-fail-notime">Запит не повертає дату та час. Можливо, через помилку MediaWiki. Перериваю запит.</string>
   <string name="message-fail">Не вдалося залишити повідомлення</string>
   <string name="edit-conflict">Конфлікт редагування</string>
-  <string name="page-tag-nodescription" fuzzy="true">відсутній опис цього шаблону</string>
-  <string name="page-tag-fail">Не вдалося додати шаблон на сторінку</string>
+  <string name="page-tag-nodescription">Відсутній опис цієї мітки</string>
+  <string name="page-tag-fail">Не вдалося додати мітку сторінці</string>
   <string name="page-tag-error">Не вдалося додати шаблон на сторінку. Помилка: $1</string>
   <string name="page-unknown">Невідома сторінка</string>
   <string name="summary-edit-range">Показ ряду відмінностей від revid $1 до $2</string>
-  <string name="speedy-csd-invalid">Недопустимий CSD-шаблон</string>
-  <string name="speedy-csd-existing">На сторінці вже є один CSD-шаблон</string>
+  <string name="speedy-csd-invalid">Недопустима CSD-мітка, немає повідомлень та вікі-міток для використання</string>
+  <string name="speedy-csd-existing">На сторінці вже є одна CSD-мітка.</string>
   <string name="namespace">Простір назв</string>
   <string name="block-alreadyblocked">Користувача вже заблоковано</string>
   <string name="report-fail">Не вдалося повідомити про користувача, оскільки: $1</string>
@@ -746,7 +746,7 @@
   <string name="login-username-doesnt-exist">Це ім\'я користувача не існує</string>
   <string name="developer-mode-enter-title">Ура</string>
   <string name="developer-mode-enter-message">Ви увійшли в режим розробника!</string>
-  <string name="unimplemented" fuzzy="true">Ця функція ще не втілена</string>
+  <string name="unimplemented">Ця функція ще не втілена</string>
   <string name="unknown-item">Невідомий елемент</string>
   <string name="title-multiple-projects">кілька проектів ($1)</string>
   <string name="title-on">на $1</string>
@@ -761,6 +761,6 @@
   <string name="query-result-nodata">Результат запиту не містить жодних даних</string>
   <string name="main-revert-warn" fuzzy="true">Це редагування є $1, тому навіть якщо воно нагадує вандалізм, насправді це не так. Ви справді хочете повернути його?</string>
   <string name="query-request-noaction">Жодної дії не надано для запиту до API</string>
-  <string name="query-login-undefined">Токен входу в систему вимагає значення, визначеного користувачем; воно не зберігається в пам\'яті</string>
+  <string name="query-login-undefined">Токен входу в систему вимагає значення, визначеного користувачем; він не зберігається у пам\'яті</string>
   <string name="query-protected-link">Захищене посилання</string>
 </resources>

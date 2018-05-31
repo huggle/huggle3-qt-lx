@@ -231,6 +231,7 @@
   <string name="main-revision-revert">Déi Ännerung déi elo gewise gëtt zrécksetzen</string>
   <string name="main-revision-rv-stay">Dës Ännerung zrécksetzen an op enger Säit bleiwen</string>
   <string name="main-revision-revert-only-this">Nëmmen dës Versioun zrécksetzen</string>
+  <string name="main-revision-revert-agf">Nëmmen dës Versioun zrécksetzen, vu gudder Absicht ausgoen</string>
   <string name="main-revision-previous">Vireg</string>
   <string name="main-revision-next">Nächst</string>
   <string name="main-revision-latest">Lescht</string>

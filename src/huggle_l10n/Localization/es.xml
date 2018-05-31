@@ -282,7 +282,7 @@
   <string name="login-fail-no-info">Falló el acceso a $1: no se pudo obtener la información de la cuenta ($2)</string>
   <string name="login-bot">¿Cuál es la diferencia entre BotPassword y el acceso heredado?</string>
   <string name="login-fail-parse-config">Error de inicio de sesión en $1: no se puede analizar la configuración de usuario. Ver el registro de depuración para obtener más detalles.</string>
-  <string name="login-fail-parse-config-yaml">Inicion fallido en $1: Incapaz de parse la configuration del usario: $2</string>
+  <string name="login-fail-parse-config-yaml">Falló el acceso a $1. No se puede analizar la configuración del usuario: $2</string>
   <string name="login-fail-user-data">Error de inicio de sesión en $1: no se puede recuperar la información de usuario. La API de consulta no devuelve datos.</string>
   <string name="login-fail-rollback-rights">Falló el acceso a $1: no tienes el permiso de reversor en este proyecto.</string>
   <string name="login-failed-autoconfirm-rights">Falló el acceso a $1: no tienes el permiso de autoconfirmado en este proyecto.</string>

@@ -15,6 +15,7 @@
 * Pan Cube
 * Phoenix303
 * Py64
+* Railfail536
 * Ty221
 * Vengir
 * Wedkarski
@@ -333,6 +334,8 @@
   <string name="main-revision-revert-warn">Wycofaj obecnie wyświetlaną edycję i ostrzeż użytkownika</string>
   <string name="main-revision-rws">Wycofaj obecnie wyświetlaną edycję, ostrzeż użytkownika i pozostań na stronie</string>
   <string name="main-revision-faith">Wycofaj edycję, zakładając dobre intencje</string>
+  <string name="main-revision-revert-only-this">Wycofaj tylko tą wersję</string>
+  <string name="main-revision-revert-agf">Wycofaj tylko tą wersję, zakładając dobrą wiarę</string>
   <string name="main-revision-previous">Poprzednie</string>
   <string name="main-revision-next">Następne</string>
   <string name="main-revision-latest">Najnowsze</string>
@@ -363,9 +366,11 @@
   <string name="main-page-delete">Usuń</string>
   <string name="main-page-load">Wczytaj</string>
   <string name="main-patrol-not-enabled">Patrolowanie zmian nie jest włączone na $1</string>
+  <string name="main-page-refresh">Odśwież</string>
   <string name="main-page-restore">Przywróć tę wersję</string>
   <string name="main-page-tab-close">Zamknij bieżącą zakładkę</string>
   <string name="main-page-tab-open">Otwórz nową zakładkę</string>
+  <string name="main-scripting-script-manager">Menadżer skryptów</string>
   <string name="main-user-info">Pokaż dane o użytkowniku</string>
   <string name="main-user-ignore">Ignoruj</string>
   <string name="main-user-unignore">Nie ignoruj</string>
@@ -396,6 +401,7 @@
   <string name="main-help-documentation">Dokumentacja</string>
   <string name="main-help-about">O Huggle...</string>
   <string name="main-help-introduction">Wstęp</string>
+  <string name="main-help-welcome-page">Strona powitalna</string>
   <string name="main-addqueue">Dodaj...</string>
   <string name="main-savelogtitle">Zapisz log</string>
   <string name="main-usermessageother">Inny komunikat...</string>
