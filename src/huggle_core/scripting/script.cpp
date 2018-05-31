@@ -343,6 +343,22 @@ void Script::Hook_WarningFinished(WikiEdit *edit)
     this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_WARNING_FINISHED], parameters);
 }
 
+void Script::Hook_OnLocalConfigRead()
+{
+    if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_LOCALCONFIG_READ))
+        return;
+
+    this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_LOCALCONFIG_READ]);
+}
+
+void Script::Hook_OnLocalConfigWrite()
+{
+    if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_LOCALCONFIG_WRITE))
+        return;
+
+    this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_LOCALCONFIG_WRITE]);
+}
+
 void Script::SubscribeHook(int hook, QString function_name)
 {
     if (this->attachedHooks.contains(hook))
@@ -388,6 +404,10 @@ int Script::GetHookID(QString hook)
         return HUGGLE_SCRIPT_HOOK_WARNING_FINISHED;
     if (hook == "revert_preflight")
         return HUGGLE_SCRIPT_HOOK_REVERT_PREFLIGHT;
+    if (hook == "localconfig_write")
+        return HUGGLE_SCRIPT_HOOK_LOCALCONFIG_WRITE;
+    if (hook == "localconfig_read")
+        return HUGGLE_SCRIPT_HOOK_LOCALCONFIG_READ;
     return -1;
 }
 

@@ -296,6 +296,34 @@ void Huggle::Hooks::QueryPool_Update(Huggle::Query *q)
     Events::Global->on_QueryPoolUpdate(q);
 }
 
+void Huggle::Hooks::OnLocalConfigWrite()
+{
+    foreach(Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
+    {
+        if (e->IsWorking())
+            e->Hook_OnLocalConfigWrite();
+    }
+    foreach (Script *s, Script::GetScripts())
+    {
+        if (s->IsWorking())
+            s->Hook_OnLocalConfigWrite();
+    }
+}
+
+void Huggle::Hooks::OnLocalConfigRead()
+{
+    foreach(Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
+    {
+        if (e->IsWorking())
+            e->Hook_OnLocalConfigRead();
+    }
+    foreach (Script *s, Script::GetScripts())
+    {
+        if (s->IsWorking())
+            s->Hook_OnLocalConfigRead();
+    }
+}
+
 void Huggle::Hooks::ReportUser(Huggle::WikiUser *u)
 {
     Events::Global->on_Report(u);

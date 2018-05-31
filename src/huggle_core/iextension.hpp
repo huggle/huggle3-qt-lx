@@ -166,6 +166,8 @@ namespace Huggle
             virtual bool Hook_MainWindowReloadShortcut(void *shortcut) { return true; }
             virtual void Hook_MainWindowOnRender() {}
             virtual void Hook_FeedProvidersOnInit(void* site) {}
+            virtual void Hook_OnLocalConfigRead() {}
+            virtual void Hook_OnLocalConfigWrite() {}
             //! Pointer to huggle core, set by extension loader
             void *HuggleCore = nullptr;
             //! Pointer to global system configuration, set by extension loader

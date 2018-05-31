@@ -95,6 +95,8 @@ namespace Huggle
             static void WikiEdit_OnNewHistoryItem(HistoryItem *history_item);
             static void QueryPool_Remove(Query *q);
             static void QueryPool_Update(Query *q);
+            static void OnLocalConfigWrite();
+            static void OnLocalConfigRead();
             static void ReportUser(WikiUser *u);
             static void SilentReport(WikiUser *u);
             static void ShowMessage(QString title, QString message);

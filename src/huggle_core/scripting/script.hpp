@@ -37,6 +37,8 @@
 #define HUGGLE_SCRIPT_HOOK_EDIT_RESCORE                         9
 #define HUGGLE_SCRIPT_HOOK_WARNING_FINISHED                     10
 #define HUGGLE_SCRIPT_HOOK_REVERT_PREFLIGHT                     11
+#define HUGGLE_SCRIPT_HOOK_LOCALCONFIG_WRITE                    12
+#define HUGGLE_SCRIPT_HOOK_LOCALCONFIG_READ                     13
 
 namespace Huggle
 {
@@ -97,6 +99,8 @@ namespace Huggle
             bool Hook_OnRevertPreflight(WikiEdit *edit);
             int Hook_EditRescore(WikiEdit *edit);
             void Hook_WarningFinished(WikiEdit *edit);
+            void Hook_OnLocalConfigRead();
+            void Hook_OnLocalConfigWrite();
             void SubscribeHook(int hook, QString function_name);
             void UnsubscribeHook(int hook);
             bool HookSubscribed(int hook);

@@ -1900,6 +1900,7 @@ void MainWindow::Exit()
     this->wlt = new QTimer(this);
     connect(this->wlt, SIGNAL(timeout()), this, SLOT(OnTimerTick0()));
     this->wlt->start(800);
+    Configuration::SaveSystemConfig();
 }
 
 bool MainWindow::BrowserPageIsEditable()

@@ -17,6 +17,7 @@
 #include "syslog.hpp"
 #include "exception.hpp"
 #include "generic.hpp"
+#include "hooks.hpp"
 #include "huggleoption.hpp"
 #include "hugglequeuefilter.hpp"
 #include "huggleparser.hpp"
@@ -372,6 +373,7 @@ void Configuration::LoadSystemConfig(QString fn)
         }
         hcfg->ExtensionData[ExtensionName]->SetOption(KeyName, option.attribute("value"));
     }
+    Hooks::OnLocalConfigRead();
     Huggle::Syslog::HuggleLogs->DebugLog("Finished conf");
 }
 
@@ -382,6 +384,7 @@ void Configuration::LoadSystemConfig(QString fn)
 
 void Configuration::SaveSystemConfig()
 {
+    Hooks::OnLocalConfigWrite();
     QFile file(Configuration::GetConfigurationPath() + QDir::separator() + "huggle3.xml");
     if (!file.open(QIODevice::WriteOnly))
     {
