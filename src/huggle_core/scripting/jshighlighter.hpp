@@ -19,7 +19,7 @@
 
 namespace Huggle
 {
-    class JSHighlighter : public QSyntaxHighlighter
+    class HUGGLE_EX_CORE JSHighlighter : public QSyntaxHighlighter
     {
             Q_OBJECT
         public:
