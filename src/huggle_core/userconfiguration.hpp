@@ -154,6 +154,8 @@ namespace Huggle
             QString                 PageEmptyQueue;
             Version*                Previous_Version;
             WatchlistOption         Watchlist;
+            //! Insert top revision edits of user when we rollback some of their edits
+            bool                    InsertEditsOfRolledUserToQueue = true;
         private:
             YAML::Node              *yaml_node = nullptr;
     };

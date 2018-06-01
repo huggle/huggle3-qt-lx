@@ -420,6 +420,7 @@ namespace Huggle
             void ReloadSc();
             void ReloadShort(QString id);
             void ProcessReverts();
+            void insertRelatedEditsToQueue();
             QString WikiScriptURL();
             QString ProjectURL();
             bool keystrokeCheck(int id);

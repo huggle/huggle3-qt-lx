@@ -253,6 +253,7 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
     AppendConf(&configuration, "shortcut-hash", this->ShortcutHash);
     AppendConf(&configuration, "show-warning-if-not-on-last-revision", this->ShowWarningIfNotOnLastRevision);
     AppendConf(&configuration, "number-dropdown-menu-items", this->NumberDropdownMenuItems);
+    AppendConf(&configuration, "insert-edits-of-rolled-user-to-queue", this->InsertEditsOfRolledUserToQueue);
     // shortcuts
     QStringList shortcuts = Configuration::HuggleConfiguration->Shortcuts.keys();
     // we need to do this otherwise huggle may sort the items differently every time and spam wiki
@@ -603,6 +604,7 @@ bool UserConfiguration::ParseYAML(QString config, ProjectConfiguration *ProjectC
     this->AutomaticRefresh = YAML2Bool("automatic-refresh", yaml, this->AutomaticRefresh);
     this->ShortcutHash = YAML2String("shortcut-hash", yaml, "null");
     this->ShowWarningIfNotOnLastRevision = YAML2Bool("show-warning-if-not-on-last-revision", yaml, this->ShowWarningIfNotOnLastRevision);
+    this->InsertEditsOfRolledUserToQueue = YAML2Bool("insert-edits-of-rolled-user-to-queue", yaml, this->InsertEditsOfRolledUserToQueue);
     // for now we do this only for home wiki but later we need to make it for every wiki
     if (IsHome)
     {

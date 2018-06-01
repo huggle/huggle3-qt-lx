@@ -1109,6 +1109,18 @@ void MainWindow::ProcessReverts()
     }
 }
 
+void MainWindow::insertRelatedEditsToQueue()
+{
+    QList<revid_ht> revs = this->wUserInfo->GetTopRevisions();
+    foreach (revid_ht r, revs)
+    {
+        if (r == this->CurrentEdit->RevID)
+            continue;
+        HUGGLE_DEBUG("Inserting top revision of reverted user to Queue: " + QString::number(r), 2);
+        this->Queue1->AddUnprocessedEditFromRevID(r, this->GetCurrentWikiSite());
+    }
+}
+
 QString MainWindow::WikiScriptURL()
 {
     if (this->CurrentEdit == nullptr || this->CurrentEdit->Page == nullptr)
@@ -1153,6 +1165,8 @@ Collectable_SmartPtr<RevertQuery> MainWindow::Revert(QString summary, bool next,
         this->CurrentEdit->User->Resync();
         this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore(false) - 10);
         Hooks::OnRevert(this->CurrentEdit);
+        if (hcfg->UserConfig->InsertEditsOfRolledUserToQueue)
+            this->insertRelatedEditsToQueue();
         ptr_ = WikiUtil::RevertEdit(this->CurrentEdit, summary, false, rollback);
         if (single_rv) { ptr_->SetLast(); }
         if (Configuration::HuggleConfiguration->SystemConfig_InstantReverts)

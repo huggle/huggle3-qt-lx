@@ -238,8 +238,9 @@ void UserinfoForm::JumpToSpecificContrib(long revid, QString page)
     WikiEdit::Lock_EditList->lock();
     while (x < WikiEdit::EditList.count())
     {
-        WikiEdit *edit = WikiEdit::EditList.at(x);
-        x++;
+        WikiEdit *edit = WikiEdit::EditList.at(x++);
+        if (!edit->IsPostProcessed())
+            continue;
         if (edit->RevID == revid)
         {
             MainWindow::HuggleMain->ProcessEdit(edit, true, false, true);
@@ -257,6 +258,17 @@ void UserinfoForm::JumpToSpecificContrib(long revid, QString page)
     QueryPool::HugglePool->PostProcessEdit(this->edit);
     MainWindow::HuggleMain->Browser->RenderHtml(_l("wait"));
     this->timer->start(HUGGLE_TIMER);
+}
+
+QList<revid_ht> UserinfoForm::GetTopRevisions()
+{
+    QList<revid_ht> top_revisions;
+    foreach (UserInfoFormHistoryItem i, this->Items)
+    {
+        if (i.Top)
+            top_revisions.append(i.RevID.toLongLong());
+    }
+    return top_revisions;
 }
 
 void UserinfoForm::on_tableWidget_clicked(const QModelIndex &index)

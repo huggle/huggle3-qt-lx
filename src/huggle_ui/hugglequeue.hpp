@@ -48,7 +48,7 @@ namespace Huggle
              *  call a sort function after this
              * \param page is a pointer to wiki edit you want to insert to queue
              */
-            void AddItem(WikiEdit *page);
+            void AddItem(WikiEdit *edit);
             void Delete(HuggleQueueItemLabel *item, QLayoutItem *qi = nullptr);
             /*!
              * \brief DeleteByScore deletes all edits that have lower than specified score

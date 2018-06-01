@@ -62,6 +62,7 @@ namespace Huggle
             void ChangeUser(WikiUser *user);
             void Read();
             void JumpToSpecificContrib(long revid, QString page);
+            QList<revid_ht> GetTopRevisions();
             QList<UserInfoFormHistoryItem> Items;
 
         private slots:

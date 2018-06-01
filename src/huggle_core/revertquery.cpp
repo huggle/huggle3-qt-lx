@@ -257,8 +257,9 @@ void RevertQuery::Preflight()
         WikiEdit::Lock_EditList->lock();
         while (index < WikiEdit::EditList.count())
         {
-            WikiEdit *w = WikiEdit::EditList.at(index);
-            ++index;
+            WikiEdit *w = WikiEdit::EditList.at(index++);
+            if (!w->IsPostProcessed())
+                continue;
             if (w != this->editToBeReverted)
             {
                 if (w->Page->PageName != this->editToBeReverted->Page->PageName)

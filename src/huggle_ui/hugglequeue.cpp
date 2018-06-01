@@ -38,48 +38,51 @@ HuggleQueue::~HuggleQueue()
     delete this->ui;
 }
 
-void HuggleQueue::AddItem(WikiEdit *page)
+void HuggleQueue::AddItem(WikiEdit *edit)
 {
-    if (page == nullptr)
+    if (edit == nullptr)
         throw new Huggle::NullPointerException("WikiEdit *page", BOOST_CURRENT_FUNCTION);
 
-    if (!page->IsValid)
+    if (!edit->IsPostProcessed())
+        throw new Huggle::Exception("Insert of non processed edit to queue", BOOST_CURRENT_FUNCTION);
+
+    if (!edit->IsValid)
     {
-        HUGGLE_DEBUG1("Not inserting edit " + page->Page->PageName + " because it's broken");
+        HUGGLE_DEBUG1("Not inserting edit " + edit->Page->PageName + " because it's broken");
         return;
     }
 
-    if (!Hooks::OnEditLoadToQueue(page))
+    if (!Hooks::OnEditLoadToQueue(edit))
     {
-        HUGGLE_DEBUG("Queue: extension hook rejected edit " + page->Page->PageName, 3);
+        HUGGLE_DEBUG("Queue: extension hook rejected edit " + edit->Page->PageName, 3);
         return;
     }
 
     // Check if page matches the global score limits
-    if (hcfg->UserConfig->EnableMaxScore && (hcfg->UserConfig->MaxScore < page->Score))
+    if (hcfg->UserConfig->EnableMaxScore && (hcfg->UserConfig->MaxScore < edit->Score))
     {
-        HUGGLE_DEBUG("Queue: edit " + page->Page->PageName + " has higher score than MaxScore, ignoring", 2);
+        HUGGLE_DEBUG("Queue: edit " + edit->Page->PageName + " has higher score than MaxScore, ignoring", 2);
         return;
     }
 
-    if (hcfg->UserConfig->EnableMinScore && (hcfg->UserConfig->MinScore > page->Score))
+    if (hcfg->UserConfig->EnableMinScore && (hcfg->UserConfig->MinScore > edit->Score))
     {
-        HUGGLE_DEBUG("Queue: edit " + page->Page->PageName + " has lower score than MinScore, ignoring", 2);
+        HUGGLE_DEBUG("Queue: edit " + edit->Page->PageName + " has lower score than MinScore, ignoring", 2);
         return;
     }
 
-    page->RegisterConsumer(HUGGLECONSUMER_QUEUE);
+    edit->RegisterConsumer(HUGGLECONSUMER_QUEUE);
     if (MainWindow::HuggleMain != nullptr)
     {
         if (MainWindow::HuggleMain->VandalDock != nullptr)
         {
-            if (MainWindow::HuggleMain->VandalDock->IsParsed(page))
+            if (MainWindow::HuggleMain->VandalDock->IsParsed(edit))
             {
                 // we don't even need to insert this page to queue
-                page->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
+                edit->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
                 return;
             }
-            MainWindow::HuggleMain->VandalDock->Rescore(page);
+            MainWindow::HuggleMain->VandalDock->Rescore(edit);
         }
     }
     // in case that we don't want to have this edit in queue, we can ignore this
@@ -91,24 +94,25 @@ void HuggleQueue::AddItem(WikiEdit *page)
         while (i < Huggle::WikiEdit::EditList.count())
         {
             // retrieve the edit
-            WikiEdit *edit = Huggle::WikiEdit::EditList.at(i);
-            i++;
+            WikiEdit *current_edit = Huggle::WikiEdit::EditList.at(i++);
+            if (!current_edit->IsPostProcessed())
+                continue;
             // if this is a same edit we can go next
-            if (edit == page)
+            if (current_edit == edit)
                 continue;
             // if this edit is not newer we can continue
-            if (edit->RevID < page->RevID)
+            if (current_edit->RevID < edit->RevID)
                 continue;
             // if edit is not a revert we can continue
-            if (!edit->IsRevert)
+            if (!current_edit->IsRevert)
                 continue;
             // if edit is not made to this page, we can continue
-            if (edit->Page->PageName != page->Page->PageName)
+            if (current_edit->Page->PageName != edit->Page->PageName)
                 continue;
             // we found it
-            HUGGLE_DEBUG("Ignoring edit to " + page->Page->PageName + " because it was reverted by someone", 1);
+            HUGGLE_DEBUG("Ignoring edit to " + edit->Page->PageName + " because it was reverted by someone", 1);
             WikiEdit::Lock_EditList->unlock();
-            page->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
+            edit->UnregisterConsumer(HUGGLECONSUMER_QUEUE);
             return;
         }
         WikiEdit::Lock_EditList->unlock();
@@ -116,14 +120,14 @@ void HuggleQueue::AddItem(WikiEdit *page)
     if (Configuration::HuggleConfiguration->UserConfig->TruncateEdits)
     {
         // if we want to keep only newest edits in queue we can remove all older edits made to this page
-        this->DeleteOlder(page);
+        this->DeleteOlder(edit);
     }
     // so we need to insert the item somehow
     HuggleQueueItemLabel *label = new HuggleQueueItemLabel(this);
     // we create a new label here
-    label->Edit = page;
-    label->SetName(page->Page->PageName);
-    if (page->Score <= MINIMAL_SCORE)
+    label->Edit = edit;
+    label->SetName(edit->Page->PageName);
+    if (edit->Score <= MINIMAL_SCORE)
     {
         if (this->ui->itemList->count() == 0)
         {
@@ -137,7 +141,7 @@ void HuggleQueue::AddItem(WikiEdit *page)
         if (Configuration::HuggleConfiguration->SystemConfig_QueueNewEditsUp)
         {
             long score = GetScore(id);
-            while (score > page->Score && score > MINIMAL_SCORE)
+            while (score > edit->Score && score > MINIMAL_SCORE)
             {
                 score = GetScore(id);
                 id++;
@@ -146,7 +150,7 @@ void HuggleQueue::AddItem(WikiEdit *page)
         else
         {
             long score = GetScore(id);
-            while (score >= page->Score && score > MINIMAL_SCORE)
+            while (score >= edit->Score && score > MINIMAL_SCORE)
             {
                 id++;
                 score = GetScore(id);
@@ -162,7 +166,7 @@ void HuggleQueue::AddItem(WikiEdit *page)
     this->Items.append(label);
     this->RedrawTitle();
 
-    if (hcfg->SystemConfig_PlaySoundOnQueue && page->Score >= hcfg->SystemConfig_PlaySoundQueueScore)
+    if (hcfg->SystemConfig_PlaySoundOnQueue && edit->Score >= hcfg->SystemConfig_PlaySoundQueueScore)
         Resources::PlayEmbeddedSoundFile("not1.wav");
 }
 
