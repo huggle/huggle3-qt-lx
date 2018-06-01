@@ -14,6 +14,7 @@
 #include "uiscript.hpp"
 #include "../uigeneric.hpp"
 #include "../mainwindow.hpp"
+#include "../genericbrowser.hpp"
 #include "../hugglequeue.hpp"
 #include <huggle_core/scripting/jsmarshallinghelper.hpp>
 #include <huggle_core/wikiutil.hpp>
@@ -39,6 +40,7 @@ HuggleUIJS::HuggleUIJS(Script *s) : GenericJSClass(s)
     this->function_help.insert("navigate_backward", "(): move to previous edit");
     this->function_help.insert("navigate_forward", "(): move to next edit in history");
     this->function_help.insert("insert_edit_to_queue", "(string site_name, int revision_id): (since HG 3.4.3) inserts an edit to queue, filters will apply, edit will be processed so this function is asynchronous and results will be not be visible immediately");
+    this->function_help.insert("highlight_text", "(string text): find a text in current browser window");
 }
 
 int HuggleUIJS::create_menu_item(int parent, QString name, QString function, bool checkable)
@@ -219,6 +221,17 @@ bool HuggleUIJS::insert_edit_to_queue(QString site_name, int rev_id)
         return false;
     }
     MainWindow::HuggleMain->Queue1->AddUnprocessedEditFromRevID(static_cast<revid_ht>(rev_id), site);
+    return true;
+}
+
+bool HuggleUIJS::highlight_text(QString text)
+{
+    if (!MainWindow::HuggleMain)
+    {
+        HUGGLE_ERROR(this->script->GetName() + ": insert_edit_to_queue(...): mainwindow is not loaded yet");
+        return false;
+    }
+    MainWindow::HuggleMain->Browser->Find(text);
     return true;
 }
 

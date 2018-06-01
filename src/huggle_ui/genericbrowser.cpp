@@ -196,3 +196,8 @@ void GenericBrowser::DisplayNewPageEdit(WikiEdit *edit)
     this->RenderHtml(HTML);
 }
 
+void GenericBrowser::Find(QString text)
+{
+    HUGGLE_ERROR("This browser doesn't support this feature");
+}
+

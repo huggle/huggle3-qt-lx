@@ -32,6 +32,7 @@ namespace Huggle
         public:
             explicit HuggleWeb(QWidget *parent = nullptr);
             ~HuggleWeb();
+            void Find(QString text);
             void DisplayPage(const QString &url);
             void RenderHtml(const QString &html);
             QString RetrieveHtml();

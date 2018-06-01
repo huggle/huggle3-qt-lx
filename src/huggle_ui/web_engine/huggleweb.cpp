@@ -25,6 +25,11 @@ HuggleWeb::~HuggleWeb()
     delete this->ui;
 }
 
+void HuggleWeb::Find(QString text)
+{
+    this->ui->webView->findText(text);
+}
+
 void HuggleWeb::DisplayPage(const QString &url)
 {
     this->ui->webView->history()->clear();

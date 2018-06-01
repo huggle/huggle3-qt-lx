@@ -61,7 +61,7 @@ namespace Huggle
     class HuggleQueue;
     class HuggleTool;
     class UserinfoForm;
-    class HuggleWeb;
+    class GenericBrowser;
     class SpeedyForm;
     class RevertQuery;
     class EditQuery;
@@ -210,7 +210,7 @@ namespace Huggle
             //! Pointer to queue
             HuggleQueue *Queue1;
             //! Pointer to browser
-            HuggleWeb *Browser;
+            GenericBrowser *Browser;
             HistoryForm *wHistory;
             UserinfoForm *wUserInfo;
             //! Pointer to toolbar
@@ -229,7 +229,7 @@ namespace Huggle
             History *_History;
             //! Pointer to menu of revert warn button
             QMenu *RevertWarn = nullptr;
-            QList<HuggleWeb*> Browsers;
+            QList<GenericBrowser*> Browsers;
             //! Pointer to vandal network
             VandalNw *VandalDock;
             SessionForm *fSessionData = nullptr;
