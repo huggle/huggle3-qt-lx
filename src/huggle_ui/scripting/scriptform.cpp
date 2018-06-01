@@ -16,8 +16,10 @@
 #include "ui_scriptform.h"
 #include <huggle_core/configuration.hpp>
 #include <huggle_core/resources.hpp>
+#include <huggle_core/scripting/jshighlighter.hpp>
 #include <huggle_core/scripting/script.hpp>
 #include <QFontDatabase>
+#include <QHash>
 #include <QFile>
 #include <QFileDialog>
 
@@ -35,10 +37,12 @@ ScriptForm::ScriptForm(QWidget *parent) : QDialog(parent), ui(new Ui::ScriptForm
         file_name = Configuration::GetExtensionsRootPath() + "new_script" + QString::number(file_id++) + ".js";
     }
     this->ui->lineEdit_2->setText(file_name);
+    this->highlighter = new JSHighlighter(this->ui->textEdit->document());
 }
 
 ScriptForm::~ScriptForm()
 {
+    delete this->highlighter;
     delete this->ui;
 }
 

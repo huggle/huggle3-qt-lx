@@ -23,6 +23,8 @@ namespace Ui
 
 namespace Huggle
 {
+    class JSHighlighter;
+
     class ScriptForm : public QDialog
     {
             Q_OBJECT
@@ -39,6 +41,7 @@ namespace Huggle
         private:
             QString editingName;
             bool editing = false;
+            JSHighlighter *highlighter = nullptr;
             Ui::ScriptForm *ui;
     };
 }

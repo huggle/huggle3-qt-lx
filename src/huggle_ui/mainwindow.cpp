@@ -757,7 +757,8 @@ void MainWindow::ShowToolTip(QString text)
 
 void MainWindow::ShutdownForm()
 {
-    this->wlt->stop();
+    if (this->wlt)
+        this->wlt->stop();
     this->tStatusBarRefreshTimer->stop();
     this->generalTimer->stop();
     this->tCheck->stop();
