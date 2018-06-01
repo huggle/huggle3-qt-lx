@@ -49,6 +49,8 @@ namespace Huggle
     class WikiUser;
     class WikiSite;
 
+    typedef void* (*WEPostprocessedCallback) (WikiEdit*);
+
     //! Edits are post processed in this thread
     class HUGGLE_EX_CORE WikiEdit_ProcessorThread :  public QThread
     {
@@ -104,6 +106,7 @@ namespace Huggle
             //! Processes all score words in text
             void ProcessWords();
             void RemoveFromHistoryChain();
+            QString ContentModel;
             //! Page that was changed by edit
             WikiPage *Page;
             //! User who changed the page
@@ -157,6 +160,9 @@ namespace Huggle
             long Score = 0;
             //! This score is used to determine if edit was done in good faith, even if it wasn't OK
             long GoodfaithScore = 0;
+            //! Function to call when post processing of edit is finished
+            WEPostprocessedCallback PostprocessCallback = nullptr;
+            void *PostprocessCallback_Owner = nullptr;
             QHash<QString, QVariant> PropertyBag;
             //! You can insert special properties for this edit here that are displayed in huggle interface
             QHash<QString, QString> MetaLabels;
@@ -165,6 +171,7 @@ namespace Huggle
             QStringList ScoreWords;
             QDateTime Time;
         protected:
+            void processCallback();
             void recordScore(QString name, score_ht score);
             //! This function is called by core
             bool finalizePostProcessing();

@@ -14,7 +14,10 @@
 #include "uiscript.hpp"
 #include "../uigeneric.hpp"
 #include "../mainwindow.hpp"
+#include "../hugglequeue.hpp"
 #include <huggle_core/scripting/jsmarshallinghelper.hpp>
+#include <huggle_core/wikiutil.hpp>
+#include <huggle_core/wikisite.hpp>
 #include <huggle_core/syslog.hpp>
 
 using namespace Huggle;
@@ -35,6 +38,7 @@ HuggleUIJS::HuggleUIJS(Script *s) : GenericJSClass(s)
     this->function_help.insert("navigate_next", "(): move to next edit in queue");
     this->function_help.insert("navigate_backward", "(): move to previous edit");
     this->function_help.insert("navigate_forward", "(): move to next edit in history");
+    this->function_help.insert("insert_edit_to_queue", "(string site_name, int revision_id): (since HG 3.4.3) inserts an edit to queue, filters will apply, edit will be processed so this function is asynchronous and results will be not be visible immediately");
 }
 
 int HuggleUIJS::create_menu_item(int parent, QString name, QString function, bool checkable)
@@ -198,6 +202,24 @@ QJSValue HuggleUIJS::get_current_wiki_edit()
         return QJSValue(QJSValue::SpecialValue::NullValue);
 
     return JSMarshallingHelper::FromEdit(edit, this->GetScript()->GetEngine());
+}
+
+bool HuggleUIJS::insert_edit_to_queue(QString site_name, int rev_id)
+{
+    if (!Huggle::MainWindow::HuggleMain)
+    {
+        HUGGLE_ERROR(this->script->GetName() + ": insert_edit_to_queue(...): mainwindow is not loaded yet");
+        return false;
+    }
+    // Get the site
+    WikiSite *site = WikiUtil::GetSiteByName(site_name);
+    if (!site)
+    {
+        HUGGLE_ERROR(this->script->GetName() + ": insert_edit_to_queue(...): unknown site");
+        return false;
+    }
+    MainWindow::HuggleMain->Queue1->AddUnprocessedEditFromRevID(static_cast<revid_ht>(rev_id), site);
+    return true;
 }
 
 QHash<QString, QString> HuggleUIJS::GetFunctions()

@@ -94,6 +94,9 @@ bool WikiEdit::finalizePostProcessing()
     if (this->processedByWorkerThread || !this->postProcessing)
     {
         WikiUser::UpdateWl(this->User, this->Score);
+        this->processCallback();
+        // Remove the callback to ensure that we don't call it more than once
+        this->PostprocessCallback = nullptr;
         return true;
     }
 
@@ -544,6 +547,12 @@ void WikiEdit::RemoveFromHistoryChain()
         this->Next->Previous = nullptr;
         this->Next = nullptr;
     }
+}
+
+void WikiEdit::processCallback()
+{
+    if (this->PostprocessCallback)
+        this->PostprocessCallback(this);
 }
 
 void WikiEdit::recordScore(QString name, score_ht score)

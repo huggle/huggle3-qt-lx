@@ -33,6 +33,7 @@ namespace Huggle
     class Message;
     class WikiPage;
     class WikiEdit;
+    class WikiSite;
 
     //! Provides helper functions that make it easy to do various stuff with mediawiki sites
     namespace WikiUtil
@@ -147,8 +148,9 @@ namespace Huggle
          * \param callback_er this function is called on error
          */
         HUGGLE_EX_CORE void RetrieveEditByRevid(revid_ht revid, WikiSite *site, void *source, RetrieveEditByRevid_Callback callback_success,
-                                           RetrieveEditByRevid_Callback callback_er);
+                                                RetrieveEditByRevid_Callback callback_er);
         HUGGLE_EX_CORE void RetrieveTokens(WikiSite *wiki_site);
+        HUGGLE_EX_CORE WikiSite *GetSiteByName(QString name);
     }
 }
 

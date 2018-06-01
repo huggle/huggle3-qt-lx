@@ -2201,6 +2201,9 @@ static void DisplayRevid_Finish(WikiEdit *edit, void *source, QString er)
     Q_UNUSED(source);
     Q_UNUSED(er);
     MainWindow *window = MainWindow::HuggleMain;
+    // this is true hack as it's async call, but we don't really need to have the edit post processed for it
+    // to be rendered, let's just call it to be safe, as having unprocessed edits in buffer is a bad thing
+    QueryPool::HugglePool->PostProcessEdit(edit);
     window->ProcessEdit(edit);
 }
 

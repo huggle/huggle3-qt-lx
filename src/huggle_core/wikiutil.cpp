@@ -370,9 +370,6 @@ static void RetrieveEditByRevid_Page_OK(Query *query)
     // \bug now put the diff into the diff store, keep in mind that edit is still not postprocessed so many things are probably not going to be evaluated
     // we need to wait for post processing to finish here, it's just that there isn't really any simple way to accomplish that
     source_info->edit->DiffText = diff_text->Value;
-    // this is true hack as it's async call, but we don't really need to have the edit post processed for it
-    // to be rendered, let's just call it to be safe, as having unprocessed edits in buffer is a bad thing
-    QueryPool::HugglePool->PostProcessEdit(source_info->edit);
     source_info->success(source_info->edit, source_info->source, "");
 exit:
     delete source_info;
@@ -510,4 +507,14 @@ QString WikiUtil::EvaluateWikiPageContents(ApiQuery *query, bool *failed, QStrin
     }
     *failed = false;
     return rev->Value;
+}
+
+WikiSite *WikiUtil::GetSiteByName(QString name)
+{
+    foreach (WikiSite *site, hcfg->Projects)
+    {
+        if (site->Name == name)
+            return site;
+    }
+    return nullptr;
 }
