@@ -3694,3 +3694,10 @@ void MainWindow::OnFinishPreProcess(WikiEdit *ed)
     if (hcfg->UserConfig->AutomaticRefresh && this->CurrentEdit != nullptr && ed->Page->PageName == this->CurrentEdit->Page->PageName)
         this->RefreshPage();
 }
+
+void Huggle::MainWindow::on_actionFind_triggered()
+{
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_FIND))
+        return;
+    this->Browser->ToggleSearchWidget();
+}

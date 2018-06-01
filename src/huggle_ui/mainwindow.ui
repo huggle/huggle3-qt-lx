@@ -100,6 +100,8 @@
     <addaction name="actionShow_talk"/>
     <addaction name="actionAbort_2"/>
     <addaction name="separator"/>
+    <addaction name="actionFind"/>
+    <addaction name="separator"/>
     <addaction name="menuChange_provider"/>
     <addaction name="actionStop_provider"/>
     <addaction name="actionResume_provider"/>
@@ -1166,6 +1168,14 @@
   <action name="actionScripts_manager">
    <property name="text">
     <string>Scripts manager</string>
+   </property>
+  </action>
+  <action name="actionFind">
+   <property name="text">
+    <string>Find</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
    </property>
   </action>
  </widget>

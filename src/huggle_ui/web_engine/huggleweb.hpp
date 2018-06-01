@@ -36,6 +36,10 @@ namespace Huggle
             void DisplayPage(const QString &url);
             void RenderHtml(const QString &html);
             QString RetrieveHtml();
+            void ToggleSearchWidget();
+
+        private slots:
+            void on_lineEdit_textChanged(const QString &arg1);
 
         private:
             Ui::HuggleWeb *ui;

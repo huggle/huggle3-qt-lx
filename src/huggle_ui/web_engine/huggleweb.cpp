@@ -17,6 +17,8 @@ using namespace Huggle;
 HuggleWeb::HuggleWeb(QWidget *parent) : GenericBrowser(parent), ui(new Ui::HuggleWeb)
 {
     this->ui->setupUi(this);
+    this->ui->label->setVisible(false);
+    this->ui->lineEdit->setVisible(false);
     this->ui->webView->setPage(new HuggleWebEnginePage());
 }
 
@@ -49,4 +51,19 @@ QString HuggleWeb::RetrieveHtml()
     if (!this->source.isEmpty())
         return this->source;
     return "Retrieving of source code is not supported yet in Chromium library";
+}
+
+void HuggleWeb::ToggleSearchWidget()
+{
+    bool visible = !this->ui->label->isVisible();
+    this->ui->label->setVisible(visible);
+    this->ui->lineEdit->setVisible(visible);
+
+    if (visible)
+        this->ui->lineEdit->setFocus();
+}
+
+void Huggle::HuggleWeb::on_lineEdit_textChanged(const QString &arg1)
+{
+    this->ui->webView->findText(arg1);
 }

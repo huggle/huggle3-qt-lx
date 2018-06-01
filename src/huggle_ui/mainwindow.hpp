@@ -399,6 +399,7 @@ namespace Huggle
             void on_actionWelcome_page_triggered();
             void on_actionScripts_manager_triggered();
             void OnFinishPreProcess(WikiEdit *ed);
+            void on_actionFind_triggered();
 
         private:
             void closeTab(int tab);

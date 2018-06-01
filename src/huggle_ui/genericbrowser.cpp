@@ -201,3 +201,8 @@ void GenericBrowser::Find(QString text)
     HUGGLE_ERROR("This browser doesn't support this feature");
 }
 
+void GenericBrowser::ToggleSearchWidget()
+{
+    HUGGLE_ERROR("Search is not supported with this browser engine");
+}
+

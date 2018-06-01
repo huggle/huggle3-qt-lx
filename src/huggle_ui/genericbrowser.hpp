@@ -58,6 +58,7 @@ namespace Huggle
             virtual void DisplayDiff(WikiEdit *edit);
             virtual void DisplayNewPageEdit(WikiEdit *edit);
             virtual void Find(QString text);
+            virtual void ToggleSearchWidget();
             virtual QString RetrieveHtml()=0;
             static QString Encode(const QString &string);
             Collectable_SmartPtr<WikiEdit> CurrentEdit;
