@@ -2483,9 +2483,10 @@ void MainWindow::ReloadInterface()
     this->revertAndWarnItems.clear();
     this->revertItems.clear();
     this->actionKeys.clear();
-    delete this->RevertSummaries;
-    delete this->WarnMenu;
-    delete this->RevertWarn;
+    // Direct delete seems to cause crash for some reasons
+    this->RevertSummaries->deleteLater();
+    this->WarnMenu->deleteLater();
+    this->RevertWarn->deleteLater();
     this->ui->actionRequest_protection->setEnabled(conf->RFPP);
     this->RevertSummaries = new QMenu(this);
     this->WarnMenu = new QMenu(this);
