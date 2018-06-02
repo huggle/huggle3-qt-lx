@@ -72,6 +72,8 @@ namespace Huggle
             Q_INVOKABLE QString localize(QString id);
             Q_INVOKABLE QDateTime get_startup_date_time();
             Q_INVOKABLE void play_file(QString name);
+            Q_INVOKABLE QString get_current_time_str();
+            Q_INVOKABLE int get_current_time_posix();
             // Misc
             Q_INVOKABLE QString dump_obj(QJSValue object, unsigned int indent = 0);
         private slots:

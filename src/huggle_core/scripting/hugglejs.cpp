@@ -53,6 +53,8 @@ HuggleJS::HuggleJS(Script *s) : GenericJSClass(s)
     this->functions.insert("localize", "(string key): return localized key");
     this->functions.insert("dump_obj", "(object): dumps an object to string");
     this->functions.insert("play_file", "(string file): play internal file");
+    this->functions.insert("get_current_time_posix", "(): (3.4.4) returns seconds that have passed since 1970-01-01T00:00:00");
+    this->functions.insert("get_current_time_str", "(): (3.4.4) returns a current date time as string");
 }
 
 HuggleJS::~HuggleJS()
@@ -252,6 +254,16 @@ QDateTime HuggleJS::get_startup_date_time()
 void HuggleJS::play_file(QString name)
 {
     Resources::PlayEmbeddedSoundFile(name);
+}
+
+QString HuggleJS::get_current_time_str()
+{
+    return QDateTime::currentDateTime().toString();
+}
+
+int HuggleJS::get_current_time_posix()
+{
+    return static_cast<int>(QDateTime::currentDateTime().toTime_t());
 }
 
 QString HuggleJS::dump_obj(QJSValue object, unsigned int indent)
