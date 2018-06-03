@@ -115,7 +115,6 @@ VandalNw::VandalNw(QWidget *parent) : QDockWidget(parent), ui(new Ui::VandalNw)
     this->Prefix = QString(QChar(001)) + QString(QChar(001));
     this->JoinedMain = false;
     this->GetChannel();
-    this->UsersModified = false;
     connect(Events::Global, SIGNAL(WikiEdit_OnGood(WikiEdit*)), this, SLOT(OnGood(WikiEdit*)));
     connect(Events::Global, SIGNAL(WikiEdit_OnRevert(WikiEdit*)), this, SLOT(OnRevert(WikiEdit*)));
     connect(Events::Global, SIGNAL(WikiEdit_OnSuspicious(WikiEdit*)), this, SLOT(OnSuspicious(WikiEdit*)));
@@ -166,7 +165,6 @@ void VandalNw::Connect()
         this->Insert(_l("han-connecting"), HAN::MessageType_Info);
         this->Irc->Connect();
     }
-    this->UsersModified = true;
 }
 
 void VandalNw::Disconnect()
@@ -393,16 +391,11 @@ void VandalNw::ProcessSusp(WikiEdit *edit, QString user)
     MainWindow::HuggleMain->Queue1->SortItemByEdit(edit);
 }
 
-void VandalNw::UpdateHeader()
+void VandalNw::refreshUL()
 {
-    if (!this->UsersModified)
-    {
-        return;
-    }
     if (!this->Irc->IsConnected())
     {
         this->setWindowTitle(_l("han-network"));
-        this->UsersModified = false;
     } else
     {
         QList<libircclient::User*> users;
@@ -664,17 +657,17 @@ void VandalNw::OnIRCUserJoin(libircclient::Parser *px, libircclient::User *user,
     (void)px;
     (void)user;
     (void)channel;
-    this->UpdateHeader();
+    this->refreshUL();
 }
 
 void VandalNw::OnIRCSelfJoin(libircclient::Channel *channel)
 {
-    this->UpdateHeader();
+    this->refreshUL();
 }
 
 void VandalNw::OnIRCChannelNames(libircclient::Parser *px)
 {
-    this->UpdateHeader();
+    this->refreshUL();
 }
 
 void VandalNw::OnIRCNetworkFailure(QString reason, int code)
@@ -687,14 +680,14 @@ void VandalNw::OnIRCUserPart(libircclient::Parser *px, libircclient::Channel *ch
 {
     (void)px;
     (void)channel;
-    this->UpdateHeader();
+    this->refreshUL();
 }
 
 void VandalNw::OnIRCSelfPart(libircclient::Parser *px, libircclient::Channel *channel)
 {
     (void)px;
     (void)channel;
-    this->UpdateHeader();
+    this->refreshUL();
 }
 
 void VandalNw::OnIRCChannelMessage(libircclient::Parser *px)
@@ -754,7 +747,7 @@ void VandalNw::OnIRCChannelCTCP(libircclient::Parser *px, QString command, QStri
 
 void VandalNw::OnIRCChannelQuit(libircclient::Parser *px, libircclient::Channel *channel)
 {
-    this->UpdateHeader();
+    this->refreshUL();
 }
 
 void VandalNw::OnIRCLoggedIn(libircclient::Parser *px)
@@ -771,7 +764,6 @@ void VandalNw::OnIRCLoggedIn(libircclient::Parser *px)
 
 void VandalNw::OnConnected()
 {
-    this->UsersModified = true;
     this->ui->pushButton->setEnabled(true);
 }
 

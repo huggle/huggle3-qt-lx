@@ -138,12 +138,10 @@ namespace Huggle
             void ProcessGood(WikiEdit *edit, QString user);
             void ProcessRollback(WikiEdit *edit, QString user);
             void ProcessSusp(WikiEdit *edit, QString user);
-            void UpdateHeader();
+            //! Reload user list
+            void refreshUL();
             void ProcessCommand(WikiSite *site, QString nick, QString message);
             Ui::VandalNw *ui;
-            //! This is to track the changes to user list so that we don't need to update text in header
-            //! when there is no change (that is actually CPU expensive operation)
-            bool UsersModified;
             //! Pointer to irc server
             libircclient::Network *Irc;
             //! Using this we track if channel was joined or not, because we need to send

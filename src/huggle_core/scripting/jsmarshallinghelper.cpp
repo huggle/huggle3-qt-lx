@@ -78,6 +78,7 @@ QJSValue JSMarshallingHelper::FromEdit(WikiEdit *edit, QJSEngine *engine)
     if (!edit)
         return QJSValue(false);
     QJSValue o = engine->newObject();
+    o.setProperty("ContentModel", edit->ContentModel);
     o.setProperty("Bot", QJSValue(edit->Bot));
     o.setProperty("CurrentUserWarningLevel", QJSValue(static_cast<int>(edit->CurrentUserWarningLevel)));
     o.setProperty("Diff", QJSValue(static_cast<int>(edit->Diff)));
@@ -165,6 +166,12 @@ QJSValue JSMarshallingHelper::FromQuery(Query *query, QJSEngine *engine)
     o.setProperty("CustomStatus", query->CustomStatus);
     o.setProperty("HiddenQuery", query->HiddenQuery);
     o.setProperty("IsFailed", query->IsFailed());
+    o.setProperty("IsKilled", query->IsKilled());
+    o.setProperty("IsProcessed", query->IsProcessed());
+    o.setProperty("QueryID", static_cast<int>(query->QueryID()));
+    o.setProperty("QueryStatus", query->QueryStatusToString());
+    o.setProperty("QueryType", query->QueryTypeToString());
+    o.setProperty("QueryTarget", query->QueryTargetToString());
     return o;
 }
 
@@ -173,12 +180,17 @@ QJSValue JSMarshallingHelper::FromApiQuery(ApiQuery *query, QJSEngine *engine)
     QJSValue o = FromQuery(query, engine);
     o.setProperty("CustomStatus", QJSValue(query->CustomStatus));
     o.setProperty("EditingQuery", QJSValue(query->EditingQuery));
-    o.setProperty("HiddenQuery", QJSValue(query->HiddenQuery));
+    o.setProperty("EnforceLogin", query->EnforceLogin);
+    o.setProperty("SiteName", query->GetSite()->Name);
+    o.setProperty("ApiQueryResult", FromApiQueryResult(query->GetApiQueryResult(), engine));
+    o.setProperty("URL", query->GetURL());
     return o;
 }
 
 QJSValue JSMarshallingHelper::FromApiQueryResult(ApiQueryResult *res, QJSEngine *engine)
 {
+    if (!res)
+        return QJSValue(QJSValue::SpecialValue::UndefinedValue);
     QJSValue o = engine->newObject();
     o.setProperty("Data", res->Data);
     o.setProperty("ErrorCode", res->ErrorCode);
@@ -195,6 +207,7 @@ QJSValue JSMarshallingHelper::FromEditQuery(EditQuery *eq, QJSEngine *engine)
     o.setProperty("Append", QJSValue(eq->Append));
     o.setProperty("BaseTimestamp", QJSValue(eq->BaseTimestamp));
     o.setProperty("Page", JSMarshallingHelper::FromPage(eq->Page, engine));
+    o.setProperty("Prepend", eq->Prepend);
     return o;
 }
 
@@ -217,6 +230,10 @@ QJSValue JSMarshallingHelper::FromSiteProjectConfig(ProjectConfiguration *config
     o.setProperty("EnableAll", config->EnableAll);
     o.setProperty("IsLoggedIn", config->IsLoggedIn);
     o.setProperty("MinimalVersion", config->MinimalVersion);
+    o.setProperty("Feedback", config->Feedback);
+    o.setProperty("GlobalRequired", config->GlobalRequired);
+    o.setProperty("InstantWarnings", config->InstantWarnings);
+    o.setProperty("IPScore", static_cast<int>(config->IPScore));
     o.setProperty("Patrolling", config->Patrolling);
     o.setProperty("Token_Csrf", config->Token_Csrf);
     o.setProperty("Token_Patrol", config->Token_Patrol);
