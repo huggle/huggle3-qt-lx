@@ -399,34 +399,36 @@ void VandalNw::refreshUL()
     } else
     {
         QList<libircclient::User*> users;
+        QStringList users_nicks;
         libircclient::Channel *channel_ = this->Irc->GetChannel(this->Site2Channel[Configuration::HuggleConfiguration->Project]);
 
         if (channel_ != nullptr)
             users = channel_->GetUsers().values();
 
-        int user_count = 0;
-        if (users.count() > 0)
+        foreach (libircclient::User *user, users)
+        {
+            if (user->GetNick() == "ChanServ")
+                continue;
+            users_nicks.append(user->GetNick());
+        }
+
+        qSort(users_nicks);
+
+        if (users_nicks.count() > 0)
         {
             // remove all items from list
             while (this->ui->tableWidget->rowCount() > 0)
             {
                 this->ui->tableWidget->removeRow(0);
             }
-            while (users.count() > 0)
+            foreach (QString user_nick, users_nicks)
             {
-                if (users.at(0)->GetNick() == "ChanServ")
-                {
-                    users.removeAt(0);
-                    continue;
-                }
-                user_count++;
                 this->ui->tableWidget->insertRow(0);
-                this->ui->tableWidget->setItem(0, 0, new QTableWidgetItem(users.at(0)->GetNick()));
-                users.removeAt(0);
+                this->ui->tableWidget->setItem(0, 0, new QTableWidgetItem(user_nick));
             }
             this->ui->tableWidget->resizeRowsToContents();
         }
-        this->setWindowTitle(QString(_l("han-network") + " - " + this->Irc->GetNick() + " (" + QString::number(user_count) + ")"));
+        this->setWindowTitle(QString(_l("han-network") + " - " + this->Irc->GetNick() + " (" + QString::number(users_nicks.size()) + ")"));
     }
 }
 
