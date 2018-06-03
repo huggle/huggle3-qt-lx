@@ -9,11 +9,6 @@
 //GNU General Public License for more details.
 
 #include "vandalnw.hpp"
-#include <huggle_core/events.hpp>
-#include <huggle_core/configuration.hpp>
-#include <huggle_core/exception.hpp>
-#include <huggle_core/generic.hpp>
-#include <huggle_core/localization.hpp>
 #ifdef HUGGLE_WEBEN
     #include "web_engine/huggleweb.hpp"
 #else
@@ -21,19 +16,25 @@
 #endif
 #include "hugglequeue.hpp"
 #include "mainwindow.hpp"
-#include <huggle_core/syslog.hpp>
 #include "ui_vandalnw.h"
-#include <huggle_core/resources.hpp>
 #include "ircchattextbox.hpp"
+#include <huggle_core/events.hpp>
+#include <huggle_core/configuration.hpp>
+#include <huggle_core/exception.hpp>
+#include <huggle_core/generic.hpp>
+#include <huggle_core/localization.hpp>
+#include <huggle_core/syslog.hpp>
+#include <huggle_core/resources.hpp>
 #include <huggle_core/wikiedit.hpp>
 #include <huggle_core/wikipage.hpp>
 #include <huggle_core/wikisite.hpp>
 #include <huggle_core/wikiuser.hpp>
-#include <QUrl>
 #include <libirc/libircclient/network.h>
 #include <libirc/libircclient/parser.h>
 #include <libirc/libircclient/channel.h>
 #include <libirc/libirc/serveraddress.h>
+#include <QUrl>
+#include <QStringList>
 
 using namespace Huggle;
 
@@ -412,10 +413,11 @@ void VandalNw::refreshUL()
             users_nicks.append(user->GetNick());
         }
 
-        qSort(users_nicks);
+        users_nicks.sort(Qt::CaseInsensitive);
 
         if (users_nicks.count() > 0)
         {
+            int row = 0;
             // remove all items from list
             while (this->ui->tableWidget->rowCount() > 0)
             {
@@ -423,8 +425,8 @@ void VandalNw::refreshUL()
             }
             foreach (QString user_nick, users_nicks)
             {
-                this->ui->tableWidget->insertRow(0);
-                this->ui->tableWidget->setItem(0, 0, new QTableWidgetItem(user_nick));
+                this->ui->tableWidget->insertRow(row);
+                this->ui->tableWidget->setItem(row++, 0, new QTableWidgetItem(user_nick));
             }
             this->ui->tableWidget->resizeRowsToContents();
         }
