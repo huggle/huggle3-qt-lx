@@ -381,6 +381,7 @@
   <string name="main-page-delete">অপসারণ</string>
   <string name="main-page-load">লোড করুন</string>
   <string name="main-patrol-not-enabled">$1-এ টহল সক্রিয় নয়</string>
+  <string name="main-page-refresh">পুনঃসতেজ</string>
   <string name="main-page-restore">এই সংশোধনটি পুনরুদ্ধার কর</string>
   <string name="main-page-watchlist-add">নজরতালিকায় পাতা যোগ করে</string>
   <string name="main-page-tab-close">বর্তমান ট্যাব বন্ধ করুন</string>
