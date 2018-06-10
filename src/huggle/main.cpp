@@ -60,15 +60,19 @@ int main(int argc, char *argv[])
             Huggle::Exception::ExitBreakpad();
             return ReturnCode;
         }
+#if QT_VERSION >= 0x050600
+        // This should make fonts look normal on high DPI screens
+        QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+#endif
         Huggle::HgApplication a(argc, argv);
         // Make it possible to select text from message boxens
         a.setStyleSheet("QMessageBox { messagebox-text-interaction-flags: 5; }");
         QApplication::setApplicationName("Huggle");
         QApplication::setOrganizationName("Wikimedia");
-        #if QT_VERSION >= 0x050100
-            // enable HiDPI support (available since Qt 5.1, but off by default)
-            a.setAttribute(Qt::AA_UseHighDpiPixmaps);
-        #endif
+#if QT_VERSION >= 0x050100
+        // enable HiDPI support (available since Qt 5.1, but off by default)
+        a.setAttribute(Qt::AA_UseHighDpiPixmaps);
+#endif
 
         // We must create config before we run terminal parser, because some config options may be altered using it
         Huggle::Configuration::HuggleConfiguration = new Huggle::Configuration();
