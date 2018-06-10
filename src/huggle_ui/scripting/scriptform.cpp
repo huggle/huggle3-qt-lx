@@ -59,6 +59,7 @@ void ScriptForm::EditScript(QString path, QString script_name)
     this->editingName = script_name;
     this->ui->lineEdit_2->setText(path);
     this->ui->pushButton->setText("Save, reload and close");
+    this->setWindowTitle(script_name);
 }
 
 void Huggle::ScriptForm::on_pushButton_2_clicked()
