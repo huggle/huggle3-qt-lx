@@ -63,10 +63,10 @@ namespace Huggle
             void on_pushButton_4_clicked();
 
         private:
-            void Recheck();
+            void recheck();
             Ui::BlockUser *ui;
             //! Timer that switches between steps of block workflow
-            QTimer *t0;
+            QTimer *timer;
             WikiUser *user;
             //! Query to exec api to block user
             Collectable_SmartPtr<ApiQuery> qUser;

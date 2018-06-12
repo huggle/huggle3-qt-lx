@@ -42,16 +42,15 @@ BlockUserForm::BlockUserForm(QWidget *parent) : HW("blockuser", this, parent), u
     this->ui->checkBox_2->setText(_l("block-email"));
     this->ui->cbMessageTarget->setText(_l("block-message-user"));
     this->ui->label_2->setText(_l("block-duration"));
-    this->t0 = new QTimer(this);
-    connect(this->t0, SIGNAL(timeout()), this, SLOT(onTick()));
-    this->ui->comboBox->addItem(Configuration::HuggleConfiguration->ProjectConfig->BlockReason);
+    this->timer = new QTimer(this);
+    connect(this->timer, SIGNAL(timeout()), this, SLOT(onTick()));
     this->RestoreWindow();
 }
 
 BlockUserForm::~BlockUserForm()
 {
     delete this->user;
-    delete this->t0;
+    delete this->timer;
     delete this->ui;
 }
 
@@ -69,12 +68,13 @@ void BlockUserForm::SetWikiUser(WikiUser *User)
     if (this->user->IsIP())
     {
         this->ui->checkBox_5->setEnabled(true);
-        this->ui->comboBox_2->lineEdit()->setText(Huggle::Configuration::HuggleConfiguration->ProjectConfig->BlockTimeAnon);
+        this->ui->comboBox_2->lineEdit()->setText(User->GetSite()->GetProjectConfig()->BlockTimeAnon);
         this->ui->checkBox_5->setChecked(true);
     } else
     {
-        this->ui->comboBox_2->lineEdit()->setText(Huggle::Configuration::HuggleConfiguration->ProjectConfig->BlockTime);
+        this->ui->comboBox_2->lineEdit()->setText(User->GetSite()->GetProjectConfig()->BlockTime);
     }
+    this->ui->comboBox->addItem(User->GetSite()->ProjectConfig->BlockReason);
 }
 
 void BlockUserForm::on_pushButton_2_clicked()
@@ -90,10 +90,10 @@ void BlockUserForm::onTick()
             this->Block();
             return;
         case 2:
-            this->Recheck();
+            this->recheck();
             return;
     }
-    this->t0->stop();
+    this->timer->stop();
 }
 
 void BlockUserForm::Block()
@@ -118,7 +118,7 @@ void BlockUserForm::Block()
         this->qUser->Result->SetError(HUGGLE_EUNKNOWN, "Unable to block: " + reason);
         this->qUser = nullptr;
         this->ui->pushButton->setEnabled(true);
-        this->t0->stop();
+        this->timer->stop();
         return;
     }
     // let's assume the user was blocked
@@ -130,7 +130,7 @@ void BlockUserForm::Block()
     history->IsRevertable = false;
     history->Target = this->user->Username;
     this->qUser.Delete();
-    this->t0->stop();
+    this->timer->stop();
     if (this->ui->cbMessageTarget->isChecked())
         this->sendBlockNotice(nullptr);
 }
@@ -139,7 +139,7 @@ void BlockUserForm::Failed(QString reason)
 {
     UiGeneric::pMessageBox(this, "Unable to block user", _l("block-fail", reason),
                          MessageBoxStyleError, true);
-    this->t0->stop();
+    this->timer->stop();
     this->ui->pushButton->setEnabled(true);
     // remove the pointers
     this->qUser.Delete();
@@ -175,7 +175,7 @@ void BlockUserForm::on_pushButton_clicked()
     this->qUser->UsingPOST = true;
     QueryPool::HugglePool->AppendQuery(this->qUser);
     this->qUser->Process();
-    this->t0->start(HUGGLE_TIMER);
+    this->timer->start(HUGGLE_TIMER);
 }
 
 void BlockUserForm::sendBlockNotice(ApiQuery *dependency)
@@ -183,15 +183,15 @@ void BlockUserForm::sendBlockNotice(ApiQuery *dependency)
     QString blocknotice;
     if (this->ui->comboBox_2->currentText() != "indefinite")
     {
-        blocknotice = Configuration::HuggleConfiguration->ProjectConfig->BlockMessage;
+        blocknotice = this->user->GetSite()->GetProjectConfig()->BlockMessage;
         blocknotice = blocknotice.replace("$1", this->ui->comboBox_2->currentText());
         blocknotice = blocknotice.replace("$2", this->ui->comboBox->currentText());
     }else
     {
-        blocknotice = Configuration::HuggleConfiguration->ProjectConfig->BlockMessageIndef;
+        blocknotice = this->user->GetSite()->GetProjectConfig()->BlockMessageIndef;
         blocknotice = blocknotice.replace("$1", this->ui->comboBox->currentText());
     }
-    QString blocksum = Configuration::HuggleConfiguration->ProjectConfig->BlockSummary;
+    QString blocksum = this->user->GetSite()->GetProjectConfig()->BlockSummary;
     WikiUtil::MessageUser(user, blocknotice, blocksum, blocksum, true, dependency, false, false);
 }
 
@@ -213,10 +213,10 @@ void Huggle::BlockUserForm::on_pushButton_3_clicked()
     }
     this->qUser->Process();
     this->QueryPhase = 2;
-    this->t0->start();
+    this->timer->start();
 }
 
-void BlockUserForm::Recheck()
+void BlockUserForm::recheck()
 {
     if (this->qUser == nullptr)
         throw new Huggle::NullPointerException("local ApiQuery qUser",  BOOST_CURRENT_FUNCTION);
@@ -235,7 +235,7 @@ void BlockUserForm::Recheck()
         }
         UiGeneric::MessageBox(_l("result"), text, MessageBoxStyleNormal, true);
         this->qUser = nullptr;
-        this->t0->stop();
+        this->timer->stop();
         this->ui->pushButton_3->setEnabled(true);
         this->ui->pushButton->setEnabled(true);
     }
