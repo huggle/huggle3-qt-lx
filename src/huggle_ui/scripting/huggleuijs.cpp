@@ -20,6 +20,8 @@
 #include <huggle_core/wikiutil.hpp>
 #include <huggle_core/wikisite.hpp>
 #include <huggle_core/syslog.hpp>
+#include <QFileDialog>
+#include <QInputDialog>
 
 using namespace Huggle;
 
@@ -41,6 +43,9 @@ HuggleUIJS::HuggleUIJS(Script *s) : GenericJSClass(s)
     this->function_help.insert("navigate_forward", "(): move to next edit in history");
     this->function_help.insert("insert_edit_to_queue", "(string site_name, int revision_id): (since HG 3.4.3) inserts an edit to queue, filters will apply, edit will be processed so this function is asynchronous and results will be not be visible immediately");
     this->function_help.insert("highlight_text", "(string text): find a text in current browser window");
+    this->function_help.insert("input_box", "(string title, string text, string default): (since HG 3.4.4) get input from user");
+    this->function_help.insert("filebox_open", "(string title, string mask): (since HG 3.4.4) file box for opening of a file");
+    this->function_help.insert("filebox_save", "(string title, string mask): (since HG 3.4.4) file box for saving of a file");
 }
 
 int HuggleUIJS::create_menu_item(int parent, QString name, QString function, bool checkable)
@@ -233,6 +238,39 @@ bool HuggleUIJS::highlight_text(QString text)
     }
     MainWindow::HuggleMain->Browser->Find(text);
     return true;
+}
+
+QJSValue HuggleUIJS::input_box(QString title, QString text, QString default_text)
+{
+    bool ok;
+    QString results = QInputDialog::getText(nullptr, title, text, QLineEdit::Normal, default_text, &ok);
+    if (!ok)
+        return QJSValue(false);
+    return QJSValue(results);
+}
+
+QJSValue HuggleUIJS::filebox_open(QString title, QString mask)
+{
+    QFileDialog file_dialog;
+    file_dialog.setNameFilter(mask);
+    file_dialog.setWindowTitle(title);
+    file_dialog.setFileMode(QFileDialog::FileMode::ExistingFile);
+    if (file_dialog.exec() == QDialog::DialogCode::Rejected || file_dialog.selectedFiles().count() == 0)
+        return QJSValue(false);
+
+    return QJSValue(file_dialog.selectedFiles().at(0));
+}
+
+QJSValue HuggleUIJS::filebox_save(QString title, QString mask)
+{
+    QFileDialog file_dialog;
+    file_dialog.setNameFilter(mask);
+    file_dialog.setWindowTitle(title);
+    file_dialog.setFileMode(QFileDialog::FileMode::AnyFile);
+    if (file_dialog.exec() == QDialog::DialogCode::Rejected || file_dialog.selectedFiles().count() == 0)
+        return QJSValue(false);
+
+    return QJSValue(file_dialog.selectedFiles().at(0));
 }
 
 QHash<QString, QString> HuggleUIJS::GetFunctions()
