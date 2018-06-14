@@ -92,6 +92,12 @@ namespace Huggle
             bool            AutomaticallyResolveConflicts = true;
             bool            AutomaticRefresh = true;
             bool            AutomaticallyWatchlistWarnedUsers = false;
+            //! When user you want to send a warning to received another warning recently, ask if you really want to send it
+            bool            ConfirmOnRecentWarning = true;
+            //! When old edit is reverted, ask if you really want to send a warning for it
+            bool            ConfirmWarningOnVeryOldEdits = true;
+            //! In case edit is old or user recently got a warning, just write this into logs and don't ask user anything
+            bool            SkipWarningOnConfirm = true;
             //! default-summary inherited from project config so there is no default here
             QString         DefaultSummary;
             QString         RollbackSummary;

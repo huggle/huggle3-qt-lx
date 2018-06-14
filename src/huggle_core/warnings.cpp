@@ -67,6 +67,27 @@ PendingWarning *Warnings::WarnUser(QString warning_type, RevertQuery *dependency
         return nullptr;
     }
 
+    if (hcfg->UserConfig->ConfirmWarningOnVeryOldEdits || hcfg->UserConfig->SkipWarningOnConfirm)
+    {
+        // User doesn't want to send warnings for edits that are too old check if this edit is not too old
+        if (edit->Time.addDays(1) < QDateTime::currentDateTime())
+        {
+            // The edit is older than 1 day, so let's either ignore the request to send warning or ask user if they really want to send it
+            if (hcfg->UserConfig->SkipWarningOnConfirm)
+            {
+                HUGGLE_LOG("Not sending warning to " + edit->User->Username + " for their edit to " + edit->Page->PageName + " on " + edit->GetSite()->Name +
+                           " because it's older than 1 day");
+                return nullptr;
+            } else
+            {
+                // Ask user if they really want to send a warning here
+                if (!Hooks::ShowYesNoQuestion("Really send a warning?", "Edit to " + edit->Page->PageName + " on " + edit->GetSite()->Name + " by " +
+                                             edit->User->Username + " was is older than 1 day, do you really want to send them a warning message?", false))
+                    return nullptr;
+            }
+        }
+    }
+
     // check if user wasn't changed and if was, let's update the info
     edit->User->Resync();
 

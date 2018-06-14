@@ -254,6 +254,8 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
     AppendConf(&configuration, "show-warning-if-not-on-last-revision", this->ShowWarningIfNotOnLastRevision);
     AppendConf(&configuration, "number-dropdown-menu-items", this->NumberDropdownMenuItems);
     AppendConf(&configuration, "insert-edits-of-rolled-user-to-queue", this->InsertEditsOfRolledUserToQueue);
+    AppendConf(&configuration, "confirm-on-recent-warning", this->ConfirmOnRecentWarning);
+    AppendConf(&configuration, "confirm-warning-on-very-old-edits", this->ConfirmWarningOnVeryOldEdits);
     // shortcuts
     QStringList shortcuts = Configuration::HuggleConfiguration->Shortcuts.keys();
     // we need to do this otherwise huggle may sort the items differently every time and spam wiki
@@ -605,6 +607,8 @@ bool UserConfiguration::ParseYAML(QString config, ProjectConfiguration *ProjectC
     this->ShortcutHash = YAML2String("shortcut-hash", yaml, "null");
     this->ShowWarningIfNotOnLastRevision = YAML2Bool("show-warning-if-not-on-last-revision", yaml, this->ShowWarningIfNotOnLastRevision);
     this->InsertEditsOfRolledUserToQueue = YAML2Bool("insert-edits-of-rolled-user-to-queue", yaml, this->InsertEditsOfRolledUserToQueue);
+    this->ConfirmOnRecentWarning = YAML2Bool("confirm-on-recent-warning", yaml, this->ConfirmOnRecentWarning);
+    this->ConfirmWarningOnVeryOldEdits = YAML2Bool("confirm-warning-on-very-old-edits", yaml, this->ConfirmWarningOnVeryOldEdits);
     // for now we do this only for home wiki but later we need to make it for every wiki
     if (IsHome)
     {
