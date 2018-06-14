@@ -10,7 +10,7 @@
 * Patrick Star
 -->
 <resources>
-  <string name="name">Zazaki</string>
+  <string name="name" fuzzy="true">Zazaki</string>
   <string name="isrtl">false</string>
   <string name="add">Cı ke</string>
   <string name="cancel">Bıtexelne</string>

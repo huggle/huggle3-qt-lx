@@ -7,7 +7,7 @@
 * Strainu
 -->
 <resources>
-  <string name="name">Română</string>
+  <string name="name" fuzzy="true">Română</string>
   <string name="autorelog">Faceți acest lucru fără a întreba data viitoare</string>
   <string name="isrtl">Fals</string>
   <string name="add">Adaugă</string>

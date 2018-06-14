@@ -324,6 +324,7 @@
   <string name="login-ro-info">$1 프로젝트는 읽기 전용 모드로 전환되었습니다</string>
   <string name="wikis-db-download-fail">위키의 db를 다운로드할 수 없습니다: $1</string>
   <string name="api-query-no-data">api 쿼리가 반환한 데이터가 없습니다</string>
+  <string name="main-stat">분마다 편집 $1번, 분마다 되돌리기 $2번, 수준 $3</string>
   <string name="main-menu-provider-stop">제공자 멈춤</string>
   <string name="main-menu-provider-resume">제공자 다시 시작</string>
   <string name="provider-up">제공자를 사용하여 $2의 최근 바뀜 스트림에 연결합니다: $1</string>
@@ -362,6 +363,7 @@
   <string name="main-queue-options">대기열 관리...</string>
   <string name="main-queue-when-full">대기열이 꽉찰 때</string>
   <string name="main-queue-when-full-remove">오래된 편집 제거</string>
+  <string name="main-queue-remove-whitelisted">화이트리스트에 속한 사용자가 한 편집 제거</string>
   <string name="main-queue-remove-200">-200점 미만의 편집 제거</string>
   <string name="main-goto">가기</string>
   <string name="main-goto-mytalk">내 토론 문서</string>
@@ -449,6 +451,7 @@
   <string name="main-help-about">Huggle 정보...</string>
   <string name="main-help-introduction">소개</string>
   <string name="main-help-welcome-page">환영 페이지</string>
+  <string name="main-help-contents">내용</string>
   <string name="main-addqueue">추가...</string>
   <string name="main-savelogtitle">기록 저장</string>
   <string name="main-usermessageother">다른 메시지...</string>
@@ -721,6 +724,7 @@
   <string name="reqprotection-fail">\'$1\' 보호 요청을 하지 못했습니다</string>
   <string name="reqprotection-progress">\'$1\' 보호 요청 중...</string>
   <string name="speedy-fail">빠른 삭제를 위해 문서에 태그할 수 없습니다: $1</string>
+  <string name="speedy-progress">빠른 삭제를 위해 \'$1\'를 표시합니다...</string>
   <string name="speedy-wrong">요청한 태그가 유효하지 않습니다. 다른 삭제 이유를 선택해 주십시오</string>
   <string name="speedy-finished">마침</string>
   <string name="warn-alreadyblocked">사용자가 이미 차단되어 있습니다</string>
@@ -728,6 +732,7 @@
   <string name="editquery-token">$1 문서를 편집할 토큰을 얻는 중</string>
   <string name="editquery-token-error">편집 토큰을 얻을 수 없습니다</string>
   <string name="editquery-nocsrft">CSRF 토큰이 없습니다</string>
+  <string name="editquery-error-retrieve-prev">이전 문서 내용을 검색할 수 없습니다: $1</string>
   <string name="editquery-error-append">페이지 편집 시 Append와 Prepend를 둘 다 사용할 수 없습니다</string>
   <string name="editquery-error-badtoken">잘못된 토큰</string>
   <string name="editquery-invalid-token">캐시에 있는 토큰이 더 이상 유효하지 않기 때문에 $1을(를) 편집할 수 없습니다. 한 번 더 문서 편집을 시도해 주십시오</string>
@@ -823,6 +828,7 @@
   <string name="main-revert-type-made-white-list">화이트리스트에 있는 사용자가 수행함</string>
   <string name="query-result-nodata">쿼리 결과에 어떠한 데이터도 포함되어 있지 않습니다</string>
   <string name="main-revert-warn">이 편집은 $1이므로 문서 훼손으로 보이더라도 그렇지 않을 수 있습니다. 정말 되돌리시겠습니까?</string>
+  <string name="query-request-noaction">api 요청을 위해 지정된 동작이 없습니다</string>
   <string name="query-login-undefined">로그인 토큰에는 사용자 정의 값이 필요하지만, 메모리에 저장되어 있지 않습니다</string>
   <string name="query-protected-link">보호된 링크</string>
   <string name="queue-empty-title">비어 있습니다</string>
@@ -833,4 +839,6 @@
   <string name="tip5">여러 프로젝트에서 Huggle을 동시에 사용할 수 있습니다. 로그인 양식에서 \"프로젝트\" 버튼을 클릭하시면 됩니다.</string>
   <string name="tip10">대부분의 바로 가기는 환경 설정에서 변경할 수 있습니다.</string>
   <string name="tip12">실수하셨나요? 괜찮습니다. \"내 편집 역사\"에서 편집에 마우스 오른쪽 버튼을 클릭하면 변경사항의 취소 옵션을 제공하는 팝업이 열립니다.</string>
+  <string name="tip13">Shift + C(기본값)를 누르거나 사용자 메뉴를 통해 현재 표시된 편집을 한 사용자에 대한 \"기여 탐색기\"를 열 수 있습니다. 이 사용자의 최근 편집을 빠르게 볼 수 있습니다.</string>
+  <string name="tip14">지금 프로그램을 사용하고 있는 Huggle의 다른 활동 사용자들과 대화할 수 있습니다. 해당 사용자들이 온라인 상태인 경우 \"네트워크\" 창에서 이들을 볼 수 있습니다.</string>
 </resources>
