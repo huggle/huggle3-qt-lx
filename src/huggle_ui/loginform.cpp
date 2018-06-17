@@ -668,7 +668,16 @@ void LoginForm::finishLogin(WikiSite *site)
 
     if (login_result->GetAttribute("result") != "Success")
     {
-        this->displayError(_l("login-fail-with-reason", site->Name, _l("login-api", login_result->GetAttribute("result"))));
+        QString reason = login_result->GetAttribute("reason");
+        if (reason.isEmpty())
+        {
+            // ERROR: api.php responded with unknown result: $1
+            this->displayError(_l("login-fail-with-reason", site->Name, _l("login-api", login_result->GetAttribute("result"))));
+        } else
+        {
+            // Show why the login failed
+            this->displayError(_l("login-fail-with-reason", site->Name, reason));
+        }
         this->Statuses[site] = LoginFailed;
         return;
     }
