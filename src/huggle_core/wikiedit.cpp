@@ -355,8 +355,11 @@ bool WikiEdit::finalizePostProcessing()
             if (this->RevID != WIKI_UNKNOWN_REVID && diff->GetAttribute("torevid") != QString::number(this->RevID))
                 HUGGLE_DEBUG1(this->Page->PageName + ": revid doesn't match: " + QString::number(this->RevID) + " != " + diff->GetAttribute("torevid"));
 
-            if (diff->GetAttribute("fromtitle") != this->Page->PageName)
-                HUGGLE_DEBUG1(QString::number(this->RevID) + ": pageid doesn't match " + this->Page->PageName + " != " + diff->GetAttribute("fromtitle"));
+            // Since some MW release, name gets underscores replaced for whatever reasons, producing false positives here
+            QString uln = diff->GetAttribute("fromtitle");
+            uln.replace(" ", "_");
+            if (uln != this->Page->PageName)
+                HUGGLE_DEBUG1(QString::number(this->RevID) + ": pageid doesn't match " + this->Page->PageName + " != " + uln);
         }
 
         this->DiffText = diff->Value;
