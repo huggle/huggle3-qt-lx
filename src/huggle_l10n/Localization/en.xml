@@ -869,4 +869,5 @@
   <string name="tip12">Made a mistake? No problem, right clicking any edit you made in "History of your edits" opens a popup which offers the option to undo your own change.</string>
   <string name="tip13">You can open a "contribution browser" for the user who created the currently displayed edit, by pressing Shift + C (default) or from the  user menu. It allows you to quickly view recent edits made by this user.</string>
   <string name="tip14">You can chat with other active users of Huggle who are using the program right now. You will see them in the "Network" window, if they are online.</string>
+  <string name="tip15">If you find other problems with the article but rollback doesn't help, you can press E to edit the article immediately in your default browser (not inside Huggle).</string>
 </resources>
