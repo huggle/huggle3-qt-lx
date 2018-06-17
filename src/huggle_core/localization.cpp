@@ -246,6 +246,11 @@ QString Localizations::Localize(QString key, QString par1, QString par2)
     return Localize(key, list);
 }
 
+bool Localizations::KeyExists(QString key)
+{
+    return this->LocalizationData.at(Localizations::EnglishID)->Messages.contains(key);
+}
+
 QString Localizations::Localize(QString key, QString parameter)
 {
     QStringList list;

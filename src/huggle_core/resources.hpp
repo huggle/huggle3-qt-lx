@@ -48,6 +48,7 @@ namespace Huggle
             //! This string contains a html footer
             static QString HtmlFooter;
         private:
+            static int proTipCount;
 #ifndef HUGGLE_NOAUDIO
             static QMediaPlayer* mediaPlayer;
 #endif

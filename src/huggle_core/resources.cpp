@@ -28,6 +28,7 @@ QString Huggle::Resources::Html_Default_EmptyQueuePage;
 QString Huggle::Resources::Html_StopFire;
 QString Huggle::Resources::Html_NewTab;
 QString Huggle::Resources::CssRtl;
+int     Huggle::Resources::proTipCount = -100;
 
 int last_tip = -1;
 
@@ -61,13 +62,21 @@ QByteArray Huggle::Resources::GetResourceAsBinary(QString path)
     return result;
 }
 
-#define HUGGLE_PROTIP_COUNT 14
 QString Huggle::Resources::GetRandomProTip()
 {
-    int random = GetRandom(1, HUGGLE_PROTIP_COUNT);
+    // In case we don't know how many protips we have, let's count them and cache here
+    if (Resources::proTipCount < 0)
+    {
+        int current_tip = 1;
+        while (Localizations::HuggleLocalizations->KeyExists("tip" + QString::number(current_tip)))
+            current_tip++;
+        Resources::proTipCount = current_tip - 1;
+    }
+
+    int random = GetRandom(1, Resources::proTipCount);
     //! \todo Figure out why GetRandom returns 0 even if min is 1
     while (last_tip == random || random == 0)
-        random = GetRandom(1, HUGGLE_PROTIP_COUNT);
+        random = GetRandom(1, Resources::proTipCount);
 
     last_tip = random;
 

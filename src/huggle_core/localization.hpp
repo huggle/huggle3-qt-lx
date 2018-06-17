@@ -68,6 +68,8 @@ namespace Huggle
             QString Localize(QString key, QStringList parameters);
             QString Localize(QString key, QString parameter);
             QString Localize(QString key, QString par1, QString par2);
+            //! Check if key exists by looking it up in default language hash, returns true even if key doesn't exist in preferred language
+            bool KeyExists(QString key);
 			
             //! Check whether the preferred language is RightToLeft language.
             bool IsRTL();
