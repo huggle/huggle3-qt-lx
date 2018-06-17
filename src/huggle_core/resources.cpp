@@ -61,7 +61,7 @@ QByteArray Huggle::Resources::GetResourceAsBinary(QString path)
     return result;
 }
 
-#define HUGGLE_PROTIP_COUNT 14
+#define HUGGLE_PROTIP_COUNT 15
 QString Huggle::Resources::GetRandomProTip()
 {
     int random = GetRandom(1, HUGGLE_PROTIP_COUNT);
