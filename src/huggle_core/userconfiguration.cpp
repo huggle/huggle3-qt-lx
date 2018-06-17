@@ -254,7 +254,10 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
     AppendConf(&configuration, "show-warning-if-not-on-last-revision", this->ShowWarningIfNotOnLastRevision);
     AppendConf(&configuration, "number-dropdown-menu-items", this->NumberDropdownMenuItems);
     AppendConf(&configuration, "insert-edits-of-rolled-user-to-queue", this->InsertEditsOfRolledUserToQueue);
+    AppendComment(&configuration, "If true you will not warn users who received a warning recently");
     AppendConf(&configuration, "confirm-on-recent-warning", this->ConfirmOnRecentWarning);
+    AppendComment(&configuration, "If warning was sent less than N seconds ago it's considered too recent");
+    AppendConf(&configuration, "recent-warning-time-span", this->RecentWarningTimeSpan);
     AppendConf(&configuration, "confirm-warning-on-very-old-edits", this->ConfirmWarningOnVeryOldEdits);
     // shortcuts
     QStringList shortcuts = Configuration::HuggleConfiguration->Shortcuts.keys();
@@ -609,6 +612,7 @@ bool UserConfiguration::ParseYAML(QString config, ProjectConfiguration *ProjectC
     this->InsertEditsOfRolledUserToQueue = YAML2Bool("insert-edits-of-rolled-user-to-queue", yaml, this->InsertEditsOfRolledUserToQueue);
     this->ConfirmOnRecentWarning = YAML2Bool("confirm-on-recent-warning", yaml, this->ConfirmOnRecentWarning);
     this->ConfirmWarningOnVeryOldEdits = YAML2Bool("confirm-warning-on-very-old-edits", yaml, this->ConfirmWarningOnVeryOldEdits);
+    this->RecentWarningTimeSpan = YAML2Int("recent-warning-time-span", yaml, this->RecentWarningTimeSpan);
     // for now we do this only for home wiki but later we need to make it for every wiki
     if (IsHome)
     {

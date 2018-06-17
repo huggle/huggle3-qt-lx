@@ -10,6 +10,7 @@
 
 #include "wikiuser.hpp"
 #include <QMutex>
+#include "configuration.hpp"
 #include "projectconfiguration.hpp"
 #include "exception.hpp"
 #include "huggleparser.hpp"
@@ -194,6 +195,8 @@ WikiUser::WikiUser(WikiUser *u) : MediaWikiObject(u)
     this->isBot = u->isBot;
     this->EditCount = u->EditCount;
     this->RegistrationDate = u->RegistrationDate;
+    this->LastMessageTimeKnown = u->LastMessageTimeKnown;
+    this->LastMessageTime = u->LastMessageTime;
 }
 
 WikiUser::WikiUser(const WikiUser &u) : MediaWikiObject(u)
@@ -212,6 +215,8 @@ WikiUser::WikiUser(const WikiUser &u) : MediaWikiObject(u)
     this->isBot = u.isBot;
     this->EditCount = u.EditCount;
     this->RegistrationDate = u.RegistrationDate;
+    this->LastMessageTime = u.LastMessageTime;
+    this->LastMessageTimeKnown = u.LastMessageTimeKnown;
 }
 
 WikiUser::WikiUser(QString user, WikiSite *site) : MediaWikiObject(site)
@@ -266,6 +271,8 @@ bool WikiUser::Resync()
             this->EditCount = user->EditCount;
         this->IsReported = user->IsReported;
         this->IsBlocked = user->IsBlocked;
+        this->LastMessageTime = user->LastMessageTime;
+        this->LastMessageTimeKnown = user->LastMessageTimeKnown;
         return true;
     }
     return false;
@@ -326,7 +333,9 @@ void WikiUser::ParseTP(QDate bt)
 {
     QString tp = this->TalkPage_GetContents();
     if (tp.length() > 0)
+    {
         this->warningLevel = HuggleParser::GetLevel(tp, bt, this->GetSite());
+    }
 }
 
 QString WikiUser::UnderscorelessUsername()
@@ -477,6 +486,17 @@ void WikiUser::IncrementWarningLevel()
 void WikiUser::SetWarningLevel(byte_ht level)
 {
     this->warningLevel = level;
+}
+
+void WikiUser::SetLastMessageTime(QDateTime date_time)
+{
+    if (this->LastMessageTimeKnown && this->LastMessageTime > date_time)
+    {
+        HUGGLE_DEBUG1(this->GetSite()->Name + ": user " + this->Username + " had LastWarningTime changed to past");
+    }
+
+    this->LastMessageTimeKnown = true;
+    this->LastMessageTime = date_time;
 }
 
 byte_ht WikiUser::GetWarningLevel() const

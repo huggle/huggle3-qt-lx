@@ -340,6 +340,9 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     hcfg->UserConfig->HighlightSummaryIfExists = this->ui->checkBox_7->isChecked();
     hcfg->UserConfig->InsertEditsOfRolledUserToQueue = this->ui->checkBox_ReviewEditsMadeByVandal->isChecked();
     hcfg->SystemConfig_FontSize = this->ui->sxFontSize->value();
+    hcfg->UserConfig->ConfirmOnRecentWarning = this->ui->checkBox_RecentMsgs->isChecked();
+    hcfg->UserConfig->SkipWarningOnConfirm = this->ui->checkBox_SkipConfirm->isChecked();
+    hcfg->UserConfig->ConfirmWarningOnVeryOldEdits = this->ui->checkBox_OldEdits->isChecked();
 
     if (hcfg->SystemConfig_FontSize < 1)
         hcfg->SystemConfig_FontSize = 10;
@@ -804,6 +807,9 @@ void Preferences::ResetItems()
     this->ui->checkBox_ReviewEditsMadeByVandal->setChecked(hcfg->UserConfig->InsertEditsOfRolledUserToQueue);
     this->ui->checkBox_unsafe->setChecked(hcfg->SystemConfig_UnsafeExts);
     this->ui->cbKeystrokeFix->setChecked(hcfg->SystemConfig_KeystrokeMultiPressFix);
+    this->ui->checkBox_OldEdits->setChecked(hcfg->UserConfig->ConfirmWarningOnVeryOldEdits);
+    this->ui->checkBox_SkipConfirm->setChecked(hcfg->UserConfig->SkipWarningOnConfirm);
+    this->ui->checkBox_RecentMsgs->setChecked(hcfg->UserConfig->ConfirmOnRecentWarning);
 
 #ifdef HUGGLE_NOAUDIO
     this->ui->ln_QueueSoundMinScore->setEnabled(false);

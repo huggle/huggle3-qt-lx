@@ -247,6 +247,10 @@ bool WikiEdit::finalizePostProcessing()
                 } else
                 {
                     this->TPRevBaseTime = rv->GetAttribute("timestamp");
+                    // There isn't any better way to figure out last time of last message sent to this user, because MW is using different timestamp
+                    // formats for different languages, so it's basically impossible to parse, so let's just use time of last revision, it's not
+                    // completely accurate but better than nothing
+                    this->User->SetLastMessageTime(MediaWiki::FromMWTimestamp(this->TPRevBaseTime));
                 }
                 this->User->TalkPage_SetContents(rv->Value);
             } else

@@ -67,7 +67,7 @@ PendingWarning *Warnings::WarnUser(QString warning_type, RevertQuery *dependency
         return nullptr;
     }
 
-    if (hcfg->UserConfig->ConfirmWarningOnVeryOldEdits || hcfg->UserConfig->SkipWarningOnConfirm)
+    if (hcfg->UserConfig->ConfirmWarningOnVeryOldEdits)
     {
         // User doesn't want to send warnings for edits that are too old check if this edit is not too old
         if (edit->Time.addDays(1) < QDateTime::currentDateTime())
@@ -83,6 +83,28 @@ PendingWarning *Warnings::WarnUser(QString warning_type, RevertQuery *dependency
                 // Ask user if they really want to send a warning here
                 if (!Hooks::ShowYesNoQuestion("Really send a warning?", "Edit to " + edit->Page->PageName + " on " + edit->GetSite()->Name + " by " +
                                              edit->User->Username + " was is older than 1 day, do you really want to send them a warning message?", false))
+                    return nullptr;
+            }
+        }
+    }
+
+    // If user received another warning recently, we give him some time to realize what's going on before sending more warnings
+    if (edit->User->LastMessageTimeKnown && hcfg->UserConfig->ConfirmOnRecentWarning)
+    {
+        if (edit->User->LastMessageTime.addSecs(hcfg->UserConfig->RecentWarningTimeSpan) > QDateTime::currentDateTime())
+        {
+            // This warning is too recent
+            if (hcfg->UserConfig->SkipWarningOnConfirm)
+            {
+                HUGGLE_LOG("Not sending warning to " + edit->User->Username + " for their edit to " + edit->Page->PageName + " on " + edit->GetSite()->Name +
+                           " because their talk page was edited too recently");
+                return nullptr;
+            } else
+            {
+                // Ask user if they really want to send a warning here
+                if (!Hooks::ShowYesNoQuestion("Really send a warning?", "Edit to " + edit->Page->PageName + " on " + edit->GetSite()->Name + " was made by " +
+                                             edit->User->Username + " who received a message on their talk page very recently (probably some other warning template?)" +
+                                              " do you really want to send them another warning message?", false))
                     return nullptr;
             }
         }
@@ -116,6 +138,7 @@ PendingWarning *Warnings::WarnUser(QString warning_type, RevertQuery *dependency
     }
 
     edit->User->IncrementWarningLevel();
+    edit->User->SetLastMessageTime(QDateTime::currentDateTime());
     // We need to update the user so that new user warning level gets propagated everywhere on interface of huggle
     edit->User->Update();
 

@@ -112,7 +112,7 @@ namespace Huggle
          * \param page The content of talk page
          * \return Level
          */
-        HUGGLE_EX_CORE byte_ht GetLevel(QString page, QDate bt, Huggle::WikiSite *site = nullptr);
+        HUGGLE_EX_CORE byte_ht GetLevel(QString page, QDate bt, Huggle::WikiSite *site);
     }
 }
 

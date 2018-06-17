@@ -283,6 +283,36 @@
         </layout>
        </item>
        <item>
+        <widget class="QGroupBox" name="groupBox_3">
+         <property name="title">
+          <string>Confirming</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_15">
+          <item>
+           <widget class="QCheckBox" name="checkBox_RecentMsgs">
+            <property name="text">
+             <string>Confirm warnings to users who recently had talk page edited</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkBox_OldEdits">
+            <property name="text">
+             <string>Confirm warnings for very old edits</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkBox_SkipConfirm">
+            <property name="text">
+             <string>Don't ask for any confirmation - if edit was too old, or user received a message recently, just skip the warning</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
         <spacer name="verticalSpacer_3">
          <property name="orientation">
           <enum>Qt::Vertical</enum>

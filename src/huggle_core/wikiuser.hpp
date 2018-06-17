@@ -100,7 +100,7 @@ namespace Huggle
             //! This is useful when you created user in past and since then a global user has changed
             //! so that you just call this to refresh all the scores and information or stuff
             bool Resync();
-            //! Return a link to talk page of this user (like User talk:Jimbo)
+            //! Return a name of talk page of this user (like User talk:Jimbo)
             QString GetTalk();
             //! Returns a WikiPage object for talk page of this user, unlike "GetTalk()" which only returns a name of talk page
             WikiPage *GetTalkPage();
@@ -131,6 +131,7 @@ namespace Huggle
             void DecrementWarningLevel();
             void IncrementWarningLevel();
             void SetWarningLevel(byte_ht level);
+            void SetLastMessageTime(QDateTime date_time);
             byte_ht GetWarningLevel() const;
             //! Username
             QString Username;
@@ -144,6 +145,9 @@ namespace Huggle
             QString RegistrationDate;
             //! Groups that this user is in, by default it's empty
             QStringList Groups;
+            bool LastMessageTimeKnown = false;
+            //! Time when received last warning
+            QDateTime LastMessageTime;
 
     protected:
             //! Matches only IPv4

@@ -209,11 +209,6 @@ static int DateMark(QString page, WikiSite *site)
 byte_ht HuggleParser::GetLevel(QString page, QDate bt, WikiSite *site)
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
-    if (!site)
-    {
-        // for compatibilty purposes
-        site = Configuration::HuggleConfiguration->Project;
-    }
     if (Configuration::HuggleConfiguration->SystemConfig_TrimOldWarnings)
     {
         // we need to get rid of old warnings now

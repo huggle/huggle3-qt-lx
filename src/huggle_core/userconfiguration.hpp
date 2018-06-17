@@ -94,6 +94,8 @@ namespace Huggle
             bool            AutomaticallyWatchlistWarnedUsers = false;
             //! When user you want to send a warning to received another warning recently, ask if you really want to send it
             bool            ConfirmOnRecentWarning = true;
+            //! If warning was sent less than N seconds ago it's considered too recent
+            int             RecentWarningTimeSpan = 120;
             //! When old edit is reverted, ask if you really want to send a warning for it
             bool            ConfirmWarningOnVeryOldEdits = true;
             //! In case edit is old or user recently got a warning, just write this into logs and don't ask user anything
