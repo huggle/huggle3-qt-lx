@@ -66,7 +66,6 @@ QJSValue JSMarshallingHelper::FromUser(WikiUser *user, QJSEngine *engine)
     o.setProperty("IsReported", QJSValue(user->IsReported));
     o.setProperty("IsWhitelisted", QJSValue(user->IsWhitelisted()));
     o.setProperty("RegistrationDate", QJSValue(user->RegistrationDate));
-    o.setProperty("Site", FromSite(user->Site, engine));
     o.setProperty("TalkPageContents", QJSValue(user->TalkPage_GetContents()));
     o.setProperty("TalkPage_RetrievalTime", QJSValue(user->TalkPage_RetrievalTime().toString()));
     o.setProperty("TalkPage_WasRetrieved", user->TalkPage_WasRetrieved());
