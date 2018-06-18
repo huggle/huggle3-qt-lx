@@ -76,7 +76,13 @@ function ext_init()
     return true;
 }
 
+function gallery()
+{
+    huggle_ui.internal_link("https://mediawiki.org/wiki/Huggle/JS?action=render", true);
+}
+
 function ext_on_main_open()
 {
+    huggle_ui.create_menu_item(huggle_ui_menu_scripting, "Extension gallery", "gallery");
     huggle_ui.create_menu_item(huggle_ui_menu_scripting, "Show scipting manual", "print_help");
 }

@@ -2211,6 +2211,11 @@ void MainWindow::DisplayTalk()
     delete page;
 }
 
+void MainWindow::DisplayURL(QString uri)
+{
+    this->Browser->DisplayPage(uri);
+}
+
 static void DisplayRevid_Finish(WikiEdit *edit, void *source, QString er)
 {
     Q_UNUSED(source);
