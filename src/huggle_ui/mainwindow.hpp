@@ -171,6 +171,7 @@ namespace Huggle
             void DeletePage();
             void DisplayWelcomeMessage();
             void DisplayTalk();
+            void DisplayURL(QString uri);
             /*!
              * \brief DisplayRevid Try to display a revision as a diff in huggle main window
              * \param RevID ID of revision

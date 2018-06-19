@@ -20,6 +20,8 @@
 #include <huggle_core/wikiutil.hpp>
 #include <huggle_core/wikisite.hpp>
 #include <huggle_core/syslog.hpp>
+#include <QUrl>
+#include <QDesktopServices>
 #include <QFileDialog>
 #include <QInputDialog>
 
@@ -29,6 +31,8 @@ HuggleUIJS::HuggleUIJS(Script *s) : GenericJSClass(s)
 {
     this->ui_script = (UiScript*) s;
     this->function_help.insert("render_html", "(string html, [bool lock_page]): Renders html in current tab");
+    this->function_help.insert("external_link", "(string link): (since HG 3.4.4) opens a link in external browser");
+    this->function_help.insert("internal_link", "(string link, [bool lock_page]): (since HG 3.4.4) opens a link in huggle browser");
     this->function_help.insert("mainwindow_is_loaded", "(): Returns true if main window is loaded");
     this->function_help.insert("menu_item_set_checked", "(int menu_id, bool state): toggles menu checked state");
     this->function_help.insert("get_current_wiki_edit", "(): returns a copy of currently displayed edit");
@@ -271,6 +275,26 @@ QJSValue HuggleUIJS::filebox_save(QString title, QString mask)
         return QJSValue(false);
 
     return QJSValue(file_dialog.selectedFiles().at(0));
+}
+
+void HuggleUIJS::external_link(QString link)
+{
+    QDesktopServices::openUrl(QUrl(link));
+}
+
+bool HuggleUIJS::internal_link(QString link, bool lock_page)
+{
+    if (!MainWindow::HuggleMain)
+    {
+        HUGGLE_ERROR(this->script->GetName() + ": internal_link(...): mainwindow is not loaded yet");
+        return false;
+    }
+    MainWindow::HuggleMain->DisplayURL(link);
+    if (lock_page)
+    {
+        MainWindow::HuggleMain->LockPage();
+    }
+    return true;
 }
 
 QHash<QString, QString> HuggleUIJS::GetFunctions()

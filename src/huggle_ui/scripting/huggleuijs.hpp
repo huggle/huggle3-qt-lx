@@ -43,6 +43,8 @@ namespace Huggle
             Q_INVOKABLE QJSValue input_box(QString title, QString text, QString default_text);
             Q_INVOKABLE QJSValue filebox_open(QString title, QString mask = "All files (*)");
             Q_INVOKABLE QJSValue filebox_save(QString title, QString mask = "All files (*)");
+            Q_INVOKABLE void external_link(QString link);
+            Q_INVOKABLE bool internal_link(QString link, bool lock_page = false);
             QHash<QString, QString> GetFunctions();
         private:
             QHash<QString, QString> function_help;
