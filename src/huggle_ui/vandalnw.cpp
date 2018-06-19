@@ -83,7 +83,9 @@ QString VandalNw::GenerateWikiDiffLink(QString text, QString revid, WikiSite *si
 VandalNw::VandalNw(QWidget *parent) : QDockWidget(parent), ui(new Ui::VandalNw)
 {
     // Construct a server address from what we have
-    libirc::ServerAddress server(hcfg->VandalNw_Server, false, 6667, hcfg->SystemConfig_Username);
+    QString nick = hcfg->SystemConfig_Username;
+    nick.replace(" ", "_");
+    libirc::ServerAddress server(hcfg->VandalNw_Server, false, 6667, nick);
     this->Irc = new libircclient::Network(server, "HAN");
     this->ui->setupUi(this);
     // such hack. much WOW :P
