@@ -36,12 +36,18 @@ QList<HuggleFeed *> HuggleFeed::GetProvidersForSite(WikiSite *site)
 HuggleFeed *HuggleFeed::GetAlternativeFeedProvider(HuggleFeed *provider)
 {
     QList<HuggleFeed*> providers = HuggleFeed::GetProvidersForSite(provider->GetSite());
+    HuggleFeed *best_pr = nullptr;
     foreach (HuggleFeed *px, providers)
     {
         if (px->FeedPriority() <= provider->FeedPriority() && px->GetID() != provider->GetID())
-            return px;
+        {
+            if (!best_pr)
+                best_pr = px;
+            else if (best_pr->FeedPriority() < px->FeedPriority())
+                best_pr = px;
+        }
     }
-    return nullptr;
+    return best_pr;
 }
 
 HuggleFeed *HuggleFeed::GetProviderByID(WikiSite *site, int id)
