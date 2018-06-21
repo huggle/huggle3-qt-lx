@@ -19,6 +19,7 @@
 * Marcos dias de oliveira
 * OTAVIO1981
 * PauloEduardo
+* Pedrofariasm
 * Rodrigo codignoli
 * TheGabrielZaum
 * Tooguether
@@ -27,7 +28,7 @@
 -->
 <resources>
   <string name="name">Inglês</string>
-  <string name="autorelog">Fazer isto sem me perguntar da próxima vez</string>
+  <string name="autorelog">Fazer isto sem perguntar da próxima vez</string>
   <string name="isrtl">falso</string>
   <string name="add">Adicionar</string>
   <string name="cancel">Cancelar</string>
@@ -35,14 +36,14 @@
   <string name="close">Fechar</string>
   <string name="continue">Continuar</string>
   <string name="copy">Copiar</string>
-  <string name="delete">Eliminar</string>
-  <string name="deleted">Eliminado</string>
+  <string name="delete">Deletar</string>
+  <string name="deleted">Deletado</string>
   <string name="error">Erro</string>
   <string name="exit">Sair</string>
   <string name="done">Feito</string>
   <string name="no">Não</string>
   <string name="ok">OK</string>
-  <string name="override-warn">Você substituiu o caminho de configuração do projeto. Por favor, tenha em mente que ao abusar desta funcionalidade para obter direitos de acesso de salvar na wiki, onde normalmente não teria, pode resultar em um bloqueio permanente da sua conta.</string>
+  <string name="override-warn">Você substituiu o caminho de configuração do projeto. Por favor, tenha em mente que ao abusar desta funcionalidade para obter direitos de acesso de salvar na wiki, a qual normalmente não teria, pode resultar em um bloqueio permanente da sua conta.</string>
   <string name="remove">Remover</string>
   <string name="rename">Renomear</string>
   <string name="reload">Recarregar</string>
@@ -82,7 +83,7 @@
   <string name="no-token">Sem chave</string>
   <string name="flags">Sinalizações</string>
   <string name="gracetime">Aguardando consultas que efetuaram edições terminarem...</string>
-  <string name="browser-none">Não há nenhuma página sendo exibida ainda.</string>
+  <string name="browser-none">Não há página para ser exibida no momento.</string>
   <string name="browser-load">Baixando diff usando um recurso MW, por favor aguarde...</string>
   <string name="browser-miss-summ">Nenhum resumo fornecido.</string>
   <string name="browser-diff">Diff da página:$1 (pontuação: $2)</string>
@@ -894,4 +895,5 @@
   <string name="tip12">Você cometeu um erro? Não se preocupe, clique com o botão direito do mouse em qualquer edição que tenha feito no \"Histórico das suas edições\", e será mostrada uma janela flutuante que contém a opção de desfazer a sua própria alteração.</string>
   <string name="tip13">Você pode abrir um \"navegador de contribuição\" para o usuário que criou a edição mostrada atualmente, ao pressionar Shift + C (por omissão) ou do menu de usuário. Isto permite que as edições recentes feitas por este usuário sejam mostradas de forma rápida.</string>
   <string name="tip14">Você pode conversar com outros usuários ativos do Huggle, que estão utilizando o programa agora. Se estiverem conectados, conseguirá vê-los na janela de \"Rede\".</string>
+  <string name="tip15">Se você encontrar problemas com o artigo mas a reversão não resolver, você pode pressionar E para editar o artigo imediatamente no seu navegador padrão (não dentro do Huggle)</string>
 </resources>
