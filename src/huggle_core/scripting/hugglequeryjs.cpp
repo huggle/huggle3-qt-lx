@@ -71,7 +71,7 @@ static void apisuccess(Query *qr)
 
 int HuggleQueryJS::create_api_query(int type, QString site, QString parameters, bool using_post, bool auto_delete)
 {
-    if (type > 0 || type > 17)
+    if (type < 0 || type > 17)
     {
         HUGGLE_ERROR(this->script->GetName() + ": create_api_query(...): invalid query type");
         return -1;
