@@ -3696,7 +3696,7 @@ void MainWindow::on_actionScripts_manager_triggered()
 void MainWindow::OnFinishPreProcess(WikiEdit *ed)
 {
     // In case we are currently looking at this page in main window, let's refresh
-    if (hcfg->UserConfig->AutomaticRefresh && this->CurrentEdit != nullptr && ed->Page->PageName == this->CurrentEdit->Page->PageName)
+    if (hcfg->UserConfig->AutomaticRefresh && this->CurrentEdit != nullptr && ed->Page->SanitizedName() == this->CurrentEdit->Page->SanitizedName())
         this->RefreshPage();
 }
 

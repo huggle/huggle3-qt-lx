@@ -358,8 +358,8 @@ bool WikiEdit::finalizePostProcessing()
             // Since some MW release, name gets underscores replaced for whatever reasons, producing false positives here
             QString uln = diff->GetAttribute("fromtitle");
             uln.replace(" ", "_");
-            if (uln != this->Page->PageName)
-                HUGGLE_DEBUG1(QString::number(this->RevID) + ": pageid doesn't match " + this->Page->PageName + " != " + uln);
+            if (uln != this->Page->SanitizedName())
+                HUGGLE_DEBUG1(QString::number(this->RevID) + ": pageid doesn't match " + this->Page->SanitizedName() + " != " + uln);
         }
 
         this->DiffText = diff->Value;

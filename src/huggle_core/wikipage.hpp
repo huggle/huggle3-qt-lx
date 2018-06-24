@@ -65,7 +65,9 @@ namespace Huggle
 
     inline QString WikiPage::SanitizedName()
     {
-        return this->PageName.replace(" ", "_");
+        QString sanitized_name = this->PageName;
+        sanitized_name.replace(" ", "_");
+        return sanitized_name;
     }
 
     inline WikiPageNS *WikiPage::GetNS()

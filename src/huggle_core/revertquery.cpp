@@ -262,7 +262,7 @@ void RevertQuery::Preflight()
                 continue;
             if (w != this->editToBeReverted)
             {
-                if (w->Page->PageName != this->editToBeReverted->Page->PageName)
+                if (w->Page->SanitizedName() != this->editToBeReverted->Page->SanitizedName())
                     continue;
                 if (w->Time > this->editToBeReverted->Time)
                 {

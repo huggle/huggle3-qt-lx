@@ -107,7 +107,7 @@ void HuggleQueue::AddItem(WikiEdit *edit)
             if (!current_edit->IsRevert)
                 continue;
             // if edit is not made to this page, we can continue
-            if (current_edit->Page->PageName != edit->Page->PageName)
+            if (current_edit->Page->SanitizedName() != edit->Page->SanitizedName())
                 continue;
             // we found it
             HUGGLE_DEBUG("Ignoring edit to " + edit->Page->PageName + " because it was reverted by someone", 1);
@@ -468,7 +468,7 @@ void HuggleQueue::DeleteOlder(WikiEdit *edit)
         WikiEdit *_e = this->Items.at(i)->Edit;
         if (edit->RevID > _e->RevID)
         {
-            if (edit->Page->PageName == _e->Page->PageName)
+            if (edit->Page->SanitizedName() == _e->Page->SanitizedName())
             {
                 HUGGLE_DEBUG("Deleting old edit to page " + _e->Page->PageName, 3);
                 // remove it
