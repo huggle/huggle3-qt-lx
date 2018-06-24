@@ -891,4 +891,5 @@
   <string name="tip12">Vous avez fait une erreur ? Aucun problème, cliquer droit sur une modification que vous avez faite dans « l’historique de vos modifications » ouvrira une fenêtre qui proposera l’option d’annuler votre propre modification.</string>
   <string name="tip13">Vous pouvez ouvrir un « navigateur de contribution » pour l’utilisateur qui a créé la modification actuellement affichée, en appuyant sur Shift + C (par défaut) ou depuis le menu utilisateur. Cela vous permet de voir rapidement les modifications récentes faites par cet utilisateur.</string>
   <string name="tip14">Vous pouvez dialoguer avec d\'autres utilisateurs actifs de Huggle qui utilisent le programme actuellement. Vous les verrez dans la fenêtre \"Réseau\" s\'ils sont en ligne.</string>
+  <string name="tip15">Si vous trouvez d’autres problèmes avec l’article, mais que l’annulation ne sert pas, vous pouvez appuyer sur E pour modifier immédiatement l’article dans votre navigateur par défaut (pas dans Huggle).</string>
 </resources>
