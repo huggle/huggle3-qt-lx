@@ -262,11 +262,11 @@ void RevertQuery::Preflight()
                 continue;
             if (w != this->editToBeReverted)
             {
-                if (w->Page->SanitizedName() != this->editToBeReverted->Page->SanitizedName())
+                if (!w->Page->EqualTo(this->editToBeReverted->Page))
                     continue;
                 if (w->Time > this->editToBeReverted->Time)
                 {
-                    if (w->User->Username != this->editToBeReverted->User->Username)
+                    if (!w->User->EqualTo(this->editToBeReverted->User))
                         MadeBySameUser = false;
                     failed = true;
                 }

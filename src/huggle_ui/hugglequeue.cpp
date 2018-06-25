@@ -492,7 +492,7 @@ void HuggleQueue::UpdateUser(WikiUser *user)
     while (i < this->Items.count())
     {
         WikiEdit *ed = this->Items.at(i)->Edit;
-        if (ed->User->Username == user->Username)
+        if (ed->User->EqualTo(user))
         {
             // we have a match, let's update the icon, but only if the levels are actually different for performance reasons
             if (ed->User->GetWarningLevel() != user->GetWarningLevel())

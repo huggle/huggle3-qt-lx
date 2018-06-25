@@ -81,6 +81,11 @@ QString WikiPage::GetFounder()
     return this->founder;
 }
 
+bool WikiPage::EqualTo(WikiPage *page)
+{
+    return this->Site == page->Site && this->SanitizedName() == page->SanitizedName();
+}
+
 void WikiPage::SetFounder(QString name)
 {
     this->founderKnown = true;

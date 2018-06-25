@@ -31,6 +31,7 @@ namespace Huggle
             WikiPage(const QString &name, WikiSite *site);
             WikiPage(WikiPage *page);
             WikiPage(const WikiPage& page);
+            //! Returns a corrected version of page name in case there are spaces
             QString SanitizedName();
             //! Retrieve a namespace object for current page
             WikiPageNS *GetNS();
@@ -39,6 +40,7 @@ namespace Huggle
             //! True if original creator of this page is known
             bool FounderKnown();
             QString GetFounder();
+            bool EqualTo(WikiPage *page);
             void SetFounder(QString name);
             //! Returns a new instance of WikiPage that is pointed to talk page of this page
             WikiPage *RetrieveTalk();

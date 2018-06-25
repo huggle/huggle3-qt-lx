@@ -344,6 +344,11 @@ QString WikiUser::UnderscorelessUsername()
     return name.replace("_", " ");
 }
 
+bool WikiUser::EqualTo(WikiUser *user)
+{
+    return this->Site == user->Site && this->Username == user->Username;
+}
+
 QString WikiUser::GetTalk()
 {
     // get a usertalk prefix for this site
