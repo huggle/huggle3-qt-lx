@@ -575,6 +575,7 @@
   <string name="shortcut-my-talk">Min diskussionssida</string>
   <string name="shortcut-next">Gå till nästa redigering</string>
   <string name="shortcut-suspicious">Märk redigering som misstänkt</string>
+  <string name="shortcut-revert">Gör redigering ogjord</string>
   <string name="shortcut-talk">Visa en diskussionssida för användaren som gjorde denna ändring</string>
   <string name="shortcut-browser-close-tab">Stäng en webbläsarflik</string>
   <string name="shortcut-tab">Öppnar en ny flik</string>

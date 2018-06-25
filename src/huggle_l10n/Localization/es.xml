@@ -391,8 +391,8 @@
   <string name="main-revision-revert-warn">Revertir la edición acutualmente mostrada y advertir al usuario</string>
   <string name="main-revision-rws">Revertir la edición acutualmente mostrada, advertir al usuario y permanecer en la página</string>
   <string name="main-revision-faith">Revertir suponiendo buena fe</string>
-  <string name="main-revision-revert-only-this"> Sólo revertir esta revisión</string>
-  <string name="main-revision-revert-agf">Revertir solamente esta revisión, asumiendo buena fe</string>
+  <string name="main-revision-revert-only-this">Revertir solo esta revisión</string>
+  <string name="main-revision-revert-agf">Revertir solo esta revisión, asumiendo buena fe</string>
   <string name="main-revision-previous">Previa</string>
   <string name="main-revision-next">Siguiente</string>
   <string name="main-revision-latest">Última</string>

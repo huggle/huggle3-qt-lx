@@ -193,7 +193,9 @@
   <string name="config-no-colon">আপনি ব্যবহার করতে পারবেন না: সারির মধ্যে নাম</string>
   <string name="config-notify-update">হালনাগাদের জন্য পরীক্ষা করুন</string>
   <string name="config-notify-beta">উপলব্ধ হলে বেটা সংস্করণের জন্য পরীক্ষা করুন</string>
+  <string name="custommessage-title">$1-এ একটি স্বনির্ধারিত বার্তা পাঠান</string>
   <string name="custommessage-subject">শিরোনাম</string>
+  <string name="custommessage-menu">একটি স্বনির্ধারিত বার্তা পাঠান</string>
   <string name="custommessage-send">বার্তা পাঠান</string>
   <string name="custommessage-wikiuser-lesummary">$1-এ একটি স্বনির্ধারিত বার্তা প্রদান</string>
   <string name="custommessage-wikiuser-plaintext-1">প্রিয় $1,</string>
@@ -283,6 +285,7 @@
   <string name="login-remember-password">পাসওয়ার্ড মনে রাখুন</string>
   <string name="login-ssl">প্রবেশ করতে HTTPS ব্যবহার করুন (OpenSSL প্রয়োজন)</string>
   <string name="login-fail">$1-এ প্রবেশ ব্যর্থ হয়েছে</string>
+  <string name="login-fail-with-reason">$1-এ প্রবেশ ব্যর্থ হয়েছে: $2</string>
   <string name="login-error-admin">এই প্রকল্পে হাগল ব্যবহার করার জন্য একটি প্রশাসক অ্যাকাউন্টের প্রয়োজন।</string>
   <string name="login-error-age">এই প্রকল্পে হাগল ব্যবহার করার জন্য একটি অ্যাকাউন্টকে কমপক্ষে $1 দিনের পুরনো হওয়া প্রয়োজন।</string>
   <string name="login-error-alldisabled">এই মুহুর্তে সব প্রকল্পে হাগল নিষ্ক্রিয় করা আছে।</string>
@@ -306,7 +309,7 @@
   <string name="main-menu-provider-resume">প্রদানকারীকে বিরতি দিন</string>
   <string name="provider-up">$2-এ $1 প্রদানকারী ব্যবহার করে সাম্প্রতিক পরিবর্তনের স্ট্রীমে সংযোগ করা হচ্ছে</string>
   <string name="main-no-reason">ব্যবহারকারী দ্বারা কোন কারণ প্রদান করা হয়নি</string>
-  <string name="main-restoring-slap" fuzzy="true">আমি বর্তমানে অন্য একটি সম্পাদনা পুনরুদ্ধার করছি, দয়া করে অপেক্ষা করুন...</string>
+  <string name="main-restoring-slap">বর্তমানে আরেকটি সম্পাদনা পুনরুদ্ধার করা হচ্ছে, দয়া করে অপেক্ষা করুন...</string>
   <string name="main-page">পাতা</string>
   <string name="main-user">ব্যবহারকারী</string>
   <string name="main-contribs">অবদান</string>
@@ -315,6 +318,7 @@
   <string name="main-space">পাতার নাম একটি শূন্যস্থান দিয়ে শেষ হতে পারে না, দয়া করে পাতার নাম সংশোধন করুন</string>
   <string name="main-system">ব্যবস্থা</string>
   <string name="main-status-bar">&lt;b&gt;$1&lt;/b&gt;টি সম্পাদনা ও &lt;b&gt;$2&lt;/b&gt;টি কোয়েরি প্রক্রিয়াকরণ হচ্ছে। সাদাতালিকাভুক্ত ব্যবহারকারী: &lt;b&gt;$3&lt;/b&gt; সারির আকার: &lt;b&gt;$4&lt;/b&gt; $6-এর জন্য পরিসংখ্যান: $5</string>
+  <string name="main-metric-bar">API প্রতিক্রিয়ার গড় সময়: $1ms</string>
   <string name="main-shutting-down">হাগল বন্ধ হচ্ছে, উপেক্ষিত</string>
   <string name="main-system-messages">নতুন বার্তাগুলি দেখাও</string>
   <string name="main-system-savelog">লগ সংরক্ষণ করুন...</string>

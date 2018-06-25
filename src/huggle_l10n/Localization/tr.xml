@@ -895,4 +895,5 @@
   <string name="tip12">Bir hata yaptım! Sorun değil, \"Düzenlemelerinizin geçmişinde\" yaptığınız herhangi bir düzenlemeyi sağ tıkladığınızda kendi değişikliğinizi geri alma seçeneği sunan bir açılır pencere açılır</string>
   <string name="tip13">Şu anda görüntülenen düzenlemeyi oluşturan kullanıcıya bir \"katkı tarayıcısı\" açabilir veya Shift+C tuşlarına (varsayılan) basarak veya kullanıcı menüsünden yapabilirsiniz. Bu kullanıcı tarafından yapılan son düzenlemeleri hızlı bir şekilde görüntülemenizi sağlar.</string>
   <string name="tip14">Programı kullanan Huggle\'ın diğer aktif kullanıcılarıyla hemen sohbet edebilirsiniz. Çevrimiçi oldukları takdirde onları \"Ağ\" penceresinde göreceksiniz.</string>
+  <string name="tip15">Maddeyle ilgili başka sorun bulursanız ve geri alma size yardımcı olmazsa maddeyi derhal varsayılan tarayıcınızda (Huggle içinde değil) düzenlemek için E tuşuna basabilirsiniz.</string>
 </resources>
