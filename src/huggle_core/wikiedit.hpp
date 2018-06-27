@@ -121,8 +121,6 @@ namespace Huggle
             QString DiffTo = "prev";
             //! Diff id - this is probably same as RevID and can be safely removed
             revid_ht Diff;
-            //! Priority in queue
-            int Priority;
             bool IsValid = true;
             //! Old id
             revid_ht OldID;
