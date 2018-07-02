@@ -127,6 +127,7 @@
   <string name="config-noshortcut">Nessuno</string>
   <string name="config-defaults">Predefinito</string>
   <string name="config-minor">Contrassegna come minore</string>
+  <string name="config-ip">Utenti IP</string>
   <string name="config-watchlist">Aggiungi agli osservati speciali</string>
   <string name="config-defaultsummary">Sommario predefinito per le modifiche manuali</string>
   <string name="config-undosummary">Sommario per l\'annullamento delle proprie modifiche</string>
@@ -202,10 +203,12 @@
   <string name="config-no-colon">Non puoi usare : nel nome di una coda</string>
   <string name="config-notify-update">Controlla aggiornamenti</string>
   <string name="config-notify-beta">Controlla la presenza di versioni beta se disponibili</string>
+  <string name="custommessage-title">Invia un messaggio personalizzato a $1</string>
   <string name="custommessage-subject">Titolo</string>
   <string name="custommessage-menu">Invia un messaggio personalizzato</string>
   <string name="custommessage-send">Spedisci messaggio</string>
   <string name="custommessage-wikiuser-plaintext-1">Ciao $1,</string>
+  <string name="custommessage-wikiuser-plaintext-2">Scrivi il tuo messaggio qui.</string>
   <string name="delete-title">Cancella $1</string>
   <string name="delete-reason">Motivo:</string>
   <string name="delete-deletionlog">Registro delle cancellazioni:</string>
@@ -220,9 +223,12 @@
   <string name="delete-failed-no-info">Nell\'interrogazione non era presente alcuna informazione della pagina (sei un amministratore?)</string>
   <string name="extension-kl">Non in esecuzione</string>
   <string name="extension-ok">Caricato e in esecuzione</string>
+  <string name="exception-text-1">Sfortunatamente Huggle ha smesso di funzionare. Inviare le seguenti informazioni insieme a più dettagli possibili su quello che stavi facendo a</string>
   <string name="exception-details">Dettagli eccezione</string>
+  <string name="exception-error-code">Codice di errore: $1</string>
   <string name="exception-reason">Motivo: $1</string>
   <string name="exception-source">Fonte: $1</string>
+  <string name="exception-system-log">Registro di sistema</string>
   <string name="historyform-no-info">Nessuna informazione di modifica</string>
   <string name="historyform-title">Cronologia</string>
   <string name="historyform-retrieve-history">Recupera la cronologia</string>
@@ -258,12 +264,14 @@
   <string name="login-proxy-remember-this">Ricorda questa impostazione per la prossima volta</string>
   <string name="login-proxyport">Porta:</string>
   <string name="login-proxydomain">Dominio:</string>
+  <string name="proxy-restart">Huggle potrebbe aver bisogno di essere riavviato affinché le modifiche abbiano effetto.</string>
   <string name="login-retrieving-user-conf">Recupero della configurazione utente</string>
   <string name="login-fail-css">Acesso non riuscito a $1: Impossibile recuperare la configurazione utente.\nSpecial:MyPage/huggle3.css è assente. Hai creato huggle3.css nel tuo spazio utente?</string>
   <string name="login-fail-enable-true">Accesso non riuscito a $1: Non hai enable:true nella tua configurazione personale.</string>
   <string name="login-fail-no-info">Accesso non riuscito a $1: Impossibile recuperare le informazioni dell\'utente: $2</string>
   <string name="login-bot">Qual è la differenza tra accesso BotPassword e tradizionale?</string>
   <string name="login-fail-parse-config">Accesso non riuscito a $1: Impossibile analizzare la configurazione dell\'utente. Vedi il registro di debug per ulteriori dettagli.</string>
+  <string name="login-fail-parse-config-yaml">Acceso fallito per $1: Impossibile analizzare la configurazione dell’utente: $2</string>
   <string name="login-fail-user-data">Accesso non riuscito a $1: Impossibile recuperare le informazioni dell\'utente. L\'interrogazione API non ha restituito dati.</string>
   <string name="login-fail-rollback-rights">Accesso non riuscito a $1: Non hai i permessi di rollback su questo progetto.</string>
   <string name="login-failed-autoconfirm-rights">Accesso non riuscito a $1: Non sei autoconvalidato su questo progetto.</string>
@@ -289,12 +297,15 @@
   <string name="login-remember-password">Ricorda la password</string>
   <string name="login-ssl">Usa HTTPS per accedere (richiede OpenSSL)</string>
   <string name="login-fail">Accesso non riuscito su $1</string>
+  <string name="login-fail-with-reason">Accesso fallito (su $1): $2</string>
   <string name="login-error-admin">L\'uso di Huggle su questo progetto richiede un\'utenza di amministratore.</string>
   <string name="login-error-age">Per usare Huggle in questo progetto devi essere iscritto da almeno $1 giorni.</string>
   <string name="login-error-alldisabled">Huggle è attualmente disattivato in tutti i progetti.</string>
   <string name="login-error-approval">L\'uso di Huggle su $1 richiede un\'approvazione.</string>
   <string name="login-error-cancelled">Annullato.</string>
   <string name="login-error-config">Accesso non riuscito, impossibile analizzare la configurazione locale per $1: $2</string>
+  <string name="login-error-config-retrieve">Accesso fallito, impossibile recuperare la configurazione dell’utente: $1</string>
+  <string name="login-error-config-query-no-data">Accesso fallito, impossibile recuperare la configurazione globale, la richiesta alle API non ha restituito alcun dato</string>
   <string name="login-error-count">L\'uso di Huggle su questo progetto richiede almeno $1 modifiche.</string>
   <string name="login-error-disabled">Huggle non è attivato per la tua utenza su $1. Controlla la pagina della tua configurazione utente.</string>
   <string name="login-error-global">Accesso non riuscito: Impossibile analizzare la configurazione globale. Vedi il registro di debug per ulteriori dettagli.</string>
@@ -306,6 +317,7 @@
   <string name="login-error-unknown">Impossibile accedere a $1.</string>
   <string name="login-error-version">Questa versione è obsoleta. Aggiorna all\'ultima versione.</string>
   <string name="login-error-whitelist">Impossibile caricare la lista bianca degli utenti per $1.</string>
+  <string name="login-ro-title">Passa alla modalità sola lettura</string>
   <string name="main-stat">$1 modifiche al minuto, $2 annullamenti al minuto, livello $3</string>
   <string name="main-menu-provider-stop">Ferma il provider</string>
   <string name="main-menu-provider-resume">Riavvia il provider</string>
@@ -343,6 +355,10 @@
   <string name="main-queue-reset">Ripristina</string>
   <string name="main-queue-clearall">Pulisci tutto</string>
   <string name="main-queue-options">Gestisci code...</string>
+  <string name="main-queue-when-full">Quando la coda è piena</string>
+  <string name="main-queue-when-full-remove">Rimuovi le vecchie modifiche</string>
+  <string name="main-queue-remove-whitelisted">Rimuovi le modifiche effettuate dagli utenti della lista bianca</string>
+  <string name="main-queue-remove-200">Rimuovi le modifiche con punteggio inferiore a -200</string>
   <string name="main-goto">Vai a</string>
   <string name="main-goto-mytalk">La mia pagina di discussione</string>
   <string name="main-goto-mycontribs">I miei contributi</string>
@@ -354,6 +370,8 @@
   <string name="main-revision-revert-warn">Annulla la modifica attualmente visualizzata ed avverti l\'utente</string>
   <string name="main-revision-rws">Annulla la modifica attualmente visualizzata, avverti l\'utente e rimani nella pagina</string>
   <string name="main-revision-faith">Annulla presupponendo la buona fede</string>
+  <string name="main-revision-revert-only-this">Annulla solo questa versione</string>
+  <string name="main-revision-revert-agf">Annulla solo questa versione, presupponendo la buona fede</string>
   <string name="main-revision-previous">Precedente</string>
   <string name="main-revision-next">Successiva</string>
   <string name="main-revision-latest">Ultima</string>
@@ -389,6 +407,7 @@
   <string name="main-page-watchlist-add">Aggiungi pagina agli osservati speciali</string>
   <string name="main-page-tab-close">Chiudi la scheda corrente</string>
   <string name="main-page-tab-open">Apri nuova scheda</string>
+  <string name="main-page-watchlist-remove">Rimuovi questa pagina dagli osservati speciali</string>
   <string name="main-user-info">Mostra le informazioni dell\'utente</string>
   <string name="main-user-ignore">Ignora</string>
   <string name="main-user-unignore">Non ignorare</string>
@@ -423,6 +442,7 @@
   <string name="main-help-about">A proposito di Huggle...</string>
   <string name="main-help-introduction">Introduzione</string>
   <string name="main-help-welcome-page">Pagina di benvenuto</string>
+  <string name="main-help-contents">Contenuti</string>
   <string name="main-addqueue">Aggiungi...</string>
   <string name="main-savelogtitle">Salva registro</string>
   <string name="main-usermessageother">Altro messaggio...</string>
@@ -612,7 +632,7 @@
   <string name="shortcut-open-in-huggle">Apri la pagina attualmente mostrata</string>
   <string name="shortcut-open">Apri in un browser la modifica attualmente visualizzata</string>
   <string name="shortcut-talk">Mostra la pagina di discussione dell\'utente che ha effettuato questa modifica</string>
-  <string name="shortcut-revert-agf-1">Annulla l\'ultima revisione, presupponendo la buona fede</string>
+  <string name="shortcut-revert-agf-1">Annulla l\'ultima versione, presupponendo la buona fede</string>
   <string name="shortcut-browser-close-tab">Chiudi una scheda del browser</string>
   <string name="shortcut-tab">Apre una nuova scheda</string>
   <string name="shortcut-rw-stay">Annulla la modifica attuale, avverti l\'utente e rimani nella pagina</string>
@@ -628,6 +648,8 @@
   <string name="warning-warntype">Tipo di avviso:</string>
   <string name="warning-warnlog">Avvertimenti per questo utente:</string>
   <string name="warning-submit">Invia</string>
+  <string name="warninglist-no-warning-title">Nessun avvertimento</string>
+  <string name="warninglist-report-text">Questo utente ha già ricevuto un ultimo avvertimento, pertanto non gli invierò più un avvertimento, vuoi segnalarlo invece?</string>
   <string name="wikiedit-tp-fail">Impossibile recuperare il livello di avviso per $1. Non sarà utilizzato per il punteggio</string>
   <string name="missing-warning">Non c\'è un template di avviso $1</string>
   <string name="han-not">Vandalism network non è permesso nelle opzioni</string>
@@ -709,6 +731,7 @@
   <string name="rc-title-missing">RC Feed: L\'elemento non aveva l\'attributo titolo: $1</string>
   <string name="whitelist-download">Scaricamento della nuova lista bianca</string>
   <string name="logs-widget-name">Registri di sistema</string>
+  <string name="processes-widget-name">Processi</string>
   <string name="wait">Attendere prego...</string>
   <string name="function-miss">La funzione non è attualmente disponibile</string>
   <string name="missing-aiv">Questo progetto non usa AIV</string>
@@ -738,6 +761,8 @@
   <string name="preferences-watchlist-unwatch">Rimuovi dagli osservati speciali</string>
   <string name="preferences-watchlist-preferences">Segui le tue preferenze su wiki</string>
   <string name="preferences-watchlist-nochange">Non fare nulla</string>
+  <string name="preferences-max-score">Abilita il punteggio globale massimo (le modifiche con un punteggio più alto verranno ignorate; utile se si vogliono vedere solo le modifiche corrette)</string>
+  <string name="preferences-reset-gui">Inizializza l’interfaccia grafica</string>
   <string name="preferences-keystroke-rate-limit">Previeni la ripetizione dei tasti seguendo la frequenza in millisecondi (solo 1 stesso tasto di scelta rapida può essere attivato in N ms)</string>
   <string name="fail">Fallito</string>
   <string name="request">Richiesta</string>
@@ -790,6 +815,9 @@
   <string name="main-revert-type-made-on-talk-page">fatto sulla pagina di discussione</string>
   <string name="main-revert-type-made-white-list">fatto da un utente che è nella lista bianca</string>
   <string name="main-revert-warn">Questa modifica è $1, quindi, anche se sembra che sia un vandalismo, potrebbe non esserlo. Sei sicuro di volerla annullare?</string>
+  <string name="queue-empty-title">È vuota</string>
+  <string name="queue-empty-text">Non c’è altro nella coda...</string>
   <string name="tip3">La maggior parte delle preferenze sono memorizzate sul wiki in [[SPecial:MyPage/huggle3.css]]. Puoi anche cambiarle manualmente direttamente lì.</string>
   <string name="tip4">Praticamente ogni oggetto sullo schermo può essere chiuso in sicurezza (eccetto la barra di navigazione).</string>
+  <string name="tip8">Premendo G la modifica verrà marcata come “modifica corretta”. Agli altri verrà segnalato che tale modifica può essere ignorata, verrà decrementato il punteggio di cattiveria dell’utente e facoltativamente gli verrà inviato un messaggio di benvenuto.</string>
 </resources>

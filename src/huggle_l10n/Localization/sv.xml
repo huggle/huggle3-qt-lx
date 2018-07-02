@@ -35,7 +35,7 @@
   <string name="result">Resultat</string>
   <string name="save">Spara</string>
   <string name="show">Visa</string>
-  <string name="no-instant" fuzzy="true">Meddelandet till $2 kan inte skickas eftersom direkta varningar inte är aktiverade på projekt $2. Välj en annan varningsnivå.</string>
+  <string name="no-instant" fuzzy="true">Meddelandet till $2 kan inte skickas eftersom direkta varningar inte är aktiverade på projektet $2. Välj en annan varningsnivå.</string>
   <string name="undo">Ångra</string>
   <string name="yes">Ja</string>
   <string name="editing-page">Redigerar sida</string>
@@ -164,7 +164,12 @@
   <string name="config-html-messages" fuzzy="true">HAN kan rendera HTML-meddelanden (farligt)</string>
   <string name="config-close-without">Stäng utan att spara</string>
   <string name="config-confirmmultiple">Bekräfta flera revideringar av en ändring av samma användare</string>
+  <string name="config-confirmsame">Bekräfta sidversioner till en redigering av användaren som ångras</string>
+  <string name="config-confirmselfrevert">Bekräfta sidversion för egna redigeringar (förutom ångra)</string>
+  <string name="config-confirmwarned">Bekräfta sidversion till en redigering av en varnad användare</string>
+  <string name="config-confirmpage">Bekräfta sidversioner på ignorerade sidor</string>
   <string name="config-userollback">Använd tillbakarullning om det finns</string>
+  <string name="config-auto-refresh">Uppdatera en sida automatiskt ifall en annan redigering görs på den.</string>
   <string name="config-reportnone">Gör inget</string>
   <string name="config-templates">Meddelanden för användarmall</string>
   <string name="config-templatetext">Visa text</string>
@@ -186,6 +191,7 @@
   <string name="custommessage-subject">Titel</string>
   <string name="custommessage-menu">Skicka ett anpassat meddelande</string>
   <string name="custommessage-send">Skicka meddelande</string>
+  <string name="custommessage-wikiuser-lesummary">Levererar ett anpassat meddelande till $1</string>
   <string name="custommessage-wikiuser-plaintext-1">Hej $1,</string>
   <string name="custommessage-wikiuser-plaintext-2">Skriv ditt meddelande här.</string>
   <string name="delete-title">Radera $1</string>
@@ -248,13 +254,14 @@
   <string name="login-fail-enable-true">Inloggning misslyckades på $1: Du har inte enable:true i din personliga konfiguration.</string>
   <string name="login-fail-no-info">Inloggningen misslyckades på $1: Kunde inte hämta användarinformation: $2</string>
   <string name="login-fail-parse-config">Inloggningen misslyckades på $1: Kunde inte tolka användarinställningar. Se felsökningsloggen för mer information.</string>
+  <string name="login-fail-parse-config-yaml">Inloggning misslyckades $1: Kunde inte tolka användarkonfigurationen: $2</string>
   <string name="login-fail-user-data">Inloggningen misslyckades på $1: Kunde inte hämta användarinformation. API-förfrågan returnerade ingen data.</string>
   <string name="login-fail-rollback-rights">Inloggningen misslyckades på $1: Du har inte tillbakarullningsbehörigheter på detta projekt.</string>
   <string name="login-failed-autoconfirm-rights">Inloggningen misslyckades på $1: Du är inte en autobekräftad användare på detta projekt.</string>
   <string name="login-failed-edit">Inloggningen misslyckades på $1: Du har inte tillräckligt med redigeringar på detta projekt.</string>
   <string name="login-retrieving-info">Hämtar användarinformation på $1</string>
   <string name="login-password-empty">Lösenordet du angav var tomt</string>
-  <string name="login-fail-wrong-name" fuzzy="true">Du gav ingen användarnamn för inloggningen</string>
+  <string name="login-fail-wrong-name">Du gav ingen användarnamn för inloggningen</string>
   <string name="login-api">FEL: api.php svarade med ett okänt resultat: $1</string>
   <string name="login-abort">Avbryt</string>
   <string name="login-start">Logga in</string>
@@ -310,7 +317,10 @@
   <string name="main-contribs">Bidrag</string>
   <string name="main-history">Historik</string>
   <string name="main-new-messages">Du har nya meddelanden. Välj System -&gt; Visa nya meddelanden eller tryck M för att visa dem.</string>
+  <string name="main-space">Sidnamn kan inte sluta med ett mellanslag, korrigera sidnamnet</string>
   <string name="main-system">System</string>
+  <string name="main-status-bar">Bearbetar &lt;b&gt;$1&lt;/b&gt; redigeringar och &lt;b&gt;$2&lt;/b&gt; förfrågor. Vitlistade användare: &lt;b&gt;$3&lt;/b&gt; Köstorlek: &lt;b&gt;$4&lt;/b&gt; Statistik för $6: $5</string>
+  <string name="main-shutting-down">Huggle stängs ned, ignoreras</string>
   <string name="main-system-messages">Visa nya meddelanden</string>
   <string name="main-system-savelog">Spara logg...</string>
   <string name="main-system-statistics">Statistik...</string>
@@ -322,6 +332,7 @@
   <string name="main-system-change-provider-irc">IRC</string>
   <string name="main-system-change-provider-wiki">Wiki</string>
   <string name="main-system-exit">Avsluta</string>
+  <string name="main-tools-scoreword-list">Visa en lista över poängord</string>
   <string name="main-queue">Kö</string>
   <string name="main-queue-next">Nästa</string>
   <string name="main-queue-clear">Rensa aktuell</string>
@@ -351,6 +362,7 @@
   <string name="main-revision-latest">Senaste</string>
   <string name="main-tools">Verktyg</string>
   <string name="main-tools-sess">Visa sessionsinfo</string>
+  <string name="main-tools-il">Visa ignoreringslista över aktuell wiki</string>
   <string name="main-page-next">Nästa</string>
   <string name="main-page-switchtotalk">Byt till diskussionssida</string>
   <string name="main-page-switchtosubject">Byt till ämnessida</string>
@@ -365,19 +377,22 @@
   <string name="main-page-watch">Bevaka</string>
   <string name="main-page-unwatch">Avbevaka</string>
   <string name="main-page-purge">Rensa</string>
+  <string name="main-page-curr-disp">Visas för tillfället</string>
   <string name="main-page-display">Visa denna sida</string>
   <string name="main-page-patrol">Märk som patrullerad</string>
   <string name="main-page-move">Flytta...</string>
   <string name="main-page-flag-suspicious-edit">Flagga som en misstänksam redigering (denna handling ger +1 poäng till användaren)</string>
-  <string name="main-page-flag-good-edit" fuzzy="true">Flagga som en bra redigering (denna åtgärd ger -200 poäng till användaren)</string>
+  <string name="main-page-flag-good-edit">Flagga som en bra redigering (denna åtgärd subtraherar 200 från användarens poäng)</string>
   <string name="main-page-protect">Skydda</string>
   <string name="main-page-delete">Radera</string>
   <string name="main-page-load">Läs in</string>
+  <string name="main-patrol-not-enabled">Patrullering är inte aktiverat på $1</string>
   <string name="main-page-refresh">Uppdatera</string>
   <string name="main-page-restore">Återställ denna version</string>
   <string name="main-page-watchlist-add">Lägg till sida i en bevakningslista</string>
   <string name="main-page-tab-close">Stäng aktuell flik</string>
   <string name="main-page-tab-open">Öppna en ny flik</string>
+  <string name="main-page-watchlist-remove">Ta bort sida från en bevakningslista</string>
   <string name="main-scripting-script-manager">Skripthanterare</string>
   <string name="main-user-info">Visa användarinformation</string>
   <string name="main-user-ignore">Ignorera</string>
@@ -516,9 +531,12 @@
   <string name="report-message">Meddelande:</string>
   <string name="report-log">Varningar för denna användare:</string>
   <string name="report-include">Inkludera i rapporten</string>
+  <string name="report-select">Var god välj en diff i listan för att öppna förhandsgranskningen</string>
   <string name="report-write">Skriver</string>
   <string name="reportuser-not">Denna användare har inte rapporterats nu</string>
+  <string name="report-evidence-none-provid">Inga diffs tillhandahölls som bevis. Detta kommer göra det riktigt svårt för administratörer att lista ut om användaren är en vandal eller inte. Är du säker på att du vill fortsätta?</string>
   <string name="report-duplicate">Denna användare har redan rapporterats</string>
+  <string name="report-fail2">Fel: Kunde inte hämta rapportsidan på $1</string>
   <string name="report-progress">Rapporterar $1...</string>
   <string name="report-retrieving">Hämtar aktuell rapportsida...</string>
   <string name="report-done">Rapporterade</string>
@@ -530,6 +548,8 @@
   <string name="score-take-whole-no-talk-word">Matchar endast hela ord på sidor som inte är diskussionssidor</string>
   <string name="score-only-whole-word">Matchar endast hela ord</string>
   <string name="score-take-any-word">Matchar alla ord som innehåller denna sträng</string>
+  <string name="ssl-is-not-supported">Du begärde att använda SSL, men tyvärr har $1 inte stöd för det.</string>
+  <string name="ssl-required">Webbservern för $1 kräver att SSL aktiveras. Aktivera SSL och försök igen. Om du inte kan aktivera SSL (alternativet är grått) bör du försöka installera OpenSSL-bibliotek på din enhet.</string>
   <string name="uaa-not-supported">UAA är inte tillgänglig</string>
   <string name="uaa-reporting">Rapporterar$1 till UAA</string>
   <string name="uaa-reported">Rapporterad</string>
@@ -545,10 +565,15 @@
   <string name="read-only">Projektet $1 är konfigurerat som skrivskyddat, redigeringsfunktioner kommer att vara begränsade</string>
   <string name="revert-confirm-multiple">Detta kommer att återställa flera redigeringar av $1. Fortsätt?</string>
   <string name="revert-error-first">Denna redigering är den första redigeringen på sidan och kan inte återställas.</string>
+  <string name="revert-only">Denna redigering är den enda redigeringen på sidan.</string>
+  <string name="revert-creator">Senaste redigeringen gjordes av sidans skapare, $1.</string>
   <string name="revert-delete-instead">Radera sidan istället?</string>
   <string name="revert-speedy-instead">Taggar för snabbradering istället?</string>
+  <string name="revert-fail">Ångrade inte $1: $2</string>
+  <string name="revert-nochange">Innehållet för målsidversionen är identisk med den nuvarande sidversionen.</string>
   <string name="speedy-reason">Anledning:</string>
   <string name="speedy-parameters">Parametrar:</string>
+  <string name="speedy-parameters-fail">Du måste ange parametrar för detta snabbalternativ</string>
   <string name="speedy-notifycreator">Meddelande sidans skapare</string>
   <string name="rollback">Rullar tillbaka $1</string>
   <string name="tag-title">Tagg $1</string>
@@ -558,7 +583,7 @@
   <string name="tag-summary">Sammanfattning:</string>
   <string name="tag-insertatend">Infoga i slutet av sidan</string>
   <string name="update-title">Ny version tillgänglig</string>
-  <string name="update-progress" fuzzy="true">Laddar ned den nya versionen...</string>
+  <string name="update-progress">Laddar ned den nya versionen, var god vänta...</string>
   <string name="update-error">Kunde inte ladda ned den nya versionen</string>
   <string name="updater-title">En nyare version av Huggle är tillgänglig</string>
   <string name="updater-update">Uppdatera</string>
@@ -566,6 +591,8 @@
   <string name="updater-open-manualdownloadpage">Öppna nedladdningssidan</string>
   <string name="updater-close">Stäng</string>
   <string name="updater-disable-notify">Inaktivera uppdateringar</string>
+  <string name="updater-wait">Jag uppdaterar nu huggle, var god vänta...</string>
+  <string name="user-history-fail">Kunde inte hämta historik för användare: $1</string>
   <string name="userinfo-generic">Användarinformation</string>
   <string name="userinfo-retrieve">Hämta information</string>
   <string name="userinfo-no-user">Ingen användare</string>
@@ -573,13 +600,22 @@
   <string name="shortcut-report-username">Rapportera användarnamn</string>
   <string name="shortcut-report-user">Rapportera användare</string>
   <string name="shortcut-my-talk">Min diskussionssida</string>
+  <string name="shortcut-raw">Ångra redigering och varna en användare</string>
+  <string name="shortcut-contrib">Visa bidrag för användaren som gjorde redigeringen som för tillfället visas</string>
+  <string name="shortcut-custom-msg">Öppnar ett formulär för att skicka ett anpassat meddelande till nuvarande användare</string>
   <string name="shortcut-next">Gå till nästa redigering</string>
   <string name="shortcut-suspicious">Märk redigering som misstänkt</string>
+  <string name="shortcut-back">Gå till den tidigare visade redigeringen</string>
+  <string name="shortcut-forward">Gå till en redigering du läste in tidigare med flyttade tillbaka ifrån</string>
+  <string name="shortcut-warn">Skicka en varning till användaren utan att ångra redigeringen</string>
   <string name="shortcut-revert">Gör redigering ogjord</string>
+  <string name="shortcut-open-in-huggle">Öppna sidan som visas för tillfället</string>
+  <string name="shortcut-open">Öppnar redigeringen som visas för tillfället i en webbläsare</string>
   <string name="shortcut-talk">Visa en diskussionssida för användaren som gjorde denna ändring</string>
   <string name="shortcut-browser-close-tab">Stäng en webbläsarflik</string>
   <string name="shortcut-tab">Öppnar en ny flik</string>
   <string name="shortcut-custom-reason">Återställ redigeringen med en anpassad redigeringssammanfattning</string>
+  <string name="shortcut-user-clear-talk">Rensar en diskussionssida för nuvarande användare</string>
   <string name="warning-title">Varna $</string>
   <string name="warning-levelgroup">Varningsnivå</string>
   <string name="warning-levelauto">Automatisk</string>
@@ -622,18 +658,31 @@
   <string name="deletelog-fail">Misslyckades att hämta raderingslogg för $1</string>
   <string name="deletelog-none">Ingen raderingslogg för $1</string>
   <string name="deletelog-progress">Hämtar raderingslogg för $1...</string>
+  <string name="edit-bar-top">Denna redigering är en toppsidversion</string>
   <string name="edit-fail">Redigerade inte $1</string>
   <string name="edit-progress">Redigerar $1...</string>
   <string name="history-fail">Kunde inte hämta historik för $1</string>
   <string name="history-progress">Hämtar historik för $1 ($2)...</string>
   <string name="history-work">Ångrar egen redigering, vilken gjordes till $1</string>
+  <string name="history-no-item-selected">Inget föremål är valt i historikwidgeten</string>
   <string name="history-message-revert-title">Vill du verkligen bara ångra detta meddelande?</string>
+  <string name="history-another-edit">En annan redigering återställs redan, var god vänta...</string>
   <string name="history-not-found">Det fanns ingenting att ångra</string>
   <string name="history-already-done">Detta har redan ångrats</string>
   <string name="history-welcome-msg-title">Skicka välkomstmeddelande istället?</string>
   <string name="newtab-title">Detta är en ny flik!</string>
+  <string name="notify-unknowncreator">Kan inte hitta sidans skapare</string>
+  <string name="protect-done">Ändra skyddsnivå för $1</string>
+  <string name="protect-fail">Ändrade inte skyddsnivån för $1</string>
+  <string name="protect-progress">Ändrar skyddsnivå för $1...</string>
+  <string name="protectlog-fail">Misslyckades att hämta raderingslogg för $1</string>
   <string name="protectlog-none">Ingen skyddslogg för $1</string>
   <string name="protectlog-progress">Hämtar skyddslogg för $1...</string>
+  <string name="saveuserconfig-progress">Uppdaterar användarkonfigurationssidan...</string>
+  <string name="loadglobalconfig-fail">Misslyckades att läsa in den globala konfigurationssidan</string>
+  <string name="loadprojectconfig-fail">Misslyckades att läsa in projektets konfigurationssidan</string>
+  <string name="loaduserconfig-fail">Misslyckades att läsa in användarkonfigurationssidan</string>
+  <string name="reqprotection-duplicate">Skydd har redan begärts</string>
   <string name="reqprotection-fail">Begärde inte skydd för \'$1\'</string>
   <string name="reqprotection-progress">Begär skydd för \'$1\'...</string>
   <string name="speedy-fail">Kunde inte tagga sida för snabbradering: $1</string>
@@ -659,6 +708,11 @@
   <string name="welcome-show">Visa detta meddelande även nästa gång du startar Huggle</string>
   <string name="welcome-tp-empty-fail">Denna användare har inte en tom diskussionssida, är du säker på att du vill skicka ett meddelande till hen?</string>
   <string name="welcome-page-miss-fail">Huggle kunde inte hämta innehållet i användarens diskussionssida, är du säker på att du vill skicka ett välkomstmeddelande till hen?</string>
+  <string name="cr-message-same">Det finns flera redigeringar på $1 av samma användare, är du säker på att du vill ångra dem?</string>
+  <string name="cr-message-new">Det finns nyare redigeringar på $1. Är du säker på att du vill ångra dem?</string>
+  <string name="cr-message-not-same">Det finns nyare redigeringar på $1 av en annan användare. Är du säker på att du vill ångra alla? (Det kommer förmodligen ändå misslyckas eftersom den kommer ha en gammal nyckel.)</string>
+  <string name="preferences-show-warning-if-not-last-revision">Visa varning om du inte är på den senaste sidversionen</string>
+  <string name="preferences-delete-using-filter">Du kan inte radera ett filter som används för tillfället</string>
   <string name="preferences-extension-disabled">Detta tillägg har redan schemalagts för inaktivering vid nästa uppstart av Huggle</string>
   <string name="preferences-extension-enabled-restart" fuzzy="true">Tillägget aktiverades, men du måste starta om Huggle för det ska träda i kraft</string>
   <string name="preferences-watchlist-watch">Lägg till i bevakningslistan</string>
@@ -698,6 +752,9 @@
   <string name="login-no-userinfo">Sidan gav inte att någon användarinformation</string>
   <string name="login-invalid-register-date">Ogiltigt registreringsdatum returnerades av MediaWiki</string>
   <string name="loading-main-window">Läser in Huggles huvudfönster...</string>
+  <string name="login-username-doesnt-exist">Detta användarnamn finns inte</string>
+  <string name="developer-mode-enter-title">Tjoho</string>
+  <string name="unimplemented">Denna funktion har ännu inte implementerats</string>
   <string name="unknown-item">Okänt objekt</string>
   <string name="title-multiple-projects">flera projekt ($1)</string>
   <string name="title-on">på $1</string>
@@ -712,6 +769,12 @@
   <string name="query-protected-link">Skyddad länk</string>
   <string name="queue-empty-title">Den är tom</string>
   <string name="queue-empty-text">Det finns ingenting annat i kön...</string>
+  <string name="protip">Proffstips</string>
+  <string name="tip3">De flesta inställningarna lagras på wikin i [[Special:MyPage/huggle3.css]]. Du kan redigera dem manuellt där.</string>
+  <string name="tip4">Nästan varje widget på skärmen kan stängas ned utan fara (förutom navigeringsfältet).</string>
+  <string name="tip5">Du kan använda Huggle på flera projekt samtidigt, klicka bara på knappen \"Projekt\" i inloggningsformuläret.</string>
+  <string name="tip10">De flesta kortkommandon kan ändras i dina inställningar.</string>
+  <string name="tip11">När du flyttar en widget i Huggle-fönstret över en annan widget kommer de sammanfogas till ett eget separat fönster med flikar.</string>
   <string name="tip12">Gjort ett misstag? Inga problem, högerklicka på en redigering du gjorde i \"Historik över dina redigeringar\" öppnar ett popup-fönster som ger dig alternativet att ångra din egen ändring.</string>
   <string name="tip14">Du kan chatta med andra aktiva användare i Huggle som använder programmet precis nu. Du kommer att se dem i fönstret \"Nätverk\", om de är online.</string>
 </resources>
