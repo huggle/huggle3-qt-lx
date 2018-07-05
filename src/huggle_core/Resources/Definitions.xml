@@ -40,6 +40,7 @@
   <wiki name="tawiki" url="ta.wikipedia.org/" path="wiki/" script="w/" ssl_required="true" https="true" xmlrcs_name="ta.wikipedia.org" channel="#ta.wikipedia" wl="ta.wikipedia.org"/>
   <wiki name="trwiki" url="tr.wikipedia.org/" path="wiki/" script="w/" ssl_required="true" https="true" xmlrcs_name="tr.wikipedia.org" channel="#tr.wikipedia" wl="tr.wikipedia.org"/>
   <wiki name="zhwiki" url="zh.wikipedia.org/" path="wiki/" script="w/" ssl_required="true" https="true" xmlrcs_name="zh.wikipedia.org" channel="#zh.wikipedia" wl="zh.wikipedia.org"/>
+  <wiki name="en.wiktionary" url="en.wiktionary.org/" path="wiki/" script="w/" ssl_required="true" https="true" xmlrcs_name="en.wiktionary.org" channel="en.wiktionary" wl="en.wiktionary.org"/>
   <wiki name="en.wikibooks" url="en.wikibooks.org/" path="wiki/" script="w/" ssl_required="true" https="true"  xmlrcs_name="en.wikibooks.org" channel="#en.wikibooks" wl="en.wikibooks.org"/>
   <wiki name="en.wikiversity" url="en.wikiversity.org/" path="wiki/" script="w/" ssl_required="true" https="true"  xmlrcs_name="en.wikiversity.org" channel="#en.wikiversity" wl="en.wikiversity.org"/>
   <wiki name="de.wikivoyage" url="de.wikivoyage.org/" path="wiki/" script="w/" ssl_required="true" https="true" xmlrcs_name="de.wikivoyage.org" channel="#de.wikivoyage" wl="de.wikivoyage.org"/>
