@@ -74,6 +74,9 @@ namespace Huggle
             Q_INVOKABLE void play_file(QString name);
             Q_INVOKABLE QString get_current_time_str();
             Q_INVOKABLE int get_current_time_posix();
+            // External callbacks
+            Q_INVOKABLE bool register_callback(QString callback);
+            Q_INVOKABLE bool unregister_callback(QString callback);
             // Misc
             Q_INVOKABLE QString dump_obj(QJSValue object, unsigned int indent = 0);
         private slots:

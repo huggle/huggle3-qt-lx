@@ -86,6 +86,13 @@ namespace Huggle
             QList<QString> GetHooks();
             QList<QString> GetFunctions();
             QJSEngine *GetEngine();
+            // External callbacks exists for security reasons - each script can expose its own
+            // callbacks for other scripts to execute, but other scripts are only allowed to
+            // execute callbacks that were previously exported using these
+            QJSValue ExternalCallback(QString callback, QJSValueList parameters);
+            void RegisterExternalCallback(QString callback);
+            void UnregisterExternalCallback(QString callback);
+            bool HasExternalCallback(QString callback);
             // HOOKS
             void Hook_Shutdown();
             void Hook_EditPreProcess(WikiEdit *edit);
@@ -132,6 +139,7 @@ namespace Huggle
             QString scriptDesc;
             QString scriptAuthor;
             QString scriptVers;
+            QList<QString> externalCallbacks;
             QList<GenericJSClass*> classes;
             bool isWorking;
             bool isLoaded;

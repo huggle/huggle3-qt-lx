@@ -55,6 +55,8 @@ HuggleJS::HuggleJS(Script *s) : GenericJSClass(s)
     this->functions.insert("play_file", "(string file): play internal file");
     this->functions.insert("get_current_time_posix", "(): (3.4.4) returns seconds that have passed since 1970-01-01T00:00:00");
     this->functions.insert("get_current_time_str", "(): (3.4.4) returns a current date time as string");
+    this->functions.insert("register_callback", "(): (3.4.5) register external callback that can be called by other scripts");
+    this->functions.insert("unregister_callback", "(): (3.4.5) removes external callback");
 }
 
 HuggleJS::~HuggleJS()
@@ -264,6 +266,24 @@ QString HuggleJS::get_current_time_str()
 int HuggleJS::get_current_time_posix()
 {
     return static_cast<int>(QDateTime::currentDateTime().toTime_t());
+}
+
+bool HuggleJS::register_callback(QString callback)
+{
+    if (this->script->HasExternalCallback(callback))
+        return false;
+
+    this->script->RegisterExternalCallback(callback);
+    return true;
+}
+
+bool HuggleJS::unregister_callback(QString callback)
+{
+    if (!this->script->HasExternalCallback(callback))
+        return false;
+
+    this->script->UnregisterExternalCallback(callback);
+    return true;
 }
 
 QString HuggleJS::dump_obj(QJSValue object, unsigned int indent)

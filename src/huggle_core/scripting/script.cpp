@@ -223,6 +223,28 @@ QJSEngine *Script::GetEngine()
     return this->engine;
 }
 
+QJSValue Script::ExternalCallback(QString callback, QJSValueList parameters)
+{
+    if (!this->externalCallbacks.contains(callback))
+        return QJSValue::NullValue;
+    return this->executeFunction(callback, parameters);
+}
+
+void Script::RegisterExternalCallback(QString callback)
+{
+    this->externalCallbacks.append(callback);
+}
+
+void Script::UnregisterExternalCallback(QString callback)
+{
+    this->externalCallbacks.removeAll(callback);
+}
+
+bool Script::HasExternalCallback(QString callback)
+{
+    return this->externalCallbacks.contains(callback);
+}
+
 void Script::Hook_Shutdown()
 {
     if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_SHUTDOWN))
