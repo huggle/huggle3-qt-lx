@@ -18,6 +18,7 @@
 #include "../definitions.hpp"
 #include "../exception.hpp"
 #include <QJSEngine>
+#include <QUrl>
 
 // This is here for performance reasons only, we could have a list of attached hooks as list of strings
 // but strings usually perform way worse than hash of integers, so we just use integers instead
@@ -64,6 +65,7 @@ namespace Huggle
             static Script *GetScriptByEngine(QJSEngine *e);
             static Script *GetScriptByName(QString name);
             static QList<Script*> GetScripts();
+            static QJSValue ProcessURL(QUrl url);
 
             Script();
             virtual ~Script();

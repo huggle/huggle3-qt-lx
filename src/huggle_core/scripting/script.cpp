@@ -68,6 +68,27 @@ QList<Script *> Script::GetScripts()
     return Script::scripts.values();
 }
 
+QJSValue Script::ProcessURL(QUrl url)
+{
+    if (url.scheme() != "hgjs")
+        return QJSValue::NullValue;
+
+    Script *script = GetScriptByName(url.host());
+    if (!script)
+        return QJSValue::UndefinedValue;
+    QString function_name;
+    QJSValueList parameters;
+    function_name = url.path().replace("/", "");
+    if (url.hasQuery())
+    {
+        foreach (QString parameter, url.query().split("&"))
+        {
+            parameters.append(QJSValue(parameter));
+        }
+    }
+    return script->ExternalCallback(function_name, parameters);
+}
+
 Script::Script()
 {
     this->isUnsafe = hcfg->SystemConfig_UnsafeExts;
