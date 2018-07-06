@@ -27,6 +27,7 @@
 #include "scripting/scriptingmanager.hpp"
 #include "historyform.hpp"
 #include "scorewordsdbform.hpp"
+#include "overlaybox.hpp"
 #include "preferences.hpp"
 #include "processlist.hpp"
 #include "protectpage.hpp"
@@ -733,6 +734,19 @@ void MainWindow::IncreaseBS()
 {
     if (this->CurrentEdit != nullptr)
         this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore() + 200);
+}
+
+OverlayBox *MainWindow::ShowOverlay(QString text, int x, int y, int timeout, int width, int height)
+{
+    QPoint global;
+    if (x < 0)
+    {
+        global = QPoint(this->pos().x() + (this->width() / 2) - (OverlayBox::GetDefaultOverlayWidth() / 2), this->pos().y() + 100);
+    } else
+    {
+        global = this->mapToGlobal(QPoint(x, y));
+    }
+    return OverlayBox::ShowOverlay(this, text, global.x(), global.y(), timeout, width, height);
 }
 
 void MainWindow::GoForward()

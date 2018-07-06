@@ -77,6 +77,7 @@ namespace Huggle
     class ReloginForm;
     class ReportUser;
     class RequestProtect;
+    class OverlayBox;
     class ProtectPage;
     class UAAReport;
     class ScoreWordsDbForm;
@@ -199,6 +200,7 @@ namespace Huggle
             void ReloadInterface();
             void DecreaseBS();
             void IncreaseBS();
+            OverlayBox *ShowOverlay(QString text, int x = -1, int y = -1, int timeout = 10000, int width = -1, int height = -1);
             void GoForward();
             void GoBackward();
             void ShowToolTip(QString text);
