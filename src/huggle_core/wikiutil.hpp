@@ -132,8 +132,8 @@ namespace Huggle
          * \return Text of wiki page or error message
          */
         HUGGLE_EX_CORE QString EvaluateWikiPageContents(ApiQuery *query, bool *failed, QString *ts = nullptr, QString *comment = nullptr,
-                                                   QString *user = nullptr, long *revid = nullptr, int *reason = nullptr,
-                                                   QString *title = nullptr);
+                                                        QString *user = nullptr, long *revid = nullptr, int *reason = nullptr,
+                                                        QString *title = nullptr);
         //! \obsolete RetrieveWikiPageContents(WikiPage *page, bool parse = false);
         HUGGLE_EX_CORE ApiQuery *RetrieveWikiPageContents(QString page, WikiSite *site, bool parse = false);
         HUGGLE_EX_CORE ApiQuery *RetrieveWikiPageContents(WikiPage *page, bool parse = false);

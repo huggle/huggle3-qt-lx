@@ -403,6 +403,7 @@ namespace Huggle
             void on_actionScripts_manager_triggered();
             void OnFinishPreProcess(WikiEdit *ed);
             void on_actionFind_triggered();
+            void on_actionEdit_page_triggered();
 
         private:
             void closeTab(int tab);

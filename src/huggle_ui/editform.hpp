@@ -12,6 +12,7 @@
 #define EDITFORM_HPP
 
 #include <huggle_core/definitions.hpp>
+#include <huggle_core/collectable_smartptr.hpp>
 #include <QDialog>
 #include "hw.hpp"
 
@@ -22,15 +23,35 @@ namespace Ui
 
 namespace Huggle
 {
+    class ApiQuery;
+    class EditQuery;
+    class HuggleWeb;
+    class WikiPage;
+
     class EditForm : public HW
     {
             Q_OBJECT
 
         public:
-            explicit EditForm(QWidget *parent = 0);
+            explicit EditForm(WikiPage *wp, QWidget *parent = 0);
             ~EditForm();
+            void Failure(QString reason);
+            void RenderSource(QString code, QString time);
+            void DisplayPreview(QString html);
+            void FinishEdit();
+            void FailEdit(QString reason);
+
+        private slots:
+            void on_pushButton_2_clicked();
+            void on_pushButton_clicked();
 
         private:
+            Collectable_SmartPtr<ApiQuery> parseQuery;
+            Collectable_SmartPtr<EditQuery> editQuery;
+            Collectable_SmartPtr<ApiQuery> contentQuery;
+            WikiPage *page;
+            QString pageTime;
+            HuggleWeb *webView;
             Ui::EditForm *ui;
     };
 }

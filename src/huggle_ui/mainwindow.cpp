@@ -13,6 +13,7 @@
 #include "custommessage.hpp"
 #include "deleteform.hpp"
 #include "editbar.hpp"
+#include "editform.hpp"
 #include "history.hpp"
 #include "hugglelog.hpp"
 #include "huggletool.hpp"
@@ -1947,7 +1948,7 @@ bool MainWindow::CheckEditableBrowserPage()
         UiGeneric::pMessageBox(this, "Cannot perform action", _l("main-no-page"), MessageBoxStyleNormal, true);
         return false;
     }
-    if (Configuration::HuggleConfiguration->SystemConfig_RequestDelay)
+    if (hcfg->SystemConfig_RequestDelay)
     {
         qint64 wt = QDateTime::currentDateTime().msecsTo(this->editLoadDateTime.addSecs(hcfg->SystemConfig_DelayVal));
         if (wt > 0)
@@ -2991,14 +2992,8 @@ void Huggle::MainWindow::on_actionResort_queue_triggered()
 
 void Huggle::MainWindow::on_actionRestore_this_revision_triggered()
 {
-    if (!this->CheckExit() || this->CurrentEdit == nullptr)
+    if (!this->EditingChecks())
         return;
-
-    if (Configuration::HuggleConfiguration->DeveloperMode)
-    {
-        Generic::DeveloperError();
-        return;
-    }
     if (this->RestoreEdit != nullptr || this->RestoreQuery != nullptr)
     {
         Huggle::Syslog::HuggleLogs->Log(_l("main-restoring-slap"));
@@ -3435,7 +3430,7 @@ void MainWindow::on_actionQueue_legend_triggered()
 
 void MainWindow::on_actionPatrol_triggered()
 {
-    if (!this->CheckEditableBrowserPage())
+    if (!this->EditingChecks())
         return;
 
     if (!this->CurrentEdit->GetSite()->GetProjectConfig()->Patrolling)
@@ -3564,16 +3559,10 @@ void MainWindow::closeTab(int tab)
     }
 }
 
-void Huggle::MainWindow::on_actionRevert_edit_using_custom_reason_triggered()
+void MainWindow::on_actionRevert_edit_using_custom_reason_triggered()
 {
-    if (!this->CheckExit() || this->CurrentEdit == nullptr)
+    if (!this->EditingChecks())
         return;
-
-    if (Configuration::HuggleConfiguration->DeveloperMode)
-    {
-        Generic::DeveloperError();
-        return;
-    }
     bool ok;
     QString reason = QInputDialog::getText(this, _l("main-custom-reason-title"), _l("main-custom-reason-text"), QLineEdit::Normal,
                                            this->GetCurrentWikiSite()->GetProjectConfig()->DefaultSummary, &ok);
@@ -3587,14 +3576,14 @@ void Huggle::MainWindow::on_actionRevert_edit_using_custom_reason_triggered()
     this->Revert(reason);
 }
 
-void Huggle::MainWindow::on_actionRefresh_triggered()
+void MainWindow::on_actionRefresh_triggered()
 {
     if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_REFRESH))
         return;
     this->RefreshPage();
 }
 
-void Huggle::MainWindow::on_actionUser_page_triggered()
+void MainWindow::on_actionUser_page_triggered()
 {
     if (this->CurrentEdit == nullptr)
         return;
@@ -3605,7 +3594,7 @@ void Huggle::MainWindow::on_actionUser_page_triggered()
     delete page;
 }
 
-void Huggle::MainWindow::on_actionShow_score_debug_triggered()
+void MainWindow::on_actionShow_score_debug_triggered()
 {
     if (this->CurrentEdit == nullptr)
         return;
@@ -3624,7 +3613,7 @@ void Huggle::MainWindow::on_actionShow_score_debug_triggered()
     HUGGLE_DEBUG1(debug_info);
 }
 
-void Huggle::MainWindow::on_actionPost_a_custom_message_triggered()
+void MainWindow::on_actionPost_a_custom_message_triggered()
 {
     if (!this->CheckExit() || !this->CheckEditableBrowserPage())
         return;
@@ -3639,7 +3628,7 @@ void Huggle::MainWindow::on_actionPost_a_custom_message_triggered()
     cm->show();
 }
 
-void Huggle::MainWindow::on_actionWrite_text_to_HAN_triggered()
+void MainWindow::on_actionWrite_text_to_HAN_triggered()
 {
     this->VandalDock->WriteTest(this->CurrentEdit);
 }
@@ -3714,9 +3703,19 @@ void MainWindow::OnFinishPreProcess(WikiEdit *ed)
         this->RefreshPage();
 }
 
-void Huggle::MainWindow::on_actionFind_triggered()
+void MainWindow::on_actionFind_triggered()
 {
     if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_FIND))
         return;
     this->Browser->ToggleSearchWidget();
+}
+
+void MainWindow::on_actionEdit_page_triggered()
+{
+    if (!this->CheckExit() || this->CurrentEdit == nullptr)
+        return;
+
+    EditForm *ef = new EditForm(this->CurrentEdit->Page);
+    ef->setAttribute(Qt::WA_DeleteOnClose);
+    ef->show();
 }

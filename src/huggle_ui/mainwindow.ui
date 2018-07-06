@@ -164,6 +164,7 @@
     <addaction name="actionDisplay_this_page_in_browser"/>
     <addaction name="actionDisplay_this_page"/>
     <addaction name="actionDisplay_history_in_browser"/>
+    <addaction name="actionEdit_page"/>
     <addaction name="actionEdit_page_in_browser"/>
     <addaction name="separator"/>
     <addaction name="actionFlag_as_suspicious_edit"/>
@@ -1176,6 +1177,11 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+F</string>
+   </property>
+  </action>
+  <action name="actionEdit_page">
+   <property name="text">
+    <string>Edit page</string>
    </property>
   </action>
  </widget>
