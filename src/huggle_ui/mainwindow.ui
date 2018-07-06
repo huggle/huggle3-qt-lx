@@ -562,7 +562,7 @@
     <string notr="true">Edit page in browser</string>
    </property>
    <property name="shortcut">
-    <string>E</string>
+    <string>Alt+E</string>
    </property>
   </action>
   <action name="actionFlag_as_a_good_edit">
@@ -1182,6 +1182,9 @@
   <action name="actionEdit_page">
    <property name="text">
     <string>Edit page</string>
+   </property>
+   <property name="shortcut">
+    <string>E</string>
    </property>
   </action>
  </widget>
