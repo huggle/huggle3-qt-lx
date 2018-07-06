@@ -41,7 +41,7 @@ HuggleUIJS::HuggleUIJS(Script *s) : GenericJSClass(s)
                                                                     "this function works only if main window is loaded");
     this->function_help.insert("show_tray_message", "(string title, string text): shows a message in tray");
     this->function_help.insert("show_tooltip_message", "(string message): shows a tooltip");
-    this->function_help.insert("show_overlay", "(string text, [int x, int y, int timeout, int width, int height]): display overlay message, similar to tooltip");
+    this->function_help.insert("show_overlay", "(string text, [int x, int y, int timeout, int width, int height, bool dismissable]): display overlay message, similar to tooltip but supports more features");
     this->function_help.insert("message_box", "(string title, string text, [int type], [enforce_stop]): Show a message box");
     this->function_help.insert("navigate_next", "(): move to next edit in queue");
     this->function_help.insert("navigate_backward", "(): move to previous edit");
@@ -142,12 +142,12 @@ bool HuggleUIJS::show_tray_message(QString heading, QString message)
     return true;
 }
 
-bool HuggleUIJS::show_overlay(QString text, int x, int y, int timeout, int width, int height)
+bool HuggleUIJS::show_overlay(QString text, int x, int y, int timeout, int width, int height, bool is_dismissable)
 {
     if (!MainWindow::HuggleMain)
         return false;
 
-    MainWindow::HuggleMain->ShowOverlay(text, x, y, timeout, width, height);
+    MainWindow::HuggleMain->ShowOverlay(text, x, y, timeout, width, height, is_dismissable);
     return true;
 }
 

@@ -33,12 +33,13 @@ namespace Huggle
 
         public:
             static int GetDefaultOverlayWidth();
-            static OverlayBox *ShowOverlay(QWidget *parent, QString text, int x, int y, int timeout, int width = -1, int height = -1);
+            static OverlayBox *ShowOverlay(QWidget *parent, QString text, int x, int y, int timeout, int width = -1, int height = -1, bool dismissable = false);
             explicit OverlayBox(QString text, QWidget *parent = 0);
             ~OverlayBox();
             void SetTransparency(qreal x);
             void SetPosition(int x, int y);
             void SetTimeout(int timeout);
+            void SetDismissableOnClick(bool yes);
             void Resize(int width, int height);
 
         private slots:
@@ -47,6 +48,7 @@ namespace Huggle
 
         private:
             void mousePressEvent(QMouseEvent *event);
+            bool isDissmissableOnClick = true;
             QTimer destroyTimer;
             Ui::OverlayBox *ui;
     };

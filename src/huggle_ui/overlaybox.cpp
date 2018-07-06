@@ -20,11 +20,12 @@ int OverlayBox::GetDefaultOverlayWidth()
     return HUGGLE_OVERLAY_DEFAULT_WIDTH;
 }
 
-OverlayBox *OverlayBox::ShowOverlay(QWidget *parent, QString text, int x, int y, int timeout, int width, int height)
+OverlayBox *OverlayBox::ShowOverlay(QWidget *parent, QString text, int x, int y, int timeout, int width, int height, bool dismissable)
 {
     OverlayBox *o = new OverlayBox(text, parent);
     o->SetPosition(x, y);
     o->SetTimeout(timeout);
+    o->SetDismissableOnClick(dismissable);
     if (height > 0 && width > 0)
         o->Resize(width, height);
     o->show();
@@ -71,6 +72,11 @@ void OverlayBox::SetTimeout(int timeout)
     this->destroyTimer.start();
 }
 
+void OverlayBox::SetDismissableOnClick(bool yes)
+{
+    this->isDissmissableOnClick = yes;
+}
+
 void OverlayBox::Resize(int width, int height)
 {
     this->resize(width, height);
@@ -89,5 +95,6 @@ void OverlayBox::timer()
 
 void OverlayBox::mousePressEvent(QMouseEvent *event)
 {
-    this->close();
+    if (this->isDissmissableOnClick)
+        this->close();
 }

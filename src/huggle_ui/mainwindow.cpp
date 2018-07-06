@@ -737,7 +737,7 @@ void MainWindow::IncreaseBS()
         this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore() + 200);
 }
 
-OverlayBox *MainWindow::ShowOverlay(QString text, int x, int y, int timeout, int width, int height)
+OverlayBox *MainWindow::ShowOverlay(QString text, int x, int y, int timeout, int width, int height, bool is_dismissable)
 {
     QPoint global;
     if (x < 0)
@@ -747,7 +747,7 @@ OverlayBox *MainWindow::ShowOverlay(QString text, int x, int y, int timeout, int
     {
         global = this->mapToGlobal(QPoint(x, y));
     }
-    return OverlayBox::ShowOverlay(this, text, global.x(), global.y(), timeout, width, height);
+    return OverlayBox::ShowOverlay(this, text, global.x(), global.y(), timeout, width, height, is_dismissable);
 }
 
 void MainWindow::GoForward()
