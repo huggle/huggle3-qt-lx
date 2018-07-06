@@ -37,8 +37,7 @@ OverlayBox::OverlayBox(QString text, QWidget *parent) : QDialog(parent), ui(new 
     this->resize(HUGGLE_OVERLAY_DEFAULT_WIDTH, HUGGLE_OVERLAY_DEFAULT_HEIGHT);
     this->ui->label->setText(text);
     this->setWindowOpacity(0.8);
-    this->setWindowFlag(Qt::WindowStaysOnTopHint);
-    this->setWindowFlag(Qt::FramelessWindowHint);
+    this->setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint);
     this->setAttribute(Qt::WA_DeleteOnClose);
     connect(&this->destroyTimer, SIGNAL(timeout()), this, SLOT(timer()));
     this->destroyTimer.setInterval(5000);

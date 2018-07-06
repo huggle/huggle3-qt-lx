@@ -28,7 +28,7 @@ namespace Huggle
     class HuggleWeb;
     class WikiPage;
 
-    class EditForm : public HW
+    class HUGGLE_EX_UI EditForm : public HW
     {
             Q_OBJECT
 
