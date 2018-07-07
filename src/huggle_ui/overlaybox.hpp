@@ -33,7 +33,7 @@ namespace Huggle
 
         public:
             static int GetDefaultOverlayWidth();
-            static OverlayBox *ShowOverlay(QWidget *parent, QString text, int x, int y, int timeout, int width = -1, int height = -1, bool dismissable = false);
+            static OverlayBox *ShowOverlay(QWidget *parent, QString text, int x, int y, int timeout, int width = -1, int height = -1, bool dismissable = true);
             explicit OverlayBox(QString text, QWidget *parent = 0);
             ~OverlayBox();
             void Close();
@@ -53,6 +53,7 @@ namespace Huggle
             void reject();
             void mousePressEvent(QMouseEvent *event);
             bool isDissmissableOnClick = true;
+            bool isDissmissableOnLink = true;
             bool isPersistent = false;
             QTimer destroyTimer;
             Ui::OverlayBox *ui;

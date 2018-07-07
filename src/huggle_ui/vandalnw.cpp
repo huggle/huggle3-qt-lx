@@ -18,6 +18,7 @@
 #include "mainwindow.hpp"
 #include "ui_vandalnw.h"
 #include "ircchattextbox.hpp"
+#include "uigeneric.hpp"
 #include <huggle_core/events.hpp>
 #include <huggle_core/configuration.hpp>
 #include <huggle_core/exception.hpp>
@@ -621,48 +622,7 @@ void VandalNw::on_lineEdit_returnPressed()
 
 void VandalNw::TextEdit_anchorClicked(QString link)
 {
-    QString scheme;
-    if (link.contains("://"))
-    {
-        scheme = link.mid(0, link.indexOf("://"));
-        link = link.mid(link.indexOf("://") + 3);
-    }
-    if (scheme == "huggle")
-    {
-        while (link.startsWith("/"))
-            link = link.mid(1);
-        // ok this is internal huggle link let's get a site
-        if (!link.contains("/"))
-            return;
-        QStringList elements = link.split("/");
-        if (elements.size() < 4)
-            return;
-        if (elements[0] == "diff")
-        {
-            QString wiki = elements[1];
-            QString type = elements[2];
-            if (type == "revid")
-            {
-                // we need to display a revid on given wiki, let's first get the wiki
-                WikiSite *site = nullptr;
-                foreach(WikiSite *sp, hcfg->Projects)
-                {
-                    if (wiki == sp->Name)
-                    {
-                        site = sp;
-                        break;
-                    }
-                }
-                if (site == nullptr)
-                {
-                    HUGGLE_DEBUG1("There is no such a wiki: " + wiki);
-                    return;
-                }
-                revid_ht id = elements[3].toLongLong();
-                MainWindow::HuggleMain->DisplayRevid(id, site);
-            }
-        }
-    }
+    UiGeneric::ProcessURL(QUrl(link));
 }
 
 void VandalNw::OnIRCUserJoin(libircclient::Parser *px, libircclient::User *user, libircclient::Channel *channel)

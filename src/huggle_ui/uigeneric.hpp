@@ -12,6 +12,7 @@
 #define UIGENERIC_HPP
 
 #include <huggle_core/definitions.hpp>
+#include <QUrl>
 
 class QWidget;
 namespace Huggle
@@ -36,6 +37,7 @@ namespace Huggle
         HUGGLE_EX_UI int pMessageBox(QWidget *parent, QString title, QString text, MessageBoxStyle st = MessageBoxStyleNormal, bool enforce_stop = false);
         HUGGLE_EX_UI int MessageBox(QString title, QString text, MessageBoxStyle st = MessageBoxStyleNormal, bool enforce_stop = false, QWidget *parent = nullptr);
         HUGGLE_EX_UI void DisplayContributionBrowser(WikiUser *User, QWidget *parent = nullptr);
+        HUGGLE_EX_UI void ProcessURL(QUrl link);
     }
 }
 

@@ -200,7 +200,7 @@ namespace Huggle
             void ReloadInterface();
             void DecreaseBS();
             void IncreaseBS();
-            OverlayBox *ShowOverlay(QString text, int x = -1, int y = -1, int timeout = 10000, int width = -1, int height = -1, bool is_dismissable = false);
+            OverlayBox *ShowOverlay(QString text, int x = -1, int y = -1, int timeout = 10000, int width = -1, int height = -1, bool is_dismissable = true);
             void GoForward();
             void GoBackward();
             void ShowToolTip(QString text);

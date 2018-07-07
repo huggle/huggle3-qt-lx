@@ -10,7 +10,11 @@
 
 #include "uigeneric.hpp"
 #include "reportuser.hpp"
+#include "mainwindow.hpp"
 #include <QMessageBox>
+#include <huggle_core/configuration.hpp>
+#include <huggle_core/syslog.hpp>
+#include <huggle_core/wikisite.hpp>
 
 using namespace Huggle;
 
@@ -74,4 +78,39 @@ void UiGeneric::DisplayContributionBrowser(WikiUser *User, QWidget *parent)
     report->setAttribute(Qt::WidgetAttribute::WA_DeleteOnClose);
     report->SetUser(User);
     report->show();
+}
+
+void UiGeneric::ProcessURL(QUrl link)
+{
+    if (link.scheme() == "huggle")
+    {
+        if (link.host() == "diff")
+        {
+            QList<QString> elements = link.path().split("/");
+            if (elements.count() < 4)
+                return;
+            QString wiki = elements[1];
+            QString type = elements[2];
+            if (type == "revid")
+            {
+                // we need to display a revid on given wiki, let's first get the wiki
+                WikiSite *site = nullptr;
+                foreach(WikiSite *sp, hcfg->Projects)
+                {
+                    if (wiki == sp->Name)
+                    {
+                        site = sp;
+                        break;
+                    }
+                }
+                if (site == nullptr)
+                {
+                    HUGGLE_DEBUG1("There is no such a wiki: " + wiki);
+                    return;
+                }
+                revid_ht id = elements[3].toLongLong();
+                MainWindow::HuggleMain->DisplayRevid(id, site);
+            }
+        }
+    }
 }

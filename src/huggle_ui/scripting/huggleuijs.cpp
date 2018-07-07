@@ -36,6 +36,7 @@ HuggleUIJS::HuggleUIJS(Script *s) : GenericJSClass(s)
     this->function_help.insert("internal_link", "(string link, [bool lock_page]): (since HG 3.4.4) opens a link in huggle browser");
     this->function_help.insert("mainwindow_is_loaded", "(): Returns true if main window is loaded");
     this->function_help.insert("menu_item_set_checked", "(int menu_id, bool state): toggles menu checked state");
+    this->function_help.insert("display_revid", "(revid, wiki): (3.4.5) show a revid in current tab");
     this->function_help.insert("get_current_wiki_edit", "(): returns a copy of currently displayed edit");
     this->function_help.insert("delete_menu_item", "(int menu_id): remove a menu that was created by this script");
     this->function_help.insert("create_menu_item", "(int parent, string name, string function_name, [bool checkable = false]): Creates a new menu item in main window, "\
@@ -150,6 +151,19 @@ bool HuggleUIJS::show_tray_message(QString heading, QString message)
     if (!MainWindow::HuggleMain)
         return false;
     MainWindow::HuggleMain->TrayMessage(heading, message);
+    return true;
+}
+
+bool HuggleUIJS::display_revid(int revid, QString wiki_name)
+{
+    if (!MainWindow::HuggleMain)
+        return false;
+
+    WikiSite *site = WikiUtil::GetSiteByName(wiki_name);
+    if (!site)
+        return false;
+
+    MainWindow::HuggleMain->DisplayRevid(revid, site);
     return true;
 }
 

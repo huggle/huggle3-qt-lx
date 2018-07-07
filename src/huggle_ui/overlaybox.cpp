@@ -12,6 +12,8 @@
 
 #include "overlaybox.hpp"
 #include "ui_overlaybox.h"
+#include "uigeneric.hpp"
+#include <QMouseEvent>
 #include <huggle_core/scripting/script.hpp>
 
 using namespace Huggle;
@@ -88,6 +90,7 @@ void OverlayBox::SetText(QString text)
 void OverlayBox::SetPersistent(bool yes)
 {
     this->isPersistent = yes;
+    this->isDissmissableOnLink = !yes;
 }
 
 void OverlayBox::SetDismissableOnClick(bool yes)
@@ -105,6 +108,10 @@ void Huggle::OverlayBox::on_label_linkActivated(const QString &link)
     QUrl url(link);
     if (url.scheme() == "hgjs")
         Script::ProcessURL(url);
+    else if (url.scheme() == "huggle")
+        UiGeneric::ProcessURL(url);
+    if (this->isDissmissableOnLink)
+        this->Close();
 }
 
 void OverlayBox::timer()
