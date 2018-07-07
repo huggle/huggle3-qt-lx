@@ -51,6 +51,13 @@ OverlayBox::~OverlayBox()
     delete this->ui;
 }
 
+void OverlayBox::Close()
+{
+    if (this->isPersistent)
+        this->isPersistent = false;
+    this->close();
+}
+
 void OverlayBox::SetTransparency(qreal x)
 {
     this->setWindowOpacity(x);
@@ -71,6 +78,11 @@ void OverlayBox::SetTimeout(int timeout)
     this->destroyTimer.setInterval(timeout);
     this->destroyTimer.stop();
     this->destroyTimer.start();
+}
+
+void OverlayBox::SetPersistent(bool yes)
+{
+    this->isPersistent = yes;
 }
 
 void OverlayBox::SetDismissableOnClick(bool yes)
@@ -96,8 +108,16 @@ void OverlayBox::timer()
     this->close();
 }
 
+void OverlayBox::reject()
+{
+    if (this->isPersistent)
+        return;
+    QDialog::reject();
+}
+
 void OverlayBox::mousePressEvent(QMouseEvent *event)
 {
-    if (this->isDissmissableOnClick)
+    Q_UNUSED(event);
+    if (!this->isPersistent && this->isDissmissableOnClick)
         this->close();
 }

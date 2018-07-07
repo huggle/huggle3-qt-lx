@@ -99,12 +99,12 @@ Script::Script()
 
 Script::~Script()
 {
-    delete this->engine;
     if (!this->scriptPath.isEmpty())
         Script::loadedPaths.removeAll(this->scriptPath);
     if (this->isLoaded && Script::scripts.contains(this->GetName()))
         Script::scripts.remove(this->scriptName);
-    this->classes.clear();
+    qDeleteAll(this->classes);
+    delete this->engine;
 }
 
 bool Script::Load(QString path, QString *error)

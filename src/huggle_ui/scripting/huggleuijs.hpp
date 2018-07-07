@@ -20,12 +20,14 @@
 
 namespace Huggle
 {
+    class OverlayBox;
     class UiScript;
     class HuggleUIJS : public GenericJSClass
     {
             Q_OBJECT
         public:
             HuggleUIJS(Script *s);
+            ~HuggleUIJS();
             Q_INVOKABLE int create_menu_item(int parent, QString name, QString function, bool checkable = false);
             Q_INVOKABLE bool delete_menu_item(int menu_id);
             Q_INVOKABLE bool menu_item_set_checked(int menu, bool checked);
@@ -33,6 +35,8 @@ namespace Huggle
             Q_INVOKABLE int message_box(QString title, QString text, int messagebox_type = 0, bool pause = false);
             Q_INVOKABLE bool show_tray_message(QString heading, QString message);
             Q_INVOKABLE bool show_overlay(QString text, int x = -1, int y = -1, int timeout = 10000, int width = -1, int height = -1, bool is_dismissable = false);
+            Q_INVOKABLE int show_persistent_overlay(QString text, int x = -1, int y = -1, int width = -1, int height = -1);
+            Q_INVOKABLE bool destroy_persistent_overlay(int overlay);
             Q_INVOKABLE bool show_tooltip_message(QString message);
             Q_INVOKABLE bool render_html(QString html, bool lock_page = false);
             Q_INVOKABLE bool navigate_next();
@@ -47,8 +51,12 @@ namespace Huggle
             Q_INVOKABLE void external_link(QString link);
             Q_INVOKABLE bool internal_link(QString link, bool lock_page = false);
             QHash<QString, QString> GetFunctions();
+        private slots:
+            void OverlayClosed(QObject *ob);
         private:
             QHash<QString, QString> function_help;
+            QHash<int, OverlayBox*> overlayBoxes;
+            int lastOB = 0;
             UiScript *ui_script;
     };
 }

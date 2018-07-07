@@ -15,6 +15,7 @@
 #include "../uigeneric.hpp"
 #include "../mainwindow.hpp"
 #include "../genericbrowser.hpp"
+#include "../overlaybox.hpp"
 #include "../hugglequeue.hpp"
 #include <huggle_core/scripting/jsmarshallinghelper.hpp>
 #include <huggle_core/wikiutil.hpp>
@@ -41,7 +42,9 @@ HuggleUIJS::HuggleUIJS(Script *s) : GenericJSClass(s)
                                                                     "this function works only if main window is loaded");
     this->function_help.insert("show_tray_message", "(string title, string text): shows a message in tray");
     this->function_help.insert("show_tooltip_message", "(string message): shows a tooltip");
-    this->function_help.insert("show_overlay", "(string text, [int x, int y, int timeout, int width, int height, bool dismissable]): display overlay message, similar to tooltip but supports more features");
+    this->function_help.insert("show_overlay", "(string text, [int x, int y, int timeout, int width, int height, bool dismissable]): (3.4.5) display overlay message, similar to tooltip but supports more features");
+    this->function_help.insert("destroy_persistent_overlay", "(int overlay): (3.4.5) removes a persistent overlay, returns false on failure");
+    this->function_help.insert("show_persistent_overlay", "(string text, [int x, int y, int width, int height]): (3.4.5) display a persistent overlay message, returns its ID that can be used to manipulate it");
     this->function_help.insert("message_box", "(string title, string text, [int type], [enforce_stop]): Show a message box");
     this->function_help.insert("navigate_next", "(): move to next edit in queue");
     this->function_help.insert("navigate_backward", "(): move to previous edit");
@@ -51,6 +54,13 @@ HuggleUIJS::HuggleUIJS(Script *s) : GenericJSClass(s)
     this->function_help.insert("input_box", "(string title, string text, string default): (since HG 3.4.4) get input from user");
     this->function_help.insert("filebox_open", "(string title, string mask): (since HG 3.4.4) file box for opening of a file");
     this->function_help.insert("filebox_save", "(string title, string mask): (since HG 3.4.4) file box for saving of a file");
+}
+
+HuggleUIJS::~HuggleUIJS()
+{
+    foreach (OverlayBox *ob, this->overlayBoxes.values())
+        ob->Close();
+    this->overlayBoxes.clear();
 }
 
 int HuggleUIJS::create_menu_item(int parent, QString name, QString function, bool checkable)
@@ -148,6 +158,28 @@ bool HuggleUIJS::show_overlay(QString text, int x, int y, int timeout, int width
         return false;
 
     MainWindow::HuggleMain->ShowOverlay(text, x, y, timeout, width, height, is_dismissable);
+    return true;
+}
+
+int HuggleUIJS::show_persistent_overlay(QString text, int x, int y, int width, int height)
+{
+    if (!MainWindow::HuggleMain)
+        return -1;
+    OverlayBox *ob = MainWindow::HuggleMain->ShowOverlay(text, x, y, 0, width, height, false);
+    int id = this->lastOB++;
+    ob->SetPersistent(true);
+    connect(ob, SIGNAL(destroyed(QObject*)), this, SLOT(OverlayClosed(QObject*)));
+    this->overlayBoxes.insert(id, ob);
+    return id;
+}
+
+bool HuggleUIJS::destroy_persistent_overlay(int overlay)
+{
+    if (!this->overlayBoxes.contains(overlay))
+        return false;
+    disconnect(this->overlayBoxes[overlay], SIGNAL(destroyed(QObject*)), this, SLOT(OverlayClosed(QObject*)));
+    this->overlayBoxes[overlay]->Close();
+    this->overlayBoxes.remove(overlay);
     return true;
 }
 
@@ -310,4 +342,16 @@ bool HuggleUIJS::internal_link(QString link, bool lock_page)
 QHash<QString, QString> HuggleUIJS::GetFunctions()
 {
     return this->function_help;
+}
+
+void HuggleUIJS::OverlayClosed(QObject *ob)
+{
+    foreach (int i, this->overlayBoxes.keys())
+    {
+        if (this->overlayBoxes[i] == ob)
+        {
+            this->overlayBoxes.remove(i);
+            return;
+        }
+    }
 }
