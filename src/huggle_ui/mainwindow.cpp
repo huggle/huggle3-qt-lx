@@ -3712,6 +3712,8 @@ void MainWindow::on_actionFind_triggered()
 
 void MainWindow::on_actionEdit_page_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_EDIT))
+        return;
     if (!this->CheckExit() || this->CurrentEdit == nullptr)
         return;
 

@@ -117,6 +117,7 @@ class QXmlStreamWriter;
 #define HUGGLE_ACCEL_MAIN_DECREASE_BS           62
 #define HUGGLE_ACCEL_MAIN_INCREASE_BS           63
 #define HUGGLE_ACCEL_MAIN_FIND                  64
+#define HUGGLE_ACCEL_MAIN_EDIT                  65
 #define HUGGLE_ACCEL_CLOSE_TAB                  200
 #define HUGGLE_ACCEL_CREATE_NEW_TAB             206
 #define HUGGLE_ACCEL_USER_REPORT_USER_NAME      300
