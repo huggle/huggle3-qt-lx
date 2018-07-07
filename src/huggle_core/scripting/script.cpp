@@ -16,6 +16,7 @@
 #include "hugglequeryjs.hpp"
 #include "hugglejs.hpp"
 #include "huggleeditingjs.hpp"
+#include "hugglefeedjs.hpp"
 #include "../configuration.hpp"
 #include "../localization.hpp"
 #include "../resources.hpp"
@@ -638,6 +639,7 @@ void Script::registerClasses()
     }
     this->registerClass("huggle", new HuggleJS(this));
     this->registerClass("huggle_editing", new HuggleEditingJS(this));
+    this->registerClass("huggle_feed", new HuggleFeedJS(this));
     this->registerClass("huggle_query", new HuggleQueryJS(this));
 }
 

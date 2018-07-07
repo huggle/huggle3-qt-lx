@@ -45,6 +45,8 @@ namespace Huggle
             int FeedPriority() { return 1; }
             bool ContainsEdit();
             void Refresh();
+            unsigned long long GetBytesReceived();
+            unsigned long long GetBytesSent();
             WikiEdit *RetrieveEdit();
             QString ToString();
         private:

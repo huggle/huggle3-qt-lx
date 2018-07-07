@@ -61,6 +61,22 @@ HuggleFeed *HuggleFeed::GetProviderByID(WikiSite *site, int id)
     return nullptr;
 }
 
+unsigned long long HuggleFeed::GetTotalBytesRcvd()
+{
+    unsigned long long result = 0;
+    foreach (HuggleFeed *feed, HuggleFeed::providerList)
+        result += feed->GetBytesReceived();
+    return result;
+}
+
+unsigned long long HuggleFeed::GetTotalBytesSent()
+{
+    unsigned long long result = 0;
+    foreach (HuggleFeed *feed, HuggleFeed::providerList)
+        result += feed->GetBytesSent();
+    return result;
+}
+
 HuggleFeed::HuggleFeed(WikiSite *site) : MediaWikiObject(site)
 {
     this->statisticsMutex = new QMutex(QMutex::Recursive);

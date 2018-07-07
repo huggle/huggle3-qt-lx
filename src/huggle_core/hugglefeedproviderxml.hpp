@@ -41,6 +41,8 @@ namespace Huggle
             bool ContainsEdit();
             int FeedPriority() { return 100; }
             QString GetError();
+            unsigned long long GetBytesReceived();
+            unsigned long long GetBytesSent();
             WikiEdit *RetrieveEdit();
             QString ToString();
         private slots:
@@ -59,6 +61,8 @@ namespace Huggle
             bool isConnected = false;
             bool isConnecting = false;
             bool isWorking = false;
+            unsigned long long bytesSent = 0;
+            unsigned long long bytesRcvd = 0;
             QList<WikiEdit*> buffer;
             QTcpSocket *networkSocket;
         private:

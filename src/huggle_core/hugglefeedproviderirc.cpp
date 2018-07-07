@@ -302,6 +302,20 @@ WikiEdit *HuggleFeedProviderIRC::RetrieveEdit()
     return edit;
 }
 
+unsigned long long HuggleFeedProviderIRC::GetBytesReceived()
+{
+    if (!this->Network)
+        return 0;
+    return this->Network->GetBytesReceived();
+}
+
+unsigned long long HuggleFeedProviderIRC::GetBytesSent()
+{
+    if (!this->Network)
+        return 0;
+    return this->Network->GetBytesSent();
+}
+
 bool HuggleFeedProviderIRC::IsConnected()
 {
     return this->isConnected;

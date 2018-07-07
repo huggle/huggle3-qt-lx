@@ -59,6 +59,8 @@ namespace Huggle
             bool IsPaused() { return isPaused; }
             void Pause() { this->isPaused = true; }
             void Resume() { this->isPaused = false; }
+            unsigned long long GetBytesReceived();
+            unsigned long long GetBytesSent();
             bool IsConnected();
             QString ToString();
         private slots:

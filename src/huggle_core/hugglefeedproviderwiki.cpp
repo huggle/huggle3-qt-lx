@@ -106,6 +106,16 @@ void HuggleFeedProviderWiki::Refresh()
     this->qReload->Process();
 }
 
+unsigned long long HuggleFeedProviderWiki::GetBytesReceived()
+{
+    return 0;
+}
+
+unsigned long long HuggleFeedProviderWiki::GetBytesSent()
+{
+    return 0;
+}
+
 WikiEdit *HuggleFeedProviderWiki::RetrieveEdit()
 {
     if (this->editBuffer->size() < 1)

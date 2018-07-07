@@ -45,6 +45,8 @@ namespace Huggle
             static QList<HuggleFeed*> GetProvidersForSite(WikiSite *site);
             static HuggleFeed *GetAlternativeFeedProvider(HuggleFeed *provider);
             static HuggleFeed *GetProviderByID(WikiSite *site, int id);
+            static unsigned long long GetTotalBytesRcvd();
+            static unsigned long long GetTotalBytesSent();
 
             HuggleFeed(WikiSite *site);
             virtual ~HuggleFeed();
@@ -83,6 +85,8 @@ namespace Huggle
             //! Used to find alternative feed provider in case that current one fails
             virtual int FeedPriority();
             double GetUptime();
+            virtual unsigned long long GetBytesReceived()=0;
+            virtual unsigned long long GetBytesSent()=0;
             HuggleQueueFilter *Filter;
         protected:
             static QList<HuggleFeed*> providerList;

@@ -130,6 +130,16 @@ QString HuggleFeedProviderXml::GetError()
     return this->lastError;
 }
 
+unsigned long long HuggleFeedProviderXml::GetBytesReceived()
+{
+    return this->bytesRcvd;
+}
+
+unsigned long long HuggleFeedProviderXml::GetBytesSent()
+{
+    return this->bytesSent;
+}
+
 WikiEdit *HuggleFeedProviderXml::RetrieveEdit()
 {
     if (this->buffer.size() == 0)
@@ -157,10 +167,13 @@ void HuggleFeedProviderXml::OnReceive()
     // readLine() has some bugs in Qt so don't use it, this function needs to always use readAll from socket otherwise we get in troubles
     if (!this->networkSocket)
         throw new Huggle::NullPointerException("this->NetworkSocket", BOOST_CURRENT_FUNCTION);
-    QString data(this->networkSocket->readAll());
+    QByteArray incoming_data = this->networkSocket->readAll();
+    QString data(incoming_data);
     // when there is no data we can quit this
     if (data.isEmpty())
         return;
+
+    this->bytesRcvd += static_cast<unsigned long long>(incoming_data.length());
 
     if (!this->bufferedPart.isEmpty())
         data = this->bufferedPart + data;
@@ -202,7 +215,9 @@ void HuggleFeedProviderXml::write(QString text)
     if (!this->networkSocket)
         throw new Huggle::NullPointerException("this->NetworkSocket", BOOST_CURRENT_FUNCTION);
 
-    this->networkSocket->write(QString(text + "\n").toUtf8());
+    QByteArray outgoing_data = QString(text + "\n").toUtf8();
+    this->bytesSent += static_cast<unsigned long long>(outgoing_data.size());
+    this->networkSocket->write(outgoing_data);
 }
 
 void HuggleFeedProviderXml::insertEdit(WikiEdit *edit)
