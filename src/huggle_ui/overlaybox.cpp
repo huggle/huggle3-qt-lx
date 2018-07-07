@@ -80,6 +80,11 @@ void OverlayBox::SetTimeout(int timeout)
     this->destroyTimer.start();
 }
 
+void OverlayBox::SetText(QString text)
+{
+    this->ui->label->setText(text);
+}
+
 void OverlayBox::SetPersistent(bool yes)
 {
     this->isPersistent = yes;

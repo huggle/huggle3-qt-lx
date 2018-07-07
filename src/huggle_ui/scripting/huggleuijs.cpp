@@ -43,6 +43,7 @@ HuggleUIJS::HuggleUIJS(Script *s) : GenericJSClass(s)
     this->function_help.insert("show_tray_message", "(string title, string text): shows a message in tray");
     this->function_help.insert("show_tooltip_message", "(string message): shows a tooltip");
     this->function_help.insert("show_overlay", "(string text, [int x, int y, int timeout, int width, int height, bool dismissable]): (3.4.5) display overlay message, similar to tooltip but supports more features");
+    this->function_help.insert("set_overlay_text", "(int overlay, string text): change a text of overlay");
     this->function_help.insert("destroy_persistent_overlay", "(int overlay): (3.4.5) removes a persistent overlay, returns false on failure");
     this->function_help.insert("show_persistent_overlay", "(string text, [int x, int y, int width, int height]): (3.4.5) display a persistent overlay message, returns its ID that can be used to manipulate it");
     this->function_help.insert("message_box", "(string title, string text, [int type], [enforce_stop]): Show a message box");
@@ -158,6 +159,14 @@ bool HuggleUIJS::show_overlay(QString text, int x, int y, int timeout, int width
         return false;
 
     MainWindow::HuggleMain->ShowOverlay(text, x, y, timeout, width, height, is_dismissable);
+    return true;
+}
+
+bool HuggleUIJS::set_overlay_text(int overlay_id, QString text)
+{
+    if (!this->overlayBoxes.contains(overlay_id))
+        return false;
+    this->overlayBoxes[overlay_id]->SetText(text);
     return true;
 }
 

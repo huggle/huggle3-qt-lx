@@ -40,6 +40,7 @@ namespace Huggle
             void SetTransparency(qreal x);
             void SetPosition(int x, int y);
             void SetTimeout(int timeout);
+            void SetText(QString text);
             void SetPersistent(bool yes);
             void SetDismissableOnClick(bool yes);
             void Resize(int width, int height);
