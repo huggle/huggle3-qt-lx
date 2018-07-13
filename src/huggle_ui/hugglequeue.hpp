@@ -77,6 +77,7 @@ namespace Huggle
             QList<HuggleQueueItemLabel*> Items;
         private slots:
             void on_comboBox_currentIndexChanged(int index);
+            void on_pushButton_clicked();
         private:
             long GetScore(int id);
             void ResortItem(QLayoutItem *item, int position = -1);
