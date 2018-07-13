@@ -29,6 +29,7 @@ using namespace Huggle;
 HuggleQueue::HuggleQueue(QWidget *parent) : QDockWidget(parent), ui(new Ui::HuggleQueue)
 {
     this->ui->setupUi(this);
+    this->ui->pushButton->setEnabled(true);
     this->setWindowTitle(_l("main-queue"));
     this->Filters();
 }
@@ -70,7 +71,6 @@ void HuggleQueue::AddItem(WikiEdit *edit)
         HUGGLE_DEBUG("Queue: edit " + edit->Page->PageName + " has lower score than MinScore, ignoring", 2);
         return;
     }
-
     edit->RegisterConsumer(HUGGLECONSUMER_QUEUE);
     if (MainWindow::HuggleMain != nullptr)
     {
@@ -575,5 +575,20 @@ void HuggleQueue::on_comboBox_currentIndexChanged(int index)
             hcfg->UserConfig->QueueID = this->CurrentSite()->CurrentFilter->QueueName;
         }
     }
+}
+	
+void HuggleQueue::on_pushButton_clicked()
+{
+    while (this->Items.count() > 0)
+    {
+        if (!this->DeleteItem(this->Items.at(0)))
+        {
+            // we failed to remove the item, break or we end up
+            // looping here
+            HUGGLE_DEBUG("Failed to clear the queue", 1);
+            return;
+        }
+    }
+    this->RedrawTitle();
 }
 
