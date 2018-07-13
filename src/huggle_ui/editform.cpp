@@ -115,8 +115,8 @@ void EditForm::DisplayPreview(QString html)
 
 void EditForm::FinishEdit()
 {
-    UiGeneric::pMessageBox(this, "Edited", "Page was successfuly edited, you can close this form now");
-    this->webView->RenderHtml(":)");
+    UiGeneric::pMessageBox(this, "Edited", "Page was successfuly edited");
+    this->hide();
 }
 
 void EditForm::FailEdit(QString reason)
