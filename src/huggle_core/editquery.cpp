@@ -254,8 +254,10 @@ void EditQuery::editPage()
     if (!this->StartTimestamp.isEmpty())
         start_ = "&starttimestamp=" + QUrl::toPercentEncoding(this->StartTimestamp);
     this->qEdit->Parameters = "title=" + QUrl::toPercentEncoding(this->Page->PageName) + "&text=" + QUrl::toPercentEncoding(this->Text) + section +
-                              wl + "&summary=" + QUrl::toPercentEncoding(this->Summary) + tag + base + start_ + "&token=" +
-                              QUrl::toPercentEncoding(this->Page->GetSite()->GetProjectConfig()->Token_Csrf);
+                              wl + "&summary=" + QUrl::toPercentEncoding(this->Summary) + tag + base + start_;
+    if (this->Minor)
+        this->qEdit->Parameters += "&minor";
+    this->qEdit->Parameters += "&token=" + QUrl::toPercentEncoding(this->Page->GetSite()->GetProjectConfig()->Token_Csrf);
     HUGGLE_QP_APPEND(this->qEdit);
     this->qEdit->Process();
 }
