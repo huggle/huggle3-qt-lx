@@ -188,7 +188,7 @@ bool WikiEdit::finalizePostProcessing()
                 }
                 else
                 {
-                    Syslog::HuggleLogs->WarningLog("Wiki returned no registration time of " + this->User->Username);
+                    HUGGLE_DEBUG("Wiki returned no registration time of " + this->User->Username, 2);
                 }
             }
             int x = 0;
