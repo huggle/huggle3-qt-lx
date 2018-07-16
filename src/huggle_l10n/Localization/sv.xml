@@ -35,7 +35,7 @@
   <string name="result">Resultat</string>
   <string name="save">Spara</string>
   <string name="show">Visa</string>
-  <string name="no-instant" fuzzy="true">Meddelandet till $2 kan inte skickas eftersom direkta varningar inte är aktiverade på projektet $2. Välj en annan varningsnivå.</string>
+  <string name="no-instant">Meddelandet till $2 kan inte skickas eftersom direkta varningar inte är aktiverade på projektet $1. Välj en annan varningsnivå.</string>
   <string name="undo">Ångra</string>
   <string name="yes">Ja</string>
   <string name="editing-page">Redigerar sida</string>
@@ -65,6 +65,7 @@
   <string name="disable">Inaktivera</string>
   <string name="no-token">Ingen nyckel</string>
   <string name="flags">Flaggor</string>
+  <string name="gracetime">Väntar på förfrågan som utför redigeringar att avslutas...</string>
   <string name="browser-none">Det finns ingen sida att visa ännu.</string>
   <string name="browser-load">Ladda ner skillnaden genom att använda en \"MW fallback\", vänligen vänta...</string>
   <string name="browser-miss-summ">Ingen sammanfattning angavs</string>
@@ -161,7 +162,7 @@
   <string name="config-warning-api">Visa varningar för API-frågor</string>
   <string name="config-updates">Sök efter uppdateringar</string>
   <string name="config-beta">Kolla efter beta-versioner</string>
-  <string name="config-html-messages" fuzzy="true">HAN kan rendera HTML-meddelanden (farligt)</string>
+  <string name="config-html-messages">HAN kan rendera HTML-meddelanden (OBS: Det kan vara farligt)</string>
   <string name="config-close-without">Stäng utan att spara</string>
   <string name="config-confirmmultiple">Bekräfta flera revideringar av en ändring av samma användare</string>
   <string name="config-confirmsame">Bekräfta sidversioner till en redigering av användaren som ångras</string>
@@ -235,7 +236,7 @@
   <string name="irc-switch-rc">Byter till wiki RC-flödet</string>
   <string name="login-old">Hämta användarinställningar från tidigare plats</string>
   <string name="login-intro">Var god välj ett projekt och ange ditt användarnamn och lösenord. Du kan logga in på flera projekt genom att även klicka på \"Projekt\"-knappen.</string>
-  <string name="invalid-bot-user-name" fuzzy="true">Detta är inte ett giltigt namn på en bot. Exempel på ett riktigt namn på en bot: Jimbo@Huggle</string>
+  <string name="invalid-bot-user-name">Detta är inte ett giltigt namn på en bot. Ett exempel på ett giltigt namn på en bot: Jimbo@Huggle</string>
   <string name="login-tab-botp">Botlösenord</string>
   <string name="login-tab-login" fuzzy="true">Logga in</string>
   <string name="login-language">Språk:</string>
@@ -248,7 +249,7 @@
   <string name="login-proxy-remember-this">Kom ihåg denna inställning ´nästa gång</string>
   <string name="login-proxyport">Port:</string>
   <string name="login-proxydomain">Domän:</string>
-  <string name="proxy-restart" fuzzy="true">Huggle kanske måste startas om för att dessa ändringar ska träda i kraft</string>
+  <string name="proxy-restart">Huggle kanske måste startas om för att dessa ändringar ska träda i kraft.</string>
   <string name="login-retrieving-user-conf">Hämtar användarinställningar</string>
   <string name="login-fail-css">Inloggningen misslyckades på $1: Kunde inte hämta användarkonfiguration. Special:MyPage/huggle3.css saknas. Skapade du huggle3.css i din användarrymd?</string>
   <string name="login-fail-enable-true">Inloggning misslyckades på $1: Du har inte enable:true i din personliga konfiguration.</string>
@@ -307,9 +308,11 @@
   <string name="login-ro-question">En eller fler projekt ($1) låter dig inte logga in med redigeringsbehörigheter (anledning: $2). Vill du byta till skrivskyddat läge istället?</string>
   <string name="login-ro-info">Projektet $1 byte till skrivskyddat läge</string>
   <string name="wikis-db-download-fail">Kunde inte ladda ned en databas över wikis: $1</string>
+  <string name="api-query-no-data">api-förfrågan returnerade ingen data</string>
   <string name="main-stat">$1 redigeringar per minut, $2 tillbakarullningar per minut, nivå $3</string>
   <string name="main-menu-provider-stop">Stoppa leverantör</string>
   <string name="main-menu-provider-resume">Återuppta leverantör</string>
+  <string name="provider-up" fuzzy="true">Ansluter till strömmen med senaste ändringar på $2 med tillhandahållaren: $1</string>
   <string name="main-no-reason">Ingen anledning angavs av användaren</string>
   <string name="main-restoring-slap">En annan redigering återställs för tillfället, var god vänta...</string>
   <string name="main-page">Sida</string>

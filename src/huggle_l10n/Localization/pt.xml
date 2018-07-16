@@ -96,7 +96,7 @@
   <string name="block-token-1">A obter código de verificação para bloquear $1</string>
   <string name="block-fail">Não é possível bloquear o(a) utilizador(a), $1</string>
   <string name="block-token-e1">O código de verificação não pôde ser obtido: $1</string>
-  <string name="block-error-no-info">Não foi apresentada nenhuma informação sobre o utilizador na consulta (és administrador?)</string>
+  <string name="block-error-no-info">Não foi apresentada nenhuma informação sobre o utilizador na consulta (é administrador?)</string>
   <string name="block-type">Bloquear / desbloquear</string>
   <string name="block-admin">O administrador que fez o bloqueio</string>
   <string name="block-none">Não há nenhum utilizador selecionado para bloquear.</string>
