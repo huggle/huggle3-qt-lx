@@ -19,7 +19,7 @@
   <property name="minimumSize">
    <size>
     <width>200</width>
-    <height>136</height>
+    <height>146</height>
    </size>
   </property>
   <property name="features">
@@ -49,6 +49,13 @@
      <widget class="QComboBox" name="comboBox"/>
     </item>
     <item>
+     <widget class="QPushButton" name="pushButton">
+      <property name="text">
+       <string>Clear queue</string>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QScrollArea" name="scrollArea">
       <property name="widgetResizable">
        <bool>true</bool>
@@ -61,8 +68,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>207</width>
-         <height>293</height>
+         <width>195</width>
+         <height>277</height>
         </rect>
        </property>
        <property name="sizePolicy">
