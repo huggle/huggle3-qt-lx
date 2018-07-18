@@ -881,9 +881,6 @@
    <property name="text">
     <string>Remove all edits</string>
    </property>
-   <property name="shortcut">
-    <string>Ctrl+Space</string>
-   </property>
   </action>
   <action name="actionDelete_page">
    <property name="icon">
