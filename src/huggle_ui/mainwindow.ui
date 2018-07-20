@@ -81,7 +81,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>22</height>
+     <height>19</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -560,9 +560,6 @@
   <action name="actionEdit_page_in_browser">
    <property name="text">
     <string notr="true">Edit page in browser</string>
-   </property>
-   <property name="shortcut">
-    <string>Alt+E</string>
    </property>
   </action>
   <action name="actionFlag_as_a_good_edit">
@@ -1179,9 +1176,6 @@
   <action name="actionEdit_page">
    <property name="text">
     <string>Edit page</string>
-   </property>
-   <property name="shortcut">
-    <string>E</string>
    </property>
   </action>
  </widget>

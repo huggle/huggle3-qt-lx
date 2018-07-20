@@ -1094,6 +1094,12 @@ void MainWindow::ReloadShort(QString id)
         case HUGGLE_ACCEL_MAIN_CLEAR_QUEUE:
             q = this->ui->actionClear;
             break;
+        case HUGGLE_ACCEL_MAIN_EDIT:
+            q = this->ui->actionEdit_page;
+            break;
+        case HUGGLE_ACCEL_MAIN_EDIT_IN_BROWSER:
+            q = this->ui->actionEdit_page_in_browser;
+            break;
     }
 
     if (q != nullptr)
@@ -2711,7 +2717,7 @@ void MainWindow::on_actionDisplay_this_page_in_browser_triggered()
 
 void MainWindow::on_actionEdit_page_in_browser_triggered()
 {
-    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_OPEN_IN_BROWSER))
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_EDIT_IN_BROWSER))
         return;
     if (this->CurrentEdit != nullptr)
         QDesktopServices::openUrl(QUrl::fromEncoded(QString(this->ProjectURL() + this->CurrentEdit->Page->EncodedName() + "?action=edit").toUtf8()));

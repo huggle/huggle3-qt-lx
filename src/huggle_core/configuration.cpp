@@ -75,6 +75,8 @@ Configuration::Configuration()
     this->MakeShortcut("main-user-clear-tp", "shortcut-user-clear-talk");
     this->MakeShortcut("main-user-custom-msg", "shortcut-custom-msg", "M");
     this->MakeShortcut("main-clear-queue", "shortcut-main-clear-queue", "Ctrl+Space");
+    this->MakeShortcut("main-edit", "shortcut-edit", "Shift+E");
+    this->MakeShortcut("main-edit-in-browser", "shortcut-edit-in-browser", "E");
     this->ResetMenuShortcuts();
 }
 
@@ -684,6 +686,10 @@ Shortcut::Shortcut(QString name, QString description)
         this->ID = HUGGLE_ACCEL_MAIN_PATROL;
     else if (name == "main-clear-queue")
         this->ID = HUGGLE_ACCEL_MAIN_CLEAR_QUEUE;
+    else if (name == "main-edit")
+        this->ID = HUGGLE_ACCEL_MAIN_EDIT;
+    else if (name == "main-edit-in-browser")
+        this->ID = HUGGLE_ACCEL_MAIN_EDIT_IN_BROWSER;
     else if (name == "main-page-refresh")
         this->ID = HUGGLE_ACCEL_MAIN_REFRESH;
     else if (name == "main-user-clear-tp")
