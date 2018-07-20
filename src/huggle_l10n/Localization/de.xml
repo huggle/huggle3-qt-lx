@@ -665,6 +665,8 @@
   <string name="shortcut-open">Derzeit angezeigte Bearbeitung in einem Browser öffnen</string>
   <string name="shortcut-talk">Eine Diskussionsseite des Benutzers anzeigen, der diese Änderung durchgeführt hat.</string>
   <string name="shortcut-revert-agf-1">Letzte Version zurücksetzen, von guten Absichten ausgehen</string>
+  <string name="shortcut-edit">Derzeit angezeigte Seite bearbeiten</string>
+  <string name="shortcut-edit-in-browser">Derzeit angezeigte Seite im Browser bearbeiten</string>
   <string name="shortcut-browser-close-tab">Eine Browser-Registerkarte schließen</string>
   <string name="shortcut-tab">Öffnet eine neue Registerkarte</string>
   <string name="shortcut-rw-stay">Setzt die aktuelle Bearbeitung zurück, warnt den Autor und bleibt auf der Seite.</string>
@@ -672,6 +674,7 @@
   <string name="shortcut-custom-reason">Die Bearbeitung mit einer benutzerdefinierten Begründung in der Bearbeitungszusammenfassung zurücksetzen</string>
   <string name="shortcut-user-contribs-browser">Benutzerbeiträge in einem Browser öffnen</string>
   <string name="shortcut-user-clear-talk">Leert die Diskussionsseite des aktuellen Benutzers</string>
+  <string name="shortcut-main-clear-queue">Warteschlange löschen</string>
   <string name="warning-title">$1 warnen</string>
   <string name="warning-levelgroup">Warnungs-Stufe</string>
   <string name="warning-levelauto">Automatisch</string>

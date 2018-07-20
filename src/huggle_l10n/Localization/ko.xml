@@ -650,6 +650,7 @@
   <string name="shortcut-custom-reason">사용자 지정 편집 요약 이유를 사용하여 편집을 되돌리기</string>
   <string name="shortcut-user-contribs-browser">브라우저에서 사용자 기여 열기</string>
   <string name="shortcut-user-clear-talk">현재 사용자의 토론 문서를 지우기</string>
+  <string name="shortcut-main-clear-queue">대기열 지우기</string>
   <string name="warning-title">$1에게 경고</string>
   <string name="warning-levelgroup">경고 수준</string>
   <string name="warning-levelauto">자동</string>

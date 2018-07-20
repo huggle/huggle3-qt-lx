@@ -689,6 +689,7 @@
   <string name="shortcut-custom-reason">Откатить правку с собственным описанием</string>
   <string name="shortcut-user-contribs-browser">Открыть вклад пользователя в браузере</string>
   <string name="shortcut-user-clear-talk">Очистить страницу обсуждения текущего участника</string>
+  <string name="shortcut-main-clear-queue">Очистить очередь</string>
   <string name="warning-title">Предупредить $1</string>
   <string name="warning-levelgroup">Уровень предупреждения</string>
   <string name="warning-levelauto">Автоматически</string>
@@ -824,7 +825,7 @@
   <string name="preferences-performance-catscansandwatched">Включить сканирование категорий и фильтрацию статусов просмотра (требует дополнительный API-запрос на каждую правку)</string>
   <string name="preferences-max-score">Включить максимальную оценку (правки с большей оценкой будут проигнорированы — полезно, если вы хотите видеть только хорошие правки)</string>
   <string name="preferences-min-score">Включить минимальную оценку (правки с большей оценкой будут проигнорированы — полезно, если вы хотите видеть только плохие правки)</string>
-  <string name="preferences-queue-size">Размер запроса</string>
+  <string name="preferences-queue-size">Размер очереди</string>
   <string name="preferences-empty-queue-page">Страница пустой очереди:</string>
   <string name="preferences-reset-gui">Сбросить интерфейс</string>
   <string name="preferences-restore-factory-layout">Это восстановит заводскую компоновку huggle, как это было при ее установке. Huggle отключится. Продолжать?</string>

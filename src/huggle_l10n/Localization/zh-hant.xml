@@ -671,6 +671,7 @@
   <string name="shortcut-custom-reason">使用自訂理由摘要來回退編輯</string>
   <string name="shortcut-user-contribs-browser">在瀏覽器裡開啟使用者的貢獻</string>
   <string name="shortcut-user-clear-talk">清除目前使用者的對話頁</string>
+  <string name="shortcut-main-clear-queue">清除佇列</string>
   <string name="warning-title">警告 $1</string>
   <string name="warning-levelgroup">警告等級</string>
   <string name="warning-levelauto">自動</string>

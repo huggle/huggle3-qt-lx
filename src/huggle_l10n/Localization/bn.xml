@@ -629,6 +629,7 @@
   <string name="shortcut-rw-stay" fuzzy="true">বর্তমান সম্পাদনা বাতিল করে, ব্যবহারকারীকে সতর্ক করে ও পাতায় অবস্থান করে</string>
   <string name="shortcut-revert-and-stay">বর্তমান সম্পাদনা বাতিল করে ও পাতায় অবস্থান করে</string>
   <string name="shortcut-user-contribs-browser">ব্রাউজারে ব্যবহারকারী অবদান খোলে</string>
+  <string name="shortcut-main-clear-queue">সারি পরিষ্কার করুন</string>
   <string name="warning-title">$1 কে সতর্ক করুন</string>
   <string name="warning-levelgroup">সতর্কতা স্তর</string>
   <string name="warning-levelauto">স্বয়ংক্রিয়</string>

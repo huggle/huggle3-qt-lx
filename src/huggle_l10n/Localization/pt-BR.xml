@@ -683,6 +683,7 @@
   <string name="shortcut-custom-reason">Reverter a edição usando um motivo personalizado no resumo de edição</string>
   <string name="shortcut-user-contribs-browser">Mostrar contribuições do usuário no navegador</string>
   <string name="shortcut-user-clear-talk">Limpar a página de discussão do atual usuário</string>
+  <string name="shortcut-main-clear-queue">Limpar consulta</string>
   <string name="warning-title">Aviso $1</string>
   <string name="warning-levelgroup">Nível de aviso</string>
   <string name="warning-levelauto">Automático</string>
