@@ -2,7 +2,9 @@
 <!-- Authors:
 * 2axterix2
 * Adjen
+* Agusbou2015
 * AlvaroMolina
+* Astroemi
 * Dgstranz
 * Fitoschido
 * KATRINE1992
@@ -670,6 +672,8 @@
   <string name="shortcut-open">Abre en un navegador la edición que se muestra actualmente</string>
   <string name="shortcut-talk">Mostrar una página de discusión del usuario que hizo este cambio</string>
   <string name="shortcut-revert-agf-1">Revertir la última revisión asumiendo buena fe</string>
+  <string name="shortcut-edit">Editar la página actualmente mostrada</string>
+  <string name="shortcut-edit-in-browser">Editar la página mostrada actualmente en el navegador</string>
   <string name="shortcut-browser-close-tab">Cerrar una pestaña del navegador</string>
   <string name="shortcut-tab">Abre una pestaña nueva</string>
   <string name="shortcut-rw-stay" fuzzy="true">Revertir edición actual, avisar al usuario y permanecer en la página</string>
@@ -677,6 +681,7 @@
   <string name="shortcut-custom-reason" fuzzy="true">Revertir la edición con un motivo personalizado como resumen de edición</string>
   <string name="shortcut-user-contribs-browser">Mostrar las contribuciones del usuario en un navegador</string>
   <string name="shortcut-user-clear-talk">Limpiar la página de discusión del usuario actual</string>
+  <string name="shortcut-main-clear-queue">Borrar consulta</string>
   <string name="warning-title">Advertir a $1</string>
   <string name="warning-levelgroup">Nivel de advertencia</string>
   <string name="warning-levelauto">Automático</string>

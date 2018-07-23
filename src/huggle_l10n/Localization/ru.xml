@@ -682,6 +682,8 @@
   <string name="shortcut-open">Открывает текущую показанную правку в браузере</string>
   <string name="shortcut-talk">Показать страницу обсуждения участника, выполнившего это изменение</string>
   <string name="shortcut-revert-agf-1">Обратить последнюю проверку, предполагая добросовестность.</string>
+  <string name="shortcut-edit">Отредактировать отображаемую сейчас статью</string>
+  <string name="shortcut-edit-in-browser">Отредактировать отображаемую страницу в браузере</string>
   <string name="shortcut-browser-close-tab">Закрыть вкладку браузера</string>
   <string name="shortcut-tab">Открывает новую вкладку</string>
   <string name="shortcut-rw-stay">Откатить текущую правку, предупредить пользователя и остаться на странице</string>

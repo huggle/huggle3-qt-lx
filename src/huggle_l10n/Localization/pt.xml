@@ -28,7 +28,7 @@
   <string name="deleted">Eliminado</string>
   <string name="error">Erro</string>
   <string name="exit">Sair</string>
-  <string name="done">Feito</string>
+  <string name="done">Concluído</string>
   <string name="no">Não</string>
   <string name="ok">OK</string>
   <string name="override-warn">Substituiu o caminho de configuração do projeto. Por favor, tenha em mente que ao abusar desta funcionalidade para obter direitos de acesso de gravar na wiki, onde normalmente não teria, pode resultar num bloqueio permanente da sua conta.</string>
@@ -665,6 +665,8 @@
   <string name="shortcut-open">Abrir a edição exibida atualmente no navegador</string>
   <string name="shortcut-talk">Mostrar a página de discussão do utilizador que fez esta alteração</string>
   <string name="shortcut-revert-agf-1">Reverter última edição assumindo boa-fé</string>
+  <string name="shortcut-edit">Editar a página apresentada</string>
+  <string name="shortcut-edit-in-browser">Editar no navegador a página apresentada</string>
   <string name="shortcut-browser-close-tab">Fechar um separador do navegador</string>
   <string name="shortcut-tab">Abre uma nova aba</string>
   <string name="shortcut-rw-stay">Reverte a edição atual, avisa o autor e permanece na página</string>

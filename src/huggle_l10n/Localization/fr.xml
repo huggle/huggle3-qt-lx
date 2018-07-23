@@ -672,6 +672,8 @@
   <string name="shortcut-open">Ouvrir la modification actuelle affichée dans un navigateur</string>
   <string name="shortcut-talk">Afficher la page de discussion de l’utilisateur qui a effectué cette modification</string>
   <string name="shortcut-revert-agf-1">Revenir à la dernière révision en la supposant de bonne foi</string>
+  <string name="shortcut-edit">Modifier la page affichée actuellement</string>
+  <string name="shortcut-edit-in-browser">Modifier la page affichée actuellement dans le navigateur</string>
   <string name="shortcut-browser-close-tab">Fermer un onglet du navigateur</string>
   <string name="shortcut-tab">Ouvre un nouvel onglet</string>
   <string name="shortcut-rw-stay">Révoquer la modification actuelle, avertir l’utilisateur et rester sur la page</string>

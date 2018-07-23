@@ -676,6 +676,8 @@
   <string name="shortcut-open">Abrir a edição atual exibida em um navegador</string>
   <string name="shortcut-talk">Mostrar a página de discussão do usuário que fez esta alteração</string>
   <string name="shortcut-revert-agf-1">Reverter última revisão assumindo boa fé</string>
+  <string name="shortcut-edit">Editar página exibida atualmente</string>
+  <string name="shortcut-edit-in-browser">Editar a página atualmente exibida no navegador</string>
   <string name="shortcut-browser-close-tab">Fechar uma aba do navegador</string>
   <string name="shortcut-tab">Abrir uma nova aba</string>
   <string name="shortcut-rw-stay">Reverte a edição atual, avisa o autor e permanece na página</string>

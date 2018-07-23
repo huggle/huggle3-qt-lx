@@ -404,6 +404,8 @@
   <string name="shortcut-open-in-huggle">Mécht déi Säit op déi elo gewise gëtt</string>
   <string name="shortcut-talk">Eng Diskussiounssäit vum Benotzer weisen deen dës Ännerung gemaach huet</string>
   <string name="shortcut-revert-agf-1">Lescht Versioun zrécksetzen, gutt Intentioun gëtt ugeholl</string>
+  <string name="shortcut-edit">Déi Säit déi elo gewise gëtt änneren</string>
+  <string name="shortcut-edit-in-browser">Déi Säit déi elo am Browser gewise gëtt änneren</string>
   <string name="shortcut-tab">Mécht en neien Tab op</string>
   <string name="shortcut-revert-and-stay">Aktuell Ännerung zrécksetzen an op der Säit bleiwen</string>
   <string name="shortcut-user-clear-talk">Eng Diskussiounssäit vum aktuelle Benotzer eidelmaachen</string>

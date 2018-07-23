@@ -664,6 +664,8 @@
   <string name="shortcut-open">在瀏覽器開啟目前所顯示的編輯</string>
   <string name="shortcut-talk">顯示做出此次更改的使用者對話頁</string>
   <string name="shortcut-revert-agf-1">依據假定善意回退最新修訂</string>
+  <string name="shortcut-edit">編輯目前顯示的頁面</string>
+  <string name="shortcut-edit-in-browser">編輯目前顯示在瀏覽器的頁面</string>
   <string name="shortcut-browser-close-tab">關閉瀏覽頁籤</string>
   <string name="shortcut-tab">開啟新頁籤</string>
   <string name="shortcut-rw-stay">回退目前編輯，警告一名作者並停留在頁面</string>
