@@ -676,6 +676,8 @@
   <string name="shortcut-open">Görüntülenen değişikliği tarayıcıda açar</string>
   <string name="shortcut-talk">Bu değişikliği gerçekleştiren kullanıcının mesaj sayfasını görüntüle</string>
   <string name="shortcut-revert-agf-1">İyi niyetli olduğunu düşünerek son sürümü geri getir</string>
+  <string name="shortcut-edit">Görüntülenen sayfayı düzenle</string>
+  <string name="shortcut-edit-in-browser">Görüntülenen sayfayı tarayıcıda düzenle</string>
   <string name="shortcut-browser-close-tab">Tarayıcı sekmesini kapat</string>
   <string name="shortcut-tab">Yeni bir sekme açar</string>
   <string name="shortcut-rw-stay">Mevcut değişikliği geri al, kullanıcıyı uyar ve sayfada kal</string>
@@ -683,6 +685,7 @@
   <string name="shortcut-custom-reason">Düzenlemeyi ayarlanmış bir düzenleme özeti gerekçesi kullanarak geri al</string>
   <string name="shortcut-user-contribs-browser">Kullanıcının katkılarını bir tarayıcıda göster</string>
   <string name="shortcut-user-clear-talk">Geçerli kullanıcının konuşma sayfasını temizle</string>
+  <string name="shortcut-main-clear-queue">Sırayı temizle</string>
   <string name="warning-title">Uyar $1</string>
   <string name="warning-levelgroup">Uyarı seviyesi</string>
   <string name="warning-levelauto">Otomatik</string>
