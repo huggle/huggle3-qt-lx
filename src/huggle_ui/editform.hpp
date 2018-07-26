@@ -46,6 +46,7 @@ namespace Huggle
             void on_pushButton_clicked();
 
         private:
+            void renderText(QString text);
             Collectable_SmartPtr<ApiQuery> parseQuery;
             Collectable_SmartPtr<EditQuery> editQuery;
             Collectable_SmartPtr<ApiQuery> contentQuery;

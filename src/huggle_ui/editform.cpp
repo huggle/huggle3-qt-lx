@@ -1,4 +1,4 @@
-//This program is free software: you can redistribute it and/or modify
+﻿//This program is free software: you can redistribute it and/or modify
 //it under the terms of the GNU General Public License as published by
 //the Free Software Foundation, either version 3 of the License, or
 //(at your option) any later version.
@@ -20,6 +20,7 @@
 #include <huggle_core/apiquery.hpp>
 #include <huggle_core/configuration.hpp>
 #include <huggle_core/editquery.hpp>
+#include <huggle_core/resources.hpp>
 #include <huggle_core/wikiutil.hpp>
 #include <huggle_core/wikisite.hpp>
 #include <huggle_core/wikipage.hpp>
@@ -67,7 +68,7 @@ EditForm::EditForm(WikiPage *wp, QWidget *parent) : HW("editform", this, parent)
     this->setWindowTitle("Editing " + this->page->PageName + " on " + this->page->GetSite()->Name);
     this->RestoreWindow();
     this->ui->textEdit->setText("Loading source...");
-    this->webView->RenderHtml("<h1>Loading source...</h1>");
+    this->renderText("<h1>Loading source...</h1>");
     this->ui->checkBox->setEnabled(false);
     this->ui->lineEdit->setEnabled(false);
     this->ui->textEdit->setEnabled(false);
@@ -104,11 +105,13 @@ void EditForm::RenderSource(QString code, QString time)
     this->ui->pushButton->setEnabled(true);
     this->ui->textEdit->setText(code);
     this->pageTime = time;
-    this->webView->RenderHtml("<h2>Click preview to see amazing stuff here</h2>");
+    this->renderText("<h2>Click preview to see amazing stuff here</h2>");
 }
 
 void EditForm::DisplayPreview(QString html)
 {
+    // Apply CSS
+    html = Resources::GetHtmlHeader(this->page->GetSite()) + html + Resources::HtmlFooter;
     this->webView->RenderHtml(html);
     this->ui->pushButton->setEnabled(true);
 }
@@ -153,7 +156,7 @@ void Huggle::EditForm::on_pushButton_2_clicked()
     this->ui->textEdit->setEnabled(false);
     this->ui->checkBox->setEnabled(false);
     this->ui->lineEdit->setEnabled(false);
-    this->webView->RenderHtml("<h2>Saving...</h2>");
+    this->renderText("<h2>Saving...</h2>");
     this->editQuery = WikiUtil::EditPage(this->page, this->ui->textEdit->toPlainText(),
                                          this->ui->lineEdit->text(),
                                          this->ui->checkBox->isChecked(),
@@ -183,7 +186,7 @@ void ParseFinish(Query *query)
 void Huggle::EditForm::on_pushButton_clicked()
 {
     this->ui->pushButton->setEnabled(false);
-    this->webView->RenderHtml("<h2>Loading preview...</h2>");
+    this->renderText("<h2>Loading preview...</h2>");
     this->parseQuery = new ApiQuery(ActionParse, this->page->GetSite());
     this->parseQuery->Target = "Parsing wikitext for " + this->page->PageName;
     this->parseQuery->UsingPOST = true;
@@ -195,4 +198,9 @@ void Huggle::EditForm::on_pushButton_clicked()
     this->parseQuery->CallbackOwner = this;
     QueryPool::HugglePool->AppendQuery(this->parseQuery);
     this->parseQuery->Process();
+}
+
+void EditForm::renderText(QString text)
+{
+    this->webView->RenderHtml(Resources::GetHtmlHeader(this->page->GetSite()) + text + Resources::HtmlFooter);
 }

@@ -144,7 +144,7 @@ void GenericBrowser::DisplayDiff(WikiEdit *edit)
         }
         return;
     }
-    QString HTML = Resources::GetHtmlHeader();
+    QString HTML = Resources::GetHtmlHeader(edit->GetSite());
     if (Configuration::HuggleConfiguration->NewMessage)
     {
         // we display a notification that user received a new message
@@ -181,7 +181,7 @@ void GenericBrowser::DisplayNewPageEdit(WikiEdit *edit)
         throw new Huggle::NullPointerException("WikiEdit *edit", BOOST_CURRENT_FUNCTION);
 
     this->CurrentEdit = edit;
-    QString HTML = Resources::GetHtmlHeader();
+    QString HTML = Resources::GetHtmlHeader(edit->GetSite());
     if (Configuration::HuggleConfiguration->NewMessage)
     {
         // we display a notification that user received a new message

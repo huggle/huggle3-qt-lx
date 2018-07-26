@@ -125,10 +125,10 @@ void Huggle::Resources::PlayEmbeddedSoundFile(QString file)
 #endif
 }
 
-QString Huggle::Resources::GetHtmlHeader()
+QString Huggle::Resources::GetHtmlHeader(WikiSite *site)
 {
     QString Css;
-    if (Configuration::HuggleConfiguration->Project->IsRightToLeft)
+    if (site->IsRightToLeft)
     {
         Css.append(Resources::CssRtl);
     }
