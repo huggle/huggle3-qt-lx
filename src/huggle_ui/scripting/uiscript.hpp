@@ -23,6 +23,7 @@ class QMenu;
 #define HUGGLE_SCRIPT_HOOK_MAIN_OPEN                    20001
 #define HUGGLE_SCRIPT_HOOK_SPEEDY_FINISHED              20010
 #define HUGGLE_SCRIPT_HOOK_ON_RENDER                    20011
+#define HUGGLE_SCRIPT_HOOK_ON_STATUSBAR_UPDATE          20012
 
 namespace Huggle
 {
@@ -65,6 +66,7 @@ namespace Huggle
             void Hook_OnLogin();
             void Hook_OnRender();
             void Hook_OnSpeedyFinished(WikiEdit *edit, QString tags, bool success);
+            QString Hook_OnMainStatusbarUpdate(QString text);
             int GetHookID(QString hook);
         public slots:
             void MenuClicked();

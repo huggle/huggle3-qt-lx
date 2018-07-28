@@ -43,6 +43,7 @@ namespace Huggle
        HUGGLE_EX_UI void MainWindow_OnRender();
        HUGGLE_EX_UI bool MainWindow_ReloadShortcut(Shortcut *shortcut);
        HUGGLE_EX_UI bool Speedy_BeforeOK(WikiEdit *edit, SpeedyForm *form);
+       HUGGLE_EX_UI QString MainStatusBarUpdate(QString text);
        HUGGLE_EX_UI void Speedy_Finished(WikiEdit *edit, QString tags, bool success);
        HUGGLE_EX_UI void LoginForm_OnLoad(LoginForm *login_form);
     }

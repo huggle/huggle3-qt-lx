@@ -709,6 +709,7 @@ void MainWindow::UpdateStatusBarData()
     if (response_time >= 0)
         status_text += " | " + _l("main-metric-bar", QString::number(QueryPool::HugglePool->GetAverageExecutionTime()));
 #endif
+    status_text = UiHooks::MainStatusBarUpdate(status_text);
     this->Status->setText(status_text);
 }
 

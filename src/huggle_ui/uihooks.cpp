@@ -110,6 +110,17 @@ void UiHooks::LoginForm_OnLoad(LoginForm *login_form)
 {
     foreach (UiScript *sc, UiScript::GetAllUiScripts())
     {
-        sc->Hook_OnLogin();
+        if (sc->IsWorking())
+            sc->Hook_OnLogin();
     }
+}
+
+QString UiHooks::MainStatusBarUpdate(QString text)
+{
+    foreach (UiScript *sc, UiScript::GetAllUiScripts())
+    {
+        if (sc->IsWorking())
+            text = sc->Hook_OnMainStatusbarUpdate(text);
+    }
+    return text;
 }

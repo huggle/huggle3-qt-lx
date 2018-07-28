@@ -174,12 +174,24 @@ void UiScript::Hook_OnSpeedyFinished(WikiEdit *edit, QString tags, bool success)
     this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_SPEEDY_FINISHED], parameters);
 }
 
+QString UiScript::Hook_OnMainStatusbarUpdate(QString text)
+{
+    if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_ON_STATUSBAR_UPDATE))
+        return text;
+
+    QJSValueList parameters;
+    parameters.append(text);
+    return this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_ON_STATUSBAR_UPDATE], parameters).toString();
+}
+
 int UiScript::GetHookID(QString hook)
 {
     if (hook == "render_edit")
         return HUGGLE_SCRIPT_HOOK_ON_RENDER;
     if (hook == "speedy_finished")
         return HUGGLE_SCRIPT_HOOK_SPEEDY_FINISHED;
+    if (hook == "statusbar_update")
+        return HUGGLE_SCRIPT_HOOK_ON_STATUSBAR_UPDATE;
     if (hook == "main_open")
         return HUGGLE_SCRIPT_HOOK_MAIN_OPEN;
     if (hook == "login_open")
@@ -211,6 +223,7 @@ void UiScript::registerFunctions()
     this->registerHook("login_open", 0, "(): Called when login form is loaded");
     this->registerHook("main_open", 0, "(): Called when main window is loaded");
     this->registerHook("render_edit", 0, "(): Called when edit (diff) is displayed in main window");
+    this->registerHook("statusbar_update", 1, "(string text): Called when statusbar is updated, first parameter is existing text, you must always return the updated text");
 
     Script::registerFunctions();
 }
