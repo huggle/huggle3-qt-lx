@@ -161,8 +161,8 @@ void Huggle::EditForm::on_pushButton_2_clicked()
                                          this->ui->lineEdit->text(),
                                          this->ui->checkBox->isChecked(),
                                          this->pageTime);
-    // In some extreme reasons it's possible that query is already failed
-    // right after the call to EditPage (like if we are in read-only)
+    // In some extreme situations it's possible that query is already failed
+    // right after the call to EditPage (like when we are in read-only mode)
     if (this->editQuery->IsFailed())
     {
         this->FailEdit(this->editQuery->GetFailureReason());
