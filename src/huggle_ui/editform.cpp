@@ -118,7 +118,7 @@ void EditForm::DisplayPreview(QString html)
 
 void EditForm::FinishEdit()
 {
-    UiGeneric::pMessageBox(this, "Edited", "Page was successfuly edited");
+    UiGeneric::pMessageBox(this, "Edited", "Page was successfuly edited", MessageBoxStyleNormal, true);
     this->close();
 }
 
