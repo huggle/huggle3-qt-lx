@@ -216,6 +216,7 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
     AppendConf(&configuration, "revert-on-multiple-edits", this->RevertOnMultipleEdits);
     AppendConf(&configuration, "automatically-resolve-conflicts", this->AutomaticallyResolveConflicts);
     AppendConf(&configuration, "software-rollback", this->EnforceManualSoftwareRollback);
+    AppendConf(&configuration, "enforce-months-as-headers", this->EnforceMonthsAsHeaders);
     AppendConf(&configuration, "history-load", this->HistoryLoad);
     AppendConf(&configuration, "on-next", static_cast<int>(this->GoNext));
     AppendConf(&configuration, "delete-edits-after-revert", this->DeleteEditsAfterRevert);
@@ -576,6 +577,7 @@ bool UserConfiguration::ParseYAML(QString config, ProjectConfiguration *ProjectC
     ProjectConfig->ConfirmWL = YAML2Bool("confirm-whitelist", yaml, ProjectConfig->ConfirmWL);
     this->DisplayTitle = YAML2Bool("display-title", yaml, this->DisplayTitle);
     this->TruncateEdits = YAML2Bool("truncate-edits", yaml, this->TruncateEdits);
+    this->EnforceMonthsAsHeaders = YAML2Bool("enforce-months-as-headers", yaml, this->EnforceMonthsAsHeaders);
     this->HistoryLoad = YAML2Bool("history-load", yaml, this->HistoryLoad);
     this->LastEdit = YAML2Bool("skip-to-last-edit", yaml, this->LastEdit);
     this->PreferredProvider = YAML2Int("preferred-provider", yaml, this->PreferredProvider);
