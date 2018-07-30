@@ -619,6 +619,7 @@
   <string name="shortcut-tab">Öppnar en ny flik</string>
   <string name="shortcut-custom-reason">Återställ redigeringen med en anpassad redigeringssammanfattning</string>
   <string name="shortcut-user-clear-talk">Rensar en diskussionssida för nuvarande användare</string>
+  <string name="shortcut-main-clear-queue">Rensa kö</string>
   <string name="warning-title">Varna $</string>
   <string name="warning-levelgroup">Varningsnivå</string>
   <string name="warning-levelauto">Automatisk</string>
