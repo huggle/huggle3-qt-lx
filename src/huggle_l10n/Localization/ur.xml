@@ -282,7 +282,7 @@
   <string name="warning-submit">ارسال</string>
   <string name="missing-warning">اس طرح کا کوئی انتباہی سانچہ $1 موجود نہیں ہے</string>
   <string name="error-noresponse">کوئی جواب نہیں</string>
-  <string name="edit-progress">آپ \"$1\" میں ترمیم کر رہے ہیں۔</string>
+  <string name="edit-progress">آپ «$1» میں ترمیم کر رہے ہیں۔</string>
   <string name="history-welcome-msg-title">اس کے بجائے خوش آمدید پیغام روانہ کریں؟</string>
   <string name="protect-done">تبدیلیِ درجۂ حفاظت تبدیل برائے $1</string>
   <string name="protect-progress">$1 کا درجۂ حفاظت تبدیل ہورہا ہے۔۔۔</string>

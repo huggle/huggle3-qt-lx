@@ -435,6 +435,7 @@
   <string name="main-page-tab-close">Fechar a atual guia</string>
   <string name="main-page-tab-open">Abrir uma nova aba</string>
   <string name="main-page-watchlist-remove">Retirar esta página da lista de páginas vigiadas</string>
+  <string name="main-scripting">Arquivo de comandos</string>
   <string name="main-scripting-script-manager">Gerente de Scripts</string>
   <string name="main-user-info">Mostrar informações do usuário</string>
   <string name="main-user-ignore">Ignorar edições deste usuário</string>
