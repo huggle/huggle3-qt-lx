@@ -57,6 +57,22 @@ namespace Huggle
             Script *s;
     };
 
+    /*!
+     * \brief The ScriptMemPool class is managing access to C++ objects from JS code
+     *        this class is a pool of C++ pointers mapped to JS integers
+     */
+    class HUGGLE_EX_CORE ScriptMemPool
+    {
+        public:
+            WikiEdit *GetEdit(int edit);
+            int RegisterEdit(WikiEdit *edit);
+            bool UnregisterEdit(WikiEdit *edit);
+        private:
+            int lastEdit = 0;
+            QHash<WikiEdit*, int> editToIntMap;
+            QHash<int, WikiEdit*> intToEditMap;
+    };
+
     class HUGGLE_EX_CORE Script : public QObject
     {
             Q_OBJECT
@@ -87,6 +103,7 @@ namespace Huggle
             QString GetHelpForFunc(QString name);
             QList<QString> GetHooks();
             QList<QString> GetFunctions();
+            ScriptMemPool *GetMemPool();
             QJSEngine *GetEngine();
             // External callbacks exists for security reasons - each script can expose its own
             // callbacks for other scripts to execute, but other scripts are only allowed to
@@ -131,6 +148,7 @@ namespace Huggle
             //! Makes all functions available to ECMA
             virtual void registerFunctions();
             QJSEngine *engine;
+            ScriptMemPool *memPool;
             QJSValue script_ptr;
             QList<QString> hooksExported;
             QList<QString> functionsExported;

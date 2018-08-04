@@ -17,6 +17,7 @@
 #include "hugglejs.hpp"
 #include "huggleeditingjs.hpp"
 #include "hugglefeedjs.hpp"
+#include "../wikiedit.hpp"
 #include "../configuration.hpp"
 #include "../localization.hpp"
 #include "../resources.hpp"
@@ -96,6 +97,7 @@ Script::Script()
     this->isWorking = false;
     this->isLoaded = false;
     this->engine = nullptr;
+    this->memPool = new ScriptMemPool();
 }
 
 Script::~Script()
@@ -105,6 +107,7 @@ Script::~Script()
     if (this->isLoaded && Script::scripts.contains(this->GetName()))
         Script::scripts.remove(this->scriptName);
     qDeleteAll(this->classes);
+    delete this->memPool;
     delete this->engine;
 }
 
@@ -238,6 +241,11 @@ QList<QString> Script::GetHooks()
 QList<QString> Script::GetFunctions()
 {
     return this->functionsExported;
+}
+
+ScriptMemPool *Script::GetMemPool()
+{
+    return this->memPool;
 }
 
 QJSEngine *Script::GetEngine()
@@ -680,4 +688,37 @@ void Script::registerFunctions()
 ScriptException::ScriptException(QString text, QString source, Script *scr, bool is_recoverable) : Exception(text, source, is_recoverable)
 {
     this->s = scr;
+}
+
+WikiEdit *ScriptMemPool::GetEdit(int edit)
+{
+    if (!this->intToEditMap.contains(edit))
+        return nullptr;
+    return this->intToEditMap[edit];
+}
+
+int ScriptMemPool::RegisterEdit(WikiEdit *edit)
+{
+    int edit_id = this->lastEdit++;
+
+    // Register GC lock
+    edit->RegisterConsumer(HUGGLECONSUMER_JS_POOL);
+
+    // register map
+    this->intToEditMap.insert(edit_id, edit);
+    this->editToIntMap.insert(edit, edit_id);
+
+    return edit_id;
+}
+
+bool ScriptMemPool::UnregisterEdit(WikiEdit *edit)
+{
+    if (!this->editToIntMap.contains(edit))
+        return false;
+
+    int edit_id = this->editToIntMap[edit];
+    this->intToEditMap.remove(edit_id);
+    this->editToIntMap.remove(edit);
+    edit->UnregisterConsumer(HUGGLECONSUMER_JS_POOL);
+    return true;
 }

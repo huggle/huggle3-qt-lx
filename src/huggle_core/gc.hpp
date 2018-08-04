@@ -41,6 +41,7 @@ class QMutex;
 #define HUGGLECONSUMER_REVERTQUERYTMR           16
 #define HUGGLECONSUMER_CALLBACK                 20
 #define HUGGLECONSUMER_PYTHON                   60
+#define HUGGLECONSUMER_JS_POOL                  100
 #define HUGGLECONSUMER_CORE                     800
 
 // some macros so that people hate us
