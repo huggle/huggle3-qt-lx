@@ -370,7 +370,7 @@ QJSValue HuggleJS::seconds_to_time_span(int seconds)
 
 qint64 HuggleJS::get_startup_time_unix()
 {
-    return Core::HuggleCore->StartupTime.currentSecsSinceEpoch();
+    return (Core::HuggleCore->StartupTime.currentMSecsSinceEpoch() / 1000);
 }
 
 qint64 HuggleJS::get_uptime()
