@@ -1998,46 +1998,12 @@ void MainWindow::SuspiciousEdit()
 
 void MainWindow::PatrolEdit(WikiEdit *e)
 {
-    ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
     if (e == nullptr)
         e = this->CurrentEdit;
     if (e == nullptr)
         return;
-    if (!conf->Patrolling)
-    {
-        HUGGLE_DEBUG("Not patrolling " + e->Page->PageName + " because patrolling is not enabled on " + this->GetCurrentWikiSite()->Name, 2);
-        return;
-    }
-    ApiQuery *query = nullptr;
-    bool flaggedrevs = conf->PatrollingFlaggedRevs;
 
-    if (e->GetSite()->GetProjectConfig()->Token_Patrol.isEmpty())
-    {
-        Syslog::HuggleLogs->ErrorLog("Unable to patrol this change because there is no patrol token for " + e->GetSite()->Name + " disabling patrolling for now");
-        e->GetSite()->GetProjectConfig()->Patrolling = false;
-        return;
-    }
-
-    // we can execute patrol now
-    query = new ApiQuery(ActionReview, this->GetCurrentWikiSite());
-    query->UsingPOST = true;
-    if (flaggedrevs)
-    {
-        query->SetAction(ActionReview);
-        query->Target = "Patrolling (FlaggedRevs) " + e->Page->PageName;
-        query->Parameters = "revid=" + QString::number(e->RevID) + "&token=" + QUrl::toPercentEncoding(e->GetSite()->GetProjectConfig()->Token_Csrf);
-    } else
-    {
-        query->SetAction(ActionPatrol);
-        query->Target = "Patrolling " + e->Page->PageName;
-        query->Parameters = "revid=" + QString::number(e->RevID) + "&token=" + QUrl::toPercentEncoding(e->GetSite()->GetProjectConfig()->Token_Patrol);
-    }
-    if (flaggedrevs)
-        query->Parameters += "&flag_accuracy=1";
-
-    HUGGLE_QP_APPEND(query);
-    HUGGLE_DEBUG1("Patrolling " + e->Page->PageName);
-    query->Process();
+    WikiUtil::PatrolEdit(e);
 }
 
 void MainWindow::Localize()
