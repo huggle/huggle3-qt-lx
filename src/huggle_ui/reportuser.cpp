@@ -17,7 +17,9 @@
 #include "uigeneric.hpp"
 #include "blockuserform.hpp"
 #include "ui_reportuser.h"
+#include <QHBoxLayout>
 #include <QRegExp>
+#include <QSplitter>
 #include <QMessageBox>
 #include <QModelIndex>
 #include <QtXml>
@@ -120,7 +122,22 @@ ReportUser::ReportUser(QWidget *parent, bool browser) : HW("reportuser", this, p
         this->ui->lineEdit->setVisible(false);
     }
     this->webView = new HuggleWeb(this);
-    this->layout()->addWidget(this->webView);
+    // This is a hack to define splitter, we take the existing layout as defined in XML
+    // then create 2 widgets (top and bottom of splitter), move this XML layout to top one
+    // browser to other one
+    QLayout *current_layout = this->layout();
+    QWidget *top_split = new QWidget(this);
+    QWidget *bottom_split = new QWidget(this);
+    bottom_split->setLayout(new QVBoxLayout(bottom_split));
+    bottom_split->layout()->addWidget(this->webView);
+    top_split->setLayout(current_layout);
+    QSplitter *splitter = new QSplitter(Qt::Orientation::Vertical, this);
+    splitter->addWidget(top_split);
+    splitter->addWidget(bottom_split);
+    QVBoxLayout *new_layout = new QVBoxLayout(this);
+    this->setLayout(new_layout);
+    new_layout->addWidget(splitter);
+    //this->layout()->addWidget(this->webView);
     this->webView->RenderHtml(_l("report-select"));
 }
 
