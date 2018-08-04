@@ -35,6 +35,8 @@ namespace Huggle
             Q_INVOKABLE QList<QString> read_file_to_list(QString file_path);
             Q_INVOKABLE bool write_string_to_file(QString text, QString file_path);
             Q_INVOKABLE void play_file(QString file);
+            Q_INVOKABLE int sys_get_verbosity_level();
+            Q_INVOKABLE void sys_set_verbosity_level(int verbosity_level);
         private:
             QHash<QString, QString> function_help;
     };

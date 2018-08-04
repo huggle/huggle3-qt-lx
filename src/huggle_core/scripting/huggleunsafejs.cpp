@@ -27,6 +27,8 @@ HuggleUnsafeJS::HuggleUnsafeJS(Script *s) : GenericJSClass(s)
     this->function_help.insert("write_string_to_file", "(string text, string file): writes text to a file");
     this->function_help.insert("append_string_to_file", "(string text, string file): appends text to file");
     this->function_help.insert("play_file", "(string file)");
+    this->function_help.insert("sys_get_verbosity_level", "(): returns current verbosity level");
+    this->function_help.insert("sys_set_verbosity_level", "(): changes current verbosity level");
 }
 
 bool HuggleUnsafeJS::append_string_to_file(QString text, QString file_path)
@@ -86,4 +88,16 @@ bool HuggleUnsafeJS::write_string_to_file(QString text, QString file_path)
 void HuggleUnsafeJS::play_file(QString file)
 {
     Resources::PlayExternalSoundFile(file);
+}
+
+int HuggleUnsafeJS::sys_get_verbosity_level()
+{
+    return (int)hcfg->Verbosity;
+}
+
+void HuggleUnsafeJS::sys_set_verbosity_level(int verbosity_level)
+{
+    if (verbosity_level < 0)
+        return;
+    hcfg->Verbosity = static_cast<unsigned int>(verbosity_level);
 }
