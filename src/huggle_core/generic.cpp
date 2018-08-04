@@ -194,3 +194,19 @@ QString Generic::MD5(QString data)
 {
     return QString(QCryptographicHash::hash(data.toUtf8(), QCryptographicHash::Md5).toHex());
 }
+
+bool Generic::SecondsToTimeSpan(int time, int *days, int *hours, int *minutes, int *seconds)
+{
+    if (time < 0)
+        return false;
+
+    int remaining_time = time;
+    *days = remaining_time / (60 * 60 * 24);
+    remaining_time -= *days * (60 * 60 * 24);
+    *hours = remaining_time / (60 * 60);
+    remaining_time -= *hours * (60 * 60);
+    *minutes = remaining_time / 60;
+    remaining_time -= *minutes * 60;
+    *seconds = remaining_time;
+    return true;
+}

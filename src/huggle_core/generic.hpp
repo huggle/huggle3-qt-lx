@@ -49,6 +49,7 @@ namespace Huggle
         //! Display a message box telling user that function is not allowed during developer mode
         HUGGLE_EX_CORE void DeveloperError();
         HUGGLE_EX_CORE QString IRCQuitDefaultMessage();
+        HUGGLE_EX_CORE bool SecondsToTimeSpan(int time, int *days, int *hours, int *minutes, int *seconds);
         HUGGLE_EX_CORE QString SocketError2Str(QAbstractSocket::SocketError error);
         /*!
          * \brief ShrinkText makes string fit to a size, if text is longer, the extra part is replaced with ".."

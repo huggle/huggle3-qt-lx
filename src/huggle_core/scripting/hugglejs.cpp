@@ -47,6 +47,8 @@ HuggleJS::HuggleJS(Script *s) : GenericJSClass(s)
     this->functions.insert("start_timer", "(uint timer)");
     this->functions.insert("destroy_timer", "(uint timer)");
     this->functions.insert("get_startup_date_time", "(): returns time of Huggle startup");
+    this->functions.insert("get_startup_time_unix", "(): (since 3.4.5) returns a startup time in unix format");
+    this->functions.insert("get_uptime", "(): (since 3.4.5) returns uptime in seconds");
     this->functions.insert("stop_timer", "(uint timer");
     this->functions.insert("get_sites", "(): return string list of sites this user is logged to");
     this->functions.insert("get_site_by_name", "(string site_name): returns a site info for site with this name");
@@ -57,6 +59,7 @@ HuggleJS::HuggleJS(Script *s) : GenericJSClass(s)
     this->functions.insert("get_current_time_str", "(): (3.4.4) returns a current date time as string");
     this->functions.insert("register_callback", "(): (3.4.5) register external callback that can be called by other scripts");
     this->functions.insert("unregister_callback", "(): (3.4.5) removes external callback");
+    this->functions.insert("seconds_to_time_span", "(seconds): (since 3.4.5) returns a timespan array for seconds");
 }
 
 HuggleJS::~HuggleJS()
@@ -349,6 +352,30 @@ QString HuggleJS::dump_obj(QJSValue object, unsigned int indent)
     }
 
     return object_desc;
+}
+
+QJSValue HuggleJS::seconds_to_time_span(int seconds)
+{
+    int days, hours, minutes, secs;
+    if (!Generic::SecondsToTimeSpan(seconds, &days, &hours, &minutes, &secs))
+        return QJSValue(false);
+
+    QJSValue result = this->script->GetEngine()->newObject();
+    result.setProperty("seconds", secs);
+    result.setProperty("minutes", minutes);
+    result.setProperty("hours", hours);
+    result.setProperty("days", days);
+    return result;
+}
+
+qint64 HuggleJS::get_startup_time_unix()
+{
+    return Core::HuggleCore->StartupTime.currentSecsSinceEpoch();
+}
+
+qint64 HuggleJS::get_uptime()
+{
+    return Core::HuggleCore->StartupTime.secsTo(QDateTime::currentDateTime());
 }
 
 void HuggleJS::OnTime()

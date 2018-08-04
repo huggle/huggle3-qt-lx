@@ -79,6 +79,10 @@ namespace Huggle
             Q_INVOKABLE bool unregister_callback(QString callback);
             // Misc
             Q_INVOKABLE QString dump_obj(QJSValue object, unsigned int indent = 0);
+            Q_INVOKABLE QJSValue seconds_to_time_span(int seconds);
+            // Core
+            Q_INVOKABLE qint64 get_startup_time_unix();
+            Q_INVOKABLE qint64 get_uptime();
         private slots:
             void OnTime();
         private:
