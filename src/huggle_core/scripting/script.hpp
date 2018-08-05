@@ -59,7 +59,18 @@ namespace Huggle
 
     /*!
      * \brief The ScriptMemPool class is managing access to C++ objects from JS code
-     *        this class is a pool of C++ pointers mapped to JS integers
+     *        this class is a pool of C++ pointers mapped to JS integers.
+     *
+     * Few words on how pointer marshalling works and why we need it:
+     * Most of Huggle C++ functions require pointers to classes to work. So that if we wanted to call them
+     * from JS code, which we do, we need to be somehow able to give these pointers to JS structures so that
+     * we can use these pointers as arguments to JS functions that are calling the C++ functions.
+     *
+     * For that this class is used. It contains functions that allow us to temporarily store a pointer in a memory
+     * hash and get a simple ID (also known as pool_id elsewhere in the code) which is just an integer that is passed
+     * to JS code. This class allows safe registering of C++ pointers and conversion of pool_id's back to pointers.
+     *
+     * The lifespan of pool_id is typically very short, just for a period of hook execution.
      */
     class HUGGLE_EX_CORE ScriptMemPool
     {
