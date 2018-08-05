@@ -35,7 +35,7 @@ namespace Huggle
         HUGGLE_EX_CORE QJSValue FromQStringList(QStringList string_list, QJSEngine *engine);
         HUGGLE_EX_CORE QJSValue FromSite(WikiSite *site, QJSEngine *engine);
         HUGGLE_EX_CORE QJSValue FromUser(WikiUser *user, QJSEngine *engine);
-        HUGGLE_EX_CORE QJSValue FromEdit(WikiEdit *edit, QJSEngine *engine);
+        HUGGLE_EX_CORE QJSValue FromEdit(WikiEdit *edit, QJSEngine *engine, int pool_id = -1);
         HUGGLE_EX_CORE QJSValue FromPage(WikiPage *page, QJSEngine *engine);
         HUGGLE_EX_CORE QJSValue FromVersion(Version *version, QJSEngine *engine);
         HUGGLE_EX_CORE QJSValue FromNS(WikiPageNS *ns, QJSEngine *engine);

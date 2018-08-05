@@ -11,6 +11,7 @@
 // Copyright (c) Petr Bena 2018
 
 #include "huggleeditingjs.hpp"
+#include "script.hpp"
 #include <huggle_core/syslog.hpp>
 #include <huggle_core/wikipage.hpp>
 #include <huggle_core/configuration.hpp>
@@ -23,6 +24,7 @@ using namespace Huggle;
 HuggleEditingJS::HuggleEditingJS(Script *s) : GenericJSClass(s)
 {
     this->functions.insert("append_text", "(string page_name, string text, string summary, [bool minor = false]): appends text to a wiki page");
+    this->functions.insert("patrol_edit", "(WikiEdit edit): (3.4.5) mark edit as patrolled");
 }
 
 QHash<QString, QString> HuggleEditingJS::GetFunctions()
@@ -33,4 +35,23 @@ QHash<QString, QString> HuggleEditingJS::GetFunctions()
 void HuggleEditingJS::append_text(QString page_name, QString text, QString summary, bool minor)
 {
     QueryPool::HugglePool->AppendQuery(WikiUtil::AppendTextToPage(page_name, text, summary, minor).GetPtr());
+}
+
+bool HuggleEditingJS::patrol_edit(QJSValue edit)
+{
+    if (!edit.hasProperty("_ptr"))
+    {
+        HUGGLE_ERROR(this->script->GetName() + ": patrol_edit(edit): edit structure is missing _ptr");
+        return false;
+    }
+
+    int pool_id = edit.property("_ptr").toInt();
+    WikiEdit *ex = this->script->GetMemPool()->GetEdit(pool_id);
+    if (!ex)
+    {
+        HUGGLE_ERROR(this->script->GetName() + ": patrol_edit(edit): null edit _ptr");
+        return false;
+    }
+    WikiUtil::PatrolEdit(ex);
+    return true;
 }

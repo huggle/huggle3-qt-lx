@@ -39,6 +39,7 @@ namespace Huggle
             HuggleEditingJS(Script *s);
             QHash<QString, QString> GetFunctions();
             Q_INVOKABLE void append_text(QString page_name, QString text, QString summary, bool minor = false);
+            Q_INVOKABLE bool patrol_edit(QJSValue edit);
 
         private:
             QHash<QString, QString> functions;

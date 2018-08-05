@@ -72,11 +72,13 @@ QJSValue JSMarshallingHelper::FromUser(WikiUser *user, QJSEngine *engine)
     return o;
 }
 
-QJSValue JSMarshallingHelper::FromEdit(WikiEdit *edit, QJSEngine *engine)
+QJSValue JSMarshallingHelper::FromEdit(WikiEdit *edit, QJSEngine *engine, int pool_id)
 {
     if (!edit)
         return QJSValue(false);
     QJSValue o = engine->newObject();
+    if (pool_id > -1)
+        o.setProperty("_ptr", pool_id);
     o.setProperty("ContentModel", edit->ContentModel);
     o.setProperty("Bot", QJSValue(edit->Bot));
     o.setProperty("CurrentUserWarningLevel", QJSValue(static_cast<int>(edit->CurrentUserWarningLevel)));

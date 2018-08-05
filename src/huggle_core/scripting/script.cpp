@@ -24,6 +24,7 @@
 #include "../generic.hpp"
 #include "../syslog.hpp"
 #include "../version.hpp"
+#include <climits>
 #include <QFile>
 #include <QTimer>
 
@@ -287,9 +288,11 @@ void Script::Hook_EditPreProcess(WikiEdit *edit)
     if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_EDIT_PRE_PROCESS))
         return;
 
+    int pool_id = this->memPool->RegisterEdit(edit);
     QJSValueList parameters;
-    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine));
+    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine, pool_id));
     this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_EDIT_PRE_PROCESS], parameters);
+    this->memPool->UnregisterEdit(edit);
 }
 
 void Script::Hook_EditBeforePostProcess(WikiEdit *edit)
@@ -297,9 +300,11 @@ void Script::Hook_EditBeforePostProcess(WikiEdit *edit)
     if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_EDIT_BEFORE_POST_PROCESS))
         return;
 
+    int pool_id = this->memPool->RegisterEdit(edit);
     QJSValueList parameters;
-    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine));
+    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine, pool_id));
     this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_EDIT_BEFORE_POST_PROCESS], parameters);
+    this->memPool->UnregisterEdit(edit);
 }
 
 void Script::Hook_EditPostProcess(WikiEdit *edit)
@@ -307,18 +312,24 @@ void Script::Hook_EditPostProcess(WikiEdit *edit)
     if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_EDIT_POST_PROCESS))
         return;
 
+    int pool_id = this->memPool->RegisterEdit(edit);
     QJSValueList parameters;
-    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine));
+    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine, pool_id));
     this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_EDIT_POST_PROCESS], parameters);
+    this->memPool->UnregisterEdit(edit);
 }
 
 bool Script::Hook_EditLoadToQueue(WikiEdit *edit)
 {
     if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_EDIT_LOAD_TO_QUEUE))
         return true;
+
+    int pool_id = this->memPool->RegisterEdit(edit);
     QJSValueList parameters;
-    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine));
-    return this->executeFunctionAsBool(this->attachedHooks[HUGGLE_SCRIPT_HOOK_EDIT_LOAD_TO_QUEUE], parameters);
+    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine, pool_id));
+    bool r = this->executeFunctionAsBool(this->attachedHooks[HUGGLE_SCRIPT_HOOK_EDIT_LOAD_TO_QUEUE], parameters);
+    this->memPool->UnregisterEdit(edit);
+    return r;
 }
 
 void Script::Hook_FeedProvidersOnInit(WikiSite *site)
@@ -335,9 +346,11 @@ void Script::Hook_OnRevert(WikiEdit *edit)
     if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_EDIT_ON_REVERT))
         return;
 
+    int pool_id = this->memPool->RegisterEdit(edit);
     QJSValueList parameters;
-    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine));
+    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine, pool_id));
     this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_EDIT_ON_REVERT], parameters);
+    this->memPool->UnregisterEdit(edit);
 }
 
 void Script::Hook_OnGood(WikiEdit *edit)
@@ -345,9 +358,11 @@ void Script::Hook_OnGood(WikiEdit *edit)
     if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_EDIT_ON_GOOD))
         return;
 
+    int pool_id = this->memPool->RegisterEdit(edit);
     QJSValueList parameters;
-    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine));
+    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine, pool_id));
     this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_EDIT_ON_GOOD], parameters);
+    this->memPool->UnregisterEdit(edit);
 }
 
 void Script::Hook_OnSuspicious(WikiEdit *edit)
@@ -355,18 +370,24 @@ void Script::Hook_OnSuspicious(WikiEdit *edit)
     if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_EDIT_ON_SUSPICIOUS))
         return;
 
+    int pool_id = this->memPool->RegisterEdit(edit);
     QJSValueList parameters;
-    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine));
+    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine, pool_id));
     this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_EDIT_ON_SUSPICIOUS], parameters);
+    this->memPool->UnregisterEdit(edit);
 }
 
 bool Script::Hook_OnRevertPreflight(WikiEdit *edit)
 {
     if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_REVERT_PREFLIGHT))
         return true;
+
+    int pool_id = this->memPool->RegisterEdit(edit);
     QJSValueList parameters;
-    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine));
-    return this->executeFunctionAsBool(this->attachedHooks[HUGGLE_SCRIPT_HOOK_REVERT_PREFLIGHT], parameters);
+    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine, pool_id));
+    bool rv = this->executeFunctionAsBool(this->attachedHooks[HUGGLE_SCRIPT_HOOK_REVERT_PREFLIGHT], parameters);
+    this->memPool->UnregisterEdit(edit);
+    return rv;
 }
 
 int Script::Hook_EditRescore(WikiEdit *edit)
@@ -374,9 +395,11 @@ int Script::Hook_EditRescore(WikiEdit *edit)
     if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_EDIT_RESCORE))
         return 0;
 
+    int pool_id = this->memPool->RegisterEdit(edit);
     QJSValueList parameters;
-    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine));
+    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine, pool_id));
     QJSValue result = this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_EDIT_RESCORE], parameters);
+    this->memPool->UnregisterEdit(edit);
     if (!result.isNumber())
     {
         HUGGLE_ERROR("JS error (" + this->GetName() + "): edit_rescore must return a number");
@@ -390,9 +413,11 @@ void Script::Hook_WarningFinished(WikiEdit *edit)
     if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_WARNING_FINISHED))
         return;
 
+    int pool_id = this->memPool->RegisterEdit(edit);
     QJSValueList parameters;
-    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine));
+    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine, pool_id));
     this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_WARNING_FINISHED], parameters);
+    this->memPool->UnregisterEdit(edit);
 }
 
 void Script::Hook_OnLocalConfigRead()
