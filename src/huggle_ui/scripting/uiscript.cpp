@@ -168,10 +168,12 @@ void UiScript::Hook_OnSpeedyFinished(WikiEdit *edit, QString tags, bool success)
         return;
 
     QJSValueList parameters;
-    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine));
+    int pool_id = this->memPool->RegisterEdit(edit);
+    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine, pool_id));
     parameters.append(QJSValue(tags));
     parameters.append(QJSValue(success));
     this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_SPEEDY_FINISHED], parameters);
+    this->memPool->UnregisterEdit(edit);
 }
 
 QString UiScript::Hook_OnMainStatusbarUpdate(QString text)
