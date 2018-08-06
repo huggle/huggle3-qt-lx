@@ -560,9 +560,9 @@
   <string name="queue-filternotifications">Bildirim</string>
   <string name="queue-filterwarnings">Uyarı</string>
   <string name="queue-filtertags">Etiket</string>
-  <string name="queue-filterbot">Bot düzenlemesi</string>
+  <string name="queue-filterbot">Bot değişikliği</string>
   <string name="queue-filterassisted">Yardımcı değişiklik</string>
-  <string name="queue-filterhuggle">Huggle düzenlemesi</string>
+  <string name="queue-filterhuggle">Huggle değişikliği</string>
   <string name="queue-filterme">Benim değişikliğim</string>
   <string name="queue-examplelabel1">Bu niteliği gerektirir</string>
   <string name="queue-examplelabel2">Bu niteliği hariç tut</string>

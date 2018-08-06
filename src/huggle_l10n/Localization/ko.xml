@@ -643,6 +643,8 @@
   <string name="shortcut-open">브라우저에서 현재 표시된 편집을 엽니다</string>
   <string name="shortcut-talk">이 변경을 한 사용자의 토론 문서를 표시합니다</string>
   <string name="shortcut-revert-agf-1">최신 판을 좋은 뜻으로 보지만 되돌리기</string>
+  <string name="shortcut-edit">현재 표시된 문서 편집</string>
+  <string name="shortcut-edit-in-browser">현재 브라우저에 표시된 문서 편집</string>
   <string name="shortcut-browser-close-tab">브라우저 탭 닫기</string>
   <string name="shortcut-tab">새 탭 열기</string>
   <string name="shortcut-rw-stay">현재 편집을 되돌리고, 사용자에게 경고하고 문서에 머물기</string>

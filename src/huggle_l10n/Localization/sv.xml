@@ -615,6 +615,8 @@
   <string name="shortcut-open-in-huggle">Öppna sidan som visas för tillfället</string>
   <string name="shortcut-open">Öppnar redigeringen som visas för tillfället i en webbläsare</string>
   <string name="shortcut-talk">Visa en diskussionssida för användaren som gjorde denna ändring</string>
+  <string name="shortcut-edit">Redigera sidan som visas</string>
+  <string name="shortcut-edit-in-browser">Redigera sidan som visas i webbläsaren</string>
   <string name="shortcut-browser-close-tab">Stäng en webbläsarflik</string>
   <string name="shortcut-tab">Öppnar en ny flik</string>
   <string name="shortcut-custom-reason">Återställ redigeringen med en anpassad redigeringssammanfattning</string>

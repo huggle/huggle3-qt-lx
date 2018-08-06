@@ -78,7 +78,7 @@
   <string name="block-usercontribs">Доприноси</string>
   <string name="block-blockloglabel">Дневник блокирања:</string>
   <string name="block-warnloglabel">Упозорења:</string>
-  <string name="block-type">Блокирај / деблокирај</string>
+  <string name="block-type">Блокирај / одблокирај</string>
   <string name="contribution-browser-user-info">Прикажи скорашње измене корисника $1</string>
   <string name="config-function">Функција</string>
   <string name="config-description">Опис</string>

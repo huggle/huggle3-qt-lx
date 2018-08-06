@@ -7,6 +7,7 @@
 * Edible Melon
 * Eroha
 * EugenG
+* Evs
 * Facenapalm
 * INS Pirat
 * Iluvatar
@@ -244,7 +245,7 @@
   <string name="delete-failed-no-info">В запросе отсутствует информация о странице (вы администратор?)</string>
   <string name="extension-kl">Не запущено</string>
   <string name="extension-ok">Загружено и работает</string>
-  <string name="exception-text-1">К сожалению, Huggle разбился. Просьба представить следующую информацию вместе с подробной информацией о том, что вы делали с</string>
+  <string name="exception-text-1">К сожалению, в Huggle произошёл сбой. Просьба представить следующую информацию вместе с подробной информацией о том, что вы делали</string>
   <string name="exception-details">Детали исключения</string>
   <string name="exception-error-code">Код ошибки: $1</string>
   <string name="exception-reason">Причина: $1</string>
