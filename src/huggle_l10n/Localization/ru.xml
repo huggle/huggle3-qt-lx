@@ -606,7 +606,7 @@
   <string name="uaa-not-supported">UAA недоступна</string>
   <string name="uaa-not-supported-text">\"Usernames for administrator attention\" (UAA) недоступна для этой вики.</string>
   <string name="uaa-reporting">Сообщить о $1 в UAA</string>
-  <string name="uaa-reported">Отчитавшийся</string>
+  <string name="uaa-reported">Сообщено</string>
   <string name="uaa-user-reported-title">Пользователь уже сообщил</string>
   <string name="uaa-user-reported">Этот пользователь уже был отправлен в UAA.</string>
   <string name="uaa-user-unreported-title">Пользователь не сообщил</string>
