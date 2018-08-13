@@ -135,7 +135,7 @@
   <string name="login-progress-formtitle">Учитавам...</string>
   <string name="login-remember-password">Запамти лозинку</string>
   <string name="login-error-cancelled">Отказано.</string>
-  <string name="login-error-invalid">Неисправно корисничко име</string>
+  <string name="login-error-invalid">Неважеће корисничко име</string>
   <string name="login-error-password">Неисправна лозинка</string>
   <string name="login-ro-title">Промени на само читање</string>
   <string name="login-ro-question">Један или више пројеката ($1) не допуштају Вам да се пријавите са дозволама за уређивање (разлог: $2). Желите ли да промените на режим само за читање?</string>
