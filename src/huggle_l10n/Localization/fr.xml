@@ -370,7 +370,7 @@
   <string name="main-tools-scoreword-list">Afficher une liste de mots importants</string>
   <string name="main-queue">File d’attente</string>
   <string name="main-queue-next">Suivante</string>
-  <string name="main-queue-clear">Nettoyer l’actuel</string>
+  <string name="main-queue-clear">Effacer l\'actuel</string>
   <string name="main-queue-count">$1 éléments</string>
   <string name="main-queue-query">Exécution de la requête...</string>
   <string name="main-queue-reset">Réinitialiser</string>

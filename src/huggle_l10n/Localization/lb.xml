@@ -442,7 +442,7 @@
   <string name="history-already-done">Dëst gouf scho réckgängeg gemaach</string>
   <string name="history-revert-fail">Är Ännerung vu(n) $1 konnt net réckgängeg gemaach ginn, well dëse Feeler beim zrécksetze geschitt ass: $2</string>
   <string name="newtab-title">Dëst ass en neien Tab!</string>
-  <string name="saveuserconfig-progress">Aktualisatioun vun der säit vun de Benotzerastellungen...</string>
+  <string name="saveuserconfig-progress">Aktualiséierung vun der Säit vun de Benotzerastellungen...</string>
   <string name="loadglobalconfig-fail">Déi global Configuratiounssäit konnt net geluede ginn</string>
   <string name="reqprotection-badformat">Format vun der Säit mat der Ufro onbekannt</string>
   <string name="reqprotection-duplicate">D\'Spär gouf schonn ugefrot</string>

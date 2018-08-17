@@ -21,6 +21,7 @@
 * Urhixidur
 * Wladek92
 * Андрей
+* ديفيد
 -->
 <resources>
   <string name="name">{{doc-important|Please change this word to the autonym of language that you are translating to, not directly translate \"English\".}}\nThis is a name of the language as shown on the login form.\n{{Identical|English}}</string>
@@ -144,7 +145,6 @@
   <string name="delete-failed-no-info">Used as &lt;code&gt;$1&lt;/code&gt; in {{msg-huggle|Delete-edsc}}.</string>
   <string name="extension-kl">{{Identical|Killed}}</string>
   <string name="exception-error-code">Агха акод: $1</string>
-  <string name="exception-reason">Амзыз: $1</string>
   <string name="exception-source">Ахыҵхырҭа: $1</string>
   <string name="exception-system-log">Асистематә журнал</string>
   <string name="historyform-title">{{Identical|History}}</string>
@@ -426,7 +426,7 @@
   <string name="namespace">{{Identical|Namespace}}</string>
   <string name="relogin-fail">Used in error message box. Parameters:\n* $1 - reason of failure</string>
   <string name="projects">{{Identical|Project}}</string>
-  <string name="developer-mode-enter-title">Whee it\'s not a word | Whee nu este un cuvant</string>
+  <string name="developer-mode-enter-title">Whee it\'s not a word</string>
   <string name="title-on">{{Identical|On}}</string>
   <string name="main-revert-type-unknown">{{Identical|Unknown}}</string>
   <string name="tip14">Note that both \"them\" and \"they\" here are under plural form, there\'s no singular they rules.</string>

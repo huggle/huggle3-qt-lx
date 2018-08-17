@@ -204,12 +204,12 @@
   <string name="config-no-colon">您不能在佇列名稱裡使用「:」</string>
   <string name="config-notify-update">檢查更新</string>
   <string name="config-notify-beta">檢查是否有測試版本</string>
-  <string name="custommessage-title">寄送自定義訊息給$1</string>
+  <string name="custommessage-title">寄送自訂訊息給$1</string>
   <string name="custommessage-summary">編輯摘要（Huggle 字尾將會自動插入）</string>
   <string name="custommessage-subject">標題</string>
-  <string name="custommessage-menu">寄送自定義訊息</string>
+  <string name="custommessage-menu">寄送自訂訊息</string>
   <string name="custommessage-send">寄送訊息</string>
-  <string name="custommessage-wikiuser-lesummary">傳遞自定義訊息給 $1</string>
+  <string name="custommessage-wikiuser-lesummary">傳遞自訂訊息給 $1</string>
   <string name="custommessage-wikiuser-plaintext-1">哈囉 $1，</string>
   <string name="custommessage-wikiuser-plaintext-2">在此編寫您的訊息。</string>
   <string name="delete-title">刪除 $1</string>
@@ -856,7 +856,7 @@
   <string name="unknown-item">不明項目</string>
   <string name="title-multiple-projects">多個項目（$1）</string>
   <string name="title-on">在$1</string>
-  <string name="main-revert-custom-reason-text">沒有提供理由/自定義回退</string>
+  <string name="main-revert-custom-reason-text">未提供理由/自訂回退</string>
   <string name="main-revert-already-pending-title">此編輯已被回退</string>
   <string name="main-revert-already-pending-text">您不能回退此已被回退的編輯。請先稍待！</string>
   <string name="main-revert-type-unknown">不明</string>
