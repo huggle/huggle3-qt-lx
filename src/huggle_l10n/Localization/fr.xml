@@ -178,7 +178,7 @@
   <string name="config-updates">Vérifier les mises à jour</string>
   <string name="config-reset-menu">La configuration du projet (liste des types d’avertissement) a été modifiée depuis votre dernière visite, les raccourcis pour les menus déroulants (annulation et avertissement, etc.) ont été réinitialisés.</string>
   <string name="config-beta">Vérifier les versions bêta</string>
-  <string name="config-html-messages">HAN peut restituer les messages HTML (remarque : c’est potentiellement dangereux).</string>
+  <string name="config-html-messages">HAN peut restituer les messages HTML (remarque : c’est potentiellement dangereux)</string>
   <string name="config-summary-present">Mettre en évidence le résumé quand il est présent plutôt que quand il est absent</string>
   <string name="config-close-without">Fermer sans enregistrer</string>
   <string name="config-confirmmultiple">Confirmer les annulations multiples d’une modification par le même utilisateur</string>
