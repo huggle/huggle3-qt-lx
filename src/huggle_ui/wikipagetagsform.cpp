@@ -200,7 +200,7 @@ void Huggle::WikiPageTagsForm_FinishRead(Query *result)
                     }
                     else
                     {
-                        text = ClearTag(tag, text2);
+                        text = ClearTag(tag, text);
                     }
                     text += "\n" + key;
                 }
