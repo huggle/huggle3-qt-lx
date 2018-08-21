@@ -344,7 +344,7 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
         }
         if (this->TagsDesc.contains(info[0]))
         {
-            Syslog::HuggleLogs->DebugLog("Multiple taginfo: " + tag);
+            Syslog::HuggleLogs->DebugLog("Multiple tag info: " + tag);
             continue;
         }
         if (!this->Tags.contains(info[0]))
@@ -778,6 +778,7 @@ bool ProjectConfiguration::ParseYAML(QString yaml_src, QString *reason, WikiSite
     this->WarningSummaries.insert(2, HuggleParser::YAML2String("warn-summary-2", yaml, "Level 2 re. [[$1]]"));
     this->WarningSummaries.insert(3, HuggleParser::YAML2String("warn-summary-3", yaml, "Level 3 re. [[$1]]"));
     this->WarningSummaries.insert(4, HuggleParser::YAML2String("warn-summary-4", yaml, "Level 4 re. [[$1]]"));
+    this->GroupTag = HuggleParser::YAML2String("group-tag", yaml, this->GroupTag);
 
     // Month headers
     QStringList MonthsHeaders_ = HuggleParser::YAML2QStringList("months", yaml);

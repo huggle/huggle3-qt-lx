@@ -38,13 +38,16 @@ namespace Huggle
     {
             Q_OBJECT
         public:
-            explicit WikiPageTagsForm(QWidget *parent = nullptr);
+            explicit WikiPageTagsForm(QWidget *parent, WikiPage *wikipage);
             ~WikiPageTagsForm();
-            void ChangePage(WikiPage *wikipage);
         private slots:
             void on_pushButton_clicked();
         private:
             friend void Huggle::WikiPageTagsForm_FinishRead(Query *result);
+            void toggleEnable(bool enable);
+            void displayTags();
+            void getPageContents();
+            bool initializing = true;
             WikiPage *page = nullptr;
             QHash<QString,QLineEdit*> Arguments;
             QHash<QString,QCheckBox*> CheckBoxes;

@@ -278,7 +278,7 @@ void History::Tick()
             edit->Page = new WikiPage(this->RevertingItem->Target, site);
         }
         edit->User = new WikiUser(Configuration::HuggleConfiguration->SystemConfig_Username, site);
-        edit->Page->Contents = result;
+        edit->Page->SetContent(result);
         edit->RevID = revid;
         if (this->RevertingItem->NewPage && this->RevertingItem->Type == HistoryMessage)
         {

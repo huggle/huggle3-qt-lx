@@ -3222,9 +3222,8 @@ void MainWindow::on_actionTag_2_triggered()
 
     if (this->fWikiPageTags)
         delete this->fWikiPageTags;
-    this->fWikiPageTags = new WikiPageTagsForm(this);
+    this->fWikiPageTags = new WikiPageTagsForm(this, this->CurrentEdit->Page);
     this->fWikiPageTags->show();
-    this->fWikiPageTags->ChangePage(this->CurrentEdit->Page);
 }
 
 void MainWindow::on_actionReload_menus_triggered()

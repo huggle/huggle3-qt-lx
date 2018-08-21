@@ -131,7 +131,7 @@ QJSValue JSMarshallingHelper::FromPage(WikiPage *page, QJSEngine *engine)
         return QJSValue(false);
     QJSValue o = engine->newObject();
     o.setProperty("ContentModel", QJSValue(page->ContentModel));
-    o.setProperty("Contents", QJSValue(page->Contents));
+    o.setProperty("Contents", QJSValue(page->GetContent()));
     o.setProperty("EncodedName", QJSValue(page->EncodedName()));
     o.setProperty("FounderKnown", QJSValue(page->FounderKnown()));
     o.setProperty("Founder", QJSValue(page->GetFounder()));

@@ -292,7 +292,7 @@ bool WikiEdit::finalizePostProcessing()
         {
             ApiQueryResultNode *revision = revision_data.at(0);
             if (revision->Value.length() > 0)
-                this->Page->Contents = revision->Value;
+                this->Page->SetContent(revision->Value);
             // check if this revision matches our user
             if (revision->Attributes.contains("user"))
             {
@@ -377,8 +377,8 @@ bool WikiEdit::finalizePostProcessing()
         }
         else
         {
-            this->Page->Contents = result;
-            this->Page->Contents.replace("//", "https://");
+            result.replace("//", "https://");
+            this->Page->SetContent(result);
         }
         this->qText = nullptr;
     }
