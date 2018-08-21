@@ -125,7 +125,7 @@ void Huggle::WikiPageTagsForm_FinishRead(Query *result)
         return;
     }
     int selected_tags_count = 0;
-    QString text2 = text;
+    QString grouped;
     result->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
     for (int i = 0; i < form->ui->tableWidget->rowCount(); i++)
     {
@@ -135,14 +135,13 @@ void Huggle::WikiPageTagsForm_FinishRead(Query *result)
         }
     }
     bool multiple_tags_selected = selected_tags_count > 1;
-    // append all tags to top of page or bottom, depending on preference of user, if requested group into one template
-    if (form->ui->checkBox_2->isChecked() && !form->ui->checkBox->isChecked() && multiple_tags_selected)
+    bool grouping_wanted = form->ui->checkBox_2->isChecked() && multiple_tags_selected;
+    bool place_to_top = !form->ui->checkBox->isChecked();
+
+    // In case user wants to group all newly added tags into one, we prepare it
+    if (grouping_wanted)
     {
-        text = "{{" + retrieve->GetSite()->ProjectConfig->GroupTag + "|";
-    }
-    else if (form->ui->checkBox_2->isChecked() && form->ui->checkBox->isChecked() && multiple_tags_selected)
-    {
-        text += "\n{{" + retrieve->GetSite()->ProjectConfig->GroupTag + "|"; //need to endline first in case the article has no extra lines at the bottom
+        grouped = "{{" + retrieve->GetSite()->ProjectConfig->GroupTag + "|";
     }
     int current_row = 0;
     while (current_row < form->ui->tableWidget->rowCount())
@@ -169,16 +168,18 @@ void Huggle::WikiPageTagsForm_FinishRead(Query *result)
                 if (!text.contains(key))
                 {
                     // in case there is a different version of this tag in text, we need to remove it first
-                    // cannot remove {{multiple issues}} for now
-                    if (!form->ui->checkBox->isChecked())
+                    text = ClearTag(tag, text);
+                    if (grouping_wanted)
                     {
-                        text2 = ClearTag(tag, text2);
+                        grouped += "\n" + key;
                     }
                     else
                     {
-                        text = ClearTag(tag, text);
+                        if (place_to_top)
+                            text = key + "\n" + text;
+                        else
+                            text += "\n" + key;
                     }
-                    text += "\n" + key;
                 }
             }
             else
@@ -188,16 +189,15 @@ void Huggle::WikiPageTagsForm_FinishRead(Query *result)
         }
         current_row++;
     }
-    if (form->ui->checkBox_2->isChecked() && !form->ui->checkBox->isChecked() && multiple_tags_selected)
+    if (grouping_wanted)
     {
-        text += "\n}}\n" + text2;
-    }
-    else if (multiple_tags_selected)
-    {
-        text += "\n}}\n";
+        grouped += "\n}}\n";
+        text = grouped + text;
     }
     Collectable_SmartPtr<EditQuery> e = WikiUtil::EditPage(form->page, text, Configuration::HuggleConfiguration->GenerateSuffix(
-                                                                                                                                form->page->GetSite()->GetProjectConfig()->TaggingSummary, form->page->GetSite()->GetProjectConfig()), true, t_);
+                                                               form->page->GetSite()->GetProjectConfig()->TaggingSummary,
+                                                               form->page->GetSite()->GetProjectConfig()),
+                                                           true, t_);
     e->FailureCallback = (Callback)Fail;
     e->SuccessCallback = (Callback)Finish;
     e->CallbackResult = (void*)form;
