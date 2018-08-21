@@ -50,7 +50,7 @@ void WikiPageTagsForm::ChangePage(WikiPage *wikipage)
 {
     if (wikipage == nullptr)
         throw new Huggle::NullPointerException("WikiPage *wikipage", BOOST_CURRENT_FUNCTION);
-
+    
     // we copy the page now
     this->page = new WikiPage(wikipage);
     this->setWindowTitle(_l("tag-title", page->PageName));
@@ -95,7 +95,7 @@ void WikiPageTagsForm::ChangePage(WikiPage *wikipage)
 static void Finish(Query *result)
 {
     ((WikiPageTagsForm*)result->CallbackResult)->close();
-
+    
     result->DecRef();
     result->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
 }
@@ -129,7 +129,7 @@ static QString ClearTag(QString tag, QString value)
         // if there is a newline we should remove it as well
         if (value.size() > end && value.at(end + 1) == QChar('\n'))
             end++;
-
+        
         value.remove(start, end - start);
     }
     return value;
@@ -149,8 +149,26 @@ void Huggle::WikiPageTagsForm_FinishRead(Query *result)
     }
     // append all tags to top of page or bottom, depending on preference of user
     int xx = 0;
+    bool m = false;
+    QString text2 = text;
     WikiPageTagsForm *form = (WikiPageTagsForm *)result->CallbackResult;
     result->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
+    for (int i = 0; i < form->ui->tableWidget->rowCount(); i++)
+    {
+        if (form->CheckBoxes[form->page->GetSite()->GetProjectConfig()->Tags.at(i)]->isChecked())
+        {
+            m = true;
+            break;
+        }
+    }
+    if (form->ui->checkBox_2->isChecked() && !form->ui->checkBox->isChecked() && m)
+    {
+        text = "{{multiple issues|";
+    }
+    else if (form->ui->checkBox_2->isChecked() && form->ui->checkBox->isChecked() && m)
+    {
+        text += "\n{{multiple issues|"; //need to endline first in case the article has no extra lines at the bottom
+    }
     while (xx < form->ui->tableWidget->rowCount())
     {
         if (form->page->GetSite()->GetProjectConfig()->Tags.count() > xx && form->Arguments.count() > xx && form->CheckBoxes.count() > xx)
@@ -175,21 +193,35 @@ void Huggle::WikiPageTagsForm_FinishRead(Query *result)
                 if (!text.contains(key))
                 {
                     // in case there is a different version of this tag in text, we need to remove it first
-                    text = ClearTag(tag, text);
+                    // cannot remove {{multiple issues}} for now
                     if (!form->ui->checkBox->isChecked())
-                        text = key + "\n" + text;
+                    {
+                        text2 = ClearTag(tag, text2);
+                    }
                     else
-                        text += "\n" + key;
+                    {
+                        text = ClearTag(tag, text2);
+                    }
+                    text += "\n" + key;
                 }
-            } else
+            }
+            else
             {
                 text = ClearTag(tag, text);
             }
         }
         xx++;
     }
+    if (form->ui->checkBox_2->isChecked() && !form->ui->checkBox->isChecked() && m)
+    {
+        text += "\n}}\n" + text2;
+    }
+    else if (m)
+    {
+        text += "\n}}\n";
+    }
     Collectable_SmartPtr<EditQuery> e = WikiUtil::EditPage(form->page, text, Configuration::HuggleConfiguration->GenerateSuffix(
-                                                           form->page->GetSite()->GetProjectConfig()->TaggingSummary, form->page->GetSite()->GetProjectConfig()), true, t_);
+                                                                                                                                form->page->GetSite()->GetProjectConfig()->TaggingSummary, form->page->GetSite()->GetProjectConfig()), true, t_);
     e->FailureCallback = (Callback)Fail;
     e->SuccessCallback = (Callback)Finish;
     e->CallbackResult = (void*)form;
