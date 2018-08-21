@@ -344,7 +344,7 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
         }
         if (this->TagsDesc.contains(info[0]))
         {
-            Syslog::HuggleLogs->DebugLog("Multiple taginfo: " + tag);
+            Syslog::HuggleLogs->DebugLog("Multiple tag info: " + tag);
             continue;
         }
         if (!this->Tags.contains(info[0]))
