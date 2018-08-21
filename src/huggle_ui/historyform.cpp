@@ -386,7 +386,7 @@ void HistoryForm::GetEdit(long revid, QString prev, QString user, QString html, 
         return;
     }
     // there is no such edit, let's get it
-    WikiEdit *w = new WikiEdit();
+    Collectable_SmartPtr<WikiEdit> w = new WikiEdit();
     // this is some weird work around for weird logic used somewhere deep in
     // mediawiki internals
     if (prev == "prev")
