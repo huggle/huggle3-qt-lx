@@ -54,6 +54,7 @@ void WikiPageTagsForm::ChangePage(WikiPage *wikipage)
     // we copy the page now
     this->page = new WikiPage(wikipage);
     this->setWindowTitle(_l("tag-title", page->PageName));
+    this->ui->checkBox_2->setText(_l("wikipagetagsform-group", this->page->GetSite()->ProjectConfig->GroupTag));
     // fill it up with tags
     QStringList keys = wikipage->GetSite()->GetProjectConfig()->Tags;
     //! \todo Currently we parse the tags from diff instead of page text
@@ -147,9 +148,7 @@ void Huggle::WikiPageTagsForm_FinishRead(Query *result)
         result->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
         return;
     }
-    // append all tags to top of page or bottom, depending on preference of user
-    int xx = 0;
-    bool m = false;
+    int selected_tags_count = 0;
     QString text2 = text;
     WikiPageTagsForm *form = (WikiPageTagsForm *)result->CallbackResult;
     result->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
@@ -157,30 +156,33 @@ void Huggle::WikiPageTagsForm_FinishRead(Query *result)
     {
         if (form->CheckBoxes[form->page->GetSite()->GetProjectConfig()->Tags.at(i)]->isChecked())
         {
-            m = true;
-            break;
+            selected_tags_count++;
         }
     }
-    if (form->ui->checkBox_2->isChecked() && !form->ui->checkBox->isChecked() && m)
+    bool multiple_tags_selected = selected_tags_count > 1;
+    // append all tags to top of page or bottom, depending on preference of user, if requested group into one template
+    if (form->ui->checkBox_2->isChecked() && !form->ui->checkBox->isChecked() && multiple_tags_selected)
     {
-        text = "{{multiple issues|";
+        // User wants to group all templates into one and don't want to put them to bottom in same time (which is not allowed)
+        text = "{{" + retrieve->GetSite()->ProjectConfig->GroupTag + "|";
     }
-    else if (form->ui->checkBox_2->isChecked() && form->ui->checkBox->isChecked() && m)
+    else if (form->ui->checkBox_2->isChecked() && form->ui->checkBox->isChecked() && multiple_tags_selected)
     {
-        text += "\n{{multiple issues|"; //need to endline first in case the article has no extra lines at the bottom
+        text += "\n{{" + retrieve->GetSite()->ProjectConfig->GroupTag + "|"; //need to endline first in case the article has no extra lines at the bottom
     }
-    while (xx < form->ui->tableWidget->rowCount())
+    int current_row = 0;
+    while (current_row < form->ui->tableWidget->rowCount())
     {
-        if (form->page->GetSite()->GetProjectConfig()->Tags.count() > xx && form->Arguments.count() > xx && form->CheckBoxes.count() > xx)
+        if (form->page->GetSite()->GetProjectConfig()->Tags.count() > current_row && form->Arguments.count() > current_row && form->CheckBoxes.count() > current_row)
         {
-            QString tag = form->page->GetSite()->GetProjectConfig()->Tags.at(xx);
+            QString tag = form->page->GetSite()->GetProjectConfig()->Tags.at(current_row);
             if (!form->CheckBoxes.contains(tag))
                 throw new Huggle::Exception("No such a tag in hash table", BOOST_CURRENT_FUNCTION);
             if (form->CheckBoxes[tag]->isChecked())
             {
                 if (!form->Arguments.contains(tag))
                     throw new Huggle::Exception("No such a tag in hash table", BOOST_CURRENT_FUNCTION);
-                QString key = "{{" + form->page->GetSite()->GetProjectConfig()->Tags.at(xx) + "}}";
+                QString key = "{{" + form->page->GetSite()->GetProjectConfig()->Tags.at(current_row) + "}}";
                 if (form->page->GetSite()->GetProjectConfig()->TagsArgs.contains(tag) && !form->page->GetSite()->GetProjectConfig()->TagsArgs[tag].isEmpty())
                 {
                     if (form->Arguments[tag]->text() == form->page->GetSite()->GetProjectConfig()->TagsArgs[tag])
@@ -210,13 +212,13 @@ void Huggle::WikiPageTagsForm_FinishRead(Query *result)
                 text = ClearTag(tag, text);
             }
         }
-        xx++;
+        current_row++;
     }
-    if (form->ui->checkBox_2->isChecked() && !form->ui->checkBox->isChecked() && m)
+    if (form->ui->checkBox_2->isChecked() && !form->ui->checkBox->isChecked() && multiple_tags_selected)
     {
         text += "\n}}\n" + text2;
     }
-    else if (m)
+    else if (multiple_tags_selected)
     {
         text += "\n}}\n";
     }
@@ -243,4 +245,13 @@ void Huggle::WikiPageTagsForm::on_pushButton_clicked()
     retrieve->SuccessCallback = (Callback)Huggle::WikiPageTagsForm_FinishRead;
     QueryPool::HugglePool->AppendQuery(retrieve);
     retrieve->Process();
+}
+
+void Huggle::WikiPageTagsForm::on_checkBox_stateChanged(int arg1)
+{
+    bool checked = arg1 == Qt::Checked;
+    this->ui->checkBox_2->setEnabled(!checked);
+    // Make sure it's not active together
+    if (checked)
+        this->ui->checkBox_2->setChecked(false);
 }

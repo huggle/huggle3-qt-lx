@@ -241,6 +241,7 @@ namespace Huggle
             // Templates
             QString         SharedIPTemplateTags = "";
             QString         SharedIPTemplate = "";
+            QString         GroupTag = "multiple issues";
 
             // Definitions
             QHash<QString, int>     ScoreTags;

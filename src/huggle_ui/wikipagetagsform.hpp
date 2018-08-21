@@ -43,6 +43,8 @@ namespace Huggle
             void ChangePage(WikiPage *wikipage);
         private slots:
             void on_pushButton_clicked();
+            void on_checkBox_stateChanged(int arg1);
+
         private:
             friend void Huggle::WikiPageTagsForm_FinishRead(Query *result);
             WikiPage *page = nullptr;
