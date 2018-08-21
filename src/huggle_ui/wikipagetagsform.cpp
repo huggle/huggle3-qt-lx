@@ -25,7 +25,7 @@
 #include "ui_wikipagetagsform.h"
 
 using namespace Huggle;
-WikiPageTagsForm::WikiPageTagsForm(QWidget *parent) : HW("wptf", this, parent),  ui(new Ui::WikiPageTagsForm)
+WikiPageTagsForm::WikiPageTagsForm(QWidget *parent, WikiPage *wikipage) : HW("wptf", this, parent),  ui(new Ui::WikiPageTagsForm)
 {
     this->ui->setupUi(this);
     QStringList header;
@@ -38,59 +38,24 @@ WikiPageTagsForm::WikiPageTagsForm(QWidget *parent) : HW("wptf", this, parent), 
     this->ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     this->ui->tableWidget->setShowGrid(false);
     this->RestoreWindow();
+    if (wikipage == nullptr)
+        throw new Huggle::NullPointerException("WikiPage *wikipage", BOOST_CURRENT_FUNCTION);
+    // we copy the page now
+    this->page = new WikiPage(wikipage);
+    this->setWindowTitle(_l("tag-title", page->PageName));
+    this->ui->checkBox_2->setText(_l("wikipagetagsform-group", this->page->GetSite()->ProjectConfig->GroupTag));
+
+    // Check if page has content, if not retrieve it
+    if (this->page->HasContent())
+        this->displayTags();
+    else
+        this->getPageContents();
 }
 
 WikiPageTagsForm::~WikiPageTagsForm()
 {
     delete this->page;
     delete this->ui;
-}
-
-void WikiPageTagsForm::ChangePage(WikiPage *wikipage)
-{
-    if (wikipage == nullptr)
-        throw new Huggle::NullPointerException("WikiPage *wikipage", BOOST_CURRENT_FUNCTION);
-    
-    // we copy the page now
-    this->page = new WikiPage(wikipage);
-    this->setWindowTitle(_l("tag-title", page->PageName));
-    this->ui->checkBox_2->setText(_l("wikipagetagsform-group", this->page->GetSite()->ProjectConfig->GroupTag));
-    // fill it up with tags
-    QStringList keys = wikipage->GetSite()->GetProjectConfig()->Tags;
-    //! \todo Currently we parse the tags from diff instead of page text
-    int rx = 0;
-    foreach (QString item, keys)
-    {
-        QString key = item;
-        QString description = _l("page-tag-nodescription");
-        if (wikipage->GetSite()->GetProjectConfig()->TagsDesc.contains(key))
-            description = wikipage->GetSite()->GetProjectConfig()->TagsDesc[key];
-        this->ui->tableWidget->insertRow(rx);
-        QCheckBox *Item = new QCheckBox(this);
-        if (this->page->Contents.toLower().contains("{{" + key.toLower()))
-            Item->setChecked(true);
-        if (this->CheckBoxes.contains(key) || this->Arguments.contains(key))
-            throw new Huggle::Exception("Tag \""+ key.toLower() + "\" is already in hash list, please check in the config page that it's not duplicated", BOOST_CURRENT_FUNCTION);
-        this->CheckBoxes.insert(key, Item);
-        QLineEdit *line = new QLineEdit(this);
-        this->Arguments.insert(key, line);
-        if (wikipage->GetSite()->GetProjectConfig()->TagsArgs.contains(key) && !wikipage->GetSite()->GetProjectConfig()->TagsArgs[key].isEmpty())
-        {
-            line->setText(wikipage->GetSite()->GetProjectConfig()->TagsArgs[key]);
-        }
-        else
-        {
-            line->setText(_l("page-tag-noparameters"));
-            line->setEnabled(false);
-        }
-        this->ui->tableWidget->setCellWidget(rx, 0, Item);
-        this->ui->tableWidget->setItem(rx, 1, new QTableWidgetItem("{{" + key + "}}"));
-        this->ui->tableWidget->setCellWidget(rx, 2, line);
-        this->ui->tableWidget->setItem(rx, 3, new QTableWidgetItem(description));
-        rx++;
-    }
-    this->ui->tableWidget->resizeColumnsToContents();
-    this->ui->tableWidget->resizeRowsToContents();
 }
 
 static void Finish(Query *result)
@@ -139,18 +104,28 @@ static QString ClearTag(QString tag, QString value)
 void Huggle::WikiPageTagsForm_FinishRead(Query *result)
 {
     ApiQuery *retrieve = (ApiQuery*)result;
-    bool success = false;
+    bool failed = false;
     QString t_;
-    QString text = WikiUtil::EvaluateWikiPageContents(retrieve, &success, &t_);
-    if (success)
+    QString text = WikiUtil::EvaluateWikiPageContents(retrieve, &failed, &t_);
+    if (failed)
     {
         UiGeneric::MessageBox(_l("page-tag-fail"), _l("page-tag-error", text));
         result->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
         return;
     }
+    WikiPageTagsForm *form = (WikiPageTagsForm *)result->CallbackResult;
+    if (form->initializing)
+    {
+        // We are just loading the form now
+        form->page->SetContent(text);
+        form->displayTags();
+        form->toggleEnable(true);
+        result->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
+        HUGGLE_DEBUG1("Successfuly got content for " + form->page->PageName);
+        return;
+    }
     int selected_tags_count = 0;
     QString text2 = text;
-    WikiPageTagsForm *form = (WikiPageTagsForm *)result->CallbackResult;
     result->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
     for (int i = 0; i < form->ui->tableWidget->rowCount(); i++)
     {
@@ -234,11 +209,61 @@ void Huggle::WikiPageTagsForm_FinishRead(Query *result)
 
 void Huggle::WikiPageTagsForm::on_pushButton_clicked()
 {
-    this->ui->pushButton->setEnabled(false);
-    this->ui->checkBox->setEnabled(false);
-    this->ui->tableWidget->setEnabled(false);
-    this->ui->checkBox_2->setEnabled(false);
-    // first get the contents of the page
+    this->getPageContents();
+}
+
+void WikiPageTagsForm::toggleEnable(bool enable)
+{
+    this->ui->pushButton->setEnabled(enable);
+    this->ui->checkBox->setEnabled(enable);
+    this->ui->tableWidget->setEnabled(enable);
+    this->ui->checkBox_2->setEnabled(enable);
+}
+
+void WikiPageTagsForm::displayTags()
+{
+    QStringList keys = this->page->GetSite()->GetProjectConfig()->Tags;
+    int rx = 0;
+    foreach (QString item, keys)
+    {
+        QString key = item;
+        QString description = _l("page-tag-nodescription");
+        if (this->page->GetSite()->GetProjectConfig()->TagsDesc.contains(key))
+            description = this->page->GetSite()->GetProjectConfig()->TagsDesc[key];
+        this->ui->tableWidget->insertRow(rx);
+        QCheckBox *Item = new QCheckBox(this);
+        if (this->page->Contents.toLower().contains("{{" + key.toLower()))
+            Item->setChecked(true);
+        if (this->CheckBoxes.contains(key) || this->Arguments.contains(key))
+            throw new Huggle::Exception("Tag \""+ key.toLower() + "\" is already in hash list, please check in the config page that it's not duplicated", BOOST_CURRENT_FUNCTION);
+        this->CheckBoxes.insert(key, Item);
+        QLineEdit *line = new QLineEdit(this);
+        this->Arguments.insert(key, line);
+        if (this->page->GetSite()->GetProjectConfig()->TagsArgs.contains(key) && !this->page->GetSite()->GetProjectConfig()->TagsArgs[key].isEmpty())
+        {
+            line->setText(this->page->GetSite()->GetProjectConfig()->TagsArgs[key]);
+        }
+        else
+        {
+            line->setText(_l("page-tag-noparameters"));
+            line->setEnabled(false);
+        }
+        this->ui->tableWidget->setCellWidget(rx, 0, Item);
+        this->ui->tableWidget->setItem(rx, 1, new QTableWidgetItem("{{" + key + "}}"));
+        this->ui->tableWidget->setCellWidget(rx, 2, line);
+        this->ui->tableWidget->setItem(rx, 3, new QTableWidgetItem(description));
+        rx++;
+    }
+    // We finished loading this form
+    this->initializing = false;
+    this->ui->tableWidget->resizeColumnsToContents();
+    this->ui->tableWidget->resizeRowsToContents();
+}
+
+void WikiPageTagsForm::getPageContents()
+{
+    // Disable UI until we get the contents of page
+    this->toggleEnable(false);
     ApiQuery *retrieve = WikiUtil::RetrieveWikiPageContents(this->page, false);
     retrieve->FailureCallback = (Callback)Fail;
     retrieve->CallbackResult = (void*)this;

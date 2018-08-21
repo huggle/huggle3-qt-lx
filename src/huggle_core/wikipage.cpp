@@ -39,6 +39,7 @@ WikiPage::WikiPage(WikiPage *page) : MediaWikiObject(page)
     this->Contents = page->Contents;
     this->founder = page->founder;
     this->founderKnown = page->founderKnown;
+    this->hasContent = page->hasContent;
     this->NS = page->NS;
 }
 
@@ -113,6 +114,22 @@ QString WikiPage::RootName()
 QString WikiPage::EncodedName()
 {
     return QUrl::toPercentEncoding(this->PageName);
+}
+
+QString WikiPage::GetContent()
+{
+    return this->Contents;
+}
+
+void WikiPage::SetContent(QString content)
+{
+    this->hasContent = true;
+    this->Contents = content;
+}
+
+bool WikiPage::HasContent()
+{
+    return this->hasContent;
 }
 
 bool WikiPage::IsTalk()

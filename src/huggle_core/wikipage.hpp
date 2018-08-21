@@ -52,15 +52,20 @@ namespace Huggle
             void SetCategories(QStringList value);
             bool IsWatched();
             void SetWatched(bool value);
+            QString GetContent();
+            void SetContent(QString content);
+            //! Whether this instance of WikiPage contains its content, if false, it means that content of this page is unknown
+            bool HasContent();
             QString Contents;
             //! Content model of a page, if known
             QString ContentModel;
             //! Name of page
             QString PageName;
-        private:
+        protected:
             QStringList categories;
             WikiPageNS *NS;
             QString founder;
+            bool hasContent = false;
             bool founderKnown = false;
             bool watched = false;
     };
