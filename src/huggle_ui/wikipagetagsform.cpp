@@ -163,7 +163,6 @@ void Huggle::WikiPageTagsForm_FinishRead(Query *result)
     // append all tags to top of page or bottom, depending on preference of user, if requested group into one template
     if (form->ui->checkBox_2->isChecked() && !form->ui->checkBox->isChecked() && multiple_tags_selected)
     {
-        // User wants to group all templates into one and don't want to put them to bottom in same time (which is not allowed)
         text = "{{" + retrieve->GetSite()->ProjectConfig->GroupTag + "|";
     }
     else if (form->ui->checkBox_2->isChecked() && form->ui->checkBox->isChecked() && multiple_tags_selected)
@@ -238,6 +237,7 @@ void Huggle::WikiPageTagsForm::on_pushButton_clicked()
     this->ui->pushButton->setEnabled(false);
     this->ui->checkBox->setEnabled(false);
     this->ui->tableWidget->setEnabled(false);
+    this->ui->checkBox_2->setEnabled(false);
     // first get the contents of the page
     ApiQuery *retrieve = WikiUtil::RetrieveWikiPageContents(this->page, false);
     retrieve->FailureCallback = (Callback)Fail;
@@ -245,13 +245,4 @@ void Huggle::WikiPageTagsForm::on_pushButton_clicked()
     retrieve->SuccessCallback = (Callback)Huggle::WikiPageTagsForm_FinishRead;
     QueryPool::HugglePool->AppendQuery(retrieve);
     retrieve->Process();
-}
-
-void Huggle::WikiPageTagsForm::on_checkBox_stateChanged(int arg1)
-{
-    bool checked = arg1 == Qt::Checked;
-    this->ui->checkBox_2->setEnabled(!checked);
-    // Make sure it's not active together
-    if (checked)
-        this->ui->checkBox_2->setChecked(false);
 }
