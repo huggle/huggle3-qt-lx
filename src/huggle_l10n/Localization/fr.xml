@@ -370,7 +370,7 @@
   <string name="main-tools-scoreword-list">Afficher une liste de mots importants</string>
   <string name="main-queue">File d’attente</string>
   <string name="main-queue-next">Suivante</string>
-  <string name="main-queue-clear">Effacer l\'actuel</string>
+  <string name="main-queue-clear">Nettoyer l\'actuelle</string>
   <string name="main-queue-count">$1 éléments</string>
   <string name="main-queue-query">Exécution de la requête...</string>
   <string name="main-queue-reset">Réinitialiser</string>
@@ -880,6 +880,7 @@
   <string name="queue-empty-title">C’est vide</string>
   <string name="queue-empty-text">Il n’y a rien d’autre dans la file…</string>
   <string name="protip">ProTip</string>
+  <string name="wikipagetagsform-group">Groupe dans {{$1}}</string>
   <string name="tip1">Huggle supporte les onglets comme tout autre navigateur ! Si vous êtes sur une modification et que vous voulez la conserver pour plus tard, vous pouvez simplement ouvrir un nouvel onglet et continuer à vérifier la file de là. La file d’attente est partagée entre tous les onglets.</string>
   <string name="tip2">Hugglet contient une « barre d’édition », un petit widget qui mémorise l’historique de l’utilisateur et des pages, d’une nouvelle façon. Il n’est cependant pas activé par défaut. Si vous êtes sur un petit écran, vous pouvez remplacer les widgets d’historique utilisateur et de page par celui-ci  !</string>
   <string name="tip3">La plupart des préférences sont rangées dans le fichier [[Special:MyPage/huggle3.css]] du wiki ; vous pouvez également les mettre à jour manuellement à cet endroit.</string>

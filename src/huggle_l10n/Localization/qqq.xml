@@ -242,6 +242,7 @@
   <string name="main-tools-scoreword-list">\"Scorewords\" are words, that when they are present in a diff of an edit they increase the score of an edit by given value. A higher score could imply that the edit might be vandalism.</string>
   <string name="main-queue">{{Identical|Queue}}</string>
   <string name="main-queue-next">{{Identical|Next}}</string>
+  <string name="main-queue-clear">Used in the context of \"clearing a queue\".</string>
   <string name="main-queue-count">Unused at this time.\n\nParameters:\n* $1 - number of queue items\n{{identical|Item}}</string>
   <string name="main-queue-reset">{{Identical|Reset}}</string>
   <string name="main-goto-mycontribs">{{Identical|Contribution}}</string>

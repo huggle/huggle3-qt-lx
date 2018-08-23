@@ -884,6 +884,7 @@
   <string name="queue-empty-title">Bu boş</string>
   <string name="queue-empty-text">Sırada başka bir şey yok...</string>
   <string name="protip">ProTip</string>
+  <string name="wikipagetagsform-group">{{$1}} içindeki grup</string>
   <string name="tip1">Huggle sekmeleri diğer web tarayıcıları gibi destekler! Düzenleme aşamasındaysanız ve daha sonra saklamak istiyorsanız yeni bir sekme açıp sırayı kontrol etmeye devam edebilirsiniz. Kuyruk, tüm sekmeler arasında paylaşılır.</string>
   <string name="tip2">Huggle, kullanıcı ve sayfa geçmişini düzgün bir şekilde içeren küçük bir widget olan \"düzenleme çubuğu\" içeriyor. Varsayılan olarak etkin değil. Küçük bir ekrandaysanız kullanıcı ve sayfa geçmişi widget\'larını onunla değiştirebilirsiniz!</string>
   <string name="tip3">Çoğu tercih, [[Special:MyPage/huggle3.css]] içindeki viki\'de saklanır. Tercihleri, orada manuel olarak da değiştirebilirsiniz.</string>

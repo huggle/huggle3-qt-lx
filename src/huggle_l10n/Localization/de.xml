@@ -873,6 +873,7 @@
   <string name="queue-empty-title">Sie ist leer</string>
   <string name="queue-empty-text">Es gibt nichts mehr in der Warteschlange …</string>
   <string name="protip">ProTip</string>
+  <string name="wikipagetagsform-group">Gruppe innerhalb {{$1}}</string>
   <string name="tip1">Huggle unterstützt Registerkarten wie jeder andere Webbrowser! Falls du bei einer Bearbeitung bist, die du für später aufheben möchtest, kannst du einfach einen neuen Reiter öffnen und dort mit der Überprüfung der Warteschlange fortfahren. Die Warteschlange ist unter allen Registerkarten verfügbar.</string>
   <string name="tip2">Huggle enthält eine „Bearbeitungsleiste“, ein kleines Widget, das sowohl den Benutzer- als auch den Seitenverlauf in gepflegter Weise enthält. Es ist jedoch nicht standardmäßig aktiviert. Falls du einen kleinen Bildschirm hast, kannst du die Benutzer- und Seitenverlaufwidgets durch dieses Widget ersetzen!</string>
   <string name="tip3">Die meisten Einstellungen werden auf dem Wiki in [[Special:MyPage/huggle3.css]] gespeichert. Du kannst sie auch dort manuell ändern!</string>
