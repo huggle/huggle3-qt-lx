@@ -434,7 +434,7 @@
   <string name="main-user-block">차단...</string>
   <string name="main-browser-back">뒤로</string>
   <string name="main-browser-forward">앞으로</string>
-  <string name="main-browser-open">이것을 바깥 브라우저에서 보기</string>
+  <string name="main-browser-open">이것을 외부 브라우저에서 보기</string>
   <string name="main-browser-newedits">문서의 새 편집 보기</string>
   <string name="main-browser-newcontribs">사용자의 새 기여 보기</string>
   <string name="main-browser-lasttab">마지막 탭이기 때문에 이 탭을 닫을 수 없습니다. 적어도 하나의 탭이 열려있어야 합니다</string>
