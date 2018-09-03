@@ -69,7 +69,7 @@ WikiPage *WikiPage::RetrieveTalk()
         }
     }
     prefix += ":";
-    return new WikiPage(prefix + this->RootName(), this->Site);
+    return new WikiPage(prefix + this->NSLessName(), this->Site);
 }
 
 bool WikiPage::FounderKnown()
@@ -107,6 +107,20 @@ QString WikiPage::RootName()
     if (sanitized.contains("/"))
     {
         sanitized = sanitized.mid(0, sanitized.indexOf("/"));
+    }
+    return sanitized;
+}
+
+QString WikiPage::NSLessName()
+{
+    QString sanitized = this->PageName;
+    if (!this->GetNS()->GetName().isEmpty())
+    {
+        // first we need to get a colon
+        if (this->PageName.contains(":"))
+        {
+            sanitized = sanitized.mid(sanitized.indexOf(":") + 1);
+        }
     }
     return sanitized;
 }

@@ -45,6 +45,8 @@ namespace Huggle
             //! Returns a new instance of WikiPage that is pointed to talk page of this page
             WikiPage *RetrieveTalk();
             QString RootName();
+            //! Returns a page name without it's namespace
+            QString NSLessName();
             bool IsUserpage();
             //! Writes a wikipage name that is encoded using percent encoding
             QString EncodedName();

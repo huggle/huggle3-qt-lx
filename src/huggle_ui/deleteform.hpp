@@ -43,8 +43,8 @@ namespace Huggle
             void on_pushButton_2_clicked();
             void OnTick();
         private:
-            void Delete();
-            void Failed(QString Reason);
+            void deletePage();
+            void processFailure(QString Reason);
             Ui::DeleteForm *ui;
             WikiPage *page;
             //! Query used to execute delete of a page
@@ -52,8 +52,8 @@ namespace Huggle
             Collectable_SmartPtr<ApiQuery> qTalk;
             //! Set the page to delete
             QTimer *tDelete;
-            WikiPage *TalkPage;
-            WikiUser *PageUser;
+            WikiPage *associatedTalkPage;
+            WikiUser *userToNotify;
     };
 }
 

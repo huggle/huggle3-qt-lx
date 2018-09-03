@@ -56,6 +56,7 @@ class HuggleTest : public QObject
         void testCaseScores();
         void testCaseVersionComparison();
         void testCaseGenerics();
+        void testCaseWikiPage();
 };
 
 HuggleTest::HuggleTest()
@@ -68,6 +69,9 @@ HuggleTest::HuggleTest()
     Huggle::Configuration::HuggleConfiguration->Project->ProjectConfig = Huggle::Configuration::HuggleConfiguration->ProjectConfig;
     Huggle::Configuration::HuggleConfiguration->Verbosity=10;
     Huggle::Configuration::HuggleConfiguration->ProjectConfig->Parse(f.readAll(), nullptr, Huggle::Configuration::HuggleConfiguration->Project);
+    hcfg->Project->InsertNS(new Huggle::WikiPageNS(1, "Talk", "Talk"));
+    hcfg->Project->InsertNS(new Huggle::WikiPageNS(2, "User", "User"));
+    hcfg->Project->InsertNS(new Huggle::WikiPageNS(3, "User talk", "User talk"));
     f.close();
 }
 
@@ -289,6 +293,24 @@ void HuggleTest::testCaseGenerics()
     QVERIFY2(Huggle::Generic::SafeBool("true") == true, "Invalid conversion of string to bool");
     QVERIFY2(Huggle::Generic::SafeBool("false") == false, "Invalid conversion of string to bool");
     QVERIFY2(Huggle::Generic::SafeBool("TRUE") == true, "Invalid conversion of string to bool");
+}
+
+void HuggleTest::testCaseWikiPage()
+{
+    Huggle::WikiPage *page1 = new Huggle::WikiPage("Test", hcfg->Project);
+    Huggle::WikiPage *page1_talk = page1->RetrieveTalk();
+    Huggle::WikiPage *page2 = new Huggle::WikiPage("User:Test2/Boo", hcfg->Project);
+    Huggle::WikiPage *page2_talk = page2->RetrieveTalk();
+
+    QVERIFY2(page1_talk->PageName == "Talk:Test", QString("Invalid namespace prefix " + page1_talk->PageName).toLatin1().data());
+    QVERIFY2(page2_talk->PageName == "User talk:Test2/Boo", QString("Invalid namespace prefix " + page2_talk->PageName).toLatin1().data());
+    QVERIFY2(page2->RootName() == "Test2", QString("Invalid root name: " + page2->RootName()).toLatin1().data());
+    QVERIFY2(page2->NSLessName() == "Test2/Boo", QString("Invalid NSLess name: " + page2->NSLessName()).toLatin1().data());
+
+    delete page2;
+    delete page2_talk;
+    delete page1;
+    delete page1_talk;
 }
 
 QTEST_APPLESS_MAIN(HuggleTest)

@@ -35,9 +35,9 @@ DeleteForm::DeleteForm(QWidget *parent) : HW("deleteform", this, parent), ui(new
     this->ui->setupUi(this);
     this->page = nullptr;
     this->tDelete = nullptr;
-    this->TalkPage = nullptr;
+    this->associatedTalkPage = nullptr;
     this->ui->comboBox->setCurrentIndex(0);
-    this->PageUser = nullptr;
+    this->userToNotify = nullptr;
     this->RestoreWindow();
 }
 
@@ -46,7 +46,7 @@ DeleteForm::~DeleteForm()
     delete this->tDelete;
     delete this->ui;
     delete this->page;
-    delete this->TalkPage;
+    delete this->associatedTalkPage;
 }
 
 void DeleteForm::SetPage(WikiPage *Page, WikiUser *User)
@@ -66,21 +66,21 @@ void DeleteForm::SetPage(WikiPage *Page, WikiUser *User)
         this->ui->checkBox_2->setEnabled(false);
     }
     this->setWindowTitle(_l("delete-title", Page->PageName));
-    this->PageUser = User;
+    this->userToNotify = User;
 }
 
 void DeleteForm::OnTick()
 {
-    this->Delete();
+    this->deletePage();
 }
 
-void DeleteForm::Delete()
+void DeleteForm::deletePage()
 {
     if (this->qDelete == nullptr || !this->qDelete->IsProcessed())
         return;
     if (this->qDelete->Result->IsFailed())
     {
-        this->Failed(_l("delete-e1", this->qDelete->GetFailureReason()));
+        this->processFailure(_l("delete-e1", this->qDelete->GetFailureReason()));
         return;
     }
     // let's assume the page was deleted
@@ -96,7 +96,7 @@ void DeleteForm::Delete()
     this->close();
 }
 
-void DeleteForm::Failed(QString Reason)
+void DeleteForm::processFailure(QString Reason)
 {
     UiGeneric::MessageBox(_l("delete-e2"), _l("delete-edsc", Reason), MessageBoxStyleError, true);
     this->tDelete->stop();
@@ -111,8 +111,8 @@ void DeleteForm::on_pushButton_clicked()
 {
     if (this->ui->checkBox_2->isChecked())
     {
-        this->TalkPage = this->page->RetrieveTalk();
-        if (this->TalkPage == nullptr)
+        this->associatedTalkPage = this->page->RetrieveTalk();
+        if (this->associatedTalkPage == nullptr)
         {
             this->ui->checkBox_2->setChecked(false);
         }
@@ -131,15 +131,15 @@ void DeleteForm::on_pushButton_clicked()
     QueryPool::HugglePool->AppendQuery(this->qDelete);
     this->qDelete->Process();
 
-    if (this->TalkPage != nullptr)
+    if (this->associatedTalkPage != nullptr)
     {
         // let's delete the talk page
         this->qTalk = new ApiQuery(ActionDelete, this->page->GetSite());
-        this->qTalk->Parameters = "title=" + QUrl::toPercentEncoding(this->TalkPage->PageName)
+        this->qTalk->Parameters = "title=" + QUrl::toPercentEncoding(this->associatedTalkPage->PageName)
                 + "&reason=" + QUrl::toPercentEncoding(Configuration::GenerateSuffix(Configuration::HuggleConfiguration->ProjectConfig->AssociatedDelete,
                                                                                      this->page->GetSite()->GetProjectConfig()))
                 + "&token=" + QUrl::toPercentEncoding(this->page->GetSite()->GetProjectConfig()->Token_Csrf);
-        this->qTalk->Target = "Deleting "  + this->TalkPage->PageName;
+        this->qTalk->Target = "Deleting "  + this->associatedTalkPage->PageName;
         this->qTalk->UsingPOST = true;
         QueryPool::HugglePool->AppendQuery(this->qTalk);
         this->qTalk->Process();
