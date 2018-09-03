@@ -302,12 +302,14 @@
   <string name="login-error-cancelled">Откажано.</string>
   <string name="login-error-config">Најавата не успеа. Не можам да ги расчленам месните поставки за $1: $2</string>
   <string name="login-error-config-retrieve">Најавата не успеа. Не можам да ја добијам корисничката поставеност: $1</string>
+  <string name="login-error-config-query-no-data">Најавата не успеа. Не можам да ја добијам глобалната поставеност. Барањето од извршникот не даде податоци.</string>
   <string name="login-error-count">Употребата на Huggle на овој проект бара најмалку $1 уредувања.</string>
   <string name="login-error-disabled">Huggle на ви е овозможен за вашата сметка на $1. Проверете во корисничките поставки.</string>
   <string name="login-error-global">Најавата не успеа: Не можам да ги расчленам глобалните поставки. Повеќе ќе дознаете во записникот со грешки.</string>
   <string name="login-error-invalid">Неправилно корисничко име</string>
   <string name="login-error-noconfig">$1 нема страница за поставување на Huggle</string>
   <string name="login-error-nouser">Корисникот не постои</string>
+  <string name="login-error-no-valid-token">Мрежното место не даде важечка најавна шифра</string>
   <string name="login-error-password">Неисправна лозинка</string>
   <string name="login-error-projdisabled">Во моментов Huggle е оневозможен на проектов.</string>
   <string name="login-error-unknown">Не можам да ве најавам на $1.</string>
@@ -316,6 +318,9 @@
   <string name="login-ro-title">Префрли на само читање</string>
   <string name="login-ro-question">Еден или повеќе проекти ($1) не ви даваат да се најавите со дозвола за уредување (причина: $2). Дали сакате да се префрлите само на читање?</string>
   <string name="login-ro-info">Проектот $1 е префрлен само на читање</string>
+  <string name="wikis-db-download-fail">Не можам да преземам база на викија: $1</string>
+  <string name="no-projects-defined-in-list">Во списокот нема определени проекти. Ќе треба да зададете некои на глобалното вики.</string>
+  <string name="api-query-no-data">барањето од извршникот не даде податоци</string>
   <string name="main-stat">$1 уредувања во минута, $2 отповикувања во минута, степен $3</string>
   <string name="main-menu-provider-stop">Запри го добавувачот</string>
   <string name="main-menu-provider-resume">Продолжи со добавувачот</string>
@@ -370,6 +375,8 @@
   <string name="main-revision-revert-warn">Отповикај го моментално прикажаното уредување и опомени го корисникот</string>
   <string name="main-revision-rws">Отповикај го моментално прикажаното уредување, остани на страницата и опомени го корисникот</string>
   <string name="main-revision-faith">Отповикај претпоставувајќи добра намера</string>
+  <string name="main-revision-revert-only-this">Отповикај ја само оваа преработка</string>
+  <string name="main-revision-revert-agf">Отповикај ја само оваа преработка, претпоставувајќи добронамерност</string>
   <string name="main-revision-previous">Претходна</string>
   <string name="main-revision-next">Следна</string>
   <string name="main-revision-latest">Најнова</string>
@@ -400,11 +407,14 @@
   <string name="main-page-delete">Избриши</string>
   <string name="main-page-load">Вчитај</string>
   <string name="main-patrol-not-enabled">Патролирањето не е овозможено на $1</string>
+  <string name="main-page-refresh">Превчитај</string>
   <string name="main-page-restore">Отповикај ја преработкава</string>
   <string name="main-page-watchlist-add">Стави страница во набљудувани</string>
   <string name="main-page-tab-close">Затвори го тековното јазиче</string>
   <string name="main-page-tab-open">Отвори ново јазиче</string>
   <string name="main-page-watchlist-remove">Отстрани ја страницата од набљудуваните</string>
+  <string name="main-scripting">Скриптирање</string>
+  <string name="main-scripting-script-manager">Скриптен раководител</string>
   <string name="main-user-info">Прикажи кориснички информации</string>
   <string name="main-user-ignore">Занемари</string>
   <string name="main-user-unignore">Тргни занемарување</string>
@@ -417,6 +427,7 @@
   <string name="main-user-db">Намали ја оценката на штетноста на корисникот</string>
   <string name="main-user-report">Пријави</string>
   <string name="main-user-ib">Зголеми ја оценката на штетноста на корисникот</string>
+  <string name="main-user-contribution-browser">Прелистувач на придонесот</string>
   <string name="main-user-clear-tp">Исчисти ја разговорната страница на корисникот</string>
   <string name="main-user-retrieving-tp">Ја преземам страницаата за разговор $1</string>
   <string name="main-user-block">Блокирај...</string>
@@ -439,6 +450,7 @@
   <string name="main-help-feedback">Мислења</string>
   <string name="main-help-about">За Huggle...</string>
   <string name="main-help-introduction">Вовед</string>
+  <string name="main-help-welcome-page">Страница за добредојде</string>
   <string name="main-help-contents">Содржина</string>
   <string name="main-help-queuelegend">Легенда на редицата</string>
   <string name="main-addqueue">Додај...</string>
@@ -567,6 +579,8 @@
   <string name="uaa-not-supported-text">Корисничките имиња за таблата за администраторско внимание не се достапни на вашето вики.</string>
   <string name="uaa-reporting">Го пријавувам $1 кај UAA</string>
   <string name="uaa-reported">Пријавено</string>
+  <string name="uaa-user-reported-title">Корисникот е веќе пријавен</string>
+  <string name="uaa-user-reported">Корисников е веќе пријавен во UAA.</string>
   <string name="uaa-user-unreported-title">Корисникот не е пријавен</string>
   <string name="uaa-user-unreported">Корисников не е приајвен во UAA.</string>
   <string name="uaa-no-reason-warn">Не укажавте причина зошто корисничкото име ги крши правилата. Наведете причина.</string>
@@ -641,6 +655,8 @@
   <string name="shortcut-open">Го отвора тековно прикажаното уредување во прелистувач</string>
   <string name="shortcut-talk">Прикажи ја разговорната страница на корисникот што ја има направено оваа промена</string>
   <string name="shortcut-revert-agf-1">Отповикај ја последната преработка, претпоставувајќи добронамерност</string>
+  <string name="shortcut-edit">Уреди ја тековно прикажаната страница</string>
+  <string name="shortcut-edit-in-browser">Уреди ја тековно прикажаната страница во прелистувачот</string>
   <string name="shortcut-browser-close-tab">Затвори јазиче од прелистувачот</string>
   <string name="shortcut-tab">Отвора ново јазиче</string>
   <string name="shortcut-rw-stay">Отповикај го тековното уредување, опомени го корисникот и остани на страницата.</string>
@@ -648,6 +664,7 @@
   <string name="shortcut-custom-reason">Отповикај го уредувањето со прилагодена причина во описот на уредувањето</string>
   <string name="shortcut-user-contribs-browser">Отвори кориснички придонеси во прелистувач</string>
   <string name="shortcut-user-clear-talk">Исчисти разговорна страница на тековниот корисник</string>
+  <string name="shortcut-main-clear-queue">Исчисти редица</string>
   <string name="warning-title">Опомени го $1</string>
   <string name="warning-levelgroup">Степен на опомена</string>
   <string name="warning-levelauto">Автоматски</string>
@@ -765,6 +782,7 @@
   <string name="cr-message-same">$1 има повеќе уредувања од истиот корисник. Дали сте сигурни дека сакате да ги отповикате?</string>
   <string name="cr-message-new">$1 има понови уредувања. Дали сте сигурни дека навистина сакате да ги отповикате?</string>
   <string name="cr-message-not-same">$1 има понови уредувања од различен корисник. Дали сте сигурни дека навистина сакате да ги отповикате сите нив? (Веројатно бездруго нема да успеете бидејќи ќе има стара шифра.)</string>
+  <string name="preferences-show-warning-if-not-last-revision">Прикажи предупредување ако не сум на последната преработка</string>
   <string name="preferences-delete-using-filter">Не можете да избришете филтер кој е во тековна употреба</string>
   <string name="preferences-extension-disabled">Овој додаток е веќе предвиден да се оневозможи при следното пуштање на Huggle</string>
   <string name="preferences-extension-disabled-restart">Додатокот е наместен да се оневозможи при следното вклучување на Huggle</string>
@@ -784,6 +802,8 @@
   <string name="preferences-queue-size">Големина на редицата</string>
   <string name="preferences-empty-queue-page">Празна страница за редица:</string>
   <string name="preferences-reset-gui">Одново посредникот</string>
+  <string name="preferences-restore-factory-layout">Ова ќе ја поврати основната распореденост на Huggle каква што била кога сте го воспоставиле. Huggle ќе се исклучи. Сакате да продолжите?</string>
+  <string name="preferences-keystroke-rate-limit">Спречи повторени стисоци на исти тастатурни копчиња според честотата (кратенката да работи само по еднаш на секои N милисекунди)</string>
   <string name="fail">Неуспех</string>
   <string name="request">Барање</string>
   <string name="requesting">Барање</string>
@@ -842,5 +862,6 @@
   <string name="queue-empty-title">Празно е</string>
   <string name="queue-empty-text">Нема ништо друго во редицата...</string>
   <string name="protip">ProTip</string>
+  <string name="wikipagetagsform-group">Група во {{$1}}</string>
   <string name="tip10">Највеќето тастатурни кратенки можат да се изменат во вашите нагодувања.</string>
 </resources>
