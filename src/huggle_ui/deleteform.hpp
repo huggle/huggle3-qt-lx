@@ -37,6 +37,11 @@ namespace Huggle
         public:
             explicit DeleteForm(QWidget *parent = nullptr);
             ~DeleteForm();
+            /*!
+             * \brief SetPage sets a page to delete
+             * \param Page Pointer to a page to delete
+             * \param User Pointer to user to notify, this object will be deleted by this class in destructor
+             */
             void SetPage(WikiPage *Page, WikiUser *User);
         private slots:
             void on_pushButton_clicked();

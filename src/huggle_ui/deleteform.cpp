@@ -47,6 +47,7 @@ DeleteForm::~DeleteForm()
     delete this->ui;
     delete this->page;
     delete this->associatedTalkPage;
+    delete this->userToNotify;
 }
 
 void DeleteForm::SetPage(WikiPage *Page, WikiUser *User)

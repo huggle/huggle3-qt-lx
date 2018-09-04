@@ -2187,7 +2187,24 @@ void MainWindow::DeletePage()
     if (this->fDeleteForm != nullptr)
         delete this->fDeleteForm;
     this->fDeleteForm = new DeleteForm(this);
-    this->fDeleteForm->SetPage(this->CurrentEdit->Page, this->CurrentEdit->User);
+    // We always want to notify creator of the page, not the user who made this edit
+    WikiUser *page_founder = nullptr;
+    //! \todo We are not currently sending any notification to founder of page which was delete by Huggle
+    //! so this code was commented out, we might want to do that though
+    /*
+    if (this->CurrentEdit->Page->FounderKnown())
+    {
+        WikiUser *user_from_cache = WikiUser::RetrieveUser(this->CurrentEdit->Page->GetFounder(), this->CurrentEdit->GetSite());
+        if (user_from_cache != nullptr)
+        {
+            page_founder = new WikiUser(user_from_cache);
+        } else
+        {
+            page_founder = new WikiUser(this->CurrentEdit->Page->GetFounder(), this->CurrentEdit->GetSite());
+        }
+    }
+    */
+    this->fDeleteForm->SetPage(this->CurrentEdit->Page, page_founder);
     this->fDeleteForm->show();
 }
 
