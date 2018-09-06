@@ -32,6 +32,13 @@ TerminalParser::TerminalParser(int argc, char *argv[])
     }
 }
 
+static void DisplayVersion()
+{
+    // version is stored in built in resource which we need to extract using call to core here
+    Core::VersionRead();
+    cout << QString("Huggle " + hcfg->HuggleVersion).toStdString() << endl;
+}
+
 bool TerminalParser::Init()
 {
     int x = 1;
@@ -45,15 +52,13 @@ bool TerminalParser::Init()
             DisplayHelp();
             return true;
         }
+        if (text == "--version")
+        {
+            DisplayVersion();
+            return true;
+        }
     }
     return false;
-}
-
-static void DisplayVersion()
-{
-    // version is stored in built in resource which we need to extract using call to core here
-    Core::VersionRead();
-    cout << QString("Huggle " + hcfg->HuggleVersion).toStdString() << endl;
 }
 
 bool TerminalParser::Parse()
@@ -117,11 +122,6 @@ bool TerminalParser::Parse()
                 cerr << "Parameter --huggleinternal-update requires an argument for it to work!" << endl;
                 return true;
             }
-        }
-        if (text == "--version")
-        {
-            DisplayVersion();
-            return true;
         }
         if (text == "--syslog")
         {
@@ -206,9 +206,11 @@ bool TerminalParser::Parse()
             valid = true;
             hcfg->Fuzzy = true;
         }
-        if (text == "--pylibs-dump")
+        if (text == "--jslibs-dump")
         {
-            cout << Resources::GetResource("/huggle/text/Resources/Python/definitions.py").toStdString() << endl;
+            cout << "/huggle/text/ecma/help.js:" << endl << Resources::GetResource("/huggle/text/ecma/help.js").toStdString()
+                 << endl << "/huggle/text/ecma/huggle.js:" << endl << Resources::GetResource("/huggle/text/ecma/huggle.js").toStdString()
+                 << endl << "/huggle/text/ecma/types.js:" << endl << Resources::GetResource("/huggle/text/ecma/types.js").toStdString() << endl;
             return true;
         }
         if (!valid)
@@ -273,8 +275,8 @@ void TerminalParser::DisplayHelp()
             "  --qd [file]:     Write all transferred data to a file\n"\
             "  --override-conf [page]:\n"\
             "                   Will override the wiki configuration path, useful for testing of new config\n"\
-            "\nPython related:\n"\
-            "  --pylibs-dump:   Dump all built-in python libraries to std out\n"\
+            "\nJS related:\n"\
+            "  --jslibs-dump:   Dump all built-in js libraries to std out\n"\
             "\nNote: every argument in [brackets] is optional\n"\
             "      but argument in <brackets> is required\n\n"\
             "Huggle is open source, contribute at https://github.com/huggle/huggle3-qt-lx" << endl;
