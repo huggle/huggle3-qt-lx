@@ -52,11 +52,14 @@ bool TerminalParser::Init()
             DisplayHelp();
             return true;
         }
+        /*
+         * This can't be here because version is loaded from resource files and they are not available in init
         if (text == "--version")
         {
             DisplayVersion();
             return true;
         }
+        */
     }
     return false;
 }
@@ -205,6 +208,11 @@ bool TerminalParser::Parse()
         {
             valid = true;
             hcfg->Fuzzy = true;
+        }
+        if (text == "--version")
+        {
+            DisplayVersion();
+            return true;
         }
         if (text == "--jslibs-dump")
         {
