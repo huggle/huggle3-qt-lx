@@ -56,6 +56,8 @@ int main(int argc, char *argv[])
         Huggle::TerminalParser *parser = new Huggle::TerminalParser(argc, argv);
         if (parser->Init())
         {
+            // This means we need to exit the application, Init() of parser returns true on parameters like --version
+            // which can be handled on headless systems
             delete parser;
             Huggle::Exception::ExitBreakpad();
             return ReturnCode;
@@ -88,6 +90,10 @@ int main(int argc, char *argv[])
         // We don't need parser anymore so let's free the memory
         delete parser;
 
+        // Load the external resource files, needed only on some compilers though
+        Huggle::Huggle_l10n::Init();
+        Huggle::Huggle_Res::Init();
+
         if (hcfg->SystemConfig_UM)
         {
             // we start huggle in updater mode, so that it performs some updates which needs to be done in separate process
@@ -98,11 +104,7 @@ int main(int argc, char *argv[])
             return ReturnCode;
         }
 
-        // Load the external resource files, needed only on some compilers though
-        Huggle::Huggle_l10n::Init();
-        Huggle::Huggle_Res::Init();
-
-        // Load the core which manages lof of stuff like GC, exception handling and some internal stuff
+        // Load the core which manages lot of stuff like GC, exception handling and some internal stuff
         Huggle::Core::HuggleCore = new Huggle::Core();
         Huggle::Core::HuggleCore->Init();
 
