@@ -14,6 +14,7 @@
 * Nemo bis
 * Petrb
 * Robby
+* Samwilson
 * Se4598
 * Shirayuki
 * Silviu200530
@@ -102,7 +103,7 @@
   <string name="block-token-e1">Displayed when it fails to get a token while blocking a user, $1 is error message</string>
   <string name="block-error-no-info">Shown when mediawiki returns no user info, which happens when user isn\'t a sysop during block of user</string>
   <string name="block-type">shown in report box as column header which type the block-logentry was of.\n\nThe column contains \"block\" and \"unblock\".</string>
-  <string name="block-admin">Person who blocked a user in report user form.\n\n{{doc-important|This refers to the sysop who did the blocking, not to the blocking of a sysop!}}</string>
+  <string name="block-admin">Person who blocked a user in report user form.\n\n{{doc-important|This refers to the admin who did the blocking, not to the blocking of a admin!}}</string>
   <string name="block-none">Shown when there is no user to block</string>
   <string name="config-function">{{Identical|Function}}</string>
   <string name="config-description">{{Identical|Description}}</string>

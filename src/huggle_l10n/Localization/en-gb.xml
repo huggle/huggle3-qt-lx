@@ -5,6 +5,7 @@
 * Chase me ladies, I'm the Cavalry
 * DatGuy
 * Dejavu
+* Samwilson
 -->
 <resources>
   <string name="name">English (British)</string>
@@ -30,7 +31,7 @@
   <string name="result">Result</string>
   <string name="save">Save</string>
   <string name="show">Show</string>
-  <string name="no-instant" fuzzy="true">Instant warnings are not enabled on project $1, so the message to $2 cannot be sent. Please pick a different warning level.</string>
+  <string name="no-instant">The message to $2 cannot be sent, as instant warnings are not enabled on project $1. Please pick a different warning level.</string>
   <string name="undo">Undo</string>
   <string name="yes">Yes</string>
   <string name="editing-page">Editing page</string>
@@ -53,15 +54,15 @@
   <string name="link">Link</string>
   <string name="reason">Reason</string>
   <string name="diffid">DiffID</string>
-  <string name="whitelisted" fuzzy="true">$1 with score $2 on $3 has been placed onto the whitelist</string>
+  <string name="whitelisted">$1 with score $2 on $3 has been whitelisted</string>
   <string name="expiry-time">Expiry time</string>
   <string name="duration">Duration</string>
   <string name="enable">Enable</string>
   <string name="disable">Disable</string>
   <string name="no-token">No token</string>
   <string name="flags">Flags</string>
-  <string name="gracetime" fuzzy="true">Waiting for queries that perform some editing to end...</string>
-  <string name="browser-none" fuzzy="true">No page is displayed now</string>
+  <string name="gracetime">Waiting for queries that perform edits to end...</string>
+  <string name="browser-none">There is no page to display yet.</string>
   <string name="browser-load">Downloading diff using a MW rendering fall-back, please wait...</string>
   <string name="browser-miss-summ">No summary was provided</string>
   <string name="browser-diff">Diff of page: $1 (score: $2)</string>
@@ -86,10 +87,10 @@
   <string name="block-token-1">Getting token to block $1</string>
   <string name="block-fail">Unable to block user, $1</string>
   <string name="block-token-e1">Token can\'t be retrieved: $1</string>
-  <string name="block-error-no-info" fuzzy="true">No user info was present in the query (are you a sysop?)</string>
+  <string name="block-error-no-info">No user info was present in the query (are you an admin?)</string>
   <string name="block-type">Block/unblock</string>
-  <string name="block-admin" fuzzy="true">Blocking sysop</string>
-  <string name="block-none" fuzzy="true">There is no user to block.</string>
+  <string name="block-admin">Blocking admin</string>
+  <string name="block-none">There is no user selected to block.</string>
   <string name="contribution-browser-user-info">Showing recent contributions of user $1</string>
   <string name="config-function">Function</string>
   <string name="config-description">Description</string>
