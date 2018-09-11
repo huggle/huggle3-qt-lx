@@ -139,6 +139,13 @@ void UiScript::ToggleMenuCheckState(int menu, bool checked)
     this->scriptMenus[menu]->SetChecked(checked);
 }
 
+void UiScript::ToggleMenuEnabledState(int menu, bool enabled)
+{
+    if (!this->scriptMenus.contains(menu))
+        return;
+    this->scriptMenus[menu]->SetEnabled(enabled);
+}
+
 bool UiScript::OwnMenu(int menu_id)
 {
     return this->scriptMenus.contains(menu_id);
@@ -256,6 +263,11 @@ QAction *ScriptMenu::GetAction()
 void ScriptMenu::SetChecked(bool checked)
 {
     this->item->setChecked(checked);
+}
+
+void ScriptMenu::SetEnabled(bool enabled)
+{
+    this->item->setEnabled(enabled);
 }
 
 QString ScriptMenu::GetCallback()

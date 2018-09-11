@@ -36,6 +36,7 @@ HuggleUIJS::HuggleUIJS(Script *s) : GenericJSClass(s)
     this->function_help.insert("internal_link", "(string link, [bool lock_page]): (since HG 3.4.4) opens a link in huggle browser");
     this->function_help.insert("mainwindow_is_loaded", "(): Returns true if main window is loaded");
     this->function_help.insert("menu_item_set_checked", "(int menu_id, bool state): toggles menu checked state");
+    this->function_help.insert("menu_item_set_enabled", "(int menu_id, bool enabled): toggles menu enabled state");
     this->function_help.insert("display_revid", "(revid, wiki): (3.4.5) show a revid in current tab");
     this->function_help.insert("get_current_wiki_edit", "(): returns a copy of currently displayed edit");
     this->function_help.insert("delete_menu_item", "(int menu_id): remove a menu that was created by this script");
@@ -126,6 +127,24 @@ bool HuggleUIJS::menu_item_set_checked(int menu, bool checked)
     }
 
     this->ui_script->ToggleMenuCheckState(menu, checked);
+    return true;
+}
+
+bool HuggleUIJS::menu_item_set_enabled(int menu, bool enabled)
+{
+    if (!Huggle::MainWindow::HuggleMain)
+    {
+        HUGGLE_ERROR(this->ui_script->GetName() + ": menu_item_set_enabled(menu, checked): mainwindow is not loaded yet");
+        return false;
+    }
+
+    if (!this->ui_script->OwnMenu(menu))
+    {
+        HUGGLE_ERROR(this->ui_script->GetName() + ": menu_item_set_enabled(menu, checked): request to enabled state of menu that is not owned by this script");
+        return false;
+    }
+
+    this->ui_script->ToggleMenuEnabledState(menu, enabled);
     return true;
 }
 

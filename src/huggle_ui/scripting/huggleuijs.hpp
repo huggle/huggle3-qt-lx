@@ -31,6 +31,7 @@ namespace Huggle
             Q_INVOKABLE int create_menu_item(int parent, QString name, QString function, bool checkable = false);
             Q_INVOKABLE bool delete_menu_item(int menu_id);
             Q_INVOKABLE bool menu_item_set_checked(int menu, bool checked);
+            Q_INVOKABLE bool menu_item_set_enabled(int menu, bool enabled);
             Q_INVOKABLE bool mainwindow_is_loaded();
             Q_INVOKABLE int message_box(QString title, QString text, int messagebox_type = 0, bool pause = false);
             Q_INVOKABLE bool show_tray_message(QString heading, QString message);

@@ -36,6 +36,7 @@ namespace Huggle
             ~ScriptMenu();
             QAction *GetAction();
             void SetChecked(bool checked);
+            void SetEnabled(bool enabled);
             QString GetCallback();
             QMenu *GetParent();
 
@@ -61,6 +62,7 @@ namespace Huggle
             int RegisterMenu(QMenu *parent, QString title, QString fc, bool checkable);
             void UnregisterMenu(int menu);
             void ToggleMenuCheckState(int menu, bool checked);
+            void ToggleMenuEnabledState(int menu, bool enabled);
             bool OwnMenu(int menu_id);
             void Hook_OnMain();
             void Hook_OnLogin();
