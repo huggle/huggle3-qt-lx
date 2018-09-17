@@ -3,6 +3,7 @@
 * ChrisiPK
 * Das Schäfchen
 * Eddie
+* FF11
 * Freddy2001
 * Kghbln
 * Luke081515
@@ -84,8 +85,8 @@
   <string name="block-message">Nachricht auf Diskussionsseite:</string>
   <string name="block-message-user">Nachricht mit einer Erläuterung der Sperre an den Zielbenutzer senden</string>
   <string name="block-anononly">Nur anonyme Benutzer sperren</string>
-  <string name="block-creation">Erstellen von Benutzerkonten verhindern</string>
-  <string name="block-autoblock">Automatische Sperren anschalten</string>
+  <string name="block-creation">Erstellung von Benutzerkonten sperren</string>
+  <string name="block-autoblock">Autoblock aktiviert</string>
   <string name="block-email">E-Mail-Versand sperren</string>
   <string name="block-usertalk">Benutzer Diskussion</string>
   <string name="block-usercontribs">Benutzerbeiträge</string>
@@ -99,7 +100,7 @@
   <string name="block-error-no-info">Es sind keine Benutzerinformationen in der Abfrage vorhanden. Bist du ein Administrator?</string>
   <string name="block-type">Sperren / Freigeben</string>
   <string name="block-admin">Sperrender Administrator</string>
-  <string name="block-none">Es gibt keinen ausgewählten Benutzer zum Sperren.</string>
+  <string name="block-none">Es wurde kein Benutzer zum Sperren ausgewählt</string>
   <string name="contribution-browser-user-info">Die letzten Beiträge des Benutzers $1</string>
   <string name="config-function">Funktion</string>
   <string name="config-description">Beschreibung</string>
@@ -125,7 +126,7 @@
   <string name="config-changeshortcut">Kürzel für $1 ändern</string>
   <string name="config-noshortcut">Kein Kürzel</string>
   <string name="config-defaults">Standardeinstellung</string>
-  <string name="config-minor">Als geringfügige Änderung markieren</string>
+  <string name="config-minor">Nur Kleinigkeiten wurden verändert</string>
   <string name="config-ip">IP-Benutzer</string>
   <string name="config-watchlist">Zur Beobachtungsliste hinzufügen</string>
   <string name="config-defaultsummary">Standardzusammenfassung für manuelle Änderungen</string>

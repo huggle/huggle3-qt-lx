@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
+* Dan Koehl
 * Joedalton
 * Mads Haupt
 * Palnatoke
@@ -63,6 +64,7 @@
   <string name="flags">Flag</string>
   <string name="gracetime">Venter på at forespørgsler som udfører redigeringer afsluttes ...</string>
   <string name="browser-none">Der er ingen side at vise endnu.</string>
+  <string name="browser-load">Oplad ned forskellen gennem at anvende en \"MW fald back\", venligen vente...</string>
   <string name="browser-miss-summ">Der blev ikke angivet en redigeringsbeskrivelse</string>
   <string name="about-contributors">Udviklere:</string>
   <string name="block-not">Brugeren er ikke blokeret</string>
@@ -88,6 +90,7 @@
   <string name="config-function">Funktion</string>
   <string name="config-description">Beskrivelse</string>
   <string name="config-shortcut">Genvej</string>
+  <string name="config-queue-filter-ignore">Ignorera (spiller ingen rolle)</string>
   <string name="config-queue-filter-exclude">Udeluk (må ikke være)</string>
   <string name="config-summ">Brugerdefinerede tilbagerulningsbeskrivelser til skabeloner</string>
   <string name="config-title">Indstillinger</string>
@@ -104,7 +107,9 @@
   <string name="config-minor">Mærk som indre ændring</string>
   <string name="config-ip">IP-brugere</string>
   <string name="config-watchlist">Tilføj til overvågningsliste</string>
+  <string name="config-use-rollback">Anvend computerprogram for tillbakarullning</string>
   <string name="config-welcome-empty-page">Send velkomstbesked til brugere som har tom diskussionsside ved god redigering</string>
+  <string name="config-conflicts-revert">Lös automatisk redigering konflikter med andre bruger som återställde eller ændrede samme side</string>
   <string name="config-skip">Udelad</string>
   <string name="config-enable-irc">Aktiver IRC</string>
   <string name="config-display-next">Vis næste</string>
@@ -121,6 +126,7 @@
   <string name="config-updates">Kontroller for opdateringer</string>
   <string name="config-beta">kontroller for betaversioner</string>
   <string name="config-close-without">Luk uden at gemme</string>
+  <string name="config-userollback">Brug rollback hvis tilgængeligt</string>
   <string name="config-reportnone">Gør intet</string>
   <string name="config-reportprompt">Spørg om rapport</string>
   <string name="config-templatetext">Skærmtekst</string>
@@ -136,6 +142,7 @@
   <string name="custommessage-subject">Titel</string>
   <string name="custommessage-send">Send besked</string>
   <string name="custommessage-wikiuser-plaintext-1">Hej $1,</string>
+  <string name="custommessage-wikiuser-plaintext-2">Skriv dit annonce her.</string>
   <string name="delete-title">Slet $1</string>
   <string name="delete-reason">Årsag:</string>
   <string name="delete-deletionlog">Sletningslog:</string>
@@ -162,8 +169,10 @@
   <string name="login-proxy-remember-this">Husk denne indstilling næste gang</string>
   <string name="login-proxyport">Port:</string>
   <string name="login-proxydomain">Domæne:</string>
+  <string name="proxy-restart">Huggle måske må startes om for at disse ændringer skal træde i kraft.</string>
   <string name="login-retrieving-user-conf">Henter brugerindstillinger</string>
   <string name="login-retrieving-info">Henter brugerinformation på $1</string>
+  <string name="login-fail-wrong-name">Du gav ingen bruger navn for indlogeringen</string>
   <string name="login-start">Log på</string>
   <string name="login-translate">Oversæt Huggle</string>
   <string name="login-progress-formtitle">Indlæser...</string>
