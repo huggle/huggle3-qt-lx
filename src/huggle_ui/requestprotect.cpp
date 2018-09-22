@@ -31,7 +31,7 @@ RequestProtect::RequestProtect(WikiPage *wikiPage, QWidget *parent) : HW("reques
     this->tm = new QTimer(this);
     connect(this->tm, SIGNAL(timeout()), this, SLOT(Tick()));
     this->ui->lineEdit->setText(wikiPage->GetSite()->GetProjectConfig()->RFPP_Reason);
-    this->ui->LabelDuration = _l("duration");
+    this->ui->LabelDuration->setText(_l("duration"));
     this->RestoreWindow();
 }
 
