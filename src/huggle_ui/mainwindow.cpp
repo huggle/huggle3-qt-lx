@@ -782,6 +782,18 @@ void MainWindow::ShutdownForm()
     this->close();
 }
 
+QLabel *MainWindow::CreateStatusBarLabel(QString text)
+{
+    QLabel *lb = new QLabel(this->statusBar());
+    this->statusBar()->addWidget(lb);
+    return lb;
+}
+
+void MainWindow::RemoveStatusBarItem(QWidget *widget)
+{
+    this->statusBar()->removeWidget(widget);
+}
+
 void MainWindow::ReloadSc()
 {
     Configuration::HuggleConfiguration->ReloadOfMainformNeeded = false;

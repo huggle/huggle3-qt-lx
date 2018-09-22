@@ -18,6 +18,8 @@
 #include <QHash>
 #include <QJSValue>
 
+class QLabel;
+
 namespace Huggle
 {
     class OverlayBox;
@@ -53,6 +55,9 @@ namespace Huggle
             Q_INVOKABLE QJSValue filebox_save(QString title, QString mask = "All files (*)");
             Q_INVOKABLE void external_link(QString link);
             Q_INVOKABLE bool internal_link(QString link, bool lock_page = false);
+            Q_INVOKABLE int create_status_bar_label(QString text);
+            Q_INVOKABLE bool delete_status_bar_label(int id);
+            Q_INVOKABLE bool set_status_bar_text(int id, QString text);
             QHash<QString, QString> GetFunctions();
         private slots:
             void OverlayClosed(QObject *ob);
@@ -60,6 +65,8 @@ namespace Huggle
             QHash<QString, QString> function_help;
             QHash<int, OverlayBox*> overlayBoxes;
             int lastOB = 0;
+            QHash<int, QLabel*> statusBarDynamicBoxes;
+            int lastSB = 0;
             UiScript *ui_script;
     };
 }

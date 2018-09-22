@@ -205,6 +205,8 @@ namespace Huggle
             void GoBackward();
             void ShowToolTip(QString text);
             void ShutdownForm();
+            QLabel *CreateStatusBarLabel(QString text);
+            void RemoveStatusBarItem(QWidget *widget);
             //! List of edits that are being saved
             QList<WikiEdit*> PendingEdits;
             //! Pointer to syslog

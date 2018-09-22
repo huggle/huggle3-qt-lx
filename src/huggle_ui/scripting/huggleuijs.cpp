@@ -22,6 +22,7 @@
 #include <huggle_core/wikisite.hpp>
 #include <huggle_core/syslog.hpp>
 #include <QUrl>
+#include <QLabel>
 #include <QDesktopServices>
 #include <QFileDialog>
 #include <QInputDialog>
@@ -57,6 +58,10 @@ HuggleUIJS::HuggleUIJS(Script *s) : GenericJSClass(s)
     this->function_help.insert("input_box", "(string title, string text, string default): (since HG 3.4.4) get input from user");
     this->function_help.insert("filebox_open", "(string title, string mask): (since HG 3.4.4) file box for opening of a file");
     this->function_help.insert("filebox_save", "(string title, string mask): (since HG 3.4.4) file box for saving of a file");
+
+    this->function_help.insert("create_status_bar_label", "(string text): (3.4.5) Creates a new item in status bar");
+    this->function_help.insert("remove_status_bar_label", "(int id): (3.4.5) Removes status bar label");
+    this->function_help.insert("set_status_bar_text", "(int id, string text): (3.4.5) Change status bar text");
 }
 
 HuggleUIJS::~HuggleUIJS()
@@ -64,6 +69,15 @@ HuggleUIJS::~HuggleUIJS()
     foreach (OverlayBox *ob, this->overlayBoxes.values())
         ob->Close();
     this->overlayBoxes.clear();
+    if (Huggle::MainWindow::HuggleMain)
+    {
+        foreach (QLabel *l, this->statusBarDynamicBoxes.values())
+        {
+            Huggle::MainWindow::HuggleMain->RemoveStatusBarItem(l);
+            delete l;
+        }
+        this->statusBarDynamicBoxes.clear();
+    }
 }
 
 int HuggleUIJS::create_menu_item(int parent, QString name, QString function, bool checkable)
@@ -378,6 +392,41 @@ bool HuggleUIJS::internal_link(QString link, bool lock_page)
     {
         MainWindow::HuggleMain->LockPage();
     }
+    return true;
+}
+
+int HuggleUIJS::create_status_bar_label(QString text)
+{
+    if (!Huggle::MainWindow::HuggleMain)
+    {
+        HUGGLE_ERROR(this->script->GetName() + ": create_status_bar_label(text): mainwindow is not loaded yet");
+        return -1;
+    }
+
+    int label = this->lastSB++;
+    QLabel *label_ptr = Huggle::MainWindow::HuggleMain->CreateStatusBarLabel(text);
+    this->statusBarDynamicBoxes.insert(label, label_ptr);
+    return label;
+}
+
+bool HuggleUIJS::delete_status_bar_label(int id)
+{
+    if (!this->statusBarDynamicBoxes.contains(id))
+        return false;
+
+    Huggle::MainWindow::HuggleMain->RemoveStatusBarItem(this->statusBarDynamicBoxes[id]);
+    delete this->statusBarDynamicBoxes[id];
+    this->statusBarDynamicBoxes.remove(id);
+    return true;
+}
+
+bool HuggleUIJS::set_status_bar_text(int id, QString text)
+{
+    if (!this->statusBarDynamicBoxes.contains(id))
+        return false;
+
+    // Change text
+    this->statusBarDynamicBoxes[id]->setText(text);
     return true;
 }
 
