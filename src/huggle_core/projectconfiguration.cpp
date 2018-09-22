@@ -761,6 +761,7 @@ bool ProjectConfiguration::ParseYAML(QString yaml_src, QString *reason, WikiSite
     this->SharedIPTemplate = HuggleParser::YAML2String("shared-ip-template", yaml);
     this->ProtectReason =  HuggleParser::YAML2String("protection-reason", yaml, "Excessive [[Wikipedia:Vandalism|vandalism]]");
     this->RevertingEnabled = HuggleParser::YAML2Bool("reverting-enabled", yaml, this->RevertingEnabled);
+    this->RFPP_Reason = HuggleParser::YAML2String("protection-request-reason", yaml, this->RFPP_Reason);
     this->RFPP_PlaceTop = HuggleParser::YAML2Bool("protection-request-top", yaml);
     this->RFPP_Regex = HuggleParser::YAML2String("rfpp-verify", yaml);
     this->RFPP_Section = (unsigned int)HuggleParser::YAML2Int("rfpp-section", yaml, 0);

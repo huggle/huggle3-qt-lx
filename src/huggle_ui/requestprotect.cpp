@@ -30,6 +30,7 @@ RequestProtect::RequestProtect(WikiPage *wikiPage, QWidget *parent) : HW("reques
     this->setWindowTitle(_l("protect-request-title", this->page->PageName));
     this->tm = new QTimer(this);
     connect(this->tm, SIGNAL(timeout()), this, SLOT(Tick()));
+    this->ui->lineEdit->setText(wikiPage->GetSite()->GetProjectConfig()->RFPP_Reason);
     this->RestoreWindow();
 }
 
@@ -67,7 +68,9 @@ void RequestProtect::Tick()
         this->Timestamp = e.attribute("timestamp");
         QString PageText = e.text();
         // make a regex out of the pattern string
-        QRegExp rx(this->page->GetSite()->GetProjectConfig()->RFPP_Regex);
+        QString regex_str = this->page->GetSite()->GetProjectConfig()->RFPP_Regex;
+        regex_str.replace("$title", this->page->PageName);
+        QRegExp rx(regex_str);
         if (rx.exactMatch(PageText))
         {
             this->Fail(_l("reqprotection-duplicate"));
