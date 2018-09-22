@@ -31,6 +31,7 @@ RequestProtect::RequestProtect(WikiPage *wikiPage, QWidget *parent) : HW("reques
     this->tm = new QTimer(this);
     connect(this->tm, SIGNAL(timeout()), this, SLOT(Tick()));
     this->ui->lineEdit->setText(wikiPage->GetSite()->GetProjectConfig()->RFPP_Reason);
+    this->ui->LabelDuration = _l("duration");
     this->RestoreWindow();
 }
 
@@ -114,7 +115,7 @@ void RequestProtect::Tick()
         QString summary_ = this->page->GetSite()->GetProjectConfig()->RFPP_Summary;
         summary_.replace("$1", this->ProtectionType());
         summary_.replace("$2", this->page->PageName);
-        this->ui->pushButton->setText(_l("requesting"));
+        this->ui->pushButton_RequestProtection->setText(_l("requesting"));
         // let's edit the page now
         if (this->page->GetSite()->GetProjectConfig()->RFPP_Section == 0)
         {
@@ -136,7 +137,7 @@ void RequestProtect::Tick()
             this->Fail("Unable to process: " + this->qEditRFP->GetFailureReason());
             return;
         }
-        this->ui->pushButton->setText(_l("requested"));
+        this->ui->pushButton_RequestProtection->setText(_l("requested"));
         this->tm->stop();
     }
 }
@@ -158,17 +159,17 @@ void Huggle::RequestProtect::on_pushButton_clicked()
     QueryPool::HugglePool->AppendQuery(this->qRFPPage);
     this->qRFPPage->Process();
     this->tm->start(HUGGLE_TIMER);
-    this->ui->pushButton->setText(_l("retrieving"));
-    this->ui->pushButton->setEnabled(false);
+    this->ui->pushButton_RequestProtection->setText(_l("retrieving"));
+    this->ui->pushButton_RequestProtection->setEnabled(false);
 }
 
 QString RequestProtect::ProtectionType()
 {
-    if (this->ui->radioButton_2->isChecked())
+    if (this->ui->radioButton_Indefinite->isChecked())
     {
-        return "Permanent protection";
+        return this->qRFPPage->GetSite()->GetProjectConfig()->RFPP_Permanent;
     }
-    return "Temporary protection";
+    return this->qRFPPage->GetSite()->GetProjectConfig()->RFPP_Temporary;
 }
 
 void RequestProtect::Fail(QString message)
@@ -181,8 +182,8 @@ void RequestProtect::Fail(QString message)
     this->qEditRFP.Delete();
     this->qRFPPage.Delete();
     this->tm->stop();
-    this->ui->pushButton->setEnabled(true);
-    this->ui->pushButton->setText(_l("request"));
+    this->ui->pushButton_RequestProtection->setEnabled(true);
+    this->ui->pushButton_RequestProtection->setText(_l("request"));
 }
 
 void Huggle::RequestProtect::on_pushButton_2_clicked()

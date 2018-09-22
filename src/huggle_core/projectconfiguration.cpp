@@ -772,6 +772,8 @@ bool ProjectConfiguration::ParseYAML(QString yaml_src, QString *reason, WikiSite
     this->RFPP_Summary = HuggleParser::YAML2String("protection-request-summary", yaml, "Request to protect page");
     this->RFPP = (this->RFPP_Template.length() && this->RFPP_Regex.length());
     this->RFPP_TemplateUser = HuggleParser::YAML2String("rfpp-template-user", yaml);
+    this->RFPP_Temporary = HuggleParser::YAML2String("rfpp-temporary", yaml, this->RFPP_Temporary);
+    this->RFPP_Permanent = HuggleParser::YAML2String("rfpp-permanent", yaml, this->RFPP_Permanent);
     this->RestoreSummary = HuggleParser::YAML2String("restore-summary", yaml, this->RestoreSummary);
     this->ReportUserCheckPattern = HuggleParser::YAML2String("report-user-check-patter", yaml, this->ReportUserCheckPattern);
     this->WarningSummaries.clear();

@@ -140,6 +140,8 @@ namespace Huggle
             bool            EnableAll = false;
             byte_ht         WarningLevel = 4;
             bool            AIV = false;
+            QString         RFPP_Temporary = "Temporary protection";
+            QString         RFPP_Permanent = "Permanent protection";
             bool            RFPP = false;
             unsigned int    RFPP_Section;
             QString         RFPP_Template = "";
