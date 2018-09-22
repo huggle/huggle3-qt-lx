@@ -113,6 +113,7 @@ namespace Huggle
             void Insert(QString text, HAN::MessageType type);
             void Connect();
             void Disconnect();
+            bool IsConnected();
             //! This will deliver an edit to others as a good edit
             void Good(WikiEdit *Edit);
             //! Notify others about a rollback of edit
@@ -143,7 +144,7 @@ namespace Huggle
             void ProcessCommand(WikiSite *site, QString nick, QString message);
             Ui::VandalNw *ui;
             //! Pointer to irc server
-            libircclient::Network *Irc;
+            libircclient::Network *irc;
             //! Using this we track if channel was joined or not, because we need to send
             //! the request some time after connection or irc server would skip it
             bool JoinedMain;

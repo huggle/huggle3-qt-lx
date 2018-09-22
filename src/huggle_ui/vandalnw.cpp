@@ -87,7 +87,7 @@ VandalNw::VandalNw(QWidget *parent) : QDockWidget(parent), ui(new Ui::VandalNw)
     QString nick = hcfg->SystemConfig_Username;
     nick.replace(" ", "_");
     libirc::ServerAddress server(hcfg->VandalNw_Server, false, 6667, nick);
-    this->Irc = new libircclient::Network(server, "HAN");
+    this->irc = new libircclient::Network(server, "HAN");
     this->ui->setupUi(this);
     // such hack. much WOW :P
     this->ui->horizontalLayout_2->removeWidget(this->ui->plainTextEdit);
@@ -124,19 +124,19 @@ VandalNw::VandalNw(QWidget *parent) : QDockWidget(parent), ui(new Ui::VandalNw)
     connect(Events::Global, SIGNAL(WikiEdit_OnSuspicious(WikiEdit*)), this, SLOT(OnSuspicious(WikiEdit*)));
     connect(Events::Global, SIGNAL(WikiEdit_OnWarning(WikiUser*,byte_ht)), this, SLOT(OnWarning(WikiUser*,byte_ht)));
     connect(((IRCChatTextBox*)this->ui->plainTextEdit), SIGNAL(Event_Link(QString)), this, SLOT(TextEdit_anchorClicked(QString)));
-    connect(this->Irc, SIGNAL(Event_Connected()), this, SLOT(OnConnected()));
-    connect(this->Irc, SIGNAL(Event_SelfJoin(libircclient::Channel*)), this, SLOT(OnIRCSelfJoin(libircclient::Channel*)));
-    connect(this->Irc, SIGNAL(Event_SelfPart(libircclient::Parser*,libircclient::Channel*)), this, SLOT(OnIRCSelfPart(libircclient::Parser*,libircclient::Channel*)));
-    connect(this->Irc, SIGNAL(Event_PRIVMSG(libircclient::Parser*)), this, SLOT(OnIRCChannelMessage(libircclient::Parser*)));
-    connect(this->Irc, SIGNAL(Event_PerChannelQuit(libircclient::Parser*,libircclient::Channel*)), this, SLOT(OnIRCChannelQuit(libircclient::Parser*,libircclient::Channel*)));
-    connect(this->Irc, SIGNAL(Event_Disconnected()), this, SLOT(OnDisconnected()));
-    connect(this->Irc, SIGNAL(Event_Join(libircclient::Parser*,libircclient::User*,libircclient::Channel*)), this, SLOT(OnIRCUserJoin(libircclient::Parser*,libircclient::User*,libircclient::Channel*)));
-    connect(this->Irc, SIGNAL(Event_MyInfo(libircclient::Parser*)), this, SLOT(OnIRCLoggedIn(libircclient::Parser*)));
-    connect(this->Irc, SIGNAL(Event_Part(libircclient::Parser*,libircclient::Channel*)), this, SLOT(OnIRCUserPart(libircclient::Parser*,libircclient::Channel*)));
-    connect(this->Irc, SIGNAL(Event_EndOfNames(libircclient::Parser*)), this, SLOT(OnIRCChannelNames(libircclient::Parser*)));
-    connect(this->Irc, SIGNAL(Event_CTCP(libircclient::Parser*,QString,QString)), this, SLOT(OnIRCChannelCTCP(libircclient::Parser*,QString,QString)));
-    this->Irc->SetDefaultUsername(Configuration::HuggleConfiguration->HuggleVersion);
-    this->Irc->SetDefaultIdent("huggle");
+    connect(this->irc, SIGNAL(Event_Connected()), this, SLOT(OnConnected()));
+    connect(this->irc, SIGNAL(Event_SelfJoin(libircclient::Channel*)), this, SLOT(OnIRCSelfJoin(libircclient::Channel*)));
+    connect(this->irc, SIGNAL(Event_SelfPart(libircclient::Parser*,libircclient::Channel*)), this, SLOT(OnIRCSelfPart(libircclient::Parser*,libircclient::Channel*)));
+    connect(this->irc, SIGNAL(Event_PRIVMSG(libircclient::Parser*)), this, SLOT(OnIRCChannelMessage(libircclient::Parser*)));
+    connect(this->irc, SIGNAL(Event_PerChannelQuit(libircclient::Parser*,libircclient::Channel*)), this, SLOT(OnIRCChannelQuit(libircclient::Parser*,libircclient::Channel*)));
+    connect(this->irc, SIGNAL(Event_Disconnected()), this, SLOT(OnDisconnected()));
+    connect(this->irc, SIGNAL(Event_Join(libircclient::Parser*,libircclient::User*,libircclient::Channel*)), this, SLOT(OnIRCUserJoin(libircclient::Parser*,libircclient::User*,libircclient::Channel*)));
+    connect(this->irc, SIGNAL(Event_MyInfo(libircclient::Parser*)), this, SLOT(OnIRCLoggedIn(libircclient::Parser*)));
+    connect(this->irc, SIGNAL(Event_Part(libircclient::Parser*,libircclient::Channel*)), this, SLOT(OnIRCUserPart(libircclient::Parser*,libircclient::Channel*)));
+    connect(this->irc, SIGNAL(Event_EndOfNames(libircclient::Parser*)), this, SLOT(OnIRCChannelNames(libircclient::Parser*)));
+    connect(this->irc, SIGNAL(Event_CTCP(libircclient::Parser*,QString,QString)), this, SLOT(OnIRCChannelCTCP(libircclient::Parser*,QString,QString)));
+    this->irc->SetDefaultUsername(Configuration::HuggleConfiguration->HuggleVersion);
+    this->irc->SetDefaultIdent("huggle");
     this->ui->tableWidget->setColumnCount(1);
     this->ui->tableWidget->verticalHeader()->setVisible(false);
     this->ui->tableWidget->horizontalHeader()->setVisible(false);
@@ -150,12 +150,12 @@ VandalNw::VandalNw(QWidget *parent) : QDockWidget(parent), ui(new Ui::VandalNw)
 VandalNw::~VandalNw()
 {
     delete this->ui;
-    delete this->Irc;
+    delete this->irc;
 }
 
 void VandalNw::Connect()
 {
-    if (this->Irc->IsConnected())
+    if (this->irc->IsConnected())
     {
         Syslog::HuggleLogs->Log(_l("han-already-connected"));
         return;
@@ -167,15 +167,24 @@ void VandalNw::Connect()
     } else
     {
         this->Insert(_l("han-connecting"), HAN::MessageType_Info);
-        this->Irc->Connect();
+        this->irc->Connect();
     }
 }
 
 void VandalNw::Disconnect()
 {
-    this->Irc->Disconnect(Generic::IRCQuitDefaultMessage());
+    this->irc->Disconnect(Generic::IRCQuitDefaultMessage());
     this->JoinedMain = false;
     this->Insert(_l("han-disconnected"), HAN::MessageType_Info);
+    this->refreshUL();
+    this->ui->pushButton->setEnabled(false);
+}
+
+bool VandalNw::IsConnected()
+{
+    if (!this->irc)
+        return false;
+    return this->irc->IsConnected();
 }
 
 void VandalNw::Good(WikiEdit *Edit)
@@ -188,7 +197,7 @@ void VandalNw::Good(WikiEdit *Edit)
     {
         throw new Exception("There is no channel for this site", BOOST_CURRENT_FUNCTION);
     }
-    this->Irc->SendMessage(this->Prefix + "GOOD " + QString::number(Edit->RevID), this->Site2Channel[Edit->GetSite()]);
+    this->irc->SendMessage(this->Prefix + "GOOD " + QString::number(Edit->RevID), this->Site2Channel[Edit->GetSite()]);
 }
 
 void VandalNw::Rollback(WikiEdit *Edit)
@@ -201,7 +210,7 @@ void VandalNw::Rollback(WikiEdit *Edit)
     {
         throw new Exception("There is no channel for this site", BOOST_CURRENT_FUNCTION);
     }
-    this->Irc->SendMessage(this->Prefix + "ROLLBACK " + QString::number(Edit->RevID), this->Site2Channel[Edit->GetSite()]);
+    this->irc->SendMessage(this->Prefix + "ROLLBACK " + QString::number(Edit->RevID), this->Site2Channel[Edit->GetSite()]);
 }
 
 void VandalNw::SuspiciousWikiEdit(WikiEdit *Edit)
@@ -214,7 +223,7 @@ void VandalNw::SuspiciousWikiEdit(WikiEdit *Edit)
     {
         throw new Exception("There is no channel for this site", BOOST_CURRENT_FUNCTION);
     }
-    this->Irc->SendMessage(this->Prefix + "SUSPICIOUS " + QString::number(Edit->RevID), this->Site2Channel[Edit->GetSite()]);
+    this->irc->SendMessage(this->Prefix + "SUSPICIOUS " + QString::number(Edit->RevID), this->Site2Channel[Edit->GetSite()]);
 }
 
 void VandalNw::WarningSent(WikiUser *user, byte_ht Level)
@@ -227,7 +236,7 @@ void VandalNw::WarningSent(WikiUser *user, byte_ht Level)
     {
         throw new Exception("There is no channel for this site", BOOST_CURRENT_FUNCTION);
     }
-    this->Irc->SendMessage(this->Prefix + "WARN " + QString::number(Level) + " " + QUrl::toPercentEncoding(user->Username), this->Site2Channel[user->GetSite()]);
+    this->irc->SendMessage(this->Prefix + "WARN " + QString::number(Level) + " " + QUrl::toPercentEncoding(user->Username), this->Site2Channel[user->GetSite()]);
 }
 
 void VandalNw::GetChannel()
@@ -338,9 +347,9 @@ void VandalNw::SendMessage(QString text)
 {
     if (text.isEmpty())
         return;
-    if (this->Irc->IsConnected())
+    if (this->irc->IsConnected())
     {
-        this->Irc->SendMessage(text, this->Site2Channel[hcfg->Project]);
+        this->irc->SendMessage(text, this->Site2Channel[hcfg->Project]);
         if (!hcfg->UserConfig->HtmlAllowedInIrc)
             text = SafeHtml(text);
         this->Insert(hcfg->SystemConfig_Username + ": " + text, HAN::MessageType_UserTalk);
@@ -397,14 +406,19 @@ void VandalNw::ProcessSusp(WikiEdit *edit, QString user)
 
 void VandalNw::refreshUL()
 {
-    if (!this->Irc->IsConnected())
+    if (!this->irc->IsConnected())
     {
         this->setWindowTitle(_l("han-network"));
+        // remove all items from list
+        while (this->ui->tableWidget->rowCount() > 0)
+        {
+            this->ui->tableWidget->removeRow(0);
+        }
     } else
     {
         QList<libircclient::User*> users;
         QStringList users_nicks;
-        libircclient::Channel *channel_ = this->Irc->GetChannel(this->Site2Channel[Configuration::HuggleConfiguration->Project]);
+        libircclient::Channel *channel_ = this->irc->GetChannel(this->Site2Channel[Configuration::HuggleConfiguration->Project]);
 
         if (channel_ != nullptr)
             users = channel_->GetUsers().values();
@@ -433,7 +447,7 @@ void VandalNw::refreshUL()
             }
             this->ui->tableWidget->resizeRowsToContents();
         }
-        this->setWindowTitle(QString(_l("han-network") + " - " + this->Irc->GetNick() + " (" + QString::number(users_nicks.size()) + ")"));
+        this->setWindowTitle(QString(_l("han-network") + " - " + this->irc->GetNick() + " (" + QString::number(users_nicks.size()) + ")"));
     }
 }
 
@@ -678,7 +692,7 @@ void VandalNw::OnIRCChannelMessage(libircclient::Parser *px)
         return;
     }
 
-    if (message.contains(this->Irc->GetNick()))
+    if (message.contains(this->irc->GetNick()))
     {
         // Show a notification in tray
         MainWindow::HuggleMain->TrayMessage("Huggle anti-vandalism network", message);
@@ -731,7 +745,7 @@ void VandalNw::OnIRCLoggedIn(libircclient::Parser *px)
     foreach(QString channel, this->Site2Channel.values())
     {
         if (channel.startsWith("#"))
-            this->Irc->TransferRaw("JOIN " + channel);
+            this->irc->TransferRaw("JOIN " + channel);
     }
 }
 
