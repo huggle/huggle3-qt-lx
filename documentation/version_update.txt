@@ -1,0 +1,7 @@
+Where to update information about Huggle version:
+
+src/huggle_core/definitions_prod.hpp
+MacOS/Info.plist
+windows/Huggle.nsi
+windows64/Huggle.nsi
+snap/snapcraft.yaml
