@@ -14,7 +14,7 @@
 <string>org.wikimedia.huggle</string>
 <key>CFBundleVersion</key>
 <string>3.4.5</string>
-<key>CFShortVersionString</key>
+<key>CFBundleShortVersionString</key>
 <string>3.4.5</string>
 </dict>
 </plist>
