@@ -2857,18 +2857,18 @@ void MainWindow::on_actionDelete_triggered()
     this->DeletePage();
 }
 
-void Huggle::MainWindow::on_actionBlock_user_triggered()
+void MainWindow::on_actionBlock_user_triggered()
 {
     this->BlockUser();
 }
 
-void Huggle::MainWindow::on_actionIRC_triggered()
+void MainWindow::on_actionIRC_triggered()
 {
     WikiSite *site = this->GetCurrentWikiSite();
     this->ChangeProvider(site, HUGGLE_FEED_PROVIDER_IRC);
 }
 
-void Huggle::MainWindow::on_actionWiki_triggered()
+void MainWindow::on_actionWiki_triggered()
 {
     if (!this->CheckExit())
         return;
@@ -2885,7 +2885,7 @@ void Huggle::MainWindow::on_actionWiki_triggered()
     this->GetCurrentWikiSite()->Provider->Start();
 }
 
-void Huggle::MainWindow::on_actionShow_talk_triggered()
+void MainWindow::on_actionShow_talk_triggered()
 {
     this->LockPage();
     // we switch this to false so that in case we have received a message,
@@ -2920,26 +2920,28 @@ void MainWindow::on_actionProtect_triggered()
     this->fProtectForm->show();
 }
 
-void Huggle::MainWindow::on_actionEdit_info_triggered()
+void MainWindow::on_actionEdit_info_triggered()
 {
     // don't localize this please
     Syslog::HuggleLogs->Log("Current number of edits in memory: " + QString::number(WikiEdit::EditList.count()));
 }
 
-void Huggle::MainWindow::on_actionFlag_as_suspicious_edit_triggered()
+void MainWindow::on_actionFlag_as_suspicious_edit_triggered()
 {
     if (!this->keystrokeCheck(HUGGLE_ACCEL_SUSPICIOUS_EDIT))
         return;
     this->SuspiciousEdit();
 }
 
-void Huggle::MainWindow::on_actionDisconnect_triggered()
+void MainWindow::on_actionDisconnect_triggered()
 {
     this->VandalDock->Disconnect();
 }
 
 void MainWindow::on_actionReport_username_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_USER_REPORT_USER_NAME))
+        return;
     if (this->CurrentEdit == nullptr || !this->CheckExit() || !this->CheckEditableBrowserPage())
         return;
     if (!this->GetCurrentWikiSite()->ProjectConfig->UAAavailable)
@@ -2960,7 +2962,7 @@ void MainWindow::on_actionReport_username_triggered()
     this->fUaaReportForm->show();
 }
 
-void Huggle::MainWindow::on_actionShow_list_of_score_words_triggered()
+void MainWindow::on_actionShow_list_of_score_words_triggered()
 {
     if (this->fScoreWord != nullptr)
         delete this->fScoreWord;
@@ -2968,12 +2970,15 @@ void Huggle::MainWindow::on_actionShow_list_of_score_words_triggered()
     this->fScoreWord->show();
 }
 
-void Huggle::MainWindow::on_actionRevert_AGF_triggered()
+void MainWindow::on_actionRevert_AGF_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_REVERT_AGF_ONE_REV))
+        return;
+
     this->RevertAgf(false);
 }
 
-void Huggle::MainWindow::on_actionDisplay_a_session_data_triggered()
+void MainWindow::on_actionDisplay_a_session_data_triggered()
 {
     if (this->fSessionData != nullptr)
         delete this->fSessionData;
@@ -2982,7 +2987,7 @@ void Huggle::MainWindow::on_actionDisplay_a_session_data_triggered()
     this->fSessionData->show();
 }
 
-void Huggle::MainWindow::on_actionDisplay_whitelist_triggered()
+void MainWindow::on_actionDisplay_whitelist_triggered()
 {
     if (this->fWhitelist != nullptr)
         delete this->fWhitelist;
@@ -2990,12 +2995,12 @@ void Huggle::MainWindow::on_actionDisplay_whitelist_triggered()
     this->fWhitelist->show();
 }
 
-void Huggle::MainWindow::on_actionResort_queue_triggered()
+void MainWindow::on_actionResort_queue_triggered()
 {
     this->Queue1->Sort();
 }
 
-void Huggle::MainWindow::on_actionRestore_this_revision_triggered()
+void MainWindow::on_actionRestore_this_revision_triggered()
 {
     if (!this->EditingChecks())
         return;
@@ -3019,12 +3024,14 @@ void Huggle::MainWindow::on_actionRestore_this_revision_triggered()
     Syslog::HuggleLogs->Log(_l("main-log1", this->CurrentEdit->Page->PageName));
 }
 
-void Huggle::MainWindow::on_actionClear_triggered()
+void MainWindow::on_actionClear_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_CLEAR_QUEUE))
+        return;
     this->Queue1->Clear();
 }
 
-void Huggle::MainWindow::on_actionDelete_page_triggered()
+void MainWindow::on_actionDelete_page_triggered()
 {
     if (this->GetCurrentWikiSite()->GetProjectConfig()->Rights.contains("delete"))
     {
@@ -3035,13 +3042,15 @@ void Huggle::MainWindow::on_actionDelete_page_triggered()
     }
 }
 
-void Huggle::MainWindow::on_actionBlock_user_2_triggered()
+void MainWindow::on_actionBlock_user_2_triggered()
 {
     this->BlockUser();
 }
 
-void Huggle::MainWindow::on_actionDisplay_talk_triggered()
+void MainWindow::on_actionDisplay_talk_triggered()
 {
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_TALK))
+        return;
     this->DisplayTalk();
 }
 
@@ -3086,12 +3095,12 @@ void MainWindow::TimerCheckTPOnTick()
     }
 }
 
-void Huggle::MainWindow::on_actionSimulate_message_triggered()
+void MainWindow::on_actionSimulate_message_triggered()
 {
     Configuration::HuggleConfiguration->NewMessage = true;
 }
 
-void Huggle::MainWindow::on_actionHtml_dump_triggered()
+void MainWindow::on_actionHtml_dump_triggered()
 {
     QString name = "huggleDump.html";
     QFile *f = new QFile(name);
@@ -3108,7 +3117,7 @@ void Huggle::MainWindow::on_actionHtml_dump_triggered()
     QDesktopServices::openUrl(QDir().absoluteFilePath(name));
 }
 
-void Huggle::MainWindow::on_actionEnforce_sysop_rights_triggered()
+void MainWindow::on_actionEnforce_sysop_rights_triggered()
 {
     ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
     if (!conf->Rights.contains("delete"))
@@ -3125,7 +3134,7 @@ void Huggle::MainWindow::on_actionEnforce_sysop_rights_triggered()
     this->Localize();
 }
 
-void Huggle::MainWindow::on_actionFeedback_triggered()
+void MainWindow::on_actionFeedback_triggered()
 {
     QString feedback = Configuration::HuggleConfiguration->ProjectConfig->Feedback;
     if (feedback.isEmpty())
@@ -3133,27 +3142,27 @@ void Huggle::MainWindow::on_actionFeedback_triggered()
     QDesktopServices::openUrl(feedback);
 }
 
-void Huggle::MainWindow::on_actionConnect_triggered()
+void MainWindow::on_actionConnect_triggered()
 {
     this->VandalDock->Connect();
 }
 
-void Huggle::MainWindow::on_actionDisplay_user_data_triggered()
+void MainWindow::on_actionDisplay_user_data_triggered()
 {
     Configuration::HuggleConfiguration->UserConfig->HAN_DisplayUser = this->ui->actionDisplay_user_data->isChecked();
 }
 
-void Huggle::MainWindow::on_actionDisplay_user_messages_triggered()
+void MainWindow::on_actionDisplay_user_messages_triggered()
 {
     Configuration::HuggleConfiguration->UserConfig->HAN_DisplayUserTalk = this->ui->actionDisplay_user_messages->isChecked();
 }
 
-void Huggle::MainWindow::on_actionDisplay_bot_data_triggered()
+void MainWindow::on_actionDisplay_bot_data_triggered()
 {
     Configuration::HuggleConfiguration->UserConfig->HAN_DisplayBots = this->ui->actionDisplay_bot_data->isChecked();
 }
 
-void Huggle::MainWindow::on_actionRequest_protection_triggered()
+void MainWindow::on_actionRequest_protection_triggered()
 {
     if (!this->EditingChecks())
         return;
@@ -3167,26 +3176,26 @@ void Huggle::MainWindow::on_actionRequest_protection_triggered()
     this->fRFProtection->show();
 }
 
-void Huggle::MainWindow::on_actionRemove_edits_made_by_whitelisted_users_triggered()
+void MainWindow::on_actionRemove_edits_made_by_whitelisted_users_triggered()
 {
     // the number must be higher than the real score so that we match even the edits
     // which have the same score (-800 + 1) > (-800)
     this->Queue1->DeleteByScore(this->GetCurrentWikiSite()->GetProjectConfig()->WhitelistScore + 1);
 }
 
-void Huggle::MainWindow::on_actionDelete_all_edits_with_score_lower_than_200_triggered()
+void MainWindow::on_actionDelete_all_edits_with_score_lower_than_200_triggered()
 {
     this->Queue1->DeleteByScore(-200);
 }
 
-void Huggle::MainWindow::on_actionRelog_triggered()
+void MainWindow::on_actionRelog_triggered()
 {
     ReloginForm *form = new ReloginForm(this->GetCurrentWikiSite(), this);
     form->exec();
     delete form;
 }
 
-void Huggle::MainWindow::on_actionAbort_2_triggered()
+void MainWindow::on_actionAbort_2_triggered()
 {
     if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_ESC))
         return;
@@ -3209,12 +3218,12 @@ void Huggle::MainWindow::on_actionAbort_2_triggered()
     revert_query->DecRef();
 }
 
-void Huggle::MainWindow::on_actionDryMode_triggered()
+void MainWindow::on_actionDryMode_triggered()
 {
     Configuration::HuggleConfiguration->SystemConfig_DryMode = this->ui->actionDryMode->isChecked();
 }
 
-void Huggle::MainWindow::on_actionDisplay_this_page_triggered()
+void MainWindow::on_actionDisplay_this_page_triggered()
 {
     if (!this->CheckExit() || this->CurrentEdit == nullptr)
         return;
@@ -3222,21 +3231,21 @@ void Huggle::MainWindow::on_actionDisplay_this_page_triggered()
     this->LockPage();
 }
 
-void Huggle::MainWindow::on_actionResume_provider_triggered()
+void MainWindow::on_actionResume_provider_triggered()
 {
     this->ui->actionResume_provider->setVisible(false);
     this->ui->actionStop_provider->setVisible(true);
     this->ResumeQueue();
 }
 
-void Huggle::MainWindow::on_actionStop_provider_triggered()
+void MainWindow::on_actionStop_provider_triggered()
 {
     this->PauseQueue();
     this->ui->actionResume_provider->setVisible(true);
     this->ui->actionStop_provider->setVisible(false);
 }
 
-void Huggle::MainWindow::on_actionRevert_only_this_revision_triggered()
+void MainWindow::on_actionRevert_only_this_revision_triggered()
 {
     if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_REVERT_THIS))
         return;
@@ -3460,15 +3469,18 @@ void MainWindow::on_actionPrint_API_for_diff_triggered()
     HUGGLE_DEBUG1(this->CurrentEdit->PropertyBag["debug_api_url_diff"].toString());
 }
 
-void Huggle::MainWindow::on_actionContribution_browser_triggered()
+void MainWindow::on_actionContribution_browser_triggered()
 {
     if (this->CurrentEdit == nullptr)
+        return;
+
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_USER_CONTRIBUTIONS))
         return;
 
     UiGeneric::DisplayContributionBrowser(this->CurrentEdit->User, this);
 }
 
-void Huggle::MainWindow::on_actionCheck_for_dups_triggered()
+void MainWindow::on_actionCheck_for_dups_triggered()
 {
     QHash<QString, int> occurences;
     foreach (HuggleQueueItemLabel *e, this->Queue1->Items)
@@ -3497,7 +3509,7 @@ void Huggle::MainWindow::on_actionCheck_for_dups_triggered()
     }
 }
 
-void Huggle::MainWindow::on_actionIntroduction_triggered()
+void MainWindow::on_actionIntroduction_triggered()
 {
     WelcomeInfo *w = new WelcomeInfo(this);
     w->setAttribute(Qt::WA_DeleteOnClose);
@@ -3505,13 +3517,13 @@ void Huggle::MainWindow::on_actionIntroduction_triggered()
     w->show();
 }
 
-void Huggle::MainWindow::on_tabWidget_customContextMenuRequested(const QPoint &pos)
+void MainWindow::on_tabWidget_customContextMenuRequested(const QPoint &pos)
 {
     Q_UNUSED(pos);
     // finish me
 }
 
-void Huggle::MainWindow::on_tabWidget_tabCloseRequested(int index)
+void MainWindow::on_tabWidget_tabCloseRequested(int index)
 {
     this->closeTab(index);
 }
