@@ -890,4 +890,5 @@
   <string name="tip13">Du kannst einen „Beitragsbrowser“ für den derzeit angezeigten Bearbeitungsbenutzer öffnen, indem du (standardmäßig) Shift + C drückst oder das Benutzermenü aufrufst. Er ermöglicht dir das schnelle Ansehen der letzten Bearbeitungen dieses Benutzers.</string>
   <string name="tip14">Du kannst mit anderen aktiven Huggle-Benutzern chatten, die das Programm derzeit verwenden. Du siehst sie im Fenster „Netzwerk“, falls sie online sind.</string>
   <string name="tip15">Falls du andere Probleme in dem Artikel findest, eine Zurücksetzung jedoch nichts hilft, kannst du E drücken, um den Artikel sofort in deinem Standardbrowser zu bearbeiten (nicht in Huggle).</string>
+  <string name="tip16">Falls du versehentlich den Zurücksetzen-Knopf betätigt hast, kannst du die verbleibenden Zurücksetzungen schnell durch Drücken von ESC abbrechen.</string>
 </resources>

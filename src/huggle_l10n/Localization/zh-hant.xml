@@ -138,7 +138,7 @@
   <string name="config-instant-reverts">使用立即回退（非常快，但執行後無法撤銷）</string>
   <string name="config-reverts-multiple">由同一使用者的多次編輯回退：</string>
   <string name="config-revert-wait">回退延遲 (秒)</string>
-  <string name="config-revert">還原</string>
+  <string name="config-revert">回退</string>
   <string name="config-skip">略過</string>
   <string name="config-revert-diff">回退頁面上比顯示的差異更新的編輯，當他們是同一個用戶做出時</string>
   <string name="config-change-all">變更所有 Huggle 設定以模擬 Huggle 2 的行為</string>
@@ -479,7 +479,7 @@
   <string name="main-no-page">您所請求的操作無效，因為頁面尚未被載入或是為唯讀狀態緣故。請重新載入一個可編輯頁面。</string>
   <string name="main-revert-null">無法回退：零編輯</string>
   <string name="main-revert-newpage-title">無法還原此頁面</string>
-  <string name="main-revert-newpage">此為新的頁面，所以不能被還原。您可以加入任何標籤或者刪除此頁面。</string>
+  <string name="main-revert-newpage">此為新的頁面，所以不能被回退。您可以加入任何標籤或者刪除此頁面。</string>
   <string name="main-restore-text-fail">無法還原此修訂，因為沒有可用的文字內容</string>
   <string name="main-restore-data-fail">無法還原此修訂，因為 wiki 沒有提供該版本的資料</string>
   <string name="main-welcome-user">歡迎使用者</string>
@@ -644,7 +644,7 @@
   <string name="shortcut-report-username">回報使用者名稱</string>
   <string name="shortcut-report-user">回報使用者</string>
   <string name="shortcut-my-talk">我的對話頁</string>
-  <string name="shortcut-raw">還原編輯並警告使用者</string>
+  <string name="shortcut-raw">回退編輯並警告使用者</string>
   <string name="shortcut-contrib">顯示做出目前所顯示編輯之用戶的貢獻</string>
   <string name="shortcut-custom-msg">開啟一個表單來寄送自定義訊息給目前的使用者</string>
   <string name="shortcut-exit">以一般方式終止 Huggle</string>
@@ -888,4 +888,5 @@
   <string name="tip13">您可以透過按下 Shift + C 鍵（預設值），或是使用者選單來開啟「貢獻瀏覽器」顯示出目前建立此筆貢獻內容的使用者。這能讓您快速檢視此使用者最近的貢獻。</string>
   <string name="tip14">您可以與其他正使用此應用程式的 Huggle 活躍使用者聊天。只要他們有在線上，可以在「網路」視窗裡找到他們。</string>
   <string name="tip15">如果您找到其它無法用回退解決的條目問題，您可以按下 E 鍵來在您預設的瀏覽器（而不是在 Huggle）裡立即編輯條目。</string>
+  <string name="tip16">若您不小心按到了回退按鈕，您仍可以透過快速按下 ESC 鍵來試著取消進行中的回退。</string>
 </resources>

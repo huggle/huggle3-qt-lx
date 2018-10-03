@@ -160,7 +160,7 @@
   <string name="main-user-report">رپورٹ</string>
   <string name="main-user-block">بلاک۔۔۔</string>
   <string name="main-browser-back">پچھوں</string>
-  <string name="main-browser-forward">اڳوں تے بھیجو</string>
+  <string name="main-browser-forward">اڳوں تے بھیڄو</string>
   <string name="main-han-connect">جوڑو</string>
   <string name="main-help">مدد</string>
   <string name="main-help-feedback">تہاڈی رائے</string>
@@ -216,9 +216,9 @@
   <string name="warning-level2">درجہ ݙو</string>
   <string name="warning-level3">درجہ ٣</string>
   <string name="warning-level4">درجہ ٤ (چھیکڑی)</string>
-  <string name="warning-submit">بھیجو</string>
+  <string name="warning-submit">بھیڄو</string>
   <string name="han-network">نیٹ ورک</string>
-  <string name="han-send">بھیجو</string>
+  <string name="han-send">بھیڄو</string>
   <string name="delete-done">$1 مٹاݙتے</string>
   <string name="newtab-title">ایہ نواں ٹیب ہے!</string>
   <string name="speedy-finished">مُک ڳیا</string>

@@ -889,4 +889,5 @@
   <string name="tip13">Pode abrir um \"navegador de contribuição\" para o utilizador que criou a edição mostrada atualmente, ao pressionar Shift + C (por omissão) ou do menu de utilizador. Isto permite que as edições recentes feitas por este utilizador sejam mostradas de forma rápida.</string>
   <string name="tip14">Pode conversar com outros utilizadores ativos do Huggle, que estão a utilizar o programa agora. Se estiverem ligados, conseguirá vê-los na janela de \"Rede\".</string>
   <string name="tip15">Se encontrar outros problemas com o artigo mas a reversão não ajudar, pode pressionar E para editar imediatamente o artigo no seu navegador padrão (não dentro do Huggle).</string>
+  <string name="tip16">Se carregou acidentalmente no botão de reverter, ainda pode cancelar a reversão em curso se carregar rapidamente na tecla Esc.</string>
 </resources>
