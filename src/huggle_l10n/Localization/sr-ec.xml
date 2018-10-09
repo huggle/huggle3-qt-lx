@@ -52,7 +52,7 @@
   <string name="author">Аутор</string>
   <string name="description">Опис</string>
   <string name="status">Статус</string>
-  <string name="link">Линк</string>
+  <string name="link">Веза</string>
   <string name="reason">Разлог</string>
   <string name="diffid">DiffID</string>
   <string name="expiry-time">Време истека</string>
