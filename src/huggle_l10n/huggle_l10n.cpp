@@ -51,6 +51,7 @@ QStringList Huggle_l10n::GetLocalizations()
             << "ksh"
             << "lb" // Lebanon
             << "lt" // Lithuanian
+            << "lv" // Latvian
             << "mk" // Macedonian
             << "ml" // Malayalam
             << "mr" // Marathi
