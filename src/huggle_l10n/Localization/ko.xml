@@ -307,6 +307,7 @@
   <string name="login-error-cancelled">취소되었습니다.</string>
   <string name="login-error-config">로컬 설정을 얻을 수 없어 $1에 로그인에 실패했습니다: $2</string>
   <string name="login-error-config-retrieve">사용자 설정을 얻을 수 없어 로그인을 실패했습니다: $1</string>
+  <string name="login-error-config-query-no-data">API 응답에 아무 값도 없어서 전역 설정을 불러오지 못했습니다, 로그인 실패</string>
   <string name="login-error-count">이 프로젝트에서 허글을 사용하려면 적어도 $1번 편집이 필요합니다.</string>
   <string name="login-error-disabled">$1에서 허글이 당신의 계정에서 활성화되어 있지 않습니다. 사용자 설정 문서를 확인하세요.</string>
   <string name="login-error-global">전역 설정을 구문 분석할 수 없어 로그인에 실패했습니다, 더 많은 자세한 사항은 디버그 기록을 확인하세요.</string>
@@ -362,6 +363,7 @@
   <string name="main-queue-clearall">모두 지우기</string>
   <string name="main-queue-options">대기열 관리...</string>
   <string name="main-queue-when-full">대기열이 꽉찰 때</string>
+  <string name="main-queue-when-full-stop">피드 정지</string>
   <string name="main-queue-when-full-remove">오래된 편집 제거</string>
   <string name="main-queue-remove-whitelisted">화이트리스트에 속한 사용자가 한 편집 제거</string>
   <string name="main-queue-remove-200">-200점 미만의 편집 제거</string>
@@ -432,6 +434,7 @@
   <string name="main-user-clear-tp">사용자의 토론 문서 지우기</string>
   <string name="main-user-retrieving-tp">$1의 토론 문서를 가져옵니다</string>
   <string name="main-user-block">차단...</string>
+  <string name="main-user-manualtemplate">수동 틀</string>
   <string name="main-browser-back">뒤로</string>
   <string name="main-browser-forward">앞으로</string>
   <string name="main-browser-open">이것을 외부 브라우저에서 보기</string>
@@ -547,6 +550,7 @@
   <string name="queue-examplelabel3">이 특성을 확인하지 말 것</string>
   <string name="queue-usergroup">이러한 사용자의 편집만 보기</string>
   <string name="report-title">$1 보고</string>
+  <string name="report-warn">이 사용자는 최근에 4단계 경고를 받았으므로 추가 경고를 전달하지 않습니다. 이 사용자를 지금 보고할 수 있지만, 최근에 경고를 받았는지 확인해 주세요! 다음 양식의 \"토론 문서\" 버튼을 눌러 확인할 수 있습니다. 이 양식과 경고는 당신의 되돌리기 성공 여부와 관계 없이 전달되므로 다른 사람의 중복 보고가 있을 수 있습니다 (이미 보고되지 않았는지 확인하세요.) 보고하시겠습니까?</string>
   <string name="report-tu">사용자 보고하기</string>
   <string name="report-reason">이유:</string>
   <string name="report-auto">$1 보고됨</string>
@@ -836,6 +840,7 @@
   <string name="query-protected-link">보호된 링크</string>
   <string name="queue-empty-title">비어 있습니다</string>
   <string name="queue-empty-text">그 밖의 항목이 대기열에 없습니다...</string>
+  <string name="protip">프로 팁</string>
   <string name="wikipagetagsform-group">{{$1}} 내 그룹</string>
   <string name="tip1">Huggle은 마치 다른 모든 웹 브라우저처럼 탭을 지원합니다! 편집을 하다가 나중에 이를 유지하고 싶으면 새 탭을 열어서 대기열을 확인해 나가시면 됩니다. 대기열은 모든 탭끼리 공유됩니다.</string>
   <string name="tip3">대부분의 환경 설정은 위키의 [[Special:MyPage/huggle3.css]]에 저장되어 있습니다. 해당 장소에서도 수동으로 변경이 가능합니다.</string>

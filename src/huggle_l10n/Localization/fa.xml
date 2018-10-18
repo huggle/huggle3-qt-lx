@@ -2,6 +2,7 @@
 <!-- Authors:
 * Alifakoor
 * Alirezaaa
+* Amirsara
 * Arian Ar
 * Calak
 * Dalba
@@ -47,7 +48,7 @@
   <string name="result">نتیجه</string>
   <string name="save">ذخیره کردن</string>
   <string name="show">نمایش</string>
-  <string name="no-instant">هشدارهای فوری در پروژه $1 فعال نشده‌است، پیام به $2 نمی‌تواند ارسال شود، لطفاً سطح هشدار دیگری را انتخاب کنید</string>
+  <string name="no-instant">هشدارهای فوری در پروژه $1 فعال نشده‌است، پیام به $2 نمی‌تواند ارسال شود، لطفاً سطح هشدار دیگری را انتخاب کنید.</string>
   <string name="undo">خنثی‌سازی</string>
   <string name="yes">بله</string>
   <string name="editing-page">در حال ویرایش صفحه</string>
@@ -100,9 +101,9 @@
   <string name="block-warnloglabel">هشدارها:</string>
   <string name="block-sharedipwarning">توجه: $1 به عنوان آی‌پی مشترک یا پویا برچسب خورده است.</string>
   <string name="block-rangeblockwarning">$1 هم‌اکنون نیز تحت تاثیر بندایش بر گستره $2 قرار دارد.\nاین بندایش تاثیر بندایش بر گستره را دور خواهد زد. ادامه خواهید داد؟</string>
-  <string name="block-token-1">گرفتن توکن برای بستن $1</string>
+  <string name="block-token-1">گرفتن نشانه برای بستن $1</string>
   <string name="block-fail">ناتوان در مسدود کردن کاربر، $1</string>
-  <string name="block-token-e1">نمی‌توان توکن را بازیابی کرد :$1</string>
+  <string name="block-token-e1">نمی‌توان نشانه را بازیابی کرد :$1</string>
   <string name="block-error-no-info">هیچ اطلاعات کاربری در کوئری موجود نبود (آیا شما مدیر هستید؟)</string>
   <string name="block-type">بستن/بازکردن</string>
   <string name="block-admin">بستن مدیر</string>
@@ -283,6 +284,7 @@
   <string name="login-fail-no-info">ورود ناموفق در $1: امکان دریافت اطلاعات کاربر نبود: $2</string>
   <string name="login-bot">تفاوت بین ورود ربات و ورود عادی چیست؟</string>
   <string name="login-fail-parse-config">ورود ناموفق در $1: قادر به تجزیهٔ پیکربندی کاربر نبود. برای جزئیات بیشتر سیاههٔ اشکال‌زدایی را ببینید.</string>
+  <string name="login-fail-parse-config-yaml">ورود به سیستم ناموفق بود $1 : قادر به تجزیه پیکربندی کاربر نیست: $2</string>
   <string name="login-fail-user-data">ورود ناموفق در $1: قادر به دریافت اطلاعات کاربر نبود. پرس‌وجو از API هیچ داده‌ای را برنگرداند.</string>
   <string name="login-fail-rollback-rights">ورود ناموفق در $1: شما در این پروژه دسترسی واگردانی ندارید.</string>
   <string name="login-failed-autoconfirm-rights">ورود ناموفق در $1: شما روی این پروژه تأیید خودکار نیستید.</string>
@@ -391,6 +393,8 @@
   <string name="main-revision-revert-warn">برگرداندن ویرایش در حال نمایش و هشدار دادن به کاربر</string>
   <string name="main-revision-rws">برگرداندن ویرایش درحال نمایش و هشداردادن به کاربر و ماندن در صفحه</string>
   <string name="main-revision-faith">برگرداندن با فرض حسن نیت</string>
+  <string name="main-revision-revert-only-this">فقط این ویرایش را برگردان</string>
+  <string name="main-revision-revert-agf">فقط این تجدید نظر را باورش حسن نیت بازگردان</string>
   <string name="main-revision-previous">قبلی</string>
   <string name="main-revision-next">بعدی</string>
   <string name="main-revision-latest">آخرین</string>
@@ -421,11 +425,14 @@
   <string name="main-page-delete">حذف</string>
   <string name="main-page-load">بارگیری</string>
   <string name="main-patrol-not-enabled">گشت‌زنی در $1 فعال نشده‌است</string>
+  <string name="main-page-refresh">تازه کردن</string>
   <string name="main-page-restore">بازگردانی این نسخه</string>
   <string name="main-page-watchlist-add">افزودن صفحه به فهرست پیگیری‌ها</string>
   <string name="main-page-tab-close">بستن زبانه فعلی</string>
   <string name="main-page-tab-open">بازکردن سربرگ تازه</string>
   <string name="main-page-watchlist-remove">حذف صفحه از فهرست پیگیری‌ها</string>
+  <string name="main-scripting">تهیه فایل آغازگر</string>
+  <string name="main-scripting-script-manager">مدیریت اسکریپت ها</string>
   <string name="main-user-info">مشاهدهٔ اطلاعات کاربر</string>
   <string name="main-user-ignore">نادیده گرفتن</string>
   <string name="main-user-unignore">عدم نادیده‌گرفتن</string>
@@ -438,6 +445,7 @@
   <string name="main-user-db">کاهش نمره بدی کاربر</string>
   <string name="main-user-report">گزارش</string>
   <string name="main-user-ib">بالابردن امتیاز بدی</string>
+  <string name="main-user-contribution-browser">مرورگر مشارکتی</string>
   <string name="main-user-clear-tp">خالی کردن صفحه بحث کاربر</string>
   <string name="main-user-retrieving-tp">برگرداندن صفحهٔ بحث $1</string>
   <string name="main-user-block">بستن...</string>
@@ -460,6 +468,7 @@
   <string name="main-help-feedback">بازخورد</string>
   <string name="main-help-about">درباره هاگل...</string>
   <string name="main-help-introduction">مقدمه</string>
+  <string name="main-help-welcome-page">صفحهٔ خوش‌آمدگویی</string>
   <string name="main-help-contents">محتویات</string>
   <string name="main-help-queuelegend">شرح صف</string>
   <string name="main-addqueue">افزودن...</string>
@@ -664,6 +673,8 @@
   <string name="shortcut-open">این ویرایش را در مرورگر نمایش بده</string>
   <string name="shortcut-talk">نمایش صفحه بحث کاربری که این ویرایش را انجام داده است</string>
   <string name="shortcut-revert-agf-1">برگرداندن آخرین نسخه با فرض حسن نیت</string>
+  <string name="shortcut-edit">ویرایش صفحه نمایش داده شده فعلی</string>
+  <string name="shortcut-edit-in-browser">صفحه نمایش داده شده فعلی در مرورگر را ویرایش کنید</string>
   <string name="shortcut-browser-close-tab">بستن سربرگ مرورگر</string>
   <string name="shortcut-tab">بازکردن سربرگ تازه</string>
   <string name="shortcut-rw-stay">برگرداندن نسخهٔ کنونی، هشدار به کاربر و ماندن در صفحه</string>
@@ -671,6 +682,7 @@
   <string name="shortcut-custom-reason">برگرداندن ویرایش با استفاده از خلاصه‌ویرایش سفارشی</string>
   <string name="shortcut-user-contribs-browser">نمایش مشارکت‌های کاربر در مرورگر</string>
   <string name="shortcut-user-clear-talk">پاک کردن صفحهٔ بحث این کاربر</string>
+  <string name="shortcut-main-clear-queue">حذف صف</string>
   <string name="warning-title">هشدار $1</string>
   <string name="warning-levelgroup">سطح هشدار</string>
   <string name="warning-levelauto">خودکار</string>
@@ -789,6 +801,7 @@
   <string name="cr-message-same">چند ویرایش به وسیله همان کاربر در $1 وجود دارد، آیا قصد برگرداندن همه آن‌ها را دارید؟</string>
   <string name="cr-message-new">ویرایش‌های تازه‌تری در $1 وجود دارد. آیا قصد برگرداندن همه آن‌ها را دارید؟</string>
   <string name="cr-message-not-same">ویرایش‌های تازه‌تری در $1 از سوی کاربر دیگری وجود دارد. آیا قصد برگرداندن همه آن‌ها را دارید؟</string>
+  <string name="preferences-show-warning-if-not-last-revision"> گر شما در آخرین نسخه از صفحه نیستید هشدار نمایش داده شود</string>
   <string name="preferences-delete-using-filter">شما نمی‌توانید فیلتری که در حال حاضر استفاده می‌شود را پاک کنید</string>
   <string name="preferences-extension-disabled">این افزونه برای غیرفعال کردن راه‌اندازی مجدد هاگل برنامه‌ریزی شده‌است</string>
   <string name="preferences-extension-disabled-restart">افزونه برای غیرفعال شدن در راه‌اندازی بعدی هاگل برنامه‌ریزی شده‌بود</string>
@@ -809,6 +822,7 @@
   <string name="preferences-empty-queue-page">صفحهٔ صف خالی:</string>
   <string name="preferences-reset-gui">بازگردانی رابط کاربری</string>
   <string name="preferences-restore-factory-layout">با این کار هاگل به حالت روز اول باز می‌گردد. هاگل خاموش می‌شود. آیا ادامه دهم؟</string>
+  <string name="preferences-keystroke-rate-limit">جلوگیری از کلید های تکراری با نرخ زیر در میلی ثانیه (فقط یک میانبر مشابه در N ms ممکن است باعث شود)</string>
   <string name="fail">شکست</string>
   <string name="request">درخواست</string>
   <string name="requesting">درخواست دادن</string>
@@ -867,6 +881,7 @@
   <string name="queue-empty-title">خالی است</string>
   <string name="queue-empty-text">چیز دیگری در صف نیست</string>
   <string name="protip">ترفند پیشرفته</string>
+  <string name="wikipagetagsform-group">گروه داخل {{$1}}</string>
   <string name="tip1">هاگل مانند سایر مرورگرها از زبانه‌ها پشتیبانی می‌کند. اگر قصد دارید بررسی تعدادی از ویرایش‌ها را برای بعداً انجام دهید، می‌توانید یک زبانهٔ جدید باز کنید و صف‌ها را در آنجا بررسی کنید. صف میان همهٔ زبانه‌ها مشترک است.</string>
   <string name="tip2">هاگل دارای یک «نوار ویرایش» است، ابزاری تر و تمیز که شامل صفحهٔ تاریخچه و کاربری‌ست. به صورت پیش‌فرض فعال نیست. اگر صفحهٔ نمایش کوچکی دارید می‌توانید کاربر و تاریخچه را با این جایگزین کنید.</string>
   <string name="tip3">بیشتر ترجیحات در ویکی در [[Special:MyPage/huggle3.css]] وجود دارد که می‌توانید آنجا آنها را به صورت دستی تغییر دهید.</string>
@@ -881,4 +896,6 @@
   <string name="tip12">اشتباه کردید؟ مشکلی نیست، کلیک راست روی هر یک از ویرایش‌های خود در History of your edits پنجره‌ای باز می‌کند که امکان خنثی‌سازی ویرایش‌تان را فراهم می‌کند.</string>
   <string name="tip13">می توانید «مرورگر مشارکت» را برای کاربری که ویرایشش دیده می‌شود، باز کنید  و با فشردن دکمهٔ Shift + C (پیش‌فرض) یا از منوی کاربر به شما اجازه می‌دهد آخرین ویرایش‌های انجام شده توسط آن کاربر را مشاهده کنید.</string>
   <string name="tip14">می‌توانید با سایر کاربران فعال که الان از هاگل استفاده می‌کنند چت کنید. اگر برخط باشند می‌توانید آنها را در پنجرهٔ شبکه مشاهده کنید.</string>
+  <string name="tip15">اگر مشکلی با این مقاله پیدا کردید اما بازگردانی به شما کمک نمی کند، می توانید E را برای ویرایش مقاله بلافاصله در مرورگر پیش فرض خود (نه در داخل Huggle) فشار دهید.</string>
+  <string name="tip16">اگر شما به طور تصادفی دکمه برگشت را فشار داده اید، می توانید با فشار دادن کلید ESC به سرعت برگشت را لغو کنید.</string>
 </resources>
