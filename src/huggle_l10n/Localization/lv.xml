@@ -109,9 +109,12 @@
   <string name="login-project">Projekts:</string>
   <string name="login-username">Lietotājvārds:</string>
   <string name="login-password">Parole:</string>
+  <string name="login-proxygroup">Starpniekservera iestatījumi</string>
+  <string name="login-proxy">Izmantot starpniekserveri</string>
   <string name="login-proxyaddress">Adrese:</string>
   <string name="login-proxyport">Ports:</string>
   <string name="login-proxydomain">Domēns:</string>
+  <string name="login-bot">Kāda ir atšķirība starp bota paroli un novecojušo pieslēgšanos?</string>
   <string name="login-abort">Pārtraukt</string>
   <string name="login-start">Pieslēgties</string>
   <string name="login-oauth-notsupported">Šī metode šobrīd nav atbalstīta</string>
