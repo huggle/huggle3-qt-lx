@@ -309,3 +309,13 @@ QJSValue JSMarshallingHelper::FromVariant(QVariant variant)
     }
     return QJSValue();
 }
+
+QJSValue JSMarshallingHelper::FromQStringHash(QHash<QString, QString> hash, QJSEngine *engine)
+{
+    QJSValue o = engine->newObject();
+    foreach (QString key, hash.keys())
+    {
+        o.setProperty(key, QJSValue(hash[key]));
+    }
+    return o;
+}

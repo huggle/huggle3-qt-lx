@@ -30,6 +30,7 @@ namespace Huggle
             HuggleEditJS(Script *s);
             QHash<QString, QString> GetFunctions();
             Q_INVOKABLE QJSValue get_edit_property_bag(QJSValue edit);
+            Q_INVOKABLE QJSValue get_edit_meta_data(QJSValue edit);
             Q_INVOKABLE bool record_score(QJSValue edit, QString name, int score);
         private:
             WikiEdit *getEdit(QString fc, QJSValue edit);

@@ -33,6 +33,7 @@ QHash<QString, QString> HuggleEditJS::GetFunctions()
 {
     QHash<QString, QString> function_help;
     function_help.insert("get_edit_property_bag", "(WikiEdit edit): returns a property bag for a given edit");
+    function_help.insert("get_edit_meta_data", "(edit): returns meta data of edit");
     function_help.insert("record_score", "(edit, name, score): record custom score for edit");
     return function_help;
 }
@@ -43,6 +44,14 @@ QJSValue HuggleEditJS::get_edit_property_bag(QJSValue edit)
     if (!we)
         return false;
     return JSMarshallingHelper::FromQVariantHash(we->PropertyBag, this->GetScript()->GetEngine());
+}
+
+QJSValue HuggleEditJS::get_edit_meta_data(QJSValue edit)
+{
+    WikiEdit *we = getEdit("get_edit_property_bag(edit)", edit);
+    if (!we)
+        return false;
+    return JSMarshallingHelper::FromQStringHash(we->MetaLabels, this->GetScript()->GetEngine());
 }
 
 bool HuggleEditJS::record_score(QJSValue edit, QString name, int score)
