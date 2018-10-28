@@ -92,6 +92,7 @@ bool WikiEdit::finalizePostProcessing()
 {
     if (this->processedByWorkerThread || !this->postProcessing)
     {
+        Hooks::EditAfterPostProcess(this);
         WikiUser::UpdateWl(this->User, this->Score);
         this->processCallback();
         // Remove the callback to ensure that we don't call it more than once
@@ -861,7 +862,8 @@ void WikiEdit_ProcessorThread::Process(WikiEdit *edit)
                 break;
         }
     }
-    Hooks::EditAfterPostProcess(edit);
+    // This doesn't seem to work as JS engine is not thread safe
+    // Hooks::EditAfterPostProcess(edit);
     edit->postProcessing = false;
     edit->processedByWorkerThread = true;
     edit->Status = StatusPostProcessed;

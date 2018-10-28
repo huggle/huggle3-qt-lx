@@ -1738,6 +1738,7 @@ void MainWindow::OnTimerTick0()
             }
         }
         this->ShutdownForm();
+        this->wlt->stop();
         Core::HuggleCore->Shutdown();
     }
 }
