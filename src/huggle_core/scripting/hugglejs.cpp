@@ -335,7 +335,14 @@ QString HuggleJS::dump_obj(QJSValue object, unsigned int indent)
         object_desc += "string (" + object.toString() + ")";
     } else if (object.isQObject())
     {
-        object_desc += "qobject";
+        object_desc += "qobject { \n";
+        QJSValueIterator it(object);
+        while (it.hasNext())
+        {
+            it.next();
+            object_desc += "    " + indent_prefix + it.name() + ": " + dump_obj(it.value(), indent + 4) + "\n";
+        }
+        object_desc += indent_prefix + " }";
     } else if (object.isObject())
     {
         object_desc += "object { \n";

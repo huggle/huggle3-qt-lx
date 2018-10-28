@@ -105,6 +105,7 @@ namespace Huggle
             bool IsReady();
             //! Processes all score words in text
             void ProcessWords();
+            void RecordScore(QString name, score_ht score);
             void RemoveFromHistoryChain();
             QString ContentModel;
             //! Page that was changed by edit
@@ -170,7 +171,6 @@ namespace Huggle
             QDateTime Time;
         protected:
             void processCallback();
-            void recordScore(QString name, score_ht score);
             //! This function is called by core
             bool finalizePostProcessing();
             bool processingByWorkerThread;

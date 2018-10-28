@@ -14,6 +14,7 @@
 #include "jsmarshallinghelper.hpp"
 #include "huggleunsafejs.hpp"
 #include "hugglequeryjs.hpp"
+#include "huggleeditjs.hpp"
 #include "hugglejs.hpp"
 #include "huggleeditingjs.hpp"
 #include "hugglefeedjs.hpp"
@@ -671,6 +672,7 @@ void Script::registerClasses()
         this->registerClass("huggle_unsafe", new HuggleUnsafeJS(this));
     }
     this->registerClass("huggle", new HuggleJS(this));
+    this->registerClass("huggle_edit", new HuggleEditJS(this));
     this->registerClass("huggle_editing", new HuggleEditingJS(this));
     this->registerClass("huggle_feed", new HuggleFeedJS(this));
     this->registerClass("huggle_query", new HuggleQueryJS(this));

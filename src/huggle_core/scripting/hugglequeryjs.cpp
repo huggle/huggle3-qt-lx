@@ -28,18 +28,18 @@ HuggleQueryJS::HuggleQueryJS(Script *s) : GenericJSClass(s)
 {
     this->functions.insert("register_api_failure_callback", "(int query, string callback): registers function name to call on failure of query");
     this->functions.insert("register_api_success_callback", "(int query, string callback): registers function name to call on success of query");
-    this->functions.insert("int get_all_bytes_received", "(): return approximate bytes received by all queries");
-    this->functions.insert("int get_all_bytes_sent", "(): get approximate bytes sent to all queries");
-    this->functions.insert("int create_api_query", "(int type, string site, string parameters, [bool using_post = false], [bool auto_delete = false]): creates new API query");
-    this->functions.insert("bool process_api_query", "(int query): process query");
-    this->functions.insert("bool kill_api_query", "(int query)");
-    this->functions.insert("hash get_api_query_info", "(int query)");
-    this->functions.insert("bool destroy_api_query", "(int query)");
+    this->functions.insert("get_all_bytes_received", "(): (int) returns approximate bytes received by all queries");
+    this->functions.insert("get_all_bytes_sent", "(): (int) get approximate bytes sent to all queries");
+    this->functions.insert("create_api_query", "(int type, string site, string parameters, [bool using_post = false], [bool auto_delete = false]): (int) creates new API query");
+    this->functions.insert("process_api_query", "(int query): (bool) process query");
+    this->functions.insert("kill_api_query", "(int query): (bool) kills the API query with given ID, returns false on failure");
+    this->functions.insert("get_api_query_info", "(int query): (returns hash) returns info about API query");
+    this->functions.insert("destroy_api_query", "(int query): (bool) delete API query from memory");
     this->functions.insert("edit_page", "(string page, string text, string summary, string site_name, bool minor, [string base_timestamp], [unsigned int section = 0], [bool auto_delete = true])");
-    this->functions.insert("int edit_page_append_text", "(string page_name, string text, string summary, [bool minor = false], [bool auto_delete = true]): appends text to a wiki page");
-    this->functions.insert("bool kill_edit_query", "(int query)");
-    this->functions.insert("hash get_edit_query_info", "(int query)");
-    this->functions.insert("bool destroy_edit_query", "(int query)");
+    this->functions.insert("edit_page_append_text", "(string page_name, string text, string summary, [bool minor = false], [bool auto_delete = true]): (int) appends text to a wiki page");
+    this->functions.insert("kill_edit_query", "(int query): (bool) kills running edit query");
+    this->functions.insert("get_edit_query_info", "(int query): (hash) return info about edit query");
+    this->functions.insert("destroy_edit_query", "(int query): (bool) remove edit query from memory");
 }
 
 HuggleQueryJS::~HuggleQueryJS()

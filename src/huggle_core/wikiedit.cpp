@@ -176,7 +176,7 @@ bool WikiEdit::finalizePostProcessing()
                 {
                     this->User->EditCount = user_info_->GetAttribute("editcount").toLong();
                     // users with high number of edits aren't vandals
-                    this->recordScore("EditScore", this->User->EditCount * this->GetSite()->ProjectConfig->EditScore);
+                    this->RecordScore("EditScore", this->User->EditCount * this->GetSite()->ProjectConfig->EditScore);
                 }
                 else
                 {
@@ -200,13 +200,13 @@ bool WikiEdit::finalizePostProcessing()
                 this->User->Groups.append(gn);
                 ++x;
             }
-            this->recordScore("ScoreFlag", this->GetSite()->ProjectConfig->ScoreFlag * this->User->Groups.count());
+            this->RecordScore("ScoreFlag", this->GetSite()->ProjectConfig->ScoreFlag * this->User->Groups.count());
             // This check is already in post processing but we do it again, now against user group instead of edit flags
             // some bots like ClueBot, are in group but don't flag their edits as "bots"
             if (this->User->Groups.contains("bot"))
             {
                 // If it's a flagged bot we likely don't need to watch them
-                this->recordScore("BotScore_flag", this->GetSite()->ProjectConfig->BotScore);
+                this->RecordScore("BotScore_flag", this->GetSite()->ProjectConfig->BotScore);
             }
             // let's delete it now
             this->qUser = nullptr;
@@ -524,11 +524,11 @@ void WikiEdit::ProcessWords()
     ProjectConfiguration *conf = this->GetSite()->GetProjectConfig();
     if (!this->Page->IsTalk())
     {
-        this->recordScore("PartsInWikiText_NoTalk", ProcessPartsInWikiText(&this->ScoreWords, text, &conf->NoTalkScoreParts));
-        this->recordScore("WordsInWikiText_NoTalk", ProcessWordsInWikiText(&this->ScoreWords, text, &conf->NoTalkScoreWords));
+        this->RecordScore("PartsInWikiText_NoTalk", ProcessPartsInWikiText(&this->ScoreWords, text, &conf->NoTalkScoreParts));
+        this->RecordScore("WordsInWikiText_NoTalk", ProcessWordsInWikiText(&this->ScoreWords, text, &conf->NoTalkScoreWords));
     }
-    this->recordScore("WordsInWikiText", ProcessWordsInWikiText(&this->ScoreWords, text, &conf->ScoreWords));
-    this->recordScore("PartsInWikiText", ProcessPartsInWikiText(&this->ScoreWords, text, &conf->ScoreParts));
+    this->RecordScore("WordsInWikiText", ProcessWordsInWikiText(&this->ScoreWords, text, &conf->ScoreWords));
+    this->RecordScore("PartsInWikiText", ProcessPartsInWikiText(&this->ScoreWords, text, &conf->ScoreParts));
 }
 
 void WikiEdit::RemoveFromHistoryChain()
@@ -561,7 +561,7 @@ void WikiEdit::processCallback()
         this->PostprocessCallback(this);
 }
 
-void WikiEdit::recordScore(QString name, score_ht score)
+void WikiEdit::RecordScore(QString name, score_ht score)
 {
     this->Score += score;
     if (hcfg->SystemConfig_ScoreDebug)
@@ -792,7 +792,7 @@ void WikiEdit_ProcessorThread::Process(WikiEdit *edit)
             if (edit->User->IsIP())
             {
                 // Reverts made by anons are very likely reverts to vandalism
-                edit->recordScore("IPScore_talk", conf->IPScore * 10);
+                edit->RecordScore("IPScore_talk", conf->IPScore * 10);
             } else
             {
                 if (!edit->DiffText_IsSplit)
@@ -805,35 +805,35 @@ void WikiEdit_ProcessorThread::Process(WikiEdit *edit)
         // score
         if (edit->User->IsIP())
         {
-            edit->recordScore("IPScore", conf->IPScore);
+            edit->RecordScore("IPScore", conf->IPScore);
         }
         if (edit->Bot)
-            edit->recordScore("BotScore", conf->BotScore);
+            edit->RecordScore("BotScore", conf->BotScore);
         if (edit->Page->IsUserpage() && !edit->Page->SanitizedName().contains(edit->User->Username))
-            edit->recordScore("ForeignUser", conf->ForeignUser);
+            edit->RecordScore("ForeignUser", conf->ForeignUser);
         else if (edit->Page->IsUserpage())
-            edit->recordScore("UserPage", conf->ScoreUser);
+            edit->RecordScore("UserPage", conf->ScoreUser);
         if (edit->Page->IsTalk())
-            edit->recordScore("ScoreTalk", conf->ScoreTalk);
+            edit->RecordScore("ScoreTalk", conf->ScoreTalk);
         if (edit->diffSize > 1200 || edit->diffSize < -1200)
-            edit->recordScore("ScoreChange", conf->ScoreChange);
+            edit->RecordScore("ScoreChange", conf->ScoreChange);
         if (edit->Page->IsUserpage())
             IgnoreWords = true;
         if (edit->User->IsWhitelisted())
-            edit->recordScore("WhitelistScore", conf->WhitelistScore);
-        edit->recordScore("User_BadnessScore", edit->User->GetBadnessScore());
+            edit->RecordScore("WhitelistScore", conf->WhitelistScore);
+        edit->RecordScore("User_BadnessScore", edit->User->GetBadnessScore());
         if (!IgnoreWords)
             edit->ProcessWords();
         foreach (QString tx, edit->Tags)
         {
             if (conf->ScoreTags.contains(tx))
-                edit->recordScore("tag_" + tx, conf->ScoreTags[tx]);
+                edit->RecordScore("tag_" + tx, conf->ScoreTags[tx]);
         }
         if (edit->SizeIsKnown && edit->diffSize < (-1 * conf->LargeRemoval))
-            edit->recordScore("ScoreRemoval", conf->ScoreRemoval);
+            edit->RecordScore("ScoreRemoval", conf->ScoreRemoval);
         edit->User->ParseTP(QDate::currentDate());
         if (edit->Summary.size() == 0)
-            edit->recordScore("NoSummary", 10);
+            edit->RecordScore("NoSummary", 10);
         int warning_level = edit->User->GetWarningLevel();
         if (warning_level > 0)
         {
@@ -842,7 +842,7 @@ void WikiEdit_ProcessorThread::Process(WikiEdit *edit)
                 HUGGLE_WARNING("No score present for warning level " + QString::number(warning_level) + " of user " + edit->User->Username + " site " + edit->GetSite()->Name);
             } else
             {
-                edit->recordScore("WarningLevel", conf->ScoreLevel[warning_level]);
+                edit->RecordScore("WarningLevel", conf->ScoreLevel[warning_level]);
             }
         }
         switch(warning_level)

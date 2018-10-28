@@ -29,6 +29,8 @@ HuggleUnsafeJS::HuggleUnsafeJS(Script *s) : GenericJSClass(s)
     this->function_help.insert("play_file", "(string file)");
     this->function_help.insert("sys_get_verbosity_level", "(): returns current verbosity level");
     this->function_help.insert("sys_set_verbosity_level", "(): changes current verbosity level");
+    this->function_help.insert("set_cfg", "(string key, jsvalue data): changes system setting");
+    this->function_help.insert("get_cfg", "(string key): return system setting");
 }
 
 bool HuggleUnsafeJS::append_string_to_file(QString text, QString file_path)
@@ -100,4 +102,68 @@ void HuggleUnsafeJS::sys_set_verbosity_level(int verbosity_level)
     if (verbosity_level < 0)
         return;
     hcfg->Verbosity = static_cast<unsigned int>(verbosity_level);
+}
+
+QJSValue HuggleUnsafeJS::get_cfg(QString key)
+{
+    if (key == "ScoreDebug")
+    {
+        return QJSValue(hcfg->SystemConfig_ScoreDebug);
+    }
+    if (key == "Autorelog")
+    {
+        QJSValue(hcfg->SystemConfig_Autorelog);
+    }
+    if (key == "CacheHAN")
+    {
+        QJSValue(hcfg->SystemConfig_CacheHAN);
+    }
+    if (key == "CatScansAndWatched")
+    {
+        QJSValue(hcfg->SystemConfig_CatScansAndWatched);
+    }
+    if (key == "DelayVal")
+    {
+        QJSValue(hcfg->SystemConfig_DelayVal);
+    }
+    if (key == "HistorySize")
+    {
+        QJSValue(hcfg->SystemConfig_HistorySize);
+    }
+    return QJSValue();
+}
+
+bool HuggleUnsafeJS::set_cfg(QString key, QJSValue data)
+{
+    if (key == "ScoreDebug")
+    {
+        hcfg->SystemConfig_ScoreDebug = data.toBool();
+        return true;
+    }
+    if (key == "Autorelog")
+    {
+        hcfg->SystemConfig_Autorelog = data.toBool();
+        return true;
+    }
+    if (key == "CacheHAN")
+    {
+        hcfg->SystemConfig_CacheHAN = data.toInt();
+        return true;
+    }
+    if (key == "CatScansAndWatched")
+    {
+        hcfg->SystemConfig_CatScansAndWatched = data.toBool();
+        return true;
+    }
+    if (key == "DelayVal")
+    {
+        hcfg->SystemConfig_DelayVal = data.toUInt();
+        return true;
+    }
+    if (key == "HistorySize")
+    {
+        hcfg->SystemConfig_HistorySize = data.toInt();
+        return true;
+    }
+    return false;
 }

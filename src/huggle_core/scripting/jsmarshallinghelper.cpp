@@ -271,3 +271,41 @@ QJSValue JSMarshallingHelper::FromQStringList(QStringList string_list, QJSEngine
     }
     return o;
 }
+
+QJSValue JSMarshallingHelper::FromQVariantHash(QHash<QString, QVariant> hash, QJSEngine *engine)
+{
+    QJSValue o = engine->newObject();
+    foreach (QString key, hash.keys())
+    {
+        o.setProperty(key, FromVariant(hash[key]));
+    }
+    return o;
+}
+
+QJSValue JSMarshallingHelper::FromVariant(QVariant variant)
+{
+    switch (variant.type())
+    {
+        case QVariant::Bool:
+            return QJSValue(variant.toBool());
+        case QVariant::Date:
+            return QJSValue(variant.toDate().toString());
+        case QVariant::DateTime:
+            return QJSValue(variant.toDateTime().toString());
+        case QVariant::Double:
+            return QJSValue(variant.toDouble());
+        case QVariant::Int:
+            return QJSValue(variant.toInt());
+        case QVariant::UInt:
+            return QJSValue(variant.toUInt());
+        case QVariant::LongLong:
+            return QJSValue(static_cast<double>(variant.toLongLong()));
+        case QVariant::ULongLong:
+            return QJSValue(static_cast<double>(variant.toULongLong()));
+        case QVariant::String:
+            return QJSValue(variant.toString());
+        default:
+            return QJSValue();
+    }
+    return QJSValue();
+}

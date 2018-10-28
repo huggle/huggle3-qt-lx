@@ -45,6 +45,8 @@ namespace Huggle
         HUGGLE_EX_CORE QJSValue FromEditQuery(EditQuery *eq, QJSEngine *engine);
         HUGGLE_EX_CORE QJSValue FromSiteProjectConfig(ProjectConfiguration *config, QJSEngine *engine);
         HUGGLE_EX_CORE QJSValue FromSiteUserConfig(UserConfiguration *config, QJSEngine *engine);
+        HUGGLE_EX_CORE QJSValue FromQVariantHash(QHash<QString, QVariant> hash, QJSEngine *engine);
+        HUGGLE_EX_CORE QJSValue FromVariant(QVariant variant);
     }
 }
 
