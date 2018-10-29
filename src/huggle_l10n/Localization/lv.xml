@@ -62,6 +62,7 @@
   <string name="block-usercontribs">Devums</string>
   <string name="block-blockloglabel">Bloķēšanas reģistrs:</string>
   <string name="block-warnloglabel">Brīdinājumi:</string>
+  <string name="block-type">Bloķēt / atbloķēt</string>
   <string name="config-function">Funkcija</string>
   <string name="config-description">Apraksts</string>
   <string name="config-shortcut">Saīsne</string>
@@ -69,9 +70,12 @@
   <string name="config-title">Iespējas</string>
   <string name="config-ircport">IRC ports</string>
   <string name="config-logfile">Žurnāla fails</string>
+  <string name="config-startupmessage">Rādīt sākuma paziņojumu</string>
+  <string name="config-shownewmessages">Rādīt jauno paziņojumu joslu</string>
   <string name="config-shortcutlist">Tastatūras īsinājumtaustiņi</string>
   <string name="config-shortcutaction">Darbība</string>
   <string name="config-ip">IP lietotāji</string>
+  <string name="config-watchlist">Pievienot uzraugāmo lapu sarakstam</string>
   <string name="config-revert">Atjaunot</string>
   <string name="config-skip">Izlaist</string>
   <string name="config-own-edits">Savi labojumi</string>
@@ -95,6 +99,8 @@
   <string name="delete-title">Dzēst $1</string>
   <string name="delete-reason">Iemesls:</string>
   <string name="delete-rem-talk">Dzēst saistīto diskusiju</string>
+  <string name="delete-e2">Neizdevās dzēst lapu</string>
+  <string name="delete-edsc">Neizdevās dzēst lapu, jo $1</string>
   <string name="exception-error-code">Kļūdas kods: $1</string>
   <string name="exception-reason">Iemesls: $1</string>
   <string name="exception-source">Avots: $1</string>
@@ -122,6 +128,7 @@
   <string name="login-progress-formtitle">Ielādē…</string>
   <string name="login-progress-start">Pieslēdzas $1</string>
   <string name="login-remember-password">Atcerēties paroli</string>
+  <string name="login-ssl">Izmantot HTTPS, lai pieslēgtos (nepieciešams OpenSSL)</string>
   <string name="login-error-cancelled">Atcelts.</string>
   <string name="login-error-invalid">Nederīgs lietotājvārds</string>
   <string name="login-error-nouser">Lietotājs neeksistē</string>
@@ -131,6 +138,7 @@
   <string name="main-contribs">Devums</string>
   <string name="main-history">Vēsture</string>
   <string name="main-system">Sistēma</string>
+  <string name="main-metric-bar">Vidējais API atbildes laiks: $1ms</string>
   <string name="main-system-messages">Rādīt jaunos ziņojumus</string>
   <string name="main-system-savelog">Saglabāt žurnālu...</string>
   <string name="main-system-statistics">Statistika...</string>
@@ -150,6 +158,7 @@
   <string name="main-queue-reset">Atiestatīt</string>
   <string name="main-queue-clearall">Notīrīt visu</string>
   <string name="main-queue-options">Pārvaldīt rindas...</string>
+  <string name="main-queue-when-full">Kad rinda ir pilna</string>
   <string name="main-goto">Doties uz</string>
   <string name="main-goto-mytalk">Mana diskusiju lapa</string>
   <string name="main-goto-mycontribs">Mans devums</string>
@@ -165,6 +174,7 @@
   <string name="main-page-edit">Labot lapu pārlūkā</string>
   <string name="main-page-curr-disp">Pašlaik attēlots</string>
   <string name="main-page-display">Attēlot šo lapu</string>
+  <string name="main-page-patrol">Atzīmēt kā pārbaudītu</string>
   <string name="main-page-move">Pārvietot...</string>
   <string name="main-page-protect">Aizsargāt</string>
   <string name="main-page-delete">Dzēst</string>

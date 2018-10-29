@@ -73,10 +73,12 @@
   <string name="config-title">اختیارات</string>
   <string name="config-ircport">IRC پورٹ</string>
   <string name="config-logfile">لاڳ فائل</string>
+  <string name="config-trayicon">ٹرے آئیکاں ݙکھاؤ</string>
   <string name="config-shortcutaction">عمل</string>
   <string name="config-noshortcut">کوئی وی کائنی</string>
   <string name="config-defaults">پہلے کنوں طے تھیا ہویا</string>
   <string name="config-ip">آئی پی ورتݨ آلے</string>
+  <string name="config-watchlist">دیداں ہیٹھ تندیر وچ شامل کرو</string>
   <string name="config-revert">واپس</string>
   <string name="config-skip">چھوڑو</string>
   <string name="config-enable-irc">آئی آر سی فعال کرو</string>
@@ -93,9 +95,12 @@
   <string name="config-summaryprompt">خلاصہ لکھو</string>
   <string name="custommessage-subject">عنوان</string>
   <string name="custommessage-send">سنیہا پٹھو</string>
+  <string name="custommessage-wikiuser-plaintext-1">سلام$1،</string>
+  <string name="custommessage-wikiuser-plaintext-2">آپݨاں سنیہا اتھ لکھو۔</string>
   <string name="delete-title">$1 مٹاؤ</string>
   <string name="delete-reason">سبب:</string>
   <string name="delete-deletionlog">مٹاوݨ آلی لاگ:</string>
+  <string name="exception-error-code">خرابی کوݙ:$1</string>
   <string name="exception-reason">وجہ: $1</string>
   <string name="exception-source">ماخذ: $1</string>
   <string name="exception-system-log">سسٹم لاگ</string>
@@ -173,6 +178,7 @@
   <string name="main-welcome-user">ست بسم اللہ ورتݨ آلا</string>
   <string name="main-statistics-paused">جمب ڳیا</string>
   <string name="main-statistics-none">کوئی وی کائنی</string>
+  <string name="main-tab-welcome-title">ست بسم اللہ ورقہ</string>
   <string name="message-title">سنیہا $1</string>
   <string name="message-subject">موضوع:</string>
   <string name="message-message">سنیہا:</string>
@@ -212,6 +218,8 @@
   <string name="updater-update">اپ ݙیٹ</string>
   <string name="updater-close">بند کرو</string>
   <string name="userinfo-no-user">کوئی ورتو کائنی</string>
+  <string name="shortcut-my-talk">میݙا ڳالھ مہاڑ دا ورقہ</string>
+  <string name="warning-title">خبردار $1</string>
   <string name="warning-level1">درجہ اول</string>
   <string name="warning-level2">درجہ ݙو</string>
   <string name="warning-level3">درجہ ٣</string>
