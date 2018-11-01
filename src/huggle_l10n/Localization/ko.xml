@@ -307,7 +307,7 @@
   <string name="login-error-cancelled">취소되었습니다.</string>
   <string name="login-error-config">로컬 설정을 얻을 수 없어 $1에 로그인에 실패했습니다: $2</string>
   <string name="login-error-config-retrieve">사용자 설정을 얻을 수 없어 로그인을 실패했습니다: $1</string>
-  <string name="login-error-config-query-no-data">API 응답에 아무 값도 없어서 전역 설정을 불러오지 못했습니다, 로그인 실패</string>
+  <string name="login-error-config-query-no-data">로그인을 실패했습니다. API 쿼리가 반환한 데이터가 없으므로 전역 설정을 불러오지 못했습니다</string>
   <string name="login-error-count">이 프로젝트에서 허글을 사용하려면 적어도 $1번 편집이 필요합니다.</string>
   <string name="login-error-disabled">$1에서 허글이 당신의 계정에서 활성화되어 있지 않습니다. 사용자 설정 문서를 확인하세요.</string>
   <string name="login-error-global">전역 설정을 구문 분석할 수 없어 로그인에 실패했습니다, 더 많은 자세한 사항은 디버그 기록을 확인하세요.</string>
@@ -550,7 +550,7 @@
   <string name="queue-examplelabel3">이 특성을 확인하지 말 것</string>
   <string name="queue-usergroup">이러한 사용자의 편집만 보기</string>
   <string name="report-title">$1 보고</string>
-  <string name="report-warn">이 사용자는 최근에 4단계 경고를 받았으므로 추가 경고를 전달하지 않습니다. 이 사용자를 지금 보고할 수 있지만, 최근에 경고를 받았는지 확인해 주세요! 다음 양식의 \"토론 문서\" 버튼을 눌러 확인할 수 있습니다. 이 양식과 경고는 당신의 되돌리기 성공 여부와 관계 없이 전달되므로 다른 사람의 중복 보고가 있을 수 있습니다 (이미 보고되지 않았는지 확인하세요.) 보고하시겠습니까?</string>
+  <string name="report-warn">이 사용자는 이미 4단계 경고를 받았으므로 추가 경고 틀을 전달하지 않습니다. 이 사용자를 지금 보고할 수 있지만, 최근에 적절한 수의 경고를 이미 받았는지 확인해 주세요! 다음 양식의 \"토론 문서\" 버튼을 클릭하여 확인할 수 있습니다. 이 양식과 경고는 당신의 되돌리기 성공 여부와 관계 없이 표시되므로 다른 사용자들의 중복 보고가 발생할 수 있습니다. (해당 사용자가 이미 보고되지 않았는지 다시 확인하세요) 이 사용자를 보고하시겠습니까?</string>
   <string name="report-tu">사용자 보고하기</string>
   <string name="report-reason">이유:</string>
   <string name="report-auto">$1 보고됨</string>
