@@ -1,0 +1,14 @@
+This folder contains various build tools and script for devs
+
+extensions.sh - possibly deprecated, old extension initialization script
+huggle.desktop - desktop file for Linux
+install - some ancient script for installing of Huggle on Linux, from times before CMake
+          left for historic purposes mostly :) but might be useful on some old distros
+uninstall - same as install
+localization.py - this simple python script checks for localization strings in en.xml that are not
+                  present anywhere in the code
+prepare_cmake.sh - called by cmake, copies definitions file
+prepare_snap.sh - called by snapcraft, prepares version and definitions file
+removedos.sh - script that recursively removes DOS line endings
+removetabs.sh - script that replaces tabs with spaces in all source code files
+summary - looks like a summary of what Huggle is, taken from en wikipedia, but I have no idea what is it doing in this folder
