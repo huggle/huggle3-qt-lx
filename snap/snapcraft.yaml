@@ -20,13 +20,19 @@ apps:
 
 parts:
   application:
-    prepare: ./build/prepare_snap.sh
+    source-type: git
     plugin: cmake
     configflags:
       - -DQT5_BUILD=true
       - -DLINUX_SNAP=true
       - -DHUGGLE_EXT=true
-    source: src/
+    source-subdir: src
+    override-build: |
+      cd ../src/src/huggle_core
+      ./update.sh
+      cp definitions_prod.hpp definitions.hpp
+      snapcraftctl build
+
     stage-packages:
       - libxkbcommon0
       - ttf-ubuntu-font-family
