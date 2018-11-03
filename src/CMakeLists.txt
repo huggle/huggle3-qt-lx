@@ -1,6 +1,8 @@
 # This is a build file for Huggle (used with cmake)
 cmake_minimum_required (VERSION 2.8.7)
 
+# So that MacOS builds are working on older versions as well
+set(CMAKE_OSX_DEPLOYMENT_TARGET 10.10)
 set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Choose the type of build, options are: Debug or Release (or any other documented for CMAKE_BUILD_TYPE")
 set(INSTALL_BIN_DIR bin CACHE PATH "Installation directory for executables")
 set(INSTALL_LIB_DIR lib CACHE PATH "Installation directory for libraries")
