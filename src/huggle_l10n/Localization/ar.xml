@@ -97,7 +97,7 @@
   <string name="block-fail">لم يتم المنع \'$1\'ء</string>
   <string name="block-token-e1">لا يمكن استرداد الرمز: $1</string>
   <string name="block-error-no-info">لم تكن معلومات المستخدم موجودة في الاستعلام (هل أنت إداري؟)</string>
-  <string name="block-type">امنع / ارفع المنع</string>
+  <string name="block-type">منع / رفع المنع</string>
   <string name="block-admin">الإداري المانع</string>
   <string name="block-none">لا يوجد مستخدم محدد لمنعه.</string>
   <string name="contribution-browser-user-info">عرض المساهمات الأخيرة للمستخدم $1</string>
@@ -410,10 +410,10 @@
   <string name="main-page-curr-disp">معروضة حاليًا</string>
   <string name="main-page-display">عرض هذه الصفحة</string>
   <string name="main-page-patrol">علم كمراجعة</string>
-  <string name="main-page-move">انقل...</string>
+  <string name="main-page-move">نقل...</string>
   <string name="main-page-flag-suspicious-edit">التعليم باعتباره تعديلًا مشبوهًا (هذا الفعل يعطي +1 درجة للمستخدم)</string>
   <string name="main-page-flag-good-edit">التعليم كتحرير جيد (هذا الإجراء يطرح 200 من درجة المستخدم)</string>
-  <string name="main-page-protect">احم</string>
+  <string name="main-page-protect">حماية</string>
   <string name="main-page-delete">احذف</string>
   <string name="main-page-load">تحميل</string>
   <string name="main-patrol-not-enabled">لم يتم تمكين المراجعة على $1</string>
@@ -440,7 +440,7 @@
   <string name="main-user-contribution-browser">متصفح المساهمة</string>
   <string name="main-user-clear-tp">تنظيف صفحة نقاش المستخدم</string>
   <string name="main-user-retrieving-tp">استرجاع صفحة نقاش $1</string>
-  <string name="main-user-block">امنع...</string>
+  <string name="main-user-block">منع...</string>
   <string name="main-user-manualtemplate">قالب يدوي</string>
   <string name="main-browser-back">خلف</string>
   <string name="main-browser-forward">أمام</string>
@@ -475,7 +475,7 @@
   <string name="main-tip-pagetagdelete">وسم هذه الصفحة للشطب</string>
   <string name="main-tip-pagedelete">احذف هذه الصفحة</string>
   <string name="main-tip-userreport">أخطر عن هذا المستخدم</string>
-  <string name="main-tip-userblock">امنع هذا المستخدم</string>
+  <string name="main-tip-userblock">منع هذا المستخدم</string>
   <string name="main-revision-acceptpend">قبول هذه المراجعة قيد الانتظار</string>
   <string name="main-no-page">الإجراء الذي طلبته غير متوفر لأن الصفحة لم يتم تحميلها أو لأنها للقراءة فقط; يُرجَى تحميل صفحة قابلة للتحرير قبل المحاولة مرة أخرى.</string>
   <string name="main-revert-null">تعذر الاسترجاع: تعديل فاسد</string>
