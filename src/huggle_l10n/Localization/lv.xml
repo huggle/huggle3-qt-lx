@@ -74,8 +74,10 @@
   <string name="config-shownewmessages">Rādīt jauno paziņojumu joslu</string>
   <string name="config-shortcutlist">Tastatūras īsinājumtaustiņi</string>
   <string name="config-shortcutaction">Darbība</string>
+  <string name="config-minor">Atzīmēt kā maznozīmīgu</string>
   <string name="config-ip">IP lietotāji</string>
   <string name="config-watchlist">Pievienot uzraugāmo lapu sarakstam</string>
+  <string name="config-revert-wait">Atcelšanas aizture (sekundes)</string>
   <string name="config-revert">Atjaunot</string>
   <string name="config-skip">Izlaist</string>
   <string name="config-own-edits">Savi labojumi</string>

@@ -145,7 +145,7 @@
   <string name="config-remove-reverted">Ta bort redigeringar från kön som redan har återställts av någon annan</string>
   <string name="config-remove-old">Ta bort äldre redigeringar från kön om en nyare redigering på samma sida tas emot</string>
   <string name="config-auto-load-history">Läs automatiskt in historik och användarinformation (kräver extra nätverksbandbredd)</string>
-  <string name="config-last-revision" fuzzy="true">Byt till sidans senaste sidversion ifall den nuvarande inlästa redigeringen inte är den senaste sidversionen (kommer att ladda ned den i efterhand, vilket gör Huggle långsammare)</string>
+  <string name="config-last-revision">Byt till sidans senaste sidversion ifall den nuvarande inlästa redigeringen inte är den senaste sidversionen (kommer att ladda ned den i efterhand, vilket gör Huggle långsammare)</string>
   <string name="config-wait-edit">Fördröjningen, i sekunder, tills redigeringsfunktioner aktiveras:</string>
   <string name="config-display-next">Visa nästa</string>
   <string name="config-retrieve-edit">Hämta din egen redigering</string>
@@ -335,6 +335,8 @@
   <string name="main-system-change-provider-irc">IRC</string>
   <string name="main-system-change-provider-wiki">Wiki</string>
   <string name="main-system-exit">Avsluta</string>
+  <string name="main-config-state-fail">Kunde inte läsa tillstånd från en konfigfil</string>
+  <string name="main-config-geom-fail">Kunde inte läsa geometri från en konfigfil</string>
   <string name="main-tools-scoreword-list">Visa en lista över poängord</string>
   <string name="main-queue">Kö</string>
   <string name="main-queue-next">Nästa</string>
@@ -620,6 +622,7 @@
   <string name="shortcut-browser-close-tab">Stäng en webbläsarflik</string>
   <string name="shortcut-tab">Öppnar en ny flik</string>
   <string name="shortcut-custom-reason">Återställ redigeringen med en anpassad redigeringssammanfattning</string>
+  <string name="shortcut-user-contribs-browser">Öppna användarens bidrag i en webbläsare</string>
   <string name="shortcut-user-clear-talk">Rensar en diskussionssida för nuvarande användare</string>
   <string name="shortcut-main-clear-queue">Rensa kö</string>
   <string name="warning-title">Varna $</string>
@@ -720,10 +723,11 @@
   <string name="preferences-show-warning-if-not-last-revision">Visa varning om du inte är på den senaste sidversionen</string>
   <string name="preferences-delete-using-filter">Du kan inte radera ett filter som används för tillfället</string>
   <string name="preferences-extension-disabled">Detta tillägg har redan schemalagts för inaktivering vid nästa uppstart av Huggle</string>
-  <string name="preferences-extension-enabled-restart" fuzzy="true">Tillägget aktiverades, men du måste starta om Huggle för det ska träda i kraft</string>
+  <string name="preferences-extension-enabled-restart">Tillägget aktiverades. Du måste starta om Huggle för det ska träda i kraft.</string>
   <string name="preferences-watchlist-watch">Lägg till i bevakningslistan</string>
   <string name="preferences-watchlist-unwatch">Ta bort från bevakningslistan</string>
   <string name="preferences-watchlist-nochange">Gör ingenting</string>
+  <string name="preferences-auto-watch-talk">Bevaka diskussionssidan för en användare som har fått en varning från dig</string>
   <string name="preferences-sounds-enable-queue">Spela upp ljud när ett nytt objekt köläggs</string>
   <string name="preferences-sounds-enable-irc">Spela upp ljud när ett meddelande hämtas i HAN</string>
   <string name="preferences-sounds-minimal-score">Minimala redigeringspoäng för notifikation</string>
@@ -743,6 +747,8 @@
   <string name="page-tag-fail">Misslyckades att tagga sida</string>
   <string name="page-tag-error">Kunde inte tagga sidan, felet var följande: $1</string>
   <string name="page-unknown">Okänd sida</string>
+  <string name="speedy-csd-invalid">Ogiltig CSD-tagg, det finns inget meddelande eller wikitagg att använda</string>
+  <string name="speedy-csd-existing">Det finns redan en CSD-tagg på sidan.</string>
   <string name="namespace">Namnrymd</string>
   <string name="block-alreadyblocked">Användaren är redan blockerad</string>
   <string name="report-fail">Misslyckades att rapportera användare: $1</string>
@@ -757,9 +763,11 @@
   <string name="unable-to-retrieve-user-list">Kunde inte hämta listan över användare: $1</string>
   <string name="login-no-userinfo">Sidan gav inte att någon användarinformation</string>
   <string name="login-invalid-register-date">Ogiltigt registreringsdatum returnerades av MediaWiki</string>
+  <string name="login-no-site-info-returned">Ingen webbplatsinfo returnerade för denna wiki</string>
   <string name="loading-main-window">Läser in Huggles huvudfönster...</string>
   <string name="login-username-doesnt-exist">Detta användarnamn finns inte</string>
   <string name="developer-mode-enter-title">Tjoho</string>
+  <string name="developer-mode-enter-message">Du har aktiverat utvecklarläget!</string>
   <string name="unimplemented">Denna funktion har ännu inte implementerats</string>
   <string name="unknown-item">Okänt objekt</string>
   <string name="title-multiple-projects">flera projekt ($1)</string>
@@ -776,6 +784,7 @@
   <string name="queue-empty-title">Den är tom</string>
   <string name="queue-empty-text">Det finns ingenting annat i kön...</string>
   <string name="protip">Proffstips</string>
+  <string name="wikipagetagsform-group">Gruppera i {{$1}}</string>
   <string name="tip3">De flesta inställningarna lagras på wikin i [[Special:MyPage/huggle3.css]]. Du kan redigera dem manuellt där.</string>
   <string name="tip4">Nästan varje widget på skärmen kan stängas ned utan fara (förutom navigeringsfältet).</string>
   <string name="tip5">Du kan använda Huggle på flera projekt samtidigt, klicka bara på knappen \"Projekt\" i inloggningsformuläret.</string>
