@@ -33,6 +33,7 @@
   <string name="successful">Veiksmīgi</string>
   <string name="summary">Kopsavilkums</string>
   <string name="id">ID</string>
+  <string name="type">Veids</string>
   <string name="target">Mērķis</string>
   <string name="user">Dalībnieks</string>
   <string name="size">Izmērs</string>
@@ -93,6 +94,7 @@
   <string name="config-blocktimeanon">anonīmiem lietotājiem</string>
   <string name="config-blocktimereg">reģistrētiem dalībniekiem</string>
   <string name="config-summaryprompt">Ievadi kopsavilkumu</string>
+  <string name="config-history">Lejupielādēt visu rakstu pilnu vēsturi</string>
   <string name="config-defaultsprompt">Atjaunot noklusējumu?</string>
   <string name="config-notify-update">Pārbaudīt atjauninājumus</string>
   <string name="custommessage-subject">Temats</string>
