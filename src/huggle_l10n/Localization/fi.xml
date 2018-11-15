@@ -81,6 +81,7 @@
   <string name="config-ircport">IRC-portti</string>
   <string name="config-logfile">Lokitiedosto</string>
   <string name="config-viewlocalconfig">Näytä paikallinen kokoonpanokansio</string>
+  <string name="config-startupmessage">Näytä aloitusviesti</string>
   <string name="config-shortcutlist">Pikanäppäimet</string>
   <string name="config-shortcutaction">Toiminto</string>
   <string name="config-defaults">Oletukset</string>
@@ -104,6 +105,7 @@
   <string name="config-logbrowsetitle">Lokitiedoston sijainti</string>
   <string name="config-notify-update">Tarkista päivitykset</string>
   <string name="config-notify-beta">Tarkista beetaversiot, jos niitä on saatavilla</string>
+  <string name="custommessage-menu">Lähetä mukautettu viesti</string>
   <string name="custommessage-send">Lähetä viesti</string>
   <string name="custommessage-wikiuser-plaintext-1">Hei $1,</string>
   <string name="delete-title">Poista $1</string>
@@ -120,13 +122,14 @@
   <string name="login-username">Käyttäjänimi:</string>
   <string name="login-password">Salasana:</string>
   <string name="login-proxygroup">Välityspalvelinasetukset</string>
-  <string name="login-proxy" fuzzy="true">Käytä välityspalvelinta</string>
+  <string name="login-proxy">Käytä välityspalvelinta</string>
   <string name="login-proxyaddress">Osoite:</string>
   <string name="login-proxy-remember-this">Muista tämä asetus seuraavalla kerralla</string>
   <string name="login-proxyport">Portti:</string>
   <string name="login-proxydomain">Verkkotunnus:</string>
   <string name="login-start">Kirjaudu</string>
   <string name="login-oauth-notsupported">Tämä menetelmä ei ole tuettu tällä hetkellä</string>
+  <string name="login-translate">Käännä Hugglea</string>
   <string name="login-progress-formtitle">Ladataan...</string>
   <string name="login-error-approval">Hugglen käyttö sivustolla $1 vaatii hyväksynnän.</string>
   <string name="login-error-cancelled">Peruutettu.</string>
@@ -139,6 +142,7 @@
   <string name="main-contribs">Muokkaukset</string>
   <string name="main-history">Historia</string>
   <string name="main-system">Järjestelmä</string>
+  <string name="main-system-messages">Näytä uudet viestit</string>
   <string name="main-system-showqueue">Näytä jono</string>
   <string name="main-system-options">Asetukset...</string>
   <string name="main-system-logout">Kirjaudu ulos</string>
@@ -176,6 +180,7 @@
   <string name="main-han-display-bot-data">Näytä bottitiedot</string>
   <string name="main-help-feedback">Palaute</string>
   <string name="main-help-about">Tietoja Hugglesta...</string>
+  <string name="main-help-welcome-page">Tervetulosivu</string>
   <string name="main-help-contents">Sisällys</string>
   <string name="main-addqueue">Lisää...</string>
   <string name="main-savelogtitle">Tallennusloki</string>
@@ -194,14 +199,18 @@
   <string name="queue-userregex">Käyttäjätunnus täsmää säännölliseen lausekkeeseen:</string>
   <string name="queue-summaryregex">Yhteenveto täsmää säännölliseen lausekkeeseen:</string>
   <string name="queue-filternewpage">Uusi sivu</string>
+  <string name="queue-filterwarnings">Varoitus</string>
+  <string name="queue-filterbot">Bottimuokkaus</string>
   <string name="report-reason">Syy:</string>
   <string name="report-message">Viesti:</string>
+  <string name="revert-only">Tämä muokkaus on ainoa muokkaus sivulle.</string>
   <string name="speedy-reason">Syy:</string>
   <string name="update-progress">Ladataan uutta versiota, odota hetki...</string>
   <string name="update-error">Uuden version lataaminen epäonnistui</string>
   <string name="updater-title">Uusi versio Hugglesta on saatavilla</string>
   <string name="updater-update">Päivitä</string>
   <string name="updater-update-available">Uudempi Hugglen versio on saatavilla: versio $1</string>
+  <string name="updater-open-manualdownloadpage">Avaa lataussivu</string>
   <string name="updater-close">Sulje</string>
   <string name="updater-disable-notify">Poista päivitykset käytöstä</string>
   <string name="updater-wait">Päivitän nyt hugleea, odota hetki...</string>
