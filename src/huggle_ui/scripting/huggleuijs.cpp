@@ -58,7 +58,8 @@ HuggleUIJS::HuggleUIJS(Script *s) : GenericJSClass(s)
     this->function_help.insert("input_box", "(string title, string text, string default): (since HG 3.4.4) get input from user");
     this->function_help.insert("filebox_open", "(string title, string mask): (since HG 3.4.4) file box for opening of a file");
     this->function_help.insert("filebox_save", "(string title, string mask): (since HG 3.4.4) file box for saving of a file");
-
+    this->function_help.insert("is_current_edit_locked", "(): (3.4.5) check if current edit is locked for editing operations");
+    this->function_help.insert("editing_checks", "(): (3.4.5) performs standard edit checks and display warning in case editing is not possible");
     this->function_help.insert("create_status_bar_label", "(string text): (3.4.5) Creates a new item in status bar");
     this->function_help.insert("remove_status_bar_label", "(int id): (3.4.5) Removes status bar label");
     this->function_help.insert("set_status_bar_text", "(int id, string text): (3.4.5) Change status bar text");
@@ -311,6 +312,22 @@ QJSValue HuggleUIJS::get_current_wiki_edit()
         return QJSValue(QJSValue::SpecialValue::NullValue);
 
     return JSMarshallingHelper::FromEdit(edit, this->GetScript()->GetEngine());
+}
+
+bool HuggleUIJS::is_current_edit_locked()
+{
+    if (!Huggle::MainWindow::HuggleMain)
+        return true;
+
+    return Huggle::MainWindow::HuggleMain->IsLocked();
+}
+
+bool HuggleUIJS::editing_checks()
+{
+    if (!Huggle::MainWindow::HuggleMain)
+        return true;
+
+    return Huggle::MainWindow::HuggleMain->EditingChecks();
 }
 
 bool HuggleUIJS::insert_edit_to_queue(QString site_name, int rev_id)

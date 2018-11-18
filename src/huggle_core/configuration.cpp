@@ -330,7 +330,7 @@ void Configuration::LoadSystemConfig(QString fn)
         RCU(WikiRC);
         RCB(RequestDelay);
         RCB(BotPassword);
-        RCU(RevertDelay);
+        RCN(RevertDelay);
         RCB(FirstRun);
         RCB(ScoreDebug);
         RCB(ShowStartupInfo);

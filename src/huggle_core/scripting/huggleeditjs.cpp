@@ -59,7 +59,7 @@ bool HuggleEditJS::record_score(QJSValue edit, QString name, int score)
     WikiEdit *we = getEdit("record_score(edit, name, score)", edit);
     if (!we)
         return false;
-    we->RecordScore("ext_" + this->script->GetName() + "_" + name, (score_ht)score);
+    we->RecordScore("ext_" + this->script->GetName() + "_" + name, static_cast<score_ht>(score));
     return true;
 }
 
@@ -68,7 +68,7 @@ WikiEdit *HuggleEditJS::getEdit(QString fc, QJSValue edit)
     if (!edit.hasProperty("_ptr"))
     {
         HUGGLE_ERROR(this->script->GetName() + ": " + fc + ": edit structure is missing _ptr");
-        return NULL;
+        return nullptr;
     }
 
     int pool_id = edit.property("_ptr").toInt();
@@ -76,7 +76,7 @@ WikiEdit *HuggleEditJS::getEdit(QString fc, QJSValue edit)
     if (!ex)
     {
         HUGGLE_ERROR(this->script->GetName() + ": " + fc + ": null edit _ptr");
-        return NULL;
+        return nullptr;
     }
     return ex;
 }

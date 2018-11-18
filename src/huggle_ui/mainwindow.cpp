@@ -2355,6 +2355,11 @@ void MainWindow::LockPage()
     this->EnableEditing(false);
 }
 
+bool MainWindow::IsLocked()
+{
+    return !this->EditablePage;
+}
+
 QString MainWindow::ProjectURL()
 {
     if (this->CurrentEdit == nullptr || this->CurrentEdit->Page == nullptr)
@@ -2373,8 +2378,8 @@ bool MainWindow::keystrokeCheck(int id)
         this->lKeyPressTime.insert(id, QDateTime::currentDateTime());
         return true;
     }
-    int span = this->lKeyPressTime[id].msecsTo(QDateTime::currentDateTime());
-    if (span < hcfg->SystemConfig_KeystrokeMultiPressRate)
+    qint64 span = this->lKeyPressTime[id].msecsTo(QDateTime::currentDateTime());
+    if (span < static_cast<qint64>(hcfg->SystemConfig_KeystrokeMultiPressRate))
     {
         HUGGLE_DEBUG1("Keystroke bug on " + QString::number(id) + " span " + QString::number(span));
         return false;

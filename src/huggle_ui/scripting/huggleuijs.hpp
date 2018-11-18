@@ -48,6 +48,8 @@ namespace Huggle
             Q_INVOKABLE bool navigate_forward();
             Q_INVOKABLE bool navigate_backward();
             Q_INVOKABLE QJSValue get_current_wiki_edit();
+            Q_INVOKABLE bool is_current_edit_locked();
+            Q_INVOKABLE bool editing_checks();
             Q_INVOKABLE bool insert_edit_to_queue(QString site_name, int rev_id);
             Q_INVOKABLE bool highlight_text(QString text);
             Q_INVOKABLE QJSValue input_box(QString title, QString text, QString default_text);

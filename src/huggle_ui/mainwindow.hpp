@@ -194,6 +194,7 @@ namespace Huggle
             void RefreshPage();
             //! Make currently displayed page unchangeable (useful when you render non-diff pages where rollback wouldn't work)
             void LockPage();
+            bool IsLocked();
             void UpdateStatusBarData();
             //! Perform all common tests that are needed before a page can be edited and return false if they fail
             bool EditingChecks();
