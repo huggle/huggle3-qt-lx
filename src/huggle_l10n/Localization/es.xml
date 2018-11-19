@@ -8,6 +8,7 @@
 * Dgstranz
 * Fitoschido
 * KATRINE1992
+* Laura Ospina
 * Lemondoge
 * Luisangelrg
 * Macofe
@@ -898,4 +899,5 @@
   <string name="tip13">Puedes abrir el «navegador de contribuciones» para el usuario que creó la edición mostrada actualmente, presionando Mayús + C (por defecto) o desde el menú de usuario. Te permite ver rápidamente ediciones recientes realizadas por este usuario.</string>
   <string name="tip14">¿Quieres chatear con otros usuarios activos de Huggle que están usando el programa ahora? Si están en línea, los verás en la ventana «Red».</string>
   <string name="tip15">Si te encuentras problemas con un artículo y la reversión no te ayuda, puedes presionar E para editar el artículo inmediatamente en tu navegador predeterminado (no dentro de Huggle).</string>
+  <string name="tip16">Si presionó el botón para revertir por accidente, es posible cancelar la reversión presionando ESC rápidamente.</string>
 </resources>
