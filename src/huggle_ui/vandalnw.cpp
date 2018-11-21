@@ -23,6 +23,7 @@
 #include <huggle_core/configuration.hpp>
 #include <huggle_core/exception.hpp>
 #include <huggle_core/generic.hpp>
+#include <huggle_core/hooks.hpp>
 #include <huggle_core/localization.hpp>
 #include <huggle_core/syslog.hpp>
 #include <huggle_core/resources.hpp>
@@ -267,7 +268,8 @@ bool VandalNw::IsParsed(WikiEdit *edit)
     {
         if (this->UnparsedRoll.at(item).RevID == edit->RevID)
         {
-            this->ProcessRollback(edit, this->UnparsedRoll.at(item).User);
+            HAN::GenericItem roll = this->UnparsedRoll.at(item);
+            this->ProcessRollback(edit, roll.User, roll.Ident, roll.Host);
             this->UnparsedRoll.removeAt(item);
             return true;
         }
@@ -278,7 +280,8 @@ bool VandalNw::IsParsed(WikiEdit *edit)
     {
         if (this->UnparsedSusp.at(item).RevID == edit->RevID)
         {
-            this->ProcessSusp(edit, this->UnparsedSusp.at(item).User);
+            HAN::GenericItem susp = this->UnparsedSusp.at(item);
+            this->ProcessSusp(edit, susp.User, susp.Ident, susp.Host);
             this->UnparsedSusp.removeAt(item);
             return true;
         }
@@ -289,7 +292,8 @@ bool VandalNw::IsParsed(WikiEdit *edit)
     {
         if (this->UnparsedGood.at(item).RevID == edit->RevID)
         {
-            this->ProcessGood(edit, this->UnparsedGood.at(item).User);
+            HAN::GenericItem good = this->UnparsedGood.at(item);
+            this->ProcessGood(edit, good.User, good.Ident, good.Host);
             this->UnparsedGood.removeAt(item);
             return true;
         }
@@ -316,7 +320,7 @@ void VandalNw::Rescore(WikiEdit *edit)
         }
         item++;
     }
-    if (score != nullptr)
+    if (score != nullptr && Hooks::HAN_Rescore(edit, score->Score, score->User, score->Ident, score->Host))
     {
         QString sid = QString::number(score->RevID);
         bool bot_ = score->User.toLower().contains("bot");
@@ -369,19 +373,23 @@ void VandalNw::WriteTest(WikiEdit *edit)
     }
 }
 
-void VandalNw::ProcessGood(WikiEdit *edit, QString user)
+void VandalNw::ProcessGood(WikiEdit *edit, QString nick, QString ident, QString host)
 {
+    if (!Hooks::HAN_Good(edit, nick, ident, host))
+        return;
     edit->User->SetBadnessScore(edit->User->GetBadnessScore() - 200);
     QString sid = QString::number(edit->RevID);
-    this->Insert("<font color=blue>" + user + " saw a good edit on " + edit->GetSite()->Name + " to " + edit->Page->PageName + " by " + edit->User->Username
+    this->Insert("<font color=blue>" + nick + " saw a good edit on " + edit->GetSite()->Name + " to " + edit->Page->PageName + " by " + edit->User->Username
                      + " (" + GenerateWikiDiffLink(sid, sid, edit->GetSite()) + ")" + "</font>", HAN::MessageType_User);
     MainWindow::HuggleMain->Queue1->DeleteByRevID(edit->RevID, edit->GetSite());
 }
 
-void VandalNw::ProcessRollback(WikiEdit *edit, QString user)
+void VandalNw::ProcessRollback(WikiEdit *edit, QString nick, QString ident, QString host)
 {
+    if (!Hooks::HAN_Revert(edit, nick, ident, host))
+        return;
     QString sid = QString::number(edit->RevID);
-    this->Insert("<font color=orange>" + user + " did a rollback on " + edit->GetSite()->Name + " of " + edit->Page->PageName + " by " + edit->User->Username
+    this->Insert("<font color=orange>" + nick + " did a rollback on " + edit->GetSite()->Name + " of " + edit->Page->PageName + " by " + edit->User->Username
                  + " (" + GenerateWikiDiffLink(sid, sid, edit->GetSite()) + ")" + "</font>", HAN::MessageType_User);
     edit->User->SetBadnessScore(edit->User->GetBadnessScore() + 200);
     if (Huggle::Configuration::HuggleConfiguration->UserConfig->DeleteEditsAfterRevert)
@@ -394,10 +402,12 @@ void VandalNw::ProcessRollback(WikiEdit *edit, QString user)
         MainWindow::HuggleMain->Queue1->DeleteByRevID(edit->RevID, edit->GetSite());
 }
 
-void VandalNw::ProcessSusp(WikiEdit *edit, QString user)
+void VandalNw::ProcessSusp(WikiEdit *edit, QString nick, QString ident, QString hn)
 {
+    if (!Hooks::HAN_Suspicious(edit, nick, ident, hn))
+        return;
     QString sid = QString::number(edit->RevID);
-    this->Insert("<font color=red>" + user + " thinks that edit on " + edit->GetSite()->Name + " to " + edit->Page->PageName + " by "
+    this->Insert("<font color=red>" + nick + " thinks that edit on " + edit->GetSite()->Name + " to " + edit->Page->PageName + " by "
                  + edit->User->Username + " (" + GenerateWikiDiffLink(sid, sid, edit->GetSite()) +
                  ") is likely a vandalism, but they didn't revert it </font>", HAN::MessageType_User);
     edit->Score += 600;
@@ -451,7 +461,7 @@ void VandalNw::refreshUL()
     }
 }
 
-void VandalNw::ProcessCommand(WikiSite *site, QString nick, QString message)
+void VandalNw::ProcessCommand(WikiSite *site, QString nick, QString ident, QString host, QString message)
 {
     HAN::MessageType mt;
     if (!nick.toLower().contains("bot"))
@@ -478,14 +488,14 @@ void VandalNw::ProcessCommand(WikiSite *site, QString nick, QString message)
             WikiEdit *edit = MainWindow::HuggleMain->Queue1->GetWikiEditByRevID(RevID, site);
             if (edit != nullptr)
             {
-                this->ProcessGood(edit, nick);
+                this->ProcessGood(edit, nick, ident, host);
             } else
             {
                 while (this->UnparsedGood.count() > Configuration::HuggleConfiguration->SystemConfig_CacheHAN)
                 {
                     this->UnparsedGood.removeAt(0);
                 }
-                this->UnparsedGood.append(HAN::GenericItem(site, RevID, nick));
+                this->UnparsedGood.append(HAN::GenericItem(site, RevID, nick, ident, host));
             }
         }
         if (Command == "ROLLBACK")
@@ -494,14 +504,14 @@ void VandalNw::ProcessCommand(WikiSite *site, QString nick, QString message)
             WikiEdit *edit = MainWindow::HuggleMain->Queue1->GetWikiEditByRevID(RevID, site);
             if (edit != nullptr)
             {
-                this->ProcessRollback(edit, nick);
+                this->ProcessRollback(edit, nick, ident, host);
             } else
             {
                 while (this->UnparsedRoll.count() > Configuration::HuggleConfiguration->SystemConfig_CacheHAN)
                 {
                     this->UnparsedRoll.removeAt(0);
                 }
-                this->UnparsedRoll.append(HAN::GenericItem(site, RevID, nick));
+                this->UnparsedRoll.append(HAN::GenericItem(site, RevID, nick, ident, host));
             }
         }
         if (Command == "SUSPICIOUS")
@@ -510,14 +520,14 @@ void VandalNw::ProcessCommand(WikiSite *site, QString nick, QString message)
             WikiEdit *edit = MainWindow::HuggleMain->Queue1->GetWikiEditByRevID(RevID, site);
             if (edit != nullptr)
             {
-                this->ProcessSusp(edit, nick);
+                this->ProcessSusp(edit, nick, ident, host);
             } else
             {
                 while (this->UnparsedSusp.count() > Configuration::HuggleConfiguration->SystemConfig_CacheHAN)
                 {
                     this->UnparsedSusp.removeAt(0);
                 }
-                this->UnparsedSusp.append(HAN::GenericItem(site, RevID, nick));
+                this->UnparsedSusp.append(HAN::GenericItem(site, RevID, nick, ident, host));
             }
         }
         if (Command == "SCORED")
@@ -529,6 +539,8 @@ void VandalNw::ProcessCommand(WikiSite *site, QString nick, QString message)
                 WikiEdit *edit = MainWindow::HuggleMain->Queue1->GetWikiEditByRevID(RevID, site);
                 if (edit != nullptr)
                 {
+                    if (!Hooks::HAN_Rescore(edit, Score, nick, ident, host))
+                        return;
                     this->Insert("<font color=green>" + nick  + " rescored edit <b>" + edit->Page->PageName + "</b> by <b>" + edit->User->Username +
                                  "</b> (" + GenerateWikiDiffLink(revid, revid, edit->GetSite()) + ") by " + QString::number(Score) + "</font>", mt);
                     edit->Score += Score;
@@ -541,7 +553,7 @@ void VandalNw::ProcessCommand(WikiSite *site, QString nick, QString message)
                     {
                         this->UnparsedScores.removeAt(0);
                     }
-                    this->UnparsedScores.append(HAN::RescoreItem(site, RevID, Score, nick));
+                    this->UnparsedScores.append(HAN::RescoreItem(site, RevID, Score, nick, ident, host));
                 }
             }
         }
@@ -586,7 +598,7 @@ void Huggle::VandalNw::on_pushButton_clicked()
     this->SendMessage();
 }
 
-HAN::RescoreItem::RescoreItem(WikiSite *site, int _revID, int _score, QString _user) : GenericItem(site, _revID, _user)
+HAN::RescoreItem::RescoreItem(WikiSite *site, int _revID, int _score, QString _user, QString _ident, QString _hostname) : GenericItem(site, _revID, _user, _ident, _hostname)
 {
     this->Score = _score;
 }
@@ -608,11 +620,13 @@ HAN::GenericItem::GenericItem(WikiSite *site)
     this->RevID = WIKI_UNKNOWN_REVID;
 }
 
-HAN::GenericItem::GenericItem(WikiSite *site, int _revID, QString _user)
+HAN::GenericItem::GenericItem(WikiSite *site, int _revID, QString _user, QString _ident, QString _hostname)
 {
     this->Site = site;
     this->RevID = _revID;
+    this->Host = _hostname;
     this->User = _user;
+    this->Ident = _ident;
 }
 
 HAN::GenericItem::GenericItem(const HAN::GenericItem &i)
@@ -620,6 +634,8 @@ HAN::GenericItem::GenericItem(const HAN::GenericItem &i)
     this->Site = i.Site;
     this->RevID = i.RevID;
     this->User = i.User;
+    this->Ident = i.Ident;
+    this->Host = i.Host;
 }
 
 HAN::GenericItem::GenericItem(HAN::GenericItem *i)
@@ -627,6 +643,8 @@ HAN::GenericItem::GenericItem(HAN::GenericItem *i)
     this->Site = i->Site;
     this->RevID = i->RevID;
     this->User = i->User;
+    this->Ident = i->Ident;
+    this->Host = i->Host;
 }
 
 void VandalNw::on_lineEdit_returnPressed()
@@ -692,16 +710,20 @@ void VandalNw::OnIRCChannelMessage(libircclient::Parser *px)
         return;
     }
 
+    WikiSite *site = this->Ch2Site[channel];
+    if (!Hooks::HAN_Message(site, message, px->GetSourceUserInfo()->GetNick(), px->GetSourceUserInfo()->GetIdent(),
+                            px->GetSourceUserInfo()->GetHost()))
+        return;
+
     if (message.contains(this->irc->GetNick()))
     {
         // Show a notification in tray
         MainWindow::HuggleMain->TrayMessage("Huggle anti-vandalism network", message);
     }
 
-    WikiSite *site = this->Ch2Site[channel];
     if (message.startsWith(this->Prefix))
     {
-        this->ProcessCommand(site, nick, message);
+        this->ProcessCommand(site, nick, px->GetSourceUserInfo()->GetIdent(), px->GetSourceUserInfo()->GetHost(), message);
     } else
     {
         QString message_ = message;
@@ -729,16 +751,18 @@ void VandalNw::OnIRCChannelCTCP(libircclient::Parser *px, QString command, QStri
         return;
     }
     WikiSite *site = this->Ch2Site[px->GetParameterLine()];
-    this->ProcessCommand(site, px->GetSourceUserInfo()->GetNick(), px->GetText());
+    this->ProcessCommand(site, px->GetSourceUserInfo()->GetNick(), px->GetSourceUserInfo()->GetIdent(), px->GetSourceUserInfo()->GetHost(), px->GetText());
 }
 
 void VandalNw::OnIRCChannelQuit(libircclient::Parser *px, libircclient::Channel *channel)
 {
+    (void)px;
     this->refreshUL();
 }
 
 void VandalNw::OnIRCLoggedIn(libircclient::Parser *px)
 {
+    (void)px;
     this->JoinedMain = true;
     /// \todo LOCALIZE ME
     this->Insert("You are now connected to huggle antivandalism network", HAN::MessageType_Info);

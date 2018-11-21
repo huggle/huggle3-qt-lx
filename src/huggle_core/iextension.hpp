@@ -168,6 +168,11 @@ namespace Huggle
             virtual void Hook_FeedProvidersOnInit(void* site) {}
             virtual void Hook_OnLocalConfigRead() {}
             virtual void Hook_OnLocalConfigWrite() {}
+            virtual bool Hook_HAN_Revert(void *edit, QString nick, QString ident, QString host) { return true; }
+            virtual bool Hook_HAN_Message(void *site, QString message, QString nick, QString ident, QString host) { return true; }
+            virtual bool Hook_HAN_Good(void *edit, QString nick, QString ident, QString host) { return true; }
+            virtual bool Hook_HAN_Rescore(void *edit, long score, QString nick, QString ident, QString host) { return true; }
+            virtual bool Hook_HAN_Suspicious(void *edit, QString nick, QString ident, QString host) { return true; }
             //! Pointer to huggle core, set by extension loader
             void *HuggleCore = nullptr;
             //! Pointer to global system configuration, set by extension loader

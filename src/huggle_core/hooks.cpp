@@ -239,6 +239,81 @@ void Huggle::Hooks::FeedProvidersOnInit(Huggle::WikiSite *site)
     }
 }
 
+bool Huggle::Hooks::HAN_Suspicious(Huggle::WikiEdit *edit, QString nick, QString ident, QString host)
+{
+    foreach (Script *s, Script::GetScripts())
+    {
+        if (s->IsWorking() && !s->Hook_HAN_Suspicious(edit, nick, ident, host))
+            return false;
+    }
+    foreach (Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
+    {
+        if (e->IsWorking() && !e->Hook_HAN_Suspicious((void*)edit, nick, ident, host))
+            return false;
+    }
+    return true;
+}
+
+bool Huggle::Hooks::HAN_Revert(Huggle::WikiEdit *edit, QString nick, QString ident, QString host)
+{
+    foreach (Script *s, Script::GetScripts())
+    {
+        if (s->IsWorking() && !s->Hook_HAN_Revert(edit, nick, ident, host))
+            return false;
+    }
+    foreach (Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
+    {
+        if (e->IsWorking() && !e->Hook_HAN_Revert((void*)edit, nick, ident, host))
+            return false;
+    }
+    return true;
+}
+
+bool Huggle::Hooks::HAN_Good(Huggle::WikiEdit *edit, QString nick, QString ident, QString host)
+{
+    foreach (Script *s, Script::GetScripts())
+    {
+        if (s->IsWorking() && !s->Hook_HAN_Good(edit, nick, ident, host))
+            return false;
+    }
+    foreach (Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
+    {
+        if (e->IsWorking() && !e->Hook_HAN_Good((void*)edit, nick, ident, host))
+            return false;
+    }
+    return true;
+}
+
+bool Huggle::Hooks::HAN_Rescore(Huggle::WikiEdit *edit, long score, QString nick, QString ident, QString host)
+{
+    foreach (Script *s, Script::GetScripts())
+    {
+        if (s->IsWorking() && !s->Hook_HAN_Rescore(edit, score, nick, ident, host))
+            return false;
+    }
+    foreach (Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
+    {
+        if (e->IsWorking() && !e->Hook_HAN_Rescore((void*)edit, score, nick, ident, host))
+            return false;
+    }
+    return true;
+}
+
+bool Huggle::Hooks::HAN_Message(Huggle::WikiSite *site, QString message, QString nick, QString ident, QString host)
+{
+    foreach (Script *s, Script::GetScripts())
+    {
+        if (s->IsWorking() && !s->Hook_HAN_Message(site, message, nick, ident, host))
+            return false;
+    }
+    foreach (Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
+    {
+        if (e->IsWorking() && !e->Hook_HAN_Message((void*)site, message, nick, ident, host))
+            return false;
+    }
+    return true;
+}
+
 Huggle::Message *Huggle::Hooks::MessageUser(Huggle::WikiUser *user, QString text, QString title, QString summary, bool insert_section,
                                             Query *dependency, bool no_suffix, bool section_keep, bool autoremove,
                                             QString base_timestamp, bool create_only, bool fresh_only)

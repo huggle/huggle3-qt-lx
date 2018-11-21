@@ -106,6 +106,11 @@ namespace Huggle
             static void Shutdown();
             //! Called on initialization of feed providers
             static void FeedProvidersOnInit(WikiSite *site);
+            static bool HAN_Suspicious(WikiEdit *edit, QString nick, QString ident, QString host);
+            static bool HAN_Revert(WikiEdit *edit, QString nick, QString ident, QString host);
+            static bool HAN_Good(WikiEdit *edit, QString nick, QString ident, QString host);
+            static bool HAN_Rescore(WikiEdit *edit, long score,  QString nick, QString ident, QString host);
+            static bool HAN_Message(WikiSite *site, QString message, QString nick, QString ident, QString host);
     };
 }
 

@@ -61,11 +61,13 @@ namespace Huggle
         {
             public:
                 GenericItem(WikiSite *site);
-                GenericItem(WikiSite *site, int _revID, QString _user);
+                GenericItem(WikiSite *site, int _revID, QString _user, QString _ident, QString _hostname);
                 GenericItem(const GenericItem &i);
                 GenericItem(GenericItem *i);
                 //! User who changed the edit
                 QString User;
+                QString Ident;
+                QString Host;
                 WikiSite *Site;
                 //! ID of edit
                 int RevID;
@@ -81,7 +83,7 @@ namespace Huggle
         class HUGGLE_EX_UI RescoreItem : public GenericItem
         {
             public:
-                RescoreItem(WikiSite *site, int _revID, int _score, QString _user);
+                RescoreItem(WikiSite *site, int _revID, int _score, QString _user, QString _ident, QString _hostname);
                 RescoreItem(const RescoreItem &item);
                 RescoreItem(RescoreItem *item);
                 int Score;
@@ -136,12 +138,12 @@ namespace Huggle
             QList<HAN::GenericItem> UnparsedRoll;
             QList<HAN::GenericItem> UnparsedSusp;
         private:
-            void ProcessGood(WikiEdit *edit, QString user);
-            void ProcessRollback(WikiEdit *edit, QString user);
-            void ProcessSusp(WikiEdit *edit, QString user);
+            void ProcessGood(WikiEdit *edit, QString nick, QString ident, QString host);
+            void ProcessRollback(WikiEdit *edit, QString nick, QString ident, QString host);
+            void ProcessSusp(WikiEdit *edit, QString nick, QString ident, QString hn);
             //! Reload user list
             void refreshUL();
-            void ProcessCommand(WikiSite *site, QString nick, QString message);
+            void ProcessCommand(WikiSite *site, QString nick, QString ident, QString host, QString message);
             Ui::VandalNw *ui;
             //! Pointer to irc server
             libircclient::Network *irc;

@@ -437,6 +437,85 @@ void Script::Hook_OnLocalConfigWrite()
     this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_LOCALCONFIG_WRITE]);
 }
 
+bool Script::Hook_HAN_Good(WikiEdit *edit, QString nick, QString ident, QString host)
+{
+    if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_HAN_GOOD))
+        return true;
+
+    int pool_id = this->memPool->RegisterEdit(edit);
+    QJSValueList params;
+    params.append(JSMarshallingHelper::FromEdit(edit, this->engine, pool_id));
+    params.append(QJSValue(nick));
+    params.append(QJSValue(ident));
+    params.append(QJSValue(host));
+    bool result = this->executeFunctionAsBool(this->attachedHooks[HUGGLE_SCRIPT_HOOK_HAN_GOOD], params);
+    this->memPool->UnregisterEdit(edit);
+    return result;
+}
+
+bool Script::Hook_HAN_Suspicious(WikiEdit *edit, QString nick, QString ident, QString host)
+{
+    if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_HAN_SUSPICIOUS))
+        return true;
+
+    int pool_id = this->memPool->RegisterEdit(edit);
+    QJSValueList params;
+    params.append(JSMarshallingHelper::FromEdit(edit, this->engine, pool_id));
+    params.append(QJSValue(nick));
+    params.append(QJSValue(ident));
+    params.append(QJSValue(host));
+    bool result = this->executeFunctionAsBool(this->attachedHooks[HUGGLE_SCRIPT_HOOK_HAN_SUSPICIOUS], params);
+    this->memPool->UnregisterEdit(edit);
+    return result;
+}
+
+bool Script::Hook_HAN_Rescore(WikiEdit *edit, long score, QString nick, QString ident, QString host)
+{
+    if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_HAN_RESCORE))
+        return true;
+
+    int pool_id = this->memPool->RegisterEdit(edit);
+    QJSValueList params;
+    params.append(JSMarshallingHelper::FromEdit(edit, this->engine, pool_id));
+    params.append(QJSValue(static_cast<double>(score)));
+    params.append(QJSValue(nick));
+    params.append(QJSValue(ident));
+    params.append(QJSValue(host));
+    bool result = this->executeFunctionAsBool(this->attachedHooks[HUGGLE_SCRIPT_HOOK_HAN_RESCORE], params);
+    this->memPool->UnregisterEdit(edit);
+    return result;
+}
+
+bool Script::Hook_HAN_Revert(WikiEdit *edit, QString nick, QString ident, QString host)
+{
+    if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_HAN_REVERT))
+        return true;
+
+    int pool_id = this->memPool->RegisterEdit(edit);
+    QJSValueList params;
+    params.append(JSMarshallingHelper::FromEdit(edit, this->engine, pool_id));
+    params.append(QJSValue(nick));
+    params.append(QJSValue(ident));
+    params.append(QJSValue(host));
+    bool result = this->executeFunctionAsBool(this->attachedHooks[HUGGLE_SCRIPT_HOOK_HAN_REVERT], params);
+    this->memPool->UnregisterEdit(edit);
+    return result;
+}
+
+bool Script::Hook_HAN_Message(WikiSite *w, QString message, QString nick, QString ident, QString host)
+{
+    if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_HAN_MESSAGE))
+        return true;
+
+    QJSValueList params;
+    params.append(JSMarshallingHelper::FromSite(w, this->engine));
+    params.append(QJSValue(message));
+    params.append(QJSValue(nick));
+    params.append(QJSValue(ident));
+    params.append(QJSValue(host));
+    return this->executeFunctionAsBool(this->attachedHooks[HUGGLE_SCRIPT_HOOK_HAN_MESSAGE], params);
+}
+
 void Script::SubscribeHook(int hook, QString function_name)
 {
     if (this->attachedHooks.contains(hook))
@@ -690,6 +769,8 @@ void Script::registerFunction(QString name, QString help, bool is_unsafe)
 
 void Script::registerHook(QString name, int parameters, QString help, bool is_unsafe)
 {
+    (void)parameters;
+    (void)is_unsafe;
     this->hooksExported.append(name);
     this->functionsHelp.insert(name, help);
 }
@@ -710,6 +791,11 @@ void Script::registerFunctions()
     this->registerHook("int edit_rescore", 1, "(WikiEdit edit): called after post processing the edit, number returned will be added to final score (3.4.2)");
     this->registerHook("warning_finished", 1, "(WikiEdit edit): called when warning to user is sent");
     this->registerHook("bool revert_preflight", 1, "(WikiEdit edit): run before edit is reverted, if false is returned, revert is stopped");
+    this->registerHook("bool han_good", 4, "(WikiEdit edit, string nick, string ident, string host): called when someone sends HAN command");
+    this->registerHook("bool han_revert", 4, "(WikiEdit edit, string nick, string ident, string host): called when someone sends HAN command");
+    this->registerHook("bool han_suspicious", 4, "(WikiEdit edit, string nick, string ident, string host): called when someone sends HAN command");
+    this->registerHook("bool han_rescore", 5, "(WikiEdit edit, int score, string nick, string ident, string host): called when someone sends HAN command");
+    this->registerHook("bool han_message", 5, "(WikiSite site, QString message, string nick, string ident, string host): called when someone sends HAN command");
 }
 
 ScriptException::ScriptException(QString text, QString source, Script *scr, bool is_recoverable) : Exception(text, source, is_recoverable)

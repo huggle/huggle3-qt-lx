@@ -40,6 +40,11 @@
 #define HUGGLE_SCRIPT_HOOK_REVERT_PREFLIGHT                     11
 #define HUGGLE_SCRIPT_HOOK_LOCALCONFIG_WRITE                    12
 #define HUGGLE_SCRIPT_HOOK_LOCALCONFIG_READ                     13
+#define HUGGLE_SCRIPT_HOOK_HAN_GOOD                             14
+#define HUGGLE_SCRIPT_HOOK_HAN_REVERT                           15
+#define HUGGLE_SCRIPT_HOOK_HAN_MESSAGE                          16
+#define HUGGLE_SCRIPT_HOOK_HAN_RESCORE                          17
+#define HUGGLE_SCRIPT_HOOK_HAN_SUSPICIOUS                       18
 
 namespace Huggle
 {
@@ -138,6 +143,11 @@ namespace Huggle
             void Hook_WarningFinished(WikiEdit *edit);
             void Hook_OnLocalConfigRead();
             void Hook_OnLocalConfigWrite();
+            bool Hook_HAN_Good(WikiEdit *edit, QString nick, QString ident, QString host);
+            bool Hook_HAN_Suspicious(WikiEdit *edit, QString nick, QString ident, QString host);
+            bool Hook_HAN_Rescore(WikiEdit *edit, long score, QString nick, QString ident, QString host);
+            bool Hook_HAN_Revert(WikiEdit *edit, QString nick, QString ident, QString host);
+            bool Hook_HAN_Message(WikiSite *w, QString message, QString nick, QString ident, QString host);
             void SubscribeHook(int hook, QString function_name);
             void UnsubscribeHook(int hook);
             bool HookSubscribed(int hook);
