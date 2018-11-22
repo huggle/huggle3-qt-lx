@@ -27,7 +27,7 @@ console.debug = function(txt) { huggle.debug_log(txt, 1); }
 console.warn = function(txt) { huggle.warning_log(txt); }
 
 function huggle_ecma() {}
-huggle_ecma.contains = function contains(a, obj)
+huggle_ecma.contains = function(a, obj)
 {
     var i = a.length;
     while (i--) {
