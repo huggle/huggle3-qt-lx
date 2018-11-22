@@ -25,3 +25,15 @@ console.log = function(txt) { huggle.log(txt); }
 console.error = function(txt) { huggle.error_log(txt); }
 console.debug = function(txt) { huggle.debug_log(txt, 1); }
 console.warn = function(txt) { huggle.warning_log(txt); }
+
+function huggle_ecma() {}
+huggle_ecma.contains = function contains(a, obj)
+{
+    var i = a.length;
+    while (i--) {
+       if (a[i] === obj) {
+           return true;
+       }
+    }
+    return false;
+}

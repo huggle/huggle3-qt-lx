@@ -9,6 +9,7 @@
 //GNU General Public License for more details.
 
 var huggle_ecma_function_help = { "alert": "(message): Shows a message box with text",
+                                  "huggle_ecma.contains": "(array, object): returns true if array includes object",
                                   "console.assert": "(expression, text): if expression is true, log text",
                                   "console.log":   "(text): Writes text to huggle log",
                                   "console.debug": "(text): Writes to debug log",
@@ -16,4 +17,4 @@ var huggle_ecma_function_help = { "alert": "(message): Shows a message box with 
                                   "console.warn":  "(text): Writes to warning log" };
 
 var huggle_ecma_function_list = [ "alert", "console.assert", "console.log", "console.debug",
-                                  "console.error", "console.warn" ];
+                                  "console.error", "console.warn", "huggle_ecma.contains" ];
