@@ -777,8 +777,8 @@ void Script::registerHook(QString name, int parameters, QString help, bool is_un
 
 void Script::registerFunctions()
 {
-    this->registerHook("ext_init", 0, "(): called on start, must return true, otherwise load of extension is considered as failure");
-    this->registerHook("ext_get_info", 0, "(): should return a dictionary with properties name, author, description, version (all strings)");
+    this->registerHook("ext_init", 0, "() - returns bool: called on start, must return true, otherwise load of extension is considered as failure");
+    this->registerHook("ext_get_info", 0, "() - returns hash: should return a dictionary with properties name, author, description, version (all strings)");
     this->registerHook("ext_unload", 0, "(): called when extension is being unloaded from system");
     this->registerHook("ext_is_working", 0, "(): must exist and must return true, if returns false, extension is considered crashed");
     this->registerHook("shutdown", 0, "(): called on exit of Huggle");
@@ -788,14 +788,14 @@ void Script::registerFunctions()
     this->registerHook("edit_on_suspicious", 1, "(WikiEdit edit): when suspicious edit is spotted");
     this->registerHook("edit_on_good", 1, "(WikiEdit edit): on good edit");
     this->registerHook("edit_on_revert", 1, "(WikiEdit edit): edit reverted");
-    this->registerHook("edit_rescore", 1, "(WikiEdit edit): called after post processing the edit, number returned will be added to final score (3.4.2)");
+    this->registerHook("edit_rescore", 1, "(WikiEdit edit) - returns int: called after post processing the edit, number returned will be added to final score (3.4.2)");
     this->registerHook("warning_finished", 1, "(WikiEdit edit): called when warning to user is sent");
-    this->registerHook("revert_preflight", 1, "(WikiEdit edit): run before edit is reverted, if false is returned, revert is stopped");
-    this->registerHook("han_good", 4, "(WikiEdit edit, string nick, string ident, string host): called when someone sends HAN command");
-    this->registerHook("han_revert", 4, "(WikiEdit edit, string nick, string ident, string host): called when someone sends HAN command");
-    this->registerHook("han_suspicious", 4, "(WikiEdit edit, string nick, string ident, string host): called when someone sends HAN command");
-    this->registerHook("han_rescore", 5, "(WikiEdit edit, int score, string nick, string ident, string host): called when someone sends HAN command");
-    this->registerHook("han_message", 5, "(WikiSite site, QString message, string nick, string ident, string host): called when someone sends HAN command");
+    this->registerHook("revert_preflight", 1, "(WikiEdit edit) - returns bool: run before edit is reverted, if false is returned, revert is stopped");
+    this->registerHook("han_good", 4, "(WikiEdit edit, string nick, string ident, string host) - returns bool: called when someone sends HAN command, has to return true, otherwise message is ignored");
+    this->registerHook("han_revert", 4, "(WikiEdit edit, string nick, string ident, string host) - returns bool: called when someone sends HAN command, has to return true, otherwise message is ignored");
+    this->registerHook("han_suspicious", 4, "(WikiEdit edit, string nick, string ident, string host) - returns bool: called when someone sends HAN command, has to return true, otherwise message is ignored");
+    this->registerHook("han_rescore", 5, "(WikiEdit edit, int score, string nick, string ident, string host) - returns bool: called when someone sends HAN command, has to return true, otherwise message is ignored");
+    this->registerHook("han_message", 5, "(WikiSite site, QString message, string nick, string ident, string host) - returns bool: called when someone sends HAN command, has to return true, otherwise message is ignored");
 }
 
 ScriptException::ScriptException(QString text, QString source, Script *scr, bool is_recoverable) : Exception(text, source, is_recoverable)
