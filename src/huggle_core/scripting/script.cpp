@@ -565,6 +565,17 @@ int Script::GetHookID(QString hook)
         return HUGGLE_SCRIPT_HOOK_LOCALCONFIG_WRITE;
     if (hook == "localconfig_read")
         return HUGGLE_SCRIPT_HOOK_LOCALCONFIG_READ;
+    if (hook == "han_suspicious")
+        return HUGGLE_SCRIPT_HOOK_HAN_SUSPICIOUS;
+    if (hook == "han_good")
+        return HUGGLE_SCRIPT_HOOK_HAN_GOOD;
+    if (hook == "han_revert")
+        return HUGGLE_SCRIPT_HOOK_HAN_REVERT;
+    if (hook == "han_message")
+        return HUGGLE_SCRIPT_HOOK_HAN_MESSAGE;
+    if (hook == "han_rescore")
+        return HUGGLE_SCRIPT_HOOK_HAN_RESCORE;
+
     return -1;
 }
 
