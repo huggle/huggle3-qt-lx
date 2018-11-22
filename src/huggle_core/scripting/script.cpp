@@ -784,18 +784,18 @@ void Script::registerFunctions()
     this->registerHook("shutdown", 0, "(): called on exit of Huggle");
     this->registerHook("edit_after_pre_process", 1, "(WikiEdit edit): called when edit is pre processed");
     this->registerHook("edit_before_post_process", 1, "(WikiEdit edit): called when edit is post processed");
-    this->registerHook("bool edit_load_to_queue", 1, "(WikiEdit edit): called when edit is loaded to queue, if returns false, edit will be removed");
+    this->registerHook("edit_load_to_queue", 1, "(WikiEdit edit): called when edit is loaded to queue, if returns false, edit will be removed");
     this->registerHook("edit_on_suspicious", 1, "(WikiEdit edit): when suspicious edit is spotted");
     this->registerHook("edit_on_good", 1, "(WikiEdit edit): on good edit");
     this->registerHook("edit_on_revert", 1, "(WikiEdit edit): edit reverted");
-    this->registerHook("int edit_rescore", 1, "(WikiEdit edit): called after post processing the edit, number returned will be added to final score (3.4.2)");
+    this->registerHook("edit_rescore", 1, "(WikiEdit edit): called after post processing the edit, number returned will be added to final score (3.4.2)");
     this->registerHook("warning_finished", 1, "(WikiEdit edit): called when warning to user is sent");
-    this->registerHook("bool revert_preflight", 1, "(WikiEdit edit): run before edit is reverted, if false is returned, revert is stopped");
-    this->registerHook("bool han_good", 4, "(WikiEdit edit, string nick, string ident, string host): called when someone sends HAN command");
-    this->registerHook("bool han_revert", 4, "(WikiEdit edit, string nick, string ident, string host): called when someone sends HAN command");
-    this->registerHook("bool han_suspicious", 4, "(WikiEdit edit, string nick, string ident, string host): called when someone sends HAN command");
-    this->registerHook("bool han_rescore", 5, "(WikiEdit edit, int score, string nick, string ident, string host): called when someone sends HAN command");
-    this->registerHook("bool han_message", 5, "(WikiSite site, QString message, string nick, string ident, string host): called when someone sends HAN command");
+    this->registerHook("revert_preflight", 1, "(WikiEdit edit): run before edit is reverted, if false is returned, revert is stopped");
+    this->registerHook("han_good", 4, "(WikiEdit edit, string nick, string ident, string host): called when someone sends HAN command");
+    this->registerHook("han_revert", 4, "(WikiEdit edit, string nick, string ident, string host): called when someone sends HAN command");
+    this->registerHook("han_suspicious", 4, "(WikiEdit edit, string nick, string ident, string host): called when someone sends HAN command");
+    this->registerHook("han_rescore", 5, "(WikiEdit edit, int score, string nick, string ident, string host): called when someone sends HAN command");
+    this->registerHook("han_message", 5, "(WikiSite site, QString message, string nick, string ident, string host): called when someone sends HAN command");
 }
 
 ScriptException::ScriptException(QString text, QString source, Script *scr, bool is_recoverable) : Exception(text, source, is_recoverable)
