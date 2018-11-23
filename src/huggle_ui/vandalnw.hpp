@@ -129,6 +129,7 @@ namespace Huggle
             void SendMessage(QString text);
             //! For debugging only
             void WriteTest(WikiEdit *edit);
+            bool IsBot(QString nick, QString host);
             QHash<QString,WikiSite*> Ch2Site;
             QHash<WikiSite*,QString> Site2Channel;
             //! Prefix to special commands that are being sent to network to other users

@@ -302,6 +302,17 @@ bool VandalNw::IsParsed(WikiEdit *edit)
     return false;
 }
 
+bool VandalNw::IsBot(QString nick, QString host)
+{
+    if (nick.endsWith("Bot"))
+        return true;
+    if (nick.toLower().endsWith("-bot"))
+        return true;
+    if (host.endsWith("bot.huggle"))
+        return true;
+    return false;
+}
+
 void VandalNw::Rescore(WikiEdit *edit)
 {
     if (this->UnparsedScores.count() == 0)
@@ -323,7 +334,7 @@ void VandalNw::Rescore(WikiEdit *edit)
     if (score != nullptr && Hooks::HAN_Rescore(edit, score->Score, score->User, score->Ident, score->Host))
     {
         QString sid = QString::number(score->RevID);
-        bool bot_ = score->User.toLower().contains("bot");
+        bool bot_ = this->IsBot(score->User, score->Host);
         QString message = "<font color=green>" + score->User + " rescored edit <b>" + edit->Page->PageName + "</b> by <b>" +
                           edit->User->Username + "</b> (" + GenerateWikiDiffLink(sid, sid, edit->GetSite()) + ") by " +
                           QString::number(score->Score) + "</font>";
@@ -464,7 +475,7 @@ void VandalNw::refreshUL()
 void VandalNw::ProcessCommand(WikiSite *site, QString nick, QString ident, QString host, QString message)
 {
     HAN::MessageType mt;
-    if (!nick.toLower().contains("bot"))
+    if (!this->IsBot(nick, host))
     {
         mt = HAN::MessageType_User;
     } else
