@@ -82,7 +82,7 @@
   <string name="block-blockloglabel">Qeydê bloqi</string>
   <string name="block-warnloglabel">Tembey:</string>
   <string name="block-type">Bloke kı/mekı</string>
-  <string name="block-admin" fuzzy="true">Bloqe kerden xızmetkar</string>
+  <string name="block-admin">Kılitkerdışê idarekari</string>
   <string name="block-none" fuzzy="true">Bloqe kerden karber çıni yo</string>
   <string name="config-function">Fonksiyon</string>
   <string name="config-description">Şınasnayış</string>
