@@ -630,7 +630,7 @@
   <string name="update-progress">جارٍ تنزيل الإصدار الجديد، يُرجَى الانتظار...</string>
   <string name="update-error">فشل تنزيل الاصدار الجديد</string>
   <string name="updater-title">إصدار جديد من هغل متاح</string>
-  <string name="updater-update">حدِّث</string>
+  <string name="updater-update">تحديث</string>
   <string name="updater-update-available">هناك نسخة أحدث من هغل متاحة: النسخة $1</string>
   <string name="updater-open-manualdownloadpage">فتح صفحة التنزيل</string>
   <string name="updater-close">غلق</string>

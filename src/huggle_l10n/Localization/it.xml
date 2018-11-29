@@ -64,7 +64,7 @@
   <string name="link">Collegamento</string>
   <string name="reason">Motivo</string>
   <string name="diffid">ID diff</string>
-  <string name="whitelisted" fuzzy="true">$1 con punteggio $2 su $3 è stato inserito nella lista bianca</string>
+  <string name="whitelisted">$1 con punteggio $2 su $3 è stato inserito nella lista bianca</string>
   <string name="expiry-time">Tempo di scadenza</string>
   <string name="duration">Durata</string>
   <string name="enable">Attiva</string>

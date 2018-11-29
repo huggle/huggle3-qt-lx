@@ -90,6 +90,7 @@
   <string name="config-close-without">Aizvērt bez saglabāšanas</string>
   <string name="config-reportnone">Neko nedarīt</string>
   <string name="config-template">Veidne</string>
+  <string name="config-blockreason">Noklusētais bloķēšanas iemesls</string>
   <string name="config-blocktime">Noklusētais bloka ilgums</string>
   <string name="config-blocktimeanon">anonīmiem lietotājiem</string>
   <string name="config-blocktimereg">reģistrētiem dalībniekiem</string>
@@ -102,6 +103,7 @@
   <string name="custommessage-send">Nosūtīt ziņu</string>
   <string name="delete-title">Dzēst $1</string>
   <string name="delete-reason">Iemesls:</string>
+  <string name="delete-deletionlog">Dzēšanas reģistrs:</string>
   <string name="delete-rem-talk">Dzēst saistīto diskusiju</string>
   <string name="delete-e2">Neizdevās dzēst lapu</string>
   <string name="delete-edsc">Neizdevās dzēst lapu, jo $1</string>
@@ -111,7 +113,10 @@
   <string name="exception-system-log">Sistēmas žurnāls</string>
   <string name="historyform-no-info">Nav labojuma informācijas</string>
   <string name="historyform-title">Vēsture</string>
+  <string name="historyform-retrieve-history">Iegūt vēsturi</string>
+  <string name="historyform-retrieving-history">Iegūst vēsturi</string>
   <string name="history-error-message-title">Nevar atcelt</string>
+  <string name="history-failure">Neizdevās iegūt vēsturi</string>
   <string name="userhistory-title">Tavu izmaiņu vēsture</string>
   <string name="login-tab-botp">Bota parole</string>
   <string name="login-tab-login">Novecojis</string>
