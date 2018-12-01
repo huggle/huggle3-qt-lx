@@ -407,6 +407,7 @@ void MainWindow::DisplayReportUserWindow(WikiUser *User)
 
 void MainWindow::EnableEditing(bool enabled)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     // In case we are in dry mode allow everything, for debugging ;)
     if (hcfg->SystemConfig_DryMode)
         enabled = true;
@@ -450,6 +451,7 @@ WikiEdit *MainWindow::GetCurrentWikiEdit()
 
 QMenu *MainWindow::GetMenu(int menu_id)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     switch (menu_id)
     {
         case HUGGLE_MW_MENU_SYSTEM:
@@ -479,6 +481,7 @@ QMenu *MainWindow::GetMenu(int menu_id)
 
 QAction *MainWindow::GetMenuItem(int menu_item)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     switch (menu_item)
     {
         case HUGGLE_MW_MENUITEM_EXIT:
@@ -490,6 +493,7 @@ QAction *MainWindow::GetMenuItem(int menu_item)
 
 void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, bool KeepUser, bool ForcedJump)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     if (e == nullptr || this->ShuttingDown)
     {
         // Huggle is either shutting down or edit is nullptr so we can't do anything here
@@ -552,6 +556,7 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
 
 void MainWindow::Render(bool KeepHistory, bool KeepUser)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     if (this->CurrentEdit != nullptr)
     {
         if (this->CurrentEdit->Page == nullptr)
@@ -659,6 +664,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 void MainWindow::UpdateStatusBarData()
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     QStringList params;
     params << Generic::ShrinkText(QString::number(QueryPool::HugglePool->ProcessingEdits.count()), 3)
            << Generic::ShrinkText(QString::number(QueryPool::HugglePool->RunningQueriesGetCount()), 3)
@@ -666,7 +672,7 @@ void MainWindow::UpdateStatusBarData()
            << Generic::ShrinkText(QString::number(this->Queue1->Items.count()), 4);
     QString statistics_;
     // calculate stats, but not if huggle uptime is lower than 50 seconds
-    double Uptime = this->GetCurrentWikiSite()->Provider->GetUptime();
+    qint64 Uptime = this->GetCurrentWikiSite()->Provider->GetUptime();
     if (this->ShuttingDown)
     {
         statistics_ = _l("main-statistics-none");
@@ -691,9 +697,9 @@ void MainWindow::UpdateStatusBarData()
         if (VandalismLevel > 1.8)
             color = "red";
         // make the numbers easier to read
-        EditsPerMinute = ((double)qRound(EditsPerMinute * 100)) / 100;
-        RevertsPerMinute = ((double)qRound(RevertsPerMinute * 100)) / 100;
-        VandalismLevel = ((double)qRound(VandalismLevel * 100)) / 100;
+        EditsPerMinute = static_cast<double>(qRound(EditsPerMinute * 100)) / 100;
+        RevertsPerMinute = static_cast<double>(qRound(RevertsPerMinute * 100)) / 100;
+        VandalismLevel = static_cast<double>(qRound(VandalismLevel * 100)) / 100;
         QStringList counter_params;
         counter_params << Generic::ShrinkText(QString::number(EditsPerMinute), 6)
                << Generic::ShrinkText(QString::number(RevertsPerMinute), 6)
@@ -786,6 +792,7 @@ QLabel *MainWindow::CreateStatusBarLabel(QString text)
 {
     QLabel *lb = new QLabel(this->statusBar());
     this->statusBar()->addWidget(lb);
+    lb->setText(text);
     return lb;
 }
 
@@ -814,6 +821,7 @@ static inline void ReloadIndexedMenuShortcut(QList<QAction *> list, int item, Sh
 
 void MainWindow::ReloadShort(QString id)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     if (!Configuration::HuggleConfiguration->Shortcuts.contains(id))
         throw new Huggle::Exception("Invalid shortcut name", BOOST_CURRENT_FUNCTION);
     Shortcut s = Configuration::HuggleConfiguration->Shortcuts[id];
@@ -1126,6 +1134,7 @@ void MainWindow::ReloadShort(QString id)
 
 void MainWindow::ProcessReverts()
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     if (this->RevertStack.count())
     {
         QDateTime now = QDateTime::currentDateTime().addSecs(-1 * Configuration::HuggleConfiguration->SystemConfig_RevertDelay);
@@ -1224,6 +1233,7 @@ Collectable_SmartPtr<RevertQuery> MainWindow::Revert(QString summary, bool next,
 
 bool MainWindow::preflightCheck(WikiEdit *_e)
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     if (!Hooks::RevertPreflight(_e))
     {
         HUGGLE_DEBUG("Hook prevented revert of " + _e->Page->PageName, 2);
@@ -1317,6 +1327,7 @@ void MainWindow::DisplayWelcomeMessage()
 
 void MainWindow::finishRestore()
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     if (this->RestoreEdit == nullptr || this->RestoreQuery == nullptr || !this->RestoreQuery->IsProcessed())
         return;
     QDomDocument d;
@@ -1450,6 +1461,7 @@ void MainWindow::on_actionAbout_triggered()
 
 void MainWindow::OnMainTimerTick()
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     foreach (WikiSite *site, hcfg->Projects)
     {
         ProjectConfiguration *cfg = site->GetProjectConfig();
@@ -1598,6 +1610,7 @@ void MainWindow::OnMainTimerTick()
 
 void MainWindow::TruncateReverts()
 {
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     while (QueryPool::HugglePool->UncheckedReverts.count() > 0)
     {
         WikiEdit *edit = QueryPool::HugglePool->UncheckedReverts.at(0);
@@ -1839,7 +1852,7 @@ void MainWindow::CustomWelcome()
 {
     if (!this->EditingChecks())
         return;
-    QAction *welcome = (QAction*) QObject::sender();
+    QAction *welcome = reinterpret_cast<QAction*>(QObject::sender());
     this->welcomeCurrentUser(HuggleParser::GetValueFromSSItem(welcome->data().toString()));
 }
 
@@ -1849,7 +1862,7 @@ void MainWindow::CustomRevert()
         return;
     if (!this->EditingChecks() || !this->CheckRevertable())
         return;
-    QAction *revert = (QAction*) QObject::sender();
+    QAction *revert = reinterpret_cast<QAction*>(QObject::sender());
     ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
     UserConfiguration *ucf = this->GetCurrentWikiSite()->GetUserConfig();
     if (!this->actionKeys.contains(revert))
@@ -1866,7 +1879,7 @@ void MainWindow::CustomRevertWarn()
         return;
     if (!this->EditingChecks() || !this->CheckRevertable())
         return;
-    QAction *revert = (QAction*) QObject::sender();
+    QAction *revert = reinterpret_cast<QAction*>(QObject::sender());
     ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
     UserConfiguration *uconf = this->GetCurrentWikiSite()->GetUserConfig();
     if (!this->actionKeys.contains(revert))
@@ -1891,7 +1904,7 @@ void MainWindow::CustomWarn()
         return;
     if (!this->EditingChecks())
         return;
-    QAction *revert = (QAction*) QObject::sender();
+    QAction *revert = reinterpret_cast<QAction*>(QObject::sender());
     if (!this->actionKeys.contains(revert))
         throw new Huggle::Exception("QAction was not found in this->actionKeys", BOOST_CURRENT_FUNCTION);
     QString key = this->actionKeys[revert];
@@ -2269,8 +2282,8 @@ void MainWindow::DisplayRevid(revid_ht revid, WikiSite *site)
     }
     // there is no such edit, let's get it
     WikiUtil::RetrieveEditByRevid(revid, site, this,
-                                  (WikiUtil::RetrieveEditByRevid_Callback)DisplayRevid_Finish,
-                                  (WikiUtil::RetrieveEditByRevid_Callback)DisplayRevid_Error);
+                                  reinterpret_cast<WikiUtil::RetrieveEditByRevid_Callback>(DisplayRevid_Finish),
+                                  reinterpret_cast<WikiUtil::RetrieveEditByRevid_Callback>(DisplayRevid_Error));
     //this->Browser->RenderHtml(html);
 }
 
@@ -3277,7 +3290,7 @@ void MainWindow::on_actionReload_menus_triggered()
 
 void MainWindow::SetProviderIRC()
 {
-    QAction *action = (QAction*)QObject::sender();
+    QAction *action = reinterpret_cast<QAction*>(QObject::sender());
     if (!this->ActionSites.contains(action))
         throw new Huggle::Exception("There is no such a site in hash table", BOOST_CURRENT_FUNCTION);
     WikiSite *wiki = this->ActionSites[action];
@@ -3286,7 +3299,7 @@ void MainWindow::SetProviderIRC()
 
 void MainWindow::SetProviderWiki()
 {
-    QAction *action = (QAction*)QObject::sender();
+    QAction *action = reinterpret_cast<QAction*>(QObject::sender());
     if (!this->ActionSites.contains(action))
         throw new Huggle::Exception("There is no such a site in hash table", BOOST_CURRENT_FUNCTION);
     WikiSite *wiki = this->ActionSites[action];
@@ -3295,7 +3308,7 @@ void MainWindow::SetProviderWiki()
 
 void MainWindow::SetProviderXml()
 {
-    QAction *action = (QAction*)QObject::sender();
+    QAction *action = reinterpret_cast<QAction*>(QObject::sender());
     if (!this->ActionSites.contains(action))
         throw new Huggle::Exception("There is no such a site in hash table", BOOST_CURRENT_FUNCTION);
     WikiSite *wiki = this->ActionSites[action];
@@ -3372,7 +3385,7 @@ void MainWindow::on_tabWidget_currentChanged(int index)
         this->LockPage();
     } else
     {
-        this->Browser = (HuggleWeb*)this->ui->tabWidget->widget(index)->layout()->itemAt(0)->widget();
+        this->Browser = reinterpret_cast<HuggleWeb*>(this->ui->tabWidget->widget(index)->layout()->itemAt(0)->widget());
         if (!this->Browser)
             throw new Huggle::Exception("Invalid browser pointer", BOOST_CURRENT_FUNCTION);
 
@@ -3742,4 +3755,9 @@ void MainWindow::on_actionEdit_page_triggered()
     EditForm *ef = new EditForm(this->CurrentEdit->Page);
     ef->setAttribute(Qt::WA_DeleteOnClose);
     ef->show();
+}
+
+void MainWindow::on_actionProfiler_info_triggered()
+{
+    Core::HuggleCore->WriteProfilerDataIntoSyslog();
 }

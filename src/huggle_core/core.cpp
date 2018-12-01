@@ -350,22 +350,7 @@ void Core::Shutdown()
         Sleeper::usleep(200);
     // Last garbage removal
     GC::gc->DeleteOld();
-#ifdef HUGGLE_PROFILING
-    Syslog::HuggleLogs->Log("Profiler data:");
-    Syslog::HuggleLogs->Log("==========================");
-    Syslog::HuggleLogs->Log("Locks " + QString::number(Collectable::LockCt));
-    foreach (Collectable *q, GC::gc->list)
-    {
-        // retrieve GC info
-        Syslog::HuggleLogs->Log(q->DebugHgc());
-    }
-    Syslog::HuggleLogs->Log("Function calls:");
-    QStringList functions = Profiler::GetRegisteredCounterFunctions();
-    foreach (QString fx, functions)
-    {
-        Syslog::HuggleLogs->Log(QString::number(Profiler::GetCallsForFunction(fx)) + ": " + fx);
-    }
-#endif
+    this->WriteProfilerDataIntoSyslog();
     Syslog::HuggleLogs->DebugLog("GC: " + QString::number(GC::gc->list.count()) + " objects");
     delete GC::gc;
     HuggleQueueFilter::Delete();
@@ -434,6 +419,26 @@ void Core::InstallNewExceptionHandler(ExceptionHandler *eh)
 {
     delete this->exceptionHandler;
     this->exceptionHandler = eh;
+}
+
+void Core::WriteProfilerDataIntoSyslog()
+{
+#ifdef HUGGLE_PROFILING
+    Syslog::HuggleLogs->Log("Profiler data:");
+    Syslog::HuggleLogs->Log("==========================");
+    Syslog::HuggleLogs->Log("Locks " + QString::number(Collectable::LockCt));
+    foreach (Collectable *q, GC::gc->list)
+    {
+        // retrieve GC info
+        Syslog::HuggleLogs->Log(q->DebugHgc());
+    }
+    Syslog::HuggleLogs->Log("Function calls:");
+    QStringList functions = Profiler::GetRegisteredCounterFunctions();
+    foreach (QString fx, functions)
+    {
+        Syslog::HuggleLogs->Log(QString::number(Profiler::GetCallsForFunction(fx)) + ": " + fx);
+    }
+#endif
 }
 
 qint64 Core::GetUptimeInSeconds()

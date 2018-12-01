@@ -275,7 +275,7 @@ void Configuration::LoadSystemConfig(QString fn)
         }
         if (key == "IRCPort")
         {
-            hcfg->IRCPort = option.attribute("text").toInt();
+            hcfg->IRCPort = option.attribute("text").toUInt();
             continue;
         }
         if (key == "IRCServer")
@@ -519,7 +519,7 @@ bool Configuration::ParseGlobalConfig(QString config)
     this->GlobalConfig_UserConf = ReplaceSpecialUserPage(HuggleParser::YAML2String("user-config-yaml", yaml, this->GlobalConfig_UserConf));
     this->GlobalConfig_UserConf_old = ReplaceSpecialUserPage(HuggleParser::YAML2String("user-config-hg3", yaml, this->GlobalConfig_UserConf_old));
     this->GlobalConfig_Xmlrcs = HuggleParser::YAML2String("xmlrcs", yaml, "huggle-rc.wmflabs.org");
-    this->GlobalConfig_XmlrcsPort = HuggleParser::YAML2Int("xmlrcs-port", yaml, 8822);
+    this->GlobalConfig_XmlrcsPort = static_cast<quint16>(HuggleParser::YAML2Int("xmlrcs-port", yaml, 8822));
     this->HANMask = HuggleParser::YAML2String("han-mask", yaml, this->HANMask);
     this->GlobalConfig_Whitelist = HuggleParser::YAML2String("whitelist-server", yaml);
     this->VandalNw_Server = HuggleParser::YAML2String("han-server", yaml, this->VandalNw_Server);

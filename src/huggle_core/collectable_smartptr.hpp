@@ -16,6 +16,8 @@
 #define COLLECTABLE_SMARTPTR_HPP
 
 #include "definitions.hpp"
+#include "collectable.hpp"
+#include "exception.hpp"
 
 namespace Huggle
 {
@@ -31,25 +33,90 @@ namespace Huggle
     class HUGGLE_EX_CORE Collectable_SmartPtr
     {
         public:
-            Collectable_SmartPtr();
-            Collectable_SmartPtr(Collectable_SmartPtr *smart_ptr);
-            Collectable_SmartPtr(const Collectable_SmartPtr &sp_);
-            Collectable_SmartPtr<T>(T *pt);
-            virtual ~Collectable_SmartPtr();
+            Collectable_SmartPtr()
+            {
+                this->ptr = nullptr;
+            }
+            Collectable_SmartPtr(Collectable_SmartPtr *smart_ptr)
+            {
+                // we must not just copy the bare pointer but also increment the reference count
+                if (smart_ptr->ptr)
+                    smart_ptr->ptr->IncRef();
+                this->ptr = smart_ptr->ptr;
+            }
+            Collectable_SmartPtr(const Collectable_SmartPtr &sp_)
+            {
+                if (sp_.ptr)
+                    sp_.ptr->IncRef();
+                this->ptr = sp_.ptr;
+            }
+            Collectable_SmartPtr<T>(T *pt)
+            {
+                if (!pt)
+                {
+                    this->ptr = nullptr;
+                    return;
+                }
+                this->ptr = pt;
+                this->ptr->IncRef();
+            }
+            virtual ~Collectable_SmartPtr()
+            {
+                this->FreeAcqRsrPtr();
+            }
             //! Change a bare pointer to other pointer
-            virtual void SetPtr(T *pt);
+            virtual void SetPtr(T *pt)
+            {
+                this->FreeAcqRsrPtr();
+                if (pt)
+                {
+                    pt->IncRef();
+                    this->ptr = pt;
+                }
+            }
             //! Remove a bare pointer if there is some
-            void Delete();
-			void operator=(T* _ptr);
-			void operator=(const Collectable_SmartPtr &smart_ptr);
-			void operator=(std::nullptr_t &null);
-            operator void* () const;
-            operator T* () const;
-            T* operator->();
-            T* GetPtr() const;
+            void Delete()
+            {
+                this->FreeAcqRsrPtr();
+            }
+            void operator=(T* _ptr)
+            {
+                this->SetPtr(_ptr);
+            }
+            void operator=(const Collectable_SmartPtr &smart_ptr)
+            {
+                this->SetPtr(smart_ptr.GetPtr());
+            }
+            void operator=(std::nullptr_t &null)
+            {
+                this->SetPtr(null);
+            }
+            operator void* () const
+            {
+                return this->ptr;
+            }
+            operator T* () const
+            {
+                return this->ptr;
+            }
+            T* operator->()
+            {
+                return this->ptr;
+            }
+            T* GetPtr() const
+            {
+                return this->ptr;
+            }
         protected:
         private:
-            void FreeAcqRsrPtr();
+            void FreeAcqRsrPtr()
+            {
+                if (this->ptr)
+                {
+                    this->ptr->DecRef();
+                    this->ptr = nullptr;
+                }
+            }
             T *ptr;
     };
 

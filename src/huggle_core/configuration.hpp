@@ -389,7 +389,7 @@ namespace Huggle
             QString     GlobalConfig_Whitelist = "http://huggle.wmflabs.org/data/";
             bool        GlobalConfigWasLoaded = false;
             QString     GlobalConfig_Xmlrcs = "huggle-rc.wmflabs.org";
-            int         GlobalConfig_XmlrcsPort = 8822;
+            quint16     GlobalConfig_XmlrcsPort = 8822;
 
             //////////////////////////////////////////////
             // Local config
@@ -434,7 +434,7 @@ namespace Huggle
             //! Ident
             QString IRCIdent = "huggle";
             //! Port
-            int     IRCPort = 6667;
+            unsigned int     IRCPort = 6667;
             int     SystemConfig_IRCConnectionTimeOut = 2;
             //! HAN
             QString     VandalNw_Server = "irc.tm-irc.org";

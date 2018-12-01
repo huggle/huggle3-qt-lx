@@ -31,7 +31,7 @@ bool Huggle::Hooks::EditBeforeScore(Huggle::WikiEdit *edit)
     {
         if (extension->IsWorking())
         {
-            if (!extension->Hook_EditBeforeScore((void*)edit))
+            if (!extension->Hook_EditBeforeScore(reinterpret_cast<void*>(edit)))
                 result = false;
         }
     }
@@ -47,7 +47,7 @@ void Huggle::Hooks::EditAfterPreProcess(Huggle::WikiEdit *edit)
     foreach(Huggle::iExtension *extension, Huggle::Core::HuggleCore->Extensions)
     {
         if (extension->IsWorking())
-            extension->Hook_EditPreProcess((void*)edit);
+            extension->Hook_EditPreProcess(reinterpret_cast<void*>(edit));
     }
     foreach (Script *s, Script::GetScripts())
     {
@@ -64,7 +64,7 @@ void Huggle::Hooks::EditBeforePostProcess(Huggle::WikiEdit *edit)
     foreach(Huggle::iExtension *extension, Huggle::Core::HuggleCore->Extensions)
     {
         if (extension->IsWorking())
-            extension->Hook_EditBeforePostProcessing((void*)edit);
+            extension->Hook_EditBeforePostProcessing(reinterpret_cast<void*>(edit));
     }
     foreach (Script *s, Script::GetScripts())
     {
@@ -80,7 +80,7 @@ bool Huggle::Hooks::RevertPreflight(Huggle::WikiEdit *edit)
     {
         if (extension->IsWorking())
         {
-            if (!extension->Hook_RevertPreflight((void*)edit))
+            if (!extension->Hook_RevertPreflight(reinterpret_cast<void*>(edit)))
                 result = false;
         }
     }
@@ -102,7 +102,7 @@ void Huggle::Hooks::EditAfterPostProcess(Huggle::WikiEdit *edit)
     foreach(Huggle::iExtension *extension, Huggle::Core::HuggleCore->Extensions)
     {
         if (extension->IsWorking())
-            extension->Hook_EditPostProcess((void*)edit);
+            extension->Hook_EditPostProcess(reinterpret_cast<void*>(edit));
     }
     foreach (Script *s, Script::GetScripts())
     {
@@ -116,7 +116,7 @@ bool Huggle::Hooks::OnEditLoadToQueue(Huggle::WikiEdit *edit)
     foreach(Huggle::iExtension *extension, Huggle::Core::HuggleCore->Extensions)
     {
         if (extension->IsWorking())
-            if (!extension->Hook_OnEditLoadToQueue((void*)edit))
+            if (!extension->Hook_OnEditLoadToQueue(reinterpret_cast<void*>(edit)))
                 return false;
     }
     foreach (Script *s, Script::GetScripts())
@@ -134,7 +134,7 @@ void Huggle::Hooks::OnGood(Huggle::WikiEdit *edit)
     foreach(Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
     {
         if (e->IsWorking())
-            e->Hook_GoodEdit((void*)edit);
+            e->Hook_GoodEdit(reinterpret_cast<void*>(edit));
     }
     foreach (Script *s, Script::GetScripts())
     {
@@ -149,7 +149,7 @@ void Huggle::Hooks::OnRevert(Huggle::WikiEdit *edit)
     foreach(Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
     {
         if (e->IsWorking())
-            e->Hook_OnRevert((void*)edit);
+            e->Hook_OnRevert(reinterpret_cast<void*>(edit));
     }
     foreach (Script *s, Script::GetScripts())
     {
@@ -163,7 +163,7 @@ bool Huggle::Hooks::EditCheckIfReady(Huggle::WikiEdit *edit)
     bool result = true;
     foreach(Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
     {
-        if (e->IsWorking() && !e->Hook_EditIsReady((void*)edit))
+        if (e->IsWorking() && !e->Hook_EditIsReady(reinterpret_cast<void*>(edit)))
             result = false;
     }
     return result;
@@ -195,7 +195,7 @@ void Huggle::Hooks::Suspicious(Huggle::WikiEdit *edit)
     foreach(Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
     {
         if (e->IsWorking())
-            e->Hook_OnSuspicious((void*)edit);
+            e->Hook_OnSuspicious(reinterpret_cast<void*>(edit));
     }
     foreach (Script *s, Script::GetScripts())
     {
@@ -212,7 +212,7 @@ void Huggle::Hooks::BadnessScore(Huggle::WikiUser *user, int score)
     foreach(Huggle::iExtension *extension, Huggle::Core::HuggleCore->Extensions)
     {
         if (extension->IsWorking())
-            extension->Hook_BadnessScore((void*)user, score);
+            extension->Hook_BadnessScore(reinterpret_cast<void*>(user), score);
     }
 }
 
@@ -230,7 +230,7 @@ void Huggle::Hooks::FeedProvidersOnInit(Huggle::WikiSite *site)
     foreach(Huggle::iExtension *extension, Huggle::Core::HuggleCore->Extensions)
     {
         if (extension->IsWorking())
-            extension->Hook_FeedProvidersOnInit((void*)site);
+            extension->Hook_FeedProvidersOnInit(reinterpret_cast<void*>(site));
     }
     foreach (Script *s, Script::GetScripts())
     {
@@ -248,7 +248,7 @@ bool Huggle::Hooks::HAN_Suspicious(Huggle::WikiEdit *edit, QString nick, QString
     }
     foreach (Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
     {
-        if (e->IsWorking() && !e->Hook_HAN_Suspicious((void*)edit, nick, ident, host))
+        if (e->IsWorking() && !e->Hook_HAN_Suspicious(reinterpret_cast<void*>(edit), nick, ident, host))
             return false;
     }
     return true;
@@ -263,7 +263,7 @@ bool Huggle::Hooks::HAN_Revert(Huggle::WikiEdit *edit, QString nick, QString ide
     }
     foreach (Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
     {
-        if (e->IsWorking() && !e->Hook_HAN_Revert((void*)edit, nick, ident, host))
+        if (e->IsWorking() && !e->Hook_HAN_Revert(reinterpret_cast<void*>(edit), nick, ident, host))
             return false;
     }
     return true;
@@ -278,7 +278,7 @@ bool Huggle::Hooks::HAN_Good(Huggle::WikiEdit *edit, QString nick, QString ident
     }
     foreach (Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
     {
-        if (e->IsWorking() && !e->Hook_HAN_Good((void*)edit, nick, ident, host))
+        if (e->IsWorking() && !e->Hook_HAN_Good(reinterpret_cast<void*>(edit), nick, ident, host))
             return false;
     }
     return true;
@@ -293,7 +293,7 @@ bool Huggle::Hooks::HAN_Rescore(Huggle::WikiEdit *edit, long score, QString nick
     }
     foreach (Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
     {
-        if (e->IsWorking() && !e->Hook_HAN_Rescore((void*)edit, score, nick, ident, host))
+        if (e->IsWorking() && !e->Hook_HAN_Rescore(reinterpret_cast<void*>(edit), score, nick, ident, host))
             return false;
     }
     return true;
@@ -308,7 +308,7 @@ bool Huggle::Hooks::HAN_Message(Huggle::WikiSite *site, QString message, QString
     }
     foreach (Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
     {
-        if (e->IsWorking() && !e->Hook_HAN_Message((void*)site, message, nick, ident, host))
+        if (e->IsWorking() && !e->Hook_HAN_Message(reinterpret_cast<void*>(site), message, nick, ident, host))
             return false;
     }
     return true;
@@ -322,10 +322,11 @@ Huggle::Message *Huggle::Hooks::MessageUser(Huggle::WikiUser *user, QString text
     {
         if (e->IsWorking())
         {
-            void *result = e->Hook_MessageUser((void*)user, text, title, summary, insert_section, (void*)dependency, no_suffix,
+            void *result = e->Hook_MessageUser(reinterpret_cast<void*>(user), text, title, summary, insert_section,
+                                               reinterpret_cast<void*>(dependency), no_suffix,
                                                section_keep, autoremove, base_timestamp, create_only, fresh_only);
             if (result != nullptr)
-                return (Huggle::Message*)result;
+                return reinterpret_cast<Huggle::Message*>(result);
         }
     }
     return nullptr;
@@ -344,7 +345,7 @@ void Huggle::Hooks::WarningFinished(Huggle::WikiEdit *edit)
     foreach(Huggle::iExtension *extension, Huggle::Core::HuggleCore->Extensions)
     {
         if (extension->IsWorking())
-            extension->Hook_WarningFinished((void*)edit);
+            extension->Hook_WarningFinished(reinterpret_cast<void*>(edit));
     }
     foreach (Script *s, Script::GetScripts())
     {
