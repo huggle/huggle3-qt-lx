@@ -591,7 +591,7 @@ bool UserConfiguration::ParseYAML(QString config, ProjectConfiguration *ProjectC
     this->RemoveAfterTrustedEdit = YAML2Bool("remove-after-trusted-edit", yaml, this->RemoveAfterTrustedEdit);
     this->Watchlist = WatchlistOptionFromString(YAML2String("watchlist", yaml));
     this->AutomaticallyGroup = YAML2Bool("automatically-group", yaml, this->AutomaticallyGroup);
-    this->TalkPageFreshness = static_cast<unsigned int>(YAML2Int("talkpage-freshness", yaml, this->TalkPageFreshness));
+    this->TalkPageFreshness = YAML2UInt("talkpage-freshness", yaml, this->TalkPageFreshness);
     this->RemoveOldQueueEdits = YAML2Bool("remove-oldest-queue-edits", yaml, this->RemoveOldQueueEdits);
     this->QueueID = YAML2String("queue-id", yaml);
     this->GoNext = static_cast<Configuration_OnNext>(YAML2Int("on-next", yaml, 1));

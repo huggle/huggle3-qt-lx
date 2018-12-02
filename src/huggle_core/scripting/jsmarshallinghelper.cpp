@@ -262,11 +262,11 @@ QJSValue JSMarshallingHelper::FromSiteUserConfig(UserConfiguration *config, QJSE
 
 QJSValue JSMarshallingHelper::FromQStringList(QStringList string_list, QJSEngine *engine)
 {
-    QJSValue o = engine->newArray(string_list.size());
+    QJSValue o = engine->newArray(static_cast<uint>(string_list.size()));
     int i = 0;
     while (i < string_list.size())
     {
-        o.setProperty(i, string_list.at(i));
+        o.setProperty(static_cast<quint32>(i), string_list.at(i));
         i++;
     }
     return o;
@@ -307,7 +307,6 @@ QJSValue JSMarshallingHelper::FromVariant(QVariant variant)
         default:
             return QJSValue();
     }
-    return QJSValue();
 }
 
 QJSValue JSMarshallingHelper::FromQStringHash(QHash<QString, QString> hash, QJSEngine *engine)

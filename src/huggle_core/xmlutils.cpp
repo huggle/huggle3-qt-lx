@@ -23,6 +23,7 @@ static void RecursiveFetch(QDomNode node, QList<QDomElement> *list)
     }
 }
 
+/*
 static void RecursiveFetch(QDomNode node, QList<QDomElement> *list, QString name)
 {
     if (node.nodeName() == name)
@@ -34,6 +35,7 @@ static void RecursiveFetch(QDomNode node, QList<QDomElement> *list, QString name
         RecursiveFetch(nx, list);
     }
 }
+*/
 
 QList<QDomElement> XmlUtils::FetchElementsFromDocument(QDomDocument xmls)
 {
@@ -49,6 +51,8 @@ QList<QDomElement> XmlUtils::FetchElementsFromDocument(QDomDocument xmls)
 
 QList<QDomElement> XmlUtils::FetchAllElementsByName(QDomDocument xmls, QString name)
 {
+    (void)xmls;
+    (void)name;
     //! \todo Finish this
     QList<QDomElement> results;
     return results;
