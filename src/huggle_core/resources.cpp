@@ -16,7 +16,7 @@
 #include "localization.hpp"
 #ifndef HUGGLE_NOAUDIO
     #include <QMediaPlayer>
-    QMediaPlayer* Huggle::Resources::mediaPlayer = NULL;
+    QMediaPlayer* Huggle::Resources::mediaPlayer = nullptr;
 #endif
 
 QString Huggle::Resources::DiffFooter;
@@ -30,7 +30,7 @@ QString Huggle::Resources::Html_NewTab;
 QString Huggle::Resources::CssRtl;
 int     Huggle::Resources::proTipCount = -100;
 
-int last_tip = -1;
+static int last_tip = -1;
 
 QString Huggle::Resources::GetResource(QString path)
 {
@@ -103,7 +103,7 @@ void Huggle::Resources::Uninit()
 {
 #ifndef HUGGLE_NOAUDIO
     mediaPlayer->deleteLater();
-    mediaPlayer = NULL;
+    mediaPlayer = nullptr;
 #endif
 }
 

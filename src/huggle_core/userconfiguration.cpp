@@ -444,7 +444,7 @@ bool UserConfiguration::Parse(QString config, ProjectConfiguration *ProjectConfi
     this->HtmlAllowedInIrc = SafeBool(ConfigurationParse("HAN_Html", config), this->HtmlAllowedInIrc);
     this->Watchlist = WatchlistOptionFromString(ConfigurationParse("Watchlist", config));
     this->AutomaticallyGroup = SafeBool(ConfigurationParse("AutomaticallyGroup", config), this->AutomaticallyGroup);
-    this->TalkPageFreshness = ConfigurationParse("TalkpageFreshness", config, QString::number(this->TalkPageFreshness)).toInt();
+    this->TalkPageFreshness = ConfigurationParse("TalkpageFreshness", config, QString::number(this->TalkPageFreshness)).toUInt();
     this->RemoveOldQueueEdits = SafeBool(ConfigurationParse("RemoveOldestQueueEdits", config), this->RemoveOldQueueEdits);
     this->QueueID = ConfigurationParse("QueueID", config);
     this->GoNext = static_cast<Configuration_OnNext>(ConfigurationParse("OnNext", config, "1").toInt());

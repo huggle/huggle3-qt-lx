@@ -259,7 +259,7 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
 
         return false;
     }
-    this->WarningLevel = (byte_ht)HuggleParser::ConfigurationParse("warning-mode", config, "4").toInt();
+    this->WarningLevel = static_cast<byte_ht>(HuggleParser::ConfigurationParse("warning-mode", config, "4").toInt());
     this->WarningDefs = HuggleParser::ConfigurationParse_QL("warning-template-tags", config);
     if (this->WarningDefs.count() == 0)
         Syslog::HuggleLogs->WarningLog("There are no warning tags defined for " + this->ProjectName + " warning parser will not work");
@@ -394,7 +394,7 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
     this->RevertingEnabled = HuggleParser::ConfigurationParseBool("reverting-enabled", config, true);
     this->RFPP_PlaceTop = SafeBool(HuggleParser::ConfigurationParse("protection-request-top", config));
     this->RFPP_Regex = HuggleParser::ConfigurationParse("rfpp-verify", config);
-    this->RFPP_Section = (unsigned int)HuggleParser::ConfigurationParse("rfpp-section", config, "0").toInt();
+    this->RFPP_Section = static_cast<unsigned int>(HuggleParser::ConfigurationParse("rfpp-section", config, "0").toInt());
     this->RFPP_Page = HuggleParser::ConfigurationParse("protection-request-page", config);
     this->RFPP_Template = HuggleParser::ConfigurationParse("rfpp-template", config);
     this->TemplateHeader = HuggleParser::ConfigurationParse("template-header", config, "Your edits to $1");
@@ -633,7 +633,7 @@ bool ProjectConfiguration::ParseYAML(QString yaml_src, QString *reason, WikiSite
 
         return false;
     }
-    this->WarningLevel = (byte_ht)HuggleParser::YAML2Int("warning-mode", yaml, 4);
+    this->WarningLevel = static_cast<byte_ht>(HuggleParser::YAML2Int("warning-mode", yaml, 4));
     this->WarningDefs = HuggleParser::YAML2QStringList("warning-template-tags", yaml);
     if (this->WarningDefs.count() == 0)
         Syslog::HuggleLogs->WarningLog("There are no warning tags defined for " + this->ProjectName + " warning parser will not work");
@@ -764,7 +764,7 @@ bool ProjectConfiguration::ParseYAML(QString yaml_src, QString *reason, WikiSite
     this->RFPP_Reason = HuggleParser::YAML2String("protection-request-reason", yaml, this->RFPP_Reason);
     this->RFPP_PlaceTop = HuggleParser::YAML2Bool("protection-request-top", yaml);
     this->RFPP_Regex = HuggleParser::YAML2String("rfpp-verify", yaml);
-    this->RFPP_Section = (unsigned int)HuggleParser::YAML2Int("rfpp-section", yaml, 0);
+    this->RFPP_Section = static_cast<unsigned int>(HuggleParser::YAML2Int("rfpp-section", yaml, 0));
     this->RFPP_Page = HuggleParser::YAML2String("protection-request-page", yaml);
     this->RFPP_Template = HuggleParser::YAML2String("rfpp-template", yaml);
     this->TemplateHeader = HuggleParser::YAML2String("template-header", yaml, "Your edits to $1");

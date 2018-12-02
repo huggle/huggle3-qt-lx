@@ -22,7 +22,7 @@ using namespace Huggle;
 WebserverQuery::WebserverQuery()
 {
     this->URL = "";
-    this->reply = NULL;
+    this->reply = nullptr;
     this->Parameters = "";
     this->Type = QueryWebServer;
     this->UsingPOST = false;
@@ -74,7 +74,7 @@ void WebserverQuery::Process()
 
 void WebserverQuery::Kill()
 {
-    if (this->reply != NULL)
+    if (this->reply != nullptr)
     {
         this->reply->abort();
     }
@@ -106,12 +106,12 @@ void WebserverQuery::Finished()
     {
         this->Result->SetError(reply->errorString());
         this->reply->deleteLater();
-        this->reply = NULL;
+        this->reply = nullptr;
         this->status = StatusDone;
         return;
     }
     this->reply->deleteLater();
-    this->reply = NULL;
+    this->reply = nullptr;
     if (!this->HiddenQuery)
     {
         Huggle::Syslog::HuggleLogs->DebugLog("Finished request " + URL, 2);

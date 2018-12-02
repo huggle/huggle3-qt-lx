@@ -727,6 +727,24 @@ int HuggleParser::YAML2Int(QString key, YAML::Node &node, int missing)
     return missing;
 }
 
+unsigned int HuggleParser::YAML2UInt(QString key, YAML::Node &node, unsigned int missing)
+{
+    try
+    {
+        if (!node)
+            throw new Huggle::NullPointerException("YAML::Node *node", BOOST_CURRENT_FUNCTION);
+
+        if (!node[key.toStdString()])
+            return missing;
+
+        return node[key.toStdString()].as<unsigned int>(missing);
+    } catch (YAML::Exception exception)
+    {
+        HUGGLE_ERROR("YAML Parsing error (" + key + "): " + QString(exception.what()));
+    }
+    return missing;
+}
+
 double HuggleParser::YAML2Double(QString key, YAML::Node &node, double missing)
 {
     try

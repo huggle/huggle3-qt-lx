@@ -109,6 +109,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->Shutdown = ShutdownOpRunning;
     this->ShuttingDown = false;
     this->ui->setupUi(this);
+#ifndef HUGGLE_PROFILING
+    this->ui->actionProfiler_info->setVisible(false);
+#endif
     if (Configuration::HuggleConfiguration->SystemConfig_Multiple)
     {
         this->ui->menuChange_provider->setVisible(false);
@@ -3365,7 +3368,7 @@ void MainWindow::on_actionMy_Contributions_triggered()
 
 void MainWindow::Go()
 {
-    QAction *action = (QAction*)QObject::sender();
+    QAction *action = reinterpret_cast<QAction*>(QObject::sender());
     QDesktopServices::openUrl(QString(Configuration::GetProjectWikiURL() + action->toolTip()));
 }
 
@@ -3424,7 +3427,7 @@ void MainWindow::on_actionVerbosity_triggered()
 
 static void FinishLogout(Query *query)
 {
-    Configuration::Logout((WikiSite*)query->CallbackOwner);
+    Configuration::Logout(reinterpret_cast<WikiSite*>(query->CallbackOwner));
     query->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
 }
 
@@ -3432,7 +3435,7 @@ void MainWindow::on_actionLog_out_triggered()
 {
     ApiQuery *qx = new ApiQuery(ActionLogout, this->GetCurrentWikiSite());
     qx->CallbackOwner = this->GetCurrentWikiSite();
-    qx->SuccessCallback = (Callback)FinishLogout;
+    qx->SuccessCallback = reinterpret_cast<Callback>(FinishLogout);
     HUGGLE_QP_APPEND(qx);
     qx->Process();
 }
@@ -3562,7 +3565,7 @@ void MainWindow::closeTab(int tab)
     }
 
     // Get the pointer to web browser
-    HuggleWeb *browser_to_close = (HuggleWeb*)this->ui->tabWidget->widget(tab)->layout()->itemAt(0)->widget();
+    HuggleWeb *browser_to_close = reinterpret_cast<HuggleWeb*>(this->ui->tabWidget->widget(tab)->layout()->itemAt(0)->widget());
 
     if (browser_to_close == this->Browser)
     {

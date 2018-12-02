@@ -20,12 +20,14 @@
 
 using namespace Huggle;
 
-int developer = 0;
-int last_dev = -1;
+static int developer = 0;
+static int last_dev = -1;
 
 AboutForm::AboutForm(QWidget *parent) : HW("aboutform", this, parent), ui(new Ui::AboutForm)
 {
     this->ui->setupUi(this);
+    developer = 0;
+    last_dev = -1;
     QString version = _l("about-qt", QString(QT_VERSION_STR), QString(qVersion()));
     this->ui->label_7->setText(_l("version") + ": " + Configuration::HuggleConfiguration->HuggleVersion + version +
                                _l("about-info", QString(HUGGLE_WEB_ENGINE_NAME), QString(HUGGLE_UPDATER_PLATFORM_TYPE)));
@@ -89,6 +91,8 @@ void Huggle::AboutForm::on_label_13_linkActivated(const QString &link)
 
 static void check_dev()
 {
+    if (developer < 0)
+        return;
     if (developer > 20)
     {
         UiGeneric::MessageBox(_l("developer-mode-enter-title"), _l("developer-mode-enter-message"));
