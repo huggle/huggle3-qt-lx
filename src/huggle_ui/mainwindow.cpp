@@ -1664,7 +1664,7 @@ void MainWindow::OnTimerTick0()
                 if (!site->GetProjectConfig()->NewWhitelist.count())
                     continue;
                 this->WhitelistQueries.insert(site, new WLQuery(site));
-                this->WhitelistQueries[site]->Type = WLQueryType_WriteWL;
+                this->WhitelistQueries[site]->WL_Type = WLQueryType_WriteWL;
                 this->WhitelistQueries[site]->IncRef();
                 this->WhitelistQueries[site]->Process();
             }
@@ -2011,7 +2011,7 @@ void MainWindow::SuspiciousEdit()
     {
         Hooks::Suspicious(this->CurrentEdit);
         WLQuery *wq_ = new WLQuery(this->GetCurrentWikiSite());
-        wq_->Type = WLQueryType_SuspWL;
+        wq_->WL_Type = WLQueryType_SuspWL;
         wq_->Parameters = "page=" + QUrl::toPercentEncoding(this->CurrentEdit->Page->PageName) + "&wiki="
                           + QUrl::toPercentEncoding(this->GetCurrentWikiSite()->WhiteList) + "&user="
                           + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_Username) + "&score="
