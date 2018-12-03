@@ -81,7 +81,7 @@
      <x>0</x>
      <y>0</y>
      <width>794</width>
-     <height>19</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -133,6 +133,7 @@
      <addaction name="actionShow_score_debug"/>
      <addaction name="actionWrite_text_to_HAN"/>
      <addaction name="actionThrow"/>
+     <addaction name="actionProfiler_info"/>
     </widget>
     <addaction name="actionContents"/>
     <addaction name="actionIntroduction"/>
@@ -1176,6 +1177,11 @@
   <action name="actionEdit_page">
    <property name="text">
     <string>Edit page</string>
+   </property>
+  </action>
+  <action name="actionProfiler_info">
+   <property name="text">
+    <string>Profiler info</string>
    </property>
   </action>
  </widget>

@@ -79,7 +79,7 @@ void SpeedyForm::on_pushButton_clicked()
 
 void Finalize(Query *result)
 {
-    SpeedyForm *form = (SpeedyForm*)result->CallbackResult;
+    SpeedyForm *form = reinterpret_cast<SpeedyForm*>(result->CallbackResult);
     UiHooks::Speedy_Finished(form->edit, form->Header, true);
     result->CallbackResult = nullptr;
     result->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
@@ -121,8 +121,8 @@ void SpeedyForm::processTags()
     QString summary = this->edit->GetSite()->GetProjectConfig()->SpeedyEditSummary;
     summary.replace("$1", this->edit->Page->PageName);
     this->Template = WikiUtil::EditPage(this->edit->Page, this->Text, summary, false, this->base);
-    this->Template->CallbackResult = (void*)this;
-    this->Template->SuccessCallback = (Callback)Finalize;
+    this->Template->CallbackResult = reinterpret_cast<void*>(this);
+    this->Template->SuccessCallback = reinterpret_cast<Callback>(Finalize);
 }
 
 void SpeedyForm::on_pushButton_2_clicked()

@@ -59,7 +59,7 @@ namespace Huggle
          * \param minimum size
          * \return new string
          */
-        HUGGLE_EX_CORE QString ShrinkText(QString text, unsigned int size, bool html = true, unsigned int minimum = 2);
+        HUGGLE_EX_CORE QString ShrinkText(QString text, int size, bool html = true, int minimum = 2);
     }
 }
 

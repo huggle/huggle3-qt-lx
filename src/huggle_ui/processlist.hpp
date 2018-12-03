@@ -36,10 +36,10 @@ namespace Huggle
     {
         private:
             QDateTime time;
-            int id;
+            unsigned int id;
         public:
-            ProcessListRemovedItem(int ID);
-            int GetID();
+            ProcessListRemovedItem(unsigned int ID);
+            unsigned int GetID();
             bool Expired(bool Debug);
     };
 
@@ -70,7 +70,7 @@ namespace Huggle
             void OnQueryPoolUpdate(Query *q);
         private:
             int GetItem(Query *q);
-            int GetItem(int Id);
+            int GetItem(unsigned int id);
             bool IsExpired(Query *q);
             bool IsDebuged;
             QList<ProcessListRemovedItem*> *Removed;

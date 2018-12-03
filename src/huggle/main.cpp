@@ -16,6 +16,7 @@
 #include <QApplication>
 #include <QStringList>
 #include <QString>
+#include <huggle_core/apiquery.hpp>
 #include <huggle_core/configuration.hpp>
 #include <huggle_core/core.hpp>
 #include <huggle_core/syslog.hpp>

@@ -134,7 +134,7 @@ void ApiQuery::finishRollback()
 
 ApiQueryResult *ApiQuery::GetApiQueryResult()
 {
-    return (ApiQueryResult*)this->Result;
+    return reinterpret_cast<ApiQueryResult*>(this->Result);
 }
 
 void ApiQuery::SetCustomActionPart(QString action, bool editing, bool enforce_login, bool is_continuous)
@@ -250,7 +250,7 @@ void ApiQuery::finished()
         throw new Huggle::NullPointerException("loc ApiQuery::Result", BOOST_CURRENT_FUNCTION);
     if (this->reply == nullptr)
         throw new Huggle::NullPointerException("loc ApiQuery::reply", BOOST_CURRENT_FUNCTION);
-    ApiQueryResult *result = (ApiQueryResult*)this->Result;
+    ApiQueryResult *result = reinterpret_cast<ApiQueryResult*>(this->Result);
     this->temp += this->reply->readAll();
     result->Data = QString(this->temp);
     Query::bytesReceived += static_cast<unsigned long>(this->temp.size());

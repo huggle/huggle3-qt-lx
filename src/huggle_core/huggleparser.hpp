@@ -47,6 +47,7 @@ namespace Huggle
         HUGGLE_EX_CORE bool YAML2Bool(QString key, YAML::Node &node, bool missing = false);
         HUGGLE_EX_CORE QString YAML2String(QString key, YAML::Node &node, QString missing = "");
         HUGGLE_EX_CORE int YAML2Int(QString key, YAML::Node &node, int missing = 0);
+        HUGGLE_EX_CORE unsigned int YAML2UInt(QString key, YAML::Node &node, unsigned int missing = 0);
         HUGGLE_EX_CORE double YAML2Double(QString key, YAML::Node &node, double missing = 0);
         HUGGLE_EX_CORE long long YAML2LongLong(QString key, YAML::Node &node, long long missing = 0);
         HUGGLE_EX_CORE QHash<QString, QVariant> YAML2QHash(QString key, YAML::Node &node, QHash<QString, QVariant> missing, bool *ok = nullptr);

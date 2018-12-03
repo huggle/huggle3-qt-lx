@@ -268,8 +268,8 @@ Collectable_SmartPtr<EditQuery> WikiUtil::AppendTextToPage(WikiPage *page, QStri
 
 static void FinishTokens(Query *token)
 {
-    ApiQuery *q = (ApiQuery*) token;
-    WikiSite *site = (WikiSite*) token->CallbackOwner;
+    ApiQuery *q = dynamic_cast<ApiQuery*>(token);
+    WikiSite *site = reinterpret_cast<WikiSite*>(token->CallbackOwner);
     ApiQueryResultNode *tokens = q->GetApiQueryResult()->GetNode("tokens");
     if (tokens != nullptr)
     {
@@ -320,8 +320,8 @@ void WikiUtil::RetrieveTokens(WikiSite *wiki_site)
     qr->Parameters = "meta=tokens&type=" + QUrl::toPercentEncoding("csrf|patrol|rollback|watch");
     qr->Target = "Tokens";
     qr->CallbackOwner = wiki_site;
-    qr->FailureCallback = (Callback)FailureTokens;
-    qr->SuccessCallback = (Callback)FinishTokens;
+    qr->FailureCallback = reinterpret_cast<Callback>(FailureTokens);
+    qr->SuccessCallback = reinterpret_cast<Callback>(FinishTokens);
     qr->Process();
 }
 
@@ -340,8 +340,8 @@ class RetrieveEditByRevid_SourceInfo
 
 static void RetrieveEditByRevid_Page_OK(Query *query)
 {
-    ApiQuery *result = (ApiQuery*) query;
-    RetrieveEditByRevid_SourceInfo *source_info = (RetrieveEditByRevid_SourceInfo*)query->CallbackOwner;
+    ApiQuery *result = dynamic_cast<ApiQuery*>(query);
+    RetrieveEditByRevid_SourceInfo *source_info = reinterpret_cast<RetrieveEditByRevid_SourceInfo*>(query->CallbackOwner);
     ApiQueryResultNode *page = result->GetApiQueryResult()->GetNode("page");
     ApiQueryResultNode *revision_data = result->GetApiQueryResult()->GetNode("rev");
     ApiQueryResultNode *diff_text = result->GetApiQueryResult()->GetNode("diff");
@@ -379,7 +379,7 @@ exit:
 static void RetrieveEditByRevid_Page_ER(Query *query)
 {
     // The query has failed, let's call the failure callback :(
-    RetrieveEditByRevid_SourceInfo *x = (RetrieveEditByRevid_SourceInfo*)query->CallbackOwner;
+    RetrieveEditByRevid_SourceInfo *x = reinterpret_cast<RetrieveEditByRevid_SourceInfo*>(query->CallbackOwner);
     x->error(x->edit, x->source, query->GetFailureReason());
     delete x;
     query->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
@@ -406,8 +406,8 @@ void WikiUtil::RetrieveEditByRevid(revid_ht revid, WikiSite *site, void *source,
     i->error = callback_er;
     i->success = callback_success;
     qPage->CallbackOwner = i;
-    qPage->SuccessCallback = (Callback) RetrieveEditByRevid_Page_OK;
-    qPage->FailureCallback = (Callback) RetrieveEditByRevid_Page_ER;
+    qPage->SuccessCallback = reinterpret_cast<Callback>(RetrieveEditByRevid_Page_OK);
+    qPage->FailureCallback = reinterpret_cast<Callback>(RetrieveEditByRevid_Page_ER);
     qPage->Parameters = "prop=revisions&revids=" + QString::number(revid) + "&rvprop=" +
                           QUrl::toPercentEncoding("ids|flags|timestamp|user|contentmodel|comment|size") + "&rvdiffto=prev";
     qPage->Process();

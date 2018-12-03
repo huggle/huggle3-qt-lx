@@ -446,7 +446,7 @@ void Huggle::Preferences::on_pushButton_6_clicked()
     int ns = 0;
     while (ns < this->ui->tableWidget_3->rowCount())
     {
-        QCheckBox *selected_box = (QCheckBox*)this->ui->tableWidget_3->cellWidget(ns, 1);
+        QCheckBox *selected_box = dynamic_cast<QCheckBox*>(this->ui->tableWidget_3->cellWidget(ns, 1));
         if (!this->NamespaceBoxes.contains(selected_box))
             throw new Huggle::Exception("There is no such a box in the ram", BOOST_CURRENT_FUNCTION);
         if (!this->Site->NamespaceList.contains(this->NamespaceBoxes[selected_box]))

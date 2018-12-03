@@ -633,14 +633,14 @@ byte_ht HuggleParser::GetIDOfMonth(QString month, WikiSite *site)
     while (i < site->ProjectConfig->Months.count())
     {
         if (site->ProjectConfig->Months.at(i).toLower() == month)
-            return i+1;
+            return static_cast<byte_ht>(i+1);
         i++;
     }
     i = 1;
     while (i < 13)
     {
         if (site->ProjectConfig->AlternativeMonths[i].contains(month, Qt::CaseInsensitive))
-            return i;
+            return static_cast<byte_ht>(i);
         i++;
     }
     return -6;
@@ -720,6 +720,24 @@ int HuggleParser::YAML2Int(QString key, YAML::Node &node, int missing)
             return missing;
 
         return node[key.toStdString()].as<int>(missing);
+    } catch (YAML::Exception exception)
+    {
+        HUGGLE_ERROR("YAML Parsing error (" + key + "): " + QString(exception.what()));
+    }
+    return missing;
+}
+
+unsigned int HuggleParser::YAML2UInt(QString key, YAML::Node &node, unsigned int missing)
+{
+    try
+    {
+        if (!node)
+            throw new Huggle::NullPointerException("YAML::Node *node", BOOST_CURRENT_FUNCTION);
+
+        if (!node[key.toStdString()])
+            return missing;
+
+        return node[key.toStdString()].as<unsigned int>(missing);
     } catch (YAML::Exception exception)
     {
         HUGGLE_ERROR("YAML Parsing error (" + key + "): " + QString(exception.what()));
@@ -938,12 +956,9 @@ QHash<QString, QVariant> HuggleParser::YAML2QHash(QString key, YAML::Node &node,
                 }
                     break;
                 case YAML::NodeType::Map:
-                {
                     *ok = false;
                     HUGGLE_ERROR("YAML Parsing error (" + key + "): It's not possible to convert QHash to QVariant");
                     return missing;
-                }
-                    break;
                 case YAML::NodeType::Undefined:
                     break;
             }

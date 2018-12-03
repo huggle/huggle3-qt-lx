@@ -59,13 +59,13 @@ QJSValue HuggleQueryJS::get_all_bytes_received()
 
 static void apifailed(Query *qr)
 {
-    ((HuggleQueryJS*)qr->CallbackOwner)->ProcessAQFailureCallback(qr);
+    (reinterpret_cast<HuggleQueryJS*>(qr->CallbackOwner))->ProcessAQFailureCallback(qr);
     qr->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
 }
 
 static void apisuccess(Query *qr)
 {
-    ((HuggleQueryJS*)qr->CallbackOwner)->ProcessAQSuccessCallback(qr);
+    (reinterpret_cast<HuggleQueryJS*>(qr->CallbackOwner))->ProcessAQSuccessCallback(qr);
     qr->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
 }
 
@@ -94,8 +94,8 @@ int HuggleQueryJS::create_api_query(int type, QString site, QString parameters, 
     int query_id = this->lastQuery++;
     Collectable_SmartPtr<ApiQuery> query = new ApiQuery(action, s);
     query->CallbackOwner = this;
-    query->SuccessCallback = (Callback)apisuccess;
-    query->FailureCallback = (Callback)apifailed;
+    query->SuccessCallback = reinterpret_cast<Callback>(apisuccess);
+    query->FailureCallback = reinterpret_cast<Callback>(apifailed);
     query->UsingPOST = using_post;
     query->Parameters = parameters;
     if (auto_delete)
@@ -164,13 +164,13 @@ bool HuggleQueryJS::destroy_api_query(int query)
 
 static void editfailed(Query *qr)
 {
-    ((HuggleQueryJS*)qr->CallbackOwner)->ProcessEQFailureCallback(qr);
+    (reinterpret_cast<HuggleQueryJS*>(qr->CallbackOwner))->ProcessEQFailureCallback(qr);
     qr->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
 }
 
 static void editsuccess(Query *qr)
 {
-    ((HuggleQueryJS*)qr->CallbackOwner)->ProcessEQSuccessCallback(qr);
+    (reinterpret_cast<HuggleQueryJS*>(qr->CallbackOwner))->ProcessEQSuccessCallback(qr);
     qr->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
 }
 
@@ -181,8 +181,8 @@ int HuggleQueryJS::edit_page_append_text(QString page_name, QString text, QStrin
     QueryPool::HugglePool->AppendQuery(edit);
     this->editQueries.insert(query_id, edit);
     edit->CallbackOwner = this;
-    edit->SuccessCallback = (Callback) editsuccess;
-    edit->FailureCallback = (Callback) editfailed;
+    edit->SuccessCallback = reinterpret_cast<Callback>(editsuccess);
+    edit->FailureCallback = reinterpret_cast<Callback>(editfailed);
     if (auto_delete)
         this->autoDeletes.append(edit.GetPtr());
     return query_id;
@@ -209,8 +209,8 @@ int HuggleQueryJS::edit_page(QString page, QString text, QString summary, QStrin
     QueryPool::HugglePool->AppendQuery(edit);
     this->editQueries.insert(query_id, edit);
     edit->CallbackOwner = this;
-    edit->SuccessCallback = (Callback) editsuccess;
-    edit->FailureCallback = (Callback) editfailed;
+    edit->SuccessCallback = reinterpret_cast<Callback>(editsuccess);
+    edit->FailureCallback = reinterpret_cast<Callback>(editfailed);
     if (auto_delete)
         this->autoDeletes.append(edit.GetPtr());
     return query_id;
@@ -267,7 +267,7 @@ bool HuggleQueryJS::destroy_edit_query(int query)
 
 void HuggleQueryJS::ProcessEQSuccessCallback(Query *query)
 {
-    int id = this->getEQByPtr((EditQuery*)query);
+    int id = this->getEQByPtr(dynamic_cast<EditQuery*>(query));
     if (id < 0)
         return;
     if (this->successCallbacks.contains(id))
@@ -278,7 +278,7 @@ void HuggleQueryJS::ProcessEQSuccessCallback(Query *query)
 
 void HuggleQueryJS::ProcessEQFailureCallback(Query *query)
 {
-    int id = this->getEQByPtr((EditQuery*)query);
+    int id = this->getEQByPtr(dynamic_cast<EditQuery*>(query));
     if (id < 0)
         return;
     if (this->failureCallbacks.contains(id))
@@ -289,7 +289,7 @@ void HuggleQueryJS::ProcessEQFailureCallback(Query *query)
 
 void HuggleQueryJS::ProcessAQSuccessCallback(Query *query)
 {
-    int id = this->getApiByPtr((ApiQuery*)query);
+    int id = this->getApiByPtr(dynamic_cast<ApiQuery*>(query));
     if (id < 0)
         return;
     if (this->successCallbacks.contains(id))
@@ -300,7 +300,7 @@ void HuggleQueryJS::ProcessAQSuccessCallback(Query *query)
 
 void HuggleQueryJS::ProcessAQFailureCallback(Query *query)
 {
-    int id = this->getApiByPtr((ApiQuery*)query);
+    int id = this->getApiByPtr(dynamic_cast<ApiQuery*>(query));
     if (id < 0)
         return;
     if (this->failureCallbacks.contains(id))

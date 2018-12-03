@@ -27,7 +27,7 @@ namespace Huggle
     {
             Q_OBJECT
         public:
-            explicit ScriptingManager(QWidget *parent = 0);
+            explicit ScriptingManager(QWidget *parent = nullptr);
             ~ScriptingManager();
             void Reload();
             void LoadFile(QString path);

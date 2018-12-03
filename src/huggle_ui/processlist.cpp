@@ -141,7 +141,7 @@ bool ProcessList::IsExpired(Query *q)
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     foreach(ProcessListRemovedItem *item, *this->Removed)
-        if ((unsigned int) item->GetID() == q->QueryID())
+        if (item->GetID() == q->QueryID())
             return true;
 
     return false;
@@ -183,14 +183,14 @@ int ProcessList::GetItem(Query *q)
     return -1;
 }
 
-int ProcessList::GetItem(int Id)
+int ProcessList::GetItem(unsigned int id)
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     int curr = 0;
     int size = this->ui->tableWidget->rowCount();
     while (curr < size)
     {
-        if (this->ui->tableWidget->item(curr,0)->text() == QString::number(Id))
+        if (this->ui->tableWidget->item(curr,0)->text() == QString::number(id))
         {
             return curr;
         }
@@ -226,13 +226,13 @@ void ProcessList::OnQueryPoolUpdate(Query *q)
     this->UpdateQuery(q);
 }
 
-ProcessListRemovedItem::ProcessListRemovedItem(int ID)
+ProcessListRemovedItem::ProcessListRemovedItem(unsigned int ID)
 {
     this->id = ID;
     this->time = QDateTime::currentDateTime();
 }
 
-int ProcessListRemovedItem::GetID()
+unsigned int ProcessListRemovedItem::GetID()
 {
     return this->id;
 }

@@ -12,21 +12,7 @@
 
 using namespace Huggle;
 
-#if _MSC_VER
-    //#pragma warning ( push )
-    //#pragma warning ( disable )
-#else
-    #pragma GCC diagnostic push
-    #pragma GCC diagnostic ignored "-Wunused-parameter"
-#endif
-
 OAuth::OAuth(QString login)
 {
-
+    Q_UNUSED(login);
 }
-
-#if _MSC_VER
-    //#pragma warning ( pop )
-#else
-    #pragma GCC diagnostic pop
-#endif

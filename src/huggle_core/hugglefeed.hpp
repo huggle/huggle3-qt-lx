@@ -84,7 +84,7 @@ namespace Huggle
             virtual void IncrementReverts();
             //! Used to find alternative feed provider in case that current one fails
             virtual int FeedPriority();
-            double GetUptime();
+            qint64 GetUptime();
             virtual unsigned long long GetBytesReceived()=0;
             virtual unsigned long long GetBytesSent()=0;
             HuggleQueueFilter *Filter;

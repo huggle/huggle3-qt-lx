@@ -219,7 +219,7 @@ void RevertQuery::OnTick()
 
 QString RevertQuery::GetCustomRevertStatus(QueryResult *result_data, WikiSite *site, bool *failed, bool *suspend)
 {
-    ApiQueryResultNode *ms = ((ApiQueryResult*)result_data)->GetNode("error");
+    ApiQueryResultNode *ms = (reinterpret_cast<ApiQueryResult*>(result_data)->GetNode("error"));
     *suspend = false;
     if (ms != nullptr)
     {

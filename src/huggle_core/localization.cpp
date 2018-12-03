@@ -20,7 +20,7 @@
 #include "syslog.hpp"
 
 using namespace Huggle;
-unsigned int Localizations::EnglishID = 0;
+int Localizations::EnglishID = 0;
 Localizations *Localizations::HuggleLocalizations = nullptr;
 const QString Localizations::LANG_QQX = "qqx";
 

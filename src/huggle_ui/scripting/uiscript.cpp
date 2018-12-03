@@ -211,10 +211,10 @@ int UiScript::GetHookID(QString hook)
 
 void UiScript::MenuClicked()
 {
-    QAction *menu = (QAction*)QObject::sender();
+    QAction *menu = dynamic_cast<QAction*>(QObject::sender());
     if (!this->scriptMenusByAction.contains(menu))
     {
-        HUGGLE_ERROR(this->GetName() + ": invalid menu pointer: " + QString("0x%1").arg((quintptr)menu, QT_POINTER_SIZE * 2, 16, QChar('0')));
+        HUGGLE_ERROR(this->GetName() + ": invalid menu pointer: " + QString("0x%1").arg(reinterpret_cast<quintptr>(menu), QT_POINTER_SIZE * 2, 16, QChar('0')));
         return;
     }
     this->executeFunction(this->scriptMenusByAction[menu]->GetCallback());
@@ -243,7 +243,7 @@ ScriptMenu::ScriptMenu(UiScript *s, QMenu *parent, QString text, QString fc, boo
     this->script = s;
     this->parentMenu = parent;
     this->title = text;
-    this->item = new QAction(text, (QObject*)parent);
+    this->item = new QAction(text, dynamic_cast<QObject*>(parent));
     this->item->setCheckable(checkable);
     if (parent)
         parent->insertAction(before, this->item);

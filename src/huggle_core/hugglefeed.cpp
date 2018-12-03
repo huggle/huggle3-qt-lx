@@ -111,8 +111,8 @@ double HuggleFeed::GetRevertsPerMinute()
     if (this->statisticsBlocks.count() < 1)
         throw new Huggle::Exception("Invalid number of statistics blocks", BOOST_CURRENT_FUNCTION);
     // first we need to get an uptime
-    double uptime = ((double)this->statisticsBlocks.at(0)->Uptime.secsTo(QDateTime::currentDateTime())) / 60;
-    if (uptime == 0)
+    double uptime = static_cast<double>(this->statisticsBlocks.at(0)->Uptime.secsTo(QDateTime::currentDateTime())) / 60;
+    if (uptime < 0.01)
         return 0;
     // now we need to get a number of all reverts for latest blocks
     this->statisticsMutex->lock();
@@ -130,8 +130,8 @@ double HuggleFeed::GetEditsPerMinute()
     if (this->statisticsBlocks.count() < 1)
         throw new Huggle::Exception("Invalid number of statistics blocks", BOOST_CURRENT_FUNCTION);
     // first we need to get an uptime
-    double uptime = ((double)this->statisticsBlocks.at(0)->Uptime.secsTo(QDateTime::currentDateTime())) / 60;
-    if (uptime == 0)
+    double uptime = static_cast<double>(this->statisticsBlocks.at(0)->Uptime.secsTo(QDateTime::currentDateTime())) / 60;
+    if (uptime < 0.01)
         return 0;
     this->statisticsMutex->lock();
     double edits = 0;
@@ -163,9 +163,9 @@ int HuggleFeed::FeedPriority()
     return 0;
 }
 
-double HuggleFeed::GetUptime()
+qint64 HuggleFeed::GetUptime()
 {
-    return (double)this->startupTime.secsTo(QDateTime::currentDateTime());
+    return this->startupTime.secsTo(QDateTime::currentDateTime());
 }
 
 void HuggleFeed::rotateStats()

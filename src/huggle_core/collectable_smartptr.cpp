@@ -22,114 +22,8 @@
 #include "webserverquery.hpp"
 #include "wlquery.hpp"
 
-using namespace Huggle;
-
-template <class T>
-Collectable_SmartPtr<T>::Collectable_SmartPtr()
-{
-    this->ptr = nullptr;
-}
-
-template <class T>
-Collectable_SmartPtr<T>::Collectable_SmartPtr(Collectable_SmartPtr *smart_ptr)
-{
-    // we must not just copy the bare pointer but also increment the reference count
-    if (smart_ptr->ptr)
-        smart_ptr->ptr->IncRef();
-    this->ptr = smart_ptr->ptr;
-}
-
-template <class T>
-Collectable_SmartPtr<T>::Collectable_SmartPtr(const Collectable_SmartPtr &sp_)
-{
-    if (sp_.ptr)
-        sp_.ptr->IncRef();
-    this->ptr = sp_.ptr;
-}
-
-template <class T>
-Collectable_SmartPtr<T>::Collectable_SmartPtr(T *pt)
-{
-    if (!pt)
-    {
-        this->ptr = nullptr;
-        return;
-    }
-    this->ptr = pt;
-    this->ptr->IncRef();
-}
-
-template <class T>
-Collectable_SmartPtr<T>::~Collectable_SmartPtr()
-{
-    this->FreeAcqRsrPtr();
-}
-
-template <class T>
-void Collectable_SmartPtr<T>::SetPtr(T *pt)
-{
-    this->FreeAcqRsrPtr();
-    if (pt)
-    {
-        pt->IncRef();
-        this->ptr = pt;
-    }
-}
-
-template <class T>
-T *Collectable_SmartPtr<T>::operator->()
-{
-    return this->ptr;
-}
-
-template <class T>
-T *Collectable_SmartPtr<T>::GetPtr() const
-{
-    return this->ptr;
-}
-
-template <class T>
-Huggle::Collectable_SmartPtr<T>::operator void *() const
-{
-    return this->ptr;
-}
-
-template <class T>
-Huggle::Collectable_SmartPtr<T>::operator T*() const
-{
-    return this->ptr;
-}
-
-template <class T>
-void Collectable_SmartPtr<T>::FreeAcqRsrPtr()
-{
-    GC_DECREF(this->ptr);
-}
-
-template <class H>
-void Collectable_SmartPtr<H>::Delete()
-{
-    this->FreeAcqRsrPtr();
-}
-
-template<class T>
-void Collectable_SmartPtr<T>::operator=(T * _ptr)
-{
-    this->SetPtr(_ptr);
-}
-
-template<class T>
-void Collectable_SmartPtr<T>::operator=(const Collectable_SmartPtr & smart_ptr)
-{
-    this->SetPtr(smart_ptr.GetPtr());
-}
-
-template<class T>
-void Collectable_SmartPtr<T>::operator=(std::nullptr_t & null)
-{
-    this->SetPtr(null);
-}
-
+// Required by MSVC
+#ifdef HUGGLE_WIN
 namespace Huggle
 {
     template class Collectable_SmartPtr<Query>;
@@ -141,3 +35,4 @@ namespace Huggle
     template class Collectable_SmartPtr<WLQuery>;
     template class Collectable_SmartPtr<ApiQuery>;
 }
+#endif

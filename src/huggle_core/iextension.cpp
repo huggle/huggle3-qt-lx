@@ -37,16 +37,16 @@ void iExtension::Init()
 {
     if (this->RequestCore())
     {
-        Huggle::Core::HuggleCore = (Huggle::Core*) this->HuggleCore;
+        Huggle::Core::HuggleCore = reinterpret_cast<Huggle::Core*>(this->HuggleCore);
         Huggle::QueryPool::HugglePool = Huggle::Core::HuggleCore->HGQP;
         Huggle::Syslog::HuggleLogs = Huggle::Core::HuggleCore->HuggleSyslog;
         Huggle::GC::gc = Huggle::Core::HuggleCore->gc;
     }
-    Huggle::Localizations::HuggleLocalizations = (Huggle::Localizations*) this->Localization;
+    Huggle::Localizations::HuggleLocalizations = reinterpret_cast<Huggle::Localizations*>(this->Localization);
     if (this->RequestNetwork())
         Huggle::Query::NetworkManager = this->Networking;
     if (this->RequestConfiguration())
-        Huggle::Configuration::HuggleConfiguration = (Huggle::Configuration*) this->Configuration;
+        Huggle::Configuration::HuggleConfiguration = reinterpret_cast<Huggle::Configuration*>(this->Configuration);
 }
 
 QString iExtension::GetConfig(QString key, QString dv)

@@ -106,6 +106,7 @@ WikiSite::WikiSite(QString name, QString url)
 
 WikiSite::WikiSite(QString name, QString url, QString path, QString script, bool https, bool oauth, QString channel, QString wl, QString han, bool isrtl)
 {
+    Q_UNUSED(oauth);
     this->CurrentFilter = HuggleQueueFilter::DefaultFilter;
     this->IRCChannel = channel;
     this->LongPath = path;

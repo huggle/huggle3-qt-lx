@@ -303,7 +303,7 @@ QString HuggleJS::dump_obj(QJSValue object, unsigned int indent)
         int i = 0;
         while (i < length)
         {
-            object_desc += "    " + indent_prefix + dump_obj(object.property(i++), indent + 4) + "\n";
+            object_desc += "    " + indent_prefix + dump_obj(object.property(static_cast<quint32>(i++)), indent + 4) + "\n";
         }
         object_desc += indent_prefix + " ]";
     } else if (object.isBool())
@@ -387,7 +387,7 @@ qint64 HuggleJS::get_uptime()
 
 void HuggleJS::OnTime()
 {
-    QTimer *timer = (QTimer*) QObject::sender();
+    QTimer *timer = dynamic_cast<QTimer*>(QObject::sender());
     if (!this->timerFunctions.contains(timer))
         return;
     this->GetScript()->ExecuteFunction(this->timerFunctions[timer], QJSValueList());

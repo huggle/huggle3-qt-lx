@@ -58,7 +58,7 @@ bool HuggleFeedProviderIRC::Start()
         delete this->Network;
 
     QString nick = "huggle";
-    qsrand(QTime::currentTime().msec());
+    qsrand(static_cast<unsigned int>(QTime::currentTime().msec()));
     nick += QString::number(qrand());
     libirc::ServerAddress server(hcfg->IRCServer, false, hcfg->IRCPort, nick);
     server.SetSuffix(this->GetSite()->IRCChannel);
@@ -306,14 +306,14 @@ unsigned long long HuggleFeedProviderIRC::GetBytesReceived()
 {
     if (!this->Network)
         return 0;
-    return this->Network->GetBytesReceived();
+    return static_cast<unsigned long long>(this->Network->GetBytesReceived());
 }
 
 unsigned long long HuggleFeedProviderIRC::GetBytesSent()
 {
     if (!this->Network)
         return 0;
-    return this->Network->GetBytesSent();
+    return static_cast<unsigned long long>(this->Network->GetBytesSent());
 }
 
 bool HuggleFeedProviderIRC::IsConnected()

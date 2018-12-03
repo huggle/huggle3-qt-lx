@@ -215,7 +215,7 @@ int QueryPool::GetRunningEditingQueries()
     int n = 0;
     foreach (Query *query, this->runningQueries)
     {
-        if (query->Type == QueryApi && ((ApiQuery*)query)->EditingQuery)
+        if (query->Type == QueryApi && (dynamic_cast<ApiQuery*>(query)->EditingQuery))
         {
             n++;
         }

@@ -14,12 +14,12 @@
 #include <huggle_core/core.hpp>
 #include <huggle_core/exception.hpp>
 #include <huggle_core/huggleparser.hpp>
-#include "mainwindow.hpp"
 #include <huggle_core/localization.hpp>
-#include "reportuser.hpp"
 #include <huggle_core/warnings.hpp>
 #include <huggle_core/wikisite.hpp>
 #include <huggle_core/wikiuser.hpp>
+#include "mainwindow.hpp"
+#include "reportuser.hpp"
 #include "ui_warninglist.h"
 
 using namespace Huggle;

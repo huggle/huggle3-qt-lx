@@ -31,7 +31,7 @@ using namespace Huggle;
 
 HuggleUIJS::HuggleUIJS(Script *s) : GenericJSClass(s)
 {
-    this->ui_script = (UiScript*) s;
+    this->ui_script = dynamic_cast<UiScript*> (s);
     this->function_help.insert("render_html", "(string html, [bool lock_page]): Renders html in current tab");
     this->function_help.insert("external_link", "(string link): (since HG 3.4.4) opens a link in external browser");
     this->function_help.insert("internal_link", "(string link, [bool lock_page]): (since HG 3.4.4) opens a link in huggle browser");
@@ -175,7 +175,7 @@ int HuggleUIJS::message_box(QString title, QString text, int messagebox_type, bo
         HUGGLE_ERROR(this->script->GetName() + ": message_box(title, text, type): invalid message box type");
         return -1;
     }
-    MessageBoxStyle type = (MessageBoxStyle) messagebox_type;
+    MessageBoxStyle type = static_cast<MessageBoxStyle>(messagebox_type);
     // Pass the value
     return UiGeneric::MessageBox(title, text, type, pause);
 }

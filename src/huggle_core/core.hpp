@@ -81,6 +81,7 @@ namespace Huggle
             qint64 GetUptimeInSeconds();
             void LoadLocalizations();
             void InstallNewExceptionHandler(ExceptionHandler *eh);
+            void WriteProfilerDataIntoSyslog();
             QueryPool *HGQP;
             // Global variables
             QDateTime StartupTime;

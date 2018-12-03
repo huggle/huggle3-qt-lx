@@ -41,7 +41,7 @@ namespace Huggle
             void Kill();
             void Process();
             QString Parameters;
-            WLQueryType Type;
+            WLQueryType WL_Type;
             double Progress;
         private slots:
             void readData();

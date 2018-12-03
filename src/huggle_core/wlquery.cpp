@@ -18,7 +18,8 @@ using namespace Huggle;
 
 WLQuery::WLQuery(WikiSite *site) : MediaWikiObject(site)
 {
-    this->Type = WLQueryType_ReadWL;
+    this->Type = QueryType::QueryWl;
+    this->WL_Type = WLQueryType_ReadWL;
     this->Result = nullptr;
     this->Parameters = "";
     this->Progress = 0;
@@ -44,7 +45,7 @@ QString WLQuery::QueryTypeToString()
 
 QString WLQuery::QueryTargetToString()
 {
-    if (this->Type != WLQueryType_SuspWL)
+    if (this->WL_Type != WLQueryType_SuspWL)
         return "Writing users to WhiteList";
     else
         return "Reporting suspicious edit";
@@ -85,7 +86,7 @@ void WLQuery::Process()
     this->Result = new QueryResult();
     QUrl url(Configuration::HuggleConfiguration->GlobalConfig_Whitelist
              + "?action=read&wp=" + this->GetSite()->WhiteList);
-    switch (this->Type)
+    switch (this->WL_Type)
     {
         case WLQueryType_ReadWL:
             break;
@@ -101,7 +102,7 @@ void WLQuery::Process()
     }
     QString params = "";
     QByteArray data;
-    if (this->Type == WLQueryType_WriteWL)
+    if (this->WL_Type == WLQueryType_WriteWL)
     {
         QString whitelist = "";
         int p = 0;
@@ -120,11 +121,11 @@ void WLQuery::Process()
         whitelist += "||EOW||";
         params = "wl=" + QUrl::toPercentEncoding(whitelist);
         data = params.toUtf8();
-        long size = (long)data.size();
+        long size = static_cast<long>(data.size());
         Syslog::HuggleLogs->DebugLog("Sending whitelist data of size: " + QString::number(size) + " byte to " + this->GetSite()->Name);
     }
     QNetworkRequest request(url);
-    if (this->Type == WLQueryType_ReadWL)
+    if (this->WL_Type == WLQueryType_ReadWL)
     {
         this->networkReply = Query::NetworkManager->get(request);
     } else
@@ -147,13 +148,13 @@ void WLQuery::readData()
 void WLQuery::finished()
 {
     this->Result->Data += QString(this->networkReply->readAll());
-    if (this->Type == WLQueryType_WriteWL)
+    if (this->WL_Type == WLQueryType_WriteWL)
     {
         Syslog::HuggleLogs->DebugLog(this->Result->Data, 2);
         if (!this->Result->Data.contains("written"))
             Syslog::HuggleLogs->ErrorLog("Failed to store data to white list: " + this->Result->Data);
     }
-    if (this->Type == WLQueryType_SuspWL)
+    if (this->WL_Type == WLQueryType_SuspWL)
         HUGGLE_DEBUG("Result of susp.php: " + this->Result->Data, 2);
     // now we need to check if request was successful or not
     if (this->networkReply->error())
