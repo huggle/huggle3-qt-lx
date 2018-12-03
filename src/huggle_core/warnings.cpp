@@ -82,7 +82,7 @@ PendingWarning *Warnings::WarnUser(QString warning_type, RevertQuery *dependency
             {
                 // Ask user if they really want to send a warning here
                 if (!Hooks::ShowYesNoQuestion("Really send a warning?", "Edit to " + edit->Page->PageName + " on " + edit->GetSite()->Name + " by " +
-                                             edit->User->Username + " was is older than 1 day, do you really want to send them a warning message?", false))
+                                              edit->User->Username + " was is older than 1 day, do you really want to send them a warning message?", false))
                     return nullptr;
             }
         }
@@ -103,7 +103,7 @@ PendingWarning *Warnings::WarnUser(QString warning_type, RevertQuery *dependency
             {
                 // Ask user if they really want to send a warning here
                 if (!Hooks::ShowYesNoQuestion("Really send a warning?", "Edit to " + edit->Page->PageName + " on " + edit->GetSite()->Name + " was made by " +
-                                             edit->User->Username + " who received a message on their talk page very recently (probably some other warning template?)" +
+                                              edit->User->Username + " who received a message on their talk page very recently (probably some other warning template?)" +
                                               " do you really want to send them another warning message?", false))
                     return nullptr;
             }

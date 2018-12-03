@@ -9,10 +9,11 @@
 //GNU General Public License for more details.
 
 #include "loadingform.hpp"
-#include "loginform.hpp"
-#include <huggle_core/exception.hpp>
+#include <huggle_core/apiquery.hpp>
 #include <huggle_core/core.hpp>
+#include <huggle_core/exception.hpp>
 #include <huggle_core/localization.hpp>
+#include "loginform.hpp"
 #include "ui_loadingform.h"
 
 using namespace Huggle;

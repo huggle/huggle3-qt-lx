@@ -57,7 +57,7 @@ namespace Huggle
     {
             Q_OBJECT
         public:
-            explicit LoginForm(QWidget *parent = 0);
+            explicit LoginForm(QWidget *parent = nullptr);
             ~LoginForm();
             //! This function will reload all localizations for login form, called when user change a language
             void Localize();
