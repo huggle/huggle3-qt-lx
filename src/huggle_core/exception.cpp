@@ -23,7 +23,7 @@
 #include <signal.h>
 #include <stdlib.h>
 #include <unistd.h>
-QString Breakpad_DumpPath = "/tmp";
+static QString Breakpad_DumpPath = "/tmp";
 #elif defined HUGGLE_WIN
     // windows code goes here
 #include <windows.h>
@@ -133,9 +133,9 @@ QString Exception::GetCurrentStackTrace()
     unsigned int i;
     size_t size;
     char **messages;
-    size = backtrace(array, HUGGLE_STACK);
-    messages = backtrace_symbols(array, size);
-    for (i = 1; i < size && messages != NULL; ++i)
+    size = static_cast<size_t>(backtrace(array, HUGGLE_STACK));
+    messages = backtrace_symbols(array, static_cast<int>(size));
+    for (i = 1; i < size && messages != nullptr; ++i)
     {
         result += QString(QString::number(i) + QString(" ") + QString(messages[i]) + QString("\n"));
     }
