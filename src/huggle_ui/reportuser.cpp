@@ -614,7 +614,7 @@ void ReportUser::reportUser()
     {
         if (this->checkBoxes.count() > xx)
         {
-            QCheckBox *checkBox = (QCheckBox*)this->ui->tableWidget->cellWidget(xx, 4);
+            QCheckBox *checkBox = dynamic_cast<QCheckBox*>(this->ui->tableWidget->cellWidget(xx, 4));
             if (checkBox->isChecked())
             {
                 ++EvidenceID;

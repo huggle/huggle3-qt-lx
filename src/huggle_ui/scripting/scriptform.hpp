@@ -30,7 +30,7 @@ namespace Huggle
             Q_OBJECT
 
         public:
-            explicit ScriptForm(QWidget *parent = 0);
+            explicit ScriptForm(QWidget *parent = nullptr);
             ~ScriptForm();
             void EditScript(QString path, QString script_name);
 

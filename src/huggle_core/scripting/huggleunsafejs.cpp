@@ -94,7 +94,7 @@ void HuggleUnsafeJS::play_file(QString file)
 
 int HuggleUnsafeJS::sys_get_verbosity_level()
 {
-    return (int)hcfg->Verbosity;
+    return static_cast<int>(hcfg->Verbosity);
 }
 
 void HuggleUnsafeJS::sys_set_verbosity_level(int verbosity_level)

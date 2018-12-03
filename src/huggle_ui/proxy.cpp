@@ -41,7 +41,7 @@ void Proxy::SetProxy(int type, QString host, unsigned int port, QString name, QS
     }
 
     proxy.setHostName(host);
-    proxy.setPort(port);
+    proxy.setPort(static_cast<quint16>(port));
     proxy.setUser(name);
     proxy.setPassword(pass);
     QNetworkProxy::setApplicationProxy(proxy);
