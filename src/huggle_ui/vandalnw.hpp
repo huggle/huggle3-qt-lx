@@ -61,7 +61,7 @@ namespace Huggle
         {
             public:
                 GenericItem(WikiSite *site);
-                GenericItem(WikiSite *site, int _revID, QString _user, QString _ident, QString _hostname);
+                GenericItem(WikiSite *site, revid_ht _revID, QString _user, QString _ident, QString _hostname);
                 GenericItem(const GenericItem &i);
                 GenericItem(GenericItem *i);
                 //! User who changed the edit
@@ -70,7 +70,7 @@ namespace Huggle
                 QString Host;
                 WikiSite *Site;
                 //! ID of edit
-                int RevID;
+                revid_ht RevID;
         };
 
         //! This class is used to store information regarding page rescoring
@@ -83,10 +83,10 @@ namespace Huggle
         class HUGGLE_EX_UI RescoreItem : public GenericItem
         {
             public:
-                RescoreItem(WikiSite *site, int _revID, int _score, QString _user, QString _ident, QString _hostname);
+                RescoreItem(WikiSite *site, revid_ht _revID, long _score, QString _user, QString _ident, QString _hostname);
                 RescoreItem(const RescoreItem &item);
                 RescoreItem(RescoreItem *item);
-                int Score;
+                long Score;
         };
 
     }
@@ -106,7 +106,7 @@ namespace Huggle
             static QString SafeHtml(QString text);
             static QString GenerateWikiDiffLink(QString text, QString revid, WikiSite *site);
 
-            explicit VandalNw(QWidget *parent = 0);
+            explicit VandalNw(QWidget *parent = nullptr);
             ~VandalNw();
             /*!
              * \brief Insert text to window
@@ -117,11 +117,11 @@ namespace Huggle
             void Disconnect();
             bool IsConnected();
             //! This will deliver an edit to others as a good edit
-            void Good(WikiEdit *Edit);
+            void Good(WikiEdit *edit);
             //! Notify others about a rollback of edit
-            void Rollback(WikiEdit *Edit);
-            void SuspiciousWikiEdit(WikiEdit *Edit);
-            void WarningSent(WikiUser *user, byte_ht Level);
+            void Rollback(WikiEdit *edit);
+            void SuspiciousWikiEdit(WikiEdit *edit);
+            void WarningSent(WikiUser *user, byte_ht level);
             void GetChannel();
             bool IsParsed(WikiEdit *edit);
             void Rescore(WikiEdit *edit);

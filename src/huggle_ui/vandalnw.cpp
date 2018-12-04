@@ -124,7 +124,7 @@ VandalNw::VandalNw(QWidget *parent) : QDockWidget(parent), ui(new Ui::VandalNw)
     connect(Events::Global, SIGNAL(WikiEdit_OnRevert(WikiEdit*)), this, SLOT(OnRevert(WikiEdit*)));
     connect(Events::Global, SIGNAL(WikiEdit_OnSuspicious(WikiEdit*)), this, SLOT(OnSuspicious(WikiEdit*)));
     connect(Events::Global, SIGNAL(WikiEdit_OnWarning(WikiUser*,byte_ht)), this, SLOT(OnWarning(WikiUser*,byte_ht)));
-    connect(((IRCChatTextBox*)this->ui->plainTextEdit), SIGNAL(Event_Link(QString)), this, SLOT(TextEdit_anchorClicked(QString)));
+    connect((dynamic_cast<IRCChatTextBox*>(this->ui->plainTextEdit)), SIGNAL(Event_Link(QString)), this, SLOT(TextEdit_anchorClicked(QString)));
     connect(this->irc, SIGNAL(Event_Connected()), this, SLOT(OnConnected()));
     connect(this->irc, SIGNAL(Event_SelfJoin(libircclient::Channel*)), this, SLOT(OnIRCSelfJoin(libircclient::Channel*)));
     connect(this->irc, SIGNAL(Event_SelfPart(libircclient::Parser*,libircclient::Channel*)), this, SLOT(OnIRCSelfPart(libircclient::Parser*,libircclient::Channel*)));
@@ -188,56 +188,48 @@ bool VandalNw::IsConnected()
     return this->irc->IsConnected();
 }
 
-void VandalNw::Good(WikiEdit *Edit)
+void VandalNw::Good(WikiEdit *edit)
 {
-    if (Edit == nullptr)
-    {
+    if (edit == nullptr)
         throw new NullPointerException("WikiEdit *Edit", BOOST_CURRENT_FUNCTION);
-    }
-    if (!this->Site2Channel.contains(Edit->GetSite()))
-    {
+
+    if (!this->Site2Channel.contains(edit->GetSite()))
         throw new Exception("There is no channel for this site", BOOST_CURRENT_FUNCTION);
-    }
-    this->irc->SendMessage(this->Prefix + "GOOD " + QString::number(Edit->RevID), this->Site2Channel[Edit->GetSite()]);
+
+    this->irc->SendMessage(this->Prefix + "GOOD " + QString::number(edit->RevID), this->Site2Channel[edit->GetSite()]);
 }
 
-void VandalNw::Rollback(WikiEdit *Edit)
+void VandalNw::Rollback(WikiEdit *edit)
 {
-    if (Edit == nullptr)
-    {
+    if (edit == nullptr)
         throw new NullPointerException("WikiEdit *Edit", BOOST_CURRENT_FUNCTION);
-    }
-    if (!this->Site2Channel.contains(Edit->GetSite()))
-    {
+
+    if (!this->Site2Channel.contains(edit->GetSite()))
         throw new Exception("There is no channel for this site", BOOST_CURRENT_FUNCTION);
-    }
-    this->irc->SendMessage(this->Prefix + "ROLLBACK " + QString::number(Edit->RevID), this->Site2Channel[Edit->GetSite()]);
+
+    this->irc->SendMessage(this->Prefix + "ROLLBACK " + QString::number(edit->RevID), this->Site2Channel[edit->GetSite()]);
 }
 
-void VandalNw::SuspiciousWikiEdit(WikiEdit *Edit)
+void VandalNw::SuspiciousWikiEdit(WikiEdit *edit)
 {
-    if (Edit == nullptr)
-    {
+    if (edit == nullptr)
         throw new NullPointerException("WikiEdit *Edit", BOOST_CURRENT_FUNCTION);
-    }
-    if (!this->Site2Channel.contains(Edit->GetSite()))
-    {
+
+    if (!this->Site2Channel.contains(edit->GetSite()))
         throw new Exception("There is no channel for this site", BOOST_CURRENT_FUNCTION);
-    }
-    this->irc->SendMessage(this->Prefix + "SUSPICIOUS " + QString::number(Edit->RevID), this->Site2Channel[Edit->GetSite()]);
+
+    this->irc->SendMessage(this->Prefix + "SUSPICIOUS " + QString::number(edit->RevID), this->Site2Channel[edit->GetSite()]);
 }
 
-void VandalNw::WarningSent(WikiUser *user, byte_ht Level)
+void VandalNw::WarningSent(WikiUser *user, byte_ht level)
 {
     if (user == nullptr)
-    {
         throw new NullPointerException("WikiUser *user", BOOST_CURRENT_FUNCTION);
-    }
+
     if (!this->Site2Channel.contains(user->GetSite()))
-    {
         throw new Exception("There is no channel for this site", BOOST_CURRENT_FUNCTION);
-    }
-    this->irc->SendMessage(this->Prefix + "WARN " + QString::number(Level) + " " + QUrl::toPercentEncoding(user->Username), this->Site2Channel[user->GetSite()]);
+
+    this->irc->SendMessage(this->Prefix + "WARN " + QString::number(level) + " " + QUrl::toPercentEncoding(user->Username), this->Site2Channel[user->GetSite()]);
 }
 
 void VandalNw::GetChannel()
@@ -316,9 +308,8 @@ bool VandalNw::IsBot(QString nick, QString host)
 void VandalNw::Rescore(WikiEdit *edit)
 {
     if (this->UnparsedScores.count() == 0)
-    {
         return;
-    }
+
     int item = 0;
     HAN::RescoreItem *score = nullptr;
     while (item < this->UnparsedScores.count())
@@ -609,7 +600,7 @@ void Huggle::VandalNw::on_pushButton_clicked()
     this->SendMessage();
 }
 
-HAN::RescoreItem::RescoreItem(WikiSite *site, int _revID, int _score, QString _user, QString _ident, QString _hostname) : GenericItem(site, _revID, _user, _ident, _hostname)
+HAN::RescoreItem::RescoreItem(WikiSite *site, revid_ht _revID, long _score, QString _user, QString _ident, QString _hostname) : GenericItem(site, _revID, _user, _ident, _hostname)
 {
     this->Score = _score;
 }
@@ -631,7 +622,7 @@ HAN::GenericItem::GenericItem(WikiSite *site)
     this->RevID = WIKI_UNKNOWN_REVID;
 }
 
-HAN::GenericItem::GenericItem(WikiSite *site, int _revID, QString _user, QString _ident, QString _hostname)
+HAN::GenericItem::GenericItem(WikiSite *site, revid_ht _revID, QString _user, QString _ident, QString _hostname)
 {
     this->Site = site;
     this->RevID = _revID;
@@ -678,11 +669,13 @@ void VandalNw::OnIRCUserJoin(libircclient::Parser *px, libircclient::User *user,
 
 void VandalNw::OnIRCSelfJoin(libircclient::Channel *channel)
 {
+    Q_UNUSED(channel);
     this->refreshUL();
 }
 
 void VandalNw::OnIRCChannelNames(libircclient::Parser *px)
 {
+    (void)px;
     this->refreshUL();
 }
 
@@ -768,6 +761,7 @@ void VandalNw::OnIRCChannelCTCP(libircclient::Parser *px, QString command, QStri
 void VandalNw::OnIRCChannelQuit(libircclient::Parser *px, libircclient::Channel *channel)
 {
     (void)px;
+    (void)channel;
     this->refreshUL();
 }
 
