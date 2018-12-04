@@ -79,7 +79,7 @@ QString VandalNw::SafeHtml(QString text)
 
 QString VandalNw::GenerateWikiDiffLink(QString text, QString revid, WikiSite *site)
 {
-    return "<a href=\"huggle:///diff/" + site->Name + "/revid/" + revid + "\">" + text + "</a>";
+    return "<a href=\"huggle://diff/" + site->Name + "/revid/" + revid + "\">" + text + "</a>";
 }
 
 VandalNw::VandalNw(QWidget *parent) : QDockWidget(parent), ui(new Ui::VandalNw)
