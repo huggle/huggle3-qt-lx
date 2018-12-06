@@ -104,6 +104,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         throw new Exception("Main window already exist", BOOST_CURRENT_FUNCTION);
     MainWindow::HuggleMain = this;
     HUGGLE_PROFILER_RESET;
+    this->lastKeyStrokeCheck = QDateTime::currentDateTime();
     this->LastTPRevID = WIKI_UNKNOWN_REVID;
     this->editLoadDateTime = QDateTime::currentDateTime();
     this->Shutdown = ShutdownOpRunning;
@@ -2394,8 +2395,10 @@ bool MainWindow::keystrokeCheck(int id)
         this->lKeyPressTime.insert(id, QDateTime::currentDateTime());
         return true;
     }
+    qint64 global_span = this->lastKeyStrokeCheck.msecsTo(QDateTime::currentDateTime());
     qint64 span = this->lKeyPressTime[id].msecsTo(QDateTime::currentDateTime());
-    if (span < static_cast<qint64>(hcfg->SystemConfig_KeystrokeMultiPressRate))
+    qint64 rate = static_cast<qint64>(hcfg->SystemConfig_KeystrokeMultiPressRate);
+    if (span < rate || global_span < rate)
     {
         HUGGLE_DEBUG1("Keystroke bug on " + QString::number(id) + " span " + QString::number(span));
         return false;
@@ -2642,6 +2645,14 @@ void MainWindow::ReloadInterface()
     else
         this->ui->actionDelete_page->setText(_l("main-page-reqdeletion"));
     this->ReloadSc();
+}
+
+void MainWindow::ResetKeyStrokeCheck()
+{
+    if (!hcfg->SystemConfig_KeystrokeMultiPressFix)
+        return;
+
+    this->lastKeyStrokeCheck = QDateTime::currentDateTime();
 }
 
 void MainWindow::on_actionWelcome_user_triggered()

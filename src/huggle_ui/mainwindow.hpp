@@ -199,6 +199,7 @@ namespace Huggle
             //! Perform all common tests that are needed before a page can be edited and return false if they fail
             bool EditingChecks();
             void ReloadInterface();
+            void ResetKeyStrokeCheck();
             void DecreaseBS();
             void IncreaseBS();
             OverlayBox *ShowOverlay(QString text, int x = -1, int y = -1, int timeout = 10000, int width = -1, int height = -1, bool is_dismissable = true);
@@ -463,6 +464,7 @@ namespace Huggle
             QHash<WikiSite*, QAction*> lXml;
             QHash<WikiSite*, QAction*> lIRC;
             QHash<WikiSite*, QAction*> lWikis;
+            QDateTime lastKeyStrokeCheck;
             //! This is used to store last time of keypress for shortcuts, used as workaround for Qt bugs resulting
             //! in multiple key strokes
             QHash<int, QDateTime> lKeyPressTime;
