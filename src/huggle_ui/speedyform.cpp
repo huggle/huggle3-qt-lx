@@ -143,6 +143,12 @@ void SpeedyForm::Init(WikiEdit *edit_)
         this->ui->comboBox->addItem(item.Tag + ": " + item.Info);
     }
     this->ui->label_2->setText(edit_->Page->PageName);
+    this->ui->checkBox->setChecked(edit_->GetSite()->GetProjectConfig()->Speedy_WarningOnByDefault);
+    if (!edit_->GetSite()->GetProjectConfig()->Speedy_EnableWarnings)
+    {
+        this->ui->checkBox->setChecked(false);
+        this->ui->checkBox->setEnabled(false);
+    }
 }
 
 QString SpeedyForm::GetSelectedDBReason()

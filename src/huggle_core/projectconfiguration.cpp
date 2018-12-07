@@ -658,6 +658,8 @@ bool ProjectConfiguration::ParseYAML(QString yaml_src, QString *reason, WikiSite
     this->SpeedyWarningSummary = HuggleParser::YAML2String("speedy-message-summary", yaml, "Notification: [[$1]] has been listed for deletion");
     this->Patrolling = HuggleParser::YAML2Bool("patrolling-enabled", yaml);
     this->PatrollingFlaggedRevs = HuggleParser::YAML2Bool("patrolling-flaggedrevs", yaml, false);
+    this->Speedy_EnableWarnings = HuggleParser::YAML2Bool("speedy-enable-warnings", yaml, this->Speedy_EnableWarnings);
+    this->Speedy_WarningOnByDefault = HuggleParser::YAML2Bool("speedy-warning-on-by-default", yaml, this->Speedy_WarningOnByDefault);
     // Get report mode
     QString report = HuggleParser::YAML2String("report", yaml);
     if (report.isEmpty())

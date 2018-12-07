@@ -286,6 +286,8 @@ namespace Huggle
             score_ht                BotScore = -200;
             score_ht                WarningScore = 2000;
             QStringList             WarningTypes;
+            bool                    Speedy_EnableWarnings = true;
+            bool                    Speedy_WarningOnByDefault = true;
             QString                 SpeedyEditSummary = "Tagging page for deletion";
             QString                 SpeedyWarningSummary = "Sending user a notification regarding deletion of their page";
             QHash<int,QStringList>  AlternativeMonths;
