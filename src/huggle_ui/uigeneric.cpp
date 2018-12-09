@@ -32,7 +32,8 @@ int UiGeneric::MessageBox(QString title, QString text, MessageBoxStyle st, bool 
             mb->setDefaultButton(QMessageBox::Yes);
             return_value = mb->exec();
             // This should fix T210604
-            MainWindow::HuggleMain->ResetKeyStrokeCheck();
+            if (MainWindow::HuggleMain != nullptr)
+                MainWindow::HuggleMain->ResetKeyStrokeCheck();
             break;
         case MessageBoxStyleQuestionAbort:
             mb->setIcon(QMessageBox::Question);
@@ -40,7 +41,8 @@ int UiGeneric::MessageBox(QString title, QString text, MessageBoxStyle st, bool 
             mb->setDefaultButton(QMessageBox::Cancel);
             return_value = mb->exec();
             // This should fix T210604
-            MainWindow::HuggleMain->ResetKeyStrokeCheck();
+            if (MainWindow::HuggleMain != nullptr)
+                MainWindow::HuggleMain->ResetKeyStrokeCheck();
             break;
         case MessageBoxStyleNormal:
             mb->setIcon(QMessageBox::Information);
@@ -60,7 +62,8 @@ int UiGeneric::MessageBox(QString title, QString text, MessageBoxStyle st, bool 
             return_value = mb->exec();
             delete mb;
             // This should fix T210604
-            MainWindow::HuggleMain->ResetKeyStrokeCheck();
+            if (MainWindow::HuggleMain != nullptr)
+                MainWindow::HuggleMain->ResetKeyStrokeCheck();
         }
         else
         {
