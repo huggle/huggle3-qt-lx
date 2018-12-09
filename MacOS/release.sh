@@ -4,7 +4,7 @@
 if [ x"$1" != x ];then
   QTDIR="$1"
 else
-  QTDIR=~/Qt/5.10.1/clang_64/
+  QTDIR=~/Qt/5.12.0/clang_64/
 fi
 
 # Get Qt version and split on dots.
