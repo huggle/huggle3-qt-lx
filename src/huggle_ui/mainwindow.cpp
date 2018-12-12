@@ -1267,7 +1267,7 @@ bool MainWindow::preflightCheck(WikiEdit *_e)
         Warn = true;
     } else if (hcfg->ProjectConfig->ConfirmWL && _e->User->IsWhitelisted())
     {
-        type = _l("main-revert-type-white-list");
+        type = _l("main-revert-type-made-white-list");
         Warn = true;
     }
     if (Warn)
