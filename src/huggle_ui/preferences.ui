@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1106</width>
-    <height>828</height>
+    <height>906</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -1038,6 +1038,13 @@
         <widget class="QCheckBox" name="checkBox_notifyBeta">
          <property name="text">
           <string>Check for beta versions</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBox_EnforceBAWC">
+         <property name="text">
+          <string>Enforce black and white colors in HTML diff</string>
          </property>
         </widget>
        </item>

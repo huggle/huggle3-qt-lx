@@ -181,6 +181,7 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     this->ui->cb_AutoRefresh->setText(_l("config-auto-refresh"));
     this->ui->cb_WatchWarn->setText(_l("preferences-auto-watch-talk"));
     this->ui->cbKeystrokeFix->setText(_l("preferences-keystroke-rate-limit"));
+    this->ui->checkBox_EnforceBAWC->setText(_l("preferences-enforce-baw"));
     this->ui->l_QueueSize->setText(_l("preferences-queue-size"));
     this->ui->l_EmptyQueuePage->setText(_l("preferences-empty-queue-page"));
     this->ui->cbShowWarningIfNotOnLastRevision->setText(_l("preferences-show-warning-if-not-last-revision"));
@@ -340,6 +341,7 @@ void Huggle::Preferences::on_pushButton_2_clicked()
     hcfg->UserConfig->HighlightSummaryIfExists = this->ui->checkBox_7->isChecked();
     hcfg->UserConfig->InsertEditsOfRolledUserToQueue = this->ui->checkBox_ReviewEditsMadeByVandal->isChecked();
     hcfg->SystemConfig_FontSize = this->ui->sxFontSize->value();
+    hcfg->SystemConfig_EnforceBlackAndWhiteCss = this->ui->checkBox_EnforceBAWC->isChecked();
     hcfg->UserConfig->ConfirmOnRecentWarning = this->ui->checkBox_RecentMsgs->isChecked();
     hcfg->UserConfig->SkipWarningOnConfirm = this->ui->checkBox_SkipConfirm->isChecked();
     hcfg->UserConfig->ConfirmWarningOnVeryOldEdits = this->ui->checkBox_OldEdits->isChecked();
@@ -810,6 +812,7 @@ void Preferences::ResetItems()
     this->ui->checkBox_OldEdits->setChecked(hcfg->UserConfig->ConfirmWarningOnVeryOldEdits);
     this->ui->checkBox_SkipConfirm->setChecked(hcfg->UserConfig->SkipWarningOnConfirm);
     this->ui->checkBox_RecentMsgs->setChecked(hcfg->UserConfig->ConfirmOnRecentWarning);
+    this->ui->checkBox_EnforceBAWC->setChecked(hcfg->SystemConfig_EnforceBlackAndWhiteCss);
 
 #ifdef HUGGLE_NOAUDIO
     this->ui->ln_QueueSoundMinScore->setEnabled(false);

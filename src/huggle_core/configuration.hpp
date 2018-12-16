@@ -279,6 +279,7 @@ namespace Huggle
             bool            SystemConfig_Autorelog = true;
             bool            SystemConfig_CatScansAndWatched = true;
             bool            SystemConfig_DryMode = false;
+            bool            SystemConfig_EnforceBlackAndWhiteCss = false;
             //! Maximum number of queue stuff
             int             SystemConfig_QueueSize = 200;
             bool            Fuzzy = false;

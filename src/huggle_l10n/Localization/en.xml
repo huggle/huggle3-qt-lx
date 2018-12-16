@@ -784,6 +784,7 @@
   <string name="preferences-extension-disabled-restart">Extension was set to be disabled on the next startup of Huggle</string>
   <string name="preferences-extension-enabled">This extension is not scheduled for disabling on the next startup of Huggle</string>
   <string name="preferences-extension-enabled-restart">Extension was enabled. You will need to restart Huggle for it to take effect.</string>
+  <string name="preferences-enforce-baw">Enforce black and white colors in HTML diff</string>
   <string name="preferences-watchlist-watch">Add to watchlist</string>
   <string name="preferences-watchlist-unwatch">Remove from watchlist</string>
   <string name="preferences-watchlist-preferences">Follow your on-wiki preferences</string>

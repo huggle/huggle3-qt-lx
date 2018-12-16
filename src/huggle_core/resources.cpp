@@ -127,13 +127,20 @@ void Huggle::Resources::PlayEmbeddedSoundFile(QString file)
 
 QString Huggle::Resources::GetHtmlHeader(WikiSite *site)
 {
-    QString Css;
+    QString Css, body_css;
     if (site->IsRightToLeft)
     {
         Css.append(Resources::CssRtl);
     }
 
+    if (hcfg->SystemConfig_EnforceBlackAndWhiteCss)
+    {
+        body_css = "background-color: white;"\
+                   "color: black;";
+    }
+
     return QString(Resources::HtmlHeader).replace("<<<CUSTOM-CSS>>>", Css)
+            .replace("<<<CUSTOM-BODY-CSS>>>", body_css)
             .replace("<<<FONT-FAMILY>>>", hcfg->SystemConfig_Font)
             .replace("<<<FONT-SIZE>>>", QString::number(hcfg->SystemConfig_FontSize));
 }

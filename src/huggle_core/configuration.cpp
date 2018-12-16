@@ -315,6 +315,7 @@ void Configuration::LoadSystemConfig(QString fn)
         RCB(DynamicColsInList);
         RCB(UnsafeExts);
         RCB(WarnUserSpaceRoll);
+        RCB(EnforceBlackAndWhiteCss);
         RCB(EnableUpdates);
         RCB(NotifyBeta);
         RCB(ParallelLogin);
@@ -427,6 +428,7 @@ void Configuration::SaveSystemConfig()
     INSERT_CONFIG_B(EnableUpdates);
     INSERT_CONFIG_B(NotifyBeta);
     INSERT_CONFIG_B(WarnUserSpaceRoll);
+    INSERT_CONFIG_B(EnforceBlackAndWhiteCss);
     INSERT_CONFIG_N(WikiRC);
     INSERT_CONFIG_B(CatScansAndWatched);
     INSERT_CONFIG_N(PlaySoundQueueScore);
