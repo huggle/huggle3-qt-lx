@@ -279,7 +279,11 @@ namespace Huggle
             bool            SystemConfig_Autorelog = true;
             bool            SystemConfig_CatScansAndWatched = true;
             bool            SystemConfig_DryMode = false;
+#ifdef HUGGLE_MACX
             bool            SystemConfig_EnforceBlackAndWhiteCss = false;
+#else
+            bool            SystemConfig_EnforceBlackAndWhiteCss = true;
+#endif
             //! Maximum number of queue stuff
             int             SystemConfig_QueueSize = 200;
             bool            Fuzzy = false;
