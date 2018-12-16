@@ -4,6 +4,8 @@
 <dict>
 <key>NSPrincipalClass</key>
 <string>NSApplication</string>
+<key>NSRequiresAquaSystemAppearance</key>
+<true/>
 <key>CFBundleDisplayName</key>
 <string>Huggle</string>
 <key>CFBundleIconFile</key>
