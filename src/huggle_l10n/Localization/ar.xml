@@ -799,6 +799,7 @@
   <string name="preferences-extension-disabled-restart">تم تعيين ملحق ليتم تعطيله عند بدء التشغيل القادم لهغل</string>
   <string name="preferences-extension-enabled">من غير المقرر تعطيل هذا التمديد عند بدء التشغيل القادم لهغل</string>
   <string name="preferences-extension-enabled-restart">تم تمكين الامتداد، ستحتاج إلى إعادة تشغيل هغل لتصبح نافذ المفعول.</string>
+  <string name="preferences-enforce-baw">فرض اللونين الأبيض والأسود في فرق HTML</string>
   <string name="preferences-watchlist-watch">أضف لقائمة مراقبتي</string>
   <string name="preferences-watchlist-unwatch">إزالة من قائمة المراقبة</string>
   <string name="preferences-watchlist-preferences">متابعتك على تفضيلات الويكي</string>

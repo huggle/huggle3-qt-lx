@@ -806,6 +806,7 @@
   <string name="preferences-extension-disabled-restart">L’extension a été mise en attente de désactivation au prochain démarrage de Huggle</string>
   <string name="preferences-extension-enabled">Cette extension ne sera pas désactivée lors du prochain démarrage de Huggle</string>
   <string name="preferences-extension-enabled-restart">L’extension a été activée. Vous devez redémarrer Huggle pour que cela prenne effet.</string>
+  <string name="preferences-enforce-baw">Renforcer les couleurs noir et blanc dans le différentiel HTML</string>
   <string name="preferences-watchlist-watch">Ajouter à la liste de suivi</string>
   <string name="preferences-watchlist-unwatch">Supprimer de la liste de suivi</string>
   <string name="preferences-watchlist-preferences">Suivre vos préférences du wiki</string>

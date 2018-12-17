@@ -811,6 +811,7 @@
   <string name="preferences-extension-disabled-restart">Esta extensão foi programada para ser desabilitada na próxima inicialização do Huggle</string>
   <string name="preferences-extension-enabled">Esta extensão não está programada para ser desativada na próxima inicialização do Huggle</string>
   <string name="preferences-extension-enabled-restart">A extensão foi ativada. No entanto, você precisará reiniciar o Huggle para que ela funcione.</string>
+  <string name="preferences-enforce-baw">Aplicar cores preto e branco no diff HTML</string>
   <string name="preferences-watchlist-watch">Adicionar às páginas vigiadas</string>
   <string name="preferences-watchlist-unwatch">Remover das páginas vigiadas</string>
   <string name="preferences-watchlist-preferences">Seguir suas preferências na wiki</string>

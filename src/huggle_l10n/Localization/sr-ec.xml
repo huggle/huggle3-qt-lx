@@ -14,7 +14,7 @@
   <string name="isrtl">false</string>
   <string name="add">Додај</string>
   <string name="cancel">Откажи</string>
-  <string name="clear">Очисти</string>
+  <string name="clear">Обриши</string>
   <string name="close">Затвори</string>
   <string name="continue">Настави</string>
   <string name="copy">Копирај</string>
@@ -27,7 +27,7 @@
   <string name="ok">У реду</string>
   <string name="remove">Уклони</string>
   <string name="rename">Преименуј</string>
-  <string name="reload">Освежи</string>
+  <string name="reload">Поново учитај</string>
   <string name="project">Пројекат</string>
   <string name="warning">Упозорење</string>
   <string name="result">Резултат</string>

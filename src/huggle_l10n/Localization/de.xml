@@ -800,6 +800,7 @@
   <string name="preferences-extension-disabled-restart">Die Erweiterung wurde so eingestellt, dass sie beim nächsten Start von Huggle deaktiviert wird.</string>
   <string name="preferences-extension-enabled">Diese Erweiterung wurde nicht zur Deaktivierung beim nächsten Huggle-Start geplant</string>
   <string name="preferences-extension-enabled-restart">Die Erweiterung wurde aktiviert. Vielleicht musst du Huggle neu starten, damit sie wirksam wird.</string>
+  <string name="preferences-enforce-baw">Schwarzweißfarben im HTML-Unterschied erzwingen</string>
   <string name="preferences-watchlist-watch">Zur Beobachtungsliste hinzufügen</string>
   <string name="preferences-watchlist-unwatch">Von der Beobachtungsliste entfernen</string>
   <string name="preferences-watchlist-preferences">Folge deinen Wiki-Einstellungen</string>

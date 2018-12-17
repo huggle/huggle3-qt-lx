@@ -798,6 +798,7 @@
   <string name="preferences-extension-disabled-restart">擴充功能被設定在下一次啟動 Huggle 時停用。</string>
   <string name="preferences-extension-enabled">此擴充功能未被編排在下一次啟動 Huggle 時停用。</string>
   <string name="preferences-extension-enabled-restart">擴充功能已啟用，您需要重新啟動 Huggle 來生效。</string>
+  <string name="preferences-enforce-baw">在 HTML 差別裡強制成黑色與白色</string>
   <string name="preferences-watchlist-watch">加入到監視清單</string>
   <string name="preferences-watchlist-unwatch">從監視清單中移除</string>
   <string name="preferences-watchlist-preferences">遵循您在wiki上的設置</string>

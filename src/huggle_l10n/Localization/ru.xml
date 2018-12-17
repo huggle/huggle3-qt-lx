@@ -22,6 +22,7 @@
 * Mouse21
 * Movses
 * Nitch
+* Nk88
 * Nzeemin
 * Okras
 * Redredsonia
@@ -34,7 +35,7 @@
 * Ядерный Трамвай
 -->
 <resources>
-  <string name="name">Русский</string>
+  <string name="name">Английский</string>
   <string name="autorelog">Сделайте это в следующий раз, не спрашивая</string>
   <string name="isrtl">false</string>
   <string name="add">Добавить</string>

@@ -161,6 +161,7 @@
   <string name="historyform-title">Historik</string>
   <string name="historyform-retrieve-history">Hent historik</string>
   <string name="historyform-retrieving-history">Henter historik</string>
+  <string name="history-error-message-title">Kunne ikke tilbagerulle</string>
   <string name="userhistory-title">Historik over dine ændringer</string>
   <string name="login-tab-login" fuzzy="true">Interaktivt login</string>
   <string name="login-language">Sprog:</string>
@@ -207,6 +208,7 @@
   <string name="main-queue-clear">Ryd nuværende</string>
   <string name="main-queue-reset">Nulstil</string>
   <string name="main-queue-clearall">Ryd alle</string>
+  <string name="main-queue-when-full-remove">Fjern gamle redigeringer</string>
   <string name="main-goto">Gå til</string>
   <string name="main-goto-mytalk">Min diskussionside</string>
   <string name="main-goto-mycontribs">Mine bidrag</string>
@@ -226,6 +228,10 @@
   <string name="main-page-protect">Beskyt</string>
   <string name="main-page-delete">Slet</string>
   <string name="main-page-load">Indlæs</string>
+  <string name="main-page-watchlist-add">Tilføj denne side til overvågningsliste</string>
+  <string name="main-page-tab-close">Luk nuværende fane</string>
+  <string name="main-page-tab-open">Åbn en ny fane</string>
+  <string name="main-page-watchlist-remove">Fjern denne side fra overvågningslisten</string>
   <string name="main-user-ignore">Ignorér</string>
   <string name="main-user-talk">Vis diskussionsside</string>
   <string name="main-user-page">Vis brugerside</string>
@@ -238,6 +244,7 @@
   <string name="main-help-documentation">Dokumentation</string>
   <string name="main-help-about">Om Huggle...</string>
   <string name="main-help-introduction">Introduktion</string>
+  <string name="main-help-welcome-page">Velkomstside</string>
   <string name="main-help-contents">Indhold</string>
   <string name="main-addqueue">Tilføj...</string>
   <string name="main-advanced">Avanceret...</string>
@@ -247,6 +254,7 @@
   <string name="main-report-username">Anmeld brugernavn</string>
   <string name="main-report-user">Anmeld bruger</string>
   <string name="main-statistics-none">ingen</string>
+  <string name="main-tab-welcome-title">Velkomstside</string>
   <string name="message-title">Besked $1</string>
   <string name="message-message">Besked:</string>
   <string name="protect-reason">Årsag:</string>
