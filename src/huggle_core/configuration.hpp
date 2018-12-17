@@ -300,13 +300,13 @@ namespace Huggle
             //! Path to a file where information about wikis are stored
             QString         WikiDB = "";
             //! URL of wiki that contains a global config
-            QString         GlobalConfigurationWikiAddress = "meta.wikimedia.org/w/";
+            QString         SystemConfig_GlobalConfigurationWikiAddress = "meta.wikimedia.org/w/";
             //! Number of seconds for which the processed queries remain in list of processes
             int             SystemConfig_QueryListTimeLimit = 2;
             //! Number of edits to keep in history stack
             int             SystemConfig_HistorySize = 20;
             //! Ask user if they really want to report someone
-            bool            AskUserBeforeReport = true;
+            bool            SystemConfig_AskUserBeforeReport = true;
             //! This is experimental feature that removes the old templates from talk pages when they are being read
             bool            SystemConfig_TrimOldWarnings = true;
             //! Size of fonts in diff
@@ -369,7 +369,7 @@ namespace Huggle
 
             //! We are storing index instead of wiki name, because in case it was a wiki that later
             //! was removed from the list, we would have nonexistent wiki in list
-            int             IndexOfLastWiki = 0;
+            int             SystemConfig_IndexOfLastWiki = 0;
 
             //////////////////////////////////////////////
             // User
@@ -407,7 +407,7 @@ namespace Huggle
             //////////////////////////////////////////////
 
             //! User name
-            QString     SystemConfig_Username = "";
+            QString     SystemConfig_UserName = "";
             //! If SSL is being used
             bool        SystemConfig_UsingSSL = true;
             QString     SystemConfig_BotLogin;
@@ -433,17 +433,17 @@ namespace Huggle
             //! Whether IRC is being used
             bool    UsingIRC = true;
             //! Server
-            QString IRCServer = "irc.wikimedia.org";
+            QString SystemConfig_IRCServer = "irc.wikimedia.org";
             //! Nick
-            QString IRCNick = "huggle";
+            QString SystemConfig_IRCNick = "huggle";
             //! Ident
-            QString IRCIdent = "huggle";
+            QString SystemConfig_IRCIdent = "huggle";
             //! Port
-            unsigned int     IRCPort = 6667;
+            unsigned int     SystemConfig_IRCPort = 6667;
             int     SystemConfig_IRCConnectionTimeOut = 2;
             //! HAN
             QString     VandalNw_Server = "irc.tm-irc.org";
-            bool        VandalNw_Login = true;
+            bool        SystemConfig_VandalNw_Login = true;
 
             //////////////////////////////////////////////
             // Misc

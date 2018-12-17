@@ -96,7 +96,7 @@ void WLQuery::Process()
             break;
         case WLQueryType_WriteWL:
             url = QUrl(Configuration::HuggleConfiguration->GlobalConfig_Whitelist + "?action=save&user=" +
-                      QUrl::toPercentEncoding("huggle_" + Configuration::HuggleConfiguration->SystemConfig_Username) +
+                      QUrl::toPercentEncoding("huggle_" + Configuration::HuggleConfiguration->SystemConfig_UserName) +
                       "&wp=" + this->GetSite()->WhiteList);
             break;
     }

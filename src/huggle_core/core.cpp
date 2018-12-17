@@ -93,7 +93,7 @@ void Core::Init()
     hcfg->WebRequest_UserAgent = QString("Huggle/" + QString(HUGGLE_VERSION) + " (http://en.wikipedia.org/wiki/WP:Huggle; " + hcfg->HuggleVersion + ")").toUtf8();
     HUGGLE_DEBUG1("UserAgent: " + QString(hcfg->WebRequest_UserAgent));
     // Create a global wiki, now that we loaded the configuration which is only place where it can be changed
-    hcfg->GlobalWiki = new WikiSite("GlobalWiki", hcfg->GlobalConfigurationWikiAddress);
+    hcfg->GlobalWiki = new WikiSite("GlobalWiki", hcfg->SystemConfig_GlobalConfigurationWikiAddress);
     HUGGLE_PROFILER_PRINT_TIME("Core::Init()@conf");
     HUGGLE_DEBUG1("Loading wikis");
     this->LoadDB();

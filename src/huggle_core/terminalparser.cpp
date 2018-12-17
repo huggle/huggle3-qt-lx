@@ -189,7 +189,7 @@ bool TerminalParser::Parse()
                     cerr << "Only bot logins are allowed using this method. Username didn't have valid format (no @ symbol found)." << endl;
                     return true;
                 }
-                hcfg->SystemConfig_Username = hcfg->SystemConfig_BotLogin.mid(0, hcfg->SystemConfig_BotLogin.indexOf("@"));
+                hcfg->SystemConfig_UserName = hcfg->SystemConfig_BotLogin.mid(0, hcfg->SystemConfig_BotLogin.indexOf("@"));
                 hcfg->TemporaryConfig_Password = credentials.mid(credentials.indexOf(":") + 1);
                 valid = true;
                 ++x;

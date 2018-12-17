@@ -163,8 +163,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->SystemLog->resize(100, 80);
     foreach (WikiSite *site, hcfg->Projects)
     {
-        if (!site->GetProjectConfig()->WhiteList.contains(hcfg->SystemConfig_Username))
-            site->GetProjectConfig()->WhiteList.append(hcfg->SystemConfig_Username);
+        if (!site->GetProjectConfig()->WhiteList.contains(hcfg->SystemConfig_UserName))
+            site->GetProjectConfig()->WhiteList.append(hcfg->SystemConfig_UserName);
     }
     QString projects;
     if (hcfg->SystemConfig_Multiple)
@@ -1257,7 +1257,7 @@ bool MainWindow::preflightCheck(WikiEdit *_e)
     {
         type = _l("main-revert-type-in-userspace");
         Warn = true;
-    } else if (hcfg->ProjectConfig->ConfirmOnSelfRevs && (_e->User->Username.toLower() == hcfg->SystemConfig_Username.toLower()))
+    } else if (hcfg->ProjectConfig->ConfirmOnSelfRevs && (_e->User->Username.toLower() == hcfg->SystemConfig_UserName.toLower()))
     {
         type = _l("main-revert-type-made-by-you");
         Warn = true;
@@ -1710,7 +1710,7 @@ void MainWindow::OnTimerTick0()
             this->fWaiting->Status(80, _l("saveuserconfig-progress"));
             this->Shutdown = ShutdownOpUpdatingConf;
             QString page = Configuration::HuggleConfiguration->GlobalConfig_UserConf;
-            page = page.replace("$1", Configuration::HuggleConfiguration->SystemConfig_Username);
+            page = page.replace("$1", Configuration::HuggleConfiguration->SystemConfig_UserName);
             Version huggle_version(HUGGLE_VERSION);
             foreach (WikiSite*site, Configuration::HuggleConfiguration->Projects)
             {
@@ -2015,7 +2015,7 @@ void MainWindow::SuspiciousEdit()
         wq_->WL_Type = WLQueryType_SuspWL;
         wq_->Parameters = "page=" + QUrl::toPercentEncoding(this->CurrentEdit->Page->PageName) + "&wiki="
                           + QUrl::toPercentEncoding(this->GetCurrentWikiSite()->WhiteList) + "&user="
-                          + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_Username) + "&score="
+                          + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_UserName) + "&score="
                           + QString::number(this->CurrentEdit->Score) + "&revid="
                           + QString::number(this->CurrentEdit->RevID) + "&summary="
                           + QUrl::toPercentEncoding(this->CurrentEdit->Summary);
@@ -2933,7 +2933,7 @@ void MainWindow::on_actionShow_talk_triggered()
         query->Process();
         query->DecRef();
     }
-    this->RenderPage("User_talk:" + Configuration::HuggleConfiguration->SystemConfig_Username);
+    this->RenderPage("User_talk:" + Configuration::HuggleConfiguration->SystemConfig_UserName);
 }
 
 void MainWindow::on_actionProtect_triggered()
@@ -3363,7 +3363,7 @@ void MainWindow::on_actionMy_talk_page_triggered()
         return;
     this->LockPage();
     this->Browser->DisplayPage(Configuration::GetProjectWikiURL(this->GetCurrentWikiSite()) + "User_talk:" +
-                                           QUrl::toPercentEncoding(hcfg->SystemConfig_Username));
+                                           QUrl::toPercentEncoding(hcfg->SystemConfig_UserName));
 }
 
 void MainWindow::on_actionMy_Contributions_triggered()
@@ -3374,7 +3374,7 @@ void MainWindow::on_actionMy_Contributions_triggered()
         return;
     this->LockPage();
     this->Browser->DisplayPage(Configuration::GetProjectWikiURL(this->GetCurrentWikiSite()) + "Special:Contributions/" +
-                                    QUrl::toPercentEncoding(hcfg->SystemConfig_Username));
+                                    QUrl::toPercentEncoding(hcfg->SystemConfig_UserName));
 }
 
 void MainWindow::Go()

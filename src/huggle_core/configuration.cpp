@@ -258,58 +258,14 @@ void Configuration::LoadSystemConfig(QString fn)
         RC(Font);
         RCN(FontSize);
         RCN(QueueSize);
-        if (key == "GlobalConfigurationWikiAddress")
-        {
-            hcfg->GlobalConfigurationWikiAddress = option.attribute("text");
-            continue;
-        }
-        if (key == "IRCIdent")
-        {
-            hcfg->IRCIdent = option.attribute("text");
-            continue;
-        }
-        if (key == "IRCNick")
-        {
-            hcfg->IRCNick = option.attribute("text");
-            continue;
-        }
-        if (key == "IRCPort")
-        {
-            hcfg->IRCPort = option.attribute("text").toUInt();
-            continue;
-        }
-        if (key == "IRCServer")
-        {
-            hcfg->IRCServer = option.attribute("text");
-            continue;
-        }
-        if (key == "Language")
-        {
-            Localizations::HuggleLocalizations->PreferredLanguage = option.attribute("text");
-            continue;
-        }
+        RC(GlobalConfigurationWikiAddress);
+        RC(IRCIdent);
+        RC(IRCNick);
+        RCU(IRCPort);
+        RC(IRCServer);
         RCN(ProviderCache);
-        if (key == "AskUserBeforeReport")
-        {
-            hcfg->AskUserBeforeReport = SafeBool(option.attribute("text"));
-            continue;
-        }
+        RCB(AskUserBeforeReport);
         RCN(HistorySize);
-        if (key == "VandalNw_Login")
-        {
-            hcfg->VandalNw_Login = SafeBool(option.attribute("text"));
-            continue;
-        }
-        if (key == "UserName" && hcfg->SystemConfig_Username.isEmpty())
-        {
-            hcfg->SystemConfig_Username = option.attribute("text");
-            continue;
-        }
-        if (key == "BotLogin" && hcfg->SystemConfig_BotLogin.isEmpty())
-        {
-            hcfg->SystemConfig_BotLogin = option.attribute("text");
-            continue;
-        }
         RCN(RingLogMaxSize);
         RC(GlobalConfigYAML);
         RCB(DynamicColsInList);
@@ -320,11 +276,7 @@ void Configuration::LoadSystemConfig(QString fn)
         RCB(NotifyBeta);
         RCB(ParallelLogin);
         RCB(QueueNewEditsUp);
-        if (key == "IndexOfLastWiki")
-        {
-            hcfg->IndexOfLastWiki = option.attribute("text").toInt();
-            continue;
-        }
+        RCN(IndexOfLastWiki);
         RCB(UsingSSL);
         RC(GlobalConfigWikiList);
         RCU(DelayVal);
@@ -336,30 +288,42 @@ void Configuration::LoadSystemConfig(QString fn)
         RCB(ScoreDebug);
         RCB(ShowStartupInfo);
         RCB(InstantReverts);
-        if (key == "Projects")
-        {
-            hcfg->ProjectString = option.attribute("text").split(",");
-            continue;
-        }
         RCB(SuppressWarnings);
         RC(RememberedPassword);
         RCB(StorePassword);
         RCB(UseProxy);
         RC(ProxyUser);
         RCN(ProxyType);
-        if (key == "ProxyHost")
-        {
-            hcfg->SystemConfig_ProxyHost = option.attribute("text");
-            continue;
-        }
+        RC(ProxyHost);
         RCN(KeystrokeMultiPressRate);
-        RCB(KeystrokeMultiPressFix)
+        RCB(KeystrokeMultiPressFix);
         RCU(ProxyPort);
         RC(ProxyPass);
+        RCB(VandalNw_Login)
         RCB(PlaySoundOnQueue);
         RCB(PlaySoundOnIRCUserMsg);
         RCN(PlaySoundQueueScore);
         RCB(Autorelog);
+        if (key == "Projects")
+        {
+            hcfg->ProjectString = option.attribute("text").split(",");
+            continue;
+        }
+        if (key == "Language")
+        {
+            Localizations::HuggleLocalizations->PreferredLanguage = option.attribute("text");
+            continue;
+        }
+        if (key == "UserName" && hcfg->SystemConfig_UserName.isEmpty())
+        {
+            hcfg->SystemConfig_UserName = option.attribute("text");
+            continue;
+        }
+        if (key == "BotLogin" && hcfg->SystemConfig_BotLogin.isEmpty())
+        {
+            hcfg->SystemConfig_BotLogin = option.attribute("text");
+            continue;
+        }
     }
     item = 0;
     while (item < e.count())
@@ -412,14 +376,14 @@ void Configuration::SaveSystemConfig()
     INSERT_CONFIG_N(QueueSize);
     INSERT_CONFIG_B(UnsafeExts);
     INSERT_CONFIG(GlobalConfigYAML);
-    InsertConfig("GlobalConfigurationWikiAddress", hcfg->GlobalConfigurationWikiAddress, writer);
-    InsertConfig("IRCIdent", hcfg->IRCIdent, writer);
-    InsertConfig("IRCNick", hcfg->IRCNick, writer);
-    InsertConfig("IRCPort", QString::number(hcfg->IRCPort), writer);
-    InsertConfig("IRCServer", hcfg->IRCServer, writer);
+    INSERT_CONFIG(GlobalConfigurationWikiAddress);
+    INSERT_CONFIG(IRCIdent);
+    INSERT_CONFIG(IRCNick);
+    INSERT_CONFIG_N(IRCPort);
+    INSERT_CONFIG(IRCServer);
     InsertConfig("Language", Localizations::HuggleLocalizations->PreferredLanguage, writer);
     INSERT_CONFIG_N(ProviderCache);
-    InsertConfig("AskUserBeforeReport", Bool2String(hcfg->AskUserBeforeReport), writer);
+    INSERT_CONFIG_B(AskUserBeforeReport);
     INSERT_CONFIG_N(HistorySize);
     INSERT_CONFIG_B(QueueNewEditsUp);
     INSERT_CONFIG_B(BotPassword);
@@ -437,12 +401,12 @@ void Configuration::SaveSystemConfig()
     INSERT_CONFIG_B(PlaySoundOnIRCUserMsg);
     INSERT_CONFIG_N(KeystrokeMultiPressRate);
     INSERT_CONFIG_B(KeystrokeMultiPressFix);
-    InsertConfig("BotLogin", hcfg->SystemConfig_BotLogin, writer);
-    InsertConfig("UserName", hcfg->SystemConfig_Username, writer);
-    InsertConfig("IndexOfLastWiki", QString::number(hcfg->IndexOfLastWiki), writer);
+    INSERT_CONFIG(BotLogin);
+    INSERT_CONFIG(UserName);
+    InsertConfig("IndexOfLastWiki", QString::number(hcfg->SystemConfig_IndexOfLastWiki), writer);
     InsertConfig("DynamicColsInList", Bool2String(hcfg->SystemConfig_DynamicColsInList), writer);
     INSERT_CONFIG_B(Multiple);
-    InsertConfig("Font", hcfg->SystemConfig_Font, writer);
+    INSERT_CONFIG(Font);
     InsertConfig("FontSize", QString::number(hcfg->SystemConfig_FontSize), writer);
     InsertConfig("SuppressWarnings", Bool2String(hcfg->SystemConfig_SuppressWarnings), writer);
     InsertConfig("StorePassword", Bool2String(hcfg->SystemConfig_StorePassword), writer);
@@ -465,7 +429,7 @@ void Configuration::SaveSystemConfig()
     /////////////////////////////
     // Vandal network
     /////////////////////////////
-    InsertConfig("VandalNw_Login", Bool2String(hcfg->VandalNw_Login), writer);
+    InsertConfig("VandalNw_Login", Bool2String(hcfg->SystemConfig_VandalNw_Login), writer);
     InsertConfig("GlobalConfigWikiList", hcfg->SystemConfig_GlobalConfigWikiList, writer);
     QStringList extensions = hcfg->ExtensionData.keys();
     foreach (QString ex, extensions)
@@ -525,7 +489,7 @@ bool Configuration::ParseGlobalConfig(QString config)
     this->HANMask = HuggleParser::YAML2String("han-mask", yaml, this->HANMask);
     this->GlobalConfig_Whitelist = HuggleParser::YAML2String("whitelist-server", yaml);
     this->VandalNw_Server = HuggleParser::YAML2String("han-server", yaml, this->VandalNw_Server);
-    this->IRCServer = HuggleParser::YAML2String("irc-server", yaml, this->IRCServer);
+    this->SystemConfig_IRCServer = HuggleParser::YAML2String("irc-server", yaml, this->SystemConfig_IRCServer);
     this->GlobalConfigWasLoaded = true;
     return true;
 }

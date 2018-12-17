@@ -58,7 +58,7 @@ QStringList Generic::CSV2QStringList(QString CSV, QChar separator)
 
 bool Generic::ReportPreFlightCheck()
 {
-    if (!Configuration::HuggleConfiguration->AskUserBeforeReport)
+    if (!Configuration::HuggleConfiguration->SystemConfig_AskUserBeforeReport)
         return true;
     return Hooks::ShowYesNoQuestion(_l("report-tu"), _l("report-warn"), false);
 }

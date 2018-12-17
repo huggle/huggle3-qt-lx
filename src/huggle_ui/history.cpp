@@ -183,7 +183,7 @@ void History::ContextMenu(const QPoint &position)
                     // if we don't know it we need to create it
                     edit = new WikiEdit();
                     edit->Page = new WikiPage(page, hi->GetSite());
-                    edit->User = new WikiUser(hcfg->SystemConfig_Username, hi->GetSite());
+                    edit->User = new WikiUser(hcfg->SystemConfig_UserName, hi->GetSite());
                     edit->RevID = hi->RevID;
                 }
                 break;
@@ -277,7 +277,7 @@ void History::Tick()
         {
             edit->Page = new WikiPage(this->RevertingItem->Target, site);
         }
-        edit->User = new WikiUser(Configuration::HuggleConfiguration->SystemConfig_Username, site);
+        edit->User = new WikiUser(Configuration::HuggleConfiguration->SystemConfig_UserName, site);
         edit->Page->SetContent(result);
         edit->RevID = revid;
         if (this->RevertingItem->NewPage && this->RevertingItem->Type == HistoryMessage)

@@ -111,7 +111,7 @@ LoginForm::LoginForm(QWidget *parent) : HW("login", this, parent), ui(new Ui::Lo
     if (hcfg->SystemConfig_BotPassword)
     {
         this->ui->tab_oauth->show();
-        if (!hcfg->SystemConfig_Username.isEmpty())
+        if (!hcfg->SystemConfig_UserName.isEmpty())
         {
             this->ui->lineEditBotUser->setText(hcfg->SystemConfig_BotLogin);
             this->ui->lineEditBotP->setFocus();
@@ -119,9 +119,9 @@ LoginForm::LoginForm(QWidget *parent) : HW("login", this, parent), ui(new Ui::Lo
     } else
     {
         this->ui->tab_login->show();
-        if (!hcfg->SystemConfig_Username.isEmpty())
+        if (!hcfg->SystemConfig_UserName.isEmpty())
         {
-            this->ui->lineEdit_username->setText(hcfg->SystemConfig_Username);
+            this->ui->lineEdit_username->setText(hcfg->SystemConfig_UserName);
             this->ui->lineEdit_password->setFocus();
         }
     }
@@ -360,8 +360,8 @@ void LoginForm::reloadForm()
     }
     this->ui->tableWidget->resizeColumnsToContents();
     this->ui->tableWidget->resizeRowsToContents();
-    if (hcfg->IndexOfLastWiki < current)
-        this->ui->Project->setCurrentIndex(hcfg->IndexOfLastWiki);
+    if (hcfg->SystemConfig_IndexOfLastWiki < current)
+        this->ui->Project->setCurrentIndex(hcfg->SystemConfig_IndexOfLastWiki);
     else
         this->ui->Project->setCurrentIndex(0);
 }
@@ -433,7 +433,7 @@ void LoginForm::pressOK()
             return;
         }
         QString name = hcfg->SystemConfig_BotLogin;
-        hcfg->SystemConfig_Username = WikiUtil::SanitizeUser(name.mid(0, name.indexOf("@")));
+        hcfg->SystemConfig_UserName = WikiUtil::SanitizeUser(name.mid(0, name.indexOf("@")));
         if (hcfg->SystemConfig_StorePassword)
             hcfg->SystemConfig_RememberedPassword = this->ui->lineEditBotP->text();
         hcfg->TemporaryConfig_Password = ui->lineEditBotP->text();
@@ -441,10 +441,10 @@ void LoginForm::pressOK()
     {
         if (hcfg->SystemConfig_StorePassword)
             hcfg->SystemConfig_RememberedPassword = this->ui->lineEdit_password->text();
-        hcfg->SystemConfig_Username = WikiUtil::SanitizeUser(ui->lineEdit_username->text());
+        hcfg->SystemConfig_UserName = WikiUtil::SanitizeUser(ui->lineEdit_username->text());
         hcfg->TemporaryConfig_Password = ui->lineEdit_password->text();
     }
-    hcfg->IndexOfLastWiki = this->ui->Project->currentIndex();
+    hcfg->SystemConfig_IndexOfLastWiki = this->ui->Project->currentIndex();
     hcfg->Project = hcfg->ProjectList.at(this->ui->Project->currentIndex());
     // we need to clear a list of projects we are logged to and insert at least this one
     hcfg->Projects.clear();
@@ -593,7 +593,7 @@ void LoginForm::performLoginPart2(WikiSite *site)
                 + "&lgtoken=" + QUrl::toPercentEncoding(token);
     } else
     {
-        query->Parameters = "lgname=" + QUrl::toPercentEncoding(hcfg->SystemConfig_Username)
+        query->Parameters = "lgname=" + QUrl::toPercentEncoding(hcfg->SystemConfig_UserName)
                 + "&lgpassword=" + QUrl::toPercentEncoding(hcfg->TemporaryConfig_Password)
                 + "&lgtoken=" + QUrl::toPercentEncoding(token);
     }
@@ -639,7 +639,7 @@ bool LoginForm::retrieveGlobalConfig()
     this->loadingForm->ModifyIcon(this->loadingFormGlobalConfigRow, LoadingForm_Icon_Loading);
     this->Update(_l("[[login-progress-global]]"));
     this->qConfig = new ApiQuery(ActionQuery, hcfg->GlobalWiki);
-    this->qConfig->OverrideWiki = hcfg->GlobalConfigurationWikiAddress;
+    this->qConfig->OverrideWiki = hcfg->SystemConfig_GlobalConfigurationWikiAddress;
     this->qConfig->Parameters = "prop=revisions&rvprop=content&rvlimit=1&titles=" + hcfg->SystemConfig_GlobalConfigYAML;
     this->qConfig->Process();
     return false;
@@ -691,7 +691,7 @@ void LoginForm::finishLogin(WikiSite *site)
     }
 
     QString actual_user_name = login_result->GetAttribute("lgusername");
-    if (actual_user_name != hcfg->SystemConfig_Username)
+    if (actual_user_name != hcfg->SystemConfig_UserName)
     {
         if (hcfg->SystemConfig_Multiple && hcfg->TemporaryConfig_UserNameWasChanged)
         {
@@ -704,7 +704,7 @@ void LoginForm::finishLogin(WikiSite *site)
 
         // Show a warning
         HUGGLE_WARNING("Actual username was changed by MediaWiki (on " + site->Name + ") to " + actual_user_name + ", fixing up");
-        hcfg->SystemConfig_Username = actual_user_name;
+        hcfg->SystemConfig_UserName = actual_user_name;
     }
 
     // Assume login was successful
@@ -922,7 +922,7 @@ void LoginForm::retrieveUserConfig(WikiSite *site)
                     this->LoginQueries[site] = q;
                     q->IncRef();
                     QString page = hcfg->GlobalConfig_UserConf_old;
-                    page = page.replace("$1", hcfg->SystemConfig_Username);
+                    page = page.replace("$1", hcfg->SystemConfig_UserName);
                     q->Parameters = "prop=revisions&rvprop=content&rvlimit=1&titles=" + QUrl::toPercentEncoding(page);
                     q->Process();
                     return;
@@ -978,7 +978,7 @@ void LoginForm::retrieveUserConfig(WikiSite *site)
     query->IncRef();
     this->LoginQueries.insert(site, query);
     QString page = hcfg->GlobalConfig_UserConf;
-    page = page.replace("$1", hcfg->SystemConfig_Username);
+    page = page.replace("$1", hcfg->SystemConfig_UserName);
     query->Parameters = "prop=revisions&rvprop=content&rvlimit=1&titles=" + QUrl::toPercentEncoding(page);
     query->Process();
 }
@@ -1008,7 +1008,7 @@ void LoginForm::retrieveUserInfo(WikiSite *site)
                 user = user.trimmed();
                 sanitized.append(user);
             }
-            QString sanitized_name = hcfg->SystemConfig_Username;
+            QString sanitized_name = hcfg->SystemConfig_UserName;
             sanitized_name = sanitized_name.toLower();
             sanitized_name = sanitized_name.replace("_", " ");
             if (!sanitized.contains("* [[special:contributions/" + sanitized_name + "|" + sanitized_name + "]]"))
@@ -1021,11 +1021,11 @@ void LoginForm::retrieveUserInfo(WikiSite *site)
                 if (site->GetProjectConfig()->UserlistSync)
                 {
                     // we need to insert this user into the list
-                    QString un = WikiUtil::SanitizeUser(hcfg->SystemConfig_Username);
+                    QString un = WikiUtil::SanitizeUser(hcfg->SystemConfig_UserName);
                     QString line = "* [[Special:Contributions/" + un + "|" + un + "]]";
                     result += "\n" + line;
                     QString summary = site->GetProjectConfig()->UserlistUpdateSummary;
-                    summary.replace("$1", hcfg->SystemConfig_Username);
+                    summary.replace("$1", hcfg->SystemConfig_UserName);
                     WikiUtil::EditPage(site, site->GetProjectConfig()->ApprovalPage, result, summary);
                     //WikiUtil::AppendTextToPage(site->GetProjectConfig()->ApprovalPage, line, site->GetProjectConfig()->UserlistUpdateSummary, true, site);
                 }
@@ -1515,7 +1515,7 @@ void LoginForm::on_pushButton_clicked()
     this->Refreshing = true;
     hcfg->SystemConfig_UsingSSL = this->ui->checkBox->isChecked();
     this->timer->start(HUGGLE_TIMER);
-    this->qDatabase->OverrideWiki = hcfg->GlobalConfigurationWikiAddress;
+    this->qDatabase->OverrideWiki = hcfg->SystemConfig_GlobalConfigurationWikiAddress;
     this->ui->ButtonOK->setText(_l("[[cancel]]"));
     this->qDatabase->Parameters = "prop=revisions&rvprop=content&rvlimit=1&titles=" + hcfg->SystemConfig_GlobalConfigWikiList;
     this->qDatabase->Process();

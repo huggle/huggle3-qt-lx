@@ -60,7 +60,7 @@ bool HuggleFeedProviderIRC::Start()
     QString nick = "huggle";
     qsrand(static_cast<unsigned int>(QTime::currentTime().msec()));
     nick += QString::number(qrand());
-    libirc::ServerAddress server(hcfg->IRCServer, false, hcfg->IRCPort, nick);
+    libirc::ServerAddress server(hcfg->SystemConfig_IRCServer, false, hcfg->SystemConfig_IRCPort, nick);
     server.SetSuffix(this->GetSite()->IRCChannel);
     this->Network = new libircclient::Network(server, "Wikimedia IRC");
     this->Network->SetDefaultUsername(Configuration::HuggleConfiguration->HuggleVersion);

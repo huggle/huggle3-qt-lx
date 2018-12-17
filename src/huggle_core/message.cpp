@@ -43,7 +43,7 @@ Message::Message(WikiUser *target, QString MessageText, QString MessageSummary)
     this->RequireFresh = false;
     this->Error = MessageError_NoError;
     this->ErrorText = "";
-    this->Title = "Message from " + Configuration::HuggleConfiguration->SystemConfig_Username;
+    this->Title = "Message from " + Configuration::HuggleConfiguration->SystemConfig_UserName;
 }
 
 Message::~Message()

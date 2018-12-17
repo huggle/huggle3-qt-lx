@@ -85,7 +85,7 @@ QString VandalNw::GenerateWikiDiffLink(QString text, QString revid, WikiSite *si
 VandalNw::VandalNw(QWidget *parent) : QDockWidget(parent), ui(new Ui::VandalNw)
 {
     // Construct a server address from what we have
-    QString nick = hcfg->SystemConfig_Username;
+    QString nick = hcfg->SystemConfig_UserName;
     nick.replace(" ", "_");
     libirc::ServerAddress server(hcfg->VandalNw_Server, false, 6667, nick);
     this->irc = new libircclient::Network(server, "HAN");
@@ -161,7 +161,7 @@ void VandalNw::Connect()
         Syslog::HuggleLogs->Log(_l("han-already-connected"));
         return;
     }
-    if (Configuration::HuggleConfiguration->DeveloperMode || !Configuration::HuggleConfiguration->VandalNw_Login)
+    if (Configuration::HuggleConfiguration->DeveloperMode || !Configuration::HuggleConfiguration->SystemConfig_VandalNw_Login)
     {
         Huggle::Syslog::HuggleLogs->Log(_l("han-not"));
         return;
@@ -358,7 +358,7 @@ void VandalNw::SendMessage(QString text)
         this->irc->SendMessage(text, this->Site2Channel[hcfg->Project]);
         if (!hcfg->UserConfig->HtmlAllowedInIrc)
             text = SafeHtml(text);
-        this->Insert(hcfg->SystemConfig_Username + ": " + text, HAN::MessageType_UserTalk);
+        this->Insert(hcfg->SystemConfig_UserName + ": " + text, HAN::MessageType_UserTalk);
     }
 }
 

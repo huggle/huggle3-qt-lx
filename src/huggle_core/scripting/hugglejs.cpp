@@ -115,7 +115,7 @@ QJSValue HuggleJS::get_version()
 
 QString HuggleJS::get_username()
 {
-    return hcfg->SystemConfig_Username;
+    return hcfg->SystemConfig_UserName;
 }
 
 bool HuggleJS::is_unsafe()

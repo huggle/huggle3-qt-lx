@@ -159,9 +159,9 @@ bool HuggleQueueFilter::Matches(WikiEdit *edit)
     }
     if (this->Self != HuggleQueueFilterMatchIgnore)
     {
-        if (this->Self == HuggleQueueFilterMatchExclude && edit->User->Username.toLower() == Configuration::HuggleConfiguration->SystemConfig_Username.toLower())
+        if (this->Self == HuggleQueueFilterMatchExclude && edit->User->Username.toLower() == Configuration::HuggleConfiguration->SystemConfig_UserName.toLower())
             return false;
-        if (this->Self == HuggleQueueFilterMatchRequire && edit->User->Username.toLower() == Configuration::HuggleConfiguration->SystemConfig_Username.toLower())
+        if (this->Self == HuggleQueueFilterMatchRequire && edit->User->Username.toLower() == Configuration::HuggleConfiguration->SystemConfig_UserName.toLower())
             return false;
     }
     if (edit->IsPostProcessed())
