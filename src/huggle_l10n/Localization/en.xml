@@ -862,7 +862,7 @@
   <string name="wikipagetagsform-group">Group inside {{$1}}</string>
   <string name="tip1">Huggle supports tabs just like any other web browser! If you are on an edit and you want to keep it for later, you can simply open a new tab and continue checking the queue there. The queue is shared amongst all tabs.</string>
   <string name="tip2">Huggle contains an "edit bar", a little widget that contains both the User and Page history in a neat way. It's not enabled by default though. If you are on a small screen, you can replace user and page history widgets with it!</string>
-  <string name="tip3">Most preferences are stored on the wiki in [[Special:MyPage/huggle3.css]]. You can also manually change them there.</string>
+  <string name="tip3">Most preferences are stored on the wiki in [[Special:MyPage/huggle.yaml.js]]. You can also manually change them there.</string>
   <string name="tip4">Almost every widget on screen can be safely closed (except for the navigation bar).</string>
   <string name="tip5">You can use Huggle simultaneously on multiple projects, just click the "Projects" button on login form.</string>
   <string name="tip6">Huggle's reverting can be made much faster if you are experienced user who never make mistakes ;) open preferences and check "Instant Reverts"</string>
