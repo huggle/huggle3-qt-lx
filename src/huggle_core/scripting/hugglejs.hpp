@@ -67,6 +67,7 @@ namespace Huggle
             Q_INVOKABLE bool destroy_timer(unsigned int timer);
             Q_INVOKABLE bool start_timer(unsigned int timer, int interval);
             Q_INVOKABLE bool stop_timer(unsigned int timer);
+            Q_INVOKABLE QString get_ring_log();
             Q_INVOKABLE QJSValue get_site_by_name(QString site);
             Q_INVOKABLE QList<QString> get_sites();
             Q_INVOKABLE QString localize(QString id);

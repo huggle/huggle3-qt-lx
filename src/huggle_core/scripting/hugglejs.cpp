@@ -44,12 +44,13 @@ HuggleJS::HuggleJS(Script *s) : GenericJSClass(s)
     this->functions.insert("register_hook", "(string hook, string function_id): creates a hook");
     this->functions.insert("unregister_hook", "(string hook): removes hook");
     this->functions.insert("create_timer", "(int interval, string function, [bool start = true]): creates a timer");
-    this->functions.insert("start_timer", "(uint timer)");
-    this->functions.insert("destroy_timer", "(uint timer)");
+    this->functions.insert("start_timer", "(uint timer, int interval): start a given timer");
+    this->functions.insert("destroy_timer", "(uint timer): destroys a timer");
     this->functions.insert("get_startup_date_time", "(): returns time of Huggle startup");
     this->functions.insert("get_startup_time_unix", "(): (since 3.4.5) returns a startup time in unix format");
     this->functions.insert("get_uptime", "(): (since 3.4.5) returns uptime in seconds");
-    this->functions.insert("stop_timer", "(uint timer");
+    this->functions.insert("stop_timer", "(uint timer): stop a timer");
+    this->functions.insert("get_ring_log", "(): (since 3.4.7) returns ring log");
     this->functions.insert("get_sites", "(): return string list of sites this user is logged to");
     this->functions.insert("get_site_by_name", "(string site_name): returns a site info for site with this name");
     this->functions.insert("localize", "(string key): return localized key");
@@ -224,6 +225,11 @@ bool HuggleJS::stop_timer(unsigned int timer)
 
     this->timers[timer]->stop();
     return true;
+}
+
+QString HuggleJS::get_ring_log()
+{
+    return Huggle::Syslog::HuggleLogs->RingLogToText();
 }
 
 QJSValue HuggleJS::get_site_by_name(QString site)
