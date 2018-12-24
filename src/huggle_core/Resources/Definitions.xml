@@ -11,6 +11,7 @@
   <wiki name="cswiki" url="cs.wikipedia.org/" path="wiki/" script="w/" ssl_required="true" https="true" xmlrcs_name="cs.wikipedia.org" channel="#cs.wikipedia" wl="cs.wikipedia.org"/>
   <wiki name="cs.wiktionary" url="cs.wiktionary.org/" path="wiki/" script="w/" ssl_required="true" https="true" xmlrcs_name="cs.wiktionary.org" channel="cs.wiktionary" wl="cs.wiktionary.org" />
   <wiki name="cvwiki" url="cv.wikipedia.org/" path="wiki/" script="w/" ssl_required="true" https="true" xmlrcs_name="cv.wikipedia.org" channel="#cv.wikipedia" wl="cv.wikipedia.org"/>
+  <wiki name="dawiki" url="da.wikipedia.org/" path="wiki/" script="w/" ssl_required="true" https="true" xmlrcs_name="da.wikipedia.org" channel="#da.wikipedia" wl="da.wikipedia.org"/>
   <wiki name="dewiki" url="de.wikipedia.org/" path="wiki/" script="w/" ssl_required="true" https="true" xmlrcs_name="de.wikipedia.org" channel="#de.wikipedia" wl="de.wikipedia.org"/>
   <wiki name="simplewiki" url="simple.wikipedia.org/" path="wiki/" script="w/" ssl_required="true" https="true" xmlrcs_name="simple.wikipedia.org" channel="#simple.wikipedia" wl="simple.wikipedia.org"/>
   <wiki name="en.wikinews" url="en.wikinews.org/" path="wiki/" script="w/" ssl_required="true" https="true" xmlrcs_name="en.wikinews.org" channel="#en.wikinews" wl="en.wikinews.org"/>
@@ -27,6 +28,7 @@
   <wiki name="lvwiki" url="lv.wikipedia.org/" path="wiki/" script="w/" ssl_required="true" https="true" xmlrcs_name="lv.wikipedia.org" channel="#lv.wikipedia" wl="lv.wikipedia.org"/>
   <wiki name="ptwiki" url="pt.wikipedia.org/" path="wiki/" script="w/" ssl_required="true" https="true" xmlrcs_name="pt.wikipedia.org" channel="#pt.wikipedia" wl="pt.wikipedia.org"/>
   <wiki name="plwiki" url="pl.wikipedia.org/" path="wiki/" script="w/" ssl_required="true" https="true" xmlrcs_name="pl.wikipedia.org" channel="#pl.wikipedia" wl="pl.wikipedia.org"/>
+  <wiki name="mlwiki" url="ml.wikipedia.org/" path="wiki/" script="w/" ssl_required="true" https="true" xmlrcs_name="ml.wikipedia.org" channel="#ml.wikipedia" wl="ml.wikipedia.org"/>
   <wiki name="nlwiki" url="nl.wikipedia.org/" path="wiki/" script="w/" ssl_required="true" https="true" xmlrcs_name="nl.wikipedia.org" channel="#nl.wikipedia" wl="nl.wikipedia.org"/>
   <wiki name="nowiki" url="no.wikipedia.org/" path="wiki/" script="w/" ssl_required="true" https="true" xmlrcs_name="no.wikipedia.org" channel="#no.wikipedia" wl="no.wikipedia.org"/>
   <wiki name="orwiki" url="or.wikipedia.org/" path="wiki/" script="w/" ssl_required="true" https="true" xmlrcs_name="or.wikipedia.org" channel="#or.wikipedia" wl="or.wikipedia.org"/>
@@ -49,6 +51,6 @@
   <wiki name="commons" url="commons.wikimedia.org/" path="wiki/" script="w/" ssl_required="true" https="true" xmlrcs_name="commons.wikimedia.org" channel="#commons.wikimedia" wl="commons.wikimedia.org"/>
   <wiki name="species" url="species.wikimedia.org/" path="wiki/" script="w/" ssl_required="true" https="true"  xmlrcs_name="species.wikimedia.org" channel="#species.wikimedia" wl="en.wikispecies.org"/>
   <wiki name="meta" url="meta.wikimedia.org/" path="wiki/" script="w/" ssl_required="true" https="true" xmlrcs_name="meta.wikimedia.org" channel="#meta.wikimedia" wl="meta.wikimedia.org"/>
-  <wiki name="wikidata" url="www.wikidata.org/" path="wiki/" script="w/" ssl_required="true" https="true" channel="#wikidata" xmlrcs_name="www.wikidata.org" wl="www.wikidata.org"/>
+  <wiki name="wikidatawiki" url="www.wikidata.org/" path="wiki/" script="w/" ssl_required="true" https="true" channel="#wikidata" xmlrcs_name="www.wikidata.org" wl="www.wikidata.org"/>
   <wiki name="mediawiki" url="www.mediawiki.org/" path="wiki/" script="w/" ssl_required="true" https="true" channel="#mediawiki" xmlrcs_name="www.mediawiki.org" wl="www.mediawiki.org"/>
 </db>
