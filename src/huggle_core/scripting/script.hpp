@@ -50,6 +50,7 @@ namespace Huggle
 {
     class GenericJSClass;
     class Script;
+    class ScriptFunctionHelp;
     class WikiEdit;
     class WikiSite;
     class WikiUser;
@@ -93,14 +94,14 @@ namespace Huggle
     {
             Q_OBJECT
         public:
-            static Script *GetScriptByPath(QString path);
+            static Script *GetScriptByPath(const QString &path);
             static Script *GetScriptByEngine(QJSEngine *e);
             static Script *GetScriptByName(QString name);
             static QList<Script*> GetScripts();
             static QJSValue ProcessURL(QUrl url);
 
             Script();
-            virtual ~Script();
+             ~Script() override;
             virtual bool Load(QString path, QString *error);
             virtual bool LoadSrc(QString unique_id, QString source, QString *error);
             virtual void Unload();
@@ -174,6 +175,7 @@ namespace Huggle
             QList<QString> hooksExported;
             QList<QString> functionsExported;
             QHash<QString, QString> functionsHelp;
+            QHash<QString, ScriptFunctionHelp> functionsDocs;
             QString sourceCode;
             QString scriptPath;
             QString scriptName;

@@ -22,6 +22,7 @@ WLQuery::WLQuery(WikiSite *site) : MediaWikiObject(site)
     this->WL_Type = WLQueryType_ReadWL;
     this->Result = nullptr;
     this->Parameters = "";
+    this->networkReply = nullptr;
     this->Progress = 0;
 }
 

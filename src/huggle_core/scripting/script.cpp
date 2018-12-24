@@ -11,6 +11,7 @@
 // Copyright (c) Petr Bena 2018
 
 #include "script.hpp"
+#include "scriptfunctionhelp.hpp"
 #include "jsmarshallinghelper.hpp"
 #include "huggleunsafejs.hpp"
 #include "hugglequeryjs.hpp"
@@ -34,7 +35,7 @@ using namespace Huggle;
 QList<QString> Script::loadedPaths;
 QHash<QString, Script*> Script::scripts;
 
-Script *Script::GetScriptByPath(QString path)
+Script *Script::GetScriptByPath(const QString &path)
 {
     foreach (Script *s, Script::scripts)
     {
@@ -692,7 +693,7 @@ bool Script::loadSource(QString source, QString *error)
 
 bool Script::executeFunctionAsBool(QString function, QJSValueList parameters)
 {
-    return this->executeFunction(function, parameters).toBool();
+    return this->executeFunction(std::move(function), parameters).toBool();
 }
 
 bool Script::executeFunctionAsBool(QString function)
@@ -744,11 +745,20 @@ QJSValue Script::executeFunction(QString function)
 void Script::registerClass(QString name, GenericJSClass *c)
 {
     QHash<QString, QString> functions = c->GetFunctions();
+    QHash<QString, ScriptFunctionHelp> function_help = c->GetFunctionHelp();
+
     foreach (QString function, functions.keys())
     {
         this->functionsExported.append(name + "." + function);
         this->functionsHelp.insert(name + "." + function, functions[function]);
     }
+
+    foreach (QString function, function_help.keys())
+    {
+        this->functionsDocs.insert(name + "." + function, function_help[function]);
+        this->functionsDocs[function].FunctionName = function;
+    }
+
     // Register this class for later removal
     this->classes.append(c);
     this->engine->globalObject().setProperty(name, engine->newQObject(c));

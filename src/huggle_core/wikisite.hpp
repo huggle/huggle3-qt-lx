@@ -27,10 +27,10 @@ namespace Huggle
     class HUGGLE_EX_CORE WikiPageNS
     {
         public:
-            WikiPageNS(int id, QString localized_name, QString canonical_name);
+            WikiPageNS(int id, const QString &localized_name, QString canonical_name);
             WikiPageNS(const WikiPageNS &k);
             WikiPageNS(WikiPageNS *k);
-            ~WikiPageNS();
+            ~WikiPageNS()=default;
             QString GetName();
             QString GetCanonicalName();
             bool IsTalkPage();
@@ -66,7 +66,7 @@ namespace Huggle
     class HUGGLE_EX_CORE WikiSite_Ext
     {
         public:
-            WikiSite_Ext(QString name, QString type, QString description, QString author, QString url, QString version);
+            WikiSite_Ext(const QString &name, const QString &type, const QString &description, const QString &author, const QString &url, const QString &version);
             QString Type;
             QString Name;
             QString Description;
@@ -80,11 +80,11 @@ namespace Huggle
     {
         public:
             //! This NS is used in case we can't find a match for page
-            static WikiPageNS *Unknown;
+            static WikiPageNS *UnknownNS;
 
             WikiSite(WikiSite *w);
             WikiSite(const WikiSite &w);
-            WikiSite(QString name, QString url);
+            WikiSite(const QString &name, const QString &url);
             //! This will create a new instance of wikisite with most of configuration
             /*!
               \param name is a name of wiki for internal purposes
@@ -96,9 +96,9 @@ namespace Huggle
               \param channel irc
               \param wl whitelist
             */
-            WikiSite(QString name, QString url, QString path, QString script, bool https, bool oauth, QString channel, QString wl, QString han, bool isrtl = false);
+            WikiSite(const QString &name, const QString &url, const QString &path, const QString &script, bool https, bool oauth, const QString &channel, const QString &wl, const QString &han, bool isrtl = false);
             ~WikiSite();
-            WikiPageNS *RetrieveNSFromTitle(QString title);
+            WikiPageNS *RetrieveNSFromTitle(const QString &title);
             WikiPageNS *RetrieveNSByCanonicalName(QString CanonicalName);
             ProjectConfiguration *GetProjectConfig();
             UserConfiguration    *GetUserConfig();

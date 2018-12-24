@@ -23,7 +23,7 @@
 using namespace Huggle;
 
 //QRegExp WikiUser::IPv4Regex("^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$");
-QRegExp WikiUser::IPv4Regex("\\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.|$)){4}\\b");
+QRegExp WikiUser::IPv4Regex(R"(\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.|$)){4}\b)");
 QRegExp WikiUser::IPv6Regex("(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]"\
                             "{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|("\
                             "[0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-"\
@@ -42,7 +42,7 @@ WikiUser *WikiUser::RetrieveUser(WikiUser *user)
     return WikiUser::RetrieveUser(user->Username, user->GetSite());
 }
 
-WikiUser *WikiUser::RetrieveUser(QString user, WikiSite *site)
+WikiUser *WikiUser::RetrieveUser(const QString &user, WikiSite *site)
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     WikiUser::ProblematicUserListLock.lock();
@@ -129,13 +129,13 @@ bool WikiUser::CompareUsernames(QString a, QString b)
     return (a == b);
 }
 
-bool WikiUser::IsIPv4(QString user)
+bool WikiUser::IsIPv4(const QString &user)
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     return WikiUser::IPv4Regex.exactMatch(user);
 }
 
-bool WikiUser::IsIPv6(QString user)
+bool WikiUser::IsIPv6(const QString &user)
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     return WikiUser::IPv6Regex.exactMatch(user);
@@ -219,7 +219,7 @@ WikiUser::WikiUser(const WikiUser &u) : MediaWikiObject(u)
     this->LastMessageTimeKnown = u.LastMessageTimeKnown;
 }
 
-WikiUser::WikiUser(QString user, WikiSite *site) : MediaWikiObject(site)
+WikiUser::WikiUser(const QString &user, WikiSite *site) : MediaWikiObject(site)
 {
     this->userMutex = new QMutex(QMutex::Recursive);
     this->IP = false;
@@ -300,7 +300,7 @@ QString WikiUser::TalkPage_GetContents()
     return contents;
 }
 
-void WikiUser::TalkPage_SetContents(QString text)
+void WikiUser::TalkPage_SetContents(const QString &text)
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     this->userMutex->lock();
@@ -493,7 +493,7 @@ void WikiUser::SetWarningLevel(byte_ht level)
     this->warningLevel = level;
 }
 
-void WikiUser::SetLastMessageTime(QDateTime date_time)
+void WikiUser::SetLastMessageTime(const QDateTime &date_time)
 {
     if (this->LastMessageTimeKnown && this->LastMessageTime > date_time)
     {

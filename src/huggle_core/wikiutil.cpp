@@ -25,14 +25,14 @@
 
 using namespace Huggle;
 
-bool WikiUtil::IsRevert(QString Summary)
+bool WikiUtil::IsRevert(const QString &summary)
 {
-    if (Summary.size() > 0)
+    if (summary.size() > 0)
     {
         int xx = 0;
         while (xx < Configuration::HuggleConfiguration->ProjectConfig->_revertPatterns.count())
         {
-            if (Summary.contains(Configuration::HuggleConfiguration->ProjectConfig->_revertPatterns.at(xx)))
+            if (summary.contains(Configuration::HuggleConfiguration->ProjectConfig->_revertPatterns.at(xx)))
             {
                 return true;
             }
@@ -54,7 +54,7 @@ QString WikiUtil::MonthText(int n, WikiSite *site)
     return site->GetProjectConfig()->Months.at(n);
 }
 
-Collectable_SmartPtr<RevertQuery> WikiUtil::RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollback)
+Collectable_SmartPtr<RevertQuery> WikiUtil::RevertEdit(WikiEdit *_e, const QString &summary, bool minor, bool rollback)
 {
     if (_e == nullptr)
         throw new Huggle::NullPointerException("NULL edit in RevertEdit(WikiEdit *_e, QString summary, bool minor, bool rollback, bool keep) is not a valid edit", BOOST_CURRENT_FUNCTION);
@@ -75,9 +75,9 @@ Collectable_SmartPtr<RevertQuery> WikiUtil::RevertEdit(WikiEdit *_e, QString sum
     return query;
 }
 
-Message *WikiUtil::MessageUser(WikiUser *User, QString Text, QString Title, QString Summary, bool InsertSection,
+Message *WikiUtil::MessageUser(WikiUser *User, const QString &Text, const QString &Title, const QString &Summary, bool InsertSection,
                               Query *Dependency, bool NoSuffix, bool SectionKeep, bool Autoremove,
-                              QString BaseTimestamp, bool CreateOnly, bool FreshOnly)
+                              const QString &BaseTimestamp, bool CreateOnly, bool FreshOnly)
 {
 #ifndef HUGGLE_SDK
     // Let extensions override this function
@@ -144,7 +144,7 @@ void WikiUtil::FinalizeMessages()
     }
 }
 
-Collectable_SmartPtr<EditQuery> WikiUtil::AppendTextToPage(QString page, QString text, QString summary, bool minor, WikiSite *site)
+Collectable_SmartPtr<EditQuery> WikiUtil::AppendTextToPage(const QString &page, const QString &text, QString summary, bool minor, WikiSite *site)
 {
     if (!site)
         site = hcfg->Project;
@@ -161,7 +161,7 @@ Collectable_SmartPtr<EditQuery> WikiUtil::AppendTextToPage(QString page, QString
     return eq;
 }
 
-Collectable_SmartPtr<EditQuery> WikiUtil::EditPage(WikiSite *site, QString page, QString text, QString summary, bool minor, QString BaseTimestamp, unsigned int section)
+Collectable_SmartPtr<EditQuery> WikiUtil::EditPage(WikiSite *site, const QString &page, const QString &text, const QString &summary, bool minor, const QString &BaseTimestamp, unsigned int section)
 {
     if (site == nullptr)
         throw new Huggle::NullPointerException("WikiSite *site", BOOST_CURRENT_FUNCTION);
@@ -169,7 +169,7 @@ Collectable_SmartPtr<EditQuery> WikiUtil::EditPage(WikiSite *site, QString page,
     return EditPage(&tp, text, summary, minor, BaseTimestamp, section);
 }
 
-Collectable_SmartPtr<EditQuery> WikiUtil::EditPage(WikiPage *page, QString text, QString summary, bool minor, QString BaseTimestamp, unsigned int section)
+Collectable_SmartPtr<EditQuery> WikiUtil::EditPage(WikiPage *page, const QString &text, QString summary, bool minor, const QString &BaseTimestamp, unsigned int section)
 {
     if (page == nullptr)
     {
@@ -239,7 +239,7 @@ Collectable_SmartPtr<ApiQuery> WikiUtil::Watchlist(WikiPage *page)
     return wt;
 }
 
-Collectable_SmartPtr<EditQuery> WikiUtil::PrependTextToPage(QString page, QString text, QString summary, bool minor, WikiSite *site)
+Collectable_SmartPtr<EditQuery> WikiUtil::PrependTextToPage(const QString &page, const QString &text, QString summary, bool minor, WikiSite *site)
 {
     if (!site)
         site = hcfg->Project;
@@ -256,12 +256,12 @@ Collectable_SmartPtr<EditQuery> WikiUtil::PrependTextToPage(QString page, QStrin
     return eq;
 }
 
-Collectable_SmartPtr<EditQuery> WikiUtil::PrependTextToPage(WikiPage *page, QString text, QString summary, bool minor)
+Collectable_SmartPtr<EditQuery> WikiUtil::PrependTextToPage(WikiPage *page, const QString &text, const QString &summary, bool minor)
 {
     return WikiUtil::PrependTextToPage(page->PageName, text, summary, minor, page->GetSite());
 }
 
-Collectable_SmartPtr<EditQuery> WikiUtil::AppendTextToPage(WikiPage *page, QString text, QString summary, bool minor)
+Collectable_SmartPtr<EditQuery> WikiUtil::AppendTextToPage(WikiPage *page, const QString &text, const QString &summary, bool minor)
 {
     return WikiUtil::AppendTextToPage(page->PageName, text, summary, minor, page->GetSite());
 }
@@ -415,7 +415,7 @@ void WikiUtil::RetrieveEditByRevid(revid_ht revid, WikiSite *site, void *source,
 
 /////////////////////////////////////////////////////////////////
 
-Collectable_SmartPtr<ApiQuery> WikiUtil::APIRequest(Action action, WikiSite *site, QString parameters, bool using_post, QString target)
+Collectable_SmartPtr<ApiQuery> WikiUtil::APIRequest(Action action, WikiSite *site, const QString &parameters, bool using_post, const QString &target)
 {
     Collectable_SmartPtr <ApiQuery> request = new ApiQuery(action, site);
     request->Parameters = parameters;
@@ -426,7 +426,7 @@ Collectable_SmartPtr<ApiQuery> WikiUtil::APIRequest(Action action, WikiSite *sit
     return request;
 }
 
-ApiQuery *WikiUtil::RetrieveWikiPageContents(QString page, WikiSite *site, bool parse)
+ApiQuery *WikiUtil::RetrieveWikiPageContents(const QString &page, WikiSite *site, bool parse)
 {
     WikiPage pt(page, site);
     return RetrieveWikiPageContents(&pt, parse);
@@ -444,8 +444,7 @@ ApiQuery *WikiUtil::RetrieveWikiPageContents(WikiPage *page, bool parse)
     return query;
 }
 
-QString WikiUtil::EvaluateWikiPageContents(ApiQuery *query, bool *failed, QString *ts, QString *comment, QString *user,
-                                          long *revid, int *reason, QString *title)
+QString WikiUtil::EvaluateWikiPageContents(ApiQuery *query, bool *failed, QString *ts, QString *comment, QString *user, long *revid, int *reason, QString *title)
 {
     if (!failed)
     {

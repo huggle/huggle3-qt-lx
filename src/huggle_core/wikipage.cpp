@@ -21,7 +21,7 @@ WikiPage::WikiPage(WikiSite *site) : MediaWikiObject(site)
     this->Contents = "";
     if (!this->Site)
         throw new Huggle::NullPointerException("local Site", BOOST_CURRENT_FUNCTION);
-    this->NS = this->Site->Unknown;
+    this->NS = WikiSite::UnknownNS;
 }
 
 WikiPage::WikiPage(const QString &name, WikiSite *site) : MediaWikiObject(site)
@@ -87,7 +87,7 @@ bool WikiPage::EqualTo(WikiPage *page)
     return this->Site == page->Site && this->SanitizedName() == page->SanitizedName();
 }
 
-void WikiPage::SetFounder(QString name)
+void WikiPage::SetFounder(const QString &name)
 {
     this->founderKnown = true;
     this->founder = name;
