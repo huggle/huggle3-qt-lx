@@ -16,4 +16,4 @@ var huggle_ecma_function_help = { "alert": "(message): Shows a message box with 
                                   "console.warn":  "(text): Writes to warning log" };
 
 var huggle_ecma_function_list = [ "alert", "console.assert", "console.log", "console.debug",
-                                  "console.error", "console.warn", "huggle_ecma.contains" ];
+                                  "console.error", "console.warn" ];
