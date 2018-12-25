@@ -260,7 +260,7 @@ QJSValue JSMarshallingHelper::FromSiteUserConfig(UserConfiguration *config, QJSE
     return o;
 }
 
-QJSValue JSMarshallingHelper::FromQStringList(QStringList string_list, QJSEngine *engine)
+QJSValue JSMarshallingHelper::FromQStringList(const QStringList& string_list, QJSEngine *engine)
 {
     QJSValue o = engine->newArray(static_cast<uint>(string_list.size()));
     int i = 0;
@@ -275,14 +275,15 @@ QJSValue JSMarshallingHelper::FromQStringList(QStringList string_list, QJSEngine
 QJSValue JSMarshallingHelper::FromQVariantHash(QHash<QString, QVariant> hash, QJSEngine *engine)
 {
     QJSValue o = engine->newObject();
-    foreach (QString key, hash.keys())
+    QList<QString> keys = hash.keys();
+    foreach (QString key, keys)
     {
         o.setProperty(key, FromVariant(hash[key]));
     }
     return o;
 }
 
-QJSValue JSMarshallingHelper::FromVariant(QVariant variant)
+QJSValue JSMarshallingHelper::FromVariant(const QVariant& variant)
 {
     switch (variant.type())
     {
@@ -312,7 +313,8 @@ QJSValue JSMarshallingHelper::FromVariant(QVariant variant)
 QJSValue JSMarshallingHelper::FromQStringHash(QHash<QString, QString> hash, QJSEngine *engine)
 {
     QJSValue o = engine->newObject();
-    foreach (QString key, hash.keys())
+    QList<QString> keys = hash.keys();
+    foreach (QString key, keys)
     {
         o.setProperty(key, QJSValue(hash[key]));
     }

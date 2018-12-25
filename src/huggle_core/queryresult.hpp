@@ -34,12 +34,12 @@ namespace Huggle
             //! Creates a new instance of query result
             QueryResult();
             QueryResult(bool failed);
-            virtual ~QueryResult() {}
+            virtual ~QueryResult() = default;
             //! Data retrieved by query, this contains the JSON / XML for api requests
             QString Data;
             void SetError();
-            void SetError(QString error);
-            void SetError(int error, QString details = "");
+            void SetError(const QString &error);
+            void SetError(int error, const QString &details = "");
             //! Check whether query has failed
             virtual bool IsFailed();
             //! If query is in error the reason for error is stored here, otherwise it's null string

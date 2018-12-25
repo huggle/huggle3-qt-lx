@@ -129,7 +129,7 @@ void Collectable::UnregisterConsumer(int consumer)
     this->Unlock();
 }
 
-void Collectable::RegisterConsumer(const QString consumer)
+void Collectable::RegisterConsumer(const QString &consumer)
 {
     this->Lock();
     if (this->IsManaged() && !this->HasSomeConsumers() && !this->ReclaimingAllowed)
@@ -143,7 +143,7 @@ void Collectable::RegisterConsumer(const QString consumer)
     this->Unlock();
 }
 
-void Collectable::UnregisterConsumer(const QString consumer)
+void Collectable::UnregisterConsumer(const QString &consumer)
 {
     this->Lock();
     if (this->IsManaged() && !this->HasSomeConsumers())
@@ -157,7 +157,7 @@ void Collectable::UnregisterConsumer(const QString consumer)
     this->Unlock();
 }
 
-QString Collectable::ConsumerIdToString(const int id)
+QString Collectable::ConsumerIdToString(int id)
 {
     switch (id)
     {

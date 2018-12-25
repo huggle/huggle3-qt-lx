@@ -32,7 +32,7 @@ namespace Huggle
             * \param default_val Value to return if the attribute is not found
             * \return Value of attribute or default value
             */
-            QString GetAttribute(QString name, QString default_val = "");
+            QString GetAttribute(const QString &name, const QString &default_val = "");
             //! Name of attribute
             QString Name;
             //! Value of attribute
@@ -52,7 +52,7 @@ namespace Huggle
         public:
             ApiQueryResult();
             //! Frees the results from memory
-            ~ApiQueryResult();
+            ~ApiQueryResult() override;
             /*!
             * \brief Process Process the data into Nodes and handle any warnings / errors
             */
@@ -63,15 +63,15 @@ namespace Huggle
             * \param node_name Name of node
             * \return The specified node or a null pointer if none found
             */
-            ApiQueryResultNode *GetNode(QString node_name);
+            ApiQueryResultNode *GetNode(const QString& node_name);
             /*!
             * \brief GetNodes Get all nodes with the specified name
             * IMPORTANT: do not delete these nodes, they point to items in a list which get deleted in destructor of class
             * \param node_name Name of node
             * \return QList of pointers to found nodes
             */
-            QList<ApiQueryResultNode*> GetNodes(QString node_name);
-            QString GetNodeValue(QString node_name, QString default_value = "");
+            QList<ApiQueryResultNode*> GetNodes(const QString& node_name);
+            QString GetNodeValue(const QString &node_name, const QString &default_value = "");
             /*!
             * \brief HasWarnings Return if the API has returned any warnings
             * \return True if there are warnings, false otherwise

@@ -56,9 +56,9 @@ namespace Huggle
             static void Autostart();
 
             UiScript();
-            ~UiScript();
-            QString GetContext();
-            unsigned int GetContextID();
+            ~UiScript() override;
+            QString GetContext() override;
+            unsigned int GetContextID() override;
             int RegisterMenu(QMenu *parent, QString title, QString fc, bool checkable);
             void UnregisterMenu(int menu);
             void ToggleMenuCheckState(int menu, bool checked);
@@ -69,13 +69,13 @@ namespace Huggle
             void Hook_OnRender();
             void Hook_OnSpeedyFinished(WikiEdit *edit, QString tags, bool success);
             QString Hook_OnMainStatusbarUpdate(QString text);
-            int GetHookID(QString hook);
+            int GetHookID(const QString &hook) override;
         public slots:
             void MenuClicked();
         private:
             static QList<UiScript*> uiScripts;
-            void registerClasses();
-            void registerFunctions();
+            void registerClasses() override;
+            void registerFunctions() override;
             int lastMenu = 0;
             QHash<QAction*, ScriptMenu*> scriptMenusByAction;
             QHash<int, ScriptMenu*> scriptMenus;

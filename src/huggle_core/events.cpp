@@ -14,16 +14,6 @@ using namespace Huggle;
 
 Events *Events::Global = nullptr;
 
-Events::Events()
-{
-
-}
-
-Events::~Events()
-{
-
-}
-
 void Events::on_WEGood(WikiEdit *e)
 {
     emit this->WikiEdit_OnGood(e);
@@ -84,22 +74,22 @@ void Events::on_UpdateUser(WikiUser *wiki_user)
     emit this->WikiUser_Updated(wiki_user);
 }
 
-void Events::on_SMessage(QString title, QString text)
+void Events::on_SMessage(const QString &title, const QString &text)
 {
     emit this->System_Message(title, text);
 }
 
-void Events::on_SWarning(QString title, QString text)
+void Events::on_SWarning(const QString &title, const QString &text)
 {
     emit this->System_WarningMessage(title, text);
 }
 
-void Events::on_SError(QString title, QString text)
+void Events::on_SError(const QString &title, const QString &text)
 {
     emit this->System_ErrorMessage(title, text);
 }
 
-bool Events::on_SYesNoQs(QString title, QString text, bool d)
+bool Events::on_SYesNoQs(const QString &title, const QString &text, bool d)
 {
     bool result = d;
     emit this->System_YesNoQuestion(title, text, &result);

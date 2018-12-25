@@ -36,7 +36,7 @@ Syslog::~Syslog()
     delete this->WriterLock;
 }
 
-void Syslog::Log(QString Message, bool TerminalOnly, HuggleLogType Type)
+void Syslog::Log(const QString &Message, bool TerminalOnly, HuggleLogType Type)
 {
     QString d = QDateTime::currentDateTime().toString();
     QString message = d + "   " + Message;
@@ -73,12 +73,12 @@ void Syslog::Log(QString Message, bool TerminalOnly, HuggleLogType Type)
     }
 }
 
-void Syslog::ErrorLog(QString Message, bool TerminalOnly)
+void Syslog::ErrorLog(const QString &Message, bool TerminalOnly)
 {
     this->Log("ERROR: " + Message, TerminalOnly, HuggleLogType_Error);
 }
 
-void Syslog::WarningLog(QString Message, bool TerminalOnly)
+void Syslog::WarningLog(const QString &Message, bool TerminalOnly)
 {
     this->Log("WARNING: " + Message, TerminalOnly, HuggleLogType_Warn);
 }
@@ -108,7 +108,7 @@ QStringList Syslog::RingLogToQStringList()
     return list;
 }
 
-void Syslog::InsertToRingLog(HuggleLog_Line line)
+void Syslog::InsertToRingLog(const HuggleLog_Line& line)
 {
     if (this->RingLog.size()+1 > Huggle::Configuration::HuggleConfiguration->SystemConfig_RingLogMaxSize)
     {
@@ -124,7 +124,7 @@ QList<HuggleLog_Line> Syslog::RingLogToList()
     return list;
 }
 
-void Syslog::DebugLog(QString Message, unsigned int Verbosity)
+void Syslog::DebugLog(const QString &Message, unsigned int Verbosity)
 {
     if (Huggle::Configuration::HuggleConfiguration->Verbosity >= Verbosity)
     {
@@ -148,7 +148,7 @@ HuggleLog_Line::HuggleLog_Line(const HuggleLog_Line &line)
     this->Text = line.Text;
 }
 
-HuggleLog_Line::HuggleLog_Line(QString text, QString date)
+HuggleLog_Line::HuggleLog_Line(const QString &text, const QString &date)
 {
     this->Type = HuggleLogType_Normal;
     this->Text = text;

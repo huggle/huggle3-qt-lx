@@ -74,26 +74,26 @@ namespace Huggle
             Q_OBJECT
         public:
             explicit ApiQuery(Action action, WikiSite *site);
-            ~ApiQuery();
+            ~ApiQuery() override;
             Action GetAction();
-            QString GetFailureReason();
+            QString GetFailureReason() override;
             //! Change the action type
-            void SetAction(const Action action);
-            void SetCustomActionPart(QString action, bool editing = false, bool enforce_login = false, bool is_continuous = false);
+            void SetAction(Action action);
+            void SetCustomActionPart(const QString &action, bool editing = false, bool enforce_login = false, bool is_continuous = false);
             ApiQueryResult *GetApiQueryResult();
             //! Run
-            void Process();
+            void Process() override;
             //! Set the raw action type, you should not use this unless you have to
-            void SetAction(const QString action);
-            QString DebugURL();
+            void SetAction(const QString& action);
+            QString DebugURL() override;
             //! Terminate the query
-            void Kill();
+            void Kill() override;
             //! Get a query target as a string
-            QString QueryTargetToString();
+            QString QueryTargetToString() override;
             //! Returns a type of query as a string
-            QString QueryTypeToString();
+            QString QueryTypeToString() override;
             QString GetURL();
-            void SetParam(QString name, QString value);
+            void SetParam(const QString& name, const QString& value);
             void SetToken(Token token, QString name = "", QString value = "");
             bool EnforceLogin = true;
             //! Whether the query is going to edit any data in wiki
@@ -138,7 +138,7 @@ namespace Huggle
         return (this->RequestFormat == XML);
     }
 
-    inline void ApiQuery::SetAction(const QString action)
+    inline void ApiQuery::SetAction(const QString& action)
     {
         this->actionPart = action;
     }

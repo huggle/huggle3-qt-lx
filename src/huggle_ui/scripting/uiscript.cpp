@@ -193,7 +193,7 @@ QString UiScript::Hook_OnMainStatusbarUpdate(QString text)
     return this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_ON_STATUSBAR_UPDATE], parameters).toString();
 }
 
-int UiScript::GetHookID(QString hook)
+int UiScript::GetHookID(const QString &hook)
 {
     if (hook == "render_edit")
         return HUGGLE_SCRIPT_HOOK_ON_RENDER;

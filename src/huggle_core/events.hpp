@@ -28,8 +28,8 @@ namespace Huggle
             Q_OBJECT
         public:
             static Events *Global;
-            Events();
-            virtual ~Events();
+            Events()=default;
+             ~Events() override =default;
 
         signals:
             void WikiUser_Updated(WikiUser *wiki_user);
@@ -68,10 +68,10 @@ namespace Huggle
             void on_Report(WikiUser *u);
             void on_SReport(WikiUser *u);
             void on_UpdateUser(WikiUser *wiki_user);
-            void on_SMessage(QString title, QString text);
-            void on_SWarning(QString title, QString text);
-            void on_SError(QString title, QString text);
-            bool on_SYesNoQs(QString title, QString text, bool d);
+            void on_SMessage(const QString &title, const QString &text);
+            void on_SWarning(const QString &title, const QString &text);
+            void on_SError(const QString &title, const QString &text);
+            bool on_SYesNoQs(const QString &title, const QString &text, bool d);
     };
 }
 

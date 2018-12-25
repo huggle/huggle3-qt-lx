@@ -32,7 +32,7 @@ namespace Huggle
     class WikiUser;
     namespace JSMarshallingHelper
     {
-        HUGGLE_EX_CORE QJSValue FromQStringList(QStringList string_list, QJSEngine *engine);
+        HUGGLE_EX_CORE QJSValue FromQStringList(const QStringList& string_list, QJSEngine *engine);
         HUGGLE_EX_CORE QJSValue FromSite(WikiSite *site, QJSEngine *engine);
         HUGGLE_EX_CORE QJSValue FromUser(WikiUser *user, QJSEngine *engine);
         HUGGLE_EX_CORE QJSValue FromEdit(WikiEdit *edit, QJSEngine *engine, int pool_id = -1);
@@ -47,7 +47,7 @@ namespace Huggle
         HUGGLE_EX_CORE QJSValue FromSiteUserConfig(UserConfiguration *config, QJSEngine *engine);
         HUGGLE_EX_CORE QJSValue FromQStringHash(QHash<QString, QString> hash, QJSEngine *engine);
         HUGGLE_EX_CORE QJSValue FromQVariantHash(QHash<QString, QVariant> hash, QJSEngine *engine);
-        HUGGLE_EX_CORE QJSValue FromVariant(QVariant variant);
+        HUGGLE_EX_CORE QJSValue FromVariant(const QVariant& variant);
     }
 }
 
