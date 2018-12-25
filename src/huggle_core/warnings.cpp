@@ -29,7 +29,7 @@ using namespace Huggle;
 
 QList<PendingWarning*> PendingWarning::PendingWarnings;
 
-PendingWarning::PendingWarning(Message *message, QString warning, WikiEdit *edit)
+PendingWarning::PendingWarning(Message *message, const QString &warning, WikiEdit *edit)
 {
     this->Template = warning;
     this->RelatedEdit = edit;
@@ -54,7 +54,7 @@ QString sanitize_page_name(QString page_name)
     return page_name;
 }
 
-PendingWarning *Warnings::WarnUser(QString warning_type, RevertQuery *dependency, WikiEdit *edit, bool *report)
+PendingWarning *Warnings::WarnUser(const QString& warning_type, RevertQuery *dependency, WikiEdit *edit, bool *report)
 {
     *report = false;
     if (edit == nullptr)
@@ -352,7 +352,6 @@ void Warnings::ResendWarnings()
             }
         }
         warning_ix++;
-        continue;
     }
 }
 
@@ -414,7 +413,7 @@ void Warnings::ForceWarn(int level, WikiEdit *edit)
     WikiUtil::MessageUser(edit->User, message_text, message_head, message_summary, true, nullptr, false, hcfg->UserConfig->SectionKeep, true, edit->TPRevBaseTime);
 }
 
-QString Warnings::RetrieveTemplateToWarn(QString type, WikiSite *site, bool force)
+QString Warnings::RetrieveTemplateToWarn(const QString& type, WikiSite *site, bool force)
 {
     int x=0;
     QString result = "";

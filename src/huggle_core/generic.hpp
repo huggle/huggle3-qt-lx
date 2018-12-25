@@ -34,8 +34,8 @@ namespace Huggle
          * \return string
          */
         HUGGLE_EX_CORE QString Bool2String(bool b);
-        HUGGLE_EX_CORE QStringList CSV2QStringList(QString CSV, QChar separator = ',');
-        HUGGLE_EX_CORE QString HtmlEncode(QString text);
+        HUGGLE_EX_CORE QStringList CSV2QStringList(const QString& CSV, QChar separator = ',');
+        HUGGLE_EX_CORE QString HtmlEncode(const QString& text);
         /*!
          * \brief Safely turn a QString into a bool value
          * \param value QString Text that needs to be changed to bool
@@ -45,7 +45,7 @@ namespace Huggle
         //! Display a user message before reporting a user based on user preferences
         HUGGLE_EX_CORE bool ReportPreFlightCheck();
         HUGGLE_EX_CORE QString SanitizePath(QString name);
-        HUGGLE_EX_CORE QString MD5(QString data);
+        HUGGLE_EX_CORE QString MD5(const QString& data);
         //! Display a message box telling user that function is not allowed during developer mode
         HUGGLE_EX_CORE void DeveloperError();
         HUGGLE_EX_CORE QString IRCQuitDefaultMessage();
@@ -59,7 +59,7 @@ namespace Huggle
          * \param minimum size
          * \return new string
          */
-        HUGGLE_EX_CORE QString ShrinkText(QString text, int size, bool html = true, int minimum = 2);
+        HUGGLE_EX_CORE QString ShrinkText(const QString &text, int size, bool html = true, int minimum = 2);
     }
 }
 

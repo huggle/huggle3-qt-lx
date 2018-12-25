@@ -114,7 +114,7 @@ namespace Huggle
             static MainWindow *HuggleMain;
 
             explicit MainWindow(QWidget *parent = nullptr);
-            ~MainWindow();
+            ~MainWindow() override;
             //! Returns true if current page can be edited
             bool BrowserPageIsEditable();
             void ChangeProvider(WikiSite *site, int id);
@@ -142,7 +142,7 @@ namespace Huggle
              * \param single_rv If you want to revert only one revision
              * \return
              */
-            Collectable_SmartPtr<RevertQuery> Revert(QString summary = "", bool next = true, bool single_rv = false);
+            Collectable_SmartPtr<RevertQuery> Revert(const QString& summary = "", bool next = true, bool single_rv = false);
             /*!
              * \brief Warn - send warning template to user because of related_edit, in case user is already max level, it will report them instead
              * \param warning_type - type of warning to send
@@ -150,7 +150,7 @@ namespace Huggle
              * \param related_edit - edit in question
              * \return true on success, otherwise false
              */
-            bool Warn(QString warning_type, RevertQuery *dependency, WikiEdit *related_edit);
+            bool Warn(const QString& warning_type, RevertQuery *dependency, WikiEdit *related_edit);
             void EnableDev();
             //! Send a template to user no matter if they can be messaged or not
             void ForceWarn(int level);
@@ -168,11 +168,11 @@ namespace Huggle
             void BlockUser();
             void DisplayNext(Query *q = nullptr);
             void ShowEmptyQueuePage();
-            void RenderHtml(QString html);
+            void RenderHtml(const QString& html);
             void DeletePage();
             void DisplayWelcomeMessage();
             void DisplayTalk();
-            void DisplayURL(QString uri);
+            void DisplayURL(const QString& uri);
             /*!
              * \brief DisplayRevid Try to display a revision as a diff in huggle main window
              * \param RevID ID of revision
@@ -185,11 +185,11 @@ namespace Huggle
             void ResumeQueue();
             //! Request a page deletion csd or afd and so on
             void RequestPD(WikiEdit *edit = nullptr);
-            void TrayMessage(QString title, QString text);
+            void TrayMessage(const QString& title, const QString& text);
             void FlagGood();
             void SwitchAlternativeFeedProvider(WikiSite *site);
             //! Try to load a page
-            void RenderPage(QString Page);
+            void RenderPage(const QString& Page);
             WikiSite *GetCurrentWikiSite();
             void RefreshPage();
             //! Make currently displayed page unchangeable (useful when you render non-diff pages where rollback wouldn't work)
@@ -205,9 +205,9 @@ namespace Huggle
             OverlayBox *ShowOverlay(QString text, int x = -1, int y = -1, int timeout = 10000, int width = -1, int height = -1, bool is_dismissable = true);
             void GoForward();
             void GoBackward();
-            void ShowToolTip(QString text);
+            void ShowToolTip(const QString& text);
             void ShutdownForm();
-            QLabel *CreateStatusBarLabel(QString text);
+            QLabel *CreateStatusBarLabel(const QString& text);
             void RemoveStatusBarItem(QWidget *widget);
             //! List of edits that are being saved
             QList<WikiEdit*> PendingEdits;
@@ -413,8 +413,8 @@ namespace Huggle
         private:
             void closeTab(int tab);
             void finishRestore();
-            void createBrowserTab(QString name, int index);
-            void changeCurrentBrowserTabTitle(QString name);
+            void createBrowserTab(const QString& name, int index);
+            void changeCurrentBrowserTabTitle(const QString& name);
             //! When any button to warn current user is pressed it call this function
             void triggerWarn();
             //! When any button to welcome current user is pressed it call this function
@@ -426,9 +426,9 @@ namespace Huggle
             void RevertAgf(bool only);
             //! This function is called by main thread and is used to remove edits that were already reverted
             void TruncateReverts();
-            void closeEvent(QCloseEvent *event);
+            void closeEvent(QCloseEvent *event) override;
             void ReloadSc();
-            void ReloadShort(QString id);
+            void ReloadShort(const QString& id);
             void ProcessReverts();
             void insertRelatedEditsToQueue();
             QString WikiScriptURL();

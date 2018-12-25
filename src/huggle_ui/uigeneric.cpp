@@ -18,7 +18,7 @@
 
 using namespace Huggle;
 
-int UiGeneric::MessageBox(QString title, QString text, MessageBoxStyle st, bool enforce_stop, QWidget *parent)
+int UiGeneric::MessageBox(const QString& title, const QString& text, MessageBoxStyle st, bool enforce_stop, QWidget *parent)
 {
     QMessageBox *mb = new QMessageBox(parent);
     mb->setWindowTitle(title);
@@ -73,7 +73,7 @@ int UiGeneric::MessageBox(QString title, QString text, MessageBoxStyle st, bool 
         return return_value;
 }
 
-int UiGeneric::pMessageBox(QWidget *parent, QString title, QString text, MessageBoxStyle st, bool enforce_stop)
+int UiGeneric::pMessageBox(QWidget *parent, const QString& title, const QString& text, MessageBoxStyle st, bool enforce_stop)
 {
     return UiGeneric::MessageBox(title, text, st, enforce_stop, parent);
 }
@@ -89,7 +89,7 @@ void UiGeneric::DisplayContributionBrowser(WikiUser *User, QWidget *parent)
     report->show();
 }
 
-void UiGeneric::ProcessURL(QUrl link)
+void UiGeneric::ProcessURL(const QUrl& link)
 {
     if (link.scheme() == "huggle")
     {

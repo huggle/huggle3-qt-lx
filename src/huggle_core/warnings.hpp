@@ -41,7 +41,7 @@ namespace Huggle
         public:
             static QList<PendingWarning*> PendingWarnings;
 
-            PendingWarning(Message *message, QString warning, WikiEdit *edit);
+            PendingWarning(Message *message, const QString &warning, WikiEdit *edit);
             ~PendingWarning();
             //! The message of this warning
             Message *Warning;
@@ -63,14 +63,14 @@ namespace Huggle
          * \param report This is address of boolean to which value whether user should be reported instead is stored
          * \return Pointer to a warning object which contains information about the warning
          */
-        HUGGLE_EX_CORE PendingWarning *WarnUser(QString warning_type, RevertQuery *dependency, WikiEdit *edit, bool *report);
+        HUGGLE_EX_CORE PendingWarning *WarnUser(const QString& warning_type, RevertQuery *dependency, WikiEdit *edit, bool *report);
         //! This sends a warning to user no matter if they should receive it or not
         HUGGLE_EX_CORE void ForceWarn(int level, WikiEdit *edit);
         //! Checks all warnings that weren't sent and try to send them
 
         //! This is used on talk pages of users which changed while we tried to send them a warning
 		HUGGLE_EX_CORE void ResendWarnings();
-		HUGGLE_EX_CORE QString RetrieveTemplateToWarn(QString type, WikiSite *site, bool force = false);
+        HUGGLE_EX_CORE QString RetrieveTemplateToWarn(const QString& type, WikiSite *site, bool force = false);
         //! In case there is no shared IP
         HUGGLE_EX_CORE QString UpdateSharedIPTemplate(WikiUser *user, QString text, WikiSite *site);
     }

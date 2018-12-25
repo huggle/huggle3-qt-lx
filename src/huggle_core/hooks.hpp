@@ -88,9 +88,9 @@ namespace Huggle
              * \param Score New score of user
              */
             static void BadnessScore(WikiUser *user, int score);
-            static Message *MessageUser(WikiUser *user, QString text, QString title, QString summary, bool insert_section = true,
+            static Message *MessageUser(WikiUser *user, const QString& text, const QString& title, const QString& summary, bool insert_section = true,
                                     Query *dependency = nullptr, bool no_suffix = false, bool section_keep = false,
-                                    bool autoremove = true, QString base_timestamp = "", bool create_only = false, bool fresh_only = false);
+                                    bool autoremove = true, const QString& base_timestamp = "", bool create_only = false, bool fresh_only = false);
             static void WikiUser_Updated(WikiUser *user);
             static void WarningFinished(WikiEdit *edit);
             static void WikiEdit_OnNewHistoryItem(HistoryItem *history_item);
@@ -100,18 +100,18 @@ namespace Huggle
             static void OnLocalConfigRead();
             static void ReportUser(WikiUser *u);
             static void SilentReport(WikiUser *u);
-            static void ShowMessage(QString title, QString message);
-            static void ShowError(QString title, QString message);
-            static void ShowWarning(QString title, QString message);
-            static bool ShowYesNoQuestion(QString title, QString message, bool default_answer);
+            static void ShowMessage(const QString &title, const QString &message);
+            static void ShowError(const QString &title, const QString &message);
+            static void ShowWarning(const QString &title, const QString &message);
+            static bool ShowYesNoQuestion(const QString &title, const QString &message, bool default_answer);
             static void Shutdown();
             //! Called on initialization of feed providers
             static void FeedProvidersOnInit(WikiSite *site);
-            static bool HAN_Suspicious(WikiEdit *edit, QString nick, QString ident, QString host);
-            static bool HAN_Revert(WikiEdit *edit, QString nick, QString ident, QString host);
-            static bool HAN_Good(WikiEdit *edit, QString nick, QString ident, QString host);
-            static bool HAN_Rescore(WikiEdit *edit, long score,  QString nick, QString ident, QString host);
-            static bool HAN_Message(WikiSite *site, QString message, QString nick, QString ident, QString host);
+            static bool HAN_Suspicious(WikiEdit *edit, const QString &nick, const QString &ident, const QString &host);
+            static bool HAN_Revert(WikiEdit *edit, const QString &nick, const QString &ident, const QString &host);
+            static bool HAN_Good(WikiEdit *edit, const QString &nick, const QString &ident, const QString &host);
+            static bool HAN_Rescore(WikiEdit *edit, long score,  const QString &nick, const QString &ident, const QString &host);
+            static bool HAN_Message(WikiSite *site, const QString &message, const QString &nick, const QString &ident, const QString &host);
     };
 }
 
