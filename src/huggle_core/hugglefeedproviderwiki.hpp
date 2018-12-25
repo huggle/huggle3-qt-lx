@@ -33,7 +33,7 @@ namespace Huggle
     {
         public:
             HuggleFeedProviderWiki(WikiSite *site);
-            ~HuggleFeedProviderWiki();
+            ~HuggleFeedProviderWiki() override;
             bool Start();
             bool IsPaused();
             void Resume();
@@ -52,7 +52,7 @@ namespace Huggle
         private:
             void processData(QString data);
             void processEdit(QDomElement item);
-            void processLog(QDomElement item);
+            void processLog(const QDomElement& item);
             void insertEdit(WikiEdit *edit);
             bool isPaused = false;
             bool isRefreshing;

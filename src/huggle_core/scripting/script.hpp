@@ -27,6 +27,7 @@
 // If you are working in different context than core, you can define your own IDs, but each context is prefixed
 // with some number so that you never get a conflicting number
 #define HUGGLE_SCRIPT_HOOK_SHUTDOWN                             0
+#define HUGGLE_SCRIPT_HOOK_EDIT_BEFORE_PRE_PROCESS              19
 #define HUGGLE_SCRIPT_HOOK_EDIT_PRE_PROCESS                     1
 #define HUGGLE_SCRIPT_HOOK_EDIT_BEFORE_POST_PROCESS             2
 #define HUGGLE_SCRIPT_HOOK_EDIT_POST_PROCESS                    3
@@ -45,6 +46,7 @@
 #define HUGGLE_SCRIPT_HOOK_HAN_MESSAGE                          16
 #define HUGGLE_SCRIPT_HOOK_HAN_RESCORE                          17
 #define HUGGLE_SCRIPT_HOOK_HAN_SUSPICIOUS                       18
+                                                                // 20 (19 already in use)
 
 namespace Huggle
 {
@@ -131,6 +133,7 @@ namespace Huggle
             bool HasExternalCallback(QString callback);
             // HOOKS
             void Hook_Shutdown();
+            bool Hook_EditBeforePreProcess(WikiEdit *edit);
             void Hook_EditPreProcess(WikiEdit *edit);
             void Hook_EditBeforePostProcess(WikiEdit *edit);
             void Hook_EditPostProcess(WikiEdit *edit);

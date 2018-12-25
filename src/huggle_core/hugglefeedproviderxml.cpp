@@ -16,6 +16,7 @@
 #include "hugglequeuefilter.hpp"
 #include "generic.hpp"
 #include "wikipage.hpp"
+#include "hooks.hpp"
 #include "syslog.hpp"
 #include "wikiedit.hpp"
 #include "wikiuser.hpp"
@@ -231,7 +232,7 @@ void HuggleFeedProviderXml::insertEdit(WikiEdit *edit)
     QueryPool::HugglePool->PreProcessEdit(edit);
     // We only insert it to buffer in case that current filter matches the edit, this is probably not needed
     // but it might be a performance improvement at some point
-    if (edit->GetSite()->CurrentFilter->Matches(edit))
+    if (edit->GetSite()->CurrentFilter->Matches(edit) && Hooks::EditBeforePreProcess(edit))
     {
         if (this->buffer.size() > hcfg->SystemConfig_ProviderCache)
         {

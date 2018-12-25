@@ -44,6 +44,7 @@ namespace Huggle
              * \param Edit was just post processed by huggle internal edit processor
              */
             static void EditAfterPostProcess(WikiEdit *edit);
+            static bool EditBeforePreProcess(WikiEdit *edit);
             static bool OnEditLoadToQueue(WikiEdit *edit);
             /*!
              * \brief Event that happens when edit is marked as good

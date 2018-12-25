@@ -135,7 +135,7 @@ QString WikiPage::GetContent()
     return this->Contents;
 }
 
-void WikiPage::SetContent(QString content)
+void WikiPage::SetContent(const QString &content)
 {
     this->hasContent = true;
     this->Contents = content;

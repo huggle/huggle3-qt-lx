@@ -15,7 +15,7 @@
 #include "syslog.hpp"
 using namespace Huggle;
 
-WikiPageNS *WikiSite::Unknown = new WikiPageNS(0, "", "");
+WikiPageNS *WikiSite::UnknownNS = new WikiPageNS(0, "", "");
 
 WikiPageNS::WikiPageNS(int id, const QString &localized_name, QString canonical_name)
 {
@@ -141,7 +141,7 @@ WikiPageNS *WikiSite::RetrieveNSFromTitle(const QString &title)
             return ns_;
     }
     if (!dns_)
-        return WikiSite::Unknown;
+        return WikiSite::UnknownNS;
     return dns_;
 }
 
@@ -159,7 +159,7 @@ WikiPageNS *WikiSite::RetrieveNSByCanonicalName(QString CanonicalName)
             return ns_;
     }
     if (!dns_)
-        return WikiSite::Unknown;
+        return WikiSite::UnknownNS;
     return dns_;
 }
 

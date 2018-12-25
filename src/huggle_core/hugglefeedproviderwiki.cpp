@@ -15,6 +15,7 @@
 #include "hugglequeuefilter.hpp"
 #include "localization.hpp"
 #include "mediawiki.hpp"
+#include "hooks.hpp"
 #include "querypool.hpp"
 #include "syslog.hpp"
 #include "wikipage.hpp"
@@ -225,7 +226,7 @@ void HuggleFeedProviderWiki::processEdit(QDomElement item)
     this->insertEdit(edit);
 }
 
-void HuggleFeedProviderWiki::processLog(QDomElement item)
+void HuggleFeedProviderWiki::processLog(const QDomElement& item)
 {
     /*
      * this function doesn't check if every attribute is present (unlike ProcessEdit())
@@ -268,7 +269,7 @@ void HuggleFeedProviderWiki::insertEdit(WikiEdit *edit)
 {
     this->IncrementEdits();
     QueryPool::HugglePool->PreProcessEdit(edit);
-    if (edit->GetSite()->CurrentFilter->Matches(edit))
+    if (edit->GetSite()->CurrentFilter->Matches(edit) && Hooks::EditBeforePreProcess(edit))
     {
         if (this->editBuffer->size() > Configuration::HuggleConfiguration->SystemConfig_ProviderCache)
         {

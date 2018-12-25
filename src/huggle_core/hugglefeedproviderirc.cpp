@@ -109,7 +109,7 @@ void HuggleFeedProviderIRC::InsertEdit(WikiEdit *edit)
     QueryPool::HugglePool->PreProcessEdit(edit);
     // We only insert it to buffer in case that current filter matches the edit, this is probably not needed
     // but it might be a performance improvement at some point
-    if (edit->GetSite()->CurrentFilter->Matches(edit))
+    if (edit->GetSite()->CurrentFilter->Matches(edit) && Hooks::EditBeforePreProcess(edit))
     {
         if (this->editBuffer.size() > Configuration::HuggleConfiguration->SystemConfig_ProviderCache)
         {

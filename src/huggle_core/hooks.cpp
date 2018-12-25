@@ -111,6 +111,23 @@ void Huggle::Hooks::EditAfterPostProcess(Huggle::WikiEdit *edit)
     }
 }
 
+bool Huggle::Hooks::EditBeforePreProcess(Huggle::WikiEdit *edit)
+{
+    foreach(Huggle::iExtension *extension, Huggle::Core::HuggleCore->Extensions)
+    {
+        if (extension->IsWorking())
+            if (!extension->Hook_EditBeforePreProcessing(reinterpret_cast<void*>(edit)))
+                return false;
+    }
+    foreach (Script *s, Script::GetScripts())
+    {
+        if (s->IsWorking())
+            if (!s->Hook_EditBeforePreProcess(edit))
+                return false;
+    }
+    return true;
+}
+
 bool Huggle::Hooks::OnEditLoadToQueue(Huggle::WikiEdit *edit)
 {
     foreach(Huggle::iExtension *extension, Huggle::Core::HuggleCore->Extensions)
