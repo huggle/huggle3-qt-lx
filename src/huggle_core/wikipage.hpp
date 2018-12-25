@@ -41,7 +41,7 @@ namespace Huggle
             bool FounderKnown();
             QString GetFounder();
             bool EqualTo(WikiPage *page);
-            void SetFounder(QString name);
+            void SetFounder(const QString &name);
             //! Returns a new instance of WikiPage that is pointed to talk page of this page
             WikiPage *RetrieveTalk();
             QString RootName();
@@ -55,7 +55,7 @@ namespace Huggle
             bool IsWatched();
             void SetWatched(bool value);
             QString GetContent();
-            void SetContent(QString content);
+            void SetContent(const QString &content);
             //! Whether this instance of WikiPage contains its content, if false, it means that content of this page is unknown
             bool HasContent();
             QString Contents;

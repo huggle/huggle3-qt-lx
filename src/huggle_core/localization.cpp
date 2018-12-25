@@ -38,7 +38,7 @@ Localizations::~Localizations()
     }
 }
 
-Language *Localizations::MakeLanguage(QString text, QString name)
+Language *Localizations::MakeLanguage(const QString& text, const QString &name)
 {
     Language *l = new Language(name);
     QStringList keys = text.split("\n");
@@ -85,7 +85,7 @@ Language *Localizations::MakeLanguage(QString text, QString name)
     return l;
 }
 
-Language *Localizations::MakeLanguageUsingXML(QString text, QString name)
+Language *Localizations::MakeLanguageUsingXML(const QString& text, const QString& name)
 {
     Language *l = new Language(name);
     QDomDocument in_;
@@ -126,7 +126,7 @@ Language *Localizations::MakeLanguageUsingXML(QString text, QString name)
     return l;
 }
 
-void Localizations::LocalInit(QString name, bool xml)
+void Localizations::LocalInit(const QString& name, bool xml)
 {
     QFile *f;
     if (name == "en")
@@ -140,12 +140,12 @@ void Localizations::LocalInit(QString name, bool xml)
         f = new QFile(":/huggle/text/Localization/" + name + ".xml");
     } else
     {
-        if (QFile().exists(Configuration::GetLocalizationDataPath() + name + ".txt"))
+        if (QFile::exists(Configuration::GetLocalizationDataPath() + name + ".txt"))
         {
             // there is a custom localization file in directory
             f = new QFile(Configuration::GetLocalizationDataPath() + name + ".txt");
             xml = false;
-        } else if (QFile().exists(Configuration::GetLocalizationDataPath() + name + ".xml"))
+        } else if (QFile::exists(Configuration::GetLocalizationDataPath() + name + ".xml"))
         {
             f = new QFile(Configuration::GetLocalizationDataPath() + name + ".xml");
         } else
@@ -168,12 +168,12 @@ void Localizations::LocalInit(QString name, bool xml)
     delete f;
 }
 
-QString Localizations::Localize(QString key)
+QString Localizations::Localize(const QString &key)
 {
     return Localize(key, QStringList());
 }
 
-QString Localizations::Localize(QString key, QStringList parameters)
+QString Localizations::Localize(const QString &key, const QStringList &parameters)
 {
     QString id = key;
     if (id.length() > 4 && id[0] == '[' && id[1] == '[')
@@ -239,19 +239,19 @@ QString Localizations::Localize(QString key, QStringList parameters)
     return key;
 }
 
-QString Localizations::Localize(QString key, QString par1, QString par2)
+QString Localizations::Localize(const QString &key, const QString &par1, const QString &par2)
 {
     QStringList list;
     list << par1 << par2;
     return Localize(key, list);
 }
 
-bool Localizations::KeyExists(QString key)
+bool Localizations::KeyExists(const QString& key)
 {
     return this->LocalizationData.at(Localizations::EnglishID)->Messages.contains(key);
 }
 
-QString Localizations::Localize(QString key, QString parameter)
+QString Localizations::Localize(const QString& key, const QString& parameter)
 {
     QStringList list;
     list << parameter;
@@ -274,7 +274,7 @@ bool Localizations::IsRTL()
     return rtl;
 }
 
-Language::Language(QString name)
+Language::Language(const QString& name)
 {
     this->LanguageName = name;
     this->LanguageID = name;

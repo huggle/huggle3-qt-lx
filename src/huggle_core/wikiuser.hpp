@@ -36,8 +36,8 @@ namespace Huggle
             static bool CompareUsernames(QString a, QString b);
             //! Update a list of problematic users
             static void UpdateUser(WikiUser *us);
-            static bool IsIPv4(QString user);
-            static bool IsIPv6(QString user);
+            static bool IsIPv4(const QString &user);
+            static bool IsIPv6(const QString &user);
             static void UpdateWl(WikiUser *us, long score);
             /*!
              * \brief Function that return static version of this user
@@ -48,7 +48,7 @@ namespace Huggle
              * \param user
              * \return static user from list of problematic users
              */
-            static WikiUser *RetrieveUser(QString user, WikiSite *site);
+            static WikiUser *RetrieveUser(const QString &user, WikiSite *site);
             static WikiUser *RetrieveUser(WikiUser *user);
             /*!
              * \brief List of users that are scored in this instance of huggle
@@ -62,8 +62,8 @@ namespace Huggle
             WikiUser(WikiSite *site);
             WikiUser(WikiUser *u);
             WikiUser(const WikiUser& u);
-            WikiUser(QString user, WikiSite *site);
-            ~WikiUser();
+            WikiUser(const QString &user, WikiSite *site);
+            ~WikiUser() override;
             /*!
              * \brief GetContentsOfTalkPage returns a precached content of this user's talk page
              * If there is a global instance of this user, the talk page is retrieved from it
@@ -80,7 +80,7 @@ namespace Huggle
              * \brief SetContentsOfTalkPage Change a cache for talk page in local and global cache
              * \param text New content of talk page
              */
-            void TalkPage_SetContents(QString text);
+            void TalkPage_SetContents(const QString &text);
             //! Call UpdateUser on current user
             void Update(bool MatchingOnly = false);
             QString UnderscorelessUsername();
@@ -132,7 +132,7 @@ namespace Huggle
             void DecrementWarningLevel();
             void IncrementWarningLevel();
             void SetWarningLevel(byte_ht level);
-            void SetLastMessageTime(QDateTime date_time);
+            void SetLastMessageTime(const QDateTime &date_time);
             byte_ht GetWarningLevel() const;
             //! Username
             QString Username;

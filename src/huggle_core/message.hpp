@@ -48,7 +48,7 @@ namespace Huggle
         public:
             //! Creates a new instance of message class that is used to deliver a message to users
             Message(WikiUser *target, QString MessageText, QString MessageSummary);
-            virtual ~Message();
+             ~Message() override;
             //! Send a message to user
             virtual void Send();
             //! Returns true in case that message was sent

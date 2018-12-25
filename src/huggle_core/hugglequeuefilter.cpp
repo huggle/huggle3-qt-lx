@@ -40,7 +40,7 @@ void HuggleQueueFilter::Delete()
     Filters.clear();
 }
 
-HuggleQueueFilter *HuggleQueueFilter::GetFilter(QString filter_name, WikiSite *site)
+HuggleQueueFilter *HuggleQueueFilter::GetFilter(const QString& filter_name, WikiSite *site)
 {
     if (!Filters.contains(site))
         throw new Huggle::Exception("Invalid key", BOOST_CURRENT_FUNCTION);
@@ -119,7 +119,7 @@ bool HuggleQueueFilter::Matches(WikiEdit *edit)
     {
         if (this->Friends == HuggleQueueFilterMatchExclude && edit->TrustworthEdit)
             return false;
-        if (this->Friends == HuggleQueueFilterMatchRequire && edit->TrustworthEdit != true)
+        if (this->Friends == HuggleQueueFilterMatchRequire && !edit->TrustworthEdit)
             return false;
     }
     if (this->IP != HuggleQueueFilterMatchIgnore)
@@ -232,16 +232,15 @@ QString HuggleQueueFilter::GetRequiredTags_CommaSeparated() const
     return result;
 }
 
-void HuggleQueueFilter::SetIgnoredTags_CommaSeparated(QString list)
+void HuggleQueueFilter::SetIgnoredTags_CommaSeparated(const QString &list)
 {
     this->IgnoreTags = Generic::CSV2QStringList(list);
 }
 
-void HuggleQueueFilter::SetRequiredTags_CommaSeparated(QString list)
+void HuggleQueueFilter::SetRequiredTags_CommaSeparated(const QString &list)
 {
     this->RequireTags = Generic::CSV2QStringList(list);
 }
-
 
 QString HuggleQueueFilter::GetIgnoredCategories_CommaSeparated() const
 {
@@ -263,12 +262,12 @@ QString HuggleQueueFilter::GetRequiredCategories_CommaSeparated() const
     return result;
 }
 
-void HuggleQueueFilter::SetIgnoredCategories_CommaSeparated(QString list)
+void HuggleQueueFilter::SetIgnoredCategories_CommaSeparated(const QString &list)
 {
     this->IgnoreCategories = Generic::CSV2QStringList(list);
 }
 
-void HuggleQueueFilter::SetRequiredCategories_CommaSeparated(QString list)
+void HuggleQueueFilter::SetRequiredCategories_CommaSeparated(const QString &list)
 {
     this->RequireCategories = Generic::CSV2QStringList(list);
 }

@@ -12,7 +12,7 @@
 
 using namespace Huggle;
 
-static void RecursiveFetch(QDomNode node, QList<QDomElement> *list)
+static void RecursiveFetch(const QDomNode &node, QList<QDomElement> *list)
 {
     list->append(node.toElement());
     int index = 0;
@@ -37,7 +37,7 @@ static void RecursiveFetch(QDomNode node, QList<QDomElement> *list, QString name
 }
 */
 
-QList<QDomElement> XmlUtils::FetchElementsFromDocument(QDomDocument xmls)
+QList<QDomElement> XmlUtils::FetchElementsFromDocument(const QDomDocument &xmls)
 {
     QList<QDomElement> results;
     int index = 0;
@@ -49,7 +49,7 @@ QList<QDomElement> XmlUtils::FetchElementsFromDocument(QDomDocument xmls)
     return results;
 }
 
-QList<QDomElement> XmlUtils::FetchAllElementsByName(QDomDocument xmls, QString name)
+QList<QDomElement> XmlUtils::FetchAllElementsByName(const QDomDocument &xmls, const QString &name)
 {
     (void)xmls;
     (void)name;

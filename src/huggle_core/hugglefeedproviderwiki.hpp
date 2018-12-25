@@ -33,26 +33,26 @@ namespace Huggle
     {
         public:
             HuggleFeedProviderWiki(WikiSite *site);
-            ~HuggleFeedProviderWiki();
-            bool Start();
-            bool IsPaused();
-            void Resume();
-            void Pause();
-            bool IsWorking();
-            void Stop();
-            bool Restart() { this->Stop(); return this->Start(); }
-            int GetID() { return HUGGLE_FEED_PROVIDER_WIKI; }
-            int FeedPriority() { return 1; }
-            bool ContainsEdit();
+            ~HuggleFeedProviderWiki() override;
+            bool Start() override;
+            bool IsPaused() override;
+            void Resume() override;
+            void Pause() override;
+            bool IsWorking() override;
+            void Stop() override;
+            bool Restart() override { this->Stop(); return this->Start(); }
+            int GetID() override { return HUGGLE_FEED_PROVIDER_WIKI; }
+            int FeedPriority() override { return 1; }
+            bool ContainsEdit() override;
             void Refresh();
-            unsigned long long GetBytesReceived();
-            unsigned long long GetBytesSent();
-            WikiEdit *RetrieveEdit();
-            QString ToString();
+            unsigned long long GetBytesReceived() override;
+            unsigned long long GetBytesSent() override;
+            WikiEdit *RetrieveEdit() override;
+            QString ToString() override;
         private:
             void processData(QString data);
             void processEdit(QDomElement item);
-            void processLog(QDomElement item);
+            void processLog(const QDomElement& item);
             void insertEdit(WikiEdit *edit);
             bool isPaused = false;
             bool isRefreshing;

@@ -15,9 +15,9 @@
 #include "syslog.hpp"
 using namespace Huggle;
 
-WikiPageNS *WikiSite::Unknown = new WikiPageNS(0, "", "");
+WikiPageNS *WikiSite::UnknownNS = new WikiPageNS(0, "", "");
 
-WikiPageNS::WikiPageNS(int id, QString localized_name, QString canonical_name)
+WikiPageNS::WikiPageNS(int id, const QString &localized_name, QString canonical_name)
 {
     QString lc = canonical_name.toLower().replace("_", " ");
     QString lw = localized_name.toLower();
@@ -44,11 +44,6 @@ WikiPageNS::WikiPageNS(WikiPageNS *k)
     this->isTalk = k->isTalk;
 }
 
-WikiPageNS::~WikiPageNS()
-{
-
-}
-
 WikiSite::WikiSite(const WikiSite &w)
 {
     QList<int> k_ = w.NamespaceList.keys();
@@ -63,7 +58,6 @@ WikiSite::WikiSite(const WikiSite &w)
     this->URL = w.URL;
     this->HANChannel = w.HANChannel;
     this->IsRightToLeft = w.IsRightToLeft;
-    this->Unknown = w.Unknown;
     this->UserConfig = w.UserConfig;
     this->ProjectConfig = w.ProjectConfig;
     this->WhiteList = w.WhiteList;
@@ -84,14 +78,13 @@ WikiSite::WikiSite(WikiSite *w)
     this->HANChannel = w->HANChannel;
     this->ProjectConfig = w->ProjectConfig;
     this->IsRightToLeft = w->IsRightToLeft;
-    this->Unknown = w->Unknown;
     this->UserConfig = w->UserConfig;
     this->SupportHttps = w->SupportHttps;
     this->ScriptPath = w->ScriptPath;
     this->Provider = w->Provider;
 }
 
-WikiSite::WikiSite(QString name, QString url)
+WikiSite::WikiSite(const QString &name, const QString &url)
 {
     this->CurrentFilter = HuggleQueueFilter::DefaultFilter;
     this->LongPath = "wiki/";
@@ -104,7 +97,7 @@ WikiSite::WikiSite(QString name, QString url)
     this->WhiteList = "test.wikipedia";
 }
 
-WikiSite::WikiSite(QString name, QString url, QString path, QString script, bool https, bool oauth, QString channel, QString wl, QString han, bool isrtl)
+WikiSite::WikiSite(const QString &name, const QString &url, const QString &path, const QString &script, bool https, bool oauth, const QString &channel, const QString &wl, const QString &han, bool isrtl)
 {
     Q_UNUSED(oauth);
     this->CurrentFilter = HuggleQueueFilter::DefaultFilter;
@@ -127,7 +120,7 @@ WikiSite::~WikiSite()
     delete this->UserConfig;
 }
 
-WikiPageNS *WikiSite::RetrieveNSFromTitle(QString title)
+WikiPageNS *WikiSite::RetrieveNSFromTitle(const QString &title)
 {
     WikiPageNS *dns_ = nullptr;
     QString lct_ = title.toLower();
@@ -148,7 +141,7 @@ WikiPageNS *WikiSite::RetrieveNSFromTitle(QString title)
             return ns_;
     }
     if (!dns_)
-        return WikiSite::Unknown;
+        return WikiSite::UnknownNS;
     return dns_;
 }
 
@@ -166,7 +159,7 @@ WikiPageNS *WikiSite::RetrieveNSByCanonicalName(QString CanonicalName)
             return ns_;
     }
     if (!dns_)
-        return WikiSite::Unknown;
+        return WikiSite::UnknownNS;
     return dns_;
 }
 
@@ -215,7 +208,7 @@ void WikiSite::ClearNS()
     }
 }
 
-WikiSite_Ext::WikiSite_Ext(QString name, QString type, QString description, QString author, QString url, QString version)
+WikiSite_Ext::WikiSite_Ext(const QString &name, const QString &type, const QString &description, const QString &author, const QString &url, const QString &version)
 {
     this->Description = description;
     this->Name = name;

@@ -11,6 +11,7 @@
 // Copyright (c) Petr Bena 2018
 
 #include "genericjsclass.hpp"
+#include "scriptfunctionhelp.hpp"
 
 using namespace Huggle;
 
@@ -27,4 +28,11 @@ GenericJSClass::~GenericJSClass()
 Script *GenericJSClass::GetScript()
 {
     return this->script;
+}
+
+QHash<QString, ScriptFunctionHelp> GenericJSClass::GetFunctionHelp()
+{
+    QHash<QString, ScriptFunctionHelp> help;
+
+    return help;
 }

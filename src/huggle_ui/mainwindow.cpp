@@ -241,7 +241,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     connect(this->generalTimer, SIGNAL(timeout()), this, SLOT(OnMainTimerTick()));
     this->generalTimer->start(HUGGLE_TIMER);
     QFile *layout;
-    if (QFile().exists(Configuration::GetConfigurationPath() + "mainwindow_state"))
+    if (QFile::exists(Configuration::GetConfigurationPath() + "mainwindow_state"))
     {
         HUGGLE_DEBUG1("Loading state");
         layout = new QFile(Configuration::GetConfigurationPath() + "mainwindow_state");
@@ -252,7 +252,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         layout->close();
         delete layout;
     }
-    if (QFile().exists(Configuration::GetConfigurationPath() + "mainwindow_geometry"))
+    if (QFile::exists(Configuration::GetConfigurationPath() + "mainwindow_geometry"))
     {
         HUGGLE_DEBUG1("Loading geometry");
         layout = new QFile(Configuration::GetConfigurationPath() + "mainwindow_geometry");
@@ -439,7 +439,7 @@ void MainWindow::EnableEditing(bool enabled)
     this->ui->actionRequest_speedy_deletion->setEnabled(enabled);
     this->ui->actionReport_user->setEnabled(enabled);
 
-    if (enabled == false)
+    if (!enabled)
     {
         this->ui->actionDelete->setEnabled(false);
     } else if (this->CurrentEdit != nullptr)
@@ -530,7 +530,7 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
         prev->RemoveFromHistoryChain();
         prev->UnregisterConsumer(HUGGLECONSUMER_MAINFORM_HISTORICAL);
     }
-    if (this->Historical.contains(e) == false)
+    if (!this->Historical.contains(e))
     {
         e->RegisterConsumer(HUGGLECONSUMER_MAINFORM_HISTORICAL);
         this->Historical.append(e);
@@ -623,14 +623,13 @@ void MainWindow::RequestPD(WikiEdit *edit)
     }
     if (edit == nullptr)
         edit = this->CurrentEdit;
-    if (this->fSpeedyDelete)
-        delete this->fSpeedyDelete;
+    delete this->fSpeedyDelete;
     this->fSpeedyDelete = new SpeedyForm(this);
     this->fSpeedyDelete->Init(edit);
     this->fSpeedyDelete->show();
 }
 
-void MainWindow::TrayMessage(QString title, QString text)
+void MainWindow::TrayMessage(const QString& title, const QString& text)
 {
     this->TrayIcon.showMessage(title, text);
 }
@@ -775,7 +774,7 @@ void MainWindow::GoBackward()
     this->ProcessEdit(this->CurrentEdit->Previous, true);
 }
 
-void MainWindow::ShowToolTip(QString text)
+void MainWindow::ShowToolTip(const QString& text)
 {
     QPoint pntr(this->pos().x() + (this->width() / 2), this->pos().y() + 100);
     QToolTip::showText(pntr, text, this);
@@ -792,7 +791,7 @@ void MainWindow::ShutdownForm()
     this->close();
 }
 
-QLabel *MainWindow::CreateStatusBarLabel(QString text)
+QLabel *MainWindow::CreateStatusBarLabel(const QString& text)
 {
     QLabel *lb = new QLabel(this->statusBar());
     this->statusBar()->addWidget(lb);
@@ -815,7 +814,7 @@ void MainWindow::ReloadSc()
     }
 }
 
-static inline void ReloadIndexedMenuShortcut(QList<QAction *> list, int item, Shortcut s)
+static inline void ReloadIndexedMenuShortcut(const QList<QAction *>& list, int item, const Shortcut &s)
 {
     if (list.count() <= item)
         return;
@@ -823,7 +822,7 @@ static inline void ReloadIndexedMenuShortcut(QList<QAction *> list, int item, Sh
     list.at(item)->setShortcut(s.QAccel);
 }
 
-void MainWindow::ReloadShort(QString id)
+void MainWindow::ReloadShort(const QString& id)
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     if (!Configuration::HuggleConfiguration->Shortcuts.contains(id))
@@ -1183,7 +1182,7 @@ QString MainWindow::WikiScriptURL()
     }
 }
 
-Collectable_SmartPtr<RevertQuery> MainWindow::Revert(QString summary, bool next, bool single_rv)
+Collectable_SmartPtr<RevertQuery> MainWindow::Revert(const QString& summary, bool next, bool single_rv)
 {
     bool rollback = true;
     Collectable_SmartPtr<RevertQuery> ptr_;
@@ -1279,7 +1278,7 @@ bool MainWindow::preflightCheck(WikiEdit *_e)
     return true;
 }
 
-bool MainWindow::Warn(QString warning_type, RevertQuery *dependency, WikiEdit *related_edit)
+bool MainWindow::Warn(const QString& warning_type, RevertQuery *dependency, WikiEdit *related_edit)
 {
     if (related_edit == nullptr)
         return false;
@@ -1375,7 +1374,7 @@ void MainWindow::finishRestore()
     this->RestoreQuery.Delete();
 }
 
-void MainWindow::createBrowserTab(QString name, int index)
+void MainWindow::createBrowserTab(const QString& name, int index)
 {
     QWidget *tab = new QWidget(this);
     HuggleWeb *web = new HuggleWeb();
@@ -1394,7 +1393,7 @@ void MainWindow::createBrowserTab(QString name, int index)
     this->Browser->RenderHtml(Resources::GetNewTabHTML());
 }
 
-void MainWindow::changeCurrentBrowserTabTitle(QString name)
+void MainWindow::changeCurrentBrowserTabTitle(const QString& name)
 {
     this->ui->tabWidget->setTabText(this->ui->tabWidget->currentIndex(), Generic::ShrinkText(name, 20, false, 3));
 }
@@ -1435,8 +1434,7 @@ void MainWindow::triggerWarn()
     }
     if (Configuration::HuggleConfiguration->UserConfig->ManualWarning)
     {
-        if (this->fWarningList != nullptr)
-            delete this->fWarningList;
+        delete this->fWarningList;
         this->fWarningList = new Huggle::WarningList(this->CurrentEdit, this);
         this->fWarningList->show();
         return;
@@ -1493,7 +1491,7 @@ void MainWindow::OnMainTimerTick()
 #endif
     // if there is no working feed, let's try to fix it
     WikiSite *site = this->GetCurrentWikiSite();
-    if (site->Provider->IsWorking() != true && this->ShuttingDown != true)
+    if (!site->Provider->IsWorking() && !this->ShuttingDown)
     {
         Syslog::HuggleLogs->Log(_l("provider-failure", site->Provider->ToString(), this->GetCurrentWikiSite()->Name));
         this->SwitchAlternativeFeedProvider(site);
@@ -1830,8 +1828,7 @@ void MainWindow::on_actionRevert_triggered()
 
 void MainWindow::on_actionShow_ignore_list_of_current_wiki_triggered()
 {
-    if (this->Ignore != nullptr)
-        delete this->Ignore;
+    delete this->Ignore;
     this->Ignore = new IgnoreList(this);
     this->Ignore->show();
 }
@@ -1964,8 +1961,7 @@ void MainWindow::Exit()
         if (site->Provider != nullptr)
             site->Provider->Stop();
     }
-    if (this->fWaiting != nullptr)
-        delete this->fWaiting;
+    delete this->fWaiting;
     this->fWaiting = new WaitingForm(this);
     this->fWaiting->show();
     this->fWaiting->Status(10, _l("whitelist-download"));
@@ -2147,9 +2143,7 @@ void MainWindow::BlockUser()
         Syslog::HuggleLogs->ErrorLog(_l("block-none"));
         return;
     }
-    if (this->fBlockForm != nullptr)
-        delete this->fBlockForm;
-
+    delete this->fBlockForm;
     this->fBlockForm = new BlockUserForm(this);
     this->CurrentEdit->User->Resync();
     this->fBlockForm->SetWikiUser(this->CurrentEdit->User);
@@ -2177,8 +2171,7 @@ void MainWindow::DisplayNext(Query *q)
                     this->ShowEmptyQueuePage();
                 return;
             }
-            if (this->OnNext_EvPage != nullptr)
-                delete this->OnNext_EvPage;
+            delete this->OnNext_EvPage;
             this->OnNext_EvPage = new WikiPage(this->CurrentEdit->Page);
             this->qNext = q;
             return;
@@ -2200,7 +2193,7 @@ void MainWindow::ShowEmptyQueuePage()
     this->LockPage();
 }
 
-void MainWindow::RenderHtml(QString html)
+void MainWindow::RenderHtml(const QString& html)
 {
     this->Browser->RenderHtml(html);
 }
@@ -2214,8 +2207,7 @@ void MainWindow::DeletePage()
         Syslog::HuggleLogs->ErrorLog("unable to delete: nullptr page");
         return;
     }
-    if (this->fDeleteForm != nullptr)
-        delete this->fDeleteForm;
+    delete this->fDeleteForm;
     this->fDeleteForm = new DeleteForm(this);
     // We always want to notify creator of the page, not the user who made this edit
     WikiUser *page_founder = nullptr;
@@ -2249,7 +2241,7 @@ void MainWindow::DisplayTalk()
     delete page;
 }
 
-void MainWindow::DisplayURL(QString uri)
+void MainWindow::DisplayURL(const QString& uri)
 {
     this->Browser->DisplayPage(uri);
 }
@@ -2265,7 +2257,7 @@ static void DisplayRevid_Finish(WikiEdit *edit, void *source, QString er)
     window->ProcessEdit(edit);
 }
 
-static void DisplayRevid_Error(WikiEdit *edit, void *source, QString error)
+static void DisplayRevid_Error(WikiEdit *edit, void *source, const QString& error)
 {
     Q_UNUSED(source);
     Syslog::HuggleLogs->ErrorLog("Unable to retrieve edit for revision " + QString::number(edit->RevID) +
@@ -2342,7 +2334,7 @@ void MainWindow::SwitchAlternativeFeedProvider(WikiSite *site)
     this->ChangeProvider(site, provider->GetID());
 }
 
-void MainWindow::RenderPage(QString Page)
+void MainWindow::RenderPage(const QString& Page)
 {
     WikiPage *page = new WikiPage(Page, this->GetCurrentWikiSite());
     this->tb->SetPage(page);
@@ -2946,8 +2938,7 @@ void MainWindow::on_actionProtect_triggered()
         Syslog::HuggleLogs->ErrorLog("Cannot protect nullptr page");
         return;
     }
-    if (this->fProtectForm != nullptr)
-        delete this->fProtectForm;
+    delete this->fProtectForm;
     this->fProtectForm = new ProtectPage(this);
     this->fProtectForm->setPageToProtect(this->CurrentEdit->Page);
     this->fProtectForm->show();
@@ -2988,8 +2979,7 @@ void MainWindow::on_actionReport_username_triggered()
         Syslog::HuggleLogs->ErrorLog("You can't report IP address using this feature");
         return;
     }
-    if (this->fUaaReportForm != nullptr)
-        delete this->fUaaReportForm;
+    delete this->fUaaReportForm;
     this->fUaaReportForm = new UAAReport(this);
     this->fUaaReportForm->setUserForUAA(this->CurrentEdit->User);
     this->fUaaReportForm->show();
@@ -2997,8 +2987,7 @@ void MainWindow::on_actionReport_username_triggered()
 
 void MainWindow::on_actionShow_list_of_score_words_triggered()
 {
-    if (this->fScoreWord != nullptr)
-        delete this->fScoreWord;
+    delete this->fScoreWord;
     this->fScoreWord = new ScoreWordsDbForm(this);
     this->fScoreWord->show();
 }
@@ -3013,17 +3002,14 @@ void MainWindow::on_actionRevert_AGF_triggered()
 
 void MainWindow::on_actionDisplay_a_session_data_triggered()
 {
-    if (this->fSessionData != nullptr)
-        delete this->fSessionData;
-
+    delete this->fSessionData;
     this->fSessionData = new SessionForm(this);
     this->fSessionData->show();
 }
 
 void MainWindow::on_actionDisplay_whitelist_triggered()
 {
-    if (this->fWhitelist != nullptr)
-        delete this->fWhitelist;
+    delete this->fWhitelist;
     this->fWhitelist = new WhitelistForm(this);
     this->fWhitelist->show();
 }
@@ -3203,8 +3189,7 @@ void MainWindow::on_actionRequest_protection_triggered()
     {
         Syslog::HuggleLogs->ErrorLog(_l("protect-request-proj-fail"));
     }
-    if (this->fRFProtection != nullptr)
-        delete this->fRFProtection;
+    delete this->fRFProtection;
     this->fRFProtection = new RequestProtect(this->CurrentEdit->Page, this);
     this->fRFProtection->show();
 }
@@ -3291,8 +3276,7 @@ void MainWindow::on_actionTag_2_triggered()
     if (!this->CheckEditableBrowserPage())
         return;
 
-    if (this->fWikiPageTags)
-        delete this->fWikiPageTags;
+    delete this->fWikiPageTags;
     this->fWikiPageTags = new WikiPageTagsForm(this, this->CurrentEdit->Page);
     this->fWikiPageTags->show();
 }

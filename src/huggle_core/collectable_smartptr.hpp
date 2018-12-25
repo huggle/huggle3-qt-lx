@@ -79,17 +79,20 @@ namespace Huggle
             {
                 this->FreeAcqRsrPtr();
             }
-            void operator=(T* _ptr)
+            Collectable_SmartPtr& operator=(T* _ptr)
             {
                 this->SetPtr(_ptr);
+                return *this;
             }
-            void operator=(const Collectable_SmartPtr &smart_ptr)
+            Collectable_SmartPtr& operator=(const Collectable_SmartPtr &smart_ptr)
             {
                 this->SetPtr(smart_ptr.GetPtr());
+                return *this;
             }
-            void operator=(std::nullptr_t &null)
+            Collectable_SmartPtr& operator=(std::nullptr_t &null)
             {
                 this->SetPtr(null);
+                return *this;
             }
             operator void* () const
             {

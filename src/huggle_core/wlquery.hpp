@@ -33,13 +33,13 @@ namespace Huggle
             Q_OBJECT
         public:
             WLQuery(WikiSite *site);
-            ~WLQuery();
+            ~WLQuery() override;
             //! Get a query target as a string
-            QString QueryTargetToString();
+            QString QueryTargetToString() override;
             //! Returns a type of query as a string
-            QString QueryTypeToString();
-            void Kill();
-            void Process();
+            QString QueryTypeToString() override;
+            void Kill() override;
+            void Process() override;
             QString Parameters;
             WLQueryType WL_Type;
             double Progress;

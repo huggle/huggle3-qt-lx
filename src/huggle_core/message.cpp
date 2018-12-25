@@ -347,7 +347,7 @@ void Message::ProcessTalk()
             missing = true;
     }
     // get last id
-    if (missing != true && page != nullptr)
+    if (!missing && page != nullptr)
     {
         this->Page = page->Value;
         this->PreviousTalkPageRetrieved = true;

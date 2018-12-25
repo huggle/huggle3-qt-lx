@@ -238,7 +238,7 @@ bool WikiEdit::finalizePostProcessing()
                 }
             }
             // get last id
-            if (missing != true && rev_.count() > 0)
+            if (!missing && rev_.count() > 0)
             {
                 ApiQueryResultNode *rv = rev_.at(0);
                 if (!rv->Attributes.contains("timestamp"))
@@ -446,7 +446,7 @@ QString WikiEdit::GetPixmap()
     return ":/huggle/pictures/Resources/blob-none.png";
 }
 
-static long ProcessPartsInWikiText(QStringList *list, QString text, QList<ScoreWord> *wl)
+static long ProcessPartsInWikiText(QStringList *list, const QString& text, QList<ScoreWord> *wl)
 {
     long rs = 0;
     foreach (ScoreWord word, *wl)
@@ -461,7 +461,7 @@ static long ProcessPartsInWikiText(QStringList *list, QString text, QList<ScoreW
     return rs;
 }
 
-static long ProcessWordsInWikiText(QStringList *list, QString text, QList<ScoreWord> *wl)
+static long ProcessWordsInWikiText(QStringList *list, const QString& text, QList<ScoreWord> *wl)
 {
     long rs = 0;
     foreach (ScoreWord word, *wl)
@@ -562,7 +562,7 @@ void WikiEdit::processCallback()
         this->PostprocessCallback(this);
 }
 
-void WikiEdit::RecordScore(QString name, score_ht score)
+void WikiEdit::RecordScore(const QString& name, score_ht score)
 {
     this->Score += score;
     if (hcfg->SystemConfig_ScoreDebug)
@@ -674,7 +674,7 @@ void WikiEdit::PostProcess()
     this->qUser->Process();
 }
 
-Collectable_SmartPtr<WikiEdit> WikiEdit::FromCacheByRevID(revid_ht revid, QString prev)
+Collectable_SmartPtr<WikiEdit> WikiEdit::FromCacheByRevID(revid_ht revid, const QString& prev)
 {
     Collectable_SmartPtr<WikiEdit> e;
     if (revid == WIKI_UNKNOWN_REVID)

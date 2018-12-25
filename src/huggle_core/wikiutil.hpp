@@ -49,8 +49,8 @@ namespace Huggle
          * \param target     Optional target name
          * \return           Pointer to ApiQuery
          */
-        HUGGLE_EX_CORE Collectable_SmartPtr<ApiQuery> APIRequest(Action action, WikiSite *site, QString parameters, bool using_post = false, QString target = "");
-        HUGGLE_EX_CORE bool IsRevert(QString Summary);
+        HUGGLE_EX_CORE Collectable_SmartPtr<ApiQuery> APIRequest(Action action, WikiSite *site, const QString &parameters, bool using_post = false, const QString &target = "");
+        HUGGLE_EX_CORE bool IsRevert(const QString &summary);
         //! Return a localized month for a current wiki
         HUGGLE_EX_CORE QString MonthText(int n, WikiSite *site = nullptr);
         /*!
@@ -61,7 +61,7 @@ namespace Huggle
          * \param rollback If rollback feature should be used
          * \return Pointer to api query that executes this revert
          */
-        HUGGLE_EX_CORE Collectable_SmartPtr<RevertQuery> RevertEdit(WikiEdit* _e, QString summary = "", bool minor = false, bool rollback = true);
+        HUGGLE_EX_CORE Collectable_SmartPtr<RevertQuery> RevertEdit(WikiEdit* _e, const QString &summary = "", bool minor = false, bool rollback = true);
         /*!
          * \brief MessageUser Message user
          *
@@ -87,19 +87,19 @@ namespace Huggle
          *
          * \return NULL on error or instance of Huggle::Message in case it's success
          */
-        HUGGLE_EX_CORE Message *MessageUser(WikiUser *User, QString Text, QString Title, QString Summary, bool InsertSection = true,
+        HUGGLE_EX_CORE Message *MessageUser(WikiUser *User, const QString &Text, const QString &Title, const QString &Summary, bool InsertSection = true,
                                        Query *Dependency = nullptr, bool NoSuffix = false, bool SectionKeep = false,
-                                       bool Autoremove = true, QString BaseTimestamp = "", bool CreateOnly = false, bool FreshOnly = false);
+                                       bool Autoremove = true, const QString &BaseTimestamp = "", bool CreateOnly = false, bool FreshOnly = false);
         /*!
          * \brief SanitizeUser removes all invalid or problematic characters from user name
          * \param username Username that is to be fixed
          * \return
          */
         HUGGLE_EX_CORE QString SanitizeUser(QString username);
-        HUGGLE_EX_CORE Collectable_SmartPtr<EditQuery> PrependTextToPage(WikiPage *page, QString text, QString summary = "Edited using huggle", bool minor = false);
-        HUGGLE_EX_CORE Collectable_SmartPtr<EditQuery> PrependTextToPage(QString page, QString text, QString summary = "Edited using huggle", bool minor = false, WikiSite *site = nullptr);
-        HUGGLE_EX_CORE Collectable_SmartPtr<EditQuery> AppendTextToPage(QString page, QString text, QString summary = "Edited using huggle", bool minor = false, WikiSite *site = nullptr);
-        HUGGLE_EX_CORE Collectable_SmartPtr<EditQuery> AppendTextToPage(WikiPage *page, QString text, QString summary = "Edited using huggle", bool minor = false);
+        HUGGLE_EX_CORE Collectable_SmartPtr<EditQuery> PrependTextToPage(WikiPage *page, const QString &text, const QString &summary = "Edited using huggle", bool minor = false);
+        HUGGLE_EX_CORE Collectable_SmartPtr<EditQuery> PrependTextToPage(const QString &page, const QString &text, QString summary = "Edited using huggle", bool minor = false, WikiSite *site = nullptr);
+        HUGGLE_EX_CORE Collectable_SmartPtr<EditQuery> AppendTextToPage(const QString &page, const QString &text, QString summary = "Edited using huggle", bool minor = false, WikiSite *site = nullptr);
+        HUGGLE_EX_CORE Collectable_SmartPtr<EditQuery> AppendTextToPage(WikiPage *page, const QString &text, const QString &summary = "Edited using huggle", bool minor = false);
         HUGGLE_EX_CORE void FinalizeMessages();
         /*!
          * \brief EditPage Run a new EditQuery that will edit the page
@@ -114,10 +114,10 @@ namespace Huggle
          * \param section
          * \return New instance of edit query
          */
-        HUGGLE_EX_CORE Collectable_SmartPtr<EditQuery> EditPage(WikiSite *site, QString page, QString text, QString summary = "Edited using huggle", bool minor = false,
-                                                           QString BaseTimestamp = "", unsigned int section = 0);
-        HUGGLE_EX_CORE Collectable_SmartPtr<EditQuery> EditPage(WikiPage *page, QString text, QString summary = "Edited using huggle", bool minor = false,
-                                                           QString BaseTimestamp = "", unsigned int section = 0);
+        HUGGLE_EX_CORE Collectable_SmartPtr<EditQuery> EditPage(WikiSite *site, const QString &page, const QString &text, const QString &summary = "Edited using huggle", bool minor = false,
+                                                                const QString &BaseTimestamp = "", unsigned int section = 0);
+        HUGGLE_EX_CORE Collectable_SmartPtr<EditQuery> EditPage(WikiPage *page, const QString &text, QString summary = "Edited using huggle", bool minor = false,
+                                                                const QString &BaseTimestamp = "", unsigned int section = 0);
         /*!
          * \brief EvaluateWikiPageContents evaluates the result of query
          * This function can be only used to check the results of query that was created in order to
@@ -136,7 +136,7 @@ namespace Huggle
                                                         QString *title = nullptr);
         HUGGLE_EX_CORE void PatrolEdit(WikiEdit *edit);
         //! \obsolete RetrieveWikiPageContents(WikiPage *page, bool parse = false);
-        HUGGLE_EX_CORE ApiQuery *RetrieveWikiPageContents(QString page, WikiSite *site, bool parse = false);
+        HUGGLE_EX_CORE ApiQuery *RetrieveWikiPageContents(const QString &page, WikiSite *site, bool parse = false);
         HUGGLE_EX_CORE ApiQuery *RetrieveWikiPageContents(WikiPage *page, bool parse = false);
         HUGGLE_EX_CORE Collectable_SmartPtr<ApiQuery> Unwatchlist(WikiPage *page);
         HUGGLE_EX_CORE Collectable_SmartPtr<ApiQuery> Watchlist(WikiPage *page);

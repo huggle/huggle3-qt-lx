@@ -15,12 +15,14 @@
 
 #include "../definitions.hpp"
 #include <QObject>
+#include <QHash>
 #include <QString>
 #include <QList>
 
 namespace Huggle
 {
     class Script;
+    class ScriptFunctionHelp;
     class HUGGLE_EX_CORE GenericJSClass : public QObject
     {
             Q_OBJECT
@@ -29,6 +31,7 @@ namespace Huggle
             virtual ~GenericJSClass();
             virtual Script *GetScript();
             virtual QHash<QString, QString> GetFunctions()=0;
+            virtual QHash<QString, ScriptFunctionHelp> GetFunctionHelp();
 
         protected:
             Script *script;

@@ -15,7 +15,7 @@
 using namespace Huggle;
 Version Version::SupportedMediawiki = Version(HUGGLE_SUPPORTED_MEDIAWIKI_VERSION);
 
-bool Version::IsValid(QString version)
+bool Version::IsValid(const QString& version)
 {
     if (!version.contains("."))
         return false;
@@ -24,7 +24,7 @@ bool Version::IsValid(QString version)
     return true;
 }
 
-static int IndexOfNonIntChar(QString string)
+static int IndexOfNonIntChar(const QString &string)
 {
     int position = 0;
     char min = '0';
@@ -43,7 +43,7 @@ Version::Version()
     this->isValid = false;
 }
 
-Version::Version(QString version)
+Version::Version(const QString& version)
 {
     if (!IsValid(version))
         return;
@@ -71,11 +71,6 @@ Version::Version(QString version)
     }
 
     this->isValid = true;
-}
-
-Version::~Version()
-{
-
 }
 
 bool Version::IsEqual(const Version *b, bool ignore_suffix) const

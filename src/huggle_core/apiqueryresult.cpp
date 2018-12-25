@@ -27,7 +27,7 @@ ApiQueryResult::~ApiQueryResult()
     delete this->Root;
 }
 
-static void ProcessChildXMLNodes(ApiQueryResultNode *hiearchy_root, ApiQueryResult *result, QDomNodeList nodes)
+static void ProcessChildXMLNodes(ApiQueryResultNode *hiearchy_root, ApiQueryResult *result, const QDomNodeList& nodes)
 {
     int id = 0;
     while (id < nodes.count())
@@ -92,7 +92,7 @@ void ApiQueryResult::Process()
     ProcessChildXMLNodes(this->Root, this, result.childNodes());
 }
 
-ApiQueryResultNode *ApiQueryResult::GetNode(QString node_name)
+ApiQueryResultNode *ApiQueryResult::GetNode(const QString& node_name)
 {
     foreach (ApiQueryResultNode *node, this->Nodes)
     {
@@ -102,7 +102,7 @@ ApiQueryResultNode *ApiQueryResult::GetNode(QString node_name)
     return nullptr;
 }
 
-QList<ApiQueryResultNode*> ApiQueryResult::GetNodes(QString node_name)
+QList<ApiQueryResultNode*> ApiQueryResult::GetNodes(const QString& node_name)
 {
     QList<ApiQueryResultNode*> result;
 
@@ -115,7 +115,7 @@ QList<ApiQueryResultNode*> ApiQueryResult::GetNodes(QString node_name)
     return result;
 }
 
-QString ApiQueryResult::GetNodeValue(QString node_name, QString default_value)
+QString ApiQueryResult::GetNodeValue(const QString &node_name, const QString &default_value)
 {
     ApiQueryResultNode *n = this->GetNode(node_name);
     if (!n)
@@ -139,7 +139,7 @@ ApiQueryResultNode::~ApiQueryResultNode()
     HUGGLE_CLEAR_PQ_LIST(this->ChildNodes);
 }
 
-QString ApiQueryResultNode::GetAttribute(QString name, QString default_val)
+QString ApiQueryResultNode::GetAttribute(const QString &name, const QString &default_val)
 {
     if (!this->Attributes.contains(name))
         return default_val;

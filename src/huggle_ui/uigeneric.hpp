@@ -34,10 +34,10 @@ namespace Huggle
          * \param title Title of message box
          * \param text What is displayed in a message
          */
-        HUGGLE_EX_UI int pMessageBox(QWidget *parent, QString title, QString text, MessageBoxStyle st = MessageBoxStyleNormal, bool enforce_stop = false);
-        HUGGLE_EX_UI int MessageBox(QString title, QString text, MessageBoxStyle st = MessageBoxStyleNormal, bool enforce_stop = false, QWidget *parent = nullptr);
+        HUGGLE_EX_UI int pMessageBox(QWidget *parent, const QString& title, const QString& text, MessageBoxStyle st = MessageBoxStyleNormal, bool enforce_stop = false);
+        HUGGLE_EX_UI int MessageBox(const QString& title, const QString& text, MessageBoxStyle st = MessageBoxStyleNormal, bool enforce_stop = false, QWidget *parent = nullptr);
         HUGGLE_EX_UI void DisplayContributionBrowser(WikiUser *User, QWidget *parent = nullptr);
-        HUGGLE_EX_UI void ProcessURL(QUrl link);
+        HUGGLE_EX_UI void ProcessURL(const QUrl& link);
     }
 }
 

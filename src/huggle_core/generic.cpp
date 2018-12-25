@@ -38,7 +38,7 @@ bool Generic::SafeBool(QString value, bool defaultvalue)
     return defaultvalue;
 }
 
-QStringList Generic::CSV2QStringList(QString CSV, QChar separator)
+QStringList Generic::CSV2QStringList(const QString& CSV, QChar separator)
 {
     QStringList result;
     foreach(QString x, CSV.split(separator))
@@ -139,7 +139,7 @@ void Generic::DeveloperError()
                      " developer mode, because you aren't logged into the wiki");
 }
 
-QString Generic::ShrinkText(QString text, int size, bool html, int minimum)
+QString Generic::ShrinkText(const QString &text, int size, bool html, int minimum)
 {
     if (size < 2 || size < minimum)
     {
@@ -174,7 +174,7 @@ QString Generic::IRCQuitDefaultMessage()
     return "Huggle (" + hcfg->HuggleVersion + "), the anti vandalism software. See #huggle on irc://chat.freenode.net";
 }
 
-QString Generic::HtmlEncode(QString text)
+QString Generic::HtmlEncode(const QString& text)
 {
     QString encoded;
     for(int i=0;i<text.size();++i)
@@ -190,7 +190,7 @@ QString Generic::HtmlEncode(QString text)
     return encoded;
 }
 
-QString Generic::MD5(QString data)
+QString Generic::MD5(const QString& data)
 {
     return QString(QCryptographicHash::hash(data.toUtf8(), QCryptographicHash::Md5).toHex());
 }

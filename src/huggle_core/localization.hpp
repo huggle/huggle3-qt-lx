@@ -31,7 +31,7 @@ namespace Huggle
         public:
             //! Creates new instance of language
             //! param name Name of language
-            Language(QString name);
+            Language(const QString& name);
             //! This is a short language name which is used by system
             QString LanguageName;
             //! Long identifier of language that is seen by user
@@ -63,13 +63,13 @@ namespace Huggle
              * using Core::MakeLanguage() and insert that to language list
              * \param name Name of a localization that is a name of language without txt suffix in localization folder
              */
-            void LocalInit(QString name, bool xml = true);
-            QString Localize(QString key);
-            QString Localize(QString key, QStringList parameters);
-            QString Localize(QString key, QString parameter);
-            QString Localize(QString key, QString par1, QString par2);
+            void LocalInit(const QString& name, bool xml = true);
+            QString Localize(const QString &key);
+            QString Localize(const QString &key, const QStringList &parameters);
+            QString Localize(const QString& key, const QString& parameter);
+            QString Localize(const QString &key, const QString &par1, const QString &par2);
             //! Check if key exists by looking it up in default language hash, returns true even if key doesn't exist in preferred language
-            bool KeyExists(QString key);
+            bool KeyExists(const QString& key);
 			
             //! Check whether the preferred language is RightToLeft language.
             bool IsRTL();
@@ -78,8 +78,8 @@ namespace Huggle
             //! Language selected by user this is only a language of interface
             QString PreferredLanguage;
         private:
-            static Language *MakeLanguage(QString text, QString name);
-            static Language *MakeLanguageUsingXML(QString text, QString name);
+            static Language *MakeLanguage(const QString& text, const QString &name);
+            static Language *MakeLanguageUsingXML(const QString& text, const QString& name);
     };
 }
 

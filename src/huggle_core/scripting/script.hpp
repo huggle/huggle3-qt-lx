@@ -27,6 +27,7 @@
 // If you are working in different context than core, you can define your own IDs, but each context is prefixed
 // with some number so that you never get a conflicting number
 #define HUGGLE_SCRIPT_HOOK_SHUTDOWN                             0
+#define HUGGLE_SCRIPT_HOOK_EDIT_BEFORE_PRE_PROCESS              19
 #define HUGGLE_SCRIPT_HOOK_EDIT_PRE_PROCESS                     1
 #define HUGGLE_SCRIPT_HOOK_EDIT_BEFORE_POST_PROCESS             2
 #define HUGGLE_SCRIPT_HOOK_EDIT_POST_PROCESS                    3
@@ -45,11 +46,13 @@
 #define HUGGLE_SCRIPT_HOOK_HAN_MESSAGE                          16
 #define HUGGLE_SCRIPT_HOOK_HAN_RESCORE                          17
 #define HUGGLE_SCRIPT_HOOK_HAN_SUSPICIOUS                       18
+                                                                // 20 (19 already in use)
 
 namespace Huggle
 {
     class GenericJSClass;
     class Script;
+    class ScriptFunctionHelp;
     class WikiEdit;
     class WikiSite;
     class WikiUser;
@@ -57,7 +60,7 @@ namespace Huggle
     class HUGGLE_EX_CORE ScriptException : public Exception
     {
         public:
-            ScriptException(QString text, QString source, Script *scr, bool is_recoverable = true);
+            ScriptException(const QString &text, const QString &source, Script *scr, bool is_recoverable = true);
         private:
             Script *s;
     };
@@ -93,16 +96,16 @@ namespace Huggle
     {
             Q_OBJECT
         public:
-            static Script *GetScriptByPath(QString path);
+            static Script *GetScriptByPath(const QString &path);
             static Script *GetScriptByEngine(QJSEngine *e);
-            static Script *GetScriptByName(QString name);
+            static Script *GetScriptByName(const QString& name);
             static QList<Script*> GetScripts();
-            static QJSValue ProcessURL(QUrl url);
+            static QJSValue ProcessURL(const QUrl& url);
 
             Script();
-            virtual ~Script();
-            virtual bool Load(QString path, QString *error);
-            virtual bool LoadSrc(QString unique_id, QString source, QString *error);
+             ~Script() override;
+            virtual bool Load(const QString &path, QString *error);
+            virtual bool LoadSrc(const QString &unique_id, const QString &source, QString *error);
             virtual void Unload();
             QString GetDescription();
             QString GetName();
@@ -110,13 +113,13 @@ namespace Huggle
             QString GetPath();
             QString GetAuthor();
             bool IsWorking();
-            QJSValue ExecuteFunction(QString function);
-            QJSValue ExecuteFunction(QString function, QJSValueList parameters);
+            QJSValue ExecuteFunction(const QString &function);
+            QJSValue ExecuteFunction(const QString &function, const QJSValueList &parameters);
             virtual unsigned int GetContextID();
             virtual QString GetContext();
             bool IsUnsafe();
-            bool SupportFunction(QString name);
-            QString GetHelpForFunc(QString name);
+            bool SupportFunction(const QString& name);
+            QString GetHelpForFunc(const QString& name);
             QList<QString> GetHooks();
             QList<QString> GetFunctions();
             ScriptMemPool *GetMemPool();
@@ -124,12 +127,13 @@ namespace Huggle
             // External callbacks exists for security reasons - each script can expose its own
             // callbacks for other scripts to execute, but other scripts are only allowed to
             // execute callbacks that were previously exported using these
-            QJSValue ExternalCallback(QString callback, QJSValueList parameters);
-            void RegisterExternalCallback(QString callback);
-            void UnregisterExternalCallback(QString callback);
-            bool HasExternalCallback(QString callback);
+            QJSValue ExternalCallback(const QString& callback, const QJSValueList& parameters);
+            void RegisterExternalCallback(const QString& callback);
+            void UnregisterExternalCallback(const QString& callback);
+            bool HasExternalCallback(const QString& callback);
             // HOOKS
             void Hook_Shutdown();
+            bool Hook_EditBeforePreProcess(WikiEdit *edit);
             void Hook_EditPreProcess(WikiEdit *edit);
             void Hook_EditBeforePostProcess(WikiEdit *edit);
             void Hook_EditPostProcess(WikiEdit *edit);
@@ -143,29 +147,29 @@ namespace Huggle
             void Hook_WarningFinished(WikiEdit *edit);
             void Hook_OnLocalConfigRead();
             void Hook_OnLocalConfigWrite();
-            bool Hook_HAN_Good(WikiEdit *edit, QString nick, QString ident, QString host);
-            bool Hook_HAN_Suspicious(WikiEdit *edit, QString nick, QString ident, QString host);
-            bool Hook_HAN_Rescore(WikiEdit *edit, long score, QString nick, QString ident, QString host);
-            bool Hook_HAN_Revert(WikiEdit *edit, QString nick, QString ident, QString host);
-            bool Hook_HAN_Message(WikiSite *w, QString message, QString nick, QString ident, QString host);
-            void SubscribeHook(int hook, QString function_name);
+            bool Hook_HAN_Good(WikiEdit *edit, const QString& nick, const QString& ident, const QString& host);
+            bool Hook_HAN_Suspicious(WikiEdit *edit, const QString& nick, const QString& ident, const QString& host);
+            bool Hook_HAN_Rescore(WikiEdit *edit, long score, const QString& nick, const QString& ident, const QString& host);
+            bool Hook_HAN_Revert(WikiEdit *edit, const QString& nick, const QString& ident, const QString& host);
+            bool Hook_HAN_Message(WikiSite *w, const QString& message, const QString& nick, const QString& ident, const QString& host);
+            void SubscribeHook(int hook, const QString& function_name);
             void UnsubscribeHook(int hook);
             bool HookSubscribed(int hook);
-            virtual int GetHookID(QString hook);
+            virtual int GetHookID(const QString &hook);
         protected:
             static QList<QString> loadedPaths;
             static QHash<QString, Script*> scripts;
             bool loadSource(QString source, QString *error);
-            bool executeFunctionAsBool(QString function, QJSValueList parameters);
-            bool executeFunctionAsBool(QString function);
-            QString executeFunctionAsString(QString function);
-            QString executeFunctionAsString(QString function, QJSValueList parameters);
-            QJSValue executeFunction(QString function, QJSValueList parameters);
-            QJSValue executeFunction(QString function);
-            virtual void registerFunction(QString name, QString help = "", bool is_unsafe = false);
-            virtual void registerClass(QString name, GenericJSClass *c);
+            bool executeFunctionAsBool(const QString &function, const QJSValueList &parameters);
+            bool executeFunctionAsBool(const QString &function);
+            QString executeFunctionAsString(const QString &function);
+            QString executeFunctionAsString(const QString &function, const QJSValueList &parameters);
+            QJSValue executeFunction(const QString &function, const QJSValueList &parameters);
+            QJSValue executeFunction(const QString& function);
+            virtual void registerFunction(const QString &name, const QString &help = "", bool is_unsafe = false);
+            virtual void registerClass(const QString &name, GenericJSClass *c);
             virtual void registerClasses();
-            virtual void registerHook(QString name, int parameters, QString help = "", bool is_unsafe = false);
+            virtual void registerHook(const QString &name, int parameters, const QString &help = "", bool is_unsafe = false);
             //! Makes all functions available to ECMA
             virtual void registerFunctions();
             QJSEngine *engine;
@@ -174,6 +178,7 @@ namespace Huggle
             QList<QString> hooksExported;
             QList<QString> functionsExported;
             QHash<QString, QString> functionsHelp;
+            QHash<QString, ScriptFunctionHelp> functionsDocs;
             QString sourceCode;
             QString scriptPath;
             QString scriptName;

@@ -36,8 +36,8 @@ Query::Query()
 {
     this->Type = QueryNull;
     this->status = StatusNull;
-    this->ID = this->lastID;
-    this->lastID++;
+    this->ID = Query::lastID;
+    Query::lastID++;
     this->HiddenQuery = false;
     this->Timeout = 60;
     this->StartTime = QDateTime::currentDateTime();

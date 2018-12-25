@@ -55,7 +55,7 @@ namespace Huggle
         public:
             HuggleLog_Line(HuggleLog_Line *line);
             HuggleLog_Line(const HuggleLog_Line &line);
-            HuggleLog_Line(QString text, QString date);
+            HuggleLog_Line(const QString &text, const QString &date);
             QString Text;
             QString Date;
             HuggleLogType Type;
@@ -96,11 +96,11 @@ namespace Huggle
             /*!
              * \param Message Message to log
              */
-            virtual void Log(QString Message, bool TerminalOnly = false, HuggleLogType Type = HuggleLogType_Normal);
-            virtual void ErrorLog(QString Message, bool TerminalOnly = false);
-            virtual void WarningLog(QString Message, bool TerminalOnly = false);
+            virtual void Log(const QString &Message, bool TerminalOnly = false, HuggleLogType Type = HuggleLogType_Normal);
+            virtual void ErrorLog(const QString &Message, bool TerminalOnly = false);
+            virtual void WarningLog(const QString &Message, bool TerminalOnly = false);
             //! This log is only shown if verbosity is same or larger than requested verbosity
-            virtual void DebugLog(QString Message, unsigned int Verbosity = 1);
+            virtual void DebugLog(const QString &Message, unsigned int Verbosity = 1);
             //! Return a ring log represented as 1 huge string
             QString RingLogToText();
             /*!
@@ -108,7 +108,7 @@ namespace Huggle
              * \return QStringList
              */
             QStringList RingLogToQStringList();
-            void InsertToRingLog(HuggleLog_Line line);
+            void InsertToRingLog(const HuggleLog_Line& line);
             QList<HuggleLog_Line> RingLogToList();
             //! This is a list of logs that needs to be written, it exist so that logs can be written from
             //! other threads as well, writing to syslog from other thread would crash huggle

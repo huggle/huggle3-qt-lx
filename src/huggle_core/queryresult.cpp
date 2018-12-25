@@ -41,14 +41,14 @@ void QueryResult::SetError()
     this->ErrorMessage = _l("error-unknown");
 }
 
-void QueryResult::SetError(QString error)
+void QueryResult::SetError(const QString &error)
 {
     this->ErrorCode = 1;
     this->ErrorMessage = error;
     this->Failed = true;
 }
 
-void QueryResult::SetError(int error, QString details)
+void QueryResult::SetError(int error, const QString &details)
 {
     this->ErrorMessage = details;
     this->Failed = true;

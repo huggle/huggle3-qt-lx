@@ -11,6 +11,7 @@
 // Copyright (c) Petr Bena 2018
 
 #include "script.hpp"
+#include "scriptfunctionhelp.hpp"
 #include "jsmarshallinghelper.hpp"
 #include "huggleunsafejs.hpp"
 #include "hugglequeryjs.hpp"
@@ -34,7 +35,7 @@ using namespace Huggle;
 QList<QString> Script::loadedPaths;
 QHash<QString, Script*> Script::scripts;
 
-Script *Script::GetScriptByPath(QString path)
+Script *Script::GetScriptByPath(const QString &path)
 {
     foreach (Script *s, Script::scripts)
     {
@@ -56,7 +57,7 @@ Script *Script::GetScriptByEngine(QJSEngine *e)
     return nullptr;
 }
 
-Script *Script::GetScriptByName(QString name)
+Script *Script::GetScriptByName(const QString& name)
 {
     foreach (Script *s, Script::scripts)
     {
@@ -72,7 +73,7 @@ QList<Script *> Script::GetScripts()
     return Script::scripts.values();
 }
 
-QJSValue Script::ProcessURL(QUrl url)
+QJSValue Script::ProcessURL(const QUrl& url)
 {
     if (url.scheme() != "hgjs")
         return QJSValue::NullValue;
@@ -113,7 +114,7 @@ Script::~Script()
     delete this->engine;
 }
 
-bool Script::Load(QString path, QString *error)
+bool Script::Load(const QString &path, QString *error)
 {
     if (this->engine || this->isLoaded)
     {
@@ -141,7 +142,7 @@ bool Script::Load(QString path, QString *error)
     return this->loadSource(sx, error);
 }
 
-bool Script::LoadSrc(QString unique_id, QString source, QString *error)
+bool Script::LoadSrc(const QString &unique_id, const QString &source, QString *error)
 {
     if (this->engine || this->isLoaded)
     {
@@ -198,12 +199,12 @@ bool Script::IsWorking()
     return this->executeFunctionAsBool("ext_is_working");
 }
 
-QJSValue Script::ExecuteFunction(QString function)
+QJSValue Script::ExecuteFunction(const QString &function)
 {
     return this->executeFunction(function);
 }
 
-QJSValue Script::ExecuteFunction(QString function, QJSValueList parameters)
+QJSValue Script::ExecuteFunction(const QString &function, const QJSValueList &parameters)
 {
     return this->executeFunction(function, parameters);
 }
@@ -223,12 +224,12 @@ bool Script::IsUnsafe()
     return this->isUnsafe;
 }
 
-bool Script::SupportFunction(QString name)
+bool Script::SupportFunction(const QString& name)
 {
     return this->functionsExported.contains(name);
 }
 
-QString Script::GetHelpForFunc(QString name)
+QString Script::GetHelpForFunc(const QString& name)
 {
     if (!this->functionsHelp.contains(name))
         return QString();
@@ -255,24 +256,24 @@ QJSEngine *Script::GetEngine()
     return this->engine;
 }
 
-QJSValue Script::ExternalCallback(QString callback, QJSValueList parameters)
+QJSValue Script::ExternalCallback(const QString& callback, const QJSValueList& parameters)
 {
     if (!this->externalCallbacks.contains(callback))
         return QJSValue::NullValue;
     return this->executeFunction(callback, parameters);
 }
 
-void Script::RegisterExternalCallback(QString callback)
+void Script::RegisterExternalCallback(const QString& callback)
 {
     this->externalCallbacks.append(callback);
 }
 
-void Script::UnregisterExternalCallback(QString callback)
+void Script::UnregisterExternalCallback(const QString& callback)
 {
     this->externalCallbacks.removeAll(callback);
 }
 
-bool Script::HasExternalCallback(QString callback)
+bool Script::HasExternalCallback(const QString& callback)
 {
     return this->externalCallbacks.contains(callback);
 }
@@ -282,6 +283,19 @@ void Script::Hook_Shutdown()
     if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_SHUTDOWN))
         return;
     this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_SHUTDOWN]);
+}
+
+bool Script::Hook_EditBeforePreProcess(WikiEdit *edit)
+{
+    if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_EDIT_BEFORE_PRE_PROCESS))
+        return true;
+
+    int pool_id = this->memPool->RegisterEdit(edit);
+    QJSValueList parameters;
+    parameters.append(JSMarshallingHelper::FromEdit(edit, this->engine, pool_id));
+    bool rv = this->executeFunctionAsBool(this->attachedHooks[HUGGLE_SCRIPT_HOOK_EDIT_BEFORE_PRE_PROCESS], parameters);
+    this->memPool->UnregisterEdit(edit);
+    return rv;
 }
 
 void Script::Hook_EditPreProcess(WikiEdit *edit)
@@ -437,7 +451,7 @@ void Script::Hook_OnLocalConfigWrite()
     this->executeFunction(this->attachedHooks[HUGGLE_SCRIPT_HOOK_LOCALCONFIG_WRITE]);
 }
 
-bool Script::Hook_HAN_Good(WikiEdit *edit, QString nick, QString ident, QString host)
+bool Script::Hook_HAN_Good(WikiEdit *edit, const QString& nick, const QString& ident, const QString& host)
 {
     if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_HAN_GOOD))
         return true;
@@ -453,7 +467,7 @@ bool Script::Hook_HAN_Good(WikiEdit *edit, QString nick, QString ident, QString 
     return result;
 }
 
-bool Script::Hook_HAN_Suspicious(WikiEdit *edit, QString nick, QString ident, QString host)
+bool Script::Hook_HAN_Suspicious(WikiEdit *edit, const QString& nick, const QString& ident, const QString& host)
 {
     if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_HAN_SUSPICIOUS))
         return true;
@@ -469,7 +483,7 @@ bool Script::Hook_HAN_Suspicious(WikiEdit *edit, QString nick, QString ident, QS
     return result;
 }
 
-bool Script::Hook_HAN_Rescore(WikiEdit *edit, long score, QString nick, QString ident, QString host)
+bool Script::Hook_HAN_Rescore(WikiEdit *edit, long score, const QString& nick, const QString& ident, const QString& host)
 {
     if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_HAN_RESCORE))
         return true;
@@ -486,7 +500,7 @@ bool Script::Hook_HAN_Rescore(WikiEdit *edit, long score, QString nick, QString 
     return result;
 }
 
-bool Script::Hook_HAN_Revert(WikiEdit *edit, QString nick, QString ident, QString host)
+bool Script::Hook_HAN_Revert(WikiEdit *edit, const QString& nick, const QString& ident, const QString& host)
 {
     if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_HAN_REVERT))
         return true;
@@ -502,7 +516,7 @@ bool Script::Hook_HAN_Revert(WikiEdit *edit, QString nick, QString ident, QStrin
     return result;
 }
 
-bool Script::Hook_HAN_Message(WikiSite *w, QString message, QString nick, QString ident, QString host)
+bool Script::Hook_HAN_Message(WikiSite *w, const QString& message, const QString& nick, const QString& ident, const QString& host)
 {
     if (!this->attachedHooks.contains(HUGGLE_SCRIPT_HOOK_HAN_MESSAGE))
         return true;
@@ -516,7 +530,7 @@ bool Script::Hook_HAN_Message(WikiSite *w, QString message, QString nick, QStrin
     return this->executeFunctionAsBool(this->attachedHooks[HUGGLE_SCRIPT_HOOK_HAN_MESSAGE], params);
 }
 
-void Script::SubscribeHook(int hook, QString function_name)
+void Script::SubscribeHook(int hook, const QString& function_name)
 {
     if (this->attachedHooks.contains(hook))
         this->attachedHooks[hook] = function_name;
@@ -535,12 +549,14 @@ bool Script::HookSubscribed(int hook)
     return this->attachedHooks.contains(hook);
 }
 
-int Script::GetHookID(QString hook)
+int Script::GetHookID(const QString &hook)
 {
     // Resolve hook ID from string ID
     // If doesn't exist, return -1
     if (hook == "shutdown")
         return HUGGLE_SCRIPT_HOOK_SHUTDOWN;
+    if (hook == "edit_before_pre_process")
+        return HUGGLE_SCRIPT_HOOK_EDIT_BEFORE_PRE_PROCESS;
     if (hook == "edit_after_pre_process")
         return HUGGLE_SCRIPT_HOOK_EDIT_PRE_PROCESS;
     if (hook == "edit_before_post_process")
@@ -639,7 +655,7 @@ bool Script::loadSource(QString source, QString *error)
 
     this->scriptName = this->scriptName.toLower();
 
-    if (this->scripts.contains(this->scriptName))
+    if (Script::scripts.contains(this->scriptName))
     {
         *error = this->scriptName + " is already loaded";
         this->isWorking = false;
@@ -690,27 +706,27 @@ bool Script::loadSource(QString source, QString *error)
     return true;
 }
 
-bool Script::executeFunctionAsBool(QString function, QJSValueList parameters)
+bool Script::executeFunctionAsBool(const QString &function, const QJSValueList &parameters)
 {
     return this->executeFunction(function, parameters).toBool();
 }
 
-bool Script::executeFunctionAsBool(QString function)
+bool Script::executeFunctionAsBool(const QString &function)
 {
     return this->executeFunctionAsBool(function, QJSValueList());
 }
 
-QString Script::executeFunctionAsString(QString function)
+QString Script::executeFunctionAsString(const QString &function)
 {
     return this->executeFunction(function, QJSValueList()).toString();
 }
 
-QString Script::executeFunctionAsString(QString function, QJSValueList parameters)
+QString Script::executeFunctionAsString(const QString &function, const QJSValueList &parameters)
 {
     return this->executeFunction(function, parameters).toString();
 }
 
-QJSValue Script::executeFunction(QString function, QJSValueList parameters)
+QJSValue Script::executeFunction(const QString &function, const QJSValueList &parameters)
 {
     if (!this->isLoaded)
         throw new ScriptException("Call to script function of extension that isn't loaded", BOOST_CURRENT_FUNCTION, this);
@@ -736,19 +752,28 @@ QJSValue Script::executeFunction(QString function, QJSValueList parameters)
     return result;
 }
 
-QJSValue Script::executeFunction(QString function)
+QJSValue Script::executeFunction(const QString& function)
 {
     return this->executeFunction(function, QJSValueList());
 }
 
-void Script::registerClass(QString name, GenericJSClass *c)
+void Script::registerClass(const QString &name, GenericJSClass *c)
 {
     QHash<QString, QString> functions = c->GetFunctions();
+    QHash<QString, ScriptFunctionHelp> function_help = c->GetFunctionHelp();
+
     foreach (QString function, functions.keys())
     {
         this->functionsExported.append(name + "." + function);
         this->functionsHelp.insert(name + "." + function, functions[function]);
     }
+
+    foreach (QString function, function_help.keys())
+    {
+        this->functionsDocs.insert(name + "." + function, function_help[function]);
+        this->functionsDocs[function].FunctionName = function;
+    }
+
     // Register this class for later removal
     this->classes.append(c);
     this->engine->globalObject().setProperty(name, engine->newQObject(c));
@@ -768,7 +793,7 @@ void Script::registerClasses()
     this->registerClass("huggle_query", new HuggleQueryJS(this));
 }
 
-void Script::registerFunction(QString name, QString help, bool is_unsafe)
+void Script::registerFunction(const QString &name, const QString &help, bool is_unsafe)
 {
     // Check if this script is allowed to access unsafe functions
     if (is_unsafe && !this->isUnsafe)
@@ -778,7 +803,7 @@ void Script::registerFunction(QString name, QString help, bool is_unsafe)
     this->functionsHelp.insert(name, help);
 }
 
-void Script::registerHook(QString name, int parameters, QString help, bool is_unsafe)
+void Script::registerHook(const QString &name, int parameters, const QString &help, bool is_unsafe)
 {
     (void)parameters;
     (void)is_unsafe;
@@ -793,6 +818,7 @@ void Script::registerFunctions()
     this->registerHook("ext_unload", 0, "(): called when extension is being unloaded from system");
     this->registerHook("ext_is_working", 0, "(): must exist and must return true, if returns false, extension is considered crashed");
     this->registerHook("shutdown", 0, "(): called on exit of Huggle");
+    this->registerHook("edit_before_pre_process", 1, "(WikiEdit edit): called before edit is considered for preprocessing, return false to ignore this edit");
     this->registerHook("edit_after_pre_process", 1, "(WikiEdit edit): called when edit is pre processed");
     this->registerHook("edit_before_post_process", 1, "(WikiEdit edit): called when edit is post processed");
     this->registerHook("edit_load_to_queue", 1, "(WikiEdit edit): called when edit is loaded to queue, if returns false, edit will be removed");
@@ -809,7 +835,7 @@ void Script::registerFunctions()
     this->registerHook("han_message", 5, "(WikiSite site, QString message, string nick, string ident, string host) - returns bool: called when someone sends HAN command, has to return true, otherwise message is ignored");
 }
 
-ScriptException::ScriptException(QString text, QString source, Script *scr, bool is_recoverable) : Exception(text, source, is_recoverable)
+ScriptException::ScriptException(const QString &text, const QString &source, Script *scr, bool is_recoverable) : Exception(text, source, is_recoverable)
 {
     this->s = scr;
 }

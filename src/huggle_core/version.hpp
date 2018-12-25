@@ -31,14 +31,14 @@ namespace Huggle
              * \brief Returns whether or not a string is a valid version number
              * \param String to check
              */
-            static bool IsValid(QString version);
+            static bool IsValid(const QString& version);
             /*!
              * \brief The version of mediawiki supported by huggle
              */
             static Version SupportedMediawiki;
             Version();
-            Version(QString version);
-            ~Version();
+            Version(const QString& version);
+            ~Version()=default;
             /*!
              * \brief Returns the major section of the version number
              */

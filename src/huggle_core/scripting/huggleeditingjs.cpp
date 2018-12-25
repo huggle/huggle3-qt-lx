@@ -12,6 +12,7 @@
 
 #include "huggleeditingjs.hpp"
 #include "script.hpp"
+#include "scriptfunctionhelp.hpp"
 #include <huggle_core/syslog.hpp>
 #include <huggle_core/wikipage.hpp>
 #include <huggle_core/configuration.hpp>
@@ -30,6 +31,14 @@ HuggleEditingJS::HuggleEditingJS(Script *s) : GenericJSClass(s)
 QHash<QString, QString> HuggleEditingJS::GetFunctions()
 {
     return this->functions;
+}
+
+QHash<QString, ScriptFunctionHelp> HuggleEditingJS::GetFunctionHelp()
+{
+    QHash <QString, ScriptFunctionHelp> help;
+    help.insert("append_text", ScriptFunctionHelp("appends text to a wiki page", "string page_name, string text, string summary, [bool minor = false]"));
+    help.insert("patrol_edit", ScriptFunctionHelp("mark edit as patrolled", "WikiEdit edit", "bool: True on success", "3.4.5"));
+    return help;
 }
 
 void HuggleEditingJS::append_text(QString page_name, QString text, QString summary, bool minor)

@@ -137,7 +137,7 @@ ApiQueryResult *ApiQuery::GetApiQueryResult()
     return reinterpret_cast<ApiQueryResult*>(this->Result);
 }
 
-void ApiQuery::SetCustomActionPart(QString action, bool editing, bool enforce_login, bool is_continuous)
+void ApiQuery::SetCustomActionPart(const QString &action, bool editing, bool enforce_login, bool is_continuous)
 {
     this->SetAction(ActionCustom);
     this->actionPart = action;
@@ -192,7 +192,7 @@ void ApiQuery::SetToken(Token token, QString name, QString value)
     this->SetParam(name, value);
 }
 
-void ApiQuery::SetParam(QString name, QString value)
+void ApiQuery::SetParam(const QString& name, const QString& value)
 {
     if (this->params.contains(name))
         this->params[name] = value;
@@ -200,7 +200,7 @@ void ApiQuery::SetParam(QString name, QString value)
         this->params.insert(name, value);
 }
 
-static void WriteFile(QString text)
+static void WriteFile(const QString& text)
 {
     QFile *file = new QFile(hcfg->QueryDebugPath);
     if (file->open(QIODevice::Append))

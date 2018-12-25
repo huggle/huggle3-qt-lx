@@ -111,6 +111,23 @@ void Huggle::Hooks::EditAfterPostProcess(Huggle::WikiEdit *edit)
     }
 }
 
+bool Huggle::Hooks::EditBeforePreProcess(Huggle::WikiEdit *edit)
+{
+    foreach(Huggle::iExtension *extension, Huggle::Core::HuggleCore->Extensions)
+    {
+        if (extension->IsWorking())
+            if (!extension->Hook_EditBeforePreProcessing(reinterpret_cast<void*>(edit)))
+                return false;
+    }
+    foreach (Script *s, Script::GetScripts())
+    {
+        if (s->IsWorking())
+            if (!s->Hook_EditBeforePreProcess(edit))
+                return false;
+    }
+    return true;
+}
+
 bool Huggle::Hooks::OnEditLoadToQueue(Huggle::WikiEdit *edit)
 {
     foreach(Huggle::iExtension *extension, Huggle::Core::HuggleCore->Extensions)
@@ -239,7 +256,7 @@ void Huggle::Hooks::FeedProvidersOnInit(Huggle::WikiSite *site)
     }
 }
 
-bool Huggle::Hooks::HAN_Suspicious(Huggle::WikiEdit *edit, QString nick, QString ident, QString host)
+bool Huggle::Hooks::HAN_Suspicious(Huggle::WikiEdit *edit, const QString &nick, const QString &ident, const QString &host)
 {
     foreach (Script *s, Script::GetScripts())
     {
@@ -254,7 +271,7 @@ bool Huggle::Hooks::HAN_Suspicious(Huggle::WikiEdit *edit, QString nick, QString
     return true;
 }
 
-bool Huggle::Hooks::HAN_Revert(Huggle::WikiEdit *edit, QString nick, QString ident, QString host)
+bool Huggle::Hooks::HAN_Revert(Huggle::WikiEdit *edit, const QString &nick, const QString &ident, const QString &host)
 {
     foreach (Script *s, Script::GetScripts())
     {
@@ -269,7 +286,7 @@ bool Huggle::Hooks::HAN_Revert(Huggle::WikiEdit *edit, QString nick, QString ide
     return true;
 }
 
-bool Huggle::Hooks::HAN_Good(Huggle::WikiEdit *edit, QString nick, QString ident, QString host)
+bool Huggle::Hooks::HAN_Good(Huggle::WikiEdit *edit, const QString &nick, const QString &ident, const QString &host)
 {
     foreach (Script *s, Script::GetScripts())
     {
@@ -284,7 +301,7 @@ bool Huggle::Hooks::HAN_Good(Huggle::WikiEdit *edit, QString nick, QString ident
     return true;
 }
 
-bool Huggle::Hooks::HAN_Rescore(Huggle::WikiEdit *edit, long score, QString nick, QString ident, QString host)
+bool Huggle::Hooks::HAN_Rescore(Huggle::WikiEdit *edit, long score, const QString &nick, const QString &ident, const QString &host)
 {
     foreach (Script *s, Script::GetScripts())
     {
@@ -299,7 +316,7 @@ bool Huggle::Hooks::HAN_Rescore(Huggle::WikiEdit *edit, long score, QString nick
     return true;
 }
 
-bool Huggle::Hooks::HAN_Message(Huggle::WikiSite *site, QString message, QString nick, QString ident, QString host)
+bool Huggle::Hooks::HAN_Message(Huggle::WikiSite *site, const QString &message, const QString &nick, const QString &ident, const QString &host)
 {
     foreach (Script *s, Script::GetScripts())
     {
@@ -314,9 +331,9 @@ bool Huggle::Hooks::HAN_Message(Huggle::WikiSite *site, QString message, QString
     return true;
 }
 
-Huggle::Message *Huggle::Hooks::MessageUser(Huggle::WikiUser *user, QString text, QString title, QString summary, bool insert_section,
+Huggle::Message *Huggle::Hooks::MessageUser(Huggle::WikiUser *user, const QString& text, const QString& title, const QString& summary, bool insert_section,
                                             Query *dependency, bool no_suffix, bool section_keep, bool autoremove,
-                                            QString base_timestamp, bool create_only, bool fresh_only)
+                                            const QString& base_timestamp, bool create_only, bool fresh_only)
 {
     foreach(Huggle::iExtension *e, Huggle::Core::HuggleCore->Extensions)
     {
@@ -410,22 +427,22 @@ void Huggle::Hooks::SilentReport(Huggle::WikiUser *u)
     Events::Global->on_SReport(u);
 }
 
-void Huggle::Hooks::ShowMessage(QString title, QString message)
+void Huggle::Hooks::ShowMessage(const QString &title, const QString &message)
 {
     Events::Global->on_SMessage(title, message);
 }
 
-void Huggle::Hooks::ShowError(QString title, QString message)
+void Huggle::Hooks::ShowError(const QString &title, const QString &message)
 {
     Events::Global->on_SError(title, message);
 }
 
-void Huggle::Hooks::ShowWarning(QString title, QString message)
+void Huggle::Hooks::ShowWarning(const QString &title, const QString &message)
 {
     Events::Global->on_SWarning(title, message);
 }
 
-bool Huggle::Hooks::ShowYesNoQuestion(QString title, QString message, bool default_answer)
+bool Huggle::Hooks::ShowYesNoQuestion(const QString &title, const QString &message, bool default_answer)
 {
     return Events::Global->on_SYesNoQs(title, message, default_answer);
 }

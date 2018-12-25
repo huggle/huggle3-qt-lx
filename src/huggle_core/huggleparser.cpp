@@ -21,7 +21,7 @@
 
 using namespace Huggle;
 
-QString HuggleParser::ConfigurationParse(QString key, QString content, QString missing)
+QString HuggleParser::ConfigurationParse(const QString &key, const QString &content, const QString &missing)
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     /// \todo this parses the config a lot different than HG2 (here only one line, mising replaces...)
@@ -49,12 +49,12 @@ QString HuggleParser::ConfigurationParse(QString key, QString content, QString m
     return missing;
 }
 
-bool HuggleParser::ConfigurationParseBool(QString key, QString content, bool missing)
+bool HuggleParser::ConfigurationParseBool(const QString &key, const QString &content, bool missing)
 {
     return Generic::SafeBool(ConfigurationParse(key, content, Generic::Bool2String(missing)));
 }
 
-QString HuggleParser::GetSummaryOfWarningTypeFromWarningKey(QString key, ProjectConfiguration *project_conf, UserConfiguration *user_conf)
+QString HuggleParser::GetSummaryOfWarningTypeFromWarningKey(const QString& key, ProjectConfiguration *project_conf, UserConfiguration *user_conf)
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     foreach (QString line, project_conf->RevertSummaries)
@@ -89,7 +89,7 @@ QString HuggleParser::GetKeyOfWarningTypeFromWarningName(QString id, ProjectConf
     return id;
 }
 
-static QList<ScoreWord> ParseScoreWords(QString text, QString wt)
+static QList<ScoreWord> ParseScoreWords(QString text, const QString& wt)
 {
     QList<ScoreWord> contents;
     while (text.contains(wt + "("))
@@ -99,7 +99,7 @@ static QList<ScoreWord> ParseScoreWords(QString text, QString wt)
         {
             return contents;
         }
-        int score = text.mid(0, text.indexOf(")")).toInt();
+        int score = text.midRef(0, text.indexOf(")")).toInt();
         if (score == 0)
         {
             continue;
@@ -114,7 +114,7 @@ static QList<ScoreWord> ParseScoreWords(QString text, QString wt)
         QStringList word;
         while (line < lines.count())
         {
-            QString l = lines.at(line);
+            const QString& l = lines.at(line);
             QStringList items = l.split(",");
             foreach(QString w, items)
             {
@@ -133,25 +133,25 @@ static QList<ScoreWord> ParseScoreWords(QString text, QString wt)
     return contents;
 }
 
-void HuggleParser::ParseNoTalkWords(QString text, WikiSite *site)
+void HuggleParser::ParseNoTalkWords(const QString &text, WikiSite *site)
 {
     site->ProjectConfig->NoTalkScoreWords.clear();
     site->ProjectConfig->NoTalkScoreWords = ParseScoreWords(text, "score-words-no-talk");
 }
 
-void HuggleParser::ParseNoTalkPatterns(QString text, WikiSite *site)
+void HuggleParser::ParseNoTalkPatterns(const QString &text, WikiSite *site)
 {
     site->ProjectConfig->NoTalkScoreParts.clear();
     site->ProjectConfig->NoTalkScoreParts = ParseScoreWords(text, "score-parts-no-talk");
 }
 
-void HuggleParser::ParsePatterns(QString text, WikiSite *site)
+void HuggleParser::ParsePatterns(const QString &text, WikiSite *site)
 {
     site->ProjectConfig->ScoreParts.clear();
     site->ProjectConfig->ScoreParts = ParseScoreWords(text, "score-parts");
 }
 
-void HuggleParser::ParseWords(QString text, WikiSite *site)
+void HuggleParser::ParseWords(const QString &text, WikiSite *site)
 {
     site->ProjectConfig->ScoreWords.clear();
     site->ProjectConfig->ScoreWords = ParseScoreWords(text, "score-words");
@@ -183,7 +183,7 @@ QString HuggleParser::GetKeyFromSSItem(QString item)
     return item;
 }
 
-static int DateMark(QString page, WikiSite *site)
+static int DateMark(const QString& page, WikiSite *site)
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     int m = 0;
@@ -327,7 +327,7 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt, WikiSite *site)
     return 0;
 }
 
-QStringList HuggleParser::ConfigurationParse_QL(QString key, QString content, bool CS)
+QStringList HuggleParser::ConfigurationParse_QL(const QString &key, const QString &content, bool CS)
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     QStringList list;
@@ -422,7 +422,7 @@ QStringList HuggleParser::ConfigurationParse_QL(QString key, QString content, bo
     return list;
 }
 
-QStringList HuggleParser::ConfigurationParse_QL(QString key, QString content, QStringList list, bool CS)
+QStringList HuggleParser::ConfigurationParse_QL(const QString &key, const QString &content, QStringList list, bool CS)
 {
     QStringList result = HuggleParser::ConfigurationParse_QL(key, content, CS);
     if (result.count() == 0)
@@ -432,7 +432,7 @@ QStringList HuggleParser::ConfigurationParse_QL(QString key, QString content, QS
     return result;
 }
 
-QStringList HuggleParser::ConfigurationParseTrimmed_QL(QString key, QString content, bool CS, bool RemoveNull)
+QStringList HuggleParser::ConfigurationParseTrimmed_QL(const QString &key, const QString &content, bool CS, bool RemoveNull)
 {
     QStringList result = HuggleParser::ConfigurationParse_QL(key, content, CS);
     QStringList trimmed;
@@ -457,7 +457,7 @@ QStringList HuggleParser::ConfigurationParseTrimmed_QL(QString key, QString cont
     return trimmed;
 }
 
-static HuggleQueueFilterMatch F2B(QString result)
+static HuggleQueueFilterMatch F2B(const QString& result)
 {
     if (result == "exclude")
         return HuggleQueueFilterMatchExclude;
@@ -671,7 +671,7 @@ QString HuggleParser::FetchYAML(QString source, bool *failed)
     return source;
 }
 
-bool HuggleParser::YAML2Bool(QString key, YAML::Node &node, bool missing)
+bool HuggleParser::YAML2Bool(const QString& key, YAML::Node &node, bool missing)
 {
     try
     {
@@ -689,7 +689,7 @@ bool HuggleParser::YAML2Bool(QString key, YAML::Node &node, bool missing)
     return missing;
 }
 
-QString HuggleParser::YAML2String(QString key, YAML::Node &node, QString missing)
+QString HuggleParser::YAML2String(const QString& key, YAML::Node &node, const QString &missing)
 {
     try
     {
@@ -709,7 +709,7 @@ QString HuggleParser::YAML2String(QString key, YAML::Node &node, QString missing
     return missing;
 }
 
-int HuggleParser::YAML2Int(QString key, YAML::Node &node, int missing)
+int HuggleParser::YAML2Int(const QString& key, YAML::Node &node, int missing)
 {
     try
     {
@@ -727,7 +727,7 @@ int HuggleParser::YAML2Int(QString key, YAML::Node &node, int missing)
     return missing;
 }
 
-unsigned int HuggleParser::YAML2UInt(QString key, YAML::Node &node, unsigned int missing)
+unsigned int HuggleParser::YAML2UInt(const QString& key, YAML::Node &node, unsigned int missing)
 {
     try
     {
@@ -745,7 +745,7 @@ unsigned int HuggleParser::YAML2UInt(QString key, YAML::Node &node, unsigned int
     return missing;
 }
 
-double HuggleParser::YAML2Double(QString key, YAML::Node &node, double missing)
+double HuggleParser::YAML2Double(const QString& key, YAML::Node &node, double missing)
 {
     try
     {
@@ -763,7 +763,7 @@ double HuggleParser::YAML2Double(QString key, YAML::Node &node, double missing)
     return missing;
 }
 
-long long HuggleParser::YAML2LongLong(QString key, YAML::Node &node, long long missing)
+long long HuggleParser::YAML2LongLong(const QString& key, YAML::Node &node, long long missing)
 {
     try
     {
@@ -817,13 +817,13 @@ QStringList HuggleParser::YAML2QStringList(YAML::Node &node, QStringList missing
     return missing;
 }
 
-QStringList HuggleParser::YAML2QStringList(QString key, YAML::Node &node, bool *ok)
+QStringList HuggleParser::YAML2QStringList(const QString &key, YAML::Node &node, bool *ok)
 {
     QStringList missing;
     return YAML2QStringList(key, node, missing, ok);
 }
 
-QStringList HuggleParser::YAML2QStringList(QString key, YAML::Node &node, QStringList missing, bool *ok)
+QStringList HuggleParser::YAML2QStringList(const QString& key, YAML::Node &node, QStringList missing, bool *ok)
 {
     if (ok)
         *ok = false;
@@ -845,7 +845,7 @@ QStringList HuggleParser::YAML2QStringList(QString key, YAML::Node &node, QStrin
     return missing;
 }
 
-QList<QStringList> HuggleParser::YAML2QListOfQStringList(QString key, YAML::Node &node, bool *ok)
+QList<QStringList> HuggleParser::YAML2QListOfQStringList(const QString& key, YAML::Node &node, bool *ok)
 {
     QList<QStringList> results;
     if (ok)
@@ -914,13 +914,13 @@ QHash<QString, QString> HuggleParser::YAML2QStringHash(YAML::Node &node, bool *o
     return results;
 }
 
-QHash<QString, QString> HuggleParser::YAML2QStringHash(QString key, YAML::Node &node, bool *ok)
+QHash<QString, QString> HuggleParser::YAML2QStringHash(const QString &key, YAML::Node &node, bool *ok)
 {
     QHash<QString, QString> missing;
     return YAML2QStringHash(key, node, missing, ok);
 }
 
-QHash<QString, QVariant> HuggleParser::YAML2QHash(QString key, YAML::Node &node, QHash<QString, QVariant> missing, bool *ok)
+QHash<QString, QVariant> HuggleParser::YAML2QHash(const QString &key, YAML::Node &node, QHash<QString, QVariant> missing, bool *ok)
 {
     if (ok)
         *ok = false;
@@ -971,7 +971,7 @@ QHash<QString, QVariant> HuggleParser::YAML2QHash(QString key, YAML::Node &node,
     return missing;
 }
 
-QHash<QString, QString> HuggleParser::YAML2QStringHash(QString key, YAML::Node &node, QHash<QString, QString> missing, bool *ok)
+QHash<QString, QString> HuggleParser::YAML2QStringHash(const QString &key, YAML::Node &node, QHash<QString, QString> missing, bool *ok)
 {
     if (ok)
         *ok = false;
@@ -1002,7 +1002,7 @@ QHash<QString, QString> HuggleParser::YAML2QStringHash(QString key, YAML::Node &
     return missing;
 }
 
-QHash<QString, QHash<QString, QString>> HuggleParser::YAML2QHashOfHash(QString key, YAML::Node &node, bool *ok)
+QHash<QString, QHash<QString, QString>> HuggleParser::YAML2QHashOfHash(const QString& key, YAML::Node &node, bool *ok)
 {
     QHash<QString, QHash<QString, QString>> results;
     if (ok)
@@ -1166,11 +1166,12 @@ QList<HuggleQueueFilter *> HuggleParser::ConfigurationParseQueueList_YAML(YAML::
     return ReturnValue;
 }
 
-static QList<ScoreWord> ParseScoreWords_YAML(YAML::Node &node, QString key)
+static QList<ScoreWord> ParseScoreWords_YAML(YAML::Node &node, const QString& key)
 {
     QList<ScoreWord> results;
     QHash<QString, QVariant> score_words = HuggleParser::YAML2QHash(key, node, QHash<QString, QVariant>());
-    foreach (QString score_str, score_words.keys())
+    QList<QString> s_keys = score_words.keys();
+    foreach (QString score_str, s_keys)
     {
         int score = score_str.toInt();
         QStringList words = score_words[score_str].toStringList();

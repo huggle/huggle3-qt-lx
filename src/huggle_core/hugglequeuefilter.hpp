@@ -39,14 +39,14 @@ namespace Huggle
     {
         public:
             static void Delete();
-            static HuggleQueueFilter* GetFilter(QString filter_name, WikiSite *site);
+            static HuggleQueueFilter* GetFilter(const QString& filter_name, WikiSite *site);
             static void SetFilters();
             static QHash<WikiSite*,QList<HuggleQueueFilter*>*> Filters;
             static HuggleQueueFilter* DefaultFilter;
 
             //! ctr
             HuggleQueueFilter();
-            ~HuggleQueueFilter() { /* not implemented yet :P */ }
+            ~HuggleQueueFilter()=default;
             //! Returns true if edit is ok for this filter (that means it is not filtered out)
             //! if this is false the edit should not be processed later
             bool Matches(WikiEdit *edit);
@@ -90,8 +90,8 @@ namespace Huggle
             void setIgnoreWatched(HuggleQueueFilterMatch value);
             QString GetIgnoredTags_CommaSeparated() const;
             QString GetRequiredTags_CommaSeparated() const;
-            void SetIgnoredTags_CommaSeparated(QString list);
-            void SetRequiredTags_CommaSeparated(QString list);
+            void SetIgnoredTags_CommaSeparated(const QString &list);
+            void SetRequiredTags_CommaSeparated(const QString &list);
             bool IgnoresNS(int ns);
             //! Name of this queue, must be unique
             QString QueueName;
@@ -99,8 +99,8 @@ namespace Huggle
             QHash<int,bool> Namespaces;
             QString GetIgnoredCategories_CommaSeparated() const;
             QString GetRequiredCategories_CommaSeparated() const;
-            void SetIgnoredCategories_CommaSeparated(QString list);
-            void SetRequiredCategories_CommaSeparated(QString list);
+            void SetIgnoredCategories_CommaSeparated(const QString &list);
+            void SetRequiredCategories_CommaSeparated(const QString &list);
         private:
             QStringList IgnoreTags;
             QStringList RequireTags;

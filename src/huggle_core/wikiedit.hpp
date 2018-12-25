@@ -81,7 +81,7 @@ namespace Huggle
             //! This function will return a constant (which needs to be generated runtime)
             //! which is used as "unknown time" in case we don't know the edit's time
             static QDateTime GetUnknownEditTime();
-            static Collectable_SmartPtr<WikiEdit> FromCacheByRevID(revid_ht revid, QString prev = "prev");
+            static Collectable_SmartPtr<WikiEdit> FromCacheByRevID(revid_ht revid, const QString& prev = "prev");
             static QString GetPixmapFromEditType(EditType edit_type);
             //! This list contains reference to all existing edits in memory
             static QList<WikiEdit*> EditList;
@@ -105,7 +105,7 @@ namespace Huggle
             bool IsReady();
             //! Processes all score words in text
             void ProcessWords();
-            void RecordScore(QString name, score_ht score);
+            void RecordScore(const QString& name, score_ht score);
             void RemoveFromHistoryChain();
             QString ContentModel;
             //! Page that was changed by edit
