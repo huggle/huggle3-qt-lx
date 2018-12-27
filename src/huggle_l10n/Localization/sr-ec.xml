@@ -313,6 +313,7 @@
   <string name="wait">Сачекајте…</string>
   <string name="updating-wl">Ажурирање беле листе…</string>
   <string name="waiting">Чекам…</string>
+  <string name="preferences-enforce-baw">Наметни црну и белу боју у HTML разликама</string>
   <string name="preferences-sounds-enable-queue">Репродуктуј звук када се дода нова ставка у реду</string>
   <string name="preferences-sounds-enable-irc">Репродуктуј звук када се порука прими у HAN</string>
   <string name="preferences-sounds-minimal-score">Најнижи резултат измене за обавештење</string>
@@ -322,4 +323,5 @@
   <string name="main-revert-type-made-white-list">направио корисник који је на белој листи</string>
   <string name="protip">Савет</string>
   <string name="wikipagetagsform-group">Група унутар {{$1}}</string>
+  <string name="tip3">Већина подешавања је усладиштено на викију, на страници [[Special:MyPage/huggle.yaml.js]]. Такође можете да их промените тамо — ручно.</string>
 </resources>

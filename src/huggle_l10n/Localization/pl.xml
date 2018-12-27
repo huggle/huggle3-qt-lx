@@ -2,6 +2,7 @@
 <!-- Authors:
 * Base
 * Chrumps
+* CiaPan
 * Darellur
 * Devwebtel
 * Expert3222
@@ -77,7 +78,7 @@
   <string name="disable">Wyłącz</string>
   <string name="no-token">Brak tokenu</string>
   <string name="flags">Flagi</string>
-  <string name="gracetime" fuzzy="true">Oczekiwanie na zakończenie żądań związanych z edycją...</string>
+  <string name="gracetime">Oczekiwanie na zakończenie żądań dokonujących edycji...</string>
   <string name="browser-none">Nie ma jeszcze strony do wyświetlania.</string>
   <string name="browser-load" fuzzy="true">Pobieranie różnic używając awaryjnego renderowania web, proszę czekać...</string>
   <string name="browser-miss-summ">Nie podano opisu edycji</string>
@@ -168,20 +169,20 @@
   <string name="config-friend">Znajomy</string>
   <string name="config-userspace">Przestrzeń użytkownika</string>
   <string name="config-talk">Strona dyskusji</string>
-  <string name="config-columns-dynamic" fuzzy="true">Twórz kolumny list jako dynamiczne (dopasowujące szerokość do rozmiaru wpisów) lub ręcznie (użytkownik sam ustala ich rozmiar)</string>
+  <string name="config-columns-dynamic">Twórz kolumny list jako dynamiczne (dopasowujące szerokość do rozmiaru wpisów) lub ręcznie (użytkownik sam ustala ich rozmiar)</string>
   <string name="config-message-notification">Wyświetl powiadomienie, gdy pojawi się nowa wiadomość na twojej stronie dyskusji</string>
   <string name="config-warning-api">Wyświetlaj ostrzeżenia dla zapytań API</string>
   <string name="config-title-diff">Tytuł strony w każdym porównaniu (duży tekst, w którym wyświetlana jest tylko nagłówek strony, w górnej części każdego porównania)</string>
   <string name="config-updates">Sprawdź aktualizacje</string>
   <string name="config-beta">Sprawdź, czy są dostępne wersje beta</string>
-  <string name="config-html-messages" fuzzy="true">HAN może wyświetlać wiadomości HTML (niezalecane, może powodować problemy)</string>
+  <string name="config-html-messages">HAN może wyświetlać wiadomości HTML (UWAGA: to jest potencjalnie niebezpieczne)</string>
   <string name="config-summary-present">Podświetlaj opis zmian gdy jest obecny, zamiast kiedy gdy go nie ma</string>
   <string name="config-close-without">Zamknij bez zapisywania</string>
   <string name="config-confirmmultiple">Potwierdź kilka rewersji jednej edycji przez tego samego użytkownika</string>
   <string name="config-confirmsame">Potwierdź rewersję do edycji przez użytkownika będącego rewertowanym</string>
   <string name="config-confirmselfrevert">Potwierdź rewersję własnych edycji (z wyjątkiem cofania)</string>
   <string name="config-confirmwarned">Potwierdź rewersję edycji przez użytkownika, który jest ostrzeżony</string>
-  <string name="config-confirmrange" fuzzy="true">Potwierdź rewersję edycji przez anonimowego użytkownika będącego w tym samym zakresie /16 co użytkownik będący rewertowanym</string>
+  <string name="config-confirmrange">Potwierdź wycofanie do edycji wykonanej przez anonimowego użytkownika będącego w tym samym zakresie /16 co użytkownik będący rewertowanym</string>
   <string name="config-confirmpage">Potwierdź cofnięcia na ignorowanych stronach</string>
   <string name="config-autoadvance">Po rewerowaniu, przejdź do następnej edycji w kolejce</string>
   <string name="config-userollback">Korzystaj z funkcji cofnięcia, jeśli jest dostępna</string>
@@ -235,7 +236,7 @@
   <string name="irc-nochannel">Nie znaleziono kanału IRC dla $1; będą w zamian używane wolniejsze zapytania API</string>
   <string name="login-old">Pobieranie konfiguracji użytkownika ze starej lokalizacji</string>
   <string name="login-intro">Proszę wybrać projekt i wpisać swój login i hasło. Możesz się też zalogować do wielu projektów klikając przycisk \"Projekty\".</string>
-  <string name="invalid-bot-user-name" fuzzy="true">To nie jest poprawna nazwa bota. Przykład poprawnej nazwy bota: Jimbo@Huggle</string>
+  <string name="invalid-bot-user-name">To nie jest poprawna nazwa bota. Przykład poprawnej nazwy bota: Jimbo@Huggle</string>
   <string name="login-tab-botp">Hasło bota</string>
   <string name="login-tab-login">Stary sposób</string>
   <string name="login-language">Język:</string>
@@ -255,14 +256,14 @@
   <string name="login-failed-edit">Logowanie na $1 nie powiodło się, ponieważ dokonałeś wystarczająco dużo zmian w tym projekcie</string>
   <string name="login-retrieving-info">Pobieranie informacji o użytkowniku na $1</string>
   <string name="login-password-empty">Podane hasło było puste</string>
-  <string name="login-fail-wrong-name" fuzzy="true">Podałeś niepoprawną nazwę użytkownika</string>
+  <string name="login-fail-wrong-name">Nie podałeś nazwy użytkownika do zalogowania</string>
   <string name="login-api">BŁĄD: api.php zwrócił nieznany wynik: $1</string>
   <string name="login-abort">Przerwij</string>
   <string name="login-start">Zaloguj się</string>
   <string name="login-oauth-notsupported">Ta metoda nie jest w tej chwili obsługiwana</string>
   <string name="login-translate">Przetłumacz Huggle</string>
   <string name="login-progress-formtitle">Ładowanie...</string>
-  <string name="login-progress-start" fuzzy="true">Logowanie do $1</string>
+  <string name="login-progress-start">Logowanie do $1</string>
   <string name="login-progress-retrieve-mw">Uzyskiwanie informacji o MediaWiki dla $1</string>
   <string name="login-progress-language">Uaktualnianie plików wiadomości...</string>
   <string name="login-progress-global">Sprawdzanie konfiguracji globalnej...</string>
@@ -272,16 +273,16 @@
   <string name="login-progress-user-info">Sprawdzanie informacji o użytkowniku dla $1</string>
   <string name="login-progress-whitelist">Otrzymywanie białej listy użytkowników...</string>
   <string name="login-remember-password">Zapamiętaj hasło</string>
-  <string name="login-ssl" fuzzy="true">Używaj HTTPS (wymagane OpenSSL)</string>
+  <string name="login-ssl">Używaj HTTPS do zalogowania się (wymagane OpenSSL)</string>
   <string name="login-fail">Logowanie na $1 nie powiodło się</string>
   <string name="login-error-admin">Użycie Huggle w tym projekcie wymaga konta administratora.</string>
-  <string name="login-error-age" fuzzy="true">Korzystanie z Huggle w tym projekcie wymaga co najmniej $1 dni uczestnictwa.</string>
+  <string name="login-error-age">Korzystanie z Huggle w tym projekcie wymaga co najmniej $1 dni uczestnictwa.</string>
   <string name="login-error-alldisabled">Huggle jest obecnie wyłączone we wszystkich projektach.</string>
   <string name="login-error-approval">Użycie Huggle\'a na $1 wymaga zatwierdzenia wniosku.</string>
   <string name="login-error-cancelled">Anulowano.</string>
   <string name="login-error-config">Nie udało się zalogować, nie można przetworzyć lokalnych ustawień dla $1: $2</string>
   <string name="login-error-count">Korzystanie z Huggle w tym projekcie wymaga co najmniej $1 edycji.</string>
-  <string name="login-error-disabled" fuzzy="true">Huggle nie jest włączony dla twojego konta na $1. Sprawdź stronę konfiguracji użytkownika.</string>
+  <string name="login-error-disabled">Huggle nie jest włączony dla twojego konta na $1. Sprawdź swoją stronę konfiguracji użytkownika.</string>
   <string name="login-error-global">Logowanie nie udało się: nie można przetworzyć globalnych ustawień. Zobacz log debugowania, aby uzyskać więcej informacji.</string>
   <string name="login-error-invalid">Nieprawidłowa nazwa użytkownika</string>
   <string name="login-error-noconfig">$1 nie ma strony konfiguracyjnej Huggle\'a</string>
@@ -293,12 +294,12 @@
   <string name="login-error-whitelist">Nie udało się załadować białej listy użytkowników dla $1.</string>
   <string name="login-ro-title">Przełącz na tryb tylko do odczytu</string>
   <string name="main-no-reason">Użytkownik nie podał powodu</string>
-  <string name="main-restoring-slap" fuzzy="true">Przywracam inną edycję, proszę czekać...</string>
+  <string name="main-restoring-slap">Trwa przywracanie innej edycji, proszę czekać...</string>
   <string name="main-page">Strona</string>
   <string name="main-user">Użytkownik</string>
   <string name="main-contribs">Wkład</string>
   <string name="main-history">Historia</string>
-  <string name="main-new-messages" fuzzy="true">Masz nowe wiadomości. Wybierz System -&gt; pokaż nowe wiadomości lub naciśnij M, aby je zobaczyć.</string>
+  <string name="main-new-messages">Masz nowe wiadomości. Wybierz System -&gt; Pokaż nowe wiadomości lub naciśnij M, aby je zobaczyć.</string>
   <string name="main-space">Nazwa strony nie może kończyć się spacją, proszę poprawić nazwę strony</string>
   <string name="main-system">System</string>
   <string name="main-status-bar">Przetwarzanie &lt;b&gt;$1&lt;/b&gt; edycji i &lt;b&gt;$2&lt;/b&gt; zapytań. Użytkownicy w białej liście: &lt;b&gt;$3&lt;/b&gt; Rozmiar kolejki: &lt;b&gt;$4&lt;/b&gt; Statystyki dla $6: $5</string>
@@ -361,7 +362,7 @@
   <string name="main-page-patrol">Oznacz edycję jako „sprawdzoną”</string>
   <string name="main-page-move">Przenieś...</string>
   <string name="main-page-flag-suspicious-edit">Oznacz edycję jako podejrzaną (doda to też użytkownikowi +1 punktów karnych)</string>
-  <string name="main-page-flag-good-edit" fuzzy="true">Oznacz edycję jako dobrą (doda to też użytkownikowi -200 punktów karnych)</string>
+  <string name="main-page-flag-good-edit">Oznacz edycję jako dobrą (ta czynność odejmuje użytkownikowi 200 punktów)</string>
   <string name="main-page-protect">Zabezpiecz</string>
   <string name="main-page-delete">Usuń</string>
   <string name="main-page-load">Wczytaj</string>
@@ -391,7 +392,7 @@
   <string name="main-browser-open">Pokaż w zewnętrznej przeglądarce</string>
   <string name="main-browser-newedits">Pokaż nowe edycje na stronie</string>
   <string name="main-browser-newcontribs">Pokaż nowy wkład użytkownika</string>
-  <string name="main-browser-lasttab" fuzzy="true">Nie mogę zamknąć tej karty, bo jest ostatnia, musisz mieć otwartą co najmniej 1 kartę</string>
+  <string name="main-browser-lasttab">Nie mogę zamknąć tej karty, bo jest ostatnia - musisz mieć otwartą co najmniej 1 kartę</string>
   <string name="main-han-disconnect">Rozłącz</string>
   <string name="main-han-connect">Połącz</string>
   <string name="main-help">Pomoc</string>
@@ -409,7 +410,7 @@
   <string name="main-stats">$1 edycji na minutę, $2 wycofań na minutę</string>
   <string name="main-display-session-data">Zobacz informacje o sesji</string>
   <string name="main-display-whitelist">Wyświetl białą listę</string>
-  <string name="main-revert-custom-reson" fuzzy="true">Proszę podać powód wycofania tej edycji do poprzedniej wersji</string>
+  <string name="main-revert-custom-reson">Proszę wyjaśnić, dlaczego wycofujesz tę edycję do poprzedniej wersji</string>
   <string name="main-log1">Przywracanie wybranej wersji $1</string>
   <string name="main-tip-pagetagdelete">Oznacz tę stronę do usunięcia</string>
   <string name="main-tip-pagedelete">Usuń tę stronę</string>
@@ -426,7 +427,7 @@
   <string name="main-statistics-paused">wstrzymane</string>
   <string name="main-tab-welcome-title">Strona powitalna</string>
   <string name="message-title">Wiadomość $1</string>
-  <string name="message-help" fuzzy="true">Wybierz Temat i Podsumowanie lub oba. Jeśli brak podsumowania zostanie użyty temat; jeślu brak tematu nagłówek nie zostanie dodany.</string>
+  <string name="message-help">Wybierz Temat i Podsumowanie lub oba. Jeśli brak podsumowania zostanie użyty temat; jeśli brak tematu, nagłówek nie zostanie dodany.</string>
   <string name="message-subject">Temat:</string>
   <string name="message-message">Wiadomość:</string>
   <string name="message-summary">Podsumowanie:</string>
@@ -494,7 +495,7 @@
   <string name="tag-summary">Podsumowanie:</string>
   <string name="tag-insertatend">Wstaw na końcu strony</string>
   <string name="update-title">Dostępna jest nowa wersja</string>
-  <string name="update-progress" fuzzy="true">Pobieranie nowej wersji...</string>
+  <string name="update-progress">Pobieranie nowej wersji, proszę czekać...</string>
   <string name="update-error">Nie udało się pobrać nowej wersji</string>
   <string name="updater-title">Dostępna jest nowa wersja Huggle</string>
   <string name="updater-update">Aktualizuj</string>
@@ -534,7 +535,7 @@
   <string name="error-loggedout">Konto zostało wylogowane, ponowne logowanie za...</string>
   <string name="error-noresponse">Brak odpowiedzi</string>
   <string name="error-pagemissing">Strona nie istnieje</string>
-  <string name="error-reloginfail" fuzzy="true">Błąd ponownego logowania, spróbuj przestartować Huggle</string>
+  <string name="error-reloginfail">Błąd ponownego logowania. Może spróbuj przestartować Huggle</string>
   <string name="error-unknown">Nieznany błąd</string>
   <string name="block-progress">Blokowanie $1...</string>
   <string name="delete-done">Usunięto $1</string>

@@ -8,6 +8,7 @@
 * Phenolla
 * Shizhao
 * Tomchen1989
+* WQL
 * Yfdyh000
 * Zhaofeng Li
 * 夢蝶葬花
@@ -797,6 +798,7 @@
   <string name="preferences-extension-disabled-restart">扩展已设置为将在下次启动Huggle时禁用</string>
   <string name="preferences-extension-enabled">此扩展未计划在下次启动Huggle时被禁用</string>
   <string name="preferences-extension-enabled-restart">扩展已启用。您将需要重启Huggle才能使它生效。</string>
+  <string name="preferences-enforce-baw">强制以黑白颜色演示HTML差异</string>
   <string name="preferences-watchlist-watch">添加至监视列表</string>
   <string name="preferences-watchlist-unwatch">从监视列表中移除</string>
   <string name="preferences-watchlist-preferences">关注您在wiki上的参数设置</string>
@@ -874,7 +876,7 @@
   <string name="wikipagetagsform-group">包括在组{{$1}}中</string>
   <string name="tip1">就像其他浏览器那样，Huggle支持标签！如果您正在做一些编辑，并且您希望稍后保持它，您完全可以打开新标签，并在这里继续检查队列。队列在所有标签中分享。</string>
   <string name="tip2">Huggle包含“编辑栏”，这是包含拥有简洁界面的用户和页面历史的小部件。当然它默认不启用。如果您使用小屏幕设备，您可以将用户和页面历史部件替换成它！</string>
-  <string name="tip3">多数参数设置都在wiki页面[[Special:MyPage/huggle3.css]]存储。您也可以在此手动更改它们。</string>
+  <string name="tip3" fuzzy="true">多数参数设置都在wiki页面[[Special:MyPage/huggle3.css]]存储。您也可以在此手动更改它们。</string>
   <string name="tip4">屏幕上几乎所有小工具都可以安全关闭（除了导航栏）。</string>
   <string name="tip5">您可以同时在多个项目上使用Huggle，在登录表单中点击“项目”即可。</string>
   <string name="tip6">只要您是有经验的，从未做错过的用户，Huggle的回退可以更快；）打开参数设置并勾选“即时回退”</string>

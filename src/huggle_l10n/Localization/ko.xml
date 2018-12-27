@@ -843,7 +843,7 @@
   <string name="protip">프로 팁</string>
   <string name="wikipagetagsform-group">{{$1}} 내 그룹</string>
   <string name="tip1">Huggle은 마치 다른 모든 웹 브라우저처럼 탭을 지원합니다! 편집을 하다가 나중에 이를 유지하고 싶으면 새 탭을 열어서 대기열을 확인해 나가시면 됩니다. 대기열은 모든 탭끼리 공유됩니다.</string>
-  <string name="tip3">대부분의 환경 설정은 위키의 [[Special:MyPage/huggle3.css]]에 저장되어 있습니다. 해당 장소에서도 수동으로 변경이 가능합니다.</string>
+  <string name="tip3">대부분의 환경 설정은 위키의 [[Special:MyPage/huggle.yaml.js]]에 저장되어 있습니다. 해당 장소에서도 수동으로 변경이 가능합니다.</string>
   <string name="tip4">화면 상의 거의 모든 소도구는 안전하게 닫을 수 있습니다. (둘러보기 표시줄 제외)</string>
   <string name="tip5">여러 프로젝트에서 Huggle을 동시에 사용할 수 있습니다. 로그인 양식에서 \"프로젝트\" 버튼을 클릭하시면 됩니다.</string>
   <string name="tip10">대부분의 바로 가기는 환경 설정에서 변경할 수 있습니다.</string>

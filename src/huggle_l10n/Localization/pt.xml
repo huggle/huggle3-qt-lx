@@ -655,11 +655,11 @@
   <string name="shortcut-forward">Ir para uma edição que carregou anteriormente, mas que transferiu de</string>
   <string name="shortcut-warn">Enviar um aviso ao utilizador sem desfazer a edição</string>
   <string name="shortcut-revert">Reverter edição</string>
-  <string name="shortcut-x-raw">N°do item para reverter e avisar no menu de disparo</string>
-  <string name="shortcut-x-revert">Disparar item N º no menu reverter</string>
+  <string name="shortcut-x-raw">Desencadear o enésimo elemento do menu reverter e avisar</string>
+  <string name="shortcut-x-revert">Desencadear o enésimo elemento do menu reverter</string>
   <string name="shortcut-watch">Adiciona a página exibida à sua lista de vigiados</string>
   <string name="shortcut-unwatch">Remove a página exibida da sua lista de vigiados</string>
-  <string name="shortcut-x-warn">Disparar item N° no menu de avisos</string>
+  <string name="shortcut-x-warn">Desencadear o enésimo elemento do menu avisar</string>
   <string name="shortcut-good">Marcar a edição exibida como boa</string>
   <string name="shortcut-open-in-huggle">Abrir a página atualmente exibida</string>
   <string name="shortcut-open">Abrir a edição exibida atualmente no navegador</string>
@@ -799,6 +799,7 @@
   <string name="preferences-extension-disabled-restart">A extensão foi definida para ser desativada na próxima inicialização do Huggle</string>
   <string name="preferences-extension-enabled">Esta extensão não foi programada para ser desativada no próximo arranque do Huggle</string>
   <string name="preferences-extension-enabled-restart">A extensão foi ativada. Será necessário reiniciar o Huggle para que ela funcione.</string>
+  <string name="preferences-enforce-baw">Impor cores a preto e branco na diferença entre revisões HTML</string>
   <string name="preferences-watchlist-watch">Adicionar às páginas vigiadas</string>
   <string name="preferences-watchlist-unwatch">Remover das páginas vigiadas</string>
   <string name="preferences-watchlist-preferences">Seguir as suas preferências na wiki</string>
@@ -876,7 +877,7 @@
   <string name="wikipagetagsform-group">Grupo dentro de {{$1}}</string>
   <string name="tip1">O Huggle permite o uso de separadores como qualquer outro navegador da Internet! Se estiver a editar e quiser manter este separador para mais tarde, poderá simplesmente abrir um novo separador e continuar a verificar a fila lá. A fila é partilhada entre todos os separadores.</string>
   <string name="tip2">O Huggle possui uma \"barra de edição\", um pequeno componente que memoriza o histórico do utilizador e das páginas de forma clara. Porém, não está ativado por padrão. Se estiver a usar um ecrã pequeno, pode substituir os componentes do histórico do utilizador e da página por ele!</string>
-  <string name="tip3">A maioria das preferências são armazenadas na wiki em [[Special:MyPage/huggle3.css]]. Também pode alterá-las manualmente lá.</string>
+  <string name="tip3" fuzzy="true">A maioria das preferências são armazenadas na wiki em [[Special:MyPage/huggle3.css]]. Também pode alterá-las manualmente lá.</string>
   <string name="tip4">A maioria dos componentes do ecrã podem ser fechados com segurança (com exceção da barra de navegação).</string>
   <string name="tip5">Pode utilizar o Huggle em vários projetos simultaneamente, basta apenas clicar no botão de \"Projetos\" do formulário de iniciar sessão.</string>
   <string name="tip6">A reversão no Huggle pode ser feita com mais rapidez se for um utilizador experiente que dificilmente comete erros ;) Abra as preferências e verifique as \"Reversões Instantâneas\"</string>

@@ -22,7 +22,7 @@
   <string name="deleted">Besteriya</string>
   <string name="error">Xeta</string>
   <string name="exit">Vıcyayış</string>
-  <string name="done">Qeyd kerd</string>
+  <string name="done">Temam</string>
   <string name="no">Nê</string>
   <string name="ok">TEMAM</string>
   <string name="remove">Bere</string>
@@ -191,7 +191,7 @@
   <string name="main-goto-mycontribs">İştiraqê mı</string>
   <string name="main-revision-decline">Rewizyoni red ke</string>
   <string name="main-revision">Revizyon</string>
-  <string name="main-revision-view">Asayış</string>
+  <string name="main-revision-view">Bımocne</string>
   <string name="main-revision-revert">Asenge vurnayışo peyser gêrê no</string>
   <string name="main-revision-faith">Timaro niyetta weşi peyser ke</string>
   <string name="main-revision-previous">Verên</string>

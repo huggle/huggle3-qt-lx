@@ -3,6 +3,7 @@
 * Addshore
 * Amire80
 * Base
+* CiaPan
 * Clockery
 * Happy13241
 * Kghbln
@@ -129,6 +130,7 @@
   <string name="config-bot-edits">The letter (b) is supposed to be the same as the \"bot\" abbreviation in RecentChanges - {{msg-mw|boteditletter}}.</string>
   <string name="config-reverts">{{Identical|Revert}}</string>
   <string name="config-new-page">{{Identical|New page}}</string>
+  <string name="config-confirmrange">Anonimowi użytkownicy miewają zmienne adresy IP, często jednak o stałym 16-bitowym prefiksie. Przy rewertowaniu edycji anonimowego użytkownika należy się liczyć z tym, że inny adres IP z zakresu tego samego 16-bitowego prefiksu był faktycznie tym samym użytkownikiem. Komunikat jest żądaniem potwierdzenia, że rewertujący wziął to pod uwagę.</string>
   <string name="config-template">{{Identical|Template}}</string>
   <string name="config-blocktimeanon">{{Identical|Anonymous user}}</string>
   <string name="config-blocktimereg">{{Identical|Registered user}}</string>

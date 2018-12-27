@@ -817,7 +817,7 @@
   <string name="main-revert-warn">Questa modifica è $1, quindi, anche se sembra che sia un vandalismo, potrebbe non esserlo. Sei sicuro di volerla annullare?</string>
   <string name="queue-empty-title">È vuota</string>
   <string name="queue-empty-text">Non c’è altro nella coda...</string>
-  <string name="tip3">La maggior parte delle preferenze sono memorizzate sul wiki in [[SPecial:MyPage/huggle3.css]]. Puoi anche cambiarle manualmente direttamente lì.</string>
+  <string name="tip3">La maggior parte delle preferenze sono memorizzate sul wiki in [[Special:MyPage/huggle.yaml.js]]. Puoi anche cambiarle manualmente direttamente lì.</string>
   <string name="tip4">Praticamente ogni oggetto sullo schermo può essere chiuso in sicurezza (eccetto la barra di navigazione).</string>
   <string name="tip8">Premendo G la modifica verrà marcata come “modifica corretta”. Agli altri verrà segnalato che tale modifica può essere ignorata, verrà decrementato il punteggio di cattiveria dell’utente e facoltativamente gli verrà inviato un messaggio di benvenuto.</string>
 </resources>

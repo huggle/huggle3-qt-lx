@@ -876,7 +876,7 @@
   <string name="wikipagetagsform-group">群組內部{{$1}}</string>
   <string name="tip1">Huggle 如同其它任何網路瀏覽器般支援頁籤！如果您作了一些編輯並希望能維持在事後使用，您可直接開啟新頁籤來繼續檢查佇列。佇列在所有頁籤裡可互相共享。</string>
   <string name="tip2">雖然預設上並不啟用，但 Huggle 擁有以簡潔方式來保存使用者與頁面歷史的小工具「編輯列」。若您是使用較小的螢幕，您可以此來替換目前的使用者與頁面歷史小工具！</string>
-  <string name="tip3">多數個人設置儲存在 wiki 裡的 [[Special:MyPage/huggle3.css]]。您可以在那裡手動更改它們。</string>
+  <string name="tip3" fuzzy="true">多數個人設置儲存在 wiki 裡的 [[Special:MyPage/huggle3.css]]。您可以在那裡手動更改它們。</string>
   <string name="tip4">在螢幕上的小工具幾乎都可安全地關閉（用於導覽列上的除外）。</string>
   <string name="tip5">您可在多個項目上同時使用 Huggle，僅需在登入表單裡點擊「項目」按鍵即可。</string>
   <string name="tip6">若您是有經驗且未出錯過的使用者，可以試著開啟個人設置裡勾選「即時回退」來讓 Huggle 的回退動作更快速 ;)</string>

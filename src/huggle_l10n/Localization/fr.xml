@@ -884,7 +884,7 @@
   <string name="wikipagetagsform-group">Groupe dans {{$1}}</string>
   <string name="tip1">Huggle supporte les onglets comme tout autre navigateur ! Si vous êtes sur une modification et que vous voulez la conserver pour plus tard, vous pouvez simplement ouvrir un nouvel onglet et continuer à vérifier la file de là. La file d’attente est partagée entre tous les onglets.</string>
   <string name="tip2">Hugglet contient une « barre d’édition », un petit widget qui mémorise l’historique de l’utilisateur et des pages, d’une nouvelle façon. Il n’est cependant pas activé par défaut. Si vous êtes sur un petit écran, vous pouvez remplacer les widgets d’historique utilisateur et de page par celui-ci  !</string>
-  <string name="tip3">La plupart des préférences sont rangées dans le fichier [[Special:MyPage/huggle3.css]] du wiki ; vous pouvez également les mettre à jour manuellement à cet endroit.</string>
+  <string name="tip3">La plupart des préférences sont enregistrées dans le wiki sur [[Special:MyPage/huggle.yaml.js]]. Vous pouvez aussi les mettre à jour manuellement à cet endroit.</string>
   <string name="tip4">Presque tous les widgets à l’écran peuvent être fermés sans souci (sauf la barre de navigation).</string>
   <string name="tip5">Vous pouvez utiliser Huggle en même temps sur de nombreux projets, cliquez simplement sur le bouton « Projets » du formulaire de connexion.</string>
   <string name="tip6">L’annulation par Huggle peut être plus rapide si vous êtes un utilisateur expérimenté qui ne fait jamais d’erreurs \'\'\';-)\'\'\' Ouvrez les préférences et cochez « Annulations instantanées »</string>

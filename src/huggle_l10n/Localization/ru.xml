@@ -25,6 +25,7 @@
 * Nk88
 * Nzeemin
 * Okras
+* Putnik
 * Redredsonia
 * Striking Blue
 * Vlad5250
@@ -35,7 +36,7 @@
 * Ядерный Трамвай
 -->
 <resources>
-  <string name="name">Английский</string>
+  <string name="name">Русский</string>
   <string name="autorelog">Сделайте это в следующий раз, не спрашивая</string>
   <string name="isrtl">false</string>
   <string name="add">Добавить</string>
@@ -819,6 +820,7 @@
   <string name="preferences-extension-disabled-restart">Расширение будет отключено во время следующей загрузки Huggle</string>
   <string name="preferences-extension-enabled">Это расширение не запланировано к отключению во время следующей загрузки Huggle</string>
   <string name="preferences-extension-enabled-restart">Расширение включено. Необходимо перезагрузить Huggle, чтобы изменения вступили в силу.</string>
+  <string name="preferences-enforce-baw">Принудительно использовать чёрно-белые цветов в HTML-отображении разницы между двумя версиями</string>
   <string name="preferences-watchlist-watch">Добавить в список наблюдения</string>
   <string name="preferences-watchlist-unwatch">Удалить из списка наблюдения</string>
   <string name="preferences-watchlist-preferences">Следовать вашим настройкам в вики</string>
@@ -896,7 +898,7 @@
   <string name="wikipagetagsform-group">Группа внутри {{$1}}</string>
   <string name="tip1">Huggle поддерживает вкладки, как и любой другой веб-браузер! Если вы находитесь на редактировании и хотите сохранить его позже, вы можете просто открыть новую вкладку и продолжить проверку очереди там. Очередь распределяется между всеми вкладками.</string>
   <string name="tip2">Huggle содержит \"панель редактирования\", небольшой виджет, который содержит как пользовательскую, так и страницу истории аккуратным способом. Однако он не включен по умолчанию. Если вы находитесь на маленьком экране, вы можете заменить его виджетами пользователей и страниц!</string>
-  <string name="tip3">Большинство настроек хранятся в вики в [[Special:MyPage/huggle3.css]]. Вы также можете вручную их изменить.</string>
+  <string name="tip3">Большинство настроек хранятся в вики в [[Special:MyPage/huggle.yaml.js]]. Вы также можете вручную их изменить.</string>
   <string name="tip4">Почти каждый виджет на экране может быть безопасно закрыт (кроме панели навигации).</string>
   <string name="tip5">Вы можете одновременно использовать Huggle для нескольких проектов, просто нажмите кнопку \"Проекты\" в форме входа.</string>
   <string name="tip6">Возвращение Huggle может быть сделано намного быстрее, если вы опытный пользователь, который никогда не ошибается;) открывайте настройки и проверяйте \"Мгновенные реверты\",</string>

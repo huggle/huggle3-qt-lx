@@ -75,6 +75,7 @@
   <string name="block-message-user">Send en besked til brugeren med forklaring på blokeringen</string>
   <string name="block-anononly">Bloker kun anonyme brugere</string>
   <string name="block-creation">Bloker kontooprettelse</string>
+  <string name="block-autoblock">Aktiver autoblokeringer</string>
   <string name="block-email">Bloker e-mail</string>
   <string name="block-usertalk">Diskussion</string>
   <string name="block-usercontribs">Bidrag</string>
@@ -83,9 +84,9 @@
   <string name="block-sharedipwarning">Bemærk: $1 er markeret som en fælles eller en dynamisk IP-adresse.</string>
   <string name="block-rangeblockwarning">$1 er allerede ramt af en rangeblock på $2.\nDenne blokering vil tilsidesætte effekten af rangeblock. Vil du fortsætte?</string>
   <string name="block-fail">Kan ikke blokere bruger: $1</string>
-  <string name="block-error-no-info" fuzzy="true">Ingen brugerinfo var til stede i forespørgslen (er du administrator?)</string>
+  <string name="block-error-no-info">Ingen brugerinfo var til stede i forespørgslen (er du en administrator?)</string>
   <string name="block-type">Bloker / fjern blokering</string>
-  <string name="block-admin" fuzzy="true">Blokerende administrator</string>
+  <string name="block-admin">Blokerende administrator</string>
   <string name="block-none">Der er ikke valgt nogen bruger der skal blokeres.</string>
   <string name="config-function">Funktion</string>
   <string name="config-description">Beskrivelse</string>
@@ -162,6 +163,7 @@
   <string name="historyform-retrieve-history">Hent historik</string>
   <string name="historyform-retrieving-history">Henter historik</string>
   <string name="history-error-message-title">Kunne ikke tilbagerulle</string>
+  <string name="history-failure">Kunne ikke hente historik</string>
   <string name="userhistory-title">Historik over dine ændringer</string>
   <string name="login-tab-login" fuzzy="true">Interaktivt login</string>
   <string name="login-language">Sprog:</string>
@@ -196,7 +198,9 @@
   <string name="main-contribs">Bidrag</string>
   <string name="main-history">Historik</string>
   <string name="main-system">System</string>
+  <string name="main-shutting-down">Huggle lukker ned, ignoreret</string>
   <string name="main-system-messages">Vis nye beskeder</string>
+  <string name="main-system-savelog">Gem log...</string>
   <string name="main-system-statistics">Statistik...</string>
   <string name="main-system-showqueue">Vis kø</string>
   <string name="main-system-logout">Log ud</string>
@@ -208,6 +212,7 @@
   <string name="main-queue-clear">Ryd nuværende</string>
   <string name="main-queue-reset">Nulstil</string>
   <string name="main-queue-clearall">Ryd alle</string>
+  <string name="main-queue-when-full">Når køen er fuld</string>
   <string name="main-queue-when-full-remove">Fjern gamle redigeringer</string>
   <string name="main-goto">Gå til</string>
   <string name="main-goto-mytalk">Min diskussionside</string>
@@ -247,31 +252,38 @@
   <string name="main-help-welcome-page">Velkomstside</string>
   <string name="main-help-contents">Indhold</string>
   <string name="main-addqueue">Tilføj...</string>
+  <string name="main-savelogtitle">Gem log</string>
   <string name="main-advanced">Avanceret...</string>
   <string name="main-tip-pagedelete">Slet denne side</string>
   <string name="main-tip-userreport">Rapporter denne bruger</string>
   <string name="main-tip-userblock">Bloker denne bruger</string>
   <string name="main-report-username">Anmeld brugernavn</string>
   <string name="main-report-user">Anmeld bruger</string>
+  <string name="main-statistics-paused">sat på pause</string>
+  <string name="main-statistics-waiting">Venter på flere redigeringer</string>
   <string name="main-statistics-none">ingen</string>
   <string name="main-tab-welcome-title">Velkomstside</string>
   <string name="message-title">Besked $1</string>
   <string name="message-message">Besked:</string>
   <string name="protect-reason">Årsag:</string>
+  <string name="protect-type">Beskyttelsestype:</string>
   <string name="protect-none">Ingen</string>
   <string name="protect-fullprotection">Fuld beskyttelse</string>
   <string name="protect-message-title-fail">Kan ikke beskytte</string>
   <string name="queue-title">Køer</string>
   <string name="queue-queues">Køer:</string>
+  <string name="queue-typegroup">Køtype</string>
   <string name="queue-listselector">Liste:</string>
   <string name="queue-namespaces">Navnerum:</string>
   <string name="queue-filternewpage">Ny side</string>
   <string name="queue-filteranonymous">Anonym bruger</string>
+  <string name="queue-filterignored">Ignoreret bruger</string>
   <string name="queue-filterwarnings">Advarsel</string>
   <string name="report-tu">Anmeld bruger</string>
   <string name="report-reason">Årsag:</string>
   <string name="report-auto">Anmeldte $1</string>
   <string name="report-message">Besked:</string>
+  <string name="report-include">Inkluder i rapport</string>
   <string name="score-word">Ord</string>
   <string name="uaa-not-supported">UAA ikke tilgængelig</string>
   <string name="revert-delete-instead">Slet siden i stedet?</string>
@@ -324,6 +336,7 @@
   <string name="preferences-watchlist-watch">Tilføj til overvågningsliste</string>
   <string name="preferences-watchlist-unwatch">Fjern fra overvågningsliste</string>
   <string name="preferences-watchlist-nochange">Gør intet</string>
+  <string name="preferences-queue-size">Køstørrelse</string>
   <string name="page-tag-noparameters">Ingen parametre</string>
   <string name="page-unknown">Ukendt side</string>
   <string name="namespace">Navnerum</string>

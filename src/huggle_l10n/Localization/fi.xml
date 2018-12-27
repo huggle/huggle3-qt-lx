@@ -131,6 +131,7 @@
   <string name="login-oauth-notsupported">Tämä menetelmä ei ole tuettu tällä hetkellä</string>
   <string name="login-translate">Käännä Hugglea</string>
   <string name="login-progress-formtitle">Ladataan...</string>
+  <string name="login-remember-password">Muista salasana</string>
   <string name="login-error-approval">Hugglen käyttö sivustolla $1 vaatii hyväksynnän.</string>
   <string name="login-error-cancelled">Peruutettu.</string>
   <string name="login-error-invalid">Virheellinen käyttäjänimi</string>

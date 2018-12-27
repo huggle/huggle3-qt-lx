@@ -887,7 +887,7 @@
   <string name="wikipagetagsform-group">{{$1}} içindeki grup</string>
   <string name="tip1">Huggle sekmeleri diğer web tarayıcıları gibi destekler! Düzenleme aşamasındaysanız ve daha sonra saklamak istiyorsanız yeni bir sekme açıp sırayı kontrol etmeye devam edebilirsiniz. Kuyruk, tüm sekmeler arasında paylaşılır.</string>
   <string name="tip2">Huggle, kullanıcı ve sayfa geçmişini düzgün bir şekilde içeren küçük bir widget olan \"düzenleme çubuğu\" içeriyor. Varsayılan olarak etkin değil. Küçük bir ekrandaysanız kullanıcı ve sayfa geçmişi widget\'larını onunla değiştirebilirsiniz!</string>
-  <string name="tip3">Çoğu tercih, [[Special:MyPage/huggle3.css]] içindeki viki\'de saklanır. Tercihleri, orada manuel olarak da değiştirebilirsiniz.</string>
+  <string name="tip3" fuzzy="true">Çoğu tercih, [[Special:MyPage/huggle3.css]] içindeki viki\'de saklanır. Tercihleri, orada manuel olarak da değiştirebilirsiniz.</string>
   <string name="tip4">Ekrandaki hemen hemen her widget güvenli bir şekilde kapatılabilir (gezinme çubuğu hariç).</string>
   <string name="tip5">Huggle\'ı aynı anda birden fazla projede kullanabilirsiniz, oturum açma formundaki \"Projeler\" düğmesini tıklamanız yeterlidir.</string>
   <string name="tip6">Huggle\'ın geri dönüşü asla hata yapmayan deneyimli kullanıcıları daha hızlı yapabilir ;) Tercihler\'i aç ve \"Anında Geri Döndürmeler\"i kontrol et</string>
