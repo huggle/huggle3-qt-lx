@@ -889,7 +889,7 @@
   <string name="wikipagetagsform-group">Grupo dentro de {{$1}}</string>
   <string name="tip1">O Huggle permite o uso de abas como qualquer outro navegador de rede! Se você estiver editando e quiser manter esta aba para mais tarde, você pode simplesmente abrir uma nova guia e continuar verificando a fila lá. A fila é compartilhada entre todas as abas.</string>
   <string name="tip2">O Huggle possui uma \"barra de edição\", um pequeno componente que memoriza o histórico do usuário e das páginas de forma clara. Porém, não é permitida por omissão. Se estiver em uma tela pequena, pode substituir os componentes do histórico do usuário e da página com ele!</string>
-  <string name="tip3" fuzzy="true">A maioria das preferências são armazenadas na wiki em [[Special:MyPage/huggle3.css]]. Também pode alterá-las manualmente lá.</string>
+  <string name="tip3">A maioria das preferências são armazenadas na wiki em [[Special:MyPage/huggle.yaml.js]]. Também pode alterá-las manualmente lá.</string>
   <string name="tip4">A maioria dos componentes da tela podem ser fechados com segurança (com exceção da barra de navegação).</string>
   <string name="tip5">Você pode usar o Huggle em vários projetos simultaneamente, basta apenas clicar no botão de \"Projetos\" do formulário de autenticação.</string>
   <string name="tip6">A reversão no Huggle pode ser feita com mais rapidez se você for um usuário experiente que dificilmente comete erros ;) Abra as preferências e verifique as \"Reversões Instantâneas\"</string>

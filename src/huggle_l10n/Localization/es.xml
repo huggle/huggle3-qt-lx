@@ -809,6 +809,7 @@
   <string name="preferences-extension-disabled-restart">Se ha configurado la extensión para que se deshabilite en el siguiente inicio de Huggle</string>
   <string name="preferences-extension-enabled">No se ha configurado la extensión para que se deshabilite en el siguiente inicio de Huggle</string>
   <string name="preferences-extension-enabled-restart">Se activó la extensión. Reinicia Huggle para que esta surta efecto.</string>
+  <string name="preferences-enforce-baw">Aplica colores negros y blancos en HTML diff</string>
   <string name="preferences-watchlist-watch">Añadir a la lista de seguimiento</string>
   <string name="preferences-watchlist-unwatch">Eliminar de la lista de seguimiento</string>
   <string name="preferences-watchlist-preferences">Seguir tus preferencias en el wiki</string>
@@ -886,7 +887,7 @@
   <string name="wikipagetagsform-group">Grupo dentro de {{$1}}</string>
   <string name="tip1">¡Huggle soporta pestañas como cualquier otro navegador web! Si estás editando y quieres continuar más tarde, basta con abrir una pestaña nueva y continuar comprobando la cola allí. La cola está compartida entre todas las pestañas.</string>
   <string name="tip2">Huggle contiene una «barra de edición», un pequeño artilugio que contiene de una manera ordenada tanto el historial del usuario como el de la página. Sin embargo, no está habilitada por defecto. Si tienes una pantalla pequeña, ¡puedes reemplazar los widgets del historial de usuario y de la página con ella!</string>
-  <string name="tip3" fuzzy="true">La mayoría de las preferencias se almacenan en la wiki en [[Special:MyPage/huggle3.css]]. También puedes cambiarlas allí manualmente.</string>
+  <string name="tip3">La mayoría de las preferencias se almacenan en la wiki en [[Special:MyPage/huggle.yaml.js]]. También puedes cambiarlas allí manualmente.</string>
   <string name="tip4">Casi todos los widgets de la pantalla pueden cerrarse con seguridad (excepto la barra de navegación).</string>
   <string name="tip5">Puedes utilizar Huggle simultáneamente en varios proyectos, simplemente haz clic en el botón «Proyectos» en el formulario de inicio de sesión.</string>
   <string name="tip6">Las reversiones en Huggle se puede hacer mucho más rápido si es un usuario experimentado que nunca comete errores ;) abre preferencias y marca «Reversiones instantáneas»</string>

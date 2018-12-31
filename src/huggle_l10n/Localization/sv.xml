@@ -785,7 +785,7 @@
   <string name="queue-empty-text">Det finns ingenting annat i kön...</string>
   <string name="protip">Proffstips</string>
   <string name="wikipagetagsform-group">Gruppera i {{$1}}</string>
-  <string name="tip3" fuzzy="true">De flesta inställningarna lagras på wikin i [[Special:MyPage/huggle3.css]]. Du kan redigera dem manuellt där.</string>
+  <string name="tip3">De flesta inställningarna lagras på wikin i [[Special:MyPage/huggle.yaml.js]]. Du kan redigera dem manuellt där.</string>
   <string name="tip4">Nästan varje widget på skärmen kan stängas ned utan fara (förutom navigeringsfältet).</string>
   <string name="tip5">Du kan använda Huggle på flera projekt samtidigt, klicka bara på knappen \"Projekt\" i inloggningsformuläret.</string>
   <string name="tip10">De flesta kortkommandon kan ändras i dina inställningar.</string>
