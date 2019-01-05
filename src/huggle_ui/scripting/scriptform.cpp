@@ -46,7 +46,7 @@ ScriptForm::~ScriptForm()
     delete this->ui;
 }
 
-void ScriptForm::EditScript(QString path, QString script_name)
+void ScriptForm::EditScript(const QString& path, const QString& script_name)
 {
     QFile file(path);
     if (!file.open(QIODevice::ReadWrite))

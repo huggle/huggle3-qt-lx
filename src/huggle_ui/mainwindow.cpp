@@ -747,7 +747,7 @@ void MainWindow::IncreaseBS()
         this->CurrentEdit->User->SetBadnessScore(this->CurrentEdit->User->GetBadnessScore() + 200);
 }
 
-OverlayBox *MainWindow::ShowOverlay(QString text, int x, int y, int timeout, int width, int height, bool is_dismissable)
+OverlayBox *MainWindow::ShowOverlay(const QString &text, int x, int y, int timeout, int width, int height, bool is_dismissable)
 {
     QPoint global;
     if (x < 0)
@@ -3722,9 +3722,7 @@ void MainWindow::on_actionWelcome_page_triggered()
 
 void MainWindow::on_actionScripts_manager_triggered()
 {
-    if (this->fScripting)
-        delete this->fScripting;
-
+    delete this->fScripting;
     this->fScripting = new ScriptingManager(this);
     this->fScripting->exec();
 }

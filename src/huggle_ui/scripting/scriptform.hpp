@@ -32,7 +32,7 @@ namespace Huggle
         public:
             explicit ScriptForm(QWidget *parent = nullptr);
             ~ScriptForm();
-            void EditScript(QString path, QString script_name);
+            void EditScript(const QString& path, const QString& script_name);
 
         private slots:
             void on_pushButton_2_clicked();
