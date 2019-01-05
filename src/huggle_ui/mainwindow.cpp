@@ -1109,6 +1109,9 @@ void MainWindow::ReloadShort(const QString& id)
         case HUGGLE_ACCEL_MAIN_C_REVERT:
             q = this->ui->actionRevert_edit_using_custom_reason;
             break;
+        case HUGGLE_ACCEL_MAIN_REVERT_AGF:
+            q = this->ui->actionRevert_AGF;
+            break;
         case HUGGLE_ACCEL_MAIN_REFRESH:
             q = this->ui->actionRefresh;
             break;

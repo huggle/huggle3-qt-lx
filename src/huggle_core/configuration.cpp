@@ -62,6 +62,7 @@ Configuration::Configuration()
     this->MakeShortcut("main-unwatch", "shortcut-unwatch", "Alt+C");
     this->MakeShortcut("main-open", "shortcut-open-in-huggle", "Alt+O");
     this->MakeShortcut("main-revert-agf-one-only", "shortcut-revert-agf-1");
+    this->MakeShortcut("main-revert-agf", "shortcut-revert-agf", "Y");
     this->MakeShortcut("main-revert-and-stay", "shortcut-revert-and-stay", "Shift+R");
     this->MakeShortcut("main-revert-warn-and-stay", "shortcut-rw-stay", "Shift+Q");
     this->MakeShortcut("main-tab", "shortcut-tab", "Ctrl+T");
@@ -636,6 +637,8 @@ Shortcut::Shortcut(QString name, QString description)
         this->ID = HUGGLE_ACCEL_REVW_STAY;
     else if (name == "main-revert-and-stay")
         this->ID = HUGGLE_ACCEL_REVERT_STAY;
+    else if (name == "main-revert-agf")
+        this->ID = HUGGLE_ACCEL_MAIN_REVERT_AGF;
     else if (name == "main-talk")
         this->ID = HUGGLE_ACCEL_MAIN_TALK;
     else if (name == "main-user-report-name")

@@ -660,6 +660,7 @@
   <string name="shortcut-user-contribs-browser">Open user's contributions in a browser</string>
   <string name="shortcut-user-clear-talk">Clear a talk page of current user</string>
   <string name="shortcut-main-clear-queue">Clear queue</string>
+  <string name="shortcut-revert-agf">Revert assuming good faith, with a custom edit summary</string>
   <string name="warning-title">Warn $1</string>
   <string name="warning-levelgroup">Warning level</string>
   <string name="warning-levelauto">Automatic</string>
