@@ -675,6 +675,7 @@
   <string name="shortcut-user-contribs-browser">Mostrar contribuições de utilizador no navegador</string>
   <string name="shortcut-user-clear-talk">Limpar a página de discussão do atual utilizador</string>
   <string name="shortcut-main-clear-queue">Limpar consulta</string>
+  <string name="shortcut-revert-agf">Reverter presumindo boa-fé, com um resumo de edição personalizado</string>
   <string name="warning-title">Aviso $1</string>
   <string name="warning-levelgroup">Nível de aviso</string>
   <string name="warning-levelauto">Automático</string>
@@ -877,7 +878,7 @@
   <string name="wikipagetagsform-group">Grupo dentro de {{$1}}</string>
   <string name="tip1">O Huggle permite o uso de separadores como qualquer outro navegador da Internet! Se estiver a editar e quiser manter este separador para mais tarde, poderá simplesmente abrir um novo separador e continuar a verificar a fila lá. A fila é partilhada entre todos os separadores.</string>
   <string name="tip2">O Huggle possui uma \"barra de edição\", um pequeno componente que memoriza o histórico do utilizador e das páginas de forma clara. Porém, não está ativado por padrão. Se estiver a usar um ecrã pequeno, pode substituir os componentes do histórico do utilizador e da página por ele!</string>
-  <string name="tip3" fuzzy="true">A maioria das preferências são armazenadas na wiki em [[Special:MyPage/huggle3.css]]. Também pode alterá-las manualmente lá.</string>
+  <string name="tip3">A maioria das preferências são armazenadas na wiki em [[Special:MyPage/huggle.yaml.js]]. Também pode alterá-las manualmente lá.</string>
   <string name="tip4">A maioria dos componentes do ecrã podem ser fechados com segurança (com exceção da barra de navegação).</string>
   <string name="tip5">Pode utilizar o Huggle em vários projetos simultaneamente, basta apenas clicar no botão de \"Projetos\" do formulário de iniciar sessão.</string>
   <string name="tip6">A reversão no Huggle pode ser feita com mais rapidez se for um utilizador experiente que dificilmente comete erros ;) Abra as preferências e verifique as \"Reversões Instantâneas\"</string>

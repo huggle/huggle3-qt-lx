@@ -682,6 +682,7 @@
   <string name="shortcut-user-contribs-browser">Afficher les contributions de l’utilisateur dans un navigateur</string>
   <string name="shortcut-user-clear-talk">Effacer une page de discussion de l’utilisateur actuel</string>
   <string name="shortcut-main-clear-queue">Effacer la file d\'attente</string>
+  <string name="shortcut-revert-agf">Annulation sur base de bonne foi, avec un résumé des modifications utilisateur</string>
   <string name="warning-title">Avertir $1</string>
   <string name="warning-levelgroup">Niveau d’avertissement</string>
   <string name="warning-levelauto">Automatique</string>

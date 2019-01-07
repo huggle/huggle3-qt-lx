@@ -675,6 +675,7 @@
   <string name="shortcut-user-contribs-browser">فتح مساهمات المستخدم في المتصفح</string>
   <string name="shortcut-user-clear-talk">مسح صفحة نقاش المستخدم الحالي</string>
   <string name="shortcut-main-clear-queue">مسح الطابور</string>
+  <string name="shortcut-revert-agf">العودة مع افتراض حسن النية، مع ملخص تعديل مخصص</string>
   <string name="warning-title">حذّر $1</string>
   <string name="warning-levelgroup">مستوى التحذير</string>
   <string name="warning-levelauto">تلقائي</string>

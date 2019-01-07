@@ -685,6 +685,7 @@
   <string name="shortcut-user-contribs-browser">Mostrar las contribuciones del usuario en un navegador</string>
   <string name="shortcut-user-clear-talk">Limpiar la página de discusión del usuario actual</string>
   <string name="shortcut-main-clear-queue">Borrar consulta</string>
+  <string name="shortcut-revert-agf">Revertir presumiendo buena fe, con resumen de edición personalizado</string>
   <string name="warning-title">Advertir a $1</string>
   <string name="warning-levelgroup">Nivel de advertencia</string>
   <string name="warning-levelauto">Automático</string>

@@ -676,6 +676,7 @@
   <string name="shortcut-user-contribs-browser">Benutzerbeiträge in einem Browser öffnen</string>
   <string name="shortcut-user-clear-talk">Leert die Diskussionsseite des aktuellen Benutzers</string>
   <string name="shortcut-main-clear-queue">Warteschlange löschen</string>
+  <string name="shortcut-revert-agf">Gut gemeinte Bearbeitung zurücksetzen, mit einer benutzerdefinierten Zusammenfassung.</string>
   <string name="warning-title">$1 warnen</string>
   <string name="warning-levelgroup">Warnungs-Stufe</string>
   <string name="warning-levelauto">Automatisch</string>

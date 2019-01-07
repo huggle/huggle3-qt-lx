@@ -164,7 +164,7 @@
   <string name="login-ssl" fuzzy="true">HTTPS bıkarnë (OpenSSL gerek keno)</string>
   <string name="login-fail">$1 dı ronıştış nëabıya</string>
   <string name="login-error-cancelled">Terkneya yo</string>
-  <string name="login-error-invalid">Nëravërde namey karberi</string>
+  <string name="login-error-invalid">Nameyê karberiyo nêvêrde</string>
   <string name="main-page">Pele</string>
   <string name="main-user">Karber</string>
   <string name="main-contribs">İştıraki</string>
