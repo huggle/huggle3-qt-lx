@@ -473,7 +473,7 @@
   <string name="main-revert-custom-reson">يُرجَى توضيح سبب إرجاعك لهذا التعديل إلى النسخة السابقة</string>
   <string name="main-log1">استرجاع المراجعة المختارة ل $1</string>
   <string name="main-tip-pagetagdelete">وسم هذه الصفحة للشطب</string>
-  <string name="main-tip-pagedelete">احذف هذه الصفحة</string>
+  <string name="main-tip-pagedelete">حذف هذه الصفحة</string>
   <string name="main-tip-userreport">أخطر عن هذا المستخدم</string>
   <string name="main-tip-userblock">منع هذا المستخدم</string>
   <string name="main-revision-acceptpend">قبول هذه المراجعة قيد الانتظار</string>
@@ -607,7 +607,7 @@
   <string name="revert-only">هذا التعديل الوحيد للصفحة</string>
   <string name="revert-creator">آخر تعديل على الصفحة تم بواسطة الذي أنشأ الصفحة، $1.</string>
   <string name="revert-preflightcheck">الاختيار المبدئي</string>
-  <string name="revert-delete-instead">احذف الصفحة بدلاً عن ذلك؟</string>
+  <string name="revert-delete-instead">احذف الصفحة بدلا من ذلك؟</string>
   <string name="revert-speedy-instead">وسم الصفحة للشطب السريع بدلاً عن ذلك؟</string>
   <string name="revert-cannotundo">لا يمكن التراجع بسبب وجود تعديلات متوسطة التناقض</string>
   <string name="revert-conflict">تم تعديل الصفحة بواسطة مستخدم متجاهل \'$1\'</string>

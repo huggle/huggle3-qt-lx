@@ -696,6 +696,7 @@
   <string name="shortcut-user-contribs-browser">Открыть вклад пользователя в браузере</string>
   <string name="shortcut-user-clear-talk">Очистить страницу обсуждения текущего участника</string>
   <string name="shortcut-main-clear-queue">Очистить очередь</string>
+  <string name="shortcut-revert-agf">Откатить, предполагая добрые намерения и указать описание правки, отличающееся от стандартного</string>
   <string name="warning-title">Предупредить $1</string>
   <string name="warning-levelgroup">Уровень предупреждения</string>
   <string name="warning-levelauto">Автоматически</string>
