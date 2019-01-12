@@ -190,7 +190,7 @@
   <string name="config-no-colon">You can&apos;t use : in the name of a queue</string>
   <string name="config-notify-update">Check for updates</string>
   <string name="config-notify-beta">Check for beta versions if available</string>
-  <string name="custommessage-title">Send a custom message to $1</string>
+  <string name="custommessage-title">Write a message to $1</string>
   <string name="custommessage-summary">Edit summary (Huggle suffix will be automatically inserted)</string>
   <string name="custommessage-subject">Title</string>
   <string name="custommessage-menu">Send a custom message</string>
