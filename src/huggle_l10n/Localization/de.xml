@@ -63,7 +63,7 @@
   <string name="status">Status</string>
   <string name="link">Link</string>
   <string name="reason">Grund</string>
-  <string name="diffid">Kennung des Unterschieds</string>
+  <string name="diffid">ID des Unterschieds</string>
   <string name="whitelisted">$1 wurde mit dem Wert $2 auf $3 weißgelistet</string>
   <string name="expiry-time">Ablaufzeitpunkt</string>
   <string name="duration">Dauer</string>
@@ -206,7 +206,7 @@
   <string name="config-no-colon">Du kannst keinen Doppelpunkt im Namen einer Warteschlange benutzen</string>
   <string name="config-notify-update">Nach Aktualisierungen suchen</string>
   <string name="config-notify-beta">Nach Beta-Versionen suchen, falls verfügbar.</string>
-  <string name="custommessage-title">Eine benutzerdefinierte Nachricht an $1 senden</string>
+  <string name="custommessage-title" fuzzy="true">Eine benutzerdefinierte Nachricht an $1 senden</string>
   <string name="custommessage-summary">Bearbeitungszusammenfassung (der Huggle-Zusatz wird automatisch eingefügt)</string>
   <string name="custommessage-subject">Titel</string>
   <string name="custommessage-menu">Eine benutzerdefinierte Nachricht senden</string>

@@ -205,7 +205,7 @@
   <string name="config-no-colon">لا يمكنك استخدام: في اسم قائمة الانتظار</string>
   <string name="config-notify-update">اطلع على التحديثات</string>
   <string name="config-notify-beta">اطلع على إصدارات البيتا إذا كانت متوافرة</string>
-  <string name="custommessage-title">أرسل رسالة مخصصة إلى $1</string>
+  <string name="custommessage-title" fuzzy="true">أرسل رسالة مخصصة إلى $1</string>
   <string name="custommessage-summary">ملخص التعديل (سيتم إدراج لاحقة هغل تلقائيا)</string>
   <string name="custommessage-subject">العنوان</string>
   <string name="custommessage-menu">إرسال رسالة مخصصة</string>

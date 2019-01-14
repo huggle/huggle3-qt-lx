@@ -215,7 +215,7 @@
   <string name="config-no-colon">No puedes utilizar : en el nombre de una cola</string>
   <string name="config-notify-update">Buscar actualizaciones</string>
   <string name="config-notify-beta">Buscar si hay versiones beta disponibles</string>
-  <string name="custommessage-title">Enviar un mensaje personalizado a $1</string>
+  <string name="custommessage-title" fuzzy="true">Enviar un mensaje personalizado a $1</string>
   <string name="custommessage-summary">Resumen de edición (el sufijo Huggle se insertará automáticamente)</string>
   <string name="custommessage-subject">Título</string>
   <string name="custommessage-menu">Enviar un mensaje personalizado</string>

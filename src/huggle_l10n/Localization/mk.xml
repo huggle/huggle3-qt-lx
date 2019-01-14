@@ -195,7 +195,7 @@
   <string name="config-no-colon">Не можете да користите : во името на редицата</string>
   <string name="config-notify-update">Провери поднови</string>
   <string name="config-notify-beta">Провери дали има бета-верзии</string>
-  <string name="custommessage-title">Испрати прилагодена порака на $1</string>
+  <string name="custommessage-title" fuzzy="true">Испрати прилагодена порака на $1</string>
   <string name="custommessage-summary">Опис на уредувањето (автоматски ќе се додаде наставка од Huggle)</string>
   <string name="custommessage-subject">Наслов</string>
   <string name="custommessage-menu">Испрати прилагодена порака</string>

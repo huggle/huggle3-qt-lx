@@ -194,7 +194,7 @@
   <string name="config-no-colon">আপনি ব্যবহার করতে পারবেন না: সারির মধ্যে নাম</string>
   <string name="config-notify-update">হালনাগাদের জন্য পরীক্ষা করুন</string>
   <string name="config-notify-beta">উপলব্ধ হলে বেটা সংস্করণের জন্য পরীক্ষা করুন</string>
-  <string name="custommessage-title">$1-এ একটি স্বনির্ধারিত বার্তা পাঠান</string>
+  <string name="custommessage-title" fuzzy="true">$1-এ একটি স্বনির্ধারিত বার্তা পাঠান</string>
   <string name="custommessage-subject">শিরোনাম</string>
   <string name="custommessage-menu">একটি স্বনির্ধারিত বার্তা পাঠান</string>
   <string name="custommessage-send">বার্তা পাঠান</string>

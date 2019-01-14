@@ -203,7 +203,7 @@
   <string name="config-no-colon">Non puoi usare : nel nome di una coda</string>
   <string name="config-notify-update">Controlla aggiornamenti</string>
   <string name="config-notify-beta">Controlla la presenza di versioni beta se disponibili</string>
-  <string name="custommessage-title">Invia un messaggio personalizzato a $1</string>
+  <string name="custommessage-title" fuzzy="true">Invia un messaggio personalizzato a $1</string>
   <string name="custommessage-subject">Titolo</string>
   <string name="custommessage-menu">Invia un messaggio personalizzato</string>
   <string name="custommessage-send">Spedisci messaggio</string>

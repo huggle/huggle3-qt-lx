@@ -213,7 +213,7 @@
   <string name="config-no-colon">نمی‌توانید از «:» در نام صف استفاده کنید</string>
   <string name="config-notify-update">بررسی برای بروز‌رسانی</string>
   <string name="config-notify-beta">بررسی برای نسخه های بتا در صورت موجود بودن</string>
-  <string name="custommessage-title">ارسال پیام شخصی‌سازی شده به $1</string>
+  <string name="custommessage-title" fuzzy="true">ارسال پیام شخصی‌سازی شده به $1</string>
   <string name="custommessage-summary">ویرایش خلاصه ویرایش (برچسب هاگل به صورت خودکار افزوده می‌شود)</string>
   <string name="custommessage-subject">عنوان</string>
   <string name="custommessage-menu">ارسال پیام شخصی‌سازی شده</string>

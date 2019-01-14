@@ -200,7 +200,7 @@
   <string name="config-no-colon">대기열의 이름에서 : 사용할 수 없습니다</string>
   <string name="config-notify-update">업데이트 확인</string>
   <string name="config-notify-beta">사용할 수 있으면 베타 버전 확인</string>
-  <string name="custommessage-title">사용자 지정 메시지를 $1에 보내기</string>
+  <string name="custommessage-title" fuzzy="true">사용자 지정 메시지를 $1에 보내기</string>
   <string name="custommessage-summary">편집 요약(Huggle 접미사가 자동으로 추가됩니다)</string>
   <string name="custommessage-subject">제목</string>
   <string name="custommessage-menu">사용자 지정 메시지 보내기</string>

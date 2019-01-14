@@ -216,7 +216,7 @@
   <string name="config-no-colon">Kullanamazsınız: sıraya göre</string>
   <string name="config-notify-update">Güncelleştirmeleri denetle</string>
   <string name="config-notify-beta">Uygunsa Beta sürümleri olup olmadığını kontrol et.</string>
-  <string name="custommessage-title">$1 için ayarlanmış bir mesaj gönder</string>
+  <string name="custommessage-title" fuzzy="true">$1 için ayarlanmış bir mesaj gönder</string>
   <string name="custommessage-summary">Özetini düzenle (Huggle soneki otomatik olarak eklenecek)</string>
   <string name="custommessage-subject">Başlık</string>
   <string name="custommessage-menu">Ayarlanmış bir mesaj gönder</string>

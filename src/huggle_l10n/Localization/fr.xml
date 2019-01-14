@@ -212,7 +212,7 @@
   <string name="config-no-colon">Vous ne pouvez pas utiliser « : » dans le nom d’une file d’attente</string>
   <string name="config-notify-update">Vérifier les mises à jour</string>
   <string name="config-notify-beta">Vérifier si des versions bêta sont disponibles</string>
-  <string name="custommessage-title">Envoyer un message personnalisé à $1</string>
+  <string name="custommessage-title" fuzzy="true">Envoyer un message personnalisé à $1</string>
   <string name="custommessage-summary">Résumé des modifications (le suffixe Huggle sera ajouté automatiquement)</string>
   <string name="custommessage-subject">Titre</string>
   <string name="custommessage-menu">Envoyer un message personnalisé</string>
@@ -790,7 +790,7 @@
   <string name="waiting">Attente…</string>
   <string name="feature-nfru">Cette fonctionnalité concerne uniquement les utilisateurs IP</string>
   <string name="report-no-user">Aucun utilisateur n’a été sélectionné pour rapporter, sélectionnez-en un d’abord</string>
-  <string name="welcome-show">Afficher aussi ce message la prochaine fois que vous lancerez Huggle</string>
+  <string name="welcome-show">Afficher aussi ce message la prochaine fois que vous lancez Huggle</string>
   <string name="welcome-tp-empty-fail">Cet utilisateur n’a pas de page de discussion vide, êtes-vous sûr de vouloir lui envoyer un message ?</string>
   <string name="welcome-page-miss-fail">Huggle n’a pas pu récupérer le contenu de la page de discussion de l’utilisateur, êtes-vous sûr de vouloir lui envoyer un message de bienvenue ?</string>
   <string name="cr-newer-edits">Conflit résolu : retour arrière sur toutes les modifications, y compris les nouvelles. Les modifications provenaient du même utilisateur : $1.</string>

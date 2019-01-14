@@ -182,7 +182,7 @@
   <string name="config-no-colon">Ezin duzu erabili: ilara baten izenean</string>
   <string name="config-notify-update">Eguneratzeak egiaztatu</string>
   <string name="config-notify-beta">Egiaztatu beta bertsioak erabilgarri dauden</string>
-  <string name="custommessage-title">Bidali mezu pertsonalizarua $1(e)ri</string>
+  <string name="custommessage-title" fuzzy="true">Bidali mezu pertsonalizarua $1(e)ri</string>
   <string name="custommessage-summary">Laburpena aldatu (Huggle atzizkia automatikoki sartuko da)</string>
   <string name="custommessage-subject">Izenburua</string>
   <string name="custommessage-menu">Bidali mezu pertsonalizatua</string>

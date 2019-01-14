@@ -204,7 +204,7 @@
   <string name="config-no-colon">您不能在佇列名稱裡使用「:」</string>
   <string name="config-notify-update">檢查更新</string>
   <string name="config-notify-beta">檢查是否有測試版本</string>
-  <string name="custommessage-title">寄送自訂訊息給$1</string>
+  <string name="custommessage-title" fuzzy="true">寄送自訂訊息給$1</string>
   <string name="custommessage-summary">編輯摘要（Huggle 字尾將會自動插入）</string>
   <string name="custommessage-subject">標題</string>
   <string name="custommessage-menu">寄送自訂訊息</string>

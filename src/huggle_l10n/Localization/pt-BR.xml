@@ -217,7 +217,7 @@
   <string name="config-no-colon">Você não pode usar : em nome de uma fila</string>
   <string name="config-notify-update">Verificar existência de atualizações</string>
   <string name="config-notify-beta">Verificar se existem versões beta disponíveis</string>
-  <string name="custommessage-title">Enviar uma mensagem personalizada para $1</string>
+  <string name="custommessage-title" fuzzy="true">Enviar uma mensagem personalizada para $1</string>
   <string name="custommessage-summary">Resumo de edição (o sufixo do Huggle será introduzido automaticamente)</string>
   <string name="custommessage-subject">Título</string>
   <string name="custommessage-menu">Enviar uma mensagem personalizada</string>
@@ -687,6 +687,7 @@
   <string name="shortcut-user-contribs-browser">Mostrar contribuições do usuário no navegador</string>
   <string name="shortcut-user-clear-talk">Limpar a página de discussão do atual usuário</string>
   <string name="shortcut-main-clear-queue">Limpar consulta</string>
+  <string name="shortcut-revert-agf">Reverter presumindo boa-fé, com um resumo de edição personalizado</string>
   <string name="warning-title">Aviso $1</string>
   <string name="warning-levelgroup">Nível de aviso</string>
   <string name="warning-levelauto">Automático</string>
