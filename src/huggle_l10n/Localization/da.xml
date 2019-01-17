@@ -143,6 +143,7 @@
   <string name="config-no-colon">Du kan ikke bruge : i navnet for en kø</string>
   <string name="config-notify-update">Kontroller for opdateringer</string>
   <string name="config-notify-beta">Kontroller om en betaversion er tilgængelig</string>
+  <string name="custommessage-title">Skiv en besked til $1</string>
   <string name="custommessage-subject">Titel</string>
   <string name="custommessage-send">Send besked</string>
   <string name="custommessage-wikiuser-plaintext-1">Hej $1,</string>

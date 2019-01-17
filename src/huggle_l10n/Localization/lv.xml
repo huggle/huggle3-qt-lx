@@ -179,6 +179,7 @@
   <string name="main-tools">Rīki</string>
   <string name="main-tools-sess">Parādīt sesijas informāciju</string>
   <string name="main-page-next">Tālāk</string>
+  <string name="main-page-history">Iegūt vēsturi</string>
   <string name="main-page-historypage">Rādīt vēstures lapu</string>
   <string name="main-page-edit">Labot lapu pārlūkā</string>
   <string name="main-page-curr-disp">Pašlaik attēlots</string>
@@ -217,6 +218,7 @@
   <string name="main-report-username">Ziņot par lietotājvārdu</string>
   <string name="main-report-user">Ziņot par dalībnieku</string>
   <string name="main-edit-user-talk">Labot dalībnieka diskusiju</string>
+  <string name="main-statistics-paused">nopauzēts</string>
   <string name="message-subject">Temats:</string>
   <string name="message-message">Ziņojums:</string>
   <string name="message-summary">Kopsavilkums:</string>

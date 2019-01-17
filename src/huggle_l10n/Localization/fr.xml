@@ -212,7 +212,7 @@
   <string name="config-no-colon">Vous ne pouvez pas utiliser « : » dans le nom d’une file d’attente</string>
   <string name="config-notify-update">Vérifier les mises à jour</string>
   <string name="config-notify-beta">Vérifier si des versions bêta sont disponibles</string>
-  <string name="custommessage-title" fuzzy="true">Envoyer un message personnalisé à $1</string>
+  <string name="custommessage-title">Ecrire un message à $1</string>
   <string name="custommessage-summary">Résumé des modifications (le suffixe Huggle sera ajouté automatiquement)</string>
   <string name="custommessage-subject">Titre</string>
   <string name="custommessage-menu">Envoyer un message personnalisé</string>

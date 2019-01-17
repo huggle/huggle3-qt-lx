@@ -217,7 +217,7 @@
   <string name="config-no-colon">Você não pode usar : em nome de uma fila</string>
   <string name="config-notify-update">Verificar existência de atualizações</string>
   <string name="config-notify-beta">Verificar se existem versões beta disponíveis</string>
-  <string name="custommessage-title" fuzzy="true">Enviar uma mensagem personalizada para $1</string>
+  <string name="custommessage-title">Escrever uma mensagem para $1</string>
   <string name="custommessage-summary">Resumo de edição (o sufixo do Huggle será introduzido automaticamente)</string>
   <string name="custommessage-subject">Título</string>
   <string name="custommessage-menu">Enviar uma mensagem personalizada</string>
