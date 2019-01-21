@@ -7,6 +7,7 @@
 * Lokal Profil
 * Macofe
 * McDutchie
+* Umeaboy
 * WikiPhoenix
 -->
 <resources>
@@ -187,7 +188,7 @@
   <string name="config-no-colon">Du kan inte använda : i namnet på en kö</string>
   <string name="config-notify-update">Sök efter uppdateringar</string>
   <string name="config-notify-beta">Kontrollera om en beta-version finns tillgänglig</string>
-  <string name="custommessage-title" fuzzy="true">Skicka ett anpassat meddelande till $1</string>
+  <string name="custommessage-title">Skriv ett meddelande till $1</string>
   <string name="custommessage-summary">Redigeringssammanfattning (ett Huggle-suffix kommer att läggas till automatiskt)</string>
   <string name="custommessage-subject">Titel</string>
   <string name="custommessage-menu">Skicka ett anpassat meddelande</string>

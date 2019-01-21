@@ -73,7 +73,7 @@
   <string name="link">Enlace</string>
   <string name="reason">Motivo</string>
   <string name="diffid">Id. de diff.</string>
-  <string name="whitelisted">Se agregó a $1 con puntuación $2 en $3 en la lista blanca</string>
+  <string name="whitelisted">Se añadió a $1 con puntuación $2 en $3 a la lista blanca</string>
   <string name="expiry-time">Tiempo de expiración</string>
   <string name="duration">Duración</string>
   <string name="enable">Activar</string>
@@ -109,7 +109,7 @@
   <string name="block-error-no-info">La consulta no contiene información del usuario (¿eres un administrador?)</string>
   <string name="block-type">Bloquear / desbloquear</string>
   <string name="block-admin">Administrador que hizo el bloqueo</string>
-  <string name="block-none">No hay ningún usuario seleccionado que bloquear.</string>
+  <string name="block-none">No hay ningún usuario seleccionado al que bloquear.</string>
   <string name="contribution-browser-user-info">Mostrando las contribuciones recientes del usuario $1</string>
   <string name="config-function">Función</string>
   <string name="config-description">Descripción</string>
@@ -119,7 +119,7 @@
   <string name="config-queue-filter-require">Requerir (debe ser)</string>
   <string name="config-summ">Resúmenes de reversión personalizados para plantillas</string>
   <string name="config-title">Opciones</string>
-  <string name="config-already-in-use">Este atajo se está utilizando en $1. Elige otro distinto</string>
+  <string name="config-already-in-use">Este atajo se está usando en $1. Elige otro distinto</string>
   <string name="config-openinbrowser">Abrir enlaces en una ventana nueva del navegador</string>
   <string name="config-shownewedits">Mostrar las ediciones nuevas en la página seleccionada a medida que se realizan</string>
   <string name="config-ircmode">Usar el IRC de cambios recientes, si es posible</string>
@@ -144,7 +144,7 @@
   <string name="config-confirm-wl">Solicitar confirmación para revertir una edición realizada por un usuario de la lista blanca</string>
   <string name="config-confirm-talk">Solicitar confirmación para revertir en una página de discusión</string>
   <string name="config-use-rollback">Usar software de reversor</string>
-  <string name="config-welcome-empty-page">Enviar un mensaje de bienvenida a los usuarios con páginas de discusión vacías cuando haga una edición buena</string>
+  <string name="config-welcome-empty-page">Enviar un mensaje de bienvenida a los usuarios con páginas de discusión vacías cuando hagan una edición buena</string>
   <string name="config-conflicts-revert">Resuelve automáticamente los conflictos de edición con otros usuarios que revirtieron o cambiaron la misma página</string>
   <string name="config-instant-reverts">Usa reversiones instantáneas (muy rápido, pero una vez ejecutado no se puede cancelar)</string>
   <string name="config-reverts-multiple">Al revertir varias ediciones del mismo usuario:</string>
@@ -215,7 +215,7 @@
   <string name="config-no-colon">No puedes utilizar : en el nombre de una cola</string>
   <string name="config-notify-update">Buscar actualizaciones</string>
   <string name="config-notify-beta">Buscar si hay versiones beta disponibles</string>
-  <string name="custommessage-title" fuzzy="true">Enviar un mensaje personalizado a $1</string>
+  <string name="custommessage-title">Escribe un mensaje a $1</string>
   <string name="custommessage-summary">Resumen de edición (el sufijo Huggle se insertará automáticamente)</string>
   <string name="custommessage-subject">Título</string>
   <string name="custommessage-menu">Enviar un mensaje personalizado</string>
@@ -254,13 +254,13 @@
   <string name="history-failure">No ha sido posible obtener el historial</string>
   <string name="userhistory-title">Historial de tus cambios</string>
   <string name="irc-connected">$1: Conectado al canal IRC de cambios recientes</string>
-  <string name="irc-connecting">Intentando conectar al canal IRC de cambios recientes en $1, esto puede tardar uno momentos...</string>
+  <string name="irc-connecting">Intentando conectar al canal IRC de cambios recientes en $1, esto puede tardar unos momentos...</string>
   <string name="irc-disconnected">Se perdió la conexión con el canal IRC de cambios recientes en $1. Conectando de nuevo...</string>
   <string name="irc-nochannel">Canal IRC de $1 no encontrado; utilizando consultas API más lentas en su lugar</string>
   <string name="irc-error">No se puede conectar al canal IRC de cambios recientes ($1: $2). Utilizando consultas API más lentas en su lugar</string>
   <string name="irc-stop">Esperando a que el proveedor principal se detenga en $1</string>
   <string name="irc-not">Proveedor: IRC está deshabilitado por la configuración del proyecto</string>
-  <string name="irc-failure">El principal proveedor ha fallado. Volviendo al proveedor wiki...</string>
+  <string name="irc-failure">El proveedor principal ha fallado. Volviendo al proveedor wiki...</string>
   <string name="irc-wait">Esperando a que el proveedor IRC se detenga</string>
   <string name="irc-switch-rc">Cambiando al proveedor wiki de cambios recientes</string>
   <string name="login-old">Recuperando la configuración de usuario desde la ubicación anterior</string>
@@ -283,8 +283,8 @@
   <string name="login-retrieving-user-conf">Recuperando la configuración de usuario</string>
   <string name="login-fail-css">Error de inicio de sesión en $1: no se pudo recuperar la configuración de usuario. Falta Special:MyPage/huggle3.css. ¿Has creado «huggle3.css» en tu espacio de usuario?</string>
   <string name="login-fail-enable-true">Error de inicio de sesión en $1: falta la orden «enable:true» en tu configuración personal.</string>
-  <string name="login-fail-no-info">Error de inicio de sesión en $1:no se pudo recuperar la información de usuario: $2</string>
-  <string name="login-bot">¿Cuál es la diferencia entre Contraseña de Bot y el inicio de sesión heredado?</string>
+  <string name="login-fail-no-info">Error de inicio de sesión en $1: no se pudo recuperar la información de usuario: $2</string>
+  <string name="login-bot">¿Cuál es la diferencia entre contraseña de Bot y el inicio de sesión heredado?</string>
   <string name="login-fail-parse-config">Error de inicio de sesión en $1: no se puede analizar la configuración de usuario. Consulta el registro de depuración para obtener más detalles.</string>
   <string name="login-fail-parse-config-yaml">Error de inicio de sesión en $1: no se puede analizar la configuración de usuario: $2</string>
   <string name="login-fail-user-data">Error de inicio de sesión en $1: no se puede recuperar la información de usuario. La consulta de la API no devolvió datos.</string>
@@ -341,7 +341,7 @@
   <string name="wikis-db-download-fail">No se puede descargar la base de datos de wikis: $1</string>
   <string name="no-projects-defined-in-list">No existen proyectos definidos en ninguna lista. Necesitas configurar algunos en el wiki global</string>
   <string name="api-query-no-data">la consulta de API no devolvió ningún dato</string>
-  <string name="main-stat">$1 ediciones por minuto $2 reversiones por minuto, nivel $3</string>
+  <string name="main-stat">$1 ediciones por minuto, $2 reversiones por minuto, nivel $3</string>
   <string name="main-menu-provider-stop">Detener proveedor</string>
   <string name="main-menu-provider-resume">Reanudar proveedor</string>
   <string name="provider-up">Conectando al flujo de cambios recientes en $2 usando el proveedor: $1</string>
@@ -419,7 +419,7 @@
   <string name="main-page-purge">Purgar</string>
   <string name="main-page-curr-disp">Actualmente mostrado</string>
   <string name="main-page-display">Mostrar esta página</string>
-  <string name="main-page-patrol">Marcar como patrullado</string>
+  <string name="main-page-patrol">Marcar como verificada</string>
   <string name="main-page-move">Trasladar...</string>
   <string name="main-page-flag-suspicious-edit">Marcar como edición sospechosa (esta acción da +1 punto al usuario)</string>
   <string name="main-page-flag-good-edit">Marcar como edición buena (esta acción resta 200 puntos al usuario)</string>
@@ -505,7 +505,7 @@
   <string name="main-statistics-none">ninguno</string>
   <string name="main-tab-welcome-title">Página de bienvenida</string>
   <string name="message-title">Enviar mensaje a $1</string>
-  <string name="message-help">Especifica el asunto y/o el resumen. Si no especificas un resumen, se usará al asunto; si no especificas un asunto, tu mensaje no tendrá título.</string>
+  <string name="message-help">Especifica el asunto y/o el resumen. Si no especificas un resumen, se usará el asunto; si no especificas un asunto, tu mensaje no tendrá encabezado.</string>
   <string name="message-subject">Asunto:</string>
   <string name="message-message">Mensaje:</string>
   <string name="message-summary">Resumen:</string>
@@ -714,14 +714,14 @@
   <string name="error-reloginfail">No se pudo volver a iniciar la sesión. Prueba a reiniciar Huggle</string>
   <string name="error-timeout">Tiempo de espera agotado</string>
   <string name="error-unknown">Error desconocido</string>
-  <string name="block-done">\'$1\' fue bloqueado</string>
+  <string name="block-done">$1 fue bloqueado</string>
   <string name="block-progress">Bloqueando a $1...</string>
   <string name="blocklog-fail">No se pudo obtener el registro de bloqueos de $1</string>
   <string name="blocklog-none">No hay registro de bloqueos de $1</string>
   <string name="blocklog-progress">Obteniendo el registro de bloqueos de $1...</string>
   <string name="blocknotify-fail">No se pudo avisar a $1 del bloqueo</string>
   <string name="blocknotify-progress">Avisando a $1 del bloqueo...</string>
-  <string name="delete-done">\'$1\' fue borrado</string>
+  <string name="delete-done">$1 fue borrado</string>
   <string name="delete-fail">No se pudo borrar $1</string>
   <string name="delete-progress">Borrando $1...</string>
   <string name="delete-user">Esta es una página de usuario. ¿Seguro que quieres borrarla?</string>
@@ -794,7 +794,7 @@
   <string name="feature-nfru">Esta característica es solo para usuarios de IP</string>
   <string name="report-no-user">No has seleccionado ningún usuario para denunciar. Selecciona un usuario primero</string>
   <string name="welcome-show">Mostrar este mensaje la próxima vez que inicies Huggle</string>
-  <string name="welcome-tp-empty-fail">Este usuario no tiene ula página de discusión vacía, ¿seguro que quieres enviarle un mensaje?</string>
+  <string name="welcome-tp-empty-fail">Este usuario no tiene su página de discusión vacía, ¿seguro que quieres enviarle un mensaje?</string>
   <string name="welcome-page-miss-fail">Huggle fue incapaz de recuperar el contenido de la página de discusión del usuario, ¿Seguro que quieres poner un mensaje de bienvenida?</string>
   <string name="cr-newer-edits">Conflicto resuelto: todas las ediciones fueron revertidas, incluidas las nuevas. Las ediciones eran del mismo usuario: $1.</string>
   <string name="cr-resolved-same-user">Conflicto resuelto: todas las ediciones fueron revertidas, incluidas las nuevas. Las ediciones eran de los mismos usuarios: $1</string>
@@ -816,7 +816,7 @@
   <string name="preferences-watchlist-preferences">Seguir tus preferencias en el wiki</string>
   <string name="preferences-watchlist-nochange">No hacer nada</string>
   <string name="preferences-auto-watch-talk">Vigilar página de discusión del usuario que reciba una advertencia tuya</string>
-  <string name="preferences-sounds-enable-queue">Reproducir sonido cuando se agregue un nuevo elemento a la cola</string>
+  <string name="preferences-sounds-enable-queue">Reproducir sonido cuando se añada un nuevo elemento a la cola</string>
   <string name="preferences-sounds-enable-irc">Reproducir un sonido cuando se recibe un mensaje en HAN</string>
   <string name="preferences-sounds-minimal-score">Puntuación mínima de la edición para la notificación</string>
   <string name="preferences-performance-catscansandwatched">Habilitar las categorías y ver el filtrado de estado (requiere una consulta API adicional por edición)</string>
@@ -841,7 +841,7 @@
   <string name="page-tag-fail">Error al etiquetar la página</string>
   <string name="page-tag-error">Imposible marcar la página, el error fue: $1</string>
   <string name="page-unknown">Página desconocida</string>
-  <string name="summary-edit-range">Mostrando el rango diff de la rev-id $1 a la $2</string>
+  <string name="summary-edit-range">Mostrando el rango de diferencias desde la revisión $1 a la $2</string>
   <string name="speedy-csd-invalid">Plantilla de borrado rápido no válida, no hay ningún mensaje ni etiqueta wiki que utilizar</string>
   <string name="speedy-csd-existing">Ya existe una etiqueta de borrado rápido en la página.</string>
   <string name="namespace">Espacio de nombres</string>
@@ -855,8 +855,8 @@
   <string name="error-unknown-code">Error desconocido: $1</string>
   <string name="relogin-fail">No se puede iniciar sesión en la wiki: $1</string>
   <string name="projects">Proyectos</string>
-  <string name="unable-to-retrieve-user-list">No se ha podido recuperar la lista de usuario: $1</string>
-  <string name="login-no-userinfo">El sitio no devolvió ninguna información de información del usuario</string>
+  <string name="unable-to-retrieve-user-list">No se ha podido recuperar la lista del usuario: $1</string>
+  <string name="login-no-userinfo">El sitio no devolvió ninguna información del usuario</string>
   <string name="login-invalid-register-date">MediaWiki devolvió una fecha de registro no válida</string>
   <string name="login-site-info-query-failed">La información del sitio de consulta de $1 ha fallado: $2</string>
   <string name="login-no-site-info-returned">No se devolvió información del sitio para esta wiki</string>
@@ -901,5 +901,5 @@
   <string name="tip13">Puedes abrir el «navegador de contribuciones» para el usuario que creó la edición mostrada actualmente, presionando Mayús + C (por defecto) o desde el menú de usuario. Te permite ver rápidamente ediciones recientes realizadas por este usuario.</string>
   <string name="tip14">¿Quieres chatear con otros usuarios activos de Huggle que están usando el programa ahora? Si están en línea, los verás en la ventana «Red».</string>
   <string name="tip15">Si te encuentras problemas con un artículo y la reversión no te ayuda, puedes presionar E para editar el artículo inmediatamente en tu navegador predeterminado (no dentro de Huggle).</string>
-  <string name="tip16">Si presionó el botón para revertir por accidente, es posible cancelar la reversión presionando ESC rápidamente.</string>
+  <string name="tip16">Si presiaste el botón de revertir por accidente, es posible cancelar la reversión presionando ESC rápidamente.</string>
 </resources>

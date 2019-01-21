@@ -152,6 +152,7 @@
   <string name="config-summaryprompt">Унеси резиме</string>
   <string name="config-notify-update">Потражи ажурирања</string>
   <string name="config-notify-beta">Потражи бета верзије ако су доступне</string>
+  <string name="custommessage-title">Писање поруке кориснику $1</string>
   <string name="custommessage-subject">Наслов</string>
   <string name="custommessage-send">Пошаљи поруку</string>
   <string name="delete-title">Избриши $1</string>
