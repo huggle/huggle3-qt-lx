@@ -12,6 +12,7 @@
 * Yfdyh000
 * Zhaofeng Li
 * 夢蝶葬花
+* 水獭很懒
 -->
 <resources>
   <string name="name">简体中文</string>
@@ -30,7 +31,7 @@
   <string name="done">完成</string>
   <string name="no">否</string>
   <string name="ok">确定</string>
-  <string name="override-warn">您已经覆盖了项目配置的路径。请记住，滥用此功能以获取对维基（通常不应当具有此功能）的写入权限，可能会导致您的帐户被无限期封禁。</string>
+  <string name="override-warn">您已经覆盖了项目配置的路径。请记住，滥用此功能以获取对维基（通常不应具有此权限）的写入权限，可能会导致您的帐户被无限期封禁。</string>
   <string name="remove">移除</string>
   <string name="rename">重命名</string>
   <string name="reload">重新加载</string>
@@ -204,7 +205,7 @@
   <string name="config-no-colon">您不能在队列名中使用“:”</string>
   <string name="config-notify-update">检查更新</string>
   <string name="config-notify-beta">如果可用，检查测试版本</string>
-  <string name="custommessage-title" fuzzy="true">发送自定义消息至$1</string>
+  <string name="custommessage-title">发送消息至$1</string>
   <string name="custommessage-summary">编辑摘要（Huggle后缀将自动插入）</string>
   <string name="custommessage-subject">标题</string>
   <string name="custommessage-menu">发送自定义消息</string>
@@ -876,7 +877,7 @@
   <string name="wikipagetagsform-group">包括在组{{$1}}中</string>
   <string name="tip1">就像其他浏览器那样，Huggle支持标签！如果您正在做一些编辑，并且您希望稍后保持它，您完全可以打开新标签，并在这里继续检查队列。队列在所有标签中分享。</string>
   <string name="tip2">Huggle包含“编辑栏”，这是包含拥有简洁界面的用户和页面历史的小部件。当然它默认不启用。如果您使用小屏幕设备，您可以将用户和页面历史部件替换成它！</string>
-  <string name="tip3" fuzzy="true">多数参数设置都在wiki页面[[Special:MyPage/huggle3.css]]存储。您也可以在此手动更改它们。</string>
+  <string name="tip3">多数参数设置都在wiki页面[[Special:MyPage/huggle.yaml.js]]中存储。您也可以在此手动更改它们。</string>
   <string name="tip4">屏幕上几乎所有小工具都可以安全关闭（除了导航栏）。</string>
   <string name="tip5">您可以同时在多个项目上使用Huggle，在登录表单中点击“项目”即可。</string>
   <string name="tip6">只要您是有经验的，从未做错过的用户，Huggle的回退可以更快；）打开参数设置并勾选“即时回退”</string>

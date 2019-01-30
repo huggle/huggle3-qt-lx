@@ -252,6 +252,7 @@
   <string name="namespace">Nimiavaruus</string>
   <string name="block-alreadyblocked">Käyttäjä on jo estetty</string>
   <string name="relogin-fail">Ei voida kirjautua wikiin: $1</string>
+  <string name="main-revert-already-pending-title">Tämä muokkaus on jo kumottu</string>
   <string name="main-revert-type-made-on-talk-page">tehty keskustelusivulla</string>
   <string name="main-revert-type-made-white-list">tehnyt käyttäjä joka on sallittujen listalla</string>
   <string name="query-protected-link">Suojattu linkki</string>

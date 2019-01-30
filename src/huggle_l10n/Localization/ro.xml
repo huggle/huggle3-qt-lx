@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
 * Andrei Stroe
+* MSClaudiu
 * Macofe
 * Patrick Star
 * Silviu200530
 * Strainu
 -->
 <resources>
-  <string name="name" fuzzy="true">Română</string>
+  <string name="name">Engleză</string>
   <string name="autorelog">Faceți acest lucru fără a întreba data viitoare</string>
   <string name="isrtl">Fals</string>
   <string name="add">Adaugă</string>
@@ -27,10 +28,11 @@
   <string name="rename">Redenumește</string>
   <string name="reload">Reîncarcă</string>
   <string name="project">Proiect</string>
+  <string name="warning">Avertisment</string>
   <string name="result">Rezultat</string>
   <string name="save">Salvează</string>
   <string name="show">Arată</string>
-  <string name="no-instant" fuzzy="true">Mesajele instante nu sunt activate pe proiectul $1, nu se trimite mesaj către $2, alegeți un alt nivel de avertizare.</string>
+  <string name="no-instant">Mesajul $2 nu poate fi trimis, deoarece avertismentele instant nu sunt activate pentru proiectul $1. Alegeți un alt nivel de avertizare</string>
   <string name="undo">Anulează</string>
   <string name="yes">Da</string>
   <string name="editing-page">Editarea paginii</string>
@@ -53,15 +55,15 @@
   <string name="link">Legătură</string>
   <string name="reason">Motiv</string>
   <string name="diffid">DiffID</string>
-  <string name="whitelisted" fuzzy="true">$1 cu scorul $2 pe $3 a fost introdus în whitelist</string>
+  <string name="whitelisted">$1 cu scorul $2 pe $3 a fost introdus în lista albă</string>
   <string name="expiry-time">Ora expirării</string>
   <string name="duration">Durată</string>
   <string name="enable">Activează</string>
   <string name="disable">Dezactivează</string>
   <string name="no-token">Nu există token</string>
   <string name="flags">Steaguri</string>
-  <string name="gracetime" fuzzy="true">Aștept terminarea query-urilor de editare...</string>
-  <string name="browser-none" fuzzy="true">Acum nu este afișată nicio pagină</string>
+  <string name="gracetime">Se așteaptă ca interogările care efectuează modificări să se încheie ...</string>
+  <string name="browser-none">Nu există nici o pagină care să fie afișată încă.</string>
   <string name="browser-load">Descarc diff folosind un mecanism de rezervă pentru redarea web (MW), așteptați...</string>
   <string name="browser-miss-summ">Nu a fost specificat un sumar</string>
   <string name="browser-diff">Diff al paginii: $1 (scor: $2)</string>

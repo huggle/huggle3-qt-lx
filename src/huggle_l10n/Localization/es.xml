@@ -505,7 +505,7 @@
   <string name="main-statistics-none">ninguno</string>
   <string name="main-tab-welcome-title">Página de bienvenida</string>
   <string name="message-title">Enviar mensaje a $1</string>
-  <string name="message-help">Especifica el asunto y/o el resumen. Si no especificas un resumen, se usará el asunto; si no especificas un asunto, tu mensaje no tendrá encabezado.</string>
+  <string name="message-help">Especifica el asunto y/o el resumen. Si no especificas un resumen, se usará el asunto; si no especificas un asunto, tu mensaje no tendrá cabecera.</string>
   <string name="message-subject">Asunto:</string>
   <string name="message-message">Mensaje:</string>
   <string name="message-summary">Resumen:</string>

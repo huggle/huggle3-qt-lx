@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
+* Albe Albe460
 * Alexmar983
 * Aquatech
 * Beta16
@@ -634,7 +635,7 @@
   <string name="shortcut-talk">Mostra la pagina di discussione dell\'utente che ha effettuato questa modifica</string>
   <string name="shortcut-revert-agf-1">Annulla l\'ultima versione, presupponendo la buona fede</string>
   <string name="shortcut-browser-close-tab">Chiudi una scheda del browser</string>
-  <string name="shortcut-tab">Apre una nuova scheda</string>
+  <string name="shortcut-tab">Apri una nuova scheda</string>
   <string name="shortcut-rw-stay">Annulla la modifica attuale, avverti l\'utente e rimani nella pagina</string>
   <string name="shortcut-revert-and-stay">Ripristina la versione attuale e rimani sulla pagina</string>
   <string name="shortcut-user-contribs-browser">Apre i contributi dell\'utente in un browser</string>

@@ -66,7 +66,7 @@
   <string name="browser-miss-summ">Xulasaya nëasëna</string>
   <string name="browser-diff">Ferqë perrer  $1 (hesab $2)</string>
   <string name="browser-fail">Ferqo nëardëno: $1</string>
-  <string name="about-contributors">Vıraştoği</string>
+  <string name="about-contributors">Raverberdoği:</string>
   <string name="block-not">Karber bloqe nêbı yo</string>
   <string name="block-title">blok $1</string>
   <string name="block-reason">Sebeb:</string>
@@ -208,7 +208,7 @@
   <string name="main-page-unwatch">Seyr meke</string>
   <string name="main-page-purge">Pak ke</string>
   <string name="main-page-move">Bıkırış...</string>
-  <string name="main-page-protect">Star fi</string>
+  <string name="main-page-protect">Bısıtarne</string>
   <string name="main-page-delete">Bestere</string>
   <string name="main-page-load">Bar ke</string>
   <string name="main-page-restore">Ena revizyoner peyser biya</string>
@@ -245,7 +245,10 @@
   <string name="message-summary">Xulasa:</string>
   <string name="protect-reason">Sebeb:</string>
   <string name="protect-none">Çıniyo</string>
+  <string name="queue-title">Rêzi</string>
+  <string name="queue-queues">Rêzi:</string>
   <string name="queue-listselector">Liste:</string>
+  <string name="queue-diffsgroup">Ferqi</string>
   <string name="queue-filternewpage">Pela newiye</string>
   <string name="queue-filternotifications">Mengene</string>
   <string name="queue-filterwarnings">Tembe kem</string>
