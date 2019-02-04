@@ -4,6 +4,7 @@
 * Brunoperel
 * Caliburn
 * Crochet.david
+* DSwissK
 * Framawiki
 * Gomoko
 * Linedwell
@@ -615,7 +616,7 @@
   <string name="revert-creator">La dernière modification a été faite par le créateur de la page, $1.</string>
   <string name="revert-preflightcheck">Contrôle préalable</string>
   <string name="revert-delete-instead">Supprimer la page à la place ?</string>
-  <string name="revert-speedy-instead">Marque pour la supression rapide en remplacement ?</string>
+  <string name="revert-speedy-instead">Marque pour la suppression rapide en remplacement ?</string>
   <string name="revert-cannotundo">Impossible d’annuler ces modifications en conflit avec d\'autres modifications intermédiaires.</string>
   <string name="revert-conflict">La page a été modifiée par l’utilisateur en liste blanche « $1 »</string>
   <string name="revert-fail">N\'a pas été annulé $1 : $2</string>

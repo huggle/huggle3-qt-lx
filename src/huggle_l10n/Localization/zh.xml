@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
+* 94rain
 * Arthur2e5
 * LNDDYL
 * Liuxinyu970226
@@ -675,6 +676,7 @@
   <string name="shortcut-user-contribs-browser">在浏览器中打开用户贡献</string>
   <string name="shortcut-user-clear-talk">清空当前用户的讨论页</string>
   <string name="shortcut-main-clear-queue">清空查询</string>
+  <string name="shortcut-revert-agf">假定善意回退，并自定义编辑摘要</string>
   <string name="warning-title">警告$1</string>
   <string name="warning-levelgroup">警告级别</string>
   <string name="warning-levelauto">自动</string>

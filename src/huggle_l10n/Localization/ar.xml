@@ -38,7 +38,7 @@
   <string name="project">المشروع</string>
   <string name="warning">تحذير</string>
   <string name="result">النتيجة</string>
-  <string name="save">احفظ</string>
+  <string name="save">حفظ</string>
   <string name="show">أظهر</string>
   <string name="no-instant">لا يمكن إرسال الرسالة إلى $2; حيث لا يتم تمكين التحذيرات الفورية على المشروع $1; يُرجَى اختيار مستوى تحذير مختلف.</string>
   <string name="undo">تراجع</string>
@@ -348,7 +348,7 @@
   <string name="main-metric-bar">متوسط ​​وقت استجابة API: $1ms</string>
   <string name="main-shutting-down">جارٍ إغلاق هغل; تم التجاهل</string>
   <string name="main-system-messages">اعرض الرسائل الجديدة</string>
-  <string name="main-system-savelog">احفظ السجل...</string>
+  <string name="main-system-savelog">حفظ السجل...</string>
   <string name="main-system-statistics">إحصائيات...</string>
   <string name="main-system-showqueue">أظهر الطابور</string>
   <string name="main-system-options">الخيارات...</string>
@@ -464,7 +464,7 @@
   <string name="main-help-contents">المحتويات</string>
   <string name="main-help-queuelegend">عنوان قائمة الانتظار التفسيري</string>
   <string name="main-addqueue">أضف...</string>
-  <string name="main-savelogtitle">احفظ السجل</string>
+  <string name="main-savelogtitle">حفظ السجل</string>
   <string name="main-usermessageother">رسالة أخرى...</string>
   <string name="main-advanced">متقدّم...</string>
   <string name="main-stats">$1 حرر في الدقيقة, $2 استرجع في الدقيقة</string>
