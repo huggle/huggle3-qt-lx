@@ -44,13 +44,13 @@
   <string name="target">Menzil</string>
   <string name="user">Karber</string>
   <string name="size">Gırdiye</string>
-  <string name="date">Dem</string>
+  <string name="date">Tarix</string>
   <string name="page">Pele</string>
   <string name="time">Wext</string>
   <string name="version">Versiyon</string>
   <string name="general-name">Name</string>
   <string name="author">Nuştekar</string>
-  <string name="description">Sılasnayış</string>
+  <string name="description">Şınasnayış</string>
   <string name="status">Weziyet</string>
   <string name="link">Link</string>
   <string name="reason">Sebeb</string>
@@ -106,6 +106,7 @@
   <string name="config-watchlist">Lista seyrkerdışi ke</string>
   <string name="config-defaultsummary">Qandê vurnayışê desti ra xulasaya hesabiyayiye</string>
   <string name="config-revert">Peyd bıgi</string>
+  <string name="config-skip">Ravêre</string>
   <string name="config-enable-irc">IRC\'i aktiv kı</string>
   <string name="config-remove-reverted" fuzzy="true">Terefë jeenayra peyd grote vuriyayışa liste ra vec</string>
   <string name="config-remove-old" fuzzy="true">Eger kı perrer dı vuriyayışë newey etë se kehanan wedarnë</string>
@@ -163,7 +164,7 @@
   <string name="login-remember-password">Parola biya mı viri</string>
   <string name="login-ssl" fuzzy="true">HTTPS bıkarnë (OpenSSL gerek keno)</string>
   <string name="login-fail">$1 dı ronıştış nëabıya</string>
-  <string name="login-error-cancelled">Terkneya yo</string>
+  <string name="login-error-cancelled">Texelna.</string>
   <string name="login-error-invalid">Nameyê karberiyo nêvêrde</string>
   <string name="main-page">Pele</string>
   <string name="main-user">Karber</string>

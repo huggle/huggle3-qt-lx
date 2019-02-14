@@ -226,7 +226,7 @@
   <string name="config-no-colon">Вы не можете использовать : в имени очереди</string>
   <string name="config-notify-update">Проверять на наличие обновлений</string>
   <string name="config-notify-beta">Проверять на наличие бета-версий, если возможно</string>
-  <string name="custommessage-title" fuzzy="true">Отправить сообщение to $1</string>
+  <string name="custommessage-title">Отправить сообщение $1</string>
   <string name="custommessage-summary">Описание правки (с автоподставленным тегом \"Huggle\")</string>
   <string name="custommessage-subject">Заголовок</string>
   <string name="custommessage-menu">Отправить своё сообщение</string>
@@ -821,7 +821,7 @@
   <string name="preferences-extension-disabled-restart">Расширение будет отключено во время следующей загрузки Huggle</string>
   <string name="preferences-extension-enabled">Это расширение не запланировано к отключению во время следующей загрузки Huggle</string>
   <string name="preferences-extension-enabled-restart">Расширение включено. Необходимо перезагрузить Huggle, чтобы изменения вступили в силу.</string>
-  <string name="preferences-enforce-baw">Принудительно использовать чёрно-белые цветов в HTML-отображении разницы между двумя версиями</string>
+  <string name="preferences-enforce-baw">Принудительно использовать чёрно-белые цвета в HTML-отображении разницы между двумя версиями</string>
   <string name="preferences-watchlist-watch">Добавить в список наблюдения</string>
   <string name="preferences-watchlist-unwatch">Удалить из списка наблюдения</string>
   <string name="preferences-watchlist-preferences">Следовать вашим настройкам в вики</string>

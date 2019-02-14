@@ -247,7 +247,7 @@
   <string name="irc-connecting">قيد الاتصال بتلقيم آي آر سي لأحدث التغييرات؛ قد يستغرق الأمر برهة</string>
   <string name="irc-disconnected">انقطع الاتصال بتلقيم آي آر سي لأحدث التغييرات؛ معاودة الاتصال</string>
   <string name="irc-nochannel">قناة آي آر سي ل$1 غير موجودة؛ استخدام استعلامات واجهة برمجة تطبيقات أبطأ بدلاً منها</string>
-  <string name="irc-error">تعذر الاتصال بملقم آي آر سي لأحدث التغييرات ($1: $2). استخدام استعلامات واجهة برمجة تطبيقات أبطأ بدلاً منها</string>
+  <string name="irc-error">تعذر الاتصال بملقم آي آر سي لأحدث التغييرات ($1: $2). جاري استخدام استعلامات واجهة برمجة التطبيقات الأبطأ بدلا منها</string>
   <string name="irc-stop">انتظار موفر الخلاصة الأولية للتوقف عند $1</string>
   <string name="irc-not">الخلاصة: يتم تعطيل آي آر سي بواسطة تهيئة المشروع</string>
   <string name="irc-failure">فشل مزود الخلاصة الأساسي; تراجع إلى مزود الويكي...</string>
@@ -300,7 +300,7 @@
   <string name="login-progress-user">التحقق من تكوين المستخدم ل $1</string>
   <string name="login-progress-user-info">التحقق من معلومات المستخدم ل $1</string>
   <string name="login-progress-whitelist">قيد استرجاع القائمة البيضاء للمستخدم...</string>
-  <string name="login-remember-password">تذكر كلمة المرور</string>
+  <string name="login-remember-password">تذكر كلمة السر</string>
   <string name="login-remember-password-tooltip">سيقوم هذا الخيار بتخزين كلمة مرورك في نص عادي على قرصك الصلب، استخدمه فقط إذا كنت الشخص الوحيد الذي يمكنه الوصول إلى هذا الحاسوب.</string>
   <string name="login-ssl">استخدم HTTPS لتسجيل الدخول (يتطلب OpenSSL)</string>
   <string name="login-fail">فشل تسجيل الدخول على $1</string>
