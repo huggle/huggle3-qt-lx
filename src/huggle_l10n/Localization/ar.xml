@@ -256,7 +256,7 @@
   <string name="login-old">استرجاع تكوين المستخدم من الموقع القديم</string>
   <string name="login-intro">يُرجَى اختيار المشروع وإدخال اسم المستخدم وكلمة المرور الخاصين بك، ويمكنك أيضا تسجيل الدخول إلى مشاريع متعددة عن طريق النقر على زر \"مشاريع\".</string>
   <string name="invalid-bot-user-name">هذا ليس اسم بوت صحيح، مثال على اسم بوت صحيح: Jimbo@Huggle</string>
-  <string name="login-tab-botp">كلمة مرور البوت</string>
+  <string name="login-tab-botp">كلمة سر البوت</string>
   <string name="login-tab-login">الخروج من التاريخ</string>
   <string name="login-reload-tool-tip">تحديث قائمة المشروعات المتاحة التي يمكن استخدامها في هغل. هذا يمكن أن يكون مفيدا في حال كنت ترغب في استخدام هغل في المشروع الذي تم تمكين الأداة فيه مؤخرا.</string>
   <string name="login-language">اللغة:</string>

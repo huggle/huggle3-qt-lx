@@ -665,6 +665,7 @@
   <string name="shortcut-user-contribs-browser">Отвори кориснички придонеси во прелистувач</string>
   <string name="shortcut-user-clear-talk">Исчисти разговорна страница на тековниот корисник</string>
   <string name="shortcut-main-clear-queue">Исчисти редица</string>
+  <string name="shortcut-revert-agf">Отповикај, претпоставувајќи добронамерност, со сопствен опис на уредувањето</string>
   <string name="warning-title">Опомени го $1</string>
   <string name="warning-levelgroup">Степен на опомена</string>
   <string name="warning-levelauto">Автоматски</string>
@@ -676,6 +677,7 @@
   <string name="warning-warnlog">Опомени за овој корисник:</string>
   <string name="warning-submit">Испрати</string>
   <string name="warninglist-no-warning-title">Нема предупредување</string>
+  <string name="warninglist-no-warning-text">Нема податоци за овој вид на предупредување. Не можам да го доставам до корисникот!</string>
   <string name="warninglist-report-text">Овој корисник веќе има добиено последна опомена, дали сакате да го пријавите?</string>
   <string name="wikiedit-tp-fail">Не можам да го добијам степенот на опомена за $1. Нема да може да се употреби во оценување.</string>
   <string name="missing-warning">Нема таков предупредувачки шаблон „$1“</string>
@@ -788,6 +790,7 @@
   <string name="preferences-extension-disabled-restart">Додатокот е наместен да се оневозможи при следното вклучување на Huggle</string>
   <string name="preferences-extension-enabled">Овој додаток не е предвиден да се оневозможи при следното пуштање на Huggle</string>
   <string name="preferences-extension-enabled-restart">Додатокот е оневозможен. Меѓутоа, ќе треба да го превклучите Huggle одново за да се доврши оневозможувањето.</string>
+  <string name="preferences-enforce-baw">Наметни црно-бела за разликите во HTML</string>
   <string name="preferences-watchlist-watch">Додај во набљудувани</string>
   <string name="preferences-watchlist-unwatch">Отстрани набљудуваните</string>
   <string name="preferences-watchlist-preferences">Води се по моите нагодувања на викито</string>

@@ -7,10 +7,12 @@
 * Macofe
 * Marmase
 * Mirzali
+* Orbot707
 * Patrick Star
 -->
 <resources>
-  <string name="name" fuzzy="true">Zazaki</string>
+  <string name="name">Zazaki</string>
+  <string name="autorelog">Ney reyêna meperse, bıke</string>
   <string name="isrtl">false</string>
   <string name="add">Cı ke</string>
   <string name="cancel">Bıtexelne</string>
