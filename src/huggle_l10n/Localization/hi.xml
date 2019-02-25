@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
+* 1997kB
 * Anamdas
 * McDutchie
 * NehalDaveND
@@ -16,7 +17,7 @@
 <resources>
   <string name="name">हिन्दी</string>
   <string name="autorelog">अगली बार ऐसा बिना पूछे करे</string>
-  <string name="isrtl">false</string>
+  <string name="isrtl">असत्य</string>
   <string name="add">जोड़ें</string>
   <string name="cancel">रद्द करें</string>
   <string name="clear">साफ़ करें</string>
@@ -130,7 +131,7 @@
   <string name="config-confirm-talk">वार्ता पृष्ठ को पूर्ववत करने के लिए पुष्टीकरण चाहिए</string>
   <string name="config-use-rollback">सॉफ्टवेयर रोलबैक काम में लें</string>
   <string name="config-welcome-empty-page">अच्छे सम्पादन करने वाले सदस्यों के खाली वार्ता पृष्ठों पर स्वागत सन्देश भेजें</string>
-  <string name="config-conflicts-revert" fuzzy="true">पूर्ववत करने अथवा पृष्ठों में बदलाव करने वाले सदस्यों के संघर्ष का स्वचालित रूप समाधान करें</string>
+  <string name="config-conflicts-revert">पूर्ववत करने अथवा समान पृष्ठों में बदलाव करने वाले सदस्यों के बदलाव संघर्ष का स्वचालित रूप समाधान करें</string>
   <string name="config-instant-reverts">तत्काल बदलाव काम में लें (बहुत तीव्र, लेकिन एक बार निष्पादित करने के बाद निरसित नहीं हो सकता)</string>
   <string name="config-revert-wait">प्रत्यावर्तन का विलंब (सैकण्ड)</string>
   <string name="config-revert">बदलें</string>

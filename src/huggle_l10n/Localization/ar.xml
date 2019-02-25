@@ -212,7 +212,7 @@
   <string name="custommessage-send">أرسل رسالة</string>
   <string name="custommessage-wikiuser-lesummary">تسليم رسالة مخصصة إلى $1</string>
   <string name="custommessage-wikiuser-plaintext-1">مرحبا $1,</string>
-  <string name="custommessage-wikiuser-plaintext-2">أكتب رسالتك هنا.</string>
+  <string name="custommessage-wikiuser-plaintext-2">اكتب رسالتك هنا.</string>
   <string name="delete-title">احذف $1ء</string>
   <string name="delete-reason">سبب:</string>
   <string name="delete-deletionlog">سجل الحذف:</string>
@@ -362,7 +362,7 @@
   <string name="main-config-geom-fail">غير قادر على قراءة هندسة ملف التهيئة</string>
   <string name="main-tools-scoreword-list">عرض قائمة كلمات النتائج</string>
   <string name="main-queue">طابور</string>
-  <string name="main-queue-next">تالي</string>
+  <string name="main-queue-next">التالي</string>
   <string name="main-queue-clear">امسح الحالي</string>
   <string name="main-queue-count">$1 عناصر</string>
   <string name="main-queue-query">الاستعلام قيد الإجراء...</string>
@@ -387,8 +387,8 @@
   <string name="main-revision-faith">التراجع بافتراض حسن النية</string>
   <string name="main-revision-revert-only-this">إرجاع هذه المراجعة فقط</string>
   <string name="main-revision-revert-agf">إرجاع هذه المراجعة فقط بافتراض حسن النية</string>
-  <string name="main-revision-previous">سابق</string>
-  <string name="main-revision-next">تالي</string>
+  <string name="main-revision-previous">السابق</string>
+  <string name="main-revision-next">التالي</string>
   <string name="main-revision-latest">الأخير</string>
   <string name="main-tools">أدوات</string>
   <string name="main-tools-sess">عرض معلومات الدورة</string>
@@ -797,7 +797,7 @@
   <string name="preferences-show-warning-if-not-last-revision">إظهار تحذير إذا لم تكن في آخر مراجعة للصفحة</string>
   <string name="preferences-delete-using-filter">لا يمكنك حذف مرشح مستخدم حاليًا</string>
   <string name="preferences-extension-disabled">من المقرر تعطيل هذا الامتداد عند بدء التشغيل القادم لهغل</string>
-  <string name="preferences-extension-disabled-restart">تم تعيين ملحق ليتم تعطيله عند بدء التشغيل القادم لهغل</string>
+  <string name="preferences-extension-disabled-restart">تم تعيين امتداد ليتم تعطيله عند بدء التشغيل القادم لهغل</string>
   <string name="preferences-extension-enabled">من غير المقرر تعطيل هذا التمديد عند بدء التشغيل القادم لهغل</string>
   <string name="preferences-extension-enabled-restart">تم تمكين الامتداد، ستحتاج إلى إعادة تشغيل هغل لتصبح نافذ المفعول.</string>
   <string name="preferences-enforce-baw">فرض اللونين الأبيض والأسود في فرق HTML</string>
@@ -861,7 +861,7 @@
   <string name="title-on">على $1</string>
   <string name="main-revert-custom-reason-text">لم يتم تقديم أي سبب / تراحع مخصص</string>
   <string name="main-revert-already-pending-title">تم التراجع عن هذا التعديل بالفعل</string>
-  <string name="main-revert-already-pending-text">لا يمكنك التراجع عن هذا التعديل; لأنه تم التراجع عنه بالفعل. الرجاء الإنتظار!</string>
+  <string name="main-revert-already-pending-text">لا يمكنك التراجع عن هذا التعديل; لأنه تم التراجع عنه بالفعل. الرجاء الانتظار!</string>
   <string name="main-revert-type-unknown">غير معروف</string>
   <string name="main-revert-type-in-userspace">في نطاق المستخدم</string>
   <string name="main-revert-type-made-by-you">قمت أنت بإجرائه</string>
