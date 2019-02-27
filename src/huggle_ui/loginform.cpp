@@ -102,6 +102,8 @@ LoginForm::LoginForm(QWidget *parent) : HW("login", this, parent), ui(new Ui::Lo
         hcfg->SystemConfig_UsingSSL = false;
         this->ui->checkBox->setEnabled(false);
         this->ui->checkBox->setChecked(false);
+        UiGeneric::pMessageBox(this, "Unable to find SSL libraries", "Huggle was unable to located SSL libraries. This build requires:\nSSL version: " + QSslSocket::sslLibraryBuildVersionString() +
+                                                                     "\nQt (built on): " + QString(QT_VERSION_STR) + "\nQt (running): " + QString(qVersion()), MessageBoxStyleError);
     }
     if (hcfg->SystemConfig_EnableUpdates)
     {
