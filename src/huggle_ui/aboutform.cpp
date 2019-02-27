@@ -10,6 +10,7 @@
 
 #include "aboutform.hpp"
 #include <QDesktopServices>
+#include <QSslSocket>
 #include <QUrl>
 #include <huggle_core/configuration.hpp>
 #include <huggle_core/generic.hpp>
@@ -29,8 +30,10 @@ AboutForm::AboutForm(QWidget *parent) : HW("aboutform", this, parent), ui(new Ui
     developer = 0;
     last_dev = -1;
     QString version = _l("about-qt", QString(QT_VERSION_STR), QString(qVersion()));
-    this->ui->label_7->setText(_l("version") + ": " + Configuration::HuggleConfiguration->HuggleVersion + version +
-                               _l("about-info", QString(HUGGLE_WEB_ENGINE_NAME), QString(HUGGLE_UPDATER_PLATFORM_TYPE)));
+    QString version_info =_l("version") + ": " + Configuration::HuggleConfiguration->HuggleVersion + version +
+                          _l("about-info", QString(HUGGLE_WEB_ENGINE_NAME), QString(HUGGLE_UPDATER_PLATFORM_TYPE));
+    version_info += "\nSSL: " + QSslSocket::sslLibraryBuildVersionString();
+    this->ui->label_7->setText(version_info);
     this->RestoreWindow();
 }
 
