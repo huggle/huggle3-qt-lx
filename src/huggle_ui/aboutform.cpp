@@ -32,7 +32,9 @@ AboutForm::AboutForm(QWidget *parent) : HW("aboutform", this, parent), ui(new Ui
     QString version = _l("about-qt", QString(QT_VERSION_STR), QString(qVersion()));
     QString version_info =_l("version") + ": " + Configuration::HuggleConfiguration->HuggleVersion + version +
                           _l("about-info", QString(HUGGLE_WEB_ENGINE_NAME), QString(HUGGLE_UPDATER_PLATFORM_TYPE));
+#if QT_VERSION >= 0x050400
     version_info += "\nSSL: " + QSslSocket::sslLibraryBuildVersionString();
+#endif
     this->ui->label_7->setText(version_info);
     this->RestoreWindow();
 }
