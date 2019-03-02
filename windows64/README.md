@@ -6,11 +6,11 @@ This is used to build x64 huggle for windows, how-to:
 * Download http://nsis.sourceforge.net/Download
 * Install
 
-Now it's a little bit tricky, you will need to create this structure in this folder:
+Now it's a little bit tricky, you will need to do this:
 
-* Make a folder called "release"
-* Build huggle without python engine and call it just huggle.exe there is no 64 bit version of pylibs that we can use
-* Copy huggle.ico from Resources folder to both root and other folder
-* Now, keep running NSIS compiler on the nsi file and look for the error it will require lot of files
-
-For each .dll file which is missing you need to browse the folder where Qt is installed and copy it there to location where it looks for it.
+* Download VS 2013 redistributables and save them in this folder as vcredist_x64_2013.exe - this is necessary for OpenSSL to work
+* Download VS 2015 or 2017 (depends what you are using to build Huggle) redistributables and save them in this folder as vcredist_x64.exe
+* Download OpenSSL libraries for slproweb, 1.0.2x branch
+* Open pack.ps1 and update all variables, provide path to your VS, Qt and OpenSSL
+* Install git and cmake (so that it works in PowerShell)
+* Execute PowerShell pack.ps1
