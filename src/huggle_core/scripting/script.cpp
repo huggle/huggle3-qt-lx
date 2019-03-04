@@ -105,7 +105,7 @@ Script::Script()
 
 Script::~Script()
 {
-    if (!this->scriptPath.isEmpty())
+    if (this->isLoaded && !this->scriptPath.isEmpty())
         Script::loadedPaths.removeAll(this->scriptPath);
     if (this->isLoaded && Script::scripts.contains(this->GetName()))
         Script::scripts.remove(this->scriptName);
@@ -623,6 +623,7 @@ bool Script::loadSource(QString source, QString *error)
     {
         *error = "Unable to load script, ext_is_working() didn't return true";
         this->isWorking = false;
+        this->isLoaded = false;
         return false;
     }
 
@@ -631,6 +632,7 @@ bool Script::loadSource(QString source, QString *error)
     {
         *error = "Unable to load script, ext_get_info() didn't return valid object";
         this->isWorking = false;
+        this->isLoaded = false;
         return false;
     }
 
@@ -638,6 +640,7 @@ bool Script::loadSource(QString source, QString *error)
     {
         *error = "Unable to load script, ext_get_info() didn't contain some of these properties: name, author, description, version";
         this->isWorking = false;
+        this->isLoaded = false;
         return false;
     }
 
@@ -650,6 +653,7 @@ bool Script::loadSource(QString source, QString *error)
     {
         *error = "Unable to load script, invalid extension name (name must be a string)";
         this->isWorking = false;
+        this->isLoaded = false;
         return false;
     }
 
@@ -659,6 +663,7 @@ bool Script::loadSource(QString source, QString *error)
     {
         *error = this->scriptName + " is already loaded";
         this->isWorking = false;
+        this->isLoaded = false;
         return false;
     }
 
@@ -670,12 +675,14 @@ bool Script::loadSource(QString source, QString *error)
         {
             *error = "Unable to load script, min_huggle_version is invalid version string";
             this->isWorking = false;
+            this->isLoaded = false;
             return false;
         }
         if (huggle_version < min_version)
         {
             *error = "Unable to load script, this extension requires Huggle version " + min_version.ToString() + " or newer";
             this->isWorking = false;
+            this->isLoaded = false;
             return false;
         }
     }
@@ -684,6 +691,7 @@ bool Script::loadSource(QString source, QString *error)
     {
         *error = "Unable to load script, access to unsafe methods is required by this script";
         this->isWorking = false;
+        this->isLoaded = false;
         return false;
     }
 
@@ -691,18 +699,21 @@ bool Script::loadSource(QString source, QString *error)
     {
         *error = "Unable to load script, this extension doesn't work in this context of execution";
         this->isWorking = false;
+        this->isLoaded = false;
+        return false;
+    }
+
+    if (!this->executeFunctionAsBool("ext_init"))
+    {
+        *error = "Unable to load script, ext_init() didn't return true";
+        this->isWorking = false;
+        this->isLoaded = false;
         return false;
     }
 
     // Loading is done, let's assume everything works
     Script::loadedPaths.append(this->scriptPath);
     Script::scripts.insert(this->GetName(), this);
-    if (!this->executeFunctionAsBool("ext_init"))
-    {
-        *error = "Unable to load script, ext_init() didn't return true";
-        this->isWorking = false;
-        return false;
-    }
     return true;
 }
 
