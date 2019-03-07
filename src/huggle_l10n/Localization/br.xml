@@ -54,15 +54,15 @@
   <string name="link">Liamm</string>
   <string name="reason">Abeg</string>
   <string name="diffid">Anavezer Diff</string>
-  <string name="whitelisted" fuzzy="true">$1 en deus ur skor $2 war $3 a zo bet enlakaet el listenn wenn</string>
+  <string name="whitelisted">$1 en deus ur skor $2 war $3 a zo bet enlakaet el listenn wenn</string>
   <string name="expiry-time">Amzer termen</string>
   <string name="duration">Pad</string>
   <string name="enable">Gweredekaat</string>
   <string name="disable">Diweredekaat</string>
   <string name="no-token">Jedouer ebet</string>
   <string name="flags">Bannieloù</string>
-  <string name="gracetime" fuzzy="true">En engortoz a echuiñ goulennoù evit kemmañ...</string>
-  <string name="browser-none" fuzzy="true">N\'eus diskwelet pajenn ebet bremañ</string>
+  <string name="gracetime">En engortoz a echuiñ goulennoù evit kemmañ...</string>
+  <string name="browser-none">N\'eus pajenn ebet da ziskwel c\'hoazh</string>
   <string name="browser-load" fuzzy="true">Pellgargañ diff en ur implijout un deouez Web sikour, gortozit mar plij</string>
   <string name="browser-miss-summ">N\'eus bet pourchaset diverradur ebet</string>
   <string name="browser-diff">Diff ar bajenn : $1 (skor : $2)</string>

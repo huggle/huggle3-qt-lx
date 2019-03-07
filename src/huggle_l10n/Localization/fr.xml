@@ -567,7 +567,7 @@
   <string name="queue-usergroup">Afficher uniquement les modifications de ces utilisateurs</string>
   <string name="report-title">Signaler $1</string>
   <string name="report-warn">Cet utilisateur a déjà atteint le niveau d’avertissement 4, donc plus aucun modèle ne lui sera fourni. Vous pouvez le lui signaler maintenant, mais veuillez vous assurer qu’il a déjà atteint le nombre approprié d’avertissements récents ! Vous pouvez le faire en cliquant sur le bouton « page de discussion » dans le formulaire suivant. Gardez à l’esprit que ce formulaire et cet avertissement sont affichés, que votre annulation soit réussie ou non, donc vous pourriez entrer en conflit avec d’autres utilisateurs ici (vérifiez deux fois que l’utilisateur n’a pas déjà été signalé). Voulez-vous avertir cet utilisateur ?</string>
-  <string name="report-tu">Signaler à l’utilisateur</string>
+  <string name="report-tu">Signaler l’utilisateur</string>
   <string name="report-reason">Motif :</string>
   <string name="report-auto">$1 signalé</string>
   <string name="report-intro">Vous allez signaler l’utilisateur $1</string>
