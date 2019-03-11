@@ -2,6 +2,7 @@
 <!-- Authors:
 * Cocu
 * Danmichaelo
+* Kingu
 * Tarjeimo
 -->
 <resources>
@@ -13,14 +14,39 @@
   <string name="continue">Fortsett</string>
   <string name="copy">Kopier</string>
   <string name="delete">Slett</string>
+  <string name="deleted">Slettet</string>
   <string name="error">Feil</string>
   <string name="exit">Avslutt</string>
+  <string name="done">Ferdig</string>
   <string name="no">Nei</string>
   <string name="ok">OK</string>
   <string name="remove">Fjern</string>
   <string name="rename">Gi nytt navn</string>
+  <string name="project">Prosjekt</string>
+  <string name="warning">Advarsel</string>
+  <string name="result">Resultat</string>
   <string name="save">Lagre</string>
+  <string name="show">Vis</string>
+  <string name="undo">Angre</string>
   <string name="yes">Ja</string>
+  <string name="summary">Sammendrag</string>
+  <string name="id">ID</string>
+  <string name="type">Type</string>
+  <string name="target">Mål</string>
+  <string name="user">Bruker</string>
+  <string name="size">Størrelse</string>
+  <string name="date">Dato</string>
+  <string name="page">Side</string>
+  <string name="time">Tid</string>
+  <string name="version">Versjon</string>
+  <string name="general-name">Navn</string>
+  <string name="description">Beskrivelse</string>
+  <string name="status">Status</string>
+  <string name="link">Lenke</string>
+  <string name="reason">Grunn</string>
+  <string name="duration">Varighet</string>
+  <string name="enable">Skru på</string>
+  <string name="disable">Skru av</string>
   <string name="about-contributors">bidragende:</string>
   <string name="block-title">Blokker $1</string>
   <string name="block-reason">Begrunnelse:</string>
@@ -35,14 +61,18 @@
   <string name="block-blockloglabel">Blokkeringslogg:</string>
   <string name="block-warnloglabel">Advarsler:</string>
   <string name="block-fail">Blokkerte ikke \'$1\'</string>
+  <string name="config-function">Funksjon</string>
+  <string name="config-description">Beskrivelse</string>
   <string name="config-shortcut">Snarvei</string>
   <string name="config-title">Alternativer</string>
   <string name="config-openinbrowser">Åpne lenker i nytt nettleser-vindu</string>
   <string name="config-shownewedits">Vis nye redigeringer på valgt side når de blir gjort</string>
   <string name="config-ircmode">Bruk IRC-strøm for siste endringer hvis mulig</string>
+  <string name="config-ircport">IRC-port</string>
   <string name="config-difffontsize">Diff fontstørrelse</string>
   <string name="config-logfile">Loggfil</string>
   <string name="config-viewlocalconfig">Vis lokal konfigurasjonsfolder</string>
+  <string name="config-trayicon">Vis systemkurvsikon</string>
   <string name="config-startupmessage">Vis oppstartsmelding</string>
   <string name="config-shownewmessages">Vis nye meldinger</string>
   <string name="config-shortcutlist">Tastatursnarveier</string>
@@ -54,6 +84,11 @@
   <string name="config-watchlist">Legg til overvåkningsliste</string>
   <string name="config-defaultsummary">Standard sammendrag for manuelle redigeringer</string>
   <string name="config-undosummary">Sammendrag når egen redigering tilbakestilles</string>
+  <string name="config-skip">Hopp over</string>
+  <string name="config-nothing">Ingenting</string>
+  <string name="config-new-page">Ny side</string>
+  <string name="config-whitelisted">Hvitlistet</string>
+  <string name="config-friend">Venn</string>
   <string name="config-confirmmultiple">Bekreft flere tilbakestillinger av en redigering gjort av samme bruker</string>
   <string name="config-confirmsame">Bekreft tilbakestilling til en redigering gjort av brukeren som blir tilbakestilt</string>
   <string name="config-confirmselfrevert">Bekreft tilbakestilling av egne redigeringer (Unntatt angre)</string>
@@ -80,9 +115,14 @@
   <string name="config-defaultsprompt">Gjenopprett standarder?</string>
   <string name="config-logbrowsetitle">Loggfil plassering</string>
   <string name="config-shortcutconflict">Snarvei \'$1\' konflikterer med eksisterende snarvei for \'{1}\'.</string>
+  <string name="custommessage-wikiuser-plaintext-1">Hei $1,</string>
   <string name="delete-title">Slett $1</string>
   <string name="delete-reason">Begrunnelse:</string>
   <string name="delete-deletionlog">Slettelogg:</string>
+  <string name="exception-error-code">Feilkode: $1</string>
+  <string name="exception-reason">Grunn: $1</string>
+  <string name="exception-source">Kilde: $1</string>
+  <string name="historyform-title">Historikk</string>
   <string name="irc-connected">$1: Koblet til siste endringer-strømmen på IRC</string>
   <string name="irc-connecting">Forsøker å koble til IRC for siste endringer på $1, dette kan ta noen øyeblikk...</string>
   <string name="irc-disconnected">Tilkobling til IRC for siste endringer feilet for $1. Kobler til på nytt...</string>
@@ -104,6 +144,7 @@
   <string name="login-progress-global">Sjekker global konfigurasjon...</string>
   <string name="login-progress-config">Sjekker konfigurasjonssider...</string>
   <string name="login-progress-whitelist">Retrieving user whitelist...</string>
+  <string name="login-fail">Inloggning mislyktes $1</string>
   <string name="login-error-admin">Bruk av Huggle på dette prosjektet krever en administratorkonto.</string>
   <string name="login-error-age" fuzzy="true">Bruk av Huggle på dette prosjektet krever en konto som er minst $1 dager gammel.</string>
   <string name="login-error-alldisabled">Huggle er for øyeblikket utilgjengelig på alle prosjekter.</string>
@@ -132,6 +173,8 @@
   <string name="main-system-showqueue">Vis kø</string>
   <string name="main-system-options">Alternativer...</string>
   <string name="main-system-logout">Logg ut</string>
+  <string name="main-system-change-provider-irc">IRC</string>
+  <string name="main-system-change-provider-wiki">Wiki</string>
   <string name="main-system-exit">Avslutt</string>
   <string name="main-queue">Kø</string>
   <string name="main-queue-next">Neste</string>
@@ -150,6 +193,8 @@
   <string name="main-revision-previous">Forrige</string>
   <string name="main-revision-next">Neste</string>
   <string name="main-revision-latest">Siste</string>
+  <string name="main-tools">Verktøy</string>
+  <string name="main-page-next">Neste</string>
   <string name="main-page-switchtotalk">Bytt til diskusjonsside</string>
   <string name="main-page-switchtosubject">Switch to subject page</string>
   <string name="main-page-switchtoarticle">Bytt til artikkel</string>
@@ -181,6 +226,8 @@
   <string name="main-browser-open">Vis i ekstern nettleser</string>
   <string name="main-browser-newedits">Vis nye redigeringer på siden</string>
   <string name="main-browser-newcontribs">Vis nye bidrag av bruker</string>
+  <string name="main-han-disconnect">Koble fra</string>
+  <string name="main-han-connect">Koble til</string>
   <string name="main-help">Hjelp</string>
   <string name="main-help-documentation">Dokumentasjon</string>
   <string name="main-help-feedback">Tilbakemelding</string>
@@ -249,6 +296,8 @@
   <string name="report-log">Advarsler for denne brukeren:</string>
   <string name="report-duplicate">Brukeren har allerede blitt rapportert</string>
   <string name="report-progress">Rapporterer \'$1\'...</string>
+  <string name="score-score">Poengsum</string>
+  <string name="score-word">Ord</string>
   <string name="revert-confirm-multiple">Dette vil tilbakestille flere redigeringer av \'$1\'. Fortsett?</string>
   <string name="revert-confirm-range">Forfatter av målrevisjonen {1} er i samme IP-range som forfatteren av den nåværende revisjonen, $1, og kan være den samme personen. Sjekk at målrevisjonen er korrekt før du fortsetter. Fortsett?</string>
   <string name="revert-confirm-same">Dette vil tilbakestille til en annen revisjon gjort av brukeren som blir tilbakestilt, $1. Fortsett?</string>
@@ -273,6 +322,10 @@
   <string name="update-title">Ny versjon tilgjengelig</string>
   <string name="update-progress" fuzzy="true">Laster ned ny versjon...</string>
   <string name="update-error">Kunne ikke laste ned ny versjon</string>
+  <string name="updater-close">Lukk</string>
+  <string name="userinfo-no-user">Ingen bruker</string>
+  <string name="shortcut-browser-close-tab">Lukk en nettleserfane</string>
+  <string name="shortcut-tab">Åpner en ny fane</string>
   <string name="warning-title">Advar $1</string>
   <string name="warning-levelgroup">Advarselsnivå</string>
   <string name="warning-levelauto">Automatisk</string>
@@ -282,6 +335,10 @@
   <string name="warning-level4">Nivå 4 (final)</string>
   <string name="warning-warntype">Advarselstype:</string>
   <string name="warning-warnlog">Advarsler for denne brukeren:</string>
+  <string name="warning-submit">Send</string>
+  <string name="warninglist-no-warning-title">Ingen advarsel</string>
+  <string name="han-network">Nettverk</string>
+  <string name="han-send">Send</string>
   <string name="error-loggedout">Kontoen har blitt logget ut, logger inn igjen...</string>
   <string name="error-noresponse">Ingen respons</string>
   <string name="error-pagemissing">Siden eksisterer ikke</string>
@@ -324,6 +381,9 @@
   <string name="speedy-fail">Kunne ikke tagge $1 for hurtigsletting</string>
   <string name="speedy-progress">Tagger \'$1\' for hurtigsletting...</string>
   <string name="warn-alreadyblocked">Brukeren har allerede blitt blokkert</string>
+  <string name="logs-widget-name">Systemlogger</string>
+  <string name="wait">Vent…</string>
+  <string name="waiting">Venter…</string>
   <string name="preferences-extension-disabled-restart" fuzzy="true">Utvidelsen var satt til å bli deaktivert neste gang Huggle starter</string>
   <string name="report-fail">Kunne ikke rapportere bruker fordi: \'$1\'</string>
 </resources>

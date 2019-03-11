@@ -59,7 +59,7 @@
   <string name="diffid">FerqaID</string>
   <string name="whitelisted" fuzzy="true">$1, $3 sero $2 puana debya spe lista</string>
   <string name="expiry-time">Dema qedyin</string>
-  <string name="duration">Sure</string>
+  <string name="duration">Dom</string>
   <string name="enable">Aktif ke</string>
   <string name="disable">Dewrera vec</string>
   <string name="no-token">Naskerde çıni yo</string>
@@ -72,7 +72,7 @@
   <string name="block-not">Karber bloqe nêbı yo</string>
   <string name="block-title">$1 kılit ke</string>
   <string name="block-reason">Sebeb:</string>
-  <string name="block-duration">Sure:</string>
+  <string name="block-duration">Dom:</string>
   <string name="block-message">Mesacê pela werênayışi:</string>
   <string name="block-message-user">Weçinaye karberi rë poğa bloki muhtewa kerden mesac bırış</string>
   <string name="block-anononly">Karberanê anoniman tenya bloke ke</string>
