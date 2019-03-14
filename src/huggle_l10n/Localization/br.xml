@@ -63,7 +63,7 @@
   <string name="flags">Bannieloù</string>
   <string name="gracetime">En engortoz a echuiñ goulennoù evit kemmañ...</string>
   <string name="browser-none">N\'eus pajenn ebet da ziskwel c\'hoazh</string>
-  <string name="browser-load" fuzzy="true">Pellgargañ diff en ur implijout un deouez Web sikour, gortozit mar plij</string>
+  <string name="browser-load">Pellgargañ diff en ur implijout ur sikour MW, gortozit mar plij...</string>
   <string name="browser-miss-summ">N\'eus bet pourchaset diverradur ebet</string>
   <string name="browser-diff">Diff ar bajenn : $1 (skor : $2)</string>
   <string name="browser-fail">N\'haller ket adtapout an diff: $1</string>
@@ -85,9 +85,9 @@
   <string name="block-token-1">O tapout ur jadouer evit stankañ $1</string>
   <string name="block-fail">N\'haller ket stankañ an implijer, $1</string>
   <string name="block-token-e1">Ne c\'haller ket adtapout ar jedouer : $1</string>
-  <string name="block-error-no-info" fuzzy="true">Ne oa titour implijer ebet er goulenn (hag oberataer reizhiad oc\'h ?)</string>
+  <string name="block-error-no-info">Ne oa titour implijer ebet er goulenn (hag ur merour oc\'h ?)</string>
   <string name="block-type">Stankañ / distankañ</string>
-  <string name="block-none" fuzzy="true">N\'eus implijer ebet da stankañ.</string>
+  <string name="block-none">N\'eus implijer ebet diuzet da stankañ.</string>
   <string name="contribution-browser-user-info">Diskwel degasadennoù nevez an implijer $1</string>
   <string name="config-function">Arc\'hwel</string>
   <string name="config-description">Deskrivadur</string>
@@ -128,8 +128,8 @@
   <string name="config-months-name">Implijout ar mizioù evel talbennoù e-lec\'h anv ar bajenn</string>
   <string name="config-automatic-warning">Implijout seurtoù ha liveoù kemenn emgefre en arc\'hweladur « kas kemenn »</string>
   <string name="config-enable-irc">Gweredekaat IRC</string>
-  <string name="config-remove-reverted" fuzzy="true">Dilemel ar c\'heñchamantoù a oa bet nullet dija gant unan bennak all</string>
-  <string name="config-remove-old" fuzzy="true">Lemel ar c\'hemmoù kozh ma vez dielfennet ur c\'hemm neveso\'h er memes pajenn</string>
+  <string name="config-remove-reverted">Dilemel ar c\'heñchamantoù a oa bet nullet dija gant unan bennak all eus al lostad</string>
+  <string name="config-remove-old">Lemel ar c\'hemmoù koshañ eus al lostad ma vez dielfennet ur c\'hemm neveso\'h zo resevet eus ar memes pajenn</string>
   <string name="config-auto-load-history">Kargit emgefreek an istor hag an titouroù implijer (ezhomm zo eus ur vandenn drafet eus ar rouedad)</string>
   <string name="config-retrieve-edit">Adkavit ho cheñchamant</string>
   <string name="config-nothing">Netra</string>
@@ -144,11 +144,11 @@
   <string name="config-warning-api">Diskwel ar c\'hemennoù evit rekedoù an API</string>
   <string name="config-updates">Klask hizivadennoù</string>
   <string name="config-beta">Klask stummoù beta</string>
-  <string name="config-html-messages" fuzzy="true">Gallout a ra HAN furmadiñ kemennadennoù HTML (dañjeruz)</string>
+  <string name="config-html-messages">Gallout a ra HAN furmadiñ kemennadennoù HTML(notenn : a c\'hall bezañ dañjeruz)</string>
   <string name="config-close-without">Serriñ hep enrollañ</string>
   <string name="config-confirmmultiple">Kadanaat eo bet nullet lies a cheñchamañtoù gant ar memes implijer</string>
   <string name="config-confirmwarned">Kadarnaat nulladur ur c\'hemm gant un implijer arroutet</string>
-  <string name="config-confirmpage" fuzzy="true">Kadarnaat nulladur ar pajennoù dianavezet</string>
+  <string name="config-confirmpage">Kadarnaat nulladur ar pajennoù dianavezet</string>
   <string name="config-userollback">Implijout ar souzañ m\'eo hegerz</string>
   <string name="config-reportnone">Ober netra</string>
   <string name="config-reportprompt">Kinnig disklêriañ</string>
@@ -162,7 +162,7 @@
   <string name="config-history">Pellgargañ roll-istor klok an holl bennadoù</string>
   <string name="config-defaultsprompt"> Adsevel an arventennoù dre ziouer ?</string>
   <string name="config-logbrowsetitle">Lec\'h ar restr varilh</string>
-  <string name="config-no-colon" fuzzy="true">N\'hallit ket implijout \":\" en anv ar steudad c\'hortoz</string>
+  <string name="config-no-colon">N\'hallit ket implijout \":\" en anv ur steudad c\'hortoz</string>
   <string name="config-notify-update">Gwiriañ hag-eñ ez eus hizivadennoù</string>
   <string name="config-notify-beta">Gwiriañ ma c\'haller kaout ar stummoù bêta</string>
   <string name="custommessage-wikiuser-plaintext-1">Demat, $1</string>
