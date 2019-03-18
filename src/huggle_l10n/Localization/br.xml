@@ -32,7 +32,7 @@
   <string name="result">Disoc\'h</string>
   <string name="save">Enrollañ</string>
   <string name="show">Diskouez</string>
-  <string name="no-instant" fuzzy="true">N\'eo ket gweredekaet ar c\'hemennoù prim er raktres $1, ha ne c\'haller ket kas ar c\'hemennadennoù $2 eta. Dibabit ul live kemenn all, mar plij.</string>
+  <string name="no-instant">Ne c\'haller ket kas ar c\'hemennadennoù $2 rak\nn\'eo ket gweredekaet ar c\'hemennoù prim er raktres $1,  Dibabit ul live kemenn all, mar plij.</string>
   <string name="undo">Dizober</string>
   <string name="yes">Ya</string>
   <string name="editing-page">Kemmañ ar bajenn</string>
@@ -122,6 +122,7 @@
   <string name="config-confirm-talk">Goulenn kadarnaat evit nullañ ur bajenn gaozeal</string>
   <string name="config-welcome-empty-page">Kas kemennadennoù degemer mat d\'an implijerien gant ur bajenn gaozeal c\'houllo pa vez graet ur c\'hemm bras</string>
   <string name="config-revert">Disteuler</string>
+  <string name="config-skip">Lezel a-gostez</string>
   <string name="config-revert-diff">Distreiñ war kemmoù ar bajenn zo nevesoc\'h eget an diforc\'h diskwelet, m\'int bet graet gant ar memes implijer draster</string>
   <string name="config-change-all">Kemmañ holl arventennoù Huggle evit en em ren muioc\'h evel Huggle 2</string>
   <string name="config-merge-messages">Kendeuziñ ho kemennadennoù gant ar re all er rannskridoù zo anezho</string>
@@ -131,8 +132,10 @@
   <string name="config-remove-reverted">Dilemel ar c\'heñchamantoù a oa bet nullet dija gant unan bennak all eus al lostad</string>
   <string name="config-remove-old">Lemel ar c\'hemmoù koshañ eus al lostad ma vez dielfennet ur c\'hemm neveso\'h zo resevet eus ar memes pajenn</string>
   <string name="config-auto-load-history">Kargit emgefreek an istor hag an titouroù implijer (ezhomm zo eus ur vandenn drafet eus ar rouedad)</string>
+  <string name="config-display-next">Diskwel ar pezh zo war-lec\'h</string>
   <string name="config-retrieve-edit">Adkavit ho cheñchamant</string>
   <string name="config-nothing">Netra</string>
+  <string name="config-bot-edits">Kemmoù robot (b)</string>
   <string name="config-own-edits">Kemmoù an-unan</string>
   <string name="config-reverts">Distaoladennoù</string>
   <string name="config-new-page">Pajenn nevez</string>
@@ -156,6 +159,8 @@
   <string name="config-templates">Patrom kemennadoù implijer</string>
   <string name="config-templatetext">Diskwel an destenn</string>
   <string name="config-template">Patrom</string>
+  <string name="config-blockreason">Abeg stokañ dre ziouer</string>
+  <string name="config-blocktime">Pad stankañ de ziouer</string>
   <string name="config-blocktimeanon">implijerien dizanv</string>
   <string name="config-blocktimereg">implijerien enrollet</string>
   <string name="config-summaryprompt">E-barzhiñ un diverradenn</string>
@@ -165,6 +170,10 @@
   <string name="config-no-colon">N\'hallit ket implijout \":\" en anv ur steudad c\'hortoz</string>
   <string name="config-notify-update">Gwiriañ hag-eñ ez eus hizivadennoù</string>
   <string name="config-notify-beta">Gwiriañ ma c\'haller kaout ar stummoù bêta</string>
+  <string name="custommessage-subject">Titl</string>
+  <string name="custommessage-menu">Kas ur gemennadenn personelaet</string>
+  <string name="custommessage-send">Kas ur gemennadenn</string>
+  <string name="custommessage-wikiuser-lesummary">Kas ur gemennadenn personelaet da $1</string>
   <string name="custommessage-wikiuser-plaintext-1">Demat, $1</string>
   <string name="custommessage-wikiuser-plaintext-2">Skrivañ ho kemennadenn amañ</string>
   <string name="delete-title">Dilemel $1</string>
@@ -214,14 +223,17 @@
   <string name="login-start">Kevreañ</string>
   <string name="login-oauth-notsupported">Ne c\'haller ket implijout an doare-ober-mañ evit bremañ</string>
   <string name="login-translate">Treiñ Huggle</string>
-  <string name="login-progress-start" fuzzy="true">O kevreañ ouzh $1</string>
+  <string name="login-progress-formtitle">O pellgargañ...</string>
+  <string name="login-progress-start">O kevreañ ouzh $1</string>
   <string name="login-progress-retrieve-mw">Oc\'h adtapout titouroù diwar-benn MediaWiki evit $1</string>
   <string name="login-progress-language">O hizivaat ar restroù kemennadennoù...</string>
   <string name="login-progress-global">O wiriañ ar c\'hefluniadur hollek...</string>
   <string name="login-progress-config">O wiriañ ar pajennoù kefluniañ...</string>
+  <string name="login-progress-yaml">Gwiriañ ho kefluniadur YAML lec\'hel evit $1</string>
   <string name="login-progress-local">O wiriañ ar c\'hefluniadur lec\'hel evit $1</string>
   <string name="login-progress-user">O wiriañ ar c\'hefluniadur implijer evit $1</string>
   <string name="login-progress-user-info">‎O wiriañ an titouroù implijer evit $1</string>
+  <string name="login-progress-whitelist">Kargañ ar roll wenn a implijerien...</string>
   <string name="login-remember-password">Derc\'hel soñj eus ar ger-tremen</string>
   <string name="login-ssl">Implijout HTTPS evit en em lugañ (ezhomm a zo eus OpenSSL)</string>
   <string name="login-fail">C\'hwitet kevreañ ouzh $1</string>
@@ -291,6 +303,7 @@
   <string name="main-page-protect">Gwareziñ</string>
   <string name="main-page-delete">Dilemel</string>
   <string name="main-page-load">Kargañ</string>
+  <string name="main-page-refresh">Freskaat</string>
   <string name="main-user-info">Diskouez titouroù an implijer</string>
   <string name="main-user-ignore">Lezel a-gostez</string>
   <string name="main-user-unignore">Chom hep dianavezout ken</string>
@@ -318,6 +331,9 @@
   <string name="main-help-documentation">Teuliadur</string>
   <string name="main-help-feedback">Evezhiadennoù</string>
   <string name="main-help-about">Diwar-benn Huggle...</string>
+  <string name="main-help-welcome-page">Pajenn degemer</string>
+  <string name="main-help-contents">Taolenn</string>
+  <string name="main-help-queuelegend">Lakaat an alc\'hwez er steudad c\'hortoz</string>
   <string name="main-addqueue">Ouzhpennañ...</string>
   <string name="main-savelogtitle">Enrollañ ar marilh</string>
   <string name="main-usermessageother">Kemennadenn all...</string>
@@ -325,6 +341,12 @@
   <string name="main-tip-pagedelete">Dilemel ar bajenn-mañ</string>
   <string name="main-tip-userreport">Disklêriañ an implijer-mañ</string>
   <string name="main-tip-userblock">Stankañ an implijer-mañ</string>
+  <string name="main-welcome-user">Donemat implijer</string>
+  <string name="main-custom-reason-title">Nullañ ar c\'hemmoù en ur implijout an abeg roet gant an implijer</string>
+  <string name="main-custom-reason-text">Roit un abeg, mar plij, evit lavaret perak ho peus c\'hoant da nullañ ar c\'hemm-se</string>
+  <string name="main-statistics-paused">ehanet</string>
+  <string name="main-statistics-none">hini ebet</string>
+  <string name="main-tab-welcome-title">Pajenn degemer</string>
   <string name="message-title">Kemennadenn $1</string>
   <string name="message-subject">Danvez :</string>
   <string name="message-message">Kemennadenn :</string>
@@ -349,8 +371,11 @@
   <string name="queue-removeold">Tennañ kemmoù kozh ar memes pajenn</string>
   <string name="queue-diffsgroup">Diforc\'hioù</string>
   <string name="queue-pagefiltersgroup">Siloù titloù pajennoù</string>
+  <string name="queue-pageregex">An titl a glot gant an eztaol kemezel :</string>
   <string name="queue-namespaces">Esaouennoù anv :</string>
   <string name="queue-editfiltersgroup">Aozañ ar siloù</string>
+  <string name="queue-userregex">An anv implijer a glot gant an eztaol kemezel :</string>
+  <string name="queue-summaryregex">An daolenn a glot gant an eztaol kemezel :</string>
   <string name="queue-filternewpage">Pajenn nevez</string>
   <string name="queue-filteranonymous">Implijer dizanv</string>
   <string name="queue-filterignored">Implijer dianavezet</string>
@@ -359,6 +384,8 @@
   <string name="queue-filterwarnings">Diwallit</string>
   <string name="queue-filtertags">Tikedenn</string>
   <string name="queue-filterbot">Kemm robot</string>
+  <string name="queue-filterhuggle">Kemm gant Huggle</string>
+  <string name="queue-filterme">Ma c\'hemm</string>
   <string name="report-reason">Abeg :</string>
   <string name="report-message">Kemennadenn :</string>
   <string name="report-write">Skritur</string>
