@@ -683,6 +683,7 @@
   <string name="shortcut-user-contribs-browser">نمایش مشارکت‌های کاربر در مرورگر</string>
   <string name="shortcut-user-clear-talk">پاک کردن صفحهٔ بحث این کاربر</string>
   <string name="shortcut-main-clear-queue">حذف صف</string>
+  <string name="shortcut-revert-agf">واگردانی با فرض حس نیت، با یک خلاصه ویرایش سفارشی</string>
   <string name="warning-title">هشدار $1</string>
   <string name="warning-levelgroup">سطح هشدار</string>
   <string name="warning-levelauto">خودکار</string>
@@ -807,6 +808,7 @@
   <string name="preferences-extension-disabled-restart">افزونه برای غیرفعال شدن در راه‌اندازی بعدی هاگل برنامه‌ریزی شده‌بود</string>
   <string name="preferences-extension-enabled">این افزونه برای غیرفعال کردن راه‌اندازی مجدد هاگل برنامه‌ریزی نشده‌است</string>
   <string name="preferences-extension-enabled-restart">افزونه فعال شده‌است، با این وجود برای به کار افتادن هاگل شما باید آن را دوباره راه‌اندازی کنید</string>
+  <string name="preferences-enforce-baw">نمایش رنگ سفید و سیاه در تفاوت اچ‌تی‌ام‌ال</string>
   <string name="preferences-watchlist-watch">افزودن به پی‌گیری‌ها</string>
   <string name="preferences-watchlist-unwatch">حذف از فهرست پی‌گیری</string>
   <string name="preferences-watchlist-preferences">از ترجیحات ویکی خود استفاده کنید</string>
@@ -884,7 +886,7 @@
   <string name="wikipagetagsform-group">گروه داخل {{$1}}</string>
   <string name="tip1">هاگل مانند سایر مرورگرها از زبانه‌ها پشتیبانی می‌کند. اگر قصد دارید بررسی تعدادی از ویرایش‌ها را برای بعداً انجام دهید، می‌توانید یک زبانهٔ جدید باز کنید و صف‌ها را در آنجا بررسی کنید. صف میان همهٔ زبانه‌ها مشترک است.</string>
   <string name="tip2">هاگل دارای یک «نوار ویرایش» است، ابزاری تر و تمیز که شامل صفحهٔ تاریخچه و کاربری‌ست. به صورت پیش‌فرض فعال نیست. اگر صفحهٔ نمایش کوچکی دارید می‌توانید کاربر و تاریخچه را با این جایگزین کنید.</string>
-  <string name="tip3" fuzzy="true">بیشتر ترجیحات در ویکی در [[Special:MyPage/huggle3.css]] وجود دارد که می‌توانید آنجا آنها را به صورت دستی تغییر دهید.</string>
+  <string name="tip3">بیشتر ترجیحات در ویکی در [[Special:MyPage/huggle.yaml.js]] وجود دارد که می‌توانید آنجا آنها را به صورت دستی تغییر دهید.</string>
   <string name="tip4">اکثر ویجت‌ها در صفحه به صورت امن قابل بستن هستند (به جز نوار ناوبری)</string>
   <string name="tip5">شما می‌توانید بطور همزمان در چند پروژه، از هاگل استفاده کنید. کافی‌ست در صفحهٔ ورود به سامانه، روی پروژه‌ها کلیک کنید.</string>
   <string name="tip6">اگر شما کاربر باتجربه‌ای باشید که هرگز اشتباه نمی‌کند، برگرداندن توسط هاگل می‌تواند بسیار سریعتر شود. ترجیحات را باز کنید و \"برگرداندن فوری\" را تیک بزنید.</string>
