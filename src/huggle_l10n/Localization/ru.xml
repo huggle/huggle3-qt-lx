@@ -4,6 +4,7 @@
 * Alexey zakharenkov
 * Av6
 * Biathlon
+* Diralik
 * Edible Melon
 * Eroha
 * EugenG
@@ -279,7 +280,7 @@
   <string name="invalid-bot-user-name">Это не допустимое имя бота. Пример правильного названия бота: Jimbo@Huggle</string>
   <string name="login-tab-botp">Пароль бота</string>
   <string name="login-tab-login">По-старому</string>
-  <string name="login-reload-tool-tip">Перезагрузить список проектов, которые могут быть использованы в Huggle. Это может быть полезно в случае, если вы хотите использовать Huggle в проекте, для которого инструмент был включен недавно.</string>
+  <string name="login-reload-tool-tip">Перезагрузить список проектов, которые могут быть использованы в Huggle. Это может быть полезно в случае, если вы хотите использовать Huggle в проекте, для которого инструмент был включён недавно.</string>
   <string name="login-language">Язык:</string>
   <string name="login-project">Проект:</string>
   <string name="login-username">Логин:</string>
@@ -328,7 +329,7 @@
   <string name="login-fail-with-reason">Ошибка входа (на $1): $2</string>
   <string name="login-error-admin">Использование Huggle в этом проекте требует учётной записи администратора.</string>
   <string name="login-error-age">Использование Huggle в этом проекте требует, по крайней мере, $1 дней участия.</string>
-  <string name="login-error-alldisabled">Huggle в данный момент отключен во всех проектах.</string>
+  <string name="login-error-alldisabled">Huggle в данный момент отключён во всех проектах.</string>
   <string name="login-error-approval">Использование Huggle в $1 требует одобрения заявки.</string>
   <string name="login-error-cancelled">Отменено.</string>
   <string name="login-error-config">Не удалось войти, не удалось разобрать локальные настройки для $1: $2</string>
@@ -336,20 +337,20 @@
   <string name="login-error-config-query-no-data">Ошибка входа в систему, не удалось получить глобальную конфигурацию, запрос api не возвратил данные</string>
   <string name="login-error-count">Использование Huggle в этом проекте требует, по крайней мере, $1 правок.</string>
   <string name="login-error-disabled">Huggle не включён для вашей учётной записи в $1. Проверьте вашу страницу пользовательских настроек.</string>
-  <string name="login-error-global">Ошибка входа: не удается выполнить разбор глобальных настроек. Смотрите отладочный журнал для получения более подробной информации.</string>
+  <string name="login-error-global">Ошибка входа: не удаётся выполнить разбор глобальных настроек. Смотрите отладочный журнал для получения более подробной информации.</string>
   <string name="login-error-invalid">Неверное имя пользователя.</string>
   <string name="login-error-noconfig">В $1 отсутствует страница настроек Huggle.</string>
   <string name="login-error-nouser">Пользователь не существует</string>
   <string name="login-error-no-valid-token">Недействительный логин входа, возвращаемый сайтом</string>
   <string name="login-error-password">Неправильный пароль</string>
-  <string name="login-error-projdisabled">В настоящее время Huggle отключен в $1.</string>
+  <string name="login-error-projdisabled">В настоящее время Huggle отключён в $1.</string>
   <string name="login-error-unknown">Невозможно войти в $1.</string>
   <string name="login-error-version">Эта версия устарела. Обновитесь до последней версии.</string>
   <string name="login-error-whitelist">Ошибка при загрузке «белого списка» пользователей в $1.</string>
   <string name="login-ro-title">Переключить в режим только для чения</string>
   <string name="login-ro-question">Один или более проектов ($1) не позволяют вам авторизоваться с правами на редактирования (причина: $2). Желаете переключиться в режим только для чтения?</string>
   <string name="login-ro-info">Проект $1 переключен в режим только для чтения</string>
-  <string name="wikis-db-download-fail">Не удается скачать базу данных вики: $1</string>
+  <string name="wikis-db-download-fail">Не удаётся скачать базу данных вики: $1</string>
   <string name="no-projects-defined-in-list">В списке нет проектов, которые необходимо настроить для глобальной вики</string>
   <string name="api-query-no-data">API-запрос не вернул никаких данных</string>
   <string name="main-stat">$1 правок в минуту, $2 откатов в минуту, уровень $3</string>
@@ -525,7 +526,7 @@
   <string name="message-fail-re-user-tp">Не удалось получить $1. Останавливаем доставку сообщения этому участнику</string>
   <string name="message-er">Невозможно доставить сообщение для $1: $2</string>
   <string name="message-error">Не удалось доставить сообщение для $1! Пожалуйста, проверьте логи!</string>
-  <string name="message-fail-retrieve-talk">Не удается получить страницу обсуждения участника</string>
+  <string name="message-fail-retrieve-talk">Не удаётся получить страницу обсуждения участника</string>
   <string name="message-done">Сообщение успешно доставлено на $2 для: $1</string>
   <string name="message-fail-token-1">Не удалось получить токен редактирования</string>
   <string name="message-fail-token-2">В результате запроса токен не был возвращён</string>
@@ -783,7 +784,7 @@
   <string name="editquery-token">Получение токена для редактирования $1</string>
   <string name="editquery-token-error">Не удалось получить маркер редактирования</string>
   <string name="editquery-nocsrft">Отсутствует CSRF-токен</string>
-  <string name="editquery-error-retrieve-prev">Не удается получить предыдущее содержание страницы: $1</string>
+  <string name="editquery-error-retrieve-prev">Не удаётся получить предыдущее содержание страницы: $1</string>
   <string name="editquery-error-append">Для редактирования страницы вы не можете использовать и \"Добавить после\", и \"Добавить перед\"</string>
   <string name="editquery-error-badtoken">Неправильный токен</string>
   <string name="editquery-invalid-token">Не удаётся отредактировать $1, поскольку токен, который был у меня в кэше, больше не действителен. Пожалуйста, попробуйте отредактировать страницу ещё раз</string>
@@ -836,7 +837,7 @@
   <string name="preferences-queue-size">Размер очереди</string>
   <string name="preferences-empty-queue-page">Страница пустой очереди:</string>
   <string name="preferences-reset-gui">Сбросить интерфейс</string>
-  <string name="preferences-restore-factory-layout">Это восстановит заводскую компоновку huggle, как это было при ее установке. Huggle отключится. Продолжать?</string>
+  <string name="preferences-restore-factory-layout">Это восстановит заводскую компоновку huggle, как это было при её установке. Huggle отключится. Продолжать?</string>
   <string name="preferences-keystroke-rate-limit">Опрашивать клавиатурные сочетания с определённой частотой в миллисекундах, чтобы предотвратить повторы нажатий (комбинация клавиш может быть использована лишь один раз в течение N мс)</string>
   <string name="fail">Сбой</string>
   <string name="request">Запрос</string>
@@ -850,7 +851,7 @@
   <string name="page-tag-nodescription">Отсутствует описание для этой метки</string>
   <string name="page-tag-noparameters">Нет параметров</string>
   <string name="page-tag-fail">Не удалось пометить страницу</string>
-  <string name="page-tag-error">Не удается пометить страницу, ошибка: $1</string>
+  <string name="page-tag-error">Не удаётся пометить страницу, ошибка: $1</string>
   <string name="page-unknown">Неизвестная страница</string>
   <string name="summary-edit-range">Показывает дифф между версиями $1 и $2</string>
   <string name="speedy-csd-invalid">Недопустимая CSD-метка, нет сообщений и вики-меток для использования</string>
@@ -866,7 +867,7 @@
   <string name="error-unknown-code">Неизвестная ошибка: $1</string>
   <string name="relogin-fail">Не удалось войти в вики: $1</string>
   <string name="projects">Проекты</string>
-  <string name="unable-to-retrieve-user-list">Не удается получить список пользователей: $1</string>
+  <string name="unable-to-retrieve-user-list">Не удаётся получить список пользователей: $1</string>
   <string name="login-no-userinfo">Сайт не возвращает никаких сведений о пользователях</string>
   <string name="login-invalid-register-date">MediaWiki вернула некорректную дату регистрации</string>
   <string name="login-site-info-query-failed">Запрос информации о сайте для $1 не сработал: $2</string>
@@ -876,7 +877,7 @@
   <string name="login-username-doesnt-exist">Это имя пользователя не существует</string>
   <string name="developer-mode-enter-title">Ура!</string>
   <string name="developer-mode-enter-message">Вы вошли в режим разработчика!</string>
-  <string name="unimplemented">Эта функция еще не была реализована</string>
+  <string name="unimplemented">Эта функция ещё не была реализована</string>
   <string name="unknown-item">Неизвестный пункт</string>
   <string name="title-multiple-projects">несколько проектов ($1)</string>
   <string name="title-on">на $1</string>
@@ -898,7 +899,7 @@
   <string name="protip">Совет</string>
   <string name="wikipagetagsform-group">Группа внутри {{$1}}</string>
   <string name="tip1">Huggle поддерживает вкладки, как и любой другой веб-браузер! Если вы находитесь на редактировании и хотите сохранить его позже, вы можете просто открыть новую вкладку и продолжить проверку очереди там. Очередь распределяется между всеми вкладками.</string>
-  <string name="tip2">Huggle содержит \"панель редактирования\", небольшой виджет, который содержит как пользовательскую, так и страницу истории аккуратным способом. Однако он не включен по умолчанию. Если вы находитесь на маленьком экране, вы можете заменить его виджетами пользователей и страниц!</string>
+  <string name="tip2">Huggle содержит \"панель редактирования\", небольшой виджет, который содержит как пользовательскую, так и страницу истории аккуратным способом. Однако он не включён по умолчанию. Если вы находитесь на маленьком экране, вы можете заменить его виджетами пользователей и страниц!</string>
   <string name="tip3">Большинство настроек хранятся в вики в [[Special:MyPage/huggle.yaml.js]]. Вы также можете вручную их изменить.</string>
   <string name="tip4">Почти каждый виджет на экране может быть безопасно закрыт (кроме панели навигации).</string>
   <string name="tip5">Вы можете одновременно использовать Huggle для нескольких проектов, просто нажмите кнопку \"Проекты\" в форме входа.</string>
