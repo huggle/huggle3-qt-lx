@@ -32,7 +32,7 @@ namespace Huggle
             HuggleFeedJS(Script *s);
             Q_INVOKABLE QJSValue get_all_bytes_sent();
             Q_INVOKABLE QJSValue get_all_bytes_received();
-            QHash<QString, QString> GetFunctions();
+            QHash<QString, QString> GetFunctions() override;
         private:
             QHash<QString, QString> functions;
     };

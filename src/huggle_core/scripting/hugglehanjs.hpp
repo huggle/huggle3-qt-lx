@@ -8,7 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU Lesser General Public License for more details.
 
-// Copyright (c) Petr Bena 2018
+// Copyright (c) Petr Bena 2018 - 2019
 
 #ifndef HUGGLEHANJS_HPP
 #define HUGGLEHANJS_HPP
@@ -24,7 +24,7 @@ namespace Huggle
             Q_OBJECT
         public:
             HuggleHanJS(Script *s);
-            QHash<QString, QString> GetFunctions();
+            QHash<QString, QString> GetFunctions() override;
     };
 }
 

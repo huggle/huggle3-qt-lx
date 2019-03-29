@@ -8,7 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU Lesser General Public License for more details.
 
-// Copyright (c) Petr Bena 2018
+// Copyright (c) Petr Bena 2018 - 2019
 
 #ifndef HUGGLEEDITJS_HPP
 #define HUGGLEEDITJS_HPP
@@ -28,12 +28,12 @@ namespace Huggle
             Q_OBJECT
         public:
             HuggleEditJS(Script *s);
-            QHash<QString, QString> GetFunctions();
-            Q_INVOKABLE QJSValue get_edit_property_bag(QJSValue edit);
-            Q_INVOKABLE QJSValue get_edit_meta_data(QJSValue edit);
-            Q_INVOKABLE bool record_score(QJSValue edit, QString name, int score);
+            QHash<QString, QString> GetFunctions() override;
+            Q_INVOKABLE QJSValue get_edit_property_bag(const QJSValue &edit);
+            Q_INVOKABLE QJSValue get_edit_meta_data(const QJSValue &edit);
+            Q_INVOKABLE bool record_score(const QJSValue &edit, const QString& name, int score);
         private:
-            WikiEdit *getEdit(QString fc, QJSValue edit);
+            WikiEdit *getEdit(const QString& fc, const QJSValue& edit);
     };
 }
 

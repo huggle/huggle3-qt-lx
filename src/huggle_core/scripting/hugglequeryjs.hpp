@@ -35,14 +35,14 @@ namespace Huggle
             Q_OBJECT
         public:
             HuggleQueryJS(Script *s);
-            ~HuggleQueryJS();
-            QHash<QString, QString> GetFunctions() { return functions; }
+            ~HuggleQueryJS() override;
+            QHash<QString, QString> GetFunctions() override { return functions; }
             Q_INVOKABLE QJSValue get_all_bytes_sent();
             Q_INVOKABLE QJSValue get_all_bytes_received();
             // Query - API
-            Q_INVOKABLE int create_api_query(int type, QString site, QString parameters, bool using_post = false, bool auto_delete = false);
-            Q_INVOKABLE bool register_api_success_callback(int query, QString callback);
-            Q_INVOKABLE bool register_api_failure_callback(int query, QString callback);
+            Q_INVOKABLE int create_api_query(int type, const QString& site, const QString &parameters, bool using_post = false, bool auto_delete = false);
+            Q_INVOKABLE bool register_api_success_callback(int query, const QString& callback);
+            Q_INVOKABLE bool register_api_failure_callback(int query, const QString& callback);
             Q_INVOKABLE bool process_api_query(int query);
             Q_INVOKABLE bool kill_api_query(int query);
             Q_INVOKABLE QJSValue get_api_query_info(int query);
@@ -50,10 +50,10 @@ namespace Huggle
             void ProcessAQSuccessCallback(Query *query);
             void ProcessAQFailureCallback(Query *query);
             // Query - edit
-            Q_INVOKABLE int edit_page_append_text(QString page_name, QString text, QString summary, bool minor = false, bool auto_delete = true);
-            Q_INVOKABLE int edit_page(QString page, QString text, QString summary, QString site_name, bool minor = false, QString base_timestamp = "", unsigned int section = 0, bool auto_delete = true);
-            Q_INVOKABLE bool register_edit_success_callback(int query, QString callback);
-            Q_INVOKABLE bool register_edit_failure_callback(int query, QString callback);
+            Q_INVOKABLE int edit_page_append_text(const QString& page_name, const QString& text, const QString &summary, bool minor = false, bool auto_delete = true);
+            Q_INVOKABLE int edit_page(const QString& page, const QString& text, const QString& summary, const QString& site_name, bool minor = false, const QString& base_timestamp = "", unsigned int section = 0, bool auto_delete = true);
+            Q_INVOKABLE bool register_edit_success_callback(int query, const QString& callback);
+            Q_INVOKABLE bool register_edit_failure_callback(int query, const QString& callback);
             Q_INVOKABLE bool kill_edit_query(int query);
             Q_INVOKABLE QJSValue get_edit_query_info(int query);
             Q_INVOKABLE bool destroy_edit_query(int query);

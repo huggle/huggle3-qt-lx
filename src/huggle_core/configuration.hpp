@@ -143,7 +143,7 @@ namespace Huggle
     {
         public:
             Shortcut();
-            Shortcut(QString name, QString description);
+            Shortcut(const QString &name, const QString &description);
             Shortcut(const Shortcut &copy);
             QString Name;
             QString Description;
@@ -156,15 +156,15 @@ namespace Huggle
     class HUGGLE_EX_CORE ExtensionConfig
     {
         public:
-            void SetOption(QString name, QString value);
+            void SetOption(const QString &name, const QString &value);
             /*!
              * \brief GetOption Retrieve an option from local config
              * \param name Name of key
              * \param md Value that is returned when key is missing
              * \return Value that is associated with the key
              */
-            QString GetOption(QString name, QString md = "");
-            bool Contains(QString name);
+            QString GetOption(const QString &name, const QString &md = "");
+            bool Contains(const QString &name);
         private:
             QHash<QString, QString> options;
             friend class Configuration;
@@ -197,7 +197,7 @@ namespace Huggle
 
     //! Temporary config:
     //! Is maintained accross 1 huggle session.
-    class HUGGLE_EX_CORE  Configuration
+    class HUGGLE_EX_CORE Configuration
     {
         public:
             //! Return a full url like http://en.wikipedia.org/wiki/
@@ -228,7 +228,7 @@ namespace Huggle
             //! Save the local configuration to file
             static void SaveSystemConfig();
             //! Load the local configuration from disk
-            static void LoadSystemConfig(QString fn);
+            static void LoadSystemConfig(const QString& fn);
             //! This function appends the huggle suffix to a edit summary
             static QString GenerateSuffix(QString text, ProjectConfiguration *conf);
             static void Logout(WikiSite *site);
@@ -238,12 +238,12 @@ namespace Huggle
             ~Configuration();
             void NormalizeConf(WikiSite *site);
             //! Parse all information from global config on meta
-            bool ParseGlobalConfig(QString config);
-            QString GetExtensionConfig(QString extension, QString name, QString default_value);
+            bool ParseGlobalConfig(const QString &config);
+            QString GetExtensionConfig(const QString& extension, const QString &name, const QString &default_value);
             //! This will reset shortcuts of dropdown menus that are dynamic
             void ResetMenuShortcuts();
-            void SetExtensionConfig(QString extension, QString name, QString value);
-            bool ExtensionConfigContainsKey(QString extension, QString name);
+            void SetExtensionConfig(const QString& extension, const QString &name, const QString &value);
+            bool ExtensionConfigContainsKey(const QString &extension, const QString &name);
 
             ////////////////////////////////////////////
             // System
@@ -475,9 +475,9 @@ namespace Huggle
              * \param value Value of key
              * \param s Stream writer
              */
-            static void InsertConfig(QString key, QString value, QXmlStreamWriter *s);
+            static void InsertConfig(const QString &key, const QString &value, QXmlStreamWriter *s);
 
-            void MakeShortcut(QString name, QString description, QString default_accel = HUGGLE_ACCEL_NONE);
+            void MakeShortcut(const QString& name, const QString &description, const QString &default_accel = HUGGLE_ACCEL_NONE);
     };
 }
 

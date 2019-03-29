@@ -8,7 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU Lesser General Public License for more details.
 
-// Copyright (c) Petr Bena 2018
+// Copyright (c) Petr Bena 2018 - 2019
 
 #include "huggleeditjs.hpp"
 #include "jsmarshallinghelper.hpp"
@@ -38,7 +38,7 @@ QHash<QString, QString> HuggleEditJS::GetFunctions()
     return function_help;
 }
 
-QJSValue HuggleEditJS::get_edit_property_bag(QJSValue edit)
+QJSValue HuggleEditJS::get_edit_property_bag(const QJSValue &edit)
 {
     WikiEdit *we = getEdit("get_edit_property_bag(edit)", edit);
     if (!we)
@@ -46,7 +46,7 @@ QJSValue HuggleEditJS::get_edit_property_bag(QJSValue edit)
     return JSMarshallingHelper::FromQVariantHash(we->PropertyBag, this->GetScript()->GetEngine());
 }
 
-QJSValue HuggleEditJS::get_edit_meta_data(QJSValue edit)
+QJSValue HuggleEditJS::get_edit_meta_data(const QJSValue &edit)
 {
     WikiEdit *we = getEdit("get_edit_property_bag(edit)", edit);
     if (!we)
@@ -54,7 +54,7 @@ QJSValue HuggleEditJS::get_edit_meta_data(QJSValue edit)
     return JSMarshallingHelper::FromQStringHash(we->MetaLabels, this->GetScript()->GetEngine());
 }
 
-bool HuggleEditJS::record_score(QJSValue edit, QString name, int score)
+bool HuggleEditJS::record_score(const QJSValue& edit, const QString& name, int score)
 {
     WikiEdit *we = getEdit("record_score(edit, name, score)", edit);
     if (!we)
@@ -63,7 +63,7 @@ bool HuggleEditJS::record_score(QJSValue edit, QString name, int score)
     return true;
 }
 
-WikiEdit *HuggleEditJS::getEdit(QString fc, QJSValue edit)
+WikiEdit *HuggleEditJS::getEdit(const QString& fc, const QJSValue& edit)
 {
     if (!edit.hasProperty("_ptr"))
     {

@@ -8,7 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU Lesser General Public License for more details.
 
-// Copyright (c) Petr Bena 2018
+// Copyright (c) Petr Bena 2018 - 2019
 
 #include "huggleeditingjs.hpp"
 #include "script.hpp"
@@ -41,12 +41,12 @@ QHash<QString, ScriptFunctionHelp> HuggleEditingJS::GetFunctionHelp()
     return help;
 }
 
-void HuggleEditingJS::append_text(QString page_name, QString text, QString summary, bool minor)
+void HuggleEditingJS::append_text(const QString& page_name, const QString& text, const QString &summary, bool minor)
 {
     QueryPool::HugglePool->AppendQuery(WikiUtil::AppendTextToPage(page_name, text, summary, minor).GetPtr());
 }
 
-bool HuggleEditingJS::patrol_edit(QJSValue edit)
+bool HuggleEditingJS::patrol_edit(const QJSValue& edit)
 {
     if (!edit.hasProperty("_ptr"))
     {

@@ -8,7 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU Lesser General Public License for more details.
 
-// Copyright (c) Petr Bena 2018
+// Copyright (c) Petr Bena 2018 - 2019
 
 #include "hugglejs.hpp"
 #include "script.hpp"
@@ -94,7 +94,7 @@ QList<QString> HuggleJS::get_function_list()
     return this->script->GetFunctions();
 }
 
-QString HuggleJS::get_function_help(QString function_name)
+QString HuggleJS::get_function_help(const QString& function_name)
 {
     return this->script->GetHelpForFunc(function_name);
 }
@@ -124,12 +124,12 @@ bool HuggleJS::is_unsafe()
     return this->script->IsUnsafe();
 }
 
-bool HuggleJS::has_function(QString function_name)
+bool HuggleJS::has_function(const QString& function_name)
 {
     return this->script->SupportFunction(function_name);
 }
 
-bool HuggleJS::register_hook(QString hook, QString function_name)
+bool HuggleJS::register_hook(const QString& hook, const QString& function_name)
 {
     int hook_id = this->script->GetHookID(hook);
     if (hook_id < 0)
@@ -141,7 +141,7 @@ bool HuggleJS::register_hook(QString hook, QString function_name)
     return true;
 }
 
-void HuggleJS::unregister_hook(QString hook)
+void HuggleJS::unregister_hook(const QString& hook)
 {
     int hook_id = this->script->GetHookID(hook);
     if (hook_id < 0)
@@ -157,37 +157,37 @@ QString HuggleJS::get_script_path()
     return this->script->GetPath();
 }
 
-QString HuggleJS::get_cfg(QString key, QVariant default_value)
+QString HuggleJS::get_cfg(const QString& key, const QVariant& default_value)
 {
     return hcfg->GetExtensionConfig("script_" + this->script->GetName(), key, default_value.toString());
 }
 
-void HuggleJS::set_cfg(QString key, QVariant value)
+void HuggleJS::set_cfg(const QString& key, const QVariant& value)
 {
     hcfg->SetExtensionConfig("script_" + this->script->GetName(), key, value.toString());
 }
 
-void HuggleJS::log(QString text)
+void HuggleJS::log(const QString& text)
 {
     HUGGLE_LOG(text);
 }
 
-void HuggleJS::warning_log(QString text)
+void HuggleJS::warning_log(const QString& text)
 {
     HUGGLE_WARNING(this->script->GetName() + ": " + text);
 }
 
-void HuggleJS::error_log(QString text)
+void HuggleJS::error_log(const QString& text)
 {
     HUGGLE_ERROR(this->script->GetName() + ": " + text);
 }
 
-void HuggleJS::debug_log(QString text, int verbosity)
+void HuggleJS::debug_log(const QString& text, int verbosity)
 {
     HUGGLE_DEBUG(this->script->GetName() + ": " + text, static_cast<unsigned int>(verbosity));
 }
 
-unsigned int HuggleJS::create_timer(int interval, QString function, bool start)
+unsigned int HuggleJS::create_timer(int interval, const QString& function, bool start)
 {
     unsigned int timer_id = this->lastTimer++;
     QTimer *timer = new QTimer(this);
@@ -232,7 +232,7 @@ QString HuggleJS::get_ring_log()
     return Huggle::Syslog::HuggleLogs->RingLogToText();
 }
 
-QJSValue HuggleJS::get_site_by_name(QString site)
+QJSValue HuggleJS::get_site_by_name(const QString& site)
 {
     foreach (WikiSite *wiki, hcfg->Projects)
     {
@@ -252,7 +252,7 @@ QList<QString> HuggleJS::get_sites()
     return sl;
 }
 
-QString HuggleJS::localize(QString id)
+QString HuggleJS::localize(const QString& id)
 {
     return _l(id);
 }
@@ -262,7 +262,7 @@ QDateTime HuggleJS::get_startup_date_time()
     return Core::HuggleCore->StartupTime;
 }
 
-void HuggleJS::play_file(QString name)
+void HuggleJS::play_file(const QString &name)
 {
     Resources::PlayEmbeddedSoundFile(name);
 }
@@ -274,10 +274,10 @@ QString HuggleJS::get_current_time_str()
 
 int HuggleJS::get_current_time_posix()
 {
-    return static_cast<int>(QDateTime::currentDateTime().toTime_t());
+    return static_cast<int>(QDateTime::currentDateTimeUtc().toTime_t());
 }
 
-bool HuggleJS::register_callback(QString callback)
+bool HuggleJS::register_callback(const QString& callback)
 {
     if (this->script->HasExternalCallback(callback))
         return false;
@@ -286,7 +286,7 @@ bool HuggleJS::register_callback(QString callback)
     return true;
 }
 
-bool HuggleJS::unregister_callback(QString callback)
+bool HuggleJS::unregister_callback(const QString& callback)
 {
     if (!this->script->HasExternalCallback(callback))
         return false;
@@ -295,7 +295,7 @@ bool HuggleJS::unregister_callback(QString callback)
     return true;
 }
 
-QString HuggleJS::dump_obj(QJSValue object, unsigned int indent)
+QString HuggleJS::dump_obj(const QJSValue& object, unsigned int indent)
 {
     QString indent_prefix = "";
     unsigned int pref = indent;
@@ -383,7 +383,8 @@ QJSValue HuggleJS::seconds_to_time_span(int seconds)
 
 qint64 HuggleJS::get_startup_time_unix()
 {
-    return (Core::HuggleCore->StartupTime.currentMSecsSinceEpoch() / 1000);
+    // We use this hack because SecsSinceEpoch is not present in old Qt versions
+    return (Core::HuggleCore->StartupTime.toMSecsSinceEpoch() / 1000);
 }
 
 qint64 HuggleJS::get_uptime()
@@ -399,7 +400,7 @@ void HuggleJS::OnTime()
     this->GetScript()->ExecuteFunction(this->timerFunctions[timer], QJSValueList());
 }
 
-WikiSite *HuggleJS::getSiteByName(QString name)
+WikiSite *HuggleJS::getSiteByName(const QString& name)
 {
     foreach (WikiSite *site, hcfg->Projects)
     {

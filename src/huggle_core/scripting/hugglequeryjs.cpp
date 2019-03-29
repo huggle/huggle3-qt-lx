@@ -69,7 +69,7 @@ static void apisuccess(Query *qr)
     qr->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
 }
 
-int HuggleQueryJS::create_api_query(int type, QString site, QString parameters, bool using_post, bool auto_delete)
+int HuggleQueryJS::create_api_query(int type, const QString& site, const QString& parameters, bool using_post, bool auto_delete)
 {
     if (type < 0 || type > 17)
     {
@@ -104,7 +104,7 @@ int HuggleQueryJS::create_api_query(int type, QString site, QString parameters, 
     return query_id;
 }
 
-bool HuggleQueryJS::register_api_success_callback(int query, QString callback)
+bool HuggleQueryJS::register_api_success_callback(int query, const QString& callback)
 {
     if (!this->apiQueries.contains(query))
         return false;
@@ -116,7 +116,7 @@ bool HuggleQueryJS::register_api_success_callback(int query, QString callback)
     return true;
 }
 
-bool HuggleQueryJS::register_api_failure_callback(int query, QString callback)
+bool HuggleQueryJS::register_api_failure_callback(int query, const QString& callback)
 {
     if (!this->apiQueries.contains(query))
         return false;
@@ -174,7 +174,7 @@ static void editsuccess(Query *qr)
     qr->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
 }
 
-int HuggleQueryJS::edit_page_append_text(QString page_name, QString text, QString summary, bool minor, bool auto_delete)
+int HuggleQueryJS::edit_page_append_text(const QString& page_name, const QString& text, const QString& summary, bool minor, bool auto_delete)
 {
     int query_id = this->lastQuery++;
     Collectable_SmartPtr<EditQuery> edit = WikiUtil::AppendTextToPage(page_name, text, summary, minor);
@@ -188,7 +188,7 @@ int HuggleQueryJS::edit_page_append_text(QString page_name, QString text, QStrin
     return query_id;
 }
 
-int HuggleQueryJS::edit_page(QString page, QString text, QString summary, QString site_name, bool minor, QString base_timestamp, unsigned int section, bool auto_delete)
+int HuggleQueryJS::edit_page(const QString& page, const QString& text, const QString& summary, const QString& site_name, bool minor, const QString& base_timestamp, unsigned int section, bool auto_delete)
 {
     WikiSite *site = nullptr;
     foreach (WikiSite *s, hcfg->Projects)
@@ -216,7 +216,7 @@ int HuggleQueryJS::edit_page(QString page, QString text, QString summary, QStrin
     return query_id;
 }
 
-bool HuggleQueryJS::register_edit_success_callback(int query, QString callback)
+bool HuggleQueryJS::register_edit_success_callback(int query, const QString& callback)
 {
     if (!this->editQueries.contains(query))
         return false;
@@ -228,7 +228,7 @@ bool HuggleQueryJS::register_edit_success_callback(int query, QString callback)
     return true;
 }
 
-bool HuggleQueryJS::register_edit_failure_callback(int query, QString callback)
+bool HuggleQueryJS::register_edit_failure_callback(int query, const QString& callback)
 {
     if (!this->editQueries.contains(query))
         return false;

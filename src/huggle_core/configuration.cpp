@@ -174,7 +174,7 @@ QString Configuration::ReplaceSpecialUserPage(QString PageName)
     return result;
 }
 
-void Configuration::MakeShortcut(QString name, QString description, QString default_accel)
+void Configuration::MakeShortcut(const QString &name, const QString &description, const QString &default_accel)
 {
     Shortcut shortcut = Shortcut(name, description);
     shortcut.QAccel = default_accel;
@@ -194,9 +194,9 @@ void Configuration::NormalizeConf(WikiSite *site)
         site->UserConfig->EnforceMonthsAsHeaders = false;
 }
 
-// These macros saves us some typing
-// For historical purposes and because it's cleaner, we store variables as real variables, rather than hashes
-// this however make some stuff more complicated, such as reading and writing of configuration, which can't be dynamic this way.
+// These macros save us some typing
+// For historical purposes and because it's cleaner, we store variables as real variables, rather than hashes indexed by strings,
+// this however makes some stuff more complicated, such as dynamic reading and writing of configuration.
 // Following function basically consist of huge stack of if {} blocks that check if key name matches the known name.
 
 // These will make the writing of code easier, you basically just type RC(variable_name) for every string where variable_name
@@ -217,10 +217,10 @@ void Configuration::NormalizeConf(WikiSite *site)
 #define RCB(n)  if (key == #n) { hcfg->SystemConfig_##n = SafeBool(option.attribute("text")); continue; }
 #define RCN(n)  if (key == #n) { hcfg->SystemConfig_##n = option.attribute("text").toInt(); continue; }
 
-void Configuration::LoadSystemConfig(QString fn)
+void Configuration::LoadSystemConfig(const QString& fn)
 {
     QFile file(fn);
-    if (!QFile().exists(fn))
+    if (!QFile::exists(fn))
     {
         HUGGLE_DEBUG1("No config file at " + fn);
         return;
@@ -459,7 +459,7 @@ void Configuration::SaveSystemConfig()
     delete writer;
 }
 
-bool Configuration::ParseGlobalConfig(QString config)
+bool Configuration::ParseGlobalConfig(const QString &config)
 {
     std::string config_std = FetchYAML(config).toStdString();
     YAML::Node yaml;
@@ -495,7 +495,7 @@ bool Configuration::ParseGlobalConfig(QString config)
     return true;
 }
 
-QString Configuration::GetExtensionConfig(QString extension, QString name, QString default_value)
+QString Configuration::GetExtensionConfig(const QString &extension, const QString &name, const QString &default_value)
 {
     if (!this->ExtensionData.contains(extension))
         return default_value;
@@ -532,14 +532,14 @@ void Configuration::ResetMenuShortcuts()
     }
 }
 
-void Configuration::SetExtensionConfig(QString extension, QString name, QString value)
+void Configuration::SetExtensionConfig(const QString &extension, const QString &name, const QString &value)
 {
     if (!this->ExtensionData.contains(extension))
         this->ExtensionData.insert(extension, new ExtensionConfig());
     this->ExtensionData[extension]->SetOption(name, value);
 }
 
-bool Configuration::ExtensionConfigContainsKey(QString extension, QString name)
+bool Configuration::ExtensionConfigContainsKey(const QString &extension, const QString &name)
 {
     if (!this->ExtensionData.contains(extension))
         return false;
@@ -576,7 +576,7 @@ QString Configuration::GetProjectScriptURL()
     return Configuration::GetProjectURL(hcfg->Project) + Configuration::HuggleConfiguration->Project->ScriptPath;
 }
 
-void Configuration::InsertConfig(QString key, QString value, QXmlStreamWriter *s)
+void Configuration::InsertConfig(const QString &key, const QString &value, QXmlStreamWriter *s)
 {
     s->writeStartElement("local");
     s->writeAttribute("key", key);
@@ -592,7 +592,7 @@ Shortcut::Shortcut()
     this->QAccel = "";
 }
 
-Shortcut::Shortcut(QString name, QString description)
+Shortcut::Shortcut(const QString &name, const QString &description)
 {
     this->Name = name;
     this->Description = description;
@@ -809,7 +809,7 @@ Shortcut::Shortcut(const Shortcut &copy)
     this->Description = copy.Description;
 }
 
-void ExtensionConfig::SetOption(QString name, QString value)
+void ExtensionConfig::SetOption(const QString &name, const QString &value)
 {
     if (this->options.contains(name))
     {
@@ -819,7 +819,7 @@ void ExtensionConfig::SetOption(QString name, QString value)
     this->options.insert(name, value);
 }
 
-QString ExtensionConfig::GetOption(QString name, QString md)
+QString ExtensionConfig::GetOption(const QString &name, const QString &md)
 {
     // only return the value if we have it
     if (!this->options.contains(name))
@@ -828,7 +828,7 @@ QString ExtensionConfig::GetOption(QString name, QString md)
     return this->options[name];
 }
 
-bool ExtensionConfig::Contains(QString name)
+bool ExtensionConfig::Contains(const QString &name)
 {
     return this->options.contains(name);
 }

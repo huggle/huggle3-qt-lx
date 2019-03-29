@@ -8,7 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU Lesser General Public License for more details.
 
-// Copyright (c) Petr Bena 2018
+// Copyright (c) Petr Bena 2018 - 2019
 
 #ifndef HUGGLEEDITINGJS_HPP
 #define HUGGLEEDITINGJS_HPP
@@ -37,10 +37,10 @@ namespace Huggle
             Q_OBJECT
         public:
             HuggleEditingJS(Script *s);
-            QHash<QString, QString> GetFunctions();
-            QHash<QString, ScriptFunctionHelp> GetFunctionHelp();
-            Q_INVOKABLE void append_text(QString page_name, QString text, QString summary, bool minor = false);
-            Q_INVOKABLE bool patrol_edit(QJSValue edit);
+            QHash<QString, QString> GetFunctions() override;
+            QHash<QString, ScriptFunctionHelp> GetFunctionHelp() override;
+            Q_INVOKABLE void append_text(const QString& page_name, const QString& text, const QString& summary, bool minor = false);
+            Q_INVOKABLE bool patrol_edit(const QJSValue& edit);
 
         private:
             QHash<QString, QString> functions;
