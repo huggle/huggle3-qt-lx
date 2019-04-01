@@ -150,9 +150,9 @@
   <string name="config-beta">Zkontrolovat beta verze</string>
   <string name="config-close-without">Zavřít bez uložení</string>
   <string name="config-confirmmultiple">Potvrdit více revertů úprav provedených jedním uživatelem</string>
-  <string name="config-confirmsame">Potvrdit revert do úpravy vyrobené stejným uživatelem</string>
+  <string name="config-confirmsame">Potvrdit vrácení zpět do editace vytvořené stejným uživatelem</string>
   <string name="config-confirmselfrevert">Potvrdit reverzi vlastní úpravy</string>
-  <string name="config-confirmwarned">Potvrdit revert editace do verze která byla vytvořena varovaným uživatelem</string>
+  <string name="config-confirmwarned">Potvrdit vrácení editace do verze která byla vytvořena varovaným uživatelem</string>
   <string name="config-confirmrange">Potvrdit revizi na změny provedené anonymními uživateli ve stejném /16 rozsahu jako uživatel jehož edit chcete revertovat</string>
   <string name="config-confirmpage">Potvrdit reverzi na ignorovaných stránkách</string>
   <string name="config-autoadvance">Po revertu přesunout na další položku ve frontě</string>
@@ -366,7 +366,7 @@
   <string name="main-browser-newedits">Zobrazit nové úpravy na stránce</string>
   <string name="main-browser-newcontribs">Zobrazit nové příspěvky uživatele</string>
   <string name="main-browser-lasttab">Tuto kartu nelze zavřít, protože je poslední - musíte mít alespoň 1 kartu otevřenou</string>
-  <string name="main-revert-manual">Token pro $1 se nepodařilo získat, pokusím se provést revert manuální editací</string>
+  <string name="main-revert-manual">Token pro $1 se nepodařilo získat, pokusím se provést vrácení zpět manuální editací</string>
   <string name="main-han">HAN</string>
   <string name="main-han-disconnect">Odpojit</string>
   <string name="main-han-connect">Připojit</string>
@@ -460,7 +460,7 @@
   <string name="queue-examplelabel3">Nekontrolovat tento atribut</string>
   <string name="queue-usergroup">Zobrazit pouze úpravy od těchto uživatelů</string>
   <string name="report-title">Nahlásit $1</string>
-  <string name="report-warn" fuzzy="true">Tento uživatel již dosáhl poslední úrovně, žádné další varování mu nebudou zaslány, můžete ho reportovat, ale ověřte že opravdu dosáhl dostatečného počtu varování. Můžete to udělat kliknutím na tlačítko \"diskuze\" v okně které se zobrazí v případě že se rozhodnete uživatele nahlásit. Berte na vědomí že tento formulář i toto varování se objeví bez ohledu na to, jestli byl revert jejich editu úspěšný, nebo ne, možná vás někdo předběhl (proto se ujistěte že uživatel již není nahlášen) Chcete tohoto uživatele nahlásit?</string>
+  <string name="report-warn">Tento uživatel již dosáhl poslední úrovně, žádné další varování mu nebudou zaslány, můžete ho nahlásit, ale ověřte, že opravdu dosáhl dostatečného počtu varování. Můžete to udělat kliknutím na tlačítko \"diskuse\" v okně které se zobrazí v případě že se rozhodnete uživatele nahlásit. Berte na vědomí že tento formulář i toto varování se objeví bez ohledu na to, jestli bylo vrácení zpět jejich editace úspěšné, nebo ne, možná vás někdo předběhl (proto se ujistěte že uživatel již není nahlášen). Chcete tohoto uživatele nahlásit?</string>
   <string name="report-tu">Reportovat uživatele</string>
   <string name="report-reason">Důvod:</string>
   <string name="report-auto">Nahlášeno $1</string>
@@ -492,10 +492,10 @@
   <string name="uaa-g1">Získání obsahu z UAA</string>
   <string name="uaa-e1">Dotaz na obsah stránky nevrátil žádná data.</string>
   <string name="uaa-e2">Obsah stránky nebyl k dispozici.</string>
-  <string name="revert-confirm-multiple">Tato akce provede revert několika editací které byly provedeny $1. Pokračovat?</string>
+  <string name="revert-confirm-multiple">Tato akce provede vrácení zpět několika editací které byly provedeny uživatelem $1. Pokračovat?</string>
   <string name="revert-confirm-range">Autor cílového revize, $2, je ve stejném rozsahu jako autor aktuální revize, $1 a může to být stejná osoba; ověřte že cílová revize je v pořádku, než budete pokračovat. Chcete pokračovat?</string>
   <string name="revert-confirm-same">Toto vrátí na další revizi uživatele, který vyrobil revizi kterou nyní revertujete: $1 . Chcete pokračovat?</string>
-  <string name="revert-confirm-warned">Provádíte revert na verzi vyrobenou uživatelem který již obdržel varování. Jste si jistý?</string>
+  <string name="revert-confirm-warned">Provádíte vrácení zpět na verzi vytvořenou uživatelem ($1), který již obdržel varování. Jste si jistý?</string>
   <string name="revert-error-first">Editace je první verze této stránky, nelze vrátit.</string>
   <string name="revert-only">Tato editace je jediná verze této stránky.</string>
   <string name="revert-creator">Poslední editace byla provedena autorem stránky, $1.</string>
@@ -647,7 +647,7 @@
   <string name="welcome-tp-empty-fail">Tento uživatel nemá prázdnou diskusní stránku, jste si jisti, že mu opravdu chcete odeslat uvítání?</string>
   <string name="welcome-page-miss-fail">Nepodařilo se získat obsah uživatelovi stránky, jste si jisti že mu chcete poslat zprávu?</string>
   <string name="cr-newer-edits">Konflikt vyřešen: revertovány všechny změny, včetně nových změn provedených tím samým uživatelem: $1.</string>
-  <string name="cr-resolved-same-user">Konflikt vyřešen: revert všech nových změn, vyrobených stejnými uživateli: $1</string>
+  <string name="cr-resolved-same-user">Konflikt vyřešen: vrácení zpět všech nových změn, vytvořených stejnými uživateli: $1</string>
   <string name="cr-stop-new-edit">Konflikt vyřešen: neprovedena žádná akce, nové editace $1</string>
   <string name="cr-stop-multiple-same">Konflikt vyřešen: neprovedena žádná akce, je zde několik editací provedených stejným uživatelem $1</string>
   <string name="cr-revert-same-user">Konflikt vyřešen: vrátit všechny úpravy, je zde několik editací provedených stejným uživatelem $1</string>
