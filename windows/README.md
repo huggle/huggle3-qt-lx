@@ -3,7 +3,7 @@ Windows
 
 This is used to build packages for windows, how-to:
 
-*Open Huggle.nsi and update the version of huggle to current one
+* Open Huggle.nsi and update the version of huggle to current one
 * Run powershell script release.ps1
 * You can pick generator using -cmake_generator
 

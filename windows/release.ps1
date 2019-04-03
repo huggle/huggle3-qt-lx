@@ -1,6 +1,6 @@
 # This is a powershell script that prepare huggle project so that it can be built
 
-#  Copyright (c) 2015, Petr Bena
+#  Copyright (c) 2015 - 2019, Petr Bena
 #  All rights reserved.
 
 #  Redistribution and use in source and binary forms, with
@@ -196,6 +196,7 @@ cp ..\src\huggle_res\Resources\huggle.ico huggle.ico
 cp ..\src\huggle_res\Resources\huggle.ico release
 # missing Qt dll, bug in winqtdeploy :/
 cp $qt5_path\bin\Qt5Multimedia.dll release
+cp $openssl_path\libssl32.dll release
 cp $openssl_path\bin\ssleay32.dll release
 cp $openssl_path\bin\libeay32.dll release
 
