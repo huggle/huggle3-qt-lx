@@ -120,12 +120,12 @@
   <string name="config-undosummary">自編集を差し戻すときのデフォルト要約</string>
   <string name="config-confirm-wl">ホワイトリストに登録された利用者による改編について承認を要求</string>
   <string name="config-use-rollback">ソフトウェアのロールバックを使用する</string>
-  <string name="config-revert">リバート</string>
+  <string name="config-revert">差し戻し</string>
   <string name="config-skip">スキップ</string>
   <string name="config-enable-irc">IRCを可動</string>
   <string name="config-bot-edits">ボットによる編集(b)</string>
   <string name="config-own-edits">自分の編集</string>
-  <string name="config-reverts">リバート</string>
+  <string name="config-reverts">差し戻し</string>
   <string name="config-new-page">新規ページ</string>
   <string name="config-whitelisted">ホワイトリスト済</string>
   <string name="config-friend">友達</string>
@@ -140,7 +140,7 @@
   <string name="config-confirmwarned">警告を受けている利用者による版へ差し戻す時は確認する</string>
   <string name="config-confirmrange">リバートを受けているIPと同じ(/16)範囲のIPによる版へ差し戻す時は確認する</string>
   <string name="config-confirmpage" fuzzy="true">無視ページを差し戻す時は確認する</string>
-  <string name="config-autoadvance">リバートした後、キュー内の次の編集に移動する</string>
+  <string name="config-autoadvance">差し戻した後、キュー内の次の編集に移動する</string>
   <string name="config-userollback">もし可能な場合、ロールバック機能を使用する</string>
   <string name="config-revertsummaries">メニュー内で利用可能な要約</string>
   <string name="config-extendreports">報告後に荒らし編集が行われたら報告内容を追加する</string>
@@ -267,7 +267,7 @@
   <string name="main-revision-decline">リジェクト版</string>
   <string name="main-revision">版</string>
   <string name="main-revision-view">表示</string>
-  <string name="main-revision-revert">現在、表示されている編集のリバート</string>
+  <string name="main-revision-revert">現在、表示されている編集の差し戻し</string>
   <string name="main-revision-previous">前</string>
   <string name="main-revision-next">次</string>
   <string name="main-revision-latest">最新</string>
@@ -377,7 +377,7 @@
   <string name="queue-filterownuserspace">利用者自身の利用者ページ</string>
   <string name="queue-filteranonymous">IP利用者</string>
   <string name="queue-filterignored">無視利用者</string>
-  <string name="queue-filterreverts">リバート</string>
+  <string name="queue-filterreverts">差し戻し</string>
   <string name="queue-filternotifications">通知</string>
   <string name="queue-filterwarnings">警告</string>
   <string name="queue-filtertags">タグ</string>
@@ -416,7 +416,7 @@
   <string name="revert-speedy-instead">代わりに即時削除タグを貼り付けますか？</string>
   <string name="revert-cannotundo">他の編集と競合したため、取り消しできませんでした</string>
   <string name="revert-conflict">ページが無視利用者 \'$1\' によって編集されました</string>
-  <string name="revert-fail">\'$1\' をリバートできませんでした</string>
+  <string name="revert-fail">\'$1\' を差し戻しできませんでした: $2</string>
   <string name="revert-nochange">戻し先の版の内容が、最新版の内容と同じです</string>
   <string name="speedy-reason">理由:</string>
   <string name="speedy-parameters">パラメータ:</string>
