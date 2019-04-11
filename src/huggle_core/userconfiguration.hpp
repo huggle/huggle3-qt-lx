@@ -54,33 +54,33 @@ namespace Huggle
     class HUGGLE_EX_CORE UserConfiguration
     {
         public:
-            static WatchlistOption WatchlistOptionFromString(QString string);
+            static WatchlistOption WatchlistOptionFromString(const QString& string);
             static QString WatchListOptionToString(WatchlistOption option);
 
             UserConfiguration();
             ~UserConfiguration();
             //! This function is obsolete and used only to read the old format huggle3.css file, new versions should only use YAML formats
-            bool Parse(QString config, ProjectConfiguration *ProjectConfig, bool IsHome);
-            bool ParseYAML(QString config, ProjectConfiguration *ProjectConfig, bool IsHome, QString *error);
+            bool Parse(const QString& config, ProjectConfiguration *ProjectConfig, bool IsHome);
+            bool ParseYAML(const QString &config, ProjectConfiguration *ProjectConfig, bool IsHome, QString *error);
             /*!
              * \brief Returns a data for given key
              * \param key
              * \return New instance of data or NULL in case there is no such an option
              */
-            HuggleOption *GetOption(QString key);
+            HuggleOption *GetOption(const QString& key);
             /*!
              * \brief SetOption lookup for a key in config file, if there is no such a key, insert a default one
              * \param key_ Name of configuration key in user config file
              * \param config_ Config file text
              * \param default_ Value that is used in case there is no such a key
              */
-            QVariant SetOption(QString key, QString config, QVariant def);
-            QVariant SetOptionYAML(QString key, YAML::Node &config, QVariant def);
-            QStringList SetUserOptionList(QString key, QString config, QStringList def, bool CS = false);
-            QStringList SetUserOptionListYAML(QString key, YAML::Node &config, QStringList def);
-            int GetSafeUserInt(QString key, int default_value = 0);
-            bool GetSafeUserBool(QString key, bool default_value = false);
-            QString GetSafeUserString(QString key, QString default_value = "");
+            QVariant SetOption(const QString& key, const QString& config, const QVariant& def);
+            QVariant SetOptionYAML(const QString& key, YAML::Node &config, const QVariant& def);
+            QStringList SetUserOptionList(const QString& key, const QString& config, const QStringList& def, bool CS = false);
+            QStringList SetUserOptionListYAML(const QString& key, YAML::Node &config, const QStringList& def);
+            int GetSafeUserInt(const QString& key, int default_value = 0);
+            bool GetSafeUserBool(const QString& key, bool default_value = false);
+            QString GetSafeUserString(const QString& key, QString default_value = "");
             //! This function creates a user configuration in YAML format that is stored on wiki
             QString MakeLocalUserConfig(ProjectConfiguration *Project);
             bool            EnforceSoftwareRollback();

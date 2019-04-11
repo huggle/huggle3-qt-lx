@@ -1873,6 +1873,11 @@ void MainWindow::CustomRevert()
         throw new Huggle::Exception("QAction was not found in this->actionKeys", BOOST_CURRENT_FUNCTION);
     QString key = this->actionKeys[revert];
     QString summary = HuggleParser::GetSummaryOfWarningTypeFromWarningKey(key, conf, ucf);
+    if (summary.isEmpty())
+    {
+        HUGGLE_ERROR(this->GetCurrentWikiSite()->Name + ": Edit summary for revert of " + this->GetCurrentWikiEdit()->Page->PageName + " is empty! Revert aborted.");
+        return;
+    }
     summary = Huggle::Configuration::GenerateSuffix(summary, conf);
     this->Revert(summary);
 }
@@ -1890,6 +1895,11 @@ void MainWindow::CustomRevertWarn()
         throw new Huggle::Exception("QAction was not found in this->actionKeys", BOOST_CURRENT_FUNCTION);
     QString key = this->actionKeys[revert];
     QString summary = HuggleParser::GetSummaryOfWarningTypeFromWarningKey(key, conf, uconf);
+    if (summary.isEmpty())
+    {
+        HUGGLE_ERROR(this->GetCurrentWikiSite()->Name + ": Edit summary for revert of " + this->GetCurrentWikiEdit()->Page->PageName + " is empty! Revert aborted.");
+        return;
+    }
     summary = Huggle::Configuration::GenerateSuffix(summary, conf);
     Collectable_SmartPtr<RevertQuery> result = this->Revert(summary, false);
     if (result != nullptr)

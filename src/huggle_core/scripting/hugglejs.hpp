@@ -63,10 +63,12 @@ namespace Huggle
             Q_INVOKABLE void warning_log(const QString& text);
             Q_INVOKABLE void error_log(const QString& text);
             Q_INVOKABLE void debug_log(const QString& text, int verbosity);
+            // Timers
             Q_INVOKABLE unsigned int create_timer(int interval, const QString& function, bool start = true);
             Q_INVOKABLE bool destroy_timer(unsigned int timer);
             Q_INVOKABLE bool start_timer(unsigned int timer, int interval);
             Q_INVOKABLE bool stop_timer(unsigned int timer);
+            // System
             Q_INVOKABLE QString get_ring_log();
             Q_INVOKABLE QJSValue get_site_by_name(const QString& site);
             Q_INVOKABLE QList<QString> get_sites();

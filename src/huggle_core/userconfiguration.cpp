@@ -46,7 +46,7 @@ static QString Bool2ExcludeRequire(HuggleQueueFilterMatch match)
     throw Huggle::Exception("Invalid enum", BOOST_CURRENT_FUNCTION);
 }
 
-WatchlistOption UserConfiguration::WatchlistOptionFromString(QString string)
+WatchlistOption UserConfiguration::WatchlistOptionFromString(const QString& string)
 {
     if (string == "nochange")
         return WatchlistOption_NoChange;
@@ -96,7 +96,7 @@ Huggle::UserConfiguration::~UserConfiguration()
     }
 }
 
-HuggleOption *UserConfiguration::GetOption(QString key)
+HuggleOption *UserConfiguration::GetOption(const QString& key)
 {
     if (this->UserOptions.contains(key))
     {
@@ -105,7 +105,7 @@ HuggleOption *UserConfiguration::GetOption(QString key)
     return nullptr;
 }
 
-QVariant UserConfiguration::SetOption(QString key, QString config, QVariant def)
+QVariant UserConfiguration::SetOption(const QString& key, const QString& config, const QVariant& def)
 {
     if (this->UserOptions.contains(key))
     {
@@ -131,7 +131,7 @@ QVariant UserConfiguration::SetOption(QString key, QString config, QVariant def)
     return h->GetVariant();
 }
 
-QVariant UserConfiguration::SetOptionYAML(QString key, YAML::Node &config, QVariant def)
+QVariant UserConfiguration::SetOptionYAML(const QString& key, YAML::Node &config, const QVariant& def)
 {
     if (this->UserOptions.contains(key))
     {
@@ -164,32 +164,32 @@ QString SanitizeString(QString s)
     return s;
 }
 
-void AppendConf(QString *conf, QString key, QString value)
+void AppendConf(QString *conf, const QString& key, const QString &value)
 {
     conf->append(key + ": \"" + SanitizeString(value) + "\"\n");
 }
 
-void AppendConf(QString *conf, QString key, bool value)
+void AppendConf(QString *conf, const QString& key, bool value)
 {
     conf->append(key + ": " + Bool2String(value) + "\n");
 }
 
-void AppendConf(QString *conf, QString key, int value)
+void AppendConf(QString *conf, const QString& key, int value)
 {
     conf->append(key + ": " + QString::number(value) + "\n");
 }
 
-void AppendConf(QString *conf, QString key, unsigned int value)
+void AppendConf(QString *conf, const QString& key, unsigned int value)
 {
     conf->append(key + ": " + QString::number(value) + "\n");
 }
 
-void AppendComment(QString *conf, QString text)
+void AppendComment(QString *conf, const QString& text)
 {
     conf->append("# // " + text + "\n");
 }
 
-void AppendConf(QString *conf, QString key, long long value)
+void AppendConf(QString *conf, const QString& key, long long value)
 {
     conf->append(key + ": " + QString::number(value) + "\n");
 }
@@ -365,7 +365,7 @@ bool UserConfiguration::EnforceSoftwareRollback()
     return this->EnforceManualSoftwareRollback || this->EnforceManualSRT;
 }
 
-QStringList UserConfiguration::SetUserOptionList(QString key, QString config, QStringList def, bool CS)
+QStringList UserConfiguration::SetUserOptionList(const QString& key, const QString& config, const QStringList& def, bool CS)
 {
     if (this->UserOptions.contains(key))
     {
@@ -378,7 +378,7 @@ QStringList UserConfiguration::SetUserOptionList(QString key, QString config, QS
     return value;
 }
 
-QStringList UserConfiguration::SetUserOptionListYAML(QString key, YAML::Node &config, QStringList def)
+QStringList UserConfiguration::SetUserOptionListYAML(const QString& key, YAML::Node &config, const QStringList& def)
 {
     if (this->UserOptions.contains(key))
     {
@@ -391,7 +391,7 @@ QStringList UserConfiguration::SetUserOptionListYAML(QString key, YAML::Node &co
     return value;
 }
 
-bool UserConfiguration::Parse(QString config, ProjectConfiguration *ProjectConfig, bool IsHome)
+bool UserConfiguration::Parse(const QString& config, ProjectConfiguration *ProjectConfig, bool IsHome)
 {
     this->RevertOnMultipleEdits = SafeBool(ConfigurationParse("RevertOnMultipleEdits", config));
     ProjectConfig->EnableAll = SafeBool(ConfigurationParse("enable", config));
@@ -402,17 +402,17 @@ bool UserConfiguration::Parse(QString config, ProjectConfiguration *ProjectConfi
     ProjectConfig->ScoreFlag = this->SetOption("score-flag", config, ProjectConfig->ScoreFlag).toLongLong();
     this->EnforceManualSoftwareRollback = SafeBool(ConfigurationParse("software-rollback", config));
     if (ProjectConfig->WarningSummaries.contains(1))
-        ProjectConfig->WarningSummaries[1] = this->SetOption("warn-summary", config, ProjectConfig->WarningSummaries[1]).toString();
+        ProjectConfig->WarningSummaries[1] = UserConfig_NonEmpty("warn-summary", this->SetOption("warn-summary", config, ProjectConfig->WarningSummaries[1]).toString(), ProjectConfig->WarningSummaries[1]);
     if (ProjectConfig->WarningSummaries.contains(2))
-        ProjectConfig->WarningSummaries[2] = this->SetOption("warn-summary-2", config, ProjectConfig->WarningSummaries[2]).toString();
+        ProjectConfig->WarningSummaries[2] = UserConfig_NonEmpty("warn-summary-2", this->SetOption("warn-summary-2", config, ProjectConfig->WarningSummaries[2]).toString(), ProjectConfig->WarningSummaries[2]);
     if (ProjectConfig->WarningSummaries.contains(3))
-        ProjectConfig->WarningSummaries[3] = this->SetOption("warn-summary-3", config, ProjectConfig->WarningSummaries[3]).toString();
+        ProjectConfig->WarningSummaries[3] = UserConfig_NonEmpty("warn-summary-3", this->SetOption("warn-summary-3", config, ProjectConfig->WarningSummaries[3]).toString(), ProjectConfig->WarningSummaries[3]);
     if (ProjectConfig->WarningSummaries.contains(4))
-        ProjectConfig->WarningSummaries[4] = this->SetOption("warn-summary-4", config, ProjectConfig->WarningSummaries[4]).toString();
+        ProjectConfig->WarningSummaries[4] = UserConfig_NonEmpty("warn-summary-4", this->SetOption("warn-summary-4", config, ProjectConfig->WarningSummaries[4]).toString(), ProjectConfig->WarningSummaries[4]);
     this->AutomaticallyResolveConflicts = SafeBool(ConfigurationParse("automatically-resolve-conflicts", config), false);
-    this->DefaultSummary = HuggleParser::ConfigurationParse("default-summary", config, ProjectConfig->DefaultSummary);
-    this->RollbackSummary = HuggleParser::ConfigurationParse("rollback-summary", config, ProjectConfig->RollbackSummary);
-    this->RollbackSummaryUnknownTarget = HuggleParser::ConfigurationParse("rollback-summary-unknown", config, ProjectConfig->RollbackSummaryUnknownTarget);
+    this->DefaultSummary = HuggleParser::ConfigurationParse("default-summary", config, ProjectConfig->DefaultSummary, true);
+    this->RollbackSummary = HuggleParser::ConfigurationParse("rollback-summary", config, ProjectConfig->RollbackSummary, true);
+    this->RollbackSummaryUnknownTarget = HuggleParser::ConfigurationParse("rollback-summary-unknown", config, ProjectConfig->RollbackSummaryUnknownTarget, true);
     ProjectConfig->TemplateAge = this->SetOption("template-age", config, ProjectConfig->TemplateAge).toInt();
     ProjectConfig->RevertSummaries = this->SetUserOptionList("template-summ", config, ProjectConfig->RevertSummaries);
     ProjectConfig->WarningTypes = this->SetUserOptionList("warning-types", config, ProjectConfig->WarningTypes);
@@ -513,7 +513,7 @@ bool UserConfiguration::Parse(QString config, ProjectConfiguration *ProjectConfi
     return true;
 }
 
-bool UserConfiguration::ParseYAML(QString config, ProjectConfiguration *ProjectConfig, bool IsHome, QString *reason)
+bool UserConfiguration::ParseYAML(const QString &config, ProjectConfiguration *ProjectConfig, bool IsHome, QString *reason)
 {
     // Fetch the YAML
     std::string config_std = HuggleParser::FetchYAML(config).toStdString();
@@ -548,17 +548,17 @@ bool UserConfiguration::ParseYAML(QString config, ProjectConfiguration *ProjectC
     ProjectConfig->ScoreFlag = this->SetOptionYAML("score-flag", yaml, ProjectConfig->ScoreFlag).toLongLong();
     this->EnforceManualSoftwareRollback = YAML2Bool("software-rollback", yaml, this->EnforceManualSoftwareRollback);
     if (ProjectConfig->WarningSummaries.contains(1))
-        ProjectConfig->WarningSummaries[1] = this->SetOptionYAML("warn-summary", yaml, ProjectConfig->WarningSummaries[1]).toString();
+        ProjectConfig->WarningSummaries[1] = UserConfig_NonEmpty("warn-summary", this->SetOptionYAML("warn-summary", yaml, ProjectConfig->WarningSummaries[1]).toString(), ProjectConfig->WarningSummaries[1]);
     if (ProjectConfig->WarningSummaries.contains(2))
-        ProjectConfig->WarningSummaries[2] = this->SetOptionYAML("warn-summary-2", yaml, ProjectConfig->WarningSummaries[2]).toString();
+        ProjectConfig->WarningSummaries[2] = UserConfig_NonEmpty("warn-summary-2", this->SetOptionYAML("warn-summary-2", yaml, ProjectConfig->WarningSummaries[2]).toString(), ProjectConfig->WarningSummaries[2]);
     if (ProjectConfig->WarningSummaries.contains(3))
-        ProjectConfig->WarningSummaries[3] = this->SetOptionYAML("warn-summary-3", yaml, ProjectConfig->WarningSummaries[3]).toString();
+        ProjectConfig->WarningSummaries[3] = UserConfig_NonEmpty("warn-summary-3", this->SetOptionYAML("warn-summary-3", yaml, ProjectConfig->WarningSummaries[3]).toString(), ProjectConfig->WarningSummaries[3]);
     if (ProjectConfig->WarningSummaries.contains(4))
-        ProjectConfig->WarningSummaries[4] = this->SetOptionYAML("warn-summary-4", yaml, ProjectConfig->WarningSummaries[4]).toString();
+        ProjectConfig->WarningSummaries[4] = UserConfig_NonEmpty("warn-summary-4", this->SetOptionYAML("warn-summary-4", yaml, ProjectConfig->WarningSummaries[4]).toString(), ProjectConfig->WarningSummaries[4]);
     this->AutomaticallyResolveConflicts = YAML2Bool("automatically-resolve-conflicts", yaml, this->AutomaticallyResolveConflicts);
-    this->DefaultSummary = YAML2String("default-summary", yaml, ProjectConfig->DefaultSummary);
-    this->RollbackSummary = YAML2String("rollback-summary", yaml, ProjectConfig->RollbackSummary);
-    this->RollbackSummaryUnknownTarget = YAML2String("rollback-summary-unknown", yaml, ProjectConfig->RollbackSummaryUnknownTarget);
+    this->DefaultSummary = YAML2String("default-summary", yaml, ProjectConfig->DefaultSummary, true);
+    this->RollbackSummary = YAML2String("rollback-summary", yaml, ProjectConfig->RollbackSummary, true);
+    this->RollbackSummaryUnknownTarget = YAML2String("rollback-summary-unknown", yaml, ProjectConfig->RollbackSummaryUnknownTarget, true);
     ProjectConfig->TemplateAge = this->SetOptionYAML("template-age", yaml, ProjectConfig->TemplateAge).toInt();
     ProjectConfig->RevertSummaries = this->SetUserOptionListYAML("template-summ", yaml, ProjectConfig->RevertSummaries);
     ProjectConfig->WarningTypes = this->SetUserOptionListYAML("warning-types", yaml, ProjectConfig->WarningTypes);
@@ -658,7 +658,7 @@ bool UserConfiguration::ParseYAML(QString config, ProjectConfiguration *ProjectC
     return true;
 }
 
-int Huggle::UserConfiguration::GetSafeUserInt(QString key, int default_value)
+int Huggle::UserConfiguration::GetSafeUserInt(const QString& key, int default_value)
 {
     HuggleOption *option = this->GetOption(key);
     if (option != nullptr)
@@ -666,7 +666,7 @@ int Huggle::UserConfiguration::GetSafeUserInt(QString key, int default_value)
     return default_value;
 }
 
-bool Huggle::UserConfiguration::GetSafeUserBool(QString key, bool default_value)
+bool Huggle::UserConfiguration::GetSafeUserBool(const QString& key, bool default_value)
 {
     HuggleOption *option = this->GetOption(key);
     if (option != nullptr)
@@ -674,7 +674,7 @@ bool Huggle::UserConfiguration::GetSafeUserBool(QString key, bool default_value)
     return default_value;
 }
 
-QString Huggle::UserConfiguration::GetSafeUserString(QString key, QString default_value)
+QString Huggle::UserConfiguration::GetSafeUserString(const QString& key, QString default_value)
 {
     HuggleOption *option = this->GetOption(key);
     if (option != nullptr)

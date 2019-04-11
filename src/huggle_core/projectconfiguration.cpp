@@ -105,7 +105,7 @@ QHash<QString, int> ProjectConfiguration::Yaml_FetchScoreTags(YAML::Node &node)
     return QHash<QString, int>();
 }
 
-ProjectConfiguration::ProjectConfiguration(QString project_name)
+ProjectConfiguration::ProjectConfiguration(const QString &project_name)
 {
     // these headers are parsed by project config so don't change them
     // no matter if there is a nice function to retrieve them
@@ -156,7 +156,7 @@ QStringList temp_compat_hash2list(QHash<QString, QString> hash, bool sort = fals
     return result;
 }
 
-bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site)
+bool ProjectConfiguration::Parse(const QString& config, QString *reason, WikiSite *site)
 {
     this->configurationBuffer = config;
     this->cache.clear();
@@ -470,15 +470,13 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
     HuggleQueueFilter::Filters[site]->clear();
     HuggleQueueFilter::Filters[site]->append(HuggleQueueFilter::DefaultFilter);
     (*HuggleQueueFilter::Filters[site]) += HuggleParser::ConfigurationParseQueueList(config, true);
-    if (this->AIVP != nullptr)
-        delete this->AIVP;
+    delete this->AIVP;
     this->AIVP = new WikiPage(this->ReportAIV, site);
     HuggleParser::ParsePatterns(config, site);
     HuggleParser::ParseNoTalkPatterns(config, site);
     HuggleParser::ParseNoTalkWords(config, site);
     HuggleParser::ParseWords(config, site);
-    if (this->UAAP != nullptr)
-        delete this->UAAP;
+    delete this->UAAP;
     this->UAAP = new WikiPage(this->UAAPath, site);
     // templates
     int CurrentTemplate=0;
@@ -502,7 +500,7 @@ bool ProjectConfiguration::Parse(QString config, QString *reason, WikiSite *site
     return true;
 }
 
-bool ProjectConfiguration::ParseYAML(QString yaml_src, QString *reason, WikiSite *site)
+bool ProjectConfiguration::ParseYAML(const QString& yaml_src, QString *reason, WikiSite *site)
 {
     this->UsingYAML = true;
     this->configurationBuffer = yaml_src;

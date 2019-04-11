@@ -21,7 +21,22 @@
 
 using namespace Huggle;
 
-QString HuggleParser::ConfigurationParse(const QString &key, const QString &content, const QString &missing)
+QString HuggleParser::UserConfig_NonEmpty(const QString& key, const QString& value, const QString& default_val)
+{
+    // We have to copy the string here, because replace() in Qt alters the string itself
+    QString temp = value;
+    // Remove all whitespace and special symbols
+    temp.replace(" ", "");
+    temp.replace("\t", "");
+    if (temp.isEmpty())
+    {
+        HUGGLE_WARNING("User configuration key " + key + " had empty value, which is not allowed for this key. Restoring to project config value: " + default_val);
+        return default_val;
+    }
+    return value;
+}
+
+QString HuggleParser::ConfigurationParse(const QString &key, const QString &content, const QString &missing, bool non_empty)
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     /// \todo this parses the config a lot different than HG2 (here only one line, mising replaces...)
@@ -33,6 +48,8 @@ QString HuggleParser::ConfigurationParse(const QString &key, const QString &cont
         {
             value = value.mid(0, value.indexOf("\n"));
         }
+        if (non_empty)
+            return UserConfig_NonEmpty(key, value, missing);
         return value;
     }
 
@@ -44,6 +61,8 @@ QString HuggleParser::ConfigurationParse(const QString &key, const QString &cont
         {
             value = value.mid(0, value.indexOf("\n"));
         }
+        if (non_empty)
+            return UserConfig_NonEmpty(key, value, missing);
         return value;
     }
     return missing;
@@ -689,7 +708,7 @@ bool HuggleParser::YAML2Bool(const QString& key, YAML::Node &node, bool missing)
     return missing;
 }
 
-QString HuggleParser::YAML2String(const QString& key, YAML::Node &node, const QString &missing)
+QString HuggleParser::YAML2String(const QString& key, YAML::Node &node, const QString &missing, bool non_empty)
 {
     try
     {
@@ -701,6 +720,8 @@ QString HuggleParser::YAML2String(const QString& key, YAML::Node &node, const QS
 
         // This is needed for some really weird OSX related bug that randomly segfaults, if we don't make a copy of strings
         std::string temp = node[key.toStdString()].as<std::string>(missing.toStdString());
+        if (non_empty)
+            return UserConfig_NonEmpty(key, QString::fromStdString(temp), missing);
         return QString::fromStdString(temp);
     } catch (YAML::Exception exception)
     {

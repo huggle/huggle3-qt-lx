@@ -93,12 +93,12 @@ namespace Huggle
             static QList<ProjectConfiguration::SpeedyOption> Yaml_FetchSpeedyOptions(YAML::Node &node);
             static QHash<QString, int> Yaml_FetchScoreTags(YAML::Node &node);
 
-            ProjectConfiguration(QString project_name);
+            ProjectConfiguration(const QString& project_name);
             ~ProjectConfiguration();
             QDateTime ServerTime();
             //! Parse all information from local config, this function is used in login
-            bool Parse(QString config, QString *reason, WikiSite *site);
-            bool ParseYAML(QString yaml_src, QString *reason, WikiSite *site);
+            bool Parse(const QString& config, QString *reason, WikiSite *site);
+            bool ParseYAML(const QString& yaml_src, QString *reason, WikiSite *site);
             void RequestLogin();
             QString GetConfig(QString key, QString dv = "");
             //! \todo This needs to be later used as a default value for user config, however it's not being ensured

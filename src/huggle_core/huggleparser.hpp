@@ -35,17 +35,22 @@ namespace Huggle
     //! This namespace contains functions to parse various text, such as configuration keys
     namespace HuggleParser
     {
+        //! Returns default value in case that obtained value is empty, prevents issues where user configuration has empty keys
+        //! or even where the converted config from previous versions had empty values
+        HUGGLE_EX_CORE QString UserConfig_NonEmpty(const QString& key, const QString& value, const QString& default_val);
         //! Parse a string from configuration which has format used by huggle 2x
         /*!
          * \param key Key
          * \param content Text to parse from
          * \param missing Default value in case this key is missing in text
+         * \param non_empty if true value of key must be non empty. If empty default value is returned instead. Expected to be used when parsing
+         *                  user config only.
          * \return Value of key, in case there is no such a key content of missing is returned
          */
-        HUGGLE_EX_CORE QString ConfigurationParse(const QString &key, const QString &content, const QString &missing = "");
+        HUGGLE_EX_CORE QString ConfigurationParse(const QString &key, const QString &content, const QString &missing = "", bool non_empty = false);
         HUGGLE_EX_CORE bool ConfigurationParseBool(const QString &key, const QString &content, bool missing);
         HUGGLE_EX_CORE bool YAML2Bool(const QString& key, YAML::Node &node, bool missing = false);
-        HUGGLE_EX_CORE QString YAML2String(const QString& key, YAML::Node &node, const QString &missing = "");
+        HUGGLE_EX_CORE QString YAML2String(const QString& key, YAML::Node &node, const QString &missing = "", bool non_empty = false);
         HUGGLE_EX_CORE int YAML2Int(const QString& key, YAML::Node &node, int missing = 0);
         HUGGLE_EX_CORE unsigned int YAML2UInt(const QString& key, YAML::Node &node, unsigned int missing = 0);
         HUGGLE_EX_CORE double YAML2Double(const QString& key, YAML::Node &node, double missing = 0);
