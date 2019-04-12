@@ -146,11 +146,14 @@ namespace Huggle
             bool                    DisplayTitle = false;
             //! Result of "Stop feed, Remove old edits" in main form
             bool                    RemoveOldQueueEdits = false;
-            bool                    CheckTP = false;
+            //! Check for new messages on your talk page
+            bool                    CheckTP = true;
+            //! Default queue ID
             QString                 QueueID = "default";
             //! Display messages from users in vandal window
             bool                    HAN_DisplayUser = true;
-            bool                    HAN_DisplayBots = true;
+            //! Display message from bots in vandal window
+            bool                    HAN_DisplayBots = false;
             bool                    HAN_DisplayUserTalk = true;
             //! Welcome new users on a good edit
             bool                    WelcomeGood = true;
