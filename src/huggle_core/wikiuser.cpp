@@ -103,6 +103,8 @@ void WikiUser::UpdateUser(WikiUser *us)
             user->talkPageWasRetrieved = us->talkPageWasRetrieved;
             user->dateOfTalkPage = us->dateOfTalkPage;
             user->contentsOfTalkPage = us->contentsOfTalkPage;
+            user->LastMessageTime = us->LastMessageTime;
+            user->LastMessageTimeKnown = us->LastMessageTimeKnown;
             if (!us->IsIP() && user->EditCount < 0)
             {
                 user->EditCount = us->EditCount;
