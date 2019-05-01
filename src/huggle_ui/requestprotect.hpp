@@ -37,14 +37,15 @@ namespace Huggle
             Q_OBJECT
         public:
             explicit RequestProtect(WikiPage *wikiPage, QWidget *parent = nullptr);
-            ~RequestProtect();
+            ~RequestProtect() override;
         private slots:
             void Tick();
-            void on_pushButton_clicked();
-            void on_pushButton_2_clicked();
+            void on_pushButton_RequestProtection_clicked();
+            void on_pushButton_Cancel_clicked();
+
         private:
             QString ProtectionType();
-            void Fail(QString message);
+            void Fail(const QString &message);
             QString Timestamp;
             WikiPage *page;
             QTimer *tm;

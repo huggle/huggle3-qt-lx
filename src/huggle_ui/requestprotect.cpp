@@ -142,7 +142,30 @@ void RequestProtect::Tick()
     }
 }
 
-void Huggle::RequestProtect::on_pushButton_clicked()
+QString RequestProtect::ProtectionType()
+{
+    if (this->ui->radioButton_Indefinite->isChecked())
+    {
+        return this->qRFPPage->GetSite()->GetProjectConfig()->RFPP_Permanent;
+    }
+    return this->qRFPPage->GetSite()->GetProjectConfig()->RFPP_Temporary;
+}
+
+void RequestProtect::Fail(const QString &message)
+{
+    QMessageBox mb;
+    mb.setWindowTitle(_l("error"));
+    mb.setText(message);
+    mb.exec();
+    // delete the queries and stop
+    this->qEditRFP.Delete();
+    this->qRFPPage.Delete();
+    this->tm->stop();
+    this->ui->pushButton_RequestProtection->setEnabled(true);
+    this->ui->pushButton_RequestProtection->setText(_l("request"));
+}
+
+void RequestProtect::on_pushButton_RequestProtection_clicked()
 {
     this->qRFPPage = new ApiQuery(ActionQuery, this->page->GetSite());
     // if this wiki has the requests in separate section, get it, if not, we get a whole page
@@ -163,30 +186,7 @@ void Huggle::RequestProtect::on_pushButton_clicked()
     this->ui->pushButton_RequestProtection->setEnabled(false);
 }
 
-QString RequestProtect::ProtectionType()
-{
-    if (this->ui->radioButton_Indefinite->isChecked())
-    {
-        return this->qRFPPage->GetSite()->GetProjectConfig()->RFPP_Permanent;
-    }
-    return this->qRFPPage->GetSite()->GetProjectConfig()->RFPP_Temporary;
-}
-
-void RequestProtect::Fail(QString message)
-{
-    QMessageBox mb;
-    mb.setWindowTitle(_l("error"));
-    mb.setText(message);
-    mb.exec();
-    // delete the queries and stop
-    this->qEditRFP.Delete();
-    this->qRFPPage.Delete();
-    this->tm->stop();
-    this->ui->pushButton_RequestProtection->setEnabled(true);
-    this->ui->pushButton_RequestProtection->setText(_l("request"));
-}
-
-void Huggle::RequestProtect::on_pushButton_2_clicked()
+void RequestProtect::on_pushButton_Cancel_clicked()
 {
     this->close();
 }
