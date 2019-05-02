@@ -18,12 +18,12 @@ typedef long long score_ht;
 typedef char byte_ht;
 typedef long long revid_ht;
 
-#define HUGGLE_VERSION                  "3.4.7"
+#define HUGGLE_VERSION                  "3.4.8"
 #define HUGGLE_BYTE_VERSION_MAJOR       0x3
 #define HUGGLE_BYTE_VERSION_MINOR       0x4
-#define HUGGLE_BYTE_VERSION_RELEASE     0x7
+#define HUGGLE_BYTE_VERSION_RELEASE     0x8
 // format is 0xMAJOR(2)MINOR(2)RELEASE(2) so for 3.1.15 it's 0x03010F
-#define HUGGLE_BYTE_VERSION             0x030407
+#define HUGGLE_BYTE_VERSION             0x030408
 
 // Minimal version of mediawiki that we do support
 #define HUGGLE_SUPPORTED_MEDIAWIKI_VERSION "1.25"
