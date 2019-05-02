@@ -138,7 +138,7 @@
   <string name="config-welcome-empty-page">Bei guten Bearbeitungen Willkommensnachrichten an Benutzer mit leerer Diskussionsseite senden</string>
   <string name="config-conflicts-revert">Bearbeitungskonflikte mit anderen Benutzern, die die gleiche Seite zurücksetzen oder ändern, automatisch beheben.</string>
   <string name="config-instant-reverts">Sofortiges Zurücksetzen verwenden (sehr schnell; kann jedoch, sobald ausgeführt, nicht abgebrochen werden).</string>
-  <string name="config-reverts-multiple">Beim Zurücksetzen mehrerer Bearbeitungen des gleichen Benutzers:</string>
+  <string name="config-reverts-multiple">Beim Zurücksetzen mehrerer Bearbeitungen desselben Benutzers:</string>
   <string name="config-revert-wait">Zurücksetzungsverzögerung (in Sekunden)</string>
   <string name="config-revert">Zurücksetzen</string>
   <string name="config-skip">Überspringen</string>
@@ -601,7 +601,7 @@
   <string name="uaa-e2">Die Seiteninhalte waren nicht verfügbar.</string>
   <string name="read-only">Das Projekt $1 ist als schreibgeschützt konfiguriert. Bearbeitungsfunktionen sind eingeschränkt.</string>
   <string name="revert-confirm-multiple">Dies wird mehrere Bearbeitungen von $1 zurücksetzen. Fortfahren?</string>
-  <string name="revert-confirm-range">Der Autor der Zielversion $2 ist im gleichen Bereich als der Autor der aktuellen Version $1. Vielleicht ist es die gleiche Person. Stelle vor dem Fortfahren sicher, dass die Zielversion korrekt ist. Fortfahren?</string>
+  <string name="revert-confirm-range">Der Autor der Zielversion $2 ist im gleichen Bereich als der Autor der aktuellen Version $1. Vielleicht ist es dieselbe Person. Stelle vor dem Fortfahren sicher, dass die Zielversion korrekt ist. Fortfahren?</string>
   <string name="revert-confirm-same">Dies wird auf eine andere Version des Benutzers $1 zurücksetzen, der zurückgesetzt wurde. Fortfahren?</string>
   <string name="revert-confirm-warned">Dies wird auf eine Version von $1 zurücksetzen. Dieser Benutzer wurde kürzlich gewarnt. Fortfahren?</string>
   <string name="revert-error-first">Diese Bearbeitung ist die erste dieser Seite und kann nicht zurückgesetzt werden.</string>
@@ -787,12 +787,12 @@
   <string name="welcome-show">Diese Nachricht auch beim nächsten Huggle-Start anzeigen</string>
   <string name="welcome-tp-empty-fail">Dieser Benutzer hat keine leere Diskussionsseite. Bist du sicher, dass du eine Nachricht an ihn senden willst?</string>
   <string name="welcome-page-miss-fail">Huggle konnte die Inhalte der Benutzerdiskussionsseite nicht abrufen. Bist du sicher, dass du eine Willkommensnachricht senden willst?</string>
-  <string name="cr-newer-edits">Konflikt gelöst: Alle Bearbeitungen inklusive neuer Bearbeitungen zurückgesetzt. Bearbeitungen waren vom gleichen Benutzer: $1.</string>
+  <string name="cr-newer-edits">Konflikt gelöst: Alle Bearbeitungen inklusive neuer Bearbeitungen zurückgesetzt. Bearbeitungen waren vom selben Benutzer: $1.</string>
   <string name="cr-resolved-same-user">Konflikt gelöst: Alle Bearbeitungen inklusive neuer Bearbeitungen zurückgesetzt, durchgeführt von den gleichen Benutzern: $1.</string>
   <string name="cr-stop-new-edit">Konflikt gelöst: Keine Aktion ausgeführt – Es gibt neuere Bearbeitungen an $1</string>
-  <string name="cr-stop-multiple-same">Konflikt gelöst: Führe keine Aktion aus. Es gibt mehrere Bearbeitungen vom gleichen Benutzer an $1</string>
-  <string name="cr-revert-same-user">Konflikt gelöst: Alle Bearbeitungen zurückgesetzt. Es gibt mehrere Bearbeitungen vom gleichen Benutzer an $1</string>
-  <string name="cr-message-same">Es gibt mehrere Bearbeitungen an $1 des gleichen Benutzers. Bist du sicher, dass du sie zurücksetzen willst?</string>
+  <string name="cr-stop-multiple-same">Konflikt gelöst: Führe keine Aktion aus. Es gibt mehrere Bearbeitungen vom selben Benutzer an $1</string>
+  <string name="cr-revert-same-user">Konflikt gelöst: Alle Bearbeitungen zurückgesetzt. Es gibt mehrere Bearbeitungen vom selben Benutzer an $1</string>
+  <string name="cr-message-same">Es gibt mehrere Bearbeitungen an $1 desselben Benutzers. Bist du sicher, dass du sie zurücksetzen willst?</string>
   <string name="cr-message-new">Es gibt neuere Bearbeitungen von $1. Bist du sicher, dass du sie wirklich alle zurücksetzen willst?</string>
   <string name="cr-message-not-same">Es gibt neuere Bearbeitungen an $1 von einem anderen Benutzer. Bist du sicher, dass du sie alle zurücksetzen willst? Es wird vermutlich wegen eines alten Tokens fehlschlagen.</string>
   <string name="preferences-show-warning-if-not-last-revision">Eine Warnung anzeigen, falls du nicht auf der letzten Seitenversion bist.</string>
