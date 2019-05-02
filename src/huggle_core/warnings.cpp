@@ -138,7 +138,9 @@ PendingWarning *Warnings::WarnUser(const QString& warning_type, RevertQuery *dep
     }
 
     edit->User->IncrementWarningLevel();
-    edit->User->SetLastMessageTime(QDateTime::currentDateTime());
+    // This must not be here, many warnings fail due to expired talk page and are re-sent
+    // if we set last message time here, sending after reparse will fail due to that
+    //edit->User->SetLastMessageTime(QDateTime::currentDateTime());
     // We need to update the user so that new user warning level gets propagated everywhere on interface of huggle
     edit->User->Update();
 

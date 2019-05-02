@@ -499,7 +499,7 @@ void WikiUser::SetLastMessageTime(const QDateTime &date_time)
 {
     if (this->LastMessageTimeKnown && this->LastMessageTime > date_time)
     {
-        HUGGLE_DEBUG1(this->GetSite()->Name + ": user " + this->Username + " had LastWarningTime changed to past");
+        HUGGLE_DEBUG1(this->GetSite()->Name + ": user " + this->Username + " had LastWarningTime changed to past by " + QString::number(date_time.secsTo(this->LastMessageTime)) + " seconds");
     }
 
     this->LastMessageTimeKnown = true;

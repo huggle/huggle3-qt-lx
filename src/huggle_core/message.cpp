@@ -231,6 +231,9 @@ void Message::Finish()
                     // write something to talk page in case it was empty
                     if (this->User->TalkPage_GetContents().isEmpty())
                         this->User->TalkPage_SetContents(this->Text);
+                    // update last message time
+                    this->User->SetLastMessageTime(QDateTime::currentDateTime());
+                    this->User->Update(true);
                 }
             }
         }
