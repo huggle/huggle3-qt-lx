@@ -136,6 +136,8 @@
   <string name="login-translate">Tulkot Huggle</string>
   <string name="login-progress-formtitle">Ielādē…</string>
   <string name="login-progress-start">Pieslēdzas $1</string>
+  <string name="login-progress-global">Pārbauda globālo konfigurāciju...</string>
+  <string name="login-progress-config">Pārbauda konfigurācijas lapas...</string>
   <string name="login-remember-password">Atcerēties paroli</string>
   <string name="login-ssl">Izmantot HTTPS, lai pieslēgtos (nepieciešams OpenSSL)</string>
   <string name="login-error-cancelled">Atcelts.</string>
@@ -168,6 +170,9 @@
   <string name="main-queue-clearall">Notīrīt visu</string>
   <string name="main-queue-options">Pārvaldīt rindas...</string>
   <string name="main-queue-when-full">Kad rinda ir pilna</string>
+  <string name="main-queue-when-full-remove">Novākt vecos labojumus</string>
+  <string name="main-queue-remove-whitelisted">Novākt baltā saraksta lietotāju labojumus</string>
+  <string name="main-queue-remove-200">Novākt labojumus ar vērtējumu mazāku par -200</string>
   <string name="main-goto">Doties uz</string>
   <string name="main-goto-mytalk">Mana diskusiju lapa</string>
   <string name="main-goto-mycontribs">Mans devums</string>
@@ -182,6 +187,7 @@
   <string name="main-page-history">Iegūt vēsturi</string>
   <string name="main-page-historypage">Rādīt vēstures lapu</string>
   <string name="main-page-edit">Labot lapu pārlūkā</string>
+  <string name="main-page-tag">Iezīme</string>
   <string name="main-page-curr-disp">Pašlaik attēlots</string>
   <string name="main-page-display">Attēlot šo lapu</string>
   <string name="main-page-patrol">Atzīmēt kā pārbaudītu</string>
@@ -244,14 +250,20 @@
   <string name="queue-filterhuggle">Huggle labojums</string>
   <string name="queue-filterme">Mans labojums</string>
   <string name="report-reason">Iemesls:</string>
+  <string name="report-message">Ziņojums:</string>
   <string name="report-done">Paziņots</string>
   <string name="report-user">Ziņot</string>
   <string name="score-score">Vērtējums</string>
   <string name="uaa-reported">Paziņots</string>
   <string name="speedy-reason">Iemesls:</string>
   <string name="speedy-parameters">Parametri:</string>
+  <string name="tag-title">Iezīme $1</string>
+  <string name="tag-tagselector">Pievienot iezīmi:</string>
+  <string name="tag-tags">Iezīme(s):</string>
   <string name="tag-parameter">Parametrs</string>
   <string name="tag-summary">Kopsavilkums:</string>
+  <string name="tag-insertatend">Ievietot lapas beigās</string>
+  <string name="update-title">Pieejama jauna versija</string>
   <string name="updater-update">Atjaunināt</string>
   <string name="updater-open-manualdownloadpage">Atvērt lejupielāžu lapu</string>
   <string name="updater-close">Aizvērt</string>
