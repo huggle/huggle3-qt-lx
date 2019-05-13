@@ -2,6 +2,7 @@
 <!-- Authors:
 * 94rain
 * Arthur2e5
+* DW YoungDLS
 * LNDDYL
 * Liuxinyu970226
 * NeverBehave
@@ -17,7 +18,7 @@
 -->
 <resources>
   <string name="name">简体中文</string>
-  <string name="autorelog">下次无需确认进行操作</string>
+  <string name="autorelog">不再提醒</string>
   <string name="isrtl">false</string>
   <string name="add">添加</string>
   <string name="cancel">取消</string>
@@ -32,7 +33,7 @@
   <string name="done">完成</string>
   <string name="no">否</string>
   <string name="ok">确定</string>
-  <string name="override-warn">您已经覆盖了项目配置的路径。请记住，滥用此功能以获取对维基（通常不应具有此权限）的写入权限，可能会导致您的帐户被无限期封禁。</string>
+  <string name="override-warn">您已经覆盖了项目配置路径。滥用此功能以获取维基的写入权限，可能会导致您的帐户被无限期封禁。</string>
   <string name="remove">移除</string>
   <string name="rename">重命名</string>
   <string name="reload">重新加载</string>
@@ -45,9 +46,9 @@
   <string name="undo">撤销</string>
   <string name="yes">是</string>
   <string name="editing-page">编辑页面</string>
-  <string name="agf">假定善意回退，并自定义理由</string>
+  <string name="agf">以自定义理由进行基于假定善意的回退</string>
   <string name="successful">成功</string>
-  <string name="summary">摘要</string>
+  <string name="summary">自定义编辑摘要</string>
   <string name="id">ID</string>
   <string name="type">类型</string>
   <string name="target">目标</string>
@@ -64,7 +65,7 @@
   <string name="link">链接</string>
   <string name="reason">原因</string>
   <string name="diffid">版本差异ID</string>
-  <string name="whitelisted">$1（在$3的分数为$2）已入白名单</string>
+  <string name="whitelisted">$1（在$3的分数为$2）已列入白名单</string>
   <string name="expiry-time">终止时间</string>
   <string name="duration">期限</string>
   <string name="enable">启用</string>
@@ -73,21 +74,21 @@
   <string name="flags">标记</string>
   <string name="gracetime">正在等待执行编辑的查询结束...</string>
   <string name="browser-none">目前没有可显示的页面。</string>
-  <string name="browser-load">正在使用MW备选来下载差异，请稍等...</string>
-  <string name="browser-miss-summ">未提供摘要</string>
+  <string name="browser-load">API查询失败，正在使用MediaWiki的接口加载版本差异...</string>
+  <string name="browser-miss-summ">未提供编辑摘要</string>
   <string name="browser-diff">页面差异：$1（分数：$2）</string>
   <string name="browser-fail">无法检索版本差异：$1</string>
-  <string name="about-contributors">开发者</string>
+  <string name="about-contributors">开发者名单：</string>
   <string name="block-not">用户未被封禁</string>
   <string name="block-title">封禁$1</string>
   <string name="block-reason">原因：</string>
   <string name="block-duration">时长:</string>
   <string name="block-message">讨论页消息:</string>
   <string name="block-message-user">向目标用户发送包含封禁解释的信息</string>
-  <string name="block-anononly">仅封禁匿名用户</string>
-  <string name="block-creation">禁止创建新账户</string>
+  <string name="block-anononly">仅限匿名用户</string>
+  <string name="block-creation">账户创建停用</string>
   <string name="block-autoblock">启用自动封禁</string>
-  <string name="block-email">禁止电子邮件</string>
+  <string name="block-email">电子邮件停用</string>
   <string name="block-usertalk">讨论</string>
   <string name="block-usercontribs">贡献</string>
   <string name="block-blockloglabel">封禁日志:</string>
@@ -97,7 +98,7 @@
   <string name="block-token-1">获取令牌以封禁$1</string>
   <string name="block-fail">无法封禁用户，$1</string>
   <string name="block-token-e1">无法检索令牌：$1</string>
-  <string name="block-error-no-info">目前查询中没有用户信息（您是管理员么？）</string>
+  <string name="block-error-no-info">未查询到用户信息，请先确认您具有管理员权限再操作</string>
   <string name="block-type">封禁/解封</string>
   <string name="block-admin">做出封禁的管理员</string>
   <string name="block-none">没有选择要封禁的用户。</string>
@@ -110,7 +111,7 @@
   <string name="config-queue-filter-require">要求（必须）</string>
   <string name="config-summ">自定义模板回退原因</string>
   <string name="config-title">选项</string>
-  <string name="config-already-in-use">此快捷方式已被$1使用，请选择另一个不同的</string>
+  <string name="config-already-in-use">此快捷方式已被$1使用，请选择另一个不同的快捷方式</string>
   <string name="config-openinbrowser">在新浏览器窗口打开链接</string>
   <string name="config-shownewedits">查看选定页面的新修改</string>
   <string name="config-ircmode">如果可能，使用IRC作为最近更改来源</string>
