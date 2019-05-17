@@ -35,18 +35,13 @@ namespace Huggle
     {
         Q_OBJECT
         public:
-            explicit Preferences(QWidget *parent = 0);
+            explicit Preferences(QWidget *parent = nullptr);
             ~Preferences();
             void EnableQueues(bool enabled);
+
         private slots:
-            void on_pushButton_clicked();
-            void on_pushButton_2_clicked();
             void on_listWidget_itemSelectionChanged();
             void on_checkBox_clicked();
-            void on_pushButton_6_clicked();
-            void on_pushButton_5_clicked();
-            void on_pushButton_4_clicked();
-            void on_pushButton_3_clicked();
             void on_checkBox_26_clicked();
             void on_checkBox_27_clicked();
             void RecordKeys(int row, int column);
@@ -55,6 +50,28 @@ namespace Huggle
             void on_cbDefault_currentIndexChanged(int index);
             void on_tableWidget_customContextMenuRequested(const QPoint &pos);
             void on_pushButton_rs_clicked();
+            void on_cbqBots_currentIndexChanged(int index);
+            void on_cbqIP_currentIndexChanged(int index);
+            void on_cbqOwn_currentIndexChanged(int index);
+            void on_cbqRevert_currentIndexChanged(int index);
+            void on_cbqNew_currentIndexChanged(int index);
+            void on_cbqMinor_currentIndexChanged(int index);
+            void on_cbqWl_currentIndexChanged(int index);
+            void on_cbqFrd_currentIndexChanged(int index);
+            void on_cbqUserspace_currentIndexChanged(int index);
+            void on_cbqTp_currentIndexChanged(int index);
+            void on_cbqWatched_currentIndexChanged(int index);
+            void on_leIgnoredTags_textEdited(const QString &arg1);
+            void on_leIgnoredCategories_textEdited(const QString &arg1);
+            void on_leRequiredTags_textEdited(const QString &arg1);
+            void on_leRequiredCategories_textEdited(const QString &arg1);
+            void on_pushButton_OK_clicked();
+            void on_pushButton_CloseWin_clicked();
+            void on_pushButton_QueueSave_clicked();
+            void on_pushButton_QueueDelete_clicked();
+            void on_pushButton_QueueInsert_clicked();
+            void on_pushButton_QueueReset_clicked();
+
         private:
             void ResetItems();
             void Reload();
@@ -66,6 +83,8 @@ namespace Huggle
             bool isNowReloadingFilters = false;
             bool RewritingForm = false;
             bool ModifiedForm = false;
+            int queueID = 0;
+            bool queueModified = false;
             Ui::Preferences *ui;
     };
 }

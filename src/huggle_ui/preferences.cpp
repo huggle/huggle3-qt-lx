@@ -170,10 +170,10 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     this->ui->checkBox_31->setText(_l("config-html-messages"));
     this->ui->label_Unregistered->setText(_l("config-ip"));
     this->ui->checkBox_7->setText(_l("config-summary-present"));
-    this->ui->pushButton_2->setText(_l("ok"));
+    this->ui->pushButton_OK->setText(_l("ok"));
     this->ui->cbPlayOnNewItem->setText(_l("preferences-sounds-enable-queue"));
     this->ui->cbPlayOnIRCMsg->setText(_l("preferences-sounds-enable-irc"));
-    this->ui->pushButton->setText(_l("config-close-without"));
+    this->ui->pushButton_CloseWin->setText(_l("config-close-without"));
     this->ui->label_minimal_score->setText(_l("preferences-sounds-minimal-score"));
     this->ui->cbCatScansAndWatched->setText(_l("preferences-performance-catscansandwatched"));
     this->ui->cbMaxScore->setText(_l("preferences-max-score"));
@@ -197,6 +197,7 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
 
     this->ui->label_pt->setText("<b>" + _l("protip") + ":</b> " + Resources::GetRandomProTip());
     this->RestoreWindow();
+    this->queueModified = false;
 }
 
 Preferences::~Preferences()
@@ -224,6 +225,17 @@ static void SetValue(HuggleQueueFilterMatch matching, QComboBox *item)
 
 void Huggle::Preferences::on_listWidget_itemSelectionChanged()
 {
+    if (this->ui->listWidget->currentRow() == this->queueID)
+        return;
+
+    if (this->queueModified)
+    {
+        if (UiGeneric::MessageBox("Queue modified", "You modified the queue, but didn't save it. If you continue, your changes will be discarded. Do you want to continue?", MessageBoxStyleQuestion) != QMessageBox::Yes)
+        {
+            this->ui->listWidget->setCurrentRow(this->queueID);
+            return;
+        }
+    }
     if (!HuggleQueueFilter::Filters.contains(this->Site))
         throw new Huggle::Exception("There is no such a wiki site", BOOST_CURRENT_FUNCTION);
     int id = this->ui->listWidget->currentRow();
@@ -249,6 +261,7 @@ void Huggle::Preferences::on_listWidget_itemSelectionChanged()
     SetValue(f->getIgnoreSelf(), this->ui->cbqOwn);
     SetValue(f->getIgnoreWatched(), this->ui->cbqWatched);
     SetValue(f->getIgnoreIP(), this->ui->cbqIP);
+    SetValue(f->getIgnoreMinor(), this->ui->cbqMinor);
     this->ui->leIgnoredTags->setText(f->GetIgnoredTags_CommaSeparated());
     this->ui->leRequiredTags->setText(f->GetRequiredTags_CommaSeparated());
     this->ui->leIgnoredCategories->setText(f->GetIgnoredCategories_CommaSeparated());
@@ -256,6 +269,8 @@ void Huggle::Preferences::on_listWidget_itemSelectionChanged()
     foreach (QCheckBox *cb, this->NamespaceBoxes.keys())
         cb->setChecked(f->IgnoresNS(this->NamespaceBoxes[cb]));
     this->ui->lineEdit->setText(f->QueueName);
+    this->queueID = id;
+    this->queueModified = false;
 }
 
 void Preferences::EnableQueues(bool enabled)
@@ -269,123 +284,17 @@ void Preferences::EnableQueues(bool enabled)
     this->ui->cbqIP->setEnabled(enabled);
     this->ui->cbqWatched->setEnabled(enabled);
     this->ui->cbqRevert->setEnabled(enabled);
-    this->ui->pushButton_4->setEnabled(enabled);
+    this->ui->pushButton_QueueSave->setEnabled(enabled);
     this->ui->cbqTp->setEnabled(enabled);
     this->ui->tableWidget_3->setEnabled(enabled);
-    this->ui->pushButton_5->setEnabled(enabled);
-    this->ui->pushButton_6->setEnabled(enabled);
+    this->ui->pushButton_QueueReset->setEnabled(enabled);
+    this->ui->pushButton_QueueDelete->setEnabled(enabled);
     this->ui->leIgnoredTags->setEnabled(enabled);
     this->ui->leRequiredTags->setEnabled(enabled);
     this->ui->leIgnoredCategories->setEnabled(enabled);
     this->ui->leRequiredCategories->setEnabled(enabled);
     this->ui->cbqUserspace->setEnabled(enabled);
     this->ui->cbqWl->setEnabled(enabled);
-}
-
-void Preferences::on_pushButton_clicked()
-{
-    this->close();
-}
-
-void Huggle::Preferences::on_pushButton_2_clicked()
-{
-    hcfg->UserConfig->AutomaticallyResolveConflicts = this->ui->checkBox_AutoResolveConflicts->isChecked();
-    hcfg->SystemConfig_WarnUserSpaceRoll = this->ui->checkBox_ConfirmUserSpaceEditRevert->isChecked();
-    hcfg->SystemConfig_SuppressWarnings = !this->ui->checkBox_6->isChecked();
-    hcfg->UsingIRC = this->ui->checkBox_EnableIrc->isChecked();
-    hcfg->UserConfig->EnforceManualSoftwareRollback = this->ui->checkBox_UseRollback->isChecked();
-    hcfg->UserConfig->AutomaticallyGroup = this->ui->checkBox_AutomaticallyGroup->isChecked();
-    hcfg->UserConfig->EnforceManualSRT = this->ui->checkBox_UseRollback->isChecked();
-    hcfg->UserConfig->RevertOnMultipleEdits = this->ui->radioButton_2->isChecked();
-    hcfg->ProjectConfig->ConfirmOnSelfRevs = this->ui->checkBox_ConfirmOwnEditRevert->isChecked();
-    hcfg->ProjectConfig->ConfirmWL = this->ui->checkBox_ConfirmWhitelistedRevert->isChecked();
-    hcfg->UserConfig->RevertNewBySame = this->ui->checkBox_20->isChecked();
-    hcfg->UserConfig->HistoryLoad = this->ui->checkBox_14->isChecked();
-    hcfg->UserConfig->EnforceMonthsAsHeaders = this->ui->checkBox_MonthHeaders->isChecked();
-    hcfg->UserConfig->SectionKeep = this->ui->checkBox_MergeMessages->isChecked();
-    hcfg->ProjectConfig->ConfirmTalk = this->ui->checkBox_ConfirmTalkRevert->isChecked();
-    hcfg->UserConfig->LastEdit = this->ui->checkBox_21->isChecked();
-    hcfg->UserConfig->DeleteEditsAfterRevert = this->ui->checkBox_RemoveRevertedEdits->isChecked();
-    hcfg->UserConfig->TruncateEdits = this->ui->checkBox_RemoveOldEdits->isChecked();
-    hcfg->SystemConfig_DynamicColsInList = this->ui->checkBox_22->isChecked();
-    hcfg->UserConfig->DisplayTitle = this->ui->checkBox_23->isChecked();
-    hcfg->UserConfig->PreferredProvider = this->ui->cbProviders->currentIndex();
-    hcfg->UserConfig->ManualWarning = !this->ui->checkBox_AutoWarning->isChecked();
-    hcfg->UserConfig->RetrieveFounder = this->ui->checkBox_8->isChecked();
-    hcfg->UserConfig->CheckTP = this->ui->checkBox_25->isChecked();
-    hcfg->SystemConfig_RequestDelay = this->ui->checkBox_26->isChecked();
-    hcfg->UserConfig->RemoveAfterTrustedEdit = this->ui->ck_RemoveTrusted->isChecked();
-    hcfg->SystemConfig_DelayVal = this->ui->lineEdit_2->text().toUInt();
-    hcfg->SystemConfig_RevertDelay = this->ui->lineEdit_3->text().toInt();
-    hcfg->SystemConfig_InstantReverts = this->ui->checkBox_27->isChecked();
-    hcfg->UserConfig->AutomaticReports = this->ui->checkBox_AutoReport->isChecked();
-    hcfg->SystemConfig_EnableUpdates = this->ui->checkBox_notifyUpdate->isChecked();
-    hcfg->SystemConfig_NotifyBeta = this->ui->checkBox_notifyBeta->isChecked();
-    hcfg->UserConfig->HtmlAllowedInIrc = this->ui->checkBox_31->isChecked();
-    hcfg->UserConfig->EnableMinScore = this->ui->cbMinScore->isChecked();
-    hcfg->UserConfig->MinScore = this->ui->leMinScore->text().toLongLong();
-    hcfg->UserConfig->MaxScore = this->ui->leMaxScore->text().toLongLong();
-    hcfg->UserConfig->NumberDropdownMenuItems = this->ui->cbNumberMenus->isChecked();
-    hcfg->UserConfig->EnableMaxScore = this->ui->cbMaxScore->isChecked();
-    hcfg->SystemConfig_QueueSize = this->ui->le_QueueSize->text().toInt();
-    hcfg->UserConfig->AutomaticallyWatchlistWarnedUsers = this->ui->cb_WatchWarn->isChecked();
-    hcfg->UserConfig->PageEmptyQueue = this->ui->le_EmptyQueuePage->text();
-    hcfg->UserConfig->AutomaticRefresh = this->ui->cb_AutoRefresh->isChecked();
-    if (hcfg->SystemConfig_QueueSize < 10)
-        hcfg->SystemConfig_QueueSize = 10;
-    hcfg->SystemConfig_PlaySoundOnIRCUserMsg = this->ui->cbPlayOnIRCMsg->isChecked();
-    hcfg->SystemConfig_PlaySoundQueueScore = this->ui->ln_QueueSoundMinScore->text().toLong();
-    hcfg->SystemConfig_PlaySoundOnQueue = this->ui->cbPlayOnNewItem->isChecked();
-    hcfg->SystemConfig_CatScansAndWatched = this->ui->cbCatScansAndWatched->isChecked();
-    hcfg->UserConfig->ShowWarningIfNotOnLastRevision = this->ui->cbShowWarningIfNotOnLastRevision->isChecked();
-    hcfg->UserConfig->HighlightSummaryIfExists = this->ui->checkBox_7->isChecked();
-    hcfg->UserConfig->InsertEditsOfRolledUserToQueue = this->ui->checkBox_ReviewEditsMadeByVandal->isChecked();
-    hcfg->SystemConfig_FontSize = this->ui->sxFontSize->value();
-    hcfg->SystemConfig_EnforceBlackAndWhiteCss = this->ui->checkBox_EnforceBAWC->isChecked();
-    hcfg->UserConfig->ConfirmOnRecentWarning = this->ui->checkBox_RecentMsgs->isChecked();
-    hcfg->UserConfig->SkipWarningOnConfirm = this->ui->checkBox_SkipConfirm->isChecked();
-    hcfg->UserConfig->ConfirmWarningOnVeryOldEdits = this->ui->checkBox_OldEdits->isChecked();
-
-    if (hcfg->SystemConfig_FontSize < 1)
-        hcfg->SystemConfig_FontSize = 10;
-
-    hcfg->UserConfig->Watchlist = static_cast<WatchlistOption>(this->ui->comboBox_WatchlistPreference->currentIndex());
-    hcfg->SystemConfig_Font = this->ui->lineEdit_5->text();
-    hcfg->SystemConfig_UnsafeExts = this->ui->checkBox_unsafe->isChecked();
-
-    hcfg->SystemConfig_KeystrokeMultiPressRate = this->ui->le_KeystrokeRate->text().toInt();
-    hcfg->SystemConfig_KeystrokeMultiPressFix = this->ui->cbKeystrokeFix->isChecked();
-
-    if (hcfg->UserConfig->WelcomeGood != this->ui->checkBox_WelcomeEmptyPage->isChecked())
-    {
-        hcfg->UserConfig->WelcomeGood = this->ui->checkBox_WelcomeEmptyPage->isChecked();
-        // now we need to update the option as well just to ensure that user config will be updated as well
-        // this option needs to be written only if it was explicitly changed by user to a value that
-        // is different from a project config file
-        HuggleOption *o_ = hcfg->UserConfig->GetOption("welcome-good");
-        if (o_)
-            o_->SetVariant(hcfg->UserConfig->WelcomeGood);
-    }
-    if (this->ui->radioButton_5->isChecked())
-    {
-        hcfg->UserConfig->GoNext = Configuration_OnNext_Stay;
-    }
-    if (this->ui->radioButton_4->isChecked())
-    {
-        hcfg->UserConfig->GoNext = Configuration_OnNext_Revert;
-    }
-    if (this->ui->radioButton_3->isChecked())
-    {
-        hcfg->UserConfig->GoNext = Configuration_OnNext_Next;
-    }
-    if (this->ModifiedForm)
-    {
-        // we need to reload the shortcuts in main form
-        hcfg->ReloadOfMainformNeeded = true;
-    }
-    Configuration::SaveSystemConfig();
-    MainWindow::HuggleMain->ReloadInterface();
-    this->hide();
 }
 
 void Huggle::Preferences::on_checkBox_clicked()
@@ -405,110 +314,6 @@ static HuggleQueueFilterMatch Match(QComboBox *item)
             return HuggleQueueFilterMatchRequire;
     }
     return HuggleQueueFilterMatchIgnore;
-}
-
-void Huggle::Preferences::on_pushButton_6_clicked()
-{
-    if (!HuggleQueueFilter::Filters.contains(this->Site))
-        throw new Huggle::Exception("There is no such a wiki site", BOOST_CURRENT_FUNCTION);
-    int id = this->ui->listWidget->currentRow();
-    if (id < 0 || id >= HuggleQueueFilter::Filters[this->Site]->count())
-    {
-        return;
-    }
-    HuggleQueueFilter *filter = HuggleQueueFilter::Filters[this->Site]->at(id);
-    if (!filter->IsChangeable())
-    {
-        // don't touch a default filter
-        return;
-    }
-    if (this->ui->lineEdit->text().contains(":"))
-    {
-        QMessageBox mb;
-        mb.setText(_l("config-no-colon"));
-        mb.exec();
-        return;
-    }
-    if (this->ui->tableWidget_3->rowCount() != this->Site->NamespaceList.count())
-        throw new Huggle::Exception("Number of ns in config file differs", BOOST_CURRENT_FUNCTION);
-    filter->SetIgnoredTags_CommaSeparated(this->ui->leIgnoredTags->text());
-    filter->SetRequiredTags_CommaSeparated(this->ui->leRequiredTags->text());
-    filter->SetIgnoredCategories_CommaSeparated(this->ui->leIgnoredCategories->text());
-    filter->SetRequiredCategories_CommaSeparated(this->ui->leRequiredCategories->text());
-    filter->setIgnoreBots(Match(this->ui->cbqBots));
-    filter->setIgnoreNP(Match(this->ui->cbqNew));
-    filter->setIgnoreIP(Match(this->ui->cbqIP));
-    filter->setIgnoreWL(Match(this->ui->cbqWl));
-    filter->setIgnoreSelf(Match(this->ui->cbqOwn));
-    filter->setIgnoreReverts(Match(this->ui->cbqRevert));
-    filter->setIgnoreTalk(Match(this->ui->cbqTp));
-    filter->setIgnoreFriends(Match(this->ui->cbqFrd));
-    filter->setIgnore_UserSpace(Match(this->ui->cbqUserspace));
-    filter->setIgnoreWatched(Match(this->ui->cbqWatched));
-    int ns = 0;
-    while (ns < this->ui->tableWidget_3->rowCount())
-    {
-        QCheckBox *selected_box = dynamic_cast<QCheckBox*>(this->ui->tableWidget_3->cellWidget(ns, 1));
-        if (!this->NamespaceBoxes.contains(selected_box))
-            throw new Huggle::Exception("There is no such a box in the ram", BOOST_CURRENT_FUNCTION);
-        if (!this->Site->NamespaceList.contains(this->NamespaceBoxes[selected_box]))
-            throw new Huggle::Exception("There is no such space in site", BOOST_CURRENT_FUNCTION);
-        int nsid = this->NamespaceBoxes[selected_box];
-        if (!filter->Namespaces.contains(nsid))
-        {
-            filter->Namespaces.insert(nsid, selected_box->isChecked());
-        } else
-        {
-            filter->Namespaces[nsid] = selected_box->isChecked();
-        }
-        ns++;
-    }
-    filter->QueueName = this->ui->lineEdit->text();
-    MainWindow::HuggleMain->Queue1->Filters();
-    this->Reload();
-}
-
-void Huggle::Preferences::on_pushButton_5_clicked()
-{
-    /// \todo DO SOMETHING WITH ME, FOR FUCK SAKE
-}
-
-void Huggle::Preferences::on_pushButton_4_clicked()
-{
-    if (!HuggleQueueFilter::Filters.contains(this->Site))
-        throw new Huggle::Exception("There is no such a wiki site", BOOST_CURRENT_FUNCTION);
-    int id = this->ui->listWidget->currentRow();
-    if (id < 0 || id >= HuggleQueueFilter::Filters[this->Site]->count())
-    {
-        return;
-    }
-    HuggleQueueFilter *filter = HuggleQueueFilter::Filters[this->Site]->at(id);
-    if (!filter->IsChangeable())
-    {
-        // don't touch a default filter
-        return;
-    }
-    if (this->Site->CurrentFilter == filter)
-    {
-        UiGeneric::MessageBox(_l("error"), _l("preferences-delete-using-filter"), MessageBoxStyleWarning);
-        return;
-    }
-    HuggleQueueFilter::Filters[this->Site]->removeAll(filter);
-    delete filter;
-    this->EnableQueues(false);
-    MainWindow::HuggleMain->Queue1->Filters();
-    this->Reload();
-}
-
-void Huggle::Preferences::on_pushButton_3_clicked()
-{
-    if (!HuggleQueueFilter::Filters.contains(this->Site))
-        throw new Huggle::Exception("There is no such a wiki site", BOOST_CURRENT_FUNCTION);
-    HuggleQueueFilter *filter = new HuggleQueueFilter();
-    filter->QueueName = "User defined queue #" + QString::number(HuggleQueueFilter::Filters[this->Site]->count());
-    HuggleQueueFilter::Filters[this->Site]->append(filter);
-    MainWindow::HuggleMain->Queue1->Filters();
-    this->Reload();
 }
 
 void Preferences::Reload()
@@ -549,6 +354,7 @@ void Preferences::Reload()
     }
     this->ui->cbDefault->setCurrentIndex(d);
     this->isNowReloadingFilters = false;
+    this->queueModified = false;
 }
 
 void Preferences::Reload2()
@@ -836,4 +642,311 @@ void Huggle::Preferences::on_pushButton_rs_clicked()
             throw new Huggle::Exception("Unable to delete " + file, BOOST_CURRENT_FUNCTION);
     }
     MainWindow::HuggleMain->Exit();
+}
+
+void Huggle::Preferences::on_cbqBots_currentIndexChanged(int index)
+{
+    (void)index;
+    this->queueModified = true;
+}
+
+void Huggle::Preferences::on_cbqIP_currentIndexChanged(int index)
+{
+    (void)index;
+    this->queueModified = true;
+}
+
+void Huggle::Preferences::on_cbqOwn_currentIndexChanged(int index)
+{
+    (void)index;
+    this->queueModified = true;
+}
+
+void Huggle::Preferences::on_cbqRevert_currentIndexChanged(int index)
+{
+    (void)index;
+    this->queueModified = true;
+}
+
+void Huggle::Preferences::on_cbqNew_currentIndexChanged(int index)
+{
+    (void)index;
+    this->queueModified = true;
+}
+
+void Huggle::Preferences::on_cbqMinor_currentIndexChanged(int index)
+{
+    (void)index;
+    this->queueModified = true;
+}
+
+void Huggle::Preferences::on_cbqWl_currentIndexChanged(int index)
+{
+    (void)index;
+    this->queueModified = true;
+}
+
+void Huggle::Preferences::on_cbqFrd_currentIndexChanged(int index)
+{
+    (void)index;
+    this->queueModified = true;
+}
+
+void Huggle::Preferences::on_cbqUserspace_currentIndexChanged(int index)
+{
+    (void)index;
+    this->queueModified = true;
+}
+
+void Huggle::Preferences::on_cbqTp_currentIndexChanged(int index)
+{
+    (void)index;
+    this->queueModified = true;
+}
+
+void Huggle::Preferences::on_cbqWatched_currentIndexChanged(int index)
+{
+    (void)index;
+    this->queueModified = true;
+}
+
+void Huggle::Preferences::on_leIgnoredTags_textEdited(const QString &arg1)
+{
+    (void)arg1;
+    this->queueModified = true;
+}
+
+void Huggle::Preferences::on_leIgnoredCategories_textEdited(const QString &arg1)
+{
+    (void)arg1;
+    this->queueModified = true;
+}
+
+void Huggle::Preferences::on_leRequiredTags_textEdited(const QString &arg1)
+{
+    (void)arg1;
+    this->queueModified = true;
+}
+
+void Huggle::Preferences::on_leRequiredCategories_textEdited(const QString &arg1)
+{
+    (void)arg1;
+    this->queueModified = true;
+}
+
+void Huggle::Preferences::on_pushButton_OK_clicked()
+{
+    if (this->queueModified)
+    {
+        if (UiGeneric::MessageBox("Queue modified", "You modified the queue, but didn't save it. If you continue, your changes will be discarded. Do you want to continue?", MessageBoxStyleQuestion) != QMessageBox::Yes)
+            return;
+    }
+    hcfg->UserConfig->AutomaticallyResolveConflicts = this->ui->checkBox_AutoResolveConflicts->isChecked();
+    hcfg->SystemConfig_WarnUserSpaceRoll = this->ui->checkBox_ConfirmUserSpaceEditRevert->isChecked();
+    hcfg->SystemConfig_SuppressWarnings = !this->ui->checkBox_6->isChecked();
+    hcfg->UsingIRC = this->ui->checkBox_EnableIrc->isChecked();
+    hcfg->UserConfig->EnforceManualSoftwareRollback = this->ui->checkBox_UseRollback->isChecked();
+    hcfg->UserConfig->AutomaticallyGroup = this->ui->checkBox_AutomaticallyGroup->isChecked();
+    hcfg->UserConfig->EnforceManualSRT = this->ui->checkBox_UseRollback->isChecked();
+    hcfg->UserConfig->RevertOnMultipleEdits = this->ui->radioButton_2->isChecked();
+    hcfg->ProjectConfig->ConfirmOnSelfRevs = this->ui->checkBox_ConfirmOwnEditRevert->isChecked();
+    hcfg->ProjectConfig->ConfirmWL = this->ui->checkBox_ConfirmWhitelistedRevert->isChecked();
+    hcfg->UserConfig->RevertNewBySame = this->ui->checkBox_20->isChecked();
+    hcfg->UserConfig->HistoryLoad = this->ui->checkBox_14->isChecked();
+    hcfg->UserConfig->EnforceMonthsAsHeaders = this->ui->checkBox_MonthHeaders->isChecked();
+    hcfg->UserConfig->SectionKeep = this->ui->checkBox_MergeMessages->isChecked();
+    hcfg->ProjectConfig->ConfirmTalk = this->ui->checkBox_ConfirmTalkRevert->isChecked();
+    hcfg->UserConfig->LastEdit = this->ui->checkBox_21->isChecked();
+    hcfg->UserConfig->DeleteEditsAfterRevert = this->ui->checkBox_RemoveRevertedEdits->isChecked();
+    hcfg->UserConfig->TruncateEdits = this->ui->checkBox_RemoveOldEdits->isChecked();
+    hcfg->SystemConfig_DynamicColsInList = this->ui->checkBox_22->isChecked();
+    hcfg->UserConfig->DisplayTitle = this->ui->checkBox_23->isChecked();
+    hcfg->UserConfig->PreferredProvider = this->ui->cbProviders->currentIndex();
+    hcfg->UserConfig->ManualWarning = !this->ui->checkBox_AutoWarning->isChecked();
+    hcfg->UserConfig->RetrieveFounder = this->ui->checkBox_8->isChecked();
+    hcfg->UserConfig->CheckTP = this->ui->checkBox_25->isChecked();
+    hcfg->SystemConfig_RequestDelay = this->ui->checkBox_26->isChecked();
+    hcfg->UserConfig->RemoveAfterTrustedEdit = this->ui->ck_RemoveTrusted->isChecked();
+    hcfg->SystemConfig_DelayVal = this->ui->lineEdit_2->text().toUInt();
+    hcfg->SystemConfig_RevertDelay = this->ui->lineEdit_3->text().toInt();
+    hcfg->SystemConfig_InstantReverts = this->ui->checkBox_27->isChecked();
+    hcfg->UserConfig->AutomaticReports = this->ui->checkBox_AutoReport->isChecked();
+    hcfg->SystemConfig_EnableUpdates = this->ui->checkBox_notifyUpdate->isChecked();
+    hcfg->SystemConfig_NotifyBeta = this->ui->checkBox_notifyBeta->isChecked();
+    hcfg->UserConfig->HtmlAllowedInIrc = this->ui->checkBox_31->isChecked();
+    hcfg->UserConfig->EnableMinScore = this->ui->cbMinScore->isChecked();
+    hcfg->UserConfig->MinScore = this->ui->leMinScore->text().toLongLong();
+    hcfg->UserConfig->MaxScore = this->ui->leMaxScore->text().toLongLong();
+    hcfg->UserConfig->NumberDropdownMenuItems = this->ui->cbNumberMenus->isChecked();
+    hcfg->UserConfig->EnableMaxScore = this->ui->cbMaxScore->isChecked();
+    hcfg->SystemConfig_QueueSize = this->ui->le_QueueSize->text().toInt();
+    hcfg->UserConfig->AutomaticallyWatchlistWarnedUsers = this->ui->cb_WatchWarn->isChecked();
+    hcfg->UserConfig->PageEmptyQueue = this->ui->le_EmptyQueuePage->text();
+    hcfg->UserConfig->AutomaticRefresh = this->ui->cb_AutoRefresh->isChecked();
+    if (hcfg->SystemConfig_QueueSize < 10)
+        hcfg->SystemConfig_QueueSize = 10;
+    hcfg->SystemConfig_PlaySoundOnIRCUserMsg = this->ui->cbPlayOnIRCMsg->isChecked();
+    hcfg->SystemConfig_PlaySoundQueueScore = this->ui->ln_QueueSoundMinScore->text().toLong();
+    hcfg->SystemConfig_PlaySoundOnQueue = this->ui->cbPlayOnNewItem->isChecked();
+    hcfg->SystemConfig_CatScansAndWatched = this->ui->cbCatScansAndWatched->isChecked();
+    hcfg->UserConfig->ShowWarningIfNotOnLastRevision = this->ui->cbShowWarningIfNotOnLastRevision->isChecked();
+    hcfg->UserConfig->HighlightSummaryIfExists = this->ui->checkBox_7->isChecked();
+    hcfg->UserConfig->InsertEditsOfRolledUserToQueue = this->ui->checkBox_ReviewEditsMadeByVandal->isChecked();
+    hcfg->SystemConfig_FontSize = this->ui->sxFontSize->value();
+    hcfg->SystemConfig_EnforceBlackAndWhiteCss = this->ui->checkBox_EnforceBAWC->isChecked();
+    hcfg->UserConfig->ConfirmOnRecentWarning = this->ui->checkBox_RecentMsgs->isChecked();
+    hcfg->UserConfig->SkipWarningOnConfirm = this->ui->checkBox_SkipConfirm->isChecked();
+    hcfg->UserConfig->ConfirmWarningOnVeryOldEdits = this->ui->checkBox_OldEdits->isChecked();
+
+    if (hcfg->SystemConfig_FontSize < 1)
+        hcfg->SystemConfig_FontSize = 10;
+
+    hcfg->UserConfig->Watchlist = static_cast<WatchlistOption>(this->ui->comboBox_WatchlistPreference->currentIndex());
+    hcfg->SystemConfig_Font = this->ui->lineEdit_5->text();
+    hcfg->SystemConfig_UnsafeExts = this->ui->checkBox_unsafe->isChecked();
+
+    hcfg->SystemConfig_KeystrokeMultiPressRate = this->ui->le_KeystrokeRate->text().toInt();
+    hcfg->SystemConfig_KeystrokeMultiPressFix = this->ui->cbKeystrokeFix->isChecked();
+
+    if (hcfg->UserConfig->WelcomeGood != this->ui->checkBox_WelcomeEmptyPage->isChecked())
+    {
+        hcfg->UserConfig->WelcomeGood = this->ui->checkBox_WelcomeEmptyPage->isChecked();
+        // now we need to update the option as well just to ensure that user config will be updated as well
+        // this option needs to be written only if it was explicitly changed by user to a value that
+        // is different from a project config file
+        HuggleOption *o_ = hcfg->UserConfig->GetOption("welcome-good");
+        if (o_)
+            o_->SetVariant(hcfg->UserConfig->WelcomeGood);
+    }
+    if (this->ui->radioButton_5->isChecked())
+    {
+        hcfg->UserConfig->GoNext = Configuration_OnNext_Stay;
+    }
+    if (this->ui->radioButton_4->isChecked())
+    {
+        hcfg->UserConfig->GoNext = Configuration_OnNext_Revert;
+    }
+    if (this->ui->radioButton_3->isChecked())
+    {
+        hcfg->UserConfig->GoNext = Configuration_OnNext_Next;
+    }
+    if (this->ModifiedForm)
+    {
+        // we need to reload the shortcuts in main form
+        hcfg->ReloadOfMainformNeeded = true;
+    }
+    Configuration::SaveSystemConfig();
+    MainWindow::HuggleMain->ReloadInterface();
+    this->hide();
+}
+
+void Huggle::Preferences::on_pushButton_CloseWin_clicked()
+{
+    this->close();
+}
+
+void Huggle::Preferences::on_pushButton_QueueSave_clicked()
+{
+    if (!HuggleQueueFilter::Filters.contains(this->Site))
+        throw new Huggle::Exception("There is no such a wiki site", BOOST_CURRENT_FUNCTION);
+    int id = this->ui->listWidget->currentRow();
+    if (id < 0 || id >= HuggleQueueFilter::Filters[this->Site]->count())
+    {
+        return;
+    }
+    HuggleQueueFilter *filter = HuggleQueueFilter::Filters[this->Site]->at(id);
+    if (!filter->IsChangeable())
+    {
+        // don't touch a default filter
+        return;
+    }
+    if (this->ui->lineEdit->text().contains(":"))
+    {
+        QMessageBox mb;
+        mb.setText(_l("config-no-colon"));
+        mb.exec();
+        return;
+    }
+    if (this->ui->tableWidget_3->rowCount() != this->Site->NamespaceList.count())
+        throw new Huggle::Exception("Number of ns in config file differs", BOOST_CURRENT_FUNCTION);
+    filter->SetIgnoredTags_CommaSeparated(this->ui->leIgnoredTags->text());
+    filter->SetRequiredTags_CommaSeparated(this->ui->leRequiredTags->text());
+    filter->SetIgnoredCategories_CommaSeparated(this->ui->leIgnoredCategories->text());
+    filter->SetRequiredCategories_CommaSeparated(this->ui->leRequiredCategories->text());
+    filter->setIgnoreBots(Match(this->ui->cbqBots));
+    filter->setIgnoreNP(Match(this->ui->cbqNew));
+    filter->setIgnoreIP(Match(this->ui->cbqIP));
+    filter->setIgnoreMinor(Match(this->ui->cbqMinor));
+    filter->setIgnoreWL(Match(this->ui->cbqWl));
+    filter->setIgnoreSelf(Match(this->ui->cbqOwn));
+    filter->setIgnoreReverts(Match(this->ui->cbqRevert));
+    filter->setIgnoreTalk(Match(this->ui->cbqTp));
+    filter->setIgnoreFriends(Match(this->ui->cbqFrd));
+    filter->setIgnore_UserSpace(Match(this->ui->cbqUserspace));
+    filter->setIgnoreWatched(Match(this->ui->cbqWatched));
+    int ns = 0;
+    while (ns < this->ui->tableWidget_3->rowCount())
+    {
+        QCheckBox *selected_box = dynamic_cast<QCheckBox*>(this->ui->tableWidget_3->cellWidget(ns, 1));
+        if (!this->NamespaceBoxes.contains(selected_box))
+            throw new Huggle::Exception("There is no such a box in the ram", BOOST_CURRENT_FUNCTION);
+        if (!this->Site->NamespaceList.contains(this->NamespaceBoxes[selected_box]))
+            throw new Huggle::Exception("There is no such space in site", BOOST_CURRENT_FUNCTION);
+        int nsid = this->NamespaceBoxes[selected_box];
+        if (!filter->Namespaces.contains(nsid))
+        {
+            filter->Namespaces.insert(nsid, selected_box->isChecked());
+        } else
+        {
+            filter->Namespaces[nsid] = selected_box->isChecked();
+        }
+        ns++;
+    }
+    filter->QueueName = this->ui->lineEdit->text();
+    MainWindow::HuggleMain->Queue1->Filters();
+    this->Reload();
+    this->queueModified = false;
+}
+
+void Huggle::Preferences::on_pushButton_QueueDelete_clicked()
+{
+    if (!HuggleQueueFilter::Filters.contains(this->Site))
+        throw new Huggle::Exception("There is no such a wiki site", BOOST_CURRENT_FUNCTION);
+    int id = this->ui->listWidget->currentRow();
+    if (id < 0 || id >= HuggleQueueFilter::Filters[this->Site]->count())
+    {
+        return;
+    }
+    HuggleQueueFilter *filter = HuggleQueueFilter::Filters[this->Site]->at(id);
+    if (!filter->IsChangeable())
+    {
+        // don't touch a default filter
+        return;
+    }
+    if (this->Site->CurrentFilter == filter)
+    {
+        UiGeneric::MessageBox(_l("error"), _l("preferences-delete-using-filter"), MessageBoxStyleWarning);
+        return;
+    }
+    HuggleQueueFilter::Filters[this->Site]->removeAll(filter);
+    delete filter;
+    this->EnableQueues(false);
+    MainWindow::HuggleMain->Queue1->Filters();
+    this->Reload();
+}
+
+void Huggle::Preferences::on_pushButton_QueueInsert_clicked()
+{
+    if (!HuggleQueueFilter::Filters.contains(this->Site))
+        throw new Huggle::Exception("There is no such a wiki site", BOOST_CURRENT_FUNCTION);
+    HuggleQueueFilter *filter = new HuggleQueueFilter();
+    filter->QueueName = "User defined queue #" + QString::number(HuggleQueueFilter::Filters[this->Site]->count());
+    HuggleQueueFilter::Filters[this->Site]->append(filter);
+    MainWindow::HuggleMain->Queue1->Filters();
+    this->Reload();
+}
+
+void Huggle::Preferences::on_pushButton_QueueReset_clicked()
+{
+
 }
