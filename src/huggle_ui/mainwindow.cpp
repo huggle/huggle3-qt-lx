@@ -3761,7 +3761,7 @@ void MainWindow::on_actionEdit_page_triggered()
     if (!this->CheckExit() || this->CurrentEdit == nullptr)
         return;
 
-    EditForm *ef = new EditForm(this->CurrentEdit->Page);
+    EditForm *ef = new EditForm(this->CurrentEdit->Page, this);
     ef->setAttribute(Qt::WA_DeleteOnClose);
     ef->show();
 }
