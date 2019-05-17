@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
 * Amire80
+* Erelon
 * Guycn2
 * Or
 * Reza1615
@@ -27,6 +28,7 @@
   <string name="rename">שינוי שם</string>
   <string name="reload">רענון</string>
   <string name="project">פרויקט</string>
+  <string name="warning">אזהרה</string>
   <string name="result">תוצאה</string>
   <string name="save">שמירה</string>
   <string name="show">הצגה</string>
@@ -129,6 +131,7 @@
   <string name="config-instant-reverts">להשתמש בשחזור מידי (מהיר מאוד, אבל לא ניתן לבטל אותם אחרי הביצוע)</string>
   <string name="config-revert-wait" fuzzy="true">המתנה לשחזור (בשניות)</string>
   <string name="config-revert">שחזור</string>
+  <string name="config-skip">דילוג</string>
   <string name="config-revert-diff">שחזור עריכות לדף שחדשות יותר מההשוואה המוצגת אם הן נעשו על־ידי אותו משתמש משחית</string>
   <string name="config-change-all" fuzzy="true">לשנות את כל הגדרות האגל כדי להתנהג יותר כמו האגל 2</string>
   <string name="config-merge-messages">למזג את ההודעות שלך עם אחרות בפסקאות קיימות</string>
@@ -190,6 +193,8 @@
   <string name="config-no-colon" fuzzy="true">אין אפשרות להשתמש בתו : בשם של תור</string>
   <string name="config-notify-update">בדיקת עדכונים</string>
   <string name="config-notify-beta">בדיקה אם זמינה גרסת בטא</string>
+  <string name="custommessage-subject">כותרת</string>
+  <string name="custommessage-wikiuser-plaintext-1">שלום, $1</string>
   <string name="delete-title">מחיקת $1</string>
   <string name="delete-reason">סיבה:</string>
   <string name="delete-deletionlog">יומן מחיקות:</string>
@@ -256,6 +261,7 @@
   <string name="login-start">כניסה</string>
   <string name="login-oauth-notsupported">שיטה זו אינה נתמכת לעת־עתה</string>
   <string name="login-translate">תרגום האגל</string>
+  <string name="login-progress-formtitle">בטעינה…</string>
   <string name="login-progress-start" fuzzy="true">כניסה לאתר $1</string>
   <string name="login-progress-retrieve-mw">מאחזר מידע ממדיה־ויקי עבור $1</string>
   <string name="login-progress-language">עדכון קובצי הודעות...</string>
@@ -362,6 +368,7 @@
   <string name="main-page-delete">מחיקה</string>
   <string name="main-page-load">טעינה</string>
   <string name="main-patrol-not-enabled">ניטור לא מופעל ב$1</string>
+  <string name="main-page-refresh">רענון</string>
   <string name="main-page-restore">שחזור הגרסה הזאת</string>
   <string name="main-user-info">הצגת מידע על המשתמש</string>
   <string name="main-user-ignore">התעלמות</string>
@@ -394,6 +401,8 @@
   <string name="main-help-documentation">תיעוד</string>
   <string name="main-help-feedback">משוב</string>
   <string name="main-help-about">אודות האגל...</string>
+  <string name="main-help-introduction">מבוא</string>
+  <string name="main-help-contents">תוכן עניינים</string>
   <string name="main-addqueue">הוספה...</string>
   <string name="main-savelogtitle">שמירת יומן</string>
   <string name="main-usermessageother">הודעה אחרת...</string>
@@ -414,6 +423,7 @@
   <string name="main-revert-newpage">זה דף חדש, אז אי־אפשר לשחזר אותו. אפשר לתייג אותו או למחוק אותו.</string>
   <string name="main-restore-text-fail">לא ניתן לשחזר את הגרסה כי אין לה טקסט זמין</string>
   <string name="main-restore-data-fail" fuzzy="true">לא ניתן לשחזר את הגרסה כי הוויקי לא סיפק נתונים לגרסה שנבחרה</string>
+  <string name="main-statistics-paused">מושהה</string>
   <string name="message-title">שליחת הודעה אל $1</string>
   <string name="message-help" fuzzy="true">יש לציין נושא או תקציר. אם לא ניתן תקציר, הנושא ישמש בתור תקציר; אם לא יינתן נושא, לא תתווסף כותרת.</string>
   <string name="message-subject">נושא:</string>
@@ -509,6 +519,7 @@
   <string name="uaa-not-supported-text">לוח מודעות על משתמשים שדורשים תשומת לב ממפעיל (UAA) אינו זמין בוויקי שלך.</string>
   <string name="uaa-reporting">דיווח $1 ל־UAA</string>
   <string name="uaa-reported">דווח</string>
+  <string name="uaa-user-unreported-title">המשתמש אינו מדווח</string>
   <string name="uaa-no-reason-warn">לא ציינת סיבה מדוע שם המשתמש הוא הפרת מדיניות. נא לציין סיבה.</string>
   <string name="uaa-nr">לא סופקה סיבה</string>
   <string name="uaa-g1">קבלת תוכן ה־UAA</string>
@@ -598,6 +609,7 @@
   <string name="han-already-connected">לא מתחבר ל־HAN, כי כבר התחברתי</string>
   <string name="han-already-connecting" fuzzy="true">נא להמתין, אני כבר מתחבר ל־HAN</string>
   <string name="han-disconnected">התנתקת מ־HAN</string>
+  <string name="han-send">שליחה</string>
   <string name="error-loggedout">החשבון יצא, מתבצעת כניסה חזרה...</string>
   <string name="error-noresponse">אין תשובה</string>
   <string name="error-pagemissing">הדף אינו קיים</string>
@@ -635,6 +647,7 @@
   <string name="history-retrieve-fail" fuzzy="true">לא ניתן לאחזר תוכן של דף שרצינו לבטל בו עריכה של עצמנו, השגיאה הייתה: $1</string>
   <string name="history-welcome-msg-title">לשלוח במקום זאת הודעת ברוך־בואך?</string>
   <string name="history-welcome-msg">יצרת את דף השיחה הזה ולכן לא ניתן לבטל אותו. האם להחליף אותו בתבנית ברוך־בואך?</string>
+  <string name="newtab-title">זוהי לשונית חדשה!</string>
   <string name="notify-fail">לא שלחת הודעה ליוצר של $1</string>
   <string name="notify-unknowncreator">לא ניתן למצוא את יוצר הדף</string>
   <string name="protect-done">רמת ההגנה עבור $1 שונתה</string>
@@ -677,6 +690,7 @@
   <string name="missing-aiv">המיזם הזה אינו משתמש בדף AIV</string>
   <string name="missing-page">אין דף בשם $1 בוויקי הזה</string>
   <string name="updating-wl">עדכון הרשימה הלבנה...</string>
+  <string name="waiting">ממתין...</string>
   <string name="feature-nfru">תכונה זו למשתמשים אנונימיים בלבד</string>
   <string name="report-no-user">לא נבחר שום משתמש לדיווח. נא לבחור משתמש תחילה.</string>
   <string name="welcome-show" fuzzy="true">להציג את ההודעה הזאת בפעם הבאה שתריץ את האגל</string>
