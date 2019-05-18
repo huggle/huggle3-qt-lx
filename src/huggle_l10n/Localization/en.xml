@@ -92,6 +92,8 @@
   <string name="config-queue-filter-ignore">Ignore (doesn&apos;t matter)</string>
   <string name="config-queue-filter-exclude">Exclude (must not be)</string>
   <string name="config-queue-filter-require">Require (must be)</string>
+  <string name="config-queue-modified-title">Queue modified</string>
+  <string name="config-queue-modified-text">You modified the queue, but didn't save it. If you continue, your changes will be discarded. Do you want to continue?</string>
   <string name="config-summ">Custom revert summaries for templates</string>
   <string name="config-title">Options</string>
   <string name="config-already-in-use">This shortcut is already being used by $1, please pick a different one</string>

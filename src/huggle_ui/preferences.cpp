@@ -230,7 +230,7 @@ void Huggle::Preferences::on_listWidget_itemSelectionChanged()
 
     if (this->queueModified)
     {
-        if (UiGeneric::MessageBox("Queue modified", "You modified the queue, but didn't save it. If you continue, your changes will be discarded. Do you want to continue?", MessageBoxStyleQuestion) != QMessageBox::Yes)
+        if (UiGeneric::MessageBox(_l("config-queue-modified-title"), _l("config-queue-modified-text"), MessageBoxStyleQuestion) != QMessageBox::Yes)
         {
             this->ui->listWidget->setCurrentRow(this->queueID);
             return;
@@ -738,7 +738,7 @@ void Huggle::Preferences::on_pushButton_OK_clicked()
 {
     if (this->queueModified)
     {
-        if (UiGeneric::MessageBox("Queue modified", "You modified the queue, but didn't save it. If you continue, your changes will be discarded. Do you want to continue?", MessageBoxStyleQuestion) != QMessageBox::Yes)
+        if (UiGeneric::MessageBox(_l("config-queue-modified-title"), _l("config-queue-modified-text"), MessageBoxStyleQuestion) != QMessageBox::Yes)
             return;
     }
     hcfg->UserConfig->AutomaticallyResolveConflicts = this->ui->checkBox_AutoResolveConflicts->isChecked();
