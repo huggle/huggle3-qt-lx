@@ -14,6 +14,7 @@
 * He7d3r
 * HenriqueCrang
 * Lokal Profil
+* Luig
 * Luk3
 * Macofe
 * Marcos dias de oliveira
@@ -119,6 +120,8 @@
   <string name="config-queue-filter-ignore">Ignorar (não importa)</string>
   <string name="config-queue-filter-exclude">Excluir (não deve ser)</string>
   <string name="config-queue-filter-require">Exigir (deve ser)</string>
+  <string name="config-queue-modified-title">Fila modificada</string>
+  <string name="config-queue-modified-text">Você modificou a queue, mas não a salvou. Se você continuar, suas alterações serão descartadas. Você quer continuar?</string>
   <string name="config-summ">Resumos personalizados de reversão para predefinições</string>
   <string name="config-title">Opções</string>
   <string name="config-already-in-use">Este atalho já é usado por $1, por favor escolha um diferente</string>

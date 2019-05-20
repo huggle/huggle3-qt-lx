@@ -129,6 +129,8 @@
   <string name="config-queue-filter-ignore">Игнорировать (не имеет значения)</string>
   <string name="config-queue-filter-exclude">Исключить (не должно быть)</string>
   <string name="config-queue-filter-require">Требуется (должно быть)</string>
+  <string name="config-queue-modified-title">Очередь изменена</string>
+  <string name="config-queue-modified-text">Вы изменили очередь, но не сохранили изменения. Хотите продолжить и, соответственно, отменить все изменения?</string>
   <string name="config-summ">Пользовательское описание откатов для шаблонов</string>
   <string name="config-title">Настройки</string>
   <string name="config-already-in-use">Это сочетание клавиш уже используется для $1, пожалуйста, выберите другое</string>

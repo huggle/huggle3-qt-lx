@@ -107,6 +107,8 @@
   <string name="config-queue-filter-ignore">تجاهل (لا يهم)</string>
   <string name="config-queue-filter-exclude">استبعاد (يجب أن لا يكون)</string>
   <string name="config-queue-filter-require">مطلوب (يجب أن يكون)</string>
+  <string name="config-queue-modified-title">تم تعديل قائمة الانتظار</string>
+  <string name="config-queue-modified-text">لقد قمت بتعديل قائمة الانتظار، لكنك لم تقم بحفظها؛ إذا تابعت، فسيتم تجاهل تغييراتك، هل تريد الاستمرار؟</string>
   <string name="config-summ">تخصيص استرجاع ملخصات القوالب</string>
   <string name="config-title">خيارات</string>
   <string name="config-already-in-use">هذا الاختصار قيد الاستخدام بالفعل بواسطة $1; يُرجَى اختيار اختصار آخر</string>

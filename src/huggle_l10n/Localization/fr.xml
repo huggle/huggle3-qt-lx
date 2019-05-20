@@ -115,6 +115,8 @@
   <string name="config-queue-filter-ignore">Ignorer (sans importance)</string>
   <string name="config-queue-filter-exclude">Exclure (ne doit pas exister)</string>
   <string name="config-queue-filter-require">Exiger (doit exister)</string>
+  <string name="config-queue-modified-title">File modifiée</string>
+  <string name="config-queue-modified-text">Vous avez modifié la file mais sans la sauvegarder. Si vous continuez, vos modifications seront effacées. Voulez-vous continuer ?</string>
   <string name="config-summ">Résumés personnalisés pour les révocations de modèles</string>
   <string name="config-title">Options</string>
   <string name="config-already-in-use">Ce raccourci est déjà utilisé par $1, veuillez en choisir un autre</string>

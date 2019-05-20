@@ -108,6 +108,8 @@
   <string name="config-queue-filter-ignore">Ignorieren (spielt keine Rolle)</string>
   <string name="config-queue-filter-exclude">Ausschließen (darf nicht sein)</string>
   <string name="config-queue-filter-require">Erfordern (muss sein)</string>
+  <string name="config-queue-modified-title">Warteschlange verändert</string>
+  <string name="config-queue-modified-text">Du hast die Warteschlange verändert, jedoch nicht gespeichert. Wenn du fortfährst, gehen deine Änderungen verloren. Möchtest du fortfahren?</string>
   <string name="config-summ">Benutzerdefinierte Zurücksetzungszusammenfassungen für Vorlagen</string>
   <string name="config-title">Einstellungen</string>
   <string name="config-already-in-use">Dieses Kürzel wird bereits von $1 verwendet. Bitte wähle ein anderes.</string>
