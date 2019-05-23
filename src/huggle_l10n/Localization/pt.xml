@@ -107,6 +107,8 @@
   <string name="config-queue-filter-ignore">Ignorar (não importa)</string>
   <string name="config-queue-filter-exclude">Excluir (não deve ser)</string>
   <string name="config-queue-filter-require">Requer (Deve ser)</string>
+  <string name="config-queue-modified-title">Fila modificada</string>
+  <string name="config-queue-modified-text">Modificou a fila, mas não gravou. Se continuar, as suas alterações serão descartadas. Quer continuar?</string>
   <string name="config-summ">Sumários personalizados de reversão para predefinições</string>
   <string name="config-title">Opções</string>
   <string name="config-already-in-use">Este atalho já está a ser utilizado por $1 , por favor, escolha um diferente</string>
@@ -205,7 +207,7 @@
   <string name="config-no-colon">Não pode utilizar : no nome de uma fila</string>
   <string name="config-notify-update">Verificar existência de atualizações</string>
   <string name="config-notify-beta">Verificar se existem versões beta disponíveis</string>
-  <string name="custommessage-title" fuzzy="true">Enviar uma mensagem personalizada para $1</string>
+  <string name="custommessage-title">Escrever uma mensagem a $1</string>
   <string name="custommessage-summary">Resumo de edição (o sufixo do Huggle será introduzido automaticamente)</string>
   <string name="custommessage-subject">Título</string>
   <string name="custommessage-menu">Enviar uma mensagem personalizada</string>
