@@ -1,0 +1,6 @@
+This folder contains scripts and code needed to compile Huggle into WebAssembly
+
+Resources:
+
+* https://developer.mozilla.org/en-US/docs/WebAssembly/Concepts
+* https://wiki.qt.io/Qt_for_WebAssembly
