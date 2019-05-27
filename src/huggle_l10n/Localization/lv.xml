@@ -81,6 +81,7 @@
   <string name="config-revert-wait">Atcelšanas aizture (sekundes)</string>
   <string name="config-revert">Atjaunot</string>
   <string name="config-skip">Izlaist</string>
+  <string name="config-bot-edits">Botu labojumi (b)</string>
   <string name="config-own-edits">Savi labojumi</string>
   <string name="config-new-page">Jauna lapa</string>
   <string name="config-friend">Draugs</string>
