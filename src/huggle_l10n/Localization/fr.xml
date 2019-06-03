@@ -709,7 +709,7 @@
   <string name="han-network">Réseau</string>
   <string name="han-send">Envoyer</string>
   <string name="error-loggedout">Le compte a été déconnecté, reconnexion...</string>
-  <string name="error-noresponse">Aucun réponse</string>
+  <string name="error-noresponse">Aucune réponse</string>
   <string name="error-pagemissing">La page n’existe pas</string>
   <string name="error-reloginfail">Échec de la reconnexion. Essayez peut-être de redémarrer Huggle</string>
   <string name="error-timeout">Le temps attente pour la requête est dépassé</string>
