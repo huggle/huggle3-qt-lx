@@ -8,6 +8,7 @@
 * Dalba
 * Dejavu
 * Ebraminio
+* FarsiNevis
 * Fatemi127
 * FuzzyDice
 * GMozafarian
@@ -642,7 +643,7 @@
   <string name="updater-update-available">نگارش تازه‌تری از هاگل موجود است: نگارش $1</string>
   <string name="updater-open-manualdownloadpage">باز کردن صفحه دانلود</string>
   <string name="updater-close">بستن</string>
-  <string name="updater-disable-notify">غیر فعال کردن به روز رسانی</string>
+  <string name="updater-disable-notify">غیرفعال کردن روزامدسازی</string>
   <string name="updater-wait">در حال آپیدت کردن هاگل لطفاً صبر کنید....</string>
   <string name="user-history-fail">امکان دریافت تاریخچه برای کاربر نبود: $1</string>
   <string name="userinfo-generic">اطلاعات کاربری</string>
@@ -753,7 +754,7 @@
   <string name="protectlog-fail">امکان دریافت سیاههٔ محافظت $1 نبود</string>
   <string name="protectlog-none">سیاهه حفاظتی برای $1 وجود ندارد</string>
   <string name="protectlog-progress">در حال بازیابی سیاههٔ حفاظت $1...</string>
-  <string name="saveuserconfig-progress">در حال به روز رسانی صفحه پیکربندی کاربر...</string>
+  <string name="saveuserconfig-progress">در حال روزامدسازی صفحه پیکربندی کاربر...</string>
   <string name="loadglobalconfig-fail">ناتوان در بارگیری صفحه پیکربندی سراسری</string>
   <string name="loadprojectconfig-fail">ناتوان در بارگیری صفحه پیکربندی سراسری</string>
   <string name="loaduserconfig-fail">امکان بارگیری صفحهٔ پیکربندی‌های کاربر نبود</string>
