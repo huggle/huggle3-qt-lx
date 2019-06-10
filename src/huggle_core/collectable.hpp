@@ -10,7 +10,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU Lesser General Public License for more details.
 
-// Copyright (c) Petr Bena 2014
+// Copyright (c) Petr Bena 2014 - 2019
 
 #ifndef COLLECTABLE_H
 #define COLLECTABLE_H

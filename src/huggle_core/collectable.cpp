@@ -10,7 +10,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU Lesser General Public License for more details.
 
-// Copyright (c) Petr Bena 2014
+// Copyright (c) Petr Bena 2014 - 2019
 
 #include "collectable.hpp"
 #include "exception.hpp"
@@ -29,8 +29,7 @@ QMutex *Collectable::WideLock = new QMutex(QMutex::Recursive);
 Collectable::Collectable()
 {
     Collectable::WideLock->lock();
-    this->CID = Collectable::LastCID;
-    Collectable::LastCID++;
+    this->CID = Collectable::LastCID++;
     Collectable::WideLock->unlock();
 #if PRODUCTION_BUILD == 1
     this->ReclaimingAllowed = true;

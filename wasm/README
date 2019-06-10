@@ -4,3 +4,6 @@ Resources:
 
 * https://developer.mozilla.org/en-US/docs/WebAssembly/Concepts
 * https://wiki.qt.io/Qt_for_WebAssembly
+
+Qt only support qmake for WASM building so there is a special .pro file in build folder
+that encapsulates all Huggle source code files and that can be used to build it

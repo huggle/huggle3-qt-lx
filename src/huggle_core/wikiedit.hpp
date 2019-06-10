@@ -89,7 +89,7 @@ namespace Huggle
 
             //! Creates a new empty wiki edit
             WikiEdit();
-            ~WikiEdit();
+            ~WikiEdit() override;
             //! This function is called by internals of huggle
             void PostProcess(); 
             WikiSite *GetSite();
