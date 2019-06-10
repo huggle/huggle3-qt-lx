@@ -111,7 +111,8 @@ void RequestProtect::Tick()
             }
         }
         // we no longer need the query we used
-        this->qRFPPage = nullptr;
+        // ^ that's not true, ProtectionType() is working with it, so don't delete it
+        // this->qRFPPage = nullptr;
         QString summary_ = this->page->GetSite()->GetProjectConfig()->RFPP_Summary;
         summary_.replace("$1", this->ProtectionType());
         summary_.replace("$2", this->page->PageName);
