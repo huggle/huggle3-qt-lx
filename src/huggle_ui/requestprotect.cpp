@@ -110,12 +110,11 @@ void RequestProtect::Tick()
                 PageText.insert(index, "\n\n" + report + "\n\n");
             }
         }
-        // we no longer need the query we used
-        // ^ that's not true, ProtectionType() is working with it, so don't delete it
-        // this->qRFPPage = nullptr;
         QString summary_ = this->page->GetSite()->GetProjectConfig()->RFPP_Summary;
         summary_.replace("$1", this->ProtectionType());
         summary_.replace("$2", this->page->PageName);
+        // we no longer need the query we used
+        this->qRFPPage = nullptr;
         this->ui->pushButton_RequestProtection->setText(_l("requesting"));
         // let's edit the page now
         if (this->page->GetSite()->GetProjectConfig()->RFPP_Section == 0)
