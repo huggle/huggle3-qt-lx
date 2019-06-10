@@ -4,9 +4,11 @@
 * Danmichaelo
 * Kingu
 * Tarjeimo
+* VukAnd12
 -->
 <resources>
   <string name="name">Norsk (bokmål)</string>
+  <string name="autorelog">Gjør dette uten å spørre neste gang</string>
   <string name="add">Legg til</string>
   <string name="cancel">Avbryt</string>
   <string name="clear">Fjern</string>
@@ -22,6 +24,7 @@
   <string name="ok">OK</string>
   <string name="remove">Fjern</string>
   <string name="rename">Gi nytt navn</string>
+  <string name="reload">Last på nytt</string>
   <string name="project">Prosjekt</string>
   <string name="warning">Advarsel</string>
   <string name="result">Resultat</string>
@@ -29,6 +32,7 @@
   <string name="show">Vis</string>
   <string name="undo">Angre</string>
   <string name="yes">Ja</string>
+  <string name="successful">Vellykket</string>
   <string name="summary">Sammendrag</string>
   <string name="id">ID</string>
   <string name="type">Type</string>
