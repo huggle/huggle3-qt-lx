@@ -231,7 +231,7 @@
   <string name="login-fail-css">Přihlášení selhalo na $1 nelze načíst uživatelské konfigurace, vytvořil jste huggle3.css ve svém uživatelském prostoru? (Chybí Special:MyPage/huggle3.css)</string>
   <string name="login-fail-enable-true">Přihlášení se nezdařilo na $1, protože nemáte enable:true ve své osobní konfiguraci</string>
   <string name="login-fail-no-info">Neúspěšné přihlášení k $1: Nelze načíst uživatelské informace: $2</string>
-  <string name="login-fail-parse-config">Přihlášení k $1 selhalo: Nelze zpracovat uživatelské nastavení. Viz debugovací log pro více informací.</string>
+  <string name="login-fail-parse-config">Přihlášení k $1 selhalo: Nelze zpracovat uživatelské nastavení. Vizte debugovací log pro více informací.</string>
   <string name="login-fail-user-data">Přihlášení k $1 se nezdařilo: Nelze načíst uživatelské informace. Dotaz na API nevrátil žádná data</string>
   <string name="login-fail-rollback-rights">Přihlášení k $1 se nezdařilo: Na tomto projektu nemáte oprávnění rollback.</string>
   <string name="login-failed-autoconfirm-rights">Přihlášení k $1 se nezdařilo: Na tomto projektu nejste schválený uživatel.</string>

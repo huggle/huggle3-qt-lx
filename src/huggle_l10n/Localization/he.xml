@@ -298,7 +298,7 @@
   <string name="login-fail">הכניסה נכשלה ב־$1</string>
   <string name="login-fail-with-reason">הכניסה לחשבון נכשלה (באתר $1). סיבה: $2</string>
   <string name="login-error-admin">השימוש בהאגל במיזם הזה דורש חשבון מפעיל.</string>
-  <string name="login-error-age" fuzzy="true">השימוש בהאגל במיזם הזה דורש חשבון לפחות בן $1 ימים.</string>
+  <string name="login-error-age">השימוש בהאגל במיזם הזה דורש מהחשבון שלך ותק של לפחות $1 ימים.</string>
   <string name="login-error-alldisabled">האגל כבוי כעת בכל המיזמים.</string>
   <string name="login-error-approval">השימוש בהאגל ב־$1 דורש אישור.</string>
   <string name="login-error-cancelled">בוטל.</string>
@@ -327,12 +327,12 @@
   <string name="main-menu-provider-resume">להתחיל ספק מחדש</string>
   <string name="provider-up">התחברות לזרם שינויים אחרונים ב־$2 באמצעות הספק: $1</string>
   <string name="main-no-reason">לא ניתנה סיבה על־ידי המשתמש</string>
-  <string name="main-restoring-slap" fuzzy="true">אני משחזר עריכה אחרת, נא להמתין...</string>
+  <string name="main-restoring-slap">עריכה אחרת כרגע משוחזרת, נא להמתין...</string>
   <string name="main-page">דף</string>
   <string name="main-user">משתמש</string>
   <string name="main-contribs">תרומות</string>
   <string name="main-history">היסטוריה</string>
-  <string name="main-new-messages" fuzzy="true">יש לך הודעת חדשה. נא לבחור מערכת -&gt; הצגת ההודעת החדשות או ללחוץ M כדי להציג אותן.</string>
+  <string name="main-new-messages">יש לך הודעת חדשה. נא לבחור מערכת -&gt; הצגת ההודעת החדשות, או ללחוץ M כדי להציג אותן.</string>
   <string name="main-space">שם הדף אינו יכול להסתיים ברווח. נא לתקן את שם הדף</string>
   <string name="main-system">מערכת</string>
   <string name="main-status-bar">עיבוד &lt;b&gt;$1&lt;/b&gt; עריכות ו־&lt;b&gt;$2&lt;/b&gt; שאילתות. משתמשים ברשימה הלבנה: &lt;b&gt;$3&lt;/b&gt; גודל התור: &lt;b&gt;$4&lt;/b&gt; סטטיסטיקה עבור $6: $5</string>
@@ -403,7 +403,7 @@
   <string name="main-page-patrol">סימון השינוי כבדוק</string>
   <string name="main-page-move">העברה...</string>
   <string name="main-page-flag-suspicious-edit">לסמן כעריכה חשודה (הפעולה הזאת תיתן למשתמש ציון ‎+1)</string>
-  <string name="main-page-flag-good-edit" fuzzy="true">סימון בתור עריכה טובה (הפעולה הזאת נותנת למשתמש ציון ‎-200)</string>
+  <string name="main-page-flag-good-edit">סימון בתור עריכה טובה (הפעולה הזאת גורעת מציון המשתמש 200 נקודות)</string>
   <string name="main-page-protect">הגנה</string>
   <string name="main-page-delete">מחיקה</string>
   <string name="main-page-load">טעינה</string>
@@ -641,17 +641,17 @@
   <string name="shortcut-next">מעבר לעריכה הבאה</string>
   <string name="shortcut-suspicious">לסמן את העריכה בתור חשודה</string>
   <string name="shortcut-back">ללכת לעריכה שהוצגה קודם</string>
-  <string name="shortcut-forward" fuzzy="true">ללכת לעריכה שטענת קודם וחזרת ממנו</string>
-  <string name="shortcut-warn" fuzzy="true">לשלוח אזהרה למשתמש בלי לשחזר את העריכה</string>
+  <string name="shortcut-forward">ללכת לעריכה שטענת בעבר וחזרת ממנו</string>
+  <string name="shortcut-warn">לשלוח אזהרה למשתמש בלי לשחזר את העריכה</string>
   <string name="shortcut-revert">לשחזר את העריכה</string>
   <string name="shortcut-x-raw">להריץ את הפריט ה־N בתפריט שחזור ואזהרה</string>
   <string name="shortcut-x-revert">להפעיל את הפריט ה־N בתפריט השחזור</string>
-  <string name="shortcut-watch" fuzzy="true">הכנסת הדף המוצג אל רשימת המעקב</string>
-  <string name="shortcut-unwatch" fuzzy="true">הסרת הדף המוצג מרשימת המעקב</string>
+  <string name="shortcut-watch">הכנסת הדף המוצג אל רשימת המעקב שלך</string>
+  <string name="shortcut-unwatch">הסרת הדף המוצג מרשימת המעקב שלך</string>
   <string name="shortcut-x-warn">להפעיל את הפריט ה־N בתפריט האזהרה</string>
   <string name="shortcut-good">לסמן את העריכה הנוכחית בתור טובה</string>
-  <string name="shortcut-open-in-huggle" fuzzy="true">פתיחת הדף שמוצג עכשיו</string>
-  <string name="shortcut-open" fuzzy="true">לפתוח את העריכה שמוצגת כעת בדפדפן</string>
+  <string name="shortcut-open-in-huggle">פותח את הדף שמוצג עכשיו</string>
+  <string name="shortcut-open">פותח את העריכה שמוצגת כעת בדפדפן</string>
   <string name="shortcut-talk">להציג את דף השיחה של המשתמש שעשה את השינוי הזה</string>
   <string name="shortcut-revert-agf-1">שחזור הגרסה האחרונה עם הנחת כוונה טובה</string>
   <string name="shortcut-browser-close-tab">סגירת לשונית של הדפדפן</string>
