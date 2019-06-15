@@ -82,7 +82,7 @@ PendingWarning *Warnings::WarnUser(const QString& warning_type, RevertQuery *dep
             {
                 // Ask user if they really want to send a warning here
                 if (!Hooks::ShowYesNoQuestion("Really send a warning?", "Edit to " + edit->Page->PageName + " on " + edit->GetSite()->Name + " by " +
-                                              edit->User->Username + " was is older than 1 day, do you really want to send them a warning message?", false))
+                                              edit->User->Username + " is older than 1 day, do you really want to send them a warning message?", false))
                     return nullptr;
             }
         }
