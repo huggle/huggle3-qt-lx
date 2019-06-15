@@ -260,6 +260,8 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
     AppendComment(&configuration, "If warning was sent less than N seconds ago it's considered too recent");
     AppendConf(&configuration, "recent-warning-time-span", this->RecentWarningTimeSpan);
     AppendConf(&configuration, "confirm-warning-on-very-old-edits", this->ConfirmWarningOnVeryOldEdits);
+    AppendComment(&configuration, "If true, the options above will not generate confirmation, but instead will be silently accepted (warning will not be sent)");
+    AppendConf(&configuration, "skip-warning-on-confirm", this->SkipWarningOnConfirm);
     // shortcuts
     QStringList shortcuts = Configuration::HuggleConfiguration->Shortcuts.keys();
     // we need to do this otherwise huggle may sort the items differently every time and spam wiki
@@ -615,6 +617,7 @@ bool UserConfiguration::ParseYAML(const QString &config, ProjectConfiguration *P
     this->ConfirmOnRecentWarning = YAML2Bool("confirm-on-recent-warning", yaml, this->ConfirmOnRecentWarning);
     this->ConfirmWarningOnVeryOldEdits = YAML2Bool("confirm-warning-on-very-old-edits", yaml, this->ConfirmWarningOnVeryOldEdits);
     this->RecentWarningTimeSpan = YAML2Int("recent-warning-time-span", yaml, this->RecentWarningTimeSpan);
+    this->SkipWarningOnConfirm = YAML2Bool("skip-warning-on-confirm", yaml, this->SkipWarningOnConfirm);
     // for now we do this only for home wiki but later we need to make it for every wiki
     if (IsHome)
     {
