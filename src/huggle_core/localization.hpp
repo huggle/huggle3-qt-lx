@@ -68,6 +68,8 @@ namespace Huggle
             QString Localize(const QString &key, const QStringList &parameters);
             QString Localize(const QString& key, const QString& parameter);
             QString Localize(const QString &key, const QString &par1, const QString &par2);
+            QString Localize(const QString &key, const QString &par1, const QString &par2, const QString &par3);
+            QString Localize(const QString &key, const QString &par1, const QString &par2, const QString &par3, const QString &par4);
             //! Check if key exists by looking it up in default language hash, returns true even if key doesn't exist in preferred language
             bool KeyExists(const QString& key);
 			

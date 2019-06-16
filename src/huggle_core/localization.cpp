@@ -246,6 +246,20 @@ QString Localizations::Localize(const QString &key, const QString &par1, const Q
     return Localize(key, list);
 }
 
+QString Localizations::Localize(const QString &key, const QString &par1, const QString &par2, const QString &par3)
+{
+    QStringList list;
+    list << par1 << par2 << par3;
+    return Localize(key, list);
+}
+
+QString Localizations::Localize(const QString &key, const QString &par1, const QString &par2, const QString &par3, const QString &par4)
+{
+    QStringList list;
+    list << par1 << par2 << par3 << par4;
+    return Localize(key, list);
+}
+
 bool Localizations::KeyExists(const QString& key)
 {
     return this->LocalizationData.at(Localizations::EnglishID)->Messages.contains(key);

@@ -670,6 +670,11 @@
   <string name="warning-level2">Level 2</string>
   <string name="warning-level3">Level 3</string>
   <string name="warning-level4">Level 4 (final)</string>
+  <string name="warning-confirm-title">Really send a warning?</string>
+  <string name="warning-confirm-old-edit">Edit to $1 on $2 by $3 is older than 1 day, do you really want to send them a warning message?</string>
+  <string name="warning-confirm-too-recent">Edit to $1 on $2 was made by $3 who received a message on their talk page very recently (probably some other warning template?) do you really want to send them another warning message?</string>
+  <string name="warning-too-old-skip">Not sending warning to $1 for their edit to $2 on $3 because it's older than 1 day</string>
+  <string name="warning-no-aiv-config">This user has already reached level 4 warning and there is no AIV supported on this wiki, you should block the user now</string>
   <string name="warning-warntype">Warning type:</string>
   <string name="warning-warnlog">Warnings for this user:</string>
   <string name="warning-submit">Send</string>

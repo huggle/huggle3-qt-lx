@@ -75,14 +75,13 @@ PendingWarning *Warnings::WarnUser(const QString& warning_type, RevertQuery *dep
             // The edit is older than 1 day, so let's either ignore the request to send warning or ask user if they really want to send it
             if (hcfg->UserConfig->SkipWarningOnConfirm)
             {
-                HUGGLE_LOG("Not sending warning to " + edit->User->Username + " for their edit to " + edit->Page->PageName + " on " + edit->GetSite()->Name +
-                           " because it's older than 1 day");
+                HUGGLE_LOG(_l("warning-too-old-skip", edit->User->Username, edit->Page->PageName, edit->GetSite()->Name));
                 return nullptr;
             } else
             {
                 // Ask user if they really want to send a warning here
-                if (!Hooks::ShowYesNoQuestion("Really send a warning?", "Edit to " + edit->Page->PageName + " on " + edit->GetSite()->Name + " by " +
-                                              edit->User->Username + " is older than 1 day, do you really want to send them a warning message?", false))
+                // en: Edit to $1 on $2 by $3 is older than 1 day, do you really want to send them a warning message?
+                if (!Hooks::ShowYesNoQuestion(_l("warning-confirm-title"), _l("warning-confirm-old-edit", edit->Page->PageName, edit->GetSite()->Name, edit->User->Username), false))
                     return nullptr;
             }
         }
@@ -102,9 +101,8 @@ PendingWarning *Warnings::WarnUser(const QString& warning_type, RevertQuery *dep
             } else
             {
                 // Ask user if they really want to send a warning here
-                if (!Hooks::ShowYesNoQuestion("Really send a warning?", "Edit to " + edit->Page->PageName + " on " + edit->GetSite()->Name + " was made by " +
-                                              edit->User->Username + " who received a message on their talk page very recently (probably some other warning template?)" +
-                                              " do you really want to send them another warning message?", false))
+                // en: Edit to $1 on $2 was made by $3 who received a message on their talk page very recently (probably some other warning template?) do you really want to send them another warning message?
+                if (!Hooks::ShowYesNoQuestion(_l("warning-confirm-title"), _l("warning-confirm-too-recent", edit->Page->PageName, edit->GetSite()->Name, edit->User->Username), false))
                     return nullptr;
             }
         }
@@ -125,8 +123,8 @@ PendingWarning *Warnings::WarnUser(const QString& warning_type, RevertQuery *dep
         if (!edit->GetSite()->GetProjectConfig()->AIV)
         {
             // there is no AIV function for this wiki
-            Syslog::HuggleLogs->WarningLog("This user has already reached level 4 warning and there is no AIV "\
-                                           "supported on this wiki, you should block the user now");
+            // en: This user has already reached level 4 warning and there is no AIV supported on this wiki, you should block the user now
+            Syslog::HuggleLogs->WarningLog(_l("warning-no-aiv-config"));
             return nullptr;
         }
 
