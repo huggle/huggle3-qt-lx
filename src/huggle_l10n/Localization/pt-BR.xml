@@ -698,6 +698,7 @@
   <string name="warning-level2">Nível 2</string>
   <string name="warning-level3">Nível 3</string>
   <string name="warning-level4">Nível 4 (final)</string>
+  <string name="warning-confirm-title">Realmente enviar um aviso?</string>
   <string name="warning-warntype">Tipo de aviso:</string>
   <string name="warning-warnlog">Avisos a este usuário:</string>
   <string name="warning-submit">Enviar</string>

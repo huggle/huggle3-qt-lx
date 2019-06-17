@@ -177,7 +177,7 @@
   <string name="config-message-notification">نمایش یک اطلاعیه زمانی که پیام تازه‌ای در صفحهٔ بحث‌تان دریافت کردید</string>
   <string name="config-warning-api">نمایش هشدارهای کوئری‌های رابط برنامه‌نویسی</string>
   <string name="config-title-diff">عنوان صفحه در هر تفاوت (متن بزرگ که فقط عنوان صفحه را در بالای هر تفاوت نشان می‌دهد)</string>
-  <string name="config-updates">بررسی برای به‌روزرسانی‌ها</string>
+  <string name="config-updates">بررسی برای روزامدسازی‌ها</string>
   <string name="config-reset-menu">صورتبندی پروژه (فهرست انواع هشدارها) پس از آخرین بازدید شما تغییر کرده و میانبرها برای منو بازشو (برگرداندن و هشدار، ...) بازنشانی شده است.</string>
   <string name="config-beta">بررسی برای نگارش‌های آزمایشی</string>
   <string name="config-html-messages">اچ‌ای‌ان می‌تواند پیام‌های اچ‌تی‌ام‌ال را اجرا کند (توجه: ممکن است خطرناک باشد)</string>

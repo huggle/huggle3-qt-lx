@@ -684,6 +684,7 @@
   <string name="warning-level2">等級 2</string>
   <string name="warning-level3">等級 3</string>
   <string name="warning-level4">等級 4 (最高)</string>
+  <string name="warning-confirm-title">確定發送警告？</string>
   <string name="warning-warntype">警告類型：</string>
   <string name="warning-warnlog">給此使用者的警告：</string>
   <string name="warning-submit">傳送</string>

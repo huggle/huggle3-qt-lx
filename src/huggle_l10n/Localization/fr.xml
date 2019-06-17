@@ -693,6 +693,11 @@
   <string name="warning-level2">Niveau 2</string>
   <string name="warning-level3">Niveau 3</string>
   <string name="warning-level4">Niveau 4 (final)</string>
+  <string name="warning-confirm-title">Vraiment envoyer un avertissement ?</string>
+  <string name="warning-confirm-old-edit">La modification de $1 le $2 par $3 date de plus d’un jour, voulez-vous vraiment leur envoyer un message d’avertissement ?</string>
+  <string name="warning-confirm-too-recent">La modification de $1 le $2 a été faite par $3 qui a reçu un message sur sa page de discussion très récemment (sans doute un autre modèle d’avertissement ?) ; voulez-vous vraiment lui envoyer un autre message d’avertissement ?</string>
+  <string name="warning-too-old-skip">Ne pas envoyer d’avertissement à $1 pour leur modification sur $2 le $3 parce qu’elle date de plus d’un jour</string>
+  <string name="warning-no-aiv-config">Cet utilisateur a déjà atteint le niveau d’avertissement 4 et il n’y a pas d’AIV supporté pour ce wiki ; vous devriez le bloquer maintenant</string>
   <string name="warning-warntype">Type d’avertissement :</string>
   <string name="warning-warnlog">Avertissements pour cet utilisateur :</string>
   <string name="warning-submit">Envoyer</string>

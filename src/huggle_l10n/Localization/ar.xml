@@ -685,6 +685,11 @@
   <string name="warning-level2">المستوى 2</string>
   <string name="warning-level3">المستوى 3</string>
   <string name="warning-level4">المستوى 4 (النهائي)</string>
+  <string name="warning-confirm-title">إرسال تحذير حقا؟</string>
+  <string name="warning-confirm-old-edit">تعديل ل$1 في $2 بواسطة $3 أقدم من يوم واحد، هل تريد حقا إرسال رسالة تحذير إليهم؟</string>
+  <string name="warning-confirm-too-recent">تم إجراء التعديل ل$1 في $2 من قبل $3 الذي تلقى رسالة على صفحة نقاشه مؤخرا (ربما بعض قوالب التحذير الأخرى؟) هل تريد حقا إرسال رسالة تحذير أخرى إليهم؟</string>
+  <string name="warning-too-old-skip">عدم إرسال تحذير إلى $1 لتعديله ل$2 على $3 دولارات لأن عمره أكبر من يوم واحد</string>
+  <string name="warning-no-aiv-config">وصل هذا المستخدم بالفعل إلى تحذير من المستوى 4 ولا يوجد AIV مدعوم على هذه الويكي؛ يجب عليك منع المستخدم الآن</string>
   <string name="warning-warntype">التحذير من النوع:</string>
   <string name="warning-warnlog">تحذيرات لهذا المستخدم:</string>
   <string name="warning-submit">إرسال</string>
