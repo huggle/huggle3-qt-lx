@@ -27,8 +27,8 @@ namespace Huggle
             Q_OBJECT
         public:
             WebserverQuery();
-            ~WebserverQuery();
-            QString QueryTargetToString() { return this->URL; }
+            ~WebserverQuery() override;
+            QString QueryTargetToString() override { return this->URL; }
             //! Whether the query will submit parameters using POST data
             bool UsingPOST;
             //! This is an url of api request, you probably don't want to change it unless
@@ -37,9 +37,9 @@ namespace Huggle
             //! Parameters for action, for example page title
             QString Parameters;
             //! Run
-            void Process();
+            void Process() override;
             //! Terminate the query
-            void Kill();
+            void Kill() override;
         private:
             QNetworkReply *reply = nullptr;
             QByteArray temp;

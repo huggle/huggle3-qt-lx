@@ -51,7 +51,7 @@ void EditBarItem::mousePressEvent(QMouseEvent *event)
     }
 }
 
-void EditBarItem::SetText(QString text)
+void EditBarItem::SetText(const QString& text)
 {
     this->ui->label->setToolTip(text);
 }
@@ -64,7 +64,7 @@ void EditBarItem::SetFrame(Qt::GlobalColor colour)
     this->setPalette(px);
 }
 
-void EditBarItem::SetPixmap(QString path)
+void EditBarItem::SetPixmap(const QString& path)
 {
     this->ui->label->setPixmap(QPixmap(path));
 }

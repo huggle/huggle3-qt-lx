@@ -31,27 +31,27 @@ namespace Huggle
     class HUGGLE_EX_CORE HuggleOption
     {
         public:
-	    /*!
-	     * \brief HuggleOption Creates a new instance of the HuggleOption class
-	     * \param name The name of the user option
-         * \param value The value of the option, can hold the most common Qt variable types
-         * \param isdefault True if option is same as it was
-	     */
+            /*!
+             * \brief HuggleOption Creates a new instance of the HuggleOption class
+             * \param name The name of the user option
+             * \param value The value of the option, can hold the most common Qt variable types
+             * \param isdefault True if option is same as it was
+             */
             HuggleOption(QString name, QVariant value, bool isdefault);
-	    /*!
-	     * \brief IsDefault Returns if user option is marked as default
-	     * \returns State of isDefault
-	     */
+            /*!
+             * \brief IsDefault Returns if user option is marked as default
+             * \returns State of isDefault
+             */
             bool IsDefault()  { return this->isDefault; }
             /*!
-	     * \brief SetVariant Sets a new value of the HuggleOption
-	     * \param value The new state of the option, can hold the most common Qt variable types
-	     */
+             * \brief SetVariant Sets a new value of the HuggleOption
+             * \param value The new state of the option, can hold the most common Qt variable types
+             */
             void SetVariant(QVariant value);
-	    /*!
-	     * \brief GetVariant Returns the actual value for this user option
-	     * \returns The value of the option, can hold the most common Qt variable types
-	     */
+            /*!
+             * \brief GetVariant Returns the actual value for this user option
+             * \returns The value of the option, can hold the most common Qt variable types
+             */
             QVariant GetVariant()  { return this->Value; }
             QString Name; ///< The name of the option
 

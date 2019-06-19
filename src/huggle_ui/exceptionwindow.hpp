@@ -37,7 +37,7 @@ namespace Huggle
 
         public:
             explicit ExceptionWindow(Exception *e);
-            ~ExceptionWindow();
+            ~ExceptionWindow() override;
 
         private slots:
             void on_pushButton_clicked();

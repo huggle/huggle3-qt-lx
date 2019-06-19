@@ -29,29 +29,29 @@ namespace Huggle
             Q_OBJECT
         public:
             HuggleFeedProviderXml(WikiSite *site);
-            ~HuggleFeedProviderXml();
-            bool Start();
-            bool IsPaused();
-            int GetID() { return HUGGLE_FEED_PROVIDER_XMLRPC; }
-            void Resume();
-            void Pause();
-            bool IsWorking();
-            void Stop();
-            bool Restart() { this->Stop(); return this->Start(); }
-            bool ContainsEdit();
-            int FeedPriority() { return 100; }
-            QString GetError();
-            unsigned long long GetBytesReceived();
-            unsigned long long GetBytesSent();
-            WikiEdit *RetrieveEdit();
-            QString ToString();
+            ~HuggleFeedProviderXml() override;
+            bool Start() override;
+            bool IsPaused() override;
+            int GetID() override { return HUGGLE_FEED_PROVIDER_XMLRPC; }
+            void Resume() override;
+            void Pause() override;
+            bool IsWorking() override;
+            void Stop() override;
+            bool Restart() override { this->Stop(); return this->Start(); }
+            bool ContainsEdit() override;
+            int FeedPriority() override { return 100; }
+            QString GetError() override;
+            unsigned long long GetBytesReceived() override;
+            unsigned long long GetBytesSent() override;
+            WikiEdit *RetrieveEdit() override;
+            QString ToString() override;
         private slots:
             void OnError(QAbstractSocket::SocketError er);
             void OnReceive();
             void OnConnect();
             void OnPing();
         protected:
-            void write(QString text);
+            void write(const QString& text);
             void insertEdit(WikiEdit *edit);
             void processBufs();
             QStringList bufferedLines;

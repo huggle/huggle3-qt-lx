@@ -43,26 +43,25 @@ namespace Huggle
             Q_OBJECT
         public:
             HuggleFeedProviderIRC(WikiSite *site);
-            ~HuggleFeedProviderIRC();
-            libircclient::Network *Network;
-            bool Start();
-            bool IsWorking();
-            void Stop();
-            bool Restart() { this->Stop(); return this->Start(); }
+            ~HuggleFeedProviderIRC() override;
+            bool Start() override;
+            bool IsWorking() override;
+            void Stop() override;
+            bool Restart() override { this->Stop(); return this->Start(); }
             void InsertEdit(WikiEdit *edit);
             void ParseEdit(QString line);
-            bool IsStopped();
-            int FeedPriority() { return 10; }
-            int GetID() { return HUGGLE_FEED_PROVIDER_IRC; }
-            bool ContainsEdit();
-            WikiEdit *RetrieveEdit();
-            bool IsPaused() { return isPaused; }
-            void Pause() { this->isPaused = true; }
-            void Resume() { this->isPaused = false; }
-            unsigned long long GetBytesReceived();
-            unsigned long long GetBytesSent();
+            bool IsStopped() override;
+            int FeedPriority() override { return 10; }
+            int GetID() override { return HUGGLE_FEED_PROVIDER_IRC; }
+            bool ContainsEdit() override;
+            WikiEdit *RetrieveEdit() override;
+            bool IsPaused() override { return this->isPaused; }
+            void Pause() override { this->isPaused = true; }
+            void Resume() override { this->isPaused = false; }
+            unsigned long long GetBytesReceived() override;
+            unsigned long long GetBytesSent() override;
             bool IsConnected();
-            QString ToString();
+            QString ToString() override;
         private slots:
             void OnIRCChannelMessage(libircclient::Parser *px);
             void OnConnected();
@@ -72,6 +71,7 @@ namespace Huggle
             bool isConnected;
             QList<WikiEdit*> editBuffer;
             bool isPaused;
+            libircclient::Network *network;
     };
 }
 

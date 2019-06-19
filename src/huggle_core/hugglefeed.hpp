@@ -49,7 +49,7 @@ namespace Huggle
             static unsigned long long GetTotalBytesSent();
 
             HuggleFeed(WikiSite *site);
-            virtual ~HuggleFeed();
+             ~HuggleFeed() override;
             //! Return true if this feed is operational or not
             virtual bool IsWorking() { return false; }
             //! Restart the feed engine

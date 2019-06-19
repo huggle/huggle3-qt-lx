@@ -33,20 +33,20 @@ namespace Huggle
             Q_OBJECT
 
         public:
-            explicit EditForm(WikiPage *wp, QWidget *parent = 0);
-            ~EditForm();
-            void Failure(QString reason);
-            void RenderSource(QString code, QString time);
+            explicit EditForm(WikiPage *wp, QWidget *parent = nullptr);
+            ~EditForm() override;
+            void Failure(const QString& reason);
+            void RenderSource(const QString& code, const QString &time);
             void DisplayPreview(QString html);
             void FinishEdit();
-            void FailEdit(QString reason);
+            void FailEdit(const QString& reason);
 
         private slots:
             void on_pushButton_2_clicked();
             void on_pushButton_clicked();
 
         private:
-            void renderText(QString text);
+            void renderText(const QString& text);
             Collectable_SmartPtr<ApiQuery> parseQuery;
             Collectable_SmartPtr<EditQuery> editQuery;
             Collectable_SmartPtr<ApiQuery> contentQuery;

@@ -32,7 +32,7 @@ using namespace Huggle;
 
 void ContentFail(Query *query)
 {
-    Collectable_SmartPtr<ApiQuery> api_query = (ApiQuery*)query;
+    Collectable_SmartPtr<ApiQuery> api_query = dynamic_cast<ApiQuery*>(query);
     api_query->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
     EditForm *f = (EditForm*)query->CallbackOwner;
     f->Failure(query->GetFailureReason());
@@ -40,7 +40,7 @@ void ContentFail(Query *query)
 
 void ContentFinish(Query *query)
 {
-    Collectable_SmartPtr<ApiQuery> api_query = (ApiQuery*)query;
+    Collectable_SmartPtr<ApiQuery> api_query = dynamic_cast<ApiQuery*>(query);
     api_query->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
     EditForm *f = (EditForm*)query->CallbackOwner;
     bool failed = false;
@@ -59,7 +59,7 @@ EditForm::EditForm(WikiPage *wp, QWidget *parent) : HW("editform", this, parent)
 {
     this->ui->setupUi(this);
     // Naughty hack
-    QFont font("Monospace, \"Andale Mono\", \"Courier New\";");
+    QFont font(R"(Monospace, "Andale Mono", "Courier New";)");
     font.setStyleHint(QFont::TypeWriter);
     this->ui->textEdit->setFont(font);
     this->page = new WikiPage(wp);
@@ -90,13 +90,13 @@ EditForm::~EditForm()
     delete this->page;
 }
 
-void EditForm::Failure(QString reason)
+void EditForm::Failure(const QString& reason)
 {
     UiGeneric::pMessageBox(this, "Error", reason, MessageBoxStyleError, true);
     this->close();
 }
 
-void EditForm::RenderSource(QString code, QString time)
+void EditForm::RenderSource(const QString& code, const QString& time)
 {
     this->ui->checkBox->setEnabled(true);
     this->ui->lineEdit->setEnabled(true);
@@ -122,7 +122,7 @@ void EditForm::FinishEdit()
     this->close();
 }
 
-void EditForm::FailEdit(QString reason)
+void EditForm::FailEdit(const QString& reason)
 {
     UiGeneric::pMessageBox(this, "Error", "Unable to edit page: " + reason, MessageBoxStyleError);
     this->webView->RenderHtml(":-(");
@@ -135,7 +135,7 @@ void EditForm::FailEdit(QString reason)
 
 void EditFail(Query *query)
 {
-    Collectable_SmartPtr<EditQuery> edit_query = (EditQuery*)  query;
+    Collectable_SmartPtr<EditQuery> edit_query = dynamic_cast<EditQuery*>(query);
     edit_query->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
     EditForm *f = (EditForm*)query->CallbackOwner;
     f->FailEdit(query->GetFailureReason());
@@ -143,7 +143,7 @@ void EditFail(Query *query)
 
 void EditSuccess(Query *query)
 {
-    Collectable_SmartPtr<EditQuery> edit_query = (EditQuery*)  query;
+    Collectable_SmartPtr<EditQuery> edit_query = dynamic_cast<EditQuery*>(query);
     edit_query->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
     EditForm *f = (EditForm*)query->CallbackOwner;
     f->FinishEdit();
@@ -175,7 +175,7 @@ void Huggle::EditForm::on_pushButton_2_clicked()
 
 void ParseFail(Query *query)
 {
-    Collectable_SmartPtr<ApiQuery> api_query = (ApiQuery*)query;
+    Collectable_SmartPtr<ApiQuery> api_query = dynamic_cast<ApiQuery*>(query);
     api_query->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
     EditForm *f = (EditForm*)query->CallbackOwner;
     f->DisplayPreview("Error: " + api_query->GetFailureReason());
@@ -183,7 +183,7 @@ void ParseFail(Query *query)
 
 void ParseFinish(Query *query)
 {
-    Collectable_SmartPtr<ApiQuery> api_query = (ApiQuery*)query;
+    Collectable_SmartPtr<ApiQuery> api_query = dynamic_cast<ApiQuery*>(query);
     api_query->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
     EditForm *f = (EditForm*)query->CallbackOwner;
     QString text = api_query->GetApiQueryResult()->GetNode("text")->Value;
@@ -207,7 +207,7 @@ void Huggle::EditForm::on_pushButton_clicked()
     this->parseQuery->Process();
 }
 
-void EditForm::renderText(QString text)
+void EditForm::renderText(const QString& text)
 {
     this->webView->RenderHtml(Resources::GetHtmlHeader(this->page->GetSite()) + text + Resources::HtmlFooter);
 }

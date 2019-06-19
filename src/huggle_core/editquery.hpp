@@ -28,11 +28,11 @@ namespace Huggle
     {
         public:
             EditQuery();
-            ~EditQuery();
-            void Kill();
-            void Process();
-            bool IsProcessed();
-            void Restart();
+            ~EditQuery() override;
+            void Kill() override;
+            void Process() override;
+            bool IsProcessed() override;
+            void Restart() override;
             bool Append = false;
             bool Prepend = false;
             bool InsertTargetToWatchlist = false;

@@ -36,7 +36,7 @@ namespace Huggle
             Q_OBJECT
         public:
             explicit BlockUserForm(QWidget *parent = nullptr);
-            ~BlockUserForm();
+            ~BlockUserForm() override;
             /*!
             * \brief SetWikiUser Select the user/IP to block, display block expiry options from site
             * \param User User to select

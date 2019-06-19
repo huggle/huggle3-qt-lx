@@ -29,7 +29,7 @@ namespace Huggle
             Q_OBJECT
         public:
             explicit AboutForm(QWidget *parent = nullptr);
-            ~AboutForm();
+            ~AboutForm() override;
         private slots:
             void on_pushButton_clicked();
             void on_label_8_linkActivated(const QString &link);
@@ -45,7 +45,7 @@ namespace Huggle
             void on_label_4_linkHovered(const QString &link);
             void on_label_14_linkActivated(const QString &link);
         private:
-                Ui::AboutForm *ui;
+            Ui::AboutForm *ui;
     };
 }
 

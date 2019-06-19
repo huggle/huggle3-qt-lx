@@ -81,7 +81,7 @@ namespace Huggle
             static QNetworkAccessManager *NetworkManager;
 
             Query();
-            virtual ~Query();
+            ~Query() override;
             //! Returns true in case that query is processed which means that it's finished and it's not going to
             //! do anything on its own unless you restart it
             virtual bool IsProcessed();

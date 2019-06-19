@@ -50,8 +50,8 @@ namespace Huggle
             WikiEdit *RetrieveEdit() override;
             QString ToString() override;
         private:
-            void processData(QString data);
-            void processEdit(QDomElement item);
+            void processData(const QString& data);
+            void processEdit(const QDomElement& item);
             void processLog(const QDomElement& item);
             void insertEdit(WikiEdit *edit);
             bool isPaused = false;

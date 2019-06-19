@@ -42,17 +42,17 @@ namespace Huggle
 
             RevertQuery(WikiSite *site);
             RevertQuery(WikiEdit *edit, WikiSite *site);
-            ~RevertQuery();
-            void Process();
-            void Restart();
+            ~RevertQuery() override;
+            void Process() override;
+            void Restart() override;
             //! In case you want to revert only last edit, set this to true
             void SetLast();
-            void Kill();
-            QString QueryTargetToString();
-            bool IsProcessed();
+            void Kill() override;
+            QString QueryTargetToString() override;
+            bool IsProcessed() override;
             void SetUsingSR(bool software_rollback);
             bool IsUsingSR();
-            WikiSite *GetSite();
+            WikiSite *GetSite() override;
             WikiEdit *GetEdit();
             //! Time when a query was issued (this is set externaly)
             QDateTime Date;
@@ -63,18 +63,18 @@ namespace Huggle
         public slots:
             void OnTick();
         private:
-            void DisplayError(QString error, QString reason = "");
+            void displayError(QString error, QString reason = "");
             QString getCustomRevertStatus(bool *failed);
-            void Preflight();
-            void CheckPreflight();
-            bool CheckRevert();
-            void Cancel();
-            bool ProcessRevert();
-            void Rollback();
-            void Revert();
-            void Exit();
+            void preflightCheck();
+            void evaluatePreflightCheck();
+            bool evaluateRevertQueryResults();
+            void cancelRevert();
+            bool evaluateRevert();
+            void executeRollback();
+            void executeRevert();
+            void freeResources();
             //! Whether software rollback should be used instead of regular rollback
-            bool UsingSR = false;
+            bool usingSR = false;
             Collectable_SmartPtr<ApiQuery> qPreflight;
             Collectable_SmartPtr<ApiQuery> qRevert;
             Collectable_SmartPtr<ApiQuery> qHistoryInfo;
@@ -83,9 +83,9 @@ namespace Huggle
             Collectable_SmartPtr<WikiEdit> editToBeReverted;
             QTimer *timer = nullptr;
             //! Revert only and only last edit
-            bool OneEditOnly = false;
-            bool RollingBack = false;
-            bool PreflightFinished = false;
+            bool oneEditOnly = false;
+            bool rollingBack = false;
+            bool preflightFinished = false;
             int SR_RevID;
             int SR_Depth;
             QString SR_Target = "";
@@ -97,8 +97,8 @@ namespace Huggle
             return (this->editToBeReverted->GetSite());
 
         // we know the site and despite it may be inconsistent we return it because that is what
-        // programmer wanted (by inconsistent I mean the query could have different site
-        // than the edit now had) :o
+        // programmer wanted (by inconsistent I mean the revert query could have different site
+        // than the edit has)
         return this->Site;
     }
 }

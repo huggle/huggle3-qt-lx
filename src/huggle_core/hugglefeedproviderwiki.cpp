@@ -119,7 +119,7 @@ unsigned long long HuggleFeedProviderWiki::GetBytesSent()
 
 WikiEdit *HuggleFeedProviderWiki::RetrieveEdit()
 {
-    if (this->editBuffer->size() < 1)
+    if (this->editBuffer->empty())
     {
         return nullptr;
     }
@@ -133,7 +133,7 @@ QString HuggleFeedProviderWiki::ToString()
     return "Wiki";
 }
 
-void HuggleFeedProviderWiki::processData(QString data)
+void HuggleFeedProviderWiki::processData(const QString& data)
 {
     //QStringList lines = data.split("\n");
     QDomDocument d;
@@ -194,7 +194,7 @@ void HuggleFeedProviderWiki::processData(QString data)
     }
 }
 
-void HuggleFeedProviderWiki::processEdit(QDomElement item)
+void HuggleFeedProviderWiki::processEdit(const QDomElement& item)
 {
     WikiEdit *edit = new WikiEdit();
     edit->Page = new WikiPage(item.attribute("title"), this->GetSite());

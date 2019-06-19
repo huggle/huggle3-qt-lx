@@ -61,8 +61,7 @@ bool HuggleFeedProviderXml::Start()
         Syslog::HuggleLogs->ErrorLog("There is no XmlRcs provider for " + this->GetSite()->Name);
         return false;
     }
-    if (this->networkSocket != nullptr)
-        delete this->networkSocket;
+    delete this->networkSocket;
     this->networkSocket = new QTcpSocket();
     connect(this->networkSocket, SIGNAL(readyRead()), this, SLOT(OnReceive()));
     connect(this->networkSocket, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(OnError(QAbstractSocket::SocketError)));
@@ -143,7 +142,7 @@ unsigned long long HuggleFeedProviderXml::GetBytesSent()
 
 WikiEdit *HuggleFeedProviderXml::RetrieveEdit()
 {
-    if (this->buffer.size() == 0)
+    if (this->buffer.empty())
         return nullptr;
 
     WikiEdit *edit = this->buffer.at(0);
@@ -210,7 +209,7 @@ void HuggleFeedProviderXml::OnConnect()
     this->write("S " + this->GetSite()->XmlRcsName);
 }
 
-void HuggleFeedProviderXml::write(QString text)
+void HuggleFeedProviderXml::write(const QString& text)
 {
     // check if network socket isn't nullptr
     if (!this->networkSocket)

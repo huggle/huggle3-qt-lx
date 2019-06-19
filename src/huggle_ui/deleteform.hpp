@@ -36,7 +36,7 @@ namespace Huggle
             Q_OBJECT
         public:
             explicit DeleteForm(QWidget *parent = nullptr);
-            ~DeleteForm();
+            ~DeleteForm() override;
             /*!
              * \brief SetPage sets a page to delete
              * \param Page Pointer to a page to delete

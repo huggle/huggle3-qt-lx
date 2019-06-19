@@ -49,7 +49,7 @@ RevertQuery::~RevertQuery()
     this->HI.Delete();
 }
 
-void RevertQuery::DisplayError(QString error, QString reason)
+void RevertQuery::displayError(QString error, QString reason)
 {
     if (reason.isEmpty())
         reason = error;
@@ -112,7 +112,7 @@ void RevertQuery::Process()
     // decref this query while timer is still running we don't run to segfault
     this->RegisterConsumer(HUGGLECONSUMER_REVERTQUERYTMR);
     this->CustomStatus = _l("revert-preflightcheck");
-    this->Preflight();
+    this->preflightCheck();
 }
 
 void RevertQuery::Restart()
@@ -123,8 +123,8 @@ void RevertQuery::Restart()
 
 void RevertQuery::SetLast()
 {
-    this->OneEditOnly = true;
-    this->UsingSR = true;
+    this->oneEditOnly = true;
+    this->usingSR = true;
 }
 
 void RevertQuery::Kill()
@@ -153,10 +153,10 @@ void RevertQuery::Kill()
     }
 
     this->qRevert.Delete();
-    this->Exit();
+    this->freeResources();
     this->CustomStatus = "";
-    this->PreflightFinished = false;
-    this->RollingBack = false;
+    this->preflightFinished = false;
+    this->rollingBack = false;
 }
 
 WikiEdit *RevertQuery::GetEdit()
@@ -170,22 +170,22 @@ bool RevertQuery::IsProcessed()
         return false;
     if (this->status == StatusDone || this->status == StatusInError || this->status == StatusKilled)
         return true;
-    if (!this->PreflightFinished)
+    if (!this->preflightFinished)
         return false;
-    return this->CheckRevert();
+    return this->evaluateRevertQueryResults();
 }
 
 void RevertQuery::SetUsingSR(bool software_rollback)
 {
-    if (this->OneEditOnly)
+    if (this->oneEditOnly)
         return;
-    this->UsingSR = software_rollback;
+    this->usingSR = software_rollback;
     return;
 }
 
 bool RevertQuery::IsUsingSR()
 {
-    return this->UsingSR;
+    return this->usingSR;
 }
 
 void RevertQuery::OnTick()
@@ -194,14 +194,14 @@ void RevertQuery::OnTick()
         return;
     if (this->status != StatusDone)
     {
-        if (!this->PreflightFinished)
+        if (!this->preflightFinished)
         {
-            this->CheckPreflight();
+            this->evaluatePreflightCheck();
             return;
         }
-        if (!this->RollingBack)
+        if (!this->rollingBack)
         {
-            this->Rollback();
+            this->executeRollback();
             return;
         }
     }
@@ -245,14 +245,14 @@ QString RevertQuery::GetCustomRevertStatus(QueryResult *result_data, WikiSite *s
     return "Reverted";
 }
 
-void RevertQuery::Preflight()
+void RevertQuery::preflightCheck()
 {
     // check if there is more edits in queue
     int index=0;
     bool failed = false;
-    bool MadeBySameUser = true;
+    bool made_by_same_user = true;
     // we only need to check this in case we aren't to revert last edit only
-    if (!this->OneEditOnly)
+    if (!this->oneEditOnly)
     {
         WikiEdit::Lock_EditList->lock();
         while (index < WikiEdit::EditList.count())
@@ -267,7 +267,7 @@ void RevertQuery::Preflight()
                 if (w->Time > this->editToBeReverted->Time)
                 {
                     if (!w->User->EqualTo(this->editToBeReverted->User))
-                        MadeBySameUser = false;
+                        made_by_same_user = false;
                     failed = true;
                 }
             }
@@ -278,7 +278,7 @@ void RevertQuery::Preflight()
     {
         if (Configuration::HuggleConfiguration->UserConfig->AutomaticallyResolveConflicts)
         {
-            if (MadeBySameUser && Configuration::HuggleConfiguration->UserConfig->RevertNewBySame)
+            if (made_by_same_user && Configuration::HuggleConfiguration->UserConfig->RevertNewBySame)
             {
                 // Conflict resolved: revert all edits including new edits made by same users
                 this->IgnorePreflightCheck = true;
@@ -287,13 +287,13 @@ void RevertQuery::Preflight()
             {
                 // Conflict resolved: do not perform any action - there are newer edits
                 Huggle::Syslog::HuggleLogs->Log(_l("cr-stop-new-edit", this->editToBeReverted->Page->PageName));
-                this->Cancel();
+                this->cancelRevert();
                 return;
             }
         } else
         {
             QString text;
-            if (MadeBySameUser)
+            if (made_by_same_user)
             {
                 // There are new edits to " + PageName + ", are you sure you want to revert them?
                 text = (_l("cr-message-new", this->editToBeReverted->Page->PageName));
@@ -305,7 +305,7 @@ void RevertQuery::Preflight()
             }
             if (!Hooks::ShowYesNoQuestion(_l("revert-preflightcheck"), text, false))
             {
-                this->Cancel();
+                this->cancelRevert();
                 return;
             } else
             {
@@ -320,11 +320,11 @@ void RevertQuery::Preflight()
     this->qPreflight->Process();
 }
 
-void RevertQuery::CheckPreflight()
+void RevertQuery::evaluatePreflightCheck()
 {
-    if (this->OneEditOnly || this->IgnorePreflightCheck)
+    if (this->oneEditOnly || this->IgnorePreflightCheck)
     {
-        this->PreflightFinished = true;
+        this->preflightFinished = true;
         return;
     }
     if (this->qPreflight == nullptr || !this->qPreflight->IsProcessed())
@@ -340,17 +340,17 @@ void RevertQuery::CheckPreflight()
         return;
     }
     QList<ApiQueryResultNode*> revs = this->qPreflight->GetApiQueryResult()->GetNodes("rev");
-    bool MadeBySameUser = true;
-    bool MultipleEdits = false;
-    bool PreviousEditsMadeBySameUser = true;
+    bool made_by_same_user = true;
+    bool multiple_edits = false;
+    bool previous_edits_made_by_same_user = true;
     bool passed = true;
     foreach (ApiQueryResultNode *result, revs)
     {
-        int RevID = WIKI_UNKNOWN_REVID;
+        int revision_ID = WIKI_UNKNOWN_REVID;
         if (result->Attributes.contains("revid"))
         {
-            RevID = result->GetAttribute("revid").toInt();
-            if (editToBeReverted->RevID == RevID)
+            revision_ID = result->GetAttribute("revid").toInt();
+            if (editToBeReverted->RevID == revision_ID)
             {
                 continue;
             }
@@ -361,32 +361,32 @@ void RevertQuery::CheckPreflight()
         if (result->Attributes.contains("user"))
         {
             QString user = WikiUtil::SanitizeUser(result->GetAttribute("user"));
-            if (PreviousEditsMadeBySameUser && this->editToBeReverted->RevID != WIKI_UNKNOWN_REVID && RevID > this->editToBeReverted->RevID)
+            if (previous_edits_made_by_same_user && this->editToBeReverted->RevID != WIKI_UNKNOWN_REVID && revision_ID > this->editToBeReverted->RevID)
             {
                 if (user != this->editToBeReverted->User->Username)
                 {
-                    PreviousEditsMadeBySameUser = false;
+                    previous_edits_made_by_same_user = false;
                 }
-                MultipleEdits = PreviousEditsMadeBySameUser;
+                multiple_edits = previous_edits_made_by_same_user;
             }
         }
-        if (this->editToBeReverted->RevID != WIKI_UNKNOWN_REVID && RevID > editToBeReverted->RevID)
+        if (this->editToBeReverted->RevID != WIKI_UNKNOWN_REVID && revision_ID > editToBeReverted->RevID)
         {
             passed = false;
         }
     }
-    if (MultipleEdits && Configuration::HuggleConfiguration->ProjectConfig->ConfirmMultipleEdits)
+    if (multiple_edits && Configuration::HuggleConfiguration->ProjectConfig->ConfirmMultipleEdits)
     {
         passed = false;
     }
     if (!passed)
     {
         QString text = ":)";
-        if (MultipleEdits)
+        if (multiple_edits)
         {
             // There are multiple edits by same user are you sure you want to revert them
             text = (_l("cr-message-same", this->editToBeReverted->Page->PageName));
-        } else if (MadeBySameUser)
+        } else if (made_by_same_user)
         {
             // There are newer edits, are you sure you want to revert them
             text = (_l("cr-message-new", this->editToBeReverted->Page->PageName));
@@ -396,25 +396,25 @@ void RevertQuery::CheckPreflight()
         }
         if (Configuration::HuggleConfiguration->UserConfig->AutomaticallyResolveConflicts)
         {
-            if (MultipleEdits && !hcfg->UserConfig->RevertOnMultipleEdits)
+            if (multiple_edits && !hcfg->UserConfig->RevertOnMultipleEdits)
             {
                 Huggle::Syslog::HuggleLogs->Log(_l("cr-stop-multiple-same", this->editToBeReverted->Page->PageName));
-                this->Cancel();
+                this->cancelRevert();
                 return;
-            } else if (MultipleEdits && hcfg->UserConfig->RevertOnMultipleEdits)
+            } else if (multiple_edits && hcfg->UserConfig->RevertOnMultipleEdits)
             {
                 // Conflict resolved: revert all edits - there are multiple edits by same user to
                 Huggle::Syslog::HuggleLogs->Log(_l("cr-revert-same-user", this->editToBeReverted->Page->PageName));
             } else
             {
-                if (PreviousEditsMadeBySameUser && Configuration::HuggleConfiguration->UserConfig->RevertNewBySame)
+                if (previous_edits_made_by_same_user && Configuration::HuggleConfiguration->UserConfig->RevertNewBySame)
                 {
                     Huggle::Syslog::HuggleLogs->Log(_l("cr-resolved-same-user", this->editToBeReverted->Page->PageName));
                 } else
                 {
                     // Conflict resolved: do not perform any action - there are newer edits to
                     Huggle::Syslog::HuggleLogs->Log(_l("cr-stop-new-edit", this->editToBeReverted->Page->PageName));
-                    this->Cancel();
+                    this->cancelRevert();
                     return;
                 }
             }
@@ -422,23 +422,23 @@ void RevertQuery::CheckPreflight()
         if (!Hooks::ShowYesNoQuestion(_l("revert-preflightcheck"), text, false))
         {
             // abort
-            this->Exit();
+            this->freeResources();
             this->CustomStatus = "Stopped";
             this->Result = new QueryResult();
             this->Result->SetError("User requested to abort this");
             this->status = StatusDone;
-            this->PreflightFinished = true;
+            this->preflightFinished = true;
             this->processFailure();
             return;
         }
     }
-    this->PreflightFinished = true;
+    this->preflightFinished = true;
 }
 
-bool RevertQuery::CheckRevert()
+bool RevertQuery::evaluateRevertQueryResults()
 {
-    if (this->UsingSR)
-        return ProcessRevert();
+    if (this->usingSR)
+        return evaluateRevert();
     if (this->status == StatusIsSuspended)
         return false;
     if (this->qRevert == nullptr || !this->qRevert->IsProcessed())
@@ -478,23 +478,23 @@ bool RevertQuery::CheckRevert()
     return true;
 }
 
-void RevertQuery::Cancel()
+void RevertQuery::cancelRevert()
 {
-    this->Exit();
+    this->freeResources();
     this->CustomStatus = "Stopped";
     this->Result = new QueryResult(true);
     this->Result->SetError("User requested to abort this");
     this->status = StatusDone;
-    this->PreflightFinished = true;
+    this->preflightFinished = true;
     this->processFailure();
 }
 
-bool RevertQuery::ProcessRevert()
+bool RevertQuery::evaluateRevert()
 {
     if (this->eqSoftwareRollback != nullptr)
     {
         // we already reverted the page so check if we were successful in that
-        if (this->eqSoftwareRollback->IsProcessed() == false)
+        if (!this->eqSoftwareRollback->IsProcessed())
         {
             // we are still reverting the page so quit this and wait
             return false;
@@ -522,7 +522,7 @@ bool RevertQuery::ProcessRevert()
         }
         if (this->qRetrieve->IsFailed())
         {
-            this->DisplayError("Unable to rollback the edit because previous content couldn't be retrieved");
+            this->displayError("Unable to rollback the edit because previous content couldn't be retrieved");
             return true;
         }
         QString summary = this->Summary;
@@ -530,19 +530,19 @@ bool RevertQuery::ProcessRevert()
         ApiQueryResultNode* info = this->qRetrieve->GetApiQueryResult()->GetNode("rev");
         if (info == nullptr)
         {
-            this->DisplayError("Unable to rollback the edit because previous content couldn't be retrieved");
+            this->displayError("Unable to rollback the edit because previous content couldn't be retrieved");
             return true;
         }
         if (!info->Attributes.contains("revid"))
         {
-            this->DisplayError("Unable to rollback the edit because query used to retrieve the content of previous"\
+            this->displayError("Unable to rollback the edit because query used to retrieve the content of previous"\
                                " version retrieved no RevID");
             return true;
         }
         QString rv = info->GetAttribute("revid");
         if (rv.toInt() != this->SR_RevID)
         {
-            this->DisplayError("Unable to rollback the edit because query used to retrieve the content of previous"\
+            this->displayError("Unable to rollback the edit because query used to retrieve the content of previous"\
                                " version returned invalid RevID");
             return true;
         }
@@ -558,7 +558,7 @@ bool RevertQuery::ProcessRevert()
         if (content.isEmpty())
         {
             /// \todo LOCALIZE ME
-            this->DisplayError("Cowardly refusing to blank \"" + this->editToBeReverted->Page->PageName +
+            this->displayError("Cowardly refusing to blank \"" + this->editToBeReverted->Page->PageName +
                                "\" software rollback was cancelled to prevent damage",
                                "content was resolved to blank edit");
             return true;
@@ -571,7 +571,7 @@ bool RevertQuery::ProcessRevert()
         return false;
     if (this->qHistoryInfo->IsFailed())
     {
-        this->DisplayError("Failed to retrieve a list of edits made to this page: " + this->qHistoryInfo->GetFailureReason());
+        this->displayError("Failed to retrieve a list of edits made to this page: " + this->qHistoryInfo->GetFailureReason());
         return true;
     }
     QList<ApiQueryResultNode *> revs = this->qHistoryInfo->GetApiQueryResult()->GetNodes("rev");
@@ -581,7 +581,7 @@ bool RevertQuery::ProcessRevert()
     if (revs.count() == 0)
     {
         // if we have absolutely no revisions in the result, it's pretty fucked
-        this->DisplayError("Failed to retrieve a list of edits made to this page, query returned no data");
+        this->displayError("Failed to retrieve a list of edits made to this page, query returned no data");
         return true;
     }
     // if the latest revid doesn't match our revid it means that someone made an edit
@@ -620,7 +620,7 @@ bool RevertQuery::ProcessRevert()
     }
     if (!passed)
     {
-        this->DisplayError(_l("revert-cannotundo", this->editToBeReverted->Page->PageName));
+        this->displayError(_l("revert-cannotundo", this->editToBeReverted->Page->PageName));
         return true;
     }
     // now we need to find the first revision that was done by some different user
@@ -630,13 +630,13 @@ bool RevertQuery::ProcessRevert()
         if (!node->Attributes.contains("revid") || !node->Attributes.contains("user"))
         {
             // this is fucked up piece of shit
-            this->DisplayError("Unable to revert the page " + this->editToBeReverted->Page->PageName + " because mediawiki returned some non-sense");
+            this->displayError("Unable to revert the page " + this->editToBeReverted->Page->PageName + " because mediawiki returned some non-sense");
             Huggle::Syslog::HuggleLogs->DebugLog("Nonsense: " + this->qHistoryInfo->Result->Data);
             return true;
         }
         QString sanitized = WikiUtil::SanitizeUser(node->GetAttribute("user"));
         // in case we are in depth higher than 0 (we passed out own edit) and we want to revert only 1 revision we exit
-        if ((this->SR_Depth >= 1 && this->OneEditOnly) || sanitized != this->editToBeReverted->User->Username)
+        if ((this->SR_Depth >= 1 && this->oneEditOnly) || sanitized != this->editToBeReverted->User->Username)
         {
             if (Configuration::HuggleConfiguration->Verbosity > 1 && sanitized != this->editToBeReverted->User->Username)
             {
@@ -654,13 +654,13 @@ bool RevertQuery::ProcessRevert()
     if (this->SR_Depth == 0)
     {
         // something is wrong
-        this->DisplayError(_l("revert-fail", this->editToBeReverted->Page->PageName, "because it was edited meanwhile"));
+        this->displayError(_l("revert-fail", this->editToBeReverted->Page->PageName, "because it was edited meanwhile"));
         Syslog::HuggleLogs->DebugLog("revert failed because of 0 depth");
         return true;
     }
     if (this->SR_RevID == WIKI_UNKNOWN_REVID)
     {
-        this->DisplayError(_l("revert-fail", this->editToBeReverted->Page->PageName, "because no previous version could be retrieved"));
+        this->displayError(_l("revert-fail", this->editToBeReverted->Page->PageName, "because no previous version could be retrieved"));
         return true;
     }
     this->CustomStatus = "Retrieving content of previous version";
@@ -672,14 +672,14 @@ bool RevertQuery::ProcessRevert()
     return false;
 }
 
-void RevertQuery::Rollback()
+void RevertQuery::executeRollback()
 {
-    if (this->RollingBack)
+    if (this->rollingBack)
     {
         Huggle::Exception::ThrowSoftException("Multiple request to rollback same query", BOOST_CURRENT_FUNCTION);
         return;
     }
-    this->RollingBack = true;
+    this->rollingBack = true;
     if (this->Summary.isEmpty())
         this->Summary = this->GetSite()->GetUserConfig()->RollbackSummaryUnknownTarget;
     if (this->Summary.contains("$1"))
@@ -688,16 +688,16 @@ void RevertQuery::Rollback()
     this->Summary = Configuration::GenerateSuffix(this->Summary, this->GetSite()->GetProjectConfig());
     this->editToBeReverted->User->SetBadnessScore(this->editToBeReverted->User->GetBadnessScore() + 200);
     WikiUser::UpdateUser(editToBeReverted->User);
-    if (this->UsingSR)
+    if (this->usingSR)
     {
-        this->Revert();
+        this->executeRevert();
         return;
     }
     if (!this->GetSite()->GetProjectConfig()->Rights.contains("rollback"))
     {
         Huggle::Syslog::HuggleLogs->Log(_l("software-rollback"));
-        this->UsingSR = true;
-        this->Revert();
+        this->usingSR = true;
+        this->executeRevert();
         return;
     }
     if (this->editToBeReverted->GetSite()->GetProjectConfig()->Token_Rollback.isEmpty())
@@ -706,7 +706,7 @@ void RevertQuery::Rollback()
         this->Result = new QueryResult();
         this->Result->SetError(_l("revert-fail", this->editToBeReverted->Page->PageName, "rollback token was empty"));
         this->status = StatusDone;
-        this->Exit();
+        this->freeResources();
         this->processFailure();
         return;
     }
@@ -737,7 +737,7 @@ QString RevertQuery::QueryTargetToString()
     return this->editToBeReverted->Page->PageName;
 }
 
-void RevertQuery::Revert()
+void RevertQuery::executeRevert()
 {
     // Get a list of edits made to this page
     this->qHistoryInfo = new ApiQuery(ActionQuery, this->GetSite());
@@ -746,7 +746,7 @@ void RevertQuery::Revert()
     this->qHistoryInfo->Process();
 }
 
-void RevertQuery::Exit()
+void RevertQuery::freeResources()
 {
     if (this->timer != nullptr)
     {

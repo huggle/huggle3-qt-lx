@@ -29,7 +29,7 @@ namespace Huggle
             Q_OBJECT
         public:
             explicit CustomMessage(WikiUser *User, QWidget *parent = nullptr);
-            ~CustomMessage();
+            ~CustomMessage() override;
 
         private slots:
             void on_pushButton_clicked();

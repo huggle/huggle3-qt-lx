@@ -43,8 +43,8 @@ namespace Huggle
 	     * \brief EditBar Creates a new instance of the EditBar class
 	     * \param parent The parent widget in which the EditBar is contained
 	     */
-            explicit EditBar(QWidget *parent = 0);
-            ~EditBar();
+            explicit EditBar(QWidget *parent = nullptr);
+            ~EditBar() override;
             //! Removes all pages and user contributions in the EditBar
             void RemoveAll();
             //! Refresh page history and user information in the EditBar
@@ -61,17 +61,17 @@ namespace Huggle
             void OnReload();
             void on_EditBar_visibilityChanged(bool visible);
         private:
-            void InsertEdit(WikiPageHistoryItem *page, int RowId);
-            void InsertUser(UserInfoFormHistoryItem *user);
-            void MovePage(int size);
-            void ClearUser();
-            void ClearPage();
-            void MoveUser(int size);
+            void insertEdit(WikiPageHistoryItem *page, int RowId);
+            void insertUser(UserInfoFormHistoryItem *user);
+            void movePage(int size);
+            void clearUser();
+            void clearPage();
+            void moveUser(int size);
             bool needsRefresh = false;
-            int PageSX;
-            int UserSX;
+            int pageSX;
+            int userSX;
             QTimer timer;
-            QList<EditBarItem*> Items;
+            QList<EditBarItem*> items;
             Ui::EditBar *ui;
     };
 }

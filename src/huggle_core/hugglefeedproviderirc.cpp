@@ -33,7 +33,7 @@ HuggleFeedProviderIRC::HuggleFeedProviderIRC(WikiSite *site) : HuggleFeed(site)
 {
     this->isPaused = false;
     this->isConnected = false;
-    this->Network = nullptr;
+    this->network = nullptr;
 }
 
 HuggleFeedProviderIRC::~HuggleFeedProviderIRC()
@@ -44,7 +44,7 @@ HuggleFeedProviderIRC::~HuggleFeedProviderIRC()
         this->editBuffer.at(0)->DecRef();
         this->editBuffer.removeAt(0);
     }
-    delete this->Network;
+    delete this->network;
 }
 
 bool HuggleFeedProviderIRC::Start()
@@ -54,47 +54,46 @@ bool HuggleFeedProviderIRC::Start()
         HUGGLE_DEBUG1("Attempted to start connection which was already started");
         return false;
     }
-    if (this->Network != nullptr)
-        delete this->Network;
+    delete this->network;
 
     QString nick = "huggle";
     qsrand(static_cast<unsigned int>(QTime::currentTime().msec()));
     nick += QString::number(qrand());
     libirc::ServerAddress server(hcfg->SystemConfig_IRCServer, false, hcfg->SystemConfig_IRCPort, nick);
     server.SetSuffix(this->GetSite()->IRCChannel);
-    this->Network = new libircclient::Network(server, "Wikimedia IRC");
-    this->Network->SetDefaultUsername(Configuration::HuggleConfiguration->HuggleVersion);
-    this->Network->SetDefaultIdent("huggle");
-    connect(this->Network, SIGNAL(Event_Connected()), this, SLOT(OnConnected()));
+    this->network = new libircclient::Network(server, "Wikimedia IRC");
+    this->network->SetDefaultUsername(Configuration::HuggleConfiguration->HuggleVersion);
+    this->network->SetDefaultIdent("huggle");
+    connect(this->network, SIGNAL(Event_Connected()), this, SLOT(OnConnected()));
     //connect(this->Network, SIGNAL(Event_SelfJoin(libircclient::Channel*)), this, SLOT(OnIRCSelfJoin(libircclient::Channel*)));
     //connect(this->Network, SIGNAL(Event_SelfPart(libircclient::Parser*,libircclient::Channel*)), this, SLOT(OnIRCSelfPart(libircclient::Parser*,libircclient::Channel*)));
-    connect(this->Network, SIGNAL(Event_PRIVMSG(libircclient::Parser*)), this, SLOT(OnIRCChannelMessage(libircclient::Parser*)));
+    connect(this->network, SIGNAL(Event_PRIVMSG(libircclient::Parser*)), this, SLOT(OnIRCChannelMessage(libircclient::Parser*)));
     //connect(this->Network, SIGNAL(Event_PerChannelQuit(libircclient::Parser*,libircclient::Channel*)), this, SLOT(OnIRCChannelQuit(libircclient::Parser*,libircclient::Channel*)));
-    connect(this->Network, SIGNAL(Event_Disconnected()), this, SLOT(OnDisconnected()));
+    connect(this->network, SIGNAL(Event_Disconnected()), this, SLOT(OnDisconnected()));
     //connect(this->Network, SIGNAL(Event_Join(libircclient::Parser*,libircclient::User*,libircclient::Channel*)), this, SLOT(OnIRCUserJoin(libircclient::Parser*,libircclient::User*,libircclient::Channel*)));
     //connect(this->Network, SIGNAL(Event_Part(libircclient::Parser*,libircclient::Channel*)), this, SLOT(OnIRCUserPart(libircclient::Parser*,libircclient::Channel*)));
-    connect(this->Network, SIGNAL(Event_NetworkFailure(QString,int)), this, SLOT(OnFailure(QString,int)));
+    connect(this->network, SIGNAL(Event_NetworkFailure(QString,int)), this, SLOT(OnFailure(QString,int)));
     this->isConnected = true;
-    this->Network->Connect();
+    this->network->Connect();
     return true;
 }
 
 bool HuggleFeedProviderIRC::IsWorking()
 {
-    if (this->Network != nullptr)
+    if (this->network != nullptr)
     {
-        return this->isConnected && (this->Network->IsConnected());
+        return this->isConnected && (this->network->IsConnected());
     }
     return false;
 }
 
 void HuggleFeedProviderIRC::Stop()
 {
-    if (!this->isConnected || this->Network == nullptr)
+    if (!this->isConnected || this->network == nullptr)
     {
         return;
     }
-    this->Network->Disconnect(Generic::IRCQuitDefaultMessage());
+    this->network->Disconnect(Generic::IRCQuitDefaultMessage());
     this->isConnected = false;
 }
 
@@ -215,7 +214,7 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
         edit->DecRef();
         return;
     }
-    edit->OldID = line.mid(0, line.indexOf(QString(QChar(003)))).toInt();
+    edit->OldID = line.midRef(0, line.indexOf(QString(QChar(003)))).toInt();
     if (!line.contains(QString(QChar(003)) + "03"))
     {
         HUGGLE_DEBUG("Invalid line, no user: " + line, 1);
@@ -279,24 +278,19 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
 
 bool HuggleFeedProviderIRC::IsStopped()
 {
-    if (this->IsWorking())
-    {
-        return false;
-    }
-    return true;
+    return !this->IsWorking();
 }
 
 bool HuggleFeedProviderIRC::ContainsEdit()
 {
-    return (this->editBuffer.size() != 0);
+    return (!this->editBuffer.empty());
 }
 
 WikiEdit *HuggleFeedProviderIRC::RetrieveEdit()
 {
-    if (this->editBuffer.size() == 0)
-    {
+    if (this->editBuffer.empty())
         return nullptr;
-    }
+
     WikiEdit *edit = this->editBuffer.at(0);
     this->editBuffer.removeAt(0);
     return edit;
@@ -304,16 +298,16 @@ WikiEdit *HuggleFeedProviderIRC::RetrieveEdit()
 
 unsigned long long HuggleFeedProviderIRC::GetBytesReceived()
 {
-    if (!this->Network)
+    if (!this->network)
         return 0;
-    return static_cast<unsigned long long>(this->Network->GetBytesReceived());
+    return static_cast<unsigned long long>(this->network->GetBytesReceived());
 }
 
 unsigned long long HuggleFeedProviderIRC::GetBytesSent()
 {
-    if (!this->Network)
+    if (!this->network)
         return 0;
-    return static_cast<unsigned long long>(this->Network->GetBytesSent());
+    return static_cast<unsigned long long>(this->network->GetBytesSent());
 }
 
 bool HuggleFeedProviderIRC::IsConnected()

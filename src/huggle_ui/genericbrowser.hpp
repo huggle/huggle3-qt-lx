@@ -32,7 +32,7 @@ namespace Huggle
             Q_OBJECT
         public:
             explicit GenericBrowser(QWidget *parent = nullptr);
-            virtual ~GenericBrowser();
+             ~GenericBrowser() override;
             virtual QString CurrentPageName();
             /*!
              * \brief Retrieve a page in render mode on currently selected project
