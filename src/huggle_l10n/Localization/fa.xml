@@ -177,7 +177,7 @@
   <string name="config-message-notification">نمایش یک اطلاعیه زمانی که پیام تازه‌ای در صفحهٔ بحث‌تان دریافت کردید</string>
   <string name="config-warning-api">نمایش هشدارهای کوئری‌های رابط برنامه‌نویسی</string>
   <string name="config-title-diff">عنوان صفحه در هر تفاوت (متن بزرگ که فقط عنوان صفحه را در بالای هر تفاوت نشان می‌دهد)</string>
-  <string name="config-updates">بررسی برای روزامدسازی‌ها</string>
+  <string name="config-updates">بررسی برای روزآمدسازی‌ها</string>
   <string name="config-reset-menu">صورتبندی پروژه (فهرست انواع هشدارها) پس از آخرین بازدید شما تغییر کرده و میانبرها برای منو بازشو (برگرداندن و هشدار، ...) بازنشانی شده است.</string>
   <string name="config-beta">بررسی برای نگارش‌های آزمایشی</string>
   <string name="config-html-messages">اچ‌ای‌ان می‌تواند پیام‌های اچ‌تی‌ام‌ال را اجرا کند (توجه: ممکن است خطرناک باشد)</string>
@@ -332,7 +332,7 @@
   <string name="login-error-password">گذرواژه نادرست</string>
   <string name="login-error-projdisabled">هاگل اکنون در پروژه شما غیرفعال است.</string>
   <string name="login-error-unknown">قادر به ثبت ورود در $1 نبود.</string>
-  <string name="login-error-version">این نسخه، قدیمی است. به آخرین نسخه روزامدسازی کنید.</string>
+  <string name="login-error-version">این نسخه، قدیمی است. به آخرین نسخه روزآمدسازی کنید.</string>
   <string name="login-error-whitelist">بارگیری فهرست سفید کاربران برای $1 نافرجام ماند.</string>
   <string name="login-ro-title">تغییر به فقط خواندنی</string>
   <string name="login-ro-question">یک یا پروژه‌های ($1) به شما اجازهٔ ورود به سامانه همراه با اجازهٔ .یرایش نمی‌دهند (دلیل: $2). آیا قصد دارید به صورت فقط-خواندن وارد سامانه شوید؟</string>
@@ -639,11 +639,11 @@
   <string name="update-progress">دانلود نسخه جدید، لطفاً صبر کنید...</string>
   <string name="update-error">موفق به دانلود نسخه تازه نشد</string>
   <string name="updater-title">نسخه جدیدی از هاگل در دسترس است</string>
-  <string name="updater-update">روزامدسازی</string>
+  <string name="updater-update">روزآمدسازی</string>
   <string name="updater-update-available">نگارش تازه‌تری از هاگل موجود است: نگارش $1</string>
   <string name="updater-open-manualdownloadpage">باز کردن صفحه دانلود</string>
   <string name="updater-close">بستن</string>
-  <string name="updater-disable-notify">غیرفعال کردن روزامدسازی</string>
+  <string name="updater-disable-notify">غیرفعال کردن روزآمدسازی</string>
   <string name="updater-wait">در حال آپیدت کردن هاگل لطفاً صبر کنید....</string>
   <string name="user-history-fail">امکان دریافت تاریخچه برای کاربر نبود: $1</string>
   <string name="userinfo-generic">اطلاعات کاربری</string>
@@ -754,7 +754,7 @@
   <string name="protectlog-fail">امکان دریافت سیاههٔ محافظت $1 نبود</string>
   <string name="protectlog-none">سیاهه حفاظتی برای $1 وجود ندارد</string>
   <string name="protectlog-progress">در حال بازیابی سیاههٔ حفاظت $1...</string>
-  <string name="saveuserconfig-progress">در حال روزامدسازی صفحه پیکربندی کاربر...</string>
+  <string name="saveuserconfig-progress">در حال روزآمدسازی صفحه پیکربندی کاربر...</string>
   <string name="loadglobalconfig-fail">ناتوان در بارگیری صفحه پیکربندی سراسری</string>
   <string name="loadprojectconfig-fail">ناتوان در بارگیری صفحه پیکربندی سراسری</string>
   <string name="loaduserconfig-fail">امکان بارگیری صفحهٔ پیکربندی‌های کاربر نبود</string>
@@ -788,7 +788,7 @@
   <string name="function-miss">تابع، اکنون در دسترس نمی‌باشد</string>
   <string name="missing-aiv">این پروژه از AIV بهره نمی‌گیرد</string>
   <string name="missing-page">در این ویکی صفحه $1 وجود ندارد</string>
-  <string name="updating-wl">روزامدسازی فهرست سفید...</string>
+  <string name="updating-wl">روزآمدسازی فهرست سفید...</string>
   <string name="waiting">صبر...</string>
   <string name="feature-nfru">این قابلیت تنها برای کاربران آی‌پی است</string>
   <string name="report-no-user">هیچ کاربر برای گزارش انتخاب نشده است، لطفا نخست برخی از کاربران را انتخاب نمایید.</string>

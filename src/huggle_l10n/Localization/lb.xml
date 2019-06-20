@@ -416,6 +416,7 @@
   <string name="warning-level2">Niveau 2</string>
   <string name="warning-level3">Niveau 3</string>
   <string name="warning-level4">Niveau 4 (lescht Warnung)</string>
+  <string name="warning-confirm-title">Wierklech eng Warnung schécken?</string>
   <string name="warning-warntype">Typ vu Warnung:</string>
   <string name="warning-warnlog">Warnunge fir dëse Benotzer:</string>
   <string name="warning-submit">Schécken</string>

@@ -664,6 +664,7 @@
   <string name="warning-level2">2단계</string>
   <string name="warning-level3">3단계</string>
   <string name="warning-level4">4단계 (마지막)</string>
+  <string name="warning-confirm-title">정말로 경고를 보내시겠습니까?</string>
   <string name="warning-warntype">경고 유형:</string>
   <string name="warning-warnlog">이 사용자에게 경고:</string>
   <string name="warning-submit">보내기</string>

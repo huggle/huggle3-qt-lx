@@ -707,6 +707,11 @@
   <string name="warning-level2">Уровень 2</string>
   <string name="warning-level3">Уровень 3</string>
   <string name="warning-level4">Уровень 4 (последний)</string>
+  <string name="warning-confirm-title">Точно послать предупреждение?</string>
+  <string name="warning-confirm-old-edit">Правки на странице $1 в вики $2 были сделаны $3 больше одного дня назад. Всё равно отослать предупреждение?</string>
+  <string name="warning-confirm-too-recent">Правки на странице $1 в вики $2 были сделаны $3,  получившем совсем недавно предупреждение на странице обсуждения. Всё равно отослать ещё одно предупреждение?</string>
+  <string name="warning-too-old-skip">Предупреждение не будет отослано $1 о правках на странице $2 в вики $3, поскольку правки старше одного дня</string>
+  <string name="warning-no-aiv-config">Этот участник достиг 4 уровня предупреждений, и, поскольку в этой вики нет механизма запросов к администраторам, участник должен быть заблокирован</string>
   <string name="warning-warntype">Тип предупреждения:</string>
   <string name="warning-warnlog">Предупреждения у этого участника:</string>
   <string name="warning-submit">Отправить</string>
