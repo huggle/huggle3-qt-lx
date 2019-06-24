@@ -685,6 +685,10 @@
   <string name="warning-level3">等級 3</string>
   <string name="warning-level4">等級 4 (最高)</string>
   <string name="warning-confirm-title">確定發送警告？</string>
+  <string name="warning-confirm-old-edit">由$3在$2對$1所做出的編輯已超過 1 天，您確定發送警告訊息給對方嗎？</string>
+  <string name="warning-confirm-too-recent">在$2對$1所做出過編輯的$3，近期有在自己的對話頁上收到訊息（可能是一些警告模版？），您確定發送其它警告訊息給對方嗎？</string>
+  <string name="warning-too-old-skip">未發送警告給$1出於對方在$3對$2所做出的編輯，因為這已超過 1 天</string>
+  <string name="warning-no-aiv-config">此使用者已達到等級 4 警告，而此 wiki 上並不支援 AIV（當前的破壞），您現在應該直接封禁該使用者</string>
   <string name="warning-warntype">警告類型：</string>
   <string name="warning-warnlog">給此使用者的警告：</string>
   <string name="warning-submit">傳送</string>
