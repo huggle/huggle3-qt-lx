@@ -96,6 +96,14 @@ Huggle::UserConfiguration::~UserConfiguration()
     }
 }
 
+void UserConfiguration::SetDefaults(ProjectConfiguration *ProjectConfig)
+{
+    this->DefaultSummary = ProjectConfig->DefaultSummary;
+    this->RollbackSummary = ProjectConfig->RollbackSummary;
+    this->RollbackSummaryUnknownTarget = ProjectConfig->RollbackSummaryUnknownTarget;
+    this->WelcomeGood = ProjectConfig->WelcomeGood;
+}
+
 HuggleOption *UserConfiguration::GetOption(const QString& key)
 {
     if (this->UserOptions.contains(key))

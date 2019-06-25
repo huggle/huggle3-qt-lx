@@ -937,6 +937,8 @@ void LoginForm::retrieveUserConfig(WikiSite *site)
                     q->DecRef();
                     this->LoginQueries.remove(site);
                     this->Statuses[site] = RetrievingUser;
+                    // initialize user config with default values taken from project
+                    site->GetUserConfig()->SetDefaults(site->GetProjectConfig());
                     return;
                 }
                 HUGGLE_DEBUG1(q->Result->Data);

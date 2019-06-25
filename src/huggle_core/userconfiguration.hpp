@@ -59,6 +59,8 @@ namespace Huggle
 
             UserConfiguration();
             ~UserConfiguration();
+            //! In case there is no user config on wiki yet, Parse is not called at all so we need to initialize this user config with defaults from project
+            void SetDefaults(ProjectConfiguration *ProjectConfig);
             //! This function is obsolete and used only to read the old format huggle3.css file, new versions should only use YAML formats
             bool Parse(const QString& config, ProjectConfiguration *ProjectConfig, bool IsHome);
             bool ParseYAML(const QString &config, ProjectConfiguration *ProjectConfig, bool IsHome, QString *error);
