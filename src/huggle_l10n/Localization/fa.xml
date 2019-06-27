@@ -116,6 +116,8 @@
   <string name="config-queue-filter-ignore">چشم‌پوشی (مهم نیست)</string>
   <string name="config-queue-filter-exclude">کنار گذاشتن (دیگر نباشد)</string>
   <string name="config-queue-filter-require">لازم (باید باشد)</string>
+  <string name="config-queue-modified-title">صف ویرایش شده</string>
+  <string name="config-queue-modified-text">شما صف را ویرایش کردید ولی آن را ذخیره نکردید. اگر ادامه دهید تغییراتتان از بین خواهند رفت. آیا قصد ادامه دادن دارید؟</string>
   <string name="config-summ">خلاصه‌ویرایش برگرداندن سفارشی برای الگوها</string>
   <string name="config-title">تنظیمات</string>
   <string name="config-already-in-use">این میانبر هم‌اکنون توسط $1 استفاده می‌شود، لطفاً یکی دیگر برگزینید</string>
@@ -692,6 +694,11 @@
   <string name="warning-level2">سطح ۲</string>
   <string name="warning-level3">سطح ۳</string>
   <string name="warning-level4">سطح ۴ (نهایی)</string>
+  <string name="warning-confirm-title">آیا واقعا هشدار ارسال شود؟</string>
+  <string name="warning-confirm-old-edit">ویرایش به $1 بر روی $2 توسط $3 قدیمی‌تر از ۱ روز، آیا قصد دارید که پیام هشدار ارسال کنید؟</string>
+  <string name="warning-confirm-too-recent">ویرایش $1 بر $2 که توسط $3 که اخیرا یک پیام در صفحهٔ بحثش دریافت کرده بود (شاید هشدار دیگر؟) آیا قصد دارید یک هشدار دیگر ارسال شود؟</string>
+  <string name="warning-too-old-skip">عدم ارسال هشدار به $1 برای ویرایششان در $2 بر $3 به دلیل اینکه قدیمی‌تر از یک روز بود.</string>
+  <string name="warning-no-aiv-config">کاربر هشدار سطح ۴ را دریافت کرد و در این ویکی AIV پشتیبانی نمی‌شود. باید وی را سریعاً ببندید.</string>
   <string name="warning-warntype">نوع هشدار:</string>
   <string name="warning-warnlog">هشدار برای این کاربر:</string>
   <string name="warning-submit">ارسال</string>
