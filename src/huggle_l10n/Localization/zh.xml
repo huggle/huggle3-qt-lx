@@ -689,6 +689,7 @@
   <string name="warning-level3">3级</string>
   <string name="warning-level4">4级（最高）</string>
   <string name="warning-confirm-title">确定要发送警告吗？</string>
+  <string name="warning-too-old-skip">未对$1就其在$3对$2作出的编辑发送警告，因为这已超过1天</string>
   <string name="warning-no-aiv-config">该用户已达到警告级别4。该wiki不支持AIV，您现在应封禁该用户。</string>
   <string name="warning-warntype">警告类型：</string>
   <string name="warning-warnlog">该用户的警告：</string>

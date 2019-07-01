@@ -694,7 +694,7 @@
   <string name="warning-level3">Nivel 3</string>
   <string name="warning-level4">Nivel 4 (final)</string>
   <string name="warning-confirm-title">¿Confirmas que quieres enviar una alerta?</string>
-  <string name="warning-too-old-skip" fuzzy="true">No se enviará la alerta a $1 por su edición en $2 debido a que esta tiene más de un día de antigüedad</string>
+  <string name="warning-too-old-skip">No se enviará la alerta a $1 por su edición de $2 el $3 debido a que esta tiene más de un día de antigüedad</string>
   <string name="warning-warntype">Tipo de advertencia:</string>
   <string name="warning-warnlog">Advertencias para este usuario:</string>
   <string name="warning-submit">Enviar</string>
