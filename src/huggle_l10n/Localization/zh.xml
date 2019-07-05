@@ -226,7 +226,7 @@
   <string name="delete-error-token">错误：检索删除令牌失败。原因：$1</string>
   <string name="delete-token01">获取标记以删除$1</string>
   <string name="delete-token02">没有通过查询返回令牌</string>
-  <string name="delete-e1">此页面不能被删除：$1</string>
+  <string name="delete-e1">此页面不能删除：$1</string>
   <string name="delete-e2">无法删除页面</string>
   <string name="delete-edsc">无法删除页面，因为$1</string>
   <string name="delete-failed-no-info">目前查询中没有页面信息（您是管理员么？）</string>
@@ -689,7 +689,9 @@
   <string name="warning-level3">3级</string>
   <string name="warning-level4">4级（最高）</string>
   <string name="warning-confirm-title">确定要发送警告吗？</string>
-  <string name="warning-too-old-skip">未对$1就其在$3对$2作出的编辑发送警告，因为这已超过1天</string>
+  <string name="warning-confirm-old-edit">由$3在$2对$1的编辑已超过1天，确定要向该用户发送警告吗？</string>
+  <string name="warning-confirm-too-recent">在$2编辑$1的$3近期已在其讨论页收到信息（可能是其他警告模板），确定要向该用户发送另一条警告吗？</string>
+  <string name="warning-too-old-skip">未对$1就其在$3对$2的编辑发送警告，因其已超过1天</string>
   <string name="warning-no-aiv-config">该用户已达到警告级别4。该wiki不支持AIV，您现在应封禁该用户。</string>
   <string name="warning-warntype">警告类型：</string>
   <string name="warning-warnlog">该用户的警告：</string>
@@ -736,7 +738,7 @@
   <string name="history-message-revert-title">您真的希望只撤销此消息么？</string>
   <string name="history-another-edit">另一次编辑已在撤销中，请等待...</string>
   <string name="history-not-found">没有可以撤销的</string>
-  <string name="history-already-done">这已被撤销过</string>
+  <string name="history-already-done">这已撤销过</string>
   <string name="history-message-revert-body">这是一条引用自回退操作的消息，您确信您只希望撤销模板甚至不编辑页面么？（您需要在您希望纠正错误回退时才撤销回退）</string>
   <string name="history-revert-fail">因为遇到以下错误，我们无法撤销您对$1的编辑：$2</string>
   <string name="history-undone">成功撤销对$1的编辑</string>
