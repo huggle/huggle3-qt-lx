@@ -3,6 +3,7 @@
 * Amire80
 * Erelon
 * Guycn2
+* Men770
 * Or
 * Reza1615
 * Ronel1
@@ -223,6 +224,7 @@
   <string name="extension-kl">לא רץ</string>
   <string name="extension-ok">נטען ורץ</string>
   <string name="exception-text-1">לרוע המזל האגל הפסיק להגיב. אנא ספר לנו מה רצית לעשות</string>
+  <string name="exception-details">פרטי שגיאה</string>
   <string name="exception-error-code">קוד השגיאה: $1</string>
   <string name="exception-reason">סיבה: $1</string>
   <string name="exception-source">מקור: $1</string>
@@ -294,6 +296,7 @@
   <string name="login-progress-user-info">בדיקת פרטי משתמש עבור $1</string>
   <string name="login-progress-whitelist">אחזור רשימה לבנה של משתמשים...</string>
   <string name="login-remember-password">לזכור את הססמה</string>
+  <string name="login-remember-password-tooltip">אפשרות זו שומרת את הסיסמא שלך כקובץ טקסט פשוט על הדיסק הקשיח שלך. השתמש בה רק אם אתה האדם היחיד שיש לו גישה למחשב זה.</string>
   <string name="login-ssl">להשתמש ב־HTTPS לכניסה (נדרש OpenSSL)</string>
   <string name="login-fail">הכניסה נכשלה ב־$1</string>
   <string name="login-fail-with-reason">הכניסה לחשבון נכשלה (באתר $1). סיבה: $2</string>
@@ -637,6 +640,7 @@
   <string name="shortcut-my-talk">דך השיחה שלי</string>
   <string name="shortcut-raw">לשחזר את העריכה ולהזהיר את המשתמש</string>
   <string name="shortcut-contrib">הצגת התרומות של המשתמש שעשה את העריכה שמוצגת כעת</string>
+  <string name="shortcut-custom-msg">פותח טופס לשליחת הודעה מותאמת אישית למשתמש הנוכחי</string>
   <string name="shortcut-exit">לצאת מהאגל בדרך הרגילה</string>
   <string name="shortcut-next">מעבר לעריכה הבאה</string>
   <string name="shortcut-suspicious">לסמן את העריכה בתור חשודה</string>
@@ -654,6 +658,8 @@
   <string name="shortcut-open">פותח את העריכה שמוצגת כעת בדפדפן</string>
   <string name="shortcut-talk">להציג את דף השיחה של המשתמש שעשה את השינוי הזה</string>
   <string name="shortcut-revert-agf-1">שחזור הגרסה האחרונה עם הנחת כוונה טובה</string>
+  <string name="shortcut-edit">פותח את הדף שמוצג עכשיו</string>
+  <string name="shortcut-edit-in-browser">ערוך את הדף המוצג כעת בדפדפן</string>
   <string name="shortcut-browser-close-tab">סגירת לשונית של הדפדפן</string>
   <string name="shortcut-tab">פתיחת לשונית חדשה</string>
   <string name="shortcut-rw-stay">שחזור העריכה הנוכחית, הזהרת המשתמש והישארות בדף</string>
@@ -672,6 +678,7 @@
   <string name="warning-warntype">סוג האזהרה:</string>
   <string name="warning-warnlog">אזהרות למשתמש הזה:</string>
   <string name="warning-submit">שליחה</string>
+  <string name="warninglist-no-warning-title">אין אזהרה</string>
   <string name="wikiedit-tp-fail">לא ניתן לאחזר את רמת האזהרה של $1. זה לא ישמש לדירוג</string>
   <string name="missing-warning">אין תבנית אזהרה כזאת $1</string>
   <string name="han-not">רשת ההשחתות אינה מורשית באפשרויות</string>
@@ -850,5 +857,6 @@
   <string name="query-protected-link">קישור מוגן</string>
   <string name="queue-empty-title">התור ריק</string>
   <string name="queue-empty-text">אין שינויים בתור...</string>
+  <string name="protip">טיפ מקצועי</string>
   <string name="tip10">ניתן לשנות את רוב קיצורי המקשים שלך דרך ההעדפות שלך.</string>
 </resources>
