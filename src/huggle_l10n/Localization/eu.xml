@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
+* An13sa
 * EukeneFL
 * Macofe
 * Mikel Ibaiba
@@ -182,7 +183,7 @@
   <string name="config-no-colon">Ezin duzu erabili: ilara baten izenean</string>
   <string name="config-notify-update">Eguneratzeak egiaztatu</string>
   <string name="config-notify-beta">Egiaztatu beta bertsioak erabilgarri dauden</string>
-  <string name="custommessage-title" fuzzy="true">Bidali mezu pertsonalizarua $1(e)ri</string>
+  <string name="custommessage-title">$1(e)ri mezua bidali</string>
   <string name="custommessage-summary">Laburpena aldatu (Huggle atzizkia automatikoki sartuko da)</string>
   <string name="custommessage-subject">Izenburua</string>
   <string name="custommessage-menu">Bidali mezu pertsonalizatua</string>
@@ -392,7 +393,7 @@
   <string name="main-user-report">Salatu</string>
   <string name="main-user-ib">Maltzurkeri puntuazioa igo</string>
   <string name="main-user-clear-tp">Erabiltzailearen elkarrizketa orrialdea garbitu</string>
-  <string name="main-user-retrieving-tp" fuzzy="true">$(e)ko elkarrizketa orrialdea berreskuratzen</string>
+  <string name="main-user-retrieving-tp" fuzzy="true">$(e)n eztabaida orrialdea berreskuratzen</string>
   <string name="main-user-block">Blokeatu...</string>
   <string name="main-browser-back">Atzera</string>
   <string name="main-browser-forward">Aurrera</string>
