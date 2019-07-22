@@ -97,6 +97,7 @@
   <string name="config-queue-filter-ignore">Занемари (не е важно)</string>
   <string name="config-queue-filter-exclude">Изземи (не смее да биде)</string>
   <string name="config-queue-filter-require">Наложи (мора да биде)</string>
+  <string name="config-queue-modified-title">Редицата е изменета</string>
   <string name="config-summ">Кориснички-внесени описи на шаблони</string>
   <string name="config-title">Нагодувања</string>
   <string name="config-already-in-use">Оваа кратенка е зфатена од $1. Одберете друга.</string>
