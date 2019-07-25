@@ -687,6 +687,10 @@
   <string name="warning-level3">Nível 3</string>
   <string name="warning-level4">Nível 4 (final)</string>
   <string name="warning-confirm-title">Realmente enviar um aviso?</string>
+  <string name="warning-confirm-old-edit">A edição de $1 em $2 por $3 foi feita há mais de um dia; deseja realmente enviar-lhe uma mensagem de aviso?</string>
+  <string name="warning-confirm-too-recent">A edição de $1 em $2 foi feita por $3, que recebeu uma mensagem na página de discussão muito recentemente (provavelmente gerada por outra predefinição de aviso?); deseja realmente enviar-lhe outra mensagem de aviso?</string>
+  <string name="warning-too-old-skip">Não será enviado aviso a $1 pela sua edição de $2 em $3, porque foi feita há mais de um dia</string>
+  <string name="warning-no-aiv-config">Este utilizador já atingiu o aviso de nível 4 e não há nenhum AIV suportado nesta wiki; deve bloquear o utilizador agora</string>
   <string name="warning-warntype">Tipo de aviso:</string>
   <string name="warning-warnlog">Avisos para este utilizador:</string>
   <string name="warning-submit">Enviar</string>
