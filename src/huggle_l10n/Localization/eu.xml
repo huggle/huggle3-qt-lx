@@ -5,6 +5,7 @@
 * Macofe
 * Mikel Ibaiba
 * Subi
+* Xabier Armendaritz
 -->
 <resources>
   <string name="name">Ingelesa</string>
@@ -668,7 +669,7 @@
   <string name="preferences-watchlist-nochange">Ezer ez egin</string>
   <string name="preferences-sounds-enable-queue">Soinua piztu item berria ilarara gehitzen denean</string>
   <string name="preferences-sounds-enable-irc">Soinua piztu HANen mezu berria jasotzen denean</string>
-  <string name="preferences-queue-size">Kontsulta tamainia</string>
+  <string name="preferences-queue-size">Ilararen tamaina</string>
   <string name="preferences-empty-queue-page">Hustu kontsulta orrialdea:</string>
   <string name="preferences-reset-gui">GUI berrekin</string>
   <string name="fail">Akatsa</string>

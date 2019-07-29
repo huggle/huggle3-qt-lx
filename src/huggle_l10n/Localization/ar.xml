@@ -10,6 +10,7 @@
 * Reza1615
 * بدارين
 * ديفيد
+* شادي
 * عباد ديرانية
 * علاء
 * محمد أحمد عبد الفتاح
@@ -17,7 +18,7 @@
 <resources>
   <string name="name">العربية</string>
   <string name="autorelog">افعل هذا دون أن تسأل في المرة القادمة</string>
-  <string name="isrtl">true</string>
+  <string name="isrtl">خاطئ</string>
   <string name="add">أضف</string>
   <string name="cancel">إلغاء</string>
   <string name="clear">امحُ</string>
@@ -236,7 +237,7 @@
   <string name="exception-source">المصدر: $1</string>
   <string name="exception-stack-trace">تتبع المكدس:</string>
   <string name="exception-system-log">سجل النظام</string>
-  <string name="historyform-no-info">لا معلومات تعديل</string>
+  <string name="historyform-no-info">لا معلومات عن تعديل</string>
   <string name="historyform-title">التاريخ</string>
   <string name="historyform-retrieve-history">اجلب التاريخ</string>
   <string name="historyform-retrieving-history">يتم جلب التاريخ</string>
@@ -309,13 +310,13 @@
   <string name="login-fail-with-reason">فشل تسجيل الدخول (في $1): $2</string>
   <string name="login-error-admin">استخدام Huggle في هذا المشروع يحتاج حسابا إداريا.</string>
   <string name="login-error-age">استخدام هغل في هذا المشروع يحتاج حسابا عمره $1 يوما على الأقل.</string>
-  <string name="login-error-alldisabled">تم تعطيل Huggle حاليا في كل المشاريع.</string>
-  <string name="login-error-approval">استخدام Huggle في $1 يحتاج موافقة.</string>
+  <string name="login-error-alldisabled">تم تعطيل هغل حاليا في كل المشاريع.</string>
+  <string name="login-error-approval">استخدام هغل في $1 يحتاج موافقة.</string>
   <string name="login-error-cancelled">ملغى.</string>
   <string name="login-error-config">فشل تسجيل الدخول; غير قادر على تحليل التهيئة المحلية ل $1: $2</string>
   <string name="login-error-config-retrieve">فشل تسجيل الدخول; غير قادر على استرداد تكوين المستخدم: $1</string>
   <string name="login-error-config-query-no-data">فشل تسجيل الدخول; غير قادر على استرداد التكوين العام، لم يُظهِر استعلام api أية بيانات</string>
-  <string name="login-error-count">استخدام Huggle في هذا المشروع يحتاج $1 تعديلات على الأقل.</string>
+  <string name="login-error-count">استخدام هجل في هذا المشروع يحتاج $1 تعديلات على الأقل.</string>
   <string name="login-error-disabled">هغل غير مفعل في حسابك على $1، راجع صفحة خيارات المستخدم.</string>
   <string name="login-error-global">فشل تسجيل الدخول: غير قادر على تحليل التهيئة العالمية. راجع سجل التصحيح لمزيد من التفاصيل.</string>
   <string name="login-error-invalid">اسم مستخدم خاطئ.</string>
@@ -323,7 +324,7 @@
   <string name="login-error-nouser">مستخدم غير موجود.</string>
   <string name="login-error-no-valid-token">لم يتم إرجاع رمز مميز صالح لتسجيل الدخول بواسطة الموقع</string>
   <string name="login-error-password">كلمة سر خاطئة.</string>
-  <string name="login-error-projdisabled">Huggle معطل حاليا في هذا المشروع.</string>
+  <string name="login-error-projdisabled">هغل معطل حاليا في $1</string>
   <string name="login-error-unknown">تعذر الولوج إلى $1.</string>
   <string name="login-error-version">هذا الإصدار قديم، يرجى التحديث لآخر إصدارة.</string>
   <string name="login-error-whitelist">تعذر تحميل قائمة المستخدمين البيضاء</string>
@@ -460,7 +461,7 @@
   <string name="main-han-display-user-data">عرض بيانات المستخدم</string>
   <string name="main-help-documentation">المستندات</string>
   <string name="main-help-feedback">رأيك</string>
-  <string name="main-help-about">عن Huggle...</string>
+  <string name="main-help-about">عن هغل...</string>
   <string name="main-help-introduction">المقدمة</string>
   <string name="main-help-welcome-page">صفحة الترحيب</string>
   <string name="main-help-contents">المحتويات</string>
@@ -485,7 +486,7 @@
   <string name="main-revert-newpage">هذه صفحة جديدة; لذلك لا يمكن أن تتراجع عن تعديل فيها; يمكنك مراجعتها أو حذفها.</string>
   <string name="main-restore-text-fail">لا يمكن استرجاع المراجعة; لأنه لا يوجد نص متاح لها</string>
   <string name="main-restore-data-fail">غير قادر على استرجاع المراجعة; لأن الويكي لم يقدم أي بيانات عن الإصدار المحدد</string>
-  <string name="main-welcome-user">مرحبا بالمستخدم</string>
+  <string name="main-welcome-user">ترحيب المستخدم</string>
   <string name="main-custom-reason-title">التراجع عن التعديل باستخدام سبب مخصص</string>
   <string name="main-custom-reason-text">برجاء تقديم سبب التراجع عن هذا التعديل.</string>
   <string name="main-custom-reason-fail">أنت لم تقدم سببًا صالحًا.</string>
@@ -553,7 +554,7 @@
   <string name="queue-filtertags">وسم</string>
   <string name="queue-filterbot">تعديل بوت</string>
   <string name="queue-filterassisted">مساعدة التحرير</string>
-  <string name="queue-filterhuggle">تعديل Huggle</string>
+  <string name="queue-filterhuggle">تعديل هغل</string>
   <string name="queue-filterme">تعديلي</string>
   <string name="queue-examplelabel1">يستدعي خاصية</string>
   <string name="queue-examplelabel2">إلغاء خاصية</string>
@@ -752,7 +753,7 @@
   <string name="protectlog-fail">فشل جلب سجل الحماية لـ $1</string>
   <string name="protectlog-none">لايوجد سجل حماية لـ $1</string>
   <string name="protectlog-progress">جار جلب سجل الحماية لـ $1...</string>
-  <string name="saveuserconfig-progress">يتم الان تحديث صفحة اعدادات المستخدم...</string>
+  <string name="saveuserconfig-progress">يتم الآن تحديث صفحة اعدادات المستخدم...</string>
   <string name="loadglobalconfig-fail">فشل تحميل صفحة الاعدادات الموحدة</string>
   <string name="loadprojectconfig-fail">فشل تحميل صفحة اعدادات المشروع</string>
   <string name="loaduserconfig-fail">فشل تحميل صفحة اعدادات المستخدم</string>
@@ -860,7 +861,7 @@
   <string name="loading-main-window">جارٍ تحميل نافذة هغل الرئيسية...</string>
   <string name="api.php-invalid-response">رد API بنص غير صالح (خادم الويب بالأأسفل؟)، يرجى مراجعة سجل التصحيح للحصول على معلومات دقيقة</string>
   <string name="login-username-doesnt-exist">اسم المستخدم غير موجود</string>
-  <string name="developer-mode-enter-title">Whee</string>
+  <string name="developer-mode-enter-title">مرحى!</string>
   <string name="developer-mode-enter-message">لقد دخلت إلى وضع المطور!</string>
   <string name="unimplemented">لم تُنفَّذ هذه الميزة حتى الآن</string>
   <string name="unknown-item">عنصر غير معروف</string>
