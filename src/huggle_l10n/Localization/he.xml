@@ -793,6 +793,7 @@
   <string name="preferences-watchlist-unwatch">הסרה מרשימת המעקב</string>
   <string name="preferences-watchlist-preferences">כמו בהעדפות שלך בוויקי</string>
   <string name="preferences-watchlist-nochange">לא לעשות דבר</string>
+  <string name="preferences-auto-watch-talk">מעקב אחר דף השיחה של המשתמש שקיבל אזהרה ממך</string>
   <string name="preferences-sounds-enable-queue">להשמיע צליל כשפריט חדש נוסף לתור</string>
   <string name="preferences-sounds-enable-irc">לנגן צליל כשמתקבל מסר ב־HAN</string>
   <string name="preferences-sounds-minimal-score">ציון עריכה מזערי להתראה</string>
