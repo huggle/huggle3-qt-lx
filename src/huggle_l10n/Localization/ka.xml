@@ -4,9 +4,10 @@
 * Irus
 * MIKHEIL
 * Macofe
+* Surprizi
 -->
 <resources>
-  <string name="name">ინგლისური</string>
+  <string name="name">ქართული</string>
   <string name="isrtl">false</string>
   <string name="add">დამატება</string>
   <string name="cancel">გაუქმება</string>

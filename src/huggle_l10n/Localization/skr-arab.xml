@@ -92,7 +92,10 @@
   <string name="config-close-without">محفوظ کیتے ٻاجھوں بند کرو</string>
   <string name="config-reportnone">کجھ وی نہ کرو</string>
   <string name="config-template">سانچہ</string>
+  <string name="config-blocktimeanon">گمنام ورتݨ آلے</string>
+  <string name="config-blocktimereg">رجسٹر تھئے ورتݨ آلے</string>
   <string name="config-summaryprompt">خلاصہ لکھو</string>
+  <string name="config-notify-update">اپ ڈیٹاں کیتے پڑتال</string>
   <string name="custommessage-subject">عنوان</string>
   <string name="custommessage-send">سنیہا پٹھو</string>
   <string name="custommessage-wikiuser-plaintext-1">سلام$1،</string>
@@ -152,6 +155,7 @@
   <string name="main-revision-latest">تازہ ترین</string>
   <string name="main-tools">آوزار</string>
   <string name="main-page-next">اڳلا</string>
+  <string name="main-page-switchtoarticle">مضموم تے سوئچ کرو</string>
   <string name="main-page-tag">ٹیگ</string>
   <string name="main-page-watch">اکھ تلے رکھو</string>
   <string name="main-page-unwatch">اکھ ہیٹھوں ہٹاؤ</string>
@@ -161,6 +165,8 @@
   <string name="main-page-delete">مٹاؤ</string>
   <string name="main-page-load">لوڈ</string>
   <string name="main-page-refresh">سجرا، تازہ کرو</string>
+  <string name="main-user-ignore">چھوڑو</string>
+  <string name="main-user-unignore">نا چھوڑو</string>
   <string name="main-user-message">سنیہا۔۔۔</string>
   <string name="main-user-report">رپورٹ</string>
   <string name="main-user-block">بلاک۔۔۔</string>
