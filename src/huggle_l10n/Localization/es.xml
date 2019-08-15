@@ -6,6 +6,7 @@
 * AlvaroMolina
 * Astroemi
 * Dgstranz
+* EditedcL
 * Fitoschido
 * KATRINE1992
 * Laura Ospina
@@ -25,9 +26,9 @@
 * Yllelder
 -->
 <resources>
-  <string name="name">Español</string>
+  <string name="name">Ingles</string>
   <string name="autorelog">Hazlo sin preguntarme la próxima vez</string>
-  <string name="isrtl">false</string>
+  <string name="isrtl">falso</string>
   <string name="add">Añadir</string>
   <string name="cancel">Cancelar</string>
   <string name="clear">Vaciar</string>
@@ -55,7 +56,7 @@
   <string name="yes">Sí</string>
   <string name="editing-page">Editando página</string>
   <string name="agf">Revertir como edición de buena fe con un motivo personalizado</string>
-  <string name="successful">Operación realizada con éxito</string>
+  <string name="successful">Exito</string>
   <string name="summary">Resumen</string>
   <string name="id">Id.</string>
   <string name="type">Tipo</string>
@@ -97,7 +98,7 @@
   <string name="block-creation">Impedir la creación de cuentas</string>
   <string name="block-autoblock">Activar bloqueos automáticos</string>
   <string name="block-email">Bloquear correos electrónicos</string>
-  <string name="block-usertalk">Discusión</string>
+  <string name="block-usertalk">Hablar</string>
   <string name="block-usercontribs">Contribuciones</string>
   <string name="block-blockloglabel">Registro de bloqueos:</string>
   <string name="block-warnloglabel">Advertencias:</string>
@@ -108,7 +109,7 @@
   <string name="block-token-e1">No se puede recuperar el token: $1</string>
   <string name="block-error-no-info">La consulta no contiene información del usuario (¿eres un administrador?)</string>
   <string name="block-type">Bloquear / desbloquear</string>
-  <string name="block-admin">Administrador que hizo el bloqueo</string>
+  <string name="block-admin">Bloqueo de Admin</string>
   <string name="block-none">No hay ningún usuario seleccionado al que bloquear.</string>
   <string name="contribution-browser-user-info">Mostrando las contribuciones recientes del usuario $1</string>
   <string name="config-function">Función</string>
@@ -697,6 +698,7 @@
   <string name="warning-level4">Nivel 4 (final)</string>
   <string name="warning-confirm-title">¿Confirmas que quieres enviar una alerta?</string>
   <string name="warning-confirm-old-edit">La edición en $1 el $2 por $3 es de hace más de un día. ¿Estás seguro/a de querer enviarle un mensaje de advertencia?</string>
+  <string name="warning-confirm-too-recent">Editar a $1 sobre $2 fue hecho por $3 que recibieron un mensaje en su página de conversación muy recientemente (probablemente alguna otra plantilla de advertencia?) ¿realmente quiere enviarles otro mensaje de advertencia?</string>
   <string name="warning-too-old-skip">No se enviará la alerta a $1 por su edición de $2 el $3 debido a que esta tiene más de un día de antigüedad</string>
   <string name="warning-no-aiv-config">Este usuario ha alcanzado el nivel 4 de avisos y esta wiki no tiene configurado los reportes automáticos de vandalismo. Deberías bloquear al usuario.</string>
   <string name="warning-warntype">Tipo de advertencia:</string>
