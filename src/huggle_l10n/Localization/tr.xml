@@ -5,6 +5,7 @@
 * Archaeodontosaurus
 * Ayrıntılı Bilgi
 * Aşilleus
+* BaRaN6161 TURK
 * By erdo can
 * Cagrix
 * Captantrips
@@ -118,6 +119,8 @@
   <string name="config-queue-filter-ignore">Görmezden gel (fark etmez)</string>
   <string name="config-queue-filter-exclude">Hariç bırak</string>
   <string name="config-queue-filter-require">Gerektirir (zorunlu)</string>
+  <string name="config-queue-modified-title">Sıra değiştirildi</string>
+  <string name="config-queue-modified-text">Sırayı değiştirdiniz, ancak kaydetmediniz. Devam ederseniz, değişiklikleriniz atılır. Devam etmek istiyor musun?</string>
   <string name="config-summ">Şablonlar için kulanılan kişisel geri alma özetleri</string>
   <string name="config-title">Seçenekler</string>
   <string name="config-already-in-use">Bu kısayol $1 tarafından zaten kullanılıyor, lütfen başka bir tane seçin</string>
@@ -216,7 +219,7 @@
   <string name="config-no-colon">Kullanamazsınız: sıraya göre</string>
   <string name="config-notify-update">Güncelleştirmeleri denetle</string>
   <string name="config-notify-beta">Uygunsa Beta sürümleri olup olmadığını kontrol et.</string>
-  <string name="custommessage-title" fuzzy="true">$1 için ayarlanmış bir mesaj gönder</string>
+  <string name="custommessage-title">$1\'e bir mesaj yaz</string>
   <string name="custommessage-summary">Özetini düzenle (Huggle soneki otomatik olarak eklenecek)</string>
   <string name="custommessage-subject">Başlık</string>
   <string name="custommessage-menu">Ayarlanmış bir mesaj gönder</string>
@@ -686,6 +689,7 @@
   <string name="shortcut-user-contribs-browser">Kullanıcının katkılarını bir tarayıcıda göster</string>
   <string name="shortcut-user-clear-talk">Geçerli kullanıcının konuşma sayfasını temizle</string>
   <string name="shortcut-main-clear-queue">Sırayı temizle</string>
+  <string name="shortcut-revert-agf">Özel bir düzenleme özeti ile iyi niyetli varsayımlara geri dönün</string>
   <string name="warning-title">Uyar $1</string>
   <string name="warning-levelgroup">Uyarı seviyesi</string>
   <string name="warning-levelauto">Otomatik</string>
@@ -693,6 +697,11 @@
   <string name="warning-level2">2. seviye</string>
   <string name="warning-level3">3. seviye</string>
   <string name="warning-level4">4. seviye (son)</string>
+  <string name="warning-confirm-title">Gerçekten bir uyarı gönder?</string>
+  <string name="warning-confirm-old-edit">$1’de $2’de $3’dan büyük olan 1 günden daha eskiyse, onlara gerçekten bir uyarı mesajı göndermek ister misiniz?</string>
+  <string name="warning-confirm-too-recent">$1\'da $2\'a düzenleme yaptıktan sonra çok yakında konuşma sayfasında bir mesaj alan $3 tarafından yapıldı (muhtemelen başka bir uyarı şablonu?) Gerçekten başka bir uyarı mesajı göndermek ister misiniz?</string>
+  <string name="warning-too-old-skip">Düzenlemeleri için $1\'a, $2\'da $3\'a uyarı göndermiyor, çünkü 1 günden daha eski</string>
+  <string name="warning-no-aiv-config">Bu kullanıcı zaten seviye 4 uyarısına ulaştı ve bu wiki\'de desteklenen AIV yok, kullanıcıyı şimdi engellemelisiniz</string>
   <string name="warning-warntype">Uyarı türü:</string>
   <string name="warning-warnlog">Bu kullanıcıya yapılan uyarılar:</string>
   <string name="warning-submit">Gönder</string>
@@ -810,6 +819,7 @@
   <string name="preferences-extension-disabled-restart">Bu uzantı Huggle yeniden başladığında devre dışı kalmak üzere ayarlanmış</string>
   <string name="preferences-extension-enabled">Bu uzantı, Huggle\'ın bir sonraki başlatılışında devre dışı bırakılması için planlanmamıştır</string>
   <string name="preferences-extension-enabled-restart">Uzantı etkinleştirildi. Huggle\'ın etkinleşmesi için yeniden başlatmanız gerekecek.</string>
+  <string name="preferences-enforce-baw">HTML farkında siyah ve beyaz renkleri zorla</string>
   <string name="preferences-watchlist-watch">İzleme listesine ekle</string>
   <string name="preferences-watchlist-unwatch">İzleme listesinden çıkar</string>
   <string name="preferences-watchlist-preferences">Wiki\'deki tercihlerini takip et</string>
@@ -887,7 +897,7 @@
   <string name="wikipagetagsform-group">{{$1}} içindeki grup</string>
   <string name="tip1">Huggle sekmeleri diğer web tarayıcıları gibi destekler! Düzenleme aşamasındaysanız ve daha sonra saklamak istiyorsanız yeni bir sekme açıp sırayı kontrol etmeye devam edebilirsiniz. Kuyruk, tüm sekmeler arasında paylaşılır.</string>
   <string name="tip2">Huggle, kullanıcı ve sayfa geçmişini düzgün bir şekilde içeren küçük bir widget olan \"düzenleme çubuğu\" içeriyor. Varsayılan olarak etkin değil. Küçük bir ekrandaysanız kullanıcı ve sayfa geçmişi widget\'larını onunla değiştirebilirsiniz!</string>
-  <string name="tip3" fuzzy="true">Çoğu tercih, [[Special:MyPage/huggle3.css]] içindeki viki\'de saklanır. Tercihleri, orada manuel olarak da değiştirebilirsiniz.</string>
+  <string name="tip3">Çoğu tercih, [[Special:MyPage/huggle.yaml.js]] altındaki wiki\'de saklanır. Bunları orada da manuel olarak değiştirebilirsiniz.</string>
   <string name="tip4">Ekrandaki hemen hemen her widget güvenli bir şekilde kapatılabilir (gezinme çubuğu hariç).</string>
   <string name="tip5">Huggle\'ı aynı anda birden fazla projede kullanabilirsiniz, oturum açma formundaki \"Projeler\" düğmesini tıklamanız yeterlidir.</string>
   <string name="tip6">Huggle\'ın geri dönüşü asla hata yapmayan deneyimli kullanıcıları daha hızlı yapabilir ;) Tercihler\'i aç ve \"Anında Geri Döndürmeler\"i kontrol et</string>
