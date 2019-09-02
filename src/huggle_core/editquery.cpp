@@ -233,9 +233,6 @@ void EditQuery::editPage()
         this->Section = 0;
         this->Text = this->Text + this->originalText;
     }
-    {
-        this->Text = this->Text;
-    }
     QString base = "";
     QString start_ = "";
     QString section = "";
@@ -262,7 +259,7 @@ void EditQuery::editPage()
     this->qEdit->Process();
 }
 
-void EditQuery::setError(QString reason)
+void EditQuery::setError(const QString& reason)
 {
     this->Result = new QueryResult(true);
     this->Result->SetError(reason);

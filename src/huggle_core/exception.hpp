@@ -50,7 +50,7 @@ namespace Huggle
              * \param Text
              * \param Source
              */
-            static void ThrowSoftException(QString Text, QString Source);
+            static void ThrowSoftException(const QString &text, const QString &source);
             static QString GetCurrentStackTrace();
             static void InitBreakpad();
             static void ExitBreakpad();
@@ -63,13 +63,13 @@ namespace Huggle
             QString Message;
             QString StackTrace;
             //! ctor
-            Exception(QString text, bool is_recoverable = true);
-            Exception(QString text, QString source, bool is_recoverable = true);
-            Exception(QString text, const char *source);
-            virtual ~Exception();
+            Exception(const QString &text, bool is_recoverable = true);
+            Exception(const QString &text, const QString &source, bool is_recoverable = true);
+            Exception(const QString &text, const char *source);
+            virtual ~Exception() = default;
             bool IsRecoverable() const;
         private:
-            void construct(QString text, QString source, bool is_recoverable);
+            void construct(const QString &text, const QString &source, bool is_recoverable);
 #ifdef HUGGLE_BREAKPAD
 #if HUGGLE_BREAKPAD == 0
             static google_breakpad::MinidumpDescriptor *GoogleBP_descriptor;
@@ -82,7 +82,7 @@ namespace Huggle
     class HUGGLE_EX_CORE NullPointerException : public Exception
     {
         public:
-            NullPointerException(QString name, QString source);
+            NullPointerException(const QString& name, const QString& source);
     };
 }
 

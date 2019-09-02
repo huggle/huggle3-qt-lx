@@ -83,10 +83,10 @@ void Core::Init()
     this->processorThread->start();
     this->LoadLocalizations();
     Huggle::Syslog::HuggleLogs->Log("Home: " + hcfg->HomePath);
-    if (QFile().exists(Configuration::GetConfigurationPath() + HUGGLE_CONF))
+    if (QFile::exists(Configuration::GetConfigurationPath() + HUGGLE_CONF))
     {
         Configuration::LoadSystemConfig(Configuration::GetConfigurationPath() + HUGGLE_CONF);
-    } else if (QFile().exists(QCoreApplication::applicationDirPath() + HUGGLE_CONF))
+    } else if (QFile::exists(QCoreApplication::applicationDirPath() + HUGGLE_CONF))
     {
         Configuration::LoadSystemConfig(QCoreApplication::applicationDirPath() + HUGGLE_CONF);
     }

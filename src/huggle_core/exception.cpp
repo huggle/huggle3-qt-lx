@@ -78,24 +78,19 @@ google_breakpad::ExceptionHandler *Exception::GoogleBP_handler = NULL;
     #endif
 #endif
 
-Exception::Exception(QString text, bool is_recoverable)
+Exception::Exception(const QString &text, bool is_recoverable)
 {
     this->construct(text, "{hidden}", is_recoverable);
 }
 
-Exception::Exception(QString text, QString source, bool is_recoverable)
+Exception::Exception(const QString &text, const QString &source, bool is_recoverable)
 {
     this->construct(text, source, is_recoverable);
 }
 
-Exception::Exception(QString text, const char *source)
+Exception::Exception(const QString &text, const char *source)
 {
     this->construct(text, QString(source), true);
-}
-
-Exception::~Exception()
-{
-
 }
 
 bool Exception::IsRecoverable() const
@@ -103,7 +98,7 @@ bool Exception::IsRecoverable() const
     return this->isRecoverable;
 }
 
-void Exception::construct(QString text, QString source, bool is_recoverable)
+void Exception::construct(const QString &text, const QString &source, bool is_recoverable)
 {
     std::cerr << "FATAL Exception thrown: " + text.toStdString() << std::endl;
     this->Source = source;
@@ -113,14 +108,14 @@ void Exception::construct(QString text, QString source, bool is_recoverable)
     this->isRecoverable = is_recoverable;
 }
 
-void Exception::ThrowSoftException(QString Text, QString Source)
+void Exception::ThrowSoftException(const QString &text, const QString &source)
 {
     if (Configuration::HuggleConfiguration->Verbosity > 0)
     {
-        throw new Huggle::Exception(Text, Source);
+        throw new Huggle::Exception(text, source);
     } else
     {
-        Syslog::HuggleLogs->WarningLog("Soft exception: " + Text + " source: " + Source);
+        Syslog::HuggleLogs->WarningLog("Soft exception: " + text + " source: " + source);
     }
 }
 
@@ -200,7 +195,7 @@ void Exception::ExitBreakpad()
 }
 
 
-NullPointerException::NullPointerException(QString name, QString source) : Exception("", source)
+NullPointerException::NullPointerException(const QString &name, const QString &source) : Exception("", source)
 {
     this->ErrorCode = 1;
     this->Message = QString("Null pointer exception. The variable you referenced (") + name + ") had null value.";
