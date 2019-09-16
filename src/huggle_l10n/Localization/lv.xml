@@ -6,6 +6,7 @@
 <resources>
   <string name="name">Latviešu</string>
   <string name="autorelog">Nākamreiz nejautāt</string>
+  <string name="isrtl">false</string>
   <string name="add">Pievienot</string>
   <string name="cancel">Atcelt</string>
   <string name="clear">Notīrīt</string>
@@ -50,6 +51,7 @@
   <string name="duration">Ilgums</string>
   <string name="enable">Iespējot</string>
   <string name="disable">Atslēgt</string>
+  <string name="browser-diff">Lapas \"$1\" izmaiņas (rezultāts: $2)</string>
   <string name="about-contributors">Izstrādātāji:</string>
   <string name="block-not">Dalībnieks nav bloķēts</string>
   <string name="block-title">Bloķēt $1</string>
@@ -106,6 +108,7 @@
   <string name="delete-reason">Iemesls:</string>
   <string name="delete-deletionlog">Dzēšanas reģistrs:</string>
   <string name="delete-rem-talk">Dzēst saistīto diskusiju</string>
+  <string name="delete-e1">Lapu nevar dzēst: $1</string>
   <string name="delete-e2">Neizdevās dzēst lapu</string>
   <string name="delete-edsc">Neizdevās dzēst lapu, jo $1</string>
   <string name="exception-error-code">Kļūdas kods: $1</string>
@@ -119,6 +122,7 @@
   <string name="history-error-message-title">Nevar atcelt</string>
   <string name="history-failure">Neizdevās iegūt vēsturi</string>
   <string name="userhistory-title">Tavu izmaiņu vēsture</string>
+  <string name="login-intro">Lūdzu, izvēlies projektu un ievadi savu lietotājvārdu un paroli. Tu vari pieslēgties vairākiem projektiem, klikšķinot uz pogas \"Projekti\".</string>
   <string name="login-tab-botp">Bota parole</string>
   <string name="login-tab-login">Novecojis</string>
   <string name="login-language">Valoda:</string>
@@ -130,7 +134,9 @@
   <string name="login-proxyaddress">Adrese:</string>
   <string name="login-proxyport">Ports:</string>
   <string name="login-proxydomain">Domēns:</string>
+  <string name="login-retrieving-user-conf">Iegūst lietotāja konfigurāciju</string>
   <string name="login-bot">Kāda ir atšķirība starp bota paroli un novecojušo pieslēgšanos?</string>
+  <string name="login-api">KĻŪDA: api.php atbildēja ar nezināmu rezultātu: $1</string>
   <string name="login-abort">Pārtraukt</string>
   <string name="login-start">Pieslēgties</string>
   <string name="login-oauth-notsupported">Šī metode šobrīd nav atbalstīta</string>
@@ -145,11 +151,13 @@
   <string name="login-error-invalid">Nederīgs lietotājvārds</string>
   <string name="login-error-nouser">Lietotājs neeksistē</string>
   <string name="login-error-password">Nepareiza parole</string>
+  <string name="api-query-no-data">API vaicājums neatgrieza datus</string>
   <string name="main-page">Lapa</string>
   <string name="main-user">Dalībnieks</string>
   <string name="main-contribs">Devums</string>
   <string name="main-history">Vēsture</string>
   <string name="main-system">Sistēma</string>
+  <string name="main-status-bar">Apstrādā &lt;b&gt;$1&lt;/b&gt; labojumus un &lt;b&gt;$2&lt;/b&gt; vaicājumus. Dalībnieki baltajā sarakstā: &lt;b&gt;$3&lt;/b&gt; Rindas izmērs: &lt;b&gt;$4&lt;/b&gt; $6 statistika: $5</string>
   <string name="main-metric-bar">Vidējais API atbildes laiks: $1ms</string>
   <string name="main-system-messages">Rādīt jaunos ziņojumus</string>
   <string name="main-system-savelog">Saglabāt žurnālu...</string>
@@ -185,6 +193,7 @@
   <string name="main-tools">Rīki</string>
   <string name="main-tools-sess">Parādīt sesijas informāciju</string>
   <string name="main-page-next">Tālāk</string>
+  <string name="main-page-switchtoarticle">Pārslēgties uz rakstu</string>
   <string name="main-page-history">Iegūt vēsturi</string>
   <string name="main-page-historypage">Rādīt vēstures lapu</string>
   <string name="main-page-edit">Labot lapu pārlūkā</string>
@@ -196,8 +205,12 @@
   <string name="main-page-protect">Aizsargāt</string>
   <string name="main-page-delete">Dzēst</string>
   <string name="main-page-load">Ielādēt</string>
+  <string name="main-page-refresh">Atjaunināt</string>
   <string name="main-page-restore">Atjaunot šo versiju</string>
+  <string name="main-page-tab-close">Aizvērt aktīvo cilni</string>
   <string name="main-page-tab-open">Atvērt jaunā cilnē</string>
+  <string name="main-scripting">Skriptu sastādīšana</string>
+  <string name="main-scripting-script-manager">Skriptu pārvaldīšana</string>
   <string name="main-user-info">Rādīt lietotāja informāciju</string>
   <string name="main-user-ignore">Ignorēt</string>
   <string name="main-user-unignore">Atcelt ignorēšanu</string>
@@ -205,11 +218,13 @@
   <string name="main-user-talk">Skatīt diskusiju lapu</string>
   <string name="main-user-page">Skatīt dalībnieka lapu</string>
   <string name="main-user-report">Ziņot</string>
+  <string name="main-user-block">Bloķēt...</string>
   <string name="main-browser-back">Atpakaļ</string>
   <string name="main-browser-open">Skatīt šo ārējā pārlūkā</string>
   <string name="main-han-disconnect">Atslēgties</string>
   <string name="main-han-connect">Pieslēgties</string>
   <string name="main-help">Palīdzība</string>
+  <string name="main-han-display-bot-data">Rādīt botu datus</string>
   <string name="main-help-documentation">Dokumentācija</string>
   <string name="main-help-feedback">Atsauksmes</string>
   <string name="main-help-about">Par Huggle...</string>
@@ -230,6 +245,7 @@
   <string name="message-message">Ziņojums:</string>
   <string name="message-summary">Kopsavilkums:</string>
   <string name="protect-reason">Iemesls:</string>
+  <string name="protect-semiprotection">Daļēja aizsardzība</string>
   <string name="protect-fullprotection">Pilna aizsardzība</string>
   <string name="queue-title">Rindas</string>
   <string name="queue-queues">Rindas:</string>
@@ -265,22 +281,38 @@
   <string name="tag-summary">Kopsavilkums:</string>
   <string name="tag-insertatend">Ievietot lapas beigās</string>
   <string name="update-title">Pieejama jauna versija</string>
+  <string name="updater-title">Pieejama jauna Huggle versija</string>
   <string name="updater-update">Atjaunināt</string>
   <string name="updater-open-manualdownloadpage">Atvērt lejupielāžu lapu</string>
   <string name="updater-close">Aizvērt</string>
   <string name="userinfo-generic">Lietotāja informācija</string>
   <string name="shortcut-my-talk">Mana diskusiju lapa</string>
   <string name="shortcut-raw">Atcelt labojumu un brīdināt dalībnieku</string>
+  <string name="shortcut-next">Pāriet uz nākamo labojumu</string>
+  <string name="shortcut-back">Pāriet uz iepriekš rādīto labojumu</string>
   <string name="shortcut-revert">Atcelt labojumu</string>
   <string name="shortcut-browser-close-tab">Aizvērt pārlūka cilni</string>
   <string name="shortcut-tab">Atver jaunu cilni</string>
+  <string name="shortcut-main-clear-queue">Notīrīt rindu</string>
+  <string name="warning-levelgroup">Brīdinājuma līmenis</string>
+  <string name="warning-levelauto">Automātisks</string>
+  <string name="warning-level1">1. līmeņa</string>
+  <string name="warning-level2">2. līmeņa</string>
+  <string name="warning-level3">3. līmeņa</string>
+  <string name="warning-level4">4. līmeņa (pēdējais)</string>
+  <string name="warning-confirm-title">Tiešām sūtīt brīdinājumu?</string>
+  <string name="warning-warntype">Brīdinājuma veids:</string>
   <string name="warning-submit">Nosūtīt</string>
+  <string name="han-connecting">Pieslēdzas Huggle pretvandalisma tīklam</string>
   <string name="han-network">Tīkls</string>
   <string name="han-send">Sūtīt</string>
   <string name="error-noresponse">Nav atbildes</string>
   <string name="error-pagemissing">Šī lapa nepastāv</string>
   <string name="error-unknown">Nezināma kļūda</string>
+  <string name="delete-progress">Dzēš $1...</string>
+  <string name="edit-progress">Labo $1...</string>
   <string name="newtab-title">Šī ir jauna cilne!</string>
+  <string name="saveuserconfig-progress">Atjaunina dalībnieka konfigurācijas lapu...</string>
   <string name="speedy-finished">Pabeigts</string>
   <string name="whitelist-download">Lejupielādē jaunu balto sarakstu</string>
   <string name="logs-widget-name">Sistēmas žurnāls</string>
@@ -304,4 +336,5 @@
   <string name="queue-empty-title">Tas ir tukšs</string>
   <string name="queue-empty-text">Rindā nekā nav...</string>
   <string name="protip">Padoms</string>
+  <string name="tip16">Ja tu nejauši nospiedi atcelšanas pogu, tu vēl vari paspēt atsaukt notiekošo atcelšanu, ātri nospiežot ESC taustiņu.</string>
 </resources>
