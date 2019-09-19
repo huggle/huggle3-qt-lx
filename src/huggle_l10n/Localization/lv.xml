@@ -70,6 +70,8 @@
   <string name="config-description">Apraksts</string>
   <string name="config-shortcut">Saīsne</string>
   <string name="config-queue-filter-ignore">Ignorēt (nav svarīgi)</string>
+  <string name="config-queue-filter-exclude">Izslēgt (nedrīkst būt)</string>
+  <string name="config-queue-filter-require">Pieprasīt (jābūt)</string>
   <string name="config-title">Iespējas</string>
   <string name="config-ircport">IRC ports</string>
   <string name="config-logfile">Žurnāla fails</string>
@@ -80,14 +82,20 @@
   <string name="config-minor">Atzīmēt kā maznozīmīgu</string>
   <string name="config-ip">IP lietotāji</string>
   <string name="config-watchlist">Pievienot uzraugāmo lapu sarakstam</string>
+  <string name="config-defaultsummary">Noklusētais kopsavilkums manuāliem labojumiem</string>
+  <string name="config-undosummary">Kopsavilkums, atceļot savus labojumus</string>
   <string name="config-revert-wait">Atcelšanas aizture (sekundes)</string>
   <string name="config-revert">Atjaunot</string>
   <string name="config-skip">Izlaist</string>
+  <string name="config-display-next">Attēlot nākamo</string>
+  <string name="config-retrieve-edit">Iegūt savu labojumu</string>
+  <string name="config-nothing">Neko</string>
   <string name="config-bot-edits">Botu labojumi (b)</string>
   <string name="config-own-edits">Savi labojumi</string>
   <string name="config-new-page">Jauna lapa</string>
   <string name="config-friend">Draugs</string>
   <string name="config-talk">Diskusiju lapa</string>
+  <string name="config-warning-api">Rādīt brīdinājumus par API vaicājumiem</string>
   <string name="config-updates">Pārbaudīt atjauninājumus</string>
   <string name="config-beta">Pārbaudīt bēta versijas</string>
   <string name="config-close-without">Aizvērt bez saglabāšanas</string>
@@ -152,6 +160,7 @@
   <string name="login-error-nouser">Lietotājs neeksistē</string>
   <string name="login-error-password">Nepareiza parole</string>
   <string name="api-query-no-data">API vaicājums neatgrieza datus</string>
+  <string name="main-menu-provider-stop">Apturēt piegādātāju</string>
   <string name="main-page">Lapa</string>
   <string name="main-user">Dalībnieks</string>
   <string name="main-contribs">Devums</string>
@@ -286,6 +295,7 @@
   <string name="updater-open-manualdownloadpage">Atvērt lejupielāžu lapu</string>
   <string name="updater-close">Aizvērt</string>
   <string name="userinfo-generic">Lietotāja informācija</string>
+  <string name="userinfo-no-user">Nav lietotāja</string>
   <string name="shortcut-my-talk">Mana diskusiju lapa</string>
   <string name="shortcut-raw">Atcelt labojumu un brīdināt dalībnieku</string>
   <string name="shortcut-next">Pāriet uz nākamo labojumu</string>

@@ -10,18 +10,19 @@
 * Jkb8
 * Leon saudanha
 * Macofe
+* Mansil alfalb
 * McDutchie
 * OTAVIO1981
 * Ti4goc
 * Vitorvicentevalente
 -->
 <resources>
-  <string name="name">português</string>
-  <string name="autorelog">Fazer isto sem me perguntar da próxima vez</string>
+  <string name="name">Português (Portugal)</string>
+  <string name="autorelog">Fazer isto sem voltar a perguntar</string>
   <string name="isrtl">false</string>
   <string name="add">Adicionar</string>
   <string name="cancel">Cancelar</string>
-  <string name="clear">Apagar</string>
+  <string name="clear">Limpar</string>
   <string name="close">Fechar</string>
   <string name="continue">Continuar</string>
   <string name="copy">Copiar</string>
@@ -39,16 +40,16 @@
   <string name="project">Projeto</string>
   <string name="warning">Aviso</string>
   <string name="result">Resultado</string>
-  <string name="save">Gravar</string>
+  <string name="save">Guardar</string>
   <string name="show">Mostrar</string>
-  <string name="no-instant">A mensagem não pode ser enviada a $2, visto que os avisos instantâneos não estão ativados no projeto $1. Por favor, escolha um nível de aviso diferente.</string>
-  <string name="undo">Desfazer</string>
+  <string name="no-instant">A mensagem não pode ser enviada para $2, porque os avisos instantâneos não estão ativados no projeto $1. Por favor, escolha um nível de aviso diferente.</string>
+  <string name="undo">Anular</string>
   <string name="yes">Sim</string>
   <string name="editing-page">A editar página</string>
   <string name="agf">Reverter como edição de boa fé com motivo personalizado</string>
   <string name="successful">Bem sucedido!</string>
   <string name="summary">Resumo</string>
-  <string name="id">ID</string>
+  <string name="id">Id.</string>
   <string name="type">Tipo</string>
   <string name="target">Destinatário</string>
   <string name="user">Utilizador(a)</string>
@@ -63,8 +64,8 @@
   <string name="status">Estado</string>
   <string name="link">Ligação</string>
   <string name="reason">Motivo</string>
-  <string name="diffid">ID de diff</string>
-  <string name="whitelisted">$1, com uma pontuação de $2 em $3, foi adicionado(a) à lista branca</string>
+  <string name="diffid">Id. de diff</string>
+  <string name="whitelisted">Foi adicionado $1 com uma pontuação de $2 em $3 à lista branca</string>
   <string name="expiry-time">Validade</string>
   <string name="duration">Duração</string>
   <string name="enable">Ativar</string>
@@ -72,11 +73,11 @@
   <string name="no-token">Nenhum código de verificação</string>
   <string name="flags">Sinalizações</string>
   <string name="gracetime">A aguardar o término das consultas que efetuaram as edições...</string>
-  <string name="browser-none">Não há nenhuma página para mostrar ainda.</string>
-  <string name="browser-load">A descarregar a diferença entre revisões usando um recurso MW, por favor aguarde...</string>
+  <string name="browser-none">Ainda não existe uma página para exibir.</string>
+  <string name="browser-load">A transferir \"diff\" utilizando um recurso MW, por favor, aguarde...</string>
   <string name="browser-miss-summ">Não foi fornecido nenhum resumo</string>
   <string name="browser-diff">Diferença entre edições da página: $1 (pontuação $2)</string>
-  <string name="browser-fail">Não foi possível obter a diferença entre edições: $1</string>
+  <string name="browser-fail">Não é possível obter a diferença: $1</string>
   <string name="about-contributors">Programadores:</string>
   <string name="block-not">O utilizador não está bloqueado</string>
   <string name="block-title">Bloquear $1</string>
@@ -89,14 +90,14 @@
   <string name="block-autoblock">Ativar autobloqueios</string>
   <string name="block-email">Bloquear e-mail</string>
   <string name="block-usertalk">Discussão</string>
-  <string name="block-usercontribs">Contribs</string>
+  <string name="block-usercontribs">Contribuições</string>
   <string name="block-blockloglabel">Registo de bloqueios:</string>
   <string name="block-warnloglabel">Avisos:</string>
   <string name="block-sharedipwarning">Nota: $1 está marcado como sendo um IP partilhado ou dinâmico.</string>
   <string name="block-rangeblockwarning">$1 já é afetado por um bloqueio de gama em $2.\nEste bloqueio substituirá o efeito do bloqueio de gama. Continuar?</string>
   <string name="block-token-1">A obter código de verificação para bloquear $1</string>
-  <string name="block-fail">Não é possível bloquear o(a) utilizador(a), $1</string>
-  <string name="block-token-e1">O código de verificação não pôde ser obtido: $1</string>
+  <string name="block-fail">Não é possível bloquear o utilizador, $1</string>
+  <string name="block-token-e1">O código não pode ser obtido: $1</string>
   <string name="block-error-no-info">Não foi apresentada nenhuma informação sobre o utilizador na consulta (é administrador?)</string>
   <string name="block-type">Bloquear / desbloquear</string>
   <string name="block-admin">O administrador que fez o bloqueio</string>
