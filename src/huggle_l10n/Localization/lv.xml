@@ -66,12 +66,14 @@
   <string name="block-blockloglabel">Bloķēšanas reģistrs:</string>
   <string name="block-warnloglabel">Brīdinājumi:</string>
   <string name="block-type">Bloķēt / atbloķēt</string>
+  <string name="block-none">Nav izvēlēts bloķējamais dalībnieks.</string>
   <string name="config-function">Funkcija</string>
   <string name="config-description">Apraksts</string>
   <string name="config-shortcut">Saīsne</string>
   <string name="config-queue-filter-ignore">Ignorēt (nav svarīgi)</string>
   <string name="config-queue-filter-exclude">Izslēgt (nedrīkst būt)</string>
   <string name="config-queue-filter-require">Pieprasīt (jābūt)</string>
+  <string name="config-queue-modified-title">Rinda izmainīta</string>
   <string name="config-title">Iespējas</string>
   <string name="config-ircport">IRC ports</string>
   <string name="config-logfile">Žurnāla fails</string>
@@ -94,6 +96,7 @@
   <string name="config-own-edits">Savi labojumi</string>
   <string name="config-new-page">Jauna lapa</string>
   <string name="config-friend">Draugs</string>
+  <string name="config-userspace">Dalībnieka vārdtelpa</string>
   <string name="config-talk">Diskusiju lapa</string>
   <string name="config-warning-api">Rādīt brīdinājumus par API vaicājumiem</string>
   <string name="config-updates">Pārbaudīt atjauninājumus</string>
@@ -116,6 +119,7 @@
   <string name="delete-reason">Iemesls:</string>
   <string name="delete-deletionlog">Dzēšanas reģistrs:</string>
   <string name="delete-rem-talk">Dzēst saistīto diskusiju</string>
+  <string name="delete-notify">Paziņot izveidotājam</string>
   <string name="delete-e1">Lapu nevar dzēst: $1</string>
   <string name="delete-e2">Neizdevās dzēst lapu</string>
   <string name="delete-edsc">Neizdevās dzēst lapu, jo $1</string>
@@ -140,6 +144,7 @@
   <string name="login-proxygroup">Starpniekservera iestatījumi</string>
   <string name="login-proxy">Izmantot starpniekserveri</string>
   <string name="login-proxyaddress">Adrese:</string>
+  <string name="login-proxy-remember-this">Atcerēties šo iestatījumu nākamajai reizei</string>
   <string name="login-proxyport">Ports:</string>
   <string name="login-proxydomain">Domēns:</string>
   <string name="login-retrieving-user-conf">Iegūst lietotāja konfigurāciju</string>
@@ -202,7 +207,10 @@
   <string name="main-tools">Rīki</string>
   <string name="main-tools-sess">Parādīt sesijas informāciju</string>
   <string name="main-page-next">Tālāk</string>
+  <string name="main-page-switchtotalk">Pārslēgties uz diskusiju lapu</string>
+  <string name="main-page-switchtosubject">Pārslēgties uz temata lapu</string>
   <string name="main-page-switchtoarticle">Pārslēgties uz rakstu</string>
+  <string name="main-page-viewlatest">Skatīt aktuālo versiju</string>
   <string name="main-page-history">Iegūt vēsturi</string>
   <string name="main-page-historypage">Rādīt vēstures lapu</string>
   <string name="main-page-edit">Labot lapu pārlūkā</string>
@@ -214,6 +222,7 @@
   <string name="main-page-protect">Aizsargāt</string>
   <string name="main-page-delete">Dzēst</string>
   <string name="main-page-load">Ielādēt</string>
+  <string name="main-patrol-not-enabled">Patrulēšana nav iespējota $1</string>
   <string name="main-page-refresh">Atjaunināt</string>
   <string name="main-page-restore">Atjaunot šo versiju</string>
   <string name="main-page-tab-close">Aizvērt aktīvo cilni</string>
@@ -223,6 +232,7 @@
   <string name="main-user-info">Rādīt lietotāja informāciju</string>
   <string name="main-user-ignore">Ignorēt</string>
   <string name="main-user-unignore">Atcelt ignorēšanu</string>
+  <string name="main-user-contribs">Rādīt dalībnieka devumu pārlūkā</string>
   <string name="main-user-clear-talk">Notīrīt dalībnieka diskusiju lapu</string>
   <string name="main-user-talk">Skatīt diskusiju lapu</string>
   <string name="main-user-page">Skatīt dalībnieka lapu</string>

@@ -188,7 +188,7 @@
   <string name="main-queue-next">Bahdoyên</string>
   <string name="main-queue-clear">Weziyeti bışuw</string>
   <string name="main-queue-count">$1 objey</string>
-  <string name="main-queue-reset">Reset kerê</string>
+  <string name="main-queue-reset">Raçarne</string>
   <string name="main-queue-clearall">Pêriyûne bestere</string>
   <string name="main-goto">Şo</string>
   <string name="main-goto-mytalk">Pera mına mesaci</string>
@@ -211,7 +211,7 @@
   <string name="main-page-watch">Seyr ke</string>
   <string name="main-page-unwatch">Seyr meke</string>
   <string name="main-page-purge">Pak ke</string>
-  <string name="main-page-move">Bıkırış...</string>
+  <string name="main-page-move">Bıkırışe...</string>
   <string name="main-page-protect">Bışevekne</string>
   <string name="main-page-delete">Bestere</string>
   <string name="main-page-load">Bar ke</string>
