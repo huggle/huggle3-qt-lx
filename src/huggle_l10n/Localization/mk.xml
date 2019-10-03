@@ -674,6 +674,8 @@
   <string name="warning-level2">II степен</string>
   <string name="warning-level3">III степен</string>
   <string name="warning-level4">IV степен (последна)</string>
+  <string name="warning-confirm-title">Навистина да испратам предупредување?</string>
+  <string name="warning-confirm-old-edit">Уредувањето на $1 на $2 во $3 е постаро од еден ден. Дали навистина да му испратам предупредување?</string>
   <string name="warning-warntype">Тип на опомена:</string>
   <string name="warning-warnlog">Опомени за овој корисник:</string>
   <string name="warning-submit">Испрати</string>
