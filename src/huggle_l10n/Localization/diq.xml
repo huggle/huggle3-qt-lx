@@ -222,7 +222,7 @@
   <string name="main-user-message">Mesac...</string>
   <string name="main-user-warn">Tembe kem...</string>
   <string name="main-user-db">Xırab puananê karberi bıkemeyne</string>
-  <string name="main-user-report">Rapor kı</string>
+  <string name="main-user-report">Gerre ke</string>
   <string name="main-user-ib">Puananê xıraban bızeydıne</string>
   <string name="main-user-block">Kılit ke...</string>
   <string name="main-browser-back">Peyser</string>
@@ -258,8 +258,10 @@
   <string name="queue-filternewpage">Pela newiye</string>
   <string name="queue-filternotifications">Tebliğ</string>
   <string name="queue-filterwarnings">Tembe kem</string>
+  <string name="report-title">Gerre $1</string>
   <string name="report-reason">Sebeb:</string>
   <string name="report-message">Mesac:</string>
+  <string name="report-user">Gerre ke</string>
   <string name="score-score">Skor</string>
   <string name="score-word">Çekuye</string>
   <string name="speedy-reason">Sebeb:</string>
