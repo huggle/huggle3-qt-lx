@@ -11,6 +11,7 @@
 * Captantrips
 * Chansey
 * Coolland
+* Grkn gll
 * HakanIST
 * Hedda
 * Kendinciz
@@ -82,7 +83,7 @@
   <string name="disable">Devre dışı bırak</string>
   <string name="no-token">Belirteç yok</string>
   <string name="flags">İşaretler</string>
-  <string name="gracetime">Düzenleme sorgularının sona ermesi bekleniyor...</string>
+  <string name="gracetime">Düzenlemeleri yapan sorguların sona ermesi bekleniyor...</string>
   <string name="browser-none">Henüz görüntülenmesi gereken bir sayfa yok.</string>
   <string name="browser-load">Fark, MW geri dönüşü kullanılarak indiriliyor; lütfen bekleyin...</string>
   <string name="browser-miss-summ">Özet girilmedi</string>
@@ -120,7 +121,7 @@
   <string name="config-queue-filter-exclude">Hariç bırak</string>
   <string name="config-queue-filter-require">Gerektirir (zorunlu)</string>
   <string name="config-queue-modified-title">Sıra değiştirildi</string>
-  <string name="config-queue-modified-text">Sırayı değiştirdiniz, ancak kaydetmediniz. Devam ederseniz, değişiklikleriniz atılır. Devam etmek istiyor musun?</string>
+  <string name="config-queue-modified-text">Sırayı değiştirdiniz, ancak kaydetmediniz. Devam ederseniz, değişiklikleriniz kaydedilmeyecek. Devam etmek istiyor musun?</string>
   <string name="config-summ">Şablonlar için kulanılan kişisel geri alma özetleri</string>
   <string name="config-title">Seçenekler</string>
   <string name="config-already-in-use">Bu kısayol $1 tarafından zaten kullanılıyor, lütfen başka bir tane seçin</string>
