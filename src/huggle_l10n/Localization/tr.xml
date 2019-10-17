@@ -363,7 +363,7 @@
   <string name="main-metric-bar">Ortalama API yanıt süresi: $1ms</string>
   <string name="main-shutting-down">Huggle kapatılıyor, yoksayıldı.</string>
   <string name="main-system-messages">Yeni iletileri göster</string>
-  <string name="main-system-savelog">Günlüğü kaydet.</string>
+  <string name="main-system-savelog">Günlüğü kaydet...</string>
   <string name="main-system-statistics">İstatistikler...</string>
   <string name="main-system-showqueue">Sırayı göster</string>
   <string name="main-system-options">Seçenekler...</string>
@@ -876,7 +876,7 @@
   <string name="developer-mode-enter-title">Vaaay</string>
   <string name="developer-mode-enter-message">Geliştirici moduna girdiniz!</string>
   <string name="unimplemented">Bu özellik henüz uygulanmadı</string>
-  <string name="unknown-item">Bilinmeyen madde</string>
+  <string name="unknown-item">Bilinmeyen öğe</string>
   <string name="title-multiple-projects">Çoklu projeler ($1)</string>
   <string name="title-on"> $1 de</string>
   <string name="main-revert-custom-reason-text">Sebep sağlanmadı/özel geri alma</string>
