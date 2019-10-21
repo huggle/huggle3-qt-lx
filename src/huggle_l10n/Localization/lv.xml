@@ -307,6 +307,7 @@
   <string name="report-user">Ziņot</string>
   <string name="score-score">Vērtējums</string>
   <string name="uaa-reported">Paziņots</string>
+  <string name="revert-only">Šis ir vienīgais lapas labojums.</string>
   <string name="speedy-reason">Iemesls:</string>
   <string name="speedy-parameters">Parametri:</string>
   <string name="tag-title">Iezīme $1</string>
