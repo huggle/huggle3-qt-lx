@@ -23,7 +23,7 @@
 * Zetud
 -->
 <resources>
-  <string name="name">Français</string>
+  <string name="name">français</string>
   <string name="autorelog">Faire ceci sans le demander la prochaine fois</string>
   <string name="isrtl">false</string>
   <string name="add">Ajouter</string>
