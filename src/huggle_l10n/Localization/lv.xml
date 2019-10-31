@@ -89,6 +89,7 @@
   <string name="config-revert-wait">Atcelšanas aizture (sekundes)</string>
   <string name="config-revert">Atjaunot</string>
   <string name="config-skip">Izlaist</string>
+  <string name="config-change-all">Mainīt visus Huggle iestatījumus, lai tas uzvestos kā Huggle 2</string>
   <string name="config-display-next">Attēlot nākamo</string>
   <string name="config-retrieve-edit">Iegūt savu labojumu</string>
   <string name="config-nothing">Neko</string>
@@ -115,6 +116,7 @@
   <string name="custommessage-subject">Temats</string>
   <string name="custommessage-menu">Nosūtīt pielāgotu ziņu</string>
   <string name="custommessage-send">Nosūtīt ziņu</string>
+  <string name="custommessage-wikiuser-plaintext-2">Raksti savu ziņu šeit.</string>
   <string name="delete-title">Dzēst $1</string>
   <string name="delete-reason">Iemesls:</string>
   <string name="delete-deletionlog">Dzēšanas reģistrs:</string>
@@ -134,7 +136,9 @@
   <string name="history-error-message-title">Nevar atcelt</string>
   <string name="history-failure">Neizdevās iegūt vēsturi</string>
   <string name="userhistory-title">Tavu izmaiņu vēsture</string>
+  <string name="login-old">Iegūst lietotāja konfigurāciju no vecās atrašanās vietas</string>
   <string name="login-intro">Lūdzu, izvēlies projektu un ievadi savu lietotājvārdu un paroli. Tu vari pieslēgties vairākiem projektiem, klikšķinot uz pogas \"Projekti\".</string>
+  <string name="invalid-bot-user-name">Tas nav derīgs bota nosaukums. Derīga nosaukuma piemērs: Jimbo@Huggle</string>
   <string name="login-tab-botp">Bota parole</string>
   <string name="login-tab-login">Novecojis</string>
   <string name="login-language">Valoda:</string>

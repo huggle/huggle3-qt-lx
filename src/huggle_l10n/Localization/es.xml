@@ -547,7 +547,7 @@
   <string name="queue-removeold">Quitar ediciones antiguas a la misma página</string>
   <string name="queue-ignorepages">Ignorar ediciones de páginas que están en la lista de páginas ignoradas</string>
   <string name="queue-traynotification">Mostrar notificación en la barra de tareas cuando se añada una edición a esta cola</string>
-  <string name="queue-diffsgroup">Diffs</string>
+  <string name="queue-diffsgroup">Diferencias</string>
   <string name="queue-pagefiltersgroup">Filtros de título de página</string>
   <string name="queue-pageregex">El título coincide con la expresión regular:</string>
   <string name="queue-namespaces">Espacios de nombres:</string>
