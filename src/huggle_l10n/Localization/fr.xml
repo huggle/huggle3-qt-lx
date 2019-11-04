@@ -411,7 +411,7 @@
   <string name="main-page-history">Récupérer l’historique</string>
   <string name="main-page-historypage">Afficher la page d\'historique</string>
   <string name="main-page-edit">Modifier la page dans le navigateur</string>
-  <string name="main-page-tag">Identifier</string>
+  <string name="main-page-tag">Baliser</string>
   <string name="main-page-reqdeletion">Demander une suppression rapide</string>
   <string name="main-page-reqprotection">Demander la protection de la page</string>
   <string name="main-page-watch">Suivre</string>
