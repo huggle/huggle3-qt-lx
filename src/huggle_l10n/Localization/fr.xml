@@ -12,6 +12,7 @@
 * Niridya
 * Orikrin1998
 * Oupsa
+* Shawn
 * The RedBurn
 * Thibaut120094
 * Trial
@@ -52,7 +53,7 @@
   <string name="undo">Annuler</string>
   <string name="yes">Oui</string>
   <string name="editing-page">Modification de la page</string>
-  <string name="agf">Ramener comme modification de bonne foi avec un motif personnalisé</string>
+  <string name="agf">Révoquer comme modification de bonne foi avec un motif personnalisé</string>
   <string name="successful">Succès</string>
   <string name="summary">Résumé</string>
   <string name="id">Identifiant</string>
@@ -71,7 +72,7 @@
   <string name="link">Lien</string>
   <string name="reason">Motif</string>
   <string name="diffid">Identifiant de diff</string>
-  <string name="whitelisted">$1 qui possède un pointage de $2 sur $3 a été mis en liste blanche</string>
+  <string name="whitelisted">$1 qui possède un score de $2 sur $3 a été mis en liste blanche</string>
   <string name="expiry-time">Délai d’expiration</string>
   <string name="duration">Durée</string>
   <string name="enable">Activer</string>
@@ -82,12 +83,12 @@
   <string name="browser-none">Pas encore de page à afficher.</string>
   <string name="browser-load">Téléchargement de diff en utilisant un secours MW, veuillez patienter…</string>
   <string name="browser-miss-summ">Aucun résumé n’a été fourni</string>
-  <string name="browser-diff">Diff de la page : $1 (pointage : $2)</string>
+  <string name="browser-diff">Diff de la page : $1 ($2 points)</string>
   <string name="browser-fail">Impossible de récupérer le diff : $1</string>
   <string name="about-contributors">Développeurs :</string>
   <string name="block-not">L’utilisateur n’est pas bloqué</string>
-  <string name="block-title">Bloc $1</string>
-  <string name="block-reason">Raison :</string>
+  <string name="block-title">Blocage de $1</string>
+  <string name="block-reason">Motif :</string>
   <string name="block-duration">Durée :</string>
   <string name="block-message">Message sur la page de discussion :</string>
   <string name="block-message-user">Envoyer un message à l’utilisateur cible avec une explication du blocage</string>
@@ -116,8 +117,8 @@
   <string name="config-queue-filter-exclude">Exclure (ne doit pas exister)</string>
   <string name="config-queue-filter-require">Exiger (doit exister)</string>
   <string name="config-queue-modified-title">File modifiée</string>
-  <string name="config-queue-modified-text">Vous avez modifié la file mais sans la sauvegarder. Si vous continuez, vos modifications seront effacées. Voulez-vous continuer ?</string>
-  <string name="config-summ">Résumés personnalisés pour les révocations de modèles</string>
+  <string name="config-queue-modified-text">Vous avez modifié la file mais sans la sauvegarder. Si vous continuez, vos modifications seront perdues. Voulez-vous continuer ?</string>
+  <string name="config-summ">Résumés de révocation personnalisés pour les modèles</string>
   <string name="config-title">Options</string>
   <string name="config-already-in-use">Ce raccourci est déjà utilisé par $1, veuillez en choisir un autre</string>
   <string name="config-openinbrowser">Ouvrir les liens du navigateur dans une nouvelle fenêtre</string>
@@ -444,14 +445,14 @@
   <string name="main-user-page">Afficher la page utilisateur</string>
   <string name="main-user-message">Envoyer un message...</string>
   <string name="main-user-warn">Avertir...</string>
-  <string name="main-user-db">Décrémenter la note de mauvaise conduite de l’utilisateur</string>
+  <string name="main-user-db">Décrémenter le score de mauvaise conduite de l’utilisateur</string>
   <string name="main-user-report">Signaler</string>
-  <string name="main-user-ib">Augmenter le pointage de mauvaise conduite</string>
-  <string name="main-user-contribution-browser">Pointage des contributions</string>
+  <string name="main-user-ib">Augmenter les points de mauvaise conduite</string>
+  <string name="main-user-contribution-browser">Navigateur de contributions</string>
   <string name="main-user-clear-tp">Nettoyer la page de discussion de l’utilisateur</string>
   <string name="main-user-retrieving-tp">Récupération de la page de discussion de $1</string>
   <string name="main-user-block">Bloquer...</string>
-  <string name="main-user-manualtemplate">Modèle de manuel</string>
+  <string name="main-user-manualtemplate">Modèle manuel</string>
   <string name="main-browser-back">Retour</string>
   <string name="main-browser-forward">Suite</string>
   <string name="main-browser-open">Afficher ceci dans un navigateur externe</string>
@@ -472,7 +473,7 @@
   <string name="main-help-introduction">Introduction</string>
   <string name="main-help-welcome-page">Page d’accueil</string>
   <string name="main-help-contents">Sommaire</string>
-  <string name="main-help-queuelegend">Mettre la légende en file d’attente</string>
+  <string name="main-help-queuelegend">Légende de la file d’attente</string>
   <string name="main-addqueue">Ajouter...</string>
   <string name="main-savelogtitle">Enregistrer le journal</string>
   <string name="main-usermessageother">Autre message...</string>
@@ -493,12 +494,12 @@
   <string name="main-revert-newpage">Ceci est une nouvelle page, elle ne peut donc pas être restaurée. Vous pouvez soit la marquer soit la supprimer.</string>
   <string name="main-restore-text-fail">Impossible de restaurer cette version, car il n’y a pas de texte disponible pour celle-ci</string>
   <string name="main-restore-data-fail">Impossible de rétablir la révision, parce que le wiki n’a fourni aucune donnée pour la version sélectionnée</string>
-  <string name="main-welcome-user">Bienvenue utilisateur</string>
+  <string name="main-welcome-user">Souhaiter la bienvenue à l\'utilisateur</string>
   <string name="main-custom-reason-title">Annuler les modifications en utilisant le motif fourni par l’utilisateur</string>
   <string name="main-custom-reason-text">Veuillez fournir un motif indiquant pourquoi vous voulez annuler cette modification</string>
   <string name="main-custom-reason-fail">Vous n\'avez pas fourni de motif valide</string>
   <string name="main-report-username">Signaler le nom d’utilisateur</string>
-  <string name="main-report-user">Signaliser l\'utilisateur</string>
+  <string name="main-report-user">Signaler l\'utilisateur</string>
   <string name="main-edit-user-talk">Modifier la conversation de l’utilisateur</string>
   <string name="main-statistics-paused">en pause</string>
   <string name="main-statistics-waiting">En attente de davantage de modifications</string>
@@ -568,7 +569,7 @@
   <string name="queue-examplelabel3">Ne pas vérifier cet attribut</string>
   <string name="queue-usergroup">Afficher uniquement les modifications de ces utilisateurs</string>
   <string name="report-title">Signaler $1</string>
-  <string name="report-warn">Cet utilisateur a déjà atteint le niveau d’avertissement 4, donc plus aucun modèle ne lui sera fourni. Vous pouvez le lui signaler maintenant, mais veuillez vous assurer qu’il a déjà atteint le nombre approprié d’avertissements récents ! Vous pouvez le faire en cliquant sur le bouton « page de discussion » dans le formulaire suivant. Gardez à l’esprit que ce formulaire et cet avertissement sont affichés, que votre annulation soit réussie ou non, donc vous pourriez entrer en conflit avec d’autres utilisateurs ici (vérifiez deux fois que l’utilisateur n’a pas déjà été signalé). Voulez-vous avertir cet utilisateur ?</string>
+  <string name="report-warn">Cet utilisateur a déjà atteint le niveau d’avertissement 4, donc plus aucun modèle ne lui sera fourni. Vous pouvez le signaler maintenant, mais veuillez vous assurer qu’il a déjà atteint le nombre approprié d’avertissements récents ! Vous pouvez le faire en cliquant sur le bouton « page de discussion » dans le formulaire suivant. Gardez à l’esprit que ce formulaire et cet avertissement sont affichés, que votre annulation soit réussie ou non, donc vous pourriez entrer en conflit avec d’autres utilisateurs ici (vérifiez deux fois que l’utilisateur n’a pas déjà été signalé). Voulez-vous signaler cet utilisateur ?</string>
   <string name="report-tu">Signaler l’utilisateur</string>
   <string name="report-reason">Motif :</string>
   <string name="report-auto">$1 signalé</string>
@@ -586,7 +587,7 @@
   <string name="report-retrieving">Récupération de la page de signalement actuelle...</string>
   <string name="report-done">Signalé</string>
   <string name="report-user">Signalement</string>
-  <string name="score-score">Pointage</string>
+  <string name="score-score">Points</string>
   <string name="score-word">Mot</string>
   <string name="score-range">Plage</string>
   <string name="score-take-any-no-talk-word">Correspond à n’importe quel mot sur les pages hors discussion</string>
@@ -749,7 +750,7 @@
   <string name="history-undone">Annulation réussie de la modification de $1</string>
   <string name="history-retrieve-fail">Impossible de récupérer le contenu de la page pour laquelle nous voulons annuler notre propre modification. L’erreur est : $1</string>
   <string name="history-welcome-msg-title">Envoyer un message de bienvenue à la place ?</string>
-  <string name="history-welcome-msg">Vous avez créé cette page de discussion, donc elle ne peut pas être annulée. Voulez-vous la remplacer par un modèle de mot de bienvenue ?</string>
+  <string name="history-welcome-msg">Vous avez créé cette page de discussion, cela ne peut pas être annulé. Voulez-vous la remplacer par un modèle de bienvenue ?</string>
   <string name="newtab-title">Ceci est un nouvel onglet !</string>
   <string name="newtab-text">Les onglets dans Huggle fonctionnent d’une manière similaire aux autres navigateurs internet. Tous les onglets dans Huggle partagent la même file d’attente, mais ils sont utiles si vous voulez garder un œil sur certaines pages ou si vous voulez vérifier ultérieurement certaines modifications.</string>
   <string name="notify-fail">Le créateur de $1 n’a pas été notifié</string>
@@ -820,7 +821,7 @@
   <string name="preferences-watchlist-unwatch">Supprimer de la liste de suivi</string>
   <string name="preferences-watchlist-preferences">Suivre vos préférences du wiki</string>
   <string name="preferences-watchlist-nochange">Ne rien faire</string>
-  <string name="preferences-auto-watch-talk">Voir la page de discussion d’un utilisateur qui a reçu un avertissement de votre part</string>
+  <string name="preferences-auto-watch-talk">Suivre la page de discussion d’un utilisateur qui a reçu un avertissement de votre part</string>
   <string name="preferences-sounds-enable-queue">Emettre un son quand un nouvel élément est ajouté à la file</string>
   <string name="preferences-sounds-enable-irc">Emettre un son quand le message est reçu dans HAN</string>
   <string name="preferences-sounds-minimal-score">Valeur minimale de modifications pour la notification</string>
@@ -847,8 +848,8 @@
   <string name="page-tag-error">Impossible de baliser la page, l’erreur était : $1</string>
   <string name="page-unknown">Page inconnue</string>
   <string name="summary-edit-range">Afficher une plage de différence entre les ids de révision $1 et $2</string>
-  <string name="speedy-csd-invalid">Balise CDD invalide, il n\'y a pas de message ni de balise wiki à utiliser</string>
-  <string name="speedy-csd-existing">Il y a déjà une étiquette CSD sur la page.</string>
+  <string name="speedy-csd-invalid">Bandeau de suppression immédiate invalide, il n\'y a pas de message ni de balise wiki à utiliser</string>
+  <string name="speedy-csd-existing">Il y a déjà un bandeau de suppression immédiate la page.</string>
   <string name="namespace">Espace de noms</string>
   <string name="block-alreadyblocked">L\'utilisateur est déjà bloqué</string>
   <string name="report-fail">Erreur lors du signalement utilisateur. Raison : $1</string>
@@ -890,7 +891,7 @@
   <string name="queue-empty-title">C’est vide</string>
   <string name="queue-empty-text">Il n’y a rien d’autre dans la file…</string>
   <string name="protip">ProTip</string>
-  <string name="wikipagetagsform-group">Groupe dans {{$1}}</string>
+  <string name="wikipagetagsform-group">Regrouper dans {{$1}}</string>
   <string name="tip1">Huggle supporte les onglets comme tout autre navigateur ! Si vous êtes sur une modification et que vous voulez la conserver pour plus tard, vous pouvez simplement ouvrir un nouvel onglet et continuer à vérifier la file de là. La file d’attente est partagée entre tous les onglets.</string>
   <string name="tip2">Hugglet contient une « barre d’édition », un petit widget qui mémorise l’historique de l’utilisateur et des pages, d’une nouvelle façon. Il n’est cependant pas activé par défaut. Si vous êtes sur un petit écran, vous pouvez remplacer les widgets d’historique utilisateur et de page par celui-ci  !</string>
   <string name="tip3">La plupart des préférences sont enregistrées dans le wiki sur [[Special:MyPage/huggle.yaml.js]]. Vous pouvez aussi les mettre à jour manuellement à cet endroit.</string>
@@ -898,7 +899,7 @@
   <string name="tip5">Vous pouvez utiliser Huggle en même temps sur de nombreux projets, cliquez simplement sur le bouton « Projets » du formulaire de connexion.</string>
   <string name="tip6">L’annulation par Huggle peut être plus rapide si vous êtes un utilisateur expérimenté qui ne fait jamais d’erreurs \'\'\';-)\'\'\' Ouvrez les préférences et cochez « Annulations instantanées »</string>
   <string name="tip7">Vous pouvez créer vos filtres personnalisés de file d’attente dans vos préférences. Ils sont stockés dans votre page de configuration du wiki.</string>
-  <string name="tip8">Appuyer sur G marquera cette modification comme une « bonne modification ». Cela indiquera aux autres que cette modification peut être ignorée, décrémentera la note de mauvaise conduite de l’utilisateur et, de façon facultative, lui enverra un message de bienvenue.</string>
+  <string name="tip8">Appuyer sur G marquera cette modification comme une « bonne modification ». Cela indiquera aux autres que cette modification peut être ignorée, décrémentera le score de mauvaise conduite de l’utilisateur et, de façon facultative, lui enverra un message de bienvenue.</string>
   <string name="tip9">Appuyer sur S marquera la modification comme une « modification suspecte ». Cela indiquera aux autres de prêter attention à cette modification et l’ajoutera à la file des modifications suspectes pour une relecture ultérieure par des experts.</string>
   <string name="tip10">La plupart des raccourcis peuvent être modifiés dans vos préférences.</string>
   <string name="tip11">Déplacer un widget sur l’écran de Huggle par-dessus un autre widget fusionnera les deux en un, séparés par des onglets.</string>
