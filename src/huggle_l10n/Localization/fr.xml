@@ -83,12 +83,12 @@
   <string name="browser-none">Pas encore de page à afficher.</string>
   <string name="browser-load">Téléchargement de diff en utilisant un secours MW, veuillez patienter…</string>
   <string name="browser-miss-summ">Aucun résumé n’a été fourni</string>
-  <string name="browser-diff">Diff de la page : $1 ($2 points)</string>
+  <string name="browser-diff">Diff de la page : $1 ($2 points)</string>
   <string name="browser-fail">Impossible de récupérer le diff : $1</string>
   <string name="about-contributors">Développeurs :</string>
   <string name="block-not">L’utilisateur n’est pas bloqué</string>
   <string name="block-title">Blocage de $1</string>
-  <string name="block-reason">Motif :</string>
+  <string name="block-reason">Motif :</string>
   <string name="block-duration">Durée :</string>
   <string name="block-message">Message sur la page de discussion :</string>
   <string name="block-message-user">Envoyer un message à l’utilisateur cible avec une explication du blocage</string>
@@ -448,7 +448,7 @@
   <string name="main-user-db">Décrémenter le score de mauvaise conduite de l’utilisateur</string>
   <string name="main-user-report">Signaler</string>
   <string name="main-user-ib">Augmenter les points de mauvaise conduite</string>
-  <string name="main-user-contribution-browser">Navigateur de contributions</string>
+  <string name="main-user-contribution-browser">Navigateur des contributions</string>
   <string name="main-user-clear-tp">Nettoyer la page de discussion de l’utilisateur</string>
   <string name="main-user-retrieving-tp">Récupération de la page de discussion de $1</string>
   <string name="main-user-block">Bloquer...</string>
@@ -494,12 +494,12 @@
   <string name="main-revert-newpage">Ceci est une nouvelle page, elle ne peut donc pas être restaurée. Vous pouvez soit la marquer soit la supprimer.</string>
   <string name="main-restore-text-fail">Impossible de restaurer cette version, car il n’y a pas de texte disponible pour celle-ci</string>
   <string name="main-restore-data-fail">Impossible de rétablir la révision, parce que le wiki n’a fourni aucune donnée pour la version sélectionnée</string>
-  <string name="main-welcome-user">Souhaiter la bienvenue à l\'utilisateur</string>
+  <string name="main-welcome-user">Souhaiter la bienvenue à l’utilisateur</string>
   <string name="main-custom-reason-title">Annuler les modifications en utilisant le motif fourni par l’utilisateur</string>
   <string name="main-custom-reason-text">Veuillez fournir un motif indiquant pourquoi vous voulez annuler cette modification</string>
   <string name="main-custom-reason-fail">Vous n\'avez pas fourni de motif valide</string>
   <string name="main-report-username">Signaler le nom d’utilisateur</string>
-  <string name="main-report-user">Signaler l\'utilisateur</string>
+  <string name="main-report-user">Signaler l’utilisateur</string>
   <string name="main-edit-user-talk">Modifier la conversation de l’utilisateur</string>
   <string name="main-statistics-paused">en pause</string>
   <string name="main-statistics-waiting">En attente de davantage de modifications</string>
@@ -848,7 +848,7 @@
   <string name="page-tag-error">Impossible de baliser la page, l’erreur était : $1</string>
   <string name="page-unknown">Page inconnue</string>
   <string name="summary-edit-range">Afficher une plage de différence entre les ids de révision $1 et $2</string>
-  <string name="speedy-csd-invalid">Bandeau de suppression immédiate invalide, il n\'y a pas de message ni de balise wiki à utiliser</string>
+  <string name="speedy-csd-invalid">Bandeau de suppression immédiate non valide, il n’y aucun message ni aucune balise wiki à utiliser</string>
   <string name="speedy-csd-existing">Il y a déjà un bandeau de suppression immédiate la page.</string>
   <string name="namespace">Espace de noms</string>
   <string name="block-alreadyblocked">L\'utilisateur est déjà bloqué</string>
