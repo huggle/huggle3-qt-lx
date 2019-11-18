@@ -3,6 +3,7 @@
 * Beta16
 * Eitvys200
 * Macofe
+* Tomasdd
 * Zygimantus
 -->
 <resources>
@@ -80,8 +81,8 @@
   <string name="block-token-e1">Nepavyko gauti rakto: $1</string>
   <string name="block-error-no-info" fuzzy="true">Nėra vartotojo informacijos užklausoje (ar esate sysop?)</string>
   <string name="block-type">Blokuoti / atblokuoti</string>
-  <string name="block-admin" fuzzy="true">Blokavimą atlikęs sysop</string>
-  <string name="block-none" fuzzy="true">Nėra vartotojo blokavimui.</string>
+  <string name="block-admin">Blokavimą atlikęs administratorius</string>
+  <string name="block-none">Nėra vartotojo, pažymėto blokavimui.</string>
   <string name="contribution-browser-user-info">Rodomi naujausiai vartotojo $1 įnašai</string>
   <string name="config-function">Funkcija</string>
   <string name="config-description">Aprašymas</string>
@@ -199,7 +200,7 @@
   <string name="login-username">Naudotojo vardas:</string>
   <string name="login-password">Slaptažodis:</string>
   <string name="login-proxygroup">Proxy nustatymai</string>
-  <string name="login-proxy" fuzzy="true">Naudoti proxy serverį</string>
+  <string name="login-proxy">Naudoti proxy</string>
   <string name="login-proxyaddress">Adresas:</string>
   <string name="login-proxy-remember-this">Atsiminti šį nustatymą kitam kartui</string>
   <string name="login-proxyport">Prievadas:</string>
@@ -212,12 +213,12 @@
   <string name="login-failed-edit">Prisijungti prie $1 nepavyko: Neturite pakankamai įnašų šiame projekte.</string>
   <string name="login-retrieving-info">Gaunama vartotojo informacija iš $1</string>
   <string name="login-password-empty">Jūsų įvestas slaptažodis buvo tuščias</string>
-  <string name="login-fail-wrong-name" fuzzy="true">Jūs nepateikėte teisingo vartotojo vardo prisijungimui</string>
+  <string name="login-fail-wrong-name">Jūs nepateikėte vartotojo vardo prisijungimui</string>
   <string name="login-api">KLAIDA: api.php atsakė su nežinomu rezultatu: $1</string>
   <string name="login-start">Prisijungti</string>
   <string name="login-oauth-notsupported">Šis metodas šiuo metu nėra palaikomas</string>
   <string name="login-translate">Versti Huggle</string>
-  <string name="login-progress-start" fuzzy="true">Prisijungiama prie $1</string>
+  <string name="login-progress-start">Prisijungiama į $1</string>
   <string name="login-progress-retrieve-mw">Gaunama informacija apie $1 MediaWiki</string>
   <string name="login-progress-language">Atnaujinami pranešimų failai...</string>
   <string name="login-progress-global">Tikrinama globali konfigūracija...</string>
@@ -227,7 +228,7 @@
   <string name="login-progress-user-info">Tikrinama $1 vartotojo informacija</string>
   <string name="login-progress-whitelist">Gaunamas vartotojų baltasis sąrašas</string>
   <string name="login-remember-password">Prisiminti slaptažodį</string>
-  <string name="login-ssl" fuzzy="true">Naudoti HTTPS (reikia OpenSSL)</string>
+  <string name="login-ssl">Naudoti HTTPS prisijungti (reikia OpenSSL)</string>
   <string name="login-fail">Nepavyko prisijungti prie $</string>
   <string name="login-error-admin">Huggle naudojimas šiame projekte reikalauja administratorius paskyros.</string>
   <string name="login-error-age" fuzzy="true">Huggle naudojimas šiame projekte reikalauja paskyros, kuri būti bent $1 dienų senumo.</string>
@@ -609,7 +610,7 @@
   <string name="report-fail">Nepavyko pranešti apie vartotoją, nes: $1</string>
   <string name="report-page-fail">Klaida: nepavyko gauti $1 pranešimo puslapio</string>
   <string name="report-page-fail-time" fuzzy="true">Nepavyko gauti dabartinio pranešimo puslapio laiko žymės, api klaida:\n\n $1</string>
-  <string name="report-unable" fuzzy="true">Nepavyko pranešti apie vartotoją :(</string>
+  <string name="report-unable">Nepavyko pranešti apie vartotoją</string>
   <string name="error-unknown-code">Nežinoma Klaida: $1</string>
   <string name="relogin-fail">Nepavyko prisijungti prie viki: $1</string>
   <string name="projects">Projektai</string>
@@ -617,7 +618,7 @@
   <string name="login-no-userinfo">Svetainėje negražino jokios userinfo informacijos</string>
   <string name="login-site-info-query-failed">Svetainės $1 informacijos užklausa nepavyko: $2</string>
   <string name="login-no-site-info-returned">Negražinta jokia viki svetainės informacija</string>
-  <string name="loading-main-window" fuzzy="true">Įkeliamas pagrindinis Huggle langas</string>
+  <string name="loading-main-window">Įkeliamas pagrindinis Huggle langas...</string>
   <string name="login-username-doesnt-exist">Šis vartotojo vardas neegzistuoja</string>
   <string name="unknown-item">Nežinomas objektas</string>
   <string name="title-multiple-projects">keli projektai ($1)</string>
