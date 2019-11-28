@@ -67,7 +67,7 @@
   <string name="flags">דגלים</string>
   <string name="gracetime">ממתין לסיום שאילתות המבצעות עריכות...</string>
   <string name="browser-none">עדיין אין דפים להצגה</string>
-  <string name="browser-load" fuzzy="true">הורדת השוואה באמצעות גיבוי תצוגת וב, נא להמתין...</string>
+  <string name="browser-load">הורדת השוואה באמצעות גיבוי MW, נא להמתין...</string>
   <string name="browser-miss-summ">לא ניתן תקציר</string>
   <string name="browser-diff">השוואת גרסאות של הדף: $1 (ציון: $2)</string>
   <string name="browser-fail">לא ניתן לאחזר השוואה: $1</string>

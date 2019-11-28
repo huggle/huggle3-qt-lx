@@ -17,6 +17,7 @@
 * 予弦
 * 夢蝶葬花
 * 水獭很懒
+* 沈澄心
 * 神樂坂秀吉
 -->
 <resources>
@@ -787,7 +788,7 @@
   <string name="whitelist-download">正在下载新白名单</string>
   <string name="logs-widget-name">系统日志</string>
   <string name="processes-widget-name">处理</string>
-  <string name="wait">请稍候…</string>
+  <string name="wait">请稍候……</string>
   <string name="function-miss">函数目前不可用</string>
   <string name="missing-aiv">此项目不使用AIV</string>
   <string name="missing-page">此wiki没有页面$1</string>
