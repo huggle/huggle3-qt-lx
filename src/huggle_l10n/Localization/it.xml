@@ -207,7 +207,7 @@
   <string name="custommessage-title">Scrivi un messaggio a $1</string>
   <string name="custommessage-subject">Titolo</string>
   <string name="custommessage-menu">Invia un messaggio personalizzato</string>
-  <string name="custommessage-send">Spedisci messaggio</string>
+  <string name="custommessage-send">Invia messaggio</string>
   <string name="custommessage-wikiuser-plaintext-1">Ciao $1,</string>
   <string name="custommessage-wikiuser-plaintext-2">Scrivi il tuo messaggio qui.</string>
   <string name="delete-title">Cancella $1</string>

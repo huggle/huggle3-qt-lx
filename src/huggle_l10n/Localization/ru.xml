@@ -14,6 +14,7 @@
 * Iluvatar
 * Kaganer
 * Kareyac
+* Kreal39
 * Lemondoge
 * Lugimax
 * Macofe
@@ -39,7 +40,7 @@
 <resources>
   <string name="name">Русский</string>
   <string name="autorelog">Сделайте это в следующий раз, не спрашивая</string>
-  <string name="isrtl">false</string>
+  <string name="isrtl">ложь</string>
   <string name="add">Добавить</string>
   <string name="cancel">Отмена</string>
   <string name="clear">Очистить</string>
