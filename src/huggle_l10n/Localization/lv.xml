@@ -48,6 +48,7 @@
   <string name="status">Statuss</string>
   <string name="link">Saite</string>
   <string name="reason">Iemesls:</string>
+  <string name="expiry-time">Beigu termiņš</string>
   <string name="duration">Ilgums</string>
   <string name="enable">Iespējot</string>
   <string name="disable">Atslēgt</string>

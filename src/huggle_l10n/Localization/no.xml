@@ -143,6 +143,7 @@
   <string name="login-proxydomain">Domene:</string>
   <string name="login-start">Logg på</string>
   <string name="login-translate">Oversett Huggle</string>
+  <string name="login-progress-formtitle">Laster...</string>
   <string name="login-progress-start" fuzzy="true">Logger på $1</string>
   <string name="login-progress-language">Oppdaterer meldingsfiler...</string>
   <string name="login-progress-global">Sjekker global konfigurasjon...</string>
@@ -327,6 +328,7 @@
   <string name="update-progress" fuzzy="true">Laster ned ny versjon...</string>
   <string name="update-error">Kunne ikke laste ned ny versjon</string>
   <string name="updater-close">Lukk</string>
+  <string name="updater-disable-notify">Deaktiver oppdateringer</string>
   <string name="userinfo-no-user">Ingen bruker</string>
   <string name="shortcut-browser-close-tab">Lukk en nettleserfane</string>
   <string name="shortcut-tab">Åpner en ny fane</string>
