@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
 * AmaryllisGardener
+* MJL
 * Macofe
 -->
 <resources>
@@ -43,7 +44,7 @@
   <string name="version">Version</string>
   <string name="general-name">Name</string>
   <string name="author">Author</string>
-  <string name="description">Description</string>
+  <string name="description">Descreeption</string>
   <string name="status">Status</string>
   <string name="link">Airtin</string>
   <string name="reason">Reason</string>
@@ -87,7 +88,7 @@
   <string name="block-none" fuzzy="true">Thare is no uiser tae block.</string>
   <string name="contribution-browser-user-info">Shawin recent contreibutions o uiser $1</string>
   <string name="config-function">Function</string>
-  <string name="config-description">Description</string>
+  <string name="config-description">Descreeption</string>
   <string name="config-shortcut">Shortcut</string>
   <string name="config-queue-filter-ignore">Ignore (doesna matter)</string>
   <string name="config-queue-filter-exclude">Exclude (must nae be)</string>

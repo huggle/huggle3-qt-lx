@@ -126,6 +126,8 @@
   <string name="delete-e1">Lapu nevar dzēst: $1</string>
   <string name="delete-e2">Neizdevās dzēst lapu</string>
   <string name="delete-edsc">Neizdevās dzēst lapu, jo $1</string>
+  <string name="extension-kl">Nedarbojas</string>
+  <string name="extension-ok">Ielādēts un darbojas</string>
   <string name="exception-error-code">Kļūdas kods: $1</string>
   <string name="exception-reason">Iemesls: $1</string>
   <string name="exception-source">Avots: $1</string>
