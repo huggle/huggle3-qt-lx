@@ -14,6 +14,7 @@
 * Robby
 * Se4598
 * ToBeFree
+* WikiBayer
 -->
 <resources>
   <string name="name">Deutsch</string>
@@ -686,6 +687,8 @@
   <string name="warning-level2">Stufe 2</string>
   <string name="warning-level3">Stufe 3</string>
   <string name="warning-level4">Stufe 4 (finale Warnung)</string>
+  <string name="warning-confirm-old-edit">Bearbeitung $1 auf $2 von $3 ist älter als 1 Tag, willst du ihn wirklich eine Warnmeldung schicken?</string>
+  <string name="warning-no-aiv-config">Dieser Benutzer hat bereits die Warnstufe 4 erreicht und es wird kein AIV in diesem Wiki unterstützt, Sie sollten den Benutzer jetzt blockieren.</string>
   <string name="warning-warntype">Art der Warnung:</string>
   <string name="warning-warnlog">Verwarnungen dieses Benutzers:</string>
   <string name="warning-submit">Senden</string>

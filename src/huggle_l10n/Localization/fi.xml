@@ -85,6 +85,7 @@
   <string name="config-shortcutlist">Pikanäppäimet</string>
   <string name="config-shortcutaction">Toiminto</string>
   <string name="config-defaults">Oletukset</string>
+  <string name="config-minor">Pieni muokkaus</string>
   <string name="config-ip">IP-käyttäjät</string>
   <string name="config-watchlist">Lisää tarkkailulistalle</string>
   <string name="config-revert">Palauta</string>

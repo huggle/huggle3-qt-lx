@@ -135,6 +135,8 @@
   <string name="config-defaultsprompt">Hesıbyayeyan peyd bar ke</string>
   <string name="config-logbrowsetitle">Heruna roceka dosya</string>
   <string name="custommessage-subject">Sername</string>
+  <string name="custommessage-wikiuser-plaintext-1">Merheba $1,</string>
+  <string name="custommessage-wikiuser-plaintext-2">Mesacê xo tiya bınusne.</string>
   <string name="delete-title">$1 bestere</string>
   <string name="delete-reason">Sebeb:</string>
   <string name="delete-deletionlog">Qeydê esterıtışi:</string>
@@ -258,6 +260,9 @@
   <string name="queue-filternewpage">Pela newiye</string>
   <string name="queue-filternotifications">Tebliğ</string>
   <string name="queue-filterwarnings">Tembe kem</string>
+  <string name="queue-filtertags">Etiket</string>
+  <string name="queue-filterbot">Vurnayışê boti</string>
+  <string name="queue-filterme">Vurnayışê mı</string>
   <string name="report-title">Gerre $1</string>
   <string name="report-reason">Sebeb:</string>
   <string name="report-message">Mesac:</string>
@@ -266,8 +271,10 @@
   <string name="score-word">Çekuye</string>
   <string name="speedy-reason">Sebeb:</string>
   <string name="speedy-parameters">Parametreyi:</string>
+  <string name="tag-title">Etiket $1</string>
   <string name="tag-parameter">Parametre</string>
   <string name="tag-summary">Xulasa:</string>
+  <string name="updater-update">Rocane ke</string>
   <string name="updater-close">Kip ke</string>
   <string name="shortcut-my-talk">Pela mına werênayışi</string>
   <string name="warning-title">$1 Tembe kı</string>
