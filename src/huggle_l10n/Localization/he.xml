@@ -826,7 +826,7 @@
   <string name="report-unable">לא ניתן לדווח על המשתמש</string>
   <string name="about-qt">, מהודר באמצעות QT $1 רץ על QT $1</string>
   <string name="about-info">, על בסיס $1, פלטפורמת יעד: $2</string>
-  <string name="error-unknown-code">שגיאה בלתי ידועה: $1</string>
+  <string name="error-unknown-code">שגיאה בלתי־ידועה: $1</string>
   <string name="relogin-fail">לא ניתן להיכנס לוויקי: $1</string>
   <string name="projects">מיזמים</string>
   <string name="unable-to-retrieve-user-list">לא ניתן לאחזר את רשימת המשתמשים: $1</string>

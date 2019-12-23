@@ -259,6 +259,7 @@
   <string name="main-user-clear-talk">Notīrīt dalībnieka diskusiju lapu</string>
   <string name="main-user-talk">Skatīt diskusiju lapu</string>
   <string name="main-user-page">Skatīt dalībnieka lapu</string>
+  <string name="main-user-warn">Brīdināt...</string>
   <string name="main-user-report">Ziņot</string>
   <string name="main-user-block">Bloķēt...</string>
   <string name="main-browser-back">Atpakaļ</string>
