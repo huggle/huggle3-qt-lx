@@ -100,7 +100,7 @@
   <string name="config-queue-filter-require">Наложи (мора да биде)</string>
   <string name="config-queue-modified-title">Редицата е изменета</string>
   <string name="config-queue-modified-text">Ја променивте редицата, но не ја зачувавте. Ако продолжите, вашите промени ќе бидат отфрлени. Дали сакате да продолжите?</string>
-  <string name="config-summ">Кориснички-внесени описи на шаблони</string>
+  <string name="config-summ">Кориснички внесени описи на предлошки</string>
   <string name="config-title">Нагодувања</string>
   <string name="config-already-in-use">Оваа кратенка е зфатена од $1. Одберете друга.</string>
   <string name="config-openinbrowser">Отворај врски во нов прозорец од прелистувачот</string>
@@ -182,9 +182,9 @@
   <string name="config-reportnone">Не прави ништо</string>
   <string name="config-reportprompt">Прашувај дали да се пријави</string>
   <string name="config-reportauto">Автоматски пријави</string>
-  <string name="config-templates">Пораки од кориснички шаблони</string>
+  <string name="config-templates">Пораки од кориснички предлошки</string>
   <string name="config-templatetext">Прикажи текст</string>
-  <string name="config-template">Шаблон</string>
+  <string name="config-template">Предлошка</string>
   <string name="config-promptforblock">Прашај за блок ако се побара последна опомена на корисникот</string>
   <string name="config-blockreason">Стандардна причина за блокирање</string>
   <string name="config-blocktime">Стадардно времетраење на блокот</string>
@@ -434,7 +434,7 @@
   <string name="main-user-clear-tp">Исчисти ја разговорната страница на корисникот</string>
   <string name="main-user-retrieving-tp">Ја преземам страницаата за разговор $1</string>
   <string name="main-user-block">Блокирај...</string>
-  <string name="main-user-manualtemplate">Рачен шаблон</string>
+  <string name="main-user-manualtemplate">Рачна предлошка</string>
   <string name="main-browser-back">Назад</string>
   <string name="main-browser-forward">Напред</string>
   <string name="main-browser-open">Прегледај во надворешен прелистувач</string>
@@ -551,7 +551,7 @@
   <string name="queue-examplelabel3">Не го проверувај овој атрибут</string>
   <string name="queue-usergroup">Прикажувај уредувања само од овие корисници</string>
   <string name="report-title">Пријави го $1</string>
-  <string name="report-warn">Овој корисик веќе е опоменат на IV степен, па затоа веќе нема да добива шаблони. Можете да го пријавите сега, но секогаш проверувајте дали е опоменат доволен број пати во достатно краток период! Ова можете да го направите стискајќи на копчето „разговорна страница“ во следниот образец. Имајте на ум дека овој образец и опомена се прикажува без оглед на тоа дали вашето отповикување успеало, па затоа тука може да се јави спротиставеност со други корисници (секогаш проверувајте дали некој веќе го пријавил корисникот). Дали сакате да го пријавите корисников?</string>
+  <string name="report-warn">Овој корисик веќе е опоменат на IV степен, па затоа веќе нема да добива предлошки. Можете да го пријавите сега, но секогаш проверувајте дали е опоменат доволен број пати во достатно краток период! Ова можете да го направите стискајќи на копчето „разговорна страница“ во следниот образец. Имајте на ум дека овој образец и опомена се прикажува без оглед на тоа дали вашето отповикување успеало, па затоа тука може да се јави спротиставеност со други корисници (секогаш проверувајте дали некој веќе го пријавил корисникот). Дали сакате да го пријавите корисников?</string>
   <string name="report-tu">Пријави корисник</string>
   <string name="report-reason">Причина:</string>
   <string name="report-auto">Пријавено $1</string>
@@ -685,7 +685,7 @@
   <string name="warninglist-no-warning-text">Нема податоци за овој вид на предупредување. Не можам да го доставам до корисникот!</string>
   <string name="warninglist-report-text">Овој корисник веќе има добиено последна опомена, дали сакате да го пријавите?</string>
   <string name="wikiedit-tp-fail">Не можам да го добијам степенот на опомена за $1. Нема да може да се употреби во оценување.</string>
-  <string name="missing-warning">Нема таков предупредувачки шаблон „$1“</string>
+  <string name="missing-warning">Нема таква предупредувачка предлошка „$1“</string>
   <string name="han-not">Противвандалистичката мрежа не е допуштена во нагодувањата</string>
   <string name="han-connecting">Се поврзувам со противвандалистичката мрежа на Huggle</string>
   <string name="han-already-connected">Не се поврзувам со HAN бидејќи веќе сме поврзани</string>
@@ -724,12 +724,12 @@
   <string name="history-another-edit">Веќе отповикувам друго уредување. Почекајте...</string>
   <string name="history-not-found">Не најдов ништо за откажување</string>
   <string name="history-already-done">Ова е веќе откажано</string>
-  <string name="history-message-revert-body">Ова е порака која се споменува отповикувањето. Дали сигурно сакате да го откажете само шаблонот, а дури не ни вашето уредување на страницата? (ќе треба да го поништите отковикувањето доколку сакате да ги откажете обете споменати)</string>
+  <string name="history-message-revert-body">Ова е порака која се споменува отповикувањето. Дали сигурно сакате да го откажете само предлошката, а дури не ни вашето уредување на страницата? (ќе треба да го поништите отковикувањето доколку сакате да ги откажете обете споменати)</string>
   <string name="history-revert-fail">Не можев да го откажам вашето уредување на $1 бидејќи наидов на следнава грешка: $2</string>
   <string name="history-undone">Успешно отповикано уредувањето $1</string>
   <string name="history-retrieve-fail">Не можев да ја добијам содржината на страницата за која требаше да се отповика уредување. Грешката гласеше: $1</string>
   <string name="history-welcome-msg-title">Наместо тоа да испратам порака со добредојде?</string>
-  <string name="history-welcome-msg">Вие ја создадовте оваа разговорна страница, па затоа не може да се отповика. Дали би сакале да ја замените со шаблон за добредојде?</string>
+  <string name="history-welcome-msg">Вие ја создадовте оваа разговорна страница, па затоа не може да се отповика. Дали би сакале да ја замените со предлошка за добредојде?</string>
   <string name="newtab-title">Ова е ново јазиче!</string>
   <string name="newtab-text">Јазичињата во Huggle работат слично како кај другите прелистувачи. Сите јазичиња ја делат истата редица, но корисни се ако сакате да припазувате извесна страница, или ако сакате подоцна да проверите некое уредување.</string>
   <string name="notify-fail">Не го известив создавачот на $1</string>
