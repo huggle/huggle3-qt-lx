@@ -24,7 +24,8 @@
   <string name="rename">Rename</string>
   <string name="reload">Reload</string>
   <string name="project">Project</string>
-  <string name="result">Result</string>
+  <string name="warning">Wairnin</string>
+  <string name="result">Ootcome</string>
   <string name="save">Hain</string>
   <string name="show">Shaw</string>
   <string name="undo">Undae</string>
@@ -32,7 +33,7 @@
   <string name="editing-page">Eeditin page</string>
   <string name="agf">Revert as a guid faith eedit wi a custom reason</string>
   <string name="successful">Successfu</string>
-  <string name="summary">Summary</string>
+  <string name="summary">Ootline</string>
   <string name="id">ID</string>
   <string name="type">Type</string>
   <string name="target">Target</string>
@@ -43,11 +44,11 @@
   <string name="time">Time</string>
   <string name="version">Version</string>
   <string name="general-name">Name</string>
-  <string name="author">Author</string>
+  <string name="author">Autor</string>
   <string name="description">Descreeption</string>
   <string name="status">Status</string>
   <string name="link">Airtin</string>
-  <string name="reason">Reason</string>
+  <string name="reason">Raison</string>
   <string name="diffid">DiffID</string>
   <string name="whitelisted" fuzzy="true">$1 wi score $2 on $3 haes been insertit tae whitelist</string>
   <string name="expiry-time">Expiry time</string>
@@ -65,7 +66,7 @@
   <string name="about-contributors">Developers:</string>
   <string name="block-not">Uiser is nae blockit</string>
   <string name="block-title">Block $1</string>
-  <string name="block-reason">Reason:</string>
+  <string name="block-reason">Raison:</string>
   <string name="block-duration">Duration:</string>
   <string name="block-message">Collogue page message:</string>
   <string name="block-message-user">Send message tae target uiser wi explanation for block</string>
@@ -84,7 +85,7 @@
   <string name="block-token-e1">Token canna be retrieved: $1</string>
   <string name="block-error-no-info" fuzzy="true">No uiser info wis present in the query (are ye sysop?)</string>
   <string name="block-type">Block / unblock</string>
-  <string name="block-admin" fuzzy="true">Blockin sysop</string>
+  <string name="block-admin">Blockin admeen</string>
   <string name="block-none" fuzzy="true">Thare is no uiser tae block.</string>
   <string name="contribution-browser-user-info">Shawin recent contreibutions o uiser $1</string>
   <string name="config-function">Function</string>
@@ -124,6 +125,7 @@
   <string name="config-instant-reverts">Uise instant reverts (very fast, but canna be cancelled ance executit)</string>
   <string name="config-revert-wait" fuzzy="true">Revert wait (seiconts)</string>
   <string name="config-revert">Revert</string>
+  <string name="config-skip">Skip</string>
   <string name="config-revert-diff">Revert eedits tae page that are newer than the displayed diff if thay war made bi the same vandal uiser</string>
   <string name="config-change-all">Chynge aw Huggle settins tae behave mair lik Huggle 2</string>
   <string name="config-merge-messages">Merge yer messages wi ithers in existin sections</string>
