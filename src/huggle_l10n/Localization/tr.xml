@@ -301,7 +301,7 @@
   <string name="login-fail-wrong-name">Oturum açmak için doğru bir kullanıcı adı girmediniz</string>
   <string name="login-api">HATA: api.php bilinmeyen bir cevap verdi: $1</string>
   <string name="login-abort">Sonlandır</string>
-  <string name="login-start">Giriş</string>
+  <string name="login-start">Oturum aç</string>
   <string name="login-oauth-notsupported">Bu yöntem şu anda desteklenmiyor</string>
   <string name="login-translate">Huggle\'ı tercüme et</string>
   <string name="login-progress-formtitle">Yükleniyor...</string>
