@@ -189,7 +189,7 @@
   <string name="config-blockreason">Стандардна причина за блокирање</string>
   <string name="config-blocktime">Стадардно времетраење на блокот</string>
   <string name="config-blocktimeanon">анонимни корисници</string>
-  <string name="config-blocktimereg">регистрирани корисници</string>
+  <string name="config-blocktimereg">зачленети корисници</string>
   <string name="config-summaryprompt">Опис на уредувањето</string>
   <string name="config-history">Преземи ја сета историја на сите статии</string>
   <string name="config-defaultsprompt">Да ги вратам работите по основно?</string>
@@ -842,7 +842,7 @@
   <string name="projects">Проекти</string>
   <string name="unable-to-retrieve-user-list">Не можам да го добијам корисничкиот список: $1</string>
   <string name="login-no-userinfo">Мрежното место не даде никакви кориснички информации</string>
-  <string name="login-invalid-register-date">МедијаВики даде неважечки датум на регистрација</string>
+  <string name="login-invalid-register-date">МедијаВики даде неважечки датум на зачленување</string>
   <string name="login-site-info-query-failed">Барањето за информации од мрежното место $1 на успеа: $2</string>
   <string name="login-no-site-info-returned">Нема информации за ова вики</string>
   <string name="loading-main-window">Го вчитувам главниот прозорец на Huggle</string>

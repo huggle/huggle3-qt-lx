@@ -368,7 +368,7 @@
   <string name="main-system-showqueue">Sırayı göster</string>
   <string name="main-system-options">Seçenekler...</string>
   <string name="main-system-logout">Oturumu kapat</string>
-  <string name="main-system-abort">İptal</string>
+  <string name="main-system-abort">Sonlandır</string>
   <string name="main-system-change-provider">Sağlayıcıyı değiştir</string>
   <string name="main-system-change-provider-irc">IRC</string>
   <string name="main-system-change-provider-wiki">Viki</string>
