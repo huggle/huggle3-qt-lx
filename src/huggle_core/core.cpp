@@ -258,6 +258,7 @@ void Core::ExtensionLoad()
                             Huggle::Syslog::HuggleLogs->WarningLog("Extension " + ename + " was compiled for huggle " + interface->CompiledFor() + " which is not compatible, unloading");
                             delete interface;
                         }
+                        else
                         {
                             interface->huggle__internal_SetPath(ename);
                             if (interface->RequestNetwork())
