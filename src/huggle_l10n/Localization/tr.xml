@@ -795,7 +795,7 @@
   <string name="whitelist-download">Yeni beyaz liste indiriyor</string>
   <string name="logs-widget-name">Sistem günlüğü</string>
   <string name="processes-widget-name">Süreçler</string>
-  <string name="wait">Lütfen bekleyin...</string>
+  <string name="wait">Lütfen bekleyin…</string>
   <string name="function-miss">İşlev şu an kullanılabilir değil</string>
   <string name="missing-aiv">Bu proje AIV kullanmaz</string>
   <string name="missing-page">Bu Viki üzerinde $1 sayfası mevcut değil</string>
@@ -882,7 +882,7 @@
   <string name="main-revert-custom-reason-text">Sebep sağlanmadı/özel geri alma</string>
   <string name="main-revert-already-pending-title">Bu düzenleme zaten geri çevrildi.</string>
   <string name="main-revert-already-pending-text">Bu düzenlemeyi geri alamazsınız çünkü zaten geri alındı.Lütfen bekleyiniz!</string>
-  <string name="main-revert-type-unknown">bilinmeyen</string>
+  <string name="main-revert-type-unknown">bilinmiyor</string>
   <string name="main-revert-type-in-userspace">kullanıcı alanı içinde</string>
   <string name="main-revert-type-made-by-you">siz yapmışsınız</string>
   <string name="main-revert-type-made-on-talk-page">konuşma sayfasında yapıldı</string>
