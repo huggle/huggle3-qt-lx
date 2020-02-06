@@ -31,7 +31,7 @@
   <string name="undo">Atsaukt</string>
   <string name="yes">Jā</string>
   <string name="editing-page">Labo lapu</string>
-  <string name="successful">Veiksmīgi</string>
+  <string name="successful">Sekmīgs</string>
   <string name="summary">Kopsavilkums</string>
   <string name="id">ID</string>
   <string name="type">Veids</string>
@@ -52,6 +52,7 @@
   <string name="duration">Ilgums</string>
   <string name="enable">Iespējot</string>
   <string name="disable">Atslēgt</string>
+  <string name="browser-miss-summ">Kopsavilkums netika norādīts</string>
   <string name="browser-diff">Lapas \"$1\" izmaiņas (rezultāts: $2)</string>
   <string name="about-contributors">Izstrādātāji:</string>
   <string name="block-not">Dalībnieks nav bloķēts</string>
@@ -67,6 +68,7 @@
   <string name="block-blockloglabel">Bloķēšanas reģistrs:</string>
   <string name="block-warnloglabel">Brīdinājumi:</string>
   <string name="block-type">Bloķēt / atbloķēt</string>
+  <string name="block-admin">Bloķējušais administrators</string>
   <string name="block-none">Nav izvēlēts bloķējamais dalībnieks.</string>
   <string name="config-function">Funkcija</string>
   <string name="config-description">Apraksts</string>
@@ -82,6 +84,7 @@
   <string name="config-shownewmessages">Rādīt jauno paziņojumu joslu</string>
   <string name="config-shortcutlist">Tastatūras īsinājumtaustiņi</string>
   <string name="config-shortcutaction">Darbība</string>
+  <string name="config-defaults">Noklusējuma vērtības</string>
   <string name="config-minor">Atzīmēt kā maznozīmīgu</string>
   <string name="config-ip">IP lietotāji</string>
   <string name="config-watchlist">Pievienot uzraugāmo lapu sarakstam</string>
@@ -91,6 +94,7 @@
   <string name="config-revert">Atjaunot</string>
   <string name="config-skip">Izlaist</string>
   <string name="config-change-all">Mainīt visus Huggle iestatījumus, lai tas uzvestos kā Huggle 2</string>
+  <string name="config-enable-irc">Iespējot IRC</string>
   <string name="config-display-next">Attēlot nākamo</string>
   <string name="config-retrieve-edit">Iegūt savu labojumu</string>
   <string name="config-nothing">Neko</string>
@@ -103,6 +107,7 @@
   <string name="config-warning-api">Rādīt brīdinājumus par API vaicājumiem</string>
   <string name="config-updates">Pārbaudīt atjauninājumus</string>
   <string name="config-beta">Pārbaudīt bēta versijas</string>
+  <string name="config-html-messages">HAN var atveidot HTML ziņojumus (Piezīme: Tas var būt bīstami)</string>
   <string name="config-close-without">Aizvērt bez saglabāšanas</string>
   <string name="config-reportnone">Neko nedarīt</string>
   <string name="config-template">Veidne</string>
@@ -114,6 +119,7 @@
   <string name="config-history">Lejupielādēt visu rakstu pilnu vēsturi</string>
   <string name="config-defaultsprompt">Atjaunot noklusējumu?</string>
   <string name="config-notify-update">Pārbaudīt atjauninājumus</string>
+  <string name="config-notify-beta">Pārbaudīt, vai pieejamas beta versijas</string>
   <string name="custommessage-subject">Temats</string>
   <string name="custommessage-menu">Nosūtīt pielāgotu ziņu</string>
   <string name="custommessage-send">Nosūtīt ziņu</string>
@@ -156,6 +162,9 @@
   <string name="login-proxydomain">Domēns:</string>
   <string name="login-retrieving-user-conf">Iegūst lietotāja konfigurāciju</string>
   <string name="login-bot">Kāda ir atšķirība starp bota paroli un novecojušo pieslēgšanos?</string>
+  <string name="login-retrieving-info">Iegūst dalībnieka informāciju par $1</string>
+  <string name="login-password-empty">Ievadītā parole bija tukša</string>
+  <string name="login-fail-wrong-name">Nebija norādīts lietotājvārds</string>
   <string name="login-api">KĻŪDA: api.php atbildēja ar nezināmu rezultātu: $1</string>
   <string name="login-abort">Pārtraukt</string>
   <string name="login-start">Pieslēgties</string>
@@ -163,6 +172,7 @@
   <string name="login-translate">Tulkot Huggle</string>
   <string name="login-progress-formtitle">Ielādē…</string>
   <string name="login-progress-start">Pieslēdzas $1</string>
+  <string name="login-progress-retrieve-mw">Iegūst informāciju par MediaWiki priekš $1</string>
   <string name="login-progress-global">Pārbauda globālo konfigurāciju...</string>
   <string name="login-progress-config">Pārbauda konfigurācijas lapas...</string>
   <string name="login-remember-password">Atcerēties paroli</string>
@@ -182,6 +192,7 @@
   <string name="wikis-db-download-fail">Neizdevās lejupielādēt vikivietņu datubāzi: $1</string>
   <string name="api-query-no-data">API vaicājums neatgrieza datus</string>
   <string name="main-menu-provider-stop">Apturēt piegādātāju</string>
+  <string name="main-no-reason">Dalībnieks nenorādīja iemeslu</string>
   <string name="main-page">Lapa</string>
   <string name="main-user">Dalībnieks</string>
   <string name="main-contribs">Devums</string>
@@ -354,6 +365,8 @@
   <string name="error-noresponse">Nav atbildes</string>
   <string name="error-pagemissing">Šī lapa nepastāv</string>
   <string name="error-unknown">Nezināma kļūda</string>
+  <string name="delete-done">Izdzēsa $1</string>
+  <string name="delete-fail">Neizdzēsa $1</string>
   <string name="delete-progress">Dzēš $1...</string>
   <string name="edit-progress">Labo $1...</string>
   <string name="newtab-title">Šī ir jauna cilne!</string>
