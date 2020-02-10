@@ -2,6 +2,7 @@
 <!-- Authors:
 * Bjankuloski06
 * Macofe
+* Violetova
 * Vlad5250
 * Идеологист
 -->
@@ -247,15 +248,15 @@
   <string name="irc-wait">Чекам да запре каналски добавувач од IRC</string>
   <string name="irc-switch-rc">Се префрлам на RC-викиканал</string>
   <string name="login-old">Добивање на кориснички поставки од старо наоѓалиште</string>
-  <string name="login-intro">Одберете проект, па внесете го вашето корисничко име и јавка. Можете и да се најавите и на повеќе проекти наеднаш со копчето „Проекти“.</string>
+  <string name="login-intro">Одберете проект, па внесете го вашето корисничко име и лозинка. Можете и да се најавите и на повеќе проекти наеднаш со копчето „Проекти“.</string>
   <string name="invalid-bot-user-name">Ова не е важечко име за бот. Пример за правилно име: Jimbo@Huggle</string>
-  <string name="login-tab-botp">Ботовска јавка</string>
+  <string name="login-tab-botp">Ботовска лозинка</string>
   <string name="login-tab-login">Наследствено</string>
   <string name="login-reload-tool-tip">Превчитајте список на расположиви проекти што може да се користат во Huggle. Ова може да е корисно ако сакате да го користите на проект каде алатката е неодамна овозможена.</string>
   <string name="login-language">Јазик:</string>
   <string name="login-project">Проект:</string>
   <string name="login-username">Корисничко име:</string>
-  <string name="login-password">Јавка:</string>
+  <string name="login-password">Лозинка:</string>
   <string name="login-proxygroup">Поставки на застапникот</string>
   <string name="login-proxy">Користи застапник</string>
   <string name="login-proxyaddress">Адреса:</string>
@@ -275,7 +276,7 @@
   <string name="login-failed-autoconfirm-rights">Најавата не успеа на $1: Не сте автопотврден корисник на проектов.</string>
   <string name="login-failed-edit">Најавата не успеа на $1: Немате направено доволно уредувања на проектов.</string>
   <string name="login-retrieving-info">Ги преземам корисничките информации на $1</string>
-  <string name="login-password-empty">Внесената јавка е празна.</string>
+  <string name="login-password-empty">Внесената лозинка е празна.</string>
   <string name="login-fail-wrong-name">Не укажавте корисничко име за најава.</string>
   <string name="login-api">ГРЕШКА: api.php одговори со непознат исход: $1</string>
   <string name="login-abort">Напушти</string>
@@ -293,8 +294,8 @@
   <string name="login-progress-user">Ги проверувам корисничките поставки за $1</string>
   <string name="login-progress-user-info">Ги проверувам корисничките информации за $1</string>
   <string name="login-progress-whitelist">Го вчитувам белиот список на корисници...</string>
-  <string name="login-remember-password">Запомни ја јавката</string>
-  <string name="login-remember-password-tooltip">Оваа можност ви ја складира јавката во прост текст на вашиот сметач. Користете ја само ако вие сте единственото лице со пристап до сметачот.</string>
+  <string name="login-remember-password">Запомни ја лозинката</string>
+  <string name="login-remember-password-tooltip">Оваа можност ви ја складира лозинката во прост текст на вашиот сметач. Користете ја само ако вие сте единственото лице со пристап до сметачот.</string>
   <string name="login-ssl">Користи HTTPS за најава (бара OpenSSL)</string>
   <string name="login-fail">Најавата не успеа на $1</string>
   <string name="login-fail-with-reason">Најавата не успеа (на $1): $2</string>
@@ -313,7 +314,7 @@
   <string name="login-error-noconfig">$1 нема страница за поставување на Huggle</string>
   <string name="login-error-nouser">Корисникот не постои</string>
   <string name="login-error-no-valid-token">Мрежното место не даде важечка најавна шифра</string>
-  <string name="login-error-password">Неисправна јавка</string>
+  <string name="login-error-password">Неисправна лозинка</string>
   <string name="login-error-projdisabled">Во моментов Huggle е оневозможен на проектов.</string>
   <string name="login-error-unknown">Не можам да ве најавам на $1.</string>
   <string name="login-error-version">Верзијата ви е застарена. Подновете ја со најновата.</string>
