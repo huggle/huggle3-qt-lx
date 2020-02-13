@@ -8,6 +8,7 @@
 * Reza1615
 * Ronel1
 * Steeve815
+* דגש חזק
 * ערן
 -->
 <resources>
@@ -144,7 +145,7 @@
   <string name="config-months-name">להשתמש בחודשים בתור כותרות במקום בשם הדף</string>
   <string name="config-automatic-warning">להשתמש בסוג ורמה אוטומטיים של אזהרה בפונקצייה \"שליחת אזהרה\"</string>
   <string name="config-enable-irc">הפעלת IRC</string>
-  <string name="config-remove-reverted">להסיר מהתור עריכות שכבר שוחזרו על־ידי מישהו אחר</string>
+  <string name="config-remove-reverted">להסיר מהתור עריכות שכבר בוטלו על־ידי מישהו אחר</string>
   <string name="config-remove-old">להסיר מהתור עריכות ישנות יותר אם עריכה חדשה יותר לאותו הדף מתקבלת</string>
   <string name="config-auto-load-history">לטעון אוטומטית היסטוריה ומידע על המשתמש (דורש רוחב פס רב)</string>
   <string name="config-last-revision">החלפה לגרסה האחרונה של הדף במקרה שהעריכה הטעונה הנוכחית אינה הגרסה האחרונה (יוריד אותה אחרי־כן, תוך האטת ביצועי האגל)</string>
@@ -775,7 +776,7 @@
   <string name="welcome-show">להציג את ההודעה הזאת בפעם הבאה שתריץ את האגל</string>
   <string name="welcome-tp-empty-fail">למשתמש זה יש דף שיחה שאינו ריק. האם בכל זאת לשלוח לו הודעה?</string>
   <string name="welcome-page-miss-fail">האגל לא הצליח לאחזר את תוכן דף שיחת המשתמש. האם ברצונך לשלוח למשתמש הודעת \"ברוך בואך\"?</string>
-  <string name="cr-newer-edits">ההתנגשות נפתרה: כל העריכות שוחזרו, כולל עריכות חדשות. העריכות היו מאת אותו המשתמש: $1.</string>
+  <string name="cr-newer-edits">ההתנגשות נפתרה: כל העריכות בוטלו, כולל עריכות חדשות. העריכות היו מאת אותו המשתמש: $1.</string>
   <string name="cr-resolved-same-user">ההתנגשות נפתרה: כל העריכות שוחזרו, כולל עריכות חדשות שנעשו על ידי אותם המשתמשים: $1</string>
   <string name="cr-stop-new-edit">ההתנגשות נפתרה: לא נעשתה שום פעולה. יש עריכות חדשות יותר לדף $1.</string>
   <string name="cr-stop-multiple-same">ההתנגשות נפתרה: אין לבצע שום פעולה – יש פעולות עריכה מרובות של אותו המשתמש לדף $1</string>
@@ -844,7 +845,7 @@
   <string name="title-multiple-projects">מיזמים מרובים ($1)</string>
   <string name="title-on">על $1</string>
   <string name="main-revert-custom-reason-text">לא ניתנה סיבה / שחזור ייחודי</string>
-  <string name="main-revert-already-pending-title">העריכה הזאת כבר שוחזרה</string>
+  <string name="main-revert-already-pending-title">העריכה הזאת כבר בוטלה</string>
   <string name="main-revert-already-pending-text">אין לך אפשרות לשחזר את העריכה הזאת, כי היא כבר בתהליך שחזור. נא להמתין!</string>
   <string name="main-revert-type-unknown">בלתי־ידוע</string>
   <string name="main-revert-type-in-userspace">במרחב משתמש</string>

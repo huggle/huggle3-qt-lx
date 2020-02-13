@@ -679,6 +679,7 @@
   <string name="warning-level4">IV степен (последна)</string>
   <string name="warning-confirm-title">Навистина да испратам предупредување?</string>
   <string name="warning-confirm-old-edit">Уредувањето на $1 на $2 во $3 е постаро од еден ден. Дали навистина да му испратам предупредување?</string>
+  <string name="warning-confirm-too-recent">Уредувањето на $1 на $2 е направено од $3, кој мошне скоро примил порака на нетовата разговорна страница (можеби некоја друга предупредителна предлошка?). Дали сепак сакате да му испратите уште едно предупредување?</string>
   <string name="warning-warntype">Тип на опомена:</string>
   <string name="warning-warnlog">Опомени за овој корисник:</string>
   <string name="warning-submit">Испрати</string>
