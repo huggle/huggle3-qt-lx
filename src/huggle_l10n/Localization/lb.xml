@@ -3,6 +3,7 @@
 * Les Meloures
 * Macofe
 * Robby
+* Soued031
 -->
 <resources>
   <string name="name">Lëtzebuergesch</string>
@@ -81,7 +82,7 @@
   <string name="config-queue-filter-exclude">Ausschléissen (muss net sinn)</string>
   <string name="config-queue-filter-require">Verlaangen (muss sinn)</string>
   <string name="config-title">Optiounen</string>
-  <string name="config-already-in-use">Dëse Shortcut gëtt scho vu(n) $1 benotzt, sicht Iech w.e.g. een Aneren eraus</string>
+  <string name="config-already-in-use">Dëse Shortcut gëtt scho vu(n) $1 benotzt, sicht Iech wgl. een Aneren eraus</string>
   <string name="config-logfile">Lobuch-Fichier</string>
   <string name="config-shortcutaction">Aktioun</string>
   <string name="config-noshortcut">Keng</string>
@@ -147,7 +148,7 @@
   <string name="historyform-title">Versiounen</string>
   <string name="history-error-message-title">Réckgängegmaachen kann net gemaach ginn</string>
   <string name="userhistory-title">Lëscht vun Ären Ännerungen (chronologesch)</string>
-  <string name="login-intro">Sicht w.e.g. e Projet eraus a gitt Äre Benotzernumm an Äert Passwuert an. Dir kënnt Iech op méi Projeten alogge wann Dir och op de Knäppche \'Porjeten\' klickt.</string>
+  <string name="login-intro">Sicht wgl. e Projet eraus a gitt Äre Benotzernumm an Äert Passwuert an. Dir kënnt Iech op méi Projeten alogge wann Dir och op de Knäppche \'Porjeten\' klickt.</string>
   <string name="login-tab-login">Patrimoine</string>
   <string name="login-language">Sprooch:</string>
   <string name="login-project">Projet:</string>
@@ -199,13 +200,13 @@
   <string name="api-query-no-data">D\'API-Ufro huet keng Donnéeën zréckginn</string>
   <string name="main-stat">$1 Ännerunge pro Minutt $2, Zrécksetzunge pro Minutt, Niveau $3</string>
   <string name="main-no-reason">De Benotzer huet kee Grond uginn</string>
-  <string name="main-restoring-slap">Eng aner Ännerung gëtt elo restauréiert, waart w.e.g....</string>
+  <string name="main-restoring-slap">Eng aner Ännerung gëtt elo restauréiert, waart wgl....</string>
   <string name="main-page">Säit</string>
   <string name="main-user">Benotzer</string>
   <string name="main-contribs">Kontributiounen</string>
   <string name="main-history">Versiounen</string>
   <string name="main-new-messages">Dir hutt nei Messagen. Wielt de System -&gt; Nei Message weisen oder M drécke fir se ze gesinn.</string>
-  <string name="main-space">Den Numm vun der Säit däerf net mat engem Espace ophalen, verbessert w.e.g. den Numm vun der Säit</string>
+  <string name="main-space">Den Numm vun der Säit däerf net mat engem Espace ophalen, verbessert wgl. den Numm vun der Säit</string>
   <string name="main-system">System</string>
   <string name="main-metric-bar">Duerchschnëttlech API-Äntwertzäit: $1</string>
   <string name="main-system-messages">Nei Message weisen</string>
@@ -295,7 +296,7 @@
   <string name="main-usermessageother">Anere Message...</string>
   <string name="main-advanced">Erweidert...</string>
   <string name="main-stats">$1 Ännerunge pro Minutt, $1 Zrécksetzunge pro Minutt</string>
-  <string name="main-revert-custom-reson">Erkläert w.e.g. firwat Dir dës Ännerung op déi vireg Versioun zrécksetzt</string>
+  <string name="main-revert-custom-reson">Erkläert wgl. firwat Dir dës Ännerung op déi vireg Versioun zrécksetzt</string>
   <string name="main-log1">Déi erausgesicht Versioun vu(n) $1 restauréieren</string>
   <string name="main-tip-pagetagdelete">Dës Säit markéiere fir ze läschen</string>
   <string name="main-tip-pagedelete">Dës Säit läschen</string>
@@ -306,7 +307,7 @@
   <string name="main-revert-newpage-title">Dëst konnt net zréckgesat ginn</string>
   <string name="main-revert-newpage">Dëst ass eng nei Säit dofir ka se net zréckgesat ginn. Dir kënnt se entweder markéieren oder läschen.</string>
   <string name="main-welcome-user">Wëllkomm Benotzer</string>
-  <string name="main-custom-reason-text">Gitt w.e.g. e Grond u firwat Dir dës Ännerung zrécksetze wëllt</string>
+  <string name="main-custom-reason-text">Gitt wgl. e Grond u firwat Dir dës Ännerung zrécksetze wëllt</string>
   <string name="main-custom-reason-fail">Dir hutt kee valabele Grond uginn</string>
   <string name="main-report-username">Benotzernumm mellen</string>
   <string name="main-report-user">Benotzer mellen</string>
@@ -375,7 +376,7 @@
   <string name="tag-summary">Resumé:</string>
   <string name="tag-insertatend">Um Schluss vun der Säit drasetzen</string>
   <string name="update-title">Nei Versioun disponibel</string>
-  <string name="update-progress">Nei Versioun gëtt erofgelueden, waart w.e.g. ...</string>
+  <string name="update-progress">Nei Versioun gëtt erofgelueden, waart wgl. ...</string>
   <string name="update-error">Feeler beim Erofluede vun der neier Versioun</string>
   <string name="updater-title">Eng nei Versioun vun Huggle ass disponibel</string>
   <string name="updater-update">Aktualiséieren</string>
@@ -383,7 +384,7 @@
   <string name="updater-open-manualdownloadpage">Download-Säit opmaachen</string>
   <string name="updater-close">Zoumaachen</string>
   <string name="updater-disable-notify">Aktualisatiounen desaktivéieren</string>
-  <string name="updater-wait">Ech aktualiséieren elo Huggle, waart w.e.g. ...</string>
+  <string name="updater-wait">Ech aktualiséieren elo Huggle, waart wgl. ...</string>
   <string name="userinfo-generic">Benotzerinformatioun</string>
   <string name="userinfo-retrieve">Informatiounen ofruffen</string>
   <string name="userinfo-no-user">Kee Benotzer</string>
@@ -451,13 +452,13 @@
   <string name="warn-alreadyblocked">De Benotzer gouf scho gespaart</string>
   <string name="editquery-success">$1 gouf de(n) $2 geännert</string>
   <string name="editquery-nocsrft">Keen CSRF-Token</string>
-  <string name="wait">Waart w.e.g. ...</string>
+  <string name="wait">Waart wgl. ...</string>
   <string name="function-miss">Funktioun ass elo net disponibel</string>
   <string name="missing-aiv">Dëse Projet benotzt AIV net</string>
   <string name="missing-page">Et gëtt keng Säit $1 op dëser Wiki</string>
   <string name="waiting">Waarden...</string>
   <string name="feature-nfru">Dës Funktioun ass nëmme fir anonym (IP) Benotzer</string>
-  <string name="report-no-user">Et gouf kee Benotzer erausgesicht fir de Rapport, sicht w.e.g. fir d\'éischt e Benotzer eraus</string>
+  <string name="report-no-user">Et gouf kee Benotzer erausgesicht fir de Rapport, sicht wgl. fir d\'éischt e Benotzer eraus</string>
   <string name="welcome-show">Dëse Message och beim nächste Start vun Huggle weisen</string>
   <string name="welcome-tp-empty-fail">Dëse Benotzer huet keng eidel Diskussiounssäit, sidd Dir sécher datt Dir him e Message schécke wëllt?</string>
   <string name="cr-newer-edits">Konflikt geléist: all Ännerunge goufen zréckgesat, inklusiv nei Ännerungen. D\'Ännerunge ware vum selwechte Benotzer: $1.</string>
@@ -490,7 +491,7 @@
   <string name="title-multiple-projects">méi Projeten ($1)</string>
   <string name="title-on">op $1</string>
   <string name="main-revert-already-pending-title">Dës Ännerung gouf schonn zeréckgesat</string>
-  <string name="main-revert-already-pending-text">Dir kënnt dës Ännerung net zerécksetze well se schonn zeréckgesat gëtt. Gedëllegt Iech w.e.g. e bëssen.</string>
+  <string name="main-revert-already-pending-text">Dir kënnt dës Ännerung net zerécksetze well se schonn zeréckgesat gëtt. Gedëllegt Iech wgl. e bëssen.</string>
   <string name="main-revert-type-unknown">onbekannt</string>
   <string name="main-revert-type-in-userspace">am Benotzerraum</string>
   <string name="main-revert-type-made-by-you">vun Iech gemaach</string>
