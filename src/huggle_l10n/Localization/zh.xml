@@ -2,6 +2,7 @@
 <!-- Authors:
 * 94rain
 * A Retired User
+* AF
 * Arthur2e5
 * DW YoungDLS
 * LNDDYL
@@ -21,7 +22,7 @@
 * 神樂坂秀吉
 -->
 <resources>
-  <string name="name">英语</string>
+  <string name="name">简体中文</string>
   <string name="autorelog">不再提醒</string>
   <string name="isrtl">false</string>
   <string name="add">添加</string>
