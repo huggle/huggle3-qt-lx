@@ -787,8 +787,8 @@
   <string name="editquery-error-badtoken">Kötü anahtar</string>
   <string name="editquery-invalid-token">Önbellekteki fiş geçerli olmadığı için $1 değiştirilemedi. Lütfen sayfayı değiştirmeyi bir kez daha deneyin.</string>
   <string name="provider-failure">$2 üzerinde $1 besleme sağlayıcı hatası, alternatif bir kaynak bulunmaya çalışılıyor</string>
-  <string name="provider-primary-failure">Birincil besleme sağlayıcısı başarısız, wiki sağlayıcısına dönülüyor</string>
-  <string name="rc-error">Wiki beslemesinden bilgi alınamadı, son hata: $1</string>
+  <string name="provider-primary-failure">Birincil besleme sağlayıcısı başarısız, viki sağlayıcısına dönülüyor</string>
+  <string name="rc-error">Viki beslemesinden bilgi alınamadı, son hata: $1</string>
   <string name="rc-timestamp-missing">RC Yayını: Nesnede zaman damgası niteliği eksik: $1</string>
   <string name="rc-type-missing">RC Yayını: Nesnede tür niteliği eksik: $1</string>
   <string name="rc-title-missing">RC Yayını: Nesnede başlık niteliği eksik: $1</string>
@@ -852,7 +852,7 @@
   <string name="page-tag-error">Sayfa etiketlenemedi. Hata: $1</string>
   <string name="page-unknown">Bilinmeyen sayfa</string>
   <string name="summary-edit-range">$1 sürümünden $2 sürümüne fark aralıkları gösteriliyor</string>
-  <string name="speedy-csd-invalid">Geçersiz CSD etiketi. Kullanılabilecek mesaj veya wiki etiketi yok.</string>
+  <string name="speedy-csd-invalid">Geçersiz CSD etiketi. Kullanılabilecek mesaj veya viki etiketi yok.</string>
   <string name="speedy-csd-existing">Zaten sayfada CSD etiketi var.</string>
   <string name="namespace">Ad alanı</string>
   <string name="block-alreadyblocked">Kullanıcı zaten engellenmiş.</string>
