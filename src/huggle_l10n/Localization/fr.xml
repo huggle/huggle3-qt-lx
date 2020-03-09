@@ -884,7 +884,7 @@
   <string name="main-revert-type-made-on-talk-page">fait sur la page de discussion</string>
   <string name="main-revert-type-made-white-list">fait par un utilisateur de la liste blanche</string>
   <string name="query-result-nodata">Le résultat de la requête ne contient aucune donnée</string>
-  <string name="main-revert-warn">Cette modification est $1, donc même si elle ressemble à du vandalisme, elle peut ne pas l’être. Êtes-vous sûr de vouloir l’annuler ?</string>
+  <string name="main-revert-warn">Cette modification est $1, donc même si elle ressemble à du vandalisme, elle peut ne pas en être. Êtes-vous sûr de vouloir l’annuler ?</string>
   <string name="query-request-noaction">Aucune action fournie pour la requête de l’API</string>
   <string name="query-login-undefined">Le jeton de connexion nécessite une valeur définie par l’utilisateur, il n’est pas stocké en mémoire</string>
   <string name="query-protected-link">Lien protégé</string>

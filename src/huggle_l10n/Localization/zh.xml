@@ -50,7 +50,7 @@
   <string name="no-instant">由于即时警告未在项目$1上启用，准备发送到$2的消息无法发送。请选择一个不同的警告级别。</string>
   <string name="undo">撤销</string>
   <string name="yes">是</string>
-  <string name="editing-page">编辑页面</string>
+  <string name="editing-page">正在编辑页面</string>
   <string name="agf">以自定义理由进行基于假定善意的回退</string>
   <string name="successful">成功</string>
   <string name="summary">自定义编辑摘要</string>
@@ -126,7 +126,7 @@
   <string name="config-difffontsize">差异字号</string>
   <string name="config-logfile">日志文件</string>
   <string name="config-viewlocalconfig">查看本地配置文件夹</string>
-  <string name="config-trayicon">显示通知区域图标</string>
+  <string name="config-trayicon">显示托盘图标</string>
   <string name="config-startupmessage">显示启动消息</string>
   <string name="config-shownewmessages">显示新消息提示栏</string>
   <string name="config-shortcutlist">键盘快捷方式</string>
@@ -137,9 +137,9 @@
   <string name="config-minor">标记为小编辑</string>
   <string name="config-ip">IP用户</string>
   <string name="config-watchlist">添加到监视列表</string>
-  <string name="config-defaultsummary">默认为手工编辑摘要</string>
-  <string name="config-undosummary">撤销自己编辑时的摘要</string>
-  <string name="config-confirm-user">回退在用户命名空间做出的编辑时需要确认</string>
+  <string name="config-defaultsummary">默认的手工编辑摘要</string>
+  <string name="config-undosummary">自我回退时的编辑摘要</string>
+  <string name="config-confirm-user">在回退用户自己的用户页或子页面时请求确认</string>
   <string name="config-confirm-wl">回退白名单用户做出的编辑时需要确认</string>
   <string name="config-confirm-talk">回退在讨论页上做出的编辑时需要确认</string>
   <string name="config-use-rollback">使用软件回退</string>
