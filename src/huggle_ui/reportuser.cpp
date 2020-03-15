@@ -311,8 +311,8 @@ void ReportUser::OnReportUserTimer()
                     UiGeneric::pMessageBox(this, "Failure", _l("report-fail", this->qEdit->GetFailureReason()), MessageBoxStyleError);
                     Syslog::HuggleLogs->DebugLog("REPORT: " + this->qEdit->Result->Data);
                     this->kill();
-                    return;
                 }
+                return;
             }
             this->reportedUser->IsReported = true;
             this->ui->pushButton->setText(_l("report-done"));
