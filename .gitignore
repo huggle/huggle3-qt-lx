@@ -7,3 +7,6 @@ hunker/makefilehunker
 version.txt
 *.autosave
 /huggle.pro.user
+
+/release
+/debug
