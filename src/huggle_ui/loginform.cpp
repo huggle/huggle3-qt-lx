@@ -707,7 +707,7 @@ void LoginForm::finishLogin(WikiSite *site)
         hcfg->TemporaryConfig_UserNameWasChanged = true;
 
         // Show a warning
-        HUGGLE_WARNING("Actual username was changed by MediaWiki (on " + site->Name + ") to " + actual_user_name + ", fixing up");
+        HUGGLE_WARNING("Actual username was changed by MediaWiki (on " + site->Name + ") from '" + hcfg->SystemConfig_UserName + "' to '" + actual_user_name + "', fixing up");
         hcfg->SystemConfig_UserName = actual_user_name;
     }
 
