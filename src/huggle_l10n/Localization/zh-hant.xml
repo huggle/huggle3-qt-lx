@@ -13,6 +13,7 @@
 * Simon Shek
 * Xiplus
 * Zhxy 519
+* 铁桶
 -->
 <resources>
   <string name="name">繁體中文</string>
@@ -810,7 +811,7 @@
   <string name="preferences-enforce-baw">在 HTML 差別裡強制成黑色與白色</string>
   <string name="preferences-watchlist-watch">加入到監視清單</string>
   <string name="preferences-watchlist-unwatch">從監視清單中移除</string>
-  <string name="preferences-watchlist-preferences">遵循您在wiki上的設置</string>
+  <string name="preferences-watchlist-preferences">遵循您在wiki上的偏好設定</string>
   <string name="preferences-watchlist-nochange">什麼都不做</string>
   <string name="preferences-auto-watch-talk">監視有接收到來自於您的警告之使用者對話頁</string>
   <string name="preferences-sounds-enable-queue">當新項目添加至佇列時播放音效</string>
