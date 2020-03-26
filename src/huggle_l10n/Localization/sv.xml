@@ -7,6 +7,7 @@
 * Lokal Profil
 * Macofe
 * McDutchie
+* Paracel63
 * Umeaboy
 * WikiPhoenix
 -->
@@ -96,7 +97,7 @@
   <string name="block-type">Blockera / avblockera</string>
   <string name="block-admin">Blockerande administratör</string>
   <string name="block-none">Det finns ingen vald användare att blockera.</string>
-  <string name="contribution-browser-user-info">Visar nyliga bidrag av användaren $1</string>
+  <string name="contribution-browser-user-info">Visar de senaste bidragen från användaren $1</string>
   <string name="config-function">Funktion</string>
   <string name="config-description">Beskrivning</string>
   <string name="config-shortcut">Genväg</string>
