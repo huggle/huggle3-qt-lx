@@ -1108,6 +1108,9 @@
            </property>
           </widget>
          </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="lineEdit_5"/>
+         </item>
          <item row="1" column="0">
           <widget class="QLabel" name="label">
            <property name="minimumSize">
@@ -1121,9 +1124,6 @@
            </property>
           </widget>
          </item>
-         <item row="0" column="1">
-          <widget class="QLineEdit" name="lineEdit_5"/>
-         </item>
          <item row="1" column="1">
           <widget class="QSpinBox" name="sxFontSize">
            <property name="minimum">
@@ -1135,6 +1135,32 @@
           </widget>
          </item>
         </layout>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_DiffColors">
+         <property name="title">
+          <string>Diff colors</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_16">
+          <item>
+           <widget class="QRadioButton" name="radioButton_DefaultColors">
+            <property name="text">
+             <string>Default</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="radioButton_DarkMode">
+            <property name="text">
+             <string>Dark mode</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
        </item>
        <item>
         <spacer name="verticalSpacer">

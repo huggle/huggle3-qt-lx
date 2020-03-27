@@ -305,6 +305,7 @@ void Configuration::LoadSystemConfig(const QString& fn)
         RCB(PlaySoundOnIRCUserMsg);
         RCN(PlaySoundQueueScore);
         RCB(Autorelog);
+        RCN(ColorScheme);
         if (key == "Projects")
         {
             hcfg->ProjectString = option.attribute("text").split(",");
@@ -402,6 +403,7 @@ void Configuration::SaveSystemConfig()
     INSERT_CONFIG_B(PlaySoundOnIRCUserMsg);
     INSERT_CONFIG_N(KeystrokeMultiPressRate);
     INSERT_CONFIG_B(KeystrokeMultiPressFix);
+    INSERT_CONFIG_N(ColorScheme);
     INSERT_CONFIG(BotLogin);
     INSERT_CONFIG(UserName);
     InsertConfig("IndexOfLastWiki", QString::number(hcfg->SystemConfig_IndexOfLastWiki), writer);

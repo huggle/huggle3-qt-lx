@@ -12,5 +12,6 @@
         <file>Resources/DefaultConfig.txt</file>
         <file>Resources/html/dev.html</file>
         <file>Resources/html/empty.html</file>
+        <file>Resources/html/HeaderDark.html</file>
     </qresource>
 </RCC>

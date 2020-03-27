@@ -185,6 +185,9 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     this->ui->l_QueueSize->setText(_l("preferences-queue-size"));
     this->ui->l_EmptyQueuePage->setText(_l("preferences-empty-queue-page"));
     this->ui->cbShowWarningIfNotOnLastRevision->setText(_l("preferences-show-warning-if-not-last-revision"));
+    this->ui->groupBox_DiffColors->setTitle(_l("preferences-color-scheme-diff"));
+    this->ui->radioButton_DarkMode->setText(_l("preferences-color-scheme-diff-dark-mode"));
+    this->ui->radioButton_DefaultColors->setText(_l("preferences-color-scheme-diff-default"));
 
 #ifndef HUGGLE_NOAUDIO
     this->ui->label_NoAudio->setVisible(false);
@@ -619,6 +622,8 @@ void Preferences::ResetItems()
     this->ui->checkBox_SkipConfirm->setChecked(hcfg->UserConfig->SkipWarningOnConfirm);
     this->ui->checkBox_RecentMsgs->setChecked(hcfg->UserConfig->ConfirmOnRecentWarning);
     this->ui->checkBox_EnforceBAWC->setChecked(hcfg->SystemConfig_EnforceBlackAndWhiteCss);
+    this->ui->radioButton_DarkMode->setChecked(hcfg->SystemConfig_ColorScheme == 1);
+    this->ui->radioButton_DefaultColors->setChecked(hcfg->SystemConfig_ColorScheme == 0);
 
 #ifdef HUGGLE_NOAUDIO
     this->ui->ln_QueueSoundMinScore->setEnabled(false);
@@ -807,6 +812,10 @@ void Huggle::Preferences::on_pushButton_OK_clicked()
 
     hcfg->SystemConfig_KeystrokeMultiPressRate = this->ui->le_KeystrokeRate->text().toInt();
     hcfg->SystemConfig_KeystrokeMultiPressFix = this->ui->cbKeystrokeFix->isChecked();
+    if (this->ui->radioButton_DarkMode->isChecked())
+        hcfg->SystemConfig_ColorScheme = 1;
+    else
+        hcfg->SystemConfig_ColorScheme = 0;
 
     if (hcfg->UserConfig->WelcomeGood != this->ui->checkBox_WelcomeEmptyPage->isChecked())
     {

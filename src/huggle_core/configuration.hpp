@@ -372,6 +372,9 @@ namespace Huggle
             //! was removed from the list, we would have nonexistent wiki in list
             int             SystemConfig_IndexOfLastWiki = 0;
 
+            //! 0 = default, 1 = dark mode, 2 = custom
+            int             SystemConfig_ColorScheme = 0;
+
             //////////////////////////////////////////////
             // User
             //////////////////////////////////////////////

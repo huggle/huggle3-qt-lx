@@ -809,6 +809,9 @@
   <string name="preferences-reset-gui">Reset GUI</string>
   <string name="preferences-restore-factory-layout">This will restore factory layout of huggle as it had when you installed it. Huggle will shut down. Continue?</string>
   <string name="preferences-keystroke-rate-limit">Prevent repeated keystrokes by following rate in miliseconds (only 1 same shortcut can be triggered within N ms)</string>
+  <string name="preferences-color-scheme-diff">Diff colors</string>
+  <string name="preferences-color-scheme-diff-default">Default</string>
+  <string name="preferences-color-scheme-diff-dark-mode">Dark mode</string>
   <string name="fail">Fail</string>
   <string name="request">Request</string>
   <string name="requesting">Requesting</string>

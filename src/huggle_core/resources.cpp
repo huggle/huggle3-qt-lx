@@ -23,6 +23,7 @@ QString Huggle::Resources::DiffFooter;
 QString Huggle::Resources::DiffHeader;
 QString Huggle::Resources::HtmlFooter;
 QString Huggle::Resources::HtmlHeader;
+QString Huggle::Resources::HtmlHeader_Dark;
 QString Huggle::Resources::HtmlIncoming;
 QString Huggle::Resources::Html_Default_EmptyQueuePage;
 QString Huggle::Resources::Html_StopFire;
@@ -86,6 +87,7 @@ QString Huggle::Resources::GetRandomProTip()
 void Huggle::Resources::Init()
 {
     HtmlHeader = GetResource("/huggle/resources/Resources/html/Header.html");
+    HtmlHeader_Dark = GetResource("/huggle/resources/Resources/html/HeaderDark.html");
     DiffHeader = GetResource("/huggle/resources/Resources/html/DiffBeginning.html");
     Html_StopFire = GetResource("/huggle/resources/Resources/html/StopFire.html");
     HtmlFooter = GetResource("/huggle/resources/Resources/html/PageEnd.html");
@@ -139,7 +141,14 @@ QString Huggle::Resources::GetHtmlHeader(WikiSite *site)
                    "color: black;";
     }
 
-    return QString(Resources::HtmlHeader).replace("<<<CUSTOM-CSS>>>", Css)
+    QString header;
+
+    if (hcfg->SystemConfig_ColorScheme == 1)
+        header = Resources::HtmlHeader_Dark;
+    else
+        header = Resources::HtmlHeader;
+
+    return QString(header).replace("<<<CUSTOM-CSS>>>", Css)
             .replace("<<<CUSTOM-BODY-CSS>>>", body_css)
             .replace("<<<FONT-FAMILY>>>", hcfg->SystemConfig_Font)
             .replace("<<<FONT-SIZE>>>", QString::number(hcfg->SystemConfig_FontSize));
