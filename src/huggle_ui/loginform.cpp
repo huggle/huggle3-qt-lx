@@ -613,7 +613,7 @@ bool LoginForm::retrieveGlobalConfig()
         {
             if (this->qConfig->Result->IsFailed())
             {
-                this->displayError(_l("[[login-error-global]]") + ": " + this->qConfig->GetFailureReason());
+                this->displayError(_l("login-error-global") + ": " + this->qConfig->GetFailureReason());
                 return false;
             }
             ApiQueryResultNode *data = this->qConfig->GetApiQueryResult()->GetNode("rev");

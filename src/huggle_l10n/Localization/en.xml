@@ -299,10 +299,10 @@
   <string name="login-error-cancelled">Cancelled.</string>
   <string name="login-error-config">Login failed, unable to parse local config for $1: $2</string>
   <string name="login-error-config-retrieve">Login failed, unable to retrieve user config: $1</string>
-  <string name="login-error-config-query-no-data">Login failed, unable to retrieve global config, the api query returned no data</string>
+  <string name="login-error-config-query-no-data">Login failed - possible network connection issues? Unable to download global config</string>
   <string name="login-error-count">Use of Huggle on this project requires at least $1 edits.</string>
   <string name="login-error-disabled">Huggle is not enabled for your account on $1. Check your user configuration page.</string>
-  <string name="login-error-global">Login failed: Unable to parse the global configuration. See debug log for more details.</string>
+  <string name="login-error-global">Login failed - possible network connection issue? Unable to download or parse the global configuration page</string>
   <string name="login-error-invalid">Invalid username</string>
   <string name="login-error-noconfig">$1 does not have a Huggle configuration page</string>
   <string name="login-error-nouser">The user does not exist</string>
