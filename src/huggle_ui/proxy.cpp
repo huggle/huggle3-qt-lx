@@ -60,9 +60,10 @@ Proxy::Proxy(QWidget *parent) : HW("proxy", this, parent), ui(new Ui::Proxy)
     this->ui->comboBox->addItem("Ftp");
     this->ui->l_Restart->setText(_l("proxy-restart"));
     this->ui->comboBox->setCurrentIndex(hcfg->SystemConfig_ProxyType);
+    // Right now it seems proxy needs restart so this option doesn't really make much sense on any other value than true
+    this->ui->checkBox->setChecked(true);
     if (hcfg->SystemConfig_UseProxy)
     {
-        this->ui->checkBox->setChecked(true);
         this->ui->lineEdit->setText(hcfg->SystemConfig_ProxyHost);
         this->ui->lineEdit_2->setText(QString::number(hcfg->SystemConfig_ProxyPort));
         this->ui->lineEdit_3->setText(hcfg->SystemConfig_ProxyUser);
