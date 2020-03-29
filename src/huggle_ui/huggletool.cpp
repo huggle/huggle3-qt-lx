@@ -168,12 +168,14 @@ void HuggleTool::FinishPage()
         {
             this->ui->lineEdit_2->setStyleSheet(this->GenerateColor("red"));
             this->tick->stop();
+            this->ui->pushButton->setEnabled(true);
             return;
         }
         if (!item->Attributes.contains("title"))
         {
             this->ui->lineEdit_2->setStyleSheet(this->GenerateColor("red"));
             this->tick->stop();
+            this->ui->pushButton->setEnabled(true);
             return;
         }
         this->edit = new WikiEdit();
@@ -198,6 +200,7 @@ void HuggleTool::FinishPage()
                 this->tick->stop();
                 this->edit.Delete();
                 this->query.Delete();
+                this->ui->pushButton->setEnabled(true);
                 return;
             }
             if (rev->Attributes.contains("user"))
