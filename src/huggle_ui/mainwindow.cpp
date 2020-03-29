@@ -1798,7 +1798,7 @@ void MainWindow::on_actionWarn_the_user_triggered()
 
 void MainWindow::on_actionRevert_currently_displayed_edit_and_warn_the_user_triggered()
 {
-    if (!this->keystrokeCheck(HUGGLE_ACCEL_REVW_STAY))
+    if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_REVERT_AND_WARN))
         return;
     if (!this->EditingChecks() || !this->CheckRevertable())
         return;

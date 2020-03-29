@@ -409,7 +409,6 @@ namespace Huggle
             void on_actionFind_triggered();
             void on_actionEdit_page_triggered();
             void on_actionProfiler_info_triggered();
-
             void on_actionCopy_system_log_to_clipboard_triggered();
 
         private:
