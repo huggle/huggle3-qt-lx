@@ -321,6 +321,7 @@
   <string name="main-stat">$1 edits per minute, $2 reverts per minute, level $3</string>
   <string name="main-menu-provider-stop">Stop provider</string>
   <string name="main-menu-provider-resume">Resume provider</string>
+  <string name="main-help-copy-syslog-to-clip">Copy system log to clipboard</string>
   <string name="provider-up">Connecting to recent changes stream on $2 using provider: $1</string>
   <string name="main-no-reason">No reason was provided by user</string>
   <string name="main-restoring-slap">Another edit is currently being restored, please wait...</string>

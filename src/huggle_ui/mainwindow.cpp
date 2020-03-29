@@ -78,6 +78,7 @@
 #include <huggle_core/warnings.hpp>
 #include <QMessageBox>
 #include <QDesktopServices>
+#include <QClipboard>
 #include <QToolButton>
 #include <QInputDialog>
 #include <QMutex>
@@ -2138,6 +2139,7 @@ void MainWindow::Localize()
     this->ui->actionContribution_browser->setText(_l("main-user-contribution-browser"));
     this->ui->actionRevert_only_this_revision_assuming_good_faith->setText(_l("main-revision-revert-agf"));
     this->ui->actionRevert_only_this_revision->setText(_l("main-revision-revert-only-this"));
+    this->ui->actionCopy_system_log_to_clipboard->setText(_l("main-help-copy-syslog-to-clip"));
 
     // arrows icons should be mirrored for RTL languages
     if (Localizations::HuggleLocalizations->IsRTL())
@@ -3769,4 +3771,9 @@ void MainWindow::on_actionEdit_page_triggered()
 void MainWindow::on_actionProfiler_info_triggered()
 {
     Core::HuggleCore->WriteProfilerDataIntoSyslog();
+}
+
+void Huggle::MainWindow::on_actionCopy_system_log_to_clipboard_triggered()
+{
+    QGuiApplication::clipboard()->setText(Huggle::Syslog::HuggleLogs->RingLogToText());
 }

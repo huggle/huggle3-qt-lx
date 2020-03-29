@@ -143,6 +143,7 @@
     <addaction name="actionFeedback"/>
     <addaction name="actionAbout"/>
     <addaction name="menuDebug_2"/>
+    <addaction name="actionCopy_system_log_to_clipboard"/>
    </widget>
    <widget class="QMenu" name="menuPage">
     <property name="title">
@@ -1182,6 +1183,11 @@
   <action name="actionProfiler_info">
    <property name="text">
     <string>Profiler info</string>
+   </property>
+  </action>
+  <action name="actionCopy_system_log_to_clipboard">
+   <property name="text">
+    <string>Copy system log to clipboard</string>
    </property>
   </action>
  </widget>
