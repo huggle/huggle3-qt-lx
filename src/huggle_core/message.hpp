@@ -29,7 +29,8 @@ namespace Huggle
         MessageStatus_Done,
         MessageStatus_Failed,
         MessageStatus_RetrievingTalkPage,
-        MessageStatus_SendingMessage
+        MessageStatus_SendingMessage,
+        MessageStatus_WaitingForDependecy
     };
 
     enum MessageError
@@ -54,7 +55,7 @@ namespace Huggle
             //! Returns true in case that message was sent
             virtual bool IsFinished();
             virtual bool IsFailed();
-            MessageStatus _Status;
+            MessageStatus Status;
             //! If this dependency is not a NULL then a message is sent after it is Processed (see Query::Processed())
             Collectable_SmartPtr<Query> Dependency;
             //! Title
@@ -72,6 +73,7 @@ namespace Huggle
             //! when you fetched the current revision's text to begin editing it or checked the existence of the page.
             //! Used to detect edit conflicts; leave unset to ignore conflicts
             QString StartTimestamp;
+            //! If this is set to true message will be delivered only if talk page doesn't exist
             bool CreateOnly;
             //! Text of message that will be appended to talk page
             QString Text;
@@ -84,28 +86,32 @@ namespace Huggle
             //! Changing this to true will make the message be appended to existing section of same name
             bool SectionKeep;
         protected:
-            virtual bool Done();
+            //! Return true if current message flow is done sending the message (either failed or successful)
+            virtual bool isDone();
             virtual void Fail(QString reason);
-            //! This is a generic finish that either finishes whole message sending, or call respective finish function
-            //! that is needed to finish the current step
-            virtual void Finish();
+            //! Process next step in delivery flow
+            virtual void processNextStep();
             //! Returns true if there is a valid token in memory
 
             //! Valid token means that it is syntactically correct, not that it isn't expired
-            virtual bool HasValidEditToken();
-            virtual bool IsSending();
+            virtual bool hasValidEditToken();
+            virtual bool isSending();
             //! This function perform several checks and if everything is ok, it automatically calls next functions that send the message
-            virtual void PreflightCheck();
+            virtual void preflightCheck();
             //! This function write the new text to a talk page assuming that all checks were passed
 
             //! If you call this function before performing the checks, you will get in serious troubles
-            virtual void ProcessSend();
-            virtual void ProcessTalk();
-            virtual QString Append(QString text, QString OriginalText, QString Label);
+            virtual void processSend();
+            virtual void processTalkPageRetrieval();
+            //! Properly append text to talk page, optionally into a specific section of a talk page, if there is no section specified it's inserted to
+            //! end of the talk page. If section is specified, but doesn't exist, new section with this name is created
+            virtual QString appendText(QString text, QString original_text, QString section_name);
+            //! Shared pointer to query used by current delivery step
             Collectable_SmartPtr<ApiQuery> query;
             //! This is a text of talk page that was present before we change it
-            QString Page;
-            bool PreviousTalkPageRetrieved;
+            QString originalUnmodifiedPageText;
+            //! Indicator whether we already retrieved the original unmodified text of the talk page
+            bool previousTalkPageRetrieved;
     };
 }
 

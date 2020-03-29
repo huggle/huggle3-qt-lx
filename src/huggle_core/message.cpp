@@ -34,9 +34,9 @@ Message::Message(WikiUser *target, QString MessageText, QString MessageSummary)
     this->Summary = MessageSummary;
     this->Suffix = true;
     this->SectionKeep = false;
-    this->_Status = Huggle::MessageStatus_None;
-    this->PreviousTalkPageRetrieved = false;
-    this->Page = "";
+    this->Status = Huggle::MessageStatus_None;
+    this->previousTalkPageRetrieved = false;
+    this->originalUnmodifiedPageText = "";
     this->BaseTimestamp = "";
     this->CreateOnly = false;
     this->StartTimestamp = "";
@@ -57,9 +57,13 @@ void Message::Send()
     if (!this->User)
         throw new Huggle::NullPointerException("local WikiUser User", BOOST_CURRENT_FUNCTION);
 
-    if (this->HasValidEditToken())
+    if (this->hasValidEditToken())
     {
-        this->PreflightCheck();
+        // If this message has a dependency, we have to first wait for dependency to finish, otherwise we can deliver message
+        if (this->Dependency != nullptr)
+            this->Status = MessageStatus_WaitingForDependecy;
+        else
+            this->preflightCheck();
         return;
     }
     // there is no token to use
@@ -71,7 +75,7 @@ void Message::Fail(QString reason)
     QStringList parameters;
     parameters << this->User->Username << reason;
     Huggle::Syslog::HuggleLogs->ErrorLog(_l("message-er", parameters));
-    this->_Status = Huggle::MessageStatus_Failed;
+    this->Status = Huggle::MessageStatus_Failed;
     this->Error = Huggle::MessageError_Unknown;
     this->ErrorText = reason;
     this->query.Delete();
@@ -79,62 +83,60 @@ void Message::Fail(QString reason)
 
 bool Message::IsFinished()
 {
-    if (this->Done())
-    {
+    if (this->isDone())
         return true;
-    }
-    if (this->Dependency != nullptr)
-    {
-        if (!this->Dependency->IsProcessed())
-        {
-            return false;
-        } else if (this->Dependency->IsFailed())
-        {
-            // we can't continue because the dependency is fucked
-            this->Dependency.Delete();
-            this->_Status = Huggle::MessageStatus_Failed;
-            this->Error = MessageError_Dependency;
-            this->query.Delete();
-            return true;
-        }
-    }
-    this->Finish();
-    return this->Done();
+
+    this->processNextStep();
+    return this->isDone();
 }
 
 bool Message::IsFailed()
 {
-    return this->_Status == Huggle::MessageStatus_Failed;
+    return this->Status == Huggle::MessageStatus_Failed;
 }
 
-bool Message::HasValidEditToken()
+bool Message::hasValidEditToken()
 {
     return (!this->User->GetSite()->GetProjectConfig()->Token_Csrf.isEmpty());
 }
 
-bool Message::IsSending()
+bool Message::isSending()
 {
-    return (this->_Status == Huggle::MessageStatus_SendingMessage);
+    return (this->Status == Huggle::MessageStatus_SendingMessage);
 }
 
-bool Message::Done()
+bool Message::isDone()
 {
-    return (this->_Status == Huggle::MessageStatus_Done || this->_Status == Huggle::MessageStatus_Failed);
+    return (this->Status == Huggle::MessageStatus_Done || this->Status == Huggle::MessageStatus_Failed);
 }
 
-void Message::Finish()
+void Message::processNextStep()
 {
-    if (this->Done())
+    if (this->isDone())
+        return;
+
+    if (this->Status == Huggle::MessageStatus::MessageStatus_WaitingForDependecy)
     {
-        // we really need to quit now because query is null
+        if (this->Dependency != nullptr)
+        {
+            if (!this->Dependency->IsProcessed())
+            {
+                return;
+            } else if (this->Dependency->IsFailed())
+            {
+                // we can't continue because the dependency is failed
+                this->Dependency.Delete();
+                this->Status = Huggle::MessageStatus_Failed;
+                this->Error = MessageError_Dependency;
+                this->query.Delete();
+                return;
+            }
+        }
+        this->preflightCheck();
         return;
     }
-    if (this->query == nullptr)
-    {
-        // we should never reach this code
-        return;
-    }
-    if (this->_Status == Huggle::MessageStatus_RetrievingTalkPage && !this->PreviousTalkPageRetrieved)
+
+    if (this->Status == Huggle::MessageStatus_RetrievingTalkPage && !this->previousTalkPageRetrieved)
     {
         // we need to finish retrieving of previous talk page
         if (!this->query->IsProcessed())
@@ -147,19 +149,19 @@ void Message::Finish()
             return;
         }
         // Check if we have a valid token
-        if (!this->HasValidEditToken())
+        if (!this->hasValidEditToken())
         {
             this->Fail("No token!");
             return;
         }
-        this->ProcessTalk();
+        this->processTalkPageRetrieval();
         this->query.Delete();
         // we should be able to finish sending now
-        this->ProcessSend();
+        this->processSend();
         return;
     }
 
-    if (this->_Status == Huggle::MessageStatus_SendingMessage)
+    if (this->Status == Huggle::MessageStatus_SendingMessage)
     {
         // we need to check the query
         if (!this->query->IsProcessed())
@@ -242,18 +244,18 @@ void Message::Finish()
             Huggle::Syslog::HuggleLogs->Log(_l("message-error", this->User->Username));
             Huggle::Syslog::HuggleLogs->DebugLog(this->query->Result->Data);
         }
-        this->_Status = Huggle::MessageStatus_Done;
+        this->Status = Huggle::MessageStatus_Done;
         this->Dependency.Delete();
         this->query.Delete();
     }
 }
 
-void Message::PreflightCheck()
+void Message::preflightCheck()
 {
     // check if we can directly append the data or if we need to fetch the previous page content before we do that
-    if ((!this->CreateInNewSection || this->SectionKeep) && !this->PreviousTalkPageRetrieved)
+    if ((!this->CreateInNewSection || this->SectionKeep) && !this->previousTalkPageRetrieved)
     {
-        this->_Status = MessageStatus_RetrievingTalkPage;
+        this->Status = MessageStatus_RetrievingTalkPage;
         // we need to retrieve the talk page
         this->query = WikiUtil::RetrieveWikiPageContents(this->User->GetTalk(), this->User->GetSite());
         // inform user what is going on
@@ -262,20 +264,20 @@ void Message::PreflightCheck()
         this->query->Process();
     } else
     {
-        this->PreviousTalkPageRetrieved = true;
-        this->ProcessSend();
+        this->previousTalkPageRetrieved = true;
+        this->processSend();
     }
 }
 
-void Message::ProcessSend()
+void Message::processSend()
 {
-    this->_Status = MessageStatus_SendingMessage;
+    this->Status = MessageStatus_SendingMessage;
     if (this->RequireFresh && Configuration::HuggleConfiguration->UserConfig->TalkPageFreshness != 0)
     {
         if (!this->CreateOnly && (this->User->TalkPage_RetrievalTime().addSecs(hcfg->UserConfig->TalkPageFreshness) < QDateTime::currentDateTime()))
         {
             this->Error = Huggle::MessageError_Expired;
-            this->_Status = Huggle::MessageStatus_Failed;
+            this->Status = Huggle::MessageStatus_Failed;
             return;
         } else if (!this->CreateOnly && Configuration::HuggleConfiguration->Verbosity >= 2)
         {
@@ -316,12 +318,12 @@ void Message::ProcessSend()
     {
         if (this->SectionKeep)
         {
-            this->Text = this->Append(this->Text, this->Page, this->Title);
+            this->Text = this->appendText(this->Text, this->originalUnmodifiedPageText, this->Title);
         } else
         {
             // original page needs to be included in new value
-            if (!this->Page.isEmpty())
-                this->Text = this->Page + "\n\n" + this->Text;
+            if (!this->originalUnmodifiedPageText.isEmpty())
+                this->Text = this->originalUnmodifiedPageText + "\n\n" + this->Text;
         }
         this->query->Parameters = "title=" + QUrl::toPercentEncoding(User->GetTalk()) + "&summary=" + QUrl::toPercentEncoding(summary)
                 + "&text=" + QUrl::toPercentEncoding(this->Text) + parameters
@@ -338,9 +340,9 @@ void Message::ProcessSend()
     this->query->Process();
 }
 
-void Message::ProcessTalk()
+void Message::processTalkPageRetrieval()
 {
-    this->PreviousTalkPageRetrieved = true;
+    this->previousTalkPageRetrieved = true;
     ApiQueryResultNode *page = this->query->GetApiQueryResult()->GetNode("rev");
     ApiQueryResultNode *code = this->query->GetApiQueryResult()->GetNode("page");
     bool missing = false;
@@ -352,8 +354,8 @@ void Message::ProcessTalk()
     // get last id
     if (!missing && page != nullptr)
     {
-        this->Page = page->Value;
-        this->PreviousTalkPageRetrieved = true;
+        this->originalUnmodifiedPageText = page->Value;
+        this->previousTalkPageRetrieved = true;
         return;
     } else
     {
@@ -366,28 +368,28 @@ void Message::ProcessTalk()
     }
 }
 
-QString Message::Append(QString text, QString OriginalText, QString Label)
+QString Message::appendText(QString text, QString original_text, QString section_name)
 {
-    if (Label.isEmpty())
+    if (section_name.isEmpty())
     {
         // there is nothing to insert this to
-        return OriginalText += "\n\n" + text + "\n\n";
+        return original_text += "\n\n" + text + "\n\n";
     }
-    QRegExp regex("\\s*==\\s*" + QRegExp::escape(Label) + "\\s*==");
-    if (!OriginalText.contains(regex))
+    QRegExp regex("\\s*==\\s*" + QRegExp::escape(section_name) + "\\s*==");
+    if (!original_text.contains(regex))
     {
         // there is no section to append to
-        if (!OriginalText.isEmpty())
+        if (!original_text.isEmpty())
         {
-            OriginalText = OriginalText + "\n\n";
+            original_text = original_text + "\n\n";
         }
-        OriginalText += "== " + Label + " ==\n\n" + text;
-        return OriginalText;
+        original_text += "== " + section_name + " ==\n\n" + text;
+        return original_text;
     }
     QRegExp header("^\\s*==.*==\\s*$");
-    int Post = Text.lastIndexOf(regex);
+    int Post = original_text.lastIndexOf(regex);
     // we need to check if there is any other section after this one
-    QString Section = OriginalText.mid(Post);
+    QString Section = original_text.mid(Post);
     if (Section.contains("\n"))
     {
         // cut the header text
@@ -396,13 +398,13 @@ QString Message::Append(QString text, QString OriginalText, QString Label)
         Section = Section.mid(Diff);
     }
     // we assume there is no other section and if there is some we change this
-    int StartPoint = OriginalText.length();
+    int StartPoint = original_text.length();
     if (Section.contains(header))
     {
         // yes there is some other section, so we need to know where it is
-        StartPoint = OriginalText.indexOf(header, Post);
+        StartPoint = original_text.indexOf(header, Post);
     }
     // write the text exactly after the start point, but leave some space after it
-    OriginalText = OriginalText.insert(StartPoint, "\n\n" + text + "\n\n");
-    return OriginalText;
+    original_text = original_text.insert(StartPoint, "\n\n" + text + "\n\n");
+    return original_text;
 }
