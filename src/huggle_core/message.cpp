@@ -386,25 +386,28 @@ QString Message::appendText(QString text, QString original_text, QString section
         original_text += "== " + section_name + " ==\n\n" + text;
         return original_text;
     }
-    QRegExp header("^\\s*==.*==\\s*$");
-    int Post = original_text.lastIndexOf(regex);
+    QRegExp header("\\s*==.*==\\s*");
+    int start_of_desired_section = original_text.lastIndexOf(regex);
     // we need to check if there is any other section after this one
-    QString Section = original_text.mid(Post);
-    if (Section.contains("\n"))
+    QString section = original_text.mid(start_of_desired_section);
+    if (section.contains("\n"))
     {
         // cut the header text
-        int Diff = Section.indexOf("\n") + 1;
-        Post += Diff;
-        Section = Section.mid(Diff);
+        int Diff = section.indexOf("\n") + 1;
+        start_of_desired_section += Diff;
+        section = section.mid(Diff);
     }
-    // we assume there is no other section and if there is some we change this
-    int StartPoint = original_text.length();
-    if (Section.contains(header))
+    int start_point = start_of_desired_section;
+    if (section.contains(header))
     {
-        // yes there is some other section, so we need to know where it is
-        StartPoint = original_text.indexOf(header, Post);
+        // yes there is some other section, so we need to know where it is, so that we know where current
+        // section ends (we want to append text to bottom of current section)
+        start_point += section.indexOf(header);
+    } else
+    {
+        start_point += section.length();
     }
     // write the text exactly after the start point, but leave some space after it
-    original_text = original_text.insert(StartPoint, "\n\n" + text + "\n\n");
+    original_text = original_text.insert(start_point, "\n\n" + text + "\n");
     return original_text;
 }
