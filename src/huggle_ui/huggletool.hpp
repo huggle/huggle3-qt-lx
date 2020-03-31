@@ -26,6 +26,13 @@ namespace Ui
     class HuggleTool;
 }
 
+#define HUGGLETOOL_DONE                         0
+#define HUGGLETOOL_DOWNLOADING_WIKI_EDIT        1
+#define HUGGLETOOL_PROCESS_WIKI_EDIT            2
+#define HUGGLETOOL_RETRIEVING_USER_INFO         3
+#define HUGGLETOOL_RETRIEVING_USER_LAST_EDIT    4
+
+
 namespace Huggle
 {
     class ApiQuery;
@@ -50,13 +57,13 @@ namespace Huggle
         private slots:
             void on_pushButton_clicked();
             void onTick();
-            void on_lineEdit_3_returnPressed();
-            void on_lineEdit_2_returnPressed();
+            void on_lineEdit_PageName_returnPressed();
+            void on_lineEdit_UserName_returnPressed();
 
         private:
-            void FinishPage();
-            void FinishEdit();
-            QString GenerateColor(QString color);
+            void finishPage();
+            void finishEdit();
+            QString getColor(QString color);
             Ui::HuggleTool *ui;
             WikiPage *page;
             Collectable_SmartPtr<ApiQuery> query;
@@ -68,7 +75,7 @@ namespace Huggle
 
             //! When we download a page from wiki we need to do that in several steps, this variable holds
             //! the information which step we are in
-            int QueryPhase;
+            int queryPhase;
     };
 }
 

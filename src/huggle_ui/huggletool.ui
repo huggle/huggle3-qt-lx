@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>775</width>
-    <height>49</height>
+    <height>60</height>
    </rect>
   </property>
   <property name="features">
@@ -51,7 +51,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_2"/>
+     <widget class="QLineEdit" name="lineEdit_UserName"/>
     </item>
     <item>
      <widget class="QLabel" name="label_2">
@@ -61,7 +61,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_3"/>
+     <widget class="QLineEdit" name="lineEdit_PageName"/>
     </item>
     <item>
      <widget class="QPushButton" name="pushButton">
