@@ -264,7 +264,7 @@ void WikiPageTagsForm::getPageContents()
 {
     // Disable UI until we get the contents of page
     this->toggleEnable(false);
-    ApiQuery *retrieve = WikiUtil::RetrieveWikiPageContents(this->page, false);
+    ApiQuery *retrieve = WikiUtil::RetrieveWikiPageContents(this->page);
     retrieve->FailureCallback = (Callback)Fail;
     retrieve->CallbackResult = (void*)this;
     retrieve->SuccessCallback = (Callback)Huggle::WikiPageTagsForm_FinishRead;

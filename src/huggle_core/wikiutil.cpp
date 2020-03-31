@@ -426,21 +426,19 @@ Collectable_SmartPtr<ApiQuery> WikiUtil::APIRequest(Action action, WikiSite *sit
     return request;
 }
 
-ApiQuery *WikiUtil::RetrieveWikiPageContents(const QString &page, WikiSite *site, bool parse)
+ApiQuery *WikiUtil::RetrieveWikiPageContents(const QString &page, WikiSite *site)
 {
     WikiPage pt(page, site);
-    return RetrieveWikiPageContents(&pt, parse);
+    return RetrieveWikiPageContents(&pt);
 }
 
-ApiQuery *WikiUtil::RetrieveWikiPageContents(WikiPage *page, bool parse)
+ApiQuery *WikiUtil::RetrieveWikiPageContents(WikiPage *page)
 {
     // performance hack
     static QString options = QUrl::toPercentEncoding("timestamp|user|comment|content");
     ApiQuery *query = new ApiQuery(ActionQuery, page->Site);
     query->Target = "Retrieving contents of " + page->PageName;
     query->Parameters = "prop=revisions&rvlimit=1&rvprop=" + options + "&titles=" + QUrl::toPercentEncoding(page->PageName);
-    if (parse)
-        query->Parameters += "&rvparse";
     return query;
 }
 

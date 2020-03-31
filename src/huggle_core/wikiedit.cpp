@@ -641,7 +641,7 @@ void WikiEdit::PostProcess()
         this->processingDiff = true;
     } else if (this->Page->Contents.isEmpty())
     {
-        this->qText = WikiUtil::RetrieveWikiPageContents(this->Page, true);
+        this->qText = WikiUtil::RetrieveWikiPageContents(this->Page);
         this->qText->Target = "Retrieving content of " + this->Page->PageName;
         HUGGLE_QP_APPEND(this->qText);
         this->qText->Process();

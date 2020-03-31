@@ -136,8 +136,8 @@ namespace Huggle
                                                         QString *title = nullptr);
         HUGGLE_EX_CORE void PatrolEdit(WikiEdit *edit);
         //! \obsolete RetrieveWikiPageContents(WikiPage *page, bool parse = false);
-        HUGGLE_EX_CORE ApiQuery *RetrieveWikiPageContents(const QString &page, WikiSite *site, bool parse = false);
-        HUGGLE_EX_CORE ApiQuery *RetrieveWikiPageContents(WikiPage *page, bool parse = false);
+        HUGGLE_EX_CORE ApiQuery *RetrieveWikiPageContents(const QString &page, WikiSite *site);
+        HUGGLE_EX_CORE ApiQuery *RetrieveWikiPageContents(WikiPage *page);
         HUGGLE_EX_CORE Collectable_SmartPtr<ApiQuery> Unwatchlist(WikiPage *page);
         HUGGLE_EX_CORE Collectable_SmartPtr<ApiQuery> Watchlist(WikiPage *page);
         /*!
