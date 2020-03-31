@@ -191,6 +191,9 @@ void HuggleTool::finishPage()
         this->edit = new WikiEdit();
         this->edit->Page = new WikiPage(this->ui->lineEdit_PageName->text(), this->query->GetSite());
         ApiQueryResultNode *rev = this->query->GetApiQueryResult()->GetNode("rev");
+        // For some reason mediawiki return rev in case that page exists, when it doesn't exist it returns page instead
+        if (!rev)
+            rev = this->query->GetApiQueryResult()->GetNode("page");
         if (rev)
         {
             if (rev->Attributes.contains("missing"))
