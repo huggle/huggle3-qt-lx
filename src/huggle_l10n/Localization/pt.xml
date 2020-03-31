@@ -316,10 +316,10 @@
   <string name="login-error-cancelled">Cancelado.</string>
   <string name="login-error-config">O início de sessão falhou, não foi possível carregar a página de configuração em $1: $2</string>
   <string name="login-error-config-retrieve">Falha ao iniciar sessão, não foi possível aceder as configurações de utilizador: $1</string>
-  <string name="login-error-config-query-no-data">Falha ao iniciar sessão, não foi possível obter as configurações globais, a consulta por api não devolveu nenhum dado</string>
+  <string name="login-error-config-query-no-data" fuzzy="true">Falha ao iniciar sessão, não foi possível obter as configurações globais, a consulta por api não devolveu nenhum dado</string>
   <string name="login-error-count">Para usar o Huggle no projeto que escolheu são necessárias pelo menos $1 edições.</string>
   <string name="login-error-disabled">O Huggle não está ativo na sua conta de utilizador(a) em $1. Verifique a sua página de configuração pessoal.</string>
-  <string name="login-error-global">Início de sessão falhou: O Huggle não conseguiu carregar a página de configuração global. Veja o registo de depuração para mais detalhes.</string>
+  <string name="login-error-global" fuzzy="true">Início de sessão falhou: O Huggle não conseguiu carregar a página de configuração global. Veja o registo de depuração para mais detalhes.</string>
   <string name="login-error-invalid">Introduziu um nome de utilizador(a) inválido.</string>
   <string name="login-error-noconfig">$1 não tem uma página de configuração do Huggle</string>
   <string name="login-error-nouser">A conta de utilizador(a) não existe</string>

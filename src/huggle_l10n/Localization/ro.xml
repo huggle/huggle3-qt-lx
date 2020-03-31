@@ -281,7 +281,7 @@
   <string name="login-error-config">Autentificare eșuată, nu pot parsa configurația locală pentru $1: $2</string>
   <string name="login-error-count">Utilizarea lui Huggle în acest proiect necesită cel puțin $1 editări.</string>
   <string name="login-error-disabled" fuzzy="true">Huggle nu este activat pentru contul dumneavoastră la $1. Verificați pagina de configurații a utilizatorului.</string>
-  <string name="login-error-global">Autentificare eșuată: Nu pot parsa configurația globală. Vedeți logul de debug pentru mai multe detalii.</string>
+  <string name="login-error-global" fuzzy="true">Autentificare eșuată: Nu pot parsa configurația globală. Vedeți logul de debug pentru mai multe detalii.</string>
   <string name="login-error-invalid">Nume de utilizator invalid</string>
   <string name="login-error-noconfig">$1 nu are o pagină de configurare Huggle</string>
   <string name="login-error-nouser">Utilizatorul nu există</string>

@@ -447,6 +447,9 @@
   <string name="warn-alreadyblocked">Stanket eo bet an implijer dija</string>
   <string name="logs-widget-name">Marilhoù ar reizhiad</string>
   <string name="wait">Gortozit mar plij...</string>
+  <string name="preferences-color-scheme-diff">Livioù an diforc\'hioù</string>
+  <string name="preferences-color-scheme-diff-default">Dre ziouer</string>
+  <string name="preferences-color-scheme-diff-dark-mode">Mod teñval</string>
   <string name="fail">C\'hwitet</string>
   <string name="request">Reked</string>
   <string name="page-tag-noparameters">Arventennoù ebet</string>

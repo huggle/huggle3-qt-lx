@@ -23,6 +23,7 @@
 * Sayginer
 * Stultiwikia
 * Trockya
+* Uğurkent
 * Violetanka
 * Vito Genovese
 * İnternion
@@ -30,7 +31,7 @@
 <resources>
   <string name="name">Türkçe</string>
   <string name="autorelog">Bunu bir dahaki sefere sormadan yapın</string>
-  <string name="isrtl">false</string>
+  <string name="isrtl">yanlış</string>
   <string name="add">Ekle</string>
   <string name="cancel">İptal</string>
   <string name="clear">Temizle</string>
@@ -175,7 +176,7 @@
   <string name="config-own-edits">Kendi düzenlemeleri</string>
   <string name="config-reverts">Geri almalar</string>
   <string name="config-new-page">Yeni sayfa</string>
-  <string name="config-whitelisted">Beyaz listedeki</string>
+  <string name="config-whitelisted">Beyaz listenmiş</string>
   <string name="config-friend">Arkadaş</string>
   <string name="config-userspace">Kullanıcı alanı</string>
   <string name="config-talk">Tartışma sayfası</string>
@@ -327,10 +328,10 @@
   <string name="login-error-cancelled">İptal edildi.</string>
   <string name="login-error-config">Giriş başarısız oldu, $1 için yerel yapılandırma bilgisi alınamadı: $2</string>
   <string name="login-error-config-retrieve">Oturum açma başarısız oldu, kullanıcı yapılandırması alınamıyor: $1</string>
-  <string name="login-error-config-query-no-data">Giriş başarısız, genel yapılandırma alınamadı, API sorgusu veri döndürmedi</string>
+  <string name="login-error-config-query-no-data">Giriş başarısız - olası ağ bağlantısı sorunları mı yaşanıyor? Genel yapılandırma indirilemiyor</string>
   <string name="login-error-count">Huggle\'ın bu projede kullanılması için en az $1 düzenleme gerekiyor.</string>
   <string name="login-error-disabled">Huggle, $1 üzerinde hesabınız için etkinleştirilmedi. Kullanıcı yapılandırma sayfanızı kontrol edin.</string>
-  <string name="login-error-global">Oturum açılamadı: Genel yapılandırma ayrıştırılamıyor. Daha fazla ayrıntı için hata ayıklama günlüğüne bakın.</string>
+  <string name="login-error-global">Giriş başarısız - olası ağ bağlantısı sorunu mı yaşıyor? Genel yapılandırma sayfası indirilemiyor veya ayrıştırılamıyor</string>
   <string name="login-error-invalid">Geçersiz kullanıcı adı</string>
   <string name="login-error-noconfig">$1 bir Huggle yapılandırma sayfası yok</string>
   <string name="login-error-nouser">Kullanıcı mevcut değil</string>
@@ -349,6 +350,7 @@
   <string name="main-stat">Dakikada $1 düzenleme, dakikada $2 geri dönüş, seviye $3</string>
   <string name="main-menu-provider-stop">Sağlayıcıyı durdur</string>
   <string name="main-menu-provider-resume">Sağlayıcıyı devam ettir</string>
+  <string name="main-help-copy-syslog-to-clip">Sistem günlüğünü panoya kopyala</string>
   <string name="provider-up">Sağlayıcı kullanarak $2 üzerindeki son değişiklik akışına bağlanılıyor: $1</string>
   <string name="main-no-reason">Kullanıcı tarafından herhangi bir sebep belirtilmedi</string>
   <string name="main-restoring-slap">Şu anda başka bir düzenleme geri yükleniyor, lütfen bekleyin...</string>
@@ -837,6 +839,9 @@
   <string name="preferences-reset-gui">GUI\'yi sıfırlayın</string>
   <string name="preferences-restore-factory-layout">Bu, Huggle\'ın fabrika ayarlarını yüklediğiniz zamanki gibi geri yükleyecektir. Huggle kapanacak. Devam et?</string>
   <string name="preferences-keystroke-rate-limit">Milisaniye cinsinden hızı takip ederek tekrarlanan tuş vuruşlarını önleme (N ms içinde sadece 1 aynı kısayol tetiklenebilir)</string>
+  <string name="preferences-color-scheme-diff">Fark renkleri</string>
+  <string name="preferences-color-scheme-diff-default">Varsayılan</string>
+  <string name="preferences-color-scheme-diff-dark-mode">Karanlık mod</string>
   <string name="fail">Başarısız</string>
   <string name="request">Talep et</string>
   <string name="requesting">Talep ediliyor</string>

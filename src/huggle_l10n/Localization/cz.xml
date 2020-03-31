@@ -263,7 +263,7 @@
   <string name="login-error-config">Neúspěšné přihlášení, nelze načíst místní konfiguraci pro $1: $2</string>
   <string name="login-error-count">Použití Huggle na tomto projektu vyžaduje alespoň $1 úprav.</string>
   <string name="login-error-disabled">Huggle není povolen pro Váš účet na $1. Zkontrolujte svoji uživatelskou konfigurační stránku.</string>
-  <string name="login-error-global">Přihlášení selhalo: Nelze zpracovat globalní nastavení. Více informací je v debugovacím logu.</string>
+  <string name="login-error-global">Přihlášení selhalo – pravděpodobně chyba připojení k síti? Nelze stáhnout ani zpracovat stránku globalních nastavení.</string>
   <string name="login-error-invalid">Neplatné uživatelské jméno</string>
   <string name="login-error-noconfig">Projekt $1 nemá žádnou konfigurační stránku Huggle</string>
   <string name="login-error-nouser">Uživatel neexistuje.</string>

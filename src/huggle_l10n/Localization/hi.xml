@@ -238,7 +238,7 @@
   <string name="login-error-config">लॉग-इन असफल रहा, $1 के समाकृति पृष्ठों को लोड नहीं कर पाया: $2</string>
   <string name="login-error-count">इस परियोजना पर हगल उपयोग के लिए कम से कम $1 सम्पादन होने चाहिए।</string>
   <string name="login-error-disabled">आपके खाते $1 पर हगल सक्षम नहीं किया गया है। अपना प्रयोक्ता समाकृति पृष्ठ देखें।</string>
-  <string name="login-error-global">लॉग-इन असफल: वैश्विक समाकृति पृष्ठ लोड करने में असफल। अधिक जानकारी के लिए त्रुटि लॉग देखें।</string>
+  <string name="login-error-global" fuzzy="true">लॉग-इन असफल: वैश्विक समाकृति पृष्ठ लोड करने में असफल। अधिक जानकारी के लिए त्रुटि लॉग देखें।</string>
   <string name="login-error-invalid">सदस्य नाम अमान्य है।</string>
   <string name="login-error-noconfig">$1 पर हगल संविन्यास पृष्ठ नहीं है।</string>
   <string name="login-error-nouser">यह सदस्य अस्तित्व में नहीं है</string>

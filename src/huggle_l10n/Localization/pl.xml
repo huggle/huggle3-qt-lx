@@ -284,7 +284,7 @@
   <string name="login-error-config">Nie udało się zalogować, nie można przetworzyć lokalnych ustawień dla $1: $2</string>
   <string name="login-error-count">Korzystanie z Huggle w tym projekcie wymaga co najmniej $1 edycji.</string>
   <string name="login-error-disabled">Huggle nie jest włączony dla twojego konta na $1. Sprawdź swoją stronę konfiguracji użytkownika.</string>
-  <string name="login-error-global">Logowanie nie udało się: nie można przetworzyć globalnych ustawień. Zobacz log debugowania, aby uzyskać więcej informacji.</string>
+  <string name="login-error-global" fuzzy="true">Logowanie nie udało się: nie można przetworzyć globalnych ustawień. Zobacz log debugowania, aby uzyskać więcej informacji.</string>
   <string name="login-error-invalid">Nieprawidłowa nazwa użytkownika</string>
   <string name="login-error-noconfig">$1 nie ma strony konfiguracyjnej Huggle\'a</string>
   <string name="login-error-nouser">Użytkownik nie istnieje</string>

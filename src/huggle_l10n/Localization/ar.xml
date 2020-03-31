@@ -315,10 +315,10 @@
   <string name="login-error-cancelled">ملغى.</string>
   <string name="login-error-config">فشل تسجيل الدخول; غير قادر على تحليل التهيئة المحلية ل $1: $2</string>
   <string name="login-error-config-retrieve">فشل تسجيل الدخول; غير قادر على استرداد تكوين المستخدم: $1</string>
-  <string name="login-error-config-query-no-data">فشل تسجيل الدخول; غير قادر على استرداد التكوين العام، لم يُظهِر استعلام api أية بيانات</string>
+  <string name="login-error-config-query-no-data">فشل تسجيل الدخول - مشاكل محتملة في الاتصال بالشبكة؟ غير قادر على تنزيل الضبط العالمي</string>
   <string name="login-error-count">استخدام هجل في هذا المشروع يحتاج $1 تعديلات على الأقل.</string>
   <string name="login-error-disabled">هغل غير مفعل في حسابك على $1، راجع صفحة خيارات المستخدم.</string>
-  <string name="login-error-global">فشل تسجيل الدخول: غير قادر على تحليل التهيئة العالمية. راجع سجل التصحيح لمزيد من التفاصيل.</string>
+  <string name="login-error-global">فشل تسجيل الدخول - مشكلة محتملة في الاتصال بالشبكة؟ غير قادر على تنزيل أو تحليل صفحة الضبط العالمية</string>
   <string name="login-error-invalid">اسم مستخدم خاطئ.</string>
   <string name="login-error-noconfig">ليس لهذا المشروع صفحة خيارات لبرمجية هغل.</string>
   <string name="login-error-nouser">مستخدم غير موجود.</string>
@@ -337,6 +337,7 @@
   <string name="main-stat">$1 تعديل في الدقيقة، $2 تراجع في الدقيقة، المستوى $3</string>
   <string name="main-menu-provider-stop">إيقاف المزود</string>
   <string name="main-menu-provider-resume">استئناف المزود</string>
+  <string name="main-help-copy-syslog-to-clip">انسخ سجل النظام إلى الحافظة</string>
   <string name="provider-up">الاتصال بتدفق أحدث التغييرات الأخيرة في $2 باستخدام الموفر: $1</string>
   <string name="main-no-reason">لا يوجد أي سبب تم تقديمه بواسطة المستخدم</string>
   <string name="main-restoring-slap">هناك تعديل آخر قيد الاسترجاع حاليا، الرجاء الانتظار...</string>
@@ -825,6 +826,9 @@
   <string name="preferences-reset-gui">إعادة تعيين واجهة المستخدم الرسومية</string>
   <string name="preferences-restore-factory-layout">سيؤدي هذا إلى استعادة تصميم المصنع لهغل كما كان عند تثبيته، سيتم إغلاق هغل، استمر؟</string>
   <string name="preferences-keystroke-rate-limit">منع ضغطات المفاتيح المتكررة باتباع المعدل بالمللي ثانية (يمكن تشغيل نفس الاختصار فقط داخل N ms)</string>
+  <string name="preferences-color-scheme-diff">ألوان الفرق</string>
+  <string name="preferences-color-scheme-diff-default">افتراضي</string>
+  <string name="preferences-color-scheme-diff-dark-mode">وضع الظلام</string>
   <string name="fail">فشل</string>
   <string name="request">طلب</string>
   <string name="requesting">طلب</string>

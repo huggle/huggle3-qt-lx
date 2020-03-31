@@ -293,10 +293,10 @@
   <string name="login-error-cancelled">Avbruten.</string>
   <string name="login-error-config">Inloggning misslyckades, kunde inte läsa lokal konfiguration för $1: $2</string>
   <string name="login-error-config-retrieve">Inloggning misslyckades, kunde inte hämta användarkonfiguration: $1</string>
-  <string name="login-error-config-query-no-data">Inloggning misslyckades, kunde inte hämta global konfiguration, API-begäran returnerade ingen data</string>
+  <string name="login-error-config-query-no-data" fuzzy="true">Inloggning misslyckades, kunde inte hämta global konfiguration, API-begäran returnerade ingen data</string>
   <string name="login-error-count">Minst $1 redigeringar krävs för att använda Huggle på detta projekt.</string>
   <string name="login-error-disabled">Huggle är inte aktiverat för ditt konto på $1. Kontrollera sidan för dina användarkonfigurationer.</string>
-  <string name="login-error-global">Inloggning misslyckades: Kunde inte läsa global konfiguration. Se felsökningsloggen för fler detaljer.</string>
+  <string name="login-error-global" fuzzy="true">Inloggning misslyckades: Kunde inte läsa global konfiguration. Se felsökningsloggen för fler detaljer.</string>
   <string name="login-error-invalid">Ogiltigt användarnamn</string>
   <string name="login-error-noconfig">$1 har inte en Huggle-konfigurationssida</string>
   <string name="login-error-nouser">Användaren finns inte</string>
@@ -737,6 +737,8 @@
   <string name="preferences-empty-queue-page">Tom kösida:</string>
   <string name="preferences-reset-gui">Återställ gränssnitt</string>
   <string name="preferences-restore-factory-layout">Detta kommer att fabriksåterställa Huggles utseende som det var när du installerade det. Huggle kommer att stängas ned. Fortsätt?</string>
+  <string name="preferences-color-scheme-diff-default">Standard</string>
+  <string name="preferences-color-scheme-diff-dark-mode">Mörkt läge</string>
   <string name="fail">Misslyckades</string>
   <string name="request">Begär</string>
   <string name="requesting">Begär</string>

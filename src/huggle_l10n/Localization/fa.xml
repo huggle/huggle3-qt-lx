@@ -323,10 +323,10 @@
   <string name="login-error-cancelled">لغو شد.</string>
   <string name="login-error-config">ثبت ورود نافرجام ماند، امکان تجزیهٔ پیکربندی برای $1 نبود: $2</string>
   <string name="login-error-config-retrieve">ورود ناموفق، امکان دریافت اطلاعات کاربر نبود: $1</string>
-  <string name="login-error-config-query-no-data">ورود ناموفق، امکان دریافت تنظیمات سراسری نبود، پرسمان API پاسخی نداشت</string>
+  <string name="login-error-config-query-no-data" fuzzy="true">ورود ناموفق، امکان دریافت تنظیمات سراسری نبود، پرسمان API پاسخی نداشت</string>
   <string name="login-error-count">استفاده از هاگل در این پروژه نیازمند حداقل $1 ویرایش است.</string>
   <string name="login-error-disabled">هاگل برای حساب کاربری شما در $1 فعال نشده‌است؛ صفحهٔ پیکربندی حساب کاربریتان را بررسی کنید.</string>
-  <string name="login-error-global">ورود ناموفق: قادر به تجزیهٔ پیکربندی سراسری نبود. برای جزئیات بیشتر سیاههٔ اشکال‌زدایی را ببینید.</string>
+  <string name="login-error-global" fuzzy="true">ورود ناموفق: قادر به تجزیهٔ پیکربندی سراسری نبود. برای جزئیات بیشتر سیاههٔ اشکال‌زدایی را ببینید.</string>
   <string name="login-error-invalid">نام کاربری نادرست</string>
   <string name="login-error-noconfig">$1 صفحهٔ پیکربندی هاگل ندارد</string>
   <string name="login-error-nouser">این حساب کاربری وجود ندارد</string>

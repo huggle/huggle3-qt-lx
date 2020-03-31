@@ -288,10 +288,10 @@
   <string name="login-error-cancelled">Ezeztatuta.</string>
   <string name="login-error-config">Saioa hasteak huts egin du, ezin izan da tokiko ezarpena aztertu hurrengoarengatik: $1: $2</string>
   <string name="login-error-config-retrieve">Saioa hasteak huts egin du, ezin izan dira erabiltzaile ezarpenak berreskuratu: $1</string>
-  <string name="login-error-config-query-no-data">Saioa hasteak huts egin du, ezin izan dira ezarpen globalak berreskuratu, api-ren kontsultak ez du datarik eman</string>
+  <string name="login-error-config-query-no-data" fuzzy="true">Saioa hasteak huts egin du, ezin izan dira ezarpen globalak berreskuratu, api-ren kontsultak ez du datarik eman</string>
   <string name="login-error-count">Huggleren erabilerak proiektu honetan behintzat $1 aldaketa egotea eskatzen du.</string>
   <string name="login-error-disabled">Huggle ez dago zure konturako gaituta $1(e)an. Egiaztatu zure ezarpenen orrialdea.</string>
-  <string name="login-error-global">Saioa hasteak huts egin du: Ezarpen globala ezin da aztertu. Ikus debug saioa hastea detaile gehiagorako.</string>
+  <string name="login-error-global" fuzzy="true">Saioa hasteak huts egin du: Ezarpen globala ezin da aztertu. Ikus debug saioa hastea detaile gehiagorako.</string>
   <string name="login-error-invalid">Erabiltzaile izenak ez du balio</string>
   <string name="login-error-noconfig">$1-(e)k ez dauka Huggle ezarpen orrialdea</string>
   <string name="login-error-nouser">Erabiltzailea ez da existitzen</string>

@@ -471,6 +471,8 @@
   <string name="preferences-watchlist-nochange">Näischt maachen</string>
   <string name="preferences-auto-watch-talk">D\'Diskussiounssäit vun engem Benotzer iwwerwaachen déi vun Iech eng Warnung kritt huet</string>
   <string name="preferences-reset-gui">GUI zrécksetzen</string>
+  <string name="preferences-color-scheme-diff-default">Standard</string>
+  <string name="preferences-color-scheme-diff-dark-mode">Däischtere Modus</string>
   <string name="request">Ufro</string>
   <string name="requesting">Ufroen</string>
   <string name="requested">Ugefrot</string>

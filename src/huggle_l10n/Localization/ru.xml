@@ -337,10 +337,10 @@
   <string name="login-error-cancelled">Отменено.</string>
   <string name="login-error-config">Не удалось войти, не удалось разобрать локальные настройки для $1: $2</string>
   <string name="login-error-config-retrieve">Ошибка входа. Не удалось получить настройки пользователя: $1</string>
-  <string name="login-error-config-query-no-data">Ошибка входа в систему, не удалось получить глобальную конфигурацию, запрос api не возвратил данные</string>
+  <string name="login-error-config-query-no-data" fuzzy="true">Ошибка входа в систему, не удалось получить глобальную конфигурацию, запрос api не возвратил данные</string>
   <string name="login-error-count">Использование Huggle в этом проекте требует, по крайней мере, $1 правок.</string>
   <string name="login-error-disabled">Huggle не включён для вашей учётной записи в $1. Проверьте вашу страницу пользовательских настроек.</string>
-  <string name="login-error-global">Ошибка входа: не удаётся выполнить разбор глобальных настроек. Смотрите отладочный журнал для получения более подробной информации.</string>
+  <string name="login-error-global" fuzzy="true">Ошибка входа: не удаётся выполнить разбор глобальных настроек. Смотрите отладочный журнал для получения более подробной информации.</string>
   <string name="login-error-invalid">Неверное имя пользователя.</string>
   <string name="login-error-noconfig">В $1 отсутствует страница настроек Huggle.</string>
   <string name="login-error-nouser">Пользователь не существует</string>

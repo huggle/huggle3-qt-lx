@@ -287,7 +287,7 @@
   <string name="login-error-config-retrieve">Помилка входу. Неможливо отримати користувацькі налаштування: $1</string>
   <string name="login-error-count">Для використання Huggle у цьому проекті потрібно зробити щонайменше $1 редагувань.</string>
   <string name="login-error-disabled">Huggle не ввімкнено для Вашого облікового запису в $1. Перевірте свою сторінку користувацьких налаштувань.</string>
-  <string name="login-error-global">Помилка входу: Не вдалося розібрати глобальні налаштування. Дивіться налагоджувальний журнал для отримання детальної інформації.</string>
+  <string name="login-error-global">Помилка входу (можливо через проблеми мережі). Не вдалось завантажити або розібрати сторінку глобальних налаштувань</string>
   <string name="login-error-invalid">Неправильне ім’я користувача</string>
   <string name="login-error-noconfig">В $1 відсутня сторінка налаштувань Huggle</string>
   <string name="login-error-nouser">Такого користувача не існує</string>

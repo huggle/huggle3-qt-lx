@@ -323,10 +323,10 @@
   <string name="login-error-cancelled">Annulé.</string>
   <string name="login-error-config">Échec à la connexion, impossible d’analyser la configuration locale pour $1 : $2</string>
   <string name="login-error-config-retrieve">Échec de connexion, impossible de récupérer la configuration de l’utilisateur « $1 »</string>
-  <string name="login-error-config-query-no-data">Échec de connexion, impossible de récupérer la configuration globale, la requête à l’API n’a renvoyé aucune donnée</string>
+  <string name="login-error-config-query-no-data">La connexion a échoué  - problème de connexion réseau ? La page de la configuration globale n’a pas pu être téléchargée.</string>
   <string name="login-error-count">L’utilisation de Huggle sur ce projet requiert au moins $1 modification{{PLURAL:$1||s}}.</string>
   <string name="login-error-disabled">Huggle n’est pas activé pour votre compte sur $1. Vérifiez la configuration sur votre page utilisateur.</string>
-  <string name="login-error-global">La connexion a échoué : la configuration globale n’a pas pu être lue. Reportez-vous au journal de débogage pour plus de détails.</string>
+  <string name="login-error-global">La connexion a échoué  - problème de connexion réseau ? La page de la configuration globale n’a pas pu être téléchargée.</string>
   <string name="login-error-invalid">Nom d’utilisateur non valide</string>
   <string name="login-error-noconfig">$1 n’a pas de page de configuration pour Huggle</string>
   <string name="login-error-nouser">L’utilisateur n’existe pas</string>
@@ -345,6 +345,7 @@
   <string name="main-stat">$1 modifications par minute, $2 annulations par minute, niveau $3</string>
   <string name="main-menu-provider-stop">Arrêter le fournisseur</string>
   <string name="main-menu-provider-resume">Remettre le fournisseur en marche</string>
+  <string name="main-help-copy-syslog-to-clip">Copier le journal système dans le presse-papier</string>
   <string name="provider-up">Connexion au flux des changements récents sur $2 à l’aide du fournisseur : $1</string>
   <string name="main-no-reason">Aucun motif n’a été fourni par l’utilisateur</string>
   <string name="main-restoring-slap">Une autre modification est déjà en cours de restauration, veuillez patienter...</string>
@@ -833,6 +834,9 @@
   <string name="preferences-reset-gui">Réinitialiser l’IHM</string>
   <string name="preferences-restore-factory-layout">Cela rétablira la disposition d’usine de Huggle comme il se trouvait quand vous l’avez installé. Huggle s’arrêtera. Continuer ?</string>
   <string name="preferences-keystroke-rate-limit">Prévenir les répétitions de touche durant un nombre donné de millisecondes (un seul raccourci peut être activé en \'\'N\'\' ms)</string>
+  <string name="preferences-color-scheme-diff">Couleurs du diff</string>
+  <string name="preferences-color-scheme-diff-default">Par défaut</string>
+  <string name="preferences-color-scheme-diff-dark-mode">Mode sombre</string>
   <string name="fail">Échec</string>
   <string name="request">Requête</string>
   <string name="requesting">En cours de requête</string>

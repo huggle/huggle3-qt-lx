@@ -315,10 +315,10 @@
   <string name="login-error-cancelled">已取消。</string>
   <string name="login-error-config">登入失敗，無法解析 $1 的本地設定：$2</string>
   <string name="login-error-config-retrieve">登入失敗，無法取得使用者設定：$1</string>
-  <string name="login-error-config-query-no-data">登入失敗，無法取得全域設定，API 查詢沒有返回任何資料</string>
+  <string name="login-error-config-query-no-data">登入失敗 - 可能是網路連線問題？無法下載全域設定</string>
   <string name="login-error-count">於此項目使用 Huggle 至少需編輯 $1 次以上。　</string>
   <string name="login-error-disabled">Huggle 於 $1 尚未開啟供您的帳號使用。請檢查您的使用者設定頁面。</string>
-  <string name="login-error-global">登入失敗：無法解析全域設定。 請參考除錯日誌以了解詳細資訊。</string>
+  <string name="login-error-global">登入失敗 - 可能是網路連線問題？無法下載或解析全域設定頁面。</string>
   <string name="login-error-invalid">無效的使用者名稱</string>
   <string name="login-error-noconfig">$1 並未擁有 Huggle 設定頁面</string>
   <string name="login-error-nouser">該使用者並不存在</string>
@@ -337,6 +337,7 @@
   <string name="main-stat">每分鐘編輯$1次，每分鐘回退$2次，等級$3</string>
   <string name="main-menu-provider-stop">停止提供者</string>
   <string name="main-menu-provider-resume">繼續提供者</string>
+  <string name="main-help-copy-syslog-to-clip">複製系統日誌到剪貼簿</string>
   <string name="provider-up">連線至 $2 的近期變更串流使用提供者：$1</string>
   <string name="main-no-reason">使用者未提供原因</string>
   <string name="main-restoring-slap">其它編輯目前正被還原，請稍後...</string>
@@ -825,6 +826,9 @@
   <string name="preferences-reset-gui">重新設定圖形介面</string>
   <string name="preferences-restore-factory-layout">這將會重新儲存您所安裝的 Huggle 配置。Huggle 會先進行關閉，要繼續嗎？</string>
   <string name="preferences-keystroke-rate-limit">防止以下毫秒單位頻率的重複鍵盤敲擊（同一快速鍵在 N 毫秒內僅可觸發 1 次）</string>
+  <string name="preferences-color-scheme-diff">差異色彩</string>
+  <string name="preferences-color-scheme-diff-default">預設</string>
+  <string name="preferences-color-scheme-diff-dark-mode">暗黑模式</string>
   <string name="fail">失敗</string>
   <string name="request">請求</string>
   <string name="requesting">請求中</string>

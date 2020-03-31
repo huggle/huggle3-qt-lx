@@ -307,10 +307,10 @@
   <string name="login-error-cancelled">취소되었습니다.</string>
   <string name="login-error-config">로컬 설정을 얻을 수 없어 $1에 로그인에 실패했습니다: $2</string>
   <string name="login-error-config-retrieve">사용자 설정을 얻을 수 없어 로그인을 실패했습니다: $1</string>
-  <string name="login-error-config-query-no-data">로그인을 실패했습니다. API 쿼리가 반환한 데이터가 없으므로 전역 설정을 불러오지 못했습니다</string>
+  <string name="login-error-config-query-no-data" fuzzy="true">로그인을 실패했습니다. API 쿼리가 반환한 데이터가 없으므로 전역 설정을 불러오지 못했습니다</string>
   <string name="login-error-count">이 프로젝트에서 허글을 사용하려면 적어도 $1번 편집이 필요합니다.</string>
   <string name="login-error-disabled">$1에서 허글이 당신의 계정에서 활성화되어 있지 않습니다. 사용자 설정 문서를 확인하세요.</string>
-  <string name="login-error-global">전역 설정을 구문 분석할 수 없어 로그인에 실패했습니다, 더 많은 자세한 사항은 디버그 기록을 확인하세요.</string>
+  <string name="login-error-global" fuzzy="true">전역 설정을 구문 분석할 수 없어 로그인에 실패했습니다, 더 많은 자세한 사항은 디버그 기록을 확인하세요.</string>
   <string name="login-error-invalid">잘못된 사용자 이름</string>
   <string name="login-error-noconfig">$1 프로젝트는 Huggle 구성 문서가 없습니다</string>
   <string name="login-error-nouser">사용자가 존재하지 않습니다</string>
@@ -328,6 +328,7 @@
   <string name="main-stat">분마다 편집 $1번, 분마다 되돌리기 $2번, 수준 $3</string>
   <string name="main-menu-provider-stop">제공자 멈춤</string>
   <string name="main-menu-provider-resume">제공자 다시 시작</string>
+  <string name="main-help-copy-syslog-to-clip">시스템 로그를 클립보드에 복사</string>
   <string name="provider-up">제공자를 사용하여 $2의 최근 바뀜 스트림에 연결합니다: $1</string>
   <string name="main-no-reason">사용자가 제공한 이유가 없습니다</string>
   <string name="main-restoring-slap">다른 편집이 이미 복구되고 있으니, 기다려 주십시오...</string>
@@ -788,6 +789,8 @@
   <string name="preferences-performance-catscansandwatched">분류 스캔 및 주시 상태 필터 기능 사용 (편집할 때마다 API 요청 수가 추가적으로 소모됩니다)</string>
   <string name="preferences-reset-gui">GUI 초기화</string>
   <string name="preferences-restore-factory-layout">Huggle의 레이아웃을 처음 설치한 상태로 복구할 것입니다. Huggle은 종료될 것입니다. 계속하시겠습니까?</string>
+  <string name="preferences-color-scheme-diff-default">기본값</string>
+  <string name="preferences-color-scheme-diff-dark-mode">어두운 모드</string>
   <string name="fail">실패</string>
   <string name="request">요청</string>
   <string name="requesting">요청 중</string>

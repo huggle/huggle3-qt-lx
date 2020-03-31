@@ -295,7 +295,7 @@
   <string name="login-error-config">প্রবেশ ব্যর্থ, $1-এর জন্য স্থানীয় কনফিগ বিশ্লেষণ করতে অক্ষম: $2</string>
   <string name="login-error-count">এই প্রকল্পে হাগল ব্যবহার করার জন্য কমপক্ষে $1টি সম্পাদনার প্রয়োজন।</string>
   <string name="login-error-disabled">$1-এ আপনার অ্যাকাউন্টের জন্য হাগল সক্রিয় করা হয়নি। ব্যবহারকারীর কনফিগারেশন পৃষ্ঠা দেখুন।</string>
-  <string name="login-error-global">প্রবেশ ব্যর্থ হয়েছে: বৈশ্বিক কনফিগারেশন বিশ্লেষণ করতে অক্ষম। আরো বিস্তারিত জানার জন্য ডিবাগ লগ দেখুন।</string>
+  <string name="login-error-global" fuzzy="true">প্রবেশ ব্যর্থ হয়েছে: বৈশ্বিক কনফিগারেশন বিশ্লেষণ করতে অক্ষম। আরো বিস্তারিত জানার জন্য ডিবাগ লগ দেখুন।</string>
   <string name="login-error-invalid">অগ্রহণযোগ্য ব্যবহারকারী নাম</string>
   <string name="login-error-noconfig">$1-এর হাগল কনফিগারেশন পৃষ্ঠা নেই</string>
   <string name="login-error-nouser">এই ব্যবহারকারীর অস্তিত্ব নেই</string>

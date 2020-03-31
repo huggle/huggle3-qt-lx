@@ -165,7 +165,7 @@
   <string name="config-auto-load-history">Cargar automáticamente el historial y la información del usuario (requiere ancho de banda de red adicional)</string>
   <string name="config-last-revision">Cambiar a la última revisión de la página si la edición actual no es la última (la descargará posteriormente, lo que ralentizará Huggle)</string>
   <string name="config-require-delay">Solicitar un retraso después de cada carga de la siguiente edición, durante el cual no será posible usar ninguna función de escritura (útil para evitar el error de multimpresión del teclado)</string>
-  <string name="config-wait-edit">Retardo, en segundos, hasta que las funciones de escritura estén habilitadas:</string>
+  <string name="config-wait-edit">Demora, en segundos, hasta que las funciones de escritura se activen:</string>
   <string name="config-display-next">Mostrar siguiente</string>
   <string name="config-retrieve-edit">Recuperar tu propia edición</string>
   <string name="config-nothing">Nada</string>
@@ -325,10 +325,10 @@
   <string name="login-error-cancelled">Cancelado.</string>
   <string name="login-error-config">Error de inicio de sesión, no se pudo analizar la configuración local para $1: $2</string>
   <string name="login-error-config-retrieve">Error de inicio de sesión, no se pudo recuperar la configuración de usuario: $1</string>
-  <string name="login-error-config-query-no-data">Error de inicio de sesión, no se pudo recuperar la configuración global, la consulta de la API no devolvió ningún dato</string>
+  <string name="login-error-config-query-no-data" fuzzy="true">Error de inicio de sesión, no se pudo recuperar la configuración global, la consulta de la API no devolvió ningún dato</string>
   <string name="login-error-count">Se necesitan al menos $1 ediciones para usar Huggle en este proyecto.</string>
   <string name="login-error-disabled">Huggle no está habilitado para tu cuenta en $1. Revisa tu página de configuración de usuario.</string>
-  <string name="login-error-global">Error de inicio de sesión: no se pudo analizar la configuración global. Para obtener más detalles, consulta registro de depuración.</string>
+  <string name="login-error-global" fuzzy="true">Error de inicio de sesión: no se pudo analizar la configuración global. Para obtener más detalles, consulta registro de depuración.</string>
   <string name="login-error-invalid">Nombre de usuario no válido</string>
   <string name="login-error-noconfig">$1 no tiene una página de configuración de Huggle</string>
   <string name="login-error-nouser">El usuario no existe</string>
@@ -347,6 +347,7 @@
   <string name="main-stat">$1 ediciones por minuto, $2 reversiones por minuto, nivel $3</string>
   <string name="main-menu-provider-stop">Detener proveedor</string>
   <string name="main-menu-provider-resume">Reanudar proveedor</string>
+  <string name="main-help-copy-syslog-to-clip">Copiar registro de sistema en portapapeles</string>
   <string name="provider-up">Conectando al flujo de cambios recientes en $2 usando el proveedor: $1</string>
   <string name="main-no-reason">El usuario no proporcionó ningún motivo</string>
   <string name="main-restoring-slap">Se está restaurando otra edición, espera...</string>
@@ -835,6 +836,9 @@
   <string name="preferences-reset-gui">Restablecer GUI</string>
   <string name="preferences-restore-factory-layout">Esto restaurará el diseño de original de Huggle tal como era cuando lo instalaste. Huggle se cerrará. ¿Quieres continuar?</string>
   <string name="preferences-keystroke-rate-limit">Evita pulsaciones repetidas del teclado poniendo la velocidad en milisegundos (solo puede activarse 1 mismo atajo en N ms)</string>
+  <string name="preferences-color-scheme-diff">Colores de diferencial</string>
+  <string name="preferences-color-scheme-diff-default">Predeterminado</string>
+  <string name="preferences-color-scheme-diff-dark-mode">Modo oscuro</string>
   <string name="fail">Fallo</string>
   <string name="request">Solicitud</string>
   <string name="requesting">Solicitando</string>

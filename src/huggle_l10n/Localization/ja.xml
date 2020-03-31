@@ -224,7 +224,7 @@
   <string name="login-error-config">$1 のローカル設定を構文解析できなかったため、ログインできませんでした: $2</string>
   <string name="login-error-count">このプロジェクトでハグルを使用するには最低でも編集回数が $1 回以上ある必要があります。</string>
   <string name="login-error-disabled">$1 上のあなたのアカウントではハグルを使用可能に設定していません。利用者設定ページを確認してください。</string>
-  <string name="login-error-global">グローバル設定ページのロードに失敗しました。詳しくはデバッグログをご覧ください。</string>
+  <string name="login-error-global" fuzzy="true">グローバル設定ページのロードに失敗しました。詳しくはデバッグログをご覧ください。</string>
   <string name="login-error-invalid">利用者名が無効です</string>
   <string name="login-error-noconfig">$1 にはハグルの設定ページがありません</string>
   <string name="login-error-nouser">利用者が存在しません</string>
@@ -419,14 +419,14 @@
   <string name="revert-fail">\'$1\' を差し戻しできませんでした: $2</string>
   <string name="revert-nochange">戻し先の版の内容が、最新版の内容と同じです</string>
   <string name="speedy-reason">理由:</string>
-  <string name="speedy-parameters">パラメータ:</string>
+  <string name="speedy-parameters">パラメーター:</string>
   <string name="speedy-notifycreator">ページ作成者に通知</string>
   <string name="rollback">ロールバック $1</string>
   <string name="software-rollback">あなたには巻き戻しの権限がないため、代わりにソフトウェアによる巻き戻しを使用します</string>
   <string name="tag-title">$1 にタグを貼り付け</string>
   <string name="tag-tagselector">タグ:</string>
   <string name="tag-tags">タグ:</string>
-  <string name="tag-parameter">パラメータ</string>
+  <string name="tag-parameter">パラメーター</string>
   <string name="tag-summary">要約:</string>
   <string name="tag-insertatend">ページの末尾に追加する</string>
   <string name="update-title">新しいバージョンが利用できます</string>

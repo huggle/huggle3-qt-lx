@@ -158,7 +158,7 @@
   <string name="login-error-config">Innlogging var mislykket, kunne ikke laste konfigurasjonssider for $1: $2</string>
   <string name="login-error-count">Bruk av Huggle på dette prosjektet krever minst $1 redigeringer.</string>
   <string name="login-error-disabled" fuzzy="true">Huggle er ikke skrudd på for din konto på $1. Sjekk instillingene for din brukerprofil.</string>
-  <string name="login-error-global">Innlogging var mislykket. Kunne ikke laste global konfigurasjonsside. Se logg for ytterligere detaljer.</string>
+  <string name="login-error-global" fuzzy="true">Innlogging var mislykket. Kunne ikke laste global konfigurasjonsside. Se logg for ytterligere detaljer.</string>
   <string name="login-error-invalid">Ugyldig brukernavn.</string>
   <string name="login-error-noconfig">$1 har ikke en konfigurasjonsside for Huggle.</string>
   <string name="login-error-nouser">Brukeren eksisterer ikke.</string>

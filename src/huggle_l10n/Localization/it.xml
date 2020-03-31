@@ -306,10 +306,10 @@
   <string name="login-error-cancelled">Annullato.</string>
   <string name="login-error-config">Accesso non riuscito, impossibile analizzare la configurazione locale per $1: $2</string>
   <string name="login-error-config-retrieve">Accesso fallito, impossibile recuperare la configurazione dell’utente: $1</string>
-  <string name="login-error-config-query-no-data">Accesso fallito, impossibile recuperare la configurazione globale, la richiesta alle API non ha restituito alcun dato</string>
+  <string name="login-error-config-query-no-data">Accesso non riuscito - probabile problema con la connessione di rete? Impossibile scaricare la configurazione globale</string>
   <string name="login-error-count">L\'uso di Huggle su questo progetto richiede almeno $1 modifiche.</string>
   <string name="login-error-disabled">Huggle non è attivato per la tua utenza su $1. Controlla la pagina della tua configurazione utente.</string>
-  <string name="login-error-global">Accesso non riuscito: Impossibile analizzare la configurazione globale. Vedi il registro di debug per ulteriori dettagli.</string>
+  <string name="login-error-global">Accesso non riuscito - probabile problema con la connessione di rete? Impossibile scaricare o analizzare la pagina di configurazione globale</string>
   <string name="login-error-invalid">Nome utente non valido</string>
   <string name="login-error-noconfig">$1 non ha una pagina di configurazione di Huggle</string>
   <string name="login-error-nouser">L\'utente non esiste</string>
