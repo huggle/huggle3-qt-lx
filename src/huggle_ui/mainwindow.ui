@@ -134,6 +134,7 @@
      <addaction name="actionWrite_text_to_HAN"/>
      <addaction name="actionThrow"/>
      <addaction name="actionProfiler_info"/>
+     <addaction name="actionDisplay_revid"/>
     </widget>
     <addaction name="actionContents"/>
     <addaction name="actionIntroduction"/>
@@ -1188,6 +1189,11 @@
   <action name="actionCopy_system_log_to_clipboard">
    <property name="text">
     <string>Copy system log to clipboard</string>
+   </property>
+  </action>
+  <action name="actionDisplay_revid">
+   <property name="text">
+    <string>Display revid</string>
    </property>
   </action>
  </widget>

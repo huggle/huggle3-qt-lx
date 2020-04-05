@@ -3777,3 +3777,12 @@ void Huggle::MainWindow::on_actionCopy_system_log_to_clipboard_triggered()
 {
     QGuiApplication::clipboard()->setText(Huggle::Syslog::HuggleLogs->RingLogToText());
 }
+
+void Huggle::MainWindow::on_actionDisplay_revid_triggered()
+{
+    bool ok;
+    int revid = QInputDialog::getInt(this, "Display revid", "Revision ID:", 947919407, 1, 2147483647, 1, &ok);
+    if (!ok)
+        return;
+    this->DisplayRevid(revid, this->GetCurrentWikiSite());
+}
