@@ -105,7 +105,7 @@
   <string name="config-logfile">Restr-varilh</string>
   <string name="config-viewlocalconfig">Gwelet ar c\'havlec\'h kefluniañ lec\'hel</string>
   <string name="config-trayicon">Diskwel an arlun er varrenn reizhiad</string>
-  <string name="config-startupmessage">Diskwel ar c\'hemennad loc\'hañ</string>
+  <string name="config-startupmessage">Diskouez ar gemennadenn loc\'hañ</string>
   <string name="config-shownewmessages">Diskouez barrenn ar c\'hemennadennoù nevez</string>
   <string name="config-shortcutlist">Berradennoù klavier</string>
   <string name="config-shortcutaction">Ober</string>
@@ -242,12 +242,15 @@
   <string name="login-error-age" fuzzy="true">Evit implijout Huggle war ar raktres-mañ ez eus ezhomm eus $1 devezh da nebeutañ.</string>
   <string name="login-error-alldisabled">Diweredekaet eo Huggle war an holl raktresoù evit bremañ.</string>
   <string name="login-error-cancelled">Nullet.</string>
+  <string name="login-error-config-query-no-data">C\'hwitet eo ar c\'hevreañ - ur gudenn kevreañ ouzh ar rouedad marteze ? N\'eus ket bet gallet pellgargañ ar c\'hefluniadur hollek</string>
+  <string name="login-error-global">C\'hwitet eo ar c\'hevreañ - ur gudenn kevreañ ouzh ar rouedad marteze ? N\'eus ket bet gallet pellgargañ pajenn ar c\'hefluniadur hollek</string>
   <string name="login-error-invalid">Anv implijer direizh</string>
   <string name="login-error-noconfig">$1 n\'en deus pajenn gefluniañ Huggle ebet.</string>
   <string name="login-error-nouser">N\'eus ket eus an implijer</string>
   <string name="login-error-password">Ger-tremen direizh</string>
   <string name="login-error-unknown" fuzzy="true">Ne c\'haller ket kevreañ da $1.</string>
   <string name="login-error-version">Diamzeret eo ar stumm-mañ. Hizivaat gant ar stumm diwezhañ.</string>
+  <string name="main-help-copy-syslog-to-clip">Eilañ marilh ar reizhiad er golver</string>
   <string name="main-no-reason">N\'eus bet roet abeg ebet gant an implijer</string>
   <string name="main-page">Pajenn</string>
   <string name="main-user">Implijer</string>

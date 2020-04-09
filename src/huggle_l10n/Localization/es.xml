@@ -709,7 +709,7 @@
   <string name="warninglist-no-warning-text">No hay datos para este tipo de advertencia, ¡no se puede enviar una advertencia al usuario!</string>
   <string name="warninglist-report-text">Este usuario ya ha recibido una advertencia final, así que ya no le enviaré más advertencias, ¿quieres denunciarlo?</string>
   <string name="wikiedit-tp-fail">No se puede recuperar el nivel de advertencia de $1. No será usado para la puntuación</string>
-  <string name="missing-warning">No hay tal plantilla de advertencia $1</string>
+  <string name="missing-warning">No existe la plantilla de aviso $1</string>
   <string name="han-not">La red de vandalismo no está permitida en las opciones</string>
   <string name="han-connecting">Conectando con la red antivandalismo de Huggle «HAN»</string>
   <string name="han-already-connected">No se puede conectar con HAN porque ya estás conectado</string>
