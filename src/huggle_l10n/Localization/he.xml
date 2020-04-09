@@ -663,7 +663,7 @@
   <string name="shortcut-edit-in-browser">ערוך את הדף המוצג כעת בדפדפן</string>
   <string name="shortcut-browser-close-tab">סגירת לשונית של הדפדפן</string>
   <string name="shortcut-tab">פתיחת לשונית חדשה</string>
-  <string name="shortcut-rw-stay">שחזור העריכה הנוכחית, הזהרת המשתמש והישארות בדף</string>
+  <string name="shortcut-rw-stay">שחזור העריכה הנוכחית, אזהרת המשתמש והישארות בדף</string>
   <string name="shortcut-revert-and-stay">שחזור העריכה הנוכחית והישארות בדף</string>
   <string name="shortcut-custom-reason">שחזור העריכה תוך שימוש בתקציר עריכה מותאם אישית</string>
   <string name="shortcut-user-contribs-browser">לפתוח את תרומות המשתמש בדפדפן</string>

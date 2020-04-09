@@ -319,7 +319,7 @@
   <string name="login-error-config-query-no-data" fuzzy="true">Anmeldung fehlgeschlagen. Die globale Konfiguration konnte nicht abgerufen werden. Die API-Abfrage hat keine Daten zurückgegeben.</string>
   <string name="login-error-count">Die Verwendung von Huggle auf diesem Projekt erfordert mindestens $1 Bearbeitungen.</string>
   <string name="login-error-disabled">Huggle ist für dieses Benutzerkonto auf $1 nicht aktiviert. Überprüfe deine Benutzerkonfigurationsseite.</string>
-  <string name="login-error-global" fuzzy="true">Anmeldung fehlgeschlagen: Die globale Konfiguration konnte nicht geparst werden. Siehe das Debug-Logbuch für weitere Einzelheiten.</string>
+  <string name="login-error-global">Anmeldung fehlgeschlagen - möglicherweise ein Fehler bei der Netzwerkverbindung? Die globale Konfigurationseite konnte nicht heruntergeladen oder geparst werden</string>
   <string name="login-error-invalid">Ungültiger Benutzername</string>
   <string name="login-error-noconfig">$1 hat keine Huggle-Konfigurationsseite</string>
   <string name="login-error-nouser">Der Benutzer ist nicht vorhanden</string>
@@ -823,6 +823,8 @@
   <string name="preferences-reset-gui">GUI zurücksetzen</string>
   <string name="preferences-restore-factory-layout">Dies wird das Huggle-Werkslayout zum Zeitpunkt der Installation wiederherstellen. Huggle wird geschlossen. Fortfahren?</string>
   <string name="preferences-keystroke-rate-limit">Wiederholte Tastenanschläge durch das Befolgen einer Frequenz in Millisekunden verhindern (es kann nur ein gleiches Tastaturkürzel innerhalb N ms ausgelöst werden)</string>
+  <string name="preferences-color-scheme-diff-default">Standard</string>
+  <string name="preferences-color-scheme-diff-dark-mode">Dunkler Modus</string>
   <string name="fail">Fehlgeschlagen</string>
   <string name="request">Anfragen</string>
   <string name="requesting">Frage an …</string>
