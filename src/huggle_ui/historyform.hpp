@@ -83,6 +83,7 @@ namespace Huggle
             Collectable_SmartPtr<ApiQuery> query;
             int PreviouslySelectedRow;
             int SelectedRow;
+            bool toolTipVisible = false;
             Collectable_SmartPtr<WikiEdit> RetrievedEdit;
             //! This timer is used to check a query status
             QTimer *t1 = nullptr;

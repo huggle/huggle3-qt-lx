@@ -122,6 +122,11 @@ void HistoryForm::Update(WikiEdit *edit)
     {
         this->query = nullptr;
     }
+    if (this->toolTipVisible)
+    {
+        this->toolTipVisible = false;
+        QToolTip::hideText();
+    }
 }
 
 void HistoryForm::onTick01()
@@ -279,7 +284,10 @@ void HistoryForm::onTick01()
                 pntr.setX(this->pos().x() + 100);
 
             if (hcfg->UserConfig->ShowWarningIfNotOnLastRevision)
+            {
                 QToolTip::showText(pntr, "<b><big>" + _l("historyform-not-latest-tip") + "</big></b>", this);
+                this->toolTipVisible = true;
+            }
         }
     }
     if (hcfg->UserConfig->AutomaticallyGroup)
