@@ -306,10 +306,10 @@
   <string name="login-error-cancelled">Откажано.</string>
   <string name="login-error-config">Најавата не успеа. Не можам да ги расчленам месните поставки за $1: $2</string>
   <string name="login-error-config-retrieve">Најавата не успеа. Не можам да ја добијам корисничката поставеност: $1</string>
-  <string name="login-error-config-query-no-data" fuzzy="true">Најавата не успеа. Не можам да ја добијам глобалната поставеност. Барањето од извршникот не даде податоци.</string>
+  <string name="login-error-config-query-no-data">Најавата не успеа — можни проблеми со мрежната врска? Не можам да ја преземам глобалната поставка</string>
   <string name="login-error-count">Употребата на Huggle на овој проект бара најмалку $1 уредувања.</string>
   <string name="login-error-disabled">Huggle на ви е овозможен за вашата сметка на $1. Проверете во корисничките поставки.</string>
-  <string name="login-error-global" fuzzy="true">Најавата не успеа: Не можам да ги расчленам глобалните поставки. Повеќе ќе дознаете во записникот со грешки.</string>
+  <string name="login-error-global">Најавата не успеа — можни проблеми со мрежната врска? Не можам да ја преземам или расчленам страницата за глобалната поставка</string>
   <string name="login-error-invalid">Неправилно корисничко име</string>
   <string name="login-error-noconfig">$1 нема страница за поставување на Huggle</string>
   <string name="login-error-nouser">Корисникот не постои</string>

@@ -3,6 +3,7 @@
 * 94rain
 * A Retired User
 * AF
+* Accraze
 * Arthur2e5
 * DW YoungDLS
 * LNDDYL
@@ -322,10 +323,10 @@
   <string name="login-error-cancelled">取消.</string>
   <string name="login-error-config">登录失败，无法解析用于$1的本地配置：$2</string>
   <string name="login-error-config-retrieve">登录失败：无法检索用户配置：$1</string>
-  <string name="login-error-config-query-no-data" fuzzy="true">登录失败，无法检索全域配置，api查询没有返回任何数据</string>
+  <string name="login-error-config-query-no-data">登录失败，无法检索全域配置，api查询没有返回任何数据</string>
   <string name="login-error-count">这个计划要求你至少有$1次编辑</string>
   <string name="login-error-disabled">Huggle未对$1上您的账户启用。检查您的用户配置页。</string>
-  <string name="login-error-global" fuzzy="true">登录失败：无法载入全域配置。参见调试日志获取详细信息。</string>
+  <string name="login-error-global">登录失败：无法载入全域配置。参见调试日志获取详细信息。</string>
   <string name="login-error-invalid">无效的用户名</string>
   <string name="login-error-noconfig">$1没有Huggle配置页</string>
   <string name="login-error-nouser">此用户不存在</string>
@@ -344,6 +345,7 @@
   <string name="main-stat">每分钟$1次编辑，每分钟$2次回退，等级$3</string>
   <string name="main-menu-provider-stop">停止提供</string>
   <string name="main-menu-provider-resume">摘要提供</string>
+  <string name="main-help-copy-syslog-to-clip">将系统日志复制到剪贴板</string>
   <string name="provider-up">正在连接到$2上的最近更改流，使用提供者：$1</string>
   <string name="main-no-reason">没有用户提供理由</string>
   <string name="main-restoring-slap">正在等待恢复另一个编辑，请等待...</string>
@@ -832,6 +834,9 @@
   <string name="preferences-reset-gui">重置GUI</string>
   <string name="preferences-restore-factory-layout">这将恢复huggle的出厂设计，就像您当初安装它时那样。Huggle将会关闭。继续么？</string>
   <string name="preferences-keystroke-rate-limit">防止以下频率（毫秒）的重复击键（同一快捷键在N毫秒内只允许触发1次）</string>
+  <string name="preferences-color-scheme-diff">色差</string>
+  <string name="preferences-color-scheme-diff-default">默认</string>
+  <string name="preferences-color-scheme-diff-dark-mode">深色模式</string>
   <string name="fail">失败</string>
   <string name="request">请求</string>
   <string name="requesting">请求中</string>

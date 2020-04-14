@@ -5,6 +5,7 @@
 * Macofe
 * Mar(c)
 * MedShot
+* PonkoSasuke
 * Robin van der Vliet
 * SPQRobin
 * Siebrand
@@ -281,7 +282,7 @@
   <string name="login-error-config">Aanmelden is mislukt. Het is niet mogelijk de lokale instellingen voor $1 te verwerken: $2</string>
   <string name="login-error-count">U kunt Huggle op dit project alleen gebruiken als u ten minste $1 bewerkingen hebt gemaakt.</string>
   <string name="login-error-disabled" fuzzy="true">Huggle is niet ingeschakeld voor uw account op $1. Controleer de gebruikersinstellingenpagina.</string>
-  <string name="login-error-global" fuzzy="true">Aanmelden mislukt: het was niet mogelijk de globale instellingen te verwerken. Bekijk het debuglogboek voor meer details.</string>
+  <string name="login-error-global">Aanmelden mislukt - mogelijk netwerkverbindingsprobleem? Het was niet mogelijk de globale instellingspagina te downloaden of te verwerken.</string>
   <string name="login-error-invalid">Ongeldige gebruikersnaam</string>
   <string name="login-error-noconfig">$1 heeft geen configuratiepagina voor Huggle</string>
   <string name="login-error-nouser">De gebruiker bestaat niet</string>

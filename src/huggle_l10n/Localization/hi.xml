@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
 * 1997kB
+* Abijeet Patro
 * Anamdas
 * McDutchie
 * NehalDaveND
@@ -514,6 +515,7 @@
   <string name="waiting">इंतज़ार किया जा रहा है...</string>
   <string name="feature-nfru">यह विशेषता केवल आईपी सदस्यों के लिए है</string>
   <string name="preferences-queue-size">पंक्ति का आकार</string>
+  <string name="preferences-color-scheme-diff-default">डिफ़ॉल्ट</string>
   <string name="page-unknown">अज्ञात पृष्ठ</string>
   <string name="namespace">नामस्थान</string>
   <string name="report-fail">सदस्य की शिकायत नहीं हो पायी: $1</string>
