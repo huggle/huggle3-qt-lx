@@ -308,7 +308,7 @@
   <string name="login-error-cancelled">בוטל.</string>
   <string name="login-error-config">הכניסה לא הצליחה. לא ניתן לפענח הגדרות מקומיות של $1; מידע נוסף: $2</string>
   <string name="login-error-config-retrieve">הכניסה נכשלה, אין אפשרות לאחזר מידע על המשתמש. הסיבה: $1</string>
-  <string name="login-error-config-query-no-data" fuzzy="true">הכניסה נכשלה, לא ניתן לאחזר תצורה גלובלית, שאילתת ה־API לא החזירה נתונים</string>
+  <string name="login-error-config-query-no-data">הכניסה נכשלה – אולי יש בעיות חיבור? לא ניתן לטעון הגדרות גלובליות</string>
   <string name="login-error-count">השימוש בהאגל במיזם הזה דורש לפחות $1 עריכות.</string>
   <string name="login-error-disabled">האגל אינו מופעל בחשבון שלך ב־$1. נא לבדוק את דף הגדרות המשתמש שלך.</string>
   <string name="login-error-global" fuzzy="true">הכניסה נכשלה: לא ניתן לפענח את ההגדרות הגלובליות. נא לראות את יומן ה־debug לפרטים נוספים.</string>
