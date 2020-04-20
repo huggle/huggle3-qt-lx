@@ -311,7 +311,7 @@
   <string name="login-error-config-query-no-data">הכניסה נכשלה – אולי יש בעיות חיבור? לא ניתן לטעון הגדרות גלובליות</string>
   <string name="login-error-count">השימוש בהאגל במיזם הזה דורש לפחות $1 עריכות.</string>
   <string name="login-error-disabled">האגל אינו מופעל בחשבון שלך ב־$1. נא לבדוק את דף הגדרות המשתמש שלך.</string>
-  <string name="login-error-global" fuzzy="true">הכניסה נכשלה: לא ניתן לפענח את ההגדרות הגלובליות. נא לראות את יומן ה־debug לפרטים נוספים.</string>
+  <string name="login-error-global">הכניסה נכשלה – אולי יש בעיות חיבור? לא ניתן להוריד או לפענח את דף ההגדרות הגלובליות</string>
   <string name="login-error-invalid">שם משתמש בלתי‏־תקין</string>
   <string name="login-error-noconfig">ב־$1 אין דף הגדרות של האגל</string>
   <string name="login-error-nouser">המשתמש אינו קיים</string>
@@ -329,6 +329,7 @@
   <string name="main-stat">$1 עריכות לדקה, $2 שחזורים לדקה, רמה $3</string>
   <string name="main-menu-provider-stop">לעצור את הספק</string>
   <string name="main-menu-provider-resume">להתחיל ספק מחדש</string>
+  <string name="main-help-copy-syslog-to-clip">העתקת יומן המערכת ללוח</string>
   <string name="provider-up">התחברות לזרם שינויים אחרונים ב־$2 באמצעות הספק: $1</string>
   <string name="main-no-reason">לא ניתנה סיבה על־ידי המשתמש</string>
   <string name="main-restoring-slap">עריכה אחרת כרגע משוחזרת, נא להמתין...</string>
@@ -635,6 +636,7 @@
   <string name="userinfo-generic">מידע על המשתמש</string>
   <string name="userinfo-retrieve">אחזור מידע</string>
   <string name="userinfo-no-user">אף משתמש</string>
+  <string name="shortcut-refresh">לרענן את הדף המוצג כעת (לטעון מחדש את ההיסטוריה ולקפוץ לעריכה האחרונה)</string>
   <string name="shortcut-page-patrol-edit">סימון העריכה כבדוקה</string>
   <string name="shortcut-report-username">דיווח על שם המשתמש</string>
   <string name="shortcut-report-user">לדווח על המשתמש</string>
@@ -800,8 +802,12 @@
   <string name="preferences-sounds-minimal-score">ציון עריכה מזערי להתראה</string>
   <string name="preferences-performance-catscansandwatched">הפעלת סריקות קטגוריות ומעקב אחרי סינון מצב (נדרשת שאילתת API נוספת לכל עריכה)</string>
   <string name="preferences-queue-size">גודל התור</string>
+  <string name="preferences-empty-queue-page">דף תורות ריק:</string>
   <string name="preferences-reset-gui">איפוס GUI</string>
   <string name="preferences-restore-factory-layout">פעולה זו תאפס את הפריסה של האגל להגדרות ההתחלתיות שלו. משום כך האגל יבצע כיבוי. להמשיך?</string>
+  <string name="preferences-color-scheme-diff">צבעי הבדלים</string>
+  <string name="preferences-color-scheme-diff-default">ברירת המחדל</string>
+  <string name="preferences-color-scheme-diff-dark-mode">מצב חשוך</string>
   <string name="fail">לא עבד</string>
   <string name="request">בקשה</string>
   <string name="requesting">שליחת בקשה</string>
@@ -860,5 +866,11 @@
   <string name="queue-empty-title">התור ריק</string>
   <string name="queue-empty-text">אין שינויים בתור...</string>
   <string name="protip">טיפ מקצועי</string>
+  <string name="wikipagetagsform-group">קבוצה בתוך {{$1}}</string>
+  <string name="tip5">ניתן להשתמש בהאגל במספר מיזמים בו־זמנית, פשוט לחצו על כפתור ה\"מיזמים\" בטופס ההתחברות.</string>
+  <string name="tip6">השחזורים של האגל יכולים להיות מהירים יותר אם אתם משתמשים מנוסים שלא עשו טעות מעולם ;) זאת באמצעות פתיחת ההעדפות וסימון \"שחזורים מידיים\"</string>
   <string name="tip10">ניתן לשנות את רוב קיצורי המקשים שלך דרך ההעדפות שלך.</string>
+  <string name="tip12">עשית טעות? שום בעיה, לחיצה ימנית על כל עריכה ב\"היסטוריה של העריכות שלך\" פותחת חלון קופץ המציע לך אפשרות לביטול השינוי שלך.</string>
+  <string name="tip14">אפשר להשתמש בצ’אט עם משתמשים פעילים אחרים בהאגל אשר משתמשים כעת בתוכנה. ניתן לראות אותם בחלון \"רשת\" אם הם מחוברים.</string>
+  <string name="tip16">אם כפתור השחזור נלחץ בטעות, עדיין ניתן לבטל את השחזור שעומד להתבצע באמצעות הקשה על ESC מהר.</string>
 </resources>

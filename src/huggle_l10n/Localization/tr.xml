@@ -31,7 +31,7 @@
 <resources>
   <string name="name">Türkçe</string>
   <string name="autorelog">Bunu bir dahaki sefere sormadan yapın</string>
-  <string name="isrtl">yanlış</string>
+  <string name="isrtl">false</string>
   <string name="add">Ekle</string>
   <string name="cancel">İptal</string>
   <string name="clear">Temizle</string>
@@ -176,7 +176,7 @@
   <string name="config-own-edits">Kendi düzenlemeleri</string>
   <string name="config-reverts">Geri almalar</string>
   <string name="config-new-page">Yeni sayfa</string>
-  <string name="config-whitelisted">Beyaz listenmiş</string>
+  <string name="config-whitelisted">Beyaz listede</string>
   <string name="config-friend">Arkadaş</string>
   <string name="config-userspace">Kullanıcı alanı</string>
   <string name="config-talk">Tartışma sayfası</string>

@@ -394,7 +394,7 @@
   <string name="main-revision-revert">برگرداندن ویرایش در حال نمایش</string>
   <string name="main-revision-rv-stay">برگرداندن این ویرایش و ماندن در صفحه</string>
   <string name="main-revision-revert-warn">برگرداندن ویرایش در حال نمایش و هشدار دادن به کاربر</string>
-  <string name="main-revision-rws">برگرداندن ویرایش درحال نمایش و هشداردادن به کاربر و ماندن در صفحه</string>
+  <string name="main-revision-rws">برگرداندن ویرایش در حال نمایش و هشدار دادن به کاربر و ماندن در صفحه</string>
   <string name="main-revision-faith">برگرداندن با فرض حسن نیت</string>
   <string name="main-revision-revert-only-this">فقط این ویرایش را برگردان</string>
   <string name="main-revision-revert-agf">فقط این تجدید نظر را باورش حسن نیت بازگردان</string>
@@ -833,6 +833,8 @@
   <string name="preferences-reset-gui">بازگردانی رابط کاربری</string>
   <string name="preferences-restore-factory-layout">با این کار هاگل به حالت روز اول باز می‌گردد. هاگل خاموش می‌شود. آیا ادامه دهم؟</string>
   <string name="preferences-keystroke-rate-limit">جلوگیری از کلید های تکراری با نرخ زیر در میلی ثانیه (فقط یک میانبر مشابه در N ms ممکن است باعث شود)</string>
+  <string name="preferences-color-scheme-diff-default">پیش‌فرض</string>
+  <string name="preferences-color-scheme-diff-dark-mode">حالت تاریک</string>
   <string name="fail">شکست</string>
   <string name="request">درخواست</string>
   <string name="requesting">درخواست دادن</string>
@@ -866,7 +868,7 @@
   <string name="login-invalid-register-date">صفحهٔ ثبت‌نام نامعتبر توسط مدیاویکی برگردانده‌شد</string>
   <string name="login-site-info-query-failed">کوئری اطلاعات سایت برای $1 شکست خورد: $2</string>
   <string name="login-no-site-info-returned">اطلاعات سایت برای این ویکی بازگردانی نشد</string>
-  <string name="loading-main-window">درحال بارگذاری پنجرهٔ اصلی هاگل...</string>
+  <string name="loading-main-window">در حال بارگذاری پنجرهٔ اصلی هاگل...</string>
   <string name="api.php-invalid-response">پاسخ نامعتبر API (وب‌سرور مشکل دارد؟) لطفاً سیاههٔ رفع‌اشکال را  برای اطلاعات دقیق بررسی کنید.</string>
   <string name="login-username-doesnt-exist">این نام کاربری وجود ندارد</string>
   <string name="developer-mode-enter-title">زمان</string>

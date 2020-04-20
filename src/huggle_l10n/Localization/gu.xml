@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
 * Bhatakati aatma
+* CptViraj
 * KartikMistry
 * Macofe
 * NehalDaveND
@@ -25,6 +26,7 @@
   <string name="rename">નામ બદલો</string>
   <string name="reload">ફરી લાવો</string>
   <string name="project">પરિયોજના</string>
+  <string name="warning">ચેતવણી</string>
   <string name="result">પરિણામ</string>
   <string name="save">સાચવો</string>
   <string name="show">દર્શાવો</string>
@@ -56,8 +58,8 @@
   <string name="no-token">ટોકન નથી</string>
   <string name="flags">નિશાનીઓ</string>
   <string name="about-contributors">ડેવલપર્સ</string>
-  <string name="block-not">સભ્ય પ્રતિબંધિત છે</string>
-  <string name="block-title">પ્રતિબંધિત $1</string>
+  <string name="block-not">સભ્ય પ્રતિબંધિત નથી</string>
+  <string name="block-title">પ્રતિબંધ $1</string>
   <string name="block-reason">કારણ:</string>
   <string name="block-duration">સમયગાળો:</string>
   <string name="block-message">ચર્ચાપાનામાં સંદેશ:</string>
@@ -100,7 +102,7 @@
   <string name="config-new-page">નવું પાનું</string>
   <string name="config-whitelisted">ધ્યાનસૂચિમાં મુકેલું</string>
   <string name="config-friend">મિત્ર</string>
-  <string name="config-talk">ચર્ચા</string>
+  <string name="config-talk">ચર્ચાપાનું</string>
   <string name="config-reportnone">કશું ન કરો</string>
   <string name="config-reportprompt">અહેવાલમાટે પ્રરિત કરો</string>
   <string name="config-reportauto">અહેવાલ આપમેળે બનાવો</string>
@@ -111,8 +113,8 @@
   <string name="config-history">બધા લેખોનો આખો ઇતિહાસ ડાઉનલોડ કરો.</string>
   <string name="config-defaultsprompt">પૂર્વવત પાછું કરવાનું ?</string>
   <string name="config-logbrowsetitle">લૉગફાઇલનું સ્થાન</string>
-  <string name="delete-title">હટાવો $1</string>
-  <string name="delete-reason">કારણ :</string>
+  <string name="delete-title">$1 હટાવો</string>
+  <string name="delete-reason">કારણ:</string>
   <string name="delete-deletionlog">હટાવેલાઓનું માહિતિ પત્રક (ડિલિશન લૉગ)</string>
   <string name="extension-kl">નથી ચાલતું</string>
   <string name="extension-ok">મુકેલું અને ચાલતું</string>
@@ -130,12 +132,12 @@
   <string name="login-password">ગુપ્ત સંજ્ઞા:</string>
   <string name="login-proxygroup">પ્રતિનિધિ ગોઠવણો</string>
   <string name="login-proxy" fuzzy="true">પ્રતિનિધિ વિતરકનો ઉપયોગ કરો</string>
-  <string name="login-proxyaddress">સરનામું</string>
+  <string name="login-proxyaddress">સરનામું:</string>
   <string name="login-proxyport">પોર્ટ</string>
   <string name="login-proxydomain">ડોમેઈન:</string>
   <string name="login-retrieving-user-conf">સભ્યની ગોઠવણ લાવે છે</string>
   <string name="login-start">પ્રવેશો</string>
-  <string name="login-translate">Huggle ભાષાંતર</string>
+  <string name="login-translate">હગલનું ભાષાંતર કરો</string>
   <string name="login-progress-start" fuzzy="true">$1 માં પ્રવેશ થાય છે</string>
   <string name="login-fail">$1 માં પ્રવેશ અસફળ</string>
   <string name="login-error-cancelled">નિરસ્ત</string>
