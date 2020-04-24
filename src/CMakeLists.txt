@@ -63,8 +63,9 @@ add_subdirectory(3rd/libirc/libirc libirc)
 add_subdirectory(3rd/libirc/libircclient libircclient)
 
 # YAML
-find_package(YAML-CPP 0.6.3)
+find_package(YAML-CPP 0.6.3 QUIET)
 if (YAML-CPP_FOUND)
+    message(STATUS "Using system yaml-cpp")
     include_directories(YAML_CPP_INCLUDE_DIR)
 else()
     option(YAML_CPP_BUILD_TOOLS "Disable tests" OFF)
