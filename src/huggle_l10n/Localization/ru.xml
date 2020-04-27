@@ -337,10 +337,10 @@
   <string name="login-error-cancelled">Отменено.</string>
   <string name="login-error-config">Не удалось войти, не удалось разобрать локальные настройки для $1: $2</string>
   <string name="login-error-config-retrieve">Ошибка входа. Не удалось получить настройки пользователя: $1</string>
-  <string name="login-error-config-query-no-data" fuzzy="true">Ошибка входа в систему, не удалось получить глобальную конфигурацию, запрос api не возвратил данные</string>
+  <string name="login-error-config-query-no-data">Ошибка входа в систему — возможно, сетевые проблемы? Не удалось скачать глобальную конфигурацию</string>
   <string name="login-error-count">Использование Huggle в этом проекте требует, по крайней мере, $1 правок.</string>
   <string name="login-error-disabled">Huggle не включён для вашей учётной записи в $1. Проверьте вашу страницу пользовательских настроек.</string>
-  <string name="login-error-global" fuzzy="true">Ошибка входа: не удаётся выполнить разбор глобальных настроек. Смотрите отладочный журнал для получения более подробной информации.</string>
+  <string name="login-error-global">Ошибка входа: не удаётся выполнить разбор глобальных настроек.</string>
   <string name="login-error-invalid">Неверное имя пользователя.</string>
   <string name="login-error-noconfig">В $1 отсутствует страница настроек Huggle.</string>
   <string name="login-error-nouser">Пользователь не существует</string>
@@ -359,6 +359,7 @@
   <string name="main-stat">$1 правок в минуту, $2 откатов в минуту, уровень $3</string>
   <string name="main-menu-provider-stop">Остановить провайдера</string>
   <string name="main-menu-provider-resume">Возобновить работу провайдера</string>
+  <string name="main-help-copy-syslog-to-clip">Скопировать системный журнал в буфер обмена</string>
   <string name="provider-up">Подключаемся к потоку последних изменений на $2 через провайдера: $1</string>
   <string name="main-no-reason">Причина не была предоставлена участником</string>
   <string name="main-restoring-slap">В настоящее время восстанавливается другая правка. Пожалуйста, подождите…</string>
@@ -847,6 +848,9 @@
   <string name="preferences-reset-gui">Сбросить интерфейс</string>
   <string name="preferences-restore-factory-layout">Это восстановит стандартные настройки Huggle, как при  установке. При этом Huggle будет выключен. Продолжить?</string>
   <string name="preferences-keystroke-rate-limit">Опрашивать клавиатурные сочетания с определённой частотой в миллисекундах, чтобы предотвратить повторы нажатий (комбинация клавиш может быть использована лишь один раз в течение N мс)</string>
+  <string name="preferences-color-scheme-diff">Цвета сравнений</string>
+  <string name="preferences-color-scheme-diff-default">По-умолчанию</string>
+  <string name="preferences-color-scheme-diff-dark-mode">Тёмная тема</string>
   <string name="fail">Сбой</string>
   <string name="request">Запрос</string>
   <string name="requesting">Запрос</string>

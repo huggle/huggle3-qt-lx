@@ -206,7 +206,7 @@
   <string name="config-promptforblock">درخواست برای قطع دسترسی در صورتی که خواسته شد به کاربری هشدار نهایی داده شود</string>
   <string name="config-blockreason">دلیل پیش‌فرض بستن</string>
   <string name="config-blocktime">طول مدت بستن پیش فرض</string>
-  <string name="config-blocktimeanon">کاربران گمنام</string>
+  <string name="config-blocktimeanon">کاربران ناشناس</string>
   <string name="config-blocktimereg">کاربران ثبت‌شده</string>
   <string name="config-summaryprompt">ورود توضیحات</string>
   <string name="config-history">دانلود تمام تاریخچه همهٔ مقالات</string>
