@@ -40,7 +40,7 @@
   <string name="done">Terminé</string>
   <string name="no">Non</string>
   <string name="ok">OK</string>
-  <string name="override-warn">Vous avez passé outre le chemin de configuration du projet. Veuillez garder à l’esprit qu’abuser de cette fonctionnalité pour obtenir des droits d’accès en écriture au wiki là où vous ne devriez pas les avoir, peut aboutir à un blocage permanent de votre compte.</string>
+  <string name="override-warn">Vous avez passé outre le chemin de configuration du projet. Veuillez garder à l’esprit qu’abuser de cette fonctionnalité pour obtenir des droits d’accès en écriture sur la wiki, là où vous ne devriez pas les avoir, peut aboutir à un blocage permanent de votre compte.</string>
   <string name="remove">Retirer</string>
   <string name="rename">Renommer</string>
   <string name="reload">Recharger</string>
@@ -72,7 +72,7 @@
   <string name="link">Lien</string>
   <string name="reason">Motif</string>
   <string name="diffid">Identifiant de diff</string>
-  <string name="whitelisted">$1 qui possède un score de $2 sur $3 a été mis en liste blanche</string>
+  <string name="whitelisted">$1 avec un score de $2 sur $3 a été mis en liste blanche</string>
   <string name="expiry-time">Délai d’expiration</string>
   <string name="duration">Durée</string>
   <string name="enable">Activer</string>
@@ -88,7 +88,7 @@
   <string name="about-contributors">Développeurs :</string>
   <string name="block-not">L’utilisateur n’est pas bloqué</string>
   <string name="block-title">Blocage de $1</string>
-  <string name="block-reason">Motif :</string>
+  <string name="block-reason">Motif :</string>
   <string name="block-duration">Durée :</string>
   <string name="block-message">Message sur la page de discussion :</string>
   <string name="block-message-user">Envoyer un message à l’utilisateur cible avec une explication du blocage</string>
