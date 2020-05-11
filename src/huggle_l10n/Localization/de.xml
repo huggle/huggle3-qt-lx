@@ -316,7 +316,7 @@
   <string name="login-error-cancelled">Abgebrochen.</string>
   <string name="login-error-config">Anmeldung fehlgeschlagen. Die lokale Konfiguration für $1 konnte nicht geparst werden: $2</string>
   <string name="login-error-config-retrieve">Anmeldung fehlgeschlagen. Die Benutzerkonfiguration konnte nicht abgerufen werden: $1</string>
-  <string name="login-error-config-query-no-data" fuzzy="true">Anmeldung fehlgeschlagen. Die globale Konfiguration konnte nicht abgerufen werden. Die API-Abfrage hat keine Daten zurückgegeben.</string>
+  <string name="login-error-config-query-no-data">Anmeldung fehlgeschlagen. Die globale Konfiguration konnte nicht abgerufen werden. Die API-Abfrage hat keine Daten zurückgegeben.</string>
   <string name="login-error-count">Die Verwendung von Huggle auf diesem Projekt erfordert mindestens $1 Bearbeitungen.</string>
   <string name="login-error-disabled">Huggle ist für dieses Benutzerkonto auf $1 nicht aktiviert. Überprüfe deine Benutzerkonfigurationsseite.</string>
   <string name="login-error-global">Anmeldung fehlgeschlagen - möglicherweise ein Fehler bei der Netzwerkverbindung? Die globale Konfigurationseite konnte nicht heruntergeladen oder geparst werden</string>
