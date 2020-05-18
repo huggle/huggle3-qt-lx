@@ -324,10 +324,10 @@
   <string name="login-error-cancelled">لغو شد.</string>
   <string name="login-error-config">ثبت ورود نافرجام ماند، امکان تجزیهٔ پیکربندی برای $1 نبود: $2</string>
   <string name="login-error-config-retrieve">ورود ناموفق، امکان دریافت اطلاعات کاربر نبود: $1</string>
-  <string name="login-error-config-query-no-data" fuzzy="true">ورود ناموفق، امکان دریافت تنظیمات سراسری نبود، پرسمان API پاسخی نداشت</string>
+  <string name="login-error-config-query-no-data">ورود ناموفق - آیا مشکلی در شبکه هست؟ عدم توانایی در بارگیری تنظیمات سراسری</string>
   <string name="login-error-count">استفاده از هاگل در این پروژه نیازمند حداقل $1 ویرایش است.</string>
   <string name="login-error-disabled">هاگل برای حساب کاربری شما در $1 فعال نشده‌است؛ صفحهٔ پیکربندی حساب کاربریتان را بررسی کنید.</string>
-  <string name="login-error-global" fuzzy="true">ورود ناموفق: قادر به تجزیهٔ پیکربندی سراسری نبود. برای جزئیات بیشتر سیاههٔ اشکال‌زدایی را ببینید.</string>
+  <string name="login-error-global">ورود ناموفق - آیا مشکلی در شبکه هست؟ عدم توانایی در بارگیری یا تحلیل صفحهٔ تنظیمات سراسری</string>
   <string name="login-error-invalid">نام کاربری نادرست</string>
   <string name="login-error-noconfig">$1 صفحهٔ پیکربندی هاگل ندارد</string>
   <string name="login-error-nouser">این حساب کاربری وجود ندارد</string>
@@ -346,6 +346,7 @@
   <string name="main-stat">$1 ویرایش در دقیقه، $2 برگرداندن در دقیقه، سطح $3</string>
   <string name="main-menu-provider-stop">توقف ارائه دهنده</string>
   <string name="main-menu-provider-resume">رزومه ارائه دهنده</string>
+  <string name="main-help-copy-syslog-to-clip">کپی کردن سیاههٔ سامانه در حافظه موقت</string>
   <string name="provider-up">برقراری ارتباط با روند تغییرات در $2 بدست‌آورنده: $1</string>
   <string name="main-no-reason">هیچ دلیلی توسط کاربر ارائه نشده‌است</string>
   <string name="main-restoring-slap">ویرایش دیگری در حال بازگردانده شدن است، لطفاً صبر کنید...</string>
@@ -834,6 +835,7 @@
   <string name="preferences-reset-gui">بازگردانی رابط کاربری</string>
   <string name="preferences-restore-factory-layout">با این کار هاگل به حالت روز اول باز می‌گردد. هاگل خاموش می‌شود. آیا ادامه دهم؟</string>
   <string name="preferences-keystroke-rate-limit">جلوگیری از کلید های تکراری با نرخ زیر در میلی ثانیه (فقط یک میانبر مشابه در N ms ممکن است باعث شود)</string>
+  <string name="preferences-color-scheme-diff">رنگ تفاوت</string>
   <string name="preferences-color-scheme-diff-default">پیش‌فرض</string>
   <string name="preferences-color-scheme-diff-dark-mode">حالت تاریک</string>
   <string name="fail">شکست</string>

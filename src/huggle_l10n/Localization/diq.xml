@@ -136,6 +136,7 @@
   <string name="config-logbrowsetitle">Heruna roceka dosya</string>
   <string name="config-notify-update">Rocaneyan çım ra raviyarne</string>
   <string name="custommessage-subject">Sername</string>
+  <string name="custommessage-send">Mesac bırışe</string>
   <string name="custommessage-wikiuser-plaintext-1">Merheba $1,</string>
   <string name="custommessage-wikiuser-plaintext-2">Mesacê xo tiya bınusne.</string>
   <string name="delete-title">$1 bestere</string>
@@ -270,6 +271,7 @@
   <string name="report-user">Gerre ke</string>
   <string name="score-score">Skor</string>
   <string name="score-word">Çekuye</string>
+  <string name="score-range">Mabên</string>
   <string name="speedy-reason">Sebeb:</string>
   <string name="speedy-parameters">Parametreyi:</string>
   <string name="tag-title">Etiket $1</string>
