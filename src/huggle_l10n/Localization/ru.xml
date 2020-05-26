@@ -521,7 +521,7 @@
   <string name="main-statistics-none">ничего</string>
   <string name="main-tab-welcome-title">Страница приветствия</string>
   <string name="message-title">Сообщение $1</string>
-  <string name="message-help">Укажите заголовок и\или описание. Если поле \"Описание\" изменений останется пустым, то в него будет подставлен \"Заголовок\". Если заголовок сообщения останется пустым, то он не будет сгенерирован и останется пустым.</string>
+  <string name="message-help">Укажите заголовок и\\или описание. Если поле \"Описание\" изменений останется пустым, то в него будет подставлен \"Заголовок\". Если заголовок сообщения останется пустым, то он не будет сгенерирован и останется пустым.</string>
   <string name="message-subject">Заголовок:</string>
   <string name="message-message">Текст:</string>
   <string name="message-summary">Описание изменений:</string>

@@ -135,6 +135,7 @@
   <string name="config-template">{{Identical|Template}}</string>
   <string name="config-blocktimeanon">{{Identical|Anonymous user}}</string>
   <string name="config-blocktimereg">{{Identical|Registered user}}</string>
+  <string name="config-no-colon">Вы не можете использовать: в имени очереди\n{{delete}}</string>
   <string name="config-notify-update">Used as label for the checkbox.\n{{Identical|Check for update}}</string>
   <string name="config-notify-beta">Used as label for the checkbox.</string>
   <string name="custommessage-subject">{{Identical|Title}}</string>
@@ -157,7 +158,7 @@
   <string name="irc-failure">Used as error log entry.</string>
   <string name="irc-switch-rc">Used as log entry. RC = Recent Changes</string>
   <string name="login-intro">Used in Login window.\n\nThe button label \"Projects &gt;&gt;\" is untranslatable at this time.</string>
-  <string name="invalid-bot-user-name">Acesta nu este un nume valid pentru bot. Exemplu de un bot drept nume: Jumbo@Huggle</string>
+  <string name="invalid-bot-user-name">Acesta nu este un nume valid pentru bot. Exemplu de un bot drept nume: Jumbo@Huggle\n{{delete}}</string>
   <string name="login-tab-botp">Tab name on login form that allows you to login using bot passwords</string>
   <string name="login-tab-login">name of tab at login window for normal username and password login.\n{{Identical|Legacy}}</string>
   <string name="login-reload-tool-tip">Used as tooltip for the button which is labeled {{msg-huggle|Reload}}.</string>
@@ -365,7 +366,7 @@
   <string name="updater-close">Used as label for the button.\n{{Identical|Close}}</string>
   <string name="updater-disable-notify">Used as label for the checkbox.</string>
   <string name="user-history-fail">Used as error log entry. Parameters:\n* $1 - username</string>
-  <string name="userinfo-generic">Ҡатнашыуцы мәләмәт</string>
+  <string name="userinfo-generic">Ҡатнашыуцы мәләмәт\n{{delete}}</string>
   <string name="userinfo-retrieve">Used as label for the button.</string>
   <string name="shortcut-x-raw">\"N\" refers to Number (0 - 9).\n{{Related|Shortcut-x}}</string>
   <string name="shortcut-x-revert">\"N\" refers to Number (0 - 9).\n{{Related|Shortcut-x}}</string>

@@ -5,6 +5,7 @@
 * Chase me ladies, I'm the Cavalry
 * DatGuy
 * Dejavu
+* Kent73
 * Samwilson
 -->
 <resources>
@@ -171,8 +172,8 @@
   <string name="config-confirmsame">Confirm reversion to an edit by the user being reverted</string>
   <string name="config-confirmselfrevert">Confirm reversion of own edits (except undo)</string>
   <string name="config-confirmwarned">Confirm reversion to an edit by a warned user</string>
-  <string name="config-confirmrange" fuzzy="true">Confirm reversion to edit by an IP user in the same /16 range as the user being reverted</string>
-  <string name="config-confirmpage" fuzzy="true">Confirm reversion of ignored pages</string>
+  <string name="config-confirmrange">Анонимные пользователи имеют переменные IP-адреса, но часто с фиксированным 16-битным префиксом. При конвертировании анонимной версии пользователя, имейте в виду, что другой IP-адрес в том же 16-битном префиксе был фактически тем же пользователем. Сообщение является запросом подтверждения того, что верификатор принял это во внимание.</string>
+  <string name="config-confirmpage">Подтвердите возврат игнорируемых страниц</string>
   <string name="config-autoadvance">After reverting, move to next edit in the queue</string>
   <string name="config-userollback">Use rollback if available</string>
   <string name="config-revertsummaries">Revert summaries available in menu</string>
@@ -186,7 +187,7 @@
   <string name="config-template">Template</string>
   <string name="config-promptforblock">Prompt for block if asked to warn a user with a final warning</string>
   <string name="config-blockreason">Default block reason</string>
-  <string name="config-blocktime" fuzzy="true">Default block duration for</string>
+  <string name="config-blocktime">Причина блокировки по умолчанию</string>
   <string name="config-blocktimeanon">anonymous users</string>
   <string name="config-blocktimereg">registered users</string>
   <string name="config-summaryprompt">Enter summary</string>
@@ -194,9 +195,10 @@
   <string name="config-defaultsprompt">Restore defaults?</string>
   <string name="config-logbrowsetitle">Log file location</string>
   <string name="config-shortcutconflict">Shortcut \'$1\' conflicts with the existing shortcut for \'$1\'.</string>
-  <string name="config-no-colon" fuzzy="true">You can\'t use : in name of the queue</string>
+  <string name="config-no-colon">Вы не можете использовать: в имени очереди</string>
   <string name="config-notify-update">Check for updates</string>
   <string name="config-notify-beta">Check for beta versions if available</string>
+  <string name="custommessage-title">Написать сообщение $1</string>
   <string name="delete-title">Delete $1</string>
   <string name="delete-reason">Reason:</string>
   <string name="delete-deletionlog">Deletion log:</string>
@@ -208,7 +210,7 @@
   <string name="delete-e1">The page can\'t be deleted: $1</string>
   <string name="delete-e2">Unable to delete page</string>
   <string name="delete-edsc">Unable to delete page because $1</string>
-  <string name="delete-failed-no-info" fuzzy="true">No page info was present in query (are you a sysop?)</string>
+  <string name="delete-failed-no-info">No user info was present in the query (are you an admin?)</string>
   <string name="extension-kl">Not running</string>
   <string name="extension-ok">Loaded and running</string>
   <string name="historyform-no-info">No edit info</string>
@@ -265,7 +267,7 @@
   <string name="login-oauth-notsupported">This method is not supported at this moment</string>
   <string name="login-translate">Translate Huggle</string>
   <string name="login-progress-formtitle">Loading...</string>
-  <string name="login-progress-start" fuzzy="true">Logging in to $1</string>
+  <string name="login-progress-start" fuzzy="true">Вход в $ 1</string>
   <string name="login-progress-retrieve-mw">Retrieving information about MediaWiki for $1</string>
   <string name="login-progress-language">Updating message files...</string>
   <string name="login-progress-global">Checking global configuration...</string>
