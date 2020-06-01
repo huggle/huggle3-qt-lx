@@ -328,6 +328,7 @@
   <string name="main-stat">$1 уредувања во минута, $2 отповикувања во минута, степен $3</string>
   <string name="main-menu-provider-stop">Запри го добавувачот</string>
   <string name="main-menu-provider-resume">Продолжи со добавувачот</string>
+  <string name="main-help-copy-syslog-to-clip">Копирај го системскиот дневник во меѓускладот</string>
   <string name="provider-up">Се поврзувам со тековникот со скорешни промени на $2 користејќи го добавувачот: $1</string>
   <string name="main-no-reason">Корисникот нема укажано причина</string>
   <string name="main-restoring-slap">Во моментов повраќам друго уредување. Почекајте...</string>
@@ -680,6 +681,8 @@
   <string name="warning-confirm-title">Навистина да испратам предупредување?</string>
   <string name="warning-confirm-old-edit">Уредувањето на $1 на $2 во $3 е постаро од еден ден. Дали навистина да му испратам предупредување?</string>
   <string name="warning-confirm-too-recent">Уредувањето на $1 на $2 е направено од $3, кој мошне скоро примил порака на нетовата разговорна страница (можеби некоја друга предупредителна предлошка?). Дали сепак сакате да му испратите уште едно предупредување?</string>
+  <string name="warning-too-old-skip">Не испраќам предупредување на $1 за неговото уредување на $2 на $3 бидејќи е постаро од еден ден</string>
+  <string name="warning-no-aiv-config">Корисникот веќе достигнал предупредување од 4-ти степен. Бидејќи на ова вики не се поддржани администраторски интервенции, корисникот треба да го блокирате сега</string>
   <string name="warning-warntype">Тип на опомена:</string>
   <string name="warning-warnlog">Опомени за овој корисник:</string>
   <string name="warning-submit">Испрати</string>
@@ -814,6 +817,9 @@
   <string name="preferences-reset-gui">Одново посредникот</string>
   <string name="preferences-restore-factory-layout">Ова ќе ја поврати основната распореденост на Huggle каква што била кога сте го воспоставиле. Huggle ќе се исклучи. Сакате да продолжите?</string>
   <string name="preferences-keystroke-rate-limit">Спречи повторени стисоци на исти тастатурни копчиња според честотата (кратенката да работи само по еднаш на секои N милисекунди)</string>
+  <string name="preferences-color-scheme-diff">Бои на разликите</string>
+  <string name="preferences-color-scheme-diff-default">По основно</string>
+  <string name="preferences-color-scheme-diff-dark-mode">Темен изглед</string>
   <string name="fail">Неуспех</string>
   <string name="request">Барање</string>
   <string name="requesting">Барање</string>
