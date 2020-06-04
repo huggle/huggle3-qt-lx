@@ -17,6 +17,7 @@
 * Rippitippi
 * Sarah Bernabei
 * Selven
+* ValeJappo
 -->
 <resources>
   <string name="name">Inglese</string>
@@ -33,7 +34,7 @@
   <string name="exit">Esci</string>
   <string name="done">Fatto</string>
   <string name="no">No</string>
-  <string name="ok">OK</string>
+  <string name="ok">Ok</string>
   <string name="remove">Rimuovi</string>
   <string name="rename">Rinomina</string>
   <string name="reload">Ricarica</string>
@@ -42,10 +43,10 @@
   <string name="result">Risultato</string>
   <string name="save">Salva</string>
   <string name="show">Mostra</string>
-  <string name="no-instant">I messaggi a $2 non possono essere inviati come avvertimenti istantanei sul progetto $1. Scegli un livello di avviso diverso.</string>
+  <string name="no-instant">Il messaggio a $2 non può essere inviato, in quanto sul progetto $1 non sono stati attivati gli avvisi istantanei. Scegli un livello di avviso diverso.</string>
   <string name="undo">Annulla</string>
   <string name="yes">Sì</string>
-  <string name="editing-page">Modifica della pagina</string>
+  <string name="editing-page">Modifica la pagina</string>
   <string name="agf">Annulla come modifica fatta in buona fede con una motivazione personale</string>
   <string name="successful">Riuscito</string>
   <string name="summary">Oggetto</string>
@@ -73,7 +74,7 @@
   <string name="no-token">Nessun token</string>
   <string name="flags">Flag</string>
   <string name="gracetime">Attendi che le query che eseguono le modifiche terminino...</string>
-  <string name="browser-none">Non ci sono pagine da visualizzare ancora.</string>
+  <string name="browser-none">Non ci sono ancora pagine da visualizzare.</string>
   <string name="browser-load">Scaricamento delle differenze usando un metodo alternativo basato su MW, attendi prego...</string>
   <string name="browser-miss-summ">Non è stato inserito alcun oggetto</string>
   <string name="browser-diff">Diff della pagina: $1 (punteggio: $2)</string>
