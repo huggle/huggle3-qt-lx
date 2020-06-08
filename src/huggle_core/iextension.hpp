@@ -138,7 +138,7 @@ namespace Huggle
              * \param Title            Title
              * \param Summary          Edit summary of msg
              * \param InsertSection    If new section should be created or appended to existing last section
-             * \param Dependency       Dependency query, if this is not NULL, message should only be delivered when it's successfuly finished
+             * \param Dependency       Dependency query, if this is not NULL, message should only be delivered when it's successfully finished
              * \param NoSuffix         Huggle suffix ignored
              * \param SectionKeep      Keep in the existing section
              * \param Autoremove

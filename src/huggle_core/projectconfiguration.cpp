@@ -675,7 +675,7 @@ bool ProjectConfiguration::ParseYAML(const QString& yaml_src, QString *reason, W
         else if (report == "defaultmanual")
             this->ReportMode = ReportType_DefaultManual;
         else
-            HUGGLE_WARNING("Uknown report mode, falling back to default");
+            HUGGLE_WARNING("Unknown report mode, falling back to default");
     }
     this->ReportSummary = HuggleParser::YAML2String("report-summary", yaml);
     this->ReportAutoSummary = HuggleParser::YAML2String("report-auto-summary", yaml, "This user was automatically reported by Huggle due to reverted vandalism after a final warning. Please verify their"\

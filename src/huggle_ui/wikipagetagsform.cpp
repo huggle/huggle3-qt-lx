@@ -121,7 +121,7 @@ void Huggle::WikiPageTagsForm_FinishRead(Query *result)
         form->displayTags();
         form->toggleEnable(true);
         result->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
-        HUGGLE_DEBUG1("Successfuly got content for " + form->page->PageName);
+        HUGGLE_DEBUG1("Successfully got content for " + form->page->PageName);
         return;
     }
     int selected_tags_count = 0;

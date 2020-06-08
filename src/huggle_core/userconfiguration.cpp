@@ -220,7 +220,7 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
         AppendConf(&configuration, "rollback-summary", this->RollbackSummary);
     if (Project->RollbackSummaryUnknownTarget != this->RollbackSummaryUnknownTarget)
         AppendConf(&configuration, "rollback-summary-unknown", this->RollbackSummaryUnknownTarget);
-    AppendComment(&configuration, "This option will change the behaviour of automatic resolution, be carefull");
+    AppendComment(&configuration, "This option will change the behaviour of automatic resolution, be careful");
     AppendConf(&configuration, "revert-on-multiple-edits", this->RevertOnMultipleEdits);
     AppendConf(&configuration, "automatically-resolve-conflicts", this->AutomaticallyResolveConflicts);
     AppendConf(&configuration, "software-rollback", this->EnforceManualSoftwareRollback);

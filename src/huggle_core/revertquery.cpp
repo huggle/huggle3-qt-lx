@@ -510,7 +510,7 @@ bool RevertQuery::evaluateRevert()
             this->status = StatusInError;
             return true;
         }
-        Syslog::HuggleLogs->DebugLog("Sucessful SR of page " + this->editToBeReverted->Page->PageName);
+        Syslog::HuggleLogs->DebugLog("Successful SR of page " + this->editToBeReverted->Page->PageName);
         return true;
     }
     if (this->qRetrieve != nullptr)

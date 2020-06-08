@@ -397,7 +397,7 @@ int HuggleQueue::DeleteByScore(long Score)
             }
             if (this->DeleteItem(item))
             {
-                // we sucessfuly deleted the item
+                // we successfully deleted the item
                 result++;
                 continue;
             } else
