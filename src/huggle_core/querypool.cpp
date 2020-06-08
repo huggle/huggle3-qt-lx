@@ -157,9 +157,9 @@ void QueryPool::CheckQueries()
         {
             //! \todo The error checks should be implemented to make sure it really did this
             if (query->GetAction() == ActionUnwatch)
-                Syslog::HuggleLogs->Log("Successfuly unwatchlisted " + query->Target);
+                Syslog::HuggleLogs->Log("Successfully unwatchlisted " + query->Target);
             else
-                Syslog::HuggleLogs->Log("Successfuly watchlisted " + query->Target);
+                Syslog::HuggleLogs->Log("Successfully watchlisted " + query->Target);
         }
         query->UnregisterConsumer(HUGGLECONSUMER_QP_WATCHLIST);
         this->PendingWatches.removeAll(query);

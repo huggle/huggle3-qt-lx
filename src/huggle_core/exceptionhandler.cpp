@@ -27,7 +27,7 @@ ExceptionHandler::~ExceptionHandler()
 
 void ExceptionHandler::HandleException(Exception *ex)
 {
-    std::cout << "FATAL: Unhandled exception occured, description: " << ex->Message.toStdString() << std::endl
+    std::cout << "FATAL: Unhandled exception occurred, description: " << ex->Message.toStdString() << std::endl
               << "Source: " << ex->Source.toStdString() << std::endl
               << "Stack: " << ex->StackTrace.toStdString() << std::endl;
 

@@ -712,7 +712,7 @@ void UpdateForm::NextInstruction()
     if (this->Instructions.count() == 0)
     {
         this->ui->pushButton_2->setEnabled(true);
-        this->Write("Update was successfuly finished, you can start huggle now by closing this form!");
+        this->Write("Update was successfully finished, you can start huggle now by closing this form!");
         this->timer->stop();
         return;
     }

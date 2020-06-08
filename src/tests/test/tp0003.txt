@@ -104,7 +104,7 @@ Hi there, I'm [[User:HasteurBot|HasteurBot]]. I just wanted to let you know that
 
 If your submission is not edited soon, it could be nominated for deletion.  If you would like to attempt to save it, you will need to improve it.
 
-If the deletion has already occured, instructions on how you may be able to retrieve it are available at [[WP:REFUND/G13]].
+If the deletion has already occurred, instructions on how you may be able to retrieve it are available at [[WP:REFUND/G13]].
 
 Thank you for your attention. [[User:HasteurBot|HasteurBot]] ([[User talk:HasteurBot|talk]]) 15:55, 20 August 2013 (UTC)
 ==Your draft article, [[Wikipedia talk:Articles for creation/Keith Cunningham]]==
