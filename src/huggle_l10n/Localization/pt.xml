@@ -316,10 +316,10 @@
   <string name="login-error-cancelled">Cancelado.</string>
   <string name="login-error-config">O início de sessão falhou, não foi possível carregar a página de configuração em $1: $2</string>
   <string name="login-error-config-retrieve">Falha ao iniciar sessão, não foi possível aceder as configurações de utilizador: $1</string>
-  <string name="login-error-config-query-no-data" fuzzy="true">Falha ao iniciar sessão, não foi possível obter as configurações globais, a consulta por api não devolveu nenhum dado</string>
+  <string name="login-error-config-query-no-data">A autenticação falhou - talvez problemas de ligação de rede? Não é possível transferir a configuração global</string>
   <string name="login-error-count">Para usar o Huggle no projeto que escolheu são necessárias pelo menos $1 edições.</string>
   <string name="login-error-disabled">O Huggle não está ativo na sua conta de utilizador(a) em $1. Verifique a sua página de configuração pessoal.</string>
-  <string name="login-error-global" fuzzy="true">Início de sessão falhou: O Huggle não conseguiu carregar a página de configuração global. Veja o registo de depuração para mais detalhes.</string>
+  <string name="login-error-global">A autenticação falhou - talvez problemas de ligação de rede? Não é possível transferir ou analisar a página da configuração global</string>
   <string name="login-error-invalid">Introduziu um nome de utilizador(a) inválido.</string>
   <string name="login-error-noconfig">$1 não tem uma página de configuração do Huggle</string>
   <string name="login-error-nouser">A conta de utilizador(a) não existe</string>
@@ -338,6 +338,7 @@
   <string name="main-stat">$1 edições por minuto, $2 reversões por minuto, nível $3</string>
   <string name="main-menu-provider-stop">Interromper provedor</string>
   <string name="main-menu-provider-resume">Reiniciar provedor</string>
+  <string name="main-help-copy-syslog-to-clip">Copiar registo do sistema para a área de transferência</string>
   <string name="provider-up">A aceder às mudanças recentes em $2, utilizando o fornecedor $1</string>
   <string name="main-no-reason">Não foi apresentado nenhum motivo pelo utilizador</string>
   <string name="main-restoring-slap">Neste momento, outra edição está a ser restaurada, por favor aguarde...</string>
@@ -826,6 +827,9 @@
   <string name="preferences-reset-gui">Redefinir a GUI</string>
   <string name="preferences-restore-factory-layout">Isto vai repor a composição de fábrica do Huggle como aconteceu quando o instalou. O Huggle será desligado. Deseja continuar?</string>
   <string name="preferences-keystroke-rate-limit">Impedir a repetição do toque nas teclas por um determinado tempo em milissegundos (só 1 mesmo atalho pode ser desencadeado com N ms)</string>
+  <string name="preferences-color-scheme-diff">Cores diferentes</string>
+  <string name="preferences-color-scheme-diff-default">Predefinição</string>
+  <string name="preferences-color-scheme-diff-dark-mode">Modo escuro</string>
   <string name="fail">Falha</string>
   <string name="request">Pedir</string>
   <string name="requesting">A solicitar</string>
