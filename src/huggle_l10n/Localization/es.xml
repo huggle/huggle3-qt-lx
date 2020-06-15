@@ -22,6 +22,7 @@
 * Themasterriot
 * Tiberius1701
 * ToonLucas22
+* Whytheonlyone
 * Wifidel
 * Yllelder
 -->
@@ -325,10 +326,10 @@
   <string name="login-error-cancelled">Cancelado.</string>
   <string name="login-error-config">Error de inicio de sesión, no se pudo analizar la configuración local para $1: $2</string>
   <string name="login-error-config-retrieve">Error de inicio de sesión, no se pudo recuperar la configuración de usuario: $1</string>
-  <string name="login-error-config-query-no-data" fuzzy="true">Error de inicio de sesión, no se pudo recuperar la configuración global, la consulta de la API no devolvió ningún dato</string>
+  <string name="login-error-config-query-no-data">Error al iniciar de sesión - posiblemente problemas del internet? No se puede instalar configuración global</string>
   <string name="login-error-count">Se necesitan al menos $1 ediciones para usar Huggle en este proyecto.</string>
   <string name="login-error-disabled">Huggle no está habilitado para tu cuenta en $1. Revisa tu página de configuración de usuario.</string>
-  <string name="login-error-global" fuzzy="true">Error de inicio de sesión: no se pudo analizar la configuración global. Para obtener más detalles, consulta registro de depuración.</string>
+  <string name="login-error-global">Error al iniciar del sesión: no se pudo instalar o analizar la configuración global</string>
   <string name="login-error-invalid">Nombre de usuario no válido</string>
   <string name="login-error-noconfig">$1 no tiene una página de configuración de Huggle</string>
   <string name="login-error-nouser">El usuario no existe</string>
