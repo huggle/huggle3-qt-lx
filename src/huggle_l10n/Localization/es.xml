@@ -327,7 +327,7 @@
   <string name="login-error-cancelled">Cancelado.</string>
   <string name="login-error-config">Error de inicio de sesión, no se pudo analizar la configuración local para $1: $2</string>
   <string name="login-error-config-retrieve">Error de inicio de sesión, no se pudo recuperar la configuración de usuario: $1</string>
-  <string name="login-error-config-query-no-data">Error al iniciar de sesión - ¿hubo posiblemente problemas de conexión? No se pudo instalar configuración global</string>
+  <string name="login-error-config-query-no-data">No se pudo acceder a tu cuenta. Quizá haya problemas de conexión; no se pudo instalar la configuración global</string>
   <string name="login-error-count">Se necesitan al menos $1 ediciones para usar Huggle en este proyecto.</string>
   <string name="login-error-disabled">Huggle no está habilitado para tu cuenta en $1. Revisa tu página de configuración de usuario.</string>
   <string name="login-error-global">Error al iniciar del sesión: no se pudo instalar o analizar la configuración global</string>
