@@ -473,7 +473,7 @@
   <string name="main-advanced">Erweitert...</string>
   <string name="main-stats">$1 Bearbeitungen pro Minute, $2 Zurücksetzungen pro Minute</string>
   <string name="main-display-session-data">Sitzungsdaten anzeigen</string>
-  <string name="main-display-whitelist">Whitelist anzeigen</string>
+  <string name="main-display-whitelist">Positivliste anzeigen</string>
   <string name="main-revert-custom-reson">Bitte begründe das Zurücksetzen dieser Bearbeitung auf die vorherige Version</string>
   <string name="main-log1">Ausgewählte Version von $1 wiederherstellen</string>
   <string name="main-tip-pagetagdelete">Seite zum Löschen markieren</string>
@@ -778,14 +778,14 @@
   <string name="rc-timestamp-missing">RC-Feed: Im Element fehlt das Zeitstempel-Attribut: $1</string>
   <string name="rc-type-missing">RC-Feed: Im Element fehlt das Typ-Attribut: $1</string>
   <string name="rc-title-missing">RC-Feed: Im Element fehlt das Titel-Attribut: $1</string>
-  <string name="whitelist-download">Lade neue Whitelist herunter</string>
+  <string name="whitelist-download">Lade neue Positivliste herunter</string>
   <string name="logs-widget-name">System-Logbücher</string>
   <string name="processes-widget-name">Prozesse</string>
   <string name="wait">Bitte warten …</string>
   <string name="function-miss">Funktion ist jetzt nicht verfügbar</string>
   <string name="missing-aiv">Dieses Projekt verwendet kein AIV</string>
   <string name="missing-page">Es gibt keine Seite „$1“ auf diesem Wiki</string>
-  <string name="updating-wl">Aktualisiere Whitelist …</string>
+  <string name="updating-wl">Aktualisiere Positivliste …</string>
   <string name="waiting">Warten …</string>
   <string name="feature-nfru">Diese Funktion ist nur für IP-Benutzer</string>
   <string name="report-no-user">Es wurde kein Benutzer für den Bericht ausgewählt. Bitte zuerst einen auswählen.</string>

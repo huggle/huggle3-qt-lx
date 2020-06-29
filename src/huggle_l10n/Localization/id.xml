@@ -9,6 +9,7 @@
 * Macofe
 * Rachmat04
 * Raynasution
+* Silencemen21
 -->
 <resources>
   <string name="name">Bahasa Indonesia</string>
@@ -294,6 +295,7 @@
   <string name="main-help-documentation">Dokumentasi</string>
   <string name="main-help-feedback">Umpan balik</string>
   <string name="main-help-about">Tentang Huggle</string>
+  <string name="main-help-queuelegend">Legenda antrean</string>
   <string name="main-addqueue">Tambahkan...</string>
   <string name="main-savelogtitle">Simpan catatan (log)</string>
   <string name="main-usermessageother">Pesan lain...</string>
