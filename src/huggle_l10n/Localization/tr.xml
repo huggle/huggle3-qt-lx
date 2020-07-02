@@ -573,7 +573,7 @@
   <string name="queue-examplelabel1">Bu niteliği gerektirir</string>
   <string name="queue-examplelabel2">Bu niteliği hariç tut</string>
   <string name="queue-examplelabel3">Bu niteliği kontrol etme</string>
-  <string name="queue-usergroup">Sadece bu kullanıcıların değişikliklerini göster</string>
+  <string name="queue-usergroup">Yalnızca bu kullanıcıların değişikliklerini göster</string>
   <string name="report-title">$1\'i rapor et</string>
   <string name="report-warn">Bu kullanıcı çoktan 4. uyarı seviyesine erişti, bu yüzden kullanıcıya artık şablon iletilmeyecek. Rapor edebilirsiniz, fakat lütfen uygun sayıda yakın tarihli uyarı sayısına eriştiğinden emin olunuz. Bunu, takip eden formda \"mesaj sayfası\" düğmesini tıklayarak yapabilirsiniz. Geri döndürme işlemi başarılı da olsa başarısız da olsa bu uyarı ve formun görüntülendiğini lütfen aklınızdan çıkarmayınız. Yani başka kullanıcılarla değişiklik çakışması yaşıyor olabilirsiniz hâlâ (kullanıcının halihazırda rapor edilmediğini tekrar kontrol ediniz). Kullanıcıyı rapor etmek istiyor musunuz?</string>
   <string name="report-tu">Kullanıcıyı rapor et</string>

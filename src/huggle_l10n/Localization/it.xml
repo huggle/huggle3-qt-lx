@@ -392,7 +392,7 @@
   <string name="main-page-reqdeletion">Richiedi una cancellazione rapida</string>
   <string name="main-page-reqprotection">Richiedi la protezione della pagina</string>
   <string name="main-page-watch">Segui</string>
-  <string name="main-page-unwatch">Non seguire più</string>
+  <string name="main-page-unwatch">Non seguire</string>
   <string name="main-page-purge">Purga</string>
   <string name="main-page-curr-disp">Attualmente visualizzato</string>
   <string name="main-page-display">Visualizza questa pagina</string>
