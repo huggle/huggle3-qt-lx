@@ -132,7 +132,7 @@
   <string name="config-confirm-user">사용자 문서에 대한 편집을 되돌릴 때 권한 요청</string>
   <string name="config-confirm-wl">허용 목록에 있는 사용자의 편집을 되돌릴 때 권한 요청</string>
   <string name="config-confirm-talk">토론 문서에 대한 편집을 되돌릴 때 권한 요청</string>
-  <string name="config-use-rollback">소프트웨어 되돌리기 기능 사용</string>
+  <string name="config-use-rollback">소프트웨어 일괄 되돌리기 기능 사용</string>
   <string name="config-welcome-empty-page">좋은 편집을 한 빈 토론 문서를 가진 사용자에게 환영 메시지를 보내기</string>
   <string name="config-conflicts-revert">자동으로 동일 문서를 되돌리거나 바꾼 다른 사용자와의 편집 충돌을 해결</string>
   <string name="config-instant-reverts">즉시 되돌리기 사용 (매우 빠르지만, 실행되면 취소할 수 없습니다)</string>

@@ -403,7 +403,7 @@
   <string name="main-revision-rws">Görüntülenmekte olan düzenlemeyi geri al, kullanıcıyı uyar ve sayfada kal</string>
   <string name="main-revision-faith">İyi niyet varsayarak geri al</string>
   <string name="main-revision-revert-only-this">Yalnızca bu düzeltmeyi geri al</string>
-  <string name="main-revision-revert-agf">İyi niyetle sadece bu revizyonu geri al</string>
+  <string name="main-revision-revert-agf">İyi niyetle yalnızca bu revizyonu geri al</string>
   <string name="main-revision-previous">Önceki</string>
   <string name="main-revision-next">Sonraki</string>
   <string name="main-revision-latest">En son</string>
@@ -747,7 +747,7 @@
   <string name="history-progress">$1\'in ($2) geçmişi alınıyor...</string>
   <string name="history-work">$1 üzerinde yapılan değişiklik geri alınıyor</string>
   <string name="history-no-item-selected">Geçmiş aletçiğinde herhangi bir öğe seçili değil</string>
-  <string name="history-message-revert-title">Sadece bu iletiyi geri almak istediğinize emin misiniz?</string>
+  <string name="history-message-revert-title">Yalnızca bu iletiyi geri almak istediğinize emin misiniz?</string>
   <string name="history-another-edit">Başka bir düzenleme zaten geri alındı, lütfen bekleyin...</string>
   <string name="history-not-found">Geri alınacak işlem bulunamadı</string>
   <string name="history-already-done">Bu işlem çoktan geri alındı</string>
