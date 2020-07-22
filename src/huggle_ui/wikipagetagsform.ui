@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Tag</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../huggle_res/pictures.qrc">
