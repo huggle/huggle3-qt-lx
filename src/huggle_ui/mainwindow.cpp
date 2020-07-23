@@ -3786,3 +3786,8 @@ void Huggle::MainWindow::on_actionDisplay_revid_triggered()
         return;
     this->DisplayRevid(revid, this->GetCurrentWikiSite());
 }
+
+void Huggle::MainWindow::on_actionPlay_sound_triggered()
+{
+    Resources::PlayEmbeddedSoundFile("not1.wav");
+}

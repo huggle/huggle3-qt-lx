@@ -411,6 +411,7 @@ namespace Huggle
             void on_actionProfiler_info_triggered();
             void on_actionCopy_system_log_to_clipboard_triggered();
             void on_actionDisplay_revid_triggered();
+            void on_actionPlay_sound_triggered();
 
         private:
             void closeTab(int tab);

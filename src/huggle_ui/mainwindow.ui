@@ -135,6 +135,7 @@
      <addaction name="actionThrow"/>
      <addaction name="actionProfiler_info"/>
      <addaction name="actionDisplay_revid"/>
+     <addaction name="actionPlay_sound"/>
     </widget>
     <addaction name="actionContents"/>
     <addaction name="actionIntroduction"/>
@@ -1194,6 +1195,11 @@
   <action name="actionDisplay_revid">
    <property name="text">
     <string>Display revid</string>
+   </property>
+  </action>
+  <action name="actionPlay_sound">
+   <property name="text">
+    <string>Play sound</string>
    </property>
   </action>
  </widget>
