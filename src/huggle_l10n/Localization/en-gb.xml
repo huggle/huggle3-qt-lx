@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
 * Andibing
+* Bjh21
 * Captaindogfish
 * Chase me ladies, I'm the Cavalry
 * DatGuy
@@ -219,7 +220,7 @@
   <string name="historyform-retrieving-history">Retrieving history</string>
   <string name="historyform-not-latest-tip">This is not the latest revision of this page. Please make sure that you have reviewed the newer versions as well. Please also keep in mind that rollback may not be possible from this point.</string>
   <string name="history-error-message-title">Unable to undo</string>
-  <string name="history-error" fuzzy="true">This item can\'t be undone. The page might have been changed or deleted in the meantime, and Huggle is unable to perform an \"undo\" from this point. If you really want to undo it, you will need to do it by hand using the MediaWiki interface.</string>
+  <string name="history-error">This item can\'t be undone. The page might have been changed or deleted meanwhile, and Huggle is unable to perform an undo from this point. If you really want to undo it, you will need to do that by hand using the MediaWiki interface.</string>
   <string name="history-failure">Unable to retrieve history</string>
   <string name="userhistory-title">History of your changes</string>
   <string name="irc-connected">$1: Connected to IRC recent changes feed</string>
@@ -234,7 +235,7 @@
   <string name="irc-switch-rc">Switching to the wiki Recent Changes feed</string>
   <string name="login-old">Retrieving user config from old location</string>
   <string name="login-intro">Please pick a project and enter your username and password. You can also login to multiple projects by clicking on the \"Projects\" button.</string>
-  <string name="invalid-bot-user-name" fuzzy="true">This is not a valid bot name. Example of right bot name: Jimbo@Huggle</string>
+  <string name="invalid-bot-user-name">This is not a valid bot name. An example of a valid bot name: Jimbo@Huggle</string>
   <string name="login-tab-botp">Bot password</string>
   <string name="login-tab-login">Legacy</string>
   <string name="login-reload-tool-tip">Reload a list of available projects that can be used in Huggle. This can be useful in case you want to use Huggle in a project in which the tool was recently enabled.</string>
@@ -243,7 +244,7 @@
   <string name="login-username">Username:</string>
   <string name="login-password">Password:</string>
   <string name="login-proxygroup">Proxy settings</string>
-  <string name="login-proxy" fuzzy="true">Use a proxy server</string>
+  <string name="login-proxy">Use a proxy</string>
   <string name="login-proxyaddress">Address:</string>
   <string name="login-proxy-remember-this">Remember this setting for next time</string>
   <string name="login-proxyport">Port:</string>
@@ -252,7 +253,7 @@
   <string name="login-fail-css">Login failed on $1: Unable to retrieve user configuration. Special:MyPage/huggle3.css is missing. Did you create huggle3.css in your userspace?</string>
   <string name="login-fail-enable-true">Login failed on $1: You don\'t have enable:true in your personal config.</string>
   <string name="login-fail-no-info">Login failed on $1: Unable to retrieve user info: $2</string>
-  <string name="login-bot" fuzzy="true">What is a difference between BotPassword and Legacy login?</string>
+  <string name="login-bot">What is the difference between BotPassword and legacy login?</string>
   <string name="login-fail-parse-config">Login failed on $1: Unable to parse the user configuration. See the debug log for more details.</string>
   <string name="login-fail-user-data">Login failed on $1: Unable to retrieve user info. The API query returned no data.</string>
   <string name="login-fail-rollback-rights">Login failed on $1: You don\'t have rollback permissions on this project.</string>
@@ -260,14 +261,14 @@
   <string name="login-failed-edit">Login failed on $1: You don\'t have enough edits on this project.</string>
   <string name="login-retrieving-info">Retrieving user info on $1</string>
   <string name="login-password-empty">The password you entered was empty</string>
-  <string name="login-fail-wrong-name" fuzzy="true">You provided an incorrect username for this login</string>
+  <string name="login-fail-wrong-name">You provided no username for login</string>
   <string name="login-api">ERROR: api.php responded with unknown result: $1</string>
   <string name="login-abort">Abort</string>
   <string name="login-start">Login</string>
   <string name="login-oauth-notsupported">This method is not supported at this moment</string>
   <string name="login-translate">Translate Huggle</string>
   <string name="login-progress-formtitle">Loading...</string>
-  <string name="login-progress-start" fuzzy="true">Вход в $ 1</string>
+  <string name="login-progress-start">Logging into $1</string>
   <string name="login-progress-retrieve-mw">Retrieving information about MediaWiki for $1</string>
   <string name="login-progress-language">Updating message files...</string>
   <string name="login-progress-global">Checking global configuration...</string>
@@ -277,8 +278,8 @@
   <string name="login-progress-user-info">Checking user info for $1</string>
   <string name="login-progress-whitelist">Retrieving user whitelist...</string>
   <string name="login-remember-password">Remember password</string>
-  <string name="login-remember-password-tooltip" fuzzy="true">This option will store your password in a plaintext on your hard drive. Use it only if you are the only person with access to this computer.</string>
-  <string name="login-ssl" fuzzy="true">Use HTTPS (requires OpenSSL)</string>
+  <string name="login-remember-password-tooltip">This option will store your password in plaintext on your hard drive. Use it only if you are the only person with access to this computer.</string>
+  <string name="login-ssl">Use HTTPS to log in (requires OpenSSL)</string>
   <string name="login-fail">Login failed on $1</string>
   <string name="login-error-admin">Use of Huggle on this project requires an administrator account.</string>
   <string name="login-error-age" fuzzy="true">Use of Huggle on this project requires an account at least $1 days old.</string>

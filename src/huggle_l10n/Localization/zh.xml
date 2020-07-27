@@ -140,7 +140,7 @@
   <string name="config-minor">标记为小编辑</string>
   <string name="config-ip">IP用户</string>
   <string name="config-watchlist">添加到监视列表</string>
-  <string name="config-defaultsummary">默认的手工编辑摘要</string>
+  <string name="config-defaultsummary">默认的手动编辑摘要</string>
   <string name="config-undosummary">自我回退时的编辑摘要</string>
   <string name="config-confirm-user">在回退用户自己的用户页或子页面时请求确认</string>
   <string name="config-confirm-wl">回退白名单用户做出的编辑时需要确认</string>
