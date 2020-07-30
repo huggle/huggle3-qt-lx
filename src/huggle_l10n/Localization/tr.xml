@@ -16,6 +16,7 @@
 * Hedda
 * Kendinciz
 * Kumkumuk
+* LuCKY
 * Macofe
 * Mavrikant
 * Rapsar
@@ -501,7 +502,7 @@
   <string name="main-revert-newpage">Bu yeni bir sayfa olduğu için geri alınamıyor. Sayfayı yalnızca etiketleyebilir veya silebilirsiniz.</string>
   <string name="main-restore-text-fail">Revizyon geri getirilemiyor çünkü kullanılabilir metin yok</string>
   <string name="main-restore-data-fail">Viki, seçilen sürüm için veri sağlayamadığından sürüm geri yüklenemiyor</string>
-  <string name="main-welcome-user">Hoşgeldin kullanıcı</string>
+  <string name="main-welcome-user">Hoş geldin kullanıcı</string>
   <string name="main-custom-reason-title">Özel neden kullanarak düzenlemeyi geri alma</string>
   <string name="main-custom-reason-text">Lütfen bu düzenlemeyi geri almak istediğiniz için bir neden belirtin</string>
   <string name="main-custom-reason-fail">Geçerli bir gerekçe belirtmedin</string>
@@ -511,7 +512,7 @@
   <string name="main-statistics-paused">durduruldu</string>
   <string name="main-statistics-waiting">Daha fazla düzenleme bekleniyor</string>
   <string name="main-statistics-none">hiçbiri</string>
-  <string name="main-tab-welcome-title">Sayfaya hoşgeldiniz</string>
+  <string name="main-tab-welcome-title">Sayfaya hoş geldiniz</string>
   <string name="message-title">Mesaj $1</string>
   <string name="message-help">Konu ve/ya Özet belirtin. Özet yoksa konu kullanılacaktır; herhangi bir konu verilmezse başlık eklenmeyecektir.</string>
   <string name="message-subject">Konu:</string>
@@ -756,8 +757,8 @@
   <string name="history-revert-fail">$1 üzerinde değişikliğiniz şu hatayla karşılaşılmasından dolayı geri alınamadı: $2</string>
   <string name="history-undone">$1 üzerindeki değişiklik başarıyla geri alındı.</string>
   <string name="history-retrieve-fail">Kendi düzenlememizi geri almak istediğimiz sayfanın içeriği alınamadı. Hata oluştu: $1</string>
-  <string name="history-welcome-msg-title">Bunun yerine \"Hoşgeldin\" mesajı gönderilsin mi?</string>
-  <string name="history-welcome-msg">Bu tartışma sayfasını yarattnız artık, geri alınması mümkün değil. Sayfa içeriğini \"Hoşgeldin\" şablonuyla değiştirmek ister misiniz?</string>
+  <string name="history-welcome-msg-title">Bunun yerine \"Hoş geldin\" mesajı gönderilsin mi?</string>
+  <string name="history-welcome-msg">Bu tartışma sayfasını yarattnız, artık geri alınması mümkün değil. Sayfa içeriğini \"Hoş geldin\" şablonuyla değiştirmek ister misiniz?</string>
   <string name="newtab-title">Bu yeni bir sekmedir!</string>
   <string name="newtab-text">Huggle\'daki sekmeler, başka herhangi bir web tarayıcısında olduğu gibi çalışır. Huggle içindeki tüm sekmeler aynı kuyruğu paylaşır ancak belirli bir sayfaya göz kulak olmasını istiyorsanız veya daha sonra bir düzenlemeyi kontrol etmek istiyorsanız işe yaramaktadır.</string>
   <string name="notify-fail">$1\'in yaratıcısına bildirim gönderilmedi</string>

@@ -460,7 +460,7 @@
   <string name="main-browser-newedits">Afficher les nouvelles modifications de la page</string>
   <string name="main-browser-newcontribs">Afficher les nouvelles contributions par utilisateur</string>
   <string name="main-browser-lasttab">Je ne peux pas fermer cet onglet car c’est le dernier — vous devez avoir au moins un onglet ouvert</string>
-  <string name="main-revert-manual">Aucun jeton d’annulation, passage en annulation manuelle de $1</string>
+  <string name="main-revert-manual">Aucun jeton de révocation, passage en révocation manuelle de $1</string>
   <string name="main-han">HAN</string>
   <string name="main-han-disconnect">Déconnecter</string>
   <string name="main-han-connect">Connecter</string>
