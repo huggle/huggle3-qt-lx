@@ -18,6 +18,7 @@
 * Sarah Bernabei
 * Selven
 * ValeJappo
+* ValterVB
 -->
 <resources>
   <string name="name">Inglese</string>
@@ -34,7 +35,7 @@
   <string name="exit">Esci</string>
   <string name="done">Fatto</string>
   <string name="no">No</string>
-  <string name="ok">Ok</string>
+  <string name="ok">OK</string>
   <string name="remove">Rimuovi</string>
   <string name="rename">Rinomina</string>
   <string name="reload">Ricarica</string>
