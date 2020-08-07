@@ -96,8 +96,10 @@
   <string name="config-own-edits">Omat muokkaukset</string>
   <string name="config-new-page">Uusi sivu</string>
   <string name="config-friend">Ystävä</string>
+  <string name="config-userspace">Käyttäjänimiavaruus</string>
   <string name="config-talk">Keskustelusivu</string>
   <string name="config-updates">Tarkista päivitykset</string>
+  <string name="config-beta">Tarkista onko beetaversioita</string>
   <string name="config-close-without">Sulje tallentamatta</string>
   <string name="config-reportnone">Älä tee mitään</string>
   <string name="config-template">Malline</string>
@@ -183,7 +185,7 @@
   <string name="main-user-warn">Varoita...</string>
   <string name="main-browser-back">Takaisin</string>
   <string name="main-browser-forward">Eteenpäin</string>
-  <string name="main-browser-lasttab" fuzzy="true">Tätä välilehteä ei voi sulkea, koska se on viimeinen, sinulla tulee olla avoimena vähintään yksi muu välilehti</string>
+  <string name="main-browser-lasttab">Tätä välilehteä ei voi sulkea, koska se on viimeinen - sinulla tulee olla avoimena vähintään yksi muu välilehti</string>
   <string name="main-han-disconnect">Katkaise yhteys</string>
   <string name="main-han-connect">Yhdistä</string>
   <string name="main-help">Ohje</string>
@@ -236,8 +238,10 @@
   <string name="shortcut-next">Siirry seuraavaan muokkaukseen</string>
   <string name="shortcut-suspicious">Merkitse muokkaus epäilyttäväksi</string>
   <string name="shortcut-warn">Lähetä käyttäjälle varoitus peruuttamatta muokkausta</string>
-  <string name="shortcut-watch" fuzzy="true">Lisää näytetin sivun tarkkailulistalle</string>
+  <string name="shortcut-watch">Lisää näytetyn sivun tarkkailulistallesi</string>
+  <string name="shortcut-unwatch">Poistaa näytetyn sivun tarkkailulistaltasi</string>
   <string name="shortcut-browser-close-tab">Sulje selaimen välilehti</string>
+  <string name="shortcut-tab">Avaa uuden välilehden</string>
   <string name="warning-levelgroup">Varoitustaso</string>
   <string name="warning-levelauto">Automaattinen</string>
   <string name="warning-level1">Taso 1</string>
@@ -246,10 +250,12 @@
   <string name="warning-level4">Taso 4 (lopullinen)</string>
   <string name="warning-submit">Lähetä</string>
   <string name="warninglist-no-warning-title">Ei varoitusta</string>
-  <string name="han-already-connecting" fuzzy="true">Ole hyvä ja odota, yhdistän jo HAN:iin</string>
+  <string name="han-already-connecting">Odota, yhdistän jo HAN:iin...</string>
+  <string name="han-disconnected">Yhteytesi HAN:iin katkaistiin</string>
   <string name="han-network">Verkko</string>
   <string name="han-send">Lähetä</string>
   <string name="error-pagemissing">Sivua ei ole olemassa</string>
+  <string name="error-timeout">Pyyntö aikakatkaistu</string>
   <string name="error-unknown">Tuntematon virhe</string>
   <string name="block-done">Estetty $1</string>
   <string name="block-progress">Estetään $1...</string>
@@ -262,9 +268,11 @@
   <string name="history-undone">Muokkaus kohteessa $1 kumottu onnistuneesti</string>
   <string name="history-welcome-msg-title">Lähetetäänkö sen sijaan tervetuloviesti?</string>
   <string name="history-welcome-msg">Loit tämän keskustelusivun, eli sitä ei voi kumota. Haluatko korvata sen tervetulomallilla?</string>
+  <string name="newtab-title">Tämä on uusi välilehti!</string>
   <string name="whitelist-download">Ladataan uutta whitelistiä</string>
   <string name="logs-widget-name">Järjestelmälokit</string>
   <string name="wait">Odota...</string>
+  <string name="updating-wl">Päivitetään whitelistiä...</string>
   <string name="waiting">Odotetaan...</string>
   <string name="feature-nfru">Tämä toiminto on vain IP-käyttäjille</string>
   <string name="preferences-delete-using-filter">Et voi poistaa suodatinta, joka on käytössä tällä hetkellä</string>
@@ -277,10 +285,14 @@
   <string name="error-unknown-code">Tuntematon virhe: $1</string>
   <string name="relogin-fail">Ei voida kirjautua wikiin: $1</string>
   <string name="projects">Projektit</string>
+  <string name="login-username-doesnt-exist">Tätä käyttäjänimeä ei ole olemassa</string>
   <string name="unknown-item">Tuntematon kohde</string>
   <string name="main-revert-already-pending-title">Tämä muokkaus on jo palautettu</string>
   <string name="main-revert-type-unknown">tuntematon</string>
+  <string name="main-revert-type-in-userspace">käyttäjäavaruudessa</string>
+  <string name="main-revert-type-made-by-you">sinun tekemä</string>
   <string name="main-revert-type-made-on-talk-page">tehty keskustelusivulla</string>
   <string name="main-revert-type-made-white-list">tehnyt käyttäjä joka on sallittujen listalla</string>
   <string name="query-protected-link">Suojattu linkki</string>
+  <string name="queue-empty-title">se on tyhjä</string>
 </resources>
