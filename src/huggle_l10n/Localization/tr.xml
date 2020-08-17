@@ -10,6 +10,7 @@
 * Cagrix
 * Captantrips
 * Chansey
+* Cobija
 * Coolland
 * Grkn gll
 * HakanIST
@@ -883,7 +884,7 @@
   <string name="developer-mode-enter-title">Vaaay</string>
   <string name="developer-mode-enter-message">Geliştirici moduna girdiniz!</string>
   <string name="unimplemented">Bu özellik henüz uygulanmadı</string>
-  <string name="unknown-item">Bilinmeyen öğe</string>
+  <string name="unknown-item">Bilinmeyen öge</string>
   <string name="title-multiple-projects">Çoklu projeler ($1)</string>
   <string name="title-on"> $1 de</string>
   <string name="main-revert-custom-reason-text">Sebep sağlanmadı/özel geri alma</string>
