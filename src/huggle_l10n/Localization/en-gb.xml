@@ -282,36 +282,36 @@
   <string name="login-ssl">Use HTTPS to log in (requires OpenSSL)</string>
   <string name="login-fail">Login failed on $1</string>
   <string name="login-error-admin">Use of Huggle on this project requires an administrator account.</string>
-  <string name="login-error-age" fuzzy="true">Use of Huggle on this project requires an account at least $1 days old.</string>
+  <string name="login-error-age">Use of Huggle on this project requires your account to be at least $1 days old.</string>
   <string name="login-error-alldisabled">Huggle is currently disabled on all projects.</string>
   <string name="login-error-approval">Use of Huggle on $1 requires approval.</string>
   <string name="login-error-cancelled">Cancelled.</string>
   <string name="login-error-config">Login failed, unable to parse local config for $1: $2</string>
   <string name="login-error-count">Use of Huggle on this project requires at least $1 edits.</string>
-  <string name="login-error-disabled" fuzzy="true">Huggle is not enabled for your account on $1. Check user configuration page.</string>
-  <string name="login-error-global" fuzzy="true">Login failed: Unable to parse the global configuration. See debug log for more details.</string>
+  <string name="login-error-disabled">Huggle is not enabled for your account on $1. Check your user configuration page.</string>
+  <string name="login-error-global">Login failed - possible network connection issue? Unable to download or parse the global configuration page</string>
   <string name="login-error-invalid">Invalid username</string>
   <string name="login-error-noconfig">$1 does not have a Huggle configuration page</string>
   <string name="login-error-nouser">The user does not exist</string>
   <string name="login-error-password">Incorrect password</string>
   <string name="login-error-projdisabled">Huggle is currently disabled on $1.</string>
-  <string name="login-error-unknown" fuzzy="true">Unable to log to $1.</string>
+  <string name="login-error-unknown">Unable to log in to $1.</string>
   <string name="login-error-version">This version is out of date. Please update to the latest version.</string>
   <string name="login-error-whitelist">Failed to load user whitelist for $1.</string>
   <string name="login-ro-title">Switch to read-only</string>
   <string name="login-ro-question">One or more projects ($1) do not allow you to login with edit permissions (reason: $2). Do you want to switch to read-only mode instead?</string>
   <string name="login-ro-info">Project $1 switched to read-only mode</string>
-  <string name="main-stat" fuzzy="true">$1 edits per minute $2 reverts per minute, level $3</string>
+  <string name="main-stat">$1 edits per minute, $2 reverts per minute, level $3</string>
   <string name="main-menu-provider-stop">Stop provider</string>
   <string name="main-menu-provider-resume">Resume provider</string>
   <string name="provider-up">Connecting to recent changes stream on $2 using provider: $1</string>
   <string name="main-no-reason">No reason was provided by user</string>
-  <string name="main-restoring-slap" fuzzy="true">Currently restoring another edit, please wait...</string>
+  <string name="main-restoring-slap">Another edit is currently being restored, please wait...</string>
   <string name="main-page">Page</string>
   <string name="main-user">User</string>
   <string name="main-contribs">Contribs</string>
   <string name="main-history">History</string>
-  <string name="main-new-messages" fuzzy="true">You have new messages. Select \"System\" -&gt; \"Show new messages\" or press M to view them.</string>
+  <string name="main-new-messages">You have new messages. Select System -&gt; Show new messages, or press M to view them.</string>
   <string name="main-space">The page name can\'t end with a space, please correct the page name</string>
   <string name="main-system">System</string>
   <string name="main-status-bar">Processing &lt;b&gt;$1&lt;/b&gt; edits and &lt;b&gt;$2&lt;/b&gt; queries. Whitelisted users: &lt;b&gt;$3&lt;/b&gt; Queue size: &lt;b&gt;$4&lt;/b&gt; Statistics for $6: $5</string>
@@ -374,7 +374,7 @@
   <string name="main-page-patrol">Mark as patrolled</string>
   <string name="main-page-move">Move...</string>
   <string name="main-page-flag-suspicious-edit">Flag as a suspicious edit (this action will give +1 score to the user)</string>
-  <string name="main-page-flag-good-edit" fuzzy="true">Flag as a good edit (this action will give -200 score to the user)</string>
+  <string name="main-page-flag-good-edit">Flag as a good edit (this action subtracts 200 from the score of the user)</string>
   <string name="main-page-protect">Protect</string>
   <string name="main-page-delete">Delete</string>
   <string name="main-page-load">Load</string>
@@ -399,7 +399,7 @@
   <string name="main-browser-open">View this in an external browser</string>
   <string name="main-browser-newedits">Show new edits to page</string>
   <string name="main-browser-newcontribs">Show new contributions by user</string>
-  <string name="main-browser-lasttab" fuzzy="true">I can\'t close this tab because it\'s the last one. You must have at least one tab open</string>
+  <string name="main-browser-lasttab">I can\'t close this tab because it\'s the last one. You must have at least one tab open</string>
   <string name="main-revert-manual">No rollback token, fallback to manual revert of $1</string>
   <string name="main-han">HAN</string>
   <string name="main-han-disconnect">Disconnect</string>
@@ -418,7 +418,7 @@
   <string name="main-stats">$1 edits per minute, $2 reverts per minute</string>
   <string name="main-display-session-data">Display session data</string>
   <string name="main-display-whitelist">Display whitelist</string>
-  <string name="main-revert-custom-reson" fuzzy="true">Please provide a reason why you want to revert this edit to the previous revision</string>
+  <string name="main-revert-custom-reson">Please explain why you are reverting this edit to the previous revision</string>
   <string name="main-log1">Restoring the selected revision of $1</string>
   <string name="main-tip-pagetagdelete">Tag this page for deletion</string>
   <string name="main-tip-pagedelete">Delete this page</string>
@@ -430,7 +430,7 @@
   <string name="main-revert-newpage-title">Can\'t revert this</string>
   <string name="main-revert-newpage">This is a new page, so it can\'t be reverted, you can either tag it, or delete it.</string>
   <string name="main-restore-text-fail">Unable to restore the revision, because there is no text available for it</string>
-  <string name="main-restore-data-fail" fuzzy="true">Unable to restore the revision, because the wiki provided no data for selected version</string>
+  <string name="main-restore-data-fail">Unable to restore the revision, because the wiki provided no data for the selected version</string>
   <string name="main-welcome-user">Welcome user</string>
   <string name="main-custom-reason-title">Revert edit using custom reason</string>
   <string name="main-custom-reason-text">Please provide a reason why you want to revert this edit</string>
@@ -439,7 +439,7 @@
   <string name="main-report-user">Report user</string>
   <string name="main-edit-user-talk">Edit user talk</string>
   <string name="message-title">Message $1</string>
-  <string name="message-help" fuzzy="true">Specify one or both of Subject and Summary. If no summary is given, the subject will be used; if no subject is given, no header will be added.</string>
+  <string name="message-help">Specify Subject and/or Summary. If no summary is given, the subject will be used; if no subject is given, no header will be added.</string>
   <string name="message-subject">Subject:</string>
   <string name="message-message">Message:</string>
   <string name="message-summary">Summary:</string>
@@ -448,10 +448,10 @@
   <string name="message-fail-re-user-tp">Unable to retrieve $1. Stopping message delivery to that user</string>
   <string name="message-er">Unable to deliver the message to $1: $2</string>
   <string name="message-error">Failed to deliver a message to $1! Please check the logs!</string>
-  <string name="message-fail-retrieve-talk" fuzzy="true">unable to retrieve the user talk page</string>
+  <string name="message-fail-retrieve-talk">Unable to retrieve the user talk page</string>
   <string name="message-done">Successfully delivered message on $2 to: $1</string>
-  <string name="message-fail-token-1" fuzzy="true">unable to retrieve the edit token</string>
-  <string name="message-fail-token-2" fuzzy="true">no token was returned by the request</string>
+  <string name="message-fail-token-1">Unable to retrieve the edit token</string>
+  <string name="message-fail-token-2">No token was returned by the request</string>
   <string name="protect-request-title">Request protection of $1</string>
   <string name="protect-reason">Reason:</string>
   <string name="protect-expiry">Expiry:</string>
@@ -502,7 +502,7 @@
   <string name="queue-examplelabel3">Don\'t check this attribute</string>
   <string name="queue-usergroup">Show only edits from these users</string>
   <string name="report-title">Report $1</string>
-  <string name="report-warn" fuzzy="true">This user has already reached warning level 4, so no further templates will be delivered to them. You can report them now, but please, make sure that they already reached the proper number of recent warnings! You can do so by clicking the \"talk page\" button in the following form. Keep in mind that this form and this warning are displayed whether your revert was successful or not, so you might conflict with other users here (double check if the user isn\'t already reported). Do you want to report this user?</string>
+  <string name="report-warn">This user has already reached warning level 4, so no further templates will be delivered to them. You can report them now, but please, make sure that they already reached the proper number of recent warnings! You can do so by clicking the \"talk page\" button in the following form. Keep in mind that this form and this warning are displayed whether your revert was successful or not, so you might conflict with other users here (double check that the user isn\'t already reported). Do you want to report this user?</string>
   <string name="report-tu">Report user</string>
   <string name="report-reason">Reason:</string>
   <string name="report-auto">Reported $1</string>
@@ -515,7 +515,7 @@
   <string name="reportuser-not">This user is not reported now</string>
   <string name="report-evidence-none-provid">No diffs were provided as evidence. This will make it very hard for administrators to figure out whether the user is a vandal or not. Are you sure you want to continue?</string>
   <string name="report-duplicate">The user has already been reported</string>
-  <string name="report-fail2" fuzzy="true">Error unable to retrieve report page at $1</string>
+  <string name="report-fail2">Error: Unable to retrieve report page at $1</string>
   <string name="report-progress">Reporting $1...</string>
   <string name="report-retrieving">Retrieving current report page...</string>
   <string name="report-done">Reported</string>
@@ -527,8 +527,8 @@
   <string name="score-take-whole-no-talk-word">Matches only whole words on non-talk pages</string>
   <string name="score-only-whole-word">Matches only whole words</string>
   <string name="score-take-any-word">Matches any word that contains this string</string>
-  <string name="ssl-is-not-supported" fuzzy="true">You requested to use SSL but $1 doesn\'t support it.</string>
-  <string name="ssl-required" fuzzy="true">Webserver of $1 requires SSL to be enabled. Please turn SSL on and try again. If you can\'t enable SSL (option is grayed out) you may need to install openssl libraries to your system.</string>
+  <string name="ssl-is-not-supported">You requested to use SSL, but unfortunately, $1 doesn\'t support it.</string>
+  <string name="ssl-required">The webserver of $1 requires that SSL be enabled. Please turn SSL on and try again. If you can\'t enable SSL (option is greyed out) you may need to install OpenSSL libraries to your system.</string>
   <string name="uaa-not-supported">UAA not available</string>
   <string name="uaa-not-supported-text">The \"Usernames for administrator attention\" noticeboard is not available on your wiki.</string>
   <string name="uaa-reporting">Reporting $1 to UAA</string>
@@ -536,20 +536,20 @@
   <string name="uaa-no-reason-warn">You didn\'t specify a reason as to why the username is a policy violation. Please specify a reason.</string>
   <string name="uaa-nr">No reason was provided</string>
   <string name="uaa-g1">Getting content of UAA</string>
-  <string name="uaa-e1" fuzzy="true">the query for the page contents returned no data.</string>
-  <string name="uaa-e2" fuzzy="true">the page contents weren\'t available.</string>
+  <string name="uaa-e1">The query for the page contents returned no data.</string>
+  <string name="uaa-e2">The page contents weren\'t available.</string>
   <string name="read-only">Project $1 is configured as read only, editing functions will be limited</string>
   <string name="revert-confirm-multiple">This will revert multiple edits by $1. Continue?</string>
   <string name="revert-confirm-range">The author of the target revision, $2, is in the same range as the author of the current revision, $1, and may be the same person. Ensure the target revision is correct before proceeding. Continue?</string>
   <string name="revert-confirm-same">This will revert to another revision by the user that is being reverted, $1. Continue?</string>
   <string name="revert-confirm-warned">This will revert to a revision by $1, who has previously been warned. Continue?</string>
   <string name="revert-error-first">This edit is the first edit to the page, and it cannot be reverted.</string>
-  <string name="revert-only" fuzzy="true">Edit is the only edit to the page.</string>
+  <string name="revert-only">This edit is the only edit to the page.</string>
   <string name="revert-creator">Last edit was made by page creator, $1.</string>
   <string name="revert-preflightcheck">Preflight check</string>
   <string name="revert-delete-instead">Delete the page instead?</string>
   <string name="revert-speedy-instead">Tag for speedy deletion instead?</string>
-  <string name="revert-cannotundo" fuzzy="true">Cannot undo due to conflicting intermediate edits</string>
+  <string name="revert-cannotundo">Cannot undo this edit due to conflicting intermediate edits.</string>
   <string name="revert-conflict">The page was edited by the whitelisted user \'$1\'</string>
   <string name="revert-fail">Did not revert $1: $2</string>
   <string name="revert-nochange">The content of the target revision is identical to that of the current revision</string>
@@ -566,7 +566,7 @@
   <string name="tag-summary">Summary:</string>
   <string name="tag-insertatend">Insert at the end of the page</string>
   <string name="update-title">New version available</string>
-  <string name="update-progress" fuzzy="true">Downloading the new version...</string>
+  <string name="update-progress">Downloading the new version, please wait...</string>
   <string name="update-error">Failed to download the new version</string>
   <string name="updater-title">New version of Huggle is available</string>
   <string name="updater-update">Update</string>
@@ -574,7 +574,7 @@
   <string name="updater-open-manualdownloadpage">Open the download page</string>
   <string name="updater-close">Close</string>
   <string name="updater-disable-notify">Disable updates</string>
-  <string name="user-history-fail" fuzzy="true">unable to retrieve history for user: $1</string>
+  <string name="user-history-fail">Unable to retrieve history for user: $1</string>
   <string name="userinfo-generic">User info</string>
   <string name="userinfo-retrieve">Retrieve info</string>
   <string name="shortcut-page-patrol-edit">Patrol edit</string>
@@ -587,24 +587,24 @@
   <string name="shortcut-next">Go to the next edit</string>
   <string name="shortcut-suspicious">Mark edit as suspicious</string>
   <string name="shortcut-back">Go to the previously displayed edit</string>
-  <string name="shortcut-forward" fuzzy="true">Go to an edit that you loaded in past but moved back from</string>
-  <string name="shortcut-warn" fuzzy="true">Send a warning to the user, without reverting the edit</string>
+  <string name="shortcut-forward">Go to an edit you loaded in the past but moved back from</string>
+  <string name="shortcut-warn">Send a warning to the user, without reverting the edit</string>
   <string name="shortcut-revert">Revert edit</string>
   <string name="shortcut-x-raw">Trigger N th item in revert and warn menu</string>
   <string name="shortcut-x-revert">Trigger N th item in revert menu</string>
-  <string name="shortcut-watch" fuzzy="true">Inserts a displayed page to a watchlist</string>
-  <string name="shortcut-unwatch" fuzzy="true">Removes a displayed page from a watchlist</string>
+  <string name="shortcut-watch">Inserts a displayed page into your watchlist</string>
+  <string name="shortcut-unwatch">Removes a displayed page from your watchlist</string>
   <string name="shortcut-x-warn">Trigger N th item in warn menu</string>
   <string name="shortcut-good">Flag the currently displayed edit as good</string>
-  <string name="shortcut-open-in-huggle" fuzzy="true">Open currently displayed page</string>
-  <string name="shortcut-open" fuzzy="true">Open currently displayed edit in a browser</string>
+  <string name="shortcut-open-in-huggle">Opens currently displayed page</string>
+  <string name="shortcut-open">Opens the currently displayed edit in a browser</string>
   <string name="shortcut-talk">Display a talk page of user who did this change</string>
   <string name="shortcut-revert-agf-1">Revert last revision assuming good faith</string>
   <string name="shortcut-browser-close-tab">Close a browser tab</string>
   <string name="shortcut-tab">Opens a new tab</string>
-  <string name="shortcut-rw-stay" fuzzy="true">Reverts current edit, warns user and stays on page</string>
-  <string name="shortcut-revert-and-stay" fuzzy="true">Revert current edit and stay on page</string>
-  <string name="shortcut-custom-reason" fuzzy="true">Revert edit using custom edit summary reason</string>
+  <string name="shortcut-rw-stay">Revert the current edit, warn the author and stay on the page</string>
+  <string name="shortcut-revert-and-stay">Revert the current edit and stay on the page</string>
+  <string name="shortcut-custom-reason">Revert the edit using a custom edit summary reason</string>
   <string name="shortcut-user-contribs-browser">Open user\'s contributions in a browser</string>
   <string name="warning-title">Warn $1</string>
   <string name="warning-levelgroup">Warning level</string>
@@ -619,14 +619,14 @@
   <string name="wikiedit-tp-fail">Unable to retrieve $1 warning level. It will not be used for scoring</string>
   <string name="missing-warning">There is no such warning template $1</string>
   <string name="han-not">Vandalism network isn\'t allowed in options</string>
-  <string name="han-connecting" fuzzy="true">Connecting to Huggle anti vandalism network</string>
+  <string name="han-connecting">Connecting to the Huggle anti vandalism network</string>
   <string name="han-already-connected">Not connecting to HAN because it\'s already connected</string>
-  <string name="han-already-connecting" fuzzy="true">Please wait, I am already connecting to HAN</string>
+  <string name="han-already-connecting">Please wait, I am already connecting to HAN...</string>
   <string name="han-disconnected">You were disconnected from HAN</string>
   <string name="error-loggedout">Account has been logged out, logging back in...</string>
   <string name="error-noresponse">No response</string>
   <string name="error-pagemissing">The page does not exist</string>
-  <string name="error-reloginfail" fuzzy="true">Failed to log back in, try restarting Huggle</string>
+  <string name="error-reloginfail">Failed to log back in. Maybe try restarting Huggle</string>
   <string name="error-timeout">Request timed out</string>
   <string name="error-unknown">Unknown error</string>
   <string name="block-done">Blocked $1</string>
@@ -648,16 +648,16 @@
   <string name="edit-progress">Editing $1...</string>
   <string name="history-fail">Failed to retrieve history of $1</string>
   <string name="history-progress">Retrieving history of $1 ($2)...</string>
-  <string name="history-work" fuzzy="true">Undoing own edit made to $1</string>
+  <string name="history-work">Undoing own edit, which was made to $1</string>
   <string name="history-no-item-selected">No item is selected in history widget</string>
   <string name="history-message-revert-title">Do you really want to undo just this message?</string>
-  <string name="history-another-edit" fuzzy="true">I am already undoing another edit, please wait</string>
+  <string name="history-another-edit">Another edit is already being undone, please wait...</string>
   <string name="history-not-found">Nothing was found to undo</string>
   <string name="history-already-done">This was already undone</string>
   <string name="history-message-revert-body">This was a message that is referenced by a rollback: are you sure you want to undo only the template, not your edit to page? You will need to undo the rollback if you want to revert both of these.</string>
   <string name="history-revert-fail">Unable to undo your edit to $1 as the following error was encountered: $2</string>
   <string name="history-undone">Successfully undid edit to $1</string>
-  <string name="history-retrieve-fail" fuzzy="true">Unable to retrieve the content of the page that you wanted to undo your own edit on, error was: $1</string>
+  <string name="history-retrieve-fail">Unable to retrieve the content of page which we wanted to undo our own edit. Error was: $1</string>
   <string name="history-welcome-msg-title">Send a welcome message instead?</string>
   <string name="history-welcome-msg">You created this talk page, so it can\'t be undone. Do you want to replace it with a welcome template?</string>
   <string name="notify-fail">Did not notify the creator of $1</string>
