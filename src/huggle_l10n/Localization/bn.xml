@@ -5,6 +5,7 @@
 * Macofe
 * Mohammed Galib Hasan
 * Tauhid16
+* Titodutta
 * আফতাবুজ্জামান
 -->
 <resources>
@@ -637,9 +638,11 @@
   <string name="warning-level2">স্তর ২</string>
   <string name="warning-level3">স্তর ৩</string>
   <string name="warning-level4">স্তর ৪ (চূড়ান্ত)</string>
+  <string name="warning-confirm-title">সত্যিই কি সতর্কবার্তা প্রেরণ করবেন?</string>
   <string name="warning-warntype">সতর্কতার ধরন:</string>
   <string name="warning-warnlog">এই ব্যবহারকারীর জন্য সতর্কতা:</string>
   <string name="warning-submit">পাঠান</string>
+  <string name="warninglist-no-warning-title">কোনও সতর্কতা নয়</string>
   <string name="wikiedit-tp-fail">$1 সতর্কতার স্তর সংগ্রহ করা যায়নি। এটা স্কোরিং করতে ব্যবহার করা হবে না</string>
   <string name="missing-warning">$1 নামক কোনো সতর্কতা টেমপ্লেট নেই</string>
   <string name="han-not">ধ্বংসপ্রবণতা নেটওয়ার্ক বিকল্পগুলিতে অনুমোদিত নয়</string>
@@ -758,6 +761,7 @@
   <string name="preferences-sounds-minimal-score">বিজ্ঞপ্তির জন্য ন্যূনতম সম্পাদন স্কোর</string>
   <string name="preferences-queue-size">সারির আকার</string>
   <string name="preferences-empty-queue-page">সারির পাতা খালি:</string>
+  <string name="preferences-color-scheme-diff-default">পূর্বনির্ধারিত</string>
   <string name="fail">ব্যর্থ হয়েছে</string>
   <string name="request">অনুরোধ করুন</string>
   <string name="requesting">অনুরোধ করা হচ্ছে</string>
