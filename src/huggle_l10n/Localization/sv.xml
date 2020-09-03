@@ -8,13 +8,14 @@
 * Macofe
 * McDutchie
 * Paracel63
+* Sabelöga
 * Umeaboy
 * WikiPhoenix
 -->
 <resources>
   <string name="name">Svenska</string>
   <string name="autorelog">Gör detta utan att fråga mig nästa gång</string>
-  <string name="isrtl">false</string>
+  <string name="isrtl">falskt</string>
   <string name="add">Lägg till</string>
   <string name="cancel">Avbryt</string>
   <string name="clear">Rensa</string>
@@ -28,7 +29,7 @@
   <string name="done">Klar</string>
   <string name="no">Nej</string>
   <string name="ok">OK</string>
-  <string name="override-warn">Du har skrivit över projektets konfigurationssökväg. Observera att ditt konto kan bli permanent blockerat om du missbrukar denna funktion för att få skrivåtkomst på wikin där du vanligtvis inte skulle ha det.</string>
+  <string name="override-warn">Du har överskridit projektets konfigurationssökväg. Observera att ditt konto kan bli permanent blockerat om du missbrukar denna funktion för att få skrivåtkomst på wikin där du vanligtvis inte skulle ha det.</string>
   <string name="remove">Ta bort</string>
   <string name="rename">Byt namn</string>
   <string name="reload">Uppdatera</string>
@@ -78,7 +79,7 @@
   <string name="block-title">Blockera $1</string>
   <string name="block-reason">Anledning:</string>
   <string name="block-duration">Tidsperiod:</string>
-  <string name="block-message">Diskussionssidmeddelande:</string>
+  <string name="block-message">Diskussionsmeddelande:</string>
   <string name="block-message-user">Skicka meddelande till målanvändaren med en förklaring till blockeringen</string>
   <string name="block-anononly">Blockera endast oinloggade användare</string>
   <string name="block-creation">Blockera kontoskapande</string>
