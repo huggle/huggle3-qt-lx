@@ -686,7 +686,7 @@
   <string name="editquery-token-error">Unable to retrieve edit token</string>
   <string name="editquery-nocsrft">No CSRF token</string>
   <string name="editquery-error-retrieve-prev">Unable to retrieve the previous content of page $1</string>
-  <string name="editquery-error-append" fuzzy="true">You cannot use both \'append\' and \'prepend\' to edit the page</string>
+  <string name="editquery-error-append">You can\'t use both Append and Prepend for editing a page</string>
   <string name="editquery-error-badtoken">Bad token</string>
   <string name="editquery-invalid-token">Unable to edit $1 because the token in the cache is no longer valid. Try to edit the page again.</string>
   <string name="provider-failure">Failure of feed provider $1 on $2, trying to find an alternative provider</string>
@@ -705,29 +705,29 @@
   <string name="feature-nfru">This feature is for IP users only</string>
   <string name="report-no-user">No user has been selected to report, please select a user first</string>
   <string name="welcome-show">Display this message also next time you launch Huggle</string>
-  <string name="welcome-tp-empty-fail" fuzzy="true">This user does not have an empty talk page, are you sure you want to send a message to him?</string>
+  <string name="welcome-tp-empty-fail">This user does not have an empty talk page, are you sure you want to send a message to them?</string>
   <string name="welcome-page-miss-fail">Huggle was unable to retrieve the contents of user talk page, are you sure you want to send a welcome message to them?</string>
-  <string name="cr-newer-edits" fuzzy="true">Conflict resolved: reverted all edits, including new edits. Edits were by same user: $1.</string>
-  <string name="cr-resolved-same-user" fuzzy="true">Conflict resolved: reverted all edits including new edits, made by same users - edits are by same user: $1</string>
+  <string name="cr-newer-edits">Conflict resolved: reverted all edits, including new edits. Edits were by the same user: $1.</string>
+  <string name="cr-resolved-same-user">Conflict resolved: reverted all edits including new edits, made by the same users: $1</string>
   <string name="cr-stop-new-edit">Conflict resolved: did not perform any action - there are newer edits to $1</string>
-  <string name="cr-stop-multiple-same" fuzzy="true">Conflict resolved: do not perform any action - there are multiple edits by same user to $1</string>
-  <string name="cr-revert-same-user" fuzzy="true">Conflict resolved: revert all edits - there are multiple edits by same user to $1</string>
-  <string name="cr-message-same" fuzzy="true">There are multiple edits to $1 by same user, are you sure you want to revert them?</string>
+  <string name="cr-stop-multiple-same">Conflict resolved: do not perform any action - there are multiple edits by the same user to $1</string>
+  <string name="cr-revert-same-user">Conflict resolved: revert all edits - there are multiple edits by the same user to $1</string>
+  <string name="cr-message-same">There are multiple edits to $1 by the same user, are you sure you want to revert them?</string>
   <string name="cr-message-new">There are newer edits to $1. Are you sure you really want to revert them?</string>
-  <string name="cr-message-not-same" fuzzy="true">There are newer edits made to $1 by a different user. Are you sure you want to revert them all? (It will likely fail anyway because of an old token.)</string>
+  <string name="cr-message-not-same">There are newer edits made to $1 by a different user. Are you sure you want to revert them all? (It will likely fail anyway because it will have an old token.)</string>
   <string name="preferences-delete-using-filter">You can\'t delete a filter that is currently being used</string>
-  <string name="preferences-extension-disabled" fuzzy="true">This extension is already scheduled for disabling the next startup of Huggle</string>
-  <string name="preferences-extension-disabled-restart" fuzzy="true">This extension is already scheduled to be disabled on the next startup of Huggle</string>
-  <string name="preferences-extension-enabled" fuzzy="true">This extension is not scheduled for disabling at the next startup of Huggle</string>
-  <string name="preferences-extension-enabled-restart" fuzzy="true">The extension was enabled, however you need to restart Huggle for it to start working</string>
+  <string name="preferences-extension-disabled">This extension is already scheduled for disabling on the next startup of Huggle</string>
+  <string name="preferences-extension-disabled-restart">Extension was set to be disabled on the next startup of Huggle</string>
+  <string name="preferences-extension-enabled">This extension is not scheduled for disabling on the next startup of Huggle</string>
+  <string name="preferences-extension-enabled-restart">Extension was enabled. You will need to restart Huggle for it to take effect.</string>
   <string name="preferences-watchlist-watch">Add to watchlist</string>
   <string name="preferences-watchlist-unwatch">Remove from watchlist</string>
   <string name="preferences-watchlist-preferences">Follow your on-wiki preferences</string>
   <string name="preferences-watchlist-nochange">Do nothing</string>
-  <string name="preferences-sounds-enable-queue" fuzzy="true">Play sound when new item is added to queue</string>
+  <string name="preferences-sounds-enable-queue">Play sound when a new item is added to the queue</string>
   <string name="preferences-sounds-enable-irc">Play sound when a message is received in HAN</string>
   <string name="preferences-sounds-minimal-score">Minimal edit score for notification</string>
-  <string name="preferences-performance-catscansandwatched" fuzzy="true">Enable category scans and watch status filtering (requires an extra API query per each edit)</string>
+  <string name="preferences-performance-catscansandwatched">Enable category scans and watch status filtering (requires an extra API query per edit)</string>
   <string name="preferences-max-score">Enable global max score (edits with higher score will be ignored - useful if you want to see only good edits)</string>
   <string name="preferences-min-score">Enable global min score (edits with lower score will be ignored - useful if you want to see only bad edits)</string>
   <string name="fail">Fail</string>
@@ -739,7 +739,7 @@
   <string name="protect-request-fail-notime">The query didn\'t return a timestamp. This may be a MediaWiki bug. Aborting the query</string>
   <string name="message-fail">Failed to deliver the message</string>
   <string name="edit-conflict">Edit conflict</string>
-  <string name="page-tag-nodescription" fuzzy="true">there is no description for this tag</string>
+  <string name="page-tag-nodescription">There is no description for this tag</string>
   <string name="page-tag-fail">Failed to tag page</string>
   <string name="page-tag-error">Unable to tag the page, error was: $1</string>
   <string name="page-unknown">Unknown page</string>
@@ -750,8 +750,8 @@
   <string name="block-alreadyblocked">User is already blocked</string>
   <string name="report-fail">Failed to report user because: $1</string>
   <string name="report-page-fail">Error: unable to retrieve report page at $1</string>
-  <string name="report-page-fail-time" fuzzy="true">Unable to retrieve timestamp of current report page, api failure:\n\n $1</string>
-  <string name="report-unable" fuzzy="true">Unable to report user.</string>
+  <string name="report-page-fail-time">Unable to retrieve timestamp of current report page, API failure:\n\n $1</string>
+  <string name="report-unable">Unable to report user</string>
   <string name="about-qt">, compiled using QT $1 Running on QT $1</string>
   <string name="about-info">, based on $1, target platform: $2</string>
   <string name="error-unknown-code">Unknown Error: $1</string>
@@ -759,15 +759,15 @@
   <string name="projects">Projects</string>
   <string name="unable-to-retrieve-user-list">Unable to retrieve user list: $1</string>
   <string name="login-no-userinfo">Site didn\'t return any userinfo information</string>
-  <string name="login-invalid-register-date" fuzzy="true">Invalid registrationdate returned by mediawiki</string>
+  <string name="login-invalid-register-date">Invalid registration date returned by mediawiki</string>
   <string name="login-site-info-query-failed">Site info query for $1 has failed: $2</string>
   <string name="login-no-site-info-returned">No site info was returned for this wiki</string>
-  <string name="loading-main-window" fuzzy="true">Loading main Huggle window</string>
-  <string name="api.php-invalid-response" fuzzy="true">The api.php responded with invalid text (webserver is down?), please check debug log for precise information</string>
+  <string name="loading-main-window">Loading main Huggle window...</string>
+  <string name="api.php-invalid-response">The API responded with invalid text (webserver is down?), please check debug log for precise information</string>
   <string name="login-username-doesnt-exist">This username doesn\'t exist</string>
   <string name="developer-mode-enter-title">Whee</string>
-  <string name="developer-mode-enter-message" fuzzy="true">You entered a developer mode!</string>
-  <string name="unimplemented" fuzzy="true">This feature was not implemented yet</string>
+  <string name="developer-mode-enter-message">You have entered into developer mode!</string>
+  <string name="unimplemented">This feature has not been implemented yet</string>
   <string name="unknown-item">Unknown item</string>
   <string name="title-multiple-projects">multiple projects ($1)</string>
   <string name="title-on">on $1</string>
@@ -780,7 +780,7 @@
   <string name="main-revert-type-made-on-talk-page">made on talk page</string>
   <string name="main-revert-type-made-white-list">made by a user who is on the whitelist</string>
   <string name="query-result-nodata">Query result does not contain any data</string>
-  <string name="main-revert-warn" fuzzy="true">This edit is $1, so even if it looks like it is a vandalism, it may not be, are you sure you want to revert it?</string>
+  <string name="main-revert-warn">This edit is $1, so even if it looks like it is a vandalism, it may not be. Are you sure you want to revert it?</string>
   <string name="query-request-noaction">No action provided for API request</string>
   <string name="query-login-undefined">Login token requires a user defined value that is not stored in memory</string>
   <string name="query-protected-link">Protected link</string>
