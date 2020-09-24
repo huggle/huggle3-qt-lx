@@ -784,7 +784,7 @@
   <string name="main-revert-type-made-by-you">gjort av dig</string>
   <string name="main-revert-type-made-on-talk-page">gjord på diskussionssidan</string>
   <string name="main-revert-type-made-white-list">gjord av en användare som är vitlistad</string>
-  <string name="main-revert-warn" fuzzy="true">Denna redigering är $1, så även om det ser ut som det är vandalism kanske det inte är det, är du säker på att du vill återställa den?</string>
+  <string name="main-revert-warn">Denna redigering är $1, så även om det ser ut som det är vandalism kanske det inte är det. Är du säker på att du vill återställa den?</string>
   <string name="query-protected-link">Skyddad länk</string>
   <string name="queue-empty-title">Den är tom</string>
   <string name="queue-empty-text">Det finns ingenting annat i kön...</string>
