@@ -20,6 +20,7 @@
 * LuCKY
 * Macofe
 * Mavrikant
+* MuratTheTurkish
 * Rapsar
 * Roxy
 * Sayginer
@@ -494,7 +495,7 @@
   <string name="main-revert-custom-reson">Lütfen, bu düzenlemeyi önceki revizyona neden geri döndüğünüzü açıklayın</string>
   <string name="main-log1">$1 sayfası seçilen sürümüne döndürülüyor</string>
   <string name="main-tip-pagetagdelete">Sayfayı silinmesi için etiketle</string>
-  <string name="main-tip-pagedelete">Sayfayı sil</string>
+  <string name="main-tip-pagedelete">Bu sayfayı sil</string>
   <string name="main-tip-userreport">Kullanıcıyı rapor et</string>
   <string name="main-tip-userblock">Kullanıcıyı engelle</string>
   <string name="main-revision-acceptpend">Bekleyen bu sürümü kabul et</string>
