@@ -395,7 +395,7 @@ namespace Huggle
             //! Since Huggle 3.4.0 we use huggle.json
             QString     GlobalConfig_UserConf = "User:$1/huggle.yaml.js";
             QString     GlobalConfig_UserConf_old = "User:$1/huggle3.css";
-            QString     GlobalConfig_Whitelist = "http://huggle.wmflabs.org/data/";
+            QString     GlobalConfig_Whitelist = "https://huggle-wl.wmflabs.org/";
             bool        GlobalConfigWasLoaded = false;
             QString     GlobalConfig_Xmlrcs = "huggle-rc.wmflabs.org";
             quint16     GlobalConfig_XmlrcsPort = 8822;
