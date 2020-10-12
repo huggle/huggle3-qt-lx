@@ -88,7 +88,7 @@
   <string name="about-contributors">Développeurs :</string>
   <string name="block-not">L’utilisateur n’est pas bloqué</string>
   <string name="block-title">Blocage de $1</string>
-  <string name="block-reason">Motif :</string>
+  <string name="block-reason">Motif :</string>
   <string name="block-duration">Durée :</string>
   <string name="block-message">Message sur la page de discussion :</string>
   <string name="block-message-user">Envoyer un message à l’utilisateur cible avec une explication du blocage</string>
@@ -323,10 +323,10 @@
   <string name="login-error-cancelled">Annulé.</string>
   <string name="login-error-config">Échec à la connexion, impossible d’analyser la configuration locale pour $1 : $2</string>
   <string name="login-error-config-retrieve">Échec de connexion, impossible de récupérer la configuration de l’utilisateur « $1 »</string>
-  <string name="login-error-config-query-no-data">La connexion a échoué  - problème de connexion réseau ? La page de la configuration globale n’a pas pu être téléchargée.</string>
+  <string name="login-error-config-query-no-data">La connexion a échoué  – problème de connexion réseau ? La configuration globale n’a pas pu être téléchargée.</string>
   <string name="login-error-count">L’utilisation de Huggle sur ce projet requiert au moins $1 modification{{PLURAL:$1||s}}.</string>
   <string name="login-error-disabled">Huggle n’est pas activé pour votre compte sur $1. Vérifiez la configuration sur votre page utilisateur.</string>
-  <string name="login-error-global">La connexion a échoué  - problème de connexion réseau ? La page de la configuration globale n’a pas pu être téléchargée.</string>
+  <string name="login-error-global">La connexion a échoué  – problème de connexion réseau ? La configuration globale n’a pas pu être téléchargée.</string>
   <string name="login-error-invalid">Nom d’utilisateur non valide</string>
   <string name="login-error-noconfig">$1 n’a pas de page de configuration pour Huggle</string>
   <string name="login-error-nouser">L’utilisateur n’existe pas</string>
@@ -888,7 +888,7 @@
   <string name="main-revert-type-made-on-talk-page">fait sur la page de discussion</string>
   <string name="main-revert-type-made-white-list">fait par un utilisateur de la liste blanche</string>
   <string name="query-result-nodata">Le résultat de la requête ne contient aucune donnée</string>
-  <string name="main-revert-warn">Cette modification est $1, donc même si elle ressemble à du vandalisme, elle peut ne pas en être. Êtes-vous sûr de vouloir l’annuler ?</string>
+  <string name="main-revert-warn">Cette modification est $1, donc même si elle ressemble à du vandalisme, elle peut ne pas en être. Êtes-vous sûr{{GENDER:||e}} de vouloir l’annuler ?</string>
   <string name="query-request-noaction">Aucune action fournie pour la requête de l’API</string>
   <string name="query-login-undefined">Le jeton de connexion nécessite une valeur définie par l’utilisateur, il n’est pas stocké en mémoire</string>
   <string name="query-protected-link">Lien protégé</string>
