@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
 * Aftabuzzaman
+* Al Riaz Uddin Ripon
 * Bodhisattwa
 * Macofe
 * Mohammed Galib Hasan
@@ -9,9 +10,9 @@
 * আফতাবুজ্জামান
 -->
 <resources>
-  <string name="name">বাংলা</string>
+  <string name="name">ইংরেজি</string>
   <string name="autorelog">পরের বার জিজ্ঞাসা না করে এটি করুন</string>
-  <string name="isrtl">false</string>
+  <string name="isrtl">মিথ্যা</string>
   <string name="add">যোগ</string>
   <string name="cancel">বাতিল</string>
   <string name="clear">পরিষ্কার</string>
@@ -120,7 +121,7 @@
   <string name="config-defaults">পূর্বনির্ধারিত</string>
   <string name="config-minor">অনুল্লেখ্য হিসেবে টীকা দাও</string>
   <string name="config-ip">আইপি ব্যবহারকারী</string>
-  <string name="config-watchlist">নজরতালিকায় যোগ করো</string>
+  <string name="config-watchlist">নজরতালিকায় যোগ</string>
   <string name="config-defaultsummary">ম্যানুয়াল সম্পাদনার জন্য পূর্বনির্ধারিত সারাংশ</string>
   <string name="config-undosummary">নিজের সম্পাদনা বাতিলের সময় সারাংশ</string>
   <string name="config-confirm-user">ব্যবহারকারী নামস্থানে করা সম্পাদনা বাতিলের জন্য নিশ্চিতকরণ দরকার</string>
@@ -132,7 +133,7 @@
   <string name="config-instant-reverts">তাত্ক্ষণিক বাতিল ব্যবহার করুন (খুব দ্রুত, কিন্তু একবার কার্যকর হলে বাতিল করা যাবে না)</string>
   <string name="config-revert-wait">বাতিলের বিলম্ব (সেকেন্ড)</string>
   <string name="config-revert">বাতিল করুন</string>
-  <string name="config-skip">এড়ান</string>
+  <string name="config-skip">এড়িয়ে যান</string>
   <string name="config-revert-diff">পাতায় সম্পাদনা বাতিল করুন সেটি প্রদর্শিত পার্থক্যের চেয়ে নতুন ও যদি তা একই ধ্বংসপ্রবণ ব্যবহারকারী দ্বারা করা হয়</string>
   <string name="config-change-all">হাগল ২-এর মত আরো আচরণ করে সব হাগল সেটিংস পরিবর্তন করুন</string>
   <string name="config-merge-messages">বিদ্যমান পরিচ্ছেদে অন্যদের সাথে আপনার বার্তা একত্রিত করুন</string>
