@@ -10,7 +10,7 @@
 * আফতাবুজ্জামান
 -->
 <resources>
-  <string name="name">ইংরেজি</string>
+  <string name="name">বাংলা</string>
   <string name="autorelog">পরের বার জিজ্ঞাসা না করে এটি করুন</string>
   <string name="isrtl">মিথ্যা</string>
   <string name="add">যোগ</string>
