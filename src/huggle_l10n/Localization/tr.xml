@@ -457,7 +457,7 @@
   <string name="main-user-message">Mesaj...</string>
   <string name="main-user-warn">Uyar...</string>
   <string name="main-user-db">Kullanıcının kötülük puanını azalt</string>
-  <string name="main-user-report">Raporla</string>
+  <string name="main-user-report">Bildir</string>
   <string name="main-user-ib">Kötülük skorunu artır</string>
   <string name="main-user-contribution-browser">Katkı tarayıcısı</string>
   <string name="main-user-clear-tp">Kullanıcının tartışma sayfasını temizle</string>
@@ -597,7 +597,7 @@
   <string name="report-progress">$1 rapor ediliyor...</string>
   <string name="report-retrieving">Geçerli rapor sayfası alınıyor...</string>
   <string name="report-done">Rapor edildi</string>
-  <string name="report-user">Rapor et</string>
+  <string name="report-user">Bildir</string>
   <string name="score-score">Puan</string>
   <string name="score-word">Kelime</string>
   <string name="score-range">Aralık</string>
