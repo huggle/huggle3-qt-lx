@@ -169,6 +169,7 @@
   <string name="config-warning-api">הצגות אזהרות לשאילתות API</string>
   <string name="config-title-diff">כותרת הדף בכל השוואה (טקסט גדול שמראה רק כותרת דף בראש כל השוואה)</string>
   <string name="config-updates">בדיקת עדכונים</string>
+  <string name="config-reset-menu">הגדרות המיזם (רשימת סוגי האזהרות) השתנו מאז הביקור האחרון שלך, קיצורי הדרך לתפריטים נגללים (שחזור ואזהרה וכו׳) אופסו.</string>
   <string name="config-beta">בדיקת גרסאות בטא</string>
   <string name="config-html-messages">HAN יכול לתצג הודעות HTML (שימו לב: זהו דבר מסוכן ביותר)</string>
   <string name="config-summary-present">להאיר תקציר כאשר הוא נמצא ולא כאשר הוא חסר</string>
@@ -328,6 +329,7 @@
   <string name="login-ro-question">מיזם אחד או יותר ($1) לא מאפשרים לך להתחבר עם הרשאות עריכה (הסיבה: $2). האם ברצונך להחליף לתצוגת קריאה במקום זאת?</string>
   <string name="login-ro-info">מיזם $1 עבר לתצוגת קריאה</string>
   <string name="wikis-db-download-fail">אין אפשרות להוריד את מסד הנתונים של אתרי הוויקי: $1</string>
+  <string name="no-projects-defined-in-list">לא הוגדרו מיזמים ברשימה, עליך להגדיר כמה כאלו בוויקי גלובלי</string>
   <string name="api-query-no-data">רשומת ה-api לא החזירה אף נתון</string>
   <string name="main-stat">$1 עריכות לדקה, $2 שחזורים לדקה, רמה $3</string>
   <string name="main-menu-provider-stop">לעצור את הספק</string>
