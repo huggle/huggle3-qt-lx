@@ -13,6 +13,7 @@
 * FuzzyDice
 * GMozafarian
 * Huji
+* Jeeputer
 * Ladsgroup
 * Leyth
 * Mahdiz
@@ -123,7 +124,7 @@
   <string name="config-title">تنظیمات</string>
   <string name="config-already-in-use">این میانبر هم‌اکنون توسط $1 استفاده می‌شود، لطفاً یکی دیگر برگزینید</string>
   <string name="config-openinbrowser">پیوندهای مرورگر در پنجره‌ای نو باز شوند</string>
-  <string name="config-shownewedits">ویرایش‌های جدید را در صفحهٔ انتخابی به محض انجام‌شدن نشان بده</string>
+  <string name="config-shownewedits">ویرایش‌های جدید در صفحهٔ انتخابی را به محض انجام‌شدن نشان بده</string>
   <string name="config-ircmode">در صورت امکان از IRC برای تغییرات اخیر بهره بگیر</string>
   <string name="config-ircport">درگاه آی‌آر‌سی</string>
   <string name="config-difffontsize">اندازهٔ قلم تفاوت</string>
@@ -239,7 +240,7 @@
   <string name="delete-failed-no-info">هیچ اطلاعات صفحه‌ای در این کوئری نیست (آیا مدیر هستید؟)</string>
   <string name="extension-kl">اجرا نمی‌شود</string>
   <string name="extension-ok">بارگیری‌شده و در حال اجرا</string>
-  <string name="exception-text-1">متاسفانه هاگل کرش کرده‌است. لطفا این اطلاعات را همراه با جزئیات کاری که می‌]واستید انجام دهید، را ارسال کنید.</string>
+  <string name="exception-text-1">متاسفانه هاگل کرش کرده‌است. لطفا این اطلاعات را همراه با جزئیات کاری که می‌خواستید انجام دهید، ارسال کنید</string>
   <string name="exception-details">جزئیات استثنا</string>
   <string name="exception-error-code">کد خطا: $1</string>
   <string name="exception-reason">دلیل: $1</string>
@@ -267,8 +268,8 @@
   <string name="irc-switch-rc">تعویض به خوراک تغییرات اخیر ویکی</string>
   <string name="login-old">بازیابی پیکربندی کاربر از محل قدیمی</string>
   <string name="login-intro">لطفاً یک پروژه را برگزینید و نام کاربری و گذرواژهٔ خود را وارد کنید. همچنین می‌توانید با کلیک‌کردن روی دکمهٔ «پروژه‌ها» در چند پروژه ثبت ورود نمایید.</string>
-  <string name="invalid-bot-user-name">این ربات نیست. به عنوان مثال نام ربات معتبر: Jimbo@Huggle</string>
-  <string name="login-tab-botp">ورود ربات</string>
+  <string name="invalid-bot-user-name">این نام ربات معتبر نیست. مثالی از یک نام ربات معتبر: Jimbo@Huggle</string>
+  <string name="login-tab-botp">گذرواژه ربات</string>
   <string name="login-tab-login">ورود عادی</string>
   <string name="login-reload-tool-tip">بارگیری دوبارهٔ فهرست پروژه‌های موجود که می‌تواند مورد استفادهٔ هاگل قرار گیرد. در صورتی که هاگل در پروژه‌ای به تازگی فعال شده این گزینه می‌تواند مفید باشد.</string>
   <string name="login-language">زبان:</string>
@@ -281,14 +282,14 @@
   <string name="login-proxy-remember-this">این تنظیمات را برای دفعه بعدی به یاد نگه‌دار</string>
   <string name="login-proxyport">درگاه:</string>
   <string name="login-proxydomain">دامنه:</string>
-  <string name="proxy-restart">برای تغییراتی که انجام شده‌است، ممکن است هاگل نیازمند راه‌اندازی مجدد باشد.</string>
+  <string name="proxy-restart">ممکن است برای اعمال این تغییرات، هاگل نیازمند راه‌اندازی مجدد باشد.</string>
   <string name="login-retrieving-user-conf">بازگردانی تنظیمات کاربر</string>
   <string name="login-fail-css">ورود به سیستم انجام نشد. دریافت پیکربندی کاربر ناممکن بود. Special:MyPage/huggle3.css یافت نشد. آیا Huggle3.css را در فضای کاربری خودتان ساخته‌اید؟</string>
   <string name="login-fail-enable-true">ورود ناموفق در $1: شما مقدار enable:true را در پیکربندی شخصی خود ندارید.</string>
   <string name="login-fail-no-info">ورود ناموفق در $1: امکان دریافت اطلاعات کاربر نبود: $2</string>
   <string name="login-bot">تفاوت بین ورود ربات و ورود عادی چیست؟</string>
   <string name="login-fail-parse-config">ورود ناموفق در $1: قادر به تجزیهٔ پیکربندی کاربر نبود. برای جزئیات بیشتر سیاههٔ اشکال‌زدایی را ببینید.</string>
-  <string name="login-fail-parse-config-yaml">ورود به سیستم ناموفق بود $1 : قادر به تجزیه پیکربندی کاربر نیست: $2</string>
+  <string name="login-fail-parse-config-yaml">ورود به سیستم ناموفق بود $1: قادر به تجزیه پیکربندی کاربر نیست: $2</string>
   <string name="login-fail-user-data">ورود ناموفق در $1: قادر به دریافت اطلاعات کاربر نبود. پرس‌وجو از API هیچ داده‌ای را برنگرداند.</string>
   <string name="login-fail-rollback-rights">ورود ناموفق در $1: شما در این پروژه دسترسی واگردانی ندارید.</string>
   <string name="login-failed-autoconfirm-rights">ورود ناموفق در $1: شما روی این پروژه تأیید خودکار نیستید.</string>
@@ -297,7 +298,7 @@
   <string name="login-password-empty">پسوردی که وارد کرده‌اید خالی است.</string>
   <string name="login-fail-wrong-name">شما هیچ نام کاربری برای لاگین وارد نکرده‌اید.</string>
   <string name="login-api">خطا: api.php با نتیجه‌ای ناشناخته داد: $1</string>
-  <string name="login-abort">لغو</string>
+  <string name="login-abort">رها کردن</string>
   <string name="login-start">ورود</string>
   <string name="login-oauth-notsupported">این روش همکنون پشتیبانی نمی‌شود</string>
   <string name="login-translate">ترجمهٔ هاگل</string>
