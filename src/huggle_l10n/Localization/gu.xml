@@ -318,4 +318,5 @@
   <string name="block-alreadyblocked">સભ્ય પહેલાથી પ્રતિબંધિત છે</string>
   <string name="error-unknown-code">અજ્ઞાત ક્ષતિ: $1</string>
   <string name="relogin-fail">વિકિમાં પ્રવેશ અસફળ: $1</string>
+  <string name="main-revert-type-unknown">અજ્ઞાત</string>
 </resources>

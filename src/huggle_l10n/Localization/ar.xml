@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
 * Bibas
+* Dr. Mohammed
 * Hhaboh162002
 * McDutchie
 * Meno25
@@ -32,7 +33,7 @@
   <string name="done">تم</string>
   <string name="no">لا</string>
   <string name="ok">موافق</string>
-  <string name="override-warn">لقد قمت بإلغاء مسار تهيئة المشروع، رجاءً ضع في اعتبارك أن إساءة استخدام هذه الميزة للوصول للكتابة على الويكي، حيث لا تكون لديك عادة، قد يؤدي إلى منع دائم لحسابك.</string>
+  <string name="override-warn">لقد تجاوزت مسار تكوين المشروع، رجاءً ضع في اعتبارك أن إساءة استخدام هذه الميزة للوصول للكتابة على الويكي، حيث لا تكون لديك عادة، قد يؤدي إلى منع دائم لحسابك.</string>
   <string name="remove">أزل</string>
   <string name="rename">غير الاسم</string>
   <string name="reload">إعادة تحميل</string>
@@ -93,9 +94,9 @@
   <string name="block-blockloglabel">سجل المنع:</string>
   <string name="block-warnloglabel">إنذارات:</string>
   <string name="block-sharedipwarning">ملاحظة:$1 تم وسمه كعنوان اي بي مشترك.</string>
-  <string name="block-rangeblockwarning">هذا المنع سيتجاوز الضرر الناتج في نطاق المنع. إستمر؟\n .تأثر $1 بالفعل من نطاق المنع على $2 ء</string>
+  <string name="block-rangeblockwarning">يتأثر $1 بالفعل بمدى حظر على $2.\nستتجاوز هذه الكتلة تأثير النطاق. استمر؟</string>
   <string name="block-token-1">الحصول على رمز لمنع $1</string>
-  <string name="block-fail">لم يتم المنع \'$1\'ء</string>
+  <string name="block-fail">لم يتم المنع \'$1\'</string>
   <string name="block-token-e1">لا يمكن استرداد الرمز: $1</string>
   <string name="block-error-no-info">لم تكن معلومات المستخدم موجودة في الاستعلام (هل أنت إداري؟)</string>
   <string name="block-type">منع / رفع المنع</string>
@@ -104,7 +105,7 @@
   <string name="contribution-browser-user-info">عرض المساهمات الأخيرة للمستخدم $1</string>
   <string name="config-function">دالة</string>
   <string name="config-description">وصف</string>
-  <string name="config-shortcut">مختصر</string>
+  <string name="config-shortcut">اختصار</string>
   <string name="config-queue-filter-ignore">تجاهل (لا يهم)</string>
   <string name="config-queue-filter-exclude">استبعاد (يجب أن لا يكون)</string>
   <string name="config-queue-filter-require">مطلوب (يجب أن يكون)</string>
@@ -112,25 +113,25 @@
   <string name="config-queue-modified-text">لقد قمت بتعديل قائمة الانتظار، لكنك لم تقم بحفظها؛ إذا تابعت، فسيتم تجاهل تغييراتك، هل تريد الاستمرار؟</string>
   <string name="config-summ">تخصيص استرجاع ملخصات القوالب</string>
   <string name="config-title">خيارات</string>
-  <string name="config-already-in-use">هذا الاختصار قيد الاستخدام بالفعل بواسطة $1; يُرجَى اختيار اختصار آخر</string>
-  <string name="config-openinbrowser">افتح وصلات التصفح في صفحات متصفح جديدة</string>
+  <string name="config-already-in-use">هذا الاختصار قيد الاستخدام بالفعل بواسطة $1، يُرجَى اختيار اختصار آخر</string>
+  <string name="config-openinbrowser">افتح وصلات التصفح في صفحة متصفح جديدة</string>
   <string name="config-shownewedits">أظهر التحريرات الجديدة في الصفحة المحددة وقت حدوثها</string>
   <string name="config-ircmode">استخدم تلقيم الآي آر سي لأحدث التغييرات إن أمكن</string>
   <string name="config-ircport">منفذ آي آر سي</string>
   <string name="config-difffontsize">حجم خط الفرق</string>
   <string name="config-logfile">ملف السجل</string>
-  <string name="config-viewlocalconfig">اعرض مجلد التضبيطات المحلي</string>
+  <string name="config-viewlocalconfig">عرض مجلد التكوين المحلي</string>
   <string name="config-trayicon">أظهر أيقونة لوحة النظام</string>
   <string name="config-startupmessage">أظهر رسالة بدء التشغيل</string>
   <string name="config-shownewmessages">اعرض شريط الرسائل الجديدة</string>
-  <string name="config-shortcutlist">مفاتيح الاختصار</string>
+  <string name="config-shortcutlist">اختصارات لوحة المفاتيح</string>
   <string name="config-shortcutaction">إجراء</string>
-  <string name="config-changeshortcut">غير الاختصار لـ $1ء</string>
+  <string name="config-changeshortcut">غير الاختصار لـ $1</string>
   <string name="config-noshortcut">لا شيء</string>
-  <string name="config-defaults">مبدئيات</string>
-  <string name="config-minor">طفيف</string>
-  <string name="config-ip">مستخدمو الآيبي</string>
-  <string name="config-watchlist">أضف لقائمة مراقباتي</string>
+  <string name="config-defaults">الافتراضات</string>
+  <string name="config-minor">وضع علامة كطفيف</string>
+  <string name="config-ip">مستخدمي الآيبي</string>
+  <string name="config-watchlist">إضافة إلى قائمة المراقبة</string>
   <string name="config-defaultsummary">الملخص المبدئي للتعديلات اليدوية</string>
   <string name="config-undosummary">الملخص عند رجوعك عن تعديلاتك الخاصة</string>
   <string name="config-confirm-user">تحتاج إلى تأكيد لتتراجع عن تعديل تم إجراؤه في نطاق المستخدم</string>

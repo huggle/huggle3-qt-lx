@@ -17,11 +17,13 @@
 * Rippitippi
 * Sarah Bernabei
 * Selven
+* Superpes15
 * ValeJappo
 * ValterVB
 -->
 <resources>
   <string name="name">Inglese</string>
+  <string name="autorelog">Accedi automaticamente la prossima volta</string>
   <string name="isrtl">falso</string>
   <string name="add">Aggiungi</string>
   <string name="cancel">Annulla</string>
@@ -111,6 +113,8 @@
   <string name="config-queue-filter-ignore">Ignora (non è importante)</string>
   <string name="config-queue-filter-exclude">Escludi (non deve esserci)</string>
   <string name="config-queue-filter-require">Richiedi (deve esserci)</string>
+  <string name="config-queue-modified-title">Coda modificata</string>
+  <string name="config-queue-modified-text">Hai modificato la coda, ma non l\'hai salvata. Se continui, le tue modifiche andranno perse. Vuoi continuare?</string>
   <string name="config-summ">Campo oggetto personalizzato per il revert di template</string>
   <string name="config-title">Opzioni</string>
   <string name="config-already-in-use">Questa scorciatoia è già utilizzata da $1, scegline una diversa</string>
@@ -641,6 +645,7 @@
   <string name="shortcut-rw-stay">Annulla la modifica attuale, avverti l\'utente e rimani nella pagina</string>
   <string name="shortcut-revert-and-stay">Ripristina la versione attuale e rimani sulla pagina</string>
   <string name="shortcut-user-contribs-browser">Apre i contributi dell\'utente in un browser</string>
+  <string name="shortcut-main-clear-queue">Svuota la coda</string>
   <string name="warning-title">Avverti $1</string>
   <string name="warning-levelgroup">Livello di avviso</string>
   <string name="warning-levelauto">Automatico</string>
