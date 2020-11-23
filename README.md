@@ -5,7 +5,6 @@ Huggle 3 is an anti-vandalism tool for use on [Wikipedia](https://wikipedia.org)
 
 [![Build Status](https://api.travis-ci.org/huggle/huggle3-qt-lx.png?branch=master)](https://travis-ci.org/huggle/huggle3-qt-lx/)
 [![Build status](https://ci.appveyor.com/api/projects/status/huy2phxnc95m77sl?svg=true)](https://ci.appveyor.com/project/benapetr/huggle3-qt-lx)
-[![Snap Status](https://build.snapcraft.io/badge/huggle/huggle3-qt-lx.svg)](https://build.snapcraft.io/user/huggle/huggle3-qt-lx)
 
 Building
 =========
