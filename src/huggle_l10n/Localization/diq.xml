@@ -57,7 +57,7 @@
   <string name="link">Gıre</string>
   <string name="reason">Sebeb</string>
   <string name="diffid">FerqaID</string>
-  <string name="whitelisted" fuzzy="true">$1, $3 sero $2 puana debya spe lista</string>
+  <string name="whitelisted">$1, $3 sero $2 puana debya lista sıpey</string>
   <string name="expiry-time">Dema qedyin</string>
   <string name="duration">Dom</string>
   <string name="enable">Aktif ke</string>
