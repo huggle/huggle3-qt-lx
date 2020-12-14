@@ -31,7 +31,7 @@ fi
 cd .. || exit 1
 ./configure ${EXTRA_FLAGS} --qtpath "$QTDIR" --extension || exit 1
 cd release || exit 1
-make || exit 1
+make -j $(sysctl -n hw.ncpu) || exit 1
 cd "$of"
 cp -r ../release "$of/release" || exit 1
 mkdir package || exit 1
