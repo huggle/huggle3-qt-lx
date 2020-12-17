@@ -3,6 +3,7 @@
 * Ahdan
 * Arief
 * Arifin.wijaya
+* FBN122645
 * Hidayatsrf
 * Irus
 * Kenrick95
@@ -28,6 +29,7 @@
   <string name="done">Selesai</string>
   <string name="no">Tidak</string>
   <string name="ok">Oke</string>
+  <string name="override-warn">Anda telah mengganti jalur konfigurasi proyek. Harap diingat bahwa menyalahgunakan fitur ini untuk mendapatkan akses tulis di wiki, yang biasanya tidak Anda miliki, dapat mengakibatkan pemblokiran permanen akun Anda.</string>
   <string name="remove">Buang</string>
   <string name="rename">Ubah nama</string>
   <string name="reload">Muat ulang</string>
@@ -36,7 +38,7 @@
   <string name="result">Hasil</string>
   <string name="save">Simpan</string>
   <string name="show">Tampilkan</string>
-  <string name="no-instant" fuzzy="true">Peringatan instan tidak diaktifkan di proyek $1, jadi pesan ke $2 tidak terkirim. Silakan pilih tingkat peringatan berbeda</string>
+  <string name="no-instant">Pesan ke $2 tidak dapat dikirim, karena peringatan instan tidak diaktifkan pada proyek $1. Pilih tingkat peringatan yang berbeda.</string>
   <string name="undo">Balikkan</string>
   <string name="yes">Ya</string>
   <string name="editing-page">Menyunting halaman</string>
@@ -59,16 +61,16 @@
   <string name="link">Pranala</string>
   <string name="reason">Alasan</string>
   <string name="diffid">DiffID</string>
-  <string name="whitelisted" fuzzy="true">$1 dengan skor $2 pada $3 telah disisipkan ke daftar pentauan</string>
+  <string name="whitelisted">$1 dengan skor $2 pada $3 telah disisipkan ke daftar putih</string>
   <string name="expiry-time">Waktu kedaluwarsa</string>
   <string name="duration">Durasi</string>
   <string name="enable">Aktif</string>
   <string name="disable">Matikan</string>
   <string name="no-token">Tidak ada token</string>
   <string name="flags">Tanda</string>
-  <string name="gracetime" fuzzy="true">Menunggu untuk permintaan yang melakukan beberapa penyuntingan berakhir...</string>
-  <string name="browser-none" fuzzy="true">Tidak ada halaman ditampilkan sekarang</string>
-  <string name="browser-load" fuzzy="true">Mengunduh diff menggunakan sebuah sistem pengambil web, mohon menunggu...</string>
+  <string name="gracetime">Menunggu untuk permintaan yang melakukan beberapa penyuntingan berakhir...</string>
+  <string name="browser-none">Tidak ada halaman ditampilkan sekarang</string>
+  <string name="browser-load">Mengunduh diff menggunakan sebuah MW fallback, mohon menunggu...</string>
   <string name="browser-miss-summ">Tidak ada ringkasan</string>
   <string name="browser-diff">Perbedaan halaman: $1 (nilai: $2)</string>
   <string name="browser-fail">Tidak dapat mengambil perbedaan: $1</string>
@@ -92,10 +94,10 @@
   <string name="block-token-1">Mengambil token untuk memblokir $1</string>
   <string name="block-fail">Tidak dapat memblokir pengguna, $1</string>
   <string name="block-token-e1">Token tidak dapat diambil: $1</string>
-  <string name="block-error-no-info" fuzzy="true">Tidak informasi pengguna dalam permintaan (apakah anda pengurus?)</string>
+  <string name="block-error-no-info">Tidak informasi pengguna dalam permintaan (apakah anda seorang pengurus?)</string>
   <string name="block-type">Memblokir/membuka blokir</string>
-  <string name="block-admin" fuzzy="true">Pengurus pemblokir</string>
-  <string name="block-none" fuzzy="true">Tidak pengguna untuk diblokir.</string>
+  <string name="block-admin">Pengurus yang memblokir</string>
+  <string name="block-none">Tidak pengguna yang dipilih untuk diblokir.</string>
   <string name="contribution-browser-user-info">Menampilkan kontribusi terkini pengguna $1</string>
   <string name="config-function">Fungsi</string>
   <string name="config-description">Deskripsi</string>
@@ -103,6 +105,8 @@
   <string name="config-queue-filter-ignore">Abaikan (tidak masalah)</string>
   <string name="config-queue-filter-exclude">Kecuali (tidak harus)</string>
   <string name="config-queue-filter-require">Dibutuhkan (harus)</string>
+  <string name="config-queue-modified-title">Antrian diubah</string>
+  <string name="config-queue-modified-text">Anda mengubah antrean, tetapi tidak menyimpannya. Jika Anda melanjutkan, perubahan Anda akan dibuang. Apakah Anda ingin melanjutkan?</string>
   <string name="config-summ">Ringkasan pembalikan tersuai untuk templat</string>
   <string name="config-title">Pilihan</string>
   <string name="config-already-in-use">Jalan pintas ini sudah digunakan oleh $1, silakan pilih yang berbeda</string>
@@ -131,9 +135,10 @@
   <string name="config-confirm-talk">Perlu konfirmasi untuk mengembalikan halaman pembicaraan</string>
   <string name="config-use-rollback">Gunakan pengembalian perangkat lunak</string>
   <string name="config-welcome-empty-page">Kirim ucapan selamat datang kepada pengguna dengan halaman pembicaraan kosong atas suntingan bagusnya</string>
-  <string name="config-conflicts-revert" fuzzy="true">Selesaikan konflik secara otomatis dengan pengguna-pengguna lain yang membalikkan atau mengedit halaman tersebut</string>
+  <string name="config-conflicts-revert">Selesaikan konflik secara otomatis dengan pengguna-pengguna lain yang membalikkan atau menyunting halaman yang sama</string>
   <string name="config-instant-reverts">Gunakan pengembalian segera (sangat cepat tetapi tidak bisa dibatalkan dalam sekali perlakuan)</string>
-  <string name="config-revert-wait" fuzzy="true">Waktu tunggu pembalikan (detik)</string>
+  <string name="config-reverts-multiple">Untuk mengembalikan beberapa hasil suntingan oleh pengguna yang sama:</string>
+  <string name="config-revert-wait">Waktu tunggu pembalikan (detik)</string>
   <string name="config-revert">Batalkan</string>
   <string name="config-skip">Lewati</string>
   <string name="config-revert-diff">Batalkan suntingan ke halaman yang lebih baru daripada yang ditampilkan oleh perbedaan (diff) jika suntingan itu dibuat oleh pengguna vandalisme yang sama</string>
@@ -142,11 +147,13 @@
   <string name="config-months-name">Gunakan bulan sebagai judul kepada alih-alih nama halaman</string>
   <string name="config-automatic-warning">Gunakan jenis dan tingkat peringatan otomatis pada fungsi \"kirimkan peringatan\"</string>
   <string name="config-enable-irc">Aktifkan IRC</string>
-  <string name="config-remove-reverted" fuzzy="true">Hapus suntingan yang sudah dibalikkan oleh pengguna lain</string>
-  <string name="config-remove-old" fuzzy="true">Hapus suntingan lain jika suntingan baru pada halaman yang sama terurai</string>
+  <string name="config-remove-reverted">Hapus suntingan yang sudah dibalikkan oleh pengguna lain</string>
+  <string name="config-remove-old">Hapus suntingan lama dari daftar jika suntingan baru pada halaman yang sama terurai</string>
   <string name="config-auto-load-history">Muat sejarah dan informasi pengguna secara otomatis (membutuhkan banyak bandwidth jaringan)</string>
-  <string name="config-last-revision" fuzzy="true">Tampilkan revisi terakhir halaman jika suntingan yang termuat saat ini bukan revisi terbaru (akan diunduh tanpa tembolok)</string>
+  <string name="config-last-revision">Beralih ke revisi halaman terbaru jika suntingan yang saat ini dimuat bukan revisi terbaru (akan mengunduhnya, membuat Huggle lebih lambat)</string>
+  <string name="config-require-delay">Memerlukan penundaan setelah setiap pemuatan suntingan berikutnya, yang selama itu tidak dimungkinkan untuk menggunakan fitur tulis apa pun (berguna untuk menghindari bug multi-tekan keyboard)</string>
   <string name="config-wait-edit">Penundaan, dalam detik, hingga fitus tulis diaktifkan:</string>
+  <string name="config-display-next">Tampilkan berikutnya</string>
   <string name="config-retrieve-edit">Ambil suntingan sendiri</string>
   <string name="config-nothing">Tidak ada</string>
   <string name="config-bot-edits">Suntingan bot (b)</string>
@@ -157,41 +164,80 @@
   <string name="config-friend">Teman</string>
   <string name="config-userspace">Ruang nama pengguna</string>
   <string name="config-talk">Halaman pembicaraan</string>
+  <string name="config-columns-dynamic">Jadikan kolom daftar dinamis (akan mengubah ukuran berdasarkan ukuran item) atau manual (pengguna dapat mengubah ukurannya)</string>
+  <string name="config-message-notification">Tampilkan pemberitahuan ketika Anda menerima pesan baru di halaman pembicaraan Anda</string>
   <string name="config-warning-api">Tampilkan peringatan untuk kueri API</string>
+  <string name="config-title-diff">Judul halaman di setiap perbedaan (teks besar yang hanya menampilkan judul halaman di atas setiap perbedaan)</string>
   <string name="config-updates">Periksa pembaruan</string>
   <string name="config-beta">Periksa versi beta</string>
-  <string name="config-html-messages" fuzzy="true">HAN dapat merender pesan HTML (berbahaya)</string>
+  <string name="config-html-messages">HAN dapat merender pesan HTML (CATATAN: ini mungkin berbahaya)</string>
+  <string name="config-summary-present">Sorot ringkasan saat ada, bukan saat hilang</string>
   <string name="config-close-without">Tutup tanpa menyimpan</string>
+  <string name="config-confirmmultiple">Konfirmasi kembalikan beberapa versi suntingan oleh pengguna yang sama</string>
+  <string name="config-confirmsame">Konfirmasi pengembalian hasil suntingan oleh pengguna yang dibalikan</string>
+  <string name="config-confirmselfrevert">Konfirmasi pengembalian hasil suntingan sendiri (kecuali urung)</string>
+  <string name="config-confirmwarned">Konfirmasi pengembalian hasil suntingan oleh pengguna yang diperingatkan</string>
+  <string name="config-confirmrange">Konfirmasi pengembalian hasil edit oleh pengguna anonim dalam rentang / 16 yang sama saat pengguna dikembalikan</string>
+  <string name="config-confirmpage">Konfirmasi pengembalian pada halaman yang diabaikan</string>
+  <string name="config-autoadvance">Setelah mengembalikan, pindah ke penyuntingan berikutnya dalam antrian</string>
   <string name="config-userollback">Gunakan pengembalian jika tersedia</string>
+  <string name="config-revertsummaries">Ringkasan pengembalian tersedia di menu</string>
+  <string name="config-auto-refresh">Segarkan halaman secara otomatis jika ada penyuntingan lain yang dilakukan</string>
+  <string name="config-extendreports">Lanjutkan laporan setelah vandalisme tambahan</string>
   <string name="config-reportnone">Jangan lakukan apa pun</string>
+  <string name="config-reportprompt">Minta laporan</string>
+  <string name="config-reportauto">Tampilkan laporan secara otomatis</string>
   <string name="config-templates">Templat pesan pengguna</string>
   <string name="config-templatetext">Tampilkan teks</string>
   <string name="config-template">Templat</string>
+  <string name="config-promptforblock">Minta pemblokiran jika diminta untuk memperingatkan pengguna dengan peringatan terakhir</string>
   <string name="config-blockreason">Alasan pemblokiran baku</string>
-  <string name="config-blocktime" fuzzy="true">Durasi pemblokiran baku selama</string>
+  <string name="config-blocktime">Durasi pemblokiran baku selama</string>
   <string name="config-blocktimeanon">pengguna anonim</string>
   <string name="config-blocktimereg">pengguna terdaftar</string>
   <string name="config-summaryprompt">Masukan ringkasan</string>
   <string name="config-history">Unduh seluruh riwayat dari semua artikel</string>
   <string name="config-defaultsprompt">Kembalikan ke semula?</string>
   <string name="config-logbrowsetitle">Lokasi file log</string>
+  <string name="config-shortcutconflict">Pintasan \'$1\'bertentangan dengan pintasan yang ada dengan \'$1\'.</string>
+  <string name="config-no-colon">Anda tidak dapat menggunakan: dalam nama antrian</string>
   <string name="config-notify-update">Periksa pembaruan</string>
+  <string name="config-notify-beta">Periksa versi beta jika tersedia</string>
+  <string name="custommessage-title">Tulis pesan ke $1</string>
+  <string name="custommessage-summary">Sunting ringkasan (akhiran Huggle akan dimasukkan secara otomatis)</string>
+  <string name="custommessage-subject">Judul</string>
+  <string name="custommessage-menu">Kirim pesan khusus</string>
+  <string name="custommessage-send">Kirim pesan</string>
+  <string name="custommessage-wikiuser-lesummary">Mengirimkan pesan khusus ke $1</string>
+  <string name="custommessage-wikiuser-plaintext-1">Halo $1,</string>
+  <string name="custommessage-wikiuser-plaintext-2">Tulis pesan anda disini.</string>
   <string name="delete-title">Hapus $1</string>
   <string name="delete-reason">Alasan:</string>
   <string name="delete-deletionlog">Log penghapusan:</string>
   <string name="delete-rem-talk">Hapus pembicaraan terkait</string>
   <string name="delete-notify">Beri tahu pembuat</string>
-  <string name="delete-failed-no-info" fuzzy="true">Tidak ada informasi pengguna dalam permintaan (apakah anda pengurus?)</string>
+  <string name="delete-token01">Mendapatkan token untuk menghapus $1</string>
+  <string name="delete-e1">Halaman tidak dapat dihapus: $1</string>
+  <string name="delete-e2">Tidak dapat menghapusan halaman</string>
+  <string name="delete-edsc">Tidak dapat menghapus halaman karena $1</string>
+  <string name="delete-failed-no-info">Tidak ada informasi pengguna dalam permintaan (apakah anda pengurus?)</string>
   <string name="extension-kl">Tidak bekerja</string>
   <string name="extension-ok">Memuat tidak bekerja</string>
+  <string name="exception-error-code">Kode kesalahan: $1</string>
+  <string name="exception-reason">Alasan: $1</string>
+  <string name="exception-source">Sumber: $1</string>
+  <string name="exception-system-log">Log sistem</string>
   <string name="historyform-no-info">Tidak ada info suntingan</string>
   <string name="historyform-title">Riwayat</string>
   <string name="historyform-retrieve-history">Lihat riwayat</string>
   <string name="historyform-retrieving-history">Mengambil riwayat</string>
   <string name="history-error-message-title">Tidak bisa membatalkan</string>
+  <string name="history-failure">Tidak dapat mengambil riwayat</string>
   <string name="userhistory-title">Riwayat perubahan Anda</string>
+  <string name="login-old">Mengambil konfigurasi pengguna dari lokasi</string>
+  <string name="invalid-bot-user-name">Ini bukan nama bot yang valid. Contoh dari nama bot yang valid: Jimbo@Huggle</string>
   <string name="login-tab-botp">Kata sandi bot</string>
-  <string name="login-tab-login" fuzzy="true">Masuk log</string>
+  <string name="login-tab-login">Masuk log</string>
   <string name="login-language">Bahasa:</string>
   <string name="login-project">Proyek:</string>
   <string name="login-username">Nama pengguna:</string>
@@ -202,12 +248,16 @@
   <string name="login-proxy-remember-this">Ingat pengaturan ini untuk waktu yang akan datang</string>
   <string name="login-proxyport">Port:</string>
   <string name="login-proxydomain">Domain:</string>
+  <string name="login-password-empty">Kata sandi yang anda masukan kosong</string>
+  <string name="login-abort">Batalkan</string>
   <string name="login-start">Masuk log</string>
   <string name="login-oauth-notsupported">Metode ini belum didukung saat ini</string>
   <string name="login-translate">Terjemahkan Huggle</string>
-  <string name="login-progress-start" fuzzy="true">Masuk log sebagai $1</string>
+  <string name="login-progress-formtitle">Memuat...</string>
+  <string name="login-progress-start">Masuk log sebagai $1</string>
   <string name="login-progress-retrieve-mw">Mengambil informasi tentang MediaWiki untuk $1</string>
   <string name="login-progress-language">Memperbarui berkas pesan...</string>
+  <string name="login-progress-global">Memeriksa konfigurasi global...</string>
   <string name="login-progress-config">Memeriksa halaman konfigurasi...</string>
   <string name="login-progress-local">Memerisa konfigurasi lokal untuk $1</string>
   <string name="login-progress-user">Memeriksa konfigurasi pengguna untuk $1</string>
@@ -216,6 +266,7 @@
   <string name="login-remember-password">Ingat kata sandi</string>
   <string name="login-ssl" fuzzy="true">Gunakan HTTPS (memerlukan OpenSSL)</string>
   <string name="login-fail">Masuk log gagal pada $1</string>
+  <string name="login-fail-with-reason">Login gagal (pada $1): $2</string>
   <string name="login-error-admin">Penggunaan Huggle di proyek ini memerlukan akun pengurus.</string>
   <string name="login-error-cancelled">Telah dibatalkan</string>
   <string name="login-error-invalid">Nama pengguna tidak sah</string>
@@ -240,9 +291,13 @@
   <string name="main-system-exit">Keluar</string>
   <string name="main-queue">Antrean</string>
   <string name="main-queue-next">Selanjutnya</string>
+  <string name="main-queue-query">Menjalankan kueri...</string>
   <string name="main-queue-reset">Atur ulang</string>
   <string name="main-queue-clearall">Hapus semua</string>
   <string name="main-queue-options">Mengelola antrean...</string>
+  <string name="main-queue-when-full">Ketika antrian penuh</string>
+  <string name="main-queue-when-full-stop">Hentikan pakan</string>
+  <string name="main-queue-when-full-remove">Hapus suntingan</string>
   <string name="main-goto">Pergi ke</string>
   <string name="main-goto-mytalk">Halaman pembicaraan saya</string>
   <string name="main-goto-mycontribs">Kontribusi saya</string>
@@ -276,6 +331,9 @@
   <string name="main-page-delete">Hapus</string>
   <string name="main-page-load">Memuat</string>
   <string name="main-page-restore">Kembalikan revisi ini</string>
+  <string name="main-page-tab-close">Tutup tab</string>
+  <string name="main-page-tab-open">Buka tab</string>
+  <string name="main-page-watchlist-remove">Hapus halaman dari daftar pantauan</string>
   <string name="main-user-info">Tampilkan info pengguna</string>
   <string name="main-user-ignore">Abaikan</string>
   <string name="main-user-talk">Lihat halaman pembicaraan</string>
@@ -308,6 +366,7 @@
   <string name="main-tip-userreport">Laporkan pengguna ini</string>
   <string name="main-tip-userblock">Blokir pengguna ini</string>
   <string name="main-revision-acceptpend">Terima perubahan tertunda ini</string>
+  <string name="main-revert-null">Tidak dapat membalikan: suntingan kosong</string>
   <string name="main-revert-newpage-title">Tidak dapat mengembalikan ini</string>
   <string name="message-title">Pesan $1</string>
   <string name="message-subject">Subyek:</string>
@@ -349,6 +408,25 @@
   <string name="score-take-any-word">Cocokkan segala kata yang berisi string ini</string>
   <string name="shortcut-browser-close-tab">Menutup browser tab</string>
   <string name="shortcut-tab">Buka tab baru</string>
+  <string name="preferences-color-scheme-diff">Warna berbeda</string>
+  <string name="preferences-color-scheme-diff-default">Baku</string>
+  <string name="preferences-color-scheme-diff-dark-mode">Mode gelap</string>
+  <string name="fail">Gagal</string>
+  <string name="request">Permintaan</string>
+  <string name="requesting">Meminta</string>
+  <string name="requested">Diminta</string>
+  <string name="protect-request-fail">Tidak dapat mengambil halaman laporan saat ini: $1</string>
+  <string name="message-fail">Gagal menyampaikan pesan</string>
+  <string name="edit-conflict">Konflik penyuntingan</string>
+  <string name="page-tag-nodescription">Tidak ada deskripsi untuk tag ini</string>
+  <string name="page-tag-noparameters">Tidak ada parameter</string>
+  <string name="page-tag-fail">Gagal memberi tag halaman</string>
+  <string name="page-tag-error">Tidak dapat memberi tag pada halaman, kesalahannya adalah: $1</string>
+  <string name="page-unknown">Halaman tidak diketahui</string>
+  <string name="summary-edit-range">Menampilkan perbedaan diff dari revid $1 hingga $2</string>
+  <string name="namespace">Ruang nama</string>
+  <string name="block-alreadyblocked">Pengguna sudah diblokir</string>
+  <string name="report-fail">Gagal melaporkan pengguna karena: $1</string>
   <string name="projects">Proyek</string>
   <string name="login-no-userinfo">Situs tidak mengembalikan setiap informasi pengguna</string>
   <string name="login-invalid-register-date" fuzzy="true">Tanggal pendaftaran tidak valid, dikembalikan oleh mediawiki</string>
