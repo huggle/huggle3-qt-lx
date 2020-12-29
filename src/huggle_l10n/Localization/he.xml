@@ -387,7 +387,7 @@
   <string name="main-revision-rws">לשחזר את העריכה שמוצגת כעת, להזהיר את המשתמש ולהישאר בדף</string>
   <string name="main-revision-faith">לשחזר עם הנחת כוונה טובה</string>
   <string name="main-revision-revert-only-this">שחזר גרסה זו בלבד</string>
-  <string name="main-revision-revert-agf">לשחזר רק גרסה זו עם הנחת כוונה טובה</string>
+  <string name="main-revision-revert-agf">לשחזר רק את הגרסה הזאת עם הנחת כוונה טובה</string>
   <string name="main-revision-previous">הקודם</string>
   <string name="main-revision-next">הבא</string>
   <string name="main-revision-latest">אחרונה</string>
@@ -665,7 +665,7 @@
   <string name="shortcut-open-in-huggle">פותח את הדף שמוצג עכשיו</string>
   <string name="shortcut-open">פותח את העריכה שמוצגת כעת בדפדפן</string>
   <string name="shortcut-talk">להציג את דף השיחה של המשתמש שעשה את השינוי הזה</string>
-  <string name="shortcut-revert-agf-1">שחזור הגרסה האחרונה עם הנחת כוונה טובה</string>
+  <string name="shortcut-revert-agf-1">לשחזר את הגרסה האחרונה, עם הנחת כוונה טובה</string>
   <string name="shortcut-edit">פותח את הדף שמוצג עכשיו</string>
   <string name="shortcut-edit-in-browser">ערוך את הדף המוצג כעת בדפדפן</string>
   <string name="shortcut-browser-close-tab">סגירת לשונית של הדפדפן</string>
@@ -676,6 +676,7 @@
   <string name="shortcut-user-contribs-browser">לפתוח את תרומות המשתמש בדפדפן</string>
   <string name="shortcut-user-clear-talk">מחיקת דף שיחה של המשתמש הנוכחי</string>
   <string name="shortcut-main-clear-queue">ניקוי תור</string>
+  <string name="shortcut-revert-agf">לשחזר עם הנחת כוונה טובה, עם תקציר עריכה מותאם אישית</string>
   <string name="warning-title">להזהיר את $1</string>
   <string name="warning-levelgroup">רמת אזהרה</string>
   <string name="warning-levelauto">אוטומטית</string>
@@ -684,6 +685,8 @@
   <string name="warning-level3">רמה 3</string>
   <string name="warning-level4">רמה 4 (אחרונה)</string>
   <string name="warning-confirm-title">באמת לשלוח אזהרה?</string>
+  <string name="warning-confirm-old-edit">העריכה לדף $1 ב־$2 מאת $3 ישנה יותר מיום, האם באמת לשלוח לו אזהרה?</string>
+  <string name="warning-confirm-too-recent">העריכה לדף $1 ב־$2 מאת $3 שקיבל הודעה בדף השיחה לא מזמן (כנראה תבנית אזהרה אחרת?) האם באמת לשלוח להם עוד אזהרה?</string>
   <string name="warning-warntype">סוג האזהרה:</string>
   <string name="warning-warnlog">אזהרות למשתמש הזה:</string>
   <string name="warning-submit">שליחה</string>

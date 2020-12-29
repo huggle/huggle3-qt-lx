@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
+* Alefar
 * Andibing
 * Bjh21
 * Captaindogfish
@@ -10,7 +11,7 @@
 * Samwilson
 -->
 <resources>
-  <string name="name">English (British)</string>
+  <string name="name">English (British)/British English</string>
   <string name="autorelog">Do this without asking next time</string>
   <string name="isrtl">false</string>
   <string name="add">Add</string>
@@ -66,9 +67,9 @@
   <string name="no-token">No token</string>
   <string name="flags">Flags</string>
   <string name="gracetime">Waiting for queries that perform edits to end...</string>
-  <string name="browser-none">There is no page to display yet.</string>
+  <string name="browser-none">There is no page to display yet…</string>
   <string name="browser-load">Downloading diff using a MW rendering fall-back, please wait...</string>
-  <string name="browser-miss-summ">No summary was provided</string>
+  <string name="browser-miss-summ">No summary was provided!</string>
   <string name="browser-diff">Diff of page: $1 (score: $2)</string>
   <string name="browser-fail">Unable to retrieve diff: $1</string>
   <string name="about-contributors">Developers:</string>
@@ -83,33 +84,33 @@
   <string name="block-autoblock">Enable autoblocks</string>
   <string name="block-email">Block e-mail</string>
   <string name="block-usertalk">Talk</string>
-  <string name="block-usercontribs">Contribs</string>
+  <string name="block-usercontribs">Contribs.</string>
   <string name="block-blockloglabel">Block log:</string>
   <string name="block-warnloglabel">Warnings:</string>
   <string name="block-sharedipwarning">Note: $1 is tagged as a shared or dynamic IP address.</string>
   <string name="block-rangeblockwarning">$1 is already affected by a rangeblock on $2.\nThis block will override the effect of the rangeblock. Continue?</string>
-  <string name="block-token-1">Getting token to block $1</string>
+  <string name="block-token-1">Getting token to block $1…</string>
   <string name="block-fail">Unable to block user, $1</string>
   <string name="block-token-e1">Token can\'t be retrieved: $1</string>
   <string name="block-error-no-info">No user info was present in the query (are you an admin?)</string>
   <string name="block-type">Block/unblock</string>
   <string name="block-admin">Blocking admin</string>
-  <string name="block-none">There is no user selected to block.</string>
-  <string name="contribution-browser-user-info">Showing recent contributions of user $1</string>
+  <string name="block-none">There is no user selected to block!</string>
+  <string name="contribution-browser-user-info">Showing recent contributions of user $1…</string>
   <string name="config-function">Function</string>
   <string name="config-description">Description</string>
   <string name="config-shortcut">Shortcut</string>
   <string name="config-queue-filter-ignore">Ignore (doesn\'t matter)</string>
   <string name="config-queue-filter-exclude">Exclude (must not be)</string>
   <string name="config-queue-filter-require">Require (must be)</string>
-  <string name="config-summ">Custom revert summaries for templates</string>
+  <string name="config-summ">Custom revert summary/ies for templates</string>
   <string name="config-title">Options</string>
   <string name="config-already-in-use">This shortcut is already being used by $1, please choose a different one</string>
   <string name="config-openinbrowser">Open browser links in a new browser window</string>
   <string name="config-shownewedits">Show new edits to the selected page as they are made</string>
   <string name="config-ircmode">Use IRC feed for recent changes if possible</string>
   <string name="config-ircport">IRC port</string>
-  <string name="config-difffontsize">Diff font size</string>
+  <string name="config-difffontsize">Diff. font size</string>
   <string name="config-logfile">Log file</string>
   <string name="config-viewlocalconfig">View local configuration folder</string>
   <string name="config-trayicon">Show tray icon</string>
@@ -200,6 +201,12 @@
   <string name="config-notify-update">Check for updates</string>
   <string name="config-notify-beta">Check for beta versions if available</string>
   <string name="custommessage-title">Написать сообщение $1</string>
+  <string name="custommessage-subject">Title</string>
+  <string name="custommessage-menu">Send a custom message:</string>
+  <string name="custommessage-send">SEND MESSAGE</string>
+  <string name="custommessage-wikiuser-lesummary">Delivering a custom message to $1…</string>
+  <string name="custommessage-wikiuser-plaintext-1">Hello $1,</string>
+  <string name="custommessage-wikiuser-plaintext-2">Write your message here.</string>
   <string name="delete-title">Delete $1</string>
   <string name="delete-reason">Reason:</string>
   <string name="delete-deletionlog">Deletion log:</string>
@@ -214,6 +221,12 @@
   <string name="delete-failed-no-info">No user info was present in the query (are you an admin?)</string>
   <string name="extension-kl">Not running</string>
   <string name="extension-ok">Loaded and running</string>
+  <string name="exception-details">Exception details:</string>
+  <string name="exception-error-code">Error code: $1</string>
+  <string name="exception-reason">Reason: $1</string>
+  <string name="exception-source">Source: $1</string>
+  <string name="exception-stack-trace">Stack trace:</string>
+  <string name="exception-system-log">System log</string>
   <string name="historyform-no-info">No edit info</string>
   <string name="historyform-title">History</string>
   <string name="historyform-retrieve-history">Retrieve history</string>
@@ -281,6 +294,7 @@
   <string name="login-remember-password-tooltip">This option will store your password in plaintext on your hard drive. Use it only if you are the only person with access to this computer.</string>
   <string name="login-ssl">Use HTTPS to log in (requires OpenSSL)</string>
   <string name="login-fail">Login failed on $1</string>
+  <string name="login-fail-with-reason">Login failed (on $1): $2</string>
   <string name="login-error-admin">Use of Huggle on this project requires an administrator account.</string>
   <string name="login-error-age">Use of Huggle on this project requires your account to be at least $1 days old.</string>
   <string name="login-error-alldisabled">Huggle is currently disabled on all projects.</string>
@@ -338,6 +352,7 @@
   <string name="main-queue-reset">Reset</string>
   <string name="main-queue-clearall">Clear all</string>
   <string name="main-queue-options">Manage queues...</string>
+  <string name="main-queue-when-full-stop">Stop feed</string>
   <string name="main-goto">Go to</string>
   <string name="main-goto-mytalk">My talk page</string>
   <string name="main-goto-mycontribs">My contributions</string>
@@ -379,6 +394,7 @@
   <string name="main-page-delete">Delete</string>
   <string name="main-page-load">Load</string>
   <string name="main-patrol-not-enabled">Patrolling is not enabled on $1</string>
+  <string name="main-page-refresh">REFRESH</string>
   <string name="main-page-restore">Restore this revision</string>
   <string name="main-user-info">Show user info</string>
   <string name="main-user-ignore">Ignore</string>

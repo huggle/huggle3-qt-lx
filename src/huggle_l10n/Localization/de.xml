@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
+* Alefar
 * ChrisiPK
 * Das Schäfchen
 * Eddie
@@ -38,7 +39,7 @@
   <string name="rename">Umbenennen</string>
   <string name="reload">Neu laden</string>
   <string name="project">Projekt</string>
-  <string name="warning">Warnung</string>
+  <string name="warning">Atchung</string>
   <string name="result">Ergebnis</string>
   <string name="save">Speichern</string>
   <string name="show">Anzeigen</string>
@@ -823,6 +824,7 @@
   <string name="preferences-reset-gui">GUI zurücksetzen</string>
   <string name="preferences-restore-factory-layout">Dies wird das Huggle-Werkslayout zum Zeitpunkt der Installation wiederherstellen. Huggle wird geschlossen. Fortfahren?</string>
   <string name="preferences-keystroke-rate-limit">Wiederholte Tastenanschläge durch das Befolgen einer Frequenz in Millisekunden verhindern (es kann nur ein gleiches Tastaturkürzel innerhalb N ms ausgelöst werden)</string>
+  <string name="preferences-color-scheme-diff">Verschiedene Farben</string>
   <string name="preferences-color-scheme-diff-default">Standard</string>
   <string name="preferences-color-scheme-diff-dark-mode">Dunkler Modus</string>
   <string name="fail">Fehlgeschlagen</string>

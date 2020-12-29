@@ -18,6 +18,7 @@
 * Py64
 * Rail
 * Railfail536
+* Tsca
 * Ty221
 * Vengir
 * Wedkarski
@@ -171,7 +172,7 @@
   <string name="config-userspace">Przestrzeń użytkownika</string>
   <string name="config-talk">Strona dyskusji</string>
   <string name="config-columns-dynamic">Twórz kolumny list jako dynamiczne (dopasowujące szerokość do rozmiaru wpisów) lub ręcznie (użytkownik sam ustala ich rozmiar)</string>
-  <string name="config-message-notification">Wyświetl powiadomienie, gdy pojawi się nowa wiadomość na twojej stronie dyskusji</string>
+  <string name="config-message-notification">Wyświetl powiadomienie, gdy pojawi się nowa wiadomość na Twojej stronie dyskusji</string>
   <string name="config-warning-api">Wyświetlaj ostrzeżenia dla zapytań API</string>
   <string name="config-title-diff">Tytuł strony w każdym porównaniu (duży tekst, w którym wyświetlana jest tylko nagłówek strony, w górnej części każdego porównania)</string>
   <string name="config-updates">Sprawdź aktualizacje</string>
