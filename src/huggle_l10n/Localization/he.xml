@@ -10,11 +10,12 @@
 * Steeve815
 * YaronSh
 * דגש חזק
+* ישראל קלר
 * ערן
 -->
 <resources>
   <string name="name">עברית</string>
-  <string name="autorelog">בצע פעולה זאת ללא אישור בפעמים הבאות</string>
+  <string name="autorelog">לעשות את זה בלי לשאול בפעם הבאה</string>
   <string name="isrtl">true</string>
   <string name="add">הוספה</string>
   <string name="cancel">ביטול</string>
@@ -81,7 +82,7 @@
   <string name="block-duration">משך החסימה:</string>
   <string name="block-message">הודעת דף שיחה:</string>
   <string name="block-message-user">שליחת הודעה למשתמש היעד עם הסבר לחסימה</string>
-  <string name="block-anononly">חסימת משתמשים אלמוניים בלבד</string>
+  <string name="block-anononly">חסימת משתמשים אנונימיים בלבד</string>
   <string name="block-creation">חסימת יצירת חשבונות</string>
   <string name="block-autoblock">לאפשר חסימה אוטומטית</string>
   <string name="block-email">חסימה שליחת דוא\"ל</string>
@@ -687,10 +688,14 @@
   <string name="warning-confirm-title">באמת לשלוח אזהרה?</string>
   <string name="warning-confirm-old-edit">העריכה לדף $1 ב־$2 מאת $3 ישנה יותר מיום, האם באמת לשלוח לו אזהרה?</string>
   <string name="warning-confirm-too-recent">העריכה לדף $1 ב־$2 מאת $3 שקיבל הודעה בדף השיחה לא מזמן (כנראה תבנית אזהרה אחרת?) האם באמת לשלוח להם עוד אזהרה?</string>
+  <string name="warning-too-old-skip">לא נשלחת אזהרה ל$1 על עריכתם ב$2 ב$3 מכיוון שהיא בוצעה לפני למעלה מיום</string>
+  <string name="warning-no-aiv-config">משתמש זה כבר הגיע לאזהרת רמה 4 ואין תמיכה ב- AIV בוויקי זה, עליך לחסום את המשתמש כעת</string>
   <string name="warning-warntype">סוג האזהרה:</string>
   <string name="warning-warnlog">אזהרות למשתמש הזה:</string>
   <string name="warning-submit">שליחה</string>
   <string name="warninglist-no-warning-title">אין אזהרה</string>
+  <string name="warninglist-no-warning-text">אין נתונים לגבי סוג אזהרה זה, אין אפשרות למסור אזהרה למשתמש!</string>
+  <string name="warninglist-report-text">משתמש זה כבר קיבל אזהרה סופית, ולכן לא נשלח לו אזהרות נוספות, האם ברצונך לדווח עליהן במקום זאת?</string>
   <string name="wikiedit-tp-fail">לא ניתן לאחזר את רמת האזהרה של $1. זה לא ישמש לדירוג</string>
   <string name="missing-warning">אין תבנית אזהרה כזאת $1</string>
   <string name="han-not">רשת ההשחתות אינה מורשית באפשרויות</string>
@@ -738,6 +743,7 @@
   <string name="history-welcome-msg-title">לשלוח במקום זאת הודעת ברוך־בואך?</string>
   <string name="history-welcome-msg">יצרת את דף השיחה הזה ולכן לא ניתן לבטל אותו. האם להחליף אותו בתבנית ברוך־בואך?</string>
   <string name="newtab-title">זוהי לשונית חדשה!</string>
+  <string name="newtab-text">כרטיסיות בHuggle פועלות באופן דומה לכל דפדפן אינטרנט אחר. הכרטיסיות בHuggle שימושיות למקרה שתרצה לפקוח עמוד מסוים, או אם ברצונך לבדוק עריכה מאוחר יותר.</string>
   <string name="notify-fail">לא שלחת הודעה ליוצר של $1</string>
   <string name="notify-unknowncreator">לא ניתן למצוא את יוצר הדף</string>
   <string name="protect-done">רמת ההגנה עבור $1 שונתה</string>
@@ -811,10 +817,13 @@
   <string name="preferences-sounds-enable-irc">לנגן צליל כשמתקבל מסר ב־HAN</string>
   <string name="preferences-sounds-minimal-score">ציון עריכה מזערי להתראה</string>
   <string name="preferences-performance-catscansandwatched">הפעלת סריקות קטגוריות ומעקב אחרי סינון מצב (נדרשת שאילתת API נוספת לכל עריכה)</string>
+  <string name="preferences-max-score">אפשר ציון מקסימום גלובלי (עריכות עם ציון גבוה יותר לא יתעלמו - שימושי אם אתה רוצה לראות רק עריכות טובות)</string>
+  <string name="preferences-min-score">אפשר ציון מינימלי גלובלי (עריכות עם ציון נמוך יותר לא יתעלמו - שימושי אם אתה רוצה לראות רק עריכות גרועות)</string>
   <string name="preferences-queue-size">גודל התור</string>
   <string name="preferences-empty-queue-page">דף תורות ריק:</string>
   <string name="preferences-reset-gui">איפוס GUI</string>
   <string name="preferences-restore-factory-layout">פעולה זו תאפס את הפריסה של האגל להגדרות ההתחלתיות שלו. משום כך האגל יבצע כיבוי. להמשיך?</string>
+  <string name="preferences-keystroke-rate-limit">מנע הקשות חוזרות ונשנות על ידי הקצב הבא במילי-שניות (ניתן להפעיל רק קיצור דרך אחד זהה בתוך N ms)</string>
   <string name="preferences-color-scheme-diff">צבעי הבדלים</string>
   <string name="preferences-color-scheme-diff-default">ברירת המחדל</string>
   <string name="preferences-color-scheme-diff-dark-mode">מצב חשוך</string>
@@ -877,10 +886,20 @@
   <string name="queue-empty-text">אין שינויים בתור...</string>
   <string name="protip">טיפ מקצועי</string>
   <string name="wikipagetagsform-group">קבוצה בתוך {{$1}}</string>
+  <string name="tip1">האגל תומך בכרטיסיות בדיוק כמו כל דפדפן אינטרנט אחר! אם אתה נמצא בעריכה וברצונך לשמור אותה למועד מאוחר יותר, תוכל פשוט לפתוח כרטיסייה חדשה ולהמשיך לבדוק שם את התור. התור מתחלק בין כל הכרטיסיות.</string>
+  <string name="tip2">האגל מכיל \"סרגל עריכה\" - יישומון קטן המכיל את היסטוריית המשתמשים וגם את העמוד בצורה מסודרת. זה לא מופעל כברירת מחדל. אם אתה על מסך קטן, אתה יכול להחליף את יישומוני המשתמשים והיסטוריית הדפים בו!</string>
+  <string name="tip3">רוב ההעדפות נשמרות בוויקי ב [[Special:MyPage/huggle.yaml.js]]. אתה יכול גם לשנות אותם שם באופן ידני.</string>
+  <string name="tip4">כמעט כל יישומון על המסך יכול להיסגר בבטחה (למעט סרגל הניווט).</string>
   <string name="tip5">ניתן להשתמש בהאגל במספר מיזמים בו־זמנית, פשוט לחצו על כפתור ה\"מיזמים\" בטופס ההתחברות.</string>
   <string name="tip6">השחזורים של האגל יכולים להיות מהירים יותר אם אתם משתמשים מנוסים שלא עשו טעות מעולם ;) זאת באמצעות פתיחת ההעדפות וסימון \"שחזורים מידיים\"</string>
+  <string name="tip7">אתה יכול ליצור מסנני תור מותאמים אישית משלך בהעדפותיך. הם מאוחסנים בדף התצורה שלך ב- wiki.</string>
+  <string name="tip8">לחיצה על G תסמן עריכה זו כ\"עריכה טובה\". זה יודיע לאחרים כי ניתן להתעלם מעריכה זו, מקטין את הציון הרע למשתמשים ויש אופציה לשלוח להם הודעת ברוכים הבאים.</string>
+  <string name="tip9">לחיצה על S תסמן את העריכה כ\"עריכה חשודה\". זה יודיע לאחרים שעריכה זו זקוקה לתשומת לב ומוסיף אותה לתור העריכות החשודות לבדיקה מאוחרת יותר של מומחים.</string>
   <string name="tip10">ניתן לשנות את רוב קיצורי המקשים שלך דרך ההעדפות שלך.</string>
+  <string name="tip11">העברת יישומון על מסך ה\"האגל\" על ​​גבי יישומון אחר תמזג אותם לאחד, מופרד עם כרטיסיות.</string>
   <string name="tip12">עשית טעות? שום בעיה, לחיצה ימנית על כל עריכה ב\"היסטוריה של העריכות שלך\" פותחת חלון קופץ המציע לך אפשרות לביטול השינוי שלך.</string>
+  <string name="tip13">באפשרותך לפתוח \"דפדפן תרומות\" עבור המשתמש שיצר את העריכה המוצגת כעת, על ידי לחיצה על Shift + C (ברירת מחדל) או מתפריט המשתמש. זה מאפשר לך להציג במהירות את העריכות האחרונות שביצע משתמש זה.</string>
   <string name="tip14">אפשר להשתמש בצ’אט עם משתמשים פעילים אחרים בהאגל אשר משתמשים כעת בתוכנה. ניתן לראות אותם בחלון \"רשת\" אם הם מחוברים.</string>
+  <string name="tip15">אם אתה מוצא בעיות אחרות במאמר אך החזרה לא עוזרת, תוכל ללחוץ על E כדי לערוך את המאמר באופן מיידי בדפדפן ברירת המחדל שלך (לא בתוך האגל).</string>
   <string name="tip16">אם כפתור השחזור נלחץ בטעות, עדיין ניתן לבטל את השחזור שעומד להתבצע באמצעות הקשה על ESC מהר.</string>
 </resources>

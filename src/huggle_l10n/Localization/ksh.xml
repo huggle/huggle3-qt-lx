@@ -3,7 +3,6 @@
 * Purodha
 -->
 <resources>
-  <string name="name">Änglesch</string>
   <string name="isrtl">false</string>
   <string name="add">Dobeidonn</string>
   <string name="cancel">Ophüre</string>

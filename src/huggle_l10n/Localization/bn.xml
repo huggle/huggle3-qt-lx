@@ -2,6 +2,7 @@
 <!-- Authors:
 * Aftabuzzaman
 * Al Riaz Uddin Ripon
+* Amire80
 * Bodhisattwa
 * Macofe
 * Mohammed Galib Hasan
@@ -12,7 +13,7 @@
 <resources>
   <string name="name">বাংলা</string>
   <string name="autorelog">পরের বার জিজ্ঞাসা না করে এটি করুন</string>
-  <string name="isrtl">মিথ্যা</string>
+  <string name="isrtl">false</string>
   <string name="add">যোগ</string>
   <string name="cancel">বাতিল</string>
   <string name="clear">পরিষ্কার</string>

@@ -7,7 +7,6 @@
 * Zygimantus
 -->
 <resources>
-  <string name="name">Anglų kalba</string>
   <string name="isrtl">false</string>
   <string name="add">Pridėti</string>
   <string name="cancel">Atšaukti</string>

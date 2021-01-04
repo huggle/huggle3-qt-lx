@@ -2,6 +2,7 @@
 <!-- Authors:
 * 1997kB
 * Abijeet Patro
+* Amire80
 * Anamdas
 * McDutchie
 * NehalDaveND
@@ -18,7 +19,7 @@
 <resources>
   <string name="name">हिन्दी</string>
   <string name="autorelog">अगली बार ऐसा बिना पूछे करे</string>
-  <string name="isrtl">असत्य</string>
+  <string name="isrtl">false</string>
   <string name="add">जोड़ें</string>
   <string name="cancel">रद्द करें</string>
   <string name="clear">साफ़ करें</string>

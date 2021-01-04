@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
+* Amire80
 * Bibas
 * Dr. Mohammed
 * Hhaboh162002
@@ -19,7 +20,7 @@
 <resources>
   <string name="name">العربية</string>
   <string name="autorelog">افعل هذا دون أن تسأل في المرة القادمة</string>
-  <string name="isrtl">خاطئ</string>
+  <string name="isrtl">true</string>
   <string name="add">أضف</string>
   <string name="cancel">إلغاء</string>
   <string name="clear">امحُ</string>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
+* Amire80
 * Dan Koehl
 * Fader
 * Jopparn
@@ -15,7 +16,7 @@
 <resources>
   <string name="name">Svenska</string>
   <string name="autorelog">Gör detta utan att fråga mig nästa gång</string>
-  <string name="isrtl">falskt</string>
+  <string name="isrtl">false</string>
   <string name="add">Lägg till</string>
   <string name="cancel">Avbryt</string>
   <string name="clear">Rensa</string>

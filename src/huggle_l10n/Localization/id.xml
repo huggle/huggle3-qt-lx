@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
 * Ahdan
+* Amire80
 * Arief
 * Arifin.wijaya
 * FBN122645
@@ -15,7 +16,7 @@
 <resources>
   <string name="name">Bahasa Indonesia</string>
   <string name="autorelog">Lakukan dan jangan tanyakan lagi lain kali.</string>
-  <string name="isrtl">salah</string>
+  <string name="isrtl">false</string>
   <string name="add">Tambah</string>
   <string name="cancel">Batal</string>
   <string name="clear">Kosongkan</string>

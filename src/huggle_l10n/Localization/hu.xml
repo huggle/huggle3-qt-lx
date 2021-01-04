@@ -10,7 +10,6 @@
 * Wolf Rex
 -->
 <resources>
-  <string name="name">Angol</string>
   <string name="isrtl">false</string>
   <string name="add">Hozzáad</string>
   <string name="cancel">Mégse</string>

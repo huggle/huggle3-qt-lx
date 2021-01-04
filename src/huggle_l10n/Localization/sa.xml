@@ -5,7 +5,6 @@
 * NehalDaveND
 -->
 <resources>
-  <string name="name">आङ्ग्लभाषा</string>
   <string name="isrtl">false</string>
   <string name="add">संयोज्यताम्</string>
   <string name="cancel">निरस्यताम्</string>

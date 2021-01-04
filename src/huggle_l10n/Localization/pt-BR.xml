@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
 * !Silent
+* Amire80
 * Araceletorres
 * ArgonSim
 * Athena in Wonderland
@@ -28,9 +29,8 @@
 * Webysther
 -->
 <resources>
-  <string name="name">Inglês</string>
   <string name="autorelog">Fazer isto sem perguntar da próxima vez</string>
-  <string name="isrtl">falso</string>
+  <string name="isrtl">false</string>
   <string name="add">Adicionar</string>
   <string name="cancel">Cancelar</string>
   <string name="clear">Limpar</string>

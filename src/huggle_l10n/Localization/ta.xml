@@ -8,7 +8,6 @@
 * Shrikarsan
 -->
 <resources>
-  <string name="name">ஆங்கிலம்</string>
   <string name="isrtl">false</string>
   <string name="add">சேர்க்கவும்</string>
   <string name="cancel">இரத்து செய்க</string>
