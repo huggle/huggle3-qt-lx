@@ -59,7 +59,7 @@
   <string name="disable">Letiltás</string>
   <string name="no-token">Nincs token</string>
   <string name="flags">Címkék</string>
-  <string name="browser-none" fuzzy="true">Nincs megjeleníthető lap</string>
+  <string name="browser-none">Nincs megjeleníthető lap</string>
   <string name="browser-miss-summ">Nincs megadva összefoglaló</string>
   <string name="about-contributors">Fejlesztők:</string>
   <string name="block-not">A felhasználó nincs blokkolva</string>
