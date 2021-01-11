@@ -829,7 +829,7 @@
   <string name="preferences-extension-enabled-restart">Uzantı etkinleştirildi. Huggle\'ın etkinleşmesi için yeniden başlatmanız gerekecek.</string>
   <string name="preferences-enforce-baw">HTML farkında siyah ve beyaz renkleri zorla</string>
   <string name="preferences-watchlist-watch">İzleme listesine ekle</string>
-  <string name="preferences-watchlist-unwatch">İzleme listesinden çıkar</string>
+  <string name="preferences-watchlist-unwatch">İzleme listesinden kaldır</string>
   <string name="preferences-watchlist-preferences">Wiki\'deki tercihlerini takip et</string>
   <string name="preferences-watchlist-nochange">Hiçbir şey yapma</string>
   <string name="preferences-auto-watch-talk">Sizden bir uyarı alan bir kullanıcının mesaj sayfasını izleyin</string>

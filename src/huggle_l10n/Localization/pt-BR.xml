@@ -29,6 +29,7 @@
 * Webysther
 -->
 <resources>
+  <string name="name">Português (Brasil)</string>
   <string name="autorelog">Fazer isto sem perguntar da próxima vez</string>
   <string name="isrtl">false</string>
   <string name="add">Adicionar</string>
