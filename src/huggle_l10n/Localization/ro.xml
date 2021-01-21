@@ -851,7 +851,7 @@
   <string name="relogin-fail">Nu m-am putut autentifica în wiki: $1</string>
   <string name="projects">Proiecte</string>
   <string name="unable-to-retrieve-user-list">Nu se poate recupera lista de utilizatori: $1</string>
-  <string name="login-no-userinfo">Site-ul nu a returnat nicio informație despre utilizator</string>
+  <string name="login-no-userinfo" fuzzy="true">Site-ul nu a returnat nicio informație despre utilizator</string>
   <string name="login-invalid-register-date">Data de înregistrare nevalidă returnată de mediawiki</string>
   <string name="login-site-info-query-failed">Site-ul info Query pentru $1 a eșuat: $2</string>
   <string name="login-no-site-info-returned">Site-ul a reîntors informațiile spre wiki</string>

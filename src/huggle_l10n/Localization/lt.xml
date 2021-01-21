@@ -614,7 +614,7 @@
   <string name="relogin-fail">Nepavyko prisijungti prie viki: $1</string>
   <string name="projects">Projektai</string>
   <string name="unable-to-retrieve-user-list">Nepavyko gauti vartotojų sąrašo: $1</string>
-  <string name="login-no-userinfo">Svetainėje negražino jokios userinfo informacijos</string>
+  <string name="login-no-userinfo" fuzzy="true">Svetainėje negražino jokios userinfo informacijos</string>
   <string name="login-site-info-query-failed">Svetainės $1 informacijos užklausa nepavyko: $2</string>
   <string name="login-no-site-info-returned">Negražinta jokia viki svetainės informacija</string>
   <string name="loading-main-window">Įkeliamas pagrindinis Huggle langas...</string>

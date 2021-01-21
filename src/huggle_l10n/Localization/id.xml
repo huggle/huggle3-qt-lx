@@ -429,7 +429,7 @@
   <string name="block-alreadyblocked">Pengguna sudah diblokir</string>
   <string name="report-fail">Gagal melaporkan pengguna karena: $1</string>
   <string name="projects">Proyek</string>
-  <string name="login-no-userinfo">Situs tidak mengembalikan setiap informasi pengguna</string>
+  <string name="login-no-userinfo" fuzzy="true">Situs tidak mengembalikan setiap informasi pengguna</string>
   <string name="login-invalid-register-date" fuzzy="true">Tanggal pendaftaran tidak valid, dikembalikan oleh mediawiki</string>
   <string name="login-no-site-info-returned">Tidak ada situs Info dikembalikan untuk wiki ini</string>
   <string name="loading-main-window" fuzzy="true">Memuat jendela Huggle utama</string>

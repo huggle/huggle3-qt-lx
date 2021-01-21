@@ -801,7 +801,7 @@
   <string name="relogin-fail">Impossibile accedere al wiki: $1</string>
   <string name="projects">Progetti</string>
   <string name="unable-to-retrieve-user-list">Impossibile recuperare elenco utenti: $1</string>
-  <string name="login-no-userinfo">Il sito non ha restituito alcuna informazione sull\'utente</string>
+  <string name="login-no-userinfo" fuzzy="true">Il sito non ha restituito alcuna informazione sull\'utente</string>
   <string name="login-invalid-register-date">Data di registrazione restituita da MediaWiki non valida</string>
   <string name="login-site-info-query-failed">Query di informazioni sul sito per $1 non è riuscita: $2</string>
   <string name="login-no-site-info-returned">Nessun informazione sul sito è stata restituita per questo wiki</string>

@@ -852,7 +852,7 @@
   <string name="relogin-fail">Không thể đăng nhập vào wiki: $1</string>
   <string name="projects">Dự án</string>
   <string name="unable-to-retrieve-user-list">Không thể truy xuất danh sách thành viên: $1</string>
-  <string name="login-no-userinfo">Site không trả về bất kỳ thông tin thành viên nào</string>
+  <string name="login-no-userinfo" fuzzy="true">Site không trả về bất kỳ thông tin thành viên nào</string>
   <string name="login-invalid-register-date">Mediawiki đã trả về ngày tháng đăng ký không hợp lệ</string>
   <string name="login-site-info-query-failed">Truy vấn thông tin site cho $1 đã thất bại: $2</string>
   <string name="login-no-site-info-returned">Không có thông tin site nào được trả về cho wiki này</string>

@@ -738,7 +738,7 @@
   <string name="relogin-fail">Не вдалося увійти до wiki: $1</string>
   <string name="projects">Проекти</string>
   <string name="unable-to-retrieve-user-list">Не вдалося отримати список користувачів: $1</string>
-  <string name="login-no-userinfo">Сайт не повертає жодних відомостей про користувачів</string>
+  <string name="login-no-userinfo" fuzzy="true">Сайт не повертає жодних відомостей про користувачів</string>
   <string name="login-invalid-register-date">Медіавікі повернуло неправильну дату реєстрації</string>
   <string name="login-site-info-query-failed">Запит інформації про сайт для $1 був невдалим: $2</string>
   <string name="login-no-site-info-returned">Жодна інформація про сайт не повернулася для цього вікі</string>

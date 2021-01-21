@@ -774,7 +774,7 @@
   <string name="relogin-fail">Unable to login to wiki: $1</string>
   <string name="projects">Projects</string>
   <string name="unable-to-retrieve-user-list">Unable to retrieve user list: $1</string>
-  <string name="login-no-userinfo">Site didn\'t return any userinfo information</string>
+  <string name="login-no-userinfo" fuzzy="true">Site didn\'t return any userinfo information</string>
   <string name="login-invalid-register-date">Invalid registration date returned by mediawiki</string>
   <string name="login-site-info-query-failed">Site info query for $1 has failed: $2</string>
   <string name="login-no-site-info-returned">No site info was returned for this wiki</string>

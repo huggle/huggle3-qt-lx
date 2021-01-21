@@ -767,7 +767,7 @@
   <string name="relogin-fail">Kunde inte logga in på wiki: $1</string>
   <string name="projects">Projekt</string>
   <string name="unable-to-retrieve-user-list">Kunde inte hämta listan över användare: $1</string>
-  <string name="login-no-userinfo">Sidan gav inte att någon användarinformation</string>
+  <string name="login-no-userinfo" fuzzy="true">Sidan gav inte att någon användarinformation</string>
   <string name="login-invalid-register-date">Ogiltigt registreringsdatum returnerades av MediaWiki</string>
   <string name="login-no-site-info-returned">Ingen webbplatsinfo returnerade för denna wiki</string>
   <string name="loading-main-window">Läser in Huggles huvudfönster...</string>

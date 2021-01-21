@@ -876,7 +876,7 @@
   <string name="relogin-fail">Vikide oturum açılamıyor: $1</string>
   <string name="projects">Projeler</string>
   <string name="unable-to-retrieve-user-list">Kullanıcı listesi getirilemiyor: $1</string>
-  <string name="login-no-userinfo">Site herhangi bir kullanıcı bilgisi göndermedi</string>
+  <string name="login-no-userinfo" fuzzy="true">Site herhangi bir kullanıcı bilgisi göndermedi</string>
   <string name="login-invalid-register-date">Geçersiz kayıt tarihi medyiawiki tarafından geri getirildi</string>
   <string name="login-site-info-query-failed">Site bilgileri sorgu için $1 başarısız oldu: $2</string>
   <string name="login-no-site-info-returned">Bu viki için site bilgisi geri gelmedi.</string>

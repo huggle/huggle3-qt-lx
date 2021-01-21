@@ -792,7 +792,7 @@
   <string name="relogin-fail">উইকিতে প্রবেশ করা যায়নি: $1</string>
   <string name="projects">প্রকল্পসমূহ</string>
   <string name="unable-to-retrieve-user-list">ব্যবহারকারী তালিকা আনতে অক্ষম: $1</string>
-  <string name="login-no-userinfo">সাইট কোনো ব্যবহারকারী তথ্য দেয়নি</string>
+  <string name="login-no-userinfo" fuzzy="true">সাইট কোনো ব্যবহারকারী তথ্য দেয়নি</string>
   <string name="login-invalid-register-date">মিডিয়াউইকি নিবন্ধনের তারিখ অবৈধ বলছে</string>
   <string name="login-site-info-query-failed">$1-এর জন্য সাইটের তথ্যের কোয়েরি ব্যর্থ হয়েছে: $2</string>
   <string name="login-no-site-info-returned">এই উইকি জন্য কোন সাইটের তথ্য ফেরত আসেনি</string>

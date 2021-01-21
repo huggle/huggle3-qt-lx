@@ -856,7 +856,7 @@
   <string name="relogin-fail">לא ניתן להיכנס לוויקי: $1</string>
   <string name="projects">מיזמים</string>
   <string name="unable-to-retrieve-user-list">לא ניתן לאחזר את רשימת המשתמשים: $1</string>
-  <string name="login-no-userinfo">האתר לא החזיר שום מידע על משתמשים</string>
+  <string name="login-no-userinfo" fuzzy="true">האתר לא החזיר שום מידע על משתמשים</string>
   <string name="login-invalid-register-date">תאריך הרשמה לא־תקין הוחזר על ידי מדיה־ויקי</string>
   <string name="login-site-info-query-failed">שאילתת site info נכשלה: $2</string>
   <string name="login-no-site-info-returned">לא הוחזר שום site info עבור הוויקי הזה</string>
