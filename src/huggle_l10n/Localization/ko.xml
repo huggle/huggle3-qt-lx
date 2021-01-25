@@ -818,7 +818,7 @@
   <string name="relogin-fail">위키에 로그인할 수 없습니다: $1</string>
   <string name="projects">프로젝트</string>
   <string name="unable-to-retrieve-user-list">사용자 목록을 검색할 수 없습니다: $1</string>
-  <string name="login-no-userinfo" fuzzy="true">사이트가 userinfo 정보를 반환하지 않았습니다</string>
+  <string name="login-no-userinfo">사이트가 userinfo 정보를 반환하지 않았습니다</string>
   <string name="login-invalid-register-date">미디어위키가 유효하지 않은 등록일을 반환했습니다</string>
   <string name="login-site-info-query-failed">$1에 대한 사이트 정보 조회 실패: $2</string>
   <string name="login-no-site-info-returned">이 위키에 대한 사이트 정보가 반환되지 않았습니다</string>

@@ -866,7 +866,7 @@
   <string name="relogin-fail">无法登陆wiki：$1</string>
   <string name="projects">项目</string>
   <string name="unable-to-retrieve-user-list">无法检索用户列表：$1</string>
-  <string name="login-no-userinfo" fuzzy="true">网站未返回任何用户信息</string>
+  <string name="login-no-userinfo">网站未返回任何用户信息</string>
   <string name="login-invalid-register-date">由mediawiki返回的注册日期无效</string>
   <string name="login-site-info-query-failed">对$1的网站信息查询已失败：$2</string>
   <string name="login-no-site-info-returned">没有返回此wiki的网站信息</string>

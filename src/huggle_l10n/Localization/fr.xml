@@ -866,7 +866,7 @@
   <string name="relogin-fail">Impossible de se connecter au wiki: $1</string>
   <string name="projects">Projets</string>
   <string name="unable-to-retrieve-user-list">Impossible de récupérer la liste utilisateur : $1</string>
-  <string name="login-no-userinfo" fuzzy="true">Le site n’a renvoyé aucune information userinfo</string>
+  <string name="login-no-userinfo">Le site n’a renvoyé aucune information userinfo</string>
   <string name="login-invalid-register-date">Date d’inscription renvoyée par MédiaWiki non valide</string>
   <string name="login-site-info-query-failed">La demande d’information du site pour $1 a échouée : $2</string>
   <string name="login-no-site-info-returned">Aucune information de site n’a été renvoyée pour ce wiki</string>

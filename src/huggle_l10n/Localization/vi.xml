@@ -5,6 +5,7 @@
 * Leducanh01
 * MeigyokuThmn
 * Minh Nguyen
+* Nghiemtrongdai VN
 * P.T.Đ
 * Phjtieudoc
 * Q.Khải
@@ -79,7 +80,7 @@
   <string name="block-message">Tin nhắn trên trang thảo luận:</string>
   <string name="block-message-user">Gửi tin nhắn tới thành viên mục tiêu, kèm theo lý do cấm</string>
   <string name="block-anononly">Chỉ cấm người dùng vô danh</string>
-  <string name="block-creation">Cấm tạo tài khoản</string>
+  <string name="block-creation">Cấm mở tài khoản</string>
   <string name="block-autoblock">Bật dùng tính năng tự động cấm</string>
   <string name="block-email">Cấm thư điện tử</string>
   <string name="block-usertalk">Thảo luận</string>

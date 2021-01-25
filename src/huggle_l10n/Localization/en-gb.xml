@@ -2,6 +2,7 @@
 <!-- Authors:
 * Alefar
 * Andibing
+* Berrely
 * Bjh21
 * Captaindogfish
 * Chase me ladies, I'm the Cavalry
@@ -103,6 +104,8 @@
   <string name="config-queue-filter-ignore">Ignore (doesn\'t matter)</string>
   <string name="config-queue-filter-exclude">Exclude (must not be)</string>
   <string name="config-queue-filter-require">Require (must be)</string>
+  <string name="config-queue-modified-title">Queue modified</string>
+  <string name="config-queue-modified-text">You modified the queue, but didn\'t save it. If you continue, your changes will be discarded. Do you want to continue?</string>
   <string name="config-summ">Custom revert summary/ies for templates</string>
   <string name="config-title">Options</string>
   <string name="config-already-in-use">This shortcut is already being used by $1, please choose a different one</string>
@@ -179,6 +182,7 @@
   <string name="config-autoadvance">After reverting, move to next edit in the queue</string>
   <string name="config-userollback">Use rollback if available</string>
   <string name="config-revertsummaries">Revert summaries available in menu</string>
+  <string name="config-auto-refresh">Automatically refresh page in case there was another edit made to it</string>
   <string name="config-extendreports">Extend reports after additional vandalism</string>
   <string name="config-autoreport">When asked to warn a user with a final warning</string>
   <string name="config-reportnone">Do nothing</string>
@@ -201,6 +205,7 @@
   <string name="config-notify-update">Check for updates</string>
   <string name="config-notify-beta">Check for beta versions if available</string>
   <string name="custommessage-title">Написать сообщение $1</string>
+  <string name="custommessage-summary">Edit summary (Huggle suffix will be automatically inserted)</string>
   <string name="custommessage-subject">Title</string>
   <string name="custommessage-menu">Send a custom message:</string>
   <string name="custommessage-send">SEND MESSAGE</string>
@@ -221,6 +226,7 @@
   <string name="delete-failed-no-info">No user info was present in the query (are you an admin?)</string>
   <string name="extension-kl">Not running</string>
   <string name="extension-ok">Loaded and running</string>
+  <string name="exception-text-1">Unfortunately Huggle has crashed. Please submit the following information together with details of what were you doing to</string>
   <string name="exception-details">Exception details:</string>
   <string name="exception-error-code">Error code: $1</string>
   <string name="exception-reason">Reason: $1</string>
@@ -262,12 +268,14 @@
   <string name="login-proxy-remember-this">Remember this setting for next time</string>
   <string name="login-proxyport">Port:</string>
   <string name="login-proxydomain">Domain:</string>
+  <string name="proxy-restart">Huggle may need to be restarted for these changes to take effect.</string>
   <string name="login-retrieving-user-conf">Retrieving user config</string>
   <string name="login-fail-css">Login failed on $1: Unable to retrieve user configuration. Special:MyPage/huggle3.css is missing. Did you create huggle3.css in your userspace?</string>
   <string name="login-fail-enable-true">Login failed on $1: You don\'t have enable:true in your personal config.</string>
   <string name="login-fail-no-info">Login failed on $1: Unable to retrieve user info: $2</string>
   <string name="login-bot">What is the difference between BotPassword and legacy login?</string>
   <string name="login-fail-parse-config">Login failed on $1: Unable to parse the user configuration. See the debug log for more details.</string>
+  <string name="login-fail-parse-config-yaml">Login failed on $1: Unable to parse the user configuration: $2</string>
   <string name="login-fail-user-data">Login failed on $1: Unable to retrieve user info. The API query returned no data.</string>
   <string name="login-fail-rollback-rights">Login failed on $1: You don\'t have rollback permissions on this project.</string>
   <string name="login-failed-autoconfirm-rights">Login failed on $1: You are not autoconfirmed on this project.</string>
@@ -286,6 +294,7 @@
   <string name="login-progress-language">Updating message files...</string>
   <string name="login-progress-global">Checking global configuration...</string>
   <string name="login-progress-config">Checking configuration pages...</string>
+  <string name="login-progress-yaml">Checking local YAML configuration for $1</string>
   <string name="login-progress-local">Checking local configuration for $1</string>
   <string name="login-progress-user">Checking user configuration for $1</string>
   <string name="login-progress-user-info">Checking user info for $1</string>
@@ -301,12 +310,15 @@
   <string name="login-error-approval">Use of Huggle on $1 requires approval.</string>
   <string name="login-error-cancelled">Cancelled.</string>
   <string name="login-error-config">Login failed, unable to parse local config for $1: $2</string>
+  <string name="login-error-config-retrieve">Login failed, unable to retrieve user config: $1</string>
+  <string name="login-error-config-query-no-data">Login failed - possible network connection issues? Unable to download global config</string>
   <string name="login-error-count">Use of Huggle on this project requires at least $1 edits.</string>
   <string name="login-error-disabled">Huggle is not enabled for your account on $1. Check your user configuration page.</string>
   <string name="login-error-global">Login failed - possible network connection issue? Unable to download or parse the global configuration page</string>
   <string name="login-error-invalid">Invalid username</string>
   <string name="login-error-noconfig">$1 does not have a Huggle configuration page</string>
   <string name="login-error-nouser">The user does not exist</string>
+  <string name="login-error-no-valid-token">No valid login token returned by the site</string>
   <string name="login-error-password">Incorrect password</string>
   <string name="login-error-projdisabled">Huggle is currently disabled on $1.</string>
   <string name="login-error-unknown">Unable to log in to $1.</string>
@@ -315,9 +327,13 @@
   <string name="login-ro-title">Switch to read-only</string>
   <string name="login-ro-question">One or more projects ($1) do not allow you to login with edit permissions (reason: $2). Do you want to switch to read-only mode instead?</string>
   <string name="login-ro-info">Project $1 switched to read-only mode</string>
+  <string name="wikis-db-download-fail">Unable to download a db of wikis: $1</string>
+  <string name="no-projects-defined-in-list">There are no projects defined in a list you need to set up some on global wiki</string>
+  <string name="api-query-no-data">the api query returned no data</string>
   <string name="main-stat">$1 edits per minute, $2 reverts per minute, level $3</string>
   <string name="main-menu-provider-stop">Stop provider</string>
   <string name="main-menu-provider-resume">Resume provider</string>
+  <string name="main-help-copy-syslog-to-clip">Copy system log to clipboard</string>
   <string name="provider-up">Connecting to recent changes stream on $2 using provider: $1</string>
   <string name="main-no-reason">No reason was provided by user</string>
   <string name="main-restoring-slap">Another edit is currently being restored, please wait...</string>
@@ -329,6 +345,7 @@
   <string name="main-space">The page name can\'t end with a space, please correct the page name</string>
   <string name="main-system">System</string>
   <string name="main-status-bar">Processing &lt;b&gt;$1&lt;/b&gt; edits and &lt;b&gt;$2&lt;/b&gt; queries. Whitelisted users: &lt;b&gt;$3&lt;/b&gt; Queue size: &lt;b&gt;$4&lt;/b&gt; Statistics for $6: $5</string>
+  <string name="main-metric-bar">Average API response time: $1ms</string>
   <string name="main-shutting-down">Huggle is shutting down, ignored</string>
   <string name="main-system-messages">Show new messages</string>
   <string name="main-system-savelog">Save log...</string>
@@ -352,7 +369,11 @@
   <string name="main-queue-reset">Reset</string>
   <string name="main-queue-clearall">Clear all</string>
   <string name="main-queue-options">Manage queues...</string>
+  <string name="main-queue-when-full">When queue is full</string>
   <string name="main-queue-when-full-stop">Stop feed</string>
+  <string name="main-queue-when-full-remove">Remove old edits</string>
+  <string name="main-queue-remove-whitelisted">Remove edits made by whitelisted users</string>
+  <string name="main-queue-remove-200">Remove edits with score lower than -200</string>
   <string name="main-goto">Go to</string>
   <string name="main-goto-mytalk">My talk page</string>
   <string name="main-goto-mycontribs">My contributions</string>
@@ -364,6 +385,8 @@
   <string name="main-revision-revert-warn">Revert the currently displayed edit and warn the user</string>
   <string name="main-revision-rws">Revert the currently displayed edit, warn the user and stay on the page</string>
   <string name="main-revision-faith">Revert assuming good faith</string>
+  <string name="main-revision-revert-only-this">Revert only this revision</string>
+  <string name="main-revision-revert-agf">Revert only this revision assuming good faith</string>
   <string name="main-revision-previous">Previous</string>
   <string name="main-revision-next">Next</string>
   <string name="main-revision-latest">Latest</string>
@@ -396,20 +419,29 @@
   <string name="main-patrol-not-enabled">Patrolling is not enabled on $1</string>
   <string name="main-page-refresh">REFRESH</string>
   <string name="main-page-restore">Restore this revision</string>
+  <string name="main-page-watchlist-add">Add page to a watchlist</string>
+  <string name="main-page-tab-close">Close the current tab</string>
+  <string name="main-page-tab-open">Open a new tab</string>
+  <string name="main-page-watchlist-remove">Remove page from a watchlist</string>
+  <string name="main-scripting">Scripting</string>
+  <string name="main-scripting-script-manager">Scripts manager</string>
   <string name="main-user-info">Show user info</string>
   <string name="main-user-ignore">Ignore</string>
   <string name="main-user-unignore">Unignore</string>
   <string name="main-user-contribs">Show user contributions in a browser</string>
   <string name="main-user-clear-talk">Clear the talk page of the user</string>
   <string name="main-user-talk">View talk page</string>
+  <string name="main-user-page">View user page</string>
   <string name="main-user-message">Message...</string>
   <string name="main-user-warn">Warn...</string>
   <string name="main-user-db">Decrease the badness score of the user</string>
   <string name="main-user-report">Report</string>
   <string name="main-user-ib">Increase badness score</string>
+  <string name="main-user-contribution-browser">Contribution browser</string>
   <string name="main-user-clear-tp">Clear talk page of user</string>
   <string name="main-user-retrieving-tp">Retrieving Talk Page of $1</string>
   <string name="main-user-block">Block...</string>
+  <string name="main-user-manualtemplate">Manual template</string>
   <string name="main-browser-back">Back</string>
   <string name="main-browser-forward">Forward</string>
   <string name="main-browser-open">View this in an external browser</string>
@@ -427,6 +459,10 @@
   <string name="main-help-documentation">Documentation</string>
   <string name="main-help-feedback">Feedback</string>
   <string name="main-help-about">About Huggle...</string>
+  <string name="main-help-introduction">Introduction</string>
+  <string name="main-help-welcome-page">Welcome page</string>
+  <string name="main-help-contents">Contents</string>
+  <string name="main-help-queuelegend">Queue legend</string>
   <string name="main-addqueue">Add...</string>
   <string name="main-savelogtitle">Save log</string>
   <string name="main-usermessageother">Other message...</string>
@@ -454,6 +490,10 @@
   <string name="main-report-username">Report username</string>
   <string name="main-report-user">Report user</string>
   <string name="main-edit-user-talk">Edit user talk</string>
+  <string name="main-statistics-paused">paused</string>
+  <string name="main-statistics-waiting">Waiting for more edits</string>
+  <string name="main-statistics-none">none</string>
+  <string name="main-tab-welcome-title">Welcome page</string>
   <string name="message-title">Message $1</string>
   <string name="message-help">Specify Subject and/or Summary. If no summary is given, the subject will be used; if no subject is given, no header will be added.</string>
   <string name="message-subject">Subject:</string>
@@ -549,6 +589,10 @@
   <string name="uaa-not-supported-text">The \"Usernames for administrator attention\" noticeboard is not available on your wiki.</string>
   <string name="uaa-reporting">Reporting $1 to UAA</string>
   <string name="uaa-reported">Reported</string>
+  <string name="uaa-user-reported-title">User is already reported</string>
+  <string name="uaa-user-reported">This user has already been reported to UAA.</string>
+  <string name="uaa-user-unreported-title">User is not reported</string>
+  <string name="uaa-user-unreported">This user is not reported to UAA.</string>
   <string name="uaa-no-reason-warn">You didn\'t specify a reason as to why the username is a policy violation. Please specify a reason.</string>
   <string name="uaa-nr">No reason was provided</string>
   <string name="uaa-g1">Getting content of UAA</string>
@@ -572,6 +616,7 @@
   <string name="revert-fail-pre-flight">Preflight check failed: $1</string>
   <string name="speedy-reason">Reason:</string>
   <string name="speedy-parameters">Parameters:</string>
+  <string name="speedy-parameters-fail">You must provide parameters for this speedy option</string>
   <string name="speedy-notifycreator">Notify page creator</string>
   <string name="rollback">Rolling back $1</string>
   <string name="software-rollback">You don\'t have rollback rights, falling back to software rollback</string>
@@ -590,15 +635,19 @@
   <string name="updater-open-manualdownloadpage">Open the download page</string>
   <string name="updater-close">Close</string>
   <string name="updater-disable-notify">Disable updates</string>
+  <string name="updater-wait">I am now updating Huggle, please wait...</string>
   <string name="user-history-fail">Unable to retrieve history for user: $1</string>
   <string name="userinfo-generic">User info</string>
   <string name="userinfo-retrieve">Retrieve info</string>
+  <string name="userinfo-no-user">No user</string>
+  <string name="shortcut-refresh">Refresh currently displayed page (reload history and jump to last edit)</string>
   <string name="shortcut-page-patrol-edit">Patrol edit</string>
   <string name="shortcut-report-username">Report username</string>
   <string name="shortcut-report-user">Report user</string>
   <string name="shortcut-my-talk">My talk page</string>
   <string name="shortcut-raw">Revert edit and warn a user</string>
   <string name="shortcut-contrib">Show contribution for user who made the currently displayed edit</string>
+  <string name="shortcut-custom-msg">Opens a form to send a custom message to current user</string>
   <string name="shortcut-exit">Terminate Huggle in a normal way</string>
   <string name="shortcut-next">Go to the next edit</string>
   <string name="shortcut-suspicious">Mark edit as suspicious</string>
@@ -616,12 +665,17 @@
   <string name="shortcut-open">Opens the currently displayed edit in a browser</string>
   <string name="shortcut-talk">Display a talk page of user who did this change</string>
   <string name="shortcut-revert-agf-1">Revert last revision assuming good faith</string>
+  <string name="shortcut-edit">Edit currently displayed page</string>
+  <string name="shortcut-edit-in-browser">Edit currently displayed page in browser</string>
   <string name="shortcut-browser-close-tab">Close a browser tab</string>
   <string name="shortcut-tab">Opens a new tab</string>
   <string name="shortcut-rw-stay">Revert the current edit, warn the author and stay on the page</string>
   <string name="shortcut-revert-and-stay">Revert the current edit and stay on the page</string>
   <string name="shortcut-custom-reason">Revert the edit using a custom edit summary reason</string>
   <string name="shortcut-user-contribs-browser">Open user\'s contributions in a browser</string>
+  <string name="shortcut-user-clear-talk">Clear a talk page of current user</string>
+  <string name="shortcut-main-clear-queue">Clear queue</string>
+  <string name="shortcut-revert-agf">Revert assuming good faith, with a custom edit summary</string>
   <string name="warning-title">Warn $1</string>
   <string name="warning-levelgroup">Warning level</string>
   <string name="warning-levelauto">Automatic</string>
@@ -629,9 +683,17 @@
   <string name="warning-level2">Level 2</string>
   <string name="warning-level3">Level 3</string>
   <string name="warning-level4">Level 4 (final)</string>
+  <string name="warning-confirm-title">Really send a warning?</string>
+  <string name="warning-confirm-old-edit">Edit to $1 on $2 by $3 is older than 1 day, do you really want to send them a warning message?</string>
+  <string name="warning-confirm-too-recent">Edit to $1 on $2 was made by $3 who received a message on their talk page very recently (probably some other warning template?) do you really want to send them another warning message?</string>
+  <string name="warning-too-old-skip">Not sending warning to $1 for their edit to $2 on $3 because it\'s older than 1 day</string>
+  <string name="warning-no-aiv-config">This user has already reached level 4 warning and there is no AIV supported on this wiki, you should block the user now</string>
   <string name="warning-warntype">Warning type:</string>
   <string name="warning-warnlog">Warnings for this user:</string>
   <string name="warning-submit">Send</string>
+  <string name="warninglist-no-warning-title">No warning</string>
+  <string name="warninglist-no-warning-text">There is no data for this type of warning, unable to deliver a warning to user!</string>
+  <string name="warninglist-report-text">This user has already received a final warning, so I will not send any more warnings to them, do you want to report them instead?</string>
   <string name="wikiedit-tp-fail">Unable to retrieve $1 warning level. It will not be used for scoring</string>
   <string name="missing-warning">There is no such warning template $1</string>
   <string name="han-not">Vandalism network isn\'t allowed in options</string>
@@ -639,6 +701,8 @@
   <string name="han-already-connected">Not connecting to HAN because it\'s already connected</string>
   <string name="han-already-connecting">Please wait, I am already connecting to HAN...</string>
   <string name="han-disconnected">You were disconnected from HAN</string>
+  <string name="han-network">Network</string>
+  <string name="han-send">Send</string>
   <string name="error-loggedout">Account has been logged out, logging back in...</string>
   <string name="error-noresponse">No response</string>
   <string name="error-pagemissing">The page does not exist</string>
@@ -676,6 +740,8 @@
   <string name="history-retrieve-fail">Unable to retrieve the content of page which we wanted to undo our own edit. Error was: $1</string>
   <string name="history-welcome-msg-title">Send a welcome message instead?</string>
   <string name="history-welcome-msg">You created this talk page, so it can\'t be undone. Do you want to replace it with a welcome template?</string>
+  <string name="newtab-title">This is a new tab!</string>
+  <string name="newtab-text">Tabs in Huggle work in a similar way as in any other web browser. All tabs within Huggle share the same queue, but they are useful in case you want to keep an eye on certain page, or if you want to check an edit later.</string>
   <string name="notify-fail">Did not notify the creator of $1</string>
   <string name="notify-unknowncreator">Cannot find page creator</string>
   <string name="protect-done">Changed protection level for $1</string>
@@ -713,11 +779,13 @@
   <string name="rc-title-missing">RC Feed: Item was missing title attribute: $1</string>
   <string name="whitelist-download">Downloading new whitelist</string>
   <string name="logs-widget-name">System logs</string>
+  <string name="processes-widget-name">Processes</string>
   <string name="wait">Please wait...</string>
   <string name="function-miss">Function is not available now</string>
   <string name="missing-aiv">This project does not use AIV</string>
   <string name="missing-page">There is no page $1 on this wiki</string>
   <string name="updating-wl">Updating whitelist...</string>
+  <string name="waiting">Waiting...</string>
   <string name="feature-nfru">This feature is for IP users only</string>
   <string name="report-no-user">No user has been selected to report, please select a user first</string>
   <string name="welcome-show">Display this message also next time you launch Huggle</string>
@@ -731,21 +799,32 @@
   <string name="cr-message-same">There are multiple edits to $1 by the same user, are you sure you want to revert them?</string>
   <string name="cr-message-new">There are newer edits to $1. Are you sure you really want to revert them?</string>
   <string name="cr-message-not-same">There are newer edits made to $1 by a different user. Are you sure you want to revert them all? (It will likely fail anyway because it will have an old token.)</string>
+  <string name="preferences-show-warning-if-not-last-revision">Show warning if you are not on last revision of page</string>
   <string name="preferences-delete-using-filter">You can\'t delete a filter that is currently being used</string>
   <string name="preferences-extension-disabled">This extension is already scheduled for disabling on the next startup of Huggle</string>
   <string name="preferences-extension-disabled-restart">Extension was set to be disabled on the next startup of Huggle</string>
   <string name="preferences-extension-enabled">This extension is not scheduled for disabling on the next startup of Huggle</string>
   <string name="preferences-extension-enabled-restart">Extension was enabled. You will need to restart Huggle for it to take effect.</string>
+  <string name="preferences-enforce-baw">Enforce black and white colors in HTML diff</string>
   <string name="preferences-watchlist-watch">Add to watchlist</string>
   <string name="preferences-watchlist-unwatch">Remove from watchlist</string>
   <string name="preferences-watchlist-preferences">Follow your on-wiki preferences</string>
   <string name="preferences-watchlist-nochange">Do nothing</string>
+  <string name="preferences-auto-watch-talk">Watch the talk page of a user who received a warning from you</string>
   <string name="preferences-sounds-enable-queue">Play sound when a new item is added to the queue</string>
   <string name="preferences-sounds-enable-irc">Play sound when a message is received in HAN</string>
   <string name="preferences-sounds-minimal-score">Minimal edit score for notification</string>
   <string name="preferences-performance-catscansandwatched">Enable category scans and watch status filtering (requires an extra API query per edit)</string>
   <string name="preferences-max-score">Enable global max score (edits with higher score will be ignored - useful if you want to see only good edits)</string>
   <string name="preferences-min-score">Enable global min score (edits with lower score will be ignored - useful if you want to see only bad edits)</string>
+  <string name="preferences-queue-size">Queue size</string>
+  <string name="preferences-empty-queue-page">Empty queue page:</string>
+  <string name="preferences-reset-gui">Reset GUI</string>
+  <string name="preferences-restore-factory-layout">This will restore factory layout of Huggle as it was when you installed it. Huggle will shut down. Continue?</string>
+  <string name="preferences-keystroke-rate-limit">Prevent repeated keystrokes by following rate in miliseconds (only 1 same shortcut can be triggered within N ms)</string>
+  <string name="preferences-color-scheme-diff">Diff colors</string>
+  <string name="preferences-color-scheme-diff-default">Default</string>
+  <string name="preferences-color-scheme-diff-dark-mode">Dark mode</string>
   <string name="fail">Fail</string>
   <string name="request">Request</string>
   <string name="requesting">Requesting</string>
@@ -756,6 +835,7 @@
   <string name="message-fail">Failed to deliver the message</string>
   <string name="edit-conflict">Edit conflict</string>
   <string name="page-tag-nodescription">There is no description for this tag</string>
+  <string name="page-tag-noparameters">No parameters</string>
   <string name="page-tag-fail">Failed to tag page</string>
   <string name="page-tag-error">Unable to tag the page, error was: $1</string>
   <string name="page-unknown">Unknown page</string>
@@ -774,7 +854,7 @@
   <string name="relogin-fail">Unable to login to wiki: $1</string>
   <string name="projects">Projects</string>
   <string name="unable-to-retrieve-user-list">Unable to retrieve user list: $1</string>
-  <string name="login-no-userinfo" fuzzy="true">Site didn\'t return any userinfo information</string>
+  <string name="login-no-userinfo">Site didn\'t return any userinfo information</string>
   <string name="login-invalid-register-date">Invalid registration date returned by mediawiki</string>
   <string name="login-site-info-query-failed">Site info query for $1 has failed: $2</string>
   <string name="login-no-site-info-returned">No site info was returned for this wiki</string>
@@ -800,4 +880,24 @@
   <string name="query-request-noaction">No action provided for API request</string>
   <string name="query-login-undefined">Login token requires a user defined value that is not stored in memory</string>
   <string name="query-protected-link">Protected link</string>
+  <string name="queue-empty-title">It\'s empty</string>
+  <string name="queue-empty-text">There is nothing else in the queue...</string>
+  <string name="protip">ProTip</string>
+  <string name="wikipagetagsform-group">Group inside {{$1}}</string>
+  <string name="tip1">Huggle supports tabs just like any other web browser! If you are on an edit and you want to keep it for later, you can simply open a new tab and continue checking the queue there. The queue is shared amongst all tabs.</string>
+  <string name="tip2">Huggle contains an \"edit bar\", a little widget that contains both the User and Page history in a neat way. It\'s not enabled by default though. If you are on a small screen, you can replace user and page history widgets with it!</string>
+  <string name="tip3">Most preferences are stored on the wiki in [[Special:MyPage/huggle.yaml.js]]. You can also manually change them there.</string>
+  <string name="tip4">Almost every widget on screen can be safely closed (except for the navigation bar).</string>
+  <string name="tip5">You can use Huggle simultaneously on multiple projects, just click the \"Projects\" button on login form.</string>
+  <string name="tip6">Huggle\'s reverting can be made much faster if you are experienced user who never make mistakes ;). Open preferences and check \"Instant Reverts\"</string>
+  <string name="tip7">You can create your own custom queue filters in your preferences. They are stored in your on-wiki config page.</string>
+  <string name="tip8">Pressing G will flag this edit as a \"good edit\". This will notify others that this edit can be ignored, decreases user badness score and optionally sends them a welcome message.</string>
+  <string name="tip9">Pressing S will flag edit as \"suspicious edit\". This will notify others that this edit needs attention and adds it to the queue of suspicious edits for later review by experts.</string>
+  <string name="tip10">Most of the shortcuts can be changed in your preferences.</string>
+  <string name="tip11">Moving a widget on Huggle screen over another widget will merge them into one, separated with tabs.</string>
+  <string name="tip12">Made a mistake? No problem, right clicking any edit you made in \"History of your edits\" opens a popup which offers the option to undo your own change.</string>
+  <string name="tip13">You can open a \"contribution browser\" for the user who created the currently displayed edit, by pressing Shift + C (default) or from the user menu. It allows you to quickly view recent edits made by this user.</string>
+  <string name="tip14">You can chat with other active users of Huggle who are using the program right now. You will see them in the \"Network\" window if they are online.</string>
+  <string name="tip15">If you find other problems with the article but rollback doesn\'t help, you can press E to edit the article immediately in your default browser (not inside Huggle).</string>
+  <string name="tip16">If you accidentally pressed the revert button, you may still be able to cancel the ongoing revert by pressing ESC quickly.</string>
 </resources>
