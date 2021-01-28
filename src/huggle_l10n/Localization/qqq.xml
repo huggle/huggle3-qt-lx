@@ -29,7 +29,7 @@
 * Андрей
 * ديفيد
 -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="all">
   <string name="name">{{doc-important|Please change this word to the autonym of language that you are translating to, not directly translate \"English\".}}\nThis is a name of the language as shown on the login form.\n{{Identical|English}}</string>
   <string name="autorelog">This text is shown as a label for a checkbox to indicate that in future when a relogin is required, it should be performed automatically without prompting the user where possible.</string>
   <string name="isrtl">{{doc-important|DO NOT \"literally translate\" this message. This is a magic key that Huggle uses to determine if localization is right to left or not.}}\n* write \"true\" if your localization is right to left (like in Arabic, Hebrew or Dhivehi scripts)\n* otherwise write \"false\" or nothing there (like in Latin and most other scripts)\n{{Identical|False}}</string>
