@@ -307,6 +307,7 @@
   <string name="main-revision-view">Tampilan</string>
   <string name="main-revision-revert">Kembalikan suntingan yang ditampilkan sekarang</string>
   <string name="main-revision-rv-stay">Kembalikan suntingan dan tetap di halaman ini</string>
+  <string name="main-revision-faith">Kembalikan suntingan mengasumsikan niat baik</string>
   <string name="main-revision-previous">Sebelumnya</string>
   <string name="main-revision-next">Berikutnya</string>
   <string name="main-revision-latest">Terakhir</string>
@@ -331,6 +332,7 @@
   <string name="main-page-protect">Lindungi</string>
   <string name="main-page-delete">Hapus</string>
   <string name="main-page-load">Memuat</string>
+  <string name="main-page-refresh">Muat ulang</string>
   <string name="main-page-restore">Kembalikan revisi ini</string>
   <string name="main-page-tab-close">Tutup tab</string>
   <string name="main-page-tab-open">Buka tab</string>
@@ -338,6 +340,7 @@
   <string name="main-user-info">Tampilkan info pengguna</string>
   <string name="main-user-ignore">Abaikan</string>
   <string name="main-user-talk">Lihat halaman pembicaraan</string>
+  <string name="main-user-page">Lihat halaman pengguna</string>
   <string name="main-user-message">Memberi pesan...</string>
   <string name="main-user-warn">Memperingati...</string>
   <string name="main-user-report">Laporkan</string>
@@ -369,6 +372,8 @@
   <string name="main-revision-acceptpend">Terima perubahan tertunda ini</string>
   <string name="main-revert-null">Tidak dapat membalikan: suntingan kosong</string>
   <string name="main-revert-newpage-title">Tidak dapat mengembalikan ini</string>
+  <string name="main-report-username">Laporkan nama pengguna</string>
+  <string name="main-edit-user-talk">Sunting halaman pembicaraan pengguna</string>
   <string name="message-title">Pesan $1</string>
   <string name="message-subject">Subyek:</string>
   <string name="message-message">Pesan:</string>
