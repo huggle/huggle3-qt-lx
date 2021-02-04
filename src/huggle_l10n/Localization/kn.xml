@@ -1,23 +1,110 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<resource>
-    <string name="name">ಕನ್ನಡ</string>
-    <string name="add">ಸೇರಿಸು</string>
-    <string name="apply">ಅನ್ವಯಿಸು</string>
-    <string name="cancel">ರದ್ದುಪಡಿಸು</string>
-    <string name="clear">ಅಳಿಸು</string>
-    <string name="close">ಮುಚ್ಚು</string>
-    <string name="continue">ಮುಂದುವರೆಸು</string>
-    <string name="copy">ನಕಲಿಸು</string>
-    <string name="delete">ತೊಡೆದುಹಾಕು</string>
-    <string name="error">ದೋಷ</string>
-    <string name="exit">ನಿರ್ಗಮಿಸು</string>
-    <string name="minimizewindow">ಕುಗ್ಗಿಸು</string>
-    <string name="no">ಇಲ್ಲ</string>
-    <string name="ok">ಸರಿ</string>
-    <string name="remove">ತೆಗೆದುಹಾಕು</string>
-    <string name="rename">ಮರುಹೆಸರಿಸು</string>
-    <string name="restorewindow">ಹಿಂದಿರುಗಿಸು</string>
-    <string name="save">ಉಳಿಸು...</string>
-    <string name="selectfile">ವೀಕ್ಷಿಸು...</string>
-    <string name="yes">ಹೌದು</string>
-</resource>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Authors:
+* Amire80
+* Nayvik
+* VASANTH S.N.
+-->
+<resources>
+  <string name="name">ಕನ್ನಡ</string>
+  <string name="isrtl">false</string>
+  <string name="add">ಸೇರಿಸು</string>
+  <string name="cancel">ರದ್ದುಪಡಿಸು</string>
+  <string name="clear">ಅಳಿಸು</string>
+  <string name="close">ಮುಚ್ಚು</string>
+  <string name="continue">ಮುಂದುವರೆಸು</string>
+  <string name="copy">ನಕಲಿಸು</string>
+  <string name="delete">ತೊಡೆದುಹಾಕು</string>
+  <string name="deleted">ಅಳಿಸಲ್ಪಟ್ಟ</string>
+  <string name="error">ದೋಷ</string>
+  <string name="exit">ನಿರ್ಗಮಿಸು</string>
+  <string name="done">ಮುಗಿಯಿತು</string>
+  <string name="no">ಇಲ್ಲ</string>
+  <string name="ok">ಸರಿ</string>
+  <string name="remove">ತೆಗೆದುಹಾಕು</string>
+  <string name="rename">ಮರುಹೆಸರಿಸು</string>
+  <string name="project">ಯೋಜನೆ</string>
+  <string name="result">ಫಲಿತಾಂಶ</string>
+  <string name="save">ಉಳಿಸು...</string>
+  <string name="show">ತೋರಿಸು</string>
+  <string name="undo">ಹಿಂದಿನಂತೆ</string>
+  <string name="yes">ಹೌದು</string>
+  <string name="summary">ಸಾರಾಂಶ</string>
+  <string name="id">ಗುರುತಿನ ಸಂಖ್ಯೆ</string>
+  <string name="type">ನಮೂನೆ</string>
+  <string name="target">ಗುರಿ</string>
+  <string name="user">ಸದಸ್ಯ</string>
+  <string name="size">ಗಾತ್ರ</string>
+  <string name="date">ದಿನಾಂಕ</string>
+  <string name="page">ಪುಟ</string>
+  <string name="time">ಸಮಯ</string>
+  <string name="version">ಆವೃತ್ತಿ</string>
+  <string name="general-name">ಹೆಸರು</string>
+  <string name="author">ಲೇಖಕ</string>
+  <string name="description">ವಿವರ</string>
+  <string name="status">ಸ್ಥಾನಮಾನ</string>
+  <string name="link">ಸಂಪರ್ಕ</string>
+  <string name="reason">ಕಾರಣ</string>
+  <string name="enable">ಶಕ್ತಗೊಳಿಸಿ</string>
+  <string name="disable">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
+  <string name="flags">ನಿಶಾನಿಗಳು</string>
+  <string name="about-contributors">ಡೆವೆಲಪರ್‌ಗಳು</string>
+  <string name="block-reason">ಕಾರಣ:</string>
+  <string name="block-usertalk">ಚರ್ಚೆ</string>
+  <string name="block-usercontribs">ಕಾಣಿಕೆಗಳು</string>
+  <string name="block-warnloglabel">ಎಚ್ಚರಿಕೆಗಳು:</string>
+  <string name="config-description">ವಿವರಣೆ</string>
+  <string name="config-title">ಆಯ್ಕೆಗಳು</string>
+  <string name="config-shortcutaction">ಕ್ರಿಯೆ</string>
+  <string name="config-noshortcut">ಯಾವುದೂ ಇಲ್ಲ</string>
+  <string name="config-defaults">ಮೂಲಸ್ಥಿತಿ</string>
+  <string name="config-watchlist">ವೀಕ್ಷಣಾಪಟ್ಟಿಗೆ ಸೇರಿಸು</string>
+  <string name="config-revert">ಹಿಂದಿನಂತಾಗಿಸು</string>
+  <string name="config-reverts">ಹಿಂದಿನಂತಾಗಿಸು</string>
+  <string name="config-new-page">ಹೊಸ ಪುಟ</string>
+  <string name="config-friend">ಗೆಳೆಯ</string>
+  <string name="config-template">ಸಿದ್ಧವಿನ್ಯಾಸ</string>
+  <string name="config-blocktimeanon">ಅನಾಮಧೇಯ ಸದಸ್ಯರು</string>
+  <string name="config-blocktimereg">ನೊಂದಾಯಿತ ಬಳಕೆದಾರರು</string>
+  <string name="delete-title">$1 ಅನ್ನು ಅಳಿಸು</string>
+  <string name="delete-reason">ಕಾರಣ:</string>
+  <string name="delete-deletionlog">ಅಳಿಸುವಿಕೆ ದಾಖಲೆ:</string>
+  <string name="historyform-title">ಇತಿಹಾಸ</string>
+  <string name="login-tab-login" fuzzy="true">ಪ್ರವೇಶಿಸು</string>
+  <string name="login-project">ಯೋಜನೆ:</string>
+  <string name="login-username">ಬಳಕೆದಾರರ ಹೆಸರು:</string>
+  <string name="login-password">ಪ್ರವೇಶಪದ:</string>
+  <string name="login-proxyaddress">ವಿಳಾಸ:</string>
+  <string name="login-proxydomain">ಕ್ಷೇತ್ರ:</string>
+  <string name="login-start">ಪ್ರವೇಶಿಸು</string>
+  <string name="main-page">ಪುಟ</string>
+  <string name="main-user">ಬಳಕೆದಾರ</string>
+  <string name="main-contribs">ಕಾಣಿಕೆಗಳು</string>
+  <string name="main-history">ಇತಿಹಾಸ</string>
+  <string name="main-system-messages">ಎಲ್ಲಾ ಸಂದೇಶಗಳನ್ನು ತೋರಿಸಿ</string>
+  <string name="main-system-statistics">ಅಂಕಿ ಅಂಶಗಳು....</string>
+  <string name="main-system-logout">ನಿರ್ಗಮಿಸು</string>
+  <string name="main-system-change-provider-irc">ಐ ಆರ್ ಸಿ</string>
+  <string name="main-system-change-provider-wiki">ವಿಕಿ</string>
+  <string name="main-system-exit">ನಿರ್ಗಮಿಸು</string>
+  <string name="main-queue">ಸಾಲು</string>
+  <string name="main-queue-next">ಮುಂದಿನ</string>
+  <string name="main-queue-reset">ಮರುಹೊಂದಿಸು</string>
+  <string name="main-goto-mycontribs">ನನ್ನ ಕಾಣಿಕೆಗಳು</string>
+  <string name="main-revision">ಆವೃತ್ತಿ</string>
+  <string name="main-revision-view">ನೋಟ</string>
+  <string name="main-revision-previous">ಹಿಂದಿನ</string>
+  <string name="main-revision-next">ಮುಂದಿನ</string>
+  <string name="main-revision-latest">ಹೊಸತಾದ</string>
+  <string name="main-tools">ಉಪಕರಣಗಳು</string>
+  <string name="main-page-next">ಮುಂದಿನ</string>
+  <string name="main-page-tag">ಅಂಕಿತ</string>
+  <string name="main-page-watch">ವೀಕ್ಷಿಸಿ</string>
+  <string name="main-page-unwatch">ವೀಕ್ಷಣಾ ಪಟ್ಟಿಯಿಂದ ತೆಗೆ</string>
+  <string name="main-page-protect">ಯೋಜನೆ</string>
+  <string name="main-page-delete">ಅಳಿಸು</string>
+  <string name="main-page-load">ತುಂಬಿಸು</string>
+  <string name="main-user-talk">ಚರ್ಚೆ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ</string>
+  <string name="main-user-message">ಸಂದೇಶ...</string>
+  <string name="main-user-warn">ಎಚ್ಚರಿಕೆ...</string>
+  <string name="main-user-report">ವರದಿ</string>
+</resources>

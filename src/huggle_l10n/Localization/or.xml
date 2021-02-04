@@ -1,29 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Authors:
+* Amire80
+* Psubhashish
+* Susant purohit
+-->
 <resources>
   <string name="name">ଓଡ଼ିଆ</string>
+  <string name="isrtl">false</string>
   <string name="add">ମିଶାଇବେ</string>
-  <string name="apply">ବ୍ୟବହାର କରିବେ</string>
   <string name="cancel">ନାକଚ କରିବେ</string>
   <string name="clear">ଲିଭାଇ ଦେବେ</string>
   <string name="close">ବନ୍ଦ କରିବେ</string>
   <string name="continue">ଚାଲୁରଖିବେ</string>
   <string name="copy">ନକଲ କରିବେ</string>
   <string name="delete">ଲିଭାଇଦେବେ</string>
+  <string name="deleted">ଲିଭାଯାଇଛି</string>
   <string name="error">ଭୁଲ</string>
   <string name="exit">ବାହାରିବେ</string>
-  <string name="minimizewindow">ଛୋଟ କରିବେ</string>
+  <string name="done">ହୋଇଗଲା</string>
   <string name="no">ନାଁ</string>
   <string name="ok">ଠିକ ଅଛି</string>
   <string name="remove">ହଟାଇବେ</string>
   <string name="rename">ଆଉଥରେ ନାଆଁ ଦେବେ</string>
-  <string name="restorewindow">ଆଗକୁ ଫେରାଇନେବେ</string>
-  <string name="save">ସାଇତିବେ</string>
-  <string name="selectfile">ଖୋଜିବେ...</string>
+  <string name="project">ପ୍ରକଳ୍ପ</string>
+  <string name="result">ପରିଣାମ</string>
+  <string name="save">ସାଇତିବେ [Save]</string>
+  <string name="show">ଦେଖାଇବେ</string>
+  <string name="undo">ପଛକୁ ଫେରିବା</string>
   <string name="yes">ହଁ</string>
+  <string name="editing-page">ସମ୍ପାଦନ ପୃଷ୍ଠା</string>
   <string name="agf">କାରଣ ସହିତ ଭଲ ବଦଳକୁ ଫେରାଇନେବେ</string>
-  <string name="import">ବିଶ୍ଵସ୍ତରୀୟ କନଫେରେନ୍ସରୁ ଫେରାଇବେ</string>
+  <string name="successful">ସଫଳ</string>
+  <string name="summary">ସାରକଥା</string>
+  <string name="id">ଆଇ ଡି</string>
+  <string name="type">ପ୍ରକାର</string>
+  <string name="target">ଲକ୍ଷ</string>
+  <string name="user">ବ୍ୟବହାରକାରୀ</string>
+  <string name="size">ଆକାର</string>
+  <string name="author">ଲେଖକ</string>
+  <string name="description">ବିବରଣୀ</string>
+  <string name="status">ସ୍ଥିତି</string>
+  <string name="link">ଲିଙ୍କ</string>
+  <string name="reason">କାରଣ</string>
+  <string name="duration">ଅବଧି</string>
+  <string name="enable">ସଚଳ କରାଗଲା</string>
+  <string name="disable">ଅଚଳ କରିଦିଆଯାଇଛି</string>
+  <string name="flags">ବିଶେଷ ସୂଚକଗୁଡିକ</string>
+  <string name="about-contributors">ଡେଭେଲପରମାନେ:</string>
+  <string name="block-not">ବ୍ୟବହରକାରୀଙ୍କୁ ଅଟକାଯାଇନାହିଁ</string>
+  <string name="block-title">$1 ଙ୍କୁ ଅଟକାନ୍ତୁ</string>
+  <string name="block-reason">କାରଣ</string>
+  <string name="block-duration">ଅବଧି:</string>
+  <string name="block-anononly">କେବଳ ବେନାମି ସଭ୍ୟଙ୍କୁ ଅଟକାଇଦିଅନ୍ତୁ</string>
+  <string name="block-usertalk">ଆଲୋଚନା</string>
+  <string name="block-usercontribs">ଯୋଗଦାନ</string>
+  <string name="block-blockloglabel">ଲଗଟିକୁ ଅଟକାଇଦେବେ:</string>
+  <string name="block-warnloglabel">ଚେତାବନୀ:</string>
+  <string name="config-function">କାମ</string>
+  <string name="config-description">ବିବରଣୀ</string>
+  <string name="config-shortcut">ସର୍ଟକଟ</string>
   <string name="config-title">ବିକଳ୍ପମାନ</string>
-  <string name="config-rememberme">ମୋ ବ୍ୟବହାରକାରୀ ନାମ ମନେ ରଖିବେ</string>
   <string name="config-ircport">ଆଇଆରସି ପୋର୍ଟ</string>
   <string name="config-difffontsize">ଅଲଗା ଫଣ୍ଟ ଆକାର</string>
   <string name="config-logfile">ଲଗ ଫାଇଲ</string>
@@ -33,8 +69,17 @@
   <string name="config-shownewmessages">ନୂଆ ସନ୍ଦେଶ ପଟିଟି ଦେଖାଇବେ</string>
   <string name="config-shortcutlist">କିବୋର୍ଡ ସର୍ଟକଟମାନ</string>
   <string name="config-shortcutaction">କାମ</string>
-  <string name="config-shortcut">ସର୍ଟକଟ</string>
   <string name="config-changeshortcut">$1 ପାଇଁ ସର୍ଟକଟ ବଦଳାଇବେ</string>
+  <string name="config-noshortcut">କିଛି ନାହିଁ</string>
+  <string name="config-defaults">ପୂର୍ବନିର୍ଦ୍ଧାରିତ</string>
+  <string name="config-watchlist">ଦେଖଣାତାଲିକାରେ ଯୋଡ଼ିବେ</string>
+  <string name="config-revert">ପଛକୁ ଲେଉଟାଇବେ</string>
+  <string name="config-nothing">କିଛି ନାହି</string>
+  <string name="config-own-edits">ନିଜ ସମ୍ପାଦନାଗୁଡିକ</string>
+  <string name="config-reverts">ପଛକୁ ଲେଉଟାଇବେ</string>
+  <string name="config-new-page">ନୂଆ ପୃଷ୍ଠା</string>
+  <string name="config-friend">ବନ୍ଧୁ</string>
+  <string name="config-talk">ଆଲୋଚନା ପୃଷ୍ଠା</string>
   <string name="config-reportnone">କିଛି କରନ୍ତୁ ନାହିଁ</string>
   <string name="config-templatetext">ଲେଖା ଦେଖାଇବେ</string>
   <string name="config-template">ଟେମ୍ପଲେଟ</string>
@@ -51,35 +96,28 @@
   <string name="login-username">ବ୍ୟବହାରକାରୀଙ୍କ ନାମ:</string>
   <string name="login-password">ପାସୱାର୍ଡ:</string>
   <string name="login-proxygroup">ପ୍ରୋକ୍ସୀ ସେଟିଂସ</string>
-  <string name="login-proxy">ପ୍ରୋକ୍ସୀ ସର୍ଭର ବ୍ୟବହାର କରିବେ</string>
+  <string name="login-proxy" fuzzy="true">ପ୍ରୋକ୍ସୀ ସର୍ଭର ବ୍ୟବହାର କରିବେ</string>
   <string name="login-proxyaddress">ଠିକଣା:</string>
   <string name="login-proxyport">ପୋର୍ଟ:</string>
   <string name="login-proxydomain">ଡୋମେନ:</string>
   <string name="login-start">ଲଗଇନ</string>
-  <string name="login-translate">ଅନୁବାଦ...</string>
-  <string name="login-captchatitle">କାପଚା ଲଗଇନ ପାଇଁ</string>
-  <string name="login-progress-start">ଲଗିଂ ଇନ...</string>
+  <string name="login-translate" fuzzy="true">ଅନୁବାଦ...</string>
+  <string name="login-progress-start" fuzzy="true">ଲଗିଂ ଇନ...</string>
   <string name="main-page">ପୃଷ୍ଠା</string>
   <string name="main-user">ବ୍ୟବହାରକାରୀ</string>
   <string name="main-contribs">ଯୋଗଦାନ</string>
   <string name="main-history">ଇତିହାସ</string>
-  <string name="main-new-messages">ଆପଣଙ୍କ ପାଇଁ ନୂଆ ସନ୍ଦେଶ; ବ୍ୟବସ୍ଥା ବାଛନ୍ତୁ -&gt; ନୂଆ ସନ୍ଦେଶ ଦେଖାଇବେ ବା ଦେଖିବା ପାଇଁ M ଦବାନ୍ତୁ.</string>
+  <string name="main-new-messages" fuzzy="true">ଆପଣଙ୍କ ପାଇଁ ନୂଆ ସନ୍ଦେଶ; ବ୍ୟବସ୍ଥା ବାଛନ୍ତୁ -&gt; ନୂଆ ସନ୍ଦେଶ ଦେଖାଇବେ ବା ଦେଖିବା ପାଇଁ M ଦବାନ୍ତୁ.</string>
   <string name="main-system">ବ୍ୟବସ୍ଥା</string>
   <string name="main-system-messages">ନୂଆ ସନ୍ଦେଶ ଦେଖାଇବେ</string>
-  <string name="main-system-reconnectirc">ଆଇ ଆର ସି ଫୀଡ଼ରେ ପୁଣି ଥରେ ଯୋଡନ୍ତୁ</string>
   <string name="main-system-savelog">ଲଗ ସାଇତିବେ...</string>
-  <string name="main-system-lists">ତାଲିକା ଗଠନକାରୀ...</string>
-  <string name="main-system-requests">ଅନୁରୋଧ...</string>
   <string name="main-system-statistics">ସାଂଖିକ ବିବରଣୀ...</string>
-  <string name="main-system-showlog">ଲଗ ଦେଖାଇବେ</string>
   <string name="main-system-showqueue">ଧାଡ଼ି ଦେଖାଇବେ</string>
-  <string name="main-system-showtwoqueues">ଦୁଇଟି ଧାଡ଼ି ଦେଖାଇବେ</string>
   <string name="main-system-options">ବିକଳ୍ପ...</string>
   <string name="main-system-logout">ଲଗ ଆଉଟ</string>
   <string name="main-system-exit">ବାହାରିବେ</string>
   <string name="main-queue">ଧାଡ଼ି</string>
   <string name="main-queue-next">ଆଗାମୀ</string>
-  <string name="main-queue-trim">Trim</string>
   <string name="main-queue-clear">ବର୍ତ୍ତମାନ ସଫା କରିବେ</string>
   <string name="main-queue-count">$1 ଗଣନ୍ତୁ</string>
   <string name="main-queue-query">ପ୍ରଶ୍ନାବଳୀ ଚଲାନ୍ତୁ...</string>
@@ -92,8 +130,8 @@
   <string name="main-revision-decline">ସଂଶୋଧନ ଅସ୍ଵୀକାର</string>
   <string name="main-revision">ସଂଶୋଧନ</string>
   <string name="main-revision-view">ଦେଖିବେ</string>
-  <string name="main-revision-revert">ପୂର୍ବାବସ୍ଥାକୁ ଫେରିବେ</string>
-  <string name="main-revision-faith">ଏ ଜି ଏଫ ପୂର୍ବବତ କରିବେ</string>
+  <string name="main-revision-revert" fuzzy="true">ପୂର୍ବାବସ୍ଥାକୁ ଫେରିବେ</string>
+  <string name="main-revision-faith" fuzzy="true">ଏ ଜି ଏଫ ପୂର୍ବବତ କରିବେ</string>
   <string name="main-revision-previous">ପୂର୍ବବସ୍ଥାକୁ ଫେରିବେ</string>
   <string name="main-revision-next">ପରବସ୍ଥାକୁ ଫେରିବେ</string>
   <string name="main-revision-latest">ନବୀନତମ</string>
@@ -103,57 +141,39 @@
   <string name="main-page-viewlatest">ନବୀନତମ ସଂଶୋଧନ ଦେଖିବେ</string>
   <string name="main-page-history">ପୁଣି ଇତିହାସ ପାଇବେ</string>
   <string name="main-page-historypage">ଇତିହାସ ପୃଷ୍ଠା ଦେଖିବେ</string>
-  <string name="main-page-edit">ବଦଳାଇବେ</string>
+  <string name="main-page-edit" fuzzy="true">ବଦଳାଇବେ</string>
   <string name="main-page-tag">ଟାଗ</string>
-  <string name="main-page-reqdeletion">ହଟାଇବା ପାଇଁ ଅନୁରୋଧ</string>
-  <string name="main-page-reqprotection">ସୁରକ୍ଷ୍ୟା ପାଇଁ ଅନୁରୋଧ</string>
+  <string name="main-page-reqdeletion" fuzzy="true">ହଟାଇବା ପାଇଁ ଅନୁରୋଧ</string>
+  <string name="main-page-reqprotection" fuzzy="true">ସୁରକ୍ଷ୍ୟା ପାଇଁ ଅନୁରୋଧ</string>
   <string name="main-page-watch">ଧ୍ୟାନ ଦେବେ</string>
   <string name="main-page-unwatch">ଧ୍ୟାନ ହଟାଇବେ</string>
   <string name="main-page-purge">କେସ ଖାଲି କରିବେ</string>
   <string name="main-page-patrol">ପେଟ୍ରଲଡ଼ ଚିହ୍ନ ଦେବେ</string>
   <string name="main-page-move">ଘୁଞ୍ଚାଇବେ...</string>
-  <string name="main-page-protect">ସୁରକ୍ଷ୍ୟା...</string>
-  <string name="main-page-delete">ହଟାଇବେ...</string>
-  <string name="main-page-restore">ଲେଖାର ଏହି ସଂସ୍କରଣକୁ ପୁଣି ସାଇତିବେ</string>
+  <string name="main-page-protect" fuzzy="true">ସୁରକ୍ଷ୍ୟା...</string>
+  <string name="main-page-delete" fuzzy="true">ହଟାଇବେ...</string>
+  <string name="main-page-restore" fuzzy="true">ଲେଖାର ଏହି ସଂସ୍କରଣକୁ ପୁଣି ସାଇତିବେ</string>
   <string name="main-user-info">ବ୍ୟବହାରକାରୀଙ୍କ ଉପରେ କିଛି ଦେଖାଇବେ</string>
   <string name="main-user-ignore">ଉପେକ୍ଷ୍ୟା କରିବେ</string>
   <string name="main-user-unignore">Unignore</string>
-  <string name="main-user-contribs">Retrieve contributions</string>
+  <string name="main-user-contribs" fuzzy="true">Retrieve contributions</string>
   <string name="main-user-talk">ଆଲୋଚନା ପୃଷ୍ଠା ଦେଖିବେ</string>
   <string name="main-user-message">ସନ୍ଦେଶ...</string>
   <string name="main-user-warn">ଚେତାବନୀ...</string>
   <string name="main-user-report">ରିପୋର୍ଟ</string>
   <string name="main-user-block">ଅବରୋଧ...</string>
-  <string name="main-browser">ବ୍ରାଉଜର</string>
-  <string name="main-browser-newtab">ନୂଆ ଟେବ</string>
-  <string name="main-browser-closetab">ଟେବ ବନ୍ଦ କରିବେ</string>
-  <string name="main-browser-closeothers">ଅଲଗା ଟେବ ବନ୍ଦ କରିବେ</string>
   <string name="main-browser-newedits">ପୃଷ୍ଠାରେ ନୂଆ ବଦଳ ଦେଖାଇବେ</string>
   <string name="main-help">ସାହାଯ୍ୟ</string>
   <string name="main-help-about">ହଗଲ ଉପରେ କିଛି...</string>
   <string name="main-addqueue">ଯୋଡ଼ିବେ...</string>
   <string name="main-savelogtitle">ଲଗ ସାଇତିବେ</string>
   <string name="main-usermessageother">ଅନ୍ୟ ସନ୍ଦେଶ...</string>
-  <string name="main-tip-revertwarn">ଏହି ସଂସ୍କରଣକୁ ପଛକୁ କରିବେ, ଏବଂ ବ୍ୟବହାରକାରୀଙ୍କୁ ଚେତାବନୀ ଦେବେ</string>
-  <string name="main-tip-revert">ଏହି ସଂସ୍କରଣକୁ ପଛକୁ କରିବେ</string>
-  <string name="main-tip-template">ବ୍ୟବହାରକାରୀଙ୍କୁ ଟେମ୍ପ୍ଲେଟ ସନ୍ଦେଶ ପଠାଇବେ</string>
-  <string name="main-tip-warn">ବ୍ୟବହାରକାରୀଙ୍କୁ ଚେତାବନୀ ଦେବେ</string>
-  <string name="main-tip-browsernewtab">ନୂଆ ଟେବ</string>
-  <string name="main-tip-browserclosetab">ଟେବ ବନ୍ଦ କରିବେ</string>
-  <string name="main-tip-pageview">ଏହି ସଂସ୍କରଣ ଦେଖିବେ</string>
-  <string name="main-tip-pageedit">ଏହି ପୃଷ୍ଠାକୁ ବଦଳାଇବେ</string>
-  <string name="main-tip-pagewatch">ଏହି ପୃଷ୍ଠାରେ ନଜର ରଖିବେ</string>
-  <string name="main-tip-pagetag">ଏହି ପୃଷ୍ଠାକୁ ଟାଗ କରିବେ</string>
   <string name="main-tip-pagetagdelete">ଏହି ପୃଷ୍ଠାକୁ ହଟାଇବା ପାଇଁ ଟାଗ କରିବେ</string>
   <string name="main-tip-pagedelete">ଏହି ପୃଷ୍ଠାକୁ ହଟାଇବେ</string>
-  <string name="main-tip-userinfo">ବ୍ୟବହାରକାରୀଙ୍କ ଉପରେ କିଛି.. ଦେଖାଇବେ</string>
-  <string name="main-tip-usertalk">ବ୍ୟବହାରକାରୀଙ୍କ ଆଲୋଚନା ପୃଷ୍ଠା ଦେଖାଇବେ</string>
-  <string name="main-tip-usermessage">ବ୍ୟବହାରକାରୀଙ୍କୁ ସନ୍ଦେଶ ପଠାଇବେ</string>
   <string name="message-subject">ବିଷୟବସ୍ତୁ:</string>
   <string name="message-message">ସନ୍ଦେଶ:</string>
   <string name="message-summary">ସାରାଂଶ:</string>
   <string name="message-autosign">ସ୍ଵଚାଳିତ ଭାବେ ଦସ୍ତଖତ ଯୋଡ଼ିବେ</string>
-  <string name="protect-title">ସୁରକ୍ଷ୍ୟା $1</string>
   <string name="protect-request-title">ସୁରକ୍ଷ୍ୟା $1 ପାଇଁ ନିବେଦନ</string>
   <string name="protect-reason">କାରଣ:</string>
   <string name="protect-expiry">ଶେଷ:</string>
@@ -178,28 +198,8 @@
   <string name="report-title">ରିପୋର୍ଟ $1</string>
   <string name="report-reason">କାରଣ:</string>
   <string name="report-message">ସୂଚନା:</string>
-  <string name="report-log">ଏହି ବ୍ୟବହାରକରିଙ୍କ ପାଇଁ ଚେତାବନୀ:</string>
+  <string name="report-log">ଏହି ସଭ୍ୟଙ୍କ ପାଇଁ ଚେତାବନୀ:</string>
   <string name="speedy-reason">କାରଣ:</string>
-  <string name="stats-title">ସାଂଖିକ ବିବରଣୀ</string>
-  <string name="stats-actions">ଏହି ଅଧିବେଶନର ଚାଲି ଚଳନ:</string>
-  <string name="stats-session">ଅଧିବେଶନ ସମୟ: $1</string>
-  <string name="stats-edits">ବଦଳ</string>
-  <string name="stats-assisted">ସହାୟତା ବଦଳ</string>
-  <string name="stats-huggle">ହଗଲ ବଦଳ</string>
-  <string name="stats-reverts">ପଛକୁ ଫେରିବେ</string>
-  <string name="stats-warnings">ଚେତାବନୀ</string>
-  <string name="stats-reports">ରିପୋର୍ଟ</string>
-  <string name="stats-tags">ଟାଗ</string>
-  <string name="stats-notifications">ଅଧିସୂଚନା</string>
-  <string name="stats-blocks">ବାଧା</string>
-  <string name="stats-deletes">ହଟାଇବେ</string>
-  <string name="stats-protections">ସୁରକ୍ଷ୍ୟା</string>
-  <string name="stats-allusers">ସମସ୍ତ ବ୍ୟବହାରକାରୀ</string>
-  <string name="stats-me">ମୁଁ</string>
-  <string name="stats-ignored">ଉପେକ୍ଷ୍ୟା</string>
-  <string name="stats-anon">ଅଜ୍ଞାନକୃତ</string>
-  <string name="stats-bots">ବଟ</string>
-  <string name="stats-other">ଅନ୍ୟ</string>
   <string name="tag-title">ଟାଗ $1</string>
   <string name="tag-tagselector">ଟାଗ ଜୋଡନ୍ତୁ:</string>
   <string name="tag-tags">ଟାଗ(ମାନ):</string>
@@ -208,10 +208,10 @@
   <string name="warning-title">ଚେତାବନୀ $1</string>
   <string name="warning-levelgroup">ଚେତାବନୀ ସ୍ତର</string>
   <string name="warning-levelauto">ସ୍ଵଚାଳିତ</string>
-  <string name="warning-level1">ସ୍ତର 1</string>
+  <string name="warning-level1">୧ମ ସ୍ତର</string>
   <string name="warning-level2">ସ୍ତର 2</string>
   <string name="warning-level3">ସ୍ତର 3</string>
   <string name="warning-level4">ସ୍ତର 4 (ଅନ୍ତିମ)</string>
   <string name="warning-warntype">ଚେତାବନୀ ପ୍ରକାର:</string>
-  <string name="warning-warnlog">ଏହି ବ୍ୟବହାରକାରୀଙ୍କ ପାଇଁ ଚେତାବନୀ:</string>
+  <string name="warning-warnlog">ଏହି ସଭ୍ୟଙ୍କ ପାଇଁ ଚେତାବନୀ:</string>
 </resources>

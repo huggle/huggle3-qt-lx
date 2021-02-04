@@ -63,7 +63,7 @@
   <string name="block-message">ڳالھ مہاڑ دے ورقے دا سنیہا:</string>
   <string name="block-email">ای میل بلاک کرو</string>
   <string name="block-usertalk">ڳالھ مہاڑ</string>
-  <string name="block-usercontribs">حصے داری</string>
+  <string name="block-usercontribs">ونڳاراں</string>
   <string name="block-blockloglabel">پابندی دی لاگ:</string>
   <string name="block-warnloglabel">ݙراوا:</string>
   <string name="block-type">پابندی لاؤ/پابندی ہٹاؤ</string>
@@ -127,7 +127,7 @@
   <string name="login-error-password">غلط پاسورڈ</string>
   <string name="main-page">ورقہ</string>
   <string name="main-user">ورتݨ آلا</string>
-  <string name="main-contribs">حصے داری</string>
+  <string name="main-contribs">ونڳاراں</string>
   <string name="main-history">تاریخچہ</string>
   <string name="main-new-messages">تہاݙے کیتے نویں سنیہے ہن۔ انہاں کوں ݙیکھݨ کیتے نظام -&gt; نویں سنیہے ݙکھاؤ، یا وت انہاں کوں ݙیکھݨ کیتے M دباؤ۔</string>
   <string name="main-system">نظام</string>

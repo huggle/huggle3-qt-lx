@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
+* Amire80
+* FarsiNevis
 * Hosseinblue
+* Iriman
 * Lakzon
 -->
 <resources>
-  <string name="name">انگلیسی</string>
-  <string name="isrtl">نادرست</string>
+  <string name="isrtl">true</string>
   <string name="add">افزودن</string>
   <string name="cancel">ئآهووسانن/لغو</string>
   <string name="clear">تمیرکردن</string>
@@ -146,7 +148,7 @@
   <string name="config-columns-dynamic" fuzzy="true">پویاساختن ستون‌های فهرست‌ها (بر اساس آیتم‌ها تغییر اندازه می‌دهند) یا تنظیم به صورت دستی (کاربر می‌تواند اندازه آنها را تغییر دهد)</string>
   <string name="config-message-notification">نمایش یک اطلاعیه زمانی که پیام تازه‌ای در صفحهٔ بحث‌تان دریافت کردید</string>
   <string name="config-warning-api">نمایش هشدارهای کوئری‌های رابط برنامه‌نویسی</string>
-  <string name="config-updates">بررسی برای به‌روزرسانی‌ها</string>
+  <string name="config-updates">بررسی برای روزآمدسازی</string>
   <string name="config-beta">بررسی برای نگارش‌های آزمایشی</string>
   <string name="config-html-messages" fuzzy="true">اچ‌ای‌ان می‌تواند پیام‌های اچ‌تی‌ام‌ال را اجرا کند (خطرناک است)</string>
   <string name="config-summary-present">برجسته‌کردن خلاصه زمانی که موجود است جای زمانی که موجود نیست</string>
