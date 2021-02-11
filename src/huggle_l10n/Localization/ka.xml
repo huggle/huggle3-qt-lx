@@ -5,9 +5,11 @@
 * MIKHEIL
 * Macofe
 * Surprizi
+* Გიო ოქრო
 -->
 <resources>
   <string name="name">ქართული</string>
+  <string name="autorelog">შემდეგში ეს გააკეთე ისე, რომ აღარ მკითხო</string>
   <string name="isrtl">false</string>
   <string name="add">დამატება</string>
   <string name="cancel">გაუქმება</string>
@@ -26,9 +28,11 @@
   <string name="rename">გადარქმევა</string>
   <string name="reload">ხელახლა ჩატვირთვა</string>
   <string name="project">პროექტი</string>
+  <string name="warning">გაფრთხილება</string>
   <string name="result">შედეგი</string>
   <string name="save">შენახვა</string>
   <string name="show">ჩვენება</string>
+  <string name="no-instant">$2-სთვის შეტყობინების გაგზავნა ვერ მოხერხდა, რადგან $1-სათვის არ არის ხელმისაწვდომი მსგავსი გაფრთხილება. გთხოვთ, გაფრთხილების სხვა დონე აირჩიეთ.</string>
   <string name="undo">გაუქმება</string>
   <string name="yes">დიახ</string>
   <string name="editing-page">გვერდის რედაქტირება</string>
@@ -145,7 +149,7 @@
   <string name="login-error-nouser">მომხმარებელი არ არსებობს</string>
   <string name="login-error-password">არასწორი პაროლი</string>
   <string name="login-error-projdisabled">საიტზე $1 Huggle ამჟამად გამორთულია.</string>
-  <string name="login-error-unknown" fuzzy="true">საიტზე $1 შესვლა შეუძლებელია.</string>
+  <string name="login-error-unknown">საიტზე $1 შესვლა შეუძლებელია.</string>
   <string name="login-error-version">ეს ვერსია მოძველდა. განაახლეთ ბოლო ვერსიამდე.</string>
   <string name="main-page">Страница</string>
   <string name="main-user">Участник</string>

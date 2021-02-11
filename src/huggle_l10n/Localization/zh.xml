@@ -6,6 +6,7 @@
 * Accraze
 * Arthur2e5
 * DW YoungDLS
+* Gerongfenh
 * LNDDYL
 * Liuxinyu970226
 * NeverBehave
@@ -25,6 +26,7 @@
 * 铁桶
 -->
 <resources>
+  <string name="name">英语</string>
   <string name="autorelog">不再提醒</string>
   <string name="isrtl">false</string>
   <string name="add">添加</string>
