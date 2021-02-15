@@ -80,7 +80,7 @@
   <string name="block-usercontribs">Ekarpenak</string>
   <string name="block-blockloglabel">Blokeo erregistroa:</string>
   <string name="block-warnloglabel">Oharrak:</string>
-  <string name="block-sharedipwarning">Oharra: $1 konpartitutako edo dinamikoa den IP helbide bezala etiketatu da.</string>
+  <string name="block-sharedipwarning">Oharra: $1 etiketatuta dago IP helbide partekatu edo dinamikotzat.</string>
   <string name="block-rangeblockwarning">$1-ri dagoeneko $2 rangeblock batek eragin dio.\nBloke honek rangeblock-aren eragina gainidatziko du. Jarraitu?</string>
   <string name="block-token-1">$1 blokeatzeko tokena lortzen</string>
   <string name="block-fail">$1 erabiltzailea ezin izan da blokeatu</string>
@@ -114,7 +114,7 @@
   <string name="config-changeshortcut">$1-rako lasterbidea aldatu</string>
   <string name="config-noshortcut">Bat ere ez</string>
   <string name="config-defaults">Lehenetsia</string>
-  <string name="config-minor">Txikitua bezala markatu</string>
+  <string name="config-minor">Markatu txikitzat</string>
   <string name="config-ip">IP lankideak</string>
   <string name="config-watchlist">Jarraipen zerrendara gehitu</string>
   <string name="config-defaultsummary">Eskuzko aldaketetareko laburpen lehentesia</string>
@@ -128,8 +128,8 @@
   <string name="config-revert">Lehengoratu</string>
   <string name="config-skip">Jauzi</string>
   <string name="config-revert-diff">Erakutsitako diffa baino berriagoak diren orrialdeen aldaketak lehengoratu, baldin eta erabiltzaile erasotzaile berdinagatik eginak diren.</string>
-  <string name="config-change-all">Aldatu Huggle ezarpen guztiak Huggle 2-k bezala funtziona dezan</string>
-  <string name="config-months-name">Erabili hilabeteak izenburuak bezala, orrialdearen izenaren ordez</string>
+  <string name="config-change-all">Aldatu Huggle ezarpen guztiak, Huggle 2 balitz bezala funtziona dezan</string>
+  <string name="config-months-name">Erabili hilabeteak izenburutzat, orriaren izenaren ordez</string>
   <string name="config-automatic-warning">Erabili abisu mota automatikoa eta igo maila \"abisua bidali\" funtzioan</string>
   <string name="config-enable-irc">IRC gaitu</string>
   <string name="config-remove-reverted">Kendu ilarako beste norbaitek jadanik lehengoratu dituen aldaketak</string>

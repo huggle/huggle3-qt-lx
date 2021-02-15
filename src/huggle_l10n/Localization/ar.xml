@@ -860,7 +860,7 @@
   <string name="relogin-fail">غير قادر على تسجيل الدخول إلى الويكي: $1</string>
   <string name="projects">مشاريع</string>
   <string name="unable-to-retrieve-user-list">غير قادر على استرجاع قائمة المستخدم: $1</string>
-  <string name="login-no-userinfo" fuzzy="true">الموقع لا يُرجع أي معلومات عن معلومات المستخدم</string>
+  <string name="login-no-userinfo">الموقع لا يُرجع أي معلومات عن معلومات المستخدم</string>
   <string name="login-invalid-register-date">تاريخ التسجيل غير صالح وتم إرجاعه بواسطة ميدياويكي</string>
   <string name="login-site-info-query-failed">المعلومات عن استعلام الموقع $1 فشلت: $2</string>
   <string name="login-no-site-info-returned">لم يتم إرجاع أية معلومات لهذا الويكي</string>

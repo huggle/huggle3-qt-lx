@@ -882,7 +882,7 @@
   <string name="relogin-fail">Не удалось войти в вики: $1</string>
   <string name="projects">Проекты</string>
   <string name="unable-to-retrieve-user-list">Не удаётся получить список пользователей: $1</string>
-  <string name="login-no-userinfo" fuzzy="true">Сайт не возвращает никаких сведений о пользователях</string>
+  <string name="login-no-userinfo">Сайт не вернул никакой пользовательской информации</string>
   <string name="login-invalid-register-date">MediaWiki вернула некорректную дату регистрации</string>
   <string name="login-site-info-query-failed">Запрос информации о сайте для $1 не сработал: $2</string>
   <string name="login-no-site-info-returned">Эта вики не вернула никакой информации о сайте</string>

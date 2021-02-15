@@ -858,7 +858,7 @@
   <string name="relogin-fail">無法登入至 wiki：$1</string>
   <string name="projects">項目</string>
   <string name="unable-to-retrieve-user-list">無法取得用戶清單：$1</string>
-  <string name="login-no-userinfo" fuzzy="true">站台未回傳任何用戶訊息</string>
+  <string name="login-no-userinfo">站台未回傳任何用戶資訊內容</string>
   <string name="login-invalid-register-date">Mediawiki 回傳的註冊日期無效</string>
   <string name="login-site-info-query-failed">對於$1的站台查詢已失敗：$2</string>
   <string name="login-no-site-info-returned">沒有回傳給此wiki的站台資訊</string>
