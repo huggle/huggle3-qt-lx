@@ -6,6 +6,7 @@ if (NOT HUGGLE_CMAKE)
 endif()
 
 project(huggle)
+include(GNUInstallDirs)
 
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Gui REQUIRED)
@@ -41,5 +42,5 @@ target_link_libraries(huggle Qt5::Core Qt5::Gui Qt5::Widgets)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 install(FILES ${CMAKE_SOURCE_DIR}/huggle/man/huggle.1 DESTINATION share/man/man1)
-install(TARGETS huggle DESTINATION bin)
+install(TARGETS huggle DESTINATION ${CMAKE_INSTALL_BINDIR})
 install(FILES ${CMAKE_SOURCE_DIR}/build/huggle.desktop DESTINATION share/applications)

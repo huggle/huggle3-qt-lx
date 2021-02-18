@@ -6,6 +6,7 @@ if (NOT HUGGLE_CMAKE)
 endif()
 
 project(huggle_l10n)
+include(GNUInstallDirs)
 
 set(CMAKE_include_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
@@ -40,5 +41,5 @@ target_link_libraries(huggle_l10n Qt5::Core Qt5::Xml)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 IF (NOT WIN32)
-    INSTALL(TARGETS huggle_l10n LIBRARY DESTINATION lib)
+    INSTALL(TARGETS huggle_l10n LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
 ENDIF()

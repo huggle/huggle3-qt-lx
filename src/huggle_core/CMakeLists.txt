@@ -8,6 +8,8 @@ endif()
 project(huggle_core)
 execute_process(COMMAND "${CMAKE_SOURCE_DIR}/update.sh" WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 
+include(GNUInstallDirs)
+
 set(CMAKE_include_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 
@@ -51,5 +53,5 @@ endif()
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 IF (NOT WIN32)
-    INSTALL(TARGETS huggle_core LIBRARY DESTINATION lib)
+    INSTALL(TARGETS huggle_core LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
 ENDIF()

@@ -6,6 +6,8 @@ if (NOT HUGGLE_CMAKE)
 endif()
 
 project(huggle_ui)
+include(GNUInstallDirs)
+
 set(CMAKE_include_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 find_package(Qt5Core REQUIRED)
@@ -79,4 +81,4 @@ if (AUDIO)
 endif()
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
-INSTALL(TARGETS huggle_ui DESTINATION lib)
+INSTALL(TARGETS huggle_ui DESTINATION ${CMAKE_INSTALL_LIBDIR})
