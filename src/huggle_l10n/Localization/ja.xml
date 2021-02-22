@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
 * McDutchie
+* Omotecho
 * Otokoume
 * Shirayuki
 * SkyDaisy9
@@ -38,6 +39,7 @@
   <string name="undo">取り消す</string>
   <string name="yes">はい</string>
   <string name="editing-page">ページを編集中...</string>
+  <string name="agf">理由を個別に記し、善意の編集として差し戻す</string>
   <string name="successful">成功しました</string>
   <string name="summary">要約</string>
   <string name="id">ID</string>
@@ -55,6 +57,7 @@
   <string name="status">状態</string>
   <string name="link">リンク</string>
   <string name="reason">理由</string>
+  <string name="diffid">版差分ID</string>
   <string name="whitelisted">$1（$3におけるスコア：$2）がホワイトリストに追加されました</string>
   <string name="expiry-time">有効期限</string>
   <string name="duration">期間</string>
@@ -64,6 +67,7 @@
   <string name="flags">フラグ</string>
   <string name="browser-none">まだ表示するページはありません。</string>
   <string name="browser-load">MWフォールバックを使用して差分をダウンロードしています。しばらくお待ちください...</string>
+  <string name="browser-diff">ページの差分：$1（スコア：$2）</string>
   <string name="browser-fail">差分を取得できません: $1</string>
   <string name="about-contributors">開発者:</string>
   <string name="block-not">利用者はブロックされていません</string>
@@ -96,6 +100,7 @@
   <string name="config-queue-filter-ignore">無視（フィルターの無効化）</string>
   <string name="config-queue-filter-exclude">除外（一致した場合に編集をキューから除外）</string>
   <string name="config-queue-filter-require">必要（一致した場合のみ編集をキューに入れる）</string>
+  <string name="config-summ">テンプレートの差し戻し理由を個別に記述</string>
   <string name="config-title">オプション</string>
   <string name="config-already-in-use">このショートカットは $1 で既に使用されています。別のショートカットを指定してください</string>
   <string name="config-openinbrowser">ブラウザーリンクを新しいウィンドウで開く</string>
@@ -118,11 +123,20 @@
   <string name="config-watchlist">ウォッチリストに追加</string>
   <string name="config-defaultsummary">手動編集のデフォルト要約</string>
   <string name="config-undosummary">自編集を差し戻すときのデフォルト要約</string>
+  <string name="config-confirm-user">利用者名前空間における改編について差し戻しの承認を要求</string>
   <string name="config-confirm-wl">ホワイトリストに登録された利用者による改編について承認を要求</string>
+  <string name="config-confirm-talk">トークページの差し戻しには確認が必要です</string>
   <string name="config-use-rollback">ソフトウェアのロールバックを使用する</string>
+  <string name="config-conflicts-revert">同一ページを改変した複数の利用者の編集衝突を自動解決する</string>
+  <string name="config-instant-reverts">即時差し戻しを使用（即時性があるものの、執行すると撤回不能）</string>
+  <string name="config-reverts-multiple">同一使用者による複数編集の差し戻しについて：</string>
+  <string name="config-revert-wait">差し戻しの遅延 (秒)</string>
   <string name="config-revert">差し戻し</string>
   <string name="config-skip">スキップ</string>
+  <string name="config-revert-diff">同じ破壊行為者が行なった編集であれば、表示中の版よりも新しい版に差し戻します</string>
   <string name="config-enable-irc">IRCを可動</string>
+  <string name="config-remove-reverted">他の人が既に差し戻した編集を除去</string>
+  <string name="config-require-delay">次の編集の読み込みまで遅延が必要で、その間は一切の書き込みの機能を使えません（キーの連打によるバグ予防に有効）</string>
   <string name="config-bot-edits">ボットによる編集(b)</string>
   <string name="config-own-edits">自分の編集</string>
   <string name="config-reverts">差し戻し</string>
@@ -131,7 +145,9 @@
   <string name="config-friend">友達</string>
   <string name="config-userspace">ユーザー空間</string>
   <string name="config-talk">会話ページ</string>
+  <string name="config-title-diff">すべての差分のページ（差分ごとに上部に大きく表示されたページ題名）</string>
   <string name="config-updates">更新を確認</string>
+  <string name="config-reset-menu">前回の訪問以降にプロジェクト設定（警告タイプの一覧）は更改され、ドロップダウンメニューのショートカット（差し戻しと警告ほか）に新しい設定があります。</string>
   <string name="config-beta">ベータ版を確認</string>
   <string name="config-close-without">保存せず閉じる</string>
   <string name="config-confirmmultiple">同一利用者による複数の版を一気に差し戻す時は確認する</string>
@@ -139,7 +155,7 @@
   <string name="config-confirmselfrevert">自分の編集を差し戻す時は確認する (アンドゥの場合をのぞく)</string>
   <string name="config-confirmwarned">警告を受けている利用者による版へ差し戻す時は確認する</string>
   <string name="config-confirmrange">リバートを受けているIPと同じ(/16)範囲のIPによる版へ差し戻す時は確認する</string>
-  <string name="config-confirmpage" fuzzy="true">無視ページを差し戻す時は確認する</string>
+  <string name="config-confirmpage">無視ページを差し戻す時は確認する</string>
   <string name="config-autoadvance">差し戻した後、キュー内の次の編集に移動する</string>
   <string name="config-userollback">もし可能な場合、ロールバック機能を使用する</string>
   <string name="config-revertsummaries">メニュー内で利用可能な要約</string>
@@ -195,7 +211,7 @@
   <string name="login-proxyport">ポート:</string>
   <string name="login-proxydomain">ドメイン:</string>
   <string name="login-fail-no-info">$1 へのログイン失敗: 利用者の情報を取得できません: $2</string>
-  <string name="login-bot" fuzzy="true">ボット用とレガシーログインの違いは？</string>
+  <string name="login-bot">ボットパスワードとレガシーログインの違いは？</string>
   <string name="login-fail-rollback-rights">$1 へのログイン失敗: あなたにはこのプロジェクトでの巻き戻しの権限がありません。</string>
   <string name="login-failed-autoconfirm-rights">$1 へのログイン失敗: あなたはこのプロジェクトで自動承認された利用者ではありません。</string>
   <string name="login-failed-edit">$1 へのログイン失敗: このプロジェクトでの編集回数が不足しています。</string>
@@ -224,7 +240,7 @@
   <string name="login-error-config">$1 のローカル設定を構文解析できなかったため、ログインできませんでした: $2</string>
   <string name="login-error-count">このプロジェクトでハグルを使用するには最低でも編集回数が $1 回以上ある必要があります。</string>
   <string name="login-error-disabled">$1 上のあなたのアカウントではハグルを使用可能に設定していません。利用者設定ページを確認してください。</string>
-  <string name="login-error-global" fuzzy="true">グローバル設定ページのロードに失敗しました。詳しくはデバッグログをご覧ください。</string>
+  <string name="login-error-global">Login ログインに失敗しました - ネットワーク接続に問題はありませんか？ グローバル設定ページのダウンロードもしくは処理ができません</string>
   <string name="login-error-invalid">利用者名が無効です</string>
   <string name="login-error-noconfig">$1 にはハグルの設定ページがありません</string>
   <string name="login-error-nouser">利用者が存在しません</string>
@@ -233,6 +249,7 @@
   <string name="login-error-unknown">$1 にログインできません。</string>
   <string name="login-error-version">このバージョンは古いバージョンです。最新版にアップデートしてください。</string>
   <string name="login-error-whitelist">$1 の利用者ホワイトリストを読み込めませんでした。</string>
+  <string name="main-stat">1分あたり $1 編集、 1分あたり $2 リバート、レベル $3</string>
   <string name="main-menu-provider-stop">提供元を停止</string>
   <string name="main-menu-provider-resume">提供元を再開</string>
   <string name="main-page">ページ</string>
@@ -268,6 +285,12 @@
   <string name="main-revision">版</string>
   <string name="main-revision-view">表示</string>
   <string name="main-revision-revert">現在、表示されている編集の差し戻し</string>
+  <string name="main-revision-rv-stay">この編集を差し戻して同じページに留まる</string>
+  <string name="main-revision-revert-warn">表示中の編集を差し戻して利用者に警告する</string>
+  <string name="main-revision-rws">表示中のページを差し戻して利用者に警告、同じページに留まる</string>
+  <string name="main-revision-faith">善意の編集と解釈して差し戻す</string>
+  <string name="main-revision-revert-only-this">この版のみ差し戻す</string>
+  <string name="main-revision-revert-agf">善意の編集と解釈してこの編集のみ差し戻す</string>
   <string name="main-revision-previous">前</string>
   <string name="main-revision-next">次</string>
   <string name="main-revision-latest">最新</string>
@@ -310,6 +333,7 @@
   <string name="main-browser-open">外部ブラウザーで表示</string>
   <string name="main-browser-newedits">ページの新しい編集を表示</string>
   <string name="main-browser-newcontribs">利用者の新しい編集を表示</string>
+  <string name="main-revert-manual">巻き戻しトークンがないため、$1 の巻き戻しを手動に切り換えます</string>
   <string name="main-han">HAN</string>
   <string name="main-han-disconnect">切断</string>
   <string name="main-han-connect">接続</string>
@@ -320,6 +344,7 @@
   <string name="main-help-documentation">マニュアル</string>
   <string name="main-help-feedback">フィードバック</string>
   <string name="main-help-about">ハグルについて...</string>
+  <string name="main-help-welcome-page">ようこそページ</string>
   <string name="main-addqueue">追加...</string>
   <string name="main-savelogtitle">ログを保存</string>
   <string name="main-usermessageother">その他のメッセージ...</string>
@@ -327,14 +352,20 @@
   <string name="main-stats">1分あたり $1 編集、 1分あたり {1} リバート</string>
   <string name="main-display-session-data">セッション データを表示</string>
   <string name="main-display-whitelist">ホワイトリストを表示</string>
+  <string name="main-revert-custom-reson">この編集を以前の版に巻き戻す理由を説明してください</string>
   <string name="main-tip-pagetagdelete">このページに削除依頼タグを貼り付け</string>
   <string name="main-tip-pagedelete">このページを削除</string>
   <string name="main-tip-userreport">この利用者を報告</string>
   <string name="main-tip-userblock">この利用者をブロック</string>
   <string name="main-revert-null">差し戻せません: 編集が空です</string>
+  <string name="main-revert-newpage-title">これは差し戻せません</string>
   <string name="main-revert-newpage">これは新しいページなので、差し戻しできません。あなたには、これのタグ付けか消去かを、することができます。</string>
+  <string name="main-welcome-user">ユーザーを歓迎</string>
+  <string name="main-custom-reason-title">個別の理由を示して差し戻す</string>
+  <string name="main-custom-reason-text">この編集を指し戻す理由を記述してください</string>
+  <string name="main-tab-welcome-title">ページを歓迎</string>
   <string name="message-title">$1 にメッセージ</string>
-  <string name="message-help" fuzzy="true">節タイトルと要約の最低どちらかひとつを指定してください。要約が指定されていない場合、節タイトルが使用されます; 節タイトルが指定されていない場合、節分けは行ないません。</string>
+  <string name="message-help">節の見出しと要約の最低どちらかひとつを指定してください。要約を指定しない場合、見出しが使用されます。見出しを指定しない場合、節分けは行ないません。</string>
   <string name="message-subject">節タイトル:</string>
   <string name="message-message">内容:</string>
   <string name="message-summary">要約欄:</string>
@@ -390,6 +421,7 @@
   <string name="queue-examplelabel3">この属性をチェックしない</string>
   <string name="queue-usergroup">これらの利用者の編集のみ表示</string>
   <string name="report-title">$1 を報告</string>
+  <string name="report-warn">この利用者は既に警告レベル4に達したため、警告テンプレートの送信はこれが最後です。今すぐ通報できますが、か、他，但請確定当該利用者が適当な警告件数に達したかどうかご確認ください。その手順は、以下のフォーム内の「トークページ」ボタンを押します。ただし注意点としてフォームと警告は差し戻しの成否と無関係に表示される点と、他の利用者との衝突が発生する可能性があります（再度、当該利用者が既に通報済みでないかどうかご確認ください）。この利用者を通報しますか？</string>
   <string name="report-tu">利用者を報告</string>
   <string name="report-reason">理由:</string>
   <string name="report-intro">利用者 $1 を報告しようとしています</string>
@@ -398,6 +430,7 @@
   <string name="report-include">報告に含める</string>
   <string name="report-select">プレビューを開くには、一覧から差分を選択してください</string>
   <string name="report-write">書き込み中</string>
+  <string name="report-evidence-none-provid">証拠となる差分が提示されていません。これでは当該ユーザーが荒らしかどうか、管理者の判定が非常に困難です。本当にこのまま続けますか？</string>
   <string name="report-duplicate">この利用者はすでに報告されています</string>
   <string name="report-progress">\'$1\' を報告しています...</string>
   <string name="score-score">得点</string>
@@ -437,14 +470,23 @@
   <string name="updater-open-manualdownloadpage">ダウンロード ページを開く</string>
   <string name="updater-close">閉じる</string>
   <string name="updater-disable-notify">更新を無効にする</string>
-  <string name="user-history-fail" fuzzy="true">利用者の履歴を取得できません: $1</string>
+  <string name="user-history-fail">利用者の履歴を取得できません: $1</string>
   <string name="userinfo-generic">利用者の情報</string>
   <string name="userinfo-retrieve">情報を取得</string>
   <string name="shortcut-report-username">利用者名を報告</string>
   <string name="shortcut-report-user">利用者を報告</string>
   <string name="shortcut-my-talk">自分の会話ページ</string>
+  <string name="shortcut-raw">編集を差し戻して利用者に警告する</string>
+  <string name="shortcut-warn">利用者に警告を送り、編集は差し戻さない</string>
+  <string name="shortcut-revert">編集を差し戻す</string>
+  <string name="shortcut-x-raw">差し戻しと警告メニューの N 件目に抵触</string>
+  <string name="shortcut-x-revert">差し戻しメニューの N 件目に抵触</string>
+  <string name="shortcut-revert-agf-1">善意の編集と解釈して直近の版を差し戻す</string>
   <string name="shortcut-browser-close-tab">ブラウザのタブを閉じる</string>
   <string name="shortcut-tab">新しいタブを開く</string>
+  <string name="shortcut-rw-stay">表示中のページを差し戻して執筆者に警告、同じページに留まる</string>
+  <string name="shortcut-custom-reason">個別の編集要約の理由を使い、編集を差し戻す</string>
+  <string name="shortcut-revert-agf">善意と解釈、個別の編集要約を付けて差し戻す</string>
   <string name="warning-title">$1 に警告</string>
   <string name="warning-levelgroup">警告レベル</string>
   <string name="warning-levelauto">自動</string>
@@ -481,11 +523,14 @@
   <string name="edit-progress">\'$1\' を編集中...</string>
   <string name="history-fail">\'$1\' の履歴取得に失敗しました</string>
   <string name="history-progress">\'$1\' ({1}) の履歴を取得しています...</string>
-  <string name="history-work" fuzzy="true">$1 での自身の編集を取り消し中</string>
+  <string name="history-work">$1 での自身の編集を取り消し中</string>
   <string name="history-message-revert-title">このメッセージを本当に取り消しますか?</string>
   <string name="history-not-found">取り消せるものが見つかりませんでした</string>
   <string name="history-already-done">既に取り消されていました</string>
+  <string name="history-message-revert-body">これは巻き戻しが参照したメッセージであり、テンプレートのみ差し戻すもののページの編集は維持する点を確定してよいですか？（両方とも復原するには巻き戻しを撤回してください）</string>
   <string name="history-revert-fail">$1 の編集を取り消せませんでした。次のエラーが発生したため。: $2</string>
+  <string name="history-welcome-msg-title">代わりにようこそメッセージを送りますか？</string>
+  <string name="history-welcome-msg">トークページを作成したので、取り消せません。これをようこそテンプレートと置換しますか？</string>
   <string name="notify-fail">\'$1\' の作成者へ通知できませんでした</string>
   <string name="notify-unknowncreator">ページの作成者を同定できませんでした</string>
   <string name="protect-done">\'$1\' の保護レベルを変更しました</string>
@@ -504,6 +549,7 @@
   <string name="reqprotection-progress">\'$1\' を保護依頼しています...</string>
   <string name="speedy-fail">即時削除タグをページに貼り付けできませんでした: $1</string>
   <string name="speedy-progress">\'$1\' に即時削除タグを貼り付けています...</string>
+  <string name="speedy-wrong">申請されたタグは無効です。削除理由を選び直してください</string>
   <string name="speedy-finished">完了</string>
   <string name="warn-alreadyblocked">この利用者はすでにブロックされています</string>
   <string name="editquery-success">$2 の $1 を編集しました</string>
@@ -515,22 +561,37 @@
   <string name="missing-page">Wiki上にページ $1 がありません</string>
   <string name="updating-wl">ホワイトリストを更新中...</string>
   <string name="feature-nfru">この機能はIPユーザー専用</string>
-  <string name="welcome-tp-empty-fail" fuzzy="true">この利用者のトークページは空ではありませんが、メッセージを本当に送信しますか?</string>
-  <string name="cr-revert-same-user" fuzzy="true">解決済みの問題：全ての編集を復帰-$1について、同じ利用者による複数の編集があります。</string>
-  <string name="cr-message-same" fuzzy="true">$1 には同じ利用者による複数の編集がありますが、それらを本当に差し戻しますか?</string>
+  <string name="welcome-tp-empty-fail">この利用者のトークページは空ではありませんが、メッセージを本当に送信しますか?</string>
+  <string name="welcome-page-miss-fail">Huggle はユーザーのトークページの内容を取得できませんでした。本当にようこそメッセージを送りますか？</string>
+  <string name="cr-newer-edits">衝突の解決：新しい編集を含めてすべての編集を差し戻しました。同一の利用者による編集です：$1ヵ所。</string>
+  <string name="cr-revert-same-user">解決済みの編集衝突：全ての編集を復帰 - $1の複数回の編集は同じ利用者が行いました</string>
+  <string name="cr-message-same">複数回の編集を $1 に行なったのは同じ利用者ですが、本当にそれらを差し戻しますか?</string>
   <string name="cr-message-new">$1 には新しい編集があります。それらを本当に差し戻しますか?</string>
+  <string name="cr-message-not-same">他の利用者ひとりによる編集が $1 に行われています。本当にすべて差し戻しますか？（その場合は古いトークンが使われて失敗する可能性あり）</string>
+  <string name="preferences-enforce-baw">強制的に HTML 差分をモノクロ表示する</string>
   <string name="preferences-watchlist-preferences">あなたのwiki上の好みに従ってください</string>
   <string name="preferences-watchlist-nochange">何もしない</string>
+  <string name="preferences-color-scheme-diff">差分の色指定</string>
   <string name="fail">失敗</string>
   <string name="request">要求</string>
   <string name="requesting">要求している</string>
   <string name="requested">要求された</string>
   <string name="edit-conflict">編集の競合</string>
+  <string name="summary-edit-range">差分ID $1 から $2 まで範囲差分を表示中</string>
   <string name="namespace">名前空間</string>
   <string name="block-alreadyblocked">ユーザーは既にブロックされています</string>
   <string name="report-fail">報告に失敗しました。理由: $1</string>
   <string name="error-unknown-code">不明なエラー: $1</string>
   <string name="relogin-fail">wikiにログインできません: $1</string>
   <string name="projects">プロジェクト</string>
+  <string name="main-revert-custom-reason-text">理由が提示されていません / 固有の差し戻し</string>
+  <string name="main-revert-already-pending-text">この編集は既に処理中のため、差し戻せません。しばらくお待ちください。</string>
   <string name="main-revert-type-unknown">不明</string>
+  <string name="main-revert-warn">この編集は$1に該当するため、見かけは破壊行為でも実情は異なる可能性があります。本当にこの編集を差し戻しますか？</string>
+  <string name="tip6">Huggle の差し戻し処理は、皆さんが経験豊富でミスをしない利用者だとわかれば、もっと迅速に行えるかもしれません ;) 個人設定を開き、「即時差し戻し」を押してください</string>
+  <string name="tip8">キーの G を押すとこの編集に「良好な編集」フラッグを立てます。すると他の編集者に、この編集はチェック無用だと知らせ、ユーザーの悪意度を減らして、オプションとして当該ユーザーにようこそメッセージを送ります。</string>
+  <string name="tip9">キー S を押すと「疑わしい編集」のフラグが立ちます。 すると他の利用者に注目が必要だと知らせ、この編集は熟練者による査読を待つ疑わしい編集の一覧に追加します。</string>
+  <string name="tip13">表示中の編集を実施した利用者の「貢献記録の閲覧」 を開くには、Shift + C（既定）を押すか、利用者メニューから選択します。当該利用者の直近の編集をすばやく確認できます。</string>
+  <string name="tip15">記事にその他の問題が見つかり、巻き戻しでは解決できない場合は、E キーを押すと既定のブラウザですぐに記事を編集できます（Huggle を離れます）。</string>
+  <string name="tip16">もし間違って差し戻しボタンを押してしまったら、すぐに ESC キーを押すと進行中の処理を取り消せる場合があります。</string>
 </resources>

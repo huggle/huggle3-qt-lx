@@ -2,6 +2,7 @@
 <!-- Authors:
 * Ahdan
 * Amire80
+* Andikbuyung
 * Arief
 * Arifin.wijaya
 * FBN122645
@@ -185,6 +186,7 @@
   <string name="config-revertsummaries">Ringkasan pengembalian tersedia di menu</string>
   <string name="config-auto-refresh">Segarkan halaman secara otomatis jika ada penyuntingan lain yang dilakukan</string>
   <string name="config-extendreports">Lanjutkan laporan setelah vandalisme tambahan</string>
+  <string name="config-autoreport">Ketika diminta untuk mengenakan peringatan terakhir kepada pengguna</string>
   <string name="config-reportnone">Jangan lakukan apa pun</string>
   <string name="config-reportprompt">Minta laporan</string>
   <string name="config-reportauto">Tampilkan laporan secara otomatis</string>
@@ -269,6 +271,7 @@
   <string name="login-fail">Masuk log gagal pada $1</string>
   <string name="login-fail-with-reason">Login gagal (pada $1): $2</string>
   <string name="login-error-admin">Penggunaan Huggle di proyek ini memerlukan akun pengurus.</string>
+  <string name="login-error-approval">Penggunaan Huggle di $1 membutuhkan izin.</string>
   <string name="login-error-cancelled">Telah dibatalkan</string>
   <string name="login-error-invalid">Nama pengguna tidak sah</string>
   <string name="login-error-nouser">Pengguna tidak ada</string>
@@ -345,8 +348,10 @@
   <string name="main-user-warn">Memperingati...</string>
   <string name="main-user-report">Laporkan</string>
   <string name="main-user-block">Blokir...</string>
+  <string name="main-user-manualtemplate">Templat manual</string>
   <string name="main-browser-back">Kembali</string>
   <string name="main-browser-forward">Teruskan</string>
+  <string name="main-browser-newcontribs">Tampilkan kontribusi terbaru menurut pengguna</string>
   <string name="main-han">HAN</string>
   <string name="main-han-disconnect">Putuskan</string>
   <string name="main-han-connect">Hubungkan</string>
@@ -357,6 +362,7 @@
   <string name="main-help-documentation">Dokumentasi</string>
   <string name="main-help-feedback">Umpan balik</string>
   <string name="main-help-about">Tentang Huggle</string>
+  <string name="main-help-introduction">Pendahuluan</string>
   <string name="main-help-queuelegend">Legenda antrean</string>
   <string name="main-addqueue">Tambahkan...</string>
   <string name="main-savelogtitle">Simpan catatan (log)</string>
@@ -372,8 +378,13 @@
   <string name="main-revision-acceptpend">Terima perubahan tertunda ini</string>
   <string name="main-revert-null">Tidak dapat membalikan: suntingan kosong</string>
   <string name="main-revert-newpage-title">Tidak dapat mengembalikan ini</string>
+  <string name="main-welcome-user">Sambut pengguna</string>
+  <string name="main-custom-reason-title">Kembalikan suntingan dengan alasan khusus</string>
   <string name="main-report-username">Laporkan nama pengguna</string>
+  <string name="main-report-user">Laporkan pengguna</string>
   <string name="main-edit-user-talk">Sunting halaman pembicaraan pengguna</string>
+  <string name="main-statistics-paused">jeda</string>
+  <string name="main-statistics-none">tidak ada</string>
   <string name="message-title">Pesan $1</string>
   <string name="message-subject">Subyek:</string>
   <string name="message-message">Pesan:</string>
@@ -402,8 +413,10 @@
   <string name="queue-filterhuggle">Suntingan Huggle</string>
   <string name="queue-filterme">Suntingan saya</string>
   <string name="report-title">Laporkan $1</string>
+  <string name="report-tu">Laporkan pengguna</string>
   <string name="report-reason">Alasan:</string>
   <string name="report-message">Pesan:</string>
+  <string name="report-log">Peringatan untuk pengguna ini:</string>
   <string name="report-write">Menulis</string>
   <string name="report-done">Telah dilaporkan</string>
   <string name="report-user">Laporan</string>
@@ -412,8 +425,33 @@
   <string name="score-range">Rentang</string>
   <string name="score-only-whole-word">Hanya cocokkan dengan keseluruhan kata</string>
   <string name="score-take-any-word">Cocokkan segala kata yang berisi string ini</string>
+  <string name="uaa-not-supported">UAA tidak tersedia</string>
+  <string name="uaa-reported">Telah dilaporkan</string>
+  <string name="uaa-user-reported-title">Pengguna telah dilaporkan</string>
+  <string name="uaa-user-reported">Pengguna ini telah dilaporkan ke UAA</string>
+  <string name="uaa-user-unreported-title">Pengguna tidak dilaporkan</string>
+  <string name="speedy-reason">Alasan:</string>
+  <string name="tag-parameter">Parameter</string>
+  <string name="tag-summary">Ringkasan:</string>
+  <string name="update-progress">Mengunduh versi terbaru, mohon tunggu...</string>
+  <string name="updater-update">Perbarui</string>
+  <string name="updater-close">Tutup</string>
+  <string name="userinfo-generic">Informasi pengguna</string>
+  <string name="shortcut-report-user">Laporkan pengguna</string>
+  <string name="shortcut-revert">Kembalikan suntingan</string>
   <string name="shortcut-browser-close-tab">Menutup browser tab</string>
   <string name="shortcut-tab">Buka tab baru</string>
+  <string name="warning-level1">Tingkat 1</string>
+  <string name="warning-level2">Tingkat 2</string>
+  <string name="warning-level3">Tingkat 3</string>
+  <string name="warning-level4">Tingkat 4 (terakhir)</string>
+  <string name="warning-submit">Kirim</string>
+  <string name="han-send">Kirim</string>
+  <string name="error-unknown">Galat yang tidak diketahui</string>
+  <string name="block-done">Diblokir $1</string>
+  <string name="block-progress">Memblokir $1</string>
+  <string name="delete-progress">Menghapus $1...</string>
+  <string name="edit-progress">Menyunting $1...</string>
   <string name="preferences-color-scheme-diff">Warna berbeda</string>
   <string name="preferences-color-scheme-diff-default">Baku</string>
   <string name="preferences-color-scheme-diff-dark-mode">Mode gelap</string>

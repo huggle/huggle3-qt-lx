@@ -194,7 +194,7 @@
   <string name="config-blockreason">Lý do cấm mặc định</string>
   <string name="config-blocktime">Thời lượng cấm mặc định</string>
   <string name="config-blocktimeanon">người dùng vô danh</string>
-  <string name="config-blocktimereg">thành viên đã đăng ký</string>
+  <string name="config-blocktimereg">thành viên có tài khoản</string>
   <string name="config-summaryprompt">Nhập tóm lược</string>
   <string name="config-history">Tải về trọn vẹn lịch sử của tất cả bài viết</string>
   <string name="config-defaultsprompt">Khôi phục về mặc định?</string>

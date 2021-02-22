@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
+* AVSmalnad77
 * Amire80
 * Nayvik
 * VASANTH S.N.
@@ -32,7 +33,7 @@
   <string name="id">ಗುರುತಿನ ಸಂಖ್ಯೆ</string>
   <string name="type">ನಮೂನೆ</string>
   <string name="target">ಗುರಿ</string>
-  <string name="user">ಸದಸ್ಯ</string>
+  <string name="user">ಬಳಕೆದಾರ</string>
   <string name="size">ಗಾತ್ರ</string>
   <string name="date">ದಿನಾಂಕ</string>
   <string name="page">ಪುಟ</string>

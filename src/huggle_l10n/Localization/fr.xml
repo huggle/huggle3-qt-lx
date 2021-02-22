@@ -327,7 +327,7 @@
   <string name="login-error-count">L’utilisation de Huggle sur ce projet requiert au moins $1 modification{{PLURAL:$1||s}}.</string>
   <string name="login-error-disabled">Huggle n’est pas activé pour votre compte sur $1. Vérifiez la configuration sur votre page utilisateur.</string>
   <string name="login-error-global">La connexion a échoué  – problème de connexion réseau ? La configuration globale n’a pas pu être téléchargée.</string>
-  <string name="login-error-invalid">Nom d’utilisateur non valide</string>
+  <string name="login-error-invalid">Nom d’utilisateur incorrect</string>
   <string name="login-error-noconfig">$1 n’a pas de page de configuration pour Huggle</string>
   <string name="login-error-nouser">L’utilisateur n’existe pas</string>
   <string name="login-error-no-valid-token">Aucun jeton de connexion valide renvoyé par le site</string>

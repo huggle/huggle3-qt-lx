@@ -400,7 +400,7 @@
   <string name="main-page-unwatch">Non seguire</string>
   <string name="main-page-purge">Purga</string>
   <string name="main-page-curr-disp">Attualmente visualizzato</string>
-  <string name="main-page-display">Visualizza questa pagina</string>
+  <string name="main-page-display">Vedi questa pagina</string>
   <string name="main-page-patrol">Segna come verificata</string>
   <string name="main-page-move">Sposta...</string>
   <string name="main-page-flag-suspicious-edit">Segna come modifica sospetta (questa azione aggiunge +1 al punteggio dell\'utente)</string>
@@ -420,8 +420,8 @@
   <string name="main-user-unignore">Non ignorare</string>
   <string name="main-user-contribs">Mostra i contributi dell\'utente in un browser</string>
   <string name="main-user-clear-talk">Pulisci la pagina di discussione dell\'utente</string>
-  <string name="main-user-talk">Visualizza la pagina di discussione</string>
-  <string name="main-user-page">Visualizza la pagina utente</string>
+  <string name="main-user-talk">Vedi la pagina di discussione</string>
+  <string name="main-user-page">Vedi la pagina utente</string>
   <string name="main-user-message">Invia un messaggio...</string>
   <string name="main-user-warn">Avverti...</string>
   <string name="main-user-db">Riduci il punteggio di cattiveria dell\'utente</string>
