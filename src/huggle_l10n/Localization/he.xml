@@ -884,7 +884,7 @@
   <string name="query-protected-link">קישור מוגן</string>
   <string name="queue-empty-title">התור ריק</string>
   <string name="queue-empty-text">אין שינויים בתור...</string>
-  <string name="protip">טיפ מקצועי</string>
+  <string name="protip">עצה מקצועית</string>
   <string name="wikipagetagsform-group">קבוצה בתוך {{$1}}</string>
   <string name="tip1">האגל תומך בכרטיסיות בדיוק כמו כל דפדפן אינטרנט אחר! אם אתה נמצא בעריכה וברצונך לשמור אותה למועד מאוחר יותר, תוכל פשוט לפתוח כרטיסייה חדשה ולהמשיך לבדוק שם את התור. התור מתחלק בין כל הכרטיסיות.</string>
   <string name="tip2">האגל מכיל \"סרגל עריכה\" - יישומון קטן המכיל את היסטוריית המשתמשים וגם את העמוד בצורה מסודרת. זה לא מופעל כברירת מחדל. אם אתה על מסך קטן, אתה יכול להחליף את יישומוני המשתמשים והיסטוריית הדפים בו!</string>
