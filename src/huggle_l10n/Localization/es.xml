@@ -18,6 +18,7 @@
 * Matiia
 * PetrohsW
 * RicardoSGZ
+* Rodney Araujo
 * Suecarmol
 * Syum90
 * Themasterriot
@@ -44,7 +45,7 @@
   <string name="done">Hecho</string>
   <string name="no">No</string>
   <string name="ok">Aceptar</string>
-  <string name="override-warn">Te has saltado la ruta de configuración del proyecto. Ten en cuenta que abusar de esta funcionalidad para obtener acceso de escritura en el wiki, en aquellos casos donde normalmente no lo tendrías, puede causar el bloqueo permanente de tu cuenta.</string>
+  <string name="override-warn">Te has saltado la ruta de configuración del proyecto. Por favor ten en cuenta que abusar de esta funcionalidad para obtener acceso de escritura en el wiki, en aquellos casos donde normalmente no lo tendrías, puede causar el bloqueo permanente de tu cuenta.</string>
   <string name="remove">Quitar</string>
   <string name="rename">Cambiar nombre</string>
   <string name="reload">Recargar</string>
@@ -242,7 +243,7 @@
   <string name="delete-failed-no-info">La consulta no contiene información de la página (¿eres un administrador?)</string>
   <string name="extension-kl">No está ejecutándose</string>
   <string name="extension-ok">Cargada y funcionando</string>
-  <string name="exception-text-1">Desafortunadamente Huggle ha dejado de funcionar. Por favor, completa el campo con información detallada sobre lo que estabas haciendo</string>
+  <string name="exception-text-1">Desafortunadamente Huggle ha dejado de funcionar. Por favor, completa el campo con información detallada sobre lo que estabas haciendo.</string>
   <string name="exception-details">Detalles de la excepción</string>
   <string name="exception-error-code">Código de error: $1</string>
   <string name="exception-reason">Motivo: $1</string>
@@ -253,7 +254,7 @@
   <string name="historyform-title">Historial</string>
   <string name="historyform-retrieve-history">Recuperar historial</string>
   <string name="historyform-retrieving-history">Recuperando historial</string>
-  <string name="historyform-not-latest-tip">Esta no es la última revisión de esta página. Asegúrate de haber revisado también las versiones más recientes. Ten en cuenta que una reversión puede no ser posible desde este punto.</string>
+  <string name="historyform-not-latest-tip">Esta no es la última revisión de esta página. Asegúrate de que hayas revisado también las versiones más recientes. Ten en cuenta que una reversión puede no ser posible desde este punto.</string>
   <string name="history-error-message-title">No se puede deshacer</string>
   <string name="history-error">Este artículo no se puede deshacer. La página puede haber sido cambiada o eliminada mientras tanto, y Huggle no puede deshacer desde este punto. Si realmente quieres deshacerlo, deberás hacerlo manualmente utilizando la interfaz de MediaWiki.</string>
   <string name="history-failure">No ha sido posible obtener el historial</string>
