@@ -80,7 +80,7 @@
   <string name="browser-miss-summ">Es wurde keine Zusammenfassung angegeben</string>
   <string name="browser-diff">Unterschied der Seite: $1 (Wert: $2)</string>
   <string name="browser-fail">Unterschied konnte nicht abgerufen werden: $1</string>
-  <string name="about-contributors">Mitwirkende:</string>
+  <string name="about-contributors">Entwickler:</string>
   <string name="block-not">Benutzer ist nicht gesperrt</string>
   <string name="block-title">$1 sperren</string>
   <string name="block-reason">Grund:</string>

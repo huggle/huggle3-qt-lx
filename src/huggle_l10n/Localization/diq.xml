@@ -132,7 +132,7 @@
   <string name="config-templatetext">Metini bıasne</string>
   <string name="config-template">Şablon</string>
   <string name="config-blockreason">Hesıbyaye sebaba men kerdışi</string>
-  <string name="config-blocktimeanon">Karbero anonim</string>
+  <string name="config-blocktimeanon">karberê bênameyi</string>
   <string name="config-blocktimereg">karberê qeydıni</string>
   <string name="config-summaryprompt">Xulasa dekerê</string>
   <string name="config-history">Heme verorê heme wesiqeya ron</string>
@@ -303,6 +303,7 @@
   <string name="queue-diffsgroup">Ferqi</string>
   <string name="queue-namespaces">Heruna nameyan:</string>
   <string name="queue-filternewpage">Pela newiye</string>
+  <string name="queue-filteranonymous">Karbero bêname</string>
   <string name="queue-filternotifications">Tebliğ</string>
   <string name="queue-filterwarnings">Tembe kem</string>
   <string name="queue-filtertags">Etiket</string>
