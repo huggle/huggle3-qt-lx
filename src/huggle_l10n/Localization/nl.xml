@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
+* Bas dehaan
 * Hex
 * Lemondoge
 * Macofe
@@ -60,16 +61,16 @@
   <string name="link">Koppeling</string>
   <string name="reason">Reden</string>
   <string name="diffid">DiffID</string>
-  <string name="whitelisted" fuzzy="true">$1 met score $2 op $3 is toegevoegd aan de witte lijst</string>
+  <string name="whitelisted">$1 met score $2 op $3 is toegevoegd aan de witte lijst</string>
   <string name="expiry-time">Vervaltijd</string>
   <string name="duration">Duur</string>
   <string name="enable">Inschakelen</string>
   <string name="disable">Uitschakelen</string>
   <string name="no-token">Geen token</string>
   <string name="flags">Markeringen</string>
-  <string name="gracetime" fuzzy="true">Wacht tot de bewerkingen zijn afgerond...</string>
-  <string name="browser-none" fuzzy="true">Er wordt geen pagina weergegeven</string>
-  <string name="browser-load" fuzzy="true">De verschillen worden geladen door terugvallen op webrenderen. Even geduld...</string>
+  <string name="gracetime">Wacht tot de bewerkingen zijn afgerond...</string>
+  <string name="browser-none">Er is nog geen pagina om te weergegeven</string>
+  <string name="browser-load">De verschillen worden geladen door terugvallen op MW. Even geduld...</string>
   <string name="browser-miss-summ">Er werd geen samenvatting opgegeven</string>
   <string name="browser-diff">Verschillen in pagina: $1 (score: $2)</string>
   <string name="browser-fail">De verschillen kunnen niet weergegeven worden: $1</string>
@@ -93,10 +94,10 @@
   <string name="block-token-1">Token aan het ophalen om $1 te blokkeren</string>
   <string name="block-fail">De gebruiker kan niet geblokkeerd worden: $1</string>
   <string name="block-token-e1">Het token kan niet verkregen worden: $1</string>
-  <string name="block-error-no-info" fuzzy="true">Er zijn geen gebruikersgegevens aanwezig in de zoekopdracht. Bent u beheerder?</string>
+  <string name="block-error-no-info">Er zijn geen gebruikersgegevens aanwezig in de zoekopdracht. Bent u beheerder?</string>
   <string name="block-type">Blokkeren / deblokkeren</string>
-  <string name="block-admin" fuzzy="true">Blokkerende beheerder</string>
-  <string name="block-none" fuzzy="true">Er is geen gebruiker te blokkeren.</string>
+  <string name="block-admin">Blokkerende beheerder</string>
+  <string name="block-none">Er is geen gebruiker geselecteerd om te blokkeren.</string>
   <string name="contribution-browser-user-info">Recente bijdragen van gebruiker $1 worden weergegeven</string>
   <string name="config-function">Functie</string>
   <string name="config-description">Beschrijving</string>
