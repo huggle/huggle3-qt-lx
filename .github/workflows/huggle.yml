@@ -1,0 +1,58 @@
+name: huggle
+
+on: push
+
+jobs:
+  build-linux:
+    name: Linux
+    runs-on: ubuntu-latest
+    env:
+      QTTYPE: 5
+    steps:
+      - uses: actions/checkout@v2
+      - run: sudo apt-get update
+      - run: travis/install.sh
+      - run: travis/before_script.sh
+      - run: travis/script.sh
+
+  build-macos:
+    name: macOS
+    runs-on: macos-10.15
+    env:
+      QTTYPE: 5
+    steps:
+      - uses: jurplel/install-qt-action@v2
+        with:
+          modules: 'qtwebengine'
+      - uses: actions/checkout@v2
+      - run: travis/before_install_osx.sh
+      - run: travis/install_osx.sh
+      - run: travis/before_script_osx.sh
+      - run: travis/script_osx.sh
+
+  build-windows:
+    name: Windows
+    runs-on: windows-latest
+    env:
+      QTTYPE: 5
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - uses: jurplel/install-qt-action@v2
+        with:
+          modules: 'qtwebengine'
+      - uses: microsoft/setup-msbuild@v1.0.2
+      - run: $env:RUNNER_WORKSPACE
+      - run: $env:Qt5_Dir
+      - name: run appveyor script
+        shell: pwsh
+        working-directory: ./windows64
+        run: |
+          $msbuildpath = vswhere -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | select-object -first 1
+          if ($path) {
+          & $path $args
+          }
+          $env:Qt5_Dir
+          ./veyor.ps1 -msbuild_path $msbuildpath -qt5_path $env:Qt5_Dir
