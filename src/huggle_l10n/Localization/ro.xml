@@ -2,6 +2,7 @@
 <!-- Authors:
 * Amire80
 * Andrei Stroe
+* Andreyyshore
 * MSClaudiu
 * Macofe
 * Patrick Star
@@ -782,7 +783,7 @@
   <string name="missing-aiv">Acest proiect nu utilizează AIV</string>
   <string name="missing-page">Nu există pagina $1 pe acest wiki</string>
   <string name="updating-wl">Actualizez whitelist...</string>
-  <string name="waiting">Aşteptare...</string>
+  <string name="waiting">Așteptare...</string>
   <string name="feature-nfru">Această funcționalitate este doar pentru utilizatorii IP</string>
   <string name="report-no-user">Nu s-a selectat niciun utilizator pentru reclamație, vă rog să selectați un utilizator mai întâi</string>
   <string name="welcome-show">Afișați acest mesaj, de asemenea, și când lansați Huggle</string>
