@@ -66,7 +66,7 @@ function PackageTest
     if (!(Test-Path $PackageUrl))
     {
         echo "ERROR"
-        echo "Unable to find $PackageName at $PackageUrl, you can set the alternative path using -$VariableName=path"
+        echo "Unable to find $PackageName at $PackageUrl, you can set the alternative path using -$VariableName path"
         exit 1
     }
     echo ("OK");
