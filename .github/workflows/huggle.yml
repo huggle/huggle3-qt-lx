@@ -5,36 +5,52 @@ on: push
 jobs:
   build-linux:
     name: Linux
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-${{ matrix.ubuntu-version }}
     env:
       QTTYPE: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        ubuntu-version: [16.04, 18.04, 20.04]
+        qt-version: [5.12.10, 5.15.2]
     steps:
       - uses: actions/checkout@v2
-      - run: sudo apt-get update
-      - run: travis/install.sh
+      - uses: jurplel/install-qt-action@v2
+        with:
+          version: ${{ matrix.qt-version }}
+          modules: 'qtwebengine'
       - run: travis/before_script.sh
       - run: travis/script.sh
 
   build-macos:
     name: macOS
-    runs-on: macos-10.15
+    runs-on: macos-latest
     env:
       QTTYPE: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        qt-version: [5.12.10, 5.15.2]
     steps:
       - uses: jurplel/install-qt-action@v2
         with:
+          version: ${{ matrix.qt-version }}
           modules: 'qtwebengine'
       - uses: actions/checkout@v2
       - run: travis/before_install_osx.sh
-      - run: travis/install_osx.sh
       - run: travis/before_script_osx.sh
       - run: travis/script_osx.sh
 
   build-windows:
     name: Windows
-    runs-on: windows-latest
+    runs-on: windows-${{ matrix.windows-version }}
     env:
       QTTYPE: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        windows-version: [2016, 2019]
+        qt-version: [5.12.10, 5.15.2]
     steps:
       - name: checkout code
         uses: actions/checkout@v2
@@ -42,6 +58,7 @@ jobs:
           submodules: recursive
       - uses: jurplel/install-qt-action@v2
         with:
+          version: ${{ matrix.qt-version }}
           modules: 'qtwebengine'
       - uses: microsoft/setup-msbuild@v1.0.2
       - name: run appveyor script
@@ -52,5 +69,4 @@ jobs:
           if ($path) {
           & $path $args
           }
-          $env:Qt5_Dir
           ./veyor.ps1 -msbuild_path $msbuildpath -qt5_path $env:Qt5_Dir
