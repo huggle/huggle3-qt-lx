@@ -44,8 +44,6 @@ jobs:
         with:
           modules: 'qtwebengine'
       - uses: microsoft/setup-msbuild@v1.0.2
-      - run: $env:RUNNER_WORKSPACE
-      - run: $env:Qt5_Dir
       - name: run appveyor script
         shell: pwsh
         working-directory: ./windows64
