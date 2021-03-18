@@ -237,6 +237,7 @@
   <string name="history-error-message-title">Tidak bisa membatalkan</string>
   <string name="history-failure">Tidak dapat mengambil riwayat</string>
   <string name="userhistory-title">Riwayat perubahan Anda</string>
+  <string name="irc-connected">$1: Terhubung ke umpan perubahan terbaru IRC</string>
   <string name="login-old">Mengambil konfigurasi pengguna dari lokasi</string>
   <string name="invalid-bot-user-name">Ini bukan nama bot yang valid. Contoh dari nama bot yang valid: Jimbo@Huggle</string>
   <string name="login-tab-botp">Kata sandi bot</string>
