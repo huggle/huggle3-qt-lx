@@ -340,6 +340,7 @@
   <string name="main-stat">$1 Bearbeitungen pro Minute, $2 Zurücksetzungen pro Minute, Stufe $3</string>
   <string name="main-menu-provider-stop">Provider anhalten</string>
   <string name="main-menu-provider-resume">Provider fortsetzen</string>
+  <string name="main-help-copy-syslog-to-clip">System-Logbuch in die Zwichenablage kopieren</string>
   <string name="provider-up">Verbinde mit dem Letzte-Änderungen-Stream auf $2 mithilfe des Providers: $1</string>
   <string name="main-no-reason">Vom Benutzer wurde keine Begründung angegeben</string>
   <string name="main-restoring-slap">Es wird derzeit eine andere Bearbeitung wiederhergestellt. Bitte warten …</string>

@@ -112,6 +112,9 @@
   <string name="config-summaryprompt">Enter summary</string>
   <string name="config-defaultsprompt">Восстановить умолчания?</string>
   <string name="config-notify-update">განახლებების შემოწმება</string>
+  <string name="custommessage-subject">სათაური</string>
+  <string name="custommessage-wikiuser-plaintext-1">გამარჯობა $1,</string>
+  <string name="custommessage-wikiuser-plaintext-2">ჩაწერეთ თქვენი შეტყობინება აქ.</string>
   <string name="delete-title">$1-ის წაშლა</string>
   <string name="delete-reason">Причина:</string>
   <string name="delete-deletionlog">წაშლა შესვლა:</string>
