@@ -442,7 +442,7 @@
   <string name="history-message-revert-title">Wëllt Dir wierklech just dëse Message réckgängeg maachen?</string>
   <string name="history-not-found">Et gouf näischt fonnt fir réckgängeg ze maachen</string>
   <string name="history-already-done">Dëst gouf scho réckgängeg gemaach</string>
-  <string name="history-revert-fail">Är Ännerung vu(n) $1 konnt net réckgängeg gemaach ginn, well dëse Feeler beim zrécksetze geschitt ass: $2</string>
+  <string name="history-revert-fail">Är Ännerung vu(n) $1 konnt net réckgängeg gemaach ginn, well dëse Feeler beim Zrécksetze geschitt ass: $2</string>
   <string name="newtab-title">Dëst ass en neien Tab!</string>
   <string name="saveuserconfig-progress">Aktualiséierung vun der Säit vun de Benotzerastellungen...</string>
   <string name="loadglobalconfig-fail">Déi global Configuratiounssäit konnt net geluede ginn</string>
