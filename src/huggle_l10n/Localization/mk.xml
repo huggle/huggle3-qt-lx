@@ -849,7 +849,7 @@
   <string name="relogin-fail">Не можам да ве најавам на викито: $1</string>
   <string name="projects">Проекти</string>
   <string name="unable-to-retrieve-user-list">Не можам да го добијам корисничкиот список: $1</string>
-  <string name="login-no-userinfo" fuzzy="true">Мрежното место не даде никакви кориснички информации</string>
+  <string name="login-no-userinfo">Мрежното место не даде никакви кориснички информации</string>
   <string name="login-invalid-register-date">МедијаВики даде неважечки датум на зачленување</string>
   <string name="login-site-info-query-failed">Барањето за информации од мрежното место $1 на успеа: $2</string>
   <string name="login-no-site-info-returned">Нема информации за ова вики</string>
