@@ -324,6 +324,7 @@ void ReportUser::OnReportUserTimer()
                 //this->close();
                 delete this;
             }
+            this->close;
         }
         return;
     }
