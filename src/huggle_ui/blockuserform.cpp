@@ -133,7 +133,7 @@ void BlockUserForm::Block()
     this->timer->stop();
     if (this->ui->cbMessageTarget->isChecked())
         this->sendBlockNotice(nullptr);
-    this->close;
+    this->close();
 }
 
 void BlockUserForm::Failed(QString reason)
