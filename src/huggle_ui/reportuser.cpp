@@ -324,6 +324,10 @@ void ReportUser::OnReportUserTimer()
                 //this->close();
                 delete this;
             }
+            // Close window after 2 seconds
+            QTimer::singleShot(2000, [this]()->void{
+                this->close();
+            });
         }
         return;
     }

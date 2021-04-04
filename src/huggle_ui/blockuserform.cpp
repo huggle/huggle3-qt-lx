@@ -133,6 +133,10 @@ void BlockUserForm::Block()
     this->timer->stop();
     if (this->ui->cbMessageTarget->isChecked())
         this->sendBlockNotice(nullptr);
+    // Close window after 2 seconds
+    QTimer::singleShot(2000, [this]()->void{
+        this->close();
+    });
 }
 
 void BlockUserForm::Failed(QString reason)
