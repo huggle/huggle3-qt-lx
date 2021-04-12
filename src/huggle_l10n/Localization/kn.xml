@@ -71,7 +71,7 @@
   <string name="delete-reason">ಕಾರಣ:</string>
   <string name="delete-deletionlog">ಅಳಿಸುವಿಕೆ ದಾಖಲೆ:</string>
   <string name="historyform-title">ಇತಿಹಾಸ</string>
-  <string name="login-tab-login" fuzzy="true">ಪ್ರವೇಶಿಸು</string>
+  <string name="login-tab-login">ಹಳೆಯ</string>
   <string name="login-project">ಯೋಜನೆ:</string>
   <string name="login-username">ಬಳಕೆದಾರರ ಹೆಸರು:</string>
   <string name="login-password">ಪ್ರವೇಶಪದ:</string>

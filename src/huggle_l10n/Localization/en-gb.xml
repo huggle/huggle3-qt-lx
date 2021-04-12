@@ -5,6 +5,7 @@
 * Berrely
 * Bjh21
 * Captaindogfish
+* Chaduvari
 * Chase me ladies, I'm the Cavalry
 * DatGuy
 * Dejavu
@@ -418,7 +419,7 @@
   <string name="main-page-load">Load</string>
   <string name="main-patrol-not-enabled">Patrolling is not enabled on $1</string>
   <string name="main-page-refresh">REFRESH</string>
-  <string name="main-page-restore">Restore this revision</string>
+  <string name="main-page-restore">ఈ కూర్పును పునరుద్ధరించు</string>
   <string name="main-page-watchlist-add">Add page to a watchlist</string>
   <string name="main-page-tab-close">Close the current tab</string>
   <string name="main-page-tab-open">Open a new tab</string>
