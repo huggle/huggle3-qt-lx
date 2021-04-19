@@ -201,6 +201,7 @@
   <string name="config-no-colon">U kunt het teken \":\" niet gebruiken in de naam van een wachtrij</string>
   <string name="config-notify-update">Controleren op updates</string>
   <string name="config-notify-beta">Controleren of betaversies beschikbaar zijn</string>
+  <string name="custommessage-send">Verstuur bericht</string>
   <string name="custommessage-wikiuser-plaintext-1">Hallo $1,</string>
   <string name="custommessage-wikiuser-plaintext-2">Schrijf je bericht hier.</string>
   <string name="delete-title">$1 verwijderen</string>
@@ -269,6 +270,7 @@
   <string name="login-password-empty">Het wachtwoord dat u hebt ingevoerd is leeg</string>
   <string name="login-fail-wrong-name">U heeft geen gebruikersnaam opgegeven om mee aan te melden</string>
   <string name="login-api">Fout: api.php heeft geantwoord met een onbekend resultaat: $1</string>
+  <string name="login-abort">Afbreken</string>
   <string name="login-start">Aanmelden</string>
   <string name="login-oauth-notsupported">Deze methode wordt op het moment niet ondersteund</string>
   <string name="login-translate">Huggle vertalen</string>
