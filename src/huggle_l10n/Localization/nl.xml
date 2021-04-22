@@ -18,6 +18,7 @@
 -->
 <resources>
   <string name="name">Nederlands (Dutch)</string>
+  <string name="autorelog">Doe dit de volgende keer zonder te vragen</string>
   <string name="isrtl">false</string>
   <string name="add">Toevoegen</string>
   <string name="cancel">Annuleren</string>

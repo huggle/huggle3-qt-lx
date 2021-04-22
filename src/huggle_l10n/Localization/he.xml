@@ -9,6 +9,7 @@
 * Ronel1
 * Steeve815
 * YaronSh
+* דגש
 * דגש חזק
 * ישראל קלר
 * ערן
@@ -433,7 +434,7 @@
   <string name="main-user-contribs">הצגת תרומת המשתמש בדפדפן</string>
   <string name="main-user-clear-talk">ניקוי דף השיחה של המשתמש</string>
   <string name="main-user-talk">הצגת דף השיחה</string>
-  <string name="main-user-page">צפייה בדף המשתמש</string>
+  <string name="main-user-page">הצגת דף המשתמש</string>
   <string name="main-user-message">הודעה...</string>
   <string name="main-user-warn">אזהרה...</string>
   <string name="main-user-db">הפחתת ציון הגריעוּת של המשתמש</string>
