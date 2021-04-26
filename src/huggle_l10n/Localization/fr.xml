@@ -249,7 +249,7 @@
   <string name="historyform-title">Historique</string>
   <string name="historyform-retrieve-history">Récupérer l’historique</string>
   <string name="historyform-retrieving-history">Récupération de l’historique</string>
-  <string name="historyform-not-latest-tip">Ceci n’est pas la révision la plus récente de cette page — assurez-vous d’avoir également passé en revue les nouvelles versions. Veuillez également garder à l’esprit qu’une annulation de révision pourrait ne pas être possible depuis ce point.</string>
+  <string name="historyform-not-latest-tip">Ceci n’est pas la révision la plus récente de cette page — assurez-vous d’avoir également passé en revue les nouvelles versions. Veuillez également garder à l’esprit qu’une révocation pourrait ne pas être possible depuis ce point.</string>
   <string name="history-error-message-title">Impossible d’annuler</string>
   <string name="history-error">Cet élément ne peut pas être annulé. La page peut avoir été modifiée ou supprimée entre temps et Huggle est incapable d’effectuer une annulation depuis ce point. Si vous voulez vraiment l’annuler, vous devrez le faire à la main en utilisant l’interface de MediaWiki.</string>
   <string name="history-failure">Impossible de récupérer l’historique</string>
@@ -286,7 +286,7 @@
   <string name="login-fail-enable-true">Échec de la connexion sur $1 : vous n’avez pas « enable:true » dans votre configuration personnelle.</string>
   <string name="login-fail-no-info">Échec à la connexion sur $1 : impossible de récupérer les informations sur l’utilisateur : $2</string>
   <string name="login-bot">Quelle est la différence entre la connexion par BotPassword (robot) et la connexion classique manuelle ?</string>
-  <string name="login-fail-parse-config">Échec à la connexion sur $1 : impossible d’analyser la configuration utilisateur. Voyez la trace de débogage pour plus de détails.</string>
+  <string name="login-fail-parse-config">Échec à la connexion sur $1 : impossible d’analyser la configuration utilisateur. Consultez la trace de débogage pour plus de détails.</string>
   <string name="login-fail-parse-config-yaml">Échec de connexion sur $1 : impossible d’analyser la configuration de l’utilisateur « $2 »</string>
   <string name="login-fail-user-data">Échec à la connexion sur $1 : impossible de récupérer les informations sur l’utilisateur. La requête à l’API n’a renvoyé aucune donnée.</string>
   <string name="login-fail-rollback-rights">Échec à la connexion sur $1 : vous n’avez pas de droit de retour arrière sur ce projet.</string>
@@ -413,7 +413,7 @@
   <string name="main-page-history">Récupérer l’historique</string>
   <string name="main-page-historypage">Afficher la page d\'historique</string>
   <string name="main-page-edit">Modifier la page dans le navigateur</string>
-  <string name="main-page-tag">Baliser</string>
+  <string name="main-page-tag">Ajouter un bandeau</string>
   <string name="main-page-reqdeletion">Demander une suppression rapide</string>
   <string name="main-page-reqprotection">Demander la protection de la page</string>
   <string name="main-page-watch">Suivre</string>
@@ -632,7 +632,7 @@
   <string name="speedy-notifycreator">Aviser le créateur de la page</string>
   <string name="rollback">Retour à $1</string>
   <string name="software-rollback">Vous n’avez pas les droits nécessaires pour annuler, repli vers une annulation logicielle</string>
-  <string name="tag-title">Balise $1</string>
+  <string name="tag-title">Bandeau $1</string>
   <string name="tag-tagselector">Ajouter l\'identification :</string>
   <string name="tag-tags">Identification(s) :</string>
   <string name="tag-parameter">Paramètre</string>
@@ -772,7 +772,7 @@
   <string name="reqprotection-progress">Demande de protection de « $1 »...</string>
   <string name="speedy-fail">Impossible de marquer la page pour une suppression rapide : $1</string>
   <string name="speedy-progress">Marquage de « $1 » pour une suppression rapide...</string>
-  <string name="speedy-wrong">La balise demandée n’est pas valide. Veuillez choisir un autre motif de suppression</string>
+  <string name="speedy-wrong">Le bandeau demandé n’est pas valide. Veuillez choisir un autre motif de suppression</string>
   <string name="speedy-finished">Terminé</string>
   <string name="warn-alreadyblocked">L’utilisateur a déjà été bloqué</string>
   <string name="editquery-success">Modification réussie de $1 sur $2</string>
@@ -846,14 +846,14 @@
   <string name="protect-request-fail-notime">La requête n’a pas renvoyé d’horodatage. C’est peut-être un bogue de MédiaWiki. Abandon de la requête</string>
   <string name="message-fail">Echec lors de la transmission du message</string>
   <string name="edit-conflict">Conflit de modification.</string>
-  <string name="page-tag-nodescription">Il n’y a pas de description pour cette balise</string>
+  <string name="page-tag-nodescription">Il n’y a pas de description pour ce bandeau</string>
   <string name="page-tag-noparameters">Aucun paramètre</string>
-  <string name="page-tag-fail">Échec pour baliser la page</string>
-  <string name="page-tag-error">Impossible de baliser la page, l’erreur était : $1</string>
+  <string name="page-tag-fail">Impossible d\'ajouter le bandeau sur la page</string>
+  <string name="page-tag-error">Impossible d\'ajouter un bandeau sur la page, l’erreur était : $1</string>
   <string name="page-unknown">Page inconnue</string>
   <string name="summary-edit-range">Afficher une plage de différence entre les ids de révision $1 et $2</string>
   <string name="speedy-csd-invalid">Bandeau de suppression immédiate non valide, il n’y aucun message ni aucune balise wiki à utiliser</string>
-  <string name="speedy-csd-existing">Il y a déjà un bandeau de suppression immédiate la page.</string>
+  <string name="speedy-csd-existing">Il y a déjà un bandeau de suppression immédiate sur la page.</string>
   <string name="namespace">Espace de noms</string>
   <string name="block-alreadyblocked">L\'utilisateur est déjà bloqué</string>
   <string name="report-fail">Erreur lors du signalement utilisateur. Raison : $1</string>

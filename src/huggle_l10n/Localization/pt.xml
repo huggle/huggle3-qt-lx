@@ -860,7 +860,7 @@
   <string name="relogin-fail">Não foi possível iniciar sessão na wiki: $1</string>
   <string name="projects">Projetos</string>
   <string name="unable-to-retrieve-user-list">Não foi possível obter a lista de utilizador: $1</string>
-  <string name="login-no-userinfo" fuzzy="true">O sítio não devolveu nenhuma informação do utilizador</string>
+  <string name="login-no-userinfo">O sítio não devolveu nenhuma informação do utilizador</string>
   <string name="login-invalid-register-date">O MediaWiki devolveu uma data de registo inválida</string>
   <string name="login-site-info-query-failed">Falhou a consulta de informação de sítio para $1: $2</string>
   <string name="login-no-site-info-returned">Não foi devolvida nenhuma informação do sítio para esta wiki</string>
