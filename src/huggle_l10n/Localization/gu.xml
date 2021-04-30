@@ -2,6 +2,7 @@
 <!-- Authors:
 * Bhatakati aatma
 * CptViraj
+* Dsvyas
 * KartikMistry
 * Macofe
 * NehalDaveND
@@ -19,7 +20,7 @@
   <string name="deleted">દૂર કરેલ</string>
   <string name="error">ત્રુટિ</string>
   <string name="exit">પ્રસ્થાન</string>
-  <string name="done">સંપન્ન</string>
+  <string name="done">પૂર્ણ</string>
   <string name="no">ના</string>
   <string name="ok">બરાબર</string>
   <string name="remove">હટાવો</string>
