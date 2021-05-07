@@ -19,6 +19,7 @@
 * Mahdiz
 * Mardetanha
 * McDutchie
+* Mohammad ebz
 * Nojan
 * Ommmmid
 * Phlz.219
@@ -27,8 +28,8 @@
 * احسان
 -->
 <resources>
-  <string name="name">فارسی</string>
-  <string name="autorelog">از این به بعد بدون پرسش همین کار را بکن</string>
+  <string name="name">انگلیسی</string>
+  <string name="autorelog">دفعه بعد بدون پرسش همین کار را بکن</string>
   <string name="isrtl">غلط</string>
   <string name="add">افزودن</string>
   <string name="cancel">لغو</string>
@@ -44,7 +45,7 @@
   <string name="no">خیر</string>
   <string name="ok">تأیید</string>
   <string name="override-warn">مسیر تنظیمات پروژه را بازنویسی کرده‌اید. لطفاً توجه داشته باشید که سوءاستفاده از این ویژگی به‌منظور کسب دسترسی نوشتن در جایی که به شکل معمول آن دسترسی را ندارید، ممکن است بسته‌شدن همیشگی حسابتان را درپی داشته باشد.</string>
-  <string name="remove">حذف‌کردن</string>
+  <string name="remove">حذف‌</string>
   <string name="rename">تغییر نام</string>
   <string name="reload">بارگیری دوباره</string>
   <string name="project">پروژه</string>
@@ -645,7 +646,7 @@
   <string name="update-progress">دانلود نسخه جدید، لطفاً صبر کنید...</string>
   <string name="update-error">موفق به دانلود نسخه تازه نشد</string>
   <string name="updater-title">نسخه جدیدی از هاگل در دسترس است</string>
-  <string name="updater-update">روزآمدسازی</string>
+  <string name="updater-update">بروزرسانی</string>
   <string name="updater-update-available">نگارش تازه‌تری از هاگل موجود است: نگارش $1</string>
   <string name="updater-open-manualdownloadpage">باز کردن صفحه دانلود</string>
   <string name="updater-close">بستن</string>
