@@ -264,16 +264,16 @@ void TerminalParser::DisplayHelp()
             "  -v:              Increases verbosity\n"\
             "  --fuzzy:         Enable fuzzy localizations (these which were translated in past\n"\
             "                   but which were not updated since the source text has changed).\n"\
-            "  --safe:          Start huggle in special mode where lot of stuff is skipped\n"\
+            "  --safe:          Start huggle in safe mode where lot of stuff is skipped\n"\
             "                   during load\n"\
             "  --chroot <path>: Changes the home path of huggle to a given folder, so that huggle\n"\
             "                   reads a different configuration file and uses different data.\n"\
-            "  --syslog [file]: Will write a logs to a file\n"\
+            "  --syslog [file]: Will write logs to a file\n"\
             "  --version | -V:  Display a version\n"\
-            "  --login:         Can be used in combination of --login-file only, this will tell huggle\n"\
+            "  --login:         Can be used in combination with --login-file only, this will tell huggle\n"\
             "                   to start login process immediately without letting you to change any login\n"\
             "                   preferences on login form\n"\
-            "  --login-file:    Read a username and password from plain text file, separated by a colon\n"\
+            "  --login-file <file>: Read username and password from a plain text file, separated by a colon\n"\
             "  -h | --help:     Display this help\n\n"\
             "Debugging options:\n"\
             "  --language-test: Will perform CPU expensive language test on startup, which reports\n"\
