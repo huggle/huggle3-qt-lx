@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
+* Ajeje Brazorf
 * Albe Albe460
 * Alexmar983
 * Amire80
@@ -246,7 +247,7 @@
   <string name="history-failure">Impossibile recuperare la cronologia</string>
   <string name="userhistory-title">Cronologia dei tuoi cambiamenti</string>
   <string name="irc-connected">$1: Connesso al feed IRC delle ultime modifiche</string>
-  <string name="irc-connecting">Tentativo di connessione al feed IRC delle ultime modifiche su $1, potrebbe richiedere un pò di tempo...</string>
+  <string name="irc-connecting">Tentativo di connessione al feed IRC delle ultime modifiche su $1, potrebbe richiedere un po\' di tempo...</string>
   <string name="irc-disconnected">Connessione persa al feed IRC delle ultime modifiche su $1. Riconnessione...</string>
   <string name="irc-nochannel">Canale IRC per $1 non trovato; al suo posto sto usando delle interrogazioni API più lente</string>
   <string name="irc-error">Impossibile connettersi al feed IRC delle ultime modifiche ($1: $2). Al suo posto sto usando delle interrogazioni API più lente</string>
@@ -662,7 +663,7 @@
   <string name="missing-warning">Non c\'è un template di avviso $1</string>
   <string name="han-not">Vandalism network non è permesso nelle opzioni</string>
   <string name="han-connecting">Connessione alla rete antivandalismo Huggle</string>
-  <string name="han-already-connected">Non ci si connette con HAN perchè è già collegato</string>
+  <string name="han-already-connected">Non ci si connette con HAN perché è già collegato</string>
   <string name="han-already-connecting">Attendi, sto connettendo a HAN...</string>
   <string name="han-disconnected">Sei stato disconnesso da HAN</string>
   <string name="han-network">Rete</string>
@@ -723,7 +724,7 @@
   <string name="reqprotection-progress">Richiesta di protezione di \'$1\'...</string>
   <string name="speedy-fail">Impossibile marcare la pagina per una cancellazione rapida: $1</string>
   <string name="speedy-progress">Marcatura di \'$1\' per una cancellazione rapida...</string>
-  <string name="speedy-wrong">La marcatura richiesta non è valida. Per favore scegli un\'altro motivo di cancellazione.</string>
+  <string name="speedy-wrong">La marcatura richiesta non è valida. Per favore scegli un altro motivo di cancellazione.</string>
   <string name="speedy-finished">Terminato</string>
   <string name="warn-alreadyblocked">L\'utente è già stato bloccato</string>
   <string name="editquery-success">$1 modificata con successo su $2</string>
