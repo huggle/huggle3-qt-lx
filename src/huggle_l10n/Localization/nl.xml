@@ -7,6 +7,7 @@
 * Macofe
 * Mar(c)
 * MedShot
+* Nickthijssen1994
 * PonkoSasuke
 * Robin van der Vliet
 * SPQRobin
@@ -425,7 +426,7 @@
   <string name="main-page-refresh">Vernieuwen</string>
   <string name="main-page-restore">Deze versie terugplaatsen</string>
   <string name="main-page-watchlist-add">Pagina aan volglijst toevoegen</string>
-  <string name="main-page-tab-close">Sluit huidige tabblad</string>
+  <string name="main-page-tab-close">Sluit huidig tabblad</string>
   <string name="main-page-tab-open">Open een nieuw tabblad</string>
   <string name="main-page-watchlist-remove">Pagina van een volglijst verwijderen</string>
   <string name="main-scripting">Scripting</string>
