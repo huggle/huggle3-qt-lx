@@ -171,7 +171,7 @@ QString Generic::ShrinkText(const QString &text, int size, bool html, int minimu
 
 QString Generic::IRCQuitDefaultMessage()
 {
-    return "Huggle (" + hcfg->HuggleVersion + "), the anti vandalism software. See #huggle on irc://chat.freenode.net";
+    return "Huggle (" + hcfg->HuggleVersion + "), the anti vandalism software. See #huggle on irc://irc.libera.chat";
 }
 
 QString Generic::HtmlEncode(const QString& text)
