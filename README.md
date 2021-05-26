@@ -77,7 +77,7 @@ For users: [on metawiki](https://meta.wikimedia.org/wiki/Huggle) and [mediawiki]
 Getting help
 =========
 
-We have an IRC-channel irc://chat.freenode.org/#huggle so if you need any kind of help please go there.
+We have an IRC-channel irc://irc.libera.chat/#huggle so if you need any kind of help please go there.
 
 Contributing
 =========

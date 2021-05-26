@@ -45,6 +45,6 @@ script:
 notifications: 
   irc: 
     channels: 
-      - "chat.freenode.net#huggle"
+      - "irc.libera.chat#huggle"
     on_failure: always
     on_success: change
