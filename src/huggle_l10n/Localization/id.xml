@@ -449,7 +449,7 @@
   <string name="warning-submit">Kirim</string>
   <string name="han-send">Kirim</string>
   <string name="error-unknown">Galat yang tidak diketahui</string>
-  <string name="block-done">Diblokir $1</string>
+  <string name="block-done">$1 Diblokir</string>
   <string name="block-progress">Memblokir $1</string>
   <string name="delete-progress">Menghapus $1...</string>
   <string name="edit-progress">Menyunting $1...</string>
