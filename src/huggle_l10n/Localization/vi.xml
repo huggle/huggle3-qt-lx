@@ -73,7 +73,7 @@
   <string name="browser-miss-summ">Không có tóm lược nào được cung cấp</string>
   <string name="browser-diff">Bản khác biệt của trang: $1 (điểm số: $2)</string>
   <string name="browser-fail">Không thể truy xuất bản khác biệt: $1</string>
-  <string name="about-contributors">Nhà phát triển:</string>
+  <string name="about-contributors">Lập trình viên:</string>
   <string name="block-not">Thành viên không bị cấm</string>
   <string name="block-title">Cấm $1</string>
   <string name="block-reason">Lý do:</string>
