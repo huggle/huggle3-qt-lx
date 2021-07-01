@@ -327,7 +327,7 @@
   <string name="login-progress-user">Проверка настроек пользователя для $1</string>
   <string name="login-progress-user-info">Проверка информации об участнике $1</string>
   <string name="login-progress-whitelist">Обновляю белый список участников...</string>
-  <string name="login-remember-password">Напомнить пароль</string>
+  <string name="login-remember-password">Запомнить пароль</string>
   <string name="login-remember-password-tooltip">Эта опция сохранит ваш пароль в открытом виде на вашем жёстком диске. Используйте её только если вы - единственный человек, имеющий доступ к этому компьютеру.</string>
   <string name="login-ssl">Использовать HTTPS для входа (требуется OpenSSL)</string>
   <string name="login-fail">Ошибка входа на $1</string>
