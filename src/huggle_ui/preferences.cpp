@@ -188,6 +188,8 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     this->ui->groupBox_DiffColors->setTitle(_l("preferences-color-scheme-diff"));
     this->ui->radioButton_DarkMode->setText(_l("preferences-color-scheme-diff-dark-mode"));
     this->ui->radioButton_DefaultColors->setText(_l("preferences-color-scheme-diff-default"));
+    this->ui->gb_TemplateSpam->setTitle(_l("preferences-template-spam-title"));
+    this->ui->label_TemplateSpamPrevInfo->setText(_l("preferences-template-spam-info"));
 
 #ifndef HUGGLE_NOAUDIO
     this->ui->label_NoAudio->setVisible(false);

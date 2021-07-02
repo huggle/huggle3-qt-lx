@@ -283,11 +283,21 @@
         </layout>
        </item>
        <item>
-        <widget class="QGroupBox" name="groupBox_3">
+        <widget class="QGroupBox" name="gb_TemplateSpam">
          <property name="title">
-          <string>Confirming</string>
+          <string>Template spam prevention</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_15">
+          <item>
+           <widget class="QLabel" name="label_TemplateSpamPrevInfo">
+            <property name="text">
+             <string>Don't change this text here, change it in en.xml</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
           <item>
            <widget class="QCheckBox" name="checkBox_RecentMsgs">
             <property name="text">

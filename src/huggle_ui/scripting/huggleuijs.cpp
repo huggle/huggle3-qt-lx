@@ -60,9 +60,9 @@ HuggleUIJS::HuggleUIJS(Script *s) : GenericJSClass(s)
     this->function_help.insert("filebox_save", "(string title, string mask): (since HG 3.4.4) file box for saving of a file");
     this->function_help.insert("is_current_edit_locked", "(): (3.4.5) check if current edit is locked for editing operations");
     this->function_help.insert("editing_checks", "(): (3.4.5) performs standard edit checks and display warning in case editing is not possible");
-    this->function_help.insert("create_status_bar_label", "(string text): (3.4.5) Creates a new item in status bar");
-    this->function_help.insert("remove_status_bar_label", "(int id): (3.4.5) Removes status bar label");
-    this->function_help.insert("set_status_bar_text", "(int id, string text): (3.4.5) Change status bar text");
+    this->function_help.insert("create_status_bar_label", "(string text) returns integer: (3.4.5) Creates a new item in status bar and returns its ID");
+    this->function_help.insert("remove_status_bar_label", "(int id) returns bool: (3.4.5) Removes status bar label identified by its ID, returns false on failure");
+    this->function_help.insert("set_status_bar_text", "(int id, string text) returns bool: (3.4.5) Sets a text of status bar item identified by ID (in bottom of main window). On failure returns false.");
 }
 
 HuggleUIJS::~HuggleUIJS()

@@ -813,6 +813,8 @@
   <string name="preferences-color-scheme-diff">Diff colors</string>
   <string name="preferences-color-scheme-diff-default">Default</string>
   <string name="preferences-color-scheme-diff-dark-mode">Dark mode</string>
+  <string name="preferences-template-spam-info">These options control subsystem that is preventing target users from being template spammed. By default users are not template warned for edits that are too old, and also get only single template warning in case you revert multiple edits by same user in a very short time.</string>
+  <string name="preferences-template-spam-title">Template spam prevention</string>
   <string name="fail">Fail</string>
   <string name="request">Request</string>
   <string name="requesting">Requesting</string>
