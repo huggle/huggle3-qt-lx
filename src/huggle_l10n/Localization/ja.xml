@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
+* Ajeje Brazorf
 * McDutchie
 * Omotecho
 * Otokoume
@@ -218,6 +219,7 @@
   <string name="login-retrieving-info">$1 の利用者の情報を取得中</string>
   <string name="login-password-empty">パスワードが空白です</string>
   <string name="login-api">エラー: api.php が不明な結果を返しました: $1</string>
+  <string name="login-abort">中止</string>
   <string name="login-start">ログイン</string>
   <string name="login-oauth-notsupported">現在、この方法ではログインできません</string>
   <string name="login-translate">ハグルを翻訳</string>

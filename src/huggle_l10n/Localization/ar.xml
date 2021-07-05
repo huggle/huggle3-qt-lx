@@ -831,6 +831,7 @@
   <string name="preferences-color-scheme-diff">ألوان الفرق</string>
   <string name="preferences-color-scheme-diff-default">افتراضي</string>
   <string name="preferences-color-scheme-diff-dark-mode">وضع الظلام</string>
+  <string name="preferences-template-spam-title">قالب منع البريد العشوائي</string>
   <string name="fail">فشل</string>
   <string name="request">طلب</string>
   <string name="requesting">طلب</string>
