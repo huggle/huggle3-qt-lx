@@ -792,6 +792,7 @@
   <string name="preferences-restore-factory-layout">Huggle의 레이아웃을 처음 설치한 상태로 복구할 것입니다. Huggle은 종료될 것입니다. 계속하시겠습니까?</string>
   <string name="preferences-color-scheme-diff-default">기본값</string>
   <string name="preferences-color-scheme-diff-dark-mode">어두운 모드</string>
+  <string name="preferences-template-spam-title">틀 스팸 방지</string>
   <string name="fail">실패</string>
   <string name="request">요청</string>
   <string name="requesting">요청 중</string>
