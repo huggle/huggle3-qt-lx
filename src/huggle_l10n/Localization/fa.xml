@@ -646,7 +646,7 @@
   <string name="update-progress">دانلود نسخه جدید، لطفاً صبر کنید...</string>
   <string name="update-error">موفق به دانلود نسخه تازه نشد</string>
   <string name="updater-title">نسخه جدیدی از هاگل در دسترس است</string>
-  <string name="updater-update">بروزرسانی</string>
+  <string name="updater-update">روزآمدسازی</string>
   <string name="updater-update-available">نگارش تازه‌تری از هاگل موجود است: نگارش $1</string>
   <string name="updater-open-manualdownloadpage">باز کردن صفحه دانلود</string>
   <string name="updater-close">بستن</string>

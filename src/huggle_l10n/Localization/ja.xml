@@ -7,6 +7,7 @@
 * Shirayuki
 * SkyDaisy9
 * Sujiniku
+* TKsdik8900
 * Yusuke1109
 * ネイ
 -->
@@ -378,7 +379,7 @@
   <string name="protect-request-title">$1 の保護依頼</string>
   <string name="protect-reason">理由:</string>
   <string name="protect-expiry">期間:</string>
-  <string name="protect-log">保護ログ:</string>
+  <string name="protect-log">保護ログ：</string>
   <string name="protect-currentlevel">現在の保護レベル:</string>
   <string name="protect-type">保護のタイプ:</string>
   <string name="protect-none">なし</string>
