@@ -24,6 +24,7 @@
 * ValterVB
 -->
 <resources>
+  <string name="name">Italiano</string>
   <string name="autorelog">Accedi automaticamente la prossima volta</string>
   <string name="isrtl">false</string>
   <string name="add">Aggiungi</string>
