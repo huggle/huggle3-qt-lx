@@ -26,11 +26,11 @@ namespace Ui
     class HuggleTool;
 }
 
-#define HUGGLETOOL_DONE                         0
-#define HUGGLETOOL_DOWNLOADING_WIKI_EDIT        1
-#define HUGGLETOOL_PROCESS_WIKI_EDIT            2
-#define HUGGLETOOL_RETRIEVING_USER_INFO         3
-#define HUGGLETOOL_RETRIEVING_USER_LAST_EDIT    4
+constexpr int HUGGLETOOL_DONE                         = 0;
+constexpr int HUGGLETOOL_DOWNLOADING_WIKI_EDIT        = 1;
+constexpr int HUGGLETOOL_PROCESS_WIKI_EDIT            = 2;
+constexpr int HUGGLETOOL_RETRIEVING_USER_INFO         = 3;
+constexpr int HUGGLETOOL_RETRIEVING_USER_LAST_EDIT    = 4;
 
 
 namespace Huggle
