@@ -44,7 +44,7 @@ namespace Huggle
 
 #define HUGGLE_PROFILER_PRINT_TIME(function)
 #define HUGGLE_PROFILER_RESET
-#define HUGGLE_PROFILER_TIME 0
+constexpr int HUGGLE_PROFILER_TIME = 0;
 #define HUGGLE_PROFILER_INCRCALL
 
 #endif

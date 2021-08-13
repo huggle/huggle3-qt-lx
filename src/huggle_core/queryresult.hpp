@@ -16,11 +16,11 @@
 #include <QHash>
 #include <QString>
 
-#define HUGGLE_EUNKNOWN            1
-#define HUGGLE_ENOTLOGGEDIN        2
-#define HUGGLE_EKILLED             3
-#define HUGGLE_ETOKEN              4
-#define HUGGLE_EREADONLY           5
+constexpr int HUGGLE_EUNKNOWN = 1;
+constexpr int HUGGLE_ENOTLOGGEDIN = 2;
+constexpr int HUGGLE_EKILLED = 3;
+constexpr int HUGGLE_ETOKEN = 4;
+constexpr int HUGGLE_EREADONLY = 5;
 
 namespace Huggle
 {

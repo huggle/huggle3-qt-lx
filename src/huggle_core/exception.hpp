@@ -20,11 +20,11 @@
 #ifndef DISABLE_BREAKPAD
     #ifdef __linux__
         //linux code goes here
-    #define HUGGLE_BREAKPAD 0
+    constexpr int HUGGLE_BREAKPAD = 0;
     #include "client/linux/handler/exception_handler.h"
     #elif _WIN32
         // windows code goes here
-    #define HUGGLE_BREAKPAD 1
+    constexpr int HUGGLE_BREAKPAD = 1;
     // This fixes the qdatetime bug which produces error with compiler on windows
     #define NOMINMAX
     // Ensure that NOMINMAX is there before including this file
@@ -35,7 +35,7 @@
 // remaining code must be surrounded with directives
 //////////////////////////////////////////////////////////////////////////
 
-#define HUGGLE_STACK 80
+constexpr int HUGGLE_STACK = 80;
 
 namespace Huggle
 {

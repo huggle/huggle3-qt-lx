@@ -25,7 +25,7 @@
 // 1. Change them on 1 place
 // 2. Track them (we need to be able to find where these options
 //    are being used)
-#define                 ProjectConfig_IPScore_Key "score-ip"
+constexpr const char* ProjectConfig_IPScore_Key = "score-ip";
 
 namespace YAML
 {

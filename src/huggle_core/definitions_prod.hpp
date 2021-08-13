@@ -13,39 +13,41 @@
 #ifndef DEFINITIONS_H
 #define DEFINITIONS_H
 
+#include <QString>
+
 // Byte-sizes of some huggle specific types
 typedef long long score_ht;
 typedef char byte_ht;
 typedef long long revid_ht;
 
-#define HUGGLE_VERSION                  "3.4.11"
-#define HUGGLE_BYTE_VERSION_MAJOR       0x3
-#define HUGGLE_BYTE_VERSION_MINOR       0x4
-#define HUGGLE_BYTE_VERSION_RELEASE     0xB
+constexpr const char* HUGGLE_VERSION          = "3.4.11"
+constexpr int HUGGLE_BYTE_VERSION_MAJOR       = 0x3;
+constexpr int HUGGLE_BYTE_VERSION_MINOR       = 0x4;
+constexpr int HUGGLE_BYTE_VERSION_RELEASE     = 0xB;
 // format is 0xMAJOR(2)MINOR(2)RELEASE(2) so for 3.1.15 it's 0x03010F
-#define HUGGLE_BYTE_VERSION             0x03040B
+constexpr int HUGGLE_BYTE_VERSION             = 0x03040B;
 
 // Minimal version of mediawiki that we do support
-#define HUGGLE_SUPPORTED_MEDIAWIKI_VERSION "1.25"
+constexpr const char* HUGGLE_SUPPORTED_MEDIAWIKI_VERSION = "1.25";
 
 // How often do the statistics get purged (in seconds - smaller value results in more recent statistics)
-#define HUGGLE_STATISTICS_LIFETIME     200
-#define HUGGLE_STATISTICS_BLOCK_SIZE   20
+constexpr int HUGGLE_STATISTICS_LIFETIME     = 200;
+constexpr int HUGGLE_STATISTICS_BLOCK_SIZE   = 20;
 
 // How many dynamic shortcuts for dropdown menus to support
-#define HUGGLE_MAX_DROPDOWN_SHORTCUTS  20
+constexpr int HUGGLE_MAX_DROPDOWN_SHORTCUTS  = 20;
 
 // If advanced perf statistics should be used
 #define HUGGLE_METRICS
 
 #ifdef HUGGLE_WEBEN
-    #define HUGGLE_WEB_ENGINE_NAME "Chromium"
+    constexpr const char* HUGGLE_WEB_ENGINE_NAME = "Chromium"
 #else
-    #define HUGGLE_WEB_ENGINE_NAME "WebKit"
+    constexpr const char* HUGGLE_WEB_ENGINE_NAME = "WebKit";
 #endif
 
 // This is signature we can use to find Huggle yml config inside of wiki text
-#define HUGGLE_BOC "<!-- HUGGLE:BOC -->"
+constexpr const char* HUGGLE_BOC = "<!-- HUGGLE:BOC -->";
 
 // We are using translatewiki and if this is not defined there is a huge overhead of Qt code
 #ifndef QT_NO_TRANSLATION
@@ -85,7 +87,7 @@ namespace std { typedef decltype(nullptr) nullptr_t; }
 // This is a nasty hack that will disable multi threaded gc on MacOS as we had some report that
 // it has problems there (need to be fixed though)
 #ifndef HUGGLE_NO_MT_GC
-    #define HUGGLE_USE_MT_GC               "mt"
+    constexpr const char* HUGGLE_USE_MT_GC               = "mt";
 #endif
 
 // #define HUGGLE_PROFILING
@@ -113,41 +115,41 @@ namespace std { typedef decltype(nullptr) nullptr_t; }
     #endif
 #endif
 
-#define HUGGLE_SCRIPT_CONTEXT_CORE 0
-#define HUGGLE_SCRIPT_CONTEXT_UI   1
+constexpr int HUGGLE_SCRIPT_CONTEXT_CORE = 0;
+constexpr int HUGGLE_SCRIPT_CONTEXT_UI   = 1;
 
-#define HUGGLE_SUCCESS                     1
-#define PRODUCTION_BUILD                   0
-#define HUGGLE_WL_UNKNOWN   0
-#define HUGGLE_WL_TRUE      1
-#define HUGGLE_WL_FALSE     2
-#define MEDIAWIKI_DEFAULT_NS_MAIN               ""
-#define MEDIAWIKI_DEFAULT_NS_TALK               "Talk:"
-#define MEDIAWIKI_DEFAULT_NS_USER               "User:"
-#define MEDIAWIKI_DEFAULT_NS_USERTALK           "User talk:"
-#define MEDIAWIKI_DEFAULT_NS_PROJECT            "Project:"
-#define MEDIAWIKI_DEFAULT_NS_PROJECTTALK        "Project talk:"
-#define MEDIAWIKI_DEFAULT_NS_FILE               "File:"
-#define MEDIAWIKI_DEFAULT_NS_FILETALK           "File talk:"
-#define MEDIAWIKI_DEFAULT_NS_MEDIAWIKI          "Mediawiki:"
-#define MEDIAWIKI_DEFAULT_NS_MEDIAWIKITALK      "Mediawiki talk:"
-#define MEDIAWIKI_DEFAULT_NS_TEMPLATE           "Template:"
-#define MEDIAWIKI_DEFAULT_NS_TEMPLATETALK       "Template talk:"
-#define MEDIAWIKI_DEFAULT_NS_HELP               "Help:"
-#define MEDIAWIKI_DEFAULT_NS_HELPTALK           "Help talk:"
-#define MEDIAWIKI_DEFAULT_NS_CATEGORY           "Category:"
-#define MEDIAWIKI_DEFAULT_NS_CATEGORYTALK       "Category talk:"
+constexpr int HUGGLE_SUCCESS                     = 1;
+constexpr int PRODUCTION_BUILD                   = 0;
+constexpr int HUGGLE_WL_UNKNOWN   = 0;
+constexpr int HUGGLE_WL_TRUE      = 1;
+constexpr int HUGGLE_WL_FALSE     = 2;
+constexpr const char* MEDIAWIKI_DEFAULT_NS_MAIN               = "";
+constexpr const char* MEDIAWIKI_DEFAULT_NS_TALK               = "Talk:";
+constexpr const char* MEDIAWIKI_DEFAULT_NS_USER               = "User:";
+constexpr const char* MEDIAWIKI_DEFAULT_NS_USERTALK           = "User talk:";
+constexpr const char* MEDIAWIKI_DEFAULT_NS_PROJECT            = "Project:";
+constexpr const char* MEDIAWIKI_DEFAULT_NS_PROJECTTALK        = "Project talk:";
+constexpr const char* MEDIAWIKI_DEFAULT_NS_FILE               = "File:";
+constexpr const char* MEDIAWIKI_DEFAULT_NS_FILETALK           = "File talk:";
+constexpr const char* MEDIAWIKI_DEFAULT_NS_MEDIAWIKI          = "Mediawiki:";
+constexpr const char* MEDIAWIKI_DEFAULT_NS_MEDIAWIKITALK      = "Mediawiki talk:";
+constexpr const char* MEDIAWIKI_DEFAULT_NS_TEMPLATE           = "Template:";
+constexpr const char* MEDIAWIKI_DEFAULT_NS_TEMPLATETALK       = "Template talk:";
+constexpr const char* MEDIAWIKI_DEFAULT_NS_HELP               = "Help:";
+constexpr const char* MEDIAWIKI_DEFAULT_NS_HELPTALK           = "Help talk:";
+constexpr const char* MEDIAWIKI_DEFAULT_NS_CATEGORY           = "Category:";
+constexpr const char* MEDIAWIKI_DEFAULT_NS_CATEGORYTALK       = "Category talk:";
 //! Minimal score the edit can have
-#define MINIMAL_SCORE                   -999999
-#define HUGGLE_CONF                     "huggle3.xml"
+constexpr const int MINIMAL_SCORE                     = -999999
+constexpr const char* HUGGLE_CONF                     = "huggle3.xml";
 //! When wikipedia get a higher revision ID than this, it will need to look for new anti-vandalism software :P
-#define HUGGLE_MAX_REV                  9223372036854775807
+constexpr long long HUGGLE_MAX_REV                    = 9223372036854775807;
 //! Path where the extensions are located
-#define EXTENSION_PATH                  "extensions"
+constexpr const char* EXTENSION_PATH                  = "extensions";
 //! Value that is used by default for timers that are used on various places
 //! lower value will result in higher CPU usage, but faster performance of huggle 
 #ifndef HUGGLE_TIMER
-    #define HUGGLE_TIMER                   200
+    constexpr int HUGGLE_TIMER                        = 200;
 #endif
 
 #ifndef HUGGLE_EX_CORE
@@ -212,27 +214,27 @@ namespace std { typedef decltype(nullptr) nullptr_t; }
 
 //! Change this to DEBIAN / UBUNTU / WINDOWS to get automatic updates for selected channels
 #ifdef HUGGLE_SNAP
-    #define HUGGLE_UPDATER_PLATFORM_TYPE            "linux/snap"
-    #define HUGGLE_GLOBAL_EXTENSION_PATH            QCoreApplication::applicationDirPath() + "/extensions"
+    constexpr const char* HUGGLE_UPDATER_PLATFORM_TYPE        = "linux/snap";
+    constexpr QString HUGGLE_GLOBAL_EXTENSION_PATH            = QCoreApplication::applicationDirPath() + "/extensions"
 #elif defined __linux__
-    #define HUGGLE_UPDATER_PLATFORM_TYPE            "linux"
-    #define HUGGLE_GLOBAL_EXTENSION_PATH            "/usr/local/share/huggle/extensions"
+    constexpr const char* HUGGLE_UPDATER_PLATFORM_TYPE        = "linux";
+    constexpr const char* HUGGLE_GLOBAL_EXTENSION_PATH        = "/usr/local/share/huggle/extensions";
 #elif defined HUGGLE_WIN
     // This is needed by yaml cpp library, otherwise it won't build with MSVC
     #define YAML_CPP_DLL
     #ifdef _WIN64
-        #define HUGGLE_UPDATER_PLATFORM_TYPE            "windows/msvc/64"
+        constexpr const char* HUGGLE_UPDATER_PLATFORM_TYPE    = "windows/msvc/64";
     #elif defined __GNUC__
-        #define HUGGLE_UPDATER_PLATFORM_TYPE            "windows/gnu/32"
+        constexpr const char* HUGGLE_UPDATER_PLATFORM_TYPE    = "windows/gnu/32";
     #else
-        #define HUGGLE_UPDATER_PLATFORM_TYPE            "windows/msvc/32"
+        constexpr const char* HUGGLE_UPDATER_PLATFORM_TYPE    = "windows/msvc/32";
     #endif
-    #define HUGGLE_GLOBAL_EXTENSION_PATH            QCoreApplication::applicationDirPath() + "\\extensions"
+    constexpr QString HUGGLE_GLOBAL_EXTENSION_PATH            = QCoreApplication::applicationDirPath() + "\\extensions"
 #elif defined HUGGLE_MACX
-    #define HUGGLE_GLOBAL_EXTENSION_PATH            QCoreApplication::applicationDirPath() + "/../PlugIns"
-    #define HUGGLE_UPDATER_PLATFORM_TYPE            "mac"
+    constexpr QString HUGGLE_GLOBAL_EXTENSION_PATH            = QCoreApplication::applicationDirPath() + "/../PlugIns"
+    constexpr const char* HUGGLE_UPDATER_PLATFORM_TYPE        = "mac"
 #else
-    #define HUGGLE_UPDATER_PLATFORM_TYPE            "unknown"
+    constexpr const char* HUGGLE_UPDATER_PLATFORM_TYPE        = "unknown"
 #endif
 
 // This function help us clear any qlist that contains pointers
@@ -270,6 +272,6 @@ namespace std { typedef decltype(nullptr) nullptr_t; }
 #endif
 
 //! Revid of edit that doesn't exist
-#define WIKI_UNKNOWN_REVID -1
+constexpr int WIKI_UNKNOWN_REVID = -1
 
 #endif // CONFIG_H

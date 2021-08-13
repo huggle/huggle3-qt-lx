@@ -26,26 +26,26 @@
 
 // If you are working in different context than core, you can define your own IDs, but each context is prefixed
 // with some number so that you never get a conflicting number
-#define HUGGLE_SCRIPT_HOOK_SHUTDOWN                             0
-#define HUGGLE_SCRIPT_HOOK_EDIT_BEFORE_PRE_PROCESS              19
-#define HUGGLE_SCRIPT_HOOK_EDIT_PRE_PROCESS                     1
-#define HUGGLE_SCRIPT_HOOK_EDIT_BEFORE_POST_PROCESS             2
-#define HUGGLE_SCRIPT_HOOK_EDIT_POST_PROCESS                    3
-#define HUGGLE_SCRIPT_HOOK_EDIT_LOAD_TO_QUEUE                   4
-#define HUGGLE_SCRIPT_HOOK_FEED_PROVIDERS_ON_INIT               5
-#define HUGGLE_SCRIPT_HOOK_EDIT_ON_REVERT                       6
-#define HUGGLE_SCRIPT_HOOK_EDIT_ON_GOOD                         7
-#define HUGGLE_SCRIPT_HOOK_EDIT_ON_SUSPICIOUS                   8
-#define HUGGLE_SCRIPT_HOOK_EDIT_RESCORE                         9
-#define HUGGLE_SCRIPT_HOOK_WARNING_FINISHED                     10
-#define HUGGLE_SCRIPT_HOOK_REVERT_PREFLIGHT                     11
-#define HUGGLE_SCRIPT_HOOK_LOCALCONFIG_WRITE                    12
-#define HUGGLE_SCRIPT_HOOK_LOCALCONFIG_READ                     13
-#define HUGGLE_SCRIPT_HOOK_HAN_GOOD                             14
-#define HUGGLE_SCRIPT_HOOK_HAN_REVERT                           15
-#define HUGGLE_SCRIPT_HOOK_HAN_MESSAGE                          16
-#define HUGGLE_SCRIPT_HOOK_HAN_RESCORE                          17
-#define HUGGLE_SCRIPT_HOOK_HAN_SUSPICIOUS                       18
+constexpr int HUGGLE_SCRIPT_HOOK_SHUTDOWN                             = 0;
+constexpr int HUGGLE_SCRIPT_HOOK_EDIT_BEFORE_PRE_PROCESS              = 19;
+constexpr int HUGGLE_SCRIPT_HOOK_EDIT_PRE_PROCESS                     = 1;
+constexpr int HUGGLE_SCRIPT_HOOK_EDIT_BEFORE_POST_PROCESS             = 2;
+constexpr int HUGGLE_SCRIPT_HOOK_EDIT_POST_PROCESS                    = 3;
+constexpr int HUGGLE_SCRIPT_HOOK_EDIT_LOAD_TO_QUEUE                   = 4;
+constexpr int HUGGLE_SCRIPT_HOOK_FEED_PROVIDERS_ON_INIT               = 5;
+constexpr int HUGGLE_SCRIPT_HOOK_EDIT_ON_REVERT                       = 6;
+constexpr int HUGGLE_SCRIPT_HOOK_EDIT_ON_GOOD                         = 7;
+constexpr int HUGGLE_SCRIPT_HOOK_EDIT_ON_SUSPICIOUS                   = 8;
+constexpr int HUGGLE_SCRIPT_HOOK_EDIT_RESCORE                         = 9;
+constexpr int HUGGLE_SCRIPT_HOOK_WARNING_FINISHED                     = 10;
+constexpr int HUGGLE_SCRIPT_HOOK_REVERT_PREFLIGHT                     = 11;
+constexpr int HUGGLE_SCRIPT_HOOK_LOCALCONFIG_WRITE                    = 12;
+constexpr int HUGGLE_SCRIPT_HOOK_LOCALCONFIG_READ                     = 13;
+constexpr int HUGGLE_SCRIPT_HOOK_HAN_GOOD                             = 14;
+constexpr int HUGGLE_SCRIPT_HOOK_HAN_REVERT                           = 15;
+constexpr int HUGGLE_SCRIPT_HOOK_HAN_MESSAGE                          = 16;
+constexpr int HUGGLE_SCRIPT_HOOK_HAN_RESCORE                          = 17;
+constexpr int HUGGLE_SCRIPT_HOOK_HAN_SUSPICIOUS                       = 18;
                                                                 // 20 (19 already in use)
 
 namespace Huggle

@@ -22,109 +22,110 @@
 #include "projectconfiguration.hpp"
 class QXmlStreamWriter;
 
-#define HUGGLE_ACCEL_NONE ""
-#define HUGGLE_ACCEL_MAIN_EXIT                  0
-#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN       1
-#define HUGGLE_ACCEL_MAIN_REVERT                2
-#define HUGGLE_ACCEL_MAIN_WARN                  3
-#define HUGGLE_ACCEL_NEXT                       4
-#define HUGGLE_ACCEL_SUSPICIOUS_EDIT            5
-#define HUGGLE_ACCEL_MAIN_FORWARD               6
-#define HUGGLE_ACCEL_MAIN_BACK                  7
-#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN0      8
-#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN1      9
-#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN2      10
-#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN3      11
-#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN4      12
-#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN5      13
-#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN6      14
-#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN7      15
-#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN8      16
-#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN9      17
-#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN10     10000
-#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN11     10001
-#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN12     10002
-#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN13     10003
-#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN14     10004
-#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN15     10005
-#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN16     10006
-#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN17     10007
-#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN18     10008
-#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN19     10009
-#define HUGGLE_ACCEL_MAIN_REVERT_AND_WARN20     10010
-#define HUGGLE_ACCEL_MAIN_WARN0                 18
-#define HUGGLE_ACCEL_MAIN_WARN1                 19
-#define HUGGLE_ACCEL_MAIN_WARN2                 20
-#define HUGGLE_ACCEL_MAIN_WARN3                 21
-#define HUGGLE_ACCEL_MAIN_WARN4                 22
-#define HUGGLE_ACCEL_MAIN_WARN5                 23
-#define HUGGLE_ACCEL_MAIN_WARN6                 24
-#define HUGGLE_ACCEL_MAIN_WARN7                 25
-#define HUGGLE_ACCEL_MAIN_WARN8                 26
-#define HUGGLE_ACCEL_MAIN_WARN9                 27
-#define HUGGLE_ACCEL_MAIN_WARN10                20001
-#define HUGGLE_ACCEL_MAIN_WARN11                20002
-#define HUGGLE_ACCEL_MAIN_WARN12                20003
-#define HUGGLE_ACCEL_MAIN_WARN13                20004
-#define HUGGLE_ACCEL_MAIN_WARN14                20005
-#define HUGGLE_ACCEL_MAIN_WARN15                20006
-#define HUGGLE_ACCEL_MAIN_WARN16                20007
-#define HUGGLE_ACCEL_MAIN_WARN17                20008
-#define HUGGLE_ACCEL_MAIN_WARN18                20009
-#define HUGGLE_ACCEL_MAIN_WARN19                20010
-#define HUGGLE_ACCEL_MAIN_WARN20                20011
-#define HUGGLE_ACCEL_MAIN_REVERT_0              28
-#define HUGGLE_ACCEL_MAIN_REVERT_1              29
-#define HUGGLE_ACCEL_MAIN_REVERT_2              30
-#define HUGGLE_ACCEL_MAIN_REVERT_3              31
-#define HUGGLE_ACCEL_MAIN_REVERT_4              32
-#define HUGGLE_ACCEL_MAIN_REVERT_5              33
-#define HUGGLE_ACCEL_MAIN_REVERT_6              34
-#define HUGGLE_ACCEL_MAIN_REVERT_7              35
-#define HUGGLE_ACCEL_MAIN_REVERT_8              36
-#define HUGGLE_ACCEL_MAIN_REVERT_9              37
-#define HUGGLE_ACCEL_MAIN_REVERT_10             20110
-#define HUGGLE_ACCEL_MAIN_REVERT_11             20111
-#define HUGGLE_ACCEL_MAIN_REVERT_12             20112
-#define HUGGLE_ACCEL_MAIN_REVERT_13             20113
-#define HUGGLE_ACCEL_MAIN_REVERT_14             20114
-#define HUGGLE_ACCEL_MAIN_REVERT_15             20115
-#define HUGGLE_ACCEL_MAIN_REVERT_16             20116
-#define HUGGLE_ACCEL_MAIN_REVERT_17             20117
-#define HUGGLE_ACCEL_MAIN_REVERT_18             20118
-#define HUGGLE_ACCEL_MAIN_REVERT_19             20119
-#define HUGGLE_ACCEL_MAIN_REVERT_20             20120
-#define HUGGLE_ACCEL_MAIN_C_REVERT              20200
-#define HUGGLE_ACCEL_MAIN_REVERT_AGF            20201
-#define HUGGLE_ACCEL_MAIN_TALK                  38
-#define HUGGLE_ACCEL_REVERT_STAY                39
-#define HUGGLE_ACCEL_MAIN_OPEN_IN_BROWSER       40
-#define HUGGLE_ACCEL_MAIN_GOOD                  41
-#define HUGGLE_ACCEL_MAIN_MYTALK_PAGE           42
-#define HUGGLE_ACCEL_REVW_STAY                  43
-#define HUGGLE_ACCEL_MAIN_REVERT_AGF_ONE_REV    44
-#define HUGGLE_ACCEL_MAIN_WATCH                 45
-#define HUGGLE_ACCEL_MAIN_UNWATCH               46
-#define HUGGLE_ACCEL_MAIN_PATROL                47
-#define HUGGLE_ACCEL_MAIN_OPEN                  48
-#define HUGGLE_ACCEL_MAIN_USER_CLEAR_TALK       49
-#define HUGGLE_ACCEL_MAIN_USER_CONTRIBUTIONS    50
-#define HUGGLE_ACCEL_MAIN_CONTRIB_BROWSER       52
-#define HUGGLE_ACCEL_MAIN_REFRESH               54
-#define HUGGLE_ACCEL_MAIN_USER_CUSTOM_MSG       55
-#define HUGGLE_ACCEL_MAIN_ESC                   56
-#define HUGGLE_ACCEL_MAIN_REVERT_THIS           60
-#define HUGGLE_ACCEL_MAIN_WELCOME               61
-#define HUGGLE_ACCEL_MAIN_DECREASE_BS           62
-#define HUGGLE_ACCEL_MAIN_INCREASE_BS           63
-#define HUGGLE_ACCEL_MAIN_FIND                  64
-#define HUGGLE_ACCEL_MAIN_EDIT                  65
-#define HUGGLE_ACCEL_MAIN_CLEAR_QUEUE           66
-#define HUGGLE_ACCEL_MAIN_EDIT_IN_BROWSER       68
-#define HUGGLE_ACCEL_CLOSE_TAB                  200
-#define HUGGLE_ACCEL_CREATE_NEW_TAB             206
-#define HUGGLE_ACCEL_USER_REPORT_USER_NAME      300
-#define HUGGLE_ACCEL_USER_REPORT                310
+
+constexpr const char* HUGGLE_ACCEL_NONE                = "";
+constexpr int HUGGLE_ACCEL_MAIN_EXIT                   = 0;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_AND_WARN        = 1;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT                 = 2;
+constexpr int HUGGLE_ACCEL_MAIN_WARN                   = 3;
+constexpr int HUGGLE_ACCEL_NEXT                        = 4;
+constexpr int HUGGLE_ACCEL_SUSPICIOUS_EDIT             = 5;
+constexpr int HUGGLE_ACCEL_MAIN_FORWARD                = 6;
+constexpr int HUGGLE_ACCEL_MAIN_BACK                   = 7;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_AND_WARN0       = 8;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_AND_WARN1       = 9;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_AND_WARN2       = 10;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_AND_WARN3       = 11;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_AND_WARN4       = 12;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_AND_WARN5       = 13;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_AND_WARN6       = 14;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_AND_WARN7       = 15;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_AND_WARN8       = 16;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_AND_WARN9       = 17;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_AND_WARN10      = 10000;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_AND_WARN11      = 10001;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_AND_WARN12      = 10002;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_AND_WARN13      = 10003;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_AND_WARN14      = 10004;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_AND_WARN15      = 10005;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_AND_WARN16      = 10006;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_AND_WARN17      = 10007;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_AND_WARN18      = 10008;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_AND_WARN19      = 10009;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_AND_WARN20      = 10010;
+constexpr int HUGGLE_ACCEL_MAIN_WARN0                  = 18;
+constexpr int HUGGLE_ACCEL_MAIN_WARN1                  = 19;
+constexpr int HUGGLE_ACCEL_MAIN_WARN2                  = 20;
+constexpr int HUGGLE_ACCEL_MAIN_WARN3                  = 21;
+constexpr int HUGGLE_ACCEL_MAIN_WARN4                  = 22;
+constexpr int HUGGLE_ACCEL_MAIN_WARN5                  = 23;
+constexpr int HUGGLE_ACCEL_MAIN_WARN6                  = 24;
+constexpr int HUGGLE_ACCEL_MAIN_WARN7                  = 25;
+constexpr int HUGGLE_ACCEL_MAIN_WARN8                  = 26;
+constexpr int HUGGLE_ACCEL_MAIN_WARN9                  = 27;
+constexpr int HUGGLE_ACCEL_MAIN_WARN10                 = 20001;
+constexpr int HUGGLE_ACCEL_MAIN_WARN11                 = 20002;
+constexpr int HUGGLE_ACCEL_MAIN_WARN12                 = 20003;
+constexpr int HUGGLE_ACCEL_MAIN_WARN13                 = 20004;
+constexpr int HUGGLE_ACCEL_MAIN_WARN14                 = 20005;
+constexpr int HUGGLE_ACCEL_MAIN_WARN15                 = 20006;
+constexpr int HUGGLE_ACCEL_MAIN_WARN16                 = 20007;
+constexpr int HUGGLE_ACCEL_MAIN_WARN17                 = 20008;
+constexpr int HUGGLE_ACCEL_MAIN_WARN18                 = 20009;
+constexpr int HUGGLE_ACCEL_MAIN_WARN19                 = 20010;
+constexpr int HUGGLE_ACCEL_MAIN_WARN20                 = 20011;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_0               = 28;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_1               = 29;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_2               = 30;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_3               = 31;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_4               = 32;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_5               = 33;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_6               = 34;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_7               = 35;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_8               = 36;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_9               = 37;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_10              = 20110;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_11              = 20111;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_12              = 20112;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_13              = 20113;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_14              = 20114;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_15              = 20115;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_16              = 20116;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_17              = 20117;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_18              = 20118;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_19              = 20119;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_20              = 20120;
+constexpr int HUGGLE_ACCEL_MAIN_C_REVERT               = 20200;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_AGF             = 20201;
+constexpr int HUGGLE_ACCEL_MAIN_TALK                   = 38;
+constexpr int HUGGLE_ACCEL_REVERT_STAY                 = 39;
+constexpr int HUGGLE_ACCEL_MAIN_OPEN_IN_BROWSER        = 40;
+constexpr int HUGGLE_ACCEL_MAIN_GOOD                   = 41;
+constexpr int HUGGLE_ACCEL_MAIN_MYTALK_PAGE            = 42;
+constexpr int HUGGLE_ACCEL_REVW_STAY                   = 43;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_AGF_ONE_REV     = 44;
+constexpr int HUGGLE_ACCEL_MAIN_WATCH                  = 45;
+constexpr int HUGGLE_ACCEL_MAIN_UNWATCH                = 46;
+constexpr int HUGGLE_ACCEL_MAIN_PATROL                 = 47;
+constexpr int HUGGLE_ACCEL_MAIN_OPEN                   = 48;
+constexpr int HUGGLE_ACCEL_MAIN_USER_CLEAR_TALK        = 49;
+constexpr int HUGGLE_ACCEL_MAIN_USER_CONTRIBUTIONS     = 50;
+constexpr int HUGGLE_ACCEL_MAIN_CONTRIB_BROWSER        = 52;
+constexpr int HUGGLE_ACCEL_MAIN_REFRESH                = 54;
+constexpr int HUGGLE_ACCEL_MAIN_USER_CUSTOM_MSG        = 55;
+constexpr int HUGGLE_ACCEL_MAIN_ESC                    = 56;
+constexpr int HUGGLE_ACCEL_MAIN_REVERT_THIS            = 60;
+constexpr int HUGGLE_ACCEL_MAIN_WELCOME                = 61;
+constexpr int HUGGLE_ACCEL_MAIN_DECREASE_BS            = 62;
+constexpr int HUGGLE_ACCEL_MAIN_INCREASE_BS            = 63;
+constexpr int HUGGLE_ACCEL_MAIN_FIND                   = 64;
+constexpr int HUGGLE_ACCEL_MAIN_EDIT                   = 65;
+constexpr int HUGGLE_ACCEL_MAIN_CLEAR_QUEUE            = 66;
+constexpr int HUGGLE_ACCEL_MAIN_EDIT_IN_BROWSER        = 68;
+constexpr int HUGGLE_ACCEL_CLOSE_TAB                   = 200;
+constexpr int HUGGLE_ACCEL_CREATE_NEW_TAB              = 206;
+constexpr int HUGGLE_ACCEL_USER_REPORT_USER_NAME       = 300;
+constexpr int HUGGLE_ACCEL_USER_REPORT                 = 310;
 
 #define hcfg Huggle::Configuration::HuggleConfiguration
 
