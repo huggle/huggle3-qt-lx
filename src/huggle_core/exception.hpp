@@ -20,11 +20,11 @@
 #ifndef DISABLE_BREAKPAD
     #ifdef __linux__
         //linux code goes here
-    constexpr int HUGGLE_BREAKPAD = 0;
+    #define HUGGLE_BREAKPAD         0
     #include "client/linux/handler/exception_handler.h"
     #elif _WIN32
         // windows code goes here
-    constexpr int HUGGLE_BREAKPAD = 1;
+    #define HUGGLE_BREAKPAD         1
     // This fixes the qdatetime bug which produces error with compiler on windows
     #define NOMINMAX
     // Ensure that NOMINMAX is there before including this file

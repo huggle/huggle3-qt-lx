@@ -87,7 +87,7 @@ namespace std { typedef decltype(nullptr) nullptr_t; }
 // This is a nasty hack that will disable multi threaded gc on MacOS as we had some report that
 // it has problems there (need to be fixed though)
 #ifndef HUGGLE_NO_MT_GC
-    constexpr const char* HUGGLE_USE_MT_GC               = "mt";
+    #define HUGGLE_USE_MT_GC    "mt"
 #endif
 
 // #define HUGGLE_PROFILING
@@ -149,7 +149,7 @@ constexpr const char* EXTENSION_PATH                  = "extensions";
 //! Value that is used by default for timers that are used on various places
 //! lower value will result in higher CPU usage, but faster performance of huggle 
 #ifndef HUGGLE_TIMER
-    constexpr int HUGGLE_TIMER                        = 200;
+    #define HUGGLE_TIMER 200
 #endif
 
 #ifndef HUGGLE_EX_CORE
@@ -215,10 +215,10 @@ constexpr const char* EXTENSION_PATH                  = "extensions";
 //! Change this to DEBIAN / UBUNTU / WINDOWS to get automatic updates for selected channels
 #ifdef HUGGLE_SNAP
     constexpr const char* HUGGLE_UPDATER_PLATFORM_TYPE        = "linux/snap";
-    constexpr QString HUGGLE_GLOBAL_EXTENSION_PATH            = QCoreApplication::applicationDirPath() + "/extensions"
+    #define HUGGLE_GLOBAL_EXTENSION_PATH                         QCoreApplication::applicationDirPath() + "/extensions"
 #elif defined __linux__
     constexpr const char* HUGGLE_UPDATER_PLATFORM_TYPE        = "linux";
-    constexpr const char* HUGGLE_GLOBAL_EXTENSION_PATH        = "/usr/local/share/huggle/extensions";
+    #define HUGGLE_GLOBAL_EXTENSION_PATH                         "/usr/local/share/huggle/extensions"
 #elif defined HUGGLE_WIN
     // This is needed by yaml cpp library, otherwise it won't build with MSVC
     #define YAML_CPP_DLL
@@ -229,12 +229,12 @@ constexpr const char* EXTENSION_PATH                  = "extensions";
     #else
         constexpr const char* HUGGLE_UPDATER_PLATFORM_TYPE    = "windows/msvc/32";
     #endif
-    constexpr QString HUGGLE_GLOBAL_EXTENSION_PATH            = QCoreApplication::applicationDirPath() + "\\extensions"
+    #define HUGGLE_GLOBAL_EXTENSION_PATH                         QCoreApplication::applicationDirPath() + "\\extensions"
 #elif defined HUGGLE_MACX
-    constexpr QString HUGGLE_GLOBAL_EXTENSION_PATH            = QCoreApplication::applicationDirPath() + "/../PlugIns"
-    constexpr const char* HUGGLE_UPDATER_PLATFORM_TYPE        = "mac"
+    #define HUGGLE_GLOBAL_EXTENSION_PATH                         QCoreApplication::applicationDirPath() + "/../PlugIns"
+    constexpr const char* HUGGLE_UPDATER_PLATFORM_TYPE        = "mac";
 #else
-    constexpr const char* HUGGLE_UPDATER_PLATFORM_TYPE        = "unknown"
+    constexpr const char* HUGGLE_UPDATER_PLATFORM_TYPE        = "unknown";
 #endif
 
 // This function help us clear any qlist that contains pointers
@@ -272,6 +272,6 @@ constexpr const char* EXTENSION_PATH                  = "extensions";
 #endif
 
 //! Revid of edit that doesn't exist
-constexpr int WIKI_UNKNOWN_REVID = -1
+constexpr int WIKI_UNKNOWN_REVID = -1;
 
 #endif // CONFIG_H
