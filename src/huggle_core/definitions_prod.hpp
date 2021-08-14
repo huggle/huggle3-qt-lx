@@ -20,7 +20,7 @@ typedef long long score_ht;
 typedef char byte_ht;
 typedef long long revid_ht;
 
-constexpr const char* HUGGLE_VERSION          = "3.4.11"
+constexpr const char* HUGGLE_VERSION          = "3.4.11";
 constexpr int HUGGLE_BYTE_VERSION_MAJOR       = 0x3;
 constexpr int HUGGLE_BYTE_VERSION_MINOR       = 0x4;
 constexpr int HUGGLE_BYTE_VERSION_RELEASE     = 0xB;
@@ -41,7 +41,7 @@ constexpr int HUGGLE_MAX_DROPDOWN_SHORTCUTS  = 20;
 #define HUGGLE_METRICS
 
 #ifdef HUGGLE_WEBEN
-    constexpr const char* HUGGLE_WEB_ENGINE_NAME = "Chromium"
+    constexpr const char* HUGGLE_WEB_ENGINE_NAME = "Chromium";
 #else
     constexpr const char* HUGGLE_WEB_ENGINE_NAME = "WebKit";
 #endif
@@ -140,7 +140,7 @@ constexpr const char* MEDIAWIKI_DEFAULT_NS_HELPTALK           = "Help talk:";
 constexpr const char* MEDIAWIKI_DEFAULT_NS_CATEGORY           = "Category:";
 constexpr const char* MEDIAWIKI_DEFAULT_NS_CATEGORYTALK       = "Category talk:";
 //! Minimal score the edit can have
-constexpr const int MINIMAL_SCORE                     = -999999
+constexpr const int MINIMAL_SCORE                     = -999999;
 constexpr const char* HUGGLE_CONF                     = "huggle3.xml";
 //! When wikipedia get a higher revision ID than this, it will need to look for new anti-vandalism software :P
 constexpr long long HUGGLE_MAX_REV                    = 9223372036854775807;
