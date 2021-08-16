@@ -4,6 +4,7 @@
 * Alex Khimich
 * Andriykopanytsia
 * Base
+* DDPAT
 * Gluck
 * Movses
 * Olvin
@@ -736,7 +737,7 @@
   <string name="about-info">, на основі $1, цільова платформа: $2</string>
   <string name="error-unknown-code">Невідома помилка: $1</string>
   <string name="relogin-fail">Не вдалося увійти до wiki: $1</string>
-  <string name="projects">Проекти</string>
+  <string name="projects">Проєкти</string>
   <string name="unable-to-retrieve-user-list">Не вдалося отримати список користувачів: $1</string>
   <string name="login-no-userinfo" fuzzy="true">Сайт не повертає жодних відомостей про користувачів</string>
   <string name="login-invalid-register-date">Медіавікі повернуло неправильну дату реєстрації</string>
