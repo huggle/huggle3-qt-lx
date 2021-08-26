@@ -65,7 +65,7 @@
   <string name="diffid">מזהה גרסה</string>
   <string name="whitelisted">$1 הוכנס לרשימה הלבנה עם ציון $2 באתר $3</string>
   <string name="expiry-time">זמן פקיעה</string>
-  <string name="duration">משך</string>
+  <string name="duration">משך זמן</string>
   <string name="enable">להפעיל</string>
   <string name="disable">לכבות</string>
   <string name="no-token">אין אסימון</string>
