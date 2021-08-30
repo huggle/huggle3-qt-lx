@@ -828,6 +828,8 @@
   <string name="preferences-color-scheme-diff">צבעי הבדלים</string>
   <string name="preferences-color-scheme-diff-default">ברירת המחדל</string>
   <string name="preferences-color-scheme-diff-dark-mode">מצב חשוך</string>
+  <string name="preferences-template-spam-info">האפשרויות האלו שולטות בתת־מערכת שמונעת ממשתמשי יעד לקבל ספאם של תניות. משתמשים, כברירת מחדל, לא מקבלים אזהרות תבניות על עריכות ישנות מדי והם גם מקבלים אזהרת תבנית בודדה על שחזור של מספר עריכות מאותו המשתמש בטווח זמן קצר מאוד.</string>
+  <string name="preferences-template-spam-title">מניעת ספאם תבניות</string>
   <string name="fail">לא עבד</string>
   <string name="request">בקשה</string>
   <string name="requesting">שליחת בקשה</string>
