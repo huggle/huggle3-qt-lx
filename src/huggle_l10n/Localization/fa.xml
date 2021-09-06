@@ -6,6 +6,7 @@
 * Arian Ar
 * Calak
 * Dalba
+* Darafsh
 * Dejavu
 * Ebraminio
 * FarsiNevis
@@ -632,7 +633,7 @@
   <string name="revert-fail-pre-flight">چک پیش از جدال شکست خورد: $1</string>
   <string name="speedy-reason">دلیل:</string>
   <string name="speedy-parameters">پارامترها:</string>
-  <string name="speedy-parameters-fail">شما باید متغییرها را برای این گزینه سرعتی تنظیم تنظیم کنید</string>
+  <string name="speedy-parameters-fail">شما باید متغییرها را برای این گزینه سرعتی تنظیم کنید</string>
   <string name="speedy-notifycreator">اطلاع‌رسانی به ایجادکننده صفحه</string>
   <string name="rollback">واگردانی $1</string>
   <string name="software-rollback">شما دسترسی واگردانی ندارید، بازگشت به واگردانی نرم‌افزاری</string>
@@ -651,11 +652,11 @@
   <string name="updater-open-manualdownloadpage">باز کردن صفحه دانلود</string>
   <string name="updater-close">بستن</string>
   <string name="updater-disable-notify">غیرفعال کردن روزآمدسازی</string>
-  <string name="updater-wait">در حال آپیدت کردن هاگل لطفاً صبر کنید....</string>
+  <string name="updater-wait">در حال بروزرسانی هاگل، لطفاً صبر کنید ...</string>
   <string name="user-history-fail">امکان دریافت تاریخچه برای کاربر نبود: $1</string>
   <string name="userinfo-generic">اطلاعات کاربری</string>
   <string name="userinfo-retrieve">بازیابی اطلاعات</string>
-  <string name="userinfo-no-user">کاربر نه</string>
+  <string name="userinfo-no-user">بدون کاربر</string>
   <string name="shortcut-refresh">تازه‌سازی صفحهٔ تازه نمایش داده‌شده (بارگیری مجدد تاریخچه و پرش به آخرین ویرایش)</string>
   <string name="shortcut-page-patrol-edit">گشت‌زدن ویرایش</string>
   <string name="shortcut-report-username">گزارش نام کاربری</string>
@@ -709,7 +710,7 @@
   <string name="warning-submit">ارسال</string>
   <string name="warninglist-no-warning-title">بدون هشدار</string>
   <string name="warninglist-no-warning-text">اطلاعاتی برای این نوع هشدار وجود ندارد، امکان ارسال هشدار به کاربر وجود ندارد!</string>
-  <string name="warninglist-report-text">این کاربر آخزین هشدار را دریافت کرد، در نتیجه هشدار دیگری برای وی ارسال نمی‌شود، آیا می‌خواهید به جای ارسال هشدار نام وی را در وپ:تام گزارش دهید؟</string>
+  <string name="warninglist-report-text">این کاربر آخرین هشدار را دریافت کرد، در نتیجه هشدار دیگری برای وی ارسال نمی‌شود، آیا می‌خواهید به جای ارسال هشدار نام وی را در وپ:تام گزارش دهید؟</string>
   <string name="wikiedit-tp-fail">ناتوان در دریافت سطح هشدار $1،برای امتیاز‌دهی استفاده نخواهد شد.</string>
   <string name="missing-warning">الگوی هشداری با نام $1 وجود ندارد</string>
   <string name="han-not">شبکه خرابکاری در گزینه‌ها نیست</string>
@@ -841,6 +842,8 @@
   <string name="preferences-color-scheme-diff">رنگ تفاوت</string>
   <string name="preferences-color-scheme-diff-default">پیش‌فرض</string>
   <string name="preferences-color-scheme-diff-dark-mode">حالت تاریک</string>
+  <string name="preferences-template-spam-info">این گزینه‌ها زیرسیستم را کنترل می‌کنند که مانع از اسپم‌شدن الگوهای کاربران می‌شود. به طور پیشفرض به کاربران برای ویرایش‌های بسیار قدیمی هشدار داده نمی‌شود و همچنین در صورت بازگرداندن چندین ویرایش توسط یک کاربر در زمان بسیار کوتاه، فقط هشدار یک الگو دریافت می‌شود.</string>
+  <string name="preferences-template-spam-title">الگوی جلوگیری از هرزنامه</string>
   <string name="fail">شکست</string>
   <string name="request">درخواست</string>
   <string name="requesting">درخواست دادن</string>
@@ -870,7 +873,7 @@
   <string name="relogin-fail">ناتوان در ورود به ویکی: $1</string>
   <string name="projects">پروژه‌ها</string>
   <string name="unable-to-retrieve-user-list">ناتوانی در دریافت فهرست کاربر: $1</string>
-  <string name="login-no-userinfo" fuzzy="true">سایت هیچ اطلاعاتی درباره کاربر نداشت.</string>
+  <string name="login-no-userinfo">سایت هیچ اطلاعاتی دربارهٔ کاربر نداشت.</string>
   <string name="login-invalid-register-date">صفحهٔ ثبت‌نام نامعتبر توسط مدیاویکی برگردانده‌شد</string>
   <string name="login-site-info-query-failed">کوئری اطلاعات سایت برای $1 شکست خورد: $2</string>
   <string name="login-no-site-info-returned">اطلاعات سایت برای این ویکی بازگردانی نشد</string>
