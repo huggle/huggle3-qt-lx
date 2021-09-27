@@ -65,6 +65,8 @@
   <string name="config-defaults">ಮೂಲಸ್ಥಿತಿ</string>
   <string name="config-watchlist">ವೀಕ್ಷಣಾಪಟ್ಟಿಗೆ ಸೇರಿಸು</string>
   <string name="config-revert">ಹಿಂದಿನಂತಾಗಿಸು</string>
+  <string name="config-nothing">ಏನೂ ಇಲ್ಲ</string>
+  <string name="config-bot-edits">ಬಾಟ್ ಸಂಪಾದನೆಗಳು (ಬಾ)</string>
   <string name="config-reverts">ಹಿಂದಿನಂತಾಗಿಸು</string>
   <string name="config-new-page">ಹೊಸ ಪುಟ</string>
   <string name="config-friend">ಗೆಳೆಯ</string>
@@ -126,6 +128,11 @@
   <string name="main-user-warn">ಎಚ್ಚರಿಕೆ...</string>
   <string name="main-user-report">ವರದಿ</string>
   <string name="main-help">ಸಹಾಯ</string>
+  <string name="main-help-documentation">ದಾಖಲೀಕರಣ</string>
+  <string name="main-help-about">ಹಗ್ಗಲ್ ಕುರಿತು...</string>
+  <string name="main-help-introduction">ಪರಿಚಯ</string>
+  <string name="main-tip-pagedelete">ಈ ಪುಟವನ್ನು ಅಳಿಸು</string>
+  <string name="message-subject">ವಿಷಯ:</string>
   <string name="message-message">ಸಂದೇಶ:</string>
   <string name="message-summary">ಸಾರಾಂಶ:</string>
   <string name="protect-reason">ಕಾರಣ:</string>
@@ -140,6 +147,18 @@
   <string name="report-reason">ಕಾರಣ:</string>
   <string name="report-message">ಸಂದೇಶ:</string>
   <string name="speedy-reason">ಕಾರಣ:</string>
+  <string name="tag-title">ಟ್ಯಾಗ್ $1</string>
+  <string name="tag-tags">ಟ್ಯಾಗ್‌(ಗಳು):</string>
   <string name="tag-summary">ಸಾರಾಂಶ:</string>
   <string name="update-title">ಹೊಸ ಆವೃತ್ತಿ ಲಭ್ಯವಿದೆ</string>
+  <string name="shortcut-my-talk">ನನ್ನ ಚರ್ಚೆ ಪುಟ</string>
+  <string name="warning-levelauto">ಸ್ವಯಂಚಾಲಿತ</string>
+  <string name="newtab-title">ಇದೊಂದು ಹೊಸ ಟ್ಯಾಬ್!</string>
+  <string name="wait">ದಯವಿಟ್ಟು ನಿರೀಕ್ಷಿಸಿ...</string>
+  <string name="preferences-watchlist-watch">ವೀಕ್ಷಣಾಪಟ್ಟಿಗೆ ಸೇರಿಸು</string>
+  <string name="preferences-watchlist-unwatch">ವೀಕ್ಷಣಾಪಟ್ಟಿಯಿಂದ ತೆಗೆ</string>
+  <string name="preferences-watchlist-nochange">ಏನೂ ಮಾಡಬೇಡಿ</string>
+  <string name="preferences-queue-size">ಸರತಿಯ ಗಾತ್ರ</string>
+  <string name="namespace">ನಾಮವರ್ಗ</string>
+  <string name="projects">ಯೋಜನೆಗಳು</string>
 </resources>

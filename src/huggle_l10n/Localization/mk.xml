@@ -820,6 +820,7 @@
   <string name="preferences-color-scheme-diff">Бои на разликите</string>
   <string name="preferences-color-scheme-diff-default">По основно</string>
   <string name="preferences-color-scheme-diff-dark-mode">Темен изглед</string>
+  <string name="preferences-template-spam-title">Спречување на спам во предлошки</string>
   <string name="fail">Неуспех</string>
   <string name="request">Барање</string>
   <string name="requesting">Барање</string>
