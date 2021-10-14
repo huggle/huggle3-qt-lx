@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
 * Ahonc
+* Ajeje Brazorf
 * Alex Khimich
 * Andriykopanytsia
 * Base
@@ -15,7 +16,7 @@
 <resources>
   <string name="name">Українська</string>
   <string name="autorelog">Наступного разу зробити це, не запитуючи</string>
-  <string name="isrtl">хибність</string>
+  <string name="isrtl">false</string>
   <string name="add">Додати</string>
   <string name="cancel">Скасувати</string>
   <string name="clear">Очистити</string>

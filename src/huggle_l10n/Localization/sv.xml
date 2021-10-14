@@ -316,6 +316,7 @@
   <string name="main-stat">$1 redigeringar per minut, $2 tillbakarullningar per minut, nivå $3</string>
   <string name="main-menu-provider-stop">Stoppa leverantör</string>
   <string name="main-menu-provider-resume">Återuppta leverantör</string>
+  <string name="main-help-copy-syslog-to-clip">Kopiera systemlogg till urklipp</string>
   <string name="provider-up" fuzzy="true">Ansluter till strömmen med senaste ändringar på $2 med tillhandahållaren: $1</string>
   <string name="main-no-reason">Ingen anledning angavs av användaren</string>
   <string name="main-restoring-slap">En annan redigering återställs för tillfället, var god vänta...</string>
@@ -636,6 +637,7 @@
   <string name="warning-level2">Nivå 2</string>
   <string name="warning-level3">Nivå 3</string>
   <string name="warning-level4">Nivå 4 (sista)</string>
+  <string name="warning-confirm-title">Vill du skicka en varning?</string>
   <string name="warning-warntype">Varningstyp:</string>
   <string name="warning-warnlog">Varningar för denna användare:</string>
   <string name="warning-submit">Sänd</string>
@@ -682,8 +684,13 @@
   <string name="history-another-edit">En annan redigering återställs redan, var god vänta...</string>
   <string name="history-not-found">Det fanns ingenting att ångra</string>
   <string name="history-already-done">Detta har redan ångrats</string>
+  <string name="history-undone">Gjorde redigeringen ogjort på $1</string>
+  <string name="history-retrieve-fail">Kunde inte hämta innehållet för sidan som vi ville ångra vår redigering på. Felet var: $1</string>
   <string name="history-welcome-msg-title">Skicka välkomstmeddelande istället?</string>
+  <string name="history-welcome-msg">Du skapade denna diskussionssidan, så den kan inte göras ogjord. Vill du ersätta den med en välkomstmall?</string>
   <string name="newtab-title">Detta är en ny flik!</string>
+  <string name="newtab-text">Flikar i Huggle fungerar ungefär likadant som i en webbläsare. Alla flikar i Huggle delar samma kö, men är användbara i fall du vill hålla ett äga på en särskild sida eller om du vill se en redigering senare.</string>
+  <string name="notify-fail">Aviserade inte skaparen av $1</string>
   <string name="notify-unknowncreator">Kan inte hitta sidans skapare</string>
   <string name="protect-done">Ändra skyddsnivå för $1</string>
   <string name="protect-fail">Ändrade inte skyddsnivån för $1</string>
@@ -695,11 +702,13 @@
   <string name="loadglobalconfig-fail">Misslyckades att läsa in den globala konfigurationssidan</string>
   <string name="loadprojectconfig-fail">Misslyckades att läsa in projektets konfigurationssidan</string>
   <string name="loaduserconfig-fail">Misslyckades att läsa in användarkonfigurationssidan</string>
+  <string name="reqprotection-badformat">Okänt format på begärd sida</string>
   <string name="reqprotection-duplicate">Skydd har redan begärts</string>
   <string name="reqprotection-fail">Begärde inte skydd för \'$1\'</string>
   <string name="reqprotection-progress">Begär skydd för \'$1\'...</string>
   <string name="speedy-fail">Kunde inte tagga sida för snabbradering: $1</string>
   <string name="speedy-progress">Taggar \'$1\' för snabbradering...</string>
+  <string name="speedy-wrong">Begärd tagg är ogiltig. Välj en annan anledning till radering.</string>
   <string name="speedy-finished">Klar</string>
   <string name="warn-alreadyblocked">Denna användare har redan blockerats</string>
   <string name="editquery-success">Framgångsrik redigering $1 på $2</string>
