@@ -58,7 +58,7 @@ namespace Huggle
             void OnTick();
             void on_pushButton_2_clicked();
             void on_pushButton_clicked();
-            void on_comboBox_currentIndexChanged(int index);
+            void on_cbReason_currentIndexChanged(int index);
 
         private:
             void Fail(QString reason);

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>590</width>
-    <height>172</height>
+    <height>178</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="lbInfo">
      <property name="text">
       <string/>
      </property>
@@ -28,7 +28,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="lbReason">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
          <horstretch>0</horstretch>
@@ -41,26 +41,26 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="comboBox"/>
+      <widget class="QComboBox" name="cbReason"/>
      </item>
     </layout>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
-      <widget class="QLabel" name="label_3">
+      <widget class="QLabel" name="lbParameter">
        <property name="text">
         <string>Parameter:</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit"/>
+      <widget class="QLineEdit" name="leParameter"/>
      </item>
     </layout>
    </item>
    <item>
-    <widget class="QCheckBox" name="checkBox">
+    <widget class="QCheckBox" name="cbSendWarning">
      <property name="text">
       <string>Send a warning template to user</string>
      </property>

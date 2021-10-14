@@ -31,8 +31,8 @@ SpeedyForm::SpeedyForm(QWidget *parent) : HW("speedyform", this, parent), ui(new
     this->timer = new QTimer(this);
     this->connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTick()));
     this->ui->setupUi(this);
-    this->ui->checkBox->setText(_l("speedy-notifycreator"));
-    this->ui->label->setText(_l("speedy-reason"));
+    this->ui->cbSendWarning->setText(_l("speedy-notifycreator"));
+    this->ui->lbReason->setText(_l("speedy-reason"));
     this->RestoreWindow();
 }
 
@@ -43,8 +43,8 @@ SpeedyForm::~SpeedyForm()
 
 void SpeedyForm::on_pushButton_clicked()
 {
-    ProjectConfiguration::SpeedyOption speedy_option = this->edit->GetSite()->GetProjectConfig()->SpeedyTemplates.at(this->ui->comboBox->currentIndex());
-    if (this->ui->lineEdit->text().isEmpty() && !speedy_option.Parameter.isEmpty())
+    ProjectConfiguration::SpeedyOption speedy_option = this->edit->GetSite()->GetProjectConfig()->SpeedyTemplates.at(this->ui->cbReason->currentIndex());
+    if (this->ui->leParameter->text().isEmpty() && !speedy_option.Parameter.isEmpty())
     {
         UiGeneric::MessageBox(_l("error"), _l("speedy-parameters-fail"), MessageBoxStyleError, false, this);
         return;
@@ -59,18 +59,18 @@ void SpeedyForm::on_pushButton_clicked()
             return;
         }
     }
-    if (this->ui->comboBox->currentText().isEmpty())
+    if (this->ui->cbReason->currentText().isEmpty())
     {
         UiGeneric::MessageBox(_l("speedy-wrong"), "Wrong csd");
         return;
     }
-    this->ui->checkBox->setEnabled(false);
-    this->ui->comboBox->setEnabled(false);
-    this->ui->label_3->setEnabled(false);
-    this->ui->lineEdit->setEnabled(false);
+    this->ui->cbSendWarning->setEnabled(false);
+    this->ui->cbReason->setEnabled(false);
+    this->ui->lbParameter->setEnabled(false);
+    this->ui->leParameter->setEnabled(false);
     this->ui->pushButton->setText(_l("speedy-progress", this->edit->Page->PageName));
     this->ui->pushButton->setEnabled(false);
-    this->Header = this->ui->comboBox->currentText();
+    this->Header = this->ui->cbReason->currentText();
     // first we need to retrieve the content of page if we don't have it already
     this->qObtainText = WikiUtil::RetrieveWikiPageContents(this->edit->Page);
     this->timer->start(HUGGLE_TIMER);
@@ -91,14 +91,14 @@ void SpeedyForm::Fail(QString reason)
     this->qObtainText.Delete();
     this->Template.Delete();
     UiGeneric::MessageBox("Error", reason, MessageBoxStyleError);
-    UiHooks::Speedy_Finished(this->edit, this->ui->comboBox->currentText(), false);
+    UiHooks::Speedy_Finished(this->edit, this->ui->cbReason->currentText(), false);
     this->timer->stop();
 }
 
 void SpeedyForm::processTags()
 {
     // insert the template to bottom of the page
-    ProjectConfiguration::SpeedyOption speedy_option = this->edit->GetSite()->GetProjectConfig()->SpeedyTemplates.at(this->ui->comboBox->currentIndex());
+    ProjectConfiguration::SpeedyOption speedy_option = this->edit->GetSite()->GetProjectConfig()->SpeedyTemplates.at(this->ui->cbReason->currentIndex());
     //! \todo make this cross wiki instead of checking random tag
     QString lower = this->Text;
     lower = lower.toLower();
@@ -111,10 +111,10 @@ void SpeedyForm::processTags()
     if (this->ReplacePage)
         this->Text = this->ReplacingText;
     // insert a tag to page
-    if (this->ui->lineEdit->text().isEmpty())
+    if (this->ui->leParameter->text().isEmpty())
         this->Text = "{{" + speedy_option.Template + "}}\n" + this->Text;
     else
-        this->Text = "{{" + speedy_option.Template + "|" + this->ui->lineEdit->text() + "}}\n" + this->Text;
+        this->Text = "{{" + speedy_option.Template + "|" + this->ui->leParameter->text() + "}}\n" + this->Text;
     // store a message we later send to user (we need to check if edit is successful first)
     this->warning = speedy_option.Msg;
     // let's modify the page now
@@ -140,30 +140,30 @@ void SpeedyForm::Init(WikiEdit *edit_)
     this->edit = edit_;
     foreach (ProjectConfiguration::SpeedyOption item, this->edit->GetSite()->GetProjectConfig()->SpeedyTemplates)
     {
-        this->ui->comboBox->addItem(item.Tag + ": " + item.Info);
+        this->ui->cbReason->addItem(item.Tag + ": " + item.Info);
     }
-    this->ui->label_2->setText(edit_->Page->PageName);
-    this->ui->checkBox->setChecked(edit_->GetSite()->GetProjectConfig()->Speedy_WarningOnByDefault);
+    this->ui->lbInfo->setText(edit_->Page->PageName);
+    this->ui->cbSendWarning->setChecked(edit_->GetSite()->GetProjectConfig()->Speedy_WarningOnByDefault);
     if (!edit_->GetSite()->GetProjectConfig()->Speedy_EnableWarnings)
     {
-        this->ui->checkBox->setChecked(false);
-        this->ui->checkBox->setEnabled(false);
+        this->ui->cbSendWarning->setChecked(false);
+        this->ui->cbSendWarning->setEnabled(false);
     }
 }
 
 QString SpeedyForm::GetSelectedDBReason()
 {
-    return this->ui->comboBox->currentText();
+    return this->ui->cbReason->currentText();
 }
 
 QString SpeedyForm::GetSelectedTagID()
 {
-    return this->edit->GetSite()->GetProjectConfig()->SpeedyTemplates.at(this->ui->comboBox->currentIndex()).Template;
+    return this->edit->GetSite()->GetProjectConfig()->SpeedyTemplates.at(this->ui->cbReason->currentIndex()).Template;
 }
 
 void SpeedyForm::SetMessageUserCheck(bool new_value)
 {
-    this->ui->checkBox->setChecked(new_value);
+    this->ui->cbSendWarning->setChecked(new_value);
 }
 
 void SpeedyForm::OnTick()
@@ -192,7 +192,7 @@ void SpeedyForm::OnTick()
                 return;
             }
             this->Template = nullptr;
-            if (this->ui->checkBox->isChecked())
+            if (this->ui->cbSendWarning->isChecked())
             {
                 QString summary = this->edit->GetSite()->GetProjectConfig()->SpeedyWarningSummary;
                 summary.replace("$1", this->edit->Page->PageName);
@@ -205,11 +205,11 @@ void SpeedyForm::OnTick()
     }
 }
 
-void Huggle::SpeedyForm::on_comboBox_currentIndexChanged(int index)
+void Huggle::SpeedyForm::on_cbReason_currentIndexChanged(int index)
 {
     ProjectConfiguration::SpeedyOption speedy_option = this->edit->GetSite()->GetProjectConfig()->SpeedyTemplates.at(index);
-    this->ui->checkBox->setChecked(speedy_option.Notify);
-    this->ui->checkBox->setEnabled(speedy_option.Notify);
-    this->ui->lineEdit->setText(speedy_option.Parameter);
-    this->ui->lineEdit->setEnabled(!speedy_option.Parameter.isEmpty());
+    this->ui->cbSendWarning->setChecked(speedy_option.Notify);
+    this->ui->cbSendWarning->setEnabled(speedy_option.Notify);
+    this->ui->leParameter->setText(speedy_option.Parameter);
+    this->ui->leParameter->setEnabled(!speedy_option.Parameter.isEmpty());
 }
