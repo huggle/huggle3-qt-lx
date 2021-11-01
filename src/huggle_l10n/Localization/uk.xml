@@ -255,7 +255,7 @@
   <string name="irc-wait">Очікую на зупинку IRC-постачальника списку нових редагувань</string>
   <string name="irc-switch-rc">Переходжу на постачання списку нових редагувань через wiki</string>
   <string name="login-old">Отримання користувацьких налаштувань</string>
-  <string name="login-intro">Будь ласка, виберіть проект і введіть ім’я користувача та пароль. Ви також можете одразу ввійти до декількох проектів, скориставшись кнопкою «Проєкти».</string>
+  <string name="login-intro">Будь ласка, виберіть проєкт і введіть ім’я користувача та пароль. Ви також можете одразу ввійти до декількох проєктів, скориставшись кнопкою «Проєкти».</string>
   <string name="invalid-bot-user-name">Це не є дійсним іменем бота. Приклад коректного імені бота: Jimbo@Huggle</string>
   <string name="login-tab-botp">Пароль бота</string>
   <string name="login-tab-login">Старий спосіб</string>
@@ -525,7 +525,7 @@
   <string name="protect-message-title-fail">Неможливо захистити</string>
   <string name="protect-moveprotection">Захист від перейменування</string>
   <string name="protect-ft">Отримую токен для захисту $1</string>
-  <string name="protect-request-proj-fail">Цей проект не підтримує запити на захист сторінок</string>
+  <string name="protect-request-proj-fail">Цей проєкт не підтримує запити на захист сторінок</string>
   <string name="queue-title">Черга</string>
   <string name="queue-queues">Черга:</string>
   <string name="queue-typegroup">Тип черги</string>
@@ -784,7 +784,7 @@
   <string name="processes-widget-name">Оброблено</string>
   <string name="wait">Будь ласка, зачекайте…</string>
   <string name="function-miss">Функція недоступна в даний момент</string>
-  <string name="missing-aiv">Цей проект не використовує AIV</string>
+  <string name="missing-aiv">Цей проєкт не використовує AIV</string>
   <string name="missing-page">В цій wiki немає сторінки $1</string>
   <string name="updating-wl">Оновлюю білий список…</string>
   <string name="waiting">Очікування…</string>

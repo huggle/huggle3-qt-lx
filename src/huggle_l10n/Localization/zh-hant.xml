@@ -11,6 +11,7 @@
 * Macofe
 * Sanmosa
 * Simon Shek
+* Winston Sung
 * Xiplus
 * Zhxy 519
 * 铁桶
@@ -88,7 +89,7 @@
   <string name="block-creation">禁止建立帳戶</string>
   <string name="block-autoblock">開啟自動封禁</string>
   <string name="block-email">阻止電子郵件</string>
-  <string name="block-usertalk">對話</string>
+  <string name="block-usertalk">留言</string>
   <string name="block-usercontribs">貢獻</string>
   <string name="block-blockloglabel">封鎖日誌</string>
   <string name="block-warnloglabel">警告：</string>

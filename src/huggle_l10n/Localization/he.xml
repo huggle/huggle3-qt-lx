@@ -476,7 +476,7 @@
   <string name="main-revert-custom-reson">נא לספק סיבה מדוע ברצונך לשחזר את עריכה זו לגרסה הקודמת</string>
   <string name="main-log1">שחזור הגרסה הנבחרת של $1</string>
   <string name="main-tip-pagetagdelete">סימון הדף למחיקה</string>
-  <string name="main-tip-pagedelete">מחיקת דף זה</string>
+  <string name="main-tip-pagedelete">מחיקת הדף הזה</string>
   <string name="main-tip-userreport">דיווח על המשתמש</string>
   <string name="main-tip-userblock">חסימת משתמש זה</string>
   <string name="main-revision-acceptpend">קבלת הגרסה הממתינה הזאת</string>
