@@ -484,7 +484,7 @@
   <string name="block-alreadyblocked">Benotzer ass scho gespaart</string>
   <string name="error-unknown-code">Onbekannte Feeler: $1</string>
   <string name="projects">Projeten</string>
-  <string name="login-no-userinfo" fuzzy="true">De Site huet keng Benotzerinformatioun zréckginn</string>
+  <string name="login-no-userinfo">De Site huet keng Benotzerinformatioun zréckginn</string>
   <string name="login-no-site-info-returned">Et goufe keng Informatioune fir dës Wiki zréckginn</string>
   <string name="login-username-doesnt-exist">Dëse Benotzernumm gëtt et net</string>
   <string name="developer-mode-enter-title">Whee</string>
