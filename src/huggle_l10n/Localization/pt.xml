@@ -14,6 +14,7 @@
 * Mansil alfalb
 * McDutchie
 * OTAVIO1981
+* RogueScholar
 * Ti4goc
 * Vitorvicentevalente
 -->
@@ -831,6 +832,8 @@
   <string name="preferences-color-scheme-diff">Cores diferentes</string>
   <string name="preferences-color-scheme-diff-default">Predefinição</string>
   <string name="preferences-color-scheme-diff-dark-mode">Modo escuro</string>
+  <string name="preferences-template-spam-info">Estas opções controlam um subsistema que impede que os utilizadores destinatários recebam modelos de spam. Por defeito, os utilizadores não recebem avisos do modelo para edições demasiado antigas, e também só recebem um aviso de modelo único no caso de reverterem várias edições pelo mesmo utilizador num tempo muito curto.</string>
+  <string name="preferences-template-spam-title">Prevenção de spam de predefinições</string>
   <string name="fail">Falha</string>
   <string name="request">Pedir</string>
   <string name="requesting">A solicitar</string>
