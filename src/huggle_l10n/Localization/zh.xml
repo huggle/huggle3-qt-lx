@@ -19,6 +19,7 @@
 * Yfdyh000
 * Zhaofeng Li
 * 予弦
+* 列维劳德
 * 夢蝶葬花
 * 水獭很懒
 * 沈澄心
@@ -839,6 +840,8 @@
   <string name="preferences-color-scheme-diff">色差</string>
   <string name="preferences-color-scheme-diff-default">默认</string>
   <string name="preferences-color-scheme-diff-dark-mode">深色模式</string>
+  <string name="preferences-template-spam-info">这些选项控制阻止目标用户遭受模板垃圾的子系统。通过不使用模板警告默认用户过旧的编辑，在您短期内恢复来自同一位用户的多笔编辑时只使用一个模板警告。</string>
+  <string name="preferences-template-spam-title">模板垃圾预防</string>
   <string name="fail">失败</string>
   <string name="request">请求</string>
   <string name="requesting">请求中</string>
