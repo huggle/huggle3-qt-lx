@@ -43,7 +43,7 @@
   <string name="no-instant">ההודעה ל־$2 לא יכולה להישלח מאחר ואזהרות מידיות אינן מופעלות במיזם $1. יש לבחור רמת אזהרה אחרת.</string>
   <string name="undo">ביטול</string>
   <string name="yes">כן</string>
-  <string name="editing-page">עריכת דף</string>
+  <string name="editing-page">עריכת הדף</string>
   <string name="agf">שחזור בתור עריכה שנעשתה בכוונה טובה עם סיבה אישית</string>
   <string name="successful">זה עבד</string>
   <string name="summary">תקציר</string>
@@ -630,7 +630,7 @@
   <string name="tag-summary">תקציר:</string>
   <string name="tag-insertatend">להוסיף בסוף הדף</string>
   <string name="update-title">גרסה חדשה זמינה</string>
-  <string name="update-progress">מוריד את הגרסה החדשה, אנא המתן...</string>
+  <string name="update-progress">מוריד את הגרסה החדשה, נא להמתין...</string>
   <string name="update-error">הורדת הגרסה החדשה נכשלה</string>
   <string name="updater-title">זמינה גרסה חדשה של האגל</string>
   <string name="updater-update">עדכון</string>
@@ -638,7 +638,7 @@
   <string name="updater-open-manualdownloadpage">פתיחת דף ההורדה</string>
   <string name="updater-close">סגירה</string>
   <string name="updater-disable-notify">ביטול עדכונים</string>
-  <string name="updater-wait">אני מעדכן כרגע את האגל, אנא המתן...</string>
+  <string name="updater-wait">אני מעדכן כרגע את האגל, נא להמתין...</string>
   <string name="user-history-fail">לא ניתן לאחזר את ההיסטוריה עבור המשתמש: $1</string>
   <string name="userinfo-generic">מידע על המשתמש</string>
   <string name="userinfo-retrieve">אחזור מידע</string>

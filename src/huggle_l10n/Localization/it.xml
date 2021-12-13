@@ -134,7 +134,7 @@
   <string name="config-shortcutaction">Azione</string>
   <string name="config-changeshortcut">Cambia il tasto di scelta rapida per $1</string>
   <string name="config-noshortcut">Nessuno</string>
-  <string name="config-defaults">Predefinito</string>
+  <string name="config-defaults">Predefiniti</string>
   <string name="config-minor">Contrassegna come minore</string>
   <string name="config-ip">Utenti IP</string>
   <string name="config-watchlist">Aggiungi agli osservati speciali</string>
