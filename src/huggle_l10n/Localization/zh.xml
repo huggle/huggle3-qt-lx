@@ -13,6 +13,7 @@
 * NigelSoft
 * Phenolla
 * Shizhao
+* SolidBlock
 * Tomchen1989
 * WQL
 * XinuGod
@@ -176,7 +177,7 @@
   <string name="config-new-page">新页面</string>
   <string name="config-whitelisted">白名单</string>
   <string name="config-friend">朋友</string>
-  <string name="config-userspace">用户名字空间</string>
+  <string name="config-userspace">用户命名空间</string>
   <string name="config-talk">讨论页</string>
   <string name="config-columns-dynamic">让列表的列动态（自动基于项目尺寸调整）或者手动（用户手动调整尺寸）</string>
   <string name="config-message-notification">当您收到一条在您的讨论页的新信息时，显示一条通知</string>
@@ -552,7 +553,7 @@
   <string name="queue-diffsgroup">差异</string>
   <string name="queue-pagefiltersgroup">页面标题过滤器</string>
   <string name="queue-pageregex">匹配正则表达式的标题：</string>
-  <string name="queue-namespaces">名字空间：</string>
+  <string name="queue-namespaces">命名空间：</string>
   <string name="queue-editfiltersgroup">编辑过滤器</string>
   <string name="queue-userregex">匹配正则表达式的用户名：</string>
   <string name="queue-summaryregex">匹配正则表达式的摘要：</string>
@@ -859,7 +860,7 @@
   <string name="summary-edit-range">显示从修订ID $1至$2之间的差异</string>
   <string name="speedy-csd-invalid">无效速删标记，没有消息和wiki标记可以使用</string>
   <string name="speedy-csd-existing">页面上已有快速删除标记。</string>
-  <string name="namespace">名字空间</string>
+  <string name="namespace">命名空间</string>
   <string name="block-alreadyblocked">用户已被封禁</string>
   <string name="report-fail">无法举报用户，因为：$1</string>
   <string name="report-page-fail">错误：无法检索位于$1的举报页面</string>
