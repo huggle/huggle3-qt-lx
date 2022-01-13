@@ -210,7 +210,7 @@
   <string name="config-autoreport">Bir kullanıcıyı son uyarı ile uyarması istendiğinde</string>
   <string name="config-reportnone">Hiçbir şey yapma</string>
   <string name="config-reportprompt">Rapor istemi</string>
-  <string name="config-reportauto">Raporu otomatik olarak yayınla</string>
+  <string name="config-reportauto">Raporu otomatik olarak yayımla</string>
   <string name="config-templates">Kullanıcı şablonu mesajları</string>
   <string name="config-templatetext">Metni görüntüle</string>
   <string name="config-template">Şablon</string>
