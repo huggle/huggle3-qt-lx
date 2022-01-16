@@ -83,7 +83,7 @@ void UpdateForm::Check()
 {
 #ifndef HUGGLE_NOUPDATER
     this->qData = new WebserverQuery();
-    this->qData->URL = "http://tools.wmflabs.org/huggle/updater/?version=" + QUrl::toPercentEncoding(HUGGLE_VERSION)
+    this->qData->URL = "https://huggle.toolforge.org/updater/?version=" + QUrl::toPercentEncoding(HUGGLE_VERSION)
             + "&os=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->Platform)
             + "&language=" + Localizations::HuggleLocalizations->PreferredLanguage;
 
