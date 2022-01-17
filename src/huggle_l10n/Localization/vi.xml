@@ -9,6 +9,7 @@
 * P.T.Đ
 * Phjtieudoc
 * Q.Khải
+* TARGET6tidiem
 * Vinhtantran
 -->
 <resources>
@@ -825,6 +826,8 @@
   <string name="preferences-color-scheme-diff">Màu sắc bản khác biệt</string>
   <string name="preferences-color-scheme-diff-default">Mặc định</string>
   <string name="preferences-color-scheme-diff-dark-mode">Chế độ tối</string>
+  <string name="preferences-template-spam-info">Các tùy chọn này kiểm soát hệ thống con đang ngăn người dùng mục tiêu bị spam mẫu. Theo mặc định, người dùng không được cảnh báo về bản mẫu đối với các sửa đổi quá cũ và cũng chỉ nhận được cảnh báo về bản mẫu duy nhất trong trường hợp bạn lùi sửa nhiều sửa đổi của cùng một người dùng trong một thời gian rất ngắn.</string>
+  <string name="preferences-template-spam-title">Ngăn chặn bản mẫu thư rác</string>
   <string name="fail">Thất bại</string>
   <string name="request">Yêu cầu</string>
   <string name="requesting">Đang yêu cầu</string>
