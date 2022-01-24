@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
 * 1917 Ekim Devrimi
+* Ajeje Brazorf
 * Asmen
 * Gırd
 * Kumkumuk
@@ -13,7 +14,7 @@
 <resources>
   <string name="name">Zazaki</string>
   <string name="autorelog">Ney reyêna meperse, bıke</string>
-  <string name="isrtl">ğelet</string>
+  <string name="isrtl">false</string>
   <string name="add">Cı ke</string>
   <string name="cancel">Bıtexelne</string>
   <string name="clear">Bışuw</string>
