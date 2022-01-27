@@ -144,7 +144,7 @@
   <string name="config-revert">שחזור</string>
   <string name="config-skip">דילוג</string>
   <string name="config-revert-diff">שחזור עריכות לדף שחדשות יותר מההשוואה המוצגת אם הן נעשו על־ידי אותו משתמש משחית</string>
-  <string name="config-change-all">לשנות את כל הגדרות האגל על מנת שיתנהל יותר כמו האגל 2</string>
+  <string name="config-change-all">לשנות את כל הגדרות האגל כדי שיתנהל יותר כמו האגל 2</string>
   <string name="config-merge-messages">למזג את ההודעות שלך עם אחרות בפסקאות קיימות</string>
   <string name="config-months-name">להשתמש בחודשים בתור כותרות במקום בשם הדף</string>
   <string name="config-automatic-warning">להשתמש בסוג ורמה אוטומטיים של אזהרה בפונקצייה \"שליחת אזהרה\"</string>
@@ -271,7 +271,7 @@
   <string name="login-proxy-remember-this">שמירת הגדרה זו עבור הפעם הבאה</string>
   <string name="login-proxyport">פורט:</string>
   <string name="login-proxydomain">מתחם:</string>
-  <string name="proxy-restart">ייתכן שיהיה צורך בהפעלת האגל מחדש על מנת להחיל שינויים אלו.</string>
+  <string name="proxy-restart">ייתכן שיהיה צורך בהפעלת האגל מחדש כדי להחיל את השינויים האלה.</string>
   <string name="login-retrieving-user-conf">אחזור הגדרות אישיות</string>
   <string name="login-fail-css">הכניסה נכשלה ב־$1. אין אפשרות לאחזר את הגדרות המשתמש. Special:MyPage/huggle3.css חסר. האם יצרת את huggle3.css במרחב המשתמש שלך?</string>
   <string name="login-fail-enable-true">הכניסה נכשלה ב־$1: אין לך enable:true בדף ההגדרות האישי</string>
@@ -807,7 +807,7 @@
   <string name="preferences-extension-disabled">ההרחבה הזאת כבר תוזמנה לכיבוי בהפעלה הבאה של האגל</string>
   <string name="preferences-extension-disabled-restart">ההרחבה הזאת כבר תוזמנה לכיבוי בהפעלה הבאה של האגל</string>
   <string name="preferences-extension-enabled">ההרחבה הזאת אינה מתוזמנת לכיבוי בהפעלה הבאה של האגל</string>
-  <string name="preferences-extension-enabled-restart">ההרחבה הופעלה. יש להפעיל מחדש את האגל על מנת להחיל את השינויים.</string>
+  <string name="preferences-extension-enabled-restart">ההרחבה הופעלה. יש להפעיל מחדש את האגל כדי להחיל את השינויים.</string>
   <string name="preferences-enforce-baw">אכיפת צבעים שחור ולבן בשינויים שב־HTML</string>
   <string name="preferences-watchlist-watch">הוספה לרשימת המעקב</string>
   <string name="preferences-watchlist-unwatch">הסרה מרשימת המעקב</string>
