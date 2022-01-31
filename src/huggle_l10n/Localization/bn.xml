@@ -8,6 +8,7 @@
 * Mohammed Galib Hasan
 * Tauhid16
 * Titodutta
+* Yahya
 * আফতাবুজ্জামান
 -->
 <resources>
@@ -660,7 +661,7 @@
   <string name="error-reloginfail">পুনঃপ্রবেশ ব্যর্থ হয়েছে। হাগল পুনরারম্ভ করে চেষ্টা করুন</string>
   <string name="error-timeout">অনুরোধের সময় শেষ হয়েছে</string>
   <string name="error-unknown">অজানা ত্রুটি</string>
-  <string name="block-done">$1 কে বাধা দেয়া হয়েছে</string>
+  <string name="block-done">$1-কে বাধা দেয়া হয়েছে</string>
   <string name="block-progress">$1 কে বাধা দেয়া হচ্ছে...</string>
   <string name="blocklog-fail">$1-এর জন্য বাধাদান লগ সংগ্রহ করতে ব্যর্থ</string>
   <string name="blocklog-none">$1-এর জন্য কোন বাধাদান লগ নেই</string>
