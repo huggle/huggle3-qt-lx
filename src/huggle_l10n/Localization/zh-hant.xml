@@ -730,7 +730,7 @@
   <string name="deletelog-progress">正在取得$1的刪除日誌...</string>
   <string name="edit-bar-top">此編輯是最新修訂</string>
   <string name="edit-fail">無法編輯$1</string>
-  <string name="edit-progress">編輯 $1 中...</string>
+  <string name="edit-progress">正在編輯「$1」…</string>
   <string name="history-fail">取得$1的歷史記錄失敗</string>
   <string name="history-progress">正在取得$1（$2）的歷史記錄...</string>
   <string name="history-work">撤銷自己在$1所做出的編輯</string>
