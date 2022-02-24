@@ -627,7 +627,7 @@
   <string name="revert-nochange">Le contenu de la révision cible est identique à celui de la révision actuelle</string>
   <string name="revert-fail-pre-flight">Échec du contrôle préalable : $1</string>
   <string name="speedy-reason">Motif :</string>
-  <string name="speedy-parameters">Paramètres :</string>
+  <string name="speedy-parameters">Paramètres :</string>
   <string name="speedy-parameters-fail">Vous devez fournir les paramètres pour cette option rapide.</string>
   <string name="speedy-notifycreator">Aviser le créateur de la page</string>
   <string name="rollback">Retour à $1</string>

@@ -195,7 +195,7 @@
   <string name="login-error-password">Falscht Passwuert</string>
   <string name="login-error-projdisabled">Huggle ass elo op dësem Projet ausgeschalt.</string>
   <string name="login-error-unknown">Aloggen op $1 huet net funktionéiert.</string>
-  <string name="login-error-version">Dës Versioun ass vereelst. Aktualiséiert op déi lescht Versioun.</string>
+  <string name="login-error-version">Dës Versioun ass vereelzt. Aktualiséiert op déi lescht Versioun.</string>
   <string name="login-ro-title">Op \'nëmme liesen\' wiesselen</string>
   <string name="api-query-no-data">D\'API-Ufro huet keng Donnéeën zréckginn</string>
   <string name="main-stat">$1 Ännerunge pro Minutt $2, Zrécksetzunge pro Minutt, Niveau $3</string>
