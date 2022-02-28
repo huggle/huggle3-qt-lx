@@ -509,7 +509,7 @@
   <string name="message-title">Message $1</string>
   <string name="message-help">Spécifiez l’un ou les deux champs « Objet » ou « Résumé ». Si aucun résumé n’est donné, l’objet donné sera utilisé ; si aucun objet n’est donné, aucun entête ne sera ajouté.</string>
   <string name="message-subject">Objet :</string>
-  <string name="message-message">Message :</string>
+  <string name="message-message">Message :</string>
   <string name="message-summary">Résumé :</string>
   <string name="message-autosign">Ajouter automatiquement la signature</string>
   <string name="message-retrieve-new-token">Récupération du jeton pour la modification $1</string>
@@ -575,7 +575,7 @@
   <string name="report-reason">Motif :</string>
   <string name="report-auto">$1 signalé</string>
   <string name="report-intro">Vous allez signaler l’utilisateur $1</string>
-  <string name="report-message">Message :</string>
+  <string name="report-message">Message :</string>
   <string name="report-log">Avertissements pour cet utilisateur :</string>
   <string name="report-include">Inclure dans le rapport</string>
   <string name="report-select">Veuillez sélectionner une différence dans la liste afin d’ouvrir l’aperçu</string>
