@@ -47,6 +47,7 @@
   <string name="done">{{Identical|Done}}</string>
   <string name="no">Label of a button in a dialog containing a question. For instance:\n* [possibly] {{msg-huggle|Block-sensitivewarning}}\n\n{{Identical|No}}</string>
   <string name="ok">{{Identical|OK}}</string>
+  <string name="override-warn">&lt;!----&gt;</string>
   <string name="remove">{{Identical|Remove}}</string>
   <string name="rename">{{Identical|Rename}}</string>
   <string name="reload">Used as label for button.\n\nTooltip for the button is:\n* {{msg-huggle|Login-reload-tool-tip}}\n{{Identical|Reload}}</string>
@@ -198,7 +199,7 @@
   <string name="login-progress-user-info">Parameters:\n* $1 - project name. e.g. \"enwiki\"\n{{Related|Login-progress}}</string>
   <string name="login-progress-whitelist">{{Related|Login-progress}}</string>
   <string name="login-ssl">Used as label for the checkbox.</string>
-  <string name="login-fail">Parameters:\n* $1 - sitename</string>
+  <string name="login-fail">Parameters:\n* $1 - sitename\n{{Identical|Login failed}}</string>
   <string name="login-fail-with-reason">Parameters:\n* $1 - sitename\n* $2 - failure reason</string>
   <string name="login-error-admin">Login error message to inform the user that Huggle can be used on the current project only by an administrator account.</string>
   <string name="login-error-age">Login error message to inform the user that Huggle can be used on the current project only by users whose accounts were created before a certain number of days, where $1 is the number of days.</string>
