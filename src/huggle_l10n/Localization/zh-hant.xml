@@ -167,7 +167,7 @@
   <string name="config-whitelisted">白名單</string>
   <string name="config-friend">好友</string>
   <string name="config-userspace">使用者空間</string>
-  <string name="config-talk">對話頁</string>
+  <string name="config-talk">討論頁</string>
   <string name="config-columns-dynamic">使清單的欄位為動態（依項目內容多寡自動調整大小）或是手動（用戶自行調整大小）</string>
   <string name="config-message-notification">當您在自己的對話頁面中收到一則新訊息時，顯示通知</string>
   <string name="config-warning-api">顯示用於API查詢的警告</string>
@@ -380,7 +380,7 @@
   <string name="main-queue-remove-whitelisted">移除由白名單使用者作出的編輯</string>
   <string name="main-queue-remove-200">移除記分小於 -200 的編輯</string>
   <string name="main-goto">前往</string>
-  <string name="main-goto-mytalk">我的對話頁</string>
+  <string name="main-goto-mytalk">我的討論頁</string>
   <string name="main-goto-mycontribs">我的貢獻</string>
   <string name="main-revision-decline">拒絕修訂</string>
   <string name="main-revision">修訂</string>
@@ -649,7 +649,7 @@
   <string name="shortcut-page-patrol-edit">巡查編輯</string>
   <string name="shortcut-report-username">檢舉使用者名稱</string>
   <string name="shortcut-report-user">回報使用者</string>
-  <string name="shortcut-my-talk">我的對話頁</string>
+  <string name="shortcut-my-talk">我的討論頁</string>
   <string name="shortcut-raw">回退編輯並警告使用者</string>
   <string name="shortcut-contrib">顯示做出目前所顯示編輯之用戶的貢獻</string>
   <string name="shortcut-custom-msg">開啟一個表單來寄送自定義訊息給目前的使用者</string>
