@@ -3,6 +3,7 @@
 * Amire80
 * Bibas
 * Dr. Mohammed
+* FiberAhmed
 * Hhaboh162002
 * McDutchie
 * Meno25
@@ -776,7 +777,7 @@
   <string name="editquery-nocsrft">لا يوجد رمز تزوير الطلب عبر المواقع</string>
   <string name="editquery-error-retrieve-prev">يتعذر استرداد المحتوى السابق لصفحة: $1</string>
   <string name="editquery-error-append">لا يمكنك استخدام كل من Append and Prepend لتحرير صفحة</string>
-  <string name="editquery-error-badtoken">رمز سيء</string>
+  <string name="editquery-error-badtoken">رمز سيئ</string>
   <string name="editquery-invalid-token">غير قادر على تعديل $1 لأن رمزًا كان لي في ذاكرة التخزين المؤقت لم يعد صالحًا. يرجى محاولة تعديل هذه الصفحة مرة أخرى</string>
   <string name="provider-failure">فشل مزود الخلاصة $1 في $2، في محاولة للعثور على مزود بديل</string>
   <string name="provider-primary-failure">فشل مزود الخلاصة الأساسي; عد إلى مزود الويكي</string>
