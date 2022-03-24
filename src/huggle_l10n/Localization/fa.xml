@@ -5,6 +5,7 @@
 * Alirezaaa
 * Amirsara
 * Arian Ar
+* Beginneruser
 * Calak
 * Dalba
 * Darafsh
@@ -144,7 +145,7 @@
   <string name="config-defaults">پیش‌فرض‌ها</string>
   <string name="config-minor">نشانه‌گذاری به عنوان جزئی</string>
   <string name="config-ip">کاربران آی‌پی</string>
-  <string name="config-watchlist">افزودن به فهرست پی‌گیری‌ها</string>
+  <string name="config-watchlist">افزودن به فهرست پیگیری‌</string>
   <string name="config-defaultsummary">خلاصه ویرایش پیش‌فرض برای ویرایش‌های دستی</string>
   <string name="config-undosummary">خلاصه‌ویرایش برای خنثی‌سازی ویرایش‌های خودتان</string>
   <string name="config-confirm-user">نیاز به تأیید برای برگرداندن ویرایشی که در فضای کاربری صورت گرفته‌است</string>
@@ -437,10 +438,10 @@
   <string name="main-patrol-not-enabled">گشت‌زنی در $1 فعال نشده‌است</string>
   <string name="main-page-refresh">تازه کردن</string>
   <string name="main-page-restore">بازگردانی این نسخه</string>
-  <string name="main-page-watchlist-add">افزودن صفحه به فهرست پیگیری‌ها</string>
+  <string name="main-page-watchlist-add">افزودن صفحه به فهرست پیگیری‌</string>
   <string name="main-page-tab-close">بستن زبانه فعلی</string>
   <string name="main-page-tab-open">بازکردن سربرگ تازه</string>
-  <string name="main-page-watchlist-remove">حذف صفحه از فهرست پیگیری‌ها</string>
+  <string name="main-page-watchlist-remove">حذف صفحه از فهرست پیگیری‌</string>
   <string name="main-scripting">تهیه فایل آغازگر</string>
   <string name="main-scripting-script-manager">مدیریت اسکریپت ها</string>
   <string name="main-user-info">مشاهدهٔ اطلاعات کاربر</string>
@@ -675,8 +676,8 @@
   <string name="shortcut-revert">برگرداندن ویرایش</string>
   <string name="shortcut-x-raw">ارسال مورد چندم در منوی برگرداندن و هشدار</string>
   <string name="shortcut-x-revert">ارسال مورد چندم در منوی برگرداندن</string>
-  <string name="shortcut-watch">درج صفحهٔ نمایش به فهرست پیگیری‌هایتان</string>
-  <string name="shortcut-unwatch">حذف صفحهٔ نمایش از فهرست پیگیری‌هایتان</string>
+  <string name="shortcut-watch">درج صفحهٔ نمایش به فهرست پیگیری‌‌تان</string>
+  <string name="shortcut-unwatch">حذف صفحهٔ نمایش از فهرست پیگیری‌‌تان</string>
   <string name="shortcut-x-warn">ارسال مورد چندم در منوی هشدار</string>
   <string name="shortcut-good">این ویرایش را به عنوان خوب علامت بزن</string>
   <string name="shortcut-open-in-huggle">بازکردن صفحه در حال حاضر نمایش داده‌شده</string>
@@ -824,8 +825,8 @@
   <string name="preferences-extension-enabled">این افزونه برای غیرفعال کردن راه‌اندازی مجدد هاگل برنامه‌ریزی نشده‌است</string>
   <string name="preferences-extension-enabled-restart">افزونه فعال شده‌است، با این وجود برای به کار افتادن هاگل شما باید آن را دوباره راه‌اندازی کنید</string>
   <string name="preferences-enforce-baw">نمایش رنگ سفید و سیاه در تفاوت اچ‌تی‌ام‌ال</string>
-  <string name="preferences-watchlist-watch">افزودن به فهرست پی‌گیری‌ها</string>
-  <string name="preferences-watchlist-unwatch">حذف از فهرست پی‌گیری</string>
+  <string name="preferences-watchlist-watch">افزودن به فهرست پیگیری‌</string>
+  <string name="preferences-watchlist-unwatch">حذف از فهرست پیگیری</string>
   <string name="preferences-watchlist-preferences">از ترجیحات ویکی خود استفاده کنید</string>
   <string name="preferences-watchlist-nochange">کاری نکن</string>
   <string name="preferences-auto-watch-talk">پیگیری صفحهٔ بحث کاربری که پیام هشدار از شما دریافت کرده‌است</string>
