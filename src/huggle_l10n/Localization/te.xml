@@ -142,7 +142,7 @@
   <string name="config-enable-irc">IRC ని చేతనం చెయ్యి</string>
   <string name="config-remove-reverted">వేరేవాళ్ళు ఈసరికే తిరగ్గొట్టిన దిద్దుబాట్లను క్యూ లోంచి తీసెయ్యి</string>
   <string name="config-remove-old">పేజీలో కొత్త దిద్దుబాట్లు జరిగినపుడుపతా దిద్దుబాట్లను క్యూ లోంచి తీసెయ్యి</string>
-  <string name="config-auto-load-history">చరిత్రను, వాడూకరి సమాచారాన్నీ ఆటోమాటిగ్గా లోడు చెయ్యి (మరింత బ్యాండ్‌విడ్తు అవసరమౌతుంది)</string>
+  <string name="config-auto-load-history">చరిత్రను, వాడుకరి సమాచారాన్నీ ఆటోమాటిగ్గా లోడు చెయ్యి (మరింత బ్యాండ్‌విడ్తు అవసరమౌతుంది)</string>
   <string name="config-last-revision">ప్రస్తుతం లోడై ఉన్న కూర్పు అత్యంత తాజాది కానట్లైతే, అత్యంత తాజా కూర్పుకు మార్చు (దాన్ని ఇప్పుడు దించుకుంటుంది కాబట్టి హగుల్ నెమ్మదిస్తుంది)</string>
   <string name="config-wait-edit">రాయదగ్గ విశేషాలు చేతనమయ్యేందుకు పట్టే సమయం, సెకండ్లలో:</string>
   <string name="config-display-next">చూపించే పాఠ్యం</string>
@@ -244,7 +244,7 @@
   <string name="irc-failure">ప్రాథమిక ఫీడు ప్రొవైడరు విఫలమైంది. వికీ ప్రొవైడరుపై ఆధారపడుతున్నాం...</string>
   <string name="irc-wait">IRC ఫీడు ప్రొవైడరు ఆగడం కోసం వేచి ఉన్నాం</string>
   <string name="irc-switch-rc">వికీ RC ఫీడుకు మారుతున్నాం</string>
-  <string name="login-old">పాథ స్థానం నుండి వాడూకరి కాన్ఫిగ్‌ను తెస్తున్నాం</string>
+  <string name="login-old">పాత స్థానం నుండి వాడుకరి కాన్ఫిగ్‌ను తెస్తున్నాం</string>
   <string name="login-intro">ఓ ప్రాజెక్టును ఎంచుకుని మీ వాడుకరిపేరు, సంకేతపదాన్ని ఇవ్వండి. \"ప్రాజెక్టులు\" బొత్తాన్ని నొక్కి ఒకటి కంటే ఎక్కువ ప్రాజెక్టులను ఎంచుకోవచ్చు.</string>
   <string name="invalid-bot-user-name">ఇది సరైన బాట్ పేరు కాదు. సరైన పేరుకు ఇలా ఉంటుంది: Jimbo@Huggle</string>
   <string name="login-tab-botp">బాట్ సంకేతపదం</string>
@@ -266,7 +266,7 @@
   <string name="login-fail-enable-true">$1 లో లాగిన్ విఫలమైంది: మీ వ్యక్తిగత కాన్ఫిగ్‌లో enable:true లేదు.</string>
   <string name="login-fail-no-info">$1 లో లాగిన్ విఫలమైంది: వాడుకరి సమాచారాన్ని తేలేకపోయాం: $2</string>
   <string name="login-bot">బాట్ సంకేతపదానికీ లెగసీ లాగిన్‌కీఊ తేడా ఏమిటి?</string>
-  <string name="login-fail-parse-config">$1 లో లాగిన్ విఫలమైంది: వాడూకరి కాన్ఫిగరేషన్ను పార్స్ చెయ్యలేకపోయాం. మరిన్ని వివరాల కోసం డీబగ్ లాగ్ చూడండి.</string>
+  <string name="login-fail-parse-config">$1 లో లాగిన్ విఫలమైంది: వాడుకరి కాన్ఫిగరేషన్ను పార్స్ చెయ్యలేకపోయాం. మరిన్ని వివరాల కోసం డీబగ్ లాగ్ చూడండి.</string>
   <string name="login-fail-parse-config-yaml">$1 లో లాగిన్ విఫలమైంది: వాడుకేరి కాన్ఫిగరేషన్ను పార్స్ చెయ్యలేకపోయాం: $2</string>
   <string name="login-fail-user-data">$1 లో లాగిన్ విఫలమైంది: వాడుకరి సమాచారాన్ని తేలేకపోయాం. API క్వెరీలో డేటా ఏమీ రాలేదు.</string>
   <string name="login-fail-rollback-rights">$1 లో లాగిన్ విఫలమైంది: ఈ ప్రాజెక్టులో మీకు రోల్‌బ్యాక్ అనుమతి లేదు.</string>
@@ -432,7 +432,7 @@
   <string name="main-browser-forward">ముందుకు</string>
   <string name="main-browser-open">దీన్ని బయటి బ్రౌజరులో చూడండి</string>
   <string name="main-browser-newedits">పేజీలో జరిగిన కొత్త దిద్దుబాట్లను చూపించు</string>
-  <string name="main-browser-newcontribs">వాడూకరి చేసిన కొత్త రచనలను చూపించు</string>
+  <string name="main-browser-newcontribs">వాడుకరి చేసిన కొత్త రచనలను చూపించు</string>
   <string name="main-browser-lasttab">ఈ ట్యాబే చివరిది కాబట్టి దీన్ని మూసెయ్యలేం - కనీసం ఒక్క ట్యాబైనా తెరిచి ఉండాలి</string>
   <string name="main-revert-manual">రోల్‌బ్యాక్ టోకెన్ లేదు, $1 ను మానవికంగా తిరగ్గొట్టండి</string>
   <string name="main-han">HAN</string>
@@ -546,7 +546,7 @@
   <string name="report-select">మునుజూపును తెరిచేందుకు, జాబితా లోంచి ఏదో ఒక తేడాను ఎంచుకోండి</string>
   <string name="report-write">రాస్తున్నాం</string>
   <string name="reportuser-not">ఈ వాడుకరిపై ఇప్పుడు ఫిర్యాదు చెయ్యలేదు</string>
-  <string name="report-evidence-none-provid">సాక్ష్యంగా తేడాలనేమీ చూపించలేదు. అందువలన ఈ వాడూకరి దుశ్చర్య చేసారా లేదా అనేది గుర్తించడం నిర్వాహకులకు చాలా కష్టమౌతుంది. కొనసాగాలనే నిశ్చయించుకున్నారా?</string>
+  <string name="report-evidence-none-provid">సాక్ష్యంగా తేడాలనేమీ చూపించలేదు. అందువలన ఈ వాడుకరి దుశ్చర్య చేసారా లేదా అనేది గుర్తించడం నిర్వాహకులకు చాలా కష్టమౌతుంది. కొనసాగాలనే నిశ్చయించుకున్నారా?</string>
   <string name="report-duplicate">ఈ వాడుకరిపై ఈసరికే ఫిర్యాదు చేసారు</string>
   <string name="report-fail2">లోపం: $1 వద్ద ఫిర్యాదు పేజీని తేలేకపోయాం</string>
   <string name="report-progress">$1 పై ఫిర్యాదు చేస్తున్నాం...</string>
@@ -633,7 +633,7 @@
   <string name="shortcut-good">ఇప్పుడు చూపిస్తున్న దిద్దుబాటు మంచిదే అని గుర్తు పెట్టు</string>
   <string name="shortcut-open-in-huggle">ఇప్పుడు చూపిస్తున్న పేజీని తెరుస్తుంది</string>
   <string name="shortcut-open">ఇప్పుడు చూపిస్తున్న దిద్దుబాటును బ్రౌజరులో తెరుస్తుంది</string>
-  <string name="shortcut-talk">ఈ దిద్దుబాటు చేసిన వాడూకరి చర్చ పేజీని చూపించు</string>
+  <string name="shortcut-talk">ఈ దిద్దుబాటు చేసిన వాడుకరి చర్చ పేజీని చూపించు</string>
   <string name="shortcut-revert-agf-1">సదుద్దేశం గానే భావించి చివరి కూర్పును తిరగ్గొట్టు</string>
   <string name="shortcut-edit">ఇప్పుడు చూపిస్తున్న పేజీలో దిద్దుబాటు చెయ్యండి</string>
   <string name="shortcut-edit-in-browser">ఇప్పుడు బ్రౌజరులో చూపిస్తున్న పేజీలో దిద్దుబాటు చెయ్యండి</string>

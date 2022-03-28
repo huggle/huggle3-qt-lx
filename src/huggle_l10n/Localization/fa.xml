@@ -161,7 +161,7 @@
   <string name="config-skip">رها کردن</string>
   <string name="config-revert-diff">برگرداندن ویرایش‌های تازه‌تر صفحه نسبت به تفاوت نمایش داده‌شده در حالتی که توسط همان کاربر خرابکار صورت گرفته‌باشد</string>
   <string name="config-change-all">تغییر همه تنظیمات هاگل طوری که بیشتر شبیه هاگل ۲ رفتار کند</string>
-  <string name="config-merge-messages">ادغام‌کردن پیام‌های شما با دیگران در بخش‌های موجود</string>
+  <string name="config-merge-messages">ادغام‌ پیام‌های شما با دیگران در بخش‌های موجود</string>
   <string name="config-months-name">استفاده از ماه‌ها به عنوان نام سربرگ جای نام صفحه</string>
   <string name="config-automatic-warning">استفاده از نوع و سطح خودکار برای هشدار در عملیات «ارسال هشدار»</string>
   <string name="config-enable-irc">فعال کردن آی‌آرسی</string>
@@ -216,7 +216,7 @@
   <string name="config-blocktimeanon">کاربران ناشناس</string>
   <string name="config-blocktimereg">کاربران ثبت‌شده</string>
   <string name="config-summaryprompt">ورود توضیحات</string>
-  <string name="config-history">دانلود تمام تاریخچه همهٔ مقالات</string>
+  <string name="config-history">دانلود تمام تاریخچۀ همهٔ مقالات</string>
   <string name="config-defaultsprompt">بازگرداندن پیش‌فرض‌ها؟</string>
   <string name="config-logbrowsetitle">موقعیت سیاهه پرونده</string>
   <string name="config-shortcutconflict">میانبر \' $1 \'در تعارض با میانبر موجود برای\' $1 \' است.</string>
@@ -224,7 +224,7 @@
   <string name="config-notify-update">بررسی برای بروز‌رسانی</string>
   <string name="config-notify-beta">بررسی برای نسخه های بتا در صورت موجود بودن</string>
   <string name="custommessage-title">نوشتن پیام به $1</string>
-  <string name="custommessage-summary">ویرایش خلاصه ویرایش (برچسب هاگل به صورت خودکار افزوده می‌شود)</string>
+  <string name="custommessage-summary">ویرایش خلاصۀ ویرایش (برچسب هاگل به صورت خودکار افزوده می‌شود)</string>
   <string name="custommessage-subject">عنوان</string>
   <string name="custommessage-menu">ارسال پیام شخصی‌سازی شده</string>
   <string name="custommessage-send">ارسال پیام</string>
@@ -260,7 +260,7 @@
   <string name="history-error-message-title">غیرقابل خنثی‌سازی</string>
   <string name="history-error">این مورد را نمی‌توان خنثی‌سازی نمود. صفحه ممکن است در این میان تغییر کرده یا حذف شده باشد و هاگل نمی‌تواند از این نقطه خنثی کند. اگر واقعاً می‌خواهید خنثی‌سازی کنید، لازم است این کار را دستی و از راه رابط مدیاویکی انجام دهید.</string>
   <string name="history-failure">ناتوان در بازیابی تاریخچه</string>
-  <string name="userhistory-title">تاریخچه ویرایش‌های شما</string>
+  <string name="userhistory-title">تاریخچۀ ویرایش‌های شما</string>
   <string name="irc-connected">$1: به فید آی‌آرسی تغییرات اخیر متصل شد</string>
   <string name="irc-connecting">در حال تلاش برای اتصال به خوراک تغییرات اخیر آی‌آرسیِ $1؛ این ممکن است چند لحظه‌ای طول بکشد...</string>
   <string name="irc-disconnected">اتصال به خوراک تغیرات اخیر آی‌آرسی در $1 از دست رفت؛ اتصال دوباره...</string>
@@ -289,7 +289,7 @@
   <string name="login-proxydomain">دامنه:</string>
   <string name="proxy-restart">ممکن است برای اعمال این تغییرات، هاگل نیازمند راه‌اندازی مجدد باشد.</string>
   <string name="login-retrieving-user-conf">بازگردانی تنظیمات کاربر</string>
-  <string name="login-fail-css">ورود به سیستم انجام نشد. دریافت پیکربندی کاربر ناممکن بود. Special:MyPage/huggle3.css یافت نشد. آیا Huggle3.css را در فضای کاربری خودتان ساخته‌اید؟</string>
+  <string name="login-fail-css" fuzzy="true">ورود به سیستم انجام نشد. دریافت پیکربندی کاربر ناممکن بود. Special:MyPage/huggle3.css یافت نشد. آیا Huggle3.css را در فضای کاربری خودتان ایجاد کرده‌اید؟</string>
   <string name="login-fail-enable-true">ورود ناموفق در $1: شما مقدار enable:true را در پیکربندی شخصی خود ندارید.</string>
   <string name="login-fail-no-info">ورود ناموفق در $1: امکان دریافت اطلاعات کاربر نبود: $2</string>
   <string name="login-bot">تفاوت بین ورود ربات و ورود عادی چیست؟</string>
@@ -323,7 +323,7 @@
   <string name="login-ssl">برای ورود از HTTPS استفاده شود (به OpenSSL نیاز دارد)</string>
   <string name="login-fail">ثبت ورود در $1 نافرجام ماند</string>
   <string name="login-fail-with-reason">ورود ناموفق (در $1): $2</string>
-  <string name="login-error-admin">استفاده از هاگل در این پروژه نیازمند دسترسی مدیریت است.</string>
+  <string name="login-error-admin">استفاده از هاگل در این پروژه نیازمند حساب مدیریت است.</string>
   <string name="login-error-age">استفاده از هاگل در این پروژه نیازمند است که حسابی با قدمت حداقل $1 روز داشته‌باشید.</string>
   <string name="login-error-alldisabled">هاگل اکنون در همه پروژه‌ها غیرفعال است.</string>
   <string name="login-error-approval">استفاده از هاگل در $1 نیازمند تأیید است.</string>
@@ -418,7 +418,7 @@
   <string name="main-page-switchtoarticle">گزیدن مقاله</string>
   <string name="main-page-viewlatest">نمایش آخرین نسخه</string>
   <string name="main-page-history">بازیابی تاریخچه</string>
-  <string name="main-page-historypage">نمایش تاریخچە صفحە</string>
+  <string name="main-page-historypage">نمایش تاریخچۀ صفحه</string>
   <string name="main-page-edit">ویرایش صفحه در مرورگر</string>
   <string name="main-page-tag">برچسب</string>
   <string name="main-page-reqdeletion">درخواست حذف سریع</string>
@@ -448,7 +448,7 @@
   <string name="main-user-ignore">نادیده گرفتن</string>
   <string name="main-user-unignore">عدم نادیده‌گرفتن</string>
   <string name="main-user-contribs">نمایش مشارکت‌های کاربر در یک مرورگر</string>
-  <string name="main-user-clear-talk">پاک کردن صفحه بحث کاربر</string>
+  <string name="main-user-clear-talk">پاک کردن صفحۀ بحث کاربر</string>
   <string name="main-user-talk">مشاهده صفحه بحث</string>
   <string name="main-user-page">نمایش صفحهٔ کاربر</string>
   <string name="main-user-message">پیام...</string>
@@ -690,11 +690,11 @@
   <string name="shortcut-tab">بازکردن سربرگ تازه</string>
   <string name="shortcut-rw-stay">برگرداندن نسخهٔ کنونی، هشدار به کاربر و ماندن در صفحه</string>
   <string name="shortcut-revert-and-stay">برگرداندن ویرایش کنونی و ماندن در صفحه</string>
-  <string name="shortcut-custom-reason">برگرداندن ویرایش با استفاده از خلاصه‌ویرایش سفارشی</string>
+  <string name="shortcut-custom-reason">برگرداندن ویرایش با استفاده از خلاصۀ ویرایش سفارشی</string>
   <string name="shortcut-user-contribs-browser">نمایش مشارکت‌های کاربر در مرورگر</string>
   <string name="shortcut-user-clear-talk">پاک کردن صفحهٔ بحث این کاربر</string>
   <string name="shortcut-main-clear-queue">حذف صف</string>
-  <string name="shortcut-revert-agf">واگردانی با فرض حس نیت، با یک خلاصه ویرایش سفارشی</string>
+  <string name="shortcut-revert-agf">واگردانی با فرض حس نیت، با یک خلاصۀ ویرایش سفارشی</string>
   <string name="warning-title">هشدار $1</string>
   <string name="warning-levelgroup">سطح هشدار</string>
   <string name="warning-levelauto">خودکار</string>
@@ -722,7 +722,7 @@
   <string name="han-disconnected">شما از شبکه ضدخرابکاری هاگل قطع اتصال شدید</string>
   <string name="han-network">شبکه</string>
   <string name="han-send">ارسال</string>
-  <string name="error-loggedout">از حساب کاربری خارج شده است، در حال ورود دوباره به سامانه...</string>
+  <string name="error-loggedout">از حساب خارج شده است، مجدداً در حال وارد شدن است ...</string>
   <string name="error-noresponse">عدم پاسخ</string>
   <string name="error-pagemissing">این صفحه وجود ندارد</string>
   <string name="error-reloginfail">ناموفق در ورود به سامانه، هاگل را راه‌اندازی مجدد نمایید.</string>
@@ -773,7 +773,7 @@
   <string name="loadglobalconfig-fail">ناتوان در بارگیری صفحه پیکربندی سراسری</string>
   <string name="loadprojectconfig-fail">ناتوان در بارگیری صفحه پیکربندی سراسری</string>
   <string name="loaduserconfig-fail">امکان بارگیری صفحهٔ پیکربندی‌های کاربر نبود</string>
-  <string name="reqprotection-badformat">قالب درخواست ناشناخته است</string>
+  <string name="reqprotection-badformat">قالب درخواست صفحه ناشناخته است</string>
   <string name="reqprotection-duplicate">حفاظت از پیش درخواست شده است</string>
   <string name="reqprotection-fail">درخواست محافظت از «$1» انجام نشد</string>
   <string name="reqprotection-progress">در حال درخواست محافظت برای $1</string>
@@ -911,7 +911,7 @@
   <string name="tip4">اکثر ویجت‌ها در صفحه به صورت امن قابل بستن هستند (به جز نوار ناوبری)</string>
   <string name="tip5">شما می‌توانید بطور همزمان در چند پروژه، از هاگل استفاده کنید. کافی‌ست در صفحهٔ ورود به سامانه، روی پروژه‌ها کلیک کنید.</string>
   <string name="tip6">اگر شما کاربر باتجربه‌ای باشید که هرگز اشتباه نمی‌کند، برگرداندن توسط هاگل می‌تواند بسیار سریعتر شود. ترجیحات را باز کنید و \"برگرداندن فوری\" را تیک بزنید.</string>
-  <string name="tip7">در ترجیحات می‌توانید پالایهٔ شخصی‌سازی‌شدهٔ خودتان را بسازید آنها در صفحهٔ تنظیمات ویکی در زیر صفحهٔ کاربریتان، ذخیره می‌شوند.</string>
+  <string name="tip7">در ترجیحات می‌توانید پالایهٔ شخصی‌سازی‌شدهٔ خودتان را ایجاد کنید آنها در صفحهٔ تنظیمات ویکی در زیر صفحهٔ کاربریتان، ذخیره می‌شوند.</string>
   <string name="tip8">دکمهٔ G به ویرایش برچسب «ویرایش خوب» می‌زند که به سایر کاربران پیام می‌دهد که آن ویرایش قابل رها کردن است، میزان امتیاز بد بودن کاربر را کاهش می‌دهد و برای پیام خوش‌آمدگویی ارسال می‌کند.</string>
   <string name="tip9">فشردن دکمهٔ S ویرایش را برچسب «ویرایش مشکوک» می‌زند که به سایر کاربران اصلاع می‌دهد که ویرایش نیاز به توجه بیشتر دارد و به صف ویرایش‌های مشکوک برای بازبینی بعدی توسط کاربران حرفه‌ای افزوده می‌شود.</string>
   <string name="tip10">بیشتر میان‌برها در ترجیحاتتان قابل تغییر هستند.</string>
