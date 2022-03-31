@@ -4,6 +4,7 @@
 * Abijeet Patro
 * Amire80
 * Anamdas
+* AnupamM
 * McDutchie
 * NehalDaveND
 * Phoenix303
@@ -17,7 +18,7 @@
 * संजीव कुमार
 -->
 <resources>
-  <string name="name">हिन्दी</string>
+  <string name="name">अंग्रेज़ी</string>
   <string name="autorelog">अगली बार ऐसा बिना पूछे करे</string>
   <string name="isrtl">false</string>
   <string name="add">जोड़ें</string>

@@ -332,7 +332,7 @@
   <string name="login-error-config-retrieve">ورود ناموفق، امکان دریافت اطلاعات کاربر نبود: $1</string>
   <string name="login-error-config-query-no-data">ورود ناموفق - آیا مشکلی در شبکه هست؟ عدم توانایی در بارگیری تنظیمات سراسری</string>
   <string name="login-error-count">استفاده از هاگل در این پروژه نیازمند حداقل $1 ویرایش است.</string>
-  <string name="login-error-disabled">هاگل برای حساب کاربری شما در $1 فعال نشده‌است؛ صفحهٔ پیکربندی حساب کاربریتان را بررسی کنید.</string>
+  <string name="login-error-disabled">هاگل برای حساب شما در $1 فعال نشده‌است؛ صفحهٔ پیکربندی‌تان را بررسی کنید.</string>
   <string name="login-error-global">ورود ناموفق - آیا مشکلی در شبکه هست؟ عدم توانایی در بارگیری یا تحلیل صفحهٔ تنظیمات سراسری</string>
   <string name="login-error-invalid">نام کاربری نادرست</string>
   <string name="login-error-noconfig">$1 صفحهٔ پیکربندی هاگل ندارد</string>
