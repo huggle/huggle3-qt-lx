@@ -184,6 +184,8 @@
   <string name="login-error-cancelled">Texelna.</string>
   <string name="login-error-invalid">Nameyê karberiyo nêvêrde</string>
   <string name="login-error-password">Parolaya xırab</string>
+  <string name="main-menu-provider-stop">Rabernayoği bıvındarne</string>
+  <string name="main-menu-provider-resume">Rabernayoği bırame</string>
   <string name="main-page">Pele</string>
   <string name="main-user">Karber</string>
   <string name="main-contribs">İştıraki</string>
@@ -196,6 +198,7 @@
   <string name="main-system-options">Weçinıteki...</string>
   <string name="main-system-logout">Bıveciye</string>
   <string name="main-system-abort">Kurtaj</string>
+  <string name="main-system-change-provider">Rabernayoği bıvurne</string>
   <string name="main-system-change-provider-irc">IRC</string>
   <string name="main-system-change-provider-wiki">Wiki</string>
   <string name="main-system-exit">Vıcyayış</string>
@@ -230,6 +233,7 @@
   <string name="main-page-watch">Seyr ke</string>
   <string name="main-page-unwatch">Seyr meke</string>
   <string name="main-page-purge">Pak ke</string>
+  <string name="main-page-display">Na pele bıasne</string>
   <string name="main-page-patrol">Zey kontrolbiyayiye nişan ke</string>
   <string name="main-page-move">Bıkırışe...</string>
   <string name="main-page-protect">Bışevekne</string>
@@ -347,6 +351,7 @@
   <string name="delete-done">$1 esteriya</string>
   <string name="delete-progress">$1 bestere…</string>
   <string name="edit-progress">$1 vurriyeno...</string>
+  <string name="speedy-finished">Qediya</string>
   <string name="wait">Kerem kerên, bıpawên...</string>
   <string name="namespace">Heruna nameyan</string>
   <string name="main-revert-type-unknown">nêzanaye</string>
