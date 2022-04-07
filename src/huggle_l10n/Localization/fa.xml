@@ -133,7 +133,7 @@
   <string name="config-ircmode">در صورت امکان از IRC برای تغییرات اخیر بهره بگیر</string>
   <string name="config-ircport">درگاه آی‌آر‌سی</string>
   <string name="config-difffontsize">اندازهٔ قلم تفاوت</string>
-  <string name="config-logfile">فایلِ لاگ</string>
+  <string name="config-logfile">پرونده سیاهه</string>
   <string name="config-viewlocalconfig">مشاهده پوشه تنظیمات محلی</string>
   <string name="config-trayicon">نمایش آیکون سینی</string>
   <string name="config-startupmessage">نمایش پیام هنگام راه‌اندازی</string>
@@ -197,7 +197,7 @@
   <string name="config-confirmselfrevert">تأیید برگرداندن ویرایش خودم (به جز خنثی‌سازی)</string>
   <string name="config-confirmwarned">تائید نسخه برای ویرایش توسط کاربر هشدارگرفته</string>
   <string name="config-confirmrange">تائید برگرداندن به ویرایش کاربران آی‌پی در رنج  /16 به عنوان کاربری که ویرایشش برگردانده شده</string>
-  <string name="config-confirmpage">تائید خنثی‌سازی در صفحات چشم‌پوشی‌شده</string>
+  <string name="config-confirmpage">تائید خنثی‌سازی در صفحه‌های چشم‌پوشی‌شده</string>
   <string name="config-autoadvance">بعد از برگرداندن، به ویرایش بعدی در صف برو</string>
   <string name="config-userollback">استفاده از واگردانی در صورت موجود بودن</string>
   <string name="config-revertsummaries">خلاصه‌ویرایش‌های برگرداندنِ موجود در منو</string>
@@ -341,7 +341,7 @@
   <string name="login-error-password">رمز عبور نادرست</string>
   <string name="login-error-projdisabled">هاگل اکنون در پروژه شما غیرفعال است.</string>
   <string name="login-error-unknown">قادر به ثبت ورود در $1 نبود.</string>
-  <string name="login-error-version">این نسخه، قدیمی است. به آخرین نسخه روزآمدسازی کنید.</string>
+  <string name="login-error-version">این نسخه، قدیمی است. به آخرین نسخه به‌روزرسانی کنید.</string>
   <string name="login-error-whitelist">بارگیری فهرست سفید کاربران برای $1 نافرجام ماند.</string>
   <string name="login-ro-title">تغییر به فقط خواندنی</string>
   <string name="login-ro-question">یک یا پروژه‌های ($1) به شما اجازهٔ ورود به سامانه همراه با اجازهٔ .یرایش نمی‌دهند (دلیل: $2). آیا قصد دارید به صورت فقط-خواندن وارد سامانه شوید؟</string>
@@ -649,7 +649,7 @@
   <string name="update-progress">دانلود نسخه جدید، لطفاً صبر کنید...</string>
   <string name="update-error">موفق به دانلود نسخه تازه نشد</string>
   <string name="updater-title">نسخه جدیدی از هاگل در دسترس است</string>
-  <string name="updater-update">روزآمدسازی</string>
+  <string name="updater-update">به‌روزرسانی</string>
   <string name="updater-update-available">نگارش تازه‌تری از هاگل موجود است: نگارش $1</string>
   <string name="updater-open-manualdownloadpage">باز کردن صفحه دانلود</string>
   <string name="updater-close">بستن</string>
