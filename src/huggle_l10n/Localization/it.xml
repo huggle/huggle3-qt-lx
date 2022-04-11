@@ -165,7 +165,7 @@
   <string name="config-display-next">Mostra il successivo</string>
   <string name="config-retrieve-edit">Recupera le tue modifiche</string>
   <string name="config-nothing">Niente</string>
-  <string name="config-bot-edits">Modifiche di Bot (b)</string>
+  <string name="config-bot-edits">Modifiche di bot (b)</string>
   <string name="config-own-edits">Le proprie modifiche</string>
   <string name="config-reverts">Annullamenti</string>
   <string name="config-new-page">Nuova pagina</string>

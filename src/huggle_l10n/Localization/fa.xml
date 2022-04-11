@@ -19,6 +19,7 @@
 * Jeeputer
 * Ladsgroup
 * Leyth
+* LordProfo
 * Mahdiz
 * Mardetanha
 * McDutchie
@@ -289,7 +290,7 @@
   <string name="login-proxydomain">دامنه:</string>
   <string name="proxy-restart">ممکن است برای اعمال این تغییرات، هاگل نیازمند راه‌اندازی مجدد باشد.</string>
   <string name="login-retrieving-user-conf">بازگردانی تنظیمات کاربر</string>
-  <string name="login-fail-css" fuzzy="true">ورود به سیستم انجام نشد. دریافت پیکربندی کاربر ناممکن بود. Special:MyPage/huggle3.css یافت نشد. آیا Huggle3.css را در فضای کاربری خودتان ایجاد کرده‌اید؟</string>
+  <string name="login-fail-css">ورود به $1 انجام نشد: دریافت پیکربندی کاربر ناممکن بود. Special:MyPage/huggle3.css یافت نشد. آیا Huggle3.css را در فضای کاربری خودتان ایجاد کرده‌اید؟</string>
   <string name="login-fail-enable-true">ورود ناموفق در $1: شما مقدار enable:true را در پیکربندی شخصی خود ندارید.</string>
   <string name="login-fail-no-info">ورود ناموفق در $1: امکان دریافت اطلاعات کاربر نبود: $2</string>
   <string name="login-bot">تفاوت بین ورود ربات و ورود عادی چیست؟</string>
