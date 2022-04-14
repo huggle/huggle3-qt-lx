@@ -225,7 +225,7 @@
   <string name="main-tools-sess">Malumata ronıştışi bıasne</string>
   <string name="main-page-next">Bahdoyên</string>
   <string name="main-page-viewlatest">Vurnayışê peyêni bımocne</string>
-  <string name="main-page-history">Verori peyser biya</string>
+  <string name="main-page-history">Verêni peyser biya</string>
   <string name="main-page-historypage">Pela tarixi bımocne</string>
   <string name="main-page-edit">Pele roviceri sera bıvurne</string>
   <string name="main-page-tag">Etiket</string>
@@ -240,7 +240,7 @@
   <string name="main-page-delete">Bestere</string>
   <string name="main-page-load">Bar ke</string>
   <string name="main-page-refresh">Anewe kerê</string>
-  <string name="main-page-restore">Ena revizyoner peyser biya</string>
+  <string name="main-page-restore">Enê çımraviyarnayışi peyser biya</string>
   <string name="main-page-watchlist-add">Lista seyrkerdışi rê pêri cı kerê</string>
   <string name="main-page-tab-open">Taba newiye de akerê</string>
   <string name="main-scripting">Skriptış</string>
