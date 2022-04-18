@@ -100,7 +100,7 @@
   <string name="block-duration">مدت:</string>
   <string name="block-message">پیام صفحهٔ بحث:</string>
   <string name="block-message-user">ارسال پیام به کاربر مقصد همراه با توضیح مسدودشدن</string>
-  <string name="block-anononly">فقط بستن کاربرهای ناشناس</string>
+  <string name="block-anononly">فقط کاربران ناشناس بسته شوند</string>
   <string name="block-creation">بستن ایجاد حساب</string>
   <string name="block-autoblock">فعال کردن‌بستن خودکار</string>
   <string name="block-email">بستن ایمیل</string>
@@ -110,8 +110,8 @@
   <string name="block-warnloglabel">هشدارها:</string>
   <string name="block-sharedipwarning">توجه: $1 به عنوان آی‌پی مشترک یا پویا برچسب خورده است.</string>
   <string name="block-rangeblockwarning">$1 هم‌اکنون نیز تحت تاثیر بندایش بر گستره $2 قرار دارد.\nاین بندایش تاثیر بندایش بر گستره را دور خواهد زد. ادامه خواهید داد؟</string>
-  <string name="block-token-1">گرفتن نشانه برای بستن $1</string>
-  <string name="block-fail">ناتوان در مسدود کردن کاربر، $1</string>
+  <string name="block-token-1">گرفتن توکن برای بستن دسترسی $1</string>
+  <string name="block-fail">ناتوان در بستن دسترسی کاربر، $1</string>
   <string name="block-token-e1">نمی‌توان نشانه را بازیابی کرد :$1</string>
   <string name="block-error-no-info">هیچ اطلاعات کاربری در کوئری موجود نبود (آیا شما مدیر هستید؟)</string>
   <string name="block-type">بستن/بازکردن</string>
@@ -732,10 +732,10 @@
   <string name="block-done">$1 بسته‌شد.</string>
   <string name="block-progress">در حال مسدود کردن $1 ...</string>
   <string name="blocklog-fail">ناتوان از گرفتن سیاهه بسته‌شدن‌های $1</string>
-  <string name="blocklog-none">سیاهه بسته‌شدنی برای $1 وجود ندارد.</string>
-  <string name="blocklog-progress">در حال گرفتن سیاهه بسته شدن‌های $1...</string>
+  <string name="blocklog-none">هیچ سیاهۀ بستن دسترسی برای $1 وجود ندارد.</string>
+  <string name="blocklog-progress">در حال گرفتن سیاهۀ بستن دسترسی برای $1...</string>
   <string name="blocknotify-fail">$1 بلوک اطلاع داده نشد</string>
-  <string name="blocknotify-progress">اعلام بندایش به $1</string>
+  <string name="blocknotify-progress">اعلام بستن دسترسی به $1</string>
   <string name="delete-done">$1 حذف شد</string>
   <string name="delete-fail">$1 حذف نشد</string>
   <string name="delete-progress">در حال حذف کردن $1 ...</string>
