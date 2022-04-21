@@ -28,6 +28,7 @@
 * Nk88
 * Nzeemin
 * Okras
+* Pacha Tchernof
 * Putnik
 * Redredsonia
 * Stjn
@@ -812,7 +813,7 @@
   <string name="function-miss">Функция в настоящий момент недоступна</string>
   <string name="missing-aiv">В этом проекте нет ЗКАБ</string>
   <string name="missing-page">В этой вики нет страницы $1</string>
-  <string name="updating-wl">Обновляем белый список...</string>
+  <string name="updating-wl">Белый список обновляется…</string>
   <string name="waiting">Ожидание…</string>
   <string name="feature-nfru">Эта функция только для анонимных участников</string>
   <string name="report-no-user">Получатель сообщения не выбран, пожалуйста, выберите одного из участников</string>
