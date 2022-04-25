@@ -142,7 +142,7 @@
   <string name="main-page-purge">களைக</string>
   <string name="main-page-curr-disp">\nதற்பொழுது தெரிவது</string>
   <string name="main-page-display">இப்பக்கத்தைக் காட்டுக</string>
-  <string name="main-page-patrol">ரோந்து செய்ததாக குறி</string>
+  <string name="main-page-patrol">சுற்றுக்காவல் செய்ததாகக் குறி</string>
   <string name="main-page-move">நகர்த்தவும்...</string>
   <string name="main-page-flag-good-edit" fuzzy="true">நன்றாக திருத்தியமைக்கப்பட்டது என்று கொடி குறிகை செய் (இச்செயலால் பயனருக்கு 200 மதிப்பெண் கிடைக்கும்)</string>
   <string name="main-page-protect">பாதுகாப்பளி</string>
