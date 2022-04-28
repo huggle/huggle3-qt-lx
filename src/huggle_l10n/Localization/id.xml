@@ -10,6 +10,7 @@
 * Irus
 * Kenrick95
 * Macofe
+* NFarras
 * Rachmat04
 * Raynasution
 * Silencemen21
@@ -217,7 +218,7 @@
   <string name="delete-title">Hapus $1</string>
   <string name="delete-reason">Alasan:</string>
   <string name="delete-deletionlog">Log penghapusan:</string>
-  <string name="delete-rem-talk">Hapus pembicaraan terkait</string>
+  <string name="delete-rem-talk">Hapus halaman pembicaraan terkait</string>
   <string name="delete-notify">Beri tahu pembuat</string>
   <string name="delete-token01">Mendapatkan token untuk menghapus $1</string>
   <string name="delete-e1">Halaman tidak dapat dihapus: $1</string>
