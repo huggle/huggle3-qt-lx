@@ -184,7 +184,7 @@
   <string name="config-userspace">فضای نام کاربر</string>
   <string name="config-talk">صفحهٔ بحث</string>
   <string name="config-columns-dynamic">پویاساختن ستون‌های فهرست‌ها (بر اساس آیتم‌ها تغییر اندازه می‌دهند) یا تنظیم به صورت دستی (کاربر می‌تواند اندازه آنها را تغییر دهد)</string>
-  <string name="config-message-notification">نمایش یک اطلاعیه زمانی که پیام تازه‌ای در صفحهٔ بحث‌تان دریافت کردید</string>
+  <string name="config-message-notification">نمایش یک آگاه‌سازی زمانی که پیام تازه‌ای در صفحهٔ بحث‌تان دریافت کردید</string>
   <string name="config-warning-api">نمایش هشدارهای کوئری‌های رابط برنامه‌نویسی</string>
   <string name="config-title-diff">عنوان صفحه در هر تفاوت (متن بزرگ که فقط عنوان صفحه را در بالای هر تفاوت نشان می‌دهد)</string>
   <string name="config-updates">بررسی برای روزآمدسازی‌ها</string>
