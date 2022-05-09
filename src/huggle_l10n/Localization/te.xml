@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
+* Ajeje Brazorf
 * Chaduvari
 * Kiranmayee
 * Praveen Illa
@@ -9,7 +10,7 @@
 <resources>
   <string name="name">తెలుగు</string>
   <string name="autorelog">ఇకనుంచీ ఇలా అడక్కుండా ఈ పని చెయ్యి</string>
-  <string name="isrtl">అసత్యం</string>
+  <string name="isrtl">false</string>
   <string name="add">చేర్చు</string>
   <string name="cancel">రద్దుచేయి</string>
   <string name="clear">తుడిచివేయి</string>
