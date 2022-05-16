@@ -408,7 +408,7 @@
   <string name="main-goto-mycontribs">Мой вклад</string>
   <string name="main-revision-decline">Отклонить правку</string>
   <string name="main-revision">Правка</string>
-  <string name="main-revision-view">Просмотр</string>
+  <string name="main-revision-view">Посмотреть</string>
   <string name="main-revision-revert">Откатить отображаемую сейчас правку</string>
   <string name="main-revision-rv-stay">Отменить эту правку и остаться на странице</string>
   <string name="main-revision-revert-warn">Откатить текущую показанную правку и предупредить пользователя</string>
@@ -595,7 +595,7 @@
   <string name="report-message">Сообщение:</string>
   <string name="report-log">Предупреждения для этого участника:</string>
   <string name="report-include">Включить в отчёт</string>
-  <string name="report-select">Пожалуйста, выберите изменение в списке для того, чтобы открыть предварительный просмотр</string>
+  <string name="report-select">Пожалуйста, выберите сравнение версий в списке для того, чтобы открыть предпросмотр</string>
   <string name="report-write">Запись</string>
   <string name="reportuser-not">Об этом пользователе пока не сообщалось</string>
   <string name="report-evidence-none-provid">В качестве доказательств не представлены конкретные правки. В результате администраторам будет трудно определить, является ли участник вандалом. Вы уверены что хотите продолжить?</string>

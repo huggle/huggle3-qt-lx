@@ -235,7 +235,7 @@
   <string name="login-progress-user-info">‎O wiriañ an titouroù implijer evit $1</string>
   <string name="login-progress-whitelist">Kargañ ar roll wenn a implijerien...</string>
   <string name="login-remember-password">Derc\'hel soñj eus ar ger-tremen</string>
-  <string name="login-ssl">Implijout HTTPS evit en em lugañ (ezhomm a zo eus OpenSSL)</string>
+  <string name="login-ssl">Implijout HTTPS evit kevreañ (ezhomm a zo eus OpenSSL)</string>
   <string name="login-fail">C\'hwitet kevreañ ouzh $1</string>
   <string name="login-fail-with-reason">C\'hwitet kevreañ (ouzh $1): $2</string>
   <string name="login-error-admin">Ezhomm zo eus ur gont merour evit implijout Huggle war ar raktres-mañ.</string>
