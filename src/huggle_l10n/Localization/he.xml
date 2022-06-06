@@ -647,7 +647,7 @@
   <string name="shortcut-page-patrol-edit">סימון העריכה כבדוקה</string>
   <string name="shortcut-report-username">דיווח על שם המשתמש</string>
   <string name="shortcut-report-user">לדווח על המשתמש</string>
-  <string name="shortcut-my-talk">דך השיחה שלי</string>
+  <string name="shortcut-my-talk">דף השיחה שלי</string>
   <string name="shortcut-raw">לשחזר את העריכה ולהזהיר את המשתמש</string>
   <string name="shortcut-contrib">הצגת התרומות של המשתמש שעשה את העריכה שמוצגת כעת</string>
   <string name="shortcut-custom-msg">פותח טופס לשליחת הודעה מותאמת אישית למשתמש הנוכחי</string>

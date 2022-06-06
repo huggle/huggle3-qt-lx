@@ -8,6 +8,7 @@
 * CiaPan
 * Clockery
 * Happy13241
+* Joao Xavier
 * Kghbln
 * Krenair
 * Liuxinyu970226
@@ -343,7 +344,7 @@
   <string name="report-write">none\n{{Identical|Writing}}</string>
   <string name="report-progress">{{Identical|Reporting}}</string>
   <string name="report-done">{{Identical|Reported}}</string>
-  <string name="report-user">{{Identical|Report}}</string>
+  <string name="report-user">{{Identical|Raporto}}</string>
   <string name="score-score">{{Identical|Score}}</string>
   <string name="score-word">{{Identical|Word}}</string>
   <string name="score-range">{{Identical|Range}}</string>
