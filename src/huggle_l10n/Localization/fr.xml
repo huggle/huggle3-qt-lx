@@ -523,7 +523,7 @@
   <string name="protect-request-title">Demande de protection de $1</string>
   <string name="protect-reason">Motif :</string>
   <string name="protect-expiry">Expiration :</string>
-  <string name="protect-log">Journal de protection :</string>
+  <string name="protect-log">Journal de protection :</string>
   <string name="protect-currentlevel">Niveau de protection actuel :</string>
   <string name="protect-type">Type de protection :</string>
   <string name="protect-none">Aucune</string>
@@ -898,7 +898,7 @@
   <string name="queue-empty-text">Il n’y a rien d’autre dans la file…</string>
   <string name="protip">ProTip</string>
   <string name="wikipagetagsform-group">Regrouper dans {{$1}}</string>
-  <string name="tip1">Huggle supporte les onglets comme tout autre navigateur ! Si vous êtes sur une modification et que vous voulez la conserver pour plus tard, vous pouvez simplement ouvrir un nouvel onglet et continuer à vérifier la file de là. La file d’attente est partagée entre tous les onglets.</string>
+  <string name="tip1">Huggle prend en charge les onglets comme tout autre navigateur ! Si vous êtes sur une modification et si vous voulez la conserver pour plus tard, vous pouvez simplement ouvrir un nouvel onglet et continuer à vérifier la file de là. La file d’attente est partagée entre tous les onglets.</string>
   <string name="tip2">Hugglet contient une « barre d’édition », un petit widget qui mémorise l’historique de l’utilisateur et des pages, d’une nouvelle façon. Il n’est cependant pas activé par défaut. Si vous êtes sur un petit écran, vous pouvez remplacer les widgets d’historique utilisateur et de page par celui-ci  !</string>
   <string name="tip3">La plupart des préférences sont enregistrées dans le wiki sur [[Special:MyPage/huggle.yaml.js]]. Vous pouvez aussi les mettre à jour manuellement à cet endroit.</string>
   <string name="tip4">Presque tous les widgets à l’écran peuvent être fermés sans souci (sauf la barre de navigation).</string>

@@ -188,7 +188,7 @@
   <string name="main-revision-view">ხილვა</string>
   <string name="main-revision-revert">ამჟამად ნაჩვენები რედაქტირების გაუქმება</string>
   <string name="main-revision-rv-stay">ამ რედაქტირების გაუქმება და გვერდზე დარჩენა</string>
-  <string name="main-revision-previous">Предыдущая</string>
+  <string name="main-revision-previous">წინა</string>
   <string name="main-revision-next">Следующая</string>
   <string name="main-revision-latest">Последняя</string>
   <string name="main-tools">ხელსაწყოები</string>
