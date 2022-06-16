@@ -283,7 +283,7 @@
   <string name="login-translate">Prekladať Huggle</string>
   <string name="login-progress-formtitle">Načítava sa...</string>
   <string name="login-progress-start">Prihlasovanie na $1</string>
-  <string name="login-progress-retrieve-mw">Načítavanie informácií o MédiaWiki pre $1</string>
+  <string name="login-progress-retrieve-mw">Načítavanie informácií o MediaWiki pre $1</string>
   <string name="login-progress-language">Aktualizovanie správ...</string>
   <string name="login-progress-global">Kontrola globálnych nastavení...</string>
   <string name="login-progress-config">Kontrola nastavenia stránok...</string>
@@ -826,7 +826,7 @@
   <string name="requested">Požadované</string>
   <string name="protect-request-fail">Nemožno načítať aktuálnu stránku hlásení: $1</string>
   <string name="protect-request-fail-notext">Nepodarilo sa načítať aktuálnu stránku hlásení pretože požiadavka nevrátila pre túto stránku žiadny text</string>
-  <string name="protect-request-fail-notime">Požiadavka nevrátila žiadnu časovú značku. To môže byť chyba na Médiawiki. Prerušovanie požiadavky</string>
+  <string name="protect-request-fail-notime">Požiadavka nevrátila žiadnu časovú značku. To môže byť chyba na MediaWiki. Prerušovanie požiadavky</string>
   <string name="message-fail">Nepodarilo sa doručiť správu</string>
   <string name="edit-conflict">Konflikt pri upravovaní</string>
   <string name="page-tag-nodescription">Pre túto značku nie je popis</string>

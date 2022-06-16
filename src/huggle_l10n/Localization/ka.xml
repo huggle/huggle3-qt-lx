@@ -71,7 +71,7 @@
   <string name="block-blockloglabel">დაბლოკვის ჟურნალი:</string>
   <string name="block-warnloglabel">გაფრთხილებები:</string>
   <string name="block-type">დაბლოკვა / განბლოკვა</string>
-  <string name="block-admin" fuzzy="true">ადმინისტრატორის დაბლოკვა</string>
+  <string name="block-admin">დამბლოკავი ადმინისტრატორი</string>
   <string name="config-function">ფუნქცია</string>
   <string name="config-description">აღწერა</string>
   <string name="config-shortcut">მალსახმობი</string>
@@ -159,7 +159,7 @@
   <string name="main-page">Страница</string>
   <string name="main-user">Участник</string>
   <string name="main-contribs">Вклад</string>
-  <string name="main-history">История</string>
+  <string name="main-history">ისტორია</string>
   <string name="main-new-messages">თქვენ გაქვთ ახალი შეტყობინებები. აირჩიეთ სისტემა -&gt; ახალი შეტყობინებების ჩვენება ან მათ სანახავად დააჭირეთ M-ს.</string>
   <string name="main-system">Система</string>
   <string name="main-system-messages">Показать новые сообщения</string>

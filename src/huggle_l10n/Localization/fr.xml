@@ -302,7 +302,7 @@
   <string name="login-translate">Traduire Huggle</string>
   <string name="login-progress-formtitle">Chargement en cours...</string>
   <string name="login-progress-start">Connexion à $1</string>
-  <string name="login-progress-retrieve-mw">Récupération des informations sur MédiaWiki pour $1</string>
+  <string name="login-progress-retrieve-mw">Récupération des informations sur MediaWiki pour $1</string>
   <string name="login-progress-language">Mise à jour des fichiers de messages en cours...</string>
   <string name="login-progress-global">Vérification des configurations globales...</string>
   <string name="login-progress-config">Vérification des pages de configuration...</string>
@@ -845,7 +845,7 @@
   <string name="requested">Demandé</string>
   <string name="protect-request-fail">Impossible de récupérer la page de rapport en cours : $1</string>
   <string name="protect-request-fail-notext">Impossible de récupérer la page courante de rapport parce que la requête n’a pas renvoyé de texte pour cette page</string>
-  <string name="protect-request-fail-notime">La requête n’a pas renvoyé d’horodatage. C’est peut-être un bogue de MédiaWiki. Abandon de la requête</string>
+  <string name="protect-request-fail-notime">La requête n’a pas renvoyé d’horodatage. C’est peut-être un bogue de MediaWiki. Abandon de la requête</string>
   <string name="message-fail">Echec lors de la transmission du message</string>
   <string name="edit-conflict">Conflit de modification.</string>
   <string name="page-tag-nodescription">Il n’y a aucune description pour ce bandeau</string>
@@ -869,7 +869,7 @@
   <string name="projects">Projets</string>
   <string name="unable-to-retrieve-user-list">Impossible de récupérer la liste utilisateur : $1</string>
   <string name="login-no-userinfo">Le site n’a renvoyé aucune information userinfo</string>
-  <string name="login-invalid-register-date">Date d’inscription renvoyée par MédiaWiki non valide</string>
+  <string name="login-invalid-register-date">Date d’inscription renvoyée par MediaWiki non valide</string>
   <string name="login-site-info-query-failed">La demande d’information du site pour $1 a échouée : $2</string>
   <string name="login-no-site-info-returned">Aucune information de site n’a été renvoyée pour ce wiki</string>
   <string name="loading-main-window">Chargement de la fenêtre principale de Huggle...</string>
