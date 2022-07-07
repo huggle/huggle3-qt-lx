@@ -11,6 +11,7 @@
 * Rajat11
 * Rsrikanth05
 * Sachinkatiyar
+* Saurmandal
 * Sfic
 * Smtchahal
 * YmKavishwar
@@ -268,7 +269,7 @@
   <string name="main-system-abort">परिचय</string>
   <string name="main-system-change-provider">प्रदाता बदलें</string>
   <string name="main-system-change-provider-irc">आई॰आर॰सी॰</string>
-  <string name="main-system-change-provider-wiki">विकी</string>
+  <string name="main-system-change-provider-wiki">विकि</string>
   <string name="main-system-exit">निकास</string>
   <string name="main-queue">पंक्ति</string>
   <string name="main-queue-next">अगला</string>
