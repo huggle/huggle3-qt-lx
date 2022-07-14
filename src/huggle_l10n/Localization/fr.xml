@@ -208,7 +208,7 @@
   <string name="config-blocktime">Durée de blocage par défaut</string>
   <string name="config-blocktimeanon">utilisateurs anonymes</string>
   <string name="config-blocktimereg">utilisateurs inscrits</string>
-  <string name="config-summaryprompt">Entrer un résumé</string>
+  <string name="config-summaryprompt">Saisissez un résumé</string>
   <string name="config-history">Télécharger l’historique complet de tous les articles</string>
   <string name="config-defaultsprompt">Restaurer les paramètres par défaut ?</string>
   <string name="config-logbrowsetitle">Emplacement du fichier journal</string>
