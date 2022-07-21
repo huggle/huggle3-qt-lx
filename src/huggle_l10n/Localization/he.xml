@@ -176,7 +176,7 @@
   <string name="config-html-messages">HAN יכול לתצג הודעות HTML (שימו לב: זהו דבר מסוכן ביותר)</string>
   <string name="config-summary-present">להאיר תקציר כאשר הוא נמצא ולא כאשר הוא חסר</string>
   <string name="config-close-without">לסגור בלי לשמור</string>
-  <string name="config-confirmmultiple">לבקש אישור על שחזורים מרובים של עריכה על־ידי אותו משתמש</string>
+  <string name="config-confirmmultiple">לבקש אישור לשחזורים גרסאות מרובות של עריכה מאת אותו משתמש</string>
   <string name="config-confirmsame">לבקש אישר על שחזור לעריכה של המשתמש שעריכתו משוחזרת</string>
   <string name="config-confirmselfrevert">לבקש אישור לעריכות עצמיות (למעט ביטול)</string>
   <string name="config-confirmwarned">לבקש אישור על עריכה של משתמש מוזהר</string>

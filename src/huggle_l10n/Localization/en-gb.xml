@@ -48,7 +48,6 @@
   <string name="id">ID</string>
   <string name="type">Type</string>
   <string name="target">Target</string>
-  <string name="user">User</string>
   <string name="size">Size</string>
   <string name="date">Date</string>
   <string name="page">Page</string>
@@ -339,7 +338,6 @@
   <string name="main-no-reason">No reason was provided by user</string>
   <string name="main-restoring-slap">Another edit is currently being restored, please wait...</string>
   <string name="main-page">Page</string>
-  <string name="main-user">User</string>
   <string name="main-contribs">Contribs</string>
   <string name="main-history">History</string>
   <string name="main-new-messages">You have new messages. Select System -&gt; Show new messages, or press M to view them.</string>
