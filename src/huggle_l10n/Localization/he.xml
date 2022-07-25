@@ -246,7 +246,7 @@
   <string name="history-failure">לא ניתן לאחזר היסטוריה</string>
   <string name="userhistory-title">היסטוריה של השינויים שלך</string>
   <string name="irc-connected">$1: מחובר להזנת שינויים אחרונים ב־IRC</string>
-  <string name="irc-connecting">מנסה להתחבר להזנת שינויים אחרונים ב־IRC ב־$1, זה יכול לקחת מספר רגעים...</string>
+  <string name="irc-connecting">מנסה להתחבר להזנת שינויים אחרונים ב־IRC ב־$1, זה יכול לקחת כמה רגעים...</string>
   <string name="irc-disconnected">התחברות להזנת שינויים אחרונים אבדה ב־$1. התחברות מחדש...</string>
   <string name="irc-nochannel">לא נמצא ערוץ IRC בשביל $1; תשמשנה שאילתות API אטיות יותר במקום</string>
   <string name="irc-error">לא ניתן להתחבר להזנת IRC של שינויים אחרונים ($1: $2). תשמשנה שאילתות API אטיות יותר במקומו</string>

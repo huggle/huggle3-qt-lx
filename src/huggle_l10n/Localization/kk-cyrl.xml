@@ -4,6 +4,7 @@
 * Batyrbek.kz
 * Irus
 * Macofe
+* U.ayaao.p
 -->
 <resources>
   <string name="name">Қазақша кирил</string>
@@ -266,7 +267,7 @@
   <string name="main-page-display">Бұл бетті көрсету</string>
   <string name="main-page-patrol">Тексерілді деп белгіленді</string>
   <string name="main-page-move">Жылжыту...</string>
-  <string name="main-page-protect">Жоба</string>
+  <string name="main-page-protect">Қорғау</string>
   <string name="main-page-delete">Жою</string>
   <string name="main-page-load">Оқыту</string>
   <string name="main-page-restore">Бұл нұсқаны қалпына келтіру</string>
