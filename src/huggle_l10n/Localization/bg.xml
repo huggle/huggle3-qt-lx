@@ -86,7 +86,7 @@
   <string name="config-watchlist">Добавяне към списъка за наблюдение</string>
   <string name="config-skip">Пропускане</string>
   <string name="config-friend">Приятел</string>
-  <string name="config-talk">Страница за разговор</string>
+  <string name="config-talk">Беседа</string>
   <string name="delete-title">Изтриване на $1</string>
   <string name="delete-reason">Причина:</string>
   <string name="irc-error">Неуспешно свързване с IRC канала за последни промени ($1: $2). Ще бъдат използвани по-бавни заявки чрез API</string>

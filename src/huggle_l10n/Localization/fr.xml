@@ -837,7 +837,7 @@
   <string name="preferences-color-scheme-diff">Couleurs du diff</string>
   <string name="preferences-color-scheme-diff-default">Par défaut</string>
   <string name="preferences-color-scheme-diff-dark-mode">Mode sombre</string>
-  <string name="preferences-template-spam-info">Ces options contrôlent le sous-système qui empêche les utilisateurs cible d’être pourris par des modèles. Par défaut, les utilisateurs ne sont pas avertis par modèle pour des modifications trop anciennes, et obtiennent également un unique avertissement de modèle au cas où vous annulez plusieurs modifications par le même utilisateur en un temps très court.</string>
+  <string name="preferences-template-spam-info">Ces options contrôlent le sous-système qui empêche les utilisateurs cible d’être inondés d’avertissements par des modèles. Par défaut, les utilisateurs ne sont pas avertis par modèle pour des modifications trop anciennes. Ils obtiennent également un unique avertissement de modèle au cas où vous annulez plusieurs modifications par le même utilisateur en un temps très court.</string>
   <string name="preferences-template-spam-title">Prévention du pourrissement par modèle</string>
   <string name="fail">Échec</string>
   <string name="request">Requête</string>
@@ -906,7 +906,7 @@
   <string name="tip6">L’annulation par Huggle peut être plus rapide si vous êtes un utilisateur expérimenté qui ne fait jamais d’erreurs \'\'\';-)\'\'\' Ouvrez les préférences et cochez « Annulations instantanées »</string>
   <string name="tip7">Vous pouvez créer vos filtres personnalisés de file d’attente dans vos préférences. Ils sont stockés dans votre page de configuration du wiki.</string>
   <string name="tip8">Appuyer sur G marquera cette modification comme une « bonne modification ». Cela indiquera aux autres que cette modification peut être ignorée, décrémentera le score de mauvaise conduite de l’utilisateur et, de façon facultative, lui enverra un message de bienvenue.</string>
-  <string name="tip9">Appuyer sur S marquera la modification comme une « modification suspecte ». Cela indiquera aux autres de prêter attention à cette modification et l’ajoutera à la file des modifications suspectes pour une relecture ultérieure par des experts.</string>
+  <string name="tip9">Appuyer sur « S » marquera la modification comme une « modification suspecte ». Cela indiquera aux autres de prêter attention à cette modification et l’ajoutera à la file des modifications suspectes pour une relecture ultérieure par des experts.</string>
   <string name="tip10">La plupart des raccourcis peuvent être modifiés dans vos préférences.</string>
   <string name="tip11">Déplacer un widget sur l’écran de Huggle par-dessus un autre widget fusionnera les deux en un, séparés par des onglets.</string>
   <string name="tip12">Vous avez fait une erreur ? Aucun problème, cliquer droit sur une modification que vous avez faite dans « l’historique de vos modifications » ouvrira une fenêtre qui proposera l’option d’annuler votre propre modification.</string>
