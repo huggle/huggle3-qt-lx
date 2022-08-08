@@ -10,6 +10,7 @@
 * TKsdik8900
 * Yusuke1109
 * ネイ
+* 春春眠眠
 -->
 <resources>
   <string name="name">日本語</string>
@@ -67,8 +68,10 @@
   <string name="disable">無効</string>
   <string name="no-token">トークンなし</string>
   <string name="flags">フラグ</string>
+  <string name="gracetime">編集を実行するクエリが終了するのを待っています...</string>
   <string name="browser-none">まだ表示するページはありません。</string>
   <string name="browser-load">MWフォールバックを使用して差分をダウンロードしています。しばらくお待ちください...</string>
+  <string name="browser-miss-summ">要約を指定していません。</string>
   <string name="browser-diff">ページの差分：$1（スコア：$2）</string>
   <string name="browser-fail">差分を取得できません: $1</string>
   <string name="about-contributors">開発者:</string>
@@ -102,6 +105,7 @@
   <string name="config-queue-filter-ignore">無視（フィルターの無効化）</string>
   <string name="config-queue-filter-exclude">除外（一致した場合に編集をキューから除外）</string>
   <string name="config-queue-filter-require">必要（一致した場合のみ編集をキューに入れる）</string>
+  <string name="config-queue-modified-title">キューが変更されました</string>
   <string name="config-summ">テンプレートの差し戻し理由を個別に記述</string>
   <string name="config-title">オプション</string>
   <string name="config-already-in-use">このショートカットは $1 で既に使用されています。別のショートカットを指定してください</string>
@@ -129,6 +133,7 @@
   <string name="config-confirm-wl">ホワイトリストに登録された利用者による改編について承認を要求</string>
   <string name="config-confirm-talk">トークページの差し戻しには確認が必要です</string>
   <string name="config-use-rollback">ソフトウェアのロールバックを使用する</string>
+  <string name="config-welcome-empty-page">良い編集で空のトークページを持っている利用者にウェルカムメッセージを送信する</string>
   <string name="config-conflicts-revert">同一ページを改変した複数の利用者の編集衝突を自動解決する</string>
   <string name="config-instant-reverts">即時差し戻しを使用（即時性があるものの、執行すると撤回不能）</string>
   <string name="config-reverts-multiple">同一使用者による複数編集の差し戻しについて：</string>
@@ -136,9 +141,13 @@
   <string name="config-revert">差し戻し</string>
   <string name="config-skip">スキップ</string>
   <string name="config-revert-diff">同じ破壊行為者が行なった編集であれば、表示中の版よりも新しい版に差し戻します</string>
+  <string name="config-change-all">すべてのHuggle設定を Huggle2のように動作するように変更します</string>
+  <string name="config-automatic-warning">「警告の送信」機能で自動警告タイプとレベルを使用する</string>
   <string name="config-enable-irc">IRCを可動</string>
   <string name="config-remove-reverted">他の人が既に差し戻した編集を除去</string>
   <string name="config-require-delay">次の編集の読み込みまで遅延が必要で、その間は一切の書き込みの機能を使えません（キーの連打によるバグ予防に有効）</string>
+  <string name="config-retrieve-edit">自分の編集を取得する</string>
+  <string name="config-nothing">なし</string>
   <string name="config-bot-edits">ボットによる編集(b)</string>
   <string name="config-own-edits">自分の編集</string>
   <string name="config-reverts">差し戻し</string>
@@ -182,6 +191,9 @@
   <string name="config-no-colon">キューの名前にコロン\':\'は使えません</string>
   <string name="config-notify-update">更新を確認</string>
   <string name="config-notify-beta">利用できる場合はベータ版を確認</string>
+  <string name="custommessage-subject">タイトル</string>
+  <string name="custommessage-menu">カスタムメッセージを送信する</string>
+  <string name="custommessage-send">メッセージの送信</string>
   <string name="delete-title">$1 を削除</string>
   <string name="delete-reason">理由:</string>
   <string name="delete-deletionlog">削除ログ:</string>
