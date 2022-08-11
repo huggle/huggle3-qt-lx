@@ -10,6 +10,7 @@
 * Titodutta
 * Wikitanvir
 * Yahya
+* আজিজ
 * আফতাবুজ্জামান
 -->
 <resources>
@@ -30,7 +31,7 @@
   <string name="no">না</string>
   <string name="ok">ঠিক আছে</string>
   <string name="remove">সরান</string>
-  <string name="rename">নামান্তর</string>
+  <string name="rename">পুনঃনামকরণ</string>
   <string name="reload">পুনঃলোড</string>
   <string name="project">প্রকল্প</string>
   <string name="warning">সতর্কীকরণ</string>
