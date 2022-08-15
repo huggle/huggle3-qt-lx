@@ -317,7 +317,7 @@
   <string name="login-start">Войти</string>
   <string name="login-oauth-notsupported">Этот метод в данный момент не поддерживается</string>
   <string name="login-translate">Перевести Huggle</string>
-  <string name="login-progress-formtitle">Загрузка…</string>
+  <string name="login-progress-formtitle">Загружается…</string>
   <string name="login-progress-start">Входим в $1</string>
   <string name="login-progress-retrieve-mw">Получение информации о MediaWiki для $1</string>
   <string name="login-progress-language">Обновляю файлы сообщений...</string>

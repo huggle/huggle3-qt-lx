@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
+* Amire80
 * Purodha
 -->
 <resources>
@@ -76,7 +77,7 @@
   <string name="block-none" fuzzy="true">Mer han keine Metmaacher zum Schpärre.</string>
   <string name="contribution-browser-user-info">Mer zeije de neujere Beijdrähsch vum Metmaacher $1 aan</string>
   <string name="config-function">Funxjuhn</string>
-  <string name="config-description">Beschrevve!!FUZZYY!!</string>
+  <string name="config-description" fuzzy="true">Beschrevve</string>
   <string name="config-shortcut">Affköözong</string>
   <string name="config-queue-filter-ignore">Övverjonn (Bedügg nix)</string>
   <string name="config-queue-filter-exclude">Ußschlehße (Dat moß nit)</string>
