@@ -4,6 +4,7 @@
 * Fohanno
 * Fulup
 * Gwenn-Ael
+* Huñvreüs
 * Macofe
 * Y-M D
 -->
@@ -178,7 +179,7 @@
   <string name="custommessage-wikiuser-plaintext-2">Skrivañ ho kemennadenn amañ</string>
   <string name="delete-title">Dilemel $1</string>
   <string name="delete-reason">Abeg :</string>
-  <string name="delete-deletionlog">Marilh an dilamadennoù :</string>
+  <string name="delete-deletionlog">Marilh an diverkadennoù :</string>
   <string name="delete-notify">Kemenn ar c\'hrouer</string>
   <string name="delete-e1">Ne c\'hall ket ar bajenn bezañ dilamet : $1</string>
   <string name="delete-e2">Ne c\'haller ket dilemel ar bajenn</string>
