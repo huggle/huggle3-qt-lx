@@ -80,7 +80,7 @@
   <string name="block-email">Stankañ ar postel</string>
   <string name="block-usertalk">Kaozeal</string>
   <string name="block-usercontribs">Degasadennoù</string>
-  <string name="block-blockloglabel">Roll ar stankadennoù :</string>
+  <string name="block-blockloglabel">Marilh ar stankadennoù:</string>
   <string name="block-warnloglabel">Kemennoù diwall :</string>
   <string name="block-sharedipwarning">Evezhiadenn:$1 zo merket evel ur chomlec\'h IP dinamek pe rannet.</string>
   <string name="block-token-1">O tapout ur jadouer evit stankañ $1</string>
