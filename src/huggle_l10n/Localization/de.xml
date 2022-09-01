@@ -17,12 +17,13 @@
 * Robby
 * Se4598
 * ToBeFree
+* VMzB
 * WikiBayer
 -->
 <resources>
   <string name="name">Deutsch</string>
-  <string name="autorelog">Dies tun, ohne das nächste Mal zu fragen.</string>
-  <string name="isrtl">false</string>
+  <string name="autorelog">Nächstes Mal ausführen, ohne zu fragen.</string>
+  <string name="isrtl">Nein</string>
   <string name="add">Hinzufügen</string>
   <string name="cancel">Abbrechen</string>
   <string name="clear">Leeren</string>
@@ -67,9 +68,9 @@
   <string name="status">Status</string>
   <string name="link">Link</string>
   <string name="reason">Grund</string>
-  <string name="diffid">ID des Unterschieds</string>
-  <string name="whitelisted">$1 wurde mit dem Wert $2 auf $3 weißgelistet</string>
-  <string name="expiry-time">Ablaufzeitpunkt</string>
+  <string name="diffid">DiffID</string>
+  <string name="whitelisted">$1 wurde mit dem Wert $2 auf $3 der Positivliste hinzugefügt</string>
+  <string name="expiry-time">Ablaufdatum</string>
   <string name="duration">Dauer</string>
   <string name="enable">Aktivieren</string>
   <string name="disable">Deaktivieren</string>
@@ -80,7 +81,7 @@
   <string name="browser-load">Lade Unterschied mithilfe eines MW-Fallbacks herunter. Bitte warten …</string>
   <string name="browser-miss-summ">Es wurde keine Zusammenfassung angegeben</string>
   <string name="browser-diff">Unterschied der Seite: $1 (Wert: $2)</string>
-  <string name="browser-fail">Unterschied konnte nicht abgerufen werden: $1</string>
+  <string name="browser-fail">Unterschied konnte nicht ermittelt werden: $1</string>
   <string name="about-contributors">Entwickler:</string>
   <string name="block-not">Benutzer ist nicht gesperrt</string>
   <string name="block-title">$1 sperren</string>
@@ -93,8 +94,8 @@
   <string name="block-autoblock">Autoblock aktiviert</string>
   <string name="block-email">E-Mail-Versand sperren</string>
   <string name="block-usertalk">Diskussion</string>
-  <string name="block-usercontribs">Benutzerbeiträge</string>
-  <string name="block-blockloglabel">Sperrlogbuch:</string>
+  <string name="block-usercontribs">Beiträge</string>
+  <string name="block-blockloglabel">Sperrungen:</string>
   <string name="block-warnloglabel">Warnungen:</string>
   <string name="block-sharedipwarning">Hinweis: $1 wurde als gemeinschaftlich genutzte oder dynamische IP-Adresse markiert.</string>
   <string name="block-rangeblockwarning">$1 ist bereits durch eine Bereichssperre auf $2 betroffen.\nDiese Sperre überschreibt den Betreff der Bereichssperre. Fortfahren?</string>
@@ -693,6 +694,8 @@
   <string name="warning-level4">Stufe 4 (finale Warnung)</string>
   <string name="warning-confirm-title">Möchtest Du wirklich eine Warnung senden?</string>
   <string name="warning-confirm-old-edit">Bearbeitung $1 auf $2 von $3 ist älter als 1 Tag, willst du ihn wirklich eine Warnmeldung schicken?</string>
+  <string name="warning-confirm-too-recent">Die Bearbeitung von $1 auf $2 wurde von Nutzer $3 vorgenommen, der kürzlich eine Nachricht auf ihrer Diskussionsseite erhalten haben (wahrscheinlich eine andere vorgefertigte Warnung?). Möchten Sie ihnen wirklich eine weitere Warnnachricht senden?</string>
+  <string name="warning-too-old-skip">Es wird keine Warnung an Nutzer $1 für seine Bearbeitung an $2 auf $3 gesendet, da sie älter als 1 Tag ist</string>
   <string name="warning-no-aiv-config">Dieser Benutzer hat bereits die Warnstufe 4 erreicht und es wird kein AIV in diesem Wiki unterstützt, Sie sollten den Benutzer jetzt blockieren.</string>
   <string name="warning-warntype">Art der Warnung:</string>
   <string name="warning-warnlog">Verwarnungen dieses Benutzers:</string>
@@ -831,6 +834,8 @@
   <string name="preferences-color-scheme-diff">Verschiedene Farben</string>
   <string name="preferences-color-scheme-diff-default">Standard</string>
   <string name="preferences-color-scheme-diff-dark-mode">Dunkler Modus</string>
+  <string name="preferences-template-spam-info">Diese Optionen steuern das Subsystem, das verhindert, dass Zielnutzer übermäßig viele vorgefertigte Nachrichten erhalten. Standardmäßig erhalten Nutzer keine vorgefertigte Warnung für Änderungen, die zu lange her sind. Wenn Sie mehrere Änderungen desselben Nutzers in sehr kurzer Zeit rückgängig machen, erhält er standarmäßig nur eine einzige solche Warnung.</string>
+  <string name="preferences-template-spam-title">Spam-Prävention</string>
   <string name="fail">Fehlgeschlagen</string>
   <string name="request">Anfragen</string>
   <string name="requesting">Frage an …</string>

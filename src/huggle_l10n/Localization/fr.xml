@@ -117,7 +117,7 @@
   <string name="config-queue-filter-exclude">Exclure (ne doit pas exister)</string>
   <string name="config-queue-filter-require">Exiger (doit exister)</string>
   <string name="config-queue-modified-title">File modifiée</string>
-  <string name="config-queue-modified-text">Vous avez modifié la file mais sans la sauvegarder. Si vous continuez, vos modifications seront perdues. Voulez-vous continuer ?</string>
+  <string name="config-queue-modified-text">Vous avez modifié la file mais sans l’enregistrer. Si vous continuez, vos modifications seront perdues. Voulez-vous continuer ?</string>
   <string name="config-summ">Résumés de révocation personnalisés pour les modèles</string>
   <string name="config-title">Options</string>
   <string name="config-already-in-use">Ce raccourci est déjà utilisé par $1, veuillez en choisir un autre</string>
@@ -329,7 +329,7 @@
   <string name="login-error-global">La connexion a échoué  – problème de connexion réseau ? La configuration globale n’a pas pu être téléchargée.</string>
   <string name="login-error-invalid">Nom d’utilisateur incorrect</string>
   <string name="login-error-noconfig">$1 n’a pas de page de configuration pour Huggle</string>
-  <string name="login-error-nouser">L’utilisateur n’existe pas</string>
+  <string name="login-error-nouser">L’utilisateur ou l’utilisatrice n’existe pas</string>
   <string name="login-error-no-valid-token">Aucun jeton de connexion valide renvoyé par le site</string>
   <string name="login-error-password">Mot de passe incorrect</string>
   <string name="login-error-projdisabled">Huggle est actuellement désactivé sur $1.</string>
