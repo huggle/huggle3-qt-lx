@@ -191,7 +191,7 @@
   <string name="login-remember-password">Құпия сөзді есте сақтау</string>
   <string name="login-ssl" fuzzy="true">HTTPS қолдану (OpenSSL қажет етеді)</string>
   <string name="login-fail">$1 сайтында кіру сәтсіз болды</string>
-  <string name="login-error-admin">Бұл жобада Huggle бағадарламасын қолдану әкімші тіркелгісін қажет етеді.</string>
+  <string name="login-error-admin">Бұл жобада Huggle қолдану администатор тіркелгісін қажет етеді.</string>
   <string name="login-error-age" fuzzy="true">Бұл жобада Huggle бағадарламасын қолдану тіркелгеніне $1 күн болуын қажет етеді.</string>
   <string name="login-error-alldisabled">Huggle қазіргі уақытта барлық жобаларда өшірілген.</string>
   <string name="login-error-cancelled">Болдырылмады.</string>
