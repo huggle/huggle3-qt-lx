@@ -2,6 +2,7 @@
 <!-- Authors:
 * Amire80
 * Bibas
+* Dr-Taher
 * Dr. Mohammed
 * FiberAhmed
 * Hhaboh162002
@@ -28,7 +29,7 @@
   <string name="cancel">إلغاء</string>
   <string name="clear">امحُ</string>
   <string name="close">أغلق</string>
-  <string name="continue">إستمر</string>
+  <string name="continue">استمر</string>
   <string name="copy">انسخ</string>
   <string name="delete">احذف</string>
   <string name="deleted">محذوف</string>
@@ -37,7 +38,7 @@
   <string name="done">تم</string>
   <string name="no">لا</string>
   <string name="ok">موافق</string>
-  <string name="override-warn">لقد تجاوزت مسار تكوين المشروع، رجاءً ضع في اعتبارك أن إساءة استخدام هذه الميزة للوصول للكتابة على الويكي، حيث لا تكون لديك عادة، قد يؤدي إلى منع دائم لحسابك.</string>
+  <string name="override-warn">لقد تجاوزت مسار تكوين المشروع، رجاءً ضع في اعتبارك أن إساءة استخدام هذه الميزة للكتابة على ويكي ليس لديك الحق في الكتابة فيها، قد يؤدي إلى منع دائم لحسابك.</string>
   <string name="remove">أزل</string>
   <string name="rename">غير الاسم</string>
   <string name="reload">إعادة تحميل</string>
@@ -46,14 +47,14 @@
   <string name="result">النتيجة</string>
   <string name="save">حفظ</string>
   <string name="show">أظهر</string>
-  <string name="no-instant">لا يمكن إرسال الرسالة إلى $2; حيث لا يتم تمكين التحذيرات الفورية على المشروع $1; يُرجَى اختيار مستوى تحذير مختلف.</string>
+  <string name="no-instant">لا يمكن إرسال الرسالة إلى $2; حيث أن التحذيرات الفورية غير مُمكنة على المشروع $1; يُرجَى اختيار مستوى تحذير مختلف.</string>
   <string name="undo">تراجع</string>
   <string name="yes">نعم</string>
   <string name="editing-page">تعديل الصفحة</string>
-  <string name="agf">استرجع, حسن نية, مع تخصيص السبب</string>
+  <string name="agf">استرجع، تعديلات بنية حسنة، مع تخصيص السبب</string>
   <string name="successful">ناجح</string>
   <string name="summary">ملخص</string>
-  <string name="id">رقم</string>
+  <string name="id">معرف</string>
   <string name="type">نوع</string>
   <string name="target">الهدف</string>
   <string name="user">المستخدم</string>
@@ -68,19 +69,19 @@
   <string name="status">الحالة</string>
   <string name="link">الوصلة</string>
   <string name="reason">السبب</string>
-  <string name="diffid">رقم الفرق</string>
-  <string name="whitelisted">تم إدراج $1 ذي النتيجة $2 في $3 في القائمة البيضاء</string>
+  <string name="diffid">DiffID</string>
+  <string name="whitelisted">جرى إدراج $1 ذي النتيجة $2 في $3 في القائمة البيضاء</string>
   <string name="expiry-time">تاريخ الانتهاء</string>
   <string name="duration">المدة</string>
   <string name="enable">تمكين</string>
   <string name="disable">تعطيل</string>
   <string name="no-token">لا يوجد رمز مميز</string>
   <string name="flags">الأعلام</string>
-  <string name="gracetime">في انتظار طلبات البحث التي تنتهي بإجراء التعديلات...</string>
+  <string name="gracetime">في انتظار انتهاء الاستعلامات التي تُجري التعديلات...</string>
   <string name="browser-none">لا توجد صفحة لعرضها بعد.</string>
   <string name="browser-load">جارٍ تنزيل الفرق باستخدام احتياطي MW، يُرجَى الانتظار...</string>
-  <string name="browser-miss-summ">لم يعطى أي ملخص</string>
-  <string name="browser-diff">فرق الصفحة: $1 (النتيجة: $2)</string>
+  <string name="browser-miss-summ">لم يُقدَّم أي ملخص</string>
+  <string name="browser-diff">فرق الصفحة: $1 (الدرجة: $2)</string>
   <string name="browser-fail">غير قادر على استرجاع فرق: $1</string>
   <string name="about-contributors">المطورون:</string>
   <string name="block-not">المستخدم ليس ممنوعاً من التحرير</string>
@@ -91,16 +92,16 @@
   <string name="block-message-user">إرسال رسالة إلى المستخدم المستهدف مع شرح للمنع</string>
   <string name="block-anononly">امنع المستخدمين المجهولين فقط</string>
   <string name="block-creation">امنع إنشاء حسابات جديدة</string>
-  <string name="block-autoblock">فعل المنع التلقائي</string>
+  <string name="block-autoblock">فعَّل المنع التلقائي</string>
   <string name="block-email">امنع البريد الإلكتروني</string>
   <string name="block-usertalk">نقاش</string>
   <string name="block-usercontribs">مساهمات</string>
   <string name="block-blockloglabel">سجل المنع:</string>
-  <string name="block-warnloglabel">إنذارات:</string>
-  <string name="block-sharedipwarning">ملاحظة:$1 تم وسمه كعنوان اي بي مشترك.</string>
-  <string name="block-rangeblockwarning">يتأثر $1 بالفعل بمدى حظر على $2.\nستتجاوز هذه الكتلة تأثير النطاق. استمر؟</string>
+  <string name="block-warnloglabel">تحذيرات:</string>
+  <string name="block-sharedipwarning">ملاحظة:$1 جرى وسمه كعنوان اي بي مشترك.</string>
+  <string name="block-rangeblockwarning">يتأثر $1 بالفعل بحظر النطاق على $2.\nسيتجاوز هذا المنع تأثير النطاق. استمر؟</string>
   <string name="block-token-1">الحصول على رمز لمنع $1</string>
-  <string name="block-fail">لم يتم المنع \'$1\'</string>
+  <string name="block-fail">تعذر منع المستخدم، $1</string>
   <string name="block-token-e1">لا يمكن استرداد الرمز: $1</string>
   <string name="block-error-no-info">لم تكن معلومات المستخدم موجودة في الاستعلام (هل أنت إداري؟)</string>
   <string name="block-type">منع / رفع المنع</string>
@@ -113,9 +114,9 @@
   <string name="config-queue-filter-ignore">تجاهل (لا يهم)</string>
   <string name="config-queue-filter-exclude">استبعاد (يجب أن لا يكون)</string>
   <string name="config-queue-filter-require">مطلوب (يجب أن يكون)</string>
-  <string name="config-queue-modified-title">تم تعديل قائمة الانتظار</string>
-  <string name="config-queue-modified-text">لقد قمت بتعديل قائمة الانتظار، لكنك لم تقم بحفظها؛ إذا تابعت، فسيتم تجاهل تغييراتك، هل تريد الاستمرار؟</string>
-  <string name="config-summ">تخصيص استرجاع ملخصات القوالب</string>
+  <string name="config-queue-modified-title">جرى تعديل قائمة الانتظار</string>
+  <string name="config-queue-modified-text">لقد قمت بتعديل قائمة الانتظار، لكنك لم تقم بحفظها؛ إذا تابعت، فسيجري تجاهل تغييراتك، هل تريد الاستمرار؟</string>
+  <string name="config-summ">تخصيص ملخصات الاسترجاع للقوالب</string>
   <string name="config-title">خيارات</string>
   <string name="config-already-in-use">هذا الاختصار قيد الاستخدام بالفعل بواسطة $1، يُرجَى اختيار اختصار آخر</string>
   <string name="config-openinbrowser">افتح وصلات التصفح في صفحة متصفح جديدة</string>
