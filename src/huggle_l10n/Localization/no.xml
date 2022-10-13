@@ -389,7 +389,7 @@
   <string name="speedy-progress">Tagger \'$1\' for hurtigsletting...</string>
   <string name="warn-alreadyblocked">Brukeren har allerede blitt blokkert</string>
   <string name="logs-widget-name">Systemlogger</string>
-  <string name="wait">Vent…</string>
+  <string name="wait">Vent …</string>
   <string name="waiting">Venter…</string>
   <string name="preferences-extension-disabled-restart" fuzzy="true">Utvidelsen var satt til å bli deaktivert neste gang Huggle starter</string>
   <string name="report-fail">Kunne ikke rapportere bruker fordi: \'$1\'</string>
