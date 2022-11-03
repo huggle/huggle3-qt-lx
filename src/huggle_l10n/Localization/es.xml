@@ -21,6 +21,7 @@
 * PetrohsW
 * RicardoSGZ
 * Rodney Araujo
+* SpikeShroom
 * Suecarmol
 * Syum90
 * Themasterriot
@@ -56,12 +57,12 @@
   <string name="result">Resultado</string>
   <string name="save">Guardar</string>
   <string name="show">Mostrar</string>
-  <string name="no-instant">No es posible enviar el mensaje a $2 porque las advertencias instantáneas no se han activado en el proyecto $1. Elige un nivel de advertencia distinto.</string>
+  <string name="no-instant">No es posible enviar el mensaje a $2 porque las alertas instantáneas no están activados en el proyecto $1. Por favor elige un nivel de alerta distinto.</string>
   <string name="undo">Deshacer</string>
   <string name="yes">Sí</string>
   <string name="editing-page">Editando página</string>
   <string name="agf">Revertir como edición de buena fe con un motivo personalizado</string>
-  <string name="successful">Operación realizada con éxito</string>
+  <string name="successful">Exitoso</string>
   <string name="summary">Resumen</string>
   <string name="id">Id.</string>
   <string name="type">Tipo</string>
@@ -85,7 +86,7 @@
   <string name="enable">Activar</string>
   <string name="disable">Desactivar</string>
   <string name="no-token">Sin token</string>
-  <string name="flags">Indicadores</string>
+  <string name="flags">Marcas</string>
   <string name="gracetime">Esperando que terminen las consultas de edición...</string>
   <string name="browser-none">Todavía no hay una página que mostrar.</string>
   <string name="browser-load">Descargando diff usando un método alternativo de MW, espera...</string>

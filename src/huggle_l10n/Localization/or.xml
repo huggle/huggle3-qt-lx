@@ -3,6 +3,7 @@
 * Amire80
 * Psubhashish
 * Susant purohit
+* ThomasPusch
 -->
 <resources>
   <string name="name">ଓଡ଼ିଆ</string>
@@ -124,7 +125,7 @@
   <string name="main-queue-reset">ପୁଣି ଥରେ ସ୍ଥାପନ କରିବେ</string>
   <string name="main-queue-clearall">ସବୁ ହଟାନ୍ତୁ</string>
   <string name="main-queue-options">ଧାଡ଼ି ସଜାନ୍ତୁ...</string>
-  <string name="main-goto">Go to</string>
+  <string name="main-goto">Iru al</string>
   <string name="main-goto-mytalk">ମୋ ଆଲୋଚନା ପୃଷ୍ଠା</string>
   <string name="main-goto-mycontribs">ମୋ ଅବଦାନ</string>
   <string name="main-revision-decline">ସଂଶୋଧନ ଅସ୍ଵୀକାର</string>
