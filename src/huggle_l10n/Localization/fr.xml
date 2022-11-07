@@ -84,7 +84,7 @@
   <string name="browser-load">Téléchargement de diff en utilisant un secours MW, veuillez patienter…</string>
   <string name="browser-miss-summ">Aucun résumé n’a été fourni</string>
   <string name="browser-diff">Diff de la page : $1 ($2 points)</string>
-  <string name="browser-fail">Impossible de récupérer le diff : $1</string>
+  <string name="browser-fail">Impossible de récupérer le diff : $1</string>
   <string name="about-contributors">Développeurs :</string>
   <string name="block-not">L’utilisateur n’est pas bloqué</string>
   <string name="block-title">Blocage de $1</string>
@@ -273,7 +273,7 @@
   <string name="login-language">Langue :</string>
   <string name="login-project">Projet :</string>
   <string name="login-username">Nom d’utilisateur :</string>
-  <string name="login-password">Mot de passe :</string>
+  <string name="login-password">Mot de passe :</string>
   <string name="login-proxygroup">Paramètres du mandataire</string>
   <string name="login-proxy">Utiliser un serveur mandataire</string>
   <string name="login-proxyaddress">Adresse :</string>
@@ -858,13 +858,13 @@
   <string name="speedy-csd-existing">Il y a déjà un bandeau de suppression immédiate sur la page.</string>
   <string name="namespace">Espace de noms</string>
   <string name="block-alreadyblocked">L\'utilisateur est déjà bloqué</string>
-  <string name="report-fail">Erreur lors du signalement utilisateur. Raison : $1</string>
+  <string name="report-fail">Échec du signalement de l’utilisateur car : $1</string>
   <string name="report-page-fail">Erreur : impossible de récupérer la page de rapport à $1</string>
   <string name="report-page-fail-time">Impossible de récupérer l’horodatage pour la page de rapport actuelle, échec de l’API :\n\n$1</string>
   <string name="report-unable">Impossible de signaler à l’utilisateur</string>
   <string name="about-qt">, compilé à l’aide de QT $1 exécuté sur QT $1</string>
   <string name="about-info">, basé sur $1, plateforme cible : $2</string>
-  <string name="error-unknown-code">Erreur inconnue: $1</string>
+  <string name="error-unknown-code">Erreur inconnue : $1</string>
   <string name="relogin-fail">Impossible de se connecter au wiki: $1</string>
   <string name="projects">Projets</string>
   <string name="unable-to-retrieve-user-list">Impossible de récupérer la liste utilisateur : $1</string>
