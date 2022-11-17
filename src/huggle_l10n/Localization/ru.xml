@@ -66,7 +66,7 @@
   <string name="result">Результат</string>
   <string name="save">Сохранить</string>
   <string name="show">Показать</string>
-  <string name="no-instant">Сообщение для $2 не может быть отправлено, так как мгновенные предупреждения не включены в проекте $1. Пожалуйста, выберите другой уровень предупреждений</string>
+  <string name="no-instant">Сообщение для $2 не может быть отправлено, так как мгновенные предупреждения не включены в проекте $1. Пожалуйста, выберите другой уровень предупреждений.</string>
   <string name="undo">Отменить</string>
   <string name="yes">Да</string>
   <string name="editing-page">Редактирование страницы</string>
@@ -97,7 +97,7 @@
   <string name="no-token">Нет токена</string>
   <string name="flags">Флаги</string>
   <string name="gracetime">Ожидаем завершения запросов на редактирование…</string>
-  <string name="browser-none">Пока нет страницы для отображения</string>
+  <string name="browser-none">Пока нет страницы для отображения.</string>
   <string name="browser-load">Загружаем изменение с помощью резерва MW, пожалуйста, подождите…</string>
   <string name="browser-miss-summ">Описание правки отсутствует</string>
   <string name="browser-diff">Различие между версиями на странице: $1 (баллы: $2)</string>
@@ -206,7 +206,7 @@
   <string name="config-confirmsame">Подтверждать откат правки участника к его же версии</string>
   <string name="config-confirmselfrevert">Подтверждать откат собственных правок (за исключением отмен)</string>
   <string name="config-confirmwarned">Подтверждать откат к версии предупреждённого участника</string>
-  <string name="config-confirmrange">Подтверждать откат к правкам, сделанным анонимными участниками из того же /16 диапазона, что и откатываемый.</string>
+  <string name="config-confirmrange">Подтверждать откат к правкам, сделанным анонимными участниками из того же /16 диапазона, что и откатываемый</string>
   <string name="config-confirmpage">Подтверждать откат игнорируемой страницы</string>
   <string name="config-autoadvance">После отката, сразу переходить к следующей правке в очереди</string>
   <string name="config-userollback">Использовать функции отката, если доступно</string>
@@ -255,7 +255,7 @@
   <string name="delete-failed-no-info">В запросе отсутствует информация о странице (вы администратор?)</string>
   <string name="extension-kl">Не запущено</string>
   <string name="extension-ok">Загружено и работает</string>
-  <string name="exception-text-1">К сожалению, в Huggle произошёл сбой. Просьба представить следующую информацию вместе с подробной информацией о том, что вы делали</string>
+  <string name="exception-text-1">К сожалению, в Huggle произошёл сбой. Просьба представить следующую информацию вместе с подробной информацией о том, что вы делали \\</string>
   <string name="exception-details">Детали исключения</string>
   <string name="exception-error-code">Код ошибки: $1</string>
   <string name="exception-reason">Причина: $1</string>
@@ -343,9 +343,9 @@
   <string name="login-error-config-query-no-data">Ошибка входа в систему — возможно, сетевые проблемы? Не удалось скачать глобальную конфигурацию</string>
   <string name="login-error-count">Использование Huggle в этом проекте требует, по крайней мере, $1 правок.</string>
   <string name="login-error-disabled">Huggle не включён для вашей учётной записи в $1. Проверьте вашу страницу пользовательских настроек.</string>
-  <string name="login-error-global">Ошибка входа: не удаётся выполнить разбор глобальных настроек.</string>
-  <string name="login-error-invalid">Неверное имя пользователя.</string>
-  <string name="login-error-noconfig">В $1 отсутствует страница настроек Huggle.</string>
+  <string name="login-error-global">Ошибка входа: не удаётся выполнить разбор глобальных настроек</string>
+  <string name="login-error-invalid">Неверное имя пользователя</string>
+  <string name="login-error-noconfig">В $1 отсутствует страница настроек Huggle</string>
   <string name="login-error-nouser">Пользователь не существует</string>
   <string name="login-error-no-valid-token">Недействительный логин входа, возвращаемый сайтом</string>
   <string name="login-error-password">Неправильный пароль</string>
@@ -358,7 +358,7 @@
   <string name="login-ro-info">Проект $1 переключен в режим только для чтения</string>
   <string name="wikis-db-download-fail">Не удаётся скачать базу данных вики: $1</string>
   <string name="no-projects-defined-in-list">В списке нет проектов, которые необходимо настроить для глобальной вики</string>
-  <string name="api-query-no-data">API-запрос не вернул никаких данных</string>
+  <string name="api-query-no-data">запрос к API не вернул никаких данных</string>
   <string name="main-stat">$1 правок в минуту, $2 откатов в минуту, уровень $3</string>
   <string name="main-menu-provider-stop">Остановить провайдера</string>
   <string name="main-menu-provider-resume">Возобновить работу провайдера</string>
@@ -519,7 +519,7 @@
   <string name="main-report-username">Пожаловаться на имя участника</string>
   <string name="main-report-user">Сообщить о нарушении</string>
   <string name="main-edit-user-talk">Править страницу обсуждения участника</string>
-  <string name="main-statistics-paused">Приостановлено</string>
+  <string name="main-statistics-paused">приостановлено</string>
   <string name="main-statistics-waiting">Ожидание правок</string>
   <string name="main-statistics-none">ничего</string>
   <string name="main-tab-welcome-title">Страница приветствия</string>
@@ -648,7 +648,7 @@
   <string name="speedy-parameters-fail">Вы должны предоставить параметры для этой быстрой опции</string>
   <string name="speedy-notifycreator">Уведомить автора статьи</string>
   <string name="rollback">Возврат $1</string>
-  <string name="software-rollback">У Вас нет прав для восстановления, возвращайтесь обратно в программу восстановления.</string>
+  <string name="software-rollback">У Вас нет прав для восстановления, возвращайтесь обратно в программу восстановления</string>
   <string name="tag-title">Метка $1</string>
   <string name="tag-tagselector">Добавить метку:</string>
   <string name="tag-tags">Метки:</string>
@@ -723,7 +723,7 @@
   <string name="warninglist-no-warning-title">Не предупреждать</string>
   <string name="warninglist-no-warning-text">Нет данных для этого типа предупреждения, невозможно доставить пользователю предупреждение!</string>
   <string name="warninglist-report-text">Этот пользователь уже получил окончательное предупреждение, поэтому я не буду отправлять им больше предупреждений, не хотите ли вы сообщить об этом?</string>
-  <string name="wikiedit-tp-fail">Не удалось получить уровень предупреждений для $1. Она не будет использоваться в расчётах.</string>
+  <string name="wikiedit-tp-fail">Не удалось получить уровень предупреждений для $1. Она не будет использоваться в расчётах</string>
   <string name="missing-warning">Нет шаблона предупреждения $1</string>
   <string name="han-not">Антивандальная сеть (HAN) не разрешена в настройках</string>
   <string name="han-connecting">Подключение к антивандальной сети Huggle (HAN)</string>
@@ -864,7 +864,7 @@
   <string name="protect-request-fail-notext">Не удалось получить текущую страницу сообщений о вандализме, запрос не вернул текст этой страницы</string>
   <string name="protect-request-fail-notime">Запрос не вернул никакой отметки времени. Возможно, это ошибка MediaWiki. Прерываем запрос</string>
   <string name="message-fail">Не удалось доставить сообщение</string>
-  <string name="edit-conflict">Конфликт редактирования.</string>
+  <string name="edit-conflict">Конфликт редактирования</string>
   <string name="page-tag-nodescription">Отсутствует описание для этой метки</string>
   <string name="page-tag-noparameters">Нет параметров</string>
   <string name="page-tag-fail">Не удалось пометить страницу</string>
@@ -892,7 +892,7 @@
   <string name="loading-main-window">Загружается главное окно Huggle...</string>
   <string name="api.php-invalid-response">API вернул некорректный текст (сервер не работает?), проверьте журнал отладки для получения более точной информации</string>
   <string name="login-username-doesnt-exist">Это имя пользователя не существует</string>
-  <string name="developer-mode-enter-title">Ура!</string>
+  <string name="developer-mode-enter-title">Ура</string>
   <string name="developer-mode-enter-message">Вы вошли в режим разработчика!</string>
   <string name="unimplemented">Эта функция ещё не была реализована</string>
   <string name="unknown-item">Неизвестный пункт</string>
@@ -916,7 +916,7 @@
   <string name="protip">Совет</string>
   <string name="wikipagetagsform-group">Группа внутри {{$1}}</string>
   <string name="tip1">Huggle поддерживает вкладки, как и любой другой веб-браузер! Если вы находитесь на редактировании и хотите сохранить его позже, вы можете просто открыть новую вкладку и продолжить проверку очереди там. Очередь распределяется между всеми вкладками.</string>
-  <string name="tip2">Huggle содержит \"панель редактирования\" - небольшой виджет, который содержит страницы истории пользователя или страницы. Однако панель не включена по умолчанию. Если у вас маленький экран, вы можете заменить страницы истории пользователя или страницы соответствующими виджетами.</string>
+  <string name="tip2">Huggle содержит \"панель редактирования\" - небольшой виджет, который содержит страницы истории пользователя или страницы. Однако панель не включена по умолчанию. Если у вас маленький экран, вы можете заменить страницы истории пользователя или страницы соответствующими виджетами!</string>
   <string name="tip3">Большинство настроек хранятся в вики в [[Special:MyPage/huggle.yaml.js]]. Вы также можете изменить их вручную.</string>
   <string name="tip4">Почти каждый виджет на экране может быть безопасно закрыт (кроме панели навигации).</string>
   <string name="tip5">Вы можете одновременно использовать Huggle для нескольких проектов, просто нажмите кнопку \"Проекты\" в форме входа.</string>

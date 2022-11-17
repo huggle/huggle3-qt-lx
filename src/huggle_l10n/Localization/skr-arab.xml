@@ -161,6 +161,8 @@
   <string name="main-page-watch">اکھ تلے رکھو</string>
   <string name="main-page-unwatch">اکھ ہیٹھوں ہٹاؤ</string>
   <string name="main-page-purge">پاک صاف کرو</string>
+  <string name="main-page-display">ایہ ورقہ ݙکھاؤ</string>
+  <string name="main-page-patrol">گشت تھئے دا نشان لاؤ</string>
   <string name="main-page-move">منتقلی۔۔۔</string>
   <string name="main-page-protect">حفاظت کرو</string>
   <string name="main-page-delete">مٹاؤ</string>
@@ -168,7 +170,10 @@
   <string name="main-page-refresh">سجرا، تازہ کرو</string>
   <string name="main-user-ignore">چھوڑو</string>
   <string name="main-user-unignore">نا چھوڑو</string>
+  <string name="main-user-talk">ڳالھ مہاڑ ورقہ ݙیکھو</string>
+  <string name="main-user-page">ورتݨ آلے دا ورقہ ݙیکھو</string>
   <string name="main-user-message">سنیہا۔۔۔</string>
+  <string name="main-user-warn">خبردار۔۔۔</string>
   <string name="main-user-report">رپورٹ</string>
   <string name="main-user-block">بلاک۔۔۔</string>
   <string name="main-browser-back">پچھوں</string>
