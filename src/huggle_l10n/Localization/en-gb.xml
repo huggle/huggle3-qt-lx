@@ -70,7 +70,6 @@
   <string name="gracetime">Waiting for queries that perform edits to end...</string>
   <string name="browser-none">There is no page to display yet…</string>
   <string name="browser-load">Downloading diff using a MW rendering fall-back, please wait...</string>
-  <string name="browser-miss-summ">No summary was provided!</string>
   <string name="browser-diff">Diff of page: $1 (score: $2)</string>
   <string name="browser-fail">Unable to retrieve diff: $1</string>
   <string name="about-contributors">Developers:</string>
@@ -94,10 +93,7 @@
   <string name="block-fail">Unable to block user, $1</string>
   <string name="block-token-e1">Token can\'t be retrieved: $1</string>
   <string name="block-error-no-info">No user info was present in the query (are you an admin?)</string>
-  <string name="block-type">Block/unblock</string>
   <string name="block-admin">Blocking admin</string>
-  <string name="block-none">There is no user selected to block!</string>
-  <string name="contribution-browser-user-info">Showing recent contributions of user $1…</string>
   <string name="config-function">Function</string>
   <string name="config-description">Description</string>
   <string name="config-shortcut">Shortcut</string>
@@ -106,7 +102,6 @@
   <string name="config-queue-filter-require">Require (must be)</string>
   <string name="config-queue-modified-title">Queue modified</string>
   <string name="config-queue-modified-text">You modified the queue, but didn\'t save it. If you continue, your changes will be discarded. Do you want to continue?</string>
-  <string name="config-summ">Custom revert summary/ies for templates</string>
   <string name="config-title">Options</string>
   <string name="config-already-in-use">This shortcut is already being used by $1, please choose a different one</string>
   <string name="config-openinbrowser">Open browser links in a new browser window</string>
