@@ -345,7 +345,7 @@
   <string name="queue-diffsgroup">Айырмашылықтар</string>
   <string name="queue-pagefiltersgroup">Бет атауы сүзгіштері</string>
   <string name="queue-pageregex">Атауы жүйелі өрнеке сәйкес келеді:</string>
-  <string name="queue-namespaces">Есім кеңістіктері:</string>
+  <string name="queue-namespaces">Ат кеңістіктері:</string>
   <string name="queue-editfiltersgroup">Өңдеу сүзгіштері</string>
   <string name="queue-userregex">Қатысушы есімі жүйелі өрнеке сәйкес келеді:</string>
   <string name="queue-summaryregex">Түйіндемесі жүйелі өрнеке сәйкес келеді:</string>
