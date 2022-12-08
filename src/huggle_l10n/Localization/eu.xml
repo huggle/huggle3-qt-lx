@@ -389,7 +389,7 @@
   <string name="main-user-page">Erabiltzaile orrialdea ikusi</string>
   <string name="main-user-message">Mezua bidali...</string>
   <string name="main-user-warn">Abisatu...</string>
-  <string name="main-user-db">Erabiltzailearen puntuaziotik maltzurkeria jaitsi</string>
+  <string name="main-user-db">Murriztu erabiltzailearen gaiztotasun puntuazioa</string>
   <string name="main-user-report">Salatu</string>
   <string name="main-user-ib">Maltzurkeri puntuazioa igo</string>
   <string name="main-user-clear-tp">Erabiltzailearen elkarrizketa orrialdea garbitu</string>
@@ -551,7 +551,7 @@
   <string name="tag-summary">Laburpena:</string>
   <string name="tag-insertatend">Orrialdearen amaieran sartu</string>
   <string name="update-title">Bertsio berria eskuragarri</string>
-  <string name="update-progress">Bertsio berria jaisten, mesedez itxaron...</string>
+  <string name="update-progress">Bertsio berria deskargatzen; itxaron, mesedez...</string>
   <string name="update-error">Bertsio berria deskargatzeak huts egin du</string>
   <string name="updater-title">Huggle-ren bertsio berria eskuragarri dago</string>
   <string name="updater-update">Eguneratu</string>

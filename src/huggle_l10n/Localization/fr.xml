@@ -735,7 +735,7 @@
   <string name="deletelog-fail">Échec à la récupération du journal de suppression pour $1</string>
   <string name="deletelog-none">Aucun journal de suppression pour $1</string>
   <string name="deletelog-progress">Récupération du journal de suppression pour $1...</string>
-  <string name="edit-bar-top">Cette modification est une révision principale</string>
+  <string name="edit-bar-top">Cette modification est une révision supérieure</string>
   <string name="edit-fail">Ne pas modifier $1</string>
   <string name="edit-progress">Modification de $1...</string>
   <string name="history-fail">Échec à la récupération de l’historique de $1</string>
