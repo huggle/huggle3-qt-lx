@@ -14,6 +14,7 @@
 * Winston Sung
 * Xiplus
 * Zhxy 519
+* 捍粵者
 * 铁桶
 -->
 <resources>
@@ -370,7 +371,7 @@
   <string name="main-queue-next">下一個</string>
   <string name="main-queue-clear">清除目前</string>
   <string name="main-queue-count">$1 項目</string>
-  <string name="main-queue-query">正在執行查詢...</string>
+  <string name="main-queue-query">正在查詢…</string>
   <string name="main-queue-reset">重設</string>
   <string name="main-queue-clearall">清除所有</string>
   <string name="main-queue-options">管理序列...</string>
@@ -703,7 +704,7 @@
   <string name="missing-warning">查無此警告模板$1</string>
   <string name="han-not">破壞性網路不允許在選項裡</string>
   <string name="han-connecting">正在連線至 Huggle 反破壞網路</string>
-  <string name="han-already-connected">因已連線至HAN，故沒有進行連線</string>
+  <string name="han-already-connected">已連線至HAN，不須再次連線</string>
   <string name="han-already-connecting">請稍後，我正在連線至HAN...</string>
   <string name="han-disconnected">您已從HAN失去連結</string>
   <string name="han-network">網路</string>
@@ -825,7 +826,7 @@
   <string name="preferences-queue-size">佇列長度</string>
   <string name="preferences-empty-queue-page">空佇列頁面：</string>
   <string name="preferences-reset-gui">重新設定圖形介面</string>
-  <string name="preferences-restore-factory-layout">這將會重新儲存您所安裝的 Huggle 配置。Huggle 會先進行關閉，要繼續嗎？</string>
+  <string name="preferences-restore-factory-layout">這會重設Huggle的配置。Huggle會先關閉，繼續？</string>
   <string name="preferences-keystroke-rate-limit">防止以下毫秒單位頻率的重複鍵盤敲擊（同一快速鍵在 N 毫秒內僅可觸發 1 次）</string>
   <string name="preferences-color-scheme-diff">差異色彩</string>
   <string name="preferences-color-scheme-diff-default">預設</string>
@@ -850,7 +851,7 @@
   <string name="speedy-csd-invalid">無效CSD標籤，沒有訊息和wiki標籤可用</string>
   <string name="speedy-csd-existing">此頁面已有一組快速刪除的標籤。</string>
   <string name="namespace">命名空間</string>
-  <string name="block-alreadyblocked">使用者已被封鎖</string>
+  <string name="block-alreadyblocked">使用者已封鎖</string>
   <string name="report-fail">由於 $1，檢舉使用者失敗。</string>
   <string name="report-page-fail">錯誤：無法擷取在 $1 的檢舉頁面</string>
   <string name="report-page-fail-time">無法擷取檢舉頁面的目前時間戳記，API 錯誤：\n\n$1</string>
@@ -869,7 +870,7 @@
   <string name="api.php-invalid-response">API 檔案回應了無效文字（網頁伺服器當機？），請檢查除錯日誌檔以獲取精準訊息</string>
   <string name="login-username-doesnt-exist">此用戶名稱不存在</string>
   <string name="developer-mode-enter-title">喲呵</string>
-  <string name="developer-mode-enter-message">您已進入了開發者模式！</string>
+  <string name="developer-mode-enter-message">您已進入開發者模式</string>
   <string name="unimplemented">此功能尚未實行</string>
   <string name="unknown-item">不明項目</string>
   <string name="title-multiple-projects">多個項目（$1）</string>
