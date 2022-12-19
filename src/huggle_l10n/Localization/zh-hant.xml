@@ -856,7 +856,7 @@
   <string name="report-page-fail">錯誤：無法擷取在 $1 的檢舉頁面</string>
   <string name="report-page-fail-time">無法擷取檢舉頁面的目前時間戳記，API 錯誤：\n\n$1</string>
   <string name="report-unable">無法回報使用者</string>
-  <string name="about-qt">，使用 QT $1 編譯，執行於 QT $1</string>
+  <string name="about-qt">，使用QT $1編譯，在QT $1執行</string>
   <string name="about-info">，基於$1，目標平台：$2</string>
   <string name="error-unknown-code">不明錯誤：$1</string>
   <string name="relogin-fail">無法登入至 wiki：$1</string>
@@ -907,5 +907,5 @@
   <string name="tip13">您可以透過按下 Shift + C 鍵（預設值），或是使用者選單來開啟「貢獻瀏覽器」顯示出目前建立此筆貢獻內容的使用者。這能讓您快速檢視此使用者最近的貢獻。</string>
   <string name="tip14">您可以與其他正使用此應用程式的 Huggle 活躍使用者聊天。只要他們有在線上，可以在「網路」視窗裡找到他們。</string>
   <string name="tip15">如果您找到其它無法用回退解決的條目問題，您可以按下 E 鍵來在您預設的瀏覽器（而不是在 Huggle）裡立即編輯條目。</string>
-  <string name="tip16">若您不小心按到了回退按鈕，您仍可以透過快速按下 ESC 鍵來試著取消進行中的回退。</string>
+  <string name="tip16">若您不小心按到回退按鈕，仍可快速按ESC鍵來試著取消回退。</string>
 </resources>
