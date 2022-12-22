@@ -282,7 +282,7 @@
   <string name="login-proxydomain">Domaine :</string>
   <string name="proxy-restart">Huggle as besoin d’être redémarré pour que ces changements soient pris en compte.</string>
   <string name="login-retrieving-user-conf">Récupération de la configuration utilisateur en cours...</string>
-  <string name="login-fail-css">Échec de la connexion sur $1 : Impossible de récupérer la configuration utilisateur. Special:MyPage/huggle3.css est absent. Avez-vous créé huggle3.css dans votre espace utilisateur ?</string>
+  <string name="login-fail-css">Échec de la connexion sur $1 : impossible de récupérer la configuration utilisateur. Special:MyPage/huggle3.css est manquant. Avez-vous créé huggle3.css dans votre espace utilisateur ?</string>
   <string name="login-fail-enable-true">Échec de la connexion sur $1 : vous n’avez pas « enable:true » dans votre configuration personnelle.</string>
   <string name="login-fail-no-info">Échec à la connexion sur $1 : impossible de récupérer les informations sur l’utilisateur : $2</string>
   <string name="login-bot">Quelle est la différence entre la connexion par BotPassword (robot) et la connexion classique manuelle ?</string>
