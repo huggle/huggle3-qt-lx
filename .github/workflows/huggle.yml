@@ -51,7 +51,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        windows-version: [2016, 2019]
+        windows-version: [2016, latest]
         qt-version: [5.12.10, 5.15.2]
     steps:
       - name: checkout code
@@ -72,3 +72,15 @@ jobs:
           & $path $args
           }
           ./veyor.ps1 -msbuild_path $msbuildpath -qt5_path $env:Qt5_Dir
+      - name: build huggle3.zip
+        if: ( runner.os == 'Windows' ) && ( matrix.windows-version == 'latest' ) && ( matrix.qt-version == '5.15.2' )
+        run: 7z a huggle3.zip windows64\release
+      - name: install ssh key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.KEY }}
+          name: id_ed25519
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+      - name: upload nightlies
+        if: ( runner.os == 'Windows' ) && ( matrix.windows-version == 'latest' ) && ( matrix.qt-version == '5.15.2' )
+        run: echo "put huggle3.zip" | sftp -4 ${{ secrets.USERNAME }}@${{ secrets.HOST }}:${{ secrets.UPLOADPATH }}
