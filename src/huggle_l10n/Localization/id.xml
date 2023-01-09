@@ -14,6 +14,7 @@
 * Rachmat04
 * Raynasution
 * Silencemen21
+* Veracious
 -->
 <resources>
   <string name="name">Bahasa Indonesia</string>
@@ -227,6 +228,7 @@
   <string name="delete-failed-no-info">Tidak ada informasi pengguna dalam permintaan (apakah anda pengurus?)</string>
   <string name="extension-kl">Tidak bekerja</string>
   <string name="extension-ok">Memuat tidak bekerja</string>
+  <string name="exception-details">Rincian pengecualian</string>
   <string name="exception-error-code">Kode kesalahan: $1</string>
   <string name="exception-reason">Alasan: $1</string>
   <string name="exception-source">Sumber: $1</string>
