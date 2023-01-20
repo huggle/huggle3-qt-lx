@@ -133,10 +133,15 @@ void BlockUserForm::Block()
     this->timer->stop();
     if (this->ui->cbMessageTarget->isChecked())
         this->sendBlockNotice(nullptr);
+    /*
+     * This doesn't work in some cases this window is deleted on close, so after 2 seconds this will be referring to
+     * memory that was already cleared, resulting in segfault
+     *
     // Close window after 2 seconds
     QTimer::singleShot(2000, [this]()->void{
         this->close();
     });
+    */
 }
 
 void BlockUserForm::Failed(QString reason)
