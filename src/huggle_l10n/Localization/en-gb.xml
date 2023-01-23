@@ -212,7 +212,6 @@
   <string name="delete-deletionlog">Deletion log:</string>
   <string name="delete-rem-talk">Delete associated talk page</string>
   <string name="delete-notify">Notify creator</string>
-  <string name="delete-error-token">Error: Retrieving the delete token failed. The reason provided was: $1</string>
   <string name="delete-token01">Getting token to delete $1</string>
   <string name="delete-token02">There was no token returned by the query</string>
   <string name="delete-e1">The page can\'t be deleted: $1</string>
