@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
+* 0PAWN0
 * Ajeje Brazorf
 * Alifakoor
 * Alirezaaa
@@ -34,7 +35,7 @@
 <resources>
   <string name="name">انگلیسی</string>
   <string name="autorelog">دفعه بعد بدون پرسش همین کار را بکن</string>
-  <string name="isrtl">true</string>
+  <string name="isrtl">نادرست</string>
   <string name="add">افزودن</string>
   <string name="cancel">لغو</string>
   <string name="clear">پاک‌کردن</string>

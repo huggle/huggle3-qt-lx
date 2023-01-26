@@ -252,7 +252,7 @@
   <string name="invalid-bot-user-name">Ова не е важечко име за бот. Пример за правилно име: Jimbo@Huggle</string>
   <string name="login-tab-botp">Ботовска лозинка</string>
   <string name="login-tab-login">Наследствено</string>
-  <string name="login-reload-tool-tip">Превчитајте список на расположиви проекти што може да се користат во Huggle. Ова може да е корисно ако сакате да го користите на проект каде алатката е неодамна овозможена.</string>
+  <string name="login-reload-tool-tip">Превчитајте список на расположливи проекти што може да се користат во Huggle. Ова може да е корисно ако сакате да го користите на проект каде алатката е неодамна овозможена.</string>
   <string name="login-language">Јазик:</string>
   <string name="login-project">Проект:</string>
   <string name="login-username">Корисничко име:</string>
