@@ -20,11 +20,11 @@
 #include "revertquery.hpp"
 #include "wikipage.hpp"
 
-#define EvaluatePageErrorReason_Missing 0
-#define EvaluatePageErrorReason_Unknown 1
-#define EvaluatePageErrorReason_NULL    2
-#define EvaluatePageErrorReason_NoRevs  3
-#define EvaluatePageErrorReason_Running 4
+constexpr int EvaluatePageErrorReason_Missing = 0;
+constexpr int EvaluatePageErrorReason_Unknown = 1;
+constexpr int EvaluatePageErrorReason_NULL    = 2;
+constexpr int EvaluatePageErrorReason_NoRevs  = 3;
+constexpr int EvaluatePageErrorReason_Running = 4;
 
 namespace Huggle
 {

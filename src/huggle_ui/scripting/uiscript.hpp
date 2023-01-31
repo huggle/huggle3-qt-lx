@@ -19,11 +19,11 @@
 class QAction;
 class QMenu;
 
-#define HUGGLE_SCRIPT_HOOK_LOGIN_OPEN                   20000
-#define HUGGLE_SCRIPT_HOOK_MAIN_OPEN                    20001
-#define HUGGLE_SCRIPT_HOOK_SPEEDY_FINISHED              20010
-#define HUGGLE_SCRIPT_HOOK_ON_RENDER                    20011
-#define HUGGLE_SCRIPT_HOOK_ON_STATUSBAR_UPDATE          20012
+constexpr int HUGGLE_SCRIPT_HOOK_LOGIN_OPEN                   = 20000;
+constexpr int HUGGLE_SCRIPT_HOOK_MAIN_OPEN                    = 20001;
+constexpr int HUGGLE_SCRIPT_HOOK_SPEEDY_FINISHED              = 20010;
+constexpr int HUGGLE_SCRIPT_HOOK_ON_RENDER                    = 20011;
+constexpr int HUGGLE_SCRIPT_HOOK_ON_STATUSBAR_UPDATE          = 20012;
 
 namespace Huggle
 {

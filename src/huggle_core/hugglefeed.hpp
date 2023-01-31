@@ -18,9 +18,9 @@
 #include <QMutex>
 #include "mediawikiobject.hpp"
 
-#define HUGGLE_FEED_PROVIDER_IRC          0
-#define HUGGLE_FEED_PROVIDER_WIKI         1
-#define HUGGLE_FEED_PROVIDER_XMLRPC       2
+constexpr int HUGGLE_FEED_PROVIDER_IRC          = 0;
+constexpr int HUGGLE_FEED_PROVIDER_WIKI         = 1;
+constexpr int HUGGLE_FEED_PROVIDER_XMLRPC       = 2;
 
 namespace Huggle
 {

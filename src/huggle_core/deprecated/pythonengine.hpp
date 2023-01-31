@@ -18,7 +18,7 @@
 #ifndef PYTHONENGINE_H
 #define PYTHONENGINE_H
 
-#define HUGGLE_EINVALIDQUERY 1
+constexpr int HUGGLE_EINVALIDQUERY = 1;
 
 #include <QString>
 #include <QThread>

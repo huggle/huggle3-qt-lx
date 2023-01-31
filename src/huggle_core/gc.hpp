@@ -21,33 +21,33 @@
 
 class QMutex;
 
-#define HUGGLECONSUMER_WIKIEDIT                 0
-#define HUGGLECONSUMER_QUEUE                    1
-#define HUGGLECONSUMER_CORE_POSTPROCESS         2
-#define HUGGLECONSUMER_EDITQUERY                3
-#define HUGGLECONSUMER_REVERTQUERY              4
-#define HUGGLECONSUMER_MESSAGE_SEND             5
-#define HUGGLECONSUMER_HISTORYWIDGET            6
+constexpr int HUGGLECONSUMER_WIKIEDIT                 = 0;
+constexpr int HUGGLECONSUMER_QUEUE                    = 1;
+constexpr int HUGGLECONSUMER_CORE_POSTPROCESS         = 2;
+constexpr int HUGGLECONSUMER_EDITQUERY                = 3;
+constexpr int HUGGLECONSUMER_REVERTQUERY              = 4;
+constexpr int HUGGLECONSUMER_MESSAGE_SEND             = 5;
+constexpr int HUGGLECONSUMER_HISTORYWIDGET            = 6;
 //! This is used to lock the message resource before it's passed to parent object
-#define HUGGLECONSUMER_CORE_MESSAGE             7
-#define HUGGLECONSUMER_PROCESSOR                8
-#define HUGGLECONSUMER_MAINPEND                 9
-#define HUGGLECONSUMER_QP                       10
-#define HUGGLECONSUMER_QP_UNCHECKED             11
-#define HUGGLECONSUMER_QP_REVERTBUFFER          12
-#define HUGGLECONSUMER_QP_WATCHLIST             17
-#define HUGGLECONSUMER_MAINFORM_HISTORICAL      13
-#define HUGGLECONSUMER_QP_MODS                  14
-#define HUGGLECONSUMER_REVERTQUERYTMR           16
-#define HUGGLECONSUMER_CALLBACK                 20
-#define HUGGLECONSUMER_PYTHON                   60
-#define HUGGLECONSUMER_JS_POOL                  100
-#define HUGGLECONSUMER_CORE                     800
+constexpr int HUGGLECONSUMER_CORE_MESSAGE             = 7;
+constexpr int HUGGLECONSUMER_PROCESSOR                = 8;
+constexpr int HUGGLECONSUMER_MAINPEND                 = 9;
+constexpr int HUGGLECONSUMER_QP                       = 10;
+constexpr int HUGGLECONSUMER_QP_UNCHECKED             = 11;
+constexpr int HUGGLECONSUMER_QP_REVERTBUFFER          = 12;
+constexpr int HUGGLECONSUMER_QP_WATCHLIST             = 17;
+constexpr int HUGGLECONSUMER_MAINFORM_HISTORICAL      = 13;
+constexpr int HUGGLECONSUMER_QP_MODS                  = 14;
+constexpr int HUGGLECONSUMER_REVERTQUERYTMR           = 16;
+constexpr int HUGGLECONSUMER_CALLBACK                 = 20;
+constexpr int HUGGLECONSUMER_PYTHON                   = 60;
+constexpr int HUGGLECONSUMER_JS_POOL                  = 100;
+constexpr int HUGGLECONSUMER_CORE                     = 800;
 
 // some macros so that people hate us
 #define GC_DECREF(collectable) if (collectable) collectable->DecRef(); collectable=nullptr
 #define GC_DECNAMEDREF(collectable, consumer) if(collectable) collectable->UnregisterConsumer(consumer); collectable=nullptr
-#define GC_LIMIT 60
+constexpr int GC_LIMIT = 60;
 
 namespace Huggle
 {

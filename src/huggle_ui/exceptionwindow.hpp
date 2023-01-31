@@ -14,9 +14,9 @@
 #include <huggle_core/definitions.hpp>
 
 #if _MSC_VER
-#define TRACING 0
+    constexpr int TRACING = 0;
 #else
-#define TRACING 1
+    constexpr int TRACING = 1;
 #endif
 
 #include <QDialog>

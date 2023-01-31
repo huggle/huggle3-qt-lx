@@ -37,13 +37,13 @@
 #include "updateform.hpp"
 #include "ui_loginform.h"
 
-#define LOGINFORM_LOGIN 0
-#define LOGINFORM_SITEINFO 1
-#define LOGINFORM_WHITELIST 3
-#define LOGINFORM_LOCALCONFIG 4
-#define LOGINFORM_USERCONFIG 5
-#define LOGINFORM_USERINFO 6
-#define LOGINFORM_YAMLCONFIG 7
+constexpr int LOGINFORM_LOGIN       = 0;
+constexpr int LOGINFORM_SITEINFO    = 1;
+constexpr int LOGINFORM_WHITELIST   = 3;
+constexpr int LOGINFORM_LOCALCONFIG = 4;
+constexpr int LOGINFORM_USERCONFIG  = 5;
+constexpr int LOGINFORM_USERINFO    = 6;
+constexpr int LOGINFORM_YAMLCONFIG  = 7;
 
 using namespace Huggle;
 

@@ -22,8 +22,8 @@ namespace Ui
     class OverlayBox;
 }
 
-#define HUGGLE_OVERLAY_DEFAULT_HEIGHT 80
-#define HUGGLE_OVERLAY_DEFAULT_WIDTH  400
+constexpr int HUGGLE_OVERLAY_DEFAULT_HEIGHT = 80;
+constexpr int HUGGLE_OVERLAY_DEFAULT_WIDTH  = 400;
 
 namespace Huggle
 {
