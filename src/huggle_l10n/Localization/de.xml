@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
+* Ajeje Brazorf
 * Alefar
 * ChrisiPK
 * Das Schäfchen
@@ -23,7 +24,7 @@
 <resources>
   <string name="name">Deutsch</string>
   <string name="autorelog">Nächstes Mal ausführen, ohne zu fragen.</string>
-  <string name="isrtl">Nein</string>
+  <string name="isrtl">false</string>
   <string name="add">Hinzufügen</string>
   <string name="cancel">Abbrechen</string>
   <string name="clear">Leeren</string>
