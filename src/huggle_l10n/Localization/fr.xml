@@ -345,7 +345,7 @@
   <string name="main-stat">$1 modifications par minute, $2 annulations par minute, niveau $3</string>
   <string name="main-menu-provider-stop">Arrêter le fournisseur</string>
   <string name="main-menu-provider-resume">Remettre le fournisseur en marche</string>
-  <string name="main-help-copy-syslog-to-clip">Copier le journal système dans le presse-papier</string>
+  <string name="main-help-copy-syslog-to-clip">Copier le journal système dans le presse-papiers</string>
   <string name="provider-up">Connexion au flux des changements récents sur $2 à l’aide du fournisseur : $1</string>
   <string name="main-no-reason">Aucun motif n’a été fourni par l’utilisateur</string>
   <string name="main-restoring-slap">Une autre modification est déjà en cours de restauration, veuillez patienter...</string>
