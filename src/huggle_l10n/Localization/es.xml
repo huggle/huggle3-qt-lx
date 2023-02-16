@@ -33,7 +33,7 @@
 -->
 <resources>
   <string name="name">Español</string>
-  <string name="autorelog">Hazlo sin preguntarme la próxima vez</string>
+  <string name="autorelog">Haz esto sin preguntarme la próxima vez</string>
   <string name="isrtl">false</string>
   <string name="add">Añadir</string>
   <string name="cancel">Cancelar</string>
