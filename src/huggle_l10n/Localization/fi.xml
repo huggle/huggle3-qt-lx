@@ -151,6 +151,7 @@
   <string name="main-system-showqueue">Näytä jono</string>
   <string name="main-system-options">Asetukset...</string>
   <string name="main-system-logout">Kirjaudu ulos</string>
+  <string name="main-system-abort">Keskeytä</string>
   <string name="main-system-change-provider-irc">IRC</string>
   <string name="main-system-change-provider-wiki">Wiki</string>
   <string name="main-system-exit">Poistu</string>
@@ -158,6 +159,7 @@
   <string name="main-queue-next">Seuraava</string>
   <string name="main-queue-reset">Nollaa</string>
   <string name="main-queue-clearall">Tyhjennä kaikki</string>
+  <string name="main-queue-when-full">Kun jono on täynnä</string>
   <string name="main-goto-mytalk">Keskustelusivuni</string>
   <string name="main-goto-mycontribs">Omat muokkaukset</string>
   <string name="main-revision-decline">Hylkää tarkistus</string>
