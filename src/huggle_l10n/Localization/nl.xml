@@ -6,6 +6,7 @@
 * Lemondoge
 * Macofe
 * Mar(c)
+* McDutchie
 * MedShot
 * Nickthijssen1994
 * PonkoSasuke
@@ -390,9 +391,9 @@
   <string name="main-revision-rv-stay">Deze bewerking terugdraaien en op de pagina blijven</string>
   <string name="main-revision-revert-warn">De huidige weergegeven bewerking terugdraaien en de gebruiker waarschuwen</string>
   <string name="main-revision-rws">De huidige weergegeven bewerking terugdraaien, de gebruiker waarschuwen en op de pagina blijven</string>
-  <string name="main-revision-faith">Terugdraaien en uitgaan van goede wil</string>
+  <string name="main-revision-faith">Terugdraaien met aanname van goede trouw</string>
   <string name="main-revision-revert-only-this">Draai alleen deze bewerking terug</string>
-  <string name="main-revision-revert-agf">Ga uit van goede wil en draai alleen deze bewerking terug</string>
+  <string name="main-revision-revert-agf">Uitgaan van goede trouw en alleen deze bewerking terugdraaien</string>
   <string name="main-revision-previous">Vorige</string>
   <string name="main-revision-next">Volgende</string>
   <string name="main-revision-latest">Laatste</string>
@@ -668,7 +669,7 @@
   <string name="shortcut-open-in-huggle">Opent de huidige pagina</string>
   <string name="shortcut-open">Opent de huidige bewerking in een browser</string>
   <string name="shortcut-talk">Toon overlegpagina van de gebruiker die deze bewerking heeft gemaakt</string>
-  <string name="shortcut-revert-agf-1">Draai deze bewerking terug, maar ga uit van goede wil</string>
+  <string name="shortcut-revert-agf-1">Uitgaan van goede trouw en de laatste bewerking terugdraaien</string>
   <string name="shortcut-edit">Bewerk de huidige pagina</string>
   <string name="shortcut-edit-in-browser">Bewerk de huidige pagina in een browser</string>
   <string name="shortcut-browser-close-tab">Sluit een browsertabblad</string>

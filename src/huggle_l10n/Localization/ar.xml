@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
+* AA800
 * Amire80
 * Bibas
 * Dr-Taher
@@ -26,7 +27,7 @@
   <string name="name">الإنجليزية</string>
   <string name="autorelog">افعل هذا دون أن تسأل في المرة القادمة</string>
   <string name="isrtl">true</string>
-  <string name="add">يضيف</string>
+  <string name="add">أضف</string>
   <string name="cancel">ألغ</string>
   <string name="clear">إفراغ</string>
   <string name="close">أغلق</string>
@@ -223,7 +224,7 @@
   <string name="custommessage-wikiuser-lesummary">تسليم رسالة مخصصة إلى $1</string>
   <string name="custommessage-wikiuser-plaintext-1">مرحبا $1,</string>
   <string name="custommessage-wikiuser-plaintext-2">اكتب رسالتك هنا.</string>
-  <string name="delete-title">احذف $1ء</string>
+  <string name="delete-title">احذف $1</string>
   <string name="delete-reason">سبب:</string>
   <string name="delete-deletionlog">سجل الحذف:</string>
   <string name="delete-rem-talk">احذف الكلام المتعلّق</string>
@@ -583,7 +584,7 @@
   <string name="report-evidence-none-provid">لم تتوافر بيانات الفرق كدليل، وهذا سيجعل من الصعب جدًا للإداريين لمعرفة ما إذا كان المستخدم مخربًا أو لا. هل أنت متأكد أنك تريد المتابعة؟</string>
   <string name="report-duplicate">تم الاخطار عن هذا المستخدم</string>
   <string name="report-fail2">خطأ غير قادر على استرجاع صفحة التقرير في $1</string>
-  <string name="report-progress">قيد اخطار اداري عن \'$1\'...</string>
+  <string name="report-progress">قيد إخطار إداريّ عن \'$1\'...</string>
   <string name="report-retrieving">استرجاع صفحة التقرير الحالية...</string>
   <string name="report-done">تم الإبلاغ</string>
   <string name="report-user">الإبلاغ</string>
@@ -835,7 +836,7 @@
   <string name="preferences-keystroke-rate-limit">منع ضغطات المفاتيح المتكررة باتباع المعدل بالمللي ثانية (يمكن تشغيل نفس الاختصار فقط داخل N ms)</string>
   <string name="preferences-color-scheme-diff">ألوان الفرق</string>
   <string name="preferences-color-scheme-diff-default">افتراضي</string>
-  <string name="preferences-color-scheme-diff-dark-mode">وضع الظلام</string>
+  <string name="preferences-color-scheme-diff-dark-mode">الوضع الداكن</string>
   <string name="preferences-template-spam-info">تتحكم هذه الخيارات في النظام الفرعي الذي يمنع المستخدمين المستهدفين من إرسال قالب غير مرغوب فيه. بشكل افتراضي ، لا يُحذر المستخدمين من النماذج من التعديلات القديمة جدًا، كما يحصلون أيضًا على تحذير نموذجي واحد فقط في حالة التراجع عن تعديلات متعددة بواسطة نفس المستخدم في وقت قصير جدًا.</string>
   <string name="preferences-template-spam-title">قالب منع البريد العشوائي</string>
   <string name="fail">فشل</string>
