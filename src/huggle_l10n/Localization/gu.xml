@@ -91,6 +91,7 @@
   <string name="config-noshortcut">એકપણ નહીં</string>
   <string name="config-defaults">મૂળભૂત</string>
   <string name="config-minor">લઘુ તરીકે ચિહ્નિત કરો</string>
+  <string name="config-ip">IP સભ્યો</string>
   <string name="config-watchlist">ધ્યાનસૂચિ માં ઉમેરો</string>
   <string name="config-defaultsummary">જાતે થતાં સંપાદનોમાટે મૂળભૂત સારાંશ</string>
   <string name="config-revert-wait" fuzzy="true">પૂર્વવતમાટે રાહ (સેકંડ)</string>

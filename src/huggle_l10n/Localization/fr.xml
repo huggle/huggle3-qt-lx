@@ -175,7 +175,7 @@
   <string name="config-friend">Ami</string>
   <string name="config-userspace">Espace utilisateur</string>
   <string name="config-talk">Page de discussion</string>
-  <string name="config-columns-dynamic">Rendre les colonnes de liste soit dynamiques (dimensionnées d’après la taille des éléments) soit manuelles (dont l’utilisateur peut en modifier la taille)</string>
+  <string name="config-columns-dynamic">Rendre les colonnes de liste soit dynamiques (dimensionnées selon la taille des éléments), soit manuelles (l’utilisateur peut en modifier la taille)</string>
   <string name="config-message-notification">Afficher une notification quand vous recevez un nouveau message sur votre page de discussion</string>
   <string name="config-warning-api">Afficher les avertissements pour les requêtes de l’API</string>
   <string name="config-title-diff">Titre de page dans chaque différence (texte en gros qui affiche uniquement le titre de la page en haut de chaque différence)</string>
@@ -326,7 +326,7 @@
   <string name="login-error-config-query-no-data">La connexion a échoué  – problème de connexion réseau ? La configuration globale n’a pas pu être téléchargée.</string>
   <string name="login-error-count">L’utilisation de Huggle sur ce projet requiert au moins $1 modification{{PLURAL:$1||s}}.</string>
   <string name="login-error-disabled">Huggle n’est pas activé pour votre compte sur $1. Vérifiez la configuration sur votre page utilisateur.</string>
-  <string name="login-error-global">La connexion a échoué  – problème de connexion réseau ? La configuration globale n’a pas pu être téléchargée.</string>
+  <string name="login-error-global">La connexion a échoué — problème de connexion réseau ? La configuration globale n’a pas pu être téléchargée ou analysée.</string>
   <string name="login-error-invalid">Nom d’utilisateur incorrect</string>
   <string name="login-error-noconfig">$1 n’a pas de page de configuration pour Huggle</string>
   <string name="login-error-nouser">L’utilisateur ou l’utilisatrice n’existe pas</string>
@@ -446,7 +446,7 @@
   <string name="main-user-page">Afficher la page utilisateur</string>
   <string name="main-user-message">Envoyer un message...</string>
   <string name="main-user-warn">Avertir...</string>
-  <string name="main-user-db">Décrémenter le score de mauvaise conduite de l’utilisateur</string>
+  <string name="main-user-db">Décrémenter les points de mauvaise conduite de l’utilisateur</string>
   <string name="main-user-report">Signaler</string>
   <string name="main-user-ib">Augmenter les points de mauvaise conduite</string>
   <string name="main-user-contribution-browser">Navigateur des contributions</string>
@@ -523,7 +523,7 @@
   <string name="protect-request-title">Demande de protection de $1</string>
   <string name="protect-reason">Motif :</string>
   <string name="protect-expiry">Expiration :</string>
-  <string name="protect-log">Journal de protection :</string>
+  <string name="protect-log">Journal des protections :</string>
   <string name="protect-currentlevel">Niveau de protection actuel :</string>
   <string name="protect-type">Type de protection :</string>
   <string name="protect-none">Aucune</string>
@@ -683,7 +683,7 @@
   <string name="shortcut-tab">Ouvre un nouvel onglet</string>
   <string name="shortcut-rw-stay">Révoquer la modification actuelle, avertir l’utilisateur et rester sur la page</string>
   <string name="shortcut-revert-and-stay">Révoquer la modification courante et rester sur la page</string>
-  <string name="shortcut-custom-reason">Annuler la modification en utilisant un motif personnalisé de résumé des modifications</string>
+  <string name="shortcut-custom-reason">Annuler la modification en utilisant un motif personnalisé du résumé des modifications</string>
   <string name="shortcut-user-contribs-browser">Afficher les contributions de l’utilisateur dans un navigateur</string>
   <string name="shortcut-user-clear-talk">Effacer une page de discussion de l’utilisateur actuel</string>
   <string name="shortcut-main-clear-queue">Effacer la file d’attente</string>
@@ -810,7 +810,7 @@
   <string name="cr-revert-same-user">Conflit résolu : annuler toutes les modifications — il y a plusieurs modifications du même utilisateur sur $1</string>
   <string name="cr-message-same">Il y a des modifications multiples de $1 par le même utilisateur, êtes-vous sûr de vouloir les annuler ?</string>
   <string name="cr-message-new">Il y a des modifications plus récentes sur $1. Êtes-vous sûr de vouloir vraiment les annuler ?</string>
-  <string name="cr-message-not-same">Il y a des modifications plus récentes faites sur $1 par un autre utilisateur. Êtes-vous sûr de vouloir les annuler toutes (cela échouera sans doute parce qu’elles auront un ancien jeton) ?</string>
+  <string name="cr-message-not-same">Des modifications plus récentes ont été effectuées sur $1 par un autre utilisateur. Êtes-vous sûr de vouloir toutes les annuler (cela échouera sans doute parce qu’elles auront un ancien jeton) ?</string>
   <string name="preferences-show-warning-if-not-last-revision">Afficher un avertissement si vous n’êtes pas sur la dernière révision de la page</string>
   <string name="preferences-delete-using-filter">Vous ne pouvez pas supprimer un filtre qui est utilisé actuellement</string>
   <string name="preferences-extension-disabled">Cette extension est déjà en attente de désactivation au prochain démarrage de Huggle</string>
@@ -827,8 +827,8 @@
   <string name="preferences-sounds-enable-irc">Emettre un son quand le message est reçu dans HAN</string>
   <string name="preferences-sounds-minimal-score">Valeur minimale de modifications pour la notification</string>
   <string name="preferences-performance-catscansandwatched">Activer les analyses de catégorie et le filtrage d’état de suivi (nécessite une requête API supplémentaire par modification)</string>
-  <string name="preferences-max-score">Activer le score maximal global (les modifications avec un score supérieur seront ignorées — utile si vous ne voulez voir que les bonnes modifications)</string>
-  <string name="preferences-min-score">Activer le score minimal global (les modifications avec un score inférieur seront ignorées — utile si vous voulez ne voir que les mauvaises modifications)</string>
+  <string name="preferences-max-score">Activer la valeur maximale globale (les modifications de plus grande valeur seront ignorées — utile si vous ne voulez voir que les bonnes modifications)</string>
+  <string name="preferences-min-score">Activer la valeur minimale globale (les modifications de moindre valeur seront ignorées — utile si vous voulez ne voir que les mauvaises modifications)</string>
   <string name="preferences-queue-size">Taille de la file</string>
   <string name="preferences-empty-queue-page">Page de file d’attente vide :</string>
   <string name="preferences-reset-gui">Réinitialiser l’IHM</string>
@@ -837,8 +837,8 @@
   <string name="preferences-color-scheme-diff">Couleurs du diff</string>
   <string name="preferences-color-scheme-diff-default">Par défaut</string>
   <string name="preferences-color-scheme-diff-dark-mode">Mode sombre</string>
-  <string name="preferences-template-spam-info">Ces options contrôlent le sous-système qui empêche les utilisateurs cible d’être inondés d’avertissements par des modèles. Par défaut, les utilisateurs ne sont pas avertis par modèle pour des modifications trop anciennes. Ils obtiennent également un unique avertissement de modèle au cas où vous annulez plusieurs modifications par le même utilisateur en un temps très court.</string>
-  <string name="preferences-template-spam-title">Prévention du pourrissement par modèle</string>
+  <string name="preferences-template-spam-info">Ces options contrôlent le sous-système qui empêche les utilisateurs cible d’être inondés d’avertissements par des modèles. Par défaut, les utilisateurs ne sont pas avertis par modèle pour des modifications trop anciennes. Ils obtiennent également un unique avertissement de modèle au cas où vous annulez plusieurs modifications par le même utilisateur dans un temps très court.</string>
+  <string name="preferences-template-spam-title">Prévention du pourrissement des modèles</string>
   <string name="fail">Échec</string>
   <string name="request">Requête</string>
   <string name="requesting">En cours de requête</string>
@@ -913,5 +913,5 @@
   <string name="tip13">Vous pouvez ouvrir un « navigateur de contribution » pour l’utilisateur qui a créé la modification actuellement affichée, en appuyant sur &lt;kbd&gt;Maj&lt;/kbd&gt; + &lt;kbd&gt;C&lt;/kbd&gt; (par défaut) ou depuis le menu utilisateur. Cela vous permet de voir rapidement les modifications récentes faites par cet utilisateur.</string>
   <string name="tip14">Vous pouvez dialoguer avec d\'autres utilisateurs actifs de Huggle qui utilisent le programme actuellement. Vous les verrez dans la fenêtre « Réseau » s’ils sont en ligne.</string>
   <string name="tip15">Si vous trouvez d’autres problèmes avec l’article, mais que l’annulation n’a pas d’effet, vous pouvez appuyer sur &lt;kbd&gt;E&lt;/kbd&gt; pour modifier immédiatement l’article dans votre navigateur par défaut (sauf dans Huggle).</string>
-  <string name="tip16">Si vous avez malencontreusement cliqué sur le bouton d’annulation, il vous est encore possible d’avorter l’annulation en cours en pressant rapidement la touche &lt;kbd&gt;Échap/Esc&lt;/kbd&gt;.</string>
+  <string name="tip16">Si vous avez malencontreusement cliqué sur le bouton d’annulation, il vous est encore possible d’interrompre l’annulation en cours en pressant rapidement la touche &lt;kbd&gt;Échap/Esc&lt;/kbd&gt;.</string>
 </resources>
