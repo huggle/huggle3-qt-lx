@@ -8,6 +8,7 @@
 * Drii10291
 * FiberAhmed
 * Hhaboh162002
+* MRidhaAJ
 * McDutchie
 * Meno25
 * Mido
@@ -26,7 +27,7 @@
 <resources>
   <string name="name">الإنجليزية</string>
   <string name="autorelog">افعل هذا دون أن تسأل في المرة القادمة</string>
-  <string name="isrtl">true</string>
+  <string name="isrtl">خاطئ</string>
   <string name="add">أضف</string>
   <string name="cancel">ألغ</string>
   <string name="clear">إفراغ</string>
@@ -56,7 +57,7 @@
   <string name="agf">استرجع، تعديلات بنية حسنة، مع تخصيص السبب</string>
   <string name="successful">ناجح</string>
   <string name="summary">ملخص</string>
-  <string name="id">معرف</string>
+  <string name="id">بروتوكول الإنترنت</string>
   <string name="type">نوع</string>
   <string name="target">الهدف</string>
   <string name="user">المستخدم</string>
