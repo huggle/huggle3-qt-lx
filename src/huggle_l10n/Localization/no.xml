@@ -2,6 +2,7 @@
 <!-- Authors:
 * Cocu
 * Danmichaelo
+* EdoAug
 * Kingu
 * Tarjeimo
 * VukAnd12
@@ -33,6 +34,7 @@
   <string name="show">Vis</string>
   <string name="undo">Angre</string>
   <string name="yes">Ja</string>
+  <string name="editing-page">Redigerer side</string>
   <string name="successful">Vellykket</string>
   <string name="summary">Sammendrag</string>
   <string name="id">ID</string>
@@ -45,6 +47,7 @@
   <string name="time">Tid</string>
   <string name="version">Versjon</string>
   <string name="general-name">Navn</string>
+  <string name="author">Skaper</string>
   <string name="description">Beskrivelse</string>
   <string name="status">Status</string>
   <string name="link">Lenke</string>
@@ -53,6 +56,7 @@
   <string name="enable">Skru på</string>
   <string name="disable">Skru av</string>
   <string name="about-contributors">bidragende:</string>
+  <string name="block-not">Brukeren er ikke blokkert</string>
   <string name="block-title">Blokker $1</string>
   <string name="block-reason">Begrunnelse:</string>
   <string name="block-duration">Varighet:</string>
@@ -66,6 +70,8 @@
   <string name="block-blockloglabel">Blokkeringslogg:</string>
   <string name="block-warnloglabel">Advarsler:</string>
   <string name="block-fail">Blokkerte ikke \'$1\'</string>
+  <string name="block-type">Blokker / fjern blokkering</string>
+  <string name="block-admin">Blokkerende administrator</string>
   <string name="config-function">Funksjon</string>
   <string name="config-description">Beskrivelse</string>
   <string name="config-shortcut">Snarvei</string>
@@ -113,7 +119,7 @@
   <string name="config-template">Mal</string>
   <string name="config-promptforblock">Spør om blokkering hvis advarsel går til bruker som har fått siste advarsel</string>
   <string name="config-blockreason">Standard blokkeringsgrunn</string>
-  <string name="config-blocktime" fuzzy="true">Standard blokkeringslengde for</string>
+  <string name="config-blocktime">Standard blokkeringslengde</string>
   <string name="config-blocktimeanon">anonyme brukere</string>
   <string name="config-blocktimereg">registrerte brukere</string>
   <string name="config-summaryprompt">Skriv sammendrag</string>
@@ -133,6 +139,7 @@
   <string name="irc-disconnected">Tilkobling til IRC for siste endringer feilet for $1. Kobler til på nytt...</string>
   <string name="irc-nochannel">IRC kanal for $1 ikke funnet, bruker tregere API-spørringer istedet</string>
   <string name="irc-error">Kunne ikke koble til siste endringer-strømmen på IRC ($1: $2). Bruker tregere API-spørringer istedet</string>
+  <string name="login-tab-botp">Botpassord</string>
   <string name="login-language">Språk:</string>
   <string name="login-project">Prosjekt:</string>
   <string name="login-username">Brukernavn:</string>
@@ -142,6 +149,7 @@
   <string name="login-proxyaddress">Addresse:</string>
   <string name="login-proxyport">Port:</string>
   <string name="login-proxydomain">Domene:</string>
+  <string name="login-abort">Avbryt</string>
   <string name="login-start">Logg på</string>
   <string name="login-translate">Oversett Huggle</string>
   <string name="login-progress-formtitle">Laster...</string>
@@ -150,6 +158,7 @@
   <string name="login-progress-global">Sjekker global konfigurasjon...</string>
   <string name="login-progress-config">Sjekker konfigurasjonssider...</string>
   <string name="login-progress-whitelist">Retrieving user whitelist...</string>
+  <string name="login-remember-password">Husk passord</string>
   <string name="login-fail">Inloggning mislyktes $1</string>
   <string name="login-error-admin">Bruk av Huggle på dette prosjektet krever en administratorkonto.</string>
   <string name="login-error-age" fuzzy="true">Bruk av Huggle på dette prosjektet krever en konto som er minst $1 dager gammel.</string>
