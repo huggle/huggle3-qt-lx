@@ -33,7 +33,7 @@
 * Yllelder
 -->
 <resources>
-  <string name="name">ES</string>
+  <string name="name">Español</string>
   <string name="autorelog">Haz esto sin preguntar la próxima vez</string>
   <string name="isrtl">false</string>
   <string name="add">Añadir</string>

@@ -213,7 +213,7 @@
   <string name="config-history">حمّل تاريخ جميع المقالات.</string>
   <string name="config-defaultsprompt">استرجاع المبدئيات?</string>
   <string name="config-logbrowsetitle">موقع ملف السجل</string>
-  <string name="config-shortcutconflict">المختصر \'$1\' يتعارض مع مختصر موجود لـ \'$2\'.ء</string>
+  <string name="config-shortcutconflict">المختصر \'$1\' يتعارض مع مختصر موجود لـ \'$1\'.</string>
   <string name="config-no-colon">لا يمكنك استخدام: في اسم قائمة الانتظار</string>
   <string name="config-notify-update">اطلع على التحديثات</string>
   <string name="config-notify-beta">اطلع على إصدارات البيتا إذا كانت متوافرة</string>
@@ -325,7 +325,7 @@
   <string name="login-error-config">فشل تسجيل الدخول; غير قادر على تحليل التهيئة المحلية ل $1: $2</string>
   <string name="login-error-config-retrieve">فشل تسجيل الدخول; غير قادر على استرداد تكوين المستخدم: $1</string>
   <string name="login-error-config-query-no-data">فشل تسجيل الدخول - مشاكل محتملة في الاتصال بالشبكة؟ غير قادر على تنزيل الضبط العالمي</string>
-  <string name="login-error-count">استخدام هجل في هذا المشروع يحتاج $1 تعديلات على الأقل.</string>
+  <string name="login-error-count">استخدام هغل في هذا المشروع يحتاج $1 تعديلات على الأقل.</string>
   <string name="login-error-disabled">هغل غير مفعل في حسابك على $1، راجع صفحة خيارات المستخدم.</string>
   <string name="login-error-global">فشل تسجيل الدخول - مشكلة محتملة في الاتصال بالشبكة؟ غير قادر على تنزيل أو تحليل صفحة الضبط العالمية</string>
   <string name="login-error-invalid">اسم مستخدم خاطئ.</string>
@@ -334,8 +334,8 @@
   <string name="login-error-no-valid-token">لم يتم إرجاع رمز مميز صالح لتسجيل الدخول بواسطة الموقع</string>
   <string name="login-error-password">كلمة سر خاطئة.</string>
   <string name="login-error-projdisabled">هغل معطل حاليا في $1</string>
-  <string name="login-error-unknown">تعذر الولوج إلى $1.</string>
-  <string name="login-error-version">هذا الإصدار قديم، يرجى التحديث لآخر إصدارة.</string>
+  <string name="login-error-unknown">تعذر تسجيل الدخول إلى $1 .</string>
+  <string name="login-error-version">هذا الإصدار قديم، يرجى التحديث لآخر إصدار.</string>
   <string name="login-error-whitelist">تعذر تحميل قائمة المستخدمين البيضاء</string>
   <string name="login-ro-title">التبديل إلى القراءة فقط</string>
   <string name="login-ro-question">لا يسمح لك مشروع واحد أو أكثر ($1) بتسجيل الدخول بصلاحيات التعديل (السبب: $2)، هل تريد التبديل إلى وضع القراءة فقط بدلا من ذلك؟</string>
