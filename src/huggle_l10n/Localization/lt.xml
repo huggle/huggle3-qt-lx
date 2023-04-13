@@ -8,6 +8,8 @@
 * Zygimantus
 -->
 <resources>
+  <string name="name">Lietuvių</string>
+  <string name="autorelog">Kitą kartą daryti tai neklausiant</string>
   <string name="isrtl">false</string>
   <string name="add">Pridėti</string>
   <string name="cancel">Atšaukti</string>
@@ -26,10 +28,11 @@
   <string name="rename">Pervadinti</string>
   <string name="reload">Perkrauti</string>
   <string name="project">Projektas</string>
+  <string name="warning">Įspėjimas</string>
   <string name="result">Rezultatas</string>
   <string name="save">Išsaugoti</string>
   <string name="show">Rodyti</string>
-  <string name="no-instant" fuzzy="true">Momentiniai įspėjimai nėra įgalinti $1 projekte, žinutės $2 nesiunčiamos, pasirinkite kitą įspėjimo lygį</string>
+  <string name="no-instant">Negalima išsiųsti pranešimo $2, nes momentiniai įspėjimai neįjungti projekte $1. Pasirinkite kitą įspėjimo lygį.</string>
   <string name="undo">Atšaukti</string>
   <string name="yes">Taip</string>
   <string name="editing-page">Puslapis redaguojamas</string>
@@ -50,7 +53,7 @@
   <string name="status">Būklė</string>
   <string name="link">Nuoroda</string>
   <string name="reason">Priežastis</string>
-  <string name="whitelisted" fuzzy="true">$1 su $2 balais buvo įtrauktas į $3 baltąjį sąrašą</string>
+  <string name="whitelisted">$1 su $2 balais $3 buvo įtrauktas į baltąjį sąrašą</string>
   <string name="expiry-time">Galiojimo laikas</string>
   <string name="duration">Trukmė</string>
   <string name="enable">Įgalinti</string>
@@ -58,8 +61,10 @@
   <string name="no-token">Nėra žetono</string>
   <string name="flags">Vėliavos</string>
   <string name="gracetime" fuzzy="true">Laukiama redagavimo užklausų pabaigos...</string>
-  <string name="browser-none" fuzzy="true">Dabar nėra rodomas joks puslapis</string>
+  <string name="browser-none">Dar nėra puslapio, kurį būtų galima rodyti.</string>
   <string name="browser-miss-summ">Santrauka nebuvo pateikta</string>
+  <string name="browser-diff">Puslapio skirtumas: $1 (balas: $2)</string>
+  <string name="browser-fail">Nepavyko gauti skirtumo: $1</string>
   <string name="about-contributors">Kūrėjai:</string>
   <string name="block-not">Vartotojų nėra užblokuotas</string>
   <string name="block-title">Blokuoti $1</string>
@@ -79,7 +84,7 @@
   <string name="block-token-1">Gaunamas raktas $1 blokavimui</string>
   <string name="block-fail">Nepavyko užblokuoti vartotojo $1</string>
   <string name="block-token-e1">Nepavyko gauti rakto: $1</string>
-  <string name="block-error-no-info" fuzzy="true">Nėra vartotojo informacijos užklausoje (ar esate sysop?)</string>
+  <string name="block-error-no-info">Nėra naudotojo informacijos užklausoje (ar esate administratorius?)</string>
   <string name="block-type">Blokuoti / atblokuoti</string>
   <string name="block-admin">Blokavimą atlikęs administratorius</string>
   <string name="block-none">Nėra vartotojo, pažymėto blokavimui.</string>
@@ -90,11 +95,16 @@
   <string name="config-queue-filter-ignore">Ignoruoti (nesvarbu)</string>
   <string name="config-queue-filter-exclude">Išskirti (neturi būti)</string>
   <string name="config-queue-filter-require">Reikalauti (turi būti)</string>
+  <string name="config-queue-modified-title">Eilė pakeista</string>
+  <string name="config-queue-modified-text">Pakeitėte eilę, bet jos neišsaugojote. Jei tęsite, jūsų pakeitimai bus atmesti. Ar norite tęsti?</string>
+  <string name="config-summ">Tinkintos šablonų grąžinimo santraukos</string>
   <string name="config-title">Parinktys</string>
   <string name="config-already-in-use">Ši santrumpa jau yra naudojama $1, prašome pasirinkti kitą</string>
   <string name="config-openinbrowser">Atidaryti naršyklės nuorodas naujame naršyklės lange</string>
+  <string name="config-shownewedits">Rodyti naujus pasirinkto puslapio pakeitimus, kai jie atliekami</string>
   <string name="config-ircmode">Naudoti IRC srautą naujausiems pakeitimams, jei įmanoma</string>
   <string name="config-ircport">IRC prievadas</string>
+  <string name="config-difffontsize">Skirtumo šrifto dydis</string>
   <string name="config-logfile">Žurnalo failas</string>
   <string name="config-viewlocalconfig">Žiūrėti vietinį konfigūracijos aplanką</string>
   <string name="config-startupmessage">Rodyti paleisties pranešimą</string>
@@ -105,22 +115,27 @@
   <string name="config-noshortcut">Nėra</string>
   <string name="config-defaults">Numatytieji</string>
   <string name="config-minor">Pažymėti kaip smulkų</string>
+  <string name="config-ip">IP naudotojai</string>
   <string name="config-watchlist">Pridėti į stebimųjų sąrašą</string>
   <string name="config-defaultsummary">Numatytoji rankinių redagavimų santrauka</string>
   <string name="config-undosummary">Santrauka, kai atsisakoma savo redagavimų</string>
   <string name="config-confirm-wl">Reikalauti patvirtinimo kai bandoma atsisakyti įnašo, kurį atliko baltojo sąrašo vartotojas</string>
   <string name="config-confirm-talk">Reikalauti patvirtinimo kai bandoma atsisakyti aptarimo puslapio įnašo</string>
   <string name="config-welcome-empty-page">Siųsti sveikinimo pranešimus vartotojams, kurių aptarimų puslapis yra tuščias, kai jie atlieka gerą pakeitimą</string>
-  <string name="config-conflicts-revert" fuzzy="true">Automatiškai išspręsti konfliktus su kitais vartotojais, kurie atsisakė pakeitimų ar pakeitė puslapį</string>
+  <string name="config-conflicts-revert">Automatiškai išspręsti konfliktus su kitais naudotojais, kurie atsisakė pakeitimų ar pakeitė tą patį puslapį</string>
   <string name="config-instant-reverts">Naudoti momentinius atsisakymus (labai greiti, bet negali būti atšaukti po įvykdymo)</string>
   <string name="config-revert-wait" fuzzy="true">Atsisakymo laukimas (sekundėmis)</string>
   <string name="config-revert">Grąžinti</string>
+  <string name="config-skip">Praleisti</string>
+  <string name="config-change-all">Pakeisti visus Huggle nustatymus, kad veiktų labiau kaip Huggle 2</string>
   <string name="config-merge-messages">Sujungti savo žinutes su kitomis, egzistuojančiose sekcijose</string>
   <string name="config-months-name">Naudoti mėnesius kaip antraštes, vietoj puslapio pavadinimo</string>
   <string name="config-automatic-warning">Naudoti automatinį įspėjimo tipą ir lygį funkcijai „siųsti įspėjimą“</string>
   <string name="config-enable-irc">Įgalinti IRC</string>
   <string name="config-remove-reverted" fuzzy="true">Pašalina įnašus, kurių jau kažkas atsisakė</string>
+  <string name="config-remove-old">Pašalinti senesnius pakeitimus iš eilės, jei gaunamas naujesnis to paties puslapio pakeitimas</string>
   <string name="config-auto-load-history">Automatiškai įkelti istoriją ir vartotojo informaciją (reikalauja daug tinklo pralaidumo)</string>
+  <string name="config-display-next">Rodyti kitą</string>
   <string name="config-retrieve-edit">Gauti savo paties įnašą</string>
   <string name="config-nothing">Nieko</string>
   <string name="config-bot-edits">Robotų įnašai (r)</string>
@@ -134,18 +149,19 @@
   <string name="config-warning-api">Rodyti įspėjimus API užklausoms</string>
   <string name="config-updates">Tikrinti, ar yra naujinių</string>
   <string name="config-beta">Tikrinti, ar yra beta versijų</string>
-  <string name="config-html-messages" fuzzy="true">HAN gali pavaizduoti HTML žinutes (pavojinga)</string>
+  <string name="config-html-messages">HAN gali pavaizduoti HTML žinutes (PASTANA: galimai pavojinga)</string>
   <string name="config-close-without">Uždaryti neišsaugojus</string>
   <string name="config-confirmmultiple">Patvirtinti kelis įnašo anuliavimus, padarytus to paties vartotojo</string>
   <string name="config-autoadvance">Po anuliavimo pereiti prie kito įnašo eilėje</string>
   <string name="config-revertsummaries">Anuliavimų santraukos prieinamos meniu</string>
+  <string name="config-autoreport">Kai prašoma įspėti naudotoją paskutiniu įspėjimu</string>
   <string name="config-reportnone">Nieko nedaryti</string>
   <string name="config-reportauto">Išduoti ataskaitą automatiškai</string>
   <string name="config-templates">Vartotojo šablono pranešimai</string>
   <string name="config-templatetext">Rodyti tekstą</string>
   <string name="config-template">Šablonas</string>
   <string name="config-blockreason">Numatytoji blokavimo priežastis</string>
-  <string name="config-blocktime" fuzzy="true">Numatytoji blokavimo trukmė</string>
+  <string name="config-blocktime">Numatytoji blokavimo trukmė</string>
   <string name="config-blocktimeanon">anoniminiai vartotojai</string>
   <string name="config-blocktimereg">registruoti vartotojai</string>
   <string name="config-summaryprompt">Įveskite santrauką</string>
@@ -153,9 +169,15 @@
   <string name="config-defaultsprompt">Atkurti numatytuosius?</string>
   <string name="config-logbrowsetitle">Žurnalo failo vieta</string>
   <string name="config-shortcutconflict">Santrumpa „$1“ konfliktuoja su egzistuojančia santrumpa „$1“.</string>
-  <string name="config-no-colon" fuzzy="true">Negali naudoti : eilės pavadinime</string>
+  <string name="config-no-colon">Negalima naudoti : eilės pavadinime</string>
   <string name="config-notify-update">Tikrinti, ar yra naujinių</string>
   <string name="config-notify-beta">Jei galime tikrinti ar yra beta versijų</string>
+  <string name="custommessage-title">Parašyti žinutę $1</string>
+  <string name="custommessage-summary">Keitimo santrauka (Huggle priesaga bus įterpta automatiškai)</string>
+  <string name="custommessage-subject">Pavadinimas</string>
+  <string name="custommessage-menu">Siųsti tinkintą žinutę</string>
+  <string name="custommessage-send">Siųsti žinutę</string>
+  <string name="custommessage-wikiuser-lesummary">Pristatoma tinkinta žinutė $1</string>
   <string name="custommessage-wikiuser-plaintext-1">Sveiki, $1,</string>
   <string name="custommessage-wikiuser-plaintext-2">Rašykite savo žinutę čia.</string>
   <string name="delete-title">Trinti $1</string>
@@ -166,9 +188,11 @@
   <string name="delete-e1">Puslapis negali būti ištrintas: $1</string>
   <string name="delete-e2">Negalima ištrinti puslapio</string>
   <string name="delete-edsc">Negalima ištrinti puslapio, nes $1</string>
-  <string name="delete-failed-no-info" fuzzy="true">Nėra puslapio informacijos užklausoje (ar esate sysop?)</string>
+  <string name="delete-failed-no-info">Nėra puslapio informacijos užklausoje (ar esate administratorius?)</string>
   <string name="extension-kl">Neveikia</string>
   <string name="extension-ok">Įkeltas ir veikia</string>
+  <string name="exception-text-1">Deja, Huggle užstrigo. Pateikite toliau nurodytą informaciją kartu su išsamia informacija apie tai, ką darėte</string>
+  <string name="exception-details">Išimties detalės</string>
   <string name="exception-error-code">Klaidos kodas: $1</string>
   <string name="exception-reason">Priežastis: $1</string>
   <string name="exception-source">Šaltinis: $1</string>
@@ -191,7 +215,7 @@
   <string name="irc-switch-rc">Pereinama prie viki RC srauto</string>
   <string name="login-old">Gaunama vartotojo konfigūracija iš senos vietos</string>
   <string name="login-intro">Prašome pasirinkti projektą ir įvesti savo vartotojo vardą ir slaptažodį. Gali prisijungti prie kelių projektų paspausdami „Projektai“ mygtuką.</string>
-  <string name="invalid-bot-user-name" fuzzy="true">Tai nėra galiojantis roboto vardas. Pavyzdinis roboto vardas: Jimbo@Huggle</string>
+  <string name="invalid-bot-user-name">Tai nėra galiojantis roboto pavadinimas. Pavyzdinis tinkamas roboto pavadinimas: Jimbo@Huggle</string>
   <string name="login-tab-botp">Roboto slaptažodis</string>
   <string name="login-tab-login" fuzzy="true">Interaktyvus prisijungimas</string>
   <string name="login-reload-tool-tip" fuzzy="true">Atnaujinti projektų, kuriuose Huggle gali būti naudojamas, sąrašą. Tai gali būti naudinga, jei norite naudoti Huggle projekte, kuriame Huggle buvo neseniai įgalintas.</string>
@@ -205,6 +229,7 @@
   <string name="login-proxy-remember-this">Atsiminti šį nustatymą kitam kartui</string>
   <string name="login-proxyport">Prievadas:</string>
   <string name="login-proxydomain">Domenas:</string>
+  <string name="proxy-restart">Kad šie pakeitimai įsigaliotų, Huggle gali tekti paleisti iš naujo.</string>
   <string name="login-retrieving-user-conf">Gaunama vartotojo konfigūracija</string>
   <string name="login-fail-enable-true">Prisijungti prie $1 nepavyko: Neturite enable:true savo asmeninėje konfigūracijoje.</string>
   <string name="login-fail-no-info">Prisijungti prie $1 nepavyko: Nepavyko gauti vartotojo informacijos: $2</string>
@@ -215,14 +240,17 @@
   <string name="login-password-empty">Jūsų įvestas slaptažodis buvo tuščias</string>
   <string name="login-fail-wrong-name">Jūs nepateikėte vartotojo vardo prisijungimui</string>
   <string name="login-api">KLAIDA: api.php atsakė su nežinomu rezultatu: $1</string>
+  <string name="login-abort">Nutraukti</string>
   <string name="login-start">Prisijungti</string>
   <string name="login-oauth-notsupported">Šis metodas šiuo metu nėra palaikomas</string>
   <string name="login-translate">Versti Huggle</string>
+  <string name="login-progress-formtitle">Įkeliama…</string>
   <string name="login-progress-start">Prisijungiama į $1</string>
   <string name="login-progress-retrieve-mw">Gaunama informacija apie $1 MediaWiki</string>
   <string name="login-progress-language">Atnaujinami pranešimų failai...</string>
   <string name="login-progress-global">Tikrinama globali konfigūracija...</string>
   <string name="login-progress-config">Tikrinami konfigūracijos puslapiai...</string>
+  <string name="login-progress-yaml">Tikrinama vietinė YAML konfigūracija $1</string>
   <string name="login-progress-local">Tikrinama $1 vietinė konfigūracija</string>
   <string name="login-progress-user">Tikrinama $1 vartotojo konfigūracija</string>
   <string name="login-progress-user-info">Tikrinama $1 vartotojo informacija</string>
@@ -230,34 +258,42 @@
   <string name="login-remember-password">Prisiminti slaptažodį</string>
   <string name="login-ssl">Naudoti HTTPS prisijungti (reikia OpenSSL)</string>
   <string name="login-fail">Nepavyko prisijungti prie $</string>
+  <string name="login-fail-with-reason">Nepavyko prisijungti ($1): $2</string>
   <string name="login-error-admin">Huggle naudojimas šiame projekte reikalauja administratorius paskyros.</string>
-  <string name="login-error-age" fuzzy="true">Huggle naudojimas šiame projekte reikalauja paskyros, kuri būti bent $1 dienų senumo.</string>
+  <string name="login-error-age">Huggle naudojimas šiame projekte reikalauja paskyros, kuri būti bent $1 dienos (-ų) senumo.</string>
   <string name="login-error-alldisabled">Huggle šiuo metu yra išjungta visuose projektuose.</string>
   <string name="login-error-approval">Huggle naudojimas $1 reikalauja patvirtinimo.</string>
   <string name="login-error-cancelled">Atšauktas.</string>
+  <string name="login-error-config-retrieve">Nepavyko prisijungti, nepavyko gauti naudotojo konfigūracijos: $1</string>
+  <string name="login-error-config-query-no-data">Nepavyko prisijungti – galimos tinklo ryšio problemos? Nepavyko atsisiųsti visuotinės konfigūracijos</string>
   <string name="login-error-count">Huggle naudojimas šiame projekte reikalauja bent $1 pakeitimų.</string>
-  <string name="login-error-disabled" fuzzy="true">Huggle nėra įgalintas jūsų $1 paskyroje. Patikrinkite vartotojo konfigūracijos puslapį.</string>
+  <string name="login-error-disabled">Huggle nėra įgalintas jūsų $1 paskyroje. Patikrinkite vartotojo konfigūracijos puslapį.</string>
   <string name="login-error-invalid">Negalimas naudotojo vardas</string>
   <string name="login-error-noconfig">$1 neturi Huggle konfigūracijos puslapio</string>
   <string name="login-error-nouser">Vartotojas neegzistuoja</string>
   <string name="login-error-password">Neteisingas slaptažodis</string>
   <string name="login-error-projdisabled">Huggle šiuo metu yra išjungta šiame projekte.</string>
-  <string name="login-error-unknown" fuzzy="true">Nepavyko prisijungti prie $1.</string>
+  <string name="login-error-unknown">Nepavyko prisijungti prie $1.</string>
   <string name="login-error-version">Ši versija yra pasenusi. Atnaujinkite į naujausią versiją.</string>
   <string name="login-error-whitelist">Nepavyko įkelti $1 vartotojų baltojo sąrašo.</string>
+  <string name="login-ro-title">Perjungti į tik skaitymo rėžimą</string>
+  <string name="login-ro-question">Vienas ar keli projektai ($1) neleidžia prisijungti su redagavimo leidimais (priežastis: $2). Ar vietoj to norite perjungti į tik skaitymo režimą?</string>
+  <string name="login-ro-info">Projektas $1 perjungtas į tik skaitymo režimą</string>
+  <string name="wikis-db-download-fail">Nepavyko atsisiųsti viki duomenų bazės: $1</string>
   <string name="main-menu-provider-stop">Sustabdyti tiekėją</string>
   <string name="main-menu-provider-resume">Pratęsti tiekėją</string>
   <string name="provider-up">Prisijungia prie $2 naujausių pakeitimų srauto, naudojant tiekėją: $1</string>
   <string name="main-no-reason">Vartotojas nenurodė priežasties</string>
-  <string name="main-restoring-slap" fuzzy="true">Šiuo metu atkuriu kitą pakeitimą, prašome palaukti...</string>
+  <string name="main-restoring-slap">Šiuo metu atkuriamas kitas pakeitimas, prašome palaukti...</string>
   <string name="main-page">Puslapis</string>
   <string name="main-user">Vartotojas</string>
   <string name="main-contribs">Įnašai</string>
   <string name="main-history">Istorija</string>
-  <string name="main-new-messages" fuzzy="true">Turite naujų pranešimų. Pasirinkite Sistema -&gt; Rodyti naujas žinutes ar paspauskite M, kad jas peržiūrėtumėte.</string>
+  <string name="main-new-messages">Turite naujų žinučių. Pasirinkite Sistema -&gt; Rodyti naujas žinutes arba paspauskite M, kad jas peržiūrėtumėte.</string>
   <string name="main-space">Puslapio pavadinimas negali pasibaigti tarpu, prašome pataisyti puslapio pavadinimą</string>
   <string name="main-system">Sistema</string>
   <string name="main-status-bar">Apdorojama &lt;b&gt;$1&lt;/b&gt; pataisymų ir &lt;b&gt;$2&lt;/b&gt; užklausų. Vartotojai baltajame sąraše: &lt;b&gt;$3&lt;/b&gt; Eilės dydis: &lt;b&gt;$4&lt;/b&gt; Statistika $6: $5</string>
+  <string name="main-metric-bar">Vidutinis API atsako laikas: $1 ms</string>
   <string name="main-shutting-down">Huggle yra išjungiamas, ignoruota</string>
   <string name="main-system-messages">Rodyti naujas žinutes</string>
   <string name="main-system-savelog">Išsaugoti žurnalą...</string>
@@ -280,6 +316,10 @@
   <string name="main-queue-reset">Atstatyti</string>
   <string name="main-queue-clearall">Valyti visus</string>
   <string name="main-queue-options">Tvarkyti eiles...</string>
+  <string name="main-queue-when-full">Kai eilė pilna</string>
+  <string name="main-queue-when-full-remove">Pašalinti senus pakeitimus</string>
+  <string name="main-queue-remove-whitelisted">Pašalinti keitimus, kuriuos padarė naudotojai, esantys baltajame sąraše</string>
+  <string name="main-queue-remove-200">Pašalinti keitimus, kurių balas yra mažesnis, nei -200</string>
   <string name="main-goto">Eiti į</string>
   <string name="main-goto-mytalk">Mano aptarimo puslapis</string>
   <string name="main-goto-mycontribs">Mano įnašai</string>
@@ -290,6 +330,7 @@
   <string name="main-revision-rv-stay">Anuliuoti šį įnašą ir likti puslapyje</string>
   <string name="main-revision-revert-warn">Anuliuoti dabar rodomą įnašą ir perspėti vartotoją</string>
   <string name="main-revision-rws">Anuliuoti dabar rodomą įnašą, perspėti vartotoją ir likti puslapyje</string>
+  <string name="main-revision-revert-only-this">Grąžinti tik šį keitimą</string>
   <string name="main-revision-previous">Ankstesnis</string>
   <string name="main-revision-next">Kitas</string>
   <string name="main-revision-latest">Naujausi</string>
@@ -309,34 +350,45 @@
   <string name="main-page-reqprotection">Prašyti puslapio apsaugos</string>
   <string name="main-page-watch">Stebėti</string>
   <string name="main-page-unwatch">Nebestebėti</string>
+  <string name="main-page-purge">Išvalyti</string>
   <string name="main-page-curr-disp">Šiuo metu rodomas</string>
   <string name="main-page-display">Rodyti šį puslapį</string>
+  <string name="main-page-patrol">Žymėti kaip patikrinta</string>
   <string name="main-page-move">Perkelti...</string>
   <string name="main-page-flag-suspicious-edit">Pažymėti kaip įtartiną įnašą (šis veiksmas vartotojui duoda +1 balą)</string>
-  <string name="main-page-flag-good-edit" fuzzy="true">Pažymėti kaip gerą įnašą (šis veiksmas vartotojui duoda -200 balus)</string>
+  <string name="main-page-flag-good-edit">Pažymėti kaip gerą keitimą (šis veiksmas naudotojui atima 200 balų)</string>
   <string name="main-page-protect">Apsaugoti</string>
   <string name="main-page-delete">Ištrinti</string>
   <string name="main-page-load">Įkelti</string>
+  <string name="main-page-refresh">Atnaujinti</string>
   <string name="main-page-restore">Atkurti šią peržiūrą</string>
+  <string name="main-page-watchlist-add">Pridėti puslapį į stebimųjų sąrašą</string>
+  <string name="main-page-tab-close">Uždarykite dabartinį skirtuką</string>
+  <string name="main-page-tab-open">Atidaryti naują skirtuką</string>
+  <string name="main-page-watchlist-remove">Pašalinti puslapį iš stebimųjų sąrašo</string>
   <string name="main-user-info">Rodyti vartotojo informacija</string>
   <string name="main-user-ignore">Ignoruoti</string>
   <string name="main-user-unignore">Nebeignoruoti</string>
   <string name="main-user-contribs">Rodyti vartotojo įnašus naršyklėje</string>
   <string name="main-user-clear-talk">Valyti vartotojo aptarimo puslapį</string>
   <string name="main-user-talk">Žiūrėti aptarimo puslapį</string>
+  <string name="main-user-page">Žiūrėti naudotojo puslapį</string>
   <string name="main-user-message">Siųsti žinutę...</string>
   <string name="main-user-warn">Įspėti...</string>
   <string name="main-user-db">Sumažinti vartotojo blogumo balus</string>
   <string name="main-user-report">Pranešti</string>
   <string name="main-user-ib">Padidinti blogumo balus</string>
+  <string name="main-user-contribution-browser">Įnašo naršyklė</string>
   <string name="main-user-clear-tp">Valyti vartotojo aptarimo puslapį</string>
   <string name="main-user-retrieving-tp">Gaunamas $1 Aptarimo Puslapis</string>
   <string name="main-user-block">Blokuoti...</string>
+  <string name="main-user-manualtemplate">Rankinis šablonas</string>
   <string name="main-browser-back">Atgal</string>
   <string name="main-browser-forward">Pirmyn</string>
   <string name="main-browser-open">Žiūrėti tai išorinėje naršyklėje</string>
+  <string name="main-browser-newedits">Rodyti naujus puslapio pakeitimus</string>
   <string name="main-browser-newcontribs">Rodyti naujus vartotojo įnašus</string>
-  <string name="main-browser-lasttab" fuzzy="true">Negaliu užverti šio skirtuko, nes jis paskutinis, turite turėti bent 1 atvertą skirtuką</string>
+  <string name="main-browser-lasttab">Negaliu užverti šio skirtuko, nes jis paskutinis, turite turėti bent 1 atvertą skirtuką</string>
   <string name="main-han-disconnect">Atsijungti</string>
   <string name="main-han-connect">Prisijungti</string>
   <string name="main-help">Pagalba</string>
@@ -346,6 +398,10 @@
   <string name="main-help-documentation">Dokumentacija</string>
   <string name="main-help-feedback">Atsiliepimai</string>
   <string name="main-help-about">Apie Huggle...</string>
+  <string name="main-help-introduction">Įvadas</string>
+  <string name="main-help-welcome-page">Pradžios puslapis</string>
+  <string name="main-help-contents">Turinys</string>
+  <string name="main-help-queuelegend">Eilės legenda</string>
   <string name="main-addqueue">Pridėti...</string>
   <string name="main-savelogtitle">Išsaugoti žurnalą</string>
   <string name="main-usermessageother">Kitas pranešimas...</string>
@@ -357,19 +413,32 @@
   <string name="main-tip-pagedelete">Ištrinti šį puslapį</string>
   <string name="main-tip-userreport">Pranešti apie šį vartotoją</string>
   <string name="main-tip-userblock">Blokuoti šį vartotoją</string>
-  <string name="main-no-page" fuzzy="true">Veiksmui, kurį prašėte atlikti, reikalingas įkeltas puslapis. Prašome įkelti puslapį ir bandyti dar kartą.</string>
+  <string name="main-revision-acceptpend">Priimti šį laukiantį keitimą</string>
+  <string name="main-no-page">Veiksmas, kurio prašėte, negalimas, nes puslapis neįkeltas arba yra tik skaitymo režime. Prieš bandydami dar kartą, įkelkite redaguotiną puslapį.</string>
   <string name="main-revert-newpage-title">Nepavyko to anuliuoti</string>
   <string name="main-revert-newpage">Tai yra naujas puslapis, tad jis negali būti anuliuotas. Galite jį pažymėti arba ištrinti.</string>
+  <string name="main-welcome-user">Pasveikinti naudotoją prisijungus</string>
+  <string name="main-custom-reason-fail">Nepateikėte tinkamos priežasties</string>
+  <string name="main-report-username">Pranešti apie naudotojo vardą</string>
+  <string name="main-report-user">Pranešti apie naudotoją</string>
+  <string name="main-edit-user-talk">Redaguoti naudotojo aptarimą</string>
+  <string name="main-statistics-paused">pristabdyta</string>
+  <string name="main-statistics-waiting">Laukiama daugiau keitimų</string>
+  <string name="main-statistics-none">nėra</string>
+  <string name="main-tab-welcome-title">Pradžios puslapis</string>
   <string name="message-title">Pranešimas $1</string>
   <string name="message-subject">Tema:</string>
   <string name="message-message">Žinutė:</string>
   <string name="message-summary">Santrauka:</string>
   <string name="message-autosign">Automatiškai pridėti parašą</string>
+  <string name="message-retrieve-new-token">Gaunamas $1 redagavimo prieigos raktas</string>
   <string name="message-fail-re-user-tp">Nepavyko gauti $1. Žinutės siuntimas šiam vartotojui stabdomas</string>
   <string name="message-er">Nepavyko pristatyti žinutės $1: $2</string>
   <string name="message-error">Nepavyko pristatyti žinutės $1! Prašome peržiūrėti žurnalus!</string>
-  <string name="message-fail-retrieve-talk" fuzzy="true">nepavyko gauti vartotojo aptarimo puslapio</string>
+  <string name="message-fail-retrieve-talk">Nepavyko gauti naudotojo aptarimo puslapio</string>
   <string name="message-done">$2 žinutė sėkmingai pristatyta: $1</string>
+  <string name="message-fail-token-1">Nepavyko gauti redagavimo prieigos rakto</string>
+  <string name="message-fail-token-2">Pagal prašymą nebuvo grąžintas joks prieigos raktas</string>
   <string name="protect-request-title">Prašyti $1 apsaugos</string>
   <string name="protect-reason">Priežastis:</string>
   <string name="protect-expiry">Pabaiga:</string>
@@ -377,12 +446,14 @@
   <string name="protect-currentlevel">Dabartinis apsaugos lygis:</string>
   <string name="protect-type">Apsaugos tipas:</string>
   <string name="protect-none">Nėra</string>
+  <string name="protect-token">Negalima gauti prieigos rakto. Priežastis: $1</string>
   <string name="protect-semiprotection">Pusiau apsaugotas</string>
   <string name="protect-error">Negalima apsaugoti puslapio, nes: $1</string>
   <string name="protect-fail-no-info">Nėra prieinamos puslapio informacijos (ar esate administratorius?)</string>
   <string name="protect-fullprotection">Pilna apsauga</string>
   <string name="protect-message-title-fail">Negalima apsaugoti</string>
   <string name="protect-moveprotection">Perkelti apsaugą</string>
+  <string name="protect-ft">Gaunamas prieigos raktas siekiant apsaugoti $1</string>
   <string name="protect-request-proj-fail">Šis projektas nepalaiko apsaugos prašymų</string>
   <string name="queue-title">Eilės</string>
   <string name="queue-queues">Eilės:</string>
@@ -391,7 +462,9 @@
   <string name="queue-listbuilder">Sąrašo sudarytojas...</string>
   <string name="queue-sortorder">Rūšiavimo tvarka</string>
   <string name="queue-removeviewed">Pašalinti keitimus, kai peržiūrėta</string>
+  <string name="queue-removeold">Pašalinti senus to paties puslapio pakeitimus</string>
   <string name="queue-ignorepages">Ignoruoti keitimus puslapiuose, kurie yra ignoruojamų puslapių sąraše</string>
+  <string name="queue-diffsgroup">Skirtumai</string>
   <string name="queue-pagefiltersgroup">Puslapio pavadinimo filtrai</string>
   <string name="queue-pageregex">Pavadinimas atitinka reguliarią išraišką:</string>
   <string name="queue-editfiltersgroup">Redaguoti filtrus</string>
@@ -420,10 +493,11 @@
   <string name="report-message">Pranešimas:</string>
   <string name="report-log">Įspėjimai šiam vartotojui:</string>
   <string name="report-include">Įtraukti į pranešimą</string>
+  <string name="report-select">Norėdami atidaryti peržiūrą, sąraše pasirinkite skirtumą</string>
   <string name="report-write">Rašymas</string>
   <string name="reportuser-not">Dabar apie šį vartotoją nėra pranešta</string>
   <string name="report-duplicate">Apie vartotoją jau buvo pranešta</string>
-  <string name="report-fail2" fuzzy="true">Klaida, nepavyko gauti $1 pranešimo puslapio</string>
+  <string name="report-fail2">Klaida: nepavyko gauti $1 pranešimo puslapio</string>
   <string name="report-progress">Pranešama $1...</string>
   <string name="report-retrieving">Gaunamas dabartinis pranešimo puslapis...</string>
   <string name="report-done">Pranešta</string>
@@ -434,15 +508,20 @@
   <string name="score-take-any-no-talk-word">Atitinka bet kokį žodį ne aptarimo puslapiuose</string>
   <string name="score-take-whole-no-talk-word">Atitinka tik visus žodžius ne aptarimo puslapiuose</string>
   <string name="score-only-whole-word">Atitinka tik visus žodžius</string>
-  <string name="ssl-is-not-supported" fuzzy="true">Jūs prašėte naudoti SSL, bet $1 to nepalaiko.</string>
+  <string name="score-take-any-word">Atitinka bet kurį žodį, kuriame yra ši eilutė</string>
+  <string name="ssl-is-not-supported">Jūs prašėte naudoti SSL, bet, deja, $1 to nepalaiko.</string>
+  <string name="ssl-required">$1 žiniatinklio serveris reikalauja, kad būtų įjungtas SSL. Įjunkite SSL ir bandykite dar kartą. Jei negalite įjungti SSL (parinktis yra pilka), gali reikėti įdiegti OpenSSL bibliotekas savo sistemoje.</string>
   <string name="uaa-reported">Pranešta</string>
+  <string name="uaa-user-reported-title">Apie naudotoją jau pranešta</string>
+  <string name="uaa-user-unreported-title">Apie naudotoją nepranešta</string>
   <string name="uaa-no-reason-warn">Jūs nenurodėte priežasties, kodėl vartotojo vardas yra taisyklių pažeidimas. Prašome nurodyti priežastį.</string>
   <string name="uaa-nr">Nebuvo nurodyta jokio priežastis</string>
-  <string name="uaa-e1" fuzzy="true">puslapio turinio užklausa negražino jokių duomenų.</string>
-  <string name="uaa-e2" fuzzy="true">puslapio turinys nebuvo prieinamas.</string>
+  <string name="uaa-e1">Puslapio turinio užklausa negrąžino jokių duomenų.</string>
+  <string name="uaa-e2">Puslapio turinys nebuvo prieinamas.</string>
+  <string name="read-only">Projektas $1 sukonfigūruotas kaip tik skaitymo režime, redagavimo funkcijos bus ribotos</string>
   <string name="revert-confirm-multiple">Tai anuliuos kelis $1 keitimus. Tęsti?</string>
   <string name="revert-error-first">Šis keitimas yra pirmasis puslapio keitimas, todėl negali būti anuliuotas.</string>
-  <string name="revert-only" fuzzy="true">Keitimas yra vienintelis puslapio keitimas.</string>
+  <string name="revert-only">Šis keitimas yra vienintelis puslapio keitimas.</string>
   <string name="revert-creator">Paskutinis keitimas buvo atliktas puslapio kūrėjo, $1.</string>
   <string name="revert-delete-instead">Vietoj to ištrinti puslapį?</string>
   <string name="revert-speedy-instead">Vietoj to pažymėti greitam trynimui?</string>
@@ -457,7 +536,7 @@
   <string name="tag-summary">Santrauka:</string>
   <string name="tag-insertatend">Įtraukti į puslapio pabaigą</string>
   <string name="update-title">Galima nauja versija</string>
-  <string name="update-progress" fuzzy="true">Nauja versija atsiunčiama...</string>
+  <string name="update-progress">Nauja versija atsiunčiama, prašome palaukti...</string>
   <string name="update-error">Nepavyko atsisiųsti naują versiją</string>
   <string name="updater-title">Galima nauja Huggle versija</string>
   <string name="updater-update">Atnaujinti</string>
@@ -465,30 +544,39 @@
   <string name="updater-open-manualdownloadpage">Atidaryti atsisiuntimo puslapį</string>
   <string name="updater-close">Uždaryti</string>
   <string name="updater-disable-notify">Išjungti atnaujinimus</string>
-  <string name="user-history-fail" fuzzy="true">nepavyko gauti vartotojo informacijos: $1</string>
+  <string name="updater-wait">Dabar atnaujinu huggle, palaukite...</string>
+  <string name="user-history-fail">nepavyko gauti naudotojo informacijos: $1</string>
   <string name="userinfo-generic">Vartotojo informacija</string>
   <string name="userinfo-retrieve">Gauti informaciją</string>
+  <string name="userinfo-no-user">Nėra naudotojo</string>
   <string name="shortcut-report-username">Pranešti apie vartotoją</string>
   <string name="shortcut-report-user">Pranešti apie vartotoją</string>
   <string name="shortcut-my-talk">Mano aptarimo puslapis</string>
   <string name="shortcut-raw">Anuliuoti keitimą ir įspėti vartotoją</string>
+  <string name="shortcut-contrib">Rodyti naudotojo, kuris atliko šiuo metu rodomą keitimą, indėlį</string>
+  <string name="shortcut-custom-msg">Atidaroma forma, skirta dabartiniam išsiųsti pranešimą dabartiniam naudotojui</string>
   <string name="shortcut-exit">Nutraukti Huggle įprastu būdu</string>
   <string name="shortcut-next">Eiti prie kito keitimo</string>
   <string name="shortcut-suspicious">Žymėti keitimą kaip įtartiną</string>
   <string name="shortcut-back">Grįžti prie ankščiau rodyto keitimo</string>
-  <string name="shortcut-warn" fuzzy="true">Nusiųsti įspėjimą vartotojui, neanuliuojant keitimo</string>
+  <string name="shortcut-warn">Nusiųsti įspėjimą naudotojui, neanuliuojant keitimo</string>
   <string name="shortcut-revert">Anuliuoti keitimą</string>
-  <string name="shortcut-watch" fuzzy="true">Įterpia rodomą puslapį į stebimųjų sąrašą</string>
-  <string name="shortcut-unwatch" fuzzy="true">Pašalina rodomą puslapį iš stebimųjų sąrašo</string>
+  <string name="shortcut-watch">Įterpia rodomą puslapį į stebimųjų sąrašą</string>
+  <string name="shortcut-unwatch">Pašalina rodomą puslapį iš stebimųjų sąrašo</string>
   <string name="shortcut-good">Žymėti dabar rodomą keitimą kaip gerą</string>
-  <string name="shortcut-open-in-huggle" fuzzy="true">Atidaryti dabar rodomą puslapį</string>
-  <string name="shortcut-open" fuzzy="true">Atidaryti dabar rodomą keitimą naršyklėje</string>
+  <string name="shortcut-open-in-huggle">Atidaro dabar rodomą puslapį</string>
+  <string name="shortcut-open">Atidaro dabar rodomą keitimą naršyklėje</string>
   <string name="shortcut-talk">Rodyti vartotojo, kuris atliko šį keitimą, aptarimo puslapį</string>
+  <string name="shortcut-edit">Redaguoti šiuo metu rodomą puslapį</string>
+  <string name="shortcut-edit-in-browser">Redaguoti šiuo metu rodomą puslapį naršyklėje</string>
   <string name="shortcut-browser-close-tab">Užverti naršyklės skirtuką</string>
   <string name="shortcut-tab">Atveria naują skirtuką</string>
-  <string name="shortcut-rw-stay" fuzzy="true">Anuliuoti dabartinį keitimą, perspėja vartotoją ir pasilikti puslapyje</string>
-  <string name="shortcut-revert-and-stay" fuzzy="true">Anuliuoti dabartinį keitimą ir likti puslapyje</string>
+  <string name="shortcut-rw-stay">Anuliuoti dabartinį keitimą, perspėti naudotoją ir pasilikti puslapyje</string>
+  <string name="shortcut-revert-and-stay">Anuliuoti dabartinį keitimą ir pasilikti puslapyje</string>
+  <string name="shortcut-custom-reason">Anuliuoti keitimą naudojant tinkintą keitimo santraukos priežastį</string>
   <string name="shortcut-user-contribs-browser">Atveria vartotojo įnašus naršyklėje</string>
+  <string name="shortcut-user-clear-talk">Išvalyti dabartinio naudotojo aptarimo puslapį</string>
+  <string name="shortcut-main-clear-queue">Išvalyti eilę</string>
   <string name="warning-title">Įspėti $1</string>
   <string name="warning-levelgroup">Įspėjimo lygis</string>
   <string name="warning-levelauto">Automatinis</string>
@@ -496,17 +584,26 @@
   <string name="warning-level2">2 lygis</string>
   <string name="warning-level3">3 lygis</string>
   <string name="warning-level4">4 lygis (galutinis)</string>
+  <string name="warning-confirm-title">Tikrai siųsti įspėjimą?</string>
+  <string name="warning-confirm-old-edit">$3 keitimas $1 $2 yra senesnis, nei 1 diena, ar tikrai norite siųsti įspėjimo žinutę?</string>
+  <string name="warning-confirm-too-recent">Keitimas $1 $2 buvo atliktas $3, kuris savo aptarimo puslapyje neseniai gavo žinutę (tikriausiai kitą įspėjimo šabloną?), ar tikrai norite siųsti dar vieną įspėjimo žinutę?</string>
+  <string name="warning-too-old-skip">Įspėjimas $1 nesiunčiamas už keitimą $2 $3, nes jis senesnis nei 1 diena</string>
   <string name="warning-warntype">Įspėjimas tipas:</string>
   <string name="warning-warnlog">Įspėjimai šiam vartotojui:</string>
   <string name="warning-submit">Siųsti</string>
   <string name="warninglist-no-warning-title">Nėra perspėjimo</string>
+  <string name="warninglist-no-warning-text">Duomenų apie tokio tipo įspėjimą nėra, negalima pateikti įspėjimo naudotojui!</string>
+  <string name="warninglist-report-text">Šis naudotojas jau gavo paskutinį įspėjimą, todėl daugiau jam įspėjimų nesiųsiu, ar norite apie naudotoją pranešti?</string>
   <string name="wikiedit-tp-fail">Nepavyko gauti $1 įspėjimo lygio. Tai nebus naudojama balams</string>
   <string name="missing-warning">Įspėjimo šablono $1 nėra</string>
-  <string name="han-connecting" fuzzy="true">Prisijungiama prie Huggle anti-vandalizmo tinklo</string>
+  <string name="han-not">Vandalizmo tinklas neleidžiamas pasirinktyse</string>
+  <string name="han-connecting">Prisijungiama prie Huggle anti-vandalizmo tinklo</string>
+  <string name="han-network">Tinklas</string>
+  <string name="han-send">Siųsti</string>
   <string name="error-loggedout">Paskyra buvo atjungta, prisijungiama iš naujo...</string>
   <string name="error-noresponse">Jokio atsakymo</string>
   <string name="error-pagemissing">Puslapis neegzistuoja</string>
-  <string name="error-reloginfail" fuzzy="true">Nepavyko vėl prisijungti, pabandykite iš naujo paleisti Huggle</string>
+  <string name="error-reloginfail">Nepavyko prisijungti. Galbūt pabandykite iš naujo paleisti Huggle</string>
   <string name="error-timeout">Užklausos laikas baigėsi</string>
   <string name="error-unknown">Nežinoma klaida</string>
   <string name="block-done">Užblokavo $1</string>
@@ -526,9 +623,10 @@
   <string name="edit-progress">Redaguojama $1...</string>
   <string name="history-fail">Nepavyko gauti $1 istorijos</string>
   <string name="history-progress">Gaunama $1 ($2) istorija...</string>
-  <string name="history-work" fuzzy="true">Anuliuojamas paties $1 patekimas</string>
+  <string name="history-work">Anuliuojamas paties $1 pakeitimas</string>
+  <string name="history-no-item-selected">Istorijos valdiklyje nepasirinktas joks elementas</string>
   <string name="history-message-revert-title">Ar tikrai norite anuliuoti tik ši pranešimą?</string>
-  <string name="history-another-edit" fuzzy="true">Aš jau anuliuoju kitą keitimą, prašome palaukti</string>
+  <string name="history-another-edit">Šiuo metu anuliuojamas kitas keitimas, prašome palaukti...</string>
   <string name="history-not-found">Nieko nerasta anuliavimui</string>
   <string name="history-already-done">Tai jau anuliuota</string>
   <string name="history-revert-fail">Nepavyko anuliuoti jūsų $1 pakeitimo, nes susidurta su šia klaida: $2</string>
@@ -536,6 +634,8 @@
   <string name="history-retrieve-fail" fuzzy="true">Nepavyko gauti puslapio, kuriame norėjote anuliuoti savo keitimą, klaida: $1</string>
   <string name="history-welcome-msg-title">Vietoj to siųsti sveikinimo pranešimą?</string>
   <string name="history-welcome-msg">Jūs sukūrėte šį aptarimo puslapį, tad jis negali būti anuliuotas. Ar norite pakeisti jį su sveikinimo šablonu?</string>
+  <string name="newtab-title">Tai naujas skirtukas!</string>
+  <string name="newtab-text">Huggle skirtukai veikia panašiai kaip ir bet kurioje kitoje naršyklėje. Visi Huggle skirtukai dalijasi ta pačia eile, tačiau jie yra naudingi, jei norite stebėti tam tikrą puslapį arba jei norite keitimą patikrinti vėliau.</string>
   <string name="notify-fail">$1 kūrėjui nebuvo pranešta</string>
   <string name="notify-unknowncreator">Nepavyko rasti puslapio kūrėjo</string>
   <string name="protect-done">Pakeistas $1 apsaugos lygis</string>
@@ -558,7 +658,12 @@
   <string name="speedy-finished">Baigta</string>
   <string name="warn-alreadyblocked">Šis vartotojas jau buvo užblokuotas</string>
   <string name="editquery-success">$1 sėkmingai redaguotas $2</string>
+  <string name="editquery-token">Gaunamas prieigos raktas, skirtas redaguoti $1</string>
+  <string name="editquery-token-error">Nepavyko gauti redagavimo prieigos rakto</string>
+  <string name="editquery-nocsrft">Nėra CSRF prieigos rakto</string>
+  <string name="editquery-error-retrieve-prev">Nepavyko gauti ankstesnio puslapio turinio: $1</string>
   <string name="editquery-error-badtoken">Blogas žetonas</string>
+  <string name="editquery-invalid-token">Nepavyko redaguoti $1, nes talpykloje turėtas prieigos raktas nebegalioja. Pabandykite dar kartą redaguoti šį puslapį</string>
   <string name="provider-failure">Srauto tiekėjo $1 klaida $2, bandoma rasti kitą tiekėją</string>
   <string name="rc-error">Nepavyko gauti duomenų iš viki srauto, paskutinė klaida: $1</string>
   <string name="rc-timestamp-missing">RC Srautas: Objekte nebuvo laiko žymės atributo: $1</string>
@@ -566,31 +671,44 @@
   <string name="rc-title-missing">RC Srautas: Objekte nebuvo pavadinimo atributo: $1</string>
   <string name="whitelist-download">Naujas baltasis sąrašas atsiunčiamas</string>
   <string name="logs-widget-name">Sistemos žurnalai</string>
+  <string name="processes-widget-name">Procesai</string>
   <string name="wait">Prašome palaukti...</string>
   <string name="function-miss">Funkcija šiuo metu neprieinama</string>
   <string name="missing-aiv">Šis projektas nenaudoja AIV</string>
   <string name="missing-page">Šioje viki nėra puslapio $1</string>
   <string name="updating-wl">Baltasis sąrašas atnaujinimas...</string>
+  <string name="waiting">Laukiama...</string>
   <string name="feature-nfru">Ši funkcija skirta IP tik vartotojams</string>
   <string name="report-no-user">Nepasirinktas joks vartotojas pranešimui, prašome pirma pasirinkti vartotoją</string>
-  <string name="welcome-tp-empty-fail" fuzzy="true">Šis vartotojas neturi tuščio aptarimo puslapio, ar tikrai norite jam siųsti šią žinutę?</string>
+  <string name="welcome-show">Rodyti šį pranešimą ir kitą kartą paleidus Huggle</string>
+  <string name="welcome-tp-empty-fail">Šis naudotojas neturi tuščio aptarimo puslapio, ar tikrai norite jam siųsti žinutę?</string>
   <string name="welcome-page-miss-fail">Huggle nepavyko gauti vartotojo aptarimo puslapio turinio, ar tikrai norite siųsti sveikinimo žinutę?</string>
-  <string name="cr-newer-edits" fuzzy="true">Konfliktas išspręstas: visi keitimai anuliuoti, įskaitant naujus keitimus. Keitimai buvo atlikti to paties vartotojo: $1.</string>
-  <string name="cr-resolved-same-user" fuzzy="true">Konfliktas išspręstas: visi keitimai anuliuoti, įskaitant naujus keitimus, atliktus tų pačių vartotojų - keitimai yra to paties vartotojo: $1</string>
+  <string name="cr-newer-edits">Konfliktas išspręstas: visi keitimai anuliuoti, įskaitant naujus keitimus. Keitimai buvo atlikti to paties naudotojo: $1.</string>
+  <string name="cr-resolved-same-user">Konfliktas išspręstas: visi keitimai anuliuoti, įskaitant naujus keitimus, atliktus tų pačių naudotojų: $1</string>
   <string name="cr-stop-new-edit">Konfliktas išspręstas: neatlikti jokie veiksmai - yra naujesnių $1 keitimų</string>
-  <string name="cr-stop-multiple-same" fuzzy="true">Konfliktas išspręstas: neatlikti jokie veiksmai - yra keli to paties vartotojo $1 keitimai</string>
-  <string name="cr-message-same" fuzzy="true">Yra keli to paties vartotojo $1 keitimai, ar tikrai norite anuliuoti juos visus?</string>
+  <string name="cr-stop-multiple-same">Konfliktas išspręstas: neatliktini jokie veiksmai - yra keli to paties naudotojo $1 keitimai</string>
+  <string name="cr-message-same">Yra keli to paties naudotojo $1 keitimai, ar tikrai norite anuliuoti juos?</string>
   <string name="cr-message-new">Yra naujesnių $1 keitimų. Ar tikrai norite juos anuliuoti?</string>
+  <string name="preferences-show-warning-if-not-last-revision">Rodyti įspėjimą, jei nesate paskutinėje puslapio versijoje</string>
   <string name="preferences-delete-using-filter">Negalite ištrinti filtro, kuris dabar yra naudojamas</string>
-  <string name="preferences-extension-disabled" fuzzy="true">Šis plėtinys jau yra numatytas išjungti per kitą Huggle paleidimą</string>
-  <string name="preferences-extension-disabled-restart" fuzzy="true">Plėtinys buvo nustatyas būti išjungtas per kitą Huggle paleidimą</string>
-  <string name="preferences-extension-enabled" fuzzy="true">Šis plėtinys nėra numatytas išjungti per kitą Huggle paleidimą</string>
-  <string name="preferences-extension-enabled-restart" fuzzy="true">Plėtinys buvo įgalintas, tačiau dėl to jums reikia paleisti Huggle iš naujo</string>
+  <string name="preferences-extension-disabled">Šis plėtinys jau yra numatytas išjungti per kitą Huggle paleidimą</string>
+  <string name="preferences-extension-disabled-restart">Plėtinys buvo nustatytas būti išjungtas per kitą Huggle paleidimą</string>
+  <string name="preferences-extension-enabled">Šis plėtinys nėra numatytas išjungti per kitą Huggle paleidimą</string>
+  <string name="preferences-extension-enabled-restart">Plėtinys įgalintas. Jums reikia paleisti Huggle iš naujo, kad keitimas įsigaliotų.</string>
   <string name="preferences-watchlist-watch">Pridėti į stebimųjų sąrašą</string>
   <string name="preferences-watchlist-unwatch">Pašalinti iš stebimųjų sąrašo</string>
+  <string name="preferences-watchlist-preferences">Vadovautis jūsų viki nuostatomis</string>
   <string name="preferences-watchlist-nochange">Nieko nedaryti</string>
-  <string name="preferences-sounds-enable-queue" fuzzy="true">Groti garsą, kai naujas elementas pridedamas į eilę</string>
+  <string name="preferences-auto-watch-talk">Stebėti naudotojo, kuris gavo įspėjimą iš jūsų, aptarimo puslapį</string>
+  <string name="preferences-sounds-enable-queue">Groti garsą, kai naujas elementas pridedamas į eilę</string>
   <string name="preferences-sounds-enable-irc">Groti garsą, kai gaunama HAN žinutė</string>
+  <string name="preferences-queue-size">Eilės dydis</string>
+  <string name="preferences-empty-queue-page">Tuščias eilės puslapis:</string>
+  <string name="preferences-restore-factory-layout">Taip bus atkurtas gamyklinis huggle išdėstymas, koks buvo jį įdiegus. Huggle užsidarys. Tęsti?</string>
+  <string name="preferences-color-scheme-diff">Skirtumo spalvos</string>
+  <string name="preferences-color-scheme-diff-default">Numatytasis</string>
+  <string name="preferences-color-scheme-diff-dark-mode">Tamsus režimas</string>
+  <string name="preferences-template-spam-title">Šablonų šlamšto prevencija</string>
   <string name="fail">Nepavyko</string>
   <string name="request">Prašymas</string>
   <string name="requesting">Prašoma</string>
@@ -600,7 +718,8 @@
   <string name="protect-request-fail-notime">Užklausa negražino jokios laiko žymės. Tai gali būti MediaWiki klaida. Užklausa nutraukiama</string>
   <string name="message-fail">Nepavyko pristatyti žinutės</string>
   <string name="edit-conflict">Redagavimo konfliktas</string>
-  <string name="page-tag-nodescription" fuzzy="true">nėra aprašymo šiai žymei :/</string>
+  <string name="page-tag-nodescription">nėra šios žymos aprašymo</string>
+  <string name="page-tag-noparameters">Nėra parametrų</string>
   <string name="page-tag-fail">Nepavyko pažymėti puslapio</string>
   <string name="page-tag-error">Nepavyko pažymėti puslapio, klaida: $1</string>
   <string name="page-unknown">Nežinomas puslapis</string>
@@ -609,17 +728,20 @@
   <string name="block-alreadyblocked">Vartotojas jau yra užblokuotas</string>
   <string name="report-fail">Nepavyko pranešti apie vartotoją, nes: $1</string>
   <string name="report-page-fail">Klaida: nepavyko gauti $1 pranešimo puslapio</string>
-  <string name="report-page-fail-time" fuzzy="true">Nepavyko gauti dabartinio pranešimo puslapio laiko žymės, api klaida:\n\n $1</string>
+  <string name="report-page-fail-time">Nepavyko gauti dabartinio pranešimo puslapio laiko žymės, API klaida:\n\n $1</string>
   <string name="report-unable">Nepavyko pranešti apie vartotoją</string>
   <string name="error-unknown-code">Nežinoma Klaida: $1</string>
   <string name="relogin-fail">Nepavyko prisijungti prie viki: $1</string>
   <string name="projects">Projektai</string>
   <string name="unable-to-retrieve-user-list">Nepavyko gauti vartotojų sąrašo: $1</string>
   <string name="login-no-userinfo" fuzzy="true">Svetainėje negražino jokios userinfo informacijos</string>
+  <string name="login-invalid-register-date">Vikiteka grąžino neteisingą registracijos datą</string>
   <string name="login-site-info-query-failed">Svetainės $1 informacijos užklausa nepavyko: $2</string>
   <string name="login-no-site-info-returned">Negražinta jokia viki svetainės informacija</string>
   <string name="loading-main-window">Įkeliamas pagrindinis Huggle langas...</string>
   <string name="login-username-doesnt-exist">Šis vartotojo vardas neegzistuoja</string>
+  <string name="developer-mode-enter-message">Įjungėte kūrėjo režimą!</string>
+  <string name="unimplemented">Ši funkcija dar neįdiegta</string>
   <string name="unknown-item">Nežinomas objektas</string>
   <string name="title-multiple-projects">keli projektai ($1)</string>
   <string name="title-on">$1</string>
@@ -629,6 +751,20 @@
   <string name="main-revert-type-made-by-you">jūs atlikote</string>
   <string name="main-revert-type-made-on-talk-page">atlikta aptarimo puslapyje</string>
   <string name="main-revert-type-made-white-list">atlikta vartotojo, kuris yra baltajame sąraše</string>
-  <string name="main-revert-warn" fuzzy="true">Šis keitimas yra $1, tad jei jis ir atrodo kaip vandalizmas gali toks ir nebūti, ar tikrai norite jį anuliuoti?</string>
+  <string name="query-result-nodata">Užklausos rezultate nėra jokių duomenų</string>
+  <string name="main-revert-warn">Šis keitimas yra $1, tad net jei jis ir atrodo kaip vandalizmas gali toks ir nebūti, ar tikrai norite jį anuliuoti?</string>
+  <string name="query-request-noaction">Api užklausoje veiksmų nenumatyta</string>
   <string name="query-protected-link">Apsaugota nuoroda</string>
+  <string name="queue-empty-title">Tuščia</string>
+  <string name="queue-empty-text">Daugiau nieko eilėje nėra...</string>
+  <string name="wikipagetagsform-group">Grupė {{$1}} viduje</string>
+  <string name="tip1">Huggle palaiko skirtukus kaip ir bet kuri kita naršyklė! Jei peržiūrite keitimą ir norite jį pasilikti vėlesniam laikui, galite tiesiog atidaryti naują skirtuką ir toliau tikrinti ten esančią eilę. Eilė yra bendrinama tarp visų skirtukų.</string>
+  <string name="tip3">Dauguma nuostatų yra saugomos viki [[Special:MyPage/huggle.yaml.js]]. Ten juos taip pat galite pakeisti rankiniu būdu.</string>
+  <string name="tip4">Beveik visi ekrane esantys valdikliai gali būti saugiai uždaryti (išskyrus naršymo juostą).</string>
+  <string name="tip5">Huggle galite naudoti vienu metu keliuose projektuose, tiesiog spustelėkite mygtuką „Projektai“ prisijungimo formoje.</string>
+  <string name="tip7">Savo nuostatose galite sukurti savo tinkintus eilės filtrus. Jie saugomi jūsų viki konfigūracijos puslapyje.</string>
+  <string name="tip10">Daugumą sparčiųjų klavišų galite pakeisti savo nuostatose.</string>
+  <string name="tip11">Perkėlus valdiklį Huggle ekrane ant kito valdiklio, jie bus sujungti į vieną ir bus atskirti skirtukais.</string>
+  <string name="tip12">Padarėte klaidą? Jokių problemų, dešiniuoju pelės mygtuku spustelėjus bet kurį pakeitimą „Redagavimo istorijoje“ atidaromas iššokantis langas, kuriame siūloma anuliuoti savo pakeitimą.</string>
+  <string name="tip14">Galite kalbėtis su kitais aktyviais Huggle naudotojais, kurie šiuo metu naudojasi programa. Jei jie yra prisijungę, juos matysite lange „Tinklas“.</string>
 </resources>
