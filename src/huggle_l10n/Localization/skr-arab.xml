@@ -197,7 +197,10 @@
   <string name="message-summary">خلاصہ:</string>
   <string name="protect-reason">سبب:</string>
   <string name="protect-expiry">مُکسی:</string>
+  <string name="protect-log">حفاظت لاگ:</string>
+  <string name="protect-type">حفاظت قسم:</string>
   <string name="protect-none">کوئی وی کائنی</string>
+  <string name="protect-fullprotection">پوری حفاظت</string>
   <string name="queue-title">قطاراں</string>
   <string name="queue-queues">قطاراں:</string>
   <string name="queue-typegroup">قطار دی قسم</string>
@@ -232,6 +235,7 @@
   <string name="userinfo-no-user">کوئی ورتو کائنی</string>
   <string name="shortcut-my-talk">میݙا ڳالھ مہاڑ دا ورقہ</string>
   <string name="warning-title">خبردار $1</string>
+  <string name="warning-levelauto">خودکار</string>
   <string name="warning-level1">درجہ اول</string>
   <string name="warning-level2">درجہ ݙو</string>
   <string name="warning-level3">درجہ ٣</string>
