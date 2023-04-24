@@ -117,7 +117,7 @@
   <string name="config-logbrowsetitle">લૉગફાઇલનું સ્થાન</string>
   <string name="delete-title">$1 હટાવો</string>
   <string name="delete-reason">કારણ:</string>
-  <string name="delete-deletionlog">હટાવેલાઓનું માહિતિ પત્રક (ડિલિશન લૉગ)</string>
+  <string name="delete-deletionlog">હટાવેલાઓનું માહિતીપત્રક (ડિલિશન લૉગ)</string>
   <string name="extension-kl">નથી ચાલતું</string>
   <string name="extension-ok">મુકેલું અને ચાલતું</string>
   <string name="historyform-no-info">સમ્પાદનની જાણકારી નથી</string>
@@ -226,7 +226,7 @@
   <string name="message-retrieve-new-token">સંપાદનમાટે ટોકન લાવે છે $1</string>
   <string name="protect-reason">કારણ:</string>
   <string name="protect-expiry">સમાપ્તિ:</string>
-  <string name="protect-log">સુરક્ષા માહિતિ પત્રક</string>
+  <string name="protect-log">સુરક્ષા માહિતીપત્રક</string>
   <string name="protect-currentlevel">હાલનું સંરક્ષણ સ્તર :</string>
   <string name="protect-type">સંરક્ષણ પ્રકાર :</string>
   <string name="protect-none">એકપણ નહીં</string>
