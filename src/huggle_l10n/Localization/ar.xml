@@ -2,6 +2,7 @@
 <!-- Authors:
 * AA800
 * Ajeje Brazorf
+* Alshamiri1
 * Amire80
 * Bibas
 * Dr-Taher
@@ -28,7 +29,7 @@
 <resources>
   <string name="name">الإنجليزية</string>
   <string name="autorelog">افعل هذا دون أن تسأل في المرة القادمة</string>
-  <string name="isrtl">true</string>
+  <string name="isrtl">خطأ</string>
   <string name="add">أضف</string>
   <string name="cancel">ألغ</string>
   <string name="clear">إفراغ</string>
