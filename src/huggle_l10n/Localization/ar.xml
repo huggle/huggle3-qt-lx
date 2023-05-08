@@ -29,7 +29,7 @@
 <resources>
   <string name="name">الإنجليزية</string>
   <string name="autorelog">افعل هذا دون أن تسأل في المرة القادمة</string>
-  <string name="isrtl">خطأ</string>
+  <string name="isrtl">true</string>
   <string name="add">أضف</string>
   <string name="cancel">ألغ</string>
   <string name="clear">إفراغ</string>
