@@ -398,7 +398,7 @@
   <string name="main-revision-rws">Annuler la modification actuellement affichée, avertir l’utilisateur et rester sur la page</string>
   <string name="main-revision-faith">Révoquer en supposant la bonne foi</string>
   <string name="main-revision-revert-only-this">Annuler seulement cette révision</string>
-  <string name="main-revision-revert-agf">Annuler seulement cette révision en supposant la bonne foi</string>
+  <string name="main-revision-revert-agf">Annuler seulement cette modification en supposant la bonne foi</string>
   <string name="main-revision-previous">Précédente</string>
   <string name="main-revision-next">Suivante</string>
   <string name="main-revision-latest">Dernière</string>
