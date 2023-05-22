@@ -114,6 +114,7 @@
   <string name="login-project">منصوبہ:</string>
   <string name="login-username">ورتݨ آلا ناں:</string>
   <string name="login-password">پاس ورڈ:</string>
+  <string name="login-proxygroup">پراکسی ترتیباں</string>
   <string name="login-proxy">پراکسی ورتو</string>
   <string name="login-proxyaddress">پتہ:</string>
   <string name="login-proxyport">پورٹ:</string>

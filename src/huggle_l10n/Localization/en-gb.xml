@@ -48,7 +48,6 @@
   <string name="id">ID</string>
   <string name="type">Type</string>
   <string name="target">Target</string>
-  <string name="user">User</string>
   <string name="size">Size</string>
   <string name="date">Date</string>
   <string name="page">Page</string>
@@ -71,7 +70,6 @@
   <string name="gracetime">Waiting for queries that perform edits to end...</string>
   <string name="browser-none">There is no page to display yet…</string>
   <string name="browser-load">Downloading diff using a MW rendering fall-back, please wait...</string>
-  <string name="browser-miss-summ">No summary was provided</string>
   <string name="browser-diff">Diff of page: $1 (score: $2)</string>
   <string name="browser-fail">Unable to retrieve diff: $1</string>
   <string name="about-contributors">Developers:</string>
@@ -95,10 +93,7 @@
   <string name="block-fail">Unable to block user, $1</string>
   <string name="block-token-e1">Token can\'t be retrieved: $1</string>
   <string name="block-error-no-info">No user info was present in the query (are you an admin?)</string>
-  <string name="block-type">Block / unblock</string>
   <string name="block-admin">Blocking admin</string>
-  <string name="block-none">There is no user selected to block.</string>
-  <string name="contribution-browser-user-info">Showing recent contributions of user $1</string>
   <string name="config-function">Function</string>
   <string name="config-description">Description</string>
   <string name="config-shortcut">Shortcut</string>
@@ -107,7 +102,6 @@
   <string name="config-queue-filter-require">Require (must be)</string>
   <string name="config-queue-modified-title">Queue modified</string>
   <string name="config-queue-modified-text">You modified the queue, but didn\'t save it. If you continue, your changes will be discarded. Do you want to continue?</string>
-  <string name="config-summ">Custom revert summaries for templates</string>
   <string name="config-title">Options</string>
   <string name="config-already-in-use">This shortcut is already being used by $1, please choose a different one</string>
   <string name="config-openinbrowser">Open browser links in a new browser window</string>
@@ -218,7 +212,6 @@
   <string name="delete-deletionlog">Deletion log:</string>
   <string name="delete-rem-talk">Delete associated talk page</string>
   <string name="delete-notify">Notify creator</string>
-  <string name="delete-error-token">Error: Retrieving the delete token failed. The reason provided was: $1</string>
   <string name="delete-token01">Getting token to delete $1</string>
   <string name="delete-token02">There was no token returned by the query</string>
   <string name="delete-e1">The page can\'t be deleted: $1</string>
@@ -339,7 +332,6 @@
   <string name="main-no-reason">No reason was provided by user</string>
   <string name="main-restoring-slap">Another edit is currently being restored, please wait...</string>
   <string name="main-page">Page</string>
-  <string name="main-user">User</string>
   <string name="main-contribs">Contribs</string>
   <string name="main-history">History</string>
   <string name="main-new-messages">You have new messages. Select System -&gt; Show new messages, or press M to view them.</string>
@@ -826,7 +818,6 @@
   <string name="preferences-color-scheme-diff">Diff colors</string>
   <string name="preferences-color-scheme-diff-default">Default</string>
   <string name="preferences-color-scheme-diff-dark-mode">Dark mode</string>
-  <string name="preferences-template-spam-info">These options control subsystem that is preventing target users from being template spammed. By default users are not template warned for edits that are too old, and also get only single template warning in case you revert multiple edits by same user in a very short time.</string>
   <string name="fail">Fail</string>
   <string name="request">Request</string>
   <string name="requesting">Requesting</string>
