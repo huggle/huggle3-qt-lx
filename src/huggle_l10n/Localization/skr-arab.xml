@@ -187,6 +187,7 @@
   <string name="main-addqueue">شامل کرو۔۔۔</string>
   <string name="main-savelogtitle">لاگ بچاؤ</string>
   <string name="main-usermessageother">ٻیا سنیہا</string>
+  <string name="main-advanced">ودھائے۔۔۔</string>
   <string name="main-tip-pagedelete">ایں ورقے کوں مٹاؤ</string>
   <string name="main-welcome-user">ست بسم اللہ ورتݨ آلا</string>
   <string name="main-statistics-paused">جمب ڳیا</string>
@@ -247,15 +248,18 @@
   <string name="delete-done">$1 مٹاݙتے</string>
   <string name="newtab-title">ایہ نواں ٹیب ہے!</string>
   <string name="speedy-finished">مُک ڳیا</string>
+  <string name="logs-widget-name">سسٹم لاگ</string>
   <string name="wait">انتظار کرو۔۔۔</string>
   <string name="waiting">تانگھ وچ ہے۔۔۔</string>
   <string name="preferences-watchlist-nochange">کجھ وی نہ کرو</string>
+  <string name="preferences-color-scheme-diff-default">پہلے کنوں طے تھیا ہویا</string>
   <string name="fail">فیل</string>
   <string name="request">ارداس</string>
   <string name="requesting">ارداس کریندا پئے</string>
   <string name="requested">ارداس تھی ڳئی</string>
   <string name="namespace">ناں جاہ</string>
   <string name="projects">منصوبے</string>
+  <string name="unknown-item">نامعلوم آئٹم</string>
   <string name="title-on">$1 تے</string>
   <string name="main-revert-type-unknown">اݨ سونہاں</string>
   <string name="queue-empty-title">ایہ خالی ہے</string>

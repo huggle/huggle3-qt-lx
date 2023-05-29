@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
+* Adreamy
 * Ellif
 * Gusdud25
 * Hwangjy9
@@ -826,7 +827,7 @@
   <string name="login-no-site-info-returned">이 위키에 대한 사이트 정보가 반환되지 않았습니다</string>
   <string name="loading-main-window">주 Huggle 창을 불러오는 중...</string>
   <string name="api.php-invalid-response">API가 유효하지 않은 텍스트로 응답했습니다. (웹 서버가 다운되었나요?) 정확한 정보를 위해 디버그 로그를 확인해 주십시오.</string>
-  <string name="login-username-doesnt-exist">이 사용자 이름은 존재하지 않습니다</string>
+  <string name="login-username-doesnt-exist">이 사용자 이름은 없습니다</string>
   <string name="developer-mode-enter-message">개발자 모드에 진입했습니다!</string>
   <string name="unimplemented">이 기능은 아직 구현되지 않았습니다</string>
   <string name="unknown-item">알 수 없는 항목</string>
