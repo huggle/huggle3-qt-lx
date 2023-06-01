@@ -38,7 +38,7 @@
   <string name="remove">移除</string>
   <string name="rename">重新命名</string>
   <string name="reload">重新載入</string>
-  <string name="project">項目</string>
+  <string name="project">專案</string>
   <string name="warning">警告</string>
   <string name="result">結果</string>
   <string name="save">儲存</string>
@@ -265,7 +265,7 @@
   <string name="login-tab-login">舊式</string>
   <string name="login-reload-tool-tip">重新載入 Huggle 的可使用項目清單。該工具啟用時會在您想要於某個項目使用 Huggle 的情況下很有用。</string>
   <string name="login-language">語言：</string>
-  <string name="login-project">項目：</string>
+  <string name="login-project">專案：</string>
   <string name="login-username">使用者名稱：</string>
   <string name="login-password">密碼：</string>
   <string name="login-proxygroup">代理設定</string>
@@ -860,7 +860,7 @@
   <string name="about-info">，基於$1，目標平台：$2</string>
   <string name="error-unknown-code">不明錯誤：$1</string>
   <string name="relogin-fail">無法登入至 wiki：$1</string>
-  <string name="projects">項目</string>
+  <string name="projects">專案</string>
   <string name="unable-to-retrieve-user-list">無法取得用戶清單：$1</string>
   <string name="login-no-userinfo">站台未回傳任何用戶資訊內容</string>
   <string name="login-invalid-register-date">MediaWiki 回傳的註冊日期無效</string>
