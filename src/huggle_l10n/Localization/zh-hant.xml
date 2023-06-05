@@ -880,7 +880,7 @@
   <string name="main-revert-already-pending-text">您不能回退此已被回退的編輯。請先稍待！</string>
   <string name="main-revert-type-unknown">不明</string>
   <string name="main-revert-type-in-userspace">在用戶空間</string>
-  <string name="main-revert-type-made-by-you">由您做出</string>
+  <string name="main-revert-type-made-by-you">由您回退</string>
   <string name="main-revert-type-made-on-talk-page">在對話頁做出</string>
   <string name="main-revert-type-made-white-list">由白名單上的一位用戶做出</string>
   <string name="query-result-nodata">查詢結果未包含任何資料</string>
