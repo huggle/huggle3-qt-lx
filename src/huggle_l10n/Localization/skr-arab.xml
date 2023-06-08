@@ -177,6 +177,7 @@
   <string name="main-user-warn">خبردار۔۔۔</string>
   <string name="main-user-report">رپورٹ</string>
   <string name="main-user-block">بلاک۔۔۔</string>
+  <string name="main-user-manualtemplate">دستی سانچہ</string>
   <string name="main-browser-back">پچھوں</string>
   <string name="main-browser-forward">اڳوں تے بھیڄو</string>
   <string name="main-han-connect">جوڑو</string>
@@ -236,6 +237,7 @@
   <string name="updater-close">بند کرو</string>
   <string name="userinfo-no-user">کوئی ورتو کائنی</string>
   <string name="shortcut-my-talk">میݙا ڳالھ مہاڑ دا ورقہ</string>
+  <string name="shortcut-main-clear-queue">قطار صاف کرو</string>
   <string name="warning-title">خبردار $1</string>
   <string name="warning-levelauto">خودکار</string>
   <string name="warning-level1">درجہ اول</string>
