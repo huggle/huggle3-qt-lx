@@ -837,7 +837,7 @@
   <string name="preferences-color-scheme-diff">Couleurs du diff</string>
   <string name="preferences-color-scheme-diff-default">Par défaut</string>
   <string name="preferences-color-scheme-diff-dark-mode">Mode sombre</string>
-  <string name="preferences-template-spam-info">Ces options contrôlent le sous-système qui empêche les utilisateurs cible d’être inondés d’avertissements par des modèles. Par défaut, les utilisateurs ne sont pas avertis par modèle pour des modifications trop anciennes. Ils obtiennent également un unique avertissement de modèle au cas où vous annulez plusieurs modifications par le même utilisateur dans un temps très court.</string>
+  <string name="preferences-template-spam-info">Ces options contrôlent le sous-système qui empêche les utilisateurs cible d’être inondés d’avertissements par des modèles. Par défaut, les utilisateurs ne sont pas avertis par modèle pour des modifications trop anciennes. Ils obtiennent également un seul avertissement de modèle au cas où vous annulez plusieurs modifications par le même utilisateur dans un temps très court.</string>
   <string name="preferences-template-spam-title">Prévention du pourrissement des modèles</string>
   <string name="fail">Échec</string>
   <string name="request">Requête</string>

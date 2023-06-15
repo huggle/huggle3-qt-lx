@@ -4,6 +4,7 @@
 * Ajeje Brazorf
 * Alshamiri1
 * Amire80
+* Asma
 * Bibas
 * Dr-Taher
 * Dr. Mohammed
@@ -840,7 +841,7 @@
   <string name="preferences-color-scheme-diff">ألوان الفرق</string>
   <string name="preferences-color-scheme-diff-default">افتراضي</string>
   <string name="preferences-color-scheme-diff-dark-mode">الوضع الداكن</string>
-  <string name="preferences-template-spam-info">تتحكم هذه الخيارات في النظام الفرعي الذي يمنع المستخدمين المستهدفين من إرسال قالب غير مرغوب فيه. بشكل افتراضي ، لا يُحذر المستخدمين من النماذج من التعديلات القديمة جدًا، كما يحصلون أيضًا على تحذير نموذجي واحد فقط في حالة التراجع عن تعديلات متعددة بواسطة نفس المستخدم في وقت قصير جدًا.</string>
+  <string name="preferences-template-spam-info">تتحكم هذه الخيارات في النظام الفرعي الذي يمنع المستخدمين المستهدفين من إرسال بريد عشوائي إلى قوالب. بشكل افتراضي ، لا يتم تحذير المستخدمين من التعديلات التي تكون قديمة جدًا ، كما لا يتم تحذيرهم إلا من نموذج واحد في حالة التراجع عن تعديلات متعددة بواسطة نفس المستخدم في وقت قصير جدًا.</string>
   <string name="preferences-template-spam-title">قالب منع البريد العشوائي</string>
   <string name="fail">فشل</string>
   <string name="request">طلب</string>

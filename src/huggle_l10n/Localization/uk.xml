@@ -828,7 +828,7 @@
   <string name="preferences-color-scheme-diff">Різниці кольорів</string>
   <string name="preferences-color-scheme-diff-default">За замовчуванням</string>
   <string name="preferences-color-scheme-diff-dark-mode">Темний режим</string>
-  <string name="preferences-template-spam-info">Ці параметри керують підсистемою, яка запобігає спамування шаблонів для цільових користувачів. За замовчуванням користувачі не отримують попередження щодо шаблонів, які є занадто старими, а також отримують лише попередження про один шаблон, якщо ви скасуєте кілька змін одного користувача за найкоротший час.</string>
+  <string name="preferences-template-spam-info" fuzzy="true">Ці параметри керують підсистемою, яка запобігає спамування шаблонів для цільових користувачів. За замовчуванням користувачі не отримують попередження щодо шаблонів, які є занадто старими, а також отримують лише попередження про один шаблон, якщо ви скасуєте кілька змін одного користувача за найкоротший час.</string>
   <string name="preferences-template-spam-title">Запобігання шаблону спаму</string>
   <string name="fail">Збій</string>
   <string name="request">Запит</string>

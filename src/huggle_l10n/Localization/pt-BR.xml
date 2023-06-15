@@ -844,7 +844,7 @@
   <string name="preferences-color-scheme-diff">Cores diferentes</string>
   <string name="preferences-color-scheme-diff-default">Padrão</string>
   <string name="preferences-color-scheme-diff-dark-mode">Modo escuro</string>
-  <string name="preferences-template-spam-info">Estas opções controlam o subsistema que impede que os usuários-alvo não sofram spam de predefinições de aviso. Por padrão, usuários não recebem predefinições de aviso para edições antigas, além de receberem somente uma única predefinição de aviso caso você reverta múltiplas edições pelo mesmo usuário em um curto espaço de tempo.</string>
+  <string name="preferences-template-spam-info" fuzzy="true">Estas opções controlam o subsistema que impede que os usuários-alvo não sofram spam de predefinições de aviso. Por padrão, usuários não recebem predefinições de aviso para edições antigas, além de receberem somente uma única predefinição de aviso caso você reverta múltiplas edições pelo mesmo usuário em um curto espaço de tempo.</string>
   <string name="preferences-template-spam-title">Prevenção de spam de predefinições</string>
   <string name="fail">Falha</string>
   <string name="request">Solicitar</string>

@@ -846,7 +846,7 @@
   <string name="preferences-color-scheme-diff">Colores de diferencial</string>
   <string name="preferences-color-scheme-diff-default">Predeterminado</string>
   <string name="preferences-color-scheme-diff-dark-mode">Modo oscuro</string>
-  <string name="preferences-template-spam-info">Estas opciones controlan el subsistema que evita que los usuarios de destino reciban plantillas de spam. De forma predeterminada, los usuarios no reciben advertencias de plantilla para ediciones que son demasiado antiguas, y también reciben una advertencia de plantilla única en caso de que revierte varias ediciones del mismo usuario en muy poco tiempo.</string>
+  <string name="preferences-template-spam-info" fuzzy="true">Estas opciones controlan el subsistema que evita que los usuarios de destino reciban plantillas de spam. De forma predeterminada, los usuarios no reciben advertencias de plantilla para ediciones que son demasiado antiguas, y también reciben una advertencia de plantilla única en caso de que revierte varias ediciones del mismo usuario en muy poco tiempo.</string>
   <string name="preferences-template-spam-title">Prevención de spam de plantilla</string>
   <string name="fail">Fallo</string>
   <string name="request">Solicitud</string>

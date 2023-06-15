@@ -835,7 +835,7 @@
   <string name="preferences-color-scheme-diff">Verschiedene Farben</string>
   <string name="preferences-color-scheme-diff-default">Standard</string>
   <string name="preferences-color-scheme-diff-dark-mode">Dunkler Modus</string>
-  <string name="preferences-template-spam-info">Diese Optionen steuern das Subsystem, das verhindert, dass Zielnutzer übermäßig viele vorgefertigte Nachrichten erhalten. Standardmäßig erhalten Nutzer keine vorgefertigte Warnung für Änderungen, die zu lange her sind. Wenn Sie mehrere Änderungen desselben Nutzers in sehr kurzer Zeit rückgängig machen, erhält er standarmäßig nur eine einzige solche Warnung.</string>
+  <string name="preferences-template-spam-info" fuzzy="true">Diese Optionen steuern das Subsystem, das verhindert, dass Zielnutzer übermäßig viele vorgefertigte Nachrichten erhalten. Standardmäßig erhalten Nutzer keine vorgefertigte Warnung für Änderungen, die zu lange her sind. Wenn Sie mehrere Änderungen desselben Nutzers in sehr kurzer Zeit rückgängig machen, erhält er standarmäßig nur eine einzige solche Warnung.</string>
   <string name="preferences-template-spam-title">Spam-Prävention</string>
   <string name="fail">Fehlgeschlagen</string>
   <string name="request">Anfragen</string>
