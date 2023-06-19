@@ -13,6 +13,7 @@
 * Krenair
 * Liuxinyu970226
 * Lokal Profil
+* Mako001
 * MarcoAurelio
 * McDutchie
 * MuratTheTurkish
@@ -137,7 +138,7 @@
   <string name="config-bot-edits">The letter (b) is supposed to be the same as the \"bot\" abbreviation in RecentChanges - {{msg-mw|boteditletter}}.</string>
   <string name="config-reverts">{{Identical|Revert}}</string>
   <string name="config-new-page">{{Identical|New page}}</string>
-  <string name="config-confirmrange">Anonimowi użytkownicy miewają zmienne adresy IP, często jednak o stałym 16-bitowym prefiksie. Przy rewertowaniu edycji anonimowego użytkownika należy się liczyć z tym, że inny adres IP z zakresu tego samego 16-bitowego prefiksu był faktycznie tym samym użytkownikiem. Komunikat jest żądaniem potwierdzenia, że rewertujący wziął to pod uwagę.</string>
+  <string name="config-confirmrange">Anonymous users have variable IP addresses, but often with a fixed 16-bit prefix.  When reverting an edition of an anonymous user, it should be taken into account that another IP address within the same 16-bit prefix was actually the same user.  The message is a request to confirm that the reverter has taken this into account.</string>
   <string name="config-template">{{Identical|Template}}</string>
   <string name="config-blocktimeanon">{{Identical|Anonymous user}}</string>
   <string name="config-blocktimereg">{{Identical|Registered user}}</string>

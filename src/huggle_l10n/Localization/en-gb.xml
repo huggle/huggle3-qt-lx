@@ -10,6 +10,7 @@
 * DatGuy
 * Dejavu
 * Kent73
+* Mako001
 * Samwilson
 -->
 <resources>
@@ -135,7 +136,7 @@
   <string name="config-revert-wait">Revert delay (seconds)</string>
   <string name="config-revert">Revert</string>
   <string name="config-skip">Skip</string>
-  <string name="config-revert-diff">Revert edits to page that are newer than the displayed diff if they were made by the same vandal user</string>
+  <string name="config-revert-diff">Revert edits to pages that are newer than the displayed diff if they were made by the same vandalising user</string>
   <string name="config-change-all">Change all Huggle settings to behave more like Huggle 2</string>
   <string name="config-merge-messages">Merge your messages with others in existing sections</string>
   <string name="config-months-name">Use months as headers, instead of the name of the page</string>
@@ -144,7 +145,7 @@
   <string name="config-remove-reverted">Remove edits that were already reverted by someone else from the queue</string>
   <string name="config-remove-old">Remove older edits from the queue if a newer edit to same page is received</string>
   <string name="config-auto-load-history">Automatically load history and user info (requires a lot of network bandwidth)</string>
-  <string name="config-last-revision">Switch to the last revision of page in case currently loaded edit is not a last revision (will post-download it, making Huggle slower)</string>
+  <string name="config-last-revision">Switch to the last revision of page in case currently loaded edit is not the last revision (will post-download it, making Huggle slower)</string>
   <string name="config-require-delay">Require a delay after every load of next edit, during which it will not be possible to use any write feature (useful for avoiding keyboard multi-press bug)</string>
   <string name="config-wait-edit">The amount of time that you must wait between edit features being enabled (in seconds):</string>
   <string name="config-display-next">Display next</string>
@@ -158,22 +159,22 @@
   <string name="config-friend">Friend</string>
   <string name="config-userspace">Userspace</string>
   <string name="config-talk">Talk page</string>
-  <string name="config-columns-dynamic">Make the columns of lists either dynamic (will resize based on size of items) or manual (user can change their size)</string>
+  <string name="config-columns-dynamic">Make columns of lists either dynamic (will resize based on size of items) or manual (user can change their size)</string>
   <string name="config-message-notification">Display a notification when you receive a new message on your talk page</string>
   <string name="config-warning-api">Display warnings for API queries</string>
   <string name="config-title-diff">Page title in every diff (large text which show just a page title in top of every diff)</string>
   <string name="config-updates">Check for updates</string>
   <string name="config-reset-menu">Project configuration (list of warning types) was changed since your last visit, shortcuts for dropdown menus (revert and warn, etc.) were reset.</string>
   <string name="config-beta">Check for beta versions</string>
-  <string name="config-html-messages">HAN can render HTML messages (NOTE: It\'s potentially dangerous)</string>
+  <string name="config-html-messages">HAN can render HTML messages (NOTE: It is potentially dangerous)</string>
   <string name="config-summary-present">Highlight summary when present (instead of when it\'s missing)</string>
   <string name="config-close-without">Close without saving</string>
-  <string name="config-confirmmultiple">Confirm multiple reversions of an edit by the same user</string>
+  <string name="config-confirmmultiple">Confirm revert multiple versions of an edit by the same user</string>
   <string name="config-confirmsame">Confirm reversion to an edit by the user being reverted</string>
   <string name="config-confirmselfrevert">Confirm reversion of own edits (except undo)</string>
   <string name="config-confirmwarned">Confirm reversion to an edit by a warned user</string>
-  <string name="config-confirmrange">Анонимные пользователи имеют переменные IP-адреса, но часто с фиксированным 16-битным префиксом. При конвертировании анонимной версии пользователя, имейте в виду, что другой IP-адрес в том же 16-битном префиксе был фактически тем же пользователем. Сообщение является запросом подтверждения того, что верификатор принял это во внимание.</string>
-  <string name="config-confirmpage">Подтвердите возврат игнорируемых страниц</string>
+  <string name="config-confirmrange">Confirm reversion to edit by an IP user in the same /16 range as the user being reverted</string>
+  <string name="config-confirmpage">Confirm reversion of ignored pages</string>
   <string name="config-autoadvance">After reverting, move to next edit in the queue</string>
   <string name="config-userollback">Use rollback if available</string>
   <string name="config-revertsummaries">Revert summaries available in menu</string>
@@ -188,7 +189,7 @@
   <string name="config-template">Template</string>
   <string name="config-promptforblock">Prompt for block if asked to warn a user with a final warning</string>
   <string name="config-blockreason">Default block reason</string>
-  <string name="config-blocktime">Причина блокировки по умолчанию</string>
+  <string name="config-blocktime">Default block duration for</string>
   <string name="config-blocktimeanon">anonymous users</string>
   <string name="config-blocktimereg">registered users</string>
   <string name="config-summaryprompt">Enter summary</string>
@@ -196,15 +197,15 @@
   <string name="config-defaultsprompt">Restore defaults?</string>
   <string name="config-logbrowsetitle">Log file location</string>
   <string name="config-shortcutconflict">Shortcut \'$1\' conflicts with the existing shortcut for \'$1\'.</string>
-  <string name="config-no-colon">Вы не можете использовать: в имени очереди</string>
+  <string name="config-no-colon">You can\'t use : in name of the queue</string>
   <string name="config-notify-update">Check for updates</string>
   <string name="config-notify-beta">Check for beta versions if available</string>
-  <string name="custommessage-title">Написать сообщение $1</string>
+  <string name="custommessage-title">Write a message to $1</string>
   <string name="custommessage-summary">Edit summary (Huggle suffix will be automatically inserted)</string>
   <string name="custommessage-subject">Title</string>
   <string name="custommessage-menu">Send a custom message:</string>
-  <string name="custommessage-send">SEND MESSAGE</string>
-  <string name="custommessage-wikiuser-lesummary">Delivering a custom message to $1…</string>
+  <string name="custommessage-send">Send message</string>
+  <string name="custommessage-wikiuser-lesummary">Delivering a custom message to $1</string>
   <string name="custommessage-wikiuser-plaintext-1">Hello $1,</string>
   <string name="custommessage-wikiuser-plaintext-2">Write your message here.</string>
   <string name="delete-title">Delete $1</string>
@@ -217,7 +218,7 @@
   <string name="delete-e1">The page can\'t be deleted: $1</string>
   <string name="delete-e2">Unable to delete page</string>
   <string name="delete-edsc">Unable to delete page because $1</string>
-  <string name="delete-failed-no-info">No user info was present in the query (are you an admin?)</string>
+  <string name="delete-failed-no-info">No page info was present in query (are you a sysop?)</string>
   <string name="extension-kl">Not running</string>
   <string name="extension-ok">Loaded and running</string>
   <string name="exception-text-1">Unfortunately Huggle has crashed. Please submit the following information together with details of what were you doing to</string>
@@ -375,8 +376,8 @@
   <string name="main-revision-view">View</string>
   <string name="main-revision-revert">Revert the currently displayed edit</string>
   <string name="main-revision-rv-stay">Revert this edit and stay on the page</string>
-  <string name="main-revision-revert-warn">Revert the currently displayed edit and warn the user</string>
-  <string name="main-revision-rws">Revert the currently displayed edit, warn the user and stay on the page</string>
+  <string name="main-revision-revert-warn">Revert the currently displayed edit and warn user</string>
+  <string name="main-revision-rws">Revert the currently displayed edit, warn user and stay on page</string>
   <string name="main-revision-faith">Revert assuming good faith</string>
   <string name="main-revision-revert-only-this">Revert only this revision</string>
   <string name="main-revision-revert-agf">Revert only this revision assuming good faith</string>
@@ -410,8 +411,8 @@
   <string name="main-page-delete">Delete</string>
   <string name="main-page-load">Load</string>
   <string name="main-patrol-not-enabled">Patrolling is not enabled on $1</string>
-  <string name="main-page-refresh">REFRESH</string>
-  <string name="main-page-restore">ఈ కూర్పును పునరుద్ధరించు</string>
+  <string name="main-page-refresh">Refresh</string>
+  <string name="main-page-restore">Restore this revision</string>
   <string name="main-page-watchlist-add">Add page to a watchlist</string>
   <string name="main-page-tab-close">Close the current tab</string>
   <string name="main-page-tab-open">Open a new tab</string>
@@ -470,16 +471,16 @@
   <string name="main-tip-userreport">Report this user</string>
   <string name="main-tip-userblock">Block this user</string>
   <string name="main-revision-acceptpend">Accept this pending revision</string>
-  <string name="main-no-page">The action you have requested requires a page to be loaded. Please load a page before trying again.</string>
+  <string name="main-no-page">The action you have requested is not available because the page is not loaded or because it is read only. Please load an editable page before trying again.</string>
   <string name="main-revert-null">Unable to revert: edit is null</string>
   <string name="main-revert-newpage-title">Can\'t revert this</string>
-  <string name="main-revert-newpage">This is a new page, so it can\'t be reverted, you can either tag it, or delete it.</string>
+  <string name="main-revert-newpage">This is a new page, so it can\'t be reverted. You can either tag it, or delete it.</string>
   <string name="main-restore-text-fail">Unable to restore the revision, because there is no text available for it</string>
   <string name="main-restore-data-fail">Unable to restore the revision, because the wiki provided no data for the selected version</string>
   <string name="main-welcome-user">Welcome user</string>
   <string name="main-custom-reason-title">Revert edit using custom reason</string>
   <string name="main-custom-reason-text">Please provide a reason why you want to revert this edit</string>
-  <string name="main-custom-reason-fail">You didn\'t provide valid reason</string>
+  <string name="main-custom-reason-fail">You didn\'t provide a valid reason</string>
   <string name="main-report-username">Report username</string>
   <string name="main-report-user">Report user</string>
   <string name="main-edit-user-talk">Edit user talk</string>
