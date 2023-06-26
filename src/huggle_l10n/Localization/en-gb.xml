@@ -411,8 +411,6 @@
   <string name="main-page-delete">Delete</string>
   <string name="main-page-load">Load</string>
   <string name="main-patrol-not-enabled">Patrolling is not enabled on $1</string>
-  <string name="main-page-refresh">Refresh</string>
-  <string name="main-page-restore">Restore this revision</string>
   <string name="main-page-watchlist-add">Add page to a watchlist</string>
   <string name="main-page-tab-close">Close the current tab</string>
   <string name="main-page-tab-open">Open a new tab</string>
@@ -471,16 +469,13 @@
   <string name="main-tip-userreport">Report this user</string>
   <string name="main-tip-userblock">Block this user</string>
   <string name="main-revision-acceptpend">Accept this pending revision</string>
-  <string name="main-no-page">The action you have requested is not available because the page is not loaded or because it is read only. Please load an editable page before trying again.</string>
   <string name="main-revert-null">Unable to revert: edit is null</string>
   <string name="main-revert-newpage-title">Can\'t revert this</string>
-  <string name="main-revert-newpage">This is a new page, so it can\'t be reverted. You can either tag it, or delete it.</string>
   <string name="main-restore-text-fail">Unable to restore the revision, because there is no text available for it</string>
   <string name="main-restore-data-fail">Unable to restore the revision, because the wiki provided no data for the selected version</string>
   <string name="main-welcome-user">Welcome user</string>
   <string name="main-custom-reason-title">Revert edit using custom reason</string>
   <string name="main-custom-reason-text">Please provide a reason why you want to revert this edit</string>
-  <string name="main-custom-reason-fail">You didn\'t provide a valid reason</string>
   <string name="main-report-username">Report username</string>
   <string name="main-report-user">Report user</string>
   <string name="main-edit-user-talk">Edit user talk</string>

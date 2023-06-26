@@ -19,6 +19,7 @@
 * WQL
 * XinuGod
 * Yfdyh000
+* Zfshuo
 * Zhaofeng Li
 * 予弦
 * 列维劳德
@@ -136,7 +137,7 @@
   <string name="config-trayicon">显示托盘图标</string>
   <string name="config-startupmessage">显示启动消息</string>
   <string name="config-shownewmessages">显示新消息提示栏</string>
-  <string name="config-shortcutlist">键盘快捷方式</string>
+  <string name="config-shortcutlist">键盘快捷键</string>
   <string name="config-shortcutaction">操作</string>
   <string name="config-changeshortcut">修改$1的快捷方式</string>
   <string name="config-noshortcut">无</string>
