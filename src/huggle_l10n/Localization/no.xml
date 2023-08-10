@@ -5,6 +5,7 @@
 * EdoAug
 * Kingu
 * Tarjeimo
+* TommyG
 * VukAnd12
 * Vukky
 -->
@@ -322,7 +323,7 @@
   <string name="revert-creator">Siste redigering var av sidens opprinnelige forfatter, $1.</string>
   <string name="revert-delete-instead">Slett siden istedet?</string>
   <string name="revert-speedy-instead">Tagg for hurtig sletting istedet?</string>
-  <string name="revert-cannotundo" fuzzy="true">Kan ikke tilbakestille grunnet konflikterende mellomredigeringer</string>
+  <string name="revert-cannotundo" fuzzy="true">Kan ikke tilbakestille grunnet konflikt med mellomliggende redigeringer</string>
   <string name="revert-conflict">Siden ble redigert av ignorert bruker \'$1\'</string>
   <string name="revert-fail">Tilbakestilte ikke \'$1\'</string>
   <string name="revert-nochange">Innholdet i målrevisjonen er identisk med nåværende revisjon</string>
