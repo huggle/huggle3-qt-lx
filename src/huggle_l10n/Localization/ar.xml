@@ -11,6 +11,7 @@
 * Drii10291
 * FiberAhmed
 * Hhaboh162002
+* Hubaishan
 * MRidhaAJ
 * McDutchie
 * Meno25
@@ -203,7 +204,7 @@
   <string name="config-autoreport">عندما يُطلب منك تحذير المستخدم تحذير نهائي</string>
   <string name="config-reportnone">لا تفعل شيئًا</string>
   <string name="config-reportprompt">إخطار فوري</string>
-  <string name="config-reportauto">قم بالإخطار تلقائيًا</string>
+  <string name="config-reportauto">أخطر تلقائيًا</string>
   <string name="config-templates">قوالب رسائل المستخدم</string>
   <string name="config-templatetext">اعرض النص</string>
   <string name="config-template">قالب</string>
