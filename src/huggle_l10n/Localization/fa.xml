@@ -846,7 +846,7 @@
   <string name="preferences-color-scheme-diff">رنگ تفاوت</string>
   <string name="preferences-color-scheme-diff-default">پیش‌فرض</string>
   <string name="preferences-color-scheme-diff-dark-mode">حالت تاریک</string>
-  <string name="preferences-template-spam-info" fuzzy="true">این گزینه‌ها زیرسیستم را کنترل می‌کنند که مانع از اسپم‌شدن الگوهای کاربران می‌شود. به طور پیشفرض به کاربران برای ویرایش‌های بسیار قدیمی هشدار داده نمی‌شود و همچنین در صورت بازگرداندن چندین ویرایش توسط یک کاربر در زمان بسیار کوتاه، فقط هشدار یک الگو دریافت می‌شود.</string>
+  <string name="preferences-template-spam-info">این گزینه‌ها زیرسیستم را کنترل می‌کنند که مانع از اسپم‌شدن الگوهای کاربران می‌شود. به طور پیشفرض به کاربران برای ویرایش‌های بسیار قدیمی هشدار داده نمی‌شود و همچنین در صورت بازگرداندن چندین ویرایش توسط یک کاربر در زمان بسیار کوتاه، فقط هشدار یک الگو دریافت می‌شود.</string>
   <string name="preferences-template-spam-title">الگوی جلوگیری از هرزنامه</string>
   <string name="fail">شکست</string>
   <string name="request">درخواست</string>
