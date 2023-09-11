@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
 * An13sa
+* Atzerritik
 * EukeneFL
 * Macofe
 * Mikel Ibaiba
@@ -378,7 +379,7 @@
   <string name="main-page-restore">Berrikusketa hau lehengoratu</string>
   <string name="main-page-watchlist-add">Orrialde gehitu ikus-zerrendara</string>
   <string name="main-page-tab-close">Leiho hau itxi</string>
-  <string name="main-page-tab-open">Ireki leiho berria</string>
+  <string name="main-page-tab-open">Ireki leiho berrian</string>
   <string name="main-page-watchlist-remove">Ikus-zerrendatik orrialdea kendu</string>
   <string name="main-user-info">Erabiltzailearen informazioa erakutsi</string>
   <string name="main-user-ignore">Ezikusiarena egin</string>
