@@ -3,12 +3,14 @@
 * An13sa
 * Atzerritik
 * EukeneFL
+* Juele
 * Macofe
 * Mikel Ibaiba
 * Subi
 * Xabier Armendaritz
 -->
 <resources>
+  <string name="name">Ingelesa</string>
   <string name="autorelog">Egin hau hurrengoan galdetu gabe</string>
   <string name="isrtl">false</string>
   <string name="add">Gehitu</string>
@@ -24,6 +26,7 @@
   <string name="done">Egina</string>
   <string name="no">Ez</string>
   <string name="ok">Ados</string>
+  <string name="override-warn">Proiektuaren konfigurazio bidea gainditu duzu. Kontuan izan ezaugarri hau gaizki erabiltzea wiki-n idazteko sarbidea lortzeko, normalean ez zenukeela izango, zure kontua blokeatzeko aukera izango duela.</string>
   <string name="remove">Kendu</string>
   <string name="rename">Berrizendatu</string>
   <string name="reload">Birkargatu</string>
@@ -36,6 +39,7 @@
   <string name="undo">Desegin</string>
   <string name="yes">Bai</string>
   <string name="editing-page">Orria aldatu</string>
+  <string name="agf">Itzul ezazu fede onez egindako edizio gisa, arrazoi egokirik gabe.</string>
   <string name="successful">Arrakastatsua!</string>
   <string name="summary">Laburpena</string>
   <string name="id">Identifikazioa</string>
@@ -54,6 +58,7 @@
   <string name="link">Esteka</string>
   <string name="reason">Arrazoia</string>
   <string name="diffid">DiffID</string>
+  <string name="whitelisted" fuzzy="true">$ 1 eta $ 2 puntuaketa $ 3 zuri-zerrendan agertu dira</string>
   <string name="expiry-time">Iraungitze denbora</string>
   <string name="duration">Iraupena</string>
   <string name="enable">Gaitu</string>
@@ -97,6 +102,8 @@
   <string name="config-queue-filter-ignore">Ez ikusi (ez du garrantzirik)</string>
   <string name="config-queue-filter-exclude">Baztertu (ez luke egon behar)</string>
   <string name="config-queue-filter-require">Eskatu (egon behar da)</string>
+  <string name="config-queue-modified-title">Ilara aldatu da</string>
+  <string name="config-queue-modified-text">Ilara aldatu duzu, baina ez duzu gorde. Jarraitzen baduzu, zure aldaketak baztertuko dira. Jarraitu nahi duzu?</string>
   <string name="config-summ">Txantiloientzako lehengoratze pertsonalizatuen laburpenak</string>
   <string name="config-title">Aukerak</string>
   <string name="config-already-in-use">Lasterbide hau $1 erabiltzen ari da jadanik, mesedez, hauta ezazu beste bat</string>
@@ -122,6 +129,7 @@
   <string name="config-undosummary">Norberak egindako aldaketen berrezartzearen laburpena</string>
   <string name="config-confirm-user">Erabiltzaile espazioan egin den aldaketa lehengoratzeko baimena eskatu</string>
   <string name="config-confirm-talk">Elkarrizketa orria lehengoratzeko baimena eskatu</string>
+  <string name="config-use-rollback">Erabili softwarearen atzera-aldaketa</string>
   <string name="config-welcome-empty-page">Ongi etorri mezua bidali aldaketa egokien elkarrizketa orriak hutsik dituzten erabiltzaileei</string>
   <string name="config-conflicts-revert">Automatikoki konpondu orrialde berdinean aldaketak egin dituzten erabiltzaileekin izandako gatazkak</string>
   <string name="config-instant-reverts">Berehalako lehengoratzeak erabili (oso azkarrak, baina ezin dira atzera bota behin exekutatuta)</string>
@@ -342,6 +350,7 @@
   <string name="main-goto">Joan</string>
   <string name="main-goto-mytalk">Nire eztabaida orria</string>
   <string name="main-goto-mycontribs">Nire ekarpenak</string>
+  <string name="main-revision-decline">Berrikuspena baztertu</string>
   <string name="main-revision">Berrikusketa</string>
   <string name="main-revision-view">Ikuspegia</string>
   <string name="main-revision-revert">Orain erakutsi den aldaketa lehengoratu</string>
@@ -349,6 +358,8 @@
   <string name="main-revision-revert-warn">Orain azaltzen den aldaketa lehengoratu eta erabiltzaileari jakinarazi</string>
   <string name="main-revision-rws">Orain azaltzen den aldaketa lehengoratu, erabiltzaileari jakinarazi eta orrialdean mantendu</string>
   <string name="main-revision-faith">Lehengoratu intentzio ona asumituz</string>
+  <string name="main-revision-revert-only-this">Aldaketa hau bakarrik atzera egin</string>
+  <string name="main-revision-revert-agf">Aldaketa  hau bakarrik atzera egin fede ona suposatuz</string>
   <string name="main-revision-previous">Aurrekoa</string>
   <string name="main-revision-next">Hurrengoa</string>
   <string name="main-revision-latest">Berankorrena</string>
@@ -368,6 +379,7 @@
   <string name="main-page-reqprotection">Orrialdearen babesa eskatu</string>
   <string name="main-page-watch">Ikusi</string>
   <string name="main-page-unwatch">Ezikusi</string>
+  <string name="main-page-purge">Ezabatu</string>
   <string name="main-page-curr-disp">Orain erakustokian</string>
   <string name="main-page-display">Erakutsi orrialde honetan</string>
   <string name="main-page-move">Mugitu...</string>
@@ -376,6 +388,7 @@
   <string name="main-page-protect">Babestu</string>
   <string name="main-page-delete">Ezabatu</string>
   <string name="main-page-load">Kargatu</string>
+  <string name="main-page-refresh">Eguneratu</string>
   <string name="main-page-restore">Berrikusketa hau lehengoratu</string>
   <string name="main-page-watchlist-add">Orrialde gehitu ikus-zerrendara</string>
   <string name="main-page-tab-close">Leiho hau itxi</string>
@@ -393,6 +406,7 @@
   <string name="main-user-db">Murriztu erabiltzailearen gaiztotasun puntuazioa</string>
   <string name="main-user-report">Salatu</string>
   <string name="main-user-ib">Maltzurkeri puntuazioa igo</string>
+  <string name="main-user-contribution-browser">Ekarpen arakatzailea</string>
   <string name="main-user-clear-tp">Erabiltzailearen elkarrizketa orrialdea garbitu</string>
   <string name="main-user-retrieving-tp">$1(e)n eztabaida orrialdea berreskuratzen</string>
   <string name="main-user-block">Blokeatu...</string>
@@ -413,6 +427,7 @@
   <string name="main-help-feedback">Oharrak</string>
   <string name="main-help-about">Huggle-ri buruz...</string>
   <string name="main-help-introduction">Sarrera</string>
+  <string name="main-help-welcome-page">Ongietorri orria</string>
   <string name="main-help-contents">Edukiak</string>
   <string name="main-help-queuelegend">Ilara legenda</string>
   <string name="main-addqueue">Gehitu...</string>
@@ -513,6 +528,7 @@
   <string name="report-intro">$1 erabiltzailea salatuko duzu</string>
   <string name="report-message">Mezua:</string>
   <string name="report-log">Erabiltzaile honentzako abisua:</string>
+  <string name="report-select">Mesedez, hautatu aldea zerrendan aurrebista irekitzeko</string>
   <string name="report-write">Idazten</string>
   <string name="reportuser-not">Erabiltzailea ez dago jada salatuta</string>
   <string name="report-duplicate">Erabiltzailea jada salatu dute</string>
@@ -524,6 +540,7 @@
   <string name="score-score">Puntuaketa</string>
   <string name="score-word">Hitza</string>
   <string name="score-range">Maila</string>
+  <string name="uaa-not-supported">UAA ez dago erabilhgaarri</string>
   <string name="uaa-reporting">UAA(e)ri $1 salatzen</string>
   <string name="uaa-reported">Salatuta</string>
   <string name="uaa-user-reported-title">Erabiltzailea jada salatu dute</string>
