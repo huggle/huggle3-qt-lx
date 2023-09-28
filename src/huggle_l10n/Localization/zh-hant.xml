@@ -627,7 +627,7 @@
   <string name="rollback">回退$1</string>
   <string name="software-rollback">您沒有回退權限，改為軟體回退</string>
   <string name="tag-title">標籤 $1</string>
-  <string name="tag-tagselector">加入標籤：</string>
+  <string name="tag-tagselector">新增標籤：</string>
   <string name="tag-tags">標籤：</string>
   <string name="tag-parameter">參數</string>
   <string name="tag-summary">摘要：</string>
