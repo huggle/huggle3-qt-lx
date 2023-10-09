@@ -831,7 +831,7 @@
   <string name="preferences-color-scheme-diff">差異色彩</string>
   <string name="preferences-color-scheme-diff-default">預設</string>
   <string name="preferences-color-scheme-diff-dark-mode">暗黑模式</string>
-  <string name="preferences-template-spam-info" fuzzy="true">這些選項控制的子系統，是用來防止目標使用者被模板給濫發電子訊息。在預設情況下，使用者不會因為過舊的編輯內容而收到模板警告，另外如果您在很短的時間內回退同一使用者的多個編輯，也只會收到單筆模板警告。</string>
+  <string name="preferences-template-spam-info">這些選項控制的子系統，是用來防止目標使用者被模板給濫發電子訊息。在預設情況下，使用者不會因為過舊的編輯內容而收到模板警告，另外如果您在很短的時間內回退同一使用者的多個編輯，也只會收到單筆模板警告。</string>
   <string name="preferences-template-spam-title">模板濫發電子訊息預防</string>
   <string name="fail">失敗</string>
   <string name="request">請求</string>
