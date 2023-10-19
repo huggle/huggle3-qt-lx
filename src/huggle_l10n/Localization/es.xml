@@ -18,6 +18,7 @@
 * MadriCR
 * MarcoAurelio
 * Matiia
+* McDutchie
 * Pedro Zimmer
 * PetrohsW
 * RicardoSGZ
@@ -229,7 +230,7 @@
   <string name="custommessage-summary">Resumen de edición (el sufijo Huggle se insertará automáticamente)</string>
   <string name="custommessage-subject">Título</string>
   <string name="custommessage-menu">Enviar un mensaje personalizado</string>
-  <string name="custommessage-send">Enviar mensaje</string>
+  <string name="custommessage-send" fuzzy="true">Enviar mensaje</string>
   <string name="custommessage-wikiuser-lesummary">Entregando un mensaje personalizado a $1</string>
   <string name="custommessage-wikiuser-plaintext-1">Hola $1,</string>
   <string name="custommessage-wikiuser-plaintext-2">Escriba su mensaje aquí.</string>
