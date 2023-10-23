@@ -19,7 +19,7 @@
 * TBloemink
 -->
 <resources>
-  <string name="name">Nederlands (Dutch)</string>
+  <string name="name">Nederlands</string>
   <string name="autorelog">Doe dit de volgende keer zonder te vragen</string>
   <string name="isrtl">false</string>
   <string name="add">Toevoegen</string>
@@ -86,7 +86,7 @@
   <string name="block-reason">Reden:</string>
   <string name="block-duration">Duur:</string>
   <string name="block-message">Bericht op overlegpagina:</string>
-  <string name="block-message-user">Bericht sturen een doelgebruikers met toelichting over de blokkade</string>
+  <string name="block-message-user">Bericht sturen aan doelgebruiker met toelichting over de blokkade</string>
   <string name="block-anononly">Alleen anoniemen blokkeren</string>
   <string name="block-creation">Registreren blokkeren</string>
   <string name="block-autoblock">Automatisch blokkeren</string>
@@ -132,10 +132,10 @@
   <string name="config-noshortcut">Geen</string>
   <string name="config-defaults">Standaardwaarden</string>
   <string name="config-minor">Als klein markeren</string>
-  <string name="config-ip">IP gebruiker</string>
+  <string name="config-ip">IP-gebruikers</string>
   <string name="config-watchlist">Aan volglijst toevoegen</string>
   <string name="config-defaultsummary">Standaardsamenvatting voor handmatige bewerkingen</string>
-  <string name="config-undosummary">Samenvatting voor het ongedaanmaken van eigen wijzigingen</string>
+  <string name="config-undosummary">Samenvatting bij het ongedaan maken van eigen bewerkingen</string>
   <string name="config-confirm-user">Bevestiging vragen voor het terugdraaien van een bewerking in de gebruikersnaamruimte</string>
   <string name="config-confirm-wl">Bevestiging vragen voor het terugdraaien van een bewerking door een gebruiker op de witte lijst</string>
   <string name="config-confirm-talk">Bevestiging vragen voor het terugdraaien van een bewerking op een overlegpagina</string>

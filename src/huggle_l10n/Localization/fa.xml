@@ -33,7 +33,7 @@
 * احسان
 -->
 <resources>
-  <string name="name">انگلیسی</string>
+  <string name="name">فارسی</string>
   <string name="autorelog">دفعه بعد بدون پرسش همین کار را بکن</string>
   <string name="isrtl">true</string>
   <string name="add">افزودن</string>

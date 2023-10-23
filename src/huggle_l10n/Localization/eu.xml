@@ -5,12 +5,13 @@
 * EukeneFL
 * Juele
 * Macofe
+* McDutchie
 * Mikel Ibaiba
 * Subi
 * Xabier Armendaritz
 -->
 <resources>
-  <string name="name">Ingelesa</string>
+  <string name="name">Euskara</string>
   <string name="autorelog">Egin hau hurrengoan galdetu gabe</string>
   <string name="isrtl">false</string>
   <string name="add">Gehitu</string>

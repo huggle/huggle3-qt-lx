@@ -29,7 +29,7 @@
 * محمد أحمد عبد الفتاح
 -->
 <resources>
-  <string name="name">الإنجليزية</string>
+  <string name="name">العربية</string>
   <string name="autorelog">افعل هذا دون أن تسأل في المرة القادمة</string>
   <string name="isrtl">true</string>
   <string name="add">أضف</string>

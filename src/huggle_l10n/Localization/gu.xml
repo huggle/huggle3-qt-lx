@@ -5,10 +5,11 @@
 * Dsvyas
 * KartikMistry
 * Macofe
+* McDutchie
 * NehalDaveND
 -->
 <resources>
-  <string name="name">અંગ્રેજી</string>
+  <string name="name">ગુજરાતી</string>
   <string name="isrtl">false</string>
   <string name="add">ઉમેરો</string>
   <string name="cancel">રદ કરો</string>

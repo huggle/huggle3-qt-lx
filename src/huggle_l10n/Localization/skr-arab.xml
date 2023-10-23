@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
 * Amire80
+* McDutchie
 * Saraiki
 -->
 <resources>
-  <string name="name">انگریزی</string>
+  <string name="name">سرائیکی</string>
   <string name="autorelog">ایہ اڳلی واری پُچھے بغیر کراہے</string>
   <string name="isrtl">true</string>
   <string name="add">شامل کرو</string>

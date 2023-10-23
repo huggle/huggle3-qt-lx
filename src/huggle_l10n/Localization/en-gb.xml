@@ -11,11 +11,12 @@
 * Dejavu
 * Kent73
 * Mako001
+* McDutchie
 * Samwilson
 * Sneezless
 -->
 <resources>
-  <string name="name">English (British)/British English</string>
+  <string name="name">British English</string>
   <string name="autorelog">Do this without asking next time</string>
   <string name="isrtl">false</string>
   <string name="add">Add</string>
