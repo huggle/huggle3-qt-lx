@@ -9,6 +9,7 @@
 * Clockery
 * Happy13241
 * Joao Xavier
+* Jon Harald Søby
 * Kghbln
 * Krenair
 * Liuxinyu970226
@@ -266,7 +267,7 @@
   <string name="main-page-reqdeletion">Used as label for the button.\n\nSee also:\n* {{msg-huggle|Main-page-delete}}</string>
   <string name="main-page-reqprotection">Used as label for the button.</string>
   <string name="main-page-watch">{{Identical|Watch}}</string>
-  <string name="main-page-unwatch"/>
+  <string name="main-page-unwatch">{{Identical|Unwatch}}</string>
   <string name="main-page-purge">{{Identical|Purge}}</string>
   <string name="main-page-curr-disp">A label for a text box that describes the current screen.\n\n[[File:Huggle3 kde ubuntu.png|300px|Screenshot]]</string>
   <string name="main-page-display">Used as menu item.</string>
