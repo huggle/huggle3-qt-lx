@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
 * AmaryllisGardener
+* CiphriusKane
 * MJL
 * Macofe
 -->
@@ -45,7 +46,7 @@
   <string name="version">Version</string>
   <string name="general-name">Name</string>
   <string name="author">Autor</string>
-  <string name="description">Descreeption</string>
+  <string name="description">Descrievin</string>
   <string name="status">Status</string>
   <string name="link">Airtin</string>
   <string name="reason">Raison</string>
