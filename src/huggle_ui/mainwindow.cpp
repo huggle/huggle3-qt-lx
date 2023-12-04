@@ -2459,6 +2459,7 @@ void MainWindow::welcomeCurrentUser(QString message)
         return;
     }
     message.replace("$1", this->CurrentEdit->User->Username);
+    message.replace("$page", this->CurrentEdit->Page->PageName);
     WikiUtil::MessageUser(this->CurrentEdit->User, message, conf->WelcomeTitle, conf->WelcomeSummary, false, nullptr,
                           false, false, true, this->CurrentEdit->TPRevBaseTime, create_only);
 }
