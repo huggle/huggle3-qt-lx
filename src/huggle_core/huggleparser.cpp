@@ -230,7 +230,9 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt, WikiSite *site)
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     if (Configuration::HuggleConfiguration->SystemConfig_TrimOldWarnings)
     {
-        // we need to get rid of old warnings now
+        // we want to know the highter warning level present on this talk page
+        // cut talk page content in sections (all paragraph that are separated by a blank line)
+        // to try to find warnings (by tags they have) and date (discard too old messages depending on config)
         QStringList sections;
         // windows fix
         page.replace("\r", "");
@@ -268,15 +270,34 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt, WikiSite *site)
                 CurrentIndex++;
                 continue;
             }
+
+            // discard content after CET or CEST, because we know the date is just before it
             QString section = sections.at(CurrentIndex);
             section = section.mid(0, dp).trimmed();
-            if (!section.contains(site->GetProjectConfig()->Parser_Date_Prefix))
-            {
-                // this is some borked date let's remove it
-                CurrentIndex++;
-                continue;
+
+            // language-specific logic may be needed to parse dates from signature
+            // French dates in signatures have dates in a fixed position before the CET: 30 novembre 2023 à 22:10 (CET)
+            // English ones are exactly between a comma and UTC:  22:58, 17 July 2023 (UTC)
+            QString time;
+            if (site->Name.startsWith("fr")) {
+                QStringList parts_section = section.split(' ');
+                // we know the last part from 5 spaces before the end to the CET (end of string) is the date/time
+                if (parts_section.length() < 5) {
+                    // this is some borked date let's remove it
+                    CurrentIndex++;
+                    continue;
+                }
+                time = parts_section.at(parts_section.length() - 5) + " " + parts_section.at(parts_section.length() - 4) + " " + parts_section.at(parts_section.length() - 3);
+            } else {
+                if (!section.contains(site->GetProjectConfig()->Parser_Date_Prefix))
+                {
+                    // this is some borked date let's remove it
+                    CurrentIndex++;
+                    continue;
+                }
+                time = section.mid(section.lastIndexOf(site->GetProjectConfig()->Parser_Date_Prefix) + site->GetProjectConfig()->Parser_Date_Prefix.length());
             }
-            QString time = section.mid(section.lastIndexOf(site->GetProjectConfig()->Parser_Date_Prefix) + site->GetProjectConfig()->Parser_Date_Prefix.length());
+
             // now we need this uberhack so that we can get a month name from localized version
             // let's hope that month is a word in a middle of string
             time = time.trimmed();
@@ -319,7 +340,7 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt, WikiSite *site)
                 continue;
             } else
             {
-                // now check if it's at least 1 month old
+                // now check if it's more recent than the delay in config (ie 1 month)
                 if (bt.addDays(site->ProjectConfig->TemplateAge) > date)
                 {
                     // we don't want to parse this thing
@@ -331,6 +352,9 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt, WikiSite *site)
             CurrentIndex++;
         }
     }
+
+    // now searching in user talk page tags as defined in wiki config, like <!-- Template:Huggle/warn-spam-1 -->
+    // and keep the highter one found
     byte_ht level = 4;
     while (level > 0)
     {
