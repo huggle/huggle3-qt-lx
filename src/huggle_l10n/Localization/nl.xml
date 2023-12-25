@@ -282,7 +282,7 @@
   <string name="login-fail-no-info">Aanmelden bij $1 is mislukt: de gebruikersgegevens kunnen niet opgehaald worden: $2</string>
   <string name="login-bot">Wat is het verschil tussen BotPassword- en Legacy-aanmelden?</string>
   <string name="login-fail-parse-config">Aanmelden bij $1 is mislukt: de gebruikersinstellingen kunnen niet verwerkt worden. Zie het debuglogboek voor meer details.</string>
-  <string name="login-fail-parse-config-yaml">Inloggen op $1 mislukt: Niet instaat om gebruikersconfiguratie te laden: $2</string>
+  <string name="login-fail-parse-config-yaml">Aanmelden bij $1 mislukt: Kan de gebruikersconfiguratie niet verwerken: $2</string>
   <string name="login-fail-user-data">Aanmelden bij $1 is mislukt: de gebruikersgegevens kunnen niet opgehaald worden. De API heeft geen gegevens teruggegeven.</string>
   <string name="login-fail-rollback-rights">Aanmelden bij $1 is mislukt: u hebt geen terugdraairechten op dit project.</string>
   <string name="login-failed-autoconfirm-rights">Aanmelden bij $1 is mislukt: u bent niet automatisch bevestigd op dit project.</string>
@@ -310,14 +310,14 @@
   <string name="login-remember-password-tooltip">Deze optie bewaard je wachtwoord in platte tekst op je harde schijf. Gebruik dit alleen als jij de enige bent met toegang tot deze computer.</string>
   <string name="login-ssl">Gebruik HTTPS om aan te melden (OpenSSL vereist)</string>
   <string name="login-fail">aanmelden op $1 mislukt</string>
-  <string name="login-fail-with-reason">Inloggen (op $1) mislukt: $2</string>
+  <string name="login-fail-with-reason">Aanmelden (op $1) mislukt: $2</string>
   <string name="login-error-admin">U kunt Huggle op dit project alleen gebruiken als u beheerder bent.</string>
   <string name="login-error-age">U kunt Huggle op dit project alleen gebruiken als uw acccount minstens $1 dagen oud is.</string>
   <string name="login-error-alldisabled">Huggle is op het moment uitgeschakeld op alle projecten.</string>
   <string name="login-error-approval">Voor het gebruik van Huggle op $1 is toestemming nodig.</string>
   <string name="login-error-cancelled">Geannuleerd.</string>
   <string name="login-error-config">Aanmelden is mislukt. Het is niet mogelijk de lokale instellingen voor $1 te verwerken: $2</string>
-  <string name="login-error-config-retrieve">Inloggen mislukt, was niet instaat om gebruikersconfiguratie op te halen: $1</string>
+  <string name="login-error-config-retrieve">Aanmelden mislukt, kan gebruikersconfiguratie niet ophalen: $1</string>
   <string name="login-error-config-query-no-data">Aanmelden mislukt - mogelijk netwerkverbindingsprobleem? Het was niet mogelijk de globale instellingspagina te downloaden.</string>
   <string name="login-error-count">U kunt Huggle op dit project alleen gebruiken als u ten minste $1 bewerkingen hebt gemaakt.</string>
   <string name="login-error-disabled">Huggle is niet ingeschakeld voor uw account op $1. Controleer uw gebruikersinstellingenpagina.</string>
@@ -332,7 +332,7 @@
   <string name="login-error-version">Deze versie is verouderd. Werk bij naar de nieuwste versie.</string>
   <string name="login-error-whitelist">Laden van de witte lijst voor $1 is mislukt.</string>
   <string name="login-ro-title">Schakelen naar alleen-lezen</string>
-  <string name="login-ro-question">Eén of meerdere projecten ($1) staan inloggen met bewerkingstoegang niet toe (reden: $2). Wil je omschakelen naar alleen-lezen?</string>
+  <string name="login-ro-question">Eén of meer projecten ($1) laten het niet toe dat u zich aanmeldt met bewerkingsbevoegdheden (reden: $2). Wilt u overschakelen naar de modus alleen-lezen?</string>
   <string name="login-ro-info">Project $1 omgeschakeld naar alleen-lezen</string>
   <string name="wikis-db-download-fail">Niet in staat om een database met wiki\'s te downloaden: $1</string>
   <string name="no-projects-defined-in-list">Er zijn geen projecten gedefinieerd in een lijst die op een globale wiki geplaatst dient te worden.</string>

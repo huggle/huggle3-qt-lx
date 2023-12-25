@@ -2,6 +2,7 @@
 <!-- Authors:
 * AntanO
 * ElangoRamanujam
+* Fahimrazick
 * Kalyanasundar
 * Kanags
 * Macofe
@@ -15,19 +16,19 @@
   <string name="close">மூடுக</string>
   <string name="continue">தொடரவும்</string>
   <string name="copy">நகல்</string>
-  <string name="delete">நீக்கவும்</string>
+  <string name="delete">நீக்கு</string>
   <string name="deleted">நீக்கப்பட்டது</string>
   <string name="error">பிழை</string>
   <string name="exit">வெளியேறுக</string>
   <string name="done">முடிந்தது</string>
   <string name="no">இல்லை</string>
   <string name="ok">சரி</string>
-  <string name="remove">நீக்குக</string>
+  <string name="remove">அகற்று</string>
   <string name="rename">பெயர் மாற்றுக</string>
   <string name="reload">மீளேற்றுக</string>
   <string name="project">திட்டம்</string>
   <string name="result">முடிவு</string>
-  <string name="save">சேமிக்கவும்</string>
+  <string name="save">சேமி</string>
   <string name="show">காட்டு</string>
   <string name="undo">மீளமை</string>
   <string name="yes">ஆம்</string>
@@ -146,7 +147,7 @@
   <string name="main-page-move">நகர்த்தவும்...</string>
   <string name="main-page-flag-good-edit" fuzzy="true">நன்றாக திருத்தியமைக்கப்பட்டது என்று கொடி குறிகை செய் (இச்செயலால் பயனருக்கு 200 மதிப்பெண் கிடைக்கும்)</string>
   <string name="main-page-protect">பாதுகாப்பளி</string>
-  <string name="main-page-delete">நீக்கு ,அழி,எடுத்து விடு</string>
+  <string name="main-page-delete">நீக்கு</string>
   <string name="main-page-load">ஏற்று</string>
   <string name="main-page-restore">இந்த மறு ஆய்வை மீட்கவும்</string>
   <string name="main-user-info">பயனர் தகவல்களைக் காட்டவும்</string>
@@ -156,7 +157,7 @@
   <string name="main-user-warn">எச்சரி...</string>
   <string name="main-user-report">அறிக்கை</string>
   <string name="main-user-block">தடு...</string>
-  <string name="main-browser-back">பின்செல்</string>
+  <string name="main-browser-back">பின்னே</string>
   <string name="main-browser-forward">முன்செல்</string>
   <string name="main-browser-newedits">இப்பக்கத்திற்கான புதிய தொகுப்புக்களைக் காட்டுக</string>
   <string name="main-han-disconnect">இணைப்பைத் துண்டி</string>
@@ -172,7 +173,7 @@
   <string name="main-savelogtitle">பதிகையைச் சேமி</string>
   <string name="main-usermessageother">ஏனைய செய்தி...</string>
   <string name="main-display-session-data">அமர்வு தரவைக் காண்பி</string>
-  <string name="main-tip-pagedelete">இப்பக்கத்தை நீக்குக</string>
+  <string name="main-tip-pagedelete">இப்பக்கத்தை நீக்கு</string>
   <string name="main-tip-userreport">இப்பயனரை புகாரளிக்கவும்</string>
   <string name="main-tip-userblock">இப் பயனரைத் தடுக்கவும்</string>
   <string name="message-title">செய்தி $1</string>
@@ -196,7 +197,7 @@
   <string name="queue-filternewpage">புதிய பக்கம்</string>
   <string name="queue-filteranonymous">அடையாளம் காட்டாத பயனர்</string>
   <string name="queue-filterignored">புறக்கணிக்கப்பட்ட  பயனர்</string>
-  <string name="queue-filterreverts">முன்நிலையாக்கு</string>
+  <string name="queue-filterreverts">முன்னிலையாக்கு</string>
   <string name="queue-filternotifications">அறிவிப்பு</string>
   <string name="queue-filterwarnings">எச்சரிக்கை</string>
   <string name="queue-filtertags">குறிச்சொல்</string>
