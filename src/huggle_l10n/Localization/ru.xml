@@ -854,7 +854,7 @@
   <string name="preferences-color-scheme-diff">Цвета сравнений</string>
   <string name="preferences-color-scheme-diff-default">По-умолчанию</string>
   <string name="preferences-color-scheme-diff-dark-mode">Тёмная тема</string>
-  <string name="preferences-template-spam-info" fuzzy="true">Эти параметры управляют подсистемой, которая предотвращает рассылку спама целевым участниках. По умолчанию участники не получают предупреждение для слишком старых правок, а также получают предупреждение шаблона только о случае, если вы отмените несколько правок, внесённых одним и тем же участником за очень короткое время.</string>
+  <string name="preferences-template-spam-info">Эти параметры управляют подсистемой, которая предотвращает рассылку спама целевым участниках. По умолчанию участники не получают предупреждение для слишком старых правок, а также получают предупреждение шаблона только в случае, если вы отмените несколько правок, внесённых одним и тем же участником за очень короткое время.</string>
   <string name="preferences-template-spam-title">Предотвращение спама в шаблонах</string>
   <string name="fail">Сбой</string>
   <string name="request">Запрос</string>
