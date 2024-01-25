@@ -3,6 +3,7 @@
 * Aktron
 * Chmee2
 * Dvorapa
+* Felix220
 * Ilimanaq29
 * LukasJandera
 * Matěj Grabovský
@@ -16,6 +17,7 @@
 -->
 <resources>
   <string name="name">Čeština</string>
+  <string name="autorelog">Příště to udělej bez dotazu</string>
   <string name="isrtl">false</string>
   <string name="add">Přidat</string>
   <string name="cancel">Zrušit</string>
@@ -30,13 +32,16 @@
   <string name="done">Hotovo</string>
   <string name="no">Ne</string>
   <string name="ok">OK</string>
+  <string name="override-warn">Přepsali jste cestu konfigurace projektu. Mějte prosím na paměti, že zneužití této funkce k získání přístupu pro zápis na wiki, kde byste jej normálně neměli, může vést k trvalému zablokování vašeho účtu.</string>
   <string name="remove">Smazat</string>
   <string name="rename">Přejmenovat</string>
   <string name="reload">Obnovit</string>
   <string name="project">Projekt</string>
+  <string name="warning">Upozornění</string>
   <string name="result">Výsledek</string>
   <string name="save">Uložit</string>
   <string name="show">Zobrazit</string>
+  <string name="no-instant">Zprávu $2 nelze odeslat, protože na projektu $1 nejsou povolena okamžitá varování. Vyberte prosím jiný druh varování.</string>
   <string name="undo">Vrátit</string>
   <string name="yes">Ano</string>
   <string name="editing-page">Upravuji stránku</string>
@@ -103,6 +108,8 @@
   <string name="config-queue-filter-ignore">Ignorovat (nezáleží)</string>
   <string name="config-queue-filter-exclude">Vyloučit (není nutné)</string>
   <string name="config-queue-filter-require">Vyžadovat (povinné)</string>
+  <string name="config-queue-modified-title">Fronta upravena</string>
+  <string name="config-queue-modified-text">Upravili jste frontu, ale neuložili jste ji. Pokud budete pokračovat, Vaše změny budou zahozeny. Chcete pokračovat?</string>
   <string name="config-summ">Vlastní shrnutí revertů u šablon</string>
   <string name="config-title">Nastavení</string>
   <string name="config-already-in-use">Tento zástupce je již používán $1, vyberte prosím jiný</string>
@@ -122,17 +129,21 @@
   <string name="config-noshortcut">Žádná</string>
   <string name="config-defaults">Výchozí</string>
   <string name="config-minor">Označit jako drobné</string>
+  <string name="config-ip">Uživatelé IP adres</string>
   <string name="config-watchlist">Přidat do sledovaných stránek</string>
   <string name="config-defaultsummary">Výchozí shrnutí pro ruční editace</string>
   <string name="config-undosummary">Shrnutí při vracení vlastní úpravy</string>
+  <string name="config-confirm-user">Vyžadovat potvrzení pro vrácení úpravy provedené v uživatelském prostoru</string>
   <string name="config-confirm-wl">Požadovat potvrzení pro návrat úpravy, která byla provedena uživatelem ktery je na bílé listině</string>
   <string name="config-confirm-talk">Požadovat potvrzení pro vrácení na diskusní stránku</string>
   <string name="config-use-rollback">Použít softwarové vrácení změn</string>
   <string name="config-welcome-empty-page">Poslat uvítání uživatelům s prázdnou diskuzní stránkou za dobrou editaci</string>
   <string name="config-conflicts-revert">Autoamticky vyřešit editační konflikty s ostatními uživateli, kteří revertují nebo mění tuto stránku</string>
   <string name="config-instant-reverts">Použít okamžité reverty (velmi rychlé, ale nemohou být zrušeny poté, co jsou povoleny)</string>
+  <string name="config-reverts-multiple">Při vrácení více úprav provedených stejným uživatelem:</string>
   <string name="config-revert-wait">Revertační prodleva (v sekundách)</string>
   <string name="config-revert">Vrátit zpět</string>
+  <string name="config-skip">Přeskočit</string>
   <string name="config-months-name">Použít jako záhlaví aktuální měsíc místo názvu stránky</string>
   <string name="config-enable-irc">Povolit IRC</string>
   <string name="config-remove-reverted">Odebrat editace, které již byly vráceny někým jiným z fronty</string>
@@ -540,7 +551,7 @@
   <string name="shortcut-next">Jít na další úpravy</string>
   <string name="shortcut-suspicious">Označit edit jako podezřelou editaci</string>
   <string name="shortcut-back">Jít na dříve zobrazený edit.</string>
-  <string name="shortcut-forward" fuzzy="true">Přejít na editaci načtenou předtím</string>
+  <string name="shortcut-forward">Přejděte na úpravu, kterou jste načetli v minulosti, ale přesunuli jste se zpět</string>
   <string name="shortcut-warn">Poslat varování pro uživatele, bez revertu editace</string>
   <string name="shortcut-revert">Revertovat editaci</string>
   <string name="shortcut-x-raw">Spusť N-tou položku menu vrátit a varovat</string>
@@ -549,13 +560,13 @@
   <string name="shortcut-unwatch">Odstranit zobrazenou stránku z vašich sledovaných stránek</string>
   <string name="shortcut-x-warn">Spusť N-tou položku menu varovat</string>
   <string name="shortcut-good">Označit edit jako dobrou úpravu</string>
-  <string name="shortcut-open-in-huggle" fuzzy="true">Otevřít aktuálně zobrazenout stranu</string>
-  <string name="shortcut-open" fuzzy="true">Otevřít aktuálně zobrazenou stránku v prohlížeči</string>
+  <string name="shortcut-open-in-huggle">Otevře aktuálně zobrazenou stránku</string>
+  <string name="shortcut-open">Otevře aktuálně zobrazenou úpravu v prohlížeči</string>
   <string name="shortcut-talk">Zobrazit diskusní stránku uživatele, který provedl tuto změnu</string>
   <string name="shortcut-revert-agf-1">Vrátit poslední edit za předpokladu, že byl proveden v dobré víře</string>
   <string name="shortcut-browser-close-tab">Zavřít okno prohlížeče</string>
   <string name="shortcut-tab">Otevře novou záložku</string>
-  <string name="shortcut-rw-stay" fuzzy="true">Vrátí aktuální edit, varuje tohoto uživatele a zůstane na stránce</string>
+  <string name="shortcut-rw-stay">Vrátí aktuálně zobrazenou editaci, varuje uživatele a zůstanete na stránce</string>
   <string name="shortcut-revert-and-stay">Revertovat současnou editaci a zůstat na stránce</string>
   <string name="shortcut-user-contribs-browser">Zobrazit příspěvky uživatele v prohlížeči</string>
   <string name="warning-title">Varovat $1</string>
@@ -633,7 +644,7 @@
   <string name="editquery-success">Úspěsně upravena $1 na $2</string>
   <string name="editquery-token">Získávání tokenu k úpravě stránky $1</string>
   <string name="editquery-token-error">Nelze získat edit token</string>
-  <string name="provider-failure" fuzzy="true">Selhání primárního poskytovatele feedu, snažím se jej obnovit</string>
+  <string name="provider-failure">Selhání feed poskytovatele $1 na $2, pokus o nalezení alternativního poskytovatele</string>
   <string name="provider-primary-failure">Primarní poskytovatel wiki změn selhal, probíhá fallback na záložního poskytovatele</string>
   <string name="rc-error">Data nelze načíst z wiki feedu, poslední chyba: $1</string>
   <string name="whitelist-download">Stahuji whitelist</string>
@@ -654,7 +665,7 @@
   <string name="cr-revert-same-user">Konflikt vyřešen: vrátit všechny úpravy, je zde několik editací provedených stejným uživatelem $1</string>
   <string name="cr-message-same">Stránka $1 má nové editace vyrobené tím samým uživatelem, jste si jist že je chcete vrátit?</string>
   <string name="cr-message-new">Stránka $1 má nové editace, jste si jist že je chcete vrátit?</string>
-  <string name="cr-message-not-same" fuzzy="true">Stránka $1 má nové editace vyrobené jiným uživatelem, opravdu je chcete vrátit? (nejspíš to stejně nepůjde, protože token byl získán před těmito úpravami)</string>
+  <string name="cr-message-not-same">Stránka $1 má nové editace vytvořené jiným uživatelem, opravdu je chcete vrátit? (Nejspíš to stejně nepůjde, protože token byl získán před těmito úpravami)</string>
   <string name="preferences-watchlist-watch">Přidat do sledovaných stránek</string>
   <string name="preferences-watchlist-unwatch">Odstranit ze sledovaných stránek</string>
   <string name="preferences-watchlist-preferences">Sledovat vaše nastavení na wiki</string>
