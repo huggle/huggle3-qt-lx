@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
 * Cedric31
+* Lhanars
 * Macofe
 -->
 <resources>
   <string name="name">Occitan</string>
   <string name="isrtl">false</string>
-  <string name="add">Apondètz</string>
-  <string name="cancel">Anullacion</string>
+  <string name="add">Apondre</string>
+  <string name="cancel">Anullar</string>
   <string name="clear">Desebucatz</string>
   <string name="close">Tampar</string>
   <string name="continue">Contunhatz</string>
