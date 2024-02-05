@@ -12,6 +12,7 @@
 * Phjtieudoc
 * Q.Khải
 * TARGET6tidiem
+* Tryvix1509
 * Vinhtantran
 -->
 <resources>
@@ -19,8 +20,8 @@
   <string name="autorelog">Cứ làm thế và không cần hỏi lại lần sau</string>
   <string name="isrtl">false</string>
   <string name="add">Thêm</string>
-  <string name="cancel">Hủy lệnh</string>
-  <string name="clear">Tẩy trống</string>
+  <string name="cancel">Hủy bỏ</string>
+  <string name="clear">Xóa sạch</string>
   <string name="close">Đóng</string>
   <string name="continue">Tiếp tục</string>
   <string name="copy">Sao chép</string>
@@ -31,7 +32,7 @@
   <string name="done">Xong</string>
   <string name="no">Không</string>
   <string name="ok">OK</string>
-  <string name="override-warn">Bạn đã override đường dẫn cấu hình dự án. Xin vui lòng ghi nhớ rằng nếu bạn lạm dụng tính năng này nhằm để lấy được truy cập ghi vào wiki, mà bình thường bạn không thể nào có được, thì có thể dẫn đến việc tài khoản của bạn bị cấm vĩnh viễn.</string>
+  <string name="override-warn">Bạn đã ghi đè lên đường dẫn tập tin cấu hình của dự án. Xin hãy nhớ rằng nếu bạn lạm dụng tính năng này để có được quyền ghi vào wiki mà bình thường bạn không thể nào có được, điều này có thể dẫn đến việc tài khoản của bạn bị cấm vĩnh viễn.</string>
   <string name="remove">Gỡ bỏ</string>
   <string name="rename">Đổi tên</string>
   <string name="reload">Tải lại</string>
@@ -44,7 +45,7 @@
   <string name="undo">Hoàn tác</string>
   <string name="yes">Được</string>
   <string name="editing-page">Đang sửa đổi trang</string>
-  <string name="agf">Lùi lại sửa đổi thiện ý kèm lý do tùy biến</string>
+  <string name="agf">Lùi lại sửa đổi thiện ý kèm lý do tùy chỉnh</string>
   <string name="successful">Thành công</string>
   <string name="summary">Tóm lược</string>
   <string name="id">ID</string>
@@ -66,13 +67,13 @@
   <string name="whitelisted">$1 với điểm số $2 tại $3 đã được thêm vào danh sách trắng</string>
   <string name="expiry-time">Thời điểm hết hạn</string>
   <string name="duration">Thời lượng</string>
-  <string name="enable">Bật dùng</string>
-  <string name="disable">Tắt dùng</string>
+  <string name="enable">Bật</string>
+  <string name="disable">Tắt</string>
   <string name="no-token">Không có mã bảo mật</string>
   <string name="flags">Cờ</string>
   <string name="gracetime">Đang đợi các truy vấn thực hiện sửa đổi kết thúc...</string>
   <string name="browser-none">Chưa có trang để hiển thị.</string>
-  <string name="browser-load">Đang tải bản khác biệt bằng cách dùng MediaWiki fallback, vui lòng chờ...</string>
+  <string name="browser-load">Đang tải bản khác biệt bằng MediaWiki fallback, vui lòng chờ...</string>
   <string name="browser-miss-summ">Không có tóm lược nào được cung cấp</string>
   <string name="browser-diff">Bản khác biệt của trang: $1 (điểm số: $2)</string>
   <string name="browser-fail">Không thể truy xuất bản khác biệt: $1</string>
@@ -85,16 +86,16 @@
   <string name="block-message-user">Gửi tin nhắn tới thành viên mục tiêu, kèm theo lý do cấm</string>
   <string name="block-anononly">Chỉ cấm người dùng vô danh</string>
   <string name="block-creation">Cấm mở tài khoản</string>
-  <string name="block-autoblock">Bật dùng tính năng tự động cấm</string>
+  <string name="block-autoblock">Tự động cấm các địa chỉ IP mà người này sử dụng</string>
   <string name="block-email">Cấm thư điện tử</string>
   <string name="block-usertalk">Thảo luận</string>
   <string name="block-usercontribs">Đóng góp</string>
   <string name="block-blockloglabel">Nhật trình cấm:</string>
   <string name="block-warnloglabel">Cảnh báo:</string>
   <string name="block-sharedipwarning">Lưu ý: $1 đã được gắn biển là địa chỉ IP dùng chung hoặc IP động</string>
-  <string name="block-rangeblockwarning">$1 đang chịu ảnh hưởng của lệnh cấm theo dải tại $2.\nLệnh cấm này sẽ override hiệu quả của lệnh cấm kia. Tiếp tục chứ?</string>
+  <string name="block-rangeblockwarning">$1 đang chịu ảnh hưởng của lệnh cấm theo dải tại $2.\nTác vụ cấm này sẽ đè lên tác dụng của lệnh cấm dải kia. Bạn có muốn tiếp tục?</string>
   <string name="block-token-1">Đang lấy mã bảo mật để cấm $1</string>
-  <string name="block-fail">Không thể cấm thành viên, $1</string>
+  <string name="block-fail">Không thể cấm thành viên, lý do: $1</string>
   <string name="block-token-e1">Không thể truy xuất mã bảo mật: $1</string>
   <string name="block-error-no-info">Không có thông tin thành viên nào hiện diện trong truy vấn (bạn có phải là bảo quản viên không?)</string>
   <string name="block-type">Cấm / bỏ cấm</string>
@@ -109,17 +110,17 @@
   <string name="config-queue-filter-require">Yêu cầu (phải là)</string>
   <string name="config-queue-modified-title">Đã sửa lại hàng đợi</string>
   <string name="config-queue-modified-text">Bạn đã sửa lại hàng đợi, nhưng chưa lưu thay đổi. Nếu bạn tiếp tục, các thay đổi của bạn sẽ bị hủy. Bạn có muốn tiếp tục không?</string>
-  <string name="config-summ">Tùy biến tóm lược lùi lại cho các bản mẫu</string>
+  <string name="config-summ">Tùy chỉnh tóm lược lùi lại cho các bản mẫu</string>
   <string name="config-title">Tùy chọn</string>
   <string name="config-already-in-use">Lối tắt này đang được $1 sử dụng, vui lòng chọn lối tắt khác</string>
   <string name="config-openinbrowser">Mở các liên kết trong cửa sổ trình duyệt mới</string>
   <string name="config-shownewedits">Hiển thị các sửa đổi mới cho trang đã chọn khi chúng được tạo ra</string>
-  <string name="config-ircmode">Sử dụng IRC feed cho các thay đổi gần đây nếu có thể</string>
+  <string name="config-ircmode">Sử dụng luồng IRC feed cho các thay đổi gần đây nếu có thể</string>
   <string name="config-ircport">Cổng IRC</string>
-  <string name="config-difffontsize">Kích thước font của bản khác biệt</string>
+  <string name="config-difffontsize">Kích thước phông chữ của khi xem khác biệt</string>
   <string name="config-logfile">Tập tin nhật trình</string>
   <string name="config-viewlocalconfig">Xem thư mục cấu hình cục bộ</string>
-  <string name="config-trayicon">Hiển thị biểu tượng khay</string>
+  <string name="config-trayicon">Hiển thị biểu tượng dưới khay</string>
   <string name="config-startupmessage">Hiển thị thông điệp khi khởi động</string>
   <string name="config-shownewmessages">Hiển thị thanh thông điệp mới</string>
   <string name="config-shortcutlist">Phím tắt</string>
@@ -131,15 +132,15 @@
   <string name="config-ip">Người dùng IP</string>
   <string name="config-watchlist">Thêm vào danh sách theo dõi</string>
   <string name="config-defaultsummary">Tóm lược mặc định cho các sửa đổi thủ công</string>
-  <string name="config-undosummary">Tóm lược khi hoàn tác các sửa đổi của chính mình</string>
+  <string name="config-undosummary">Tóm lược khi lùi lại các sửa đổi của chính mình</string>
   <string name="config-confirm-user">Yêu cầu xác nhận để lùi lại sửa đổi đã được tạo ra trong không gian thành viên</string>
   <string name="config-confirm-wl">Yêu cầu xác nhận để lùi lại sửa đổi do thành viên trong danh sách trắng thực hiện</string>
-  <string name="config-confirm-talk">Yêu cầu xác nhận để lùi lại trang thảo luận</string>
+  <string name="config-confirm-talk">Yêu cầu xác nhận để lùi lại sửa đổi trên trang thảo luận</string>
   <string name="config-use-rollback">Sử dụng lùi sửa bằng phần mềm</string>
   <string name="config-welcome-empty-page">Gửi tin nhắn hoan nghênh đến những thành viên có các sửa đổi tốt mà trang thảo luận còn trống</string>
-  <string name="config-conflicts-revert">Tự động giải quyết xung đột sửa đổi với những thành viên khác có lùi lại hoặc thay đổi cùng một trang</string>
+  <string name="config-conflicts-revert">Tự động giải quyết mâu thuẫn sửa đổi với những thành viên khác đã lùi lại hoặc sửa đổi trên cùng một trang</string>
   <string name="config-instant-reverts">Sử dụng lùi lại tức thì (rất nhanh, nhưng một khi đã thực thi thì không thể hủy lệnh được)</string>
-  <string name="config-reverts-multiple">Lúc lùi nhiều sửa đổi của cùng một thành viên:</string>
+  <string name="config-reverts-multiple">Khi lùi nhiều sửa đổi của cùng một thành viên:</string>
   <string name="config-revert-wait">Độ trễ lùi lại (giây)</string>
   <string name="config-revert">Lùi lại</string>
   <string name="config-skip">Bỏ qua</string>
@@ -828,7 +829,7 @@
   <string name="preferences-color-scheme-diff">Màu sắc bản khác biệt</string>
   <string name="preferences-color-scheme-diff-default">Mặc định</string>
   <string name="preferences-color-scheme-diff-dark-mode">Chế độ tối</string>
-  <string name="preferences-template-spam-info" fuzzy="true">Các tùy chọn này kiểm soát hệ thống con đang ngăn người dùng mục tiêu bị spam mẫu. Theo mặc định, người dùng không được cảnh báo về bản mẫu đối với các sửa đổi quá cũ và cũng chỉ nhận được cảnh báo về bản mẫu duy nhất trong trường hợp bạn lùi sửa nhiều sửa đổi của cùng một người dùng trong một thời gian rất ngắn.</string>
+  <string name="preferences-template-spam-info">Các tùy chọn này kiểm soát một hệ thống con để ngăn không cho thành viên mục tiêu bị spam bản mẫu cảnh báo. Theo mặc định, thành viên sẽ không bị cảnh báo bằng bản mẫu đối với các sửa đổi quá cũ và cũng chỉ nhận được cảnh báo bằng bản mẫu duy nhất trong trường hợp bạn lùi sửa nhiều sửa đổi của cùng một thành viên trong một khoảng thời gian ngắn.</string>
   <string name="preferences-template-spam-title">Ngăn chặn bản mẫu thư rác</string>
   <string name="fail">Thất bại</string>
   <string name="request">Yêu cầu</string>
