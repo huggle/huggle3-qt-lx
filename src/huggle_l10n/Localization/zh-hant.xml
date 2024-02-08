@@ -362,7 +362,7 @@
   <string name="main-system-abort">中止</string>
   <string name="main-system-change-provider">變更提供者</string>
   <string name="main-system-change-provider-irc">IRC</string>
-  <string name="main-system-change-provider-wiki">Wiki</string>
+  <string name="main-system-change-provider-wiki">wiki</string>
   <string name="main-system-exit">結束</string>
   <string name="main-config-state-fail">無法從設定檔讀取狀態</string>
   <string name="main-config-geom-fail">無法從設定檔讀取視窗佈局結構</string>
