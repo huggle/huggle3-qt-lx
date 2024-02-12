@@ -10,6 +10,7 @@
 * Nghiemtrongdai VN
 * P.T.Đ
 * Phjtieudoc
+* Pisceskaze
 * Q.Khải
 * TARGET6tidiem
 * Tryvix1509
@@ -118,7 +119,7 @@
   <string name="config-ircmode">Sử dụng luồng IRC feed cho các thay đổi gần đây nếu có thể</string>
   <string name="config-ircport">Cổng IRC</string>
   <string name="config-difffontsize">Kích thước phông chữ của khi xem khác biệt</string>
-  <string name="config-logfile">Tập tin nhật trình</string>
+  <string name="config-logfile">Tập tin nhật ký</string>
   <string name="config-viewlocalconfig">Xem thư mục cấu hình cục bộ</string>
   <string name="config-trayicon">Hiển thị biểu tượng dưới khay</string>
   <string name="config-startupmessage">Hiển thị thông điệp khi khởi động</string>

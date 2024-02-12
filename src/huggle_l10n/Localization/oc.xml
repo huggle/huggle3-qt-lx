@@ -35,7 +35,7 @@
   <string name="id">ID</string>
   <string name="type">Tipe</string>
   <string name="target">Cibla</string>
-  <string name="user">Utilizaire</string>
+  <string name="user">Utilizator</string>
   <string name="size">Talha</string>
   <string name="date">Data</string>
   <string name="page">Pagina</string>
@@ -132,7 +132,7 @@
   <string name="login-error-cancelled">Anullat.</string>
   <string name="login-error-password">Senhal incorrècte</string>
   <string name="main-page">Pagina</string>
-  <string name="main-user">Utilizaire</string>
+  <string name="main-user">Utilizator</string>
   <string name="main-contribs">Contribucions</string>
   <string name="main-history">Istoric</string>
   <string name="main-system">Sistèma</string>

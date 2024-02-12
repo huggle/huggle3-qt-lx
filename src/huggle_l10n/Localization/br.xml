@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
+* Adriendelucca
 * Dishual
 * Fohanno
 * Fulup
@@ -171,6 +172,7 @@
   <string name="config-no-colon">N\'hallit ket implijout \":\" en anv ur steudad c\'hortoz</string>
   <string name="config-notify-update">Gwiriañ hag-eñ ez eus hizivadennoù</string>
   <string name="config-notify-beta">Gwiriañ ma c\'haller kaout ar stummoù bêta</string>
+  <string name="custommessage-title">Skrivañ ur gemennadenn da $1</string>
   <string name="custommessage-subject">Titl</string>
   <string name="custommessage-menu">Kas ur gemennadenn personelaet</string>
   <string name="custommessage-send">Kas ur gemennadenn</string>
@@ -207,7 +209,7 @@
   <string name="login-username">Anv implijer :</string>
   <string name="login-password">Ger-tremen :</string>
   <string name="login-proxygroup">Arventennoù proksi</string>
-  <string name="login-proxy" fuzzy="true">Implijout ur servijer proksi</string>
+  <string name="login-proxy">Implijout ur proksi</string>
   <string name="login-proxyaddress">Chomlecʼh :</string>
   <string name="login-proxy-remember-this">Derc\'hel soñj eus an arventenn-mañ ar wech kentañ</string>
   <string name="login-proxyport">Porzh :</string>
@@ -219,8 +221,9 @@
   <string name="login-bot" fuzzy="true">Peseurt diforc\'h zo etre ur robod hag ur c\'hevreadur dre zorn ?</string>
   <string name="login-fail-parse-config">Kevreadur c\'hwitet e $1 : Ne c\'haller ket dielfennañ ar c\'hefluniadur implijer. Gwelit roud ho tizreinadur evit gouzout hiroc\'h.</string>
   <string name="login-password-empty">Goullo e oa ar ger-tremen ho peus bizskrivet</string>
-  <string name="login-fail-wrong-name" fuzzy="true">N\'ho peus roet anv implijer mat ebet evit kevreañ</string>
+  <string name="login-fail-wrong-name">N\'ho peus roet anv implijer ebet evit kevreañ</string>
   <string name="login-api">FAZI : api.php en deus respontet gant un disoc\'h dianav : $1</string>
+  <string name="login-abort">Dilezel</string>
   <string name="login-start">Kevreañ</string>
   <string name="login-oauth-notsupported">Ne c\'haller ket implijout an doare-ober-mañ evit bremañ</string>
   <string name="login-translate">Treiñ Huggle</string>
