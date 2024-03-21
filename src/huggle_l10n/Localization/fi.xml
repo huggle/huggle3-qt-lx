@@ -6,6 +6,7 @@
 * Pahkiqaz
 * Pxos
 * Pyscowicz
+* Samoasambia
 * Silvonen
 -->
 <resources>
@@ -171,6 +172,7 @@
   <string name="main-tools">Työkalut</string>
   <string name="main-page-next">Seuraava</string>
   <string name="main-page-edit">Muokkaa sivua selaimessa</string>
+  <string name="main-page-purge">tyhjennä välimuisti</string>
   <string name="main-page-move">Siirrä...</string>
   <string name="main-page-delete">Poista</string>
   <string name="main-page-load">Lataa</string>
