@@ -185,7 +185,7 @@
   <string name="config-autoadvance">אחרי שחזור, לעבור לפריט הבא בתור</string>
   <string name="config-userollback">שימוש ב\"שחזור\" כשאפשר</string>
   <string name="config-revertsummaries">תקצירי שחזור זמינים בתפריט</string>
-  <string name="config-auto-refresh">לרענן את הדף אוטומטית במידה ונעשתה עריכה נוספת</string>
+  <string name="config-auto-refresh">לרענן את הדף אוטומטית אם נעשתה עריכה נוספת</string>
   <string name="config-extendreports">להרחיב דיווחים אחרי השחתות נוספות</string>
   <string name="config-autoreport">כאשר מגיעה בקשה להזהיר משתמש באזהרה אחרונה</string>
   <string name="config-reportnone">לא לעשות דבר</string>
