@@ -154,6 +154,9 @@ if ($git_enabled -and (Test-Path("..\.git")))
 {
     echo "build: non-git build (windows)" > version.txt
 }
+
+cp version.txt huggle_core\
+
 if (!(Test-Path("huggle_core\definitions.hpp")))
 {
     cp "huggle_core\definitions_prod.hpp" "huggle_core\definitions.hpp"
