@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
 * Ajeje Brazorf
+* Chqaz
 * McDutchie
 * Omotecho
 * Otokoume
@@ -194,16 +195,24 @@
   <string name="custommessage-subject">タイトル</string>
   <string name="custommessage-menu">カスタムメッセージを送信する</string>
   <string name="custommessage-send">メッセージの送信</string>
+  <string name="custommessage-wikiuser-plaintext-1">$1 さん、こんにちは</string>
+  <string name="custommessage-wikiuser-plaintext-2">ここにメッセージを書き込んでください。</string>
   <string name="delete-title">$1 を削除</string>
   <string name="delete-reason">理由:</string>
   <string name="delete-deletionlog">削除ログ:</string>
   <string name="delete-rem-talk">関連ノートページを削除</string>
   <string name="delete-notify">作成者に知らせる</string>
   <string name="delete-error-token">エラー：削除用のトークンを取得できませんでした。原因：$1</string>
+  <string name="delete-token01">$1を削除するためのトークンを取得しています</string>
   <string name="delete-token02">クエリがトークンを返しませんでした</string>
   <string name="delete-e1">ページを削除できません: $1</string>
   <string name="delete-e2">ページを削除できません</string>
   <string name="delete-edsc">ページを削除できません。理由: $1</string>
+  <string name="delete-failed-no-info">クエリにページ情報がありませんでした (あなたは管理者ですか?)</string>
+  <string name="exception-error-code">エラーコード: $1</string>
+  <string name="exception-reason">理由: $1</string>
+  <string name="exception-source">ソース: $1</string>
+  <string name="exception-system-log">システムログ</string>
   <string name="historyform-title">履歴</string>
   <string name="history-error-message-title">取り消せません</string>
   <string name="history-failure">履歴を取得できません</string>
@@ -333,6 +342,7 @@
   <string name="main-page-delete">削除</string>
   <string name="main-page-load">読み込み</string>
   <string name="main-patrol-not-enabled">巡回は、$1で有効になっていません</string>
+  <string name="main-page-refresh">更新</string>
   <string name="main-page-restore">この版を復元</string>
   <string name="main-user-info">利用者情報を表示</string>
   <string name="main-user-ignore">無視</string>
@@ -448,6 +458,7 @@
   <string name="report-evidence-none-provid">証拠となる差分が提示されていません。これでは当該利用者が荒らしかどうか、管理者の判定が非常に困難になります。本当にこのまま続行しますか?</string>
   <string name="report-duplicate">この利用者はすでに報告されています</string>
   <string name="report-progress">\'$1\' を報告しています...</string>
+  <string name="report-user">報告</string>
   <string name="score-score">得点</string>
   <string name="score-word">単語</string>
   <string name="score-range">範囲</string>
