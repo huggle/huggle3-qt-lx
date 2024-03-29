@@ -20,11 +20,16 @@ endif()
 
 option(LINUX_SNAP "Enable support for snap, use this option only if you are building snapshotable version" false)
 option(QT5_BUILD "Build Huggle using the Qt5 framework" true)
+option(QT6_BUILD "Build Huggle using the Qt6 framework" false)
 option(HUGGLE_PROFILING "Enable profiler" false)
 option(HUGGLE_EXT "Build Huggle extensions" false)
 option(HUGGLE_TEST "Unit tests" false)
 option(WEB_ENGINE "Use Qt WebEngine instead of WebKit library" false)
 option(AUDIO "Enable audio backend" true)
+
+if (QT6_BUILD)
+    set (QT5_BUILD true)
+endif()
 
 set(HUGGLE_CMAKE true)
 
