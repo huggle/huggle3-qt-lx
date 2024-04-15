@@ -161,7 +161,7 @@
   <string name="config-revert-wait">تأخیر برگرداندن (به ثانیه)</string>
   <string name="config-revert">برگرداندن</string>
   <string name="config-skip">رها کردن</string>
-  <string name="config-revert-diff">برگرداندن ویرایش‌های تازه‌تر صفحه نسبت به تفاوت نمایش داده‌شده در حالتی که توسط همان کاربر خرابکار صورت گرفته‌باشد</string>
+  <string name="config-revert-diff">برگرداندن ویرایش‌های تازه‌تر صفحه نسبت به تفاوت نمایش داده‌شده در حالتی که توسط همان کاربر خرابکار صورت گرفته باشد</string>
   <string name="config-change-all">تغییر همه تنظیمات هاگل طوری که بیشتر شبیه هاگل ۲ رفتار کند</string>
   <string name="config-merge-messages">ادغام‌ پیام‌های شما با دیگران در بخش‌های موجود</string>
   <string name="config-months-name">استفاده از ماه‌ها به عنوان نام سربرگ جای نام صفحه</string>
@@ -326,7 +326,7 @@
   <string name="login-fail">ثبت ورود در $1 نافرجام ماند</string>
   <string name="login-fail-with-reason">ورود ناموفق (در $1): $2</string>
   <string name="login-error-admin">استفاده از هاگل در این پروژه نیازمند حساب مدیریت است.</string>
-  <string name="login-error-age">استفاده از هاگل در این پروژه نیازمند است که حسابی با قدمت حداقل $1 روز داشته‌باشید.</string>
+  <string name="login-error-age">استفاده از هاگل در این پروژه نیازمند است که حسابی با قدمت حداقل $1 روز داشته باشید.</string>
   <string name="login-error-alldisabled">هاگل اکنون در همه پروژه‌ها غیرفعال است.</string>
   <string name="login-error-approval">استفاده از هاگل در $1 نیازمند تأیید است.</string>
   <string name="login-error-cancelled">لغو شد.</string>
@@ -754,7 +754,7 @@
   <string name="history-message-revert-title">واقعاً می‌خواهید تنها همین پیام را خنثی کنید؟</string>
   <string name="history-another-edit">ویرایش دیگری خنثی‌شده است، لطفاً صبر کنید...</string>
   <string name="history-not-found">چیزی برای خنثی‌سازی یافت نشد</string>
-  <string name="history-already-done">از پیش خنثی‌سازی شده‌بود</string>
+  <string name="history-already-done">از پیش خنثی‌سازی شده بود</string>
   <string name="history-message-revert-body">این پیام به یک واگردانی ارجاع داده شده است، آیا مطمئن هستید که می‌خواهید بدون برگرداندن ویرایش‌تان روی صفحه تنها این پیام را خنثی کنید؟ (اگر می‌خواهید هردو برگردانده شوند می‌باید واگردانی را خنثی کنید)</string>
   <string name="history-revert-fail">ناتوان در خنثی‌سازی ویرایش‌تان به $1 چراکه با خطای زیر روبه‌رو شد: $2</string>
   <string name="history-undone">خنثی‌سازی موفقیت‌آمیز ویرایش  در $1</string>
@@ -823,7 +823,7 @@
   <string name="preferences-show-warning-if-not-last-revision"> گر شما در آخرین نسخه از صفحه نیستید هشدار نمایش داده شود</string>
   <string name="preferences-delete-using-filter">شما نمی‌توانید فیلتری که در حال حاضر استفاده می‌شود را پاک کنید</string>
   <string name="preferences-extension-disabled">این افزونه برای غیرفعال کردن راه‌اندازی مجدد هاگل برنامه‌ریزی شده است</string>
-  <string name="preferences-extension-disabled-restart">افزونه برای غیرفعال شدن در راه‌اندازی بعدی هاگل برنامه‌ریزی شده‌بود</string>
+  <string name="preferences-extension-disabled-restart">افزونه برای غیرفعال شدن در راه‌اندازی بعدی هاگل برنامه‌ریزی شده بود</string>
   <string name="preferences-extension-enabled">این افزونه برای غیرفعال کردن راه‌اندازی مجدد هاگل برنامه‌ریزی نشده است</string>
   <string name="preferences-extension-enabled-restart">افزونه فعال شده است، با این وجود برای به کار افتادن هاگل شما باید آن را دوباره راه‌اندازی کنید</string>
   <string name="preferences-enforce-baw">نمایش رنگ سفید و سیاه در تفاوت اچ‌تی‌ام‌ال</string>

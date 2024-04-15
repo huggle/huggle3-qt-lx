@@ -20,6 +20,7 @@
 * NEHAOUA
 * Omarbofoss
 * Reza1615
+* أيوب
 * أَحمد
 * بدارين
 * ديفيد
@@ -435,7 +436,7 @@
   <string name="main-page-load">تحميل</string>
   <string name="main-patrol-not-enabled">لم يتم تمكين المراجعة على $1</string>
   <string name="main-page-refresh">تحديث</string>
-  <string name="main-page-restore">استرجاع هذه المراجعة</string>
+  <string name="main-page-restore">استرجع هذه النسخة</string>
   <string name="main-page-watchlist-add">أضف الصفحة لقائمة مراقبة</string>
   <string name="main-page-tab-close">أغلق اللسان الحالي</string>
   <string name="main-page-tab-open">افتح لسانا جديدا</string>

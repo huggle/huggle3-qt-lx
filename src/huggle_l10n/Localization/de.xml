@@ -18,6 +18,7 @@
 * Robby
 * Se4598
 * ToBeFree
+* TomatoCake
 * VMzB
 * WikiBayer
 -->
@@ -70,7 +71,7 @@
   <string name="link">Link</string>
   <string name="reason">Grund</string>
   <string name="diffid">DiffID</string>
-  <string name="whitelisted">$1 wurde mit dem Wert $2 auf $3 der Positivliste hinzugefügt</string>
+  <string name="whitelisted">$1 mit dem Wert $2 auf $3 wurde auf die Whitelist gesetzt</string>
   <string name="expiry-time">Ablaufdatum</string>
   <string name="duration">Dauer</string>
   <string name="enable">Aktivieren</string>
@@ -82,7 +83,7 @@
   <string name="browser-load">Lade Unterschied mithilfe eines MW-Fallbacks herunter. Bitte warten …</string>
   <string name="browser-miss-summ">Es wurde keine Zusammenfassung angegeben</string>
   <string name="browser-diff">Unterschied der Seite: $1 (Wert: $2)</string>
-  <string name="browser-fail">Unterschied konnte nicht ermittelt werden: $1</string>
+  <string name="browser-fail">Unterschied konnte nicht abgerufen werden: $1</string>
   <string name="about-contributors">Entwickler:</string>
   <string name="block-not">Benutzer ist nicht gesperrt</string>
   <string name="block-title">$1 sperren</string>
@@ -158,7 +159,7 @@
   <string name="config-enable-irc">IRC aktivieren</string>
   <string name="config-remove-reverted">Bearbeitungen aus der Warteschlange entfernen, die bereits von jemand anderem zurückgesetzt wurden.</string>
   <string name="config-remove-old">Ältere Bearbeitungen aus der Warteschlange entfernen, falls eine neuere Bearbeitung an der gleichen Seite empfangen wird.</string>
-  <string name="config-auto-load-history">Versionsgeschichte und Benutzerinformationen automatisch laden (erfordert eine hohe Internet-Bandbreite).</string>
+  <string name="config-auto-load-history">Versionsgeschichte und Benutzerinformationen automatisch laden (erfordert zusätzliche Netzwerkbandbreite).</string>
   <string name="config-last-revision">Auf die aktuellste Seitenversion wechseln, falls die derzeit geladene Bearbeitung nicht die aktuellste Version ist (wird nachgeladen, was Huggle langsamer macht).</string>
   <string name="config-require-delay">Eine Verzögerung nach jedem Laden der nächsten Bearbeitung anfordern, währenddessen es nicht möglich ist, Schreibfunktionen zu verwenden (nützlich zum Vermeiden von Tastatur-Mehrfachdrück-Fehlern).</string>
   <string name="config-wait-edit">Die Verzögerung in Sekunden, bis Schreibfunktionen aktiviert werden:</string>
@@ -210,7 +211,7 @@
   <string name="config-history">Die vollständige Versionsgeschichte aller Artikel herunterladen</string>
   <string name="config-defaultsprompt">Standardeinstellungen wiederherstellen?</string>
   <string name="config-logbrowsetitle">Pfad zur Logdatei</string>
-  <string name="config-shortcutconflict">Das Kürzel $1 überschneidet sich mit dem vorhandenen Kürzel für $1.</string>
+  <string name="config-shortcutconflict">Das Kürzel „$1“ überschneidet sich mit dem vorhandenen Kürzel für „$1“.</string>
   <string name="config-no-colon">Du kannst keinen Doppelpunkt im Namen einer Warteschlange benutzen</string>
   <string name="config-notify-update">Nach Aktualisierungen suchen</string>
   <string name="config-notify-beta">Nach Beta-Versionen suchen, falls verfügbar.</string>
@@ -241,7 +242,7 @@
   <string name="exception-error-code">Fehlercode: $1</string>
   <string name="exception-reason">Grund: $1</string>
   <string name="exception-source">Quelle: $1</string>
-  <string name="exception-stack-trace">Stapelverfolgung:</string>
+  <string name="exception-stack-trace">Stacktrace:</string>
   <string name="exception-system-log">System-Logbuch</string>
   <string name="historyform-no-info">Keine Bearbeitungsinformation</string>
   <string name="historyform-title">Versionsgeschichte</string>
@@ -265,7 +266,7 @@
   <string name="login-old">Rufe Benutzerkonfiguration vom alten Standort ab</string>
   <string name="login-intro">Bitte wähle ein Projekt aus und gib deinen Benutzernamen und Passwort ein. Du kannst dich auch mit dem Klick auf die Schaltfläche „Projekte“ bei mehreren Projekten anmelden.</string>
   <string name="invalid-bot-user-name">Dies ist kein gültiger Botname. Beispiel für einen korrekten Botnamen: Jimbo@Huggle</string>
-  <string name="login-tab-botp">Bot-Passwort</string>
+  <string name="login-tab-botp">Botpasswort</string>
   <string name="login-tab-login">Veraltet</string>
   <string name="login-reload-tool-tip">Eine Liste mit verfügbaren Projekten neu laden, die in Huggle verwendet werden können. Dies kann hilfreich sein in einem Fall, bei dem du Huggle auf einem Projekt benutzen willst, auf dem Huggle kürzlich aktiviert wurde.</string>
   <string name="login-language">Sprache:</string>
@@ -333,7 +334,7 @@
   <string name="login-error-projdisabled">Huggle ist auf diesem Projekt zur Zeit deaktiviert.</string>
   <string name="login-error-unknown">Anmeldung bei $1 fehlgeschlagen.</string>
   <string name="login-error-version">Diese Version ist veraltet. Bitte aktualisiere auf die aktuelle Version.</string>
-  <string name="login-error-whitelist">Konnte Positivliste zu Benutzern für $1 nicht laden.</string>
+  <string name="login-error-whitelist">Benutzer-Whitelist für $1 konnte nicht geladen werden.</string>
   <string name="login-ro-title">Zu schreibgeschützt wechseln</string>
   <string name="login-ro-question">Ein oder mehrere Projekte ($1) erlauben keine Anmeldung mit Bearbeitungsrechten (Grund: $2). Möchtest du stattdessen in den schreibgeschützten Modus wechseln?</string>
   <string name="login-ro-info">Das Projekt $1 wurde in den schreibgeschützten Modus versetzt</string>
@@ -343,7 +344,7 @@
   <string name="main-stat">$1 Bearbeitungen pro Minute, $2 Zurücksetzungen pro Minute, Stufe $3</string>
   <string name="main-menu-provider-stop">Provider anhalten</string>
   <string name="main-menu-provider-resume">Provider fortsetzen</string>
-  <string name="main-help-copy-syslog-to-clip">System-Logbuch in die Zwichenablage kopieren</string>
+  <string name="main-help-copy-syslog-to-clip">Systemlogbuch in die Zwischenablage kopieren</string>
   <string name="provider-up">Verbinde mit dem Letzte-Änderungen-Stream auf $2 mithilfe des Providers: $1</string>
   <string name="main-no-reason">Vom Benutzer wurde keine Begründung angegeben</string>
   <string name="main-restoring-slap">Es wird derzeit eine andere Bearbeitung wiederhergestellt. Bitte warten …</string>
@@ -375,14 +376,14 @@
   <string name="main-queue-next">Weiter</string>
   <string name="main-queue-clear">Aktuelle leeren</string>
   <string name="main-queue-count">$1 Objekte</string>
-  <string name="main-queue-query">Running query...</string>
+  <string name="main-queue-query">Abfrage wird ausgeführt...</string>
   <string name="main-queue-reset">Zurücksetzen</string>
   <string name="main-queue-clearall">Alle leeren</string>
   <string name="main-queue-options">Warteschlange verwalten ...</string>
   <string name="main-queue-when-full">Wenn die Warteschlange voll ist</string>
   <string name="main-queue-when-full-stop">Feed stoppen</string>
   <string name="main-queue-when-full-remove">Alte Bearbeitungen entfernen</string>
-  <string name="main-queue-remove-whitelisted">Bearbeitungen von weißgelisteten Benutzern entfernen</string>
+  <string name="main-queue-remove-whitelisted">Bearbeitungen von gewhitelisteten Benutzern entfernen</string>
   <string name="main-queue-remove-200">Bearbeitungen mit einem Score von weniger als −200 entfernen</string>
   <string name="main-goto">Gehe zu</string>
   <string name="main-goto-mytalk">Meine Diskussionsseite</string>
@@ -391,8 +392,8 @@
   <string name="main-revision">Version</string>
   <string name="main-revision-view">Zeige</string>
   <string name="main-revision-revert">Derzeit angezeigte Bearbeitung zurücksetzen</string>
-  <string name="main-revision-rv-stay">Diese Bearbeitung zurücksetzen und auf einer Seite bleiben</string>
-  <string name="main-revision-revert-warn">Derzeit angezeigte Bearbeitung zurücksetzen und Benutzer warnen</string>
+  <string name="main-revision-rv-stay">Diese Bearbeitung zurücksetzen und auf der Seite bleiben</string>
+  <string name="main-revision-revert-warn">Die derzeit angezeigte Bearbeitung zurücksetzen und den Benutzer verwarnen</string>
   <string name="main-revision-rws">Derzeit angezeigte Bearbeitung zurücksetzen, Benutzer warnen und auf einer Seite bleiben</string>
   <string name="main-revision-faith">Gut gemeinte Änderung zurücksetzen</string>
   <string name="main-revision-revert-only-this">Nur diese Version zurücksetzen</string>
@@ -454,7 +455,7 @@
   <string name="main-user-manualtemplate">Manuelle Vorlage</string>
   <string name="main-browser-back">Zurück</string>
   <string name="main-browser-forward">Vorwärts</string>
-  <string name="main-browser-open">In externem Browser laden</string>
+  <string name="main-browser-open">In einem externen Browser anzeigen</string>
   <string name="main-browser-newedits">Neue Änderungen der Seite anzeigen</string>
   <string name="main-browser-newcontribs">Neue Beiträge des Benutzers anzeigen</string>
   <string name="main-browser-lasttab">Ich konnte diese Registerkarte nicht schließen, da sie die letzte ist. Du musst mindestens eine Registerkarte offen haben.</string>
@@ -479,7 +480,7 @@
   <string name="main-advanced">Erweitert...</string>
   <string name="main-stats">$1 Bearbeitungen pro Minute, $2 Zurücksetzungen pro Minute</string>
   <string name="main-display-session-data">Sitzungsdaten anzeigen</string>
-  <string name="main-display-whitelist">Positivliste anzeigen</string>
+  <string name="main-display-whitelist">Whitelist anzeigen</string>
   <string name="main-revert-custom-reson">Bitte begründe das Zurücksetzen dieser Bearbeitung auf die vorherige Version</string>
   <string name="main-log1">Ausgewählte Version von $1 wiederherstellen</string>
   <string name="main-tip-pagetagdelete">Seite zum Löschen markieren</string>
@@ -515,7 +516,7 @@
   <string name="message-er">Die Nachricht an $1 konnte nicht übermittelt werden: $2</string>
   <string name="message-error">Die Nachricht konnte nicht an $1 versandt werden! Bitte Logbücher überprüfen!</string>
   <string name="message-fail-retrieve-talk">Die Benutzerdiskussionsseite konnte nicht abgerufen werden</string>
-  <string name="message-done">Nachricht erfolgreich an $1 übermittelt</string>
+  <string name="message-done">Nachricht erfolgreich auf $2 an $1 übermittelt</string>
   <string name="message-fail-token-1">Der Bearbeitungstoken konnte nicht abgerufen werden</string>
   <string name="message-fail-token-2">Von der Anfrage wurde kein Token zurückgegeben</string>
   <string name="protect-request-title">Schutz von $1 anfragen</string>
@@ -835,7 +836,7 @@
   <string name="preferences-color-scheme-diff">Verschiedene Farben</string>
   <string name="preferences-color-scheme-diff-default">Standard</string>
   <string name="preferences-color-scheme-diff-dark-mode">Dunkler Modus</string>
-  <string name="preferences-template-spam-info" fuzzy="true">Diese Optionen steuern das Subsystem, das verhindert, dass Zielnutzer übermäßig viele vorgefertigte Nachrichten erhalten. Standardmäßig erhalten Nutzer keine vorgefertigte Warnung für Änderungen, die zu lange her sind. Wenn Sie mehrere Änderungen desselben Nutzers in sehr kurzer Zeit rückgängig machen, erhält er standarmäßig nur eine einzige solche Warnung.</string>
+  <string name="preferences-template-spam-info">Diese Optionen steuern das Subsystem, das verhindert, dass Zielnutzer übermäßig viele vorgefertigte Nachrichten erhalten. Standardmäßig erhalten Nutzer keine vorgefertigte Warnung für Änderungen, die zu lange her sind. Wenn du mehrere Änderungen desselben Nutzers in sehr kurzer Zeit rückgängig machst, erhält dieser standardmäßig nur eine einzige solche Warnung.</string>
   <string name="preferences-template-spam-title">Spam-Prävention</string>
   <string name="fail">Fehlgeschlagen</string>
   <string name="request">Anfragen</string>
