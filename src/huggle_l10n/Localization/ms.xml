@@ -2,6 +2,7 @@
 <!-- Authors:
 * Anakmalaysia
 * Encikmelur
+* Hakimi97
 * Jeluang Terluang
 -->
 <resources>
@@ -132,7 +133,7 @@
   <string name="config-merge-messages">Gabungkan pesanan anda dengan pesanan orang lain dalam bahagian-bahagian sedia ada</string>
   <string name="config-months-name">Gunakan bulan sebagai tajuk berbanding nama laman</string>
   <string name="config-automatic-warning">Gunakan jenis dan peringkat amaran automatik pada fungsi \"kirimkan amaran\"</string>
-  <string name="config-enable-irc">Bolehkan IRC</string>
+  <string name="config-enable-irc">Dayakan IRC</string>
   <string name="config-remove-reverted">Singkirkan suntingan yang sudah dibalikkan oleh orang lain</string>
   <string name="config-remove-old">Singkirkan suntingan lama dari senarai jika suntingan baru pada laman yang sama diterima</string>
   <string name="config-auto-load-history">Muatkan sejarah dan maklumat pengguna secara automatik (memerlukan sambungan rangkaian yang lebih laju)</string>
