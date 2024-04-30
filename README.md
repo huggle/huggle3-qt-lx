@@ -57,15 +57,15 @@ MacOS
 WebKit vs Chromium
 -------------------
 
-Qt5.0 - Qt5.4 supports WebKit, which is a default backend for Huggle. Newer Qt support only Chromium backend (code named WebEngine)
+Qt5.0 - Qt5.4 supports WebKit, which is a default backend for Huggle. Newer Qt only supports Chromium backend (code named WebEngine).
 
-If you want to build Huggle with Qt newer than 5.4 you will have to enable it like this:
+If you want to build Huggle with Qt newer than 5.4, you will have to enable it like this:
 
 ```sh
 ./configure --web-engine
 ```
 
-Or alternatively if you are starting cmake by hand, just pass it `-DWEB_ENGINE=true` parameter
+Or alternatively if you are starting cmake by hand, just pass it the `-DWEB_ENGINE=true` parameter.
 
 Documentation
 =========
@@ -77,7 +77,7 @@ For users: [on metawiki](https://meta.wikimedia.org/wiki/Huggle) and [mediawiki]
 Getting help
 =========
 
-We have an IRC-channel irc://irc.libera.chat/#huggle so if you need any kind of help please go there.
+We have an IRC-channel: `irc://irc.libera.chat/#huggle`. If you need any kind of help, please go there.
 
 Contributing
 =========
@@ -86,7 +86,7 @@ Everyone is allowed to send their pull requests to this repository, and all regu
 get a developer access to directly push if they need it. If you want to join the Huggle
 developer team, please see <https://meta.wikimedia.org/wiki/Huggle/Members> and insert yourself.
 
-This repository is running CI using travis, if you want to change anything which doesn't require
+This repository is running CI using travis. If you want to change anything which doesn't require a
 sanity check, like documentation or comments, please append [ci skip] to your message.
 
 Reporting bugs
