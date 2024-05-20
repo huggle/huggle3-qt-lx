@@ -8,6 +8,7 @@
 * FF-11
 * FF11
 * Freddy2001
+* Justman10000
 * Kghbln
 * Luke081515
 * Macofe
@@ -79,7 +80,7 @@
   <string name="no-token">Kein Token</string>
   <string name="flags">Markierungen</string>
   <string name="gracetime">Warte auf Beendigung der Anfragen, die Bearbeitungen ausführen …</string>
-  <string name="browser-none">Es gibt noch keine Seite zum Anzeigen.</string>
+  <string name="browser-none">Es existiert noch keine Seite zum Anzeigen.</string>
   <string name="browser-load">Lade Unterschied mithilfe eines MW-Fallbacks herunter. Bitte warten …</string>
   <string name="browser-miss-summ">Es wurde keine Zusammenfassung angegeben</string>
   <string name="browser-diff">Unterschied der Seite: $1 (Wert: $2)</string>
@@ -212,7 +213,7 @@
   <string name="config-defaultsprompt">Standardeinstellungen wiederherstellen?</string>
   <string name="config-logbrowsetitle">Pfad zur Logdatei</string>
   <string name="config-shortcutconflict">Das Kürzel „$1“ überschneidet sich mit dem vorhandenen Kürzel für „$1“.</string>
-  <string name="config-no-colon">Du kannst keinen Doppelpunkt im Namen einer Warteschlange benutzen</string>
+  <string name="config-no-colon">Du kannst nicht : im Namen einer Warteschlange verwenden</string>
   <string name="config-notify-update">Nach Aktualisierungen suchen</string>
   <string name="config-notify-beta">Nach Beta-Versionen suchen, falls verfügbar.</string>
   <string name="custommessage-title">Eine Nachricht an $1 senden</string>
@@ -268,7 +269,7 @@
   <string name="invalid-bot-user-name">Dies ist kein gültiger Botname. Beispiel für einen korrekten Botnamen: Jimbo@Huggle</string>
   <string name="login-tab-botp">Botpasswort</string>
   <string name="login-tab-login">Veraltet</string>
-  <string name="login-reload-tool-tip">Eine Liste mit verfügbaren Projekten neu laden, die in Huggle verwendet werden können. Dies kann hilfreich sein in einem Fall, bei dem du Huggle auf einem Projekt benutzen willst, auf dem Huggle kürzlich aktiviert wurde.</string>
+  <string name="login-reload-tool-tip">Lädt eine Liste der verfügbaren Projekte, die in Huggle verwendet werden können. Dies kann nützlich sein, wenn du Huggle in einem Projekt verwenden möchtest, in dem das Tool erst kürzlich aktiviert wurde.</string>
   <string name="login-language">Sprache:</string>
   <string name="login-project">Projekt:</string>
   <string name="login-username">Benutzer:</string>
@@ -312,7 +313,7 @@
   <string name="login-progress-whitelist">Lade Positivliste zu Benutzern herunter ...</string>
   <string name="login-remember-password">Passwort speichern</string>
   <string name="login-remember-password-tooltip">Diese Option speichert dein Passwort in Klartext auf deiner Festplatte. Nur verwenden, falls du die einzige Person bist, die auf diesen Computer zugreift.</string>
-  <string name="login-ssl">HTTPS benutzen (erfordert OpenSSL)</string>
+  <string name="login-ssl">HTTPS zum Einloggen verwenden (erfordert OpenSSL)</string>
   <string name="login-fail">Anmeldung auf $1 fehlgeschlagen</string>
   <string name="login-fail-with-reason">Anmeldung fehlgeschlagen (auf $1): $2</string>
   <string name="login-error-admin">Die Verwendung von Huggle auf diesem Projekt erfordert die Administratorberechtigung.</string>
@@ -339,7 +340,7 @@
   <string name="login-ro-question">Ein oder mehrere Projekte ($1) erlauben keine Anmeldung mit Bearbeitungsrechten (Grund: $2). Möchtest du stattdessen in den schreibgeschützten Modus wechseln?</string>
   <string name="login-ro-info">Das Projekt $1 wurde in den schreibgeschützten Modus versetzt</string>
   <string name="wikis-db-download-fail">Es konnte keine Wikidatenbank heruntergeladen werden: $1</string>
-  <string name="no-projects-defined-in-list">Es gibt keine definierten Projekte in einer Liste. Du musst ein globales Wiki aufsetzen.</string>
+  <string name="no-projects-defined-in-list">Es existieren keine Projekte in einer Liste, die du in einem globalen Wiki festlegen musst.</string>
   <string name="api-query-no-data">Die API-Abfrage hat keine Daten zurückgegeben</string>
   <string name="main-stat">$1 Bearbeitungen pro Minute, $2 Zurücksetzungen pro Minute, Stufe $3</string>
   <string name="main-menu-provider-stop">Provider anhalten</string>
@@ -703,10 +704,10 @@
   <string name="warning-warnlog">Verwarnungen dieses Benutzers:</string>
   <string name="warning-submit">Senden</string>
   <string name="warninglist-no-warning-title">Keine Warnung</string>
-  <string name="warninglist-no-warning-text">Es gibt keine Daten für diesen Warnungstyp. Es konnte keine Warnung an den Benutzer versandt werden!</string>
+  <string name="warninglist-no-warning-text">Es existieren keine Daten für diese Art von Warnung, es kann keine Warnung an den Nutzer übermittelt werden!</string>
   <string name="warninglist-report-text">Dieser Benutzer hat bereits eine letzte Warnung erhalten. Deshalb werde ich keine weiteren Warnungen an ihn senden. Möchtest du ihn stattdessen melden?</string>
   <string name="wikiedit-tp-fail">Die Warnstufe $1 konnte nicht abgerufen werden. Sie wird nicht für das Scoring verwendet.</string>
-  <string name="missing-warning">Es gibt keine Warnvorlage „$1“</string>
+  <string name="missing-warning">Es existiert keine solche Warnvorlage $1</string>
   <string name="han-not">Das Vandalismus-Netzwerk ist nicht in Optionen erlaubt</string>
   <string name="han-connecting">Verbindung mit dem Huggle-Anti-Vandalismus-Netzwerk</string>
   <string name="han-already-connected">Verbindung mit HAN wurde nicht hergestellt, da es bereits verbunden ist.</string>
@@ -794,7 +795,7 @@
   <string name="wait">Bitte warten …</string>
   <string name="function-miss">Funktion ist jetzt nicht verfügbar</string>
   <string name="missing-aiv">Dieses Projekt verwendet kein AIV</string>
-  <string name="missing-page">Es gibt keine Seite „$1“ auf diesem Wiki</string>
+  <string name="missing-page">Es existiert keine Seite $1 in diesem Wiki</string>
   <string name="updating-wl">Aktualisiere Positivliste …</string>
   <string name="waiting">Warten …</string>
   <string name="feature-nfru">Diese Funktion ist nur für IP-Benutzer</string>
@@ -804,8 +805,8 @@
   <string name="welcome-page-miss-fail">Huggle konnte die Inhalte der Benutzerdiskussionsseite nicht abrufen. Bist du sicher, dass du eine Willkommensnachricht senden willst?</string>
   <string name="cr-newer-edits">Konflikt gelöst: Alle Bearbeitungen inklusive neuer Bearbeitungen zurückgesetzt. Bearbeitungen waren vom selben Benutzer: $1.</string>
   <string name="cr-resolved-same-user">Konflikt gelöst: Alle Bearbeitungen inklusive neuer Bearbeitungen zurückgesetzt, durchgeführt von den gleichen Benutzern: $1.</string>
-  <string name="cr-stop-new-edit">Konflikt gelöst: Keine Aktion ausgeführt – Es gibt neuere Bearbeitungen an $1</string>
-  <string name="cr-stop-multiple-same">Konflikt gelöst: Führe keine Aktion aus. Es gibt mehrere Bearbeitungen vom selben Benutzer an $1</string>
+  <string name="cr-stop-new-edit">Konflikt behoben: keine Aktion durchgeführt - es existieren neuere Bearbeitungen an $1</string>
+  <string name="cr-stop-multiple-same">Konflikt behoben: keine Aktion durchführen - es existieren mehrere Bearbeitungen desselben Benutzers an $1</string>
   <string name="cr-revert-same-user">Konflikt gelöst: Alle Bearbeitungen zurückgesetzt. Es gibt mehrere Bearbeitungen vom selben Benutzer an $1</string>
   <string name="cr-message-same">Es gibt mehrere Bearbeitungen an $1 desselben Benutzers. Bist du sicher, dass du sie zurücksetzen willst?</string>
   <string name="cr-message-new">Es gibt neuere Bearbeitungen von $1. Bist du sicher, dass du sie wirklich alle zurücksetzen willst?</string>
