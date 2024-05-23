@@ -2,6 +2,7 @@
 <!-- Authors:
 * Arystanbek
 * Batyrbek.kz
+* Casserium
 * Irus
 * Macofe
 * U.ayaao.p
@@ -144,7 +145,7 @@
   <string name="config-defaultsprompt">Әдепкілерді қалпына келтіресіз бе?</string>
   <string name="config-logbrowsetitle">Файл журналының орналасуы</string>
   <string name="config-notify-update">Жаңартуларды тексеру</string>
-  <string name="config-notify-beta">Егер қолдетімді болса бета нұсқаларын тексеру</string>
+  <string name="config-notify-beta">Егер қолжетімді болса бета нұсқаларын тексеру</string>
   <string name="delete-title">$1 дегенді жою</string>
   <string name="delete-reason">Себебі:</string>
   <string name="delete-deletionlog">Жою журналы</string>
