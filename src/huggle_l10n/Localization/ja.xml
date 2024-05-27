@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
 * Ajeje Brazorf
+* Apple TD
 * Chqaz
 * McDutchie
 * Omotecho
@@ -213,6 +214,7 @@
   <string name="exception-reason">理由: $1</string>
   <string name="exception-source">ソース: $1</string>
   <string name="exception-system-log">システムログ</string>
+  <string name="historyform-no-info">編集情報なし</string>
   <string name="historyform-title">履歴</string>
   <string name="history-error-message-title">取り消せません</string>
   <string name="history-failure">履歴を取得できません</string>
@@ -349,6 +351,7 @@
   <string name="main-user-unignore">無視を取り消し</string>
   <string name="main-user-contribs">利用者の投稿記録をブラウザーで表示</string>
   <string name="main-user-talk">ノートを表示</string>
+  <string name="main-user-page">利用者ページを表示</string>
   <string name="main-user-message">メッセージ...</string>
   <string name="main-user-warn">警告...</string>
   <string name="main-user-report">報告</string>
@@ -388,6 +391,9 @@
   <string name="main-welcome-user">利用者を歓迎</string>
   <string name="main-custom-reason-title">個別の理由を示して差し戻す</string>
   <string name="main-custom-reason-text">この編集を指し戻す理由を記述してください</string>
+  <string name="main-edit-user-talk">会話ページを編集</string>
+  <string name="main-statistics-paused">一時停止</string>
+  <string name="main-statistics-none">なし</string>
   <string name="main-tab-welcome-title">ページを歓迎</string>
   <string name="message-title">$1 にメッセージ</string>
   <string name="message-help">節の見出しと要約の最低どちらかひとつを指定してください。要約を指定しない場合、見出しが使用されます。見出しを指定しない場合、節分けは行ないません。</string>
@@ -458,6 +464,7 @@
   <string name="report-evidence-none-provid">証拠となる差分が提示されていません。これでは当該利用者が荒らしかどうか、管理者の判定が非常に困難になります。本当にこのまま続行しますか?</string>
   <string name="report-duplicate">この利用者はすでに報告されています</string>
   <string name="report-progress">\'$1\' を報告しています...</string>
+  <string name="report-done">報告済</string>
   <string name="report-user">報告</string>
   <string name="score-score">得点</string>
   <string name="score-word">単語</string>
@@ -499,6 +506,7 @@
   <string name="user-history-fail">利用者の履歴を取得できません: $1</string>
   <string name="userinfo-generic">利用者の情報</string>
   <string name="userinfo-retrieve">情報を取得</string>
+  <string name="userinfo-no-user">利用者なし</string>
   <string name="shortcut-report-username">利用者名を報告</string>
   <string name="shortcut-report-user">利用者を報告</string>
   <string name="shortcut-my-talk">自分の会話ページ</string>
@@ -524,6 +532,7 @@
   <string name="warning-warnlog">この利用者への警告:</string>
   <string name="warning-submit">送信</string>
   <string name="missing-warning">$1 という警告テンプレートはありません</string>
+  <string name="han-send">送信</string>
   <string name="error-loggedout">アカウントがログアウトしています。再ログインします...</string>
   <string name="error-noresponse">反応がありません</string>
   <string name="error-pagemissing">対象ページが存在しません</string>
@@ -598,6 +607,8 @@
   <string name="preferences-watchlist-preferences">あなたのwiki上の好みに従ってください</string>
   <string name="preferences-watchlist-nochange">何もしない</string>
   <string name="preferences-color-scheme-diff">差分の色指定</string>
+  <string name="preferences-color-scheme-diff-default">既定</string>
+  <string name="preferences-color-scheme-diff-dark-mode">ダークモード</string>
   <string name="fail">失敗</string>
   <string name="request">要求</string>
   <string name="requesting">要求している</string>
