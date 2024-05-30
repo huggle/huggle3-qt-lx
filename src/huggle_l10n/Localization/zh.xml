@@ -493,7 +493,7 @@
   <string name="main-revert-custom-reson">请说明您为什么要回退该编辑至上一修订版本</string>
   <string name="main-log1">正在恢复$1的选定修订版本</string>
   <string name="main-tip-pagetagdelete">将该页面标记删除</string>
-  <string name="main-tip-pagedelete">删除本页</string>
+  <string name="main-tip-pagedelete">删除该页面</string>
   <string name="main-tip-userreport">举报此用户</string>
   <string name="main-tip-userblock">封禁此用户</string>
   <string name="main-revision-acceptpend">接受该版本</string>
