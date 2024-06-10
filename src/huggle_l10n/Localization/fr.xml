@@ -13,6 +13,7 @@
 * Orikrin1998
 * Oupsa
 * Shawn
+* SleaY
 * The RedBurn
 * Thibaut120094
 * Trial
@@ -161,7 +162,7 @@
   <string name="config-remove-reverted">Supprimer de la file les modifications qui étaient déjà annulées par quelqu’un d’autre</string>
   <string name="config-remove-old">Supprimer de la file les plus anciennes modifications si une modification plus récente de la même page est reçue</string>
   <string name="config-auto-load-history">Charger automatiquement l’historique et les informations utilisateur (nécessite une bande passante étendue du réseau)</string>
-  <string name="config-last-revision">Basculer vers la dernière révision de la page si la modification actuellement chargée n’est pas la dernière révision (elle sera téléchargée ensuite, ralentissant Huggle)</string>
+  <string name="config-last-revision">Basculer vers la dernière version de la page si la modification actuellement chargée n’est pas la dernière version (elle sera téléchargée ensuite, ralentissant Huggle)</string>
   <string name="config-require-delay">Nécessite un délai après chaque chargement de prochaine modification, pendant lequel il ne sera pas possible d’utiliser une fonctionnalité d’écriture (utile pour éviter un problème de frappe multiple sur le clavier)</string>
   <string name="config-wait-edit">Le délai, en secondes, avant que les fonctionnalités d’écriture soient activées :</string>
   <string name="config-display-next">Afficher le suivant</string>
@@ -624,7 +625,7 @@
   <string name="revert-cannotundo">Impossible d’annuler ces modifications en conflit avec d’autres modifications intermédiaires.</string>
   <string name="revert-conflict">La page a été modifiée par l’utilisateur en liste blanche « $1 »</string>
   <string name="revert-fail">N’a pas été annulé $1 : $2</string>
-  <string name="revert-nochange">Le contenu de la révision cible est identique à celui de la révision actuelle</string>
+  <string name="revert-nochange">Le contenu de la version cible est identique à celui de la version actuelle</string>
   <string name="revert-fail-pre-flight">Échec du contrôle préalable : $1</string>
   <string name="speedy-reason">Motif :</string>
   <string name="speedy-parameters">Paramètres :</string>
