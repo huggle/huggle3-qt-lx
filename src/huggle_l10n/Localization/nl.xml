@@ -20,11 +20,11 @@
 -->
 <resources>
   <string name="name">Nederlands</string>
-  <string name="autorelog">Doe dit de volgende keer zonder te vragen</string>
+  <string name="autorelog">Dit de volgende keer doen zonder te vragen</string>
   <string name="isrtl">false</string>
   <string name="add">Toevoegen</string>
   <string name="cancel">Annuleren</string>
-  <string name="clear">Leegmaken</string>
+  <string name="clear">Wissen</string>
   <string name="close">Sluiten</string>
   <string name="continue">Doorgaan</string>
   <string name="copy">Kopiëren</string>
@@ -35,7 +35,7 @@
   <string name="done">Afgerond</string>
   <string name="no">Nee</string>
   <string name="ok">OK</string>
-  <string name="override-warn">Je hebt het configuratie-pad aangepast. Bedenk dat misbruik van deze functie om Huggle-toegang te krijgen op een wiki waar je deze normaal niet zou hebben, kan resulteren in een blokkade voor onbepaalde tijd.</string>
+  <string name="override-warn">Je hebt het configuratiepad van het project overschreven. Houd er rekening mee dat misbruik van deze functie om schrijftoegang te krijgen op de wiki, waar je die normaal gesproken niet zou hebben, kan leiden tot een permanente blokkering van je account.</string>
   <string name="remove">Verwijderen</string>
   <string name="rename">Hernoemen</string>
   <string name="reload">Herladen</string>
@@ -44,7 +44,7 @@
   <string name="result">Resultaat</string>
   <string name="save">Opslaan</string>
   <string name="show">Weergeven</string>
-  <string name="no-instant">Het bericht naar $2 kan niet worden verzonden omdat instant waarschuwingen niet zijn ingeschakeld op project $1. Kies alstublieft een ander waarschuwingsniveau</string>
+  <string name="no-instant">Het bericht naar $2 kan niet worden verzonden omdat directe waarschuwingen niet zijn ingeschakeld op het project $1. Kies een ander waarschuwingsniveau.</string>
   <string name="undo">Ongedaan maken</string>
   <string name="yes">Ja</string>
   <string name="editing-page">Pagina bewerken</string>
