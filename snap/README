@@ -1,5 +1,5 @@
 http://snapcraft.io/
 
-This script currently works only with Ubuntu 16.04 you are welcome to adapt it to other distros as well.
+This script currently works only with Ubuntu 16.04. You are welcome to adapt it to other distros as well.
 
-To package huggle, go to root folder and type "snapcraft"
+To package Huggle, go to your `root` folder and type "snapcraft".
