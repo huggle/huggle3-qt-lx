@@ -1,0 +1,26 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Configure",
+        "type": "shell",
+        "command": "./configure --extension --web-engine"
+      },
+      {
+        "label": "Build release",
+        "type": "shell",
+        "command": "make",
+        "options": {
+          "cwd": "${workspaceFolder}/release"
+        }
+      },
+      {
+        "label": "Install",
+        "type": "shell",
+        "command": "sudo make install && sudo ldconfig",
+        "options": {
+          "cwd": "${workspaceFolder}/release"
+        }
+      }
+    ]
+  }
