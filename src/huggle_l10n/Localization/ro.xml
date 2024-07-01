@@ -3,6 +3,7 @@
 * Amire80
 * Andrei Stroe
 * Andreyyshore
+* Ignatgg
 * MSClaudiu
 * Macofe
 * Patrick Star
@@ -823,6 +824,8 @@
   <string name="preferences-color-scheme-diff">Culori diff</string>
   <string name="preferences-color-scheme-diff-default">Implicit</string>
   <string name="preferences-color-scheme-diff-dark-mode">Mod întunecat</string>
+  <string name="preferences-template-spam-info">Aceste opțiuni controlează subsistemul care împiedică utilizatorii țintă să fie spam de șablon. În mod implicit, utilizatorii nu sunt avertizați prin șablon pentru editările care sunt prea vechi și, de asemenea, primesc un singur avertisment șablon în cazul în care anulați mai multe editări ale aceluiași utilizator într-un timp foarte scurt.</string>
+  <string name="preferences-template-spam-title">Prevenirea spam-ului de șabloane</string>
   <string name="fail">Eșuează</string>
   <string name="request">Cere</string>
   <string name="requesting">Cer</string>
@@ -852,7 +855,7 @@
   <string name="relogin-fail">Nu m-am putut autentifica în wiki: $1</string>
   <string name="projects">Proiecte</string>
   <string name="unable-to-retrieve-user-list">Nu se poate recupera lista de utilizatori: $1</string>
-  <string name="login-no-userinfo" fuzzy="true">Site-ul nu a returnat nicio informație despre utilizator</string>
+  <string name="login-no-userinfo">Site-ul nu a returnat nici o informaţie despre utilizator</string>
   <string name="login-invalid-register-date">Data de înregistrare nevalidă returnată de mediawiki</string>
   <string name="login-site-info-query-failed">Site-ul info Query pentru $1 a eșuat: $2</string>
   <string name="login-no-site-info-returned">Site-ul a reîntors informațiile spre wiki</string>

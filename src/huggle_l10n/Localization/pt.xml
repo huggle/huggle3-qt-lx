@@ -7,6 +7,7 @@
 * Eduardoaddad
 * Hamilton Abreu
 * He7d3r
+* Ignatgg
 * Imperadeiro90
 * Jkb8
 * Leon saudanha
@@ -832,7 +833,7 @@
   <string name="preferences-color-scheme-diff">Cores diferentes</string>
   <string name="preferences-color-scheme-diff-default">Predefinição</string>
   <string name="preferences-color-scheme-diff-dark-mode">Modo escuro</string>
-  <string name="preferences-template-spam-info" fuzzy="true">Estas opções controlam um subsistema que impede que os utilizadores destinatários recebam modelos de spam. Por defeito, os utilizadores não recebem avisos do modelo para edições demasiado antigas, e também só recebem um aviso de modelo único no caso de reverterem várias edições pelo mesmo utilizador num tempo muito curto.</string>
+  <string name="preferences-template-spam-info">Essas opções controlam o subsistema que está impedindo que os usuários alvo recebam spam de modelos. Por padrão, os usuários não são avisados por modelos sobre edições muito antigas e também recebem apenas um aviso de modelo caso você reverta várias edições do mesmo usuário em um tempo muito curto.</string>
   <string name="preferences-template-spam-title">Prevenção de spam de predefinições</string>
   <string name="fail">Falha</string>
   <string name="request">Pedir</string>

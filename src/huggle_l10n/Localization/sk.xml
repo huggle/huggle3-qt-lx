@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
+* Ignatgg
 * Mikulas1
 * TomášPolonec
 * Yardom78
@@ -818,7 +819,7 @@
   <string name="preferences-color-scheme-diff">Farby rozdielov</string>
   <string name="preferences-color-scheme-diff-default">Predvolené</string>
   <string name="preferences-color-scheme-diff-dark-mode">Tmavý mód</string>
-  <string name="preferences-template-spam-info" fuzzy="true">Tieto možnosti riadia subsystém, ktorý zabraňuje tomu, aby boli cieľoví používatelia spamovaní šablónamy. V predvolenom nastavení nie sú používatelia varovaní pred príliš starými úpravami a dostanú upozornenie iba na jednu šablónu v prípade, že vrátite späť viac úprav od rovnakého používateľa vo veľmi krátkom čase.</string>
+  <string name="preferences-template-spam-info">Tieto voľby riadia podsystém, ktorý bráni cieľovým používateľom v spamovaní šablón. V predvolenom nastavení nie sú používatelia upozornení šablónou na úpravy, ktoré sú príliš staré, a tiež dostanú iba jedno upozornenie na šablónu v prípade, že vrátite viacero úprav vykonaných tým istým používateľom vo veľmi krátkom čase.</string>
   <string name="preferences-template-spam-title">Prevencia spamu šablónami</string>
   <string name="fail">Neúspešné</string>
   <string name="request">Požiadavka</string>
