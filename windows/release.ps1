@@ -205,7 +205,22 @@ cp ..\src\scripts\*.js release\extensions
 cp ..\src\huggle_res\Resources\huggle.ico huggle.ico
 cp ..\src\huggle_res\Resources\huggle.ico release
 # missing Qt dll, bug in winqtdeploy :/
-cp $qt_path\bin\Qt5Multimedia.dll release
+$path = Join-Path $qt_path 'bin'
+$fileQt5 = 'Qt5Multimedia.dll'
+$fileQt6 = 'Qt6Multimedia.dll'
+
+if (Test-Path (Join-Path $path $fileQt5))
+{
+    Copy-Item (Join-Path $path $fileQt5) 'release'
+}
+elseif (Test-Path (Join-Path $path $fileQt6))
+{
+    Copy-Item (Join-Path $path $fileQt6) 'release'
+}
+else
+{
+    Write-Error 'Neither Qt5Multimedia.dll nor Qt6Multimedia.dll was found.'
+}
 
 # Older SSL, used by Qt 5.10 and older
 #cp $openssl_path\libssl32.dll release
