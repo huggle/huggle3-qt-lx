@@ -18,7 +18,7 @@
 #ifdef QT6_BUILD
 #include <QRegularExpression>
 #else
-#include <QRegEx>
+#include <QRegExp>
 #endif
 
 using namespace Huggle;
@@ -223,7 +223,7 @@ bool Generic::RegexExactMatch(const QString& regex, const QString& input_text)
     QRegularExpressionMatch match = re.match(input_text);
     return match.hasMatch() && (match.captured(0) == input_text);
 #else
-    QRegEx re(regex);
+    QRegExp re(regex);
     return re.exactMatch(input_text);
 #endif
 }

@@ -116,8 +116,10 @@ void Huggle::Resources::Uninit()
 #ifndef HUGGLE_NOAUDIO
     mediaPlayer->deleteLater();
     mediaPlayer = nullptr;
-    audioOutput->deleteLater();
-    audioOutput = nullptr;
+    #ifdef QT6_BUILD
+        audioOutput->deleteLater();
+        audioOutput = nullptr;
+    #endif
 #endif
 }
 
