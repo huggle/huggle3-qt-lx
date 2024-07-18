@@ -27,7 +27,11 @@
 
 using namespace Huggle;
 QList<WikiEdit*> WikiEdit::EditList;
-QMutex *WikiEdit::Lock_EditList = new QMutex(QMutex::Recursive);
+#ifdef QT6_BUILD
+HMUTEX_TYPE* WikiEdit::Lock_EditList = new HMUTEX_TYPE();
+#else
+HMUTEX_TYPE *WikiEdit::Lock_EditList = new QMutex(QMutex::Recursive);
+#endif
 
 WikiEdit::WikiEdit()
 {
@@ -761,7 +765,11 @@ bool WikiEdit::IsReady()
     return Hooks::EditCheckIfReady(this);
 }
 
+#ifdef QT6_BUILD
+HMUTEX_TYPE WikiEdit_ProcessorThread::EditLock;
+#else
 QMutex WikiEdit_ProcessorThread::EditLock(QMutex::Recursive);
+#endif
 QList<WikiEdit*> WikiEdit_ProcessorThread::PendingEdits;
 
 void WikiEdit_ProcessorThread::run()

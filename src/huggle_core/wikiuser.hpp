@@ -17,10 +17,14 @@
 #include <QStringList>
 #include <QDateTime>
 #include <QString>
+#ifdef QT6_BUILD
+#include <QRegularExpression>
+#else
 #include <QRegExp>
+#endif
 #include "mediawikiobject.hpp"
 
-class QMutex;
+class HMUTEX_TYPE;
 
 namespace Huggle
 {
@@ -56,7 +60,7 @@ namespace Huggle
              * Either vandals or even good users, this list is preserved on shutdown and startup
              */
             static QList<WikiUser*> ProblematicUsers;
-            static QMutex ProblematicUserListLock;
+            static HMUTEX_TYPE ProblematicUserListLock;
             static QDateTime InvalidTime;
 
             WikiUser(WikiSite *site);
@@ -152,9 +156,9 @@ namespace Huggle
 
     protected:
             //! Matches only IPv4
-            static QRegExp IPv4Regex;
+            static HREGEX_TYPE IPv4Regex;
             //! Matches all IP
-            static QRegExp IPv6Regex;
+            static HREGEX_TYPE IPv6Regex;
 
             /*!
              * \brief Badness score of current user
@@ -172,7 +176,7 @@ namespace Huggle
             bool talkPageWasRetrieved;
             //! This is a date when we retrieved this talk page
             QDateTime dateOfTalkPage;
-            QMutex *userMutex;
+            HMUTEX_TYPE *userMutex;
             WikiPage *wpTalkPage = nullptr;
             bool isBot;
             bool IP;

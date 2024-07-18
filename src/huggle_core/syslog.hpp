@@ -37,7 +37,7 @@
 #define HUGGLE_LOG(text)       Huggle::Syslog::HuggleLogs->Log(text);
 #define HUGGLE_ERROR(text)     Huggle::Syslog::HuggleLogs->ErrorLog(text);
 
-class QMutex;
+class HMUTEX_TYPE;
 
 namespace Huggle
 {
@@ -114,13 +114,13 @@ namespace Huggle
             //! other threads as well, writing to syslog from other thread would crash huggle
             QList<HuggleLog_Line> UnwrittenLogs;
             //! Mutex we lock unwritten logs with so that only 1 thread can write to it
-            QMutex *lUnwrittenLogs;
+            HMUTEX_TYPE *lUnwrittenLogs;
             bool EnableLogWriteBuffer;
         protected:
             //! Ring log is a buffer that contains system messages
             QList<HuggleLog_Line> RingLog;
             //! Everytime we write to a file we need to lock this
-            QMutex *WriterLock;
+            HMUTEX_TYPE *WriterLock;
     };
 }
 

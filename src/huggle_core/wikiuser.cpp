@@ -23,8 +23,8 @@
 using namespace Huggle;
 
 //QRegExp WikiUser::IPv4Regex("^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$");
-QRegExp WikiUser::IPv4Regex(R"(\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.|$)){4}\b)");
-QRegExp WikiUser::IPv6Regex("(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]"\
+HREGEX_TYPE WikiUser::IPv4Regex(R"(\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.|$)){4}\b)");
+HREGEX_TYPE WikiUser::IPv6Regex("(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]"\
                             "{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|("\
                             "[0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-"\
                             "fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,"\
@@ -34,7 +34,12 @@ QRegExp WikiUser::IPv6Regex("(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA
                             ":){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]).){3,3}(25[0-5]|(2[0-4]|1{0,1}["\
                             "0-9]){0,1}[0-9]))");
 QList<WikiUser*> WikiUser::ProblematicUsers;
-QMutex WikiUser::ProblematicUserListLock(QMutex::Recursive);
+
+#ifdef QT6_BUILD
+HMUTEX_TYPE WikiUser::ProblematicUserListLock;
+#else
+HMUTEX_TYPE WikiUser::ProblematicUserListLock(QMutex::Recursive);
+#endif
 QDateTime WikiUser::InvalidTime = QDateTime::fromMSecsSinceEpoch(2);
 
 WikiUser *WikiUser::RetrieveUser(WikiUser *user)
@@ -134,13 +139,23 @@ bool WikiUser::CompareUsernames(QString a, QString b)
 bool WikiUser::IsIPv4(const QString &user)
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
+#ifdef QT6_BUILD
+    QRegularExpressionMatch match = WikiUser::IPv4Regex.match(user);
+    return match.hasMatch() && (match.captured(0) == user);
+#else
     return WikiUser::IPv4Regex.exactMatch(user);
+#endif
 }
 
 bool WikiUser::IsIPv6(const QString &user)
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
+#ifdef QT6_BUILD
+    QRegularExpressionMatch match = WikiUser::IPv6Regex.match(user);
+    return match.hasMatch() && (match.captured(0) == user);
+#else
     return WikiUser::IPv6Regex.exactMatch(user);
+#endif
 }
 
 void WikiUser::UpdateWl(WikiUser *us, long score)
@@ -165,7 +180,11 @@ void WikiUser::UpdateWl(WikiUser *us, long score)
 
 WikiUser::WikiUser(WikiSite *site) : MediaWikiObject(site)
 {
+#ifdef QT6_BUILD
+    this->userMutex = new QRecursiveMutex();
+#else
     this->userMutex = new QMutex(QMutex::Recursive);
+#endif
     this->Username = "";
     this->IP = true;
     this->BadnessScore = 0;
@@ -183,7 +202,11 @@ WikiUser::WikiUser(WikiSite *site) : MediaWikiObject(site)
 
 WikiUser::WikiUser(WikiUser *u) : MediaWikiObject(u)
 {
+#ifdef QT6_BUILD
+    this->userMutex = new QRecursiveMutex();
+#else
     this->userMutex = new QMutex(QMutex::Recursive);
+#endif
     this->IP = u->IP;
     this->Username = u->Username;
     this->warningLevel = u->warningLevel;
@@ -203,7 +226,11 @@ WikiUser::WikiUser(WikiUser *u) : MediaWikiObject(u)
 
 WikiUser::WikiUser(const WikiUser &u) : MediaWikiObject(u)
 {
+#ifdef QT6_BUILD
+    this->userMutex = new QRecursiveMutex();
+#else
     this->userMutex = new QMutex(QMutex::Recursive);
+#endif
     this->warningLevel = u.warningLevel;
     this->IsReported = u.IsReported;
     this->IP = u.IP;
@@ -223,7 +250,11 @@ WikiUser::WikiUser(const WikiUser &u) : MediaWikiObject(u)
 
 WikiUser::WikiUser(const QString &user, WikiSite *site) : MediaWikiObject(site)
 {
+#ifdef QT6_BUILD
+    this->userMutex = new QRecursiveMutex();
+#else
     this->userMutex = new QMutex(QMutex::Recursive);
+#endif
     this->IP = false;
     if (!user.isEmpty())
     {

@@ -36,7 +36,9 @@ Configuration::Configuration()
     //! This is a consumer key for "huggle" on wmf wikis
     this->WmfOAuthConsumerKey = "56a6d6de895e3b859faa57b677f6cd21";
     this->HuggleVersion = HUGGLE_VERSION;
-#if QT_VERSION >= 0x050000
+#if QT_VERSION >= 0x060000
+    this->HomePath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+#elif QT_VERSION >= 0x050000
     this->HomePath = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
 #else
     this->HomePath = QDesktopServices::storageLocation(QDesktopServices::DataLocation);

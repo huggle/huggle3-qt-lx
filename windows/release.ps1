@@ -47,6 +47,7 @@ param
 )
 
 $ErrorActionPreference = "Stop"
+#$ErrorActionPreference = "Continue"
 
 function PackageTest
 {
@@ -168,10 +169,10 @@ cd $root_path
 echo "Running cmake"
 mkdir build | Out-Null
 cd build
-$qt_params = "-DQT5BUILD=true"
+$qt_params = "-DQT5_BUILD=true"
 if ($qt_version -eq 6)
 {
-    $qt_params = "-DQT6BUILD=true -DQT5BUILD=false"
+    $qt_params = "-DQT6_BUILD=true -DQT5_BUILD=false"
 }
 if ($python)
 {
@@ -205,9 +206,14 @@ cp ..\src\huggle_res\Resources\huggle.ico huggle.ico
 cp ..\src\huggle_res\Resources\huggle.ico release
 # missing Qt dll, bug in winqtdeploy :/
 cp $qt_path\bin\Qt5Multimedia.dll release
-cp $openssl_path\libssl32.dll release
-cp $openssl_path\bin\ssleay32.dll release
-cp $openssl_path\bin\libeay32.dll release
+
+# Older SSL, used by Qt 5.10 and older
+#cp $openssl_path\libssl32.dll release
+#cp $openssl_path\bin\ssleay32.dll release
+#cp $openssl_path\bin\libeay32.dll release
+
+# New SSL
+cp $openssl_path\*.dll release
 
 # Set the environment variable needed by windeployqt, todo: check if it's already set
 $env:VCINSTALLDIR = $vcinstall_path

@@ -26,6 +26,8 @@
 #include <libirc/libircclient/parser.h>
 #include <libirc/libircclient/network.h>
 #include <libirc/libircclient/channel.h>
+#include <random>
+#include <chrono>
 
 using namespace Huggle;
 
@@ -57,8 +59,10 @@ bool HuggleFeedProviderIRC::Start()
     delete this->network;
 
     QString nick = "huggle";
-    qsrand(static_cast<unsigned int>(QTime::currentTime().msec()));
-    nick += QString::number(qrand());
+    std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
+    std::uniform_int_distribution<int> dist(0, 65535);
+    int randomNumber = dist(rng);
+    nick += QString::number(randomNumber);
     libirc::ServerAddress server(hcfg->SystemConfig_IRCServer, false, hcfg->SystemConfig_IRCPort, nick);
     server.SetSuffix(this->GetSite()->IRCChannel);
     this->network = new libircclient::Network(server, "Wikimedia IRC");
@@ -214,7 +218,11 @@ void HuggleFeedProviderIRC::ParseEdit(QString line)
         edit->DecRef();
         return;
     }
+#ifdef QT6_BUILD
+    edit->OldID = line.mid(0, line.indexOf(QString(QChar(003)))).toInt();
+#else
     edit->OldID = line.midRef(0, line.indexOf(QString(QChar(003)))).toInt();
+#endif
     if (!line.contains(QString(QChar(003)) + "03"))
     {
         HUGGLE_DEBUG("Invalid line, no user: " + line, 1);

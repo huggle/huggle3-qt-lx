@@ -453,7 +453,11 @@ bool ProjectConfiguration::Parse(const QString& config, QString *reason, WikiSit
     int xx = 0;
     while (xx < this->RevertPatterns.count())
     {
+#ifdef QT6_BUILD
+        this->_revertPatterns.append(QRegularExpression(this->RevertPatterns.at(xx)));
+#else
         this->_revertPatterns.append(QRegExp(this->RevertPatterns.at(xx)));
+#endif
         xx++;
     }
     if (!HuggleQueueFilter::Filters.contains(site))
@@ -821,7 +825,11 @@ bool ProjectConfiguration::ParseYAML(const QString& yaml_src, QString *reason, W
     int xx = 0;
     while (xx < this->RevertPatterns.count())
     {
+#ifdef QT6_BUILD
+        this->_revertPatterns.append(QRegularExpression(this->RevertPatterns.at(xx)));
+#else
         this->_revertPatterns.append(QRegExp(this->RevertPatterns.at(xx)));
+#endif
         xx++;
     }
     if (!HuggleQueueFilter::Filters.contains(site))

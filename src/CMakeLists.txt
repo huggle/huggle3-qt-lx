@@ -29,6 +29,7 @@ option(AUDIO "Enable audio backend" true)
 
 if (QT6_BUILD)
     set (QT5_BUILD true)
+    add_definitions( -DQT6_BUILD )
 endif()
 
 set(HUGGLE_CMAKE true)

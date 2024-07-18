@@ -104,6 +104,12 @@ namespace std { typedef decltype(nullptr) nullptr_t; }
 
 #include <QObject>
 
+#ifdef QT6_BUILD
+#define HMUTEX_TYPE QRecursiveMutex
+#else
+#define HMUTEX_TYPE QMutex
+#endif
+
 #if QT_VERSION >= 0x050000
     #define HUGGLE_QTV5
 #else

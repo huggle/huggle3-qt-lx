@@ -21,8 +21,13 @@ Syslog *Syslog::HuggleLogs = new Syslog();
 
 Syslog::Syslog()
 {
+#ifdef QT6_BUILD
+    this->WriterLock = new QRecursiveMutex();
+    this->lUnwrittenLogs = new QRecursiveMutex();
+#else
     this->WriterLock = new QMutex(QMutex::Recursive);
     this->lUnwrittenLogs = new QMutex(QMutex::Recursive);
+#endif
 #ifndef HUGGLE_SDK
     this->EnableLogWriteBuffer = true;
 #else

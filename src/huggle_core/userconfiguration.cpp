@@ -19,6 +19,7 @@
 #include "localization.hpp"
 #include "projectconfiguration.hpp"
 #include "version.hpp"
+#include <algorithm>
 #include <QKeySequence>
 
 // Nasty hack to get yaml-cpp to work on OSX
@@ -356,7 +357,7 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
             configuration += "        required-categories: \"" + SanitizeString(fltr->GetRequiredCategories_CommaSeparated()) + "\"\n";
             QString ns = "";
             QList<int> filter_keys = fltr->Namespaces.keys();
-            qSort(filter_keys);
+            std::sort(filter_keys.begin(), filter_keys.end());
             foreach (int nsid, filter_keys)
             {
                 if (fltr->IgnoresNS(nsid))

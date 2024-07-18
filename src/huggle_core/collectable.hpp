@@ -130,7 +130,7 @@ namespace Huggle
             bool HasSomeConsumers();
         private:
             static QString ConsumerIdToString(int id);
-            static QMutex *WideLock;
+            static HMUTEX_TYPE* WideLock;
             static unsigned long LastCID;
 
             void SetManaged();
@@ -151,7 +151,7 @@ namespace Huggle
             //! if you aren't sure what number to use, or if you are working
             //! in extension you should use string instead
             QList<int> iConsumers;
-            QMutex *_collectableQL;
+            HMUTEX_TYPE*_collectableQL;
             unsigned int _collectableRefs;
             bool _collectableLocked;
     };

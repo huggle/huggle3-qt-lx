@@ -79,7 +79,11 @@ unsigned long long HuggleFeed::GetTotalBytesSent()
 
 HuggleFeed::HuggleFeed(WikiSite *site) : MediaWikiObject(site)
 {
+#ifdef QT6_BUILD
+    this->statisticsMutex = new QRecursiveMutex();
+#else
     this->statisticsMutex = new QMutex(QMutex::Recursive);
+#endif
     this->statisticsBlocks.append(new StatisticsBlock());
     this->editCounter = 0;
     this->rvCounter = 0;

@@ -57,7 +57,7 @@ namespace Huggle
             Q_OBJECT
         public:
             static QList<WikiEdit *> PendingEdits;
-            static QMutex EditLock;
+            static HMUTEX_TYPE EditLock;
             void Process(WikiEdit *edit);
         protected:
             void run();
@@ -85,7 +85,7 @@ namespace Huggle
             static QString GetPixmapFromEditType(EditType edit_type);
             //! This list contains reference to all existing edits in memory
             static QList<WikiEdit*> EditList;
-            static QMutex *Lock_EditList;
+            static HMUTEX_TYPE* Lock_EditList;
 
             //! Creates a new empty wiki edit
             WikiEdit();
