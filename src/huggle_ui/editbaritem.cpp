@@ -60,7 +60,11 @@ void EditBarItem::SetFrame(Qt::GlobalColor colour)
 {
     //this->setStyleSheet("QFrame { border-color: " + color + " }");
     QPalette px;
+#ifdef QT6_BUILD
+    px.setColor(QPalette::WindowText, colour);
+#else
     px.setColor(QPalette::Foreground, colour);
+#endif
     this->setPalette(px);
 }
 

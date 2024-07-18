@@ -15,7 +15,6 @@
 
 #include <QTimer>
 #include "hw.hpp"
-#include <QRegExp>
 #include <huggle_core/wikipage.hpp>
 #include <huggle_core/apiquery.hpp>
 #include <huggle_core/editquery.hpp>

@@ -8,6 +8,7 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
+#include "ui_hugglelog.h"
 #include "hugglelog.hpp"
 #include <QDateTime>
 #include <QCursor>
@@ -16,7 +17,6 @@
 #include <huggle_core/exception.hpp>
 #include <huggle_core/generic.hpp>
 #include <huggle_core/syslog.hpp>
-#include "ui_hugglelog.h"
 
 using namespace Huggle;
 
@@ -24,7 +24,11 @@ HuggleLog::HuggleLog(QWidget *parent) : QDockWidget(parent), ui(new Ui::HuggleLo
 {
     this->ui->setupUi(this);
     this->setWindowTitle(_l("logs-widget-name"));
+#ifdef QT6_BUILD
+    this->lock = new HMUTEX_TYPE();
+#else
     this->lock = new QMutex(QMutex::Recursive);
+#endif
     this->ui->textEdit->setUndoRedoEnabled(false);
     this->ui->textEdit->resize(this->ui->textEdit->width(), 60);
     this->Modified = false;

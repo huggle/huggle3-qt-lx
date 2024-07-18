@@ -11,9 +11,9 @@
 #ifndef HW_HPP
 #define HW_HPP
 
-#include <huggle_core/definitions.hpp>
 #include <QString>
 #include <QDialog>
+#include <huggle_core/definitions.hpp>
 
 namespace Huggle
 {

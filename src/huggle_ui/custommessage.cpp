@@ -8,12 +8,12 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
+#include "ui_custommessage.h"
 #include "custommessage.hpp"
 #include <huggle_core/exception.hpp>
 #include <huggle_core/wikiuser.hpp>
 #include <huggle_core/wikiutil.hpp>
 #include <huggle_core/localization.hpp>
-#include "ui_custommessage.h"
 
 using namespace Huggle;
 

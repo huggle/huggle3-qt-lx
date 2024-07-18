@@ -71,8 +71,7 @@ void RequestProtect::Tick()
         // make a regex out of the pattern string
         QString regex_str = this->page->GetSite()->GetProjectConfig()->RFPP_Regex;
         regex_str.replace("$title", this->page->PageName);
-        QRegExp rx(regex_str);
-        if (rx.exactMatch(PageText))
+        if (Generic::RegexExactMatch(regex_str, PageText))
         {
             this->Fail(_l("reqprotection-duplicate"));
             return;

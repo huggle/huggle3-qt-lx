@@ -60,6 +60,8 @@ namespace Huggle
          * \return new string
          */
         HUGGLE_EX_CORE QString ShrinkText(const QString &text, int size, bool html = true, int minimum = 2);
+
+        HUGGLE_EX_CORE bool RegexExactMatch(const QString& regex, const QString& input_text);
     }
 }
 

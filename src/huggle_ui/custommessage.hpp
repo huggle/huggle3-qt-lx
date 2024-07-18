@@ -12,6 +12,7 @@
 #define CUSTOMMESSAGE_H
 
 #include <QString>
+#include <huggle_core/definitions.hpp>
 #include "hw.hpp"
 
 namespace Ui
@@ -24,7 +25,7 @@ namespace Huggle
     class WikiUser;
 
     //! This form can be used to send a custom message to users
-    class CustomMessage : public HW
+    class HUGGLE_EX_UI CustomMessage : public HW
     {
             Q_OBJECT
         public:
