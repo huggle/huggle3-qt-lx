@@ -28,7 +28,7 @@ namespace Ui
 namespace Huggle
 {
     class ApiQuery;
-    //! Relogin form used to login back to mediawiki when session is removed
+    //! Relogin form used to login back into mediawiki when session is no longer valid
     class HUGGLE_EX_UI ReloginForm : public QDialog
     {
             Q_OBJECT
@@ -37,9 +37,9 @@ namespace Huggle
             ~ReloginForm();
 
         private slots:
-            void on_pushButton_clicked();
-            void on_pushButton_2_clicked();
-            void LittleTick();
+            void on_pushButton_ForceExit_clicked();
+            void on_pushButton_Relog_clicked();
+            void ReloginTick();
 
             void on_checkBox_RemeberPw_toggled(bool checked);
 
@@ -48,8 +48,7 @@ namespace Huggle
             void Localize();
             void reject();
             WikiSite *loginSite;
-            //! This is just a timer, it's called little and cute because I was bored when writing this piece of code
-            QTimer *little_cute_timer;
+            QTimer *reloginTimer;
             Collectable_SmartPtr<ApiQuery> qReloginTokenReq;
             Collectable_SmartPtr<ApiQuery> qReloginPw;
             Ui::ReloginForm *ui;

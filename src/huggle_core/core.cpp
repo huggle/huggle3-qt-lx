@@ -12,6 +12,7 @@
 #include <QtXml>
 #include <QFile>
 #include <QPluginLoader>
+#include <QNetworkCookieJar>
 #include <huggle_l10n/huggle_l10n.hpp>
 #include "configuration.hpp"
 #include "exception.hpp"
@@ -67,6 +68,7 @@ void Core::Init()
     this->gc = new Huggle::GC();
     GC::gc = this->gc;
     Query::NetworkManager = new QNetworkAccessManager();
+    Query::NetworkManager->setCookieJar(new QNetworkCookieJar(Query::NetworkManager));
     QueryPool::HugglePool = new QueryPool();
     this->HGQP = QueryPool::HugglePool;
     this->HuggleSyslog = Syslog::HuggleLogs;

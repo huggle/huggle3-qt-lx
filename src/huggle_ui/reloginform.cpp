@@ -10,6 +10,8 @@
 
 #include "reloginform.hpp"
 #include "mainwindow.hpp"
+#include <QNetworkAccessManager>
+#include <QNetworkCookieJar>
 #include <huggle_core/apiquery.hpp>
 #include <huggle_core/apiqueryresult.hpp>
 #include <huggle_core/core.hpp>
@@ -29,7 +31,7 @@ ReloginForm::ReloginForm(WikiSite *site, QWidget *parent) : QDialog(parent), ui(
 {
     this->ui->setupUi(this);
     this->loginSite = site;
-    this->little_cute_timer = new QTimer();
+    this->reloginTimer = new QTimer();
     if (hcfg->SystemConfig_StorePassword)
         this->ui->lineEdit->setText(hcfg->SystemConfig_RememberedPassword);
     this->ui->checkBox->setChecked(hcfg->SystemConfig_Autorelog);
@@ -37,38 +39,43 @@ ReloginForm::ReloginForm(WikiSite *site, QWidget *parent) : QDialog(parent), ui(
     if (!hcfg->SystemConfig_StorePassword)
         this->ui->checkBox->setEnabled(false);
     this->Localize();
-    connect(this->little_cute_timer, SIGNAL(timeout()), this, SLOT(LittleTick()));
+    connect(this->reloginTimer, SIGNAL(timeout()), this, SLOT(ReloginTick()));
     if (hcfg->SystemConfig_Autorelog && hcfg->SystemConfig_StorePassword)
-        this->ui->pushButton_2->click();
+        this->ui->pushButton_Relog->click();
 }
 
 ReloginForm::~ReloginForm()
 {
-    delete this->little_cute_timer;
+    delete this->reloginTimer;
     delete this->ui;
 }
 
-void Huggle::ReloginForm::on_pushButton_clicked()
+void Huggle::ReloginForm::on_pushButton_ForceExit_clicked()
 {
     program_terminated = true;
     MainWindow::HuggleMain->ShutdownForm();
     Core::HuggleCore->Shutdown();
 }
 
-void Huggle::ReloginForm::on_pushButton_2_clicked()
+void Huggle::ReloginForm::on_pushButton_Relog_clicked()
 {
+    // Reinitialize network manager in order to rid of all cookies, session data or cached info
+    delete Query::NetworkManager;
+    Query::NetworkManager = new QNetworkAccessManager();
+    Query::NetworkManager->setCookieJar(new QNetworkCookieJar(Query::NetworkManager));
+
     hcfg->SystemConfig_StorePassword = this->ui->checkBox_RemeberPw->isChecked();
-    this->ui->pushButton_2->setEnabled(false);
+    this->ui->pushButton_Relog->setEnabled(false);
     this->ui->lineEdit->setEnabled(false);
     this->qReloginTokenReq = new ApiQuery(ActionLogin, this->loginSite);
-    this->little_cute_timer->start(HUGGLE_TIMER);
+    this->reloginTimer->start(HUGGLE_TIMER);
     this->qReloginTokenReq->Parameters = "lgname=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_UserName);
     this->qReloginTokenReq->HiddenQuery = true;
     this->qReloginTokenReq->UsingPOST = true;
     this->qReloginTokenReq->Process();
 }
 
-void ReloginForm::LittleTick()
+void ReloginForm::ReloginTick()
 {
     if (this->qReloginPw != nullptr)
     {
@@ -100,7 +107,7 @@ void ReloginForm::LittleTick()
             this->loginSite->ProjectConfig->IsLoggedIn = true;
             this->loginSite->ProjectConfig->RequestingLogin = false;
             this->close();
-            this->little_cute_timer->stop();
+            this->reloginTimer->stop();
             WikiUtil::RetrieveTokens(this->loginSite);
             this->qReloginPw.Delete();
             return;
@@ -121,60 +128,57 @@ void ReloginForm::LittleTick()
             return;
         }
         this->Fail(_l("login-api", Result));
-        return;
-    }
-    if (this->qReloginTokenReq != nullptr && this->qReloginTokenReq->IsProcessed())
+    } else if (this->qReloginTokenReq != nullptr && this->qReloginTokenReq->IsProcessed())
     {
         if (this->qReloginTokenReq->IsFailed())
         {
             this->Fail(this->qReloginTokenReq->GetFailureReason());
             return;
         }
-        ApiQueryResultNode *login_ = this->qReloginTokenReq->GetApiQueryResult()->GetNode("login");
-        if (login_ == nullptr)
+        ApiQueryResultNode *query_result = this->qReloginTokenReq->GetApiQueryResult()->GetNode("login");
+        if (query_result == nullptr)
         {
             this->Fail("No data returned by login query");
             HUGGLE_DEBUG1(this->qReloginTokenReq->Result->Data);
             return;
         }
-        if (!login_->Attributes.contains("result"))
+        if (!query_result->Attributes.contains("result"))
         {
             this->Fail("No result was provided by login query");
             HUGGLE_DEBUG1(this->qReloginTokenReq->Result->Data);
             return;
         }
-        QString reslt_ = login_->GetAttribute("result");
-        if (reslt_ != "NeedToken")
+        QString result_code = query_result->GetAttribute("result");
+        if (result_code != "NeedToken")
         {
-            this->Fail("Result returned " + reslt_ + " NeedToken expected");
+            this->Fail("Result returned " + result_code + " NeedToken expected");
             HUGGLE_DEBUG1(this->qReloginTokenReq->Result->Data);
             return;
         }
-        if (!login_->Attributes.contains("token"))
+        if (!query_result->Attributes.contains("token"))
         {
             this->Fail(_l("no-token"));
             HUGGLE_DEBUG1(this->qReloginTokenReq->Result->Data);
             return;
         }
-        QString token = login_->GetAttribute("token");
+        QString token = query_result->GetAttribute("token");
         this->qReloginPw = new ApiQuery(ActionLogin, this->loginSite);
         this->qReloginPw->HiddenQuery = true;
         this->qReloginPw->Parameters = "lgname=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_UserName)
             + "&lgpassword=" + QUrl::toPercentEncoding(this->ui->lineEdit->text()) + "&lgtoken=" + QUrl::toPercentEncoding(token);
         this->qReloginPw->UsingPOST = true;
         this->qReloginPw->Process();
-        return;
     }
 }
 
 void ReloginForm::Fail(QString why)
 {
-    this->little_cute_timer->stop();
+    this->reloginTimer->stop();
     this->qReloginTokenReq.Delete();
     this->ui->lineEdit->setEnabled(true);
     this->qReloginPw.Delete();
     UiGeneric::MessageBox(_l("fail"), _l("relogin-fail", why), MessageBoxStyleWarning, true);
-    this->ui->pushButton_2->setEnabled(true);
+    this->ui->pushButton_Relog->setEnabled(true);
 }
 
 void ReloginForm::Localize()

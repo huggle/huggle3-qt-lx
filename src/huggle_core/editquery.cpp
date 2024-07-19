@@ -146,8 +146,6 @@ bool EditQuery::IsProcessed()
                 {
                     reason = "Not logged in";
                     hec = HUGGLE_ENOTLOGGEDIN;
-                    // this is some fine hacking here :)
-                    // we use this later in main form
                     HUGGLE_DEBUG1("Session expired requesting a new login");
                     this->Suspend();
                     Configuration::Logout(this->Page->GetSite());
