@@ -40,7 +40,7 @@
 using namespace Huggle;
 
 // definitions
-CoreState Core::coreState = CoreState::Initializing;
+Core::CoreState Core::coreState = Core::CoreState::Initializing;
 Core    *Core::HuggleCore = nullptr;
 
 void Core::Init()
@@ -457,7 +457,7 @@ qint64 Core::GetUptimeInSeconds()
     return this->StartupTime.secsTo(QDateTime::currentDateTime());
 }
 
-CoreState Core::GetState()
+Core::CoreState Core::GetState()
 {
     return Core::coreState;
 }

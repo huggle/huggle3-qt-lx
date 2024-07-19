@@ -17,20 +17,6 @@
 
 namespace Huggle
 {
-    /*!
-     * \brief This is a helper enum that is always statically allocated and existing that we can use to
-     *        safely determine which application state we are currently in, to avoid segfaults by accessing
-     *        objects that are already deleted or not constructed yet
-     */
-    enum CoreState
-    {
-        None,
-        Initializing,
-        Running,
-        ShuttingDown,
-        Terminated
-    };
-
     // Predeclaring some types
     class Configuration;
     class Exception;
@@ -64,6 +50,20 @@ namespace Huggle
      */
     class HUGGLE_EX_CORE Core
     {
+        /*!
+         * \brief This is a helper enum that is always statically allocated and existing that we can use to
+         *        safely determine which application state we are currently in, to avoid segfaults by accessing
+         *        objects that are already deleted or not constructed yet
+         */
+        enum CoreState
+        {
+            None,
+            Initializing,
+            Running,
+            ShuttingDown,
+            Terminated
+        };
+
         public:
             static CoreState GetState();
             static bool IsRunning() { return Core::GetState() == CoreState::Running || Core::GetState() == CoreState::Initializing; }
