@@ -24,8 +24,6 @@
 #include "uigeneric.hpp"
 #include "ui_reloginform.h"
 
-bool program_terminated = false;
-
 using namespace Huggle;
 ReloginForm::ReloginForm(WikiSite *site, QWidget *parent) : QDialog(parent), ui(new Ui::ReloginForm)
 {
@@ -52,7 +50,6 @@ ReloginForm::~ReloginForm()
 
 void Huggle::ReloginForm::on_pushButton_ForceExit_clicked()
 {
-    program_terminated = true;
     MainWindow::HuggleMain->ShutdownForm();
     Core::HuggleCore->Shutdown();
 }
@@ -69,7 +66,9 @@ void Huggle::ReloginForm::on_pushButton_Relog_clicked()
     this->ui->lineEdit->setEnabled(false);
     this->qReloginTokenReq = new ApiQuery(ActionLogin, this->loginSite);
     this->reloginTimer->start(HUGGLE_TIMER);
-    this->qReloginTokenReq->Parameters = "lgname=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_UserName);
+    QString username = Configuration::GetLoginName();
+    HUGGLE_DEBUG1("Trying to login again using username " + username);
+    this->qReloginTokenReq->Parameters = "lgname=" + QUrl::toPercentEncoding(username);
     this->qReloginTokenReq->HiddenQuery = true;
     this->qReloginTokenReq->UsingPOST = true;
     this->qReloginTokenReq->Process();
@@ -87,21 +86,21 @@ void ReloginForm::ReloginTick()
             this->Fail(this->qReloginPw->GetFailureReason());
             return;
         }
-        ApiQueryResultNode *login_ = this->qReloginPw->GetApiQueryResult()->GetNode("login");
-        if (login_ == nullptr)
+        ApiQueryResultNode *login_result_node = this->qReloginPw->GetApiQueryResult()->GetNode("login");
+        if (login_result_node == nullptr)
         {
             this->Fail("No data returned by login query");
             HUGGLE_DEBUG1(this->qReloginPw->Result->Data);
             return;
         }
-        if (!login_->Attributes.contains("result"))
+        if (!login_result_node->Attributes.contains("result"))
         {
             this->Fail("No result was provided by login query");
             HUGGLE_DEBUG1(this->qReloginPw->Result->Data);
             return;
         }
-        QString Result = login_->GetAttribute("result");
-        if (Result == "Success")
+        QString result_code = login_result_node->GetAttribute("result");
+        if (result_code == "Success")
         {
             // we are logged back in
             this->loginSite->ProjectConfig->IsLoggedIn = true;
@@ -112,22 +111,23 @@ void ReloginForm::ReloginTick()
             this->qReloginPw.Delete();
             return;
         }
-        if (Result == "EmptyPass")
+        if (result_code == "EmptyPass")
         {
             this->Fail(_l("login-password-empty"));
             return;
         }
-        if (Result == "WrongPass")
+        if (result_code == "WrongPass")
         {
             this->Fail(_l("login-error-password"));
             return;
         }
-        if (Result == "NoName")
+        if (result_code == "NoName")
         {
             this->Fail(_l("login-fail-wrong-name"));
             return;
         }
-        this->Fail(_l("login-api", Result));
+        HUGGLE_DEBUG1(this->qReloginPw->Result->Data);
+        this->Fail(_l("login-api", result_code));
     } else if (this->qReloginTokenReq != nullptr && this->qReloginTokenReq->IsProcessed())
     {
         if (this->qReloginTokenReq->IsFailed())
@@ -164,8 +164,7 @@ void ReloginForm::ReloginTick()
         QString token = query_result->GetAttribute("token");
         this->qReloginPw = new ApiQuery(ActionLogin, this->loginSite);
         this->qReloginPw->HiddenQuery = true;
-        this->qReloginPw->Parameters = "lgname=" + QUrl::toPercentEncoding(Configuration::HuggleConfiguration->SystemConfig_UserName)
-            + "&lgpassword=" + QUrl::toPercentEncoding(this->ui->lineEdit->text()) + "&lgtoken=" + QUrl::toPercentEncoding(token);
+        this->qReloginPw->Parameters = "lgname=" + QUrl::toPercentEncoding(Configuration::GetLoginName()) + "&lgpassword=" + QUrl::toPercentEncoding(this->ui->lineEdit->text()) + "&lgtoken=" + QUrl::toPercentEncoding(token);
         this->qReloginPw->UsingPOST = true;
         this->qReloginPw->Process();
     }
@@ -189,7 +188,7 @@ void ReloginForm::Localize()
 
 void ReloginForm::reject()
 {
-    if (program_terminated)
+    if (!Core::IsRunning())
     {
         // At this point touching any configuration or core structures is unsafe as we performed emergency shutdown previous step
         QDialog::reject();

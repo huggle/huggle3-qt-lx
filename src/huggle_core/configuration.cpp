@@ -580,6 +580,14 @@ QString Configuration::GetProjectScriptURL()
     return Configuration::GetProjectURL(hcfg->Project) + Configuration::HuggleConfiguration->Project->ScriptPath;
 }
 
+QString Configuration::GetLoginName()
+{
+    if (hcfg->SystemConfig_BotPassword)
+        return hcfg->SystemConfig_BotLogin;
+    else
+        return hcfg->SystemConfig_UserName;
+}
+
 void Configuration::InsertConfig(const QString &key, const QString &value, QXmlStreamWriter *s)
 {
     s->writeStartElement("local");

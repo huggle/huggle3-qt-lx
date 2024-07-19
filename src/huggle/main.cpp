@@ -122,7 +122,7 @@ int main(int argc, char *argv[])
 
         // Event loop
         ReturnCode = a.exec();
-        if (Huggle::Core::HuggleCore && Huggle::Core::HuggleCore->Running)
+        if (Huggle::Core::IsRunning())
             Huggle::Core::HuggleCore->Shutdown();
         delete Huggle::Core::HuggleCore;
         Huggle::Exception::ExitBreakpad();

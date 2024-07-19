@@ -774,7 +774,7 @@ QList<WikiEdit*> WikiEdit_ProcessorThread::PendingEdits;
 
 void WikiEdit_ProcessorThread::run()
 {
-    while(Core::HuggleCore->Running)
+    while(Core::IsRunning())
     {
         WikiEdit_ProcessorThread::EditLock.lock();
         int e=0;
