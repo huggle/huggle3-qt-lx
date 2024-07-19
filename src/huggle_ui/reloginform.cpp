@@ -22,6 +22,8 @@
 #include "uigeneric.hpp"
 #include "ui_reloginform.h"
 
+bool program_terminated = false;
+
 using namespace Huggle;
 ReloginForm::ReloginForm(WikiSite *site, QWidget *parent) : QDialog(parent), ui(new Ui::ReloginForm)
 {
@@ -48,6 +50,7 @@ ReloginForm::~ReloginForm()
 
 void Huggle::ReloginForm::on_pushButton_clicked()
 {
+    program_terminated = true;
     MainWindow::HuggleMain->ShutdownForm();
     Core::HuggleCore->Shutdown();
 }
@@ -182,6 +185,13 @@ void ReloginForm::Localize()
 
 void ReloginForm::reject()
 {
+    if (program_terminated)
+    {
+        // At this point touching any configuration or core structures is unsafe as we performed emergency shutdown previous step
+        QDialog::reject();
+        return;
+    }
+
     // We store it when we destroy the window because sometimes user wants to cancel the login and also prevent it
     // from auto-relogging you (especially if stored pw is wrong). So this way it's possible.
     hcfg->SystemConfig_Autorelog = this->ui->checkBox->isChecked();
