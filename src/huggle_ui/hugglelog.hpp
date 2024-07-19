@@ -18,7 +18,7 @@
 #include <QDockWidget>
 
 
-class QMutex;
+class HMUTEX_TYPE;
 
 namespace Ui
 {
@@ -42,7 +42,7 @@ namespace Huggle
             bool Modified;
 
         private:
-            QMutex *lock;
+            HMUTEX_TYPE* lock;
             QList<HuggleLog_Line> Text;
             Ui::HuggleLog *ui;
     };

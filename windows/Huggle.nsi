@@ -118,9 +118,7 @@ Section -MainProgram
 ${INSTALL_TYPE}
 SetOverwrite ifnewer
 SetOutPath "$INSTDIR"
-File "vcredist_x86_2013.exe"
 File "vcredist_x86.exe"
-ExecWait '"$INSTDIR\vcredist_x86_2013.exe" /passive /norestart'
 ExecWait '"$INSTDIR\vcredist_x86.exe" /passive /norestart'
 RmDir /r "$INSTDIR\extensions"
 File /r "release\*.*"

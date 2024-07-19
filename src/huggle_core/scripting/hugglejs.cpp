@@ -274,7 +274,11 @@ QString HuggleJS::get_current_time_str()
 
 int HuggleJS::get_current_time_posix()
 {
+#ifdef QT6_BUILD
+    return static_cast<int>(QDateTime::currentDateTimeUtc().toSecsSinceEpoch());
+#else
     return static_cast<int>(QDateTime::currentDateTimeUtc().toTime_t());
+#endif
 }
 
 bool HuggleJS::register_callback(const QString& callback)

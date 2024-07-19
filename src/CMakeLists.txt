@@ -20,11 +20,17 @@ endif()
 
 option(LINUX_SNAP "Enable support for snap, use this option only if you are building snapshotable version" false)
 option(QT5_BUILD "Build Huggle using the Qt5 framework" true)
+option(QT6_BUILD "Build Huggle using the Qt6 framework" false)
 option(HUGGLE_PROFILING "Enable profiler" false)
 option(HUGGLE_EXT "Build Huggle extensions" false)
 option(HUGGLE_TEST "Unit tests" false)
 option(WEB_ENGINE "Use Qt WebEngine instead of WebKit library" false)
 option(AUDIO "Enable audio backend" true)
+
+if (QT6_BUILD)
+    set (QT5_BUILD false)
+    add_definitions( -DQT6_BUILD )
+endif()
 
 set(HUGGLE_CMAKE true)
 
@@ -44,13 +50,17 @@ if (LINUX_SNAP)
     add_definitions(-DHUGGLE_SNAP)
 endif()
 
-# Enable c++11
+# Enable c++11 or c++17 in case of Qt6
 if(WIN32)
     if(MINGW)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mwindows -std=c++11")
     endif()
 else()
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+    if (QT6_BUILD)
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
+    else()
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+    endif()
 endif()
 
 # This will ensure that produced binaries go to right place on windows

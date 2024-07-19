@@ -24,7 +24,11 @@ unsigned long Collectable::LockCt = 0;
 #endif
 
 unsigned long Collectable::LastCID = 0;
-QMutex *Collectable::WideLock = new QMutex(QMutex::Recursive);
+#ifdef QT6_BUILD
+HMUTEX_TYPE* Collectable::WideLock = new QRecursiveMutex();
+#else
+HMUTEX_TYPE* Collectable::WideLock = new QMutex(QMutex::Recursive);
+#endif
 
 Collectable::Collectable()
 {
@@ -41,7 +45,11 @@ Collectable::Collectable()
     this->_collectableLocked = false;
     this->_collectableManaged = false;
     this->_collectableRefs = 0;
+#ifdef QT6_BUILD
+    this->_collectableQL = new HMUTEX_TYPE();
+#else
     this->_collectableQL = new QMutex(QMutex::Recursive);
+#endif
 }
 
 Collectable::~Collectable()

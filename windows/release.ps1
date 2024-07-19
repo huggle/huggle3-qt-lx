@@ -33,7 +33,7 @@ param
 (
     [string]$msbuild_path = "C:\Program Files (x86)\MSBuild\12.0\Bin\MSBuild.exe",
     [string]$root_path = $PWD,
-    [string]$qt5_path = "C:\Qt\5.7\msvc2013\",
+    [string]$qt_path = "C:\Qt\5.7\msvc2013\",
     [string]$nsis_path = "C:\Program Files (x86)\NSIS\makensis.exe",
     [string]$openssl_path = "C:\OpenSSL-Win32",
     [string]$cmake_generator = "Visual Studio 12 2013",
@@ -42,10 +42,12 @@ param
     [bool]$python = $true,
     [string]$vcredist = "vcredist_x86.exe",
     [string]$cmake_param = "",
-    [string]$vcinstall_path = "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\"
+    [string]$vcinstall_path = "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\",
+    [int]$qt_version = 5
 )
 
 $ErrorActionPreference = "Stop"
+#$ErrorActionPreference = "Continue"
 
 function PackageTest
 {
@@ -119,7 +121,7 @@ if ($mingw)
 {
     PackageTest "MSBuild" "$msbuild_path" "msbuild_path"
 }
-PackageTest "Qt5" "$qt5_path" "qt5_path"
+PackageTest "Qt" "$qt_path" "qt_path"
 PackageTest "OpenSSL" "$openssl_path" "openssl_path"
 PackageTest "nsis" "$nsis_path" "nsis_path"
 $git_enabled = $true
@@ -167,12 +169,17 @@ cd $root_path
 echo "Running cmake"
 mkdir build | Out-Null
 cd build
+$qt_params = "-DQT5_BUILD=true"
+if ($qt_version -eq 6)
+{
+    $qt_params = "-DQT6_BUILD=true -DQT5_BUILD=false"
+}
 if ($python)
 {
-    cmake ..\..\src\ -G "$cmake_generator" -DWEB_ENGINE=true -DPYTHON_BUILD=true -DCMAKE_PREFIX_PATH:STRING=$qt5_path -Wno-dev -DHUGGLE_EXT=true $cmake_param
+    cmake ..\..\src\ -G "$cmake_generator" -DWEB_ENGINE=true -DPYTHON_BUILD=true -DCMAKE_PREFIX_PATH:STRING=$qt_path -Wno-dev -DHUGGLE_EXT=true $qt_params $cmake_param
 } else
 {
-    cmake ..\..\src\ -G "$cmake_generator" -DWEB_ENGINE=true -DPYTHON_BUILD=false -DCMAKE_PREFIX_PATH:STRING=$qt5_path -Wno-dev -DHUGGLE_EXT=true $cmake_param
+    cmake ..\..\src\ -G "$cmake_generator" -DWEB_ENGINE=true -DPYTHON_BUILD=false -DCMAKE_PREFIX_PATH:STRING=$qt_path -Wno-dev -DHUGGLE_EXT=true $qt_params $cmake_param
 }
 if ($mingw)
 {
@@ -198,15 +205,35 @@ cp ..\src\scripts\*.js release\extensions
 cp ..\src\huggle_res\Resources\huggle.ico huggle.ico
 cp ..\src\huggle_res\Resources\huggle.ico release
 # missing Qt dll, bug in winqtdeploy :/
-cp $qt5_path\bin\Qt5Multimedia.dll release
-cp $openssl_path\libssl32.dll release
-cp $openssl_path\bin\ssleay32.dll release
-cp $openssl_path\bin\libeay32.dll release
+$path = Join-Path $qt_path 'bin'
+$fileQt5 = 'Qt5Multimedia.dll'
+$fileQt6 = 'Qt6Multimedia.dll'
+
+if (Test-Path (Join-Path $path $fileQt5))
+{
+    Copy-Item (Join-Path $path $fileQt5) 'release'
+}
+elseif (Test-Path (Join-Path $path $fileQt6))
+{
+    Copy-Item (Join-Path $path $fileQt6) 'release'
+}
+else
+{
+    Write-Error 'Neither Qt5Multimedia.dll nor Qt6Multimedia.dll was found.'
+}
+
+# Older SSL, used by Qt 5.10 and older
+#cp $openssl_path\libssl32.dll release
+#cp $openssl_path\bin\ssleay32.dll release
+#cp $openssl_path\bin\libeay32.dll release
+
+# New SSL
+cp $openssl_path\*.dll release
 
 # Set the environment variable needed by windeployqt, todo: check if it's already set
 $env:VCINSTALLDIR = $vcinstall_path
 
-Invoke-Expression "$qt5_path\bin\windeployqt.exe release\huggle_ui.dll"
+Invoke-Expression "$qt_path\bin\windeployqt.exe release\huggle_ui.dll"
 
 echo "Making package out of this"
 

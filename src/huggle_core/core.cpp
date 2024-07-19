@@ -71,7 +71,9 @@ void Core::Init()
     this->HGQP = QueryPool::HugglePool;
     this->HuggleSyslog = Syslog::HuggleLogs;
     Core::VersionRead();
-#if QT_VERSION >= 0x050000
+#if QT_VERSION >= 0x060000
+    // No equivalent required in Qt6 as UTF-8 is used by default
+#elif QT_VERSION >= 0x050000
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
 #else
     QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));

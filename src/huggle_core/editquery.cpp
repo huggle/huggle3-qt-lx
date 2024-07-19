@@ -21,6 +21,9 @@
 #include "wikipage.hpp"
 #include "wikiutil.hpp"
 #include "wikisite.hpp"
+#ifdef QT6_BUILD
+#include <QRegularExpression>
+#endif
 
 using namespace Huggle;
 

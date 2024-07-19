@@ -375,7 +375,11 @@ QString Message::appendText(QString text, QString original_text, QString section
         // there is nothing to insert this to
         return original_text += "\n\n" + text + "\n\n";
     }
+#ifdef QT6_BUILD
+    QRegularExpression regex("\\s*==\\s*" + QRegularExpression::escape(section_name) + "\\s*==");
+#else
     QRegExp regex("\\s*==\\s*" + QRegExp::escape(section_name) + "\\s*==");
+#endif
     if (!original_text.contains(regex))
     {
         // there is no section to append to
@@ -386,7 +390,11 @@ QString Message::appendText(QString text, QString original_text, QString section
         original_text += "== " + section_name + " ==\n\n" + text;
         return original_text;
     }
+#ifdef QT6_BUILD
+    QRegularExpression header("\\s*==.*==\\s*");
+#else
     QRegExp header("\\s*==.*==\\s*");
+#endif
     int start_of_desired_section = original_text.lastIndexOf(regex);
     // we need to check if there is any other section after this one
     QString section = original_text.mid(start_of_desired_section);

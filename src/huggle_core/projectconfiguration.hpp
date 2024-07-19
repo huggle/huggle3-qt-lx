@@ -19,6 +19,9 @@
 #include <QStringList>
 #include <QHash>
 #include <QString>
+#ifdef QT6_BUILD
+#include <QRegularExpression>
+#endif
 
 // Private key names
 // these need to be stored in separate variables so that we can
@@ -282,7 +285,11 @@ namespace Huggle
             //! Where the welcome message is stored
             QString                 WelcomeMP = "Project:Huggle/Message";
             // This is internal only do not prefix it!!
+#ifdef QT6_BUILD
+            QList<QRegularExpression> _revertPatterns;
+#else
             QList<QRegExp>          _revertPatterns;
+#endif
             score_ht                BotScore = -200;
             score_ht                WarningScore = 2000;
             QStringList             WarningTypes;

@@ -11,9 +11,9 @@
 #ifndef BLOCKUSER_H
 #define BLOCKUSER_H
 
+#include <QString>
 #include <huggle_core/definitions.hpp>
 
-#include <QString>
 #include <huggle_core/apiquery.hpp>
 #include <huggle_core/collectable_smartptr.hpp>
 #include "hw.hpp"
@@ -31,7 +31,7 @@ namespace Huggle
     class ApiQuery;
 
     //! This form can be used to block users from editing, which requires the block permission
-    class BlockUserForm : public HW
+    class HUGGLE_EX_UI BlockUserForm : public HW
     {
             Q_OBJECT
         public:

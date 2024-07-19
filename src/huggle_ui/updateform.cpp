@@ -522,7 +522,9 @@ static HUGGLE_LPCSTR QString2Msdn(QString text)
 #ifdef UNICODE
     wchar_t *temp = (wchar_t*)calloc(text.length() + 1, sizeof(wchar_t));
     text.toWCharArray(temp);
-    return _wcsdup(_T(temp));
+    wchar_t* result = _wcsdup(temp); // Duplicate the wchar_t array
+    free(temp); // Free the initially allocated memory
+    return result;
 #else
     QByteArray byte_array = text.toLocal8Bit();
     return _strdup(byte_array.constData());

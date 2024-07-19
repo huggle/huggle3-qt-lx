@@ -118,7 +118,11 @@ static QList<ScoreWord> ParseScoreWords(QString text, const QString& wt)
         {
             return contents;
         }
+#ifdef QT6_BUILD
+        int score = text.mid(0, text.indexOf(")")).toInt();
+#else
         int score = text.midRef(0, text.indexOf(")")).toInt();
+#endif
         if (score == 0)
         {
             continue;

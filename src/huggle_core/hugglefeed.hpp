@@ -96,7 +96,7 @@ namespace Huggle
             double editCounter;
             //! Number of reverts made since you logged in
             double rvCounter;
-            QMutex *statisticsMutex;
+            HMUTEX_TYPE *statisticsMutex;
             QDateTime startupTime;
             QList<StatisticsBlock*> statisticsBlocks;
     };

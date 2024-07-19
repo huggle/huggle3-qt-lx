@@ -16,6 +16,9 @@
 #include <QString>
 
 #ifndef HUGGLE_NOAUDIO
+    #ifdef QT6_BUILD
+    class QAudioOutput;
+    #endif
 class QMediaPlayer;
 #endif
 
@@ -51,6 +54,9 @@ namespace Huggle
         private:
             static int proTipCount;
 #ifndef HUGGLE_NOAUDIO
+#ifdef QT6_BUILD
+            static QAudioOutput* audioOutput;
+#endif
             static QMediaPlayer* mediaPlayer;
 #endif
     };
