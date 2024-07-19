@@ -22,7 +22,7 @@ Libraries and tools you need to have to build:
 
 * C++11 compiler
 * [CMake](https://github.com/Kitware/CMake) 2.8.9 or higher is required
-* QT5 sdk (recommended 5.7 or newer, with WebEngine and QJSEngine)
+* QT5 or QT6 sdk
 
 [NEW] It is now possible to use a VirtualBox VM as a portable development environment for Huggle. [» Wiki page](https://github.com/huggle/huggle3-qt-lx/wiki/Portable-development-environment)
 
