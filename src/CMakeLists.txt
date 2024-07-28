@@ -30,6 +30,7 @@ option(AUDIO "Enable audio backend" true)
 if (QT6_BUILD)
     set (QT5_BUILD false)
     add_definitions( -DQT6_BUILD )
+    set(CMAKE_OSX_DEPLOYMENT_TARGET "10.15" CACHE STRING "Minimum OS X deployment version" FORCE)
 endif()
 
 set(HUGGLE_CMAKE true)
