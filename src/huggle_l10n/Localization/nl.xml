@@ -821,6 +821,9 @@
   <string name="preferences-sounds-enable-queue">Geluid afspelen als er een nieuw items is toegevoegd aan de wachtrij</string>
   <string name="preferences-sounds-enable-irc">Geluid afspelen als er een bericht is ontvangen in HAN</string>
   <string name="preferences-sounds-minimal-score">Minimale bewerkingsscore voor een melding</string>
+  <string name="preferences-performance-catscansandwatched">Categorie-scan en volgstatusfilteren inschakelen (vereist een extra API-verzoek per bewerking)</string>
+  <string name="preferences-max-score">Globale maximumscore inschakelen (bewerkingen met een hogere score worden genegeerd - handig als u alleen goede bewerkingen wilt zien)</string>
+  <string name="preferences-min-score">Globale minimumscore inschakelen (bewerkingen met een lagere score worden genegeerd - handig als u alleen slechte bewerkingen wilt zien)</string>
   <string name="preferences-queue-size">Wachtrijlengte</string>
   <string name="preferences-empty-queue-page">Wachtrijpagina legen:</string>
   <string name="preferences-reset-gui">Opnieuw instellen</string>
