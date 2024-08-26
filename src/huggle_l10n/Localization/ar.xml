@@ -16,6 +16,7 @@
 * McDutchie
 * Meno25
 * Mido
+* Mohammed Qays
 * Moud hosny
 * NEHAOUA
 * Omarbofoss
@@ -322,7 +323,7 @@
   <string name="login-ssl">استخدم HTTPS لتسجيل الدخول (يتطلب OpenSSL)</string>
   <string name="login-fail">فشل تسجيل الدخول على $1</string>
   <string name="login-fail-with-reason">فشل تسجيل الدخول (في $1): $2</string>
-  <string name="login-error-admin">استخدام Huggle في هذا المشروع يحتاج حسابا إداريا.</string>
+  <string name="login-error-admin">استخدام هَجِل (Huggle) في هذا المشروع يحتاج حساباً إدارياً.</string>
   <string name="login-error-age">استخدام هغل في هذا المشروع يحتاج حسابا عمره $1 يوما على الأقل.</string>
   <string name="login-error-alldisabled">تم تعطيل هغل حاليا في كل المشاريع.</string>
   <string name="login-error-approval">استخدام هغل في $1 يحتاج موافقة.</string>
