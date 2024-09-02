@@ -6,6 +6,7 @@
 * Amire80
 * Aquatech
 * Beta16
+* Dream Indigo
 * G.garatti
 * Gianfranco
 * Greis
@@ -463,8 +464,8 @@
   <string name="main-log1">Ripristino della revisione selezionata di $1</string>
   <string name="main-tip-pagetagdelete">Proponi questa pagina per la cancellazione</string>
   <string name="main-tip-pagedelete">Cancella questa pagina</string>
-  <string name="main-tip-userreport">Segnala questo utente</string>
-  <string name="main-tip-userblock">Blocca questo utente</string>
+  <string name="main-tip-userreport">Segnala quest\'utente</string>
+  <string name="main-tip-userblock">Blocca quest\'utente</string>
   <string name="main-revision-acceptpend">Accetta questa revisione pendente</string>
   <string name="main-no-page">L\'azione che hai richiesto necessita di una pagina da caricare o non è disponibile poiché questa pagina è in sola lettura. Per favore carica una pagina modificabile prima di riprovare.</string>
   <string name="main-revert-null">Impossibile ripristinare: la modifica è nulla</string>
@@ -543,17 +544,17 @@
   <string name="queue-examplelabel3">Non controllare questo attributo</string>
   <string name="queue-usergroup">Mostra solamente le modifiche di questi utenti</string>
   <string name="report-title">Segnala $1</string>
-  <string name="report-warn">Questo utente ha già raggiunto il livello di avviso 4, quindi non gli verranno inviati ulteriori template. Puoi segnalarlo ora, ma per favore, assicurati che abbia già raggiunto il corretto numero di avvertimenti recenti! Puoi farlo cliccando sul pulsante della \"pagina di discussione\" nel form seguente. Ricorda che questo form e questo avvertimento vengono mostrati sia nel caso in cui il tuo ripristino abbia avuto successo che nel caso contrario, quindi potresti entrare in conflitto con altri utenti (controlla di nuovo che l\'utente non sia già stato segnalato). Vuoi segnalare questo utente?</string>
+  <string name="report-warn">Quest\'utente ha già raggiunto il livello di avviso 4, quindi non gli/le verranno inviati ulteriori template. Puoi segnalarlo/a ora, ma, per favore, assicurati che abbia già raggiunto il corretto numero di avvertimenti recenti! Puoi farlo cliccando sul pulsante della \"pagina di discussione\" nel form seguente. Ricorda che questo form e questo avvertimento vengono mostrati sia nel caso in cui il tuo ripristino abbia avuto successo che nel caso contrario, quindi potresti entrare in conflitto con altri utenti (controlla di nuovo che l\'utente non sia già stato/a segnalato/a). Vuoi segnalare quest\'utente?</string>
   <string name="report-tu">Segnala l\'utente</string>
   <string name="report-reason">Motivo:</string>
   <string name="report-auto">Segnalato $1</string>
   <string name="report-intro">Stai per segnalare l\'utente $1</string>
   <string name="report-message">Messaggio:</string>
-  <string name="report-log">Avvertimenti per questo utente:</string>
+  <string name="report-log">Avvertimenti per quest\'utente:</string>
   <string name="report-include">Includi nel rapporto</string>
   <string name="report-select">Per favore seleziona una differenza dalla lista per aprire l\'anteprima</string>
   <string name="report-write">Scrittura</string>
-  <string name="reportuser-not">Questo utente non è attualmente segnalato</string>
+  <string name="reportuser-not">Quest\'utente non è attualmente segnalato/a</string>
   <string name="report-evidence-none-provid">Nessuna differenza è stata fornita come prova. Ciò renderà molto difficile per gli amministratori capire se l\'utente è un vandalo o no. Sei certo di voler continuare?</string>
   <string name="report-duplicate">L\'utente è già stato segnalato</string>
   <string name="report-fail2">Errore: Impossibile recuperare la pagina di rapporto su $1</string>
@@ -656,10 +657,10 @@
   <string name="warning-level3">Livello 3</string>
   <string name="warning-level4">Livello 4 (finale)</string>
   <string name="warning-warntype">Tipo di avviso:</string>
-  <string name="warning-warnlog">Avvertimenti per questo utente:</string>
+  <string name="warning-warnlog">Avvertimenti per quest\'utente:</string>
   <string name="warning-submit">Invia</string>
   <string name="warninglist-no-warning-title">Nessun avvertimento</string>
-  <string name="warninglist-report-text">Questo utente ha già ricevuto un ultimo avvertimento, pertanto non gli invierò più un avvertimento, vuoi segnalarlo invece?</string>
+  <string name="warninglist-report-text">Quest\'utente ha già ricevuto un ultimo avvertimento, pertanto non gli/le invierò più un avvertimento, vuoi segnalarlo invece?</string>
   <string name="wikiedit-tp-fail">Impossibile recuperare il livello di avviso per $1. Non sarà utilizzato per il punteggio</string>
   <string name="missing-warning">Non c\'è un template di avviso $1</string>
   <string name="han-not">Vandalism network non è permesso nelle opzioni</string>
@@ -751,7 +752,7 @@
   <string name="feature-nfru">Questa funzionalità è solo per gli utenti IP</string>
   <string name="report-no-user">Nessun utente è stato scelto per la segnalazione, per favore prima scegli un utente</string>
   <string name="welcome-show">Visualizza questo messaggio anche la prossima volta che si avvia Huggle</string>
-  <string name="welcome-tp-empty-fail">Questo utente non ha una pagina di discussione vuota, sei sicuro di volergli inviare un messaggio?</string>
+  <string name="welcome-tp-empty-fail">Quest\'utente non ha una pagina di discussione vuota, sei sicuro di volergli/le inviare un messaggio?</string>
   <string name="welcome-page-miss-fail">Huggle non è riuscito a recuperare il contenuto della pagina di discussione dell\'utente, sei sicuro di volergli inviare un messaggio di benvenuto?</string>
   <string name="cr-newer-edits">Confitto risolto: ripristinate tutte le modifiche, incluse le nuove modifiche. Le modifiche provenivano dallo stesso utente: $1.</string>
   <string name="cr-resolved-same-user">Conflitto risolto: ripristinate tutte le modifiche incluse le nuove modifiche, fatte dagli stessi utenti: $1</string>
