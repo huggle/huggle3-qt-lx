@@ -3,6 +3,7 @@
 * Amire80
 * Andrei Stroe
 * Andreyyshore
+* Firilacroco
 * Ignatgg
 * MSClaudiu
 * Macofe
@@ -132,7 +133,7 @@
   <string name="config-confirm-wl">Cere confirmare pentru revenirea asupra unei editări din partea unui utilizator din whitelist</string>
   <string name="config-confirm-talk">Cere confirmare pentru revenirea asupra unei pagini de discuții</string>
   <string name="config-use-rollback">Folosește rollback software</string>
-  <string name="config-welcome-empty-page">Trimite mesaje de bun venit utilizatorilor cu pagină de discuții goală și care fac editări bune</string>
+  <string name="config-welcome-empty-page">Trimiteți-le un mesaj de bun-venit utilizatorilor care au pagina de discuții goală și care fac editări bune</string>
   <string name="config-conflicts-revert">Rezolvă automat conflictele cu alți utilizatori care revin sau modifică pagina</string>
   <string name="config-instant-reverts">Folosește revenirile instant (foarte rapid, dar odată executat nu se poate anula)</string>
   <string name="config-reverts-multiple">La revenirea mai multor modificări de către același utilizator:</string>
@@ -459,7 +460,7 @@
   <string name="main-help-feedback">Feedback</string>
   <string name="main-help-about">Despre Huggle...</string>
   <string name="main-help-introduction">Introducere</string>
-  <string name="main-help-welcome-page">Pagina de bun venit</string>
+  <string name="main-help-welcome-page">Pagina de bun-venit</string>
   <string name="main-help-contents">Cuprins</string>
   <string name="main-help-queuelegend">Legenda cozii</string>
   <string name="main-addqueue">Adaugă...</string>
@@ -482,7 +483,7 @@
   <string name="main-revert-newpage">Aceasta este o pagină nouă, deci nu se poate reveni la altă versiune. Puteți doar să o etichetați sau să o ștergeți.</string>
   <string name="main-restore-text-fail">Nu pot restaura revizia, deoarece nu este text disponibil pentru ea</string>
   <string name="main-restore-data-fail">Imposibil să restaurați versiunea, deoarece wiki nu a furnizat date pentru versiunea selectată</string>
-  <string name="main-welcome-user">Bun venit utilizatorule</string>
+  <string name="main-welcome-user">Bun-venit, utilizatorule</string>
   <string name="main-custom-reason-title">Revenire la editare folosind motiv personalizat</string>
   <string name="main-custom-reason-text">Vă rugăm să furnizați un motiv pentru care doriți să reveniți la această modificare</string>
   <string name="main-custom-reason-fail">Nu ați furnizat un motiv valid</string>
@@ -492,7 +493,7 @@
   <string name="main-statistics-paused">pauză</string>
   <string name="main-statistics-waiting">Așteaptă mai multe modificări</string>
   <string name="main-statistics-none">fără</string>
-  <string name="main-tab-welcome-title">Pagina de bun venit</string>
+  <string name="main-tab-welcome-title">Pagina de bun-venit</string>
   <string name="message-title">Mesaj $1</string>
   <string name="message-help">Specificați subiectul și/sau rezumatul. Dacă nu este dat un rezumat, subiectul va fi folosit; dacă nu este dat niciun subiect, nu va fi adăugat niciun antet.</string>
   <string name="message-subject">Subiect:</string>
@@ -737,8 +738,8 @@
   <string name="history-revert-fail">Nu am putut anula editarea la $1 întrucât am întâlnit următoarea eroare: $2</string>
   <string name="history-undone">Am reușit să anulez editarea la $1</string>
   <string name="history-retrieve-fail">Nu am putut prelua conținutul paginii pe care am dorit să ne anulăm propria editare. Eroarea a fost: $1</string>
-  <string name="history-welcome-msg-title">Să trimitem în schimb un mesaj de bun venit?</string>
-  <string name="history-welcome-msg">Ați creat această pagină de discuții, deci nu poate fi anulată. Doriți să o înlocuiți cu un format de bun venit?</string>
+  <string name="history-welcome-msg-title">Să trimitem în schimb un mesaj de bun-venit?</string>
+  <string name="history-welcome-msg">Ați creat această pagină de discuții, deci nu poate fi anulată. Doriți să o înlocuiți cu un format de bun-venit?</string>
   <string name="newtab-title">Aceasta este o nouă filă!</string>
   <string name="newtab-text">Filele din Huggle funcționează într-un mod similar ca în orice alt browser web. Toate filele din Huggle împărtășesc aceeași coadă, dar sunt utile în cazul în care doriți să fiți cu ochii pe anumite pagini sau dacă doriți să verificați o editare mai târziu.</string>
   <string name="notify-fail">Nu am notificat creatorul paginii $1</string>
@@ -789,7 +790,7 @@
   <string name="report-no-user">Nu s-a selectat niciun utilizator pentru reclamație, vă rog să selectați un utilizator mai întâi</string>
   <string name="welcome-show">Afișați acest mesaj, de asemenea, și când lansați Huggle</string>
   <string name="welcome-tp-empty-fail">Acest utilizator nu are o pagină de discuții goală, sunteți sigur că doriți să le trimiteți un mesaj?</string>
-  <string name="welcome-page-miss-fail">Huggle nu a reușit să citească conținutul paginii de discuție a utilizatorului, sigur doriți să-i trimiteți un mesaj de bun venit?</string>
+  <string name="welcome-page-miss-fail">Huggle nu a reușit să citească conținutul paginii de discuție a utilizatorului, sigur doriți să-i trimiteți un mesaj de bun-venit?</string>
   <string name="cr-newer-edits">Conflict soluționat: a revenit toate modificările, inclusiv modificările noi. Modificările au fost făcute de același utilizator: $1.</string>
   <string name="cr-resolved-same-user">Conflict soluționat: a revenit toate modificările, inclusiv modificările noi, făcute de aceiași utilizatori: $1</string>
   <string name="cr-stop-new-edit">Conflict rezolvat: nu am efectuat nicio acțiune - există și editări mai noi la $1</string>
