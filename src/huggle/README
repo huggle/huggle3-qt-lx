@@ -1,6 +1,5 @@
-This is Huggle launcher
+This is the Huggle launcher.
 
-On Windows this builds "huggle.exe"
-On Linux this makes binary huggle
+On Windows, this builds "huggle.exe". On Linux, this makes the binary "huggle".
 
-It's just an entry point for the core_lib and ui_lib
+It's just an entry point for the `core_lib` and `ui_lib`.
