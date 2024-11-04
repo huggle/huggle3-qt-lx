@@ -4,6 +4,7 @@
 * Macofe
 * Robby
 * Soued031
+* Volvox
 -->
 <resources>
   <string name="name">Lëtzebuergesch</string>
@@ -78,6 +79,7 @@
   <string name="contribution-browser-user-info">Rezent Kontributioune vum Benotzer $1</string>
   <string name="config-function">Funktioun</string>
   <string name="config-description">Beschreiwung</string>
+  <string name="config-shortcut">Ofkiirzung</string>
   <string name="config-queue-filter-ignore">Ignoréieren (spillt keng Roll)</string>
   <string name="config-queue-filter-exclude">Ausschléissen (muss net sinn)</string>
   <string name="config-queue-filter-require">Verlaangen (muss sinn)</string>
@@ -85,6 +87,7 @@
   <string name="config-already-in-use">Dëse Shortcut gëtt scho vu(n) $1 benotzt, sicht Iech wgl. een Aneren eraus</string>
   <string name="config-logfile">Lobuch-Fichier</string>
   <string name="config-shortcutaction">Aktioun</string>
+  <string name="config-changeshortcut">Ofkierzung fir $1 änneren</string>
   <string name="config-noshortcut">Keng</string>
   <string name="config-defaults">Standard</string>
   <string name="config-minor">Als \'Klengegkeet\' markéieren</string>
@@ -150,6 +153,7 @@
   <string name="history-error-message-title">Réckgängegmaachen kann net gemaach ginn</string>
   <string name="userhistory-title">Lëscht vun Ären Ännerungen (chronologesch)</string>
   <string name="login-intro">Sicht wgl. e Projet eraus a gitt Äre Benotzernumm an Äert Passwuert an. Dir kënnt Iech op méi Projeten alogge wann Dir och op de Knäppche \'Porjeten\' klickt.</string>
+  <string name="login-tab-botp">Botpasswuert</string>
   <string name="login-tab-login">Patrimoine</string>
   <string name="login-language">Sprooch:</string>
   <string name="login-project">Projet:</string>

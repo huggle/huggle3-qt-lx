@@ -23,6 +23,7 @@
 * أيوب
 * أَحمد
 * بدارين
+* جودت
 * ديفيد
 * شادي
 * عباد ديرانية
@@ -65,7 +66,7 @@
   <string name="id">بروتوكول الإنترنت</string>
   <string name="type">نوع</string>
   <string name="target">الهدف</string>
-  <string name="user">المستخدم</string>
+  <string name="user">مستخدم</string>
   <string name="size">الحجم</string>
   <string name="date">التاريخ</string>
   <string name="page">الصفحة</string>
@@ -593,7 +594,7 @@
   <string name="report-progress">قيد إخطار إداريّ عن \'$1\'...</string>
   <string name="report-retrieving">استرجاع صفحة التقرير الحالية...</string>
   <string name="report-done">تم الإبلاغ</string>
-  <string name="report-user">الإبلاغ</string>
+  <string name="report-user">إبلاغ</string>
   <string name="score-score">النتيجة</string>
   <string name="score-word">كلمة</string>
   <string name="score-range">النطاق</string>
