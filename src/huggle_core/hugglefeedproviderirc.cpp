@@ -26,6 +26,7 @@
 #include <libirc/libircclient/parser.h>
 #include <libirc/libircclient/network.h>
 #include <libirc/libircclient/channel.h>
+#include <libirc/libircclient/priority.h>
 #include <random>
 #include <chrono>
 
@@ -64,11 +65,11 @@ bool HuggleFeedProviderIRC::Start()
     int randomNumber = dist(rng);
     nick += QString::number(randomNumber);
     libirc::ServerAddress server(hcfg->SystemConfig_IRCServer, false, hcfg->SystemConfig_IRCPort, nick);
-    server.SetSuffix(this->GetSite()->IRCChannel);
     this->network = new libircclient::Network(server, "Wikimedia IRC");
     this->network->SetDefaultUsername(Configuration::HuggleConfiguration->HuggleVersion);
     this->network->SetDefaultIdent("huggle");
     connect(this->network, SIGNAL(Event_Connected()), this, SLOT(OnConnected()));
+    connect(this->network, SIGNAL(Event_Parse(libircclient::Parser*)), this, SLOT(OnParse(libircclient::Parser*)));
     //connect(this->Network, SIGNAL(Event_SelfJoin(libircclient::Channel*)), this, SLOT(OnIRCSelfJoin(libircclient::Channel*)));
     //connect(this->Network, SIGNAL(Event_SelfPart(libircclient::Parser*,libircclient::Channel*)), this, SLOT(OnIRCSelfPart(libircclient::Parser*,libircclient::Channel*)));
     connect(this->network, SIGNAL(Event_PRIVMSG(libircclient::Parser*)), this, SLOT(OnIRCChannelMessage(libircclient::Parser*)));
@@ -326,6 +327,17 @@ bool HuggleFeedProviderIRC::IsConnected()
 QString HuggleFeedProviderIRC::ToString()
 {
     return "IRC";
+}
+
+void HuggleFeedProviderIRC::OnParse(libircclient::Parser *px)
+{
+    // Workaround for libirc not performing autojoin with the new IRC RC server
+    // implementation, which only sends 1 parameter with the MYINFO command --
+    // libirc doesn't autojoin unless there are 4+ parameters to the MYINFO
+    // command.  Instead of letting libirc autojoin, we handle it instead.
+    if (px->GetNumeric() == IRC_NUMERIC_MYINFO) {
+        this->network->RequestJoin(this->GetSite()->IRCChannel, libircclient::Priority_Low);
+    }
 }
 
 void HuggleFeedProviderIRC::OnIRCChannelMessage(libircclient::Parser *px)
