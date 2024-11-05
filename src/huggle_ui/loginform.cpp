@@ -1007,7 +1007,8 @@ void LoginForm::retrieveUserInfo(WikiSite *site)
             }
             QStringList users = result.toLower().split("\n");
             QStringList sanitized;
-            // sanitize user list
+            // sanitize user list by making everything lower case and absent of underscore,
+            // this way we avoid inserting duplicities that only differ in case
             foreach(QString user, users)
             {
                 user = user.replace("_", " ");
@@ -1027,8 +1028,8 @@ void LoginForm::retrieveUserInfo(WikiSite *site)
                 if (site->GetProjectConfig()->UserlistSync)
                 {
                     // we need to insert this user into the list
-                    QString un = WikiUtil::SanitizeUser(hcfg->SystemConfig_UserName);
-                    QString line = "* [[Special:Contributions/" + un + "|" + un + "]]";
+                    QString user_name = WikiUtil::SanitizeUser(hcfg->SystemConfig_UserName);
+                    QString line = "* [[Special:Contributions/" + user_name + "|" + user_name + "]]";
                     result += "\n" + line;
                     QString summary = site->GetProjectConfig()->UserlistUpdateSummary;
                     summary.replace("$1", hcfg->SystemConfig_UserName);
