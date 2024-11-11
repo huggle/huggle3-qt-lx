@@ -886,7 +886,7 @@
   <string name="main-revert-type-made-white-list">gemaakt door een gebruiker op de witte lijst</string>
   <string name="query-result-nodata">Het resultaat van de zoekopdracht bevatte geen gegevens</string>
   <string name="main-revert-warn">Deze bewerking is $1, dus zelfs als het vandalisme lijkt, is dat het wellicht niet. Weet u zeker dat u wilt terugdraaien?</string>
-  <string name="query-request-noaction">Er is geen handeling uitgevoerd voor het API-verzoek</string>
+  <string name="query-request-noaction">Er is geen handeling opgegeven voor het API-verzoek</string>
   <string name="query-login-undefined">Een aanmeldtoken vereist een door de gebruiker opgegeven waarde. Deze wordt niet opgeslagen in het geheugen</string>
   <string name="query-protected-link">Beveiligde koppeling</string>
   <string name="queue-empty-title">Het is leeg</string>
