@@ -63,7 +63,7 @@
   <string name="agf">استرجع، تعديلات بنية حسنة، مع تخصيص السبب</string>
   <string name="successful">ناجح</string>
   <string name="summary">ملخص</string>
-  <string name="id">بروتوكول الإنترنت</string>
+  <string name="id">المعرف</string>
   <string name="type">نوع</string>
   <string name="target">الهدف</string>
   <string name="user">مستخدم</string>
@@ -217,7 +217,7 @@
   <string name="config-blocktimereg">مستخدمون مسجلون</string>
   <string name="config-summaryprompt">أدخل ملخصا</string>
   <string name="config-history">حمّل تاريخ جميع المقالات.</string>
-  <string name="config-defaultsprompt">استرجاع المبدئيات?</string>
+  <string name="config-defaultsprompt">استعادة الإعدادات الافتراضية؟</string>
   <string name="config-logbrowsetitle">موقع ملف السجل</string>
   <string name="config-shortcutconflict">المختصر \'$1\' يتعارض مع مختصر موجود لـ \'$1\'.</string>
   <string name="config-no-colon">لا يمكنك استخدام: في اسم قائمة الانتظار</string>
