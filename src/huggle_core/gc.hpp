@@ -19,7 +19,7 @@
 
 #include <QList>
 
-class QMutex;
+class HMUTEX_TYPE;
 
 #define HUGGLECONSUMER_WIKIEDIT                 0
 #define HUGGLECONSUMER_QUEUE                    1
@@ -82,7 +82,7 @@ namespace Huggle
 
             //! This lock needs to be aquired every time when you need to access this list
             //! from any thread during runtime
-            QMutex * Lock;
+            HMUTEX_TYPE* Lock;
         private:
             GC_t *gc_t;
     };

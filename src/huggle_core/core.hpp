@@ -50,7 +50,23 @@ namespace Huggle
      */
     class HUGGLE_EX_CORE Core
     {
+        /*!
+         * \brief This is a helper enum that is always statically allocated and existing that we can use to
+         *        safely determine which application state we are currently in, to avoid segfaults by accessing
+         *        objects that are already deleted or not constructed yet
+         */
+        enum CoreState
+        {
+            None,
+            Initializing,
+            Running,
+            ShuttingDown,
+            Terminated
+        };
+
         public:
+            static CoreState GetState();
+            static bool IsRunning() { return Core::GetState() == CoreState::Running || Core::GetState() == CoreState::Initializing; }
             static void HandleException(Exception *exception);
             /*!
              * \brief VersionRead - read the version from embedded git file
@@ -89,11 +105,11 @@ namespace Huggle
             //! List of extensions loaded in huggle
             QList<iExtension*> Extensions;
             QList<HuggleQueueFilter *> FilterDB;
-            //! Change this to false when you want to terminate all threads properly (you will need to wait few ms)
-            bool Running;
             //! Garbage collector
             Huggle::GC *gc;
         private:
+            static CoreState coreState;
+
             //! This is a post-processor for edits
             WikiEdit_ProcessorThread *processorThread;
             ExceptionHandler *exceptionHandler;

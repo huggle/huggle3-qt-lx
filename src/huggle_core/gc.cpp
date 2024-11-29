@@ -24,7 +24,12 @@ GC *GC::gc = nullptr;
 
 Huggle::GC::GC()
 {
+#ifdef QT6_BUILD
+    this->Lock = new QRecursiveMutex();
+#else
     this->Lock = new QMutex(QMutex::Recursive);
+#endif
+    
 #ifdef HUGGLE_USE_MT_GC
     this->gc_t = new GC_t();
     // this is a background task

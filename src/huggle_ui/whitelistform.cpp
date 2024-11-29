@@ -48,7 +48,7 @@ void WhitelistForm::OnTick()
     while (this->Whitelist.count() > 0 && i < 200)
     {
         QString xx = this->Whitelist.at(0);
-        xx = xx.replace(QRegExp("[^\\w\\s]"), "");
+        xx = xx.replace(HREGEX_TYPE("[^\\w\\s]"), "");
         this->ui->listWidget->addItem(xx);
         this->Whitelist.removeAt(0);
         i++;

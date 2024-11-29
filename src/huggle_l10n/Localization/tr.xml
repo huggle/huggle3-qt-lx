@@ -15,6 +15,8 @@
 * Grkn gll
 * HakanIST
 * Hedda
+* Ignatgg
+* Joseph
 * Kendinciz
 * Kumkumuk
 * LuCKY
@@ -847,8 +849,8 @@
   <string name="preferences-keystroke-rate-limit">Milisaniye cinsinden hızı takip ederek tekrarlanan tuş vuruşlarını önleme (N ms içinde sadece 1 aynı kısayol tetiklenebilir)</string>
   <string name="preferences-color-scheme-diff">Fark renkleri</string>
   <string name="preferences-color-scheme-diff-default">Varsayılan</string>
-  <string name="preferences-color-scheme-diff-dark-mode">Karanlık mod</string>
-  <string name="preferences-template-spam-info" fuzzy="true">Bu seçenekler, hedef kullanıcıların şablon spam olmasını engelleyen alt sistemi kontrol eder. Varsayılan olarak kullanıcılar çok eski düzenlemeler için şablon uyarısı almazlar ve aynı kullanıcı tarafından çok kısa sürede birden fazla düzenlemeyi geri almanız durumunda yalnızca tek bir şablon uyarısı alırlar.</string>
+  <string name="preferences-color-scheme-diff-dark-mode">Koyu kip</string>
+  <string name="preferences-template-spam-info">Bu seçenekler, hedef kullanıcıların şablon spam olmasını engelleyen alt sistemi kontrol eder. Varsayılan olarak kullanıcılar çok eski düzenlemeler için şablon uyarısı almazlar ve aynı kullanıcı tarafından çok kısa sürede birden fazla düzenlemeyi geri almanız durumunda yalnızca tek bir şablon uyarısı alırlar.</string>
   <string name="preferences-template-spam-title">Şablon spam önleme</string>
   <string name="fail">Başarısız</string>
   <string name="request">Talep et</string>

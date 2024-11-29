@@ -9,6 +9,7 @@
 * Gerongfenh
 * LNDDYL
 * Lakejason0
+* LittlePaw365
 * Liuxinyu970226
 * McDutchie
 * NeverBehave
@@ -80,7 +81,7 @@
   <string name="reason">原因</string>
   <string name="diffid">版本差异ID</string>
   <string name="whitelisted">$1（在$3的分数为$2）已列入白名单</string>
-  <string name="expiry-time">终止时间</string>
+  <string name="expiry-time">期限</string>
   <string name="duration">期限</string>
   <string name="enable">启用</string>
   <string name="disable">禁用</string>
@@ -492,7 +493,7 @@
   <string name="main-revert-custom-reson">请说明您为什么要回退该编辑至上一修订版本</string>
   <string name="main-log1">正在恢复$1的选定修订版本</string>
   <string name="main-tip-pagetagdelete">将该页面标记删除</string>
-  <string name="main-tip-pagedelete">删除本页</string>
+  <string name="main-tip-pagedelete">删除该页面</string>
   <string name="main-tip-userreport">举报此用户</string>
   <string name="main-tip-userblock">封禁此用户</string>
   <string name="main-revision-acceptpend">接受该版本</string>
@@ -529,9 +530,9 @@
   <string name="message-fail-token-2">请求未返回令牌</string>
   <string name="protect-request-title">请求保护$1</string>
   <string name="protect-reason">原因：</string>
-  <string name="protect-expiry">到期：</string>
+  <string name="protect-expiry">期限：</string>
   <string name="protect-log">保护日志：</string>
-  <string name="protect-currentlevel">当前保护级别：</string>
+  <string name="protect-currentlevel">当前保护等级：</string>
   <string name="protect-type">保护类型：</string>
   <string name="protect-none">无</string>
   <string name="protect-token">令牌不能检索。原因：$1</string>
@@ -667,7 +668,7 @@
   <string name="shortcut-raw">回退编辑并警告用户</string>
   <string name="shortcut-contrib">显示做出当前显示编辑的用户的贡献</string>
   <string name="shortcut-custom-msg">打开表单发送自定义消息至当前用户</string>
-  <string name="shortcut-exit">使用通常方式终止Huggle</string>
+  <string name="shortcut-exit">以通常方式终止Huggle</string>
   <string name="shortcut-next">转到下一次编辑</string>
   <string name="shortcut-suspicious">标记编辑为可疑</string>
   <string name="shortcut-back">前往之前显示的编辑</string>
@@ -763,9 +764,9 @@
   <string name="newtab-text">Huggle中的标签与其他任何浏览器一样都有相似的工作方式。所有Huggle中的标签分享相同的队列，但它们在您希望专注于特定页面，或当您希望日后检查一些编辑时有用。</string>
   <string name="notify-fail">未告知$1的创建者</string>
   <string name="notify-unknowncreator">无法找到页面创建者</string>
-  <string name="protect-done">已更改$1的保护级别</string>
-  <string name="protect-fail">未更改$1的保护级别</string>
-  <string name="protect-progress">正在更改$1的保护级别...</string>
+  <string name="protect-done">已更改$1的保护等级</string>
+  <string name="protect-fail">未更改$1的保护等级</string>
+  <string name="protect-progress">正在更改$1的保护等级...</string>
   <string name="protectlog-fail">无法获得$1的保护日志</string>
   <string name="protectlog-none">无$1的保护日志</string>
   <string name="protectlog-progress">正在获取$1的保护日志…</string>

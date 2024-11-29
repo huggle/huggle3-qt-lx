@@ -18,12 +18,12 @@ typedef long long score_ht;
 typedef char byte_ht;
 typedef long long revid_ht;
 
-#define HUGGLE_VERSION                  "3.4.12"
-#define HUGGLE_BYTE_VERSION_MAJOR       0x3
-#define HUGGLE_BYTE_VERSION_MINOR       0x4
-#define HUGGLE_BYTE_VERSION_RELEASE     0xC
+#define HUGGLE_VERSION                  "3.4.13"
+#define HUGGLE_BYTE_VERSION_MAJOR       0x03
+#define HUGGLE_BYTE_VERSION_MINOR       0x04
+#define HUGGLE_BYTE_VERSION_RELEASE     0x0D
 // format is 0xMAJOR(2)MINOR(2)RELEASE(2) so for 3.1.15 it's 0x03010F
-#define HUGGLE_BYTE_VERSION             0x03040C
+#define HUGGLE_BYTE_VERSION             0x03040D
 
 // Minimal version of mediawiki that we do support
 #define HUGGLE_SUPPORTED_MEDIAWIKI_VERSION "1.25"
@@ -103,6 +103,14 @@ namespace std { typedef decltype(nullptr) nullptr_t; }
 #define DISABLE_BREAKPAD
 
 #include <QObject>
+
+#ifdef QT6_BUILD
+    #define HMUTEX_TYPE QRecursiveMutex
+    #define HREGEX_TYPE QRegularExpression
+#else
+    #define HMUTEX_TYPE QMutex
+    #define HREGEX_TYPE QRegExp
+#endif
 
 #if QT_VERSION >= 0x050000
     #define HUGGLE_QTV5

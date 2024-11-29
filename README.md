@@ -1,7 +1,7 @@
 huggle3-qt-lx
 =============
 
-Huggle 3 is an anti-vandalism tool for use on [Wikipedia](https://wikipedia.org) and other [MediaWiki](https://mediawiki.org) sites, written in C++ (QT framework). It is officially supported for Windows (2000 or newer), MacOS and Linux (debian/ubuntu).
+Huggle 3 is an anti-vandalism tool for use on [Wikipedia](https://wikipedia.org) and other [MediaWiki](https://mediawiki.org) sites, written in C++ (QT framework). It is officially supported for Windows (10 or newer), MacOS and Linux (debian/ubuntu).
 
 [![Build Status](https://api.travis-ci.org/huggle/huggle3-qt-lx.png?branch=master)](https://travis-ci.org/huggle/huggle3-qt-lx/)
 [![Build status](https://ci.appveyor.com/api/projects/status/huy2phxnc95m77sl?svg=true)](https://ci.appveyor.com/project/benapetr/huggle3-qt-lx)
@@ -22,7 +22,7 @@ Libraries and tools you need to have to build:
 
 * C++11 compiler
 * [CMake](https://github.com/Kitware/CMake) 2.8.9 or higher is required
-* QT5 sdk (recommended 5.7 or newer, with WebEngine and QJSEngine)
+* QT5 or QT6 sdk
 
 [NEW] It is now possible to use a VirtualBox VM as a portable development environment for Huggle. [» Wiki page](https://github.com/huggle/huggle3-qt-lx/wiki/Portable-development-environment)
 

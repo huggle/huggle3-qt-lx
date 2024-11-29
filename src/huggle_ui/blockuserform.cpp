@@ -8,10 +8,11 @@
 //MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //GNU General Public License for more details.
 
-#include "blockuserform.hpp"
 #include <QLineEdit>
 #include <QTimer>
 #include <QUrl>
+#include "ui_blockuserform.h"
+#include "blockuserform.hpp"
 #include <huggle_core/apiquery.hpp>
 #include <huggle_core/apiqueryresult.hpp>
 #include <huggle_core/exception.hpp>
@@ -24,7 +25,6 @@
 #include <huggle_core/localization.hpp>
 #include <huggle_core/syslog.hpp>
 #include <huggle_core/configuration.hpp>
-#include "ui_blockuserform.h"
 #include "mainwindow.hpp"
 #include "history.hpp"
 #include "uigeneric.hpp"

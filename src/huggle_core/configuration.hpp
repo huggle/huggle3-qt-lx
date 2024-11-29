@@ -210,6 +210,7 @@ namespace Huggle
             static QString GetProjectWikiURL();
             //! Return a script url like http://en.wikipedia.org/w/
             static QString GetProjectScriptURL();
+            static QString GetLoginName();
             //! Helper function that will return URL of project in question
             /*!
              * \param Project Site

@@ -18,6 +18,8 @@ if [ ${version_array[0]} -eq 5 ]; then
     if [ ${version_array[1]} -ge 4 ]; then
         EXTRA_FLAGS="${EXTRA_FLAGS} --web-engine"
     fi
+elif [ ${version_array[0]} -eq 6 ]; then
+    EXTRA_FLAGS="${EXTRA_FLAGS} --web-engine --qt6"
 else
     echo "Unsupported Qt version ${QTVERSION}, must be 5.x"
     exit 1

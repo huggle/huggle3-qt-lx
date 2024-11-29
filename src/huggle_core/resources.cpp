@@ -16,8 +16,14 @@
 #include "localization.hpp"
 #ifndef HUGGLE_NOAUDIO
     #include <QMediaPlayer>
+    #ifdef QT6_BUILD
+        #include <QAudioOutput>
+        QAudioOutput* Huggle::Resources::audioOutput = nullptr;
+    #endif
     QMediaPlayer* Huggle::Resources::mediaPlayer = nullptr;
 #endif
+#include <random>
+#include <chrono>
 
 QString Huggle::Resources::DiffFooter;
 QString Huggle::Resources::DiffHeader;
@@ -98,6 +104,10 @@ void Huggle::Resources::Init()
     CssRtl = GetResource("/huggle/resources/Resources/html/RTL.css");
 #ifndef HUGGLE_NOAUDIO
     mediaPlayer = new QMediaPlayer();
+    #ifdef QT6_BUILD
+        audioOutput = new QAudioOutput();
+        mediaPlayer->setAudioOutput(audioOutput);
+    #endif
 #endif
 }
 
@@ -106,24 +116,40 @@ void Huggle::Resources::Uninit()
 #ifndef HUGGLE_NOAUDIO
     mediaPlayer->deleteLater();
     mediaPlayer = nullptr;
+    #ifdef QT6_BUILD
+        audioOutput->deleteLater();
+        audioOutput = nullptr;
+    #endif
 #endif
 }
 
 void Huggle::Resources::PlayExternalSoundFile(QString path)
 {
 #ifndef HUGGLE_NOAUDIO
-    mediaPlayer->setMedia(QUrl::fromLocalFile(path));
-    mediaPlayer->setVolume(100);
-    mediaPlayer->play();
+    #ifdef QT6_BUILD
+        mediaPlayer->setSource(QUrl::fromLocalFile(path));
+        audioOutput->setVolume(100);
+        mediaPlayer->play();
+    #else
+        mediaPlayer->setMedia(QUrl::fromLocalFile(path));
+        mediaPlayer->setVolume(100);
+        mediaPlayer->play();
+    #endif
 #endif
 }
 
 void Huggle::Resources::PlayEmbeddedSoundFile(QString file)
 {
 #ifndef HUGGLE_NOAUDIO
-    mediaPlayer->setMedia(QUrl("qrc:/huggle/sounds/" + file));
-    mediaPlayer->setVolume(100);
-    mediaPlayer->play();
+    #ifdef QT6_BUILD
+        mediaPlayer->setSource(QUrl("qrc:/huggle/sounds/" + file));
+        audioOutput->setVolume(100);
+        mediaPlayer->play();
+    #else
+        mediaPlayer->setMedia(QUrl("qrc:/huggle/sounds/" + file));
+        mediaPlayer->setVolume(100);
+        mediaPlayer->play();
+    #endif
 #endif
 }
 
@@ -171,12 +197,7 @@ QString Huggle::Resources::GetEmptyQueueHTML()
 
 int Huggle::Resources::GetRandom(int low, int high)
 {
-    static bool init = false;
-    if (!init)
-    {
-        init = true;
-        QTime time = QTime::currentTime();
-        qsrand((uint)time.msec());
-    }
-    return qrand() % ((high + 1) - low) + low;
+    static std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
+    std::uniform_int_distribution<int> dist(low, high);
+    return dist(rng);
 }

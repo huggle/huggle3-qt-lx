@@ -18,7 +18,11 @@
 #include "blockuserform.hpp"
 #include "ui_reportuser.h"
 #include <QHBoxLayout>
+#ifdef QT6_BUILD
+#include <QRegularExpression>
+#else
 #include <QRegExp>
+#endif
 #include <QSplitter>
 #include <QMessageBox>
 #include <QModelIndex>
@@ -594,9 +598,14 @@ void Huggle::ReportUser::on_pushButton_6_clicked()
 bool ReportUser::checkUserIsReported()
 {
     QString regex = this->reportedUser->GetSite()->GetProjectConfig()->ReportUserCheckPattern;
-    regex.replace("$username", QRegExp::escape(this->reportedUser->Username));
-    QRegExp pattern(regex);
+    regex.replace("$username", HREGEX_TYPE::escape(this->reportedUser->Username));
+    HREGEX_TYPE pattern(regex);
+#ifdef QT6_BUILD
+    QRegularExpressionMatch match = pattern.match(this->reportContent);
+    return match.hasMatch() && (match.captured(0) == this->reportContent);
+#else
     return pattern.exactMatch(this->reportContent);
+#endif
 }
 
 void ReportUser::insertUser()

@@ -350,7 +350,11 @@ void HuggleFeedProviderXml::processBufs()
             edit->SetSize(size);
         }
         edit->OldID = element.attribute("oldid").toInt();
+#ifdef QT6_BUILD
+        ts.setSecsSinceEpoch(element.attribute("timestamp").toUInt());
+#else
         ts.setTime_t(element.attribute("timestamp").toUInt());
+#endif
         this->insertEdit(edit);
         continue;
 

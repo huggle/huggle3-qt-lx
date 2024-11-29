@@ -19,6 +19,9 @@
 #include <QStringList>
 #include <QHash>
 #include <QString>
+#ifdef QT6_BUILD
+#include <QRegularExpression>
+#endif
 
 // Private key names
 // these need to be stored in separate variables so that we can
@@ -110,8 +113,14 @@ namespace Huggle
             bool ReadOnly = false;
             bool IsSane = false;
             bool Approval = false;
+
+            //! Whether each user should be added to ApprovalPage on login, this is an ancient feature that exists since
+            //! first version of Huggle and was probably historically mandatory on English Wikipedia.
+            //! This option can be disabled in project configuration page (option userlistsync)
             bool UserlistSync = false;
+            //! Edit summary used when updating the Approval Page, this option exists mostly for localization purposes
             QString UserlistUpdateSummary = "Adding [[Special:Contributions/$1|$1]]";
+            //! Name of page where users are stored in case UserlistSync is required
             QString ApprovalPage = "Project:Huggle/Users";
             QString ProjectName;
             WikiSite    *Site = nullptr;
@@ -282,7 +291,11 @@ namespace Huggle
             //! Where the welcome message is stored
             QString                 WelcomeMP = "Project:Huggle/Message";
             // This is internal only do not prefix it!!
+#ifdef QT6_BUILD
+            QList<QRegularExpression> _revertPatterns;
+#else
             QList<QRegExp>          _revertPatterns;
+#endif
             score_ht                BotScore = -200;
             score_ht                WarningScore = 2000;
             QStringList             WarningTypes;

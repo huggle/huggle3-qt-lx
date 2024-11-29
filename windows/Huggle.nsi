@@ -9,7 +9,7 @@
 !define APP_NAME "Huggle"
 !define COMP_NAME "Wikimedia Project"
 !define WEB_SITE "http://en.wikipedia.org/wiki/Wikipedia:Huggle"
-!define VERSION "3.4.12.0"
+!define VERSION "3.4.13.0"
 !define COPYRIGHT "GPL"
 !define DESCRIPTION "Application"
 !define LICENSE_TXT "gpl.txt"
@@ -118,9 +118,7 @@ Section -MainProgram
 ${INSTALL_TYPE}
 SetOverwrite ifnewer
 SetOutPath "$INSTDIR"
-File "vcredist_x86_2013.exe"
 File "vcredist_x86.exe"
-ExecWait '"$INSTDIR\vcredist_x86_2013.exe" /passive /norestart'
 ExecWait '"$INSTDIR\vcredist_x86.exe" /passive /norestart'
 RmDir /r "$INSTDIR\extensions"
 File /r "release\*.*"

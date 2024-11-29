@@ -15,6 +15,11 @@
 #include "exception.hpp"
 #include "hooks.hpp"
 #include "localization.hpp"
+#ifdef QT6_BUILD
+#include <QRegularExpression>
+#else
+#include <QRegExp>
+#endif
 
 using namespace Huggle;
 
@@ -209,4 +214,16 @@ bool Generic::SecondsToTimeSpan(int time, int *days, int *hours, int *minutes, i
     remaining_time -= *minutes * 60;
     *seconds = remaining_time;
     return true;
+}
+
+bool Generic::RegexExactMatch(const QString& regex, const QString& input_text)
+{
+#ifdef QT6_BUILD
+    QRegularExpression re(regex);
+    QRegularExpressionMatch match = re.match(input_text);
+    return match.hasMatch() && (match.captured(0) == input_text);
+#else
+    QRegExp re(regex);
+    return re.exactMatch(input_text);
+#endif
 }

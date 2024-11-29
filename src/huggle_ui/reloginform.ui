@@ -27,7 +27,7 @@
    <item>
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>It looks that you were logged out of MediaWiki for whatever reason. Because huggle doesn't store your password, it is necessary to provide it again so that it can try to relog you. Please enter your password in the box bellow:</string>
+      <string>It looks like you were logged out of MediaWiki for unknown reason. You can either try to login again, or you can terminate the program without saving your on-wiki configuration. Please enter your password to login again:</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
@@ -61,14 +61,14 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="pushButton_ForceExit">
        <property name="text">
         <string>Exit huggle without saving your configs</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="pushButton_Relog">
        <property name="text">
         <string>Relog</string>
        </property>

@@ -36,7 +36,9 @@ Configuration::Configuration()
     //! This is a consumer key for "huggle" on wmf wikis
     this->WmfOAuthConsumerKey = "56a6d6de895e3b859faa57b677f6cd21";
     this->HuggleVersion = HUGGLE_VERSION;
-#if QT_VERSION >= 0x050000
+#if QT_VERSION >= 0x060000
+    this->HomePath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+#elif QT_VERSION >= 0x050000
     this->HomePath = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
 #else
     this->HomePath = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
@@ -576,6 +578,14 @@ QString Configuration::GetProjectWikiURL()
 QString Configuration::GetProjectScriptURL()
 {
     return Configuration::GetProjectURL(hcfg->Project) + Configuration::HuggleConfiguration->Project->ScriptPath;
+}
+
+QString Configuration::GetLoginName()
+{
+    if (hcfg->SystemConfig_BotPassword)
+        return hcfg->SystemConfig_BotLogin;
+    else
+        return hcfg->SystemConfig_UserName;
 }
 
 void Configuration::InsertConfig(const QString &key, const QString &value, QXmlStreamWriter *s)

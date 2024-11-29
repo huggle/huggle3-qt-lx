@@ -38,6 +38,8 @@ CMAKE_ARGS=''
 _BUILD=0
 _Q=0
 QTPATH=''
+WEBENG=0
+QTVERSION=5
 USEDEBUG=0
 HAS_PREFIX=0
 PREFIX=""
@@ -55,6 +57,7 @@ do
         echo " --debug: build a debuggable huggle"
         echo " --disable-dependency-tracking: skip all package checks"
         echo " --extension: will build all extensions as well"
+        echo " --qt6: use qt6 instead of qt5"
         echo " --qtpath: path to Qt (for example C:\\Qt\\5.4\\mingw\\"
         echo " --folder <folder>: change the default build folder"
         echo " --no-audio: don't build huggle with audio engine"
@@ -115,6 +118,7 @@ do
         exit 0
     fi
     if [ "$var" = "--web-engine" ];then
+        WEBENG=1
         CMAKE_ARGS="$CMAKE_ARGS -DWEB_ENGINE=true"
         continue
     fi
@@ -132,6 +136,12 @@ do
     fi
     if [ "$var" = "--tests" ];then
         CMAKE_ARGS="$CMAKE_ARGS -DHUGGLE_TEST=true"
+        continue
+    fi
+    if [ "$var" = "--qt6" ];then
+        QTVERSION=6
+        WEBENG=1
+        CMAKE_ARGS="$CMAKE_ARGS -DQT6_BUILD=true -DWEB_ENGINE=true"
         continue
     fi
 done

@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
             Huggle::Exception::ExitBreakpad();
             return ReturnCode;
         }
-#if QT_VERSION >= 0x050600
+#if QT_VERSION >= 0x050600 && !defined(QT6_BUILD)
         // This should make fonts look normal on high DPI screens
         QApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
         a.setStyleSheet("QMessageBox { messagebox-text-interaction-flags: 5; }");
         QApplication::setApplicationName("Huggle");
         QApplication::setOrganizationName("Wikimedia");
-#if QT_VERSION >= 0x050100
+#if QT_VERSION >= 0x050100 && !defined(QT6_BUILD)
         // enable HiDPI support (available since Qt 5.1, but off by default)
         a.setAttribute(Qt::AA_UseHighDpiPixmaps);
 #endif
@@ -122,7 +122,7 @@ int main(int argc, char *argv[])
 
         // Event loop
         ReturnCode = a.exec();
-        if (Huggle::Core::HuggleCore && Huggle::Core::HuggleCore->Running)
+        if (Huggle::Core::IsRunning())
             Huggle::Core::HuggleCore->Shutdown();
         delete Huggle::Core::HuggleCore;
         Huggle::Exception::ExitBreakpad();

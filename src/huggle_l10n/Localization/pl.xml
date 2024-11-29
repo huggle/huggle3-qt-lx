@@ -6,6 +6,7 @@
 * Darellur
 * Devwebtel
 * Expert3222
+* Frozengeist
 * Lazowik
 * Macofe
 * Mateon1
@@ -209,6 +210,7 @@
   <string name="config-no-colon">Nie możesz użyć : w nazwie kolejki</string>
   <string name="config-notify-update">Sprawdź aktualizacje</string>
   <string name="config-notify-beta">Sprawdzaj dostępność wersji beta</string>
+  <string name="custommessage-send">Wyślij wiadomość</string>
   <string name="delete-title">Usuń $1</string>
   <string name="delete-reason">Powód:</string>
   <string name="delete-deletionlog">Rejestr usunięć:</string>
@@ -223,6 +225,8 @@
   <string name="delete-failed-no-info">Brak informacji o stronie w zapytaniu (jesteś administratorem?)</string>
   <string name="extension-kl">Nie działa</string>
   <string name="extension-ok">Załadowany i działa</string>
+  <string name="exception-reason">Powód: $1</string>
+  <string name="exception-source">Źródło: $1</string>
   <string name="historyform-no-info">Brak informacji o edycji</string>
   <string name="historyform-title">Historia</string>
   <string name="historyform-retrieve-history">Zobacz historię</string>

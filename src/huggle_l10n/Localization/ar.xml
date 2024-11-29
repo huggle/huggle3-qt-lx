@@ -3,7 +3,6 @@
 * AA800
 * Ajeje Brazorf
 * Alshamiri1
-* Amire80
 * Asma
 * Bibas
 * Dr-Taher
@@ -16,6 +15,7 @@
 * McDutchie
 * Meno25
 * Mido
+* Mohammed Qays
 * Moud hosny
 * NEHAOUA
 * Omarbofoss
@@ -23,6 +23,7 @@
 * أيوب
 * أَحمد
 * بدارين
+* جودت
 * ديفيد
 * شادي
 * عباد ديرانية
@@ -62,10 +63,10 @@
   <string name="agf">استرجع، تعديلات بنية حسنة، مع تخصيص السبب</string>
   <string name="successful">ناجح</string>
   <string name="summary">ملخص</string>
-  <string name="id">بروتوكول الإنترنت</string>
+  <string name="id">المعرف</string>
   <string name="type">نوع</string>
   <string name="target">الهدف</string>
-  <string name="user">المستخدم</string>
+  <string name="user">مستخدم</string>
   <string name="size">الحجم</string>
   <string name="date">التاريخ</string>
   <string name="page">الصفحة</string>
@@ -216,7 +217,7 @@
   <string name="config-blocktimereg">مستخدمون مسجلون</string>
   <string name="config-summaryprompt">أدخل ملخصا</string>
   <string name="config-history">حمّل تاريخ جميع المقالات.</string>
-  <string name="config-defaultsprompt">استرجاع المبدئيات?</string>
+  <string name="config-defaultsprompt">استعادة الإعدادات الافتراضية؟</string>
   <string name="config-logbrowsetitle">موقع ملف السجل</string>
   <string name="config-shortcutconflict">المختصر \'$1\' يتعارض مع مختصر موجود لـ \'$1\'.</string>
   <string name="config-no-colon">لا يمكنك استخدام: في اسم قائمة الانتظار</string>
@@ -322,7 +323,7 @@
   <string name="login-ssl">استخدم HTTPS لتسجيل الدخول (يتطلب OpenSSL)</string>
   <string name="login-fail">فشل تسجيل الدخول على $1</string>
   <string name="login-fail-with-reason">فشل تسجيل الدخول (في $1): $2</string>
-  <string name="login-error-admin">استخدام Huggle في هذا المشروع يحتاج حسابا إداريا.</string>
+  <string name="login-error-admin">استخدام هَجِل (Huggle) في هذا المشروع يحتاج حساباً إدارياً.</string>
   <string name="login-error-age">استخدام هغل في هذا المشروع يحتاج حسابا عمره $1 يوما على الأقل.</string>
   <string name="login-error-alldisabled">تم تعطيل هغل حاليا في كل المشاريع.</string>
   <string name="login-error-approval">استخدام هغل في $1 يحتاج موافقة.</string>
@@ -593,7 +594,7 @@
   <string name="report-progress">قيد إخطار إداريّ عن \'$1\'...</string>
   <string name="report-retrieving">استرجاع صفحة التقرير الحالية...</string>
   <string name="report-done">تم الإبلاغ</string>
-  <string name="report-user">الإبلاغ</string>
+  <string name="report-user">إبلاغ</string>
   <string name="score-score">النتيجة</string>
   <string name="score-word">كلمة</string>
   <string name="score-range">النطاق</string>

@@ -60,7 +60,7 @@
   <string name="disable">Išjungti</string>
   <string name="no-token">Nėra žetono</string>
   <string name="flags">Vėliavos</string>
-  <string name="gracetime" fuzzy="true">Laukiama redagavimo užklausų pabaigos...</string>
+  <string name="gracetime">Laukiama redagavimo užklausų pabaigos...</string>
   <string name="browser-none">Dar nėra puslapio, kurį būtų galima rodyti.</string>
   <string name="browser-miss-summ">Santrauka nebuvo pateikta</string>
   <string name="browser-diff">Puslapio skirtumas: $1 (balas: $2)</string>

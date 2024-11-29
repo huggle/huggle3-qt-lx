@@ -12,6 +12,7 @@
 #include <QtXml>
 #include <QFile>
 #include <QPluginLoader>
+#include <QNetworkCookieJar>
 #include <huggle_l10n/huggle_l10n.hpp>
 #include "configuration.hpp"
 #include "exception.hpp"
@@ -39,6 +40,7 @@
 using namespace Huggle;
 
 // definitions
+Core::CoreState Core::coreState = Core::CoreState::Initializing;
 Core    *Core::HuggleCore = nullptr;
 
 void Core::Init()
@@ -67,11 +69,14 @@ void Core::Init()
     this->gc = new Huggle::GC();
     GC::gc = this->gc;
     Query::NetworkManager = new QNetworkAccessManager();
+    Query::NetworkManager->setCookieJar(new QNetworkCookieJar(Query::NetworkManager));
     QueryPool::HugglePool = new QueryPool();
     this->HGQP = QueryPool::HugglePool;
     this->HuggleSyslog = Syslog::HuggleLogs;
     Core::VersionRead();
-#if QT_VERSION >= 0x050000
+#if QT_VERSION >= 0x060000
+    // No equivalent required in Qt6 as UTF-8 is used by default
+#elif QT_VERSION >= 0x050000
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
 #else
     QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
@@ -115,6 +120,7 @@ void Core::Init()
         Syslog::HuggleLogs->Log("Not loading plugins in a safe mode");
     }
     Syslog::HuggleLogs->Log("Loaded in " + QString::number(this->StartupTime.msecsTo(QDateTime::currentDateTime())) + "ms");
+    Core::coreState = CoreState::Running;
     HUGGLE_PROFILER_PRINT_TIME("Core::Init()@finalize");
 }
 
@@ -123,12 +129,13 @@ Core::Core()
     this->processorThread = nullptr;
     this->HuggleSyslog = nullptr;
     this->StartupTime = QDateTime::currentDateTime();
-    this->Running = true;
+    Core::coreState = CoreState::Initializing;
     this->gc = nullptr;
 }
 
 Core::~Core()
 {
+    Core::coreState = CoreState::Terminated;
     delete this->gc;
     delete this->processorThread;
     delete this->exceptionHandler;
@@ -316,8 +323,11 @@ void Core::VersionRead()
 
 void Core::Shutdown()
 {
+    if (Core::coreState != CoreState::Running)
+        return;
+
     // Now we can shutdown whole huggle
-    this->Running = false;
+    Core::coreState = CoreState::ShuttingDown;
     // We need to disable all extensions first
     Hooks::Shutdown();
     foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
@@ -447,7 +457,11 @@ qint64 Core::GetUptimeInSeconds()
     return this->StartupTime.secsTo(QDateTime::currentDateTime());
 }
 
-// Exception handling
+Core::CoreState Core::GetState()
+{
+    return Core::coreState;
+}
+
 void Core::HandleException(Exception *exception)
 {
     Core::HuggleCore->exceptionHandler->HandleException(exception);

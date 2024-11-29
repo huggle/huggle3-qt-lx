@@ -296,4 +296,5 @@
   <string name="editquery-error-append">Kamu tidak boleh menggunakan kedua-dua Tambahan akhir dan awal untuk menyunting halaman</string>
   <string name="cr-message-same" fuzzy="true">Terdapat suntingan baru pada $1 yang dibuat oleh pengguna lain. Adakah anda pasti hendak membalikkan semuanya?</string>
   <string name="cr-message-not-same" fuzzy="true">Terdapat suntingan baru pada $1 yang dibuat oleh pengguna lain. Adakah anda pasti hendak membalikkan semuanya? (Barangkalinya tidak akan menjadi kerana tokennya lama.)</string>
+  <string name="main-revert-type-made-by-you">dilakukan oleh anda</string>
 </resources>

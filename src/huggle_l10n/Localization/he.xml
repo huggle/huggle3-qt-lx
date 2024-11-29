@@ -241,7 +241,7 @@
   <string name="historyform-retrieve-history">אחזור היסטוריה</string>
   <string name="historyform-retrieving-history">מאחזר היסטוריה</string>
   <string name="historyform-not-latest-tip">זוהי לא הגרסה האחונה של הדף הזה. נא לוודא שסקרת גם את הגרסאות החדשות יותר. נא לשים לב גם לכך ששחזור אולי לא יהיה אפשרי מהנקודה הזאת והלאה.</string>
-  <string name="history-error-message-title">אין אפשרות לבטל</string>
+  <string name="history-error-message-title">לא ניתן לבטל</string>
   <string name="history-error">לא ניתן לבטל פריט זה. ייתכן שהדף השתנה או נמחק בינתיים, ולהאגל אין אפשרות לבצע ביטול מנקודה זו. אם ברצונך באמת לבטל זאת, יהיה עליך לעשות את זה ידנית באמצעות ממשק מדיה־ויקי.</string>
   <string name="history-failure">לא ניתן לאחזר היסטוריה</string>
   <string name="userhistory-title">היסטוריה של השינויים שלך</string>
@@ -284,7 +284,7 @@
   <string name="login-failed-autoconfirm-rights">הכניסה נכשלה ב־$1: אינך משתמש ותיק במיזם הזה.</string>
   <string name="login-failed-edit">כניסה נכשלה ב־$1: אין לך מספיק עריכות במיזם הזה.</string>
   <string name="login-retrieving-info">אחזור מידע על המשתמש ב־$1</string>
-  <string name="login-password-empty">הסיסמה שהזנת הייתה ריקה</string>
+  <string name="login-password-empty">הסיסמה שהכנסת הייתה ריקה</string>
   <string name="login-fail-wrong-name">לא סיפקת שם משתמש כדי להיכנס</string>
   <string name="login-api">שגיאה: api.php הגיב עם תוצאה לא מוכרת: $1</string>
   <string name="login-abort">ביטול</string>
@@ -334,7 +334,7 @@
   <string name="no-projects-defined-in-list">לא הוגדרו מיזמים ברשימה, עליך להגדיר כמה כאלו בוויקי גלובלי</string>
   <string name="api-query-no-data">רשומת ה-api לא החזירה אף נתון</string>
   <string name="main-stat">$1 עריכות לדקה, $2 שחזורים לדקה, רמה $3</string>
-  <string name="main-menu-provider-stop">לעצור את הספק</string>
+  <string name="main-menu-provider-stop">עצירת הספק</string>
   <string name="main-menu-provider-resume">להתחיל ספק מחדש</string>
   <string name="main-help-copy-syslog-to-clip">העתקת יומן המערכת ללוח</string>
   <string name="provider-up">התחברות לזרם שינויים אחרונים ב־$2 באמצעות הספק: $1</string>
@@ -357,7 +357,7 @@
   <string name="main-system-options">אפשרויות...</string>
   <string name="main-system-logout">יציאה</string>
   <string name="main-system-abort">יציאה</string>
-  <string name="main-system-change-provider">שינוי ספק</string>
+  <string name="main-system-change-provider">לשנות את הספק</string>
   <string name="main-system-change-provider-irc">IRC</string>
   <string name="main-system-change-provider-wiki">ויקי</string>
   <string name="main-system-exit">יציאה</string>
@@ -412,13 +412,13 @@
   <string name="main-page-purge">ניקוי מטמון</string>
   <string name="main-page-curr-disp">מוצג כעת</string>
   <string name="main-page-display">להציג את הדף הזה</string>
-  <string name="main-page-patrol">סימון השינוי כבדוק</string>
+  <string name="main-page-patrol">לסמן את השינוי בתור בדוק</string>
   <string name="main-page-move">העברה...</string>
   <string name="main-page-flag-suspicious-edit">לסמן כעריכה חשודה (הפעולה הזאת תיתן למשתמש ציון ‎+1)</string>
   <string name="main-page-flag-good-edit">סימון בתור עריכה טובה (הפעולה הזאת גורעת מציון המשתמש 200 נקודות)</string>
   <string name="main-page-protect">הגנה</string>
   <string name="main-page-delete">מחיקה</string>
-  <string name="main-page-load">טעינה</string>
+  <string name="main-page-load">לטעון</string>
   <string name="main-patrol-not-enabled">ניטור לא מופעל ב$1</string>
   <string name="main-page-refresh">רענון</string>
   <string name="main-page-restore">שחזור הגרסה הזאת</string>
@@ -458,7 +458,7 @@
   <string name="main-help">עזרה</string>
   <string name="main-han-display-bot-data">להציג נתוני בוט</string>
   <string name="main-han-display-user-messages">להציג הודעות למשתמש</string>
-  <string name="main-han-display-user-data">להציג נתוני משתמש</string>
+  <string name="main-han-display-user-data">הצגת נתוני משתמש</string>
   <string name="main-help-documentation">תיעוד</string>
   <string name="main-help-feedback">משוב</string>
   <string name="main-help-about">אודות האגל...</string>
@@ -633,7 +633,7 @@
   <string name="update-progress">מוריד את הגרסה החדשה, נא להמתין...</string>
   <string name="update-error">הורדת הגרסה החדשה נכשלה</string>
   <string name="updater-title">זמינה גרסה חדשה של האגל</string>
-  <string name="updater-update">עדכון</string>
+  <string name="updater-update">לעדכן</string>
   <string name="updater-update-available">זמינה גרסה חדשה יותר של האגל: גרסה $1</string>
   <string name="updater-open-manualdownloadpage">פתיחת דף ההורדה</string>
   <string name="updater-close">סגירה</string>
