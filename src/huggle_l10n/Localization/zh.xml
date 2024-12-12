@@ -22,6 +22,7 @@
 * XinuGod
 * Yfdyh000
 * Zfshuo
+* ZhaoFJx
 * Zhaofeng Li
 * 予弦
 * 列维劳德
@@ -63,7 +64,7 @@
   <string name="editing-page">正在编辑页面</string>
   <string name="agf">以自定义理由进行基于假定善意的回退</string>
   <string name="successful">成功</string>
-  <string name="summary">自定义编辑摘要</string>
+  <string name="summary">摘要</string>
   <string name="id">ID</string>
   <string name="type">类型</string>
   <string name="target">目标</string>
