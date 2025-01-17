@@ -22,6 +22,7 @@
 #include "wikisite.hpp"
 #include "wikiutil.hpp"
 #include "wikiuser.hpp"
+#include <QRegularExpression>
 #include <QUrl>
 
 using namespace Huggle;
@@ -205,7 +206,7 @@ void Message::processNextStep()
                 this->Error = MessageError_ArticleExist;
             } else
             {
-                this->Fail(_l("error-unknown-code",ec));
+                this->Fail(_l("error-unknown-code", ec));
                 this->Error = MessageError_Unknown;
             }
             return;
@@ -319,8 +320,7 @@ void Message::processSend()
         if (this->SectionKeep)
         {
             this->Text = this->appendText(this->Text, this->originalUnmodifiedPageText, this->Title);
-        } else
-        {
+        } else {
             // original page needs to be included in new value
             if (!this->originalUnmodifiedPageText.isEmpty())
                 this->Text = this->originalUnmodifiedPageText + "\n\n" + this->Text;
@@ -328,8 +328,7 @@ void Message::processSend()
         this->query->Parameters = "title=" + QUrl::toPercentEncoding(User->GetTalk()) + "&summary=" + QUrl::toPercentEncoding(summary)
                 + "&text=" + QUrl::toPercentEncoding(this->Text) + parameters
                 + "&token=" + QUrl::toPercentEncoding(this->User->GetSite()->GetProjectConfig()->Token_Csrf);
-    }else
-    {
+    } else {
         this->query->Parameters = "title=" + QUrl::toPercentEncoding(User->GetTalk()) + "&section=new&sectiontitle="
                 + QUrl::toPercentEncoding(this->Title) + "&summary=" + QUrl::toPercentEncoding(summary)
                 + "&text=" + QUrl::toPercentEncoding(this->Text) + parameters + "&token="
@@ -357,8 +356,7 @@ void Message::processTalkPageRetrieval()
         this->originalUnmodifiedPageText = page->Value;
         this->previousTalkPageRetrieved = true;
         return;
-    } else
-    {
+    } else {
         if (!missing)
         {
             Huggle::Syslog::HuggleLogs->DebugLog(this->query->Result->Data);
@@ -375,12 +373,10 @@ QString Message::appendText(QString text, QString original_text, QString section
         // there is nothing to insert this to
         return original_text += "\n\n" + text + "\n\n";
     }
-#ifdef QT6_BUILD
+
     QRegularExpression regex("\\s*==\\s*" + QRegularExpression::escape(section_name) + "\\s*==");
-#else
-    QRegExp regex("\\s*==\\s*" + QRegExp::escape(section_name) + "\\s*==");
-#endif
-    if (!original_text.contains(regex))
+    QRegularExpressionMatch regex_match;
+    if (!original_text.contains(regex, &regex_match))
     {
         // there is no section to append to
         if (!original_text.isEmpty())
@@ -390,32 +386,20 @@ QString Message::appendText(QString text, QString original_text, QString section
         original_text += "== " + section_name + " ==\n\n" + text;
         return original_text;
     }
-#ifdef QT6_BUILD
-    QRegularExpression header("\\s*==.*==\\s*");
-#else
-    QRegExp header("\\s*==.*==\\s*");
-#endif
-    int start_of_desired_section = original_text.lastIndexOf(regex);
+
     // we need to check if there is any other section after this one
+    int start_of_desired_section = original_text.lastIndexOf(regex) + regex_match.capturedView().length();
     QString section = original_text.mid(start_of_desired_section);
-    if (section.contains("\n"))
-    {
-        // cut the header text
-        int Diff = section.indexOf("\n") + 1;
-        start_of_desired_section += Diff;
-        section = section.mid(Diff);
-    }
+    QRegularExpression next_header("\\s*==.*==\\s*");
     int start_point = start_of_desired_section;
-    if (section.contains(header))
+    if (section.contains(next_header))
     {
         // yes there is some other section, so we need to know where it is, so that we know where current
         // section ends (we want to append text to bottom of current section)
-        start_point += section.indexOf(header);
-    } else
-    {
+        start_point += section.indexOf(next_header);
+    } else {
         start_point += section.length();
     }
     // write the text exactly after the start point, but leave some space after it
-    original_text = original_text.insert(start_point, "\n\n" + text + "\n");
-    return original_text;
+    return original_text.insert(start_point, "\n\n" + text + "\n");
 }
