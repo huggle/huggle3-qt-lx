@@ -599,11 +599,12 @@ bool ReportUser::checkUserIsReported()
 {
     QString regex = this->reportedUser->GetSite()->GetProjectConfig()->ReportUserCheckPattern;
     regex.replace("$username", HREGEX_TYPE::escape(this->reportedUser->Username));
-    HREGEX_TYPE pattern(regex);
 #ifdef QT6_BUILD
+    HREGEX_TYPE pattern(regex, QRegularExpression::DotMatchesEverythingOption);
     QRegularExpressionMatch match = pattern.match(this->reportContent);
     return match.hasMatch() && (match.captured(0) == this->reportContent);
 #else
+    HREGEX_TYPE pattern(regex);
     return pattern.exactMatch(this->reportContent);
 #endif
 }
