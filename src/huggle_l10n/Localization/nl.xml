@@ -295,7 +295,7 @@
   <string name="login-start">Aanmelden</string>
   <string name="login-oauth-notsupported">Deze methode wordt op het moment niet ondersteund</string>
   <string name="login-translate">Huggle vertalen</string>
-  <string name="login-progress-formtitle">Laden...</string>
+  <string name="login-progress-formtitle">Bezig met laden…</string>
   <string name="login-progress-start">Aanmelden op $1</string>
   <string name="login-progress-retrieve-mw">Opvragen van informatie over MediaWiki van $1</string>
   <string name="login-progress-language">Berichtenbestanden bijwerken...</string>
