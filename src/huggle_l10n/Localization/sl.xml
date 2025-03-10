@@ -208,6 +208,9 @@
   <string name="blocklog-progress">Pridobivanje dnevnika blokiranja za $1 ...</string>
   <string name="delete-done">$1 izbrisano</string>
   <string name="delete-user">Ta stran je v uporabniškem prostoru. Jo res želite izbrisati?</string>
+  <string name="deletelog-fail">Pridobivanje dnevniških zapisov o izbrisu za $1 ni uspelo</string>
+  <string name="deletelog-none">Za $1 ni dnevniških zapisov o izbrisu</string>
+  <string name="deletelog-progress">Pridobivanje dnevniških zapisov o izbrisu za $1 ...</string>
   <string name="edit-progress">Urejanje $1 ...</string>
   <string name="history-no-item-selected">V zgodovini gradnika ni izbran noben predmet</string>
   <string name="notify-unknowncreator">Ustvaritelja strani ni mogoče najti</string>
