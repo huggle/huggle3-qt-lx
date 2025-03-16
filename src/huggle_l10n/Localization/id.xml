@@ -4,6 +4,7 @@
 * Andikbuyung
 * Arief
 * Arifin.wijaya
+* Boesenbergia
 * FBN122645
 * Hidayatsrf
 * Irus
@@ -258,7 +259,7 @@
   <string name="login-abort">Batalkan</string>
   <string name="login-start">Masuk log</string>
   <string name="login-oauth-notsupported">Metode ini belum didukung saat ini</string>
-  <string name="login-translate">Terjemahkan Huggle</string>
+  <string name="login-translate">Pertalaghi Huggle</string>
   <string name="login-progress-formtitle">Memuat...</string>
   <string name="login-progress-start">Masuk log sebagai $1</string>
   <string name="login-progress-retrieve-mw">Mengambil informasi tentang MediaWiki untuk $1</string>

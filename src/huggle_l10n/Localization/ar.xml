@@ -20,6 +20,7 @@
 * NEHAOUA
 * Omarbofoss
 * Reza1615
+* XIDME
 * أيوب
 * أَحمد
 * بدارين
@@ -35,7 +36,7 @@
   <string name="autorelog">افعل هذا دون أن تسأل في المرة القادمة</string>
   <string name="isrtl">true</string>
   <string name="add">أضف</string>
-  <string name="cancel">ألغ</string>
+  <string name="cancel">إلغاء</string>
   <string name="clear">إفراغ</string>
   <string name="close">أغلق</string>
   <string name="continue">استمر</string>

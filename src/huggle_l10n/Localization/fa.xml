@@ -248,7 +248,7 @@
   <string name="delete-failed-no-info">هیچ اطلاعات صفحه‌ای در این کوئری نیست (آیا مدیر هستید؟)</string>
   <string name="extension-kl">اجرا نمی‌شود</string>
   <string name="extension-ok">بارگیری‌شده و در حال اجرا</string>
-  <string name="exception-text-1">متاسفانه هاگل کرش کرده است. لطفاً این اطلاعات را همراه با جزئیات کاری که می‌خواستید انجام دهید، ارسال کنید</string>
+  <string name="exception-text-1">متأسفانه هاگل کرش کرده است. لطفاً این اطلاعات را همراه با جزئیات کاری که می‌خواستید انجام دهید، ارسال کنید</string>
   <string name="exception-details">جزئیات استثنا</string>
   <string name="exception-error-code">کد خطا: $1</string>
   <string name="exception-reason">دلیل: $1</string>
@@ -605,7 +605,7 @@
   <string name="score-take-whole-no-talk-word">تنها بر واژه‌های کامل در صفحه‌های غیربحث هم‌خوانی می‌یابد</string>
   <string name="score-only-whole-word">تنها بر واژه‌های کامل همخوانی یابد</string>
   <string name="score-take-any-word">تنها بر واژگانی که شامل این رشته می‌شوند همخوانی یابد</string>
-  <string name="ssl-is-not-supported">شما درخواست استفاده از اس‌اس‌ال داده‌اید، متاسفانه $1 از آن پشتیبانی نمی‌کند.</string>
+  <string name="ssl-is-not-supported">شما درخواست استفاده از اس‌اس‌ال داده‌اید، متأسفانه $1 از آن پشتیبانی نمی‌کند.</string>
   <string name="ssl-required">لازم است که اس‌اس‌ال در سرویس‌دهنده‌های وب $1 فعال باشد. اگر نمی‌توانید اس‌اس‌ال را فعال کنید (یعنی این اختیار غیرفعال است) شاید نیاز باشد تا کتابخانه‌های اوپن‌اس‌اس‌ال را در سامانهٔ خود نصب کنید.</string>
   <string name="uaa-not-supported">وپ:تامنام موجود نیست</string>
   <string name="uaa-not-supported-text">وپ:تامنام در ویکی شما موجود نیست.</string>

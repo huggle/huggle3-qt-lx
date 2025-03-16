@@ -160,7 +160,7 @@
   <string name="config-columns-dynamic">జాబితాల నిలువు వరుసలను డైనమిక్‌గా చెయ్యవచ్చు (అంశాల పరిమాణాన్ని బట్టి మారతాయి) లేదా మానవికంగా చెయ్యవచ్చు (వాడుకరి వాటి పరిమాణాన్ని మార్చేలా)</string>
   <string name="config-message-notification">మీ చర్చ పేజీలో కొత్త సందేశం వచ్చినపుడు ఒక గమనింపును చూపించాలి</string>
   <string name="config-warning-api">Display warnings for API క్వెరీలకు హెచ్చరికలు చూపించు</string>
-  <string name="config-title-diff">ప్రతీ తేడా లోనూ పేజీ పేరు (ప్రతీ తేడాకూ పైన పెద్ద అక్షరాలతో పేఝీ శీర్షికను చూపిస్తుంది)</string>
+  <string name="config-title-diff">ప్రతీ తేడా లోనూ పేజీ పేరు (ప్రతీ తేడాకూ పైన పెద్ద అక్షరాలతో పేజీ శీర్షికను చూపిస్తుంది)</string>
   <string name="config-updates">తాజాకరణల కోసం చూడు</string>
   <string name="config-reset-menu">కిందటి సారి మీరు వచ్చిన తరువాత ప్రాజెక్టు కాన్ఫిగరేషను (హెచ్చరిక రకాల జాబితా) మారింది. డ్రాప్‌డౌను మెనూల షార్ట్‌కట్లను (తిరగ్గొట్టు, హెచ్చరించు వగైరా) రీసెట్ చేసాం.</string>
   <string name="config-beta">బీటా కూర్పుల కోసం చూడు</string>
