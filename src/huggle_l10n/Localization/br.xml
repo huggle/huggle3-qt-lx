@@ -185,7 +185,7 @@
   <string name="delete-notify">Kemenn ar c\'hrouer</string>
   <string name="delete-e1">Ne c\'hall ket ar bajenn bezañ dilamet : $1</string>
   <string name="delete-e2">Ne c\'haller ket dilemel ar bajenn</string>
-  <string name="extension-kl" fuzzy="true">Lazhet</string>
+  <string name="extension-kl">N’emañ ket o vont en-dro</string>
   <string name="extension-ok">Karget hag o seveniñ</string>
   <string name="exception-error-code">Kod fazi: $1</string>
   <string name="exception-reason">Abeg : $1</string>
@@ -200,10 +200,10 @@
   <string name="history-failure">Ne c\'haller ket adtapout an istor.</string>
   <string name="userhistory-title">Istor ho kemmoù</string>
   <string name="irc-connected">$1 : Kevreet da wazh ar cheñchamantoù nevez war IRC</string>
-  <string name="invalid-bot-user-name" fuzzy="true">N\'eo ket un anv robod reizh. Anv robot reizh, da skouer :Jimbo@Huggle</string>
+  <string name="invalid-bot-user-name">N\'eo ket un anv robot reizh. Skouer eus un anv robot reizh: Jimbo@Huggle</string>
   <string name="login-tab-botp">Ger-tremen ar bot</string>
   <string name="login-tab-login">Normal</string>
-  <string name="login-reload-tool-tip" fuzzy="true">Adkargañ ur roll raktresoù a c\'haller kaout hag a c\'haller implijout en Huggle : gallout a ra bezañ talvoudus m\'ho peus c\'hoant da implijout Huggle en ur raktres zo bet gweredekaet Huggel evitañ nevez zo</string>
+  <string name="login-reload-tool-tip">Adkargañ ur roll raktresoù a c\'haller kaout hag a c\'haller implijout en Huggle. Gallout a ra bezañ talvoudus m\'ho peus c\'hoant da implijout Huggle en ur raktres a zo bet gweredekaet ar benveg evitañ nevez zo.</string>
   <string name="login-language">Yezh :</string>
   <string name="login-project">Raktres :</string>
   <string name="login-username">Anv implijer :</string>
@@ -218,7 +218,7 @@
   <string name="login-fail-css">Kevreadur c\'hwitet e $1 : ne c\'haller ket adtapour kefluniadur an implijer. Diank eo Special:MyPage/huggle3.css.\nHa krouet ho peus huggle3.css en ho takad implijer ?</string>
   <string name="login-fail-enable-true">Kevreadur c\'hwitet e $1 : n\'ho peus ket enable:true en ho kefluniadur personel.</string>
   <string name="login-fail-no-info">Kevreadur c\'hwitet e $1 : Ne c\'hallit ket adtapout an titouroù implijer : $2</string>
-  <string name="login-bot" fuzzy="true">Peseurt diforc\'h zo etre ur robod hag ur c\'hevreadur dre zorn ?</string>
+  <string name="login-bot">Peseurt diforc\'h zo etre BotPassword (Ger-Tremen Robot) hag ur c\'hevreadur mod kozh ?</string>
   <string name="login-fail-parse-config">Kevreadur c\'hwitet e $1 : Ne c\'haller ket dielfennañ ar c\'hefluniadur implijer. Gwelit roud ho tizreinadur evit gouzout hiroc\'h.</string>
   <string name="login-password-empty">Goullo e oa ar ger-tremen ho peus bizskrivet</string>
   <string name="login-fail-wrong-name">N\'ho peus roet anv implijer ebet evit kevreañ</string>
@@ -243,7 +243,7 @@
   <string name="login-fail">C\'hwitet kevreañ ouzh $1</string>
   <string name="login-fail-with-reason">C\'hwitet kevreañ (ouzh $1): $2</string>
   <string name="login-error-admin">Ezhomm zo eus ur gont merour evit implijout Huggle war ar raktres-mañ.</string>
-  <string name="login-error-age" fuzzy="true">Evit implijout Huggle war ar raktres-mañ ez eus ezhomm eus $1 devezh da nebeutañ.</string>
+  <string name="login-error-age">Evit implijout Huggle war ar raktres-mañ e rank ho kont bezañ $1 devezh da nebeutañ.</string>
   <string name="login-error-alldisabled">Diweredekaet eo Huggle war an holl raktresoù evit bremañ.</string>
   <string name="login-error-cancelled">Nullet.</string>
   <string name="login-error-config-query-no-data">C\'hwitet eo ar c\'hevreañ - ur gudenn kevreañ ouzh ar rouedad marteze ? N\'eus ket bet gallet pellgargañ ar c\'hefluniadur hollek</string>
@@ -252,7 +252,7 @@
   <string name="login-error-noconfig">$1 n\'en deus pajenn gefluniañ Huggle ebet.</string>
   <string name="login-error-nouser">N\'eus ket eus an implijer</string>
   <string name="login-error-password">Ger-tremen direizh</string>
-  <string name="login-error-unknown" fuzzy="true">Ne c\'haller ket kevreañ da $1.</string>
+  <string name="login-error-unknown">Ne c\'haller ket kevreañ da $1.</string>
   <string name="login-error-version">Diamzeret eo ar stumm-mañ. Hizivaat gant ar stumm diwezhañ.</string>
   <string name="main-help-copy-syslog-to-clip">Eilañ marilh ar reizhiad er golver</string>
   <string name="main-no-reason">N\'eus bet roet abeg ebet gant an implijer</string>
@@ -260,7 +260,7 @@
   <string name="main-user">Implijer</string>
   <string name="main-contribs">Degasadennoù</string>
   <string name="main-history">Istor</string>
-  <string name="main-new-messages" fuzzy="true">Kemennadennoù ho peus. Dibabit Reizhiad-&gt;Diskwel ar c\'hemennadennoù nevez pe pouezañ war M evit diskwel anezho.</string>
+  <string name="main-new-messages">Kemennadennoù nevez ho peus. Dibabit Reizhiad -&gt; Diskwel ar c\'hemennadennoù nevez, pe pouezit war M evit diskwel anezho.</string>
   <string name="main-space">Ne c\'haller ket echuiñ anv ar bajenn gant un esaouenn. Reizhit anezhañ, mar plij.</string>
   <string name="main-system">Reizhiad</string>
   <string name="main-system-messages">Diskouez ar c\'hemennadennoù nevez</string>
@@ -327,7 +327,7 @@
   <string name="main-browser-open">Gwelet an dra-mañ en ur merdeer diavaez</string>
   <string name="main-browser-newedits">Diskwel kemmoù nevez ar bajenn</string>
   <string name="main-browser-newcontribs">Diskouez an degasadennoù dre implijer</string>
-  <string name="main-browser-lasttab" fuzzy="true">Ne c\'hallan ket serriñ an ivinell-mañ rak an hini diwezhañ eo, rankout a rit kaout 1 ivinell digor da nebeutañ</string>
+  <string name="main-browser-lasttab">N\'hallan ket serriñ an ivinell-mañ rak an hini diwezhañ eo - rankout a rit kaout 1 ivinell digor da nebeutañ</string>
   <string name="main-han">HAN</string>
   <string name="main-han-disconnect">Digevreañ</string>
   <string name="main-han-connect">Kevreañ</string>
@@ -360,7 +360,7 @@
   <string name="message-summary">Diverradur :</string>
   <string name="message-autosign">Lakaat ar sinadur ent emgefre</string>
   <string name="message-retrieve-new-token">Oc\'h adtapout ar jedouer evit aozañ $1</string>
-  <string name="message-fail-token-1" fuzzy="true">ne c\'haller ket adtapout ar jedouer aozañ</string>
+  <string name="message-fail-token-1">Ne c\'haller ket kaout ar jedouer aozañ</string>
   <string name="protect-reason">Abeg :</string>
   <string name="protect-expiry">Termen :</string>
   <string name="protect-type">Seurt gwarez :</string>
@@ -417,7 +417,7 @@
   <string name="tag-summary">Diverradur :</string>
   <string name="tag-insertatend">Ensoc\'hañ e traoñ ar bajenn</string>
   <string name="update-title">Ur stumm nevez zo da gaout</string>
-  <string name="update-progress" fuzzy="true">Pellgargañ ar stumm nevez...</string>
+  <string name="update-progress">O pellgargañ ar stumm nevez, gortozit mar plij...</string>
   <string name="updater-update">Hizivaat</string>
   <string name="updater-open-manualdownloadpage">Digeriñ ar bajenn bellgargañ</string>
   <string name="updater-close">Serriñ</string>
