@@ -42,8 +42,8 @@ namespace Huggle
             void FailEdit(const QString& reason);
 
         private slots:
-            void on_pushButton_2_clicked();
-            void on_pushButton_clicked();
+            void on_saveButton_clicked();
+            void on_previewButton_clicked();
 
         private:
             void renderText(const QString& text);

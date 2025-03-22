@@ -259,8 +259,7 @@ void Core::ExtensionLoad()
                         if (!interface)
                         {
                             Huggle::Syslog::HuggleLogs->Log("Unable to cast the library to extension: " + ename);
-                        }
-                        else if (interface->CompiledFor() != QString(HUGGLE_VERSION))
+                        } else if (interface->CompiledFor() != QString(HUGGLE_VERSION))
                         {
                             Huggle::Syslog::HuggleLogs->WarningLog("Extension " + ename + " was compiled for huggle " + interface->CompiledFor() + " which is not compatible, unloading");
                             delete interface;
@@ -465,4 +464,19 @@ Core::CoreState Core::GetState()
 void Core::HandleException(Exception *exception)
 {
     Core::HuggleCore->exceptionHandler->HandleException(exception);
+}
+
+void Core::ResetNetworkManager()
+{
+    QNetworkAccessManager *old = Query::NetworkManager;
+    Query::NetworkManager = new QNetworkAccessManager();
+    Query::NetworkManager->setCookieJar(new QNetworkCookieJar(Query::NetworkManager));
+    foreach (iExtension *extension, this->Extensions)
+    {
+        if (extension->RequestNetwork())
+        {
+            extension->Networking = Query::NetworkManager;
+        }
+    }
+    old->deleteLater();
 }

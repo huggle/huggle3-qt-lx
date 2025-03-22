@@ -33,8 +33,8 @@ namespace Huggle
             ~CustomMessage() override;
 
         private slots:
-            void on_pushButton_clicked();
-            void on_pushButton_2_clicked();
+            void on_sendButton_clicked();
+            void on_cancelButton_clicked();
             bool VerifyMessage();
             void on_lineEdit_textChanged();
             void on_plainTextEdit_textChanged();

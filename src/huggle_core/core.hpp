@@ -90,6 +90,8 @@ namespace Huggle
             void Init();
             //! Load extensions (libraries as well as python)
             void ExtensionLoad();
+			//! Reinitializes shared instance of network manager, useful to clear stale session data
+			void ResetNetworkManager();
             //! Terminate the process, call this after you release all resources and finish all queries
             void Shutdown();
             void TestLanguages();

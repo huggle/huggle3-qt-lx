@@ -917,6 +917,17 @@ QDateTime ProjectConfiguration::ServerTime()
     return QDateTime::currentDateTime().addSecs(this->ServerOffset);
 }
 
+void ProjectConfiguration::RequestLogin()
+{
+	if (this->IsLoggedIn && !this->RequestingLogin)
+	{
+		this->IsLoggedIn = false;
+		this->Token_Csrf = "";
+		this->Token_Rollback = "";
+		this->Token_Watch = "";
+	}
+}
+
 ScoreWord::ScoreWord(QString Word, int Score)
 {
     this->score = Score;

@@ -149,7 +149,7 @@ void EditSuccess(Query *query)
     f->FinishEdit();
 }
 
-void Huggle::EditForm::on_pushButton_2_clicked()
+void Huggle::EditForm::on_saveButton_clicked()
 {
     this->ui->pushButton->setEnabled(false);
     this->ui->pushButton_2->setEnabled(false);
@@ -190,7 +190,7 @@ void ParseFinish(Query *query)
     f->DisplayPreview(text);
 }
 
-void Huggle::EditForm::on_pushButton_clicked()
+void Huggle::EditForm::on_previewButton_clicked()
 {
     this->ui->pushButton->setEnabled(false);
     this->renderText("<h2>Loading preview...</h2>");

@@ -49,7 +49,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="pageViewLeftButton">
         <property name="maximumSize">
          <size>
           <width>28</width>
@@ -62,7 +62,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="pageViewRightButton">
         <property name="maximumSize">
          <size>
           <width>28</width>
@@ -173,7 +173,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_4">
+       <widget class="QPushButton" name="userViewLeftButton">
         <property name="maximumSize">
          <size>
           <width>28</width>
@@ -186,7 +186,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_3">
+       <widget class="QPushButton" name="userViewRightButton">
         <property name="maximumSize">
          <size>
           <width>28</width>

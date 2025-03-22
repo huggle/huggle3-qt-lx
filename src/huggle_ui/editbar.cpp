@@ -176,22 +176,22 @@ void EditBar::moveUser(int size)
     this->ui->scrollArea_2->horizontalScrollBar()->setValue(this->ui->scrollArea_2->horizontalScrollBar()->value() + size);
 }
 
-void Huggle::EditBar::on_pushButton_2_clicked()
+void Huggle::EditBar::on_pageViewLeftButton_clicked()
 {
     this->movePage(-20);
 }
 
-void Huggle::EditBar::on_pushButton_clicked()
+void Huggle::EditBar::on_pageViewRightButton_clicked()
 {
     this->movePage(20);
 }
 
-void Huggle::EditBar::on_pushButton_4_clicked()
+void Huggle::EditBar::on_userViewLeftButton_clicked()
 {
     this->moveUser(-20);
 }
 
-void Huggle::EditBar::on_pushButton_3_clicked()
+void Huggle::EditBar::on_userViewRightButton_clicked()
 {
     this->moveUser(20);
 }

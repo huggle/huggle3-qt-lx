@@ -108,7 +108,7 @@ void DeleteForm::processFailure(QString Reason)
     this->ui->pushButton->setEnabled(true);
 }
 
-void DeleteForm::on_pushButton_clicked()
+void DeleteForm::on_deleteButton_clicked()
 {
     if (this->ui->checkBox_2->isChecked())
     {
@@ -120,21 +120,21 @@ void DeleteForm::on_pushButton_clicked()
     }
     this->ui->checkBox_2->setEnabled(false);
     this->ui->comboBox->setEnabled(false);
-    this->ui->pushButton->setEnabled(false);
+    this->ui->deleteButton->setEnabled(false);
     // let's delete the page
     this->qDelete = new ApiQuery(ActionDelete, this->page->GetSite());
     this->qDelete->Parameters = "title=" + QUrl::toPercentEncoding(this->page->PageName)
             + "&reason=" + QUrl::toPercentEncoding(Configuration::GenerateSuffix(this->ui->comboBox->lineEdit()->text(),
                                                                                  this->page->GetSite()->GetProjectConfig()))
             + "&token=" + QUrl::toPercentEncoding(this->page->GetSite()->GetProjectConfig()->Token_Csrf);
-    this->qDelete->Target = "Deleting "  + this->page->PageName;
+    this->qDelete->Target = "Deleting " + this->page->PageName;
     this->qDelete->UsingPOST = true;
     QueryPool::HugglePool->AppendQuery(this->qDelete);
     this->qDelete->Process();
 
-    if (this->associatedTalkPage != nullptr)
+    if (this->ui->checkBox_2->isChecked() && this->associatedTalkPage != nullptr)
     {
-        // let's delete the talk page
+        // we also want to delete the talk page
         this->qTalk = new ApiQuery(ActionDelete, this->page->GetSite());
         this->qTalk->Parameters = "title=" + QUrl::toPercentEncoding(this->associatedTalkPage->PageName)
                 + "&reason=" + QUrl::toPercentEncoding(Configuration::GenerateSuffix(Configuration::HuggleConfiguration->ProjectConfig->AssociatedDelete,
@@ -145,12 +145,14 @@ void DeleteForm::on_pushButton_clicked()
         QueryPool::HugglePool->AppendQuery(this->qTalk);
         this->qTalk->Process();
     }
-    this->tDelete = new QTimer();
+
+    // we need to wait for the deletion to finish before we can close the form
+    this->tDelete = new QTimer(this);
     connect(this->tDelete, SIGNAL(timeout()), this, SLOT(OnTick()));
     this->tDelete->start(HUGGLE_TIMER);
 }
 
-void DeleteForm::on_pushButton_2_clicked()
+void DeleteForm::on_cancelButton_clicked()
 {
     this->close();
 }

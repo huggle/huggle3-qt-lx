@@ -48,12 +48,12 @@ void CustomMessage::SetWikiUser(WikiUser *User)
     this->ui->plainTextEdit->setPlainText(QString(_l("custommessage-wikiuser-plaintext-1", this->user->Username) + "\n\n" + _l("custommessage-wikiuser-plaintext-2") + "\n\n~~~~"));
 }
 
-void CustomMessage::on_pushButton_2_clicked()
+void CustomMessage::on_cancelButton_clicked()
 {
-    this->hide();
+    this->close();
 }
 
-void CustomMessage::on_pushButton_clicked()
+void CustomMessage::on_sendButton_clicked()
 {
     // plainTextEdit: wikitext message ; lineEdit: section title
     WikiUtil::MessageUser(this->user, this->ui->plainTextEdit->toPlainText(), this->ui->lineEdit->text(), this->ui->leSummary->text());
@@ -64,11 +64,11 @@ bool CustomMessage::VerifyMessage()
 {
     if (this->ui->plainTextEdit->toPlainText().isEmpty() || this->ui->lineEdit->text().isEmpty() || this->ui->leSummary->text().isEmpty())
     {
-        this->ui->pushButton->setEnabled(false);
+        this->ui->sendButton->setEnabled(false);
         return false;
     } else
     {
-        this->ui->pushButton->setEnabled(true);
+        this->ui->sendButton->setEnabled(true);
         return true;
     }
 }

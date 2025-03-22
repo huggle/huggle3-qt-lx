@@ -39,17 +39,17 @@ ExceptionWindow::~ExceptionWindow()
     delete this->ui;
 }
 
-void ExceptionWindow::on_pushButton_clicked()
+void ExceptionWindow::on_recoverButton_clicked()
 {
     this->close();
 }
 
-void ExceptionWindow::on_pushButton_3_clicked()
+void ExceptionWindow::on_killButton_clicked()
 {
     QApplication::exit(2);
 }
 
-void Huggle::ExceptionWindow::on_pushButton_2_clicked()
+void ExceptionWindow::on_shutdownButton_clicked()
 {
     Core::HuggleCore->Shutdown();
 }

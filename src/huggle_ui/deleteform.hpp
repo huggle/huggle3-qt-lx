@@ -44,9 +44,9 @@ namespace Huggle
              */
             void SetPage(WikiPage *Page, WikiUser *User);
         private slots:
-            void on_pushButton_clicked();
-            void on_pushButton_2_clicked();
             void OnTick();
+            void on_deleteButton_clicked();
+            void on_cancelButton_clicked();
         private:
             void deletePage();
             void processFailure(QString Reason);

@@ -69,21 +69,21 @@
       <number>0</number>
      </property>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="recoverButton">
        <property name="text">
         <string notr="true">Recover</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="shutdownButton">
        <property name="text">
         <string notr="true">Shutdown</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QPushButton" name="killButton">
        <property name="text">
         <string notr="true">Kill</string>
        </property>

@@ -46,6 +46,22 @@ param
     [int]$qt_version = 5
 )
 
+Write-Host "Script parameters:"
+Write-Host "MSBuild Path: $msbuild_path"
+Write-Host "Root Path: $root_path"
+Write-Host "Qt Path: $qt_path"
+Write-Host "NSIS Path: $nsis_path"
+Write-Host "OpenSSL Path: $openssl_path"
+Write-Host "CMake Generator: $cmake_generator"
+Write-Host "MinGW Enabled: $mingw"
+Write-Host "MinGW Path: $mingw_path"
+Write-Host "Python Enabled: $python"
+Write-Host "VCRedist File: $vcredist"
+Write-Host "CMake Parameters: $cmake_param"
+Write-Host "VC Install Path: $vcinstall_path"
+Write-Host "Qt Version: $qt_version"
+Write-Host "----------------------------------------"
+
 $ErrorActionPreference = "Stop"
 #$ErrorActionPreference = "Continue"
 

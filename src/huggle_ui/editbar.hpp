@@ -54,10 +54,10 @@ namespace Huggle
             //! Reloads all user contributions in the EditBar
             void RefreshUser();
         private slots:
-            void on_pushButton_2_clicked();
-            void on_pushButton_clicked();
-            void on_pushButton_4_clicked();
-            void on_pushButton_3_clicked();
+            void on_pageViewLeftButton_clicked();
+            void on_pageViewRightButton_clicked(); 
+            void on_userViewLeftButton_clicked();
+            void on_userViewRightButton_clicked();
             void OnReload();
             void on_EditBar_visibilityChanged(bool visible);
         private:

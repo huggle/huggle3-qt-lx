@@ -323,17 +323,6 @@ namespace Huggle
             QString                 configurationBuffer;
             YAML::Node              *yaml_node = nullptr;
     };
-
-    inline void ProjectConfiguration::RequestLogin()
-    {
-        if (this->IsLoggedIn && !this->RequestingLogin)
-        {
-            this->IsLoggedIn = false;
-            this->Token_Csrf = "";
-            this->Token_Rollback = "";
-            this->Token_Watch = "";
-        }
-    }
 }
 
 #endif // PROJECTCONFIGURATION_H

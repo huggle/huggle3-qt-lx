@@ -40,9 +40,9 @@ namespace Huggle
             ~ExceptionWindow() override;
 
         private slots:
-            void on_pushButton_clicked();
-            void on_pushButton_3_clicked();
-            void on_pushButton_2_clicked();
+            void on_recoverButton_clicked();
+            void on_killButton_clicked();
+            void on_shutdownButton_clicked();
 
         private:
             Ui::ExceptionWindow *ui;
