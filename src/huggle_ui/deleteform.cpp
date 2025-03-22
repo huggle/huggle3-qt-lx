@@ -85,7 +85,7 @@ void DeleteForm::deletePage()
         return;
     }
     // let's assume the page was deleted
-    this->ui->pushButton->setText(_l("deleted"));
+    this->ui->deleteButton->setText(_l("deleted"));
     this->tDelete->stop();
     HUGGLE_DEBUG("Deletion result: " + this->qDelete->Result->Data, 2);
     HistoryItem *hi = new HistoryItem(this->page->GetSite());
@@ -105,7 +105,7 @@ void DeleteForm::processFailure(QString Reason)
     this->tDelete = nullptr;
     this->qDelete.Delete();
     this->qTalk.Delete();
-    this->ui->pushButton->setEnabled(true);
+    this->ui->deleteButton->setEnabled(true);
 }
 
 void DeleteForm::on_deleteButton_clicked()

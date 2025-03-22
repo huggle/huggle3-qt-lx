@@ -24,8 +24,8 @@ CustomMessage::CustomMessage(WikiUser *User, QWidget *parent) : HW("custommessag
     this->RestoreWindow();
     this->setAttribute(Qt::WidgetAttribute::WA_DeleteOnClose);
     this->SetWikiUser(User);
-    this->ui->pushButton_2->setText(_l("cancel"));
-    this->ui->pushButton->setText(_l("custommessage-send"));
+    this->ui->cancelButton->setText(_l("cancel"));
+    this->ui->sendButton->setText(_l("custommessage-send"));
     this->ui->lSummary->setText(_l("custommessage-summary"));
     this->ui->lSubject->setText(_l("custommessage-subject"));
 }

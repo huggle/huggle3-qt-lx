@@ -72,8 +72,8 @@ EditForm::EditForm(WikiPage *wp, QWidget *parent) : HW("editform", this, parent)
     this->ui->checkBox->setEnabled(false);
     this->ui->lineEdit->setEnabled(false);
     this->ui->textEdit->setEnabled(false);
-    this->ui->pushButton_2->setEnabled(false);
-    this->ui->pushButton->setEnabled(false);
+    this->ui->saveButton->setEnabled(false);
+    this->ui->previewButton->setEnabled(false);
     this->contentQuery = WikiUtil::RetrieveWikiPageContents(this->page);
     QueryPool::HugglePool->AppendQuery(this->contentQuery);
     this->contentQuery->CallbackOwner = this;
@@ -101,8 +101,8 @@ void EditForm::RenderSource(const QString& code, const QString& time)
     this->ui->checkBox->setEnabled(true);
     this->ui->lineEdit->setEnabled(true);
     this->ui->textEdit->setEnabled(true);
-    this->ui->pushButton_2->setEnabled(true);
-    this->ui->pushButton->setEnabled(true);
+    this->ui->saveButton->setEnabled(true);
+    this->ui->previewButton->setEnabled(true);
     this->ui->textEdit->setText(code);
     this->pageTime = time;
     this->renderText("<h2>Click preview to see amazing stuff here</h2>");
@@ -113,7 +113,7 @@ void EditForm::DisplayPreview(QString html)
     // Apply CSS
     html = Resources::GetHtmlHeader(this->page->GetSite()) + html + Resources::HtmlFooter;
     this->webView->RenderHtml(html);
-    this->ui->pushButton->setEnabled(true);
+    this->ui->previewButton->setEnabled(true);
 }
 
 void EditForm::FinishEdit()
@@ -126,8 +126,8 @@ void EditForm::FailEdit(const QString& reason)
 {
     UiGeneric::pMessageBox(this, "Error", "Unable to edit page: " + reason, MessageBoxStyleError);
     this->webView->RenderHtml(":-(");
-    this->ui->pushButton->setEnabled(true);
-    this->ui->pushButton_2->setEnabled(true);
+    this->ui->previewButton->setEnabled(true);
+    this->ui->saveButton->setEnabled(true);
     this->ui->textEdit->setEnabled(true);
     this->ui->checkBox->setEnabled(true);
     this->ui->lineEdit->setEnabled(true);
@@ -151,8 +151,8 @@ void EditSuccess(Query *query)
 
 void Huggle::EditForm::on_saveButton_clicked()
 {
-    this->ui->pushButton->setEnabled(false);
-    this->ui->pushButton_2->setEnabled(false);
+    this->ui->previewButton->setEnabled(false);
+    this->ui->saveButton->setEnabled(false);
     this->ui->textEdit->setEnabled(false);
     this->ui->checkBox->setEnabled(false);
     this->ui->lineEdit->setEnabled(false);
@@ -192,7 +192,7 @@ void ParseFinish(Query *query)
 
 void Huggle::EditForm::on_previewButton_clicked()
 {
-    this->ui->pushButton->setEnabled(false);
+    this->ui->previewButton->setEnabled(false);
     this->renderText("<h2>Loading preview...</h2>");
     this->parseQuery = new ApiQuery(ActionParse, this->page->GetSite());
     this->parseQuery->Target = "Parsing wikitext for " + this->page->PageName;
