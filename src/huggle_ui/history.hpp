@@ -56,10 +56,12 @@ namespace Huggle
             void Display();
             void on_tableWidget_clicked(const QModelIndex &index);
             void on_tableWidget_itemSelectionChanged();
+            void on_tableWidget_doubleClicked(const QModelIndex &index);
 
         private:
             void DeleteItems();
             void Fail();
+            void ShowEdit();
             QTimer *timerRetrievePageInformation;
             Collectable_SmartPtr<HistoryItem> RevertingItem;
             QTimer *timerDisplayEditFromHistLs;

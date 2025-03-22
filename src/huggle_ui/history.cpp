@@ -37,6 +37,7 @@ History::History(QWidget *parent) : QDockWidget(parent), ui(new Ui::History)
     connect(this->timerRetrievePageInformation, SIGNAL(timeout()), this, SLOT(Tick()));
     this->ui->tableWidget->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this->ui->tableWidget, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(ContextMenu(QPoint)));
+    connect(this->ui->tableWidget, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(on_tableWidget_doubleClicked(QModelIndex)));
     this->ui->tableWidget->setColumnCount(5);
     QStringList header;
     header << _l("[[id]]") << _l("[[type]]") << _l("[[target]]") << _l("result") << _l("project");
@@ -156,57 +157,7 @@ void History::ContextMenu(const QPoint &position)
         this->Undo(nullptr);
     } else if (selection == show)
     {
-        if (this->DisplayedEdit != nullptr)
-        {
-            this->timerDisplayEditFromHistLs->stop();
-        }
-        // now the tricky part is here, we need to get an undo item and display it
-        HistoryItem *hi;
-        if (this->CurrentItem < 0)
-        {
-            Syslog::HuggleLogs->ErrorLog(_l("history-no-item-selected"));
-            return;
-        }
-        hi = this->Items.at(this->CurrentItem);
-        QString page = hi->Target;
-        Collectable_SmartPtr<WikiEdit> edit;
-        switch (hi->Type)
-        {
-            case HistoryMessage:
-                page = "User_talk:" + page;
-            case HistoryEdit:
-            case HistoryRollback:
-                // let's see if we know this edit
-                edit = WikiEdit::FromCacheByRevID(hi->RevID);
-                if (edit == nullptr)
-                {
-                    // if we don't know it we need to create it
-                    edit = new WikiEdit();
-                    edit->Page = new WikiPage(page, hi->GetSite());
-                    edit->User = new WikiUser(hcfg->SystemConfig_UserName, hi->GetSite());
-                    edit->RevID = hi->RevID;
-                }
-                break;
-            case HistoryUnknown:
-            case HistoryBlock:
-            case HistoryUndelete:
-            case HistoryDelete:
-            case HistoryProtect:
-                return;
-        }
-        if (!edit->IsPostProcessed())
-        {
-            // now we need to display it
-            QueryPool::HugglePool->PreProcessEdit(edit);
-            QueryPool::HugglePool->PostProcessEdit(edit);
-            this->DisplayedEdit = edit;
-            // we need to enable the timer and display this edit as soon as it is post processed
-            this->timerDisplayEditFromHistLs->start(200);
-        } else
-        {
-            // let's display it
-            MainWindow::HuggleMain->ProcessEdit(edit);
-        }
+        this->ShowEdit();
     } else if (selection == clean)
     {
         this->DeleteItems();
@@ -379,4 +330,65 @@ void History::on_tableWidget_itemSelectionChanged()
     if (this->ui->tableWidget->selectedItems().isEmpty())
         return;
     this->CurrentItem = this->ui->tableWidget->selectedItems().at(0)->row();
+}
+
+void History::ShowEdit()
+{
+    if (this->DisplayedEdit != nullptr)
+    {
+        this->timerDisplayEditFromHistLs->stop();
+    }
+    // now the tricky part is here, we need to get an undo item and display it
+    HistoryItem *hi;
+    if (this->CurrentItem < 0)
+    {
+        Syslog::HuggleLogs->ErrorLog(_l("history-no-item-selected"));
+        return;
+    }
+    hi = this->Items.at(this->CurrentItem);
+    QString page = hi->Target;
+    Collectable_SmartPtr<WikiEdit> edit;
+    switch (hi->Type)
+    {
+        case HistoryMessage:
+            page = "User_talk:" + page;
+        case HistoryEdit:
+        case HistoryRollback:
+            // let's see if we know this edit
+            edit = WikiEdit::FromCacheByRevID(hi->RevID);
+            if (edit == nullptr)
+            {
+                // if we don't know it we need to create it
+                edit = new WikiEdit();
+                edit->Page = new WikiPage(page, hi->GetSite());
+                edit->User = new WikiUser(hcfg->SystemConfig_UserName, hi->GetSite());
+                edit->RevID = hi->RevID;
+            }
+            break;
+        case HistoryUnknown:
+        case HistoryBlock:
+        case HistoryUndelete:
+        case HistoryDelete:
+        case HistoryProtect:
+            return;
+    }
+    if (!edit->IsPostProcessed())
+    {
+        // now we need to display it
+        QueryPool::HugglePool->PreProcessEdit(edit);
+        QueryPool::HugglePool->PostProcessEdit(edit);
+        this->DisplayedEdit = edit;
+        // we need to enable the timer and display this edit as soon as it is post processed
+        this->timerDisplayEditFromHistLs->start(200);
+    } else
+    {
+        // let's display it
+        MainWindow::HuggleMain->ProcessEdit(edit);
+    }
+}
+
+void History::on_tableWidget_doubleClicked(const QModelIndex &index)
+{
+    this->CurrentItem = index.row();
+    this->ShowEdit();
 }
