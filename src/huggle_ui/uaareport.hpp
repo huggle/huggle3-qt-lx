@@ -40,9 +40,9 @@ namespace Huggle
             // Who are you? It's there because we must somehow set user to this class I guess --Petrb
             void setUserForUAA(WikiUser *user);
         private slots:
-            void on_pushButton_clicked();
-            void on_pushButton_2_clicked();
-            void on_pushButton_3_clicked();
+            void on_btnReport_clicked();
+            void on_btnCancel_clicked();
+            void on_btnCheck_clicked();
             void onTick();
             void onStartOfSearch();
         private:

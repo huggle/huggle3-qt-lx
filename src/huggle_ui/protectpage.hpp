@@ -46,13 +46,13 @@ namespace Huggle
              */
             void setPageToProtect(WikiPage *Page);
         private slots:
-            void on_pushButton_clicked();
-            void on_pushButton_2_clicked();
+            void on_btnCancel_clicked();
+            void on_btnProtect_clicked();
             void onTick();
         private:
             void Failed(QString reason);
             void Protect();
-            //! Pointer for	protection
+            //! Pointer for protection
             Collectable_SmartPtr<ApiQuery> qProtection;
             Ui::ProtectPage *ui;
             //! Page that is about to be protected in this form

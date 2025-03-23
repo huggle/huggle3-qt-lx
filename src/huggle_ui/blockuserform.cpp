@@ -77,7 +77,7 @@ void BlockUserForm::SetWikiUser(WikiUser *User)
     this->ui->comboBox->addItem(User->GetSite()->ProjectConfig->BlockReason);
 }
 
-void BlockUserForm::on_pushButton_2_clicked()
+void BlockUserForm::on_btnCancel_clicked()
 {
     this->hide();
 }
@@ -114,15 +114,15 @@ void BlockUserForm::Block()
             reason = error->GetAttribute("info");
         }
         UiGeneric::pMessageBox(this, _l("error"), _l("block-fail", reason), MessageBoxStyleError, true);
-        this->ui->pushButton->setText(_l("block-title", this->user->Username));
+        this->ui->btnBlock->setText(_l("block-title", this->user->Username));
         this->qUser->Result->SetError(HUGGLE_EUNKNOWN, "Unable to block: " + reason);
         this->qUser = nullptr;
-        this->ui->pushButton->setEnabled(true);
+        this->ui->btnBlock->setEnabled(true);
         this->timer->stop();
         return;
     }
     // let's assume the user was blocked
-    this->ui->pushButton->setText(_l("block-done", this->user->Username));
+    this->ui->btnBlock->setText(_l("block-done", this->user->Username));
     HUGGLE_DEBUG("block result: " + this->qUser->Result->Data, 2);
     HistoryItem *history = new HistoryItem(this->user->GetSite());
     history->Result = _l("successful");
@@ -149,15 +149,15 @@ void BlockUserForm::Failed(QString reason)
     UiGeneric::pMessageBox(this, "Unable to block user", _l("block-fail", reason),
                          MessageBoxStyleError, true);
     this->timer->stop();
-    this->ui->pushButton->setEnabled(true);
+    this->ui->btnBlock->setEnabled(true);
     // remove the pointers
     this->qUser.Delete();
 }
 
-void BlockUserForm::on_pushButton_clicked()
+void BlockUserForm::on_btnBlock_clicked()
 {
     // disable the button so that user can't click it multiple times
-    this->ui->pushButton->setEnabled(false);
+    this->ui->btnBlock->setEnabled(false);
     this->qUser = new ApiQuery(ActionQuery, this->user->GetSite());
     this->QueryPhase = 1;
     QString nocreate = "";
@@ -204,12 +204,12 @@ void BlockUserForm::sendBlockNotice(ApiQuery *dependency)
     WikiUtil::MessageUser(user, blocknotice, blocksum, blocksum, true, dependency, false, false);
 }
 
-void Huggle::BlockUserForm::on_pushButton_3_clicked()
+void BlockUserForm::on_btnCheck_clicked()
 {
     if (this->qUser != nullptr)
         return;
-    this->ui->pushButton_3->setEnabled(false);
-    this->ui->pushButton->setEnabled(false);
+    this->ui->btnCheck->setEnabled(false);
+    this->ui->btnBlock->setEnabled(false);
     this->qUser = new ApiQuery(ActionQuery, this->user->GetSite());
     this->qUser->Target = "user";
     this->qUser->Parameters = "list=blocks&";
@@ -245,12 +245,12 @@ void BlockUserForm::recheck()
         UiGeneric::MessageBox(_l("result"), text, MessageBoxStyleNormal, true);
         this->qUser = nullptr;
         this->timer->stop();
-        this->ui->pushButton_3->setEnabled(true);
-        this->ui->pushButton->setEnabled(true);
+        this->ui->btnCheck->setEnabled(true);
+        this->ui->btnBlock->setEnabled(true);
     }
 }
 
-void Huggle::BlockUserForm::on_pushButton_4_clicked()
+void BlockUserForm::on_btnContribs_clicked()
 {
     UiGeneric::DisplayContributionBrowser(this->user, this);
 }

@@ -75,7 +75,7 @@ WelcomeInfo::~WelcomeInfo()
     delete this->ui;
 }
 
-void Huggle::WelcomeInfo::on_pushButton_clicked()
+void Huggle::WelcomeInfo::on_btnOK_clicked()
 {
     hcfg->SystemConfig_FirstRun = false;
     hcfg->SystemConfig_ShowStartupInfo = this->ui->checkBox->isChecked();
@@ -88,7 +88,7 @@ void WelcomeInfo::Localize()
     this->ui->label_4->setText(_l("login-language"));
 }
 
-void Huggle::WelcomeInfo::on_label_2_linkActivated(const QString &link)
+void Huggle::WelcomeInfo::on_lblWelcomeText_linkActivated(const QString &link)
 {
     QDesktopServices::openUrl(QUrl(link));
 }

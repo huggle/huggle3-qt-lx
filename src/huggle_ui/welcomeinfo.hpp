@@ -33,8 +33,8 @@ namespace Huggle
             void DisableFirst();
 
         private slots:
-            void on_pushButton_clicked();
-            void on_label_2_linkActivated(const QString &link);
+            void on_btnOK_clicked();
+            void on_lblWelcomeText_linkActivated(const QString &link);
             void on_cb_Language_currentIndexChanged(const QString &arg1);
 
         private:

@@ -53,14 +53,14 @@ void ProtectPage::onTick()
     this->Protect();
 }
 
-void ProtectPage::on_pushButton_clicked()
+void ProtectPage::on_btnCancel_clicked()
 {
     this->hide();
 }
 
-void ProtectPage::on_pushButton_2_clicked()
+void ProtectPage::on_btnProtect_clicked()
 {
-    this->ui->pushButton_2->setEnabled(false);
+    this->ui->btnProtect->setEnabled(false);
     this->qProtection = new ApiQuery(ActionProtect, this->PageToProtect->GetSite());
     this->qProtection->UsingPOST = true;
     QString protection = "edit=sysop|move=sysop";
@@ -95,7 +95,7 @@ void ProtectPage::Failed(QString reason)
     delete this->tt;
     this->qProtection.Delete();
     this->tt = nullptr;
-    this->ui->pushButton->setEnabled(true);
+    this->ui->btnProtect->setEnabled(true);
 }
 
 void ProtectPage::Protect()

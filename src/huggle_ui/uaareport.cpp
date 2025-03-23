@@ -108,7 +108,7 @@ void UAAReport::onTick()
     this->insertUsername();
     WikiUtil::EditPage(Configuration::HuggleConfiguration->ProjectConfig->UAAP, this->dr, uaasum, true);
     Huggle::Syslog::HuggleLogs->Log(_l("uaa-reporting", this->User->Username));
-    this->ui->pushButton->setText(_l("uaa-reported"));
+    this->ui->btnReport->setText(_l("uaa-reported"));
 
 }
 void UAAReport::insertUsername()
@@ -158,7 +158,7 @@ void UAAReport::failed(QString reason)
     this->Timer->stop();
 }
 
-void UAAReport::on_pushButton_clicked()
+void UAAReport::on_btnReport_clicked()
 {
     if (!this->ui->checkBox->isChecked() && !this->ui->checkBox_2->isChecked() && !this->ui->checkBox_3->isChecked()
             && !this->ui->checkBox_4->isChecked() && this->ui->lineEdit->text().isEmpty())
@@ -171,18 +171,18 @@ void UAAReport::on_pushButton_clicked()
         g->exec();
         return;
     }
-    this->ui->pushButton->setEnabled(false);
+    this->ui->btnReport->setEnabled(false);
     this->getPageContents();
 }
 
-void UAAReport::on_pushButton_2_clicked()
+void UAAReport::on_btnCancel_clicked()
 {
     this->hide();
 }
 
-void UAAReport::on_pushButton_3_clicked()
+void UAAReport::on_btnCheck_clicked()
 {
-    this->ui->pushButton_3->setEnabled(false);
+    this->ui->btnCheck->setEnabled(false);
     this->qCheckUAAUser = WikiUtil::RetrieveWikiPageContents(this->User->GetSite()->GetProjectConfig()->UAAPath, this->User->GetSite());
     this->qCheckUAAUser->Site = this->User->GetSite();
     QueryPool::HugglePool->AppendQuery(this->qCheckUAAUser);
@@ -219,8 +219,7 @@ void UAAReport::onStartOfSearch()
     {
         mb.setWindowTitle(_l("uaa-user-reported-title"));
         mb.setText(_l("uaa-user-reported"));
-    }else
-    {
+    } else {
         mb.setWindowTitle(_l("uaa-user-unreported-title"));
         mb.setText(_l("uaa-user-unreported"));
     }

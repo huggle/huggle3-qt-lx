@@ -41,7 +41,7 @@ SpeedyForm::~SpeedyForm()
     delete this->ui;
 }
 
-void SpeedyForm::on_pushButton_clicked()
+void SpeedyForm::on_btnTag_clicked()
 {
     ProjectConfiguration::SpeedyOption speedy_option = this->edit->GetSite()->GetProjectConfig()->SpeedyTemplates.at(this->ui->cbReason->currentIndex());
     if (this->ui->leParameter->text().isEmpty() && !speedy_option.Parameter.isEmpty())
@@ -68,8 +68,8 @@ void SpeedyForm::on_pushButton_clicked()
     this->ui->cbReason->setEnabled(false);
     this->ui->lbParameter->setEnabled(false);
     this->ui->leParameter->setEnabled(false);
-    this->ui->pushButton->setText(_l("speedy-progress", this->edit->Page->PageName));
-    this->ui->pushButton->setEnabled(false);
+    this->ui->btnTag->setText(_l("speedy-progress", this->edit->Page->PageName));
+    this->ui->btnTag->setEnabled(false);
     this->Header = this->ui->cbReason->currentText();
     // first we need to retrieve the content of page if we don't have it already
     this->qObtainText = WikiUtil::RetrieveWikiPageContents(this->edit->Page);
@@ -125,7 +125,7 @@ void SpeedyForm::processTags()
     this->Template->SuccessCallback = reinterpret_cast<Callback>(Finalize);
 }
 
-void SpeedyForm::on_pushButton_2_clicked()
+void SpeedyForm::on_btnCancel_clicked()
 {
     this->timer->stop();
     this->close();
@@ -200,7 +200,7 @@ void SpeedyForm::OnTick()
                 WikiUtil::MessageUser(this->edit->User, this->warning, "", summary, false);
             }
             this->timer->stop();
-            this->ui->pushButton->setText(_l("speedy-finished"));
+            this->ui->btnTag->setText(_l("speedy-finished"));
         }
     }
 }

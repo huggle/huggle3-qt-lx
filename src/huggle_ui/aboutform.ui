@@ -76,7 +76,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_7">
+    <widget class="QLabel" name="lblVersionInfo">
      <property name="text">
       <string notr="true">Hey you, this isn't whitespace! :P</string>
      </property>
@@ -96,63 +96,63 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_3">
+    <widget class="QLabel" name="lblAuthorsPetrb">
      <property name="text">
       <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Petr Bena&lt;/span&gt; [[&lt;a href=&quot;https://en.wikipedia.org/wiki/User:Petrb&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;User:Petrb&lt;/span&gt;&lt;/a&gt;]]&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_4">
+    <widget class="QLabel" name="lblAuthorsAddshore">
      <property name="text">
       <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Adam Shorland&lt;/span&gt; [[&lt;a href=&quot;https://en.wikipedia.org/wiki/User:Addshore&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;User:Addshore&lt;/span&gt;&lt;/a&gt;]]&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_9">
+    <widget class="QLabel" name="lblAuthorsMGalloway">
      <property name="text">
       <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;May&lt;/span&gt; [[&lt;a href=&quot;https://meta.wikimedia.org/wiki/User:MGalloway_(WMF)&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;User:MGalloway_(WMF)&lt;/span&gt;&lt;/a&gt;]]&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_8">
+    <widget class="QLabel" name="lblAuthorsDave">
      <property name="text">
       <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Aidan Fell&lt;/span&gt; [[&lt;a href=&quot;https://en.wikipedia.org/wiki/User:My_name_is_not_dave&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;User:My name is not dave&lt;/span&gt;&lt;/a&gt;]]&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_11">
+    <widget class="QLabel" name="lblAuthorsSe4598">
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;se4598&lt;/span&gt; [[&lt;a href=&quot;https://de.wikipedia.org/wiki/User:se4598&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;User:se4598&lt;/span&gt;&lt;/a&gt;]]&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_13">
+    <widget class="QLabel" name="lblAuthorsJosve05a">
      <property name="text">
       <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Jonatan Svensson Glad&lt;/span&gt; [[&lt;a href=&quot;https://en.wikipedia.org/wiki/User:Josve05a&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;User:Josve05a&lt;/span&gt;&lt;/a&gt;]]&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_12">
+    <widget class="QLabel" name="lblAuthorsRichSmith">
      <property name="text">
       <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Rich Smith&lt;/span&gt; [[&lt;a href=&quot;https://en.wikipedia.org/wiki/User:Rich_Smith&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;User:Rich Smith&lt;/span&gt;&lt;/a&gt;]]&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_14">
+    <widget class="QLabel" name="lblAuthorsKrenair">
      <property name="text">
       <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Alex Monk&lt;/span&gt; [[&lt;a href=&quot;https://en.wikipedia.org/wiki/User:Krenair&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;User:Krenair&lt;/span&gt;&lt;/a&gt;]]&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_10">
+    <widget class="QLabel" name="lblAuthorsOriginalGurch">
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Based on original by &lt;span style=&quot; font-weight:600;&quot;&gt;Gurch&lt;/span&gt; [[&lt;a href=&quot;https://en.wikipedia.org/wiki/User:Gurch&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;User:Gurch&lt;/span&gt;&lt;/a&gt;]]&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>

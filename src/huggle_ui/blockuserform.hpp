@@ -56,11 +56,11 @@ namespace Huggle
             */
             void sendBlockNotice(ApiQuery *dependency);
         private slots:
-            void on_pushButton_clicked();
-            void on_pushButton_2_clicked();
+            void on_btnBlock_clicked();
+            void on_btnCancel_clicked(); 
             void onTick();
-            void on_pushButton_3_clicked();
-            void on_pushButton_4_clicked();
+            void on_btnCheck_clicked();
+            void on_btnContribs_clicked();
 
         private:
             void recheck();

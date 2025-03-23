@@ -56,8 +56,8 @@ namespace Huggle
 
         private slots:
             void OnTick();
-            void on_pushButton_2_clicked();
-            void on_pushButton_clicked();
+            void on_btnCancel_clicked();
+            void on_btnTag_clicked();
             void on_cbReason_currentIndexChanged(int index);
 
         private:

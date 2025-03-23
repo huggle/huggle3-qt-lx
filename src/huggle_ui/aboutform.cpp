@@ -35,7 +35,7 @@ AboutForm::AboutForm(QWidget *parent) : HW("aboutform", this, parent), ui(new Ui
 #if QT_VERSION >= 0x050400
     version_info += "\nSSL: " + QSslSocket::sslLibraryBuildVersionString();
 #endif
-    this->ui->label_7->setText(version_info);
+    this->ui->lblVersionInfo->setText(version_info);
     this->RestoreWindow();
 }
 
@@ -49,47 +49,47 @@ void AboutForm::on_pushButton_clicked()
     this->close();
 }
 
-void AboutForm::on_label_8_linkActivated(const QString &link)
+void AboutForm::on_lblAuthorsDave_linkActivated(const QString &link)
 {
     QDesktopServices::openUrl(link);
 }
 
-void AboutForm::on_label_5_linkActivated(const QString &link)
+void AboutForm::on_lblAuthorsPetrb_linkActivated(const QString &link)
 {
     QDesktopServices::openUrl(link);
 }
 
-void AboutForm::on_label_3_linkActivated(const QString &link)
+void AboutForm::on_lblAuthorsAddshore_linkActivated(const QString &link)
 {
     QDesktopServices::openUrl(link);
 }
 
-void Huggle::AboutForm::on_label_4_linkActivated(const QString &link)
+void AboutForm::on_lblAuthorsOriginalGurch_linkActivated(const QString &link)
 {
     QDesktopServices::openUrl(link);
 }
 
-void Huggle::AboutForm::on_label_10_linkActivated(const QString &link)
+void AboutForm::on_lblAuthorsMGalloway_linkActivated(const QString &link)
 {
     QDesktopServices::openUrl(link);
 }
 
-void Huggle::AboutForm::on_label_9_linkActivated(const QString &link)
+void AboutForm::on_lblAuthorsSe4598_linkActivated(const QString &link)
 {
     QDesktopServices::openUrl(link);
 }
 
-void Huggle::AboutForm::on_label_11_linkActivated(const QString &link)
+void AboutForm::on_lblAuthorsJosve05a_linkActivated(const QString &link)
 {
     QDesktopServices::openUrl(link);
 }
 
-void Huggle::AboutForm::on_label_12_linkActivated(const QString &link)
+void AboutForm::on_lblAuthorsRichSmith_linkActivated(const QString &link)
 {
     QDesktopServices::openUrl(link);
 }
 
-void Huggle::AboutForm::on_label_13_linkActivated(const QString &link)
+void AboutForm::on_lblAuthorsKrenair_linkActivated(const QString &link)
 {
     QDesktopServices::openUrl(link);
 }
@@ -107,9 +107,8 @@ static void check_dev()
     }
 }
 
-void Huggle::AboutForm::on_label_3_linkHovered(const QString &link)
+void AboutForm::on_lblAuthorsPetrb_linkHovered(const QString &link)
 {
-    // ignore
     Q_UNUSED(link);
     if (last_dev == 2)
         developer++;
@@ -117,17 +116,11 @@ void Huggle::AboutForm::on_label_3_linkHovered(const QString &link)
     check_dev();
 }
 
-void Huggle::AboutForm::on_label_4_linkHovered(const QString &link)
+void AboutForm::on_lblAuthorsAddshore_linkHovered(const QString &link)
 {
-    // ignore
     Q_UNUSED(link);
     if (last_dev == 1)
         developer++;
     last_dev = 2;
     check_dev();
-}
-
-void Huggle::AboutForm::on_label_14_linkActivated(const QString &link)
-{
-    QDesktopServices::openUrl(link);
 }

@@ -30,20 +30,21 @@ namespace Huggle
         public:
             explicit AboutForm(QWidget *parent = nullptr);
             ~AboutForm() override;
+
         private slots:
             void on_pushButton_clicked();
-            void on_label_8_linkActivated(const QString &link);
-            void on_label_5_linkActivated(const QString &link);
-            void on_label_3_linkActivated(const QString &link);
-            void on_label_4_linkActivated(const QString &link);
-            void on_label_10_linkActivated(const QString &link);
-            void on_label_9_linkActivated(const QString &link);
-            void on_label_11_linkActivated(const QString &link);
-            void on_label_12_linkActivated(const QString &link);
-            void on_label_13_linkActivated(const QString &link);
-            void on_label_3_linkHovered(const QString &link);
-            void on_label_4_linkHovered(const QString &link);
-            void on_label_14_linkActivated(const QString &link);
+            void on_lblAuthorsDave_linkActivated(const QString &link);
+            void on_lblAuthorsPetrb_linkActivated(const QString &link);
+            void on_lblAuthorsAddshore_linkActivated(const QString &link);
+            void on_lblAuthorsOriginalGurch_linkActivated(const QString &link);
+            void on_lblAuthorsMGalloway_linkActivated(const QString &link); 
+            void on_lblAuthorsSe4598_linkActivated(const QString &link);
+            void on_lblAuthorsJosve05a_linkActivated(const QString &link);
+            void on_lblAuthorsRichSmith_linkActivated(const QString &link);
+            void on_lblAuthorsKrenair_linkActivated(const QString &link);
+            void on_lblAuthorsPetrb_linkHovered(const QString &link);
+            void on_lblAuthorsAddshore_linkHovered(const QString &link);
+
         private:
             Ui::AboutForm *ui;
     };

@@ -70,7 +70,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="lblWelcomeText">
      <property name="frameShape">
       <enum>QFrame::NoFrame</enum>
      </property>
@@ -100,7 +100,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="btnOK">
      <property name="text">
       <string>OK</string>
      </property>
