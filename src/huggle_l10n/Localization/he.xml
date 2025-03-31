@@ -875,7 +875,7 @@
   <string name="main-revert-custom-reason-text">לא ניתנה סיבה / שחזור ייחודי</string>
   <string name="main-revert-already-pending-title">העריכה הזאת כבר בוטלה</string>
   <string name="main-revert-already-pending-text">אין לך אפשרות לשחזר את העריכה הזאת, כי היא כבר בתהליך שחזור. נא להמתין!</string>
-  <string name="main-revert-type-unknown">בלתי־ידוע</string>
+  <string name="main-revert-type-unknown">לא ידוע</string>
   <string name="main-revert-type-in-userspace">במרחב משתמש</string>
   <string name="main-revert-type-made-by-you">שלך</string>
   <string name="main-revert-type-made-on-talk-page">בדף השיחה</string>
