@@ -66,7 +66,7 @@
   <string name="config-shortcutaction">Dejanje</string>
   <string name="config-noshortcut">Nobena</string>
   <string name="config-defaults">Privzeto</string>
-  <string name="config-watchlist">Dodaj na spisek nadzorov</string>
+  <string name="config-watchlist">Dodaj na nadzorni seznam</string>
   <string name="config-revert">Vrnitev</string>
   <string name="config-skip">Preskoči</string>
   <string name="config-merge-messages">Združi moja sporočila z drugimi v obstoječih razdelkih</string>
@@ -135,9 +135,9 @@
   <string name="main-page-delete">Izbriši</string>
   <string name="main-page-load">Naloži</string>
   <string name="main-patrol-not-enabled">Pregledovanje v $1 ni omogočeno</string>
-  <string name="main-page-watchlist-add">Dodaj stran na spisek nadzorov</string>
+  <string name="main-page-watchlist-add">Dodaj stran na nadzorni seznam</string>
   <string name="main-page-tab-close">Zapri trenutni zavihek</string>
-  <string name="main-page-watchlist-remove">Odstrani stran s spiska nadzorov</string>
+  <string name="main-page-watchlist-remove">Odstrani stran z nadzornega seznama</string>
   <string name="main-user-info">Prikaži podatke o uporabniku</string>
   <string name="main-user-talk">Ogled pogovorne strani</string>
   <string name="main-user-warn">Opozori ...</string>
@@ -217,8 +217,8 @@
   <string name="speedy-progress">Označevanje »$1« za hitri izbris ...</string>
   <string name="wait">Prosimo, počakajte ...</string>
   <string name="function-miss">Funkcija trenutno ni na voljo</string>
-  <string name="preferences-watchlist-watch">Dodaj na spisek nadzorov</string>
-  <string name="preferences-watchlist-unwatch">Odstrani s spiska nadzorov</string>
+  <string name="preferences-watchlist-watch">Dodaj na nadzorni seznam</string>
+  <string name="preferences-watchlist-unwatch">Odstrani z nadzornega seznama</string>
   <string name="preferences-color-scheme-diff-default">Privzeto</string>
   <string name="preferences-color-scheme-diff-dark-mode">Temni način</string>
   <string name="preferences-template-spam-info">Te možnosti nadzorujejo podsistem, ki preprečuje pretirano pošiljanje predlog ciljnim uporabnikom. Privzeto uporabniki niso opozorjeni s predlogo za stara urejanja in prejmejo samo eno opozorilo s predlogo, tudi če v zelo kratkem času razveljavite več urejanj istega uporabnika.</string>
