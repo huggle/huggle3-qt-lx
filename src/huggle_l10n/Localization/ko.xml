@@ -224,7 +224,7 @@
   <string name="delete-failed-no-info">문서 정보가 쿼리에 존재하지 않습니다 (관리자입니까?)</string>
   <string name="extension-kl">실행하고 있지 않음</string>
   <string name="extension-ok">로드 후 실행 중</string>
-  <string name="exception-text-1">안타깝게도 Huggle에 충돌이 발생했습니다. 무엇을 했는지 세부정보와 함께 다음의 정보를 제출해 주십시오</string>
+  <string name="exception-text-1">안타깝게도 Huggle에 충돌이 발생했습니다. 무엇을 했는지 자세한 사항과 함께 다음의 정보를 제출해 주세요</string>
   <string name="exception-details">예외 세부사항</string>
   <string name="exception-error-code">오류 코드: $1</string>
   <string name="exception-reason">이유: $1</string>
