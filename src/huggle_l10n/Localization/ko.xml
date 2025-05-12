@@ -11,6 +11,7 @@
 * SeoJeongHo
 * Twotwo2019
 * Tyey
+* YeBoy371
 * Ykhwong
 * 고기랑
 * 아라
@@ -43,7 +44,7 @@
   <string name="no-instant">$1 프로젝트에 순간 경고가 사용되지 않아 $2에 메시지를 보낼 수 없습니다. 다른 경고 레벨을 선택해 주십시오.</string>
   <string name="undo">되돌리기</string>
   <string name="yes">예</string>
-  <string name="editing-page">페이지 편집</string>
+  <string name="editing-page">문서 편집</string>
   <string name="agf">사용자 지정 이유로 좋은 편집으로 되돌리기</string>
   <string name="successful">성공</string>
   <string name="summary">요약</string>

@@ -10,6 +10,7 @@
 * SkyDaisy9
 * Sujiniku
 * TKsdik8900
+* YeBoy371
 * Yusuke1109
 * ネイ
 * 春春眠眠
@@ -247,6 +248,7 @@
   <string name="login-start">ログイン</string>
   <string name="login-oauth-notsupported">現在、この方法ではログインできません</string>
   <string name="login-translate">ハグルを翻訳</string>
+  <string name="login-progress-formtitle">読み込み中...</string>
   <string name="login-progress-start">$1 にログインしています...</string>
   <string name="login-progress-retrieve-mw">$1 から MediaWiki についての情報を取得中</string>
   <string name="login-progress-language">メッセージ・ファイルを更新中...</string>
@@ -346,6 +348,7 @@
   <string name="main-patrol-not-enabled">巡回は、$1で有効になっていません</string>
   <string name="main-page-refresh">更新</string>
   <string name="main-page-restore">この版を復元</string>
+  <string name="main-page-tab-open">新しいタブを開く</string>
   <string name="main-user-info">利用者情報を表示</string>
   <string name="main-user-ignore">無視</string>
   <string name="main-user-unignore">無視を取り消し</string>

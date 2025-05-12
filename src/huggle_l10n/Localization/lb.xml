@@ -194,7 +194,7 @@
   <string name="login-error-cancelled">Ofgebrach.</string>
   <string name="login-error-count">Fir d\'Benotze vun Huggle op dësem Projet muss ee mindestens $1 Ännerunge gemaach hunn.</string>
   <string name="login-error-disabled">Huggle ass fir Äre Benotzerkont op $1 net aktivéiert. Kuckt Är Säit mat den Astellungen no.</string>
-  <string name="login-error-invalid">Ongëltege Benotzernumm</string>
+  <string name="login-error-invalid">Ongültege Benotzernumm</string>
   <string name="login-error-noconfig">$1 huet keng Säit mat den Huggle-Astellungen</string>
   <string name="login-error-nouser">De Benotzer gëtt et net</string>
   <string name="login-error-password">Falscht Passwuert</string>
