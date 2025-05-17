@@ -1,5 +1,8 @@
 ﻿# This just run the original script
 
+# NOTE: if you decide to execute this from VS, you need to add this PATH:
+# PATH=%PATH%;$(LocalDebuggerWorkingDirectory)..\huggle_core\Debug;$(LocalDebuggerWorkingDirectory)..\huggle_ui\Debug;$(LocalDebuggerWorkingDirectory)..\huggle_l10n\Debug;$(LocalDebuggerWorkingDirectory)..\huggle_res\Debug;$(LocalDebuggerWorkingDirectory)..\Debug;D:\libs\Qt\5.10.1\msvc2015_64\bin
+
 # Qt5
 # ..\windows\release.ps1 -cmake_generator "Visual Studio 15 2017 Win64" -vcinstall_path "E:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\" -msbuild_path "E:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe" -vcredist vcredist_x64.exe -python $false -qt5_path "E:\Qt\Qt5.12.12\5.12.12\msvc2017_64" -openssl_path "E:\OpenSSL-Win64"
 
