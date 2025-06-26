@@ -79,7 +79,7 @@
   <string name="contribution-browser-user-info">Rezent Kontributioune vum Benotzer $1</string>
   <string name="config-function">Funktioun</string>
   <string name="config-description">Beschreiwung</string>
-  <string name="config-shortcut">Ofkiirzung</string>
+  <string name="config-shortcut">Ofkierzung</string>
   <string name="config-queue-filter-ignore">Ignoréieren (spillt keng Roll)</string>
   <string name="config-queue-filter-exclude">Ausschléissen (muss net sinn)</string>
   <string name="config-queue-filter-require">Verlaangen (muss sinn)</string>

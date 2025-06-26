@@ -742,7 +742,7 @@
   <string name="whitelist-download">Scaricamento della nuova lista bianca</string>
   <string name="logs-widget-name">Registri di sistema</string>
   <string name="processes-widget-name">Processi</string>
-  <string name="wait">Attendere prego...</string>
+  <string name="wait">Attendi per favore...</string>
   <string name="function-miss">La funzione non è attualmente disponibile</string>
   <string name="missing-aiv">Questo progetto non usa AIV</string>
   <string name="missing-page">Non c\'è una pagina $1 su questo wiki</string>
