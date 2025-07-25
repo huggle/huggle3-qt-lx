@@ -1,5 +1,5 @@
 # This is a build file for Huggle (used with cmake)
-cmake_minimum_required (VERSION 2.8.7)
+cmake_minimum_required (VERSION 2.8.7...4.0.0)
 
 # So that MacOS builds are working on older versions as well
 set(CMAKE_OSX_DEPLOYMENT_TARGET "10.9" CACHE STRING "Minimum OS X deployment version")
