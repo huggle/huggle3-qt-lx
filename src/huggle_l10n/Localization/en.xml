@@ -586,6 +586,7 @@
   <string name="uaa-g1">Getting content of UAA</string>
   <string name="uaa-e1">The query for the page contents returned no data.</string>
   <string name="uaa-e2">The page contents weren&apos;t available.</string>
+  <string name="uaa-close">Close</string>
   <string name="read-only">Project $1 is configured as read only, editing functions will be limited</string>
   <string name="revert-confirm-multiple">This will revert multiple edits by $1. Continue?</string>
   <string name="revert-confirm-range">The author of the target revision, $2, is in the same range as the author of the current revision, $1, and may be the same person. Ensure the target revision is correct before proceeding. Continue?</string>

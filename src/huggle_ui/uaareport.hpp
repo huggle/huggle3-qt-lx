@@ -38,7 +38,7 @@ namespace Huggle
             ~UAAReport();
             //! I don't have much of a clue why this is here lol, but I know the dialog can't be initialised from mainwindow without this
             // Who are you? It's there because we must somehow set user to this class I guess --Petrb
-            void setUserForUAA(WikiUser *user);
+            void SetUserForUAA(WikiUser *user);
         private slots:
             void on_btnReport_clicked();
             void on_btnCancel_clicked();
@@ -53,18 +53,16 @@ namespace Huggle
             //! Get page contents (reason for this is above)
             void getPageContents();
             //! Function to that allows us to properly insert what we need to insert
-            void insertUsername();
+            bool insertUsername();
+            void disableForm();
             //! Message box, if anything fails
             void failed(QString reason);
             Ui::UAAReport *ui;
             WikiUser *User;
-            QString ContentsOfUAA;
             //! Whole contents of UAA page
-            QString dr;
+            QString reportPageContents;
             //! String that represents what is in the line edit
             QString OptionalReason;
-            //! UAA template
-            QString ta;
             //! Reason for report
             QString UAAReportReason;
             //! Pointer to WikiUser

@@ -29,15 +29,13 @@ UAAReport::UAAReport(QWidget *parent) : HW("uaareport", this, parent), ui(new Ui
 {
     this->ui->setupUi(this);
     this->User = nullptr;
-    this->ContentsOfUAA = "";
     this->Timer = new QTimer(this);
     connect(this->Timer, SIGNAL(timeout()), this, SLOT(onTick()));
     this->page = nullptr;
     this->TimerCheck = new QTimer(this);
     connect(this->TimerCheck, SIGNAL(timeout()), this, SLOT(onStartOfSearch()));
-    this->dr = "";
+    this->reportPageContents = "";
     this->OptionalReason = "";
-    this->ta = "";
     this->UAAReportReason = "";
     this->RestoreWindow();
 }
@@ -51,7 +49,7 @@ UAAReport::~UAAReport()
     delete this->page;
 }
 
-void UAAReport::setUserForUAA(WikiUser *user)
+void UAAReport::SetUserForUAA(WikiUser *user)
 {
     // we copy the user so that original can be deleted
     this->User = new WikiUser(user);
@@ -98,26 +96,44 @@ void UAAReport::onTick()
         return;
     }
     this->Timer->stop();
-    this->dr = element.text();
+    this->reportPageContents = element.text();
     /// \todo Check if user isn't already reported
-    Huggle::Syslog::HuggleLogs->DebugLog("Contents of UAA: " + this->dr);
+    Huggle::Syslog::HuggleLogs->DebugLog("Contents of UAA (before): " + this->reportPageContents);
     /// \todo Insert this to project config so that each project can have their own system here
     QString uaasum = Configuration::GenerateSuffix(QString("Reporting ") + this->User->Username + " to UAA",
                                                                         this->User->GetSite()->GetProjectConfig());
     this->whatToReport();
-    this->insertUsername();
-    WikiUtil::EditPage(Configuration::HuggleConfiguration->ProjectConfig->UAAP, this->dr, uaasum, true);
+    if (!this->insertUsername())
+        return;
+    Huggle::Syslog::HuggleLogs->DebugLog("Contents of UAA (after): " + this->reportPageContents);
+    WikiUtil::EditPage(Configuration::HuggleConfiguration->ProjectConfig->UAAP, this->reportPageContents, uaasum, true);
     Huggle::Syslog::HuggleLogs->Log(_l("uaa-reporting", this->User->Username));
     this->ui->btnReport->setText(_l("uaa-reported"));
-
+    this->ui->btnCancel->setText(_l("uaa-close"));
 }
-void UAAReport::insertUsername()
+bool UAAReport::insertUsername()
 {
-    this->ta = this->User->GetSite()->GetProjectConfig()->UAATemplate;
-    this->ta.replace("$1", this->User->Username);
-    this->ta.replace("$2", this->UAAReportReason + this->OptionalReason);
-    this->ContentsOfUAA = this->ta;
-    this->dr = this->dr + "\n" + this->ContentsOfUAA;
+    QString text = this->User->GetSite()->GetProjectConfig()->UAATemplate;
+    text.replace("$1", this->User->Username);
+    text.replace("$2", this->UAAReportReason + this->OptionalReason);
+
+    if (text.isEmpty())
+    {
+        this->failed("template processing yielded empty text (is the uaa-template empty?)");
+        return false;
+    }
+
+    this->reportPageContents = this->reportPageContents + "\n" + text;
+    return true;
+}
+
+void UAAReport::disableForm()
+{
+    this->ui->checkBox->setEnabled(false);
+    this->ui->checkBox_2->setEnabled(false);
+    this->ui->checkBox_3->setEnabled(false);
+    this->ui->checkBox_4->setEnabled(false);
+    this->ui->lineEdit->setEnabled(false);
 }
 
 void UAAReport::whatToReport()
@@ -172,6 +188,7 @@ void UAAReport::on_btnReport_clicked()
         return;
     }
     this->ui->btnReport->setEnabled(false);
+    this->disableForm();
     this->getPageContents();
 }
 
@@ -192,7 +209,7 @@ void UAAReport::on_btnCheck_clicked()
 
 bool UAAReport::checkIfReported()
 {
-    return (!this->dr.contains(this->User->Username));
+    return (!this->reportPageContents.contains(this->User->Username));
 }
 
 void UAAReport::onStartOfSearch()
@@ -214,12 +231,13 @@ void UAAReport::onStartOfSearch()
         return;
     }
     QDomElement h = chkusr.at(0).toElement();
-    this->dr = h.text();
+    this->reportPageContents = h.text();
     if (!this->checkIfReported())
     {
         mb.setWindowTitle(_l("uaa-user-reported-title"));
         mb.setText(_l("uaa-user-reported"));
-    } else {
+    } else
+    {
         mb.setWindowTitle(_l("uaa-user-unreported-title"));
         mb.setText(_l("uaa-user-unreported"));
     }

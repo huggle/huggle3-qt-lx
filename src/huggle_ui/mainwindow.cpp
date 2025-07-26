@@ -3000,7 +3000,7 @@ void MainWindow::on_actionReport_username_triggered()
     }
     delete this->fUaaReportForm;
     this->fUaaReportForm = new UAAReport(this);
-    this->fUaaReportForm->setUserForUAA(this->CurrentEdit->User);
+    this->fUaaReportForm->SetUserForUAA(this->CurrentEdit->User);
     this->fUaaReportForm->show();
 }
 

@@ -311,8 +311,8 @@ bool ProjectConfiguration::Parse(const QString& config, QString *reason, WikiSit
     // Parsing
     this->TemplateAge = HuggleParser::ConfigurationParse("template-age", config, QString::number(this->TemplateAge)).toInt();
     // UAA
-    this->UAAPath = HuggleParser::ConfigurationParse("uaa", config);
-    this->UAATemplate = HuggleParser::ConfigurationParse("uaa-template", config);
+    this->UAAPath = HuggleParser::ConfigurationParse("uaa", config, this->UAAPath);
+    this->UAATemplate = HuggleParser::ConfigurationParse("uaa-template", config, this->UAATemplate);
     this->TaggingSummary = HuggleParser::ConfigurationParse("tag-summary", config, "Tagging page");
     this->Tags = HuggleParser::ConfigurationParse_QL("tags", config, true);
     QStringList tags_copy(this->Tags);
@@ -689,8 +689,8 @@ bool ProjectConfiguration::ParseYAML(const QString& yaml_src, QString *reason, W
     this->TemplateAge = HuggleParser::YAML2Int("template-age", yaml, this->TemplateAge);
     this->DefaultTemplate = HuggleParser::YAML2String("default-template", yaml, this->DefaultTemplate);
     // UAA
-    this->UAAPath = HuggleParser::YAML2String("uaa", yaml);
-    this->UAATemplate = HuggleParser::YAML2String("uaa-template", yaml);
+    this->UAAPath = HuggleParser::YAML2String("uaa", yaml, this->UAAPath);
+    this->UAATemplate = HuggleParser::YAML2String("uaa-template", yaml, this->UAATemplate);
     this->TaggingSummary = HuggleParser::YAML2String("tag-summary", yaml, "Tagging page");
     this->Tags.clear();
     QStringList tags_temp = HuggleParser::YAML2QStringList("tags", yaml);
