@@ -65,15 +65,18 @@ namespace Huggle
 
     //! Wiki edit
 
-    //! Basically all changes to pages can be represented by this class.
-    //! Edits are representing an edit made to a page on a wiki, they
-    //! have always 3 basic statuses:
-    //! None - edit was just created and is not suitable for use
-    //! Processed - edit was pre processed, the basic information were properly set. This
-    //!             is a very quick serial operation that is handled by Core::Process
-    //! Postprocessed - edit was processed by processor thread and the detailed information
-    //!                 were downloaded using separate queries, in this phase the edit
-    //!                 structure contains all possible needed information we want.
+	//! Edits are representing a change made to a page on a wiki. Information about edits are loaded using various methods using change information providers
+	//! such as IRC or XmlRcs. Because each provider contains different amount of information about the edit, each edit needs postprocessing in order to
+	//! load all missing information using MediaWiki API or other methods (retrieve the information from cache, or using some regexes etc.)
+
+	//! That means each edit has has one of 3 basic states in its lifecycle:
+	//! None - edit was just created and is not suitable for use elsewhere in the program as many attributes may be missing, these attributes are inserted during processing and post processing
+	//! Processed - edit was processed, that means the basic informations about the edit were properly set by various helper functions.
+	//!				Processing is a very quick operation, it happens within the program, no external API calls are needed. It fills up most of essential properties, but not all of them.
+	//! Postprocessed - edit was processed by the processor thread which handles various API calls asynchronously in order to fetch all available detailed information about the edit and the detailed information.
+
+	//! Edits are heavily cached across Huggle in order to avoid unnecessary API calls
+
     //! \image html ../documentation/providers.png
     class HUGGLE_EX_CORE WikiEdit : public Collectable
     {
