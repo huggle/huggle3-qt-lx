@@ -104,7 +104,7 @@ void HuggleQueue::AddItem(WikiEdit *edit)
             if (current_edit->RevID < edit->RevID)
                 continue;
             // if edit is not a revert we can continue
-            if (!current_edit->IsRevert)
+            if (!current_edit->IsRevert())
                 continue;
             // if edit is not made to this page, we can continue
             if (current_edit->Page->SanitizedName() != edit->Page->SanitizedName())

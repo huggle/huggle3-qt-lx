@@ -138,9 +138,9 @@ bool HuggleQueueFilter::Matches(WikiEdit *edit)
     }
     if (this->Reverts != HuggleQueueFilterMatchIgnore)
     {
-        if (this->Reverts == HuggleQueueFilterMatchExclude && edit->IsRevert)
+        if (this->Reverts == HuggleQueueFilterMatchExclude && edit->IsRevert())
             return false;
-        if (this->Reverts == HuggleQueueFilterMatchRequire && !edit->IsRevert)
+        if (this->Reverts == HuggleQueueFilterMatchRequire && !edit->IsRevert())
             return false;
     }
     if (this->NewPages != HuggleQueueFilterMatchIgnore)

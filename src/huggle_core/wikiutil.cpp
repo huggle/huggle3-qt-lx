@@ -25,18 +25,15 @@
 
 using namespace Huggle;
 
-bool WikiUtil::IsRevert(const QString &summary)
+bool WikiUtil::IsRevert(const QString &summary, WikiSite *site)
 {
     if (summary.size() > 0)
     {
-        int xx = 0;
-        while (xx < Configuration::HuggleConfiguration->ProjectConfig->_revertPatterns.count())
+        // We need to use auto here because different Qt versions use different types
+        foreach (auto rx, site->GetProjectConfig()->_revertPatterns)
         {
-            if (summary.contains(Configuration::HuggleConfiguration->ProjectConfig->_revertPatterns.at(xx)))
-            {
+            if (summary.contains(rx))
                 return true;
-            }
-            xx++;
         }
     }
     return false;

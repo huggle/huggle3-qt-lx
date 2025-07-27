@@ -98,7 +98,7 @@ QJSValue JSMarshallingHelper::FromEdit(WikiEdit *edit, QJSEngine *engine, int po
     o.setProperty("Summary", edit->Summary);
     o.setProperty("GoodfaithScore", QJSValue(static_cast<int>(edit->GoodfaithScore)));
     o.setProperty("IsRangeOfEdits", QJSValue(edit->IsRangeOfEdits()));
-    o.setProperty("IsRevert", QJSValue(edit->IsRevert));
+    o.setProperty("IsRevert", QJSValue(edit->IsRevert()));
     o.setProperty("IsValid", QJSValue(edit->IsValid));
     o.setProperty("IsMinor", QJSValue(edit->IsMinor));
     o.setProperty("NewPage", QJSValue(edit->NewPage));

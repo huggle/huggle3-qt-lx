@@ -50,7 +50,8 @@ namespace Huggle
          * \return           Pointer to ApiQuery
          */
         HUGGLE_EX_CORE Collectable_SmartPtr<ApiQuery> APIRequest(Action action, WikiSite *site, const QString &parameters, bool using_post = false, const QString &target = "");
-        HUGGLE_EX_CORE bool IsRevert(const QString &summary);
+        //! Determines whether the summary belongs to edit that is a revert
+        HUGGLE_EX_CORE bool IsRevert(const QString &summary, WikiSite *site);
         //! Return a localized month for a current wiki
         HUGGLE_EX_CORE QString MonthText(int n, WikiSite *site = nullptr);
         /*!

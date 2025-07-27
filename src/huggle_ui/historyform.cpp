@@ -190,7 +190,7 @@ void HistoryForm::onTick01()
         QIcon icon(":/huggle/pictures/Resources/blob-none.png");
         if (this->CurrentEdit->Page->FounderKnown() && WikiUser::CompareUsernames(item->User, this->CurrentEdit->Page->GetFounder()))
             founder = true;
-        if (WikiUtil::IsRevert(item->Summary))
+        if (WikiUtil::IsRevert(item->Summary, item->GetSite()))
         {
             item->Type = EditType_Revert;
             icon = QIcon(":/huggle/pictures/Resources/blob-revert.png");

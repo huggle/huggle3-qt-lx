@@ -107,6 +107,8 @@ namespace Huggle
             void ProcessWords();
             void RecordScore(const QString& name, score_ht score);
             void RemoveFromHistoryChain();
+            //! Whether edit is revert - this is based on edit summary using patterns defined per project
+            bool IsRevert();
             QString ContentModel;
             //! Page that was changed by edit
             WikiPage *Page;
@@ -125,7 +127,6 @@ namespace Huggle
             bool IsValid = true;
             //! Old id
             revid_ht OldID;
-            bool IsRevert;
             //! Revision ID
             revid_ht RevID;
             //! Indicator whether the edit was processed or not
@@ -192,6 +193,9 @@ namespace Huggle
             Collectable_SmartPtr<ApiQuery> qCategoriesAndWatched;
             //! Size of change of edit
             long diffSize;
+            //! Cached information whether edit is a revert or not
+            //! -1 unknown, 0 false, 1 true
+            int isRevert = -1;
             friend class WikiEdit_ProcessorThread;
             friend class MainWindow;
     };

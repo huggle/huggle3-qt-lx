@@ -52,7 +52,6 @@ WikiEdit::WikiEdit()
     this->processingEditInfo = false;
     this->processingRevs = false;
     this->DiffText = "";
-    this->IsRevert = false;
     this->TPRevBaseTime = "";
     this->Previous = nullptr;
     // this is a problem we can't do this if we don't know the datetime because then the older edits
@@ -415,7 +414,7 @@ QString WikiEdit::GetPixmap()
     if (this->User->IsReported)
         return ":/huggle/pictures/Resources/blob-reported.png";
 
-    if (this->IsRevert)
+    if (this->IsRevert())
         return ":/huggle/pictures/Resources/blob-revert.png";
 
     if (this->Bot)
@@ -557,6 +556,32 @@ void WikiEdit::RemoveFromHistoryChain()
     {
         this->Next->Previous = nullptr;
         this->Next = nullptr;
+    }
+}
+
+bool WikiEdit::IsRevert()
+{
+    if (this->isRevert < 0)
+    {
+        if (this->Summary.isEmpty())
+        {
+            // Summary is empty, therefore we can't determine if this is revert or not,
+            // because this may also mean that summary simply wasn't loaded yet, we
+            // will not cache this
+            return false;
+        }
+        if (WikiUtil::IsRevert(this->Summary, this->GetSite()))
+        {
+            this->isRevert = 1;
+            return true;
+        } else
+        {
+            this->isRevert = 0;
+            return false;
+        }
+    } else
+    {
+        return this->isRevert > 0;
     }
 }
 
@@ -796,7 +821,7 @@ void WikiEdit_ProcessorThread::Process(WikiEdit *edit)
     {
         bool IgnoreWords = false;
         ProjectConfiguration *conf = edit->GetSite()->GetProjectConfig();
-        if (edit->IsRevert)
+        if (edit->IsRevert())
         {
             if (edit->User->IsIP())
             {

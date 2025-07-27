@@ -100,9 +100,8 @@ void QueryPool::PreProcessEdit(WikiEdit *edit)
         x++;
     }
 
-    if (WikiUtil::IsRevert(edit->Summary))
+    if (edit->IsRevert())
     {
-        edit->IsRevert = true;
         if (edit->GetSite()->Provider != nullptr)
             edit->GetSite()->Provider->IncrementReverts();
 
