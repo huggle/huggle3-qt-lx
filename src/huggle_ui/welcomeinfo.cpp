@@ -93,11 +93,21 @@ void Huggle::WelcomeInfo::on_lblWelcomeText_linkActivated(const QString &link)
     QDesktopServices::openUrl(QUrl(link));
 }
 
-void Huggle::WelcomeInfo::on_cb_Language_currentIndexChanged(const QString &arg1)
+void WelcomeInfo::DisableFirst()
+{
+    this->ui->label_3->setVisible(false);
+    this->ui->label_4->setVisible(false);
+    this->ui->label_5->setVisible(false);
+    this->ui->cb_Language->setVisible(false);
+}
+
+
+void WelcomeInfo::on_cb_Language_currentIndexChanged(int index)
 {
     if (this->loading)  return;
     // This is just a fallback in case there is some weird bug with combo box
     // it's not a default language, don't change it here
+    QString arg1 = this->ui->cb_Language->itemText(index);
     QString lang = "en";
     int c = 0;
     while (c<Localizations::HuggleLocalizations->LocalizationData.count())
@@ -113,13 +123,5 @@ void Huggle::WelcomeInfo::on_cb_Language_currentIndexChanged(const QString &arg1
         lang = Localizations::LANG_QQX;
     Localizations::HuggleLocalizations->PreferredLanguage = lang;
     this->Localize();
-}
-
-void WelcomeInfo::DisableFirst()
-{
-    this->ui->label_3->setVisible(false);
-    this->ui->label_4->setVisible(false);
-    this->ui->label_5->setVisible(false);
-    this->ui->cb_Language->setVisible(false);
 }
 

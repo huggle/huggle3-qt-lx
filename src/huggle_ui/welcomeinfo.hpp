@@ -35,7 +35,7 @@ namespace Huggle
         private slots:
             void on_btnOK_clicked();
             void on_lblWelcomeText_linkActivated(const QString &link);
-            void on_cb_Language_currentIndexChanged(const QString &arg1);
+            void on_cb_Language_currentIndexChanged(int index);
 
         private:
             void Localize();
