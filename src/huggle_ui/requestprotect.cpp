@@ -137,6 +137,7 @@ void RequestProtect::Tick()
             return;
         }
         this->ui->pushButton_RequestProtection->setText(_l("requested"));
+        this->ui->pushButton_Cancel->setText(_l("close"));
         this->tm->stop();
     }
 }

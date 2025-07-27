@@ -221,7 +221,7 @@ bool Generic::RegexExactMatch(const QString& regex, const QString& input_text)
 #ifdef QT6_BUILD
     QRegularExpression re(regex);
     QRegularExpressionMatch match = re.match(input_text);
-    return match.hasMatch() && (match.captured(0) == input_text);
+    return match.hasMatch();
 #else
     QRegExp re(regex);
     return re.exactMatch(input_text);
