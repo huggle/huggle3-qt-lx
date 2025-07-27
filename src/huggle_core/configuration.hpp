@@ -463,8 +463,6 @@ namespace Huggle
             bool        ForceNoEditJump = false;
             //! Warn you in case you want to revert a user page
             bool        SystemConfig_WarnUserSpaceRoll = true;
-            //! Send a message to user on good edit
-            bool        WelcomeEmpty = true;
             //! This is changed to true in case that someone send a message to user
             bool        NewMessage = false;
             QString     QueryDebugPath = "querydump.dat";
