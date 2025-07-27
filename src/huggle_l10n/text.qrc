@@ -46,7 +46,22 @@
     <file>Localization/tr.xml</file>
     <file>Localization/uk.xml</file>
     <file>Localization/ur.xml</file>
+    <file>Localization/vi.xml</file>
     <file>Localization/zh.xml</file>
     <file>Localization/zh-hant.xml</file>
+    <file>Localization/bs.xml</file>
+    <file>Localization/da.xml</file>
+    <file>Localization/diq.xml</file>
+    <file>Localization/eu.xml</file>
+    <file>Localization/fi.xml</file>
+    <file>Localization/lki.xml</file>
+    <file>Localization/qqq.xml</file>
+    <file>Localization/sco.xml</file>
+    <file>Localization/sk.xml</file>
+    <file>Localization/skr-arab.xml</file>
+    <file>Localization/sl.xml</file>
+    <file>Localization/sr-ec.xml</file>
+    <file>Localization/sr-el.xml</file>
+    <file>Localization/te.xml</file>
   </qresource>
 </RCC>

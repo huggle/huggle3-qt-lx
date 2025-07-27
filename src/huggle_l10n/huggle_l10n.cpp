@@ -68,10 +68,25 @@ QStringList Huggle_l10n::GetLocalizations()
             << "sa"
             << "sv" // Swedish
             << "ta"
+            << "te" // Telugu
             << "tr" // Turkish
             << "uk" // Ukrainian
             << "ur" // Urdu
+            << "vi" // Vietnamese
             << "zh" // Chinese
-            << "zh-hant"; // Chinese hant
+            << "zh-hant" // Chinese hant
+            << "bs" // Bosnian
+            << "da" // Danish
+            << "diq" // Zazaki
+            << "eu" // Basque
+            << "fi" // Finnish
+            << "km" // Khmer (uncommented)
+            << "lki" // Laki
+            << "sco" // Scots
+            << "sk" // Slovak
+            << "skr-arab" // Saraiki (Arabic script)
+            << "sl" // Slovenian
+            << "sr-ec" // Serbian (Cyrillic script)
+            << "sr-el"; // Serbian (Latin script)
     return results;
 }
