@@ -1528,26 +1528,6 @@ void LoginForm::on_pushButton_clicked()
     this->qDatabase->Process();
 }
 
-void LoginForm::on_Language_currentIndexChanged(const QString &arg1)
-{
-    if (this->isLoading)  return;
-    QString lang = "en";
-    int c = 0;
-    while (c<Localizations::HuggleLocalizations->LocalizationData.count())
-    {
-        if (Localizations::HuggleLocalizations->LocalizationData.at(c)->LanguageID == arg1)
-        {
-            lang = Localizations::HuggleLocalizations->LocalizationData.at(c)->LanguageName;
-            break;
-        }
-        c++;
-    }
-    if (Localizations::LANG_QQX == arg1)
-        lang = Localizations::LANG_QQX;
-    Localizations::HuggleLocalizations->PreferredLanguage = lang;
-    this->Localize();
-}
-
 void Huggle::LoginForm::on_labelTranslate_linkActivated(const QString &link)
 {
     QDesktopServices::openUrl(link);
@@ -1644,3 +1624,25 @@ bool LoginForm::isDeveloperMode()
 {
     return this->ui->lineEdit_username->text().replace('_', ' ').toLower() == "developer mode";
 }
+
+void LoginForm::on_Language_currentIndexChanged(int index)
+{
+    if (this->isLoading)  return;
+    QString arg1 = this->ui->Language->itemText(index);
+    QString lang = "en";
+    int c = 0;
+    while (c<Localizations::HuggleLocalizations->LocalizationData.count())
+    {
+        if (Localizations::HuggleLocalizations->LocalizationData.at(c)->LanguageID == arg1)
+        {
+            lang = Localizations::HuggleLocalizations->LocalizationData.at(c)->LanguageName;
+            break;
+        }
+        c++;
+    }
+    if (Localizations::LANG_QQX == arg1)
+        lang = Localizations::LANG_QQX;
+    Localizations::HuggleLocalizations->PreferredLanguage = lang;
+    this->Localize();
+}
+
