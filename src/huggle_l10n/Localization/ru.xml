@@ -6,6 +6,7 @@
 * Biathlon
 * Diralik
 * Edible Melon
+* Elzav
 * Eroha
 * EugenG
 * Evs
@@ -627,6 +628,7 @@
   <string name="uaa-g1">Получение данных из UAA</string>
   <string name="uaa-e1">Запрос содержимого страницы не возвращает никаких данных.</string>
   <string name="uaa-e2">Содержимое страницы недоступно.</string>
+  <string name="uaa-close">Закрыть</string>
   <string name="read-only">Проект $1 сконфигурирован в режиме «только для чтения», функции редактирования будут ограничены</string>
   <string name="revert-confirm-multiple">Откатить несколько правок участника \'$1\'?</string>
   <string name="revert-confirm-range">Автор целевой версии $2 из того же CIDR-диапазона, что и автор текущей версии $1; пожалуйста, проверьте целевую версию перед продолжением. Продолжить?</string>

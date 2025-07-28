@@ -604,6 +604,7 @@
   <string name="uaa-g1">獲取「需要管理員注意的用戶名」的內容</string>
   <string name="uaa-e1">此頁面內容的查詢沒有回傳資料。</string>
   <string name="uaa-e2">頁面內容不可用。</string>
+  <string name="uaa-close">關閉</string>
   <string name="read-only">項目$1被設置為唯獨，編輯功能將被限制</string>
   <string name="revert-confirm-multiple">這將會回退$1的多筆編輯。要繼續？</string>
   <string name="revert-confirm-range">目標修訂版本$2的作者，與目前修訂版本作者$1在同一範圍網段，因此有可能是同一人。在進行之前請確認目標修訂版本為正確的，要繼續？</string>

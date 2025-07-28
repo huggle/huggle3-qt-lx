@@ -7,6 +7,7 @@
 * Arthur2e5
 * DW YoungDLS
 * Gerongfenh
+* GuoPC
 * LNDDYL
 * Lakejason0
 * LittlePaw365
@@ -619,6 +620,7 @@
   <string name="uaa-g1">获取UAA内容</string>
   <string name="uaa-e1">对页面内容的查询未返回任何数据。</string>
   <string name="uaa-e2">页面内容不可用。</string>
+  <string name="uaa-close">关闭</string>
   <string name="read-only">项目$1被配置为只读，编辑功能将被限制</string>
   <string name="revert-confirm-multiple">这将回退$1的多次编辑。确定继续？</string>
   <string name="revert-confirm-range">目标修订的作者$2，是和当前修订作者$1同一范围的，这可能是同一人（傀儡？！）；请确认目标版本是正确的。确定继续？</string>

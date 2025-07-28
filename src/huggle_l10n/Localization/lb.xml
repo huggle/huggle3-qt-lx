@@ -364,6 +364,7 @@
   <string name="uaa-not-supported">UAA net disponibel</string>
   <string name="uaa-nr">Et gouf kee Grond uginn</string>
   <string name="uaa-e2">D\'Inhalter vun der Säit waren net disponibel.</string>
+  <string name="uaa-close">Zoumaachen</string>
   <string name="revert-confirm-multiple">Heimat ginn eng Rei Ännerunge vum $1 zréckgesat. Virufueren?</string>
   <string name="revert-confirm-range">Den Auteur vun der Ziversioun $2 ass am selwechte Beräich wéi den Auteur vun der aktueller Versioun $1 a kéint déi selwecht Persoun sinn. Vergewëssert Iech datt d\'Zilversioun korrekt ass ier Dir weidermaacht. Virufueren?</string>
   <string name="revert-error-first">Dës Ännerung ass déi éischt Ännerung vun der Säit a kann net zréckgesat ginn.</string>

@@ -579,6 +579,7 @@
   <string name="uaa-g1">Recupero del contenuto di UAA</string>
   <string name="uaa-e1">L\'interrogazione per i contenuti della pagina non ha restituito dati.</string>
   <string name="uaa-e2">I contenuti della pagina non erano disponibili.</string>
+  <string name="uaa-close">Chiudi</string>
   <string name="revert-confirm-multiple">In questo modo verranno annullate molteplici modifiche di $1. Continuare?</string>
   <string name="revert-confirm-range">L\'autore della revisione in oggetto, $2, è nello stesso range dell\'autore dell\'attuale revisione, $1, e potrebbe essere la stessa persona. Assicurati che la revisione in oggetto sia corretta prima di procedere. Continuare?</string>
   <string name="revert-confirm-same">Ciò riporterà ad un\'altra revisione dello stesso utente, $1. Continuare?</string>
