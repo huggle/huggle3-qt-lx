@@ -42,10 +42,10 @@ namespace Huggle
         private slots:
             void on_listWidget_itemSelectionChanged();
             void on_checkBox_clicked();
-            void on_checkBox_26_clicked();
-            void on_checkBox_27_clicked();
+            void on_checkBox_RequireDelay_clicked();
+            void on_checkBox_InstantReverts_clicked();
             void RecordKeys(int row, int column);
-            void on_pushButton_7_clicked();
+            void on_pbHuggle2_clicked();
             void on_cbSites_currentIndexChanged(int index);
             void on_cbDefault_currentIndexChanged(int index);
             void on_tableWidget_customContextMenuRequested(const QPoint &pos);
@@ -73,6 +73,7 @@ namespace Huggle
             void on_pushButton_QueueReset_clicked();
             void on_listWidget_customContextMenuRequested(const QPoint &pos);
             void onNamespaceBoxToggled(bool checked);
+            void on_pushButton_ResetConfig_clicked();
 
         private:
             void ResetItems();

@@ -116,7 +116,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QCheckBox" name="checkBox_27">
+          <widget class="QCheckBox" name="checkBox_InstantReverts">
            <property name="text">
             <string>Use instant reverts (very fast, but can't be cancelled once executed)</string>
            </property>
@@ -128,14 +128,14 @@
             <number>4</number>
            </property>
            <item>
-            <widget class="QLabel" name="label_3">
+            <widget class="QLabel" name="label_RevertWait">
              <property name="text">
               <string>Revert wait (seconds)</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_3"/>
+            <widget class="QLineEdit" name="lineEdit_RevertDelay"/>
            </item>
           </layout>
          </item>
@@ -164,7 +164,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QRadioButton" name="radioButton_2">
+               <widget class="QRadioButton" name="radioButton_Revert">
                 <property name="text">
                  <string>Revert</string>
                 </property>
@@ -173,14 +173,14 @@
              </layout>
             </item>
             <item>
-             <widget class="QCheckBox" name="checkBox_20">
+             <widget class="QCheckBox" name="checkBox_RevertNewerEdits">
               <property name="text">
                <string>Revert newer edits to page than displayed diff in case they were made by same user (same vandal)</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_7">
+             <widget class="QPushButton" name="pbHuggle2">
               <property name="text">
                <string>Change all huggle settings to behave more like huggle 2</string>
               </property>
@@ -614,28 +614,28 @@
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="checkBox_14">
+        <widget class="QCheckBox" name="checkBox_AutoLoadHistory">
          <property name="text">
           <string>Automatically load history and user info (requires lot of network connection)</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="checkBox_21">
+        <widget class="QCheckBox" name="checkBox_LastRevision">
          <property name="text">
           <string>Display last revision of page in case currently loaded edit is not a last revision (will post-download it bypassing cache)</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="checkBox_8">
+        <widget class="QCheckBox" name="checkBox_RetrieveFounder">
          <property name="text">
           <string>Get a founder of every page (required in order to G7 blanked pages)</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="checkBox_26">
+        <widget class="QCheckBox" name="checkBox_RequireDelay">
          <property name="text">
           <string>Require a delay after every load of next edit, for which it is not possible to use any write feature (useful when you need to resolve keyboard multi-press bug)</string>
          </property>
@@ -647,14 +647,14 @@
           <number>4</number>
          </property>
          <item>
-          <widget class="QLabel" name="label_2">
+          <widget class="QLabel" name="label_WaitEdit">
            <property name="text">
             <string>Time for which you need to wait between edit features are enabled (seconds):</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit_2"/>
+          <widget class="QLineEdit" name="lineEdit_DelayValue"/>
          </item>
         </layout>
        </item>
@@ -672,7 +672,7 @@
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_7">
           <item>
-           <widget class="QRadioButton" name="radioButton_3">
+           <widget class="QRadioButton" name="radioButton_DisplayNext">
             <property name="text">
              <string>Display next</string>
             </property>
@@ -682,14 +682,14 @@
            </widget>
           </item>
           <item>
-           <widget class="QRadioButton" name="radioButton_4">
+           <widget class="QRadioButton" name="radioButton_RetrieveEdit">
             <property name="text">
              <string>Retrieve your own edit</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QRadioButton" name="radioButton_5">
+           <widget class="QRadioButton" name="radioButton_DoNothing">
             <property name="text">
              <string>Nothing</string>
             </property>
@@ -1010,28 +1010,28 @@
         <number>8</number>
        </property>
        <item>
-        <widget class="QCheckBox" name="checkBox_22">
+        <widget class="QCheckBox" name="checkBox_DynamicColumns">
          <property name="text">
           <string>Make the columns of lists dynamic (will resize based on size of items) or manual (user can change their size)</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="checkBox_25">
+        <widget class="QCheckBox" name="checkBox_MessageNotification">
          <property name="text">
           <string>Display a notification when you receive a new message on your talk page</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="checkBox_6">
+        <widget class="QCheckBox" name="checkBox_WarningApi">
          <property name="text">
           <string>Display warnings for API queries</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="checkBox_23">
+        <widget class="QCheckBox" name="checkBox_TitleDiff">
          <property name="text">
           <string>Page title in every diff (large text which show just a page title in top of every diff)</string>
          </property>
@@ -1059,14 +1059,14 @@
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="checkBox_31">
+        <widget class="QCheckBox" name="checkBox_HtmlMessages">
          <property name="text">
           <string>HAN can render HTML messages (dangerous)</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="checkBox_7">
+        <widget class="QCheckBox" name="checkBox_SummaryPresent">
          <property name="text">
           <string>Highlight summary when present instead of when it's missing</string>
          </property>
@@ -1104,6 +1104,13 @@
         </widget>
        </item>
        <item>
+        <widget class="QPushButton" name="pushButton_ResetConfig">
+         <property name="text">
+          <string>Reset to default parameters</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <layout class="QFormLayout" name="formLayout_2">
          <item row="0" column="0">
           <widget class="QLabel" name="label_13">
@@ -1119,7 +1126,7 @@
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QLineEdit" name="lineEdit_5"/>
+          <widget class="QLineEdit" name="lineEdit_Font"/>
          </item>
          <item row="1" column="0">
           <widget class="QLabel" name="label">

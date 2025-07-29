@@ -812,6 +812,12 @@
   <string name="preferences-empty-queue-page">Empty queue page:</string>
   <string name="preferences-reset-gui">Reset GUI</string>
   <string name="preferences-restore-factory-layout">This will restore factory layout of huggle as it had when you installed it. Huggle will shut down. Continue?</string>
+  <string name="preferences-reset-config-title">Reset Configuration</string>
+  <string name="preferences-factory">Reset to factory defaults</string>
+  <string name="preferences-reset-config-question">Are you sure you want to reset all Huggle settings to default values? This will erase your current configuration and shut Huggle down.</string>
+  <string name="preferences-reset-config-done">Configuration reset</string>
+  <string name="preferences-reset-config-restart">Huggle's configuration has been reset to default. You may need to restart Huggle for all changes to take effect.</string>
+  <string name="preferences-huggle2-config-success">Settings were successfully configured to make Huggle 3 behave similar to Huggle 2</string>
   <string name="preferences-keystroke-rate-limit">Prevent repeated keystrokes by following rate in miliseconds (only 1 same shortcut can be triggered within N ms)</string>
   <string name="preferences-color-scheme-diff">Diff colors</string>
   <string name="preferences-color-scheme-diff-default">Default</string>

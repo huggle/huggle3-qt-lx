@@ -1714,7 +1714,7 @@ void MainWindow::OnTimerTick0()
             QString page = Configuration::HuggleConfiguration->GlobalConfig_UserConf;
             page = page.replace("$1", Configuration::HuggleConfiguration->SystemConfig_UserName);
             Version huggle_version(HUGGLE_VERSION);
-            foreach (WikiSite*site, Configuration::HuggleConfiguration->Projects)
+            foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
             {
                 if (*site->UserConfig->Previous_Version > huggle_version)
                 {
@@ -1726,12 +1726,9 @@ void MainWindow::OnTimerTick0()
                                                MessageBoxStyleQuestion, true) == QMessageBox::No)
                         continue;
                 }
-                WikiPage *uc = new WikiPage(page, site);
-                uc->Site = site;
-                Collectable_SmartPtr<EditQuery> temp = WikiUtil::EditPage(uc, site->GetUserConfig()->MakeLocalUserConfig(site->GetProjectConfig()), _l("saveuserconfig-progress"), true);
+                Collectable_SmartPtr<EditQuery> temp = WikiUtil::EditPage(site, page, site->GetUserConfig()->MakeLocalUserConfig(site->GetProjectConfig()), _l("saveuserconfig-progress"), true);
                 temp->IncRef();
                 this->storageQueries.insert(site, temp.GetPtr());
-                delete uc;
             }
             return;
         }

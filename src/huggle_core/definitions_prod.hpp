@@ -32,6 +32,8 @@ typedef long long revid_ht;
 #define HUGGLE_STATISTICS_LIFETIME     200
 #define HUGGLE_STATISTICS_BLOCK_SIZE   20
 
+#define HUGGLE_MIN_QUEUE_SIZE          10
+
 // How many dynamic shortcuts for dropdown menus to support
 #define HUGGLE_MAX_DROPDOWN_SHORTCUTS  20
 
