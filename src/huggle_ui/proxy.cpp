@@ -50,24 +50,24 @@ void Proxy::SetProxy(int type, QString host, unsigned int port, QString name, QS
 Proxy::Proxy(QWidget *parent) : HW("proxy", this, parent), ui(new Ui::Proxy)
 {
     this->ui->setupUi(this);
-    this->ui->label->setText(_l("login-proxyaddress"));
-    this->ui->label_3->setText(_l("login-proxyport"));
-    this->ui->checkBox->setText(_l("login-proxy-remember-this"));
-    this->ui->comboBox->addItem(_l("protect-none"));
-    this->ui->comboBox->addItem("Socks 5");
-    this->ui->comboBox->addItem("Http");
-    this->ui->comboBox->addItem("Http (caching proxy)");
-    this->ui->comboBox->addItem("Ftp");
-    this->ui->l_Restart->setText(_l("proxy-restart"));
-    this->ui->comboBox->setCurrentIndex(hcfg->SystemConfig_ProxyType);
+    this->ui->labelHostname->setText(_l("login-proxyaddress"));
+    this->ui->labelPort->setText(_l("login-proxyport"));
+    this->ui->checkBoxRememberSettings->setText(_l("login-proxy-remember-this"));
+    this->ui->comboBoxProxyType->addItem(_l("protect-none"));
+    this->ui->comboBoxProxyType->addItem("Socks 5");
+    this->ui->comboBoxProxyType->addItem("Http");
+    this->ui->comboBoxProxyType->addItem("Http (caching proxy)");
+    this->ui->comboBoxProxyType->addItem("Ftp");
+    this->ui->labelRestartWarning->setText(_l("proxy-restart"));
+    this->ui->comboBoxProxyType->setCurrentIndex(hcfg->SystemConfig_ProxyType);
     // Right now it seems proxy needs restart so this option doesn't really make much sense on any other value than true
-    this->ui->checkBox->setChecked(true);
+    this->ui->checkBoxRememberSettings->setChecked(true);
     if (hcfg->SystemConfig_UseProxy)
     {
-        this->ui->lineEdit->setText(hcfg->SystemConfig_ProxyHost);
-        this->ui->lineEdit_2->setText(QString::number(hcfg->SystemConfig_ProxyPort));
-        this->ui->lineEdit_3->setText(hcfg->SystemConfig_ProxyUser);
-        this->ui->lineEdit_4->setText(hcfg->SystemConfig_ProxyPass);
+        this->ui->lineEditHostname->setText(hcfg->SystemConfig_ProxyHost);
+        this->ui->lineEditPort->setText(QString::number(hcfg->SystemConfig_ProxyPort));
+        this->ui->lineEditUsername->setText(hcfg->SystemConfig_ProxyUser);
+        this->ui->lineEditPassword->setText(hcfg->SystemConfig_ProxyPass);
     }
     this->RestoreWindow();
 }
@@ -79,16 +79,16 @@ Proxy::~Proxy()
 
 void Proxy::on_buttonBox_accepted()
 {
-    SetProxy(this->ui->comboBox->currentIndex(), this->ui->lineEdit->text(), this->ui->lineEdit_2->text().toUInt(),
-               this->ui->lineEdit_3->text(), this->ui->lineEdit_4->text());
-    if (this->ui->checkBox->isChecked())
+    SetProxy(this->ui->comboBoxProxyType->currentIndex(), this->ui->lineEditHostname->text(), this->ui->lineEditPort->text().toUInt(),
+               this->ui->lineEditUsername->text(), this->ui->lineEditPassword->text());
+    if (this->ui->checkBoxRememberSettings->isChecked())
     {
-        hcfg->SystemConfig_UseProxy = this->ui->comboBox->currentIndex() != 0;
-        hcfg->SystemConfig_ProxyHost = this->ui->lineEdit->text();
-        hcfg->SystemConfig_ProxyType = this->ui->comboBox->currentIndex();
-        hcfg->SystemConfig_ProxyPort = this->ui->lineEdit_2->text().toUInt();
-        hcfg->SystemConfig_ProxyUser = this->ui->lineEdit_3->text();
-        hcfg->SystemConfig_ProxyPass = this->ui->lineEdit_4->text();
+        hcfg->SystemConfig_UseProxy = this->ui->comboBoxProxyType->currentIndex() != 0;
+        hcfg->SystemConfig_ProxyHost = this->ui->lineEditHostname->text();
+        hcfg->SystemConfig_ProxyType = this->ui->comboBoxProxyType->currentIndex();
+        hcfg->SystemConfig_ProxyPort = this->ui->lineEditPort->text().toUInt();
+        hcfg->SystemConfig_ProxyUser = this->ui->lineEditUsername->text();
+        hcfg->SystemConfig_ProxyPass = this->ui->lineEditPassword->text();
         hcfg->SaveSystemConfig();
     }
 }
@@ -98,15 +98,15 @@ void Proxy::on_buttonBox_rejected()
     this->close();
 }
 
-void Huggle::Proxy::on_comboBox_currentIndexChanged(int index)
+void Huggle::Proxy::on_comboBoxProxyType_currentIndexChanged(int index)
 {
     bool visible = index != 0;
-    this->ui->label_5->setEnabled(visible);
-    this->ui->label->setEnabled(visible);
-    this->ui->label_4->setEnabled(visible);
-    this->ui->label_3->setEnabled(visible);
-    this->ui->lineEdit->setEnabled(visible);
-    this->ui->lineEdit_2->setEnabled(visible);
-    this->ui->lineEdit_3->setEnabled(visible);
-    this->ui->lineEdit_4->setEnabled(visible);
+    this->ui->labelUsername->setEnabled(visible);
+    this->ui->labelHostname->setEnabled(visible);
+    this->ui->labelPassword->setEnabled(visible);
+    this->ui->labelPort->setEnabled(visible);
+    this->ui->lineEditHostname->setEnabled(visible);
+    this->ui->lineEditPort->setEnabled(visible);
+    this->ui->lineEditUsername->setEnabled(visible);
+    this->ui->lineEditPassword->setEnabled(visible);
 }

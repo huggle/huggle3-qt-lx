@@ -129,24 +129,24 @@ bool UAAReport::insertUsername()
 
 void UAAReport::disableForm()
 {
-    this->ui->checkBox->setEnabled(false);
-    this->ui->checkBox_2->setEnabled(false);
-    this->ui->checkBox_3->setEnabled(false);
-    this->ui->checkBox_4->setEnabled(false);
-    this->ui->lineEdit->setEnabled(false);
+    this->ui->checkBoxDisruptive->setEnabled(false);
+    this->ui->checkBoxOffensive->setEnabled(false);
+    this->ui->checkBoxPromotional->setEnabled(false);
+    this->ui->checkBoxMisleading->setEnabled(false);
+    this->ui->lineEditOtherReason->setEnabled(false);
 }
 
 void UAAReport::whatToReport()
 {
-    this->OptionalReason = this->ui->lineEdit->text();
+    this->OptionalReason = this->ui->lineEditOtherReason->text();
     QStringList reasons;
-    if (this->ui->checkBox->isChecked())
+    if (this->ui->checkBoxDisruptive->isChecked())
         reasons.append("disruptive");
-    if (this->ui->checkBox_2->isChecked())
+    if (this->ui->checkBoxOffensive->isChecked())
         reasons.append("offensive");
-    if (this->ui->checkBox_3->isChecked())
+    if (this->ui->checkBoxPromotional->isChecked())
         reasons.append("promotional");
-    if (this->ui->checkBox_4->isChecked())
+    if (this->ui->checkBoxMisleading->isChecked())
         reasons.append("misleading");
     this->UAAReportReason = "Violation of the username policy as a ";
     if (reasons.count() > 1)
@@ -176,8 +176,8 @@ void UAAReport::failed(QString reason)
 
 void UAAReport::on_btnReport_clicked()
 {
-    if (!this->ui->checkBox->isChecked() && !this->ui->checkBox_2->isChecked() && !this->ui->checkBox_3->isChecked()
-            && !this->ui->checkBox_4->isChecked() && this->ui->lineEdit->text().isEmpty())
+    if (!this->ui->checkBoxDisruptive->isChecked() && !this->ui->checkBoxOffensive->isChecked() && !this->ui->checkBoxPromotional->isChecked()
+            && !this->ui->checkBoxMisleading->isChecked() && this->ui->lineEditOtherReason->text().isEmpty())
     {
         QMessageBox *g = new QMessageBox();
         g->setWindowTitle(_l("uaa-nr"));

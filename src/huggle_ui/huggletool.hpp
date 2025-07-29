@@ -55,7 +55,7 @@ namespace Huggle
             void DownloadEdit();
 
         private slots:
-            void on_pushButton_clicked();
+            void on_pushButtonLoad_clicked();
             void onTick();
             void on_lineEdit_PageName_returnPressed();
             void on_lineEdit_UserName_returnPressed();

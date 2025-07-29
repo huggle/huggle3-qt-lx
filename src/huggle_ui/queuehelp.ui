@@ -20,7 +20,7 @@
       <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
      </property>
      <item row="0" column="0">
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="labelIconAnon">
        <property name="text">
         <string/>
        </property>
@@ -30,14 +30,14 @@
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="labelTextAnon">
        <property name="text">
         <string>Anonymous user</string>
        </property>
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QLabel" name="label_3">
+      <widget class="QLabel" name="labelIconBlanked">
        <property name="text">
         <string/>
        </property>
@@ -47,14 +47,14 @@
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QLabel" name="label_4">
+      <widget class="QLabel" name="labelTextBlanked">
        <property name="text">
         <string>This edit blanked a page</string>
        </property>
       </widget>
      </item>
      <item row="2" column="0">
-      <widget class="QLabel" name="label_5">
+      <widget class="QLabel" name="labelIconBlocked">
        <property name="text">
         <string/>
        </property>
@@ -64,14 +64,14 @@
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QLabel" name="label_15">
+      <widget class="QLabel" name="labelTextBlocked">
        <property name="text">
         <string>Blocked user</string>
        </property>
       </widget>
      </item>
      <item row="3" column="0">
-      <widget class="QLabel" name="label_6">
+      <widget class="QLabel" name="labelIconBot">
        <property name="text">
         <string/>
        </property>
@@ -81,14 +81,14 @@
       </widget>
      </item>
      <item row="3" column="1">
-      <widget class="QLabel" name="label_16">
+      <widget class="QLabel" name="labelTextBot">
        <property name="text">
         <string>Bot</string>
        </property>
       </widget>
      </item>
      <item row="4" column="0">
-      <widget class="QLabel" name="label_7">
+      <widget class="QLabel" name="labelIconWhitelisted">
        <property name="text">
         <string/>
        </property>
@@ -98,14 +98,14 @@
       </widget>
      </item>
      <item row="4" column="1">
-      <widget class="QLabel" name="label_17">
+      <widget class="QLabel" name="labelTextWhitelisted">
        <property name="text">
         <string>Whitelisted user</string>
        </property>
       </widget>
      </item>
      <item row="5" column="0">
-      <widget class="QLabel" name="label_8">
+      <widget class="QLabel" name="labelIconSelf">
        <property name="text">
         <string/>
        </property>
@@ -115,14 +115,14 @@
       </widget>
      </item>
      <item row="5" column="1">
-      <widget class="QLabel" name="label_18">
+      <widget class="QLabel" name="labelTextSelf">
        <property name="text">
         <string>You</string>
        </property>
       </widget>
      </item>
      <item row="6" column="0">
-      <widget class="QLabel" name="label_9">
+      <widget class="QLabel" name="labelIconNewPage">
        <property name="text">
         <string/>
        </property>
@@ -132,14 +132,14 @@
       </widget>
      </item>
      <item row="6" column="1">
-      <widget class="QLabel" name="label_19">
+      <widget class="QLabel" name="labelTextNewPage">
        <property name="text">
         <string>New page</string>
        </property>
       </widget>
      </item>
      <item row="7" column="0">
-      <widget class="QLabel" name="label_10">
+      <widget class="QLabel" name="labelIconRegistered">
        <property name="text">
         <string/>
        </property>
@@ -149,14 +149,14 @@
       </widget>
      </item>
      <item row="7" column="1">
-      <widget class="QLabel" name="label_20">
+      <widget class="QLabel" name="labelTextRegistered">
        <property name="text">
         <string>Registered</string>
        </property>
       </widget>
      </item>
      <item row="8" column="0">
-      <widget class="QLabel" name="label_11">
+      <widget class="QLabel" name="labelIconReported">
        <property name="text">
         <string/>
        </property>
@@ -166,14 +166,14 @@
       </widget>
      </item>
      <item row="8" column="1">
-      <widget class="QLabel" name="label_12">
+      <widget class="QLabel" name="labelTextReported">
        <property name="text">
         <string>Reported user</string>
        </property>
       </widget>
      </item>
      <item row="9" column="0">
-      <widget class="QLabel" name="label_13">
+      <widget class="QLabel" name="labelIconWarnLevel1">
        <property name="text">
         <string/>
        </property>
@@ -183,14 +183,14 @@
       </widget>
      </item>
      <item row="9" column="1">
-      <widget class="QLabel" name="label_21">
+      <widget class="QLabel" name="labelTextWarnLevel1">
        <property name="text">
         <string>User with l1 warning</string>
        </property>
       </widget>
      </item>
      <item row="10" column="0">
-      <widget class="QLabel" name="label_14">
+      <widget class="QLabel" name="labelIconWarnLevel2">
        <property name="text">
         <string/>
        </property>
@@ -200,14 +200,14 @@
       </widget>
      </item>
      <item row="10" column="1">
-      <widget class="QLabel" name="label_22">
+      <widget class="QLabel" name="labelTextWarnLevel2">
        <property name="text">
         <string>User with l2 warning</string>
        </property>
       </widget>
      </item>
      <item row="11" column="0">
-      <widget class="QLabel" name="label_23">
+      <widget class="QLabel" name="labelIconWarnLevel3">
        <property name="text">
         <string/>
        </property>
@@ -217,14 +217,14 @@
       </widget>
      </item>
      <item row="11" column="1">
-      <widget class="QLabel" name="label_27">
+      <widget class="QLabel" name="labelTextWarnLevel3">
        <property name="text">
         <string>User with l3 warning</string>
        </property>
       </widget>
      </item>
      <item row="12" column="0">
-      <widget class="QLabel" name="label_24">
+      <widget class="QLabel" name="labelIconWarnLevel4">
        <property name="text">
         <string/>
        </property>
@@ -234,14 +234,14 @@
       </widget>
      </item>
      <item row="12" column="1">
-      <widget class="QLabel" name="label_28">
+      <widget class="QLabel" name="labelTextWarnLevel4">
        <property name="text">
         <string>User with final warning</string>
        </property>
       </widget>
      </item>
      <item row="13" column="0">
-      <widget class="QLabel" name="label_25">
+      <widget class="QLabel" name="labelIconHighScore">
        <property name="text">
         <string/>
        </property>
@@ -251,14 +251,14 @@
       </widget>
      </item>
      <item row="13" column="1">
-      <widget class="QLabel" name="label_29">
+      <widget class="QLabel" name="labelTextHighScore">
        <property name="text">
         <string>Score higher than 1000</string>
        </property>
       </widget>
      </item>
      <item row="14" column="0">
-      <widget class="QLabel" name="label_26">
+      <widget class="QLabel" name="labelIconBlockNote">
        <property name="text">
         <string/>
        </property>
@@ -268,14 +268,14 @@
       </widget>
      </item>
      <item row="14" column="1">
-      <widget class="QLabel" name="label_31">
+      <widget class="QLabel" name="labelTextBlockNote">
        <property name="text">
         <string>User has block note on their talk page</string>
        </property>
       </widget>
      </item>
      <item row="15" column="0">
-      <widget class="QLabel" name="label_30">
+      <widget class="QLabel" name="labelIconReportedPast">
        <property name="text">
         <string/>
        </property>
@@ -285,21 +285,21 @@
       </widget>
      </item>
      <item row="15" column="1">
-      <widget class="QLabel" name="label_32">
+      <widget class="QLabel" name="labelTextReportedPast">
        <property name="text">
         <string>User was reported in past</string>
        </property>
       </widget>
      </item>
      <item row="16" column="1">
-      <widget class="QLabel" name="label_33">
+      <widget class="QLabel" name="labelTextTag">
        <property name="text">
         <string>Edit is tag</string>
        </property>
       </widget>
      </item>
      <item row="16" column="0">
-      <widget class="QLabel" name="label_34">
+      <widget class="QLabel" name="labelIconTag">
        <property name="text">
         <string/>
        </property>
@@ -309,14 +309,14 @@
       </widget>
      </item>
      <item row="17" column="1">
-      <widget class="QLabel" name="label_36">
+      <widget class="QLabel" name="labelTextRevert">
        <property name="text">
         <string>Revert</string>
        </property>
       </widget>
      </item>
      <item row="17" column="0">
-      <widget class="QLabel" name="label_35">
+      <widget class="QLabel" name="labelIconRevert">
        <property name="text">
         <string/>
        </property>

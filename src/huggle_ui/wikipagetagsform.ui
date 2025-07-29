@@ -28,31 +28,31 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="labelAddTag">
      <property name="text">
       <string>Add tag</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QTableWidget" name="tableWidget"/>
+    <widget class="QTableWidget" name="tableWidgetTags"/>
    </item>
    <item>
-    <widget class="QCheckBox" name="checkBox_2">
+    <widget class="QCheckBox" name="checkBoxGroupTags">
      <property name="text">
       <string>Group inside {{multiple issues}}</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="checkBox">
+    <widget class="QCheckBox" name="checkBoxTagsAtBottom">
      <property name="text">
       <string>Put new tags to bottom of page</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="pushButtonWrite">
      <property name="text">
       <string>Write</string>
      </property>

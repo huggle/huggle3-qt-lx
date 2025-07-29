@@ -36,12 +36,12 @@ BlockUserForm::BlockUserForm(QWidget *parent) : HW("blockuser", this, parent), u
     this->ui->setupUi(this);
     // we should initialise every variable
     this->user = nullptr;
-    this->ui->checkBox_5->setText(_l("block-anononly"));
-    this->ui->checkBox_3->setText(_l("block-autoblock"));
-    this->ui->checkBox_4->setText(_l("block-creation"));
-    this->ui->checkBox_2->setText(_l("block-email"));
+    this->ui->checkBoxAnonOnly->setText(_l("block-anononly"));
+    this->ui->checkBoxUseAutoblock->setText(_l("block-autoblock"));
+    this->ui->checkBoxDisableAccountCreation->setText(_l("block-creation"));
+    this->ui->checkBoxRemoveEmailAccess->setText(_l("block-email"));
     this->ui->cbMessageTarget->setText(_l("block-message-user"));
-    this->ui->label_2->setText(_l("block-duration"));
+    this->ui->labelDuration->setText(_l("block-duration"));
     this->timer = new QTimer(this);
     connect(this->timer, SIGNAL(timeout()), this, SLOT(onTick()));
     this->RestoreWindow();
@@ -61,20 +61,20 @@ void BlockUserForm::SetWikiUser(WikiUser *User)
         throw new Huggle::NullPointerException("WikiUser *User", BOOST_CURRENT_FUNCTION);
     }
     this->user = new WikiUser(User);
-    this->ui->comboBox_2->clear();
+    this->ui->comboBoxDuration->clear();
     foreach (QString op, User->GetSite()->GetProjectConfig()->BlockExpiryOptions)
-        this->ui->comboBox_2->addItem(op);
+        this->ui->comboBoxDuration->addItem(op);
     this->setWindowTitle(_l("block-title", this->user->Username));
     if (this->user->IsIP())
     {
-        this->ui->checkBox_5->setEnabled(true);
-        this->ui->comboBox_2->lineEdit()->setText(User->GetSite()->GetProjectConfig()->BlockTimeAnon);
-        this->ui->checkBox_5->setChecked(true);
+        this->ui->checkBoxAnonOnly->setEnabled(true);
+        this->ui->comboBoxDuration->lineEdit()->setText(User->GetSite()->GetProjectConfig()->BlockTimeAnon);
+        this->ui->checkBoxAnonOnly->setChecked(true);
     } else
     {
-        this->ui->comboBox_2->lineEdit()->setText(User->GetSite()->GetProjectConfig()->BlockTime);
+        this->ui->comboBoxDuration->lineEdit()->setText(User->GetSite()->GetProjectConfig()->BlockTime);
     }
-    this->ui->comboBox->addItem(User->GetSite()->ProjectConfig->BlockReason);
+    this->ui->comboBoxReason->addItem(User->GetSite()->ProjectConfig->BlockReason);
 }
 
 void BlockUserForm::on_btnCancel_clicked()
@@ -161,23 +161,23 @@ void BlockUserForm::on_btnBlock_clicked()
     this->qUser = new ApiQuery(ActionQuery, this->user->GetSite());
     this->QueryPhase = 1;
     QString nocreate = "";
-    if (this->ui->checkBox_4->isChecked())
+    if (this->ui->checkBoxDisableAccountCreation->isChecked())
         nocreate = "&nocreate=";
     QString anononly = "";
-    if (this->ui->checkBox_5->isChecked())
+    if (this->ui->checkBoxAnonOnly->isChecked())
         anononly = "&anononly=";
     QString noemail = "";
-    if (this->ui->checkBox_2->isChecked())
+    if (this->ui->checkBoxRemoveEmailAccess->isChecked())
         noemail = "&noemail=";
     QString autoblock = "";
-    if (this->ui->checkBox_3->isChecked())
+    if (this->ui->checkBoxUseAutoblock->isChecked())
         autoblock = "&autoblock=";
     QString allowusertalk = "";
-    if (!this->ui->checkBox->isChecked())
+    if (!this->ui->checkBoxRemoveTalkAccess->isChecked())
         allowusertalk = "&allowusertalk=";
     this->qUser->Parameters = "action=block&user=" +  QUrl::toPercentEncoding(this->user->Username) + "&reason="
-            + QUrl::toPercentEncoding(this->ui->comboBox->currentText()) + "&expiry="
-            + QUrl::toPercentEncoding(this->ui->comboBox_2->currentText())
+            + QUrl::toPercentEncoding(this->ui->comboBoxReason->currentText()) + "&expiry="
+            + QUrl::toPercentEncoding(this->ui->comboBoxDuration->currentText())
             + nocreate + anononly + noemail + autoblock + allowusertalk + "&token="
             + QUrl::toPercentEncoding(this->user->GetSite()->GetProjectConfig()->Token_Csrf);
     this->qUser->Target = _l("block-progress", this->user->Username);
@@ -190,15 +190,15 @@ void BlockUserForm::on_btnBlock_clicked()
 void BlockUserForm::sendBlockNotice(ApiQuery *dependency)
 {
     QString blocknotice;
-    if (this->ui->comboBox_2->currentText() != "indefinite")
+    if (this->ui->comboBoxDuration->currentText() != "indefinite")
     {
         blocknotice = this->user->GetSite()->GetProjectConfig()->BlockMessage;
-        blocknotice = blocknotice.replace("$1", this->ui->comboBox_2->currentText());
-        blocknotice = blocknotice.replace("$2", this->ui->comboBox->currentText());
+        blocknotice = blocknotice.replace("$1", this->ui->comboBoxDuration->currentText());
+        blocknotice = blocknotice.replace("$2", this->ui->comboBoxReason->currentText());
     }else
     {
         blocknotice = this->user->GetSite()->GetProjectConfig()->BlockMessageIndef;
-        blocknotice = blocknotice.replace("$1", this->ui->comboBox->currentText());
+        blocknotice = blocknotice.replace("$1", this->ui->comboBoxReason->currentText());
     }
     QString blocksum = this->user->GetSite()->GetProjectConfig()->BlockSummary;
     WikiUtil::MessageUser(user, blocknotice, blocksum, blocksum, true, dependency, false, false);

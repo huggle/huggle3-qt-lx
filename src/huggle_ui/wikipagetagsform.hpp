@@ -41,7 +41,7 @@ namespace Huggle
             explicit WikiPageTagsForm(QWidget *parent, WikiPage *wikipage);
             ~WikiPageTagsForm();
         private slots:
-            void on_pushButton_clicked();
+            void on_pushButtonWrite_clicked();
         private:
             friend void Huggle::WikiPageTagsForm_FinishRead(Query *result);
             void toggleEnable(bool enable);

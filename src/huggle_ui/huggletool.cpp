@@ -35,21 +35,21 @@ HuggleTool::HuggleTool(QWidget *parent) : QDockWidget(parent), ui(new Ui::Huggle
     this->setWindowTitle(_l("main-tools"));
     if (Configuration::HuggleConfiguration->SystemConfig_Multiple)
     {
-        this->ui->label_4->setText(_l("project"));
+        this->ui->labelProject->setText(_l("project"));
     } else
     {
-        this->ui->comboBox->setVisible(false);
-        this->ui->label_4->setVisible(false);
+        this->ui->comboBoxProject->setVisible(false);
+        this->ui->labelProject->setVisible(false);
     }
-    this->ui->pushButton->setText(_l("main-page-load"));
-    this->ui->label_3->setText(_l("main-page-curr-disp"));
+    this->ui->pushButtonLoad->setText(_l("main-page-load"));
+    this->ui->labelCurrentlyDisplayed->setText(_l("main-page-curr-disp"));
     this->tick = new QTimer(this);
-    this->ui->label->setText(_l("user"));
+    this->ui->labelUser->setText(_l("user"));
     this->page = nullptr;
-    this->ui->label_2->setText(_l("page"));
+    this->ui->labelPage->setText(_l("page"));
     foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
-        this->ui->comboBox->addItem(site->Name);    
-    this->ui->comboBox->setCurrentIndex(0);
+        this->ui->comboBoxProject->addItem(site->Name);    
+    this->ui->comboBoxProject->setCurrentIndex(0);
     connect(this->tick, SIGNAL(timeout()), this, SLOT(onTick()));
     this->ui->lineEdit_UserName->setStyleSheet(this->getColor("black"));
     this->ui->lineEdit_PageName->setStyleSheet(this->getColor("black"));
@@ -65,13 +65,13 @@ HuggleTool::~HuggleTool()
 
 void HuggleTool::SetTitle(QString title)
 {
-    this->ui->lineEdit->setText(title);
+    this->ui->lineEditCurrent->setText(title);
     this->ui->lineEdit_PageName->setText(title);
 }
 
 void HuggleTool::SetInfo(QString info)
 {
-    this->ui->lineEdit->setText(info);
+    this->ui->lineEditCurrent->setText(info);
 }
 
 void HuggleTool::SetUser(QString user)
@@ -86,9 +86,9 @@ void HuggleTool::SetPage(WikiPage *page)
 
     this->ui->lineEdit_PageName->setText(page->PageName);
     if (Configuration::HuggleConfiguration->Projects.contains(page->GetSite()) &&
-            this->ui->comboBox->count() <= Configuration::HuggleConfiguration->Projects.count())
+            this->ui->comboBoxProject->count() <= Configuration::HuggleConfiguration->Projects.count())
     {
-        this->ui->comboBox->setCurrentIndex(Configuration::HuggleConfiguration->Projects.indexOf(page->GetSite()));
+        this->ui->comboBoxProject->setCurrentIndex(Configuration::HuggleConfiguration->Projects.indexOf(page->GetSite()));
     } else
     {
         Syslog::HuggleLogs->WarningLog("Project not in a list: " + page->GetSite()->Name);
@@ -99,7 +99,7 @@ void HuggleTool::SetPage(WikiPage *page)
     }
     this->page = new WikiPage(page);
     this->tick->stop();
-    this->ui->pushButton->setEnabled(true);
+    this->ui->pushButtonLoad->setEnabled(true);
     // change color to default
     this->query.Delete();
     this->ui->lineEdit_UserName->setStyleSheet(this->getColor("black"));
@@ -108,25 +108,25 @@ void HuggleTool::SetPage(WikiPage *page)
 
 WikiSite *HuggleTool::GetSite()
 {
-    if (Configuration::HuggleConfiguration->Projects.count() != this->ui->comboBox->count())
+    if (Configuration::HuggleConfiguration->Projects.count() != this->ui->comboBoxProject->count())
     {
         // this should not happen ever
         throw new Huggle::Exception("Wrong number of projects (Configuration::HuggleConfiguration->Projects.count() isn't same as comboBox->count())",
                                     BOOST_CURRENT_FUNCTION);
     }
-    return Configuration::HuggleConfiguration->Projects.at(this->ui->comboBox->currentIndex());
+    return Configuration::HuggleConfiguration->Projects.at(this->ui->comboBoxProject->currentIndex());
 }
 
 void HuggleTool::DownloadEdit()
 {
-    if (!this->ui->pushButton->isEnabled() || !this->ui->lineEdit_PageName->text().length())
+    if (!this->ui->pushButtonLoad->isEnabled() || !this->ui->lineEdit_PageName->text().length())
         return;
     if (this->ui->lineEdit_PageName->text().endsWith("_") || this->ui->lineEdit_PageName->text().endsWith(" "))
     {
         UiGeneric::MessageBox(_l("error"), _l("main-space"), MessageBoxStyleError);
         return;
     }
-    this->ui->pushButton->setEnabled(false);
+    this->ui->pushButtonLoad->setEnabled(false);
     this->ui->lineEdit_PageName->setStyleSheet(this->getColor("green"));
     // retrieve information about the page
     this->queryPhase = HUGGLETOOL_DOWNLOADING_WIKI_EDIT;
@@ -135,7 +135,7 @@ void HuggleTool::DownloadEdit()
     this->tick->start(HUGGLE_TIMER);
 }
 
-void Huggle::HuggleTool::on_pushButton_clicked()
+void Huggle::HuggleTool::on_pushButtonLoad_clicked()
 {
     this->DownloadEdit();
 }
@@ -169,14 +169,14 @@ void HuggleTool::finishPage()
         {
             this->ui->lineEdit_UserName->setStyleSheet(this->getColor("red"));
             this->tick->stop();
-            this->ui->pushButton->setEnabled(true);
+            this->ui->pushButtonLoad->setEnabled(true);
             return;
         }
         if (!item->Attributes.contains("title"))
         {
             this->ui->lineEdit_UserName->setStyleSheet(this->getColor("red"));
             this->tick->stop();
-            this->ui->pushButton->setEnabled(true);
+            this->ui->pushButtonLoad->setEnabled(true);
             return;
         }
         this->edit = new WikiEdit();
@@ -204,7 +204,7 @@ void HuggleTool::finishPage()
                 this->tick->stop();
                 this->edit.Delete();
                 this->query.Delete();
-                this->ui->pushButton->setEnabled(true);
+                this->ui->pushButtonLoad->setEnabled(true);
                 return;
             }
             if (rev->Attributes.contains("user"))
@@ -229,7 +229,7 @@ void HuggleTool::finishEdit()
     if (this->edit == nullptr || !this->edit->IsPostProcessed())
         return;
     this->tick->stop();
-    this->ui->pushButton->setEnabled(true);
+    this->ui->pushButtonLoad->setEnabled(true);
     MainWindow::HuggleMain->ProcessEdit(this->edit, false, false, false, true);
 }
 
@@ -246,11 +246,11 @@ void Huggle::HuggleTool::on_lineEdit_PageName_returnPressed()
 
 void Huggle::HuggleTool::on_lineEdit_UserName_returnPressed()
 {
-    if (!this->ui->pushButton->isEnabled() || !this->ui->lineEdit_UserName->text().length())
+    if (!this->ui->pushButtonLoad->isEnabled() || !this->ui->lineEdit_UserName->text().length())
     {
         return;
     }
-    this->ui->pushButton->setEnabled(false);
+    this->ui->pushButtonLoad->setEnabled(false);
     this->ui->lineEdit_UserName->setStyleSheet(this->getColor("green"));
     // retrieve information about the user
     this->query = new ApiQuery(ActionQuery, this->GetSite());

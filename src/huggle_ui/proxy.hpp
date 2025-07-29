@@ -35,7 +35,7 @@ namespace Huggle
         private slots:
             void on_buttonBox_accepted();
             void on_buttonBox_rejected();
-            void on_comboBox_currentIndexChanged(int index);
+            void on_comboBoxProxyType_currentIndexChanged(int index);
 
         private:
             Ui::Proxy *ui;

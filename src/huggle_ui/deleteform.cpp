@@ -36,7 +36,7 @@ DeleteForm::DeleteForm(QWidget *parent) : HW("deleteform", this, parent), ui(new
     this->page = nullptr;
     this->tDelete = nullptr;
     this->associatedTalkPage = nullptr;
-    this->ui->comboBox->setCurrentIndex(0);
+    this->ui->comboBoxReason->setCurrentIndex(0);
     this->userToNotify = nullptr;
     this->RestoreWindow();
 }
@@ -59,12 +59,12 @@ void DeleteForm::SetPage(WikiPage *Page, WikiUser *User)
     this->page = new WikiPage(Page);
     foreach(QString summary, Page->GetSite()->GetProjectConfig()->DeletionReasons)
     {
-        this->ui->comboBox->addItem(summary);
+        this->ui->comboBoxReason->addItem(summary);
     }
     if (this->page->IsTalk())
     {
-        this->ui->checkBox_2->setChecked(false);
-        this->ui->checkBox_2->setEnabled(false);
+        this->ui->checkBoxDeleteTalk->setChecked(false);
+        this->ui->checkBoxDeleteTalk->setEnabled(false);
     }
     this->setWindowTitle(_l("delete-title", Page->PageName));
     this->userToNotify = User;
@@ -110,21 +110,21 @@ void DeleteForm::processFailure(QString Reason)
 
 void DeleteForm::on_deleteButton_clicked()
 {
-    if (this->ui->checkBox_2->isChecked())
+    if (this->ui->checkBoxDeleteTalk->isChecked())
     {
         this->associatedTalkPage = this->page->RetrieveTalk();
         if (this->associatedTalkPage == nullptr)
         {
-            this->ui->checkBox_2->setChecked(false);
+            this->ui->checkBoxDeleteTalk->setChecked(false);
         }
     }
-    this->ui->checkBox_2->setEnabled(false);
-    this->ui->comboBox->setEnabled(false);
+    this->ui->checkBoxDeleteTalk->setEnabled(false);
+    this->ui->comboBoxReason->setEnabled(false);
     this->ui->deleteButton->setEnabled(false);
     // let's delete the page
     this->qDelete = new ApiQuery(ActionDelete, this->page->GetSite());
     this->qDelete->Parameters = "title=" + QUrl::toPercentEncoding(this->page->PageName)
-            + "&reason=" + QUrl::toPercentEncoding(Configuration::GenerateSuffix(this->ui->comboBox->lineEdit()->text(),
+            + "&reason=" + QUrl::toPercentEncoding(Configuration::GenerateSuffix(this->ui->comboBoxReason->lineEdit()->text(),
                                                                                  this->page->GetSite()->GetProjectConfig()))
             + "&token=" + QUrl::toPercentEncoding(this->page->GetSite()->GetProjectConfig()->Token_Csrf);
     this->qDelete->Target = "Deleting " + this->page->PageName;
@@ -132,7 +132,7 @@ void DeleteForm::on_deleteButton_clicked()
     QueryPool::HugglePool->AppendQuery(this->qDelete);
     this->qDelete->Process();
 
-    if (this->ui->checkBox_2->isChecked() && this->associatedTalkPage != nullptr)
+    if (this->ui->checkBoxDeleteTalk->isChecked() && this->associatedTalkPage != nullptr)
     {
         // we also want to delete the talk page
         this->qTalk = new ApiQuery(ActionDelete, this->page->GetSite());

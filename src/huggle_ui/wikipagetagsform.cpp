@@ -30,20 +30,20 @@ WikiPageTagsForm::WikiPageTagsForm(QWidget *parent, WikiPage *wikipage) : HW("wp
     this->ui->setupUi(this);
     QStringList header;
     header << "" << _l("tag-tags") << _l("tag-parameter") << _l("description");
-    this->ui->tableWidget->setColumnCount(4);
-    this->ui->tableWidget->setHorizontalHeaderLabels(header);
-    this->ui->checkBox->setText(_l("tag-insertatend"));
-    this->ui->tableWidget->verticalHeader()->setVisible(false);
-    this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
-    this->ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    this->ui->tableWidget->setShowGrid(false);
+    this->ui->tableWidgetTags->setColumnCount(4);
+    this->ui->tableWidgetTags->setHorizontalHeaderLabels(header);
+    this->ui->checkBoxTagsAtBottom->setText(_l("tag-insertatend"));
+    this->ui->tableWidgetTags->verticalHeader()->setVisible(false);
+    this->ui->tableWidgetTags->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
+    this->ui->tableWidgetTags->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    this->ui->tableWidgetTags->setShowGrid(false);
     this->RestoreWindow();
     if (wikipage == nullptr)
         throw new Huggle::NullPointerException("WikiPage *wikipage", BOOST_CURRENT_FUNCTION);
     // we copy the page now
     this->page = new WikiPage(wikipage);
     this->setWindowTitle(_l("tag-title", page->PageName));
-    this->ui->checkBox_2->setText(_l("wikipagetagsform-group", this->page->GetSite()->ProjectConfig->GroupTag));
+    this->ui->checkBoxGroupTags->setText(_l("wikipagetagsform-group", this->page->GetSite()->ProjectConfig->GroupTag));
 
     // Check if page has content, if not retrieve it
     if (this->page->HasContent())
@@ -127,7 +127,7 @@ void Huggle::WikiPageTagsForm_FinishRead(Query *result)
     int selected_tags_count = 0;
     QString grouped;
     result->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
-    for (int i = 0; i < form->ui->tableWidget->rowCount(); i++)
+    for (int i = 0; i < form->ui->tableWidgetTags->rowCount(); i++)
     {
         if (form->CheckBoxes[form->page->GetSite()->GetProjectConfig()->Tags.at(i)]->isChecked())
         {
@@ -135,8 +135,8 @@ void Huggle::WikiPageTagsForm_FinishRead(Query *result)
         }
     }
     bool multiple_tags_selected = selected_tags_count > 1;
-    bool grouping_wanted = form->ui->checkBox_2->isChecked() && multiple_tags_selected;
-    bool place_to_top = !form->ui->checkBox->isChecked();
+    bool grouping_wanted = form->ui->checkBoxGroupTags->isChecked() && multiple_tags_selected;
+    bool place_to_top = !form->ui->checkBoxTagsAtBottom->isChecked();
 
     // In case user wants to group all newly added tags into one, we prepare it
     if (grouping_wanted)
@@ -144,7 +144,7 @@ void Huggle::WikiPageTagsForm_FinishRead(Query *result)
         grouped = "{{" + retrieve->GetSite()->ProjectConfig->GroupTag + "|";
     }
     int current_row = 0;
-    while (current_row < form->ui->tableWidget->rowCount())
+    while (current_row < form->ui->tableWidgetTags->rowCount())
     {
         if (form->page->GetSite()->GetProjectConfig()->Tags.count() > current_row && form->Arguments.count() > current_row && form->CheckBoxes.count() > current_row)
         {
@@ -207,17 +207,17 @@ void Huggle::WikiPageTagsForm_FinishRead(Query *result)
     QueryPool::HugglePool->AppendQuery(e);
 }
 
-void Huggle::WikiPageTagsForm::on_pushButton_clicked()
+void Huggle::WikiPageTagsForm::on_pushButtonWrite_clicked()
 {
     this->getPageContents();
 }
 
 void WikiPageTagsForm::toggleEnable(bool enable)
 {
-    this->ui->pushButton->setEnabled(enable);
-    this->ui->checkBox->setEnabled(enable);
-    this->ui->tableWidget->setEnabled(enable);
-    this->ui->checkBox_2->setEnabled(enable);
+    this->ui->pushButtonWrite->setEnabled(enable);
+    this->ui->checkBoxTagsAtBottom->setEnabled(enable);
+    this->ui->tableWidgetTags->setEnabled(enable);
+    this->ui->checkBoxGroupTags->setEnabled(enable);
 }
 
 void WikiPageTagsForm::displayTags()
@@ -230,7 +230,7 @@ void WikiPageTagsForm::displayTags()
         QString description = _l("page-tag-nodescription");
         if (this->page->GetSite()->GetProjectConfig()->TagsDesc.contains(key))
             description = this->page->GetSite()->GetProjectConfig()->TagsDesc[key];
-        this->ui->tableWidget->insertRow(rx);
+        this->ui->tableWidgetTags->insertRow(rx);
         QCheckBox *Item = new QCheckBox(this);
         if (this->page->Contents.toLower().contains("{{" + key.toLower()))
             Item->setChecked(true);
@@ -248,16 +248,16 @@ void WikiPageTagsForm::displayTags()
             line->setText(_l("page-tag-noparameters"));
             line->setEnabled(false);
         }
-        this->ui->tableWidget->setCellWidget(rx, 0, Item);
-        this->ui->tableWidget->setItem(rx, 1, new QTableWidgetItem("{{" + key + "}}"));
-        this->ui->tableWidget->setCellWidget(rx, 2, line);
-        this->ui->tableWidget->setItem(rx, 3, new QTableWidgetItem(description));
+        this->ui->tableWidgetTags->setCellWidget(rx, 0, Item);
+        this->ui->tableWidgetTags->setItem(rx, 1, new QTableWidgetItem("{{" + key + "}}"));
+        this->ui->tableWidgetTags->setCellWidget(rx, 2, line);
+        this->ui->tableWidgetTags->setItem(rx, 3, new QTableWidgetItem(description));
         rx++;
     }
     // We finished loading this form
     this->initializing = false;
-    this->ui->tableWidget->resizeColumnsToContents();
-    this->ui->tableWidget->resizeRowsToContents();
+    this->ui->tableWidgetTags->resizeColumnsToContents();
+    this->ui->tableWidgetTags->resizeRowsToContents();
 }
 
 void WikiPageTagsForm::getPageContents()

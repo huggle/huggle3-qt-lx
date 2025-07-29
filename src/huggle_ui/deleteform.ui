@@ -25,21 +25,21 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="labelDeletionReason">
      <property name="text">
       <string>Deletion reason:</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QComboBox" name="comboBox">
+    <widget class="QComboBox" name="comboBoxReason">
      <property name="editable">
       <bool>true</bool>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="checkBox_2">
+    <widget class="QCheckBox" name="checkBoxDeleteTalk">
      <property name="text">
       <string>Delete associated talk page</string>
      </property>

@@ -15,49 +15,49 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="labelUsername">
      <property name="text">
       <string>This user's username is:</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="checkBox">
+    <widget class="QCheckBox" name="checkBoxDisruptive">
      <property name="text">
       <string>Disruptive</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="checkBox_2">
+    <widget class="QCheckBox" name="checkBoxOffensive">
      <property name="text">
       <string>Offensive</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="checkBox_3">
+    <widget class="QCheckBox" name="checkBoxPromotional">
      <property name="text">
       <string>Promotional</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="checkBox_4">
+    <widget class="QCheckBox" name="checkBoxMisleading">
      <property name="text">
       <string>Misleading</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="labelOtherReason">
      <property name="text">
       <string>Other reason (optional):</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QLineEdit" name="lineEdit"/>
+    <widget class="QLineEdit" name="lineEditOtherReason"/>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">

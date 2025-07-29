@@ -19,28 +19,28 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="labelBlockingReason">
      <property name="text">
       <string>Blocking reason:</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QComboBox" name="comboBox">
+    <widget class="QComboBox" name="comboBoxReason">
      <property name="editable">
       <bool>true</bool>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="labelDuration">
      <property name="text">
       <string>Duration:</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QComboBox" name="comboBox_2">
+    <widget class="QComboBox" name="comboBoxDuration">
      <property name="editable">
       <bool>true</bool>
      </property>
@@ -57,21 +57,21 @@
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="checkBox">
+    <widget class="QCheckBox" name="checkBoxRemoveTalkAccess">
      <property name="text">
       <string>Remove talk page access</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="checkBox_2">
+    <widget class="QCheckBox" name="checkBoxRemoveEmailAccess">
      <property name="text">
       <string>Remove email access</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="checkBox_3">
+    <widget class="QCheckBox" name="checkBoxUseAutoblock">
      <property name="text">
       <string>Use autoblock</string>
      </property>
@@ -81,7 +81,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="checkBox_4">
+    <widget class="QCheckBox" name="checkBoxDisableAccountCreation">
      <property name="text">
       <string>Disable account creation</string>
      </property>
@@ -91,7 +91,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="checkBox_5">
+    <widget class="QCheckBox" name="checkBoxAnonOnly">
      <property name="enabled">
       <bool>false</bool>
      </property>
