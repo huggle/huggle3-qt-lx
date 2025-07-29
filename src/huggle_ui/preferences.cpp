@@ -85,7 +85,6 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     connect(this->ui->tableWidget_2, SIGNAL(cellChanged(int,int)), this, SLOT(RecordKeys(int,int)));
     // Set up context menu for the queue filter list
     this->ui->listWidget->setContextMenuPolicy(Qt::CustomContextMenu);
-    //connect(this->ui->listWidget, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(on_listWidget_customContextMenuRequested(QPoint)));
 #if QT_VERSION >= 0x050000
 // Qt5 code
     this->ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
@@ -339,6 +338,8 @@ void Preferences::Reload()
         this->ui->tableWidget_3->insertRow(rw);
         this->ui->tableWidget_3->setItem(rw, 0, new QTableWidgetItem(ms->GetName()));
         QCheckBox *Item = new QCheckBox();
+        // Connect checkbox signal to our slot
+        connect(Item, SIGNAL(toggled(bool)), this, SLOT(onNamespaceBoxToggled(bool)));
         this->NamespaceBoxes.insert(Item, ms->GetID());
         this->ui->tableWidget_3->setCellWidget(rw, 1, Item);
         rw++;
@@ -999,4 +1000,12 @@ void Huggle::Preferences::on_listWidget_customContextMenuRequested(const QPoint 
     {
         this->on_pushButton_QueueDelete_clicked();
     }
+}
+
+void Huggle::Preferences::onNamespaceBoxToggled(bool checked)
+{
+    Q_UNUSED(checked);
+    
+    // Mark queue as modified when any namespace checkbox is toggled
+    this->queueModified = true;
 }
