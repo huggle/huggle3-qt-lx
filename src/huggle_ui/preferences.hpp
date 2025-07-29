@@ -71,6 +71,7 @@ namespace Huggle
             void on_pushButton_QueueDelete_clicked();
             void on_pushButton_QueueInsert_clicked();
             void on_pushButton_QueueReset_clicked();
+            void on_listWidget_customContextMenuRequested(const QPoint &pos);
 
         private:
             void ResetItems();

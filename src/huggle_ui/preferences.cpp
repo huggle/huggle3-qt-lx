@@ -83,6 +83,9 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     this->ui->tableWidget_3->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
     this->ui->tableWidget_3->setEditTriggers(QAbstractItemView::NoEditTriggers);
     connect(this->ui->tableWidget_2, SIGNAL(cellChanged(int,int)), this, SLOT(RecordKeys(int,int)));
+    // Set up context menu for the queue filter list
+    this->ui->listWidget->setContextMenuPolicy(Qt::CustomContextMenu);
+    //connect(this->ui->listWidget, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(on_listWidget_customContextMenuRequested(QPoint)));
 #if QT_VERSION >= 0x050000
 // Qt5 code
     this->ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
@@ -960,4 +963,40 @@ void Huggle::Preferences::on_pushButton_QueueInsert_clicked()
 void Huggle::Preferences::on_pushButton_QueueReset_clicked()
 {
 
+}
+
+void Huggle::Preferences::on_listWidget_customContextMenuRequested(const QPoint &pos)
+{
+    QPoint globalPos = this->ui->listWidget->mapToGlobal(pos);
+    QMenu menu;
+    QAction *addItem = new QAction(_l("queue-filter-add"), &menu);
+    QAction *deleteItem = new QAction(_l("queue-filter-delete"), &menu);
+    
+    // Only enable delete if an item is selected and it's changeable
+    bool canDelete = false;
+    if (this->ui->listWidget->currentRow() >= 0)
+    {
+        int id = this->ui->listWidget->currentRow();
+        if (id < HuggleQueueFilter::Filters[this->Site]->count())
+        {
+            HuggleQueueFilter *filter = HuggleQueueFilter::Filters[this->Site]->at(id);
+            canDelete = filter->IsChangeable() && (this->Site->CurrentFilter != filter);
+        }
+    }
+    
+    deleteItem->setEnabled(canDelete);
+    
+    menu.addAction(addItem);
+    menu.addAction(deleteItem);
+    
+    QAction *selectedItem = menu.exec(globalPos);
+    
+    if (selectedItem == addItem)
+    {
+        this->on_pushButton_QueueInsert_clicked();
+    }
+    else if (selectedItem == deleteItem)
+    {
+        this->on_pushButton_QueueDelete_clicked();
+    }
 }

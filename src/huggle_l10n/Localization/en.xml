@@ -529,6 +529,8 @@
   <string name="queue-editfiltersgroup">Edit filters</string>
   <string name="queue-userregex">Username matches regular expression:</string>
   <string name="queue-summaryregex">Summary matches regular expression:</string>
+  <string name="queue-filter-add">Add</string>
+  <string name="queue-filter-delete">Delete</string>
   <string name="queue-filternewpage">New page</string>
   <string name="queue-filterownuserspace">User&apos;s own userspace</string>
   <string name="queue-filteranonymous">Anonymous user</string>
