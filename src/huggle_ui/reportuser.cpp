@@ -69,9 +69,9 @@ ReportUser::ReportUser(QWidget *parent, bool browser) : HW("reportuser", this, p
     this->isBrowser = browser;
     this->ui->setupUi(this);
     this->reportedUser = nullptr;
-    this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
-    this->ui->pushButton->setEnabled(false);
-    this->ui->pushButton->setText(_l("report-history"));
+    this->ui->tableWidgetEdits->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
+    this->ui->buttonReport->setEnabled(false);
+    this->ui->buttonReport->setText(_l("report-history"));
     QStringList header;
     this->tPageDiff = new QTimer(this);
     connect(this->tPageDiff, SIGNAL(timeout()), this, SLOT(OnPageDiffTimer()));
@@ -84,10 +84,10 @@ ReportUser::ReportUser(QWidget *parent, bool browser) : HW("reportuser", this, p
         // In case we are in browser mode we don't want to use this column
         header << _l("report-include");
     }
-    this->ui->tableWidget->setColumnCount(header.size());
-    this->ui->tableWidget->setHorizontalHeaderLabels(header);
-    this->ui->tableWidget->verticalHeader()->setVisible(false);
-    this->ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    this->ui->tableWidgetEdits->setColumnCount(header.size());
+    this->ui->tableWidgetEdits->setHorizontalHeaderLabels(header);
+    this->ui->tableWidgetEdits->verticalHeader()->setVisible(false);
+    this->ui->tableWidgetEdits->setEditTriggers(QAbstractItemView::NoEditTriggers);
     this->isSendingMessageNow = false;
     this->reportTs = "null";
     this->tReportPageCheck = new QTimer(this);
@@ -95,10 +95,10 @@ ReportUser::ReportUser(QWidget *parent, bool browser) : HW("reportuser", this, p
     this->blockUser = nullptr;
     this->reportText = "";
     this->loading = false;
-    this->ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    this->ui->tableWidget->setShowGrid(false);
+    this->ui->tableWidgetEdits->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    this->ui->tableWidgetEdits->setShowGrid(false);
     QStringList header_bl;
-    this->ui->tableWidget_2->setColumnCount(8);
+    this->ui->tableWidgetBlocks->setColumnCount(8);
     header_bl << _l("id") <<
                  _l("time") <<
                  _l("block-type") <<
@@ -107,23 +107,23 @@ ReportUser::ReportUser(QWidget *parent, bool browser) : HW("reportuser", this, p
                  _l("duration") <<
                  _l("expiry-time") <<
                  _l("flags");
-    this->ui->tableWidget_2->setHorizontalHeaderLabels(header_bl);
-    this->ui->tableWidget_2->verticalHeader()->setVisible(false);
-    this->ui->tableWidget_2->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    this->ui->tableWidget_2->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    this->ui->tableWidget_2->setShowGrid(false);
+    this->ui->tableWidgetBlocks->setHorizontalHeaderLabels(header_bl);
+    this->ui->tableWidgetBlocks->verticalHeader()->setVisible(false);
+    this->ui->tableWidgetBlocks->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    this->ui->tableWidgetBlocks->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    this->ui->tableWidgetBlocks->setShowGrid(false);
     this->tReportUser = nullptr;
     this->RestoreWindow();
     if (this->isBrowser)
     {
-        this->ui->label_2->setVisible(false);
-        this->ui->label_3->setVisible(false);
-        this->ui->pushButton->setVisible(false);
-        this->ui->pushButton_2->setVisible(false);
-        this->ui->pushButton_4->setVisible(false);
-        this->ui->pushButton_5->setVisible(false);
-        this->ui->pushButton_6->setVisible(false);
-        this->ui->lineEdit->setVisible(false);
+        this->ui->labelReasonIntro->setVisible(false);
+        this->ui->labelEditsIntro->setVisible(false);
+        this->ui->buttonReport->setVisible(false);
+        this->ui->buttonTalkPage->setVisible(false);
+        this->ui->buttonBlock->setVisible(false);
+        this->ui->buttonSelectAll->setVisible(false);
+        this->ui->buttonRemoveSelection->setVisible(false);
+        this->ui->lineEditReason->setVisible(false);
     }
     this->webView = new HuggleWeb(this);
     // This is a hack to define splitter, we take the existing layout as defined in XML
@@ -165,21 +165,21 @@ bool ReportUser::SetUser(WikiUser *user)
     this->reportedUser = new WikiUser(user);
     if (this->isBrowser)
     {
-        this->ui->label->setText(_l("contribution-browser-user-info", user->Username));
+        this->ui->labelIntroduction->setText(_l("contribution-browser-user-info", user->Username));
         this->setWindowTitle("Contribution browser for: " + user->Username);
     } else
     {
         this->setWindowTitle(_l("report-title", this->reportedUser->Username));
-        this->ui->label->setText(_l("report-intro", user->Username));
+        this->ui->labelIntroduction->setText(_l("report-intro", user->Username));
     }
-    this->ui->lineEdit->setText(this->reportedUser->GetSite()->GetProjectConfig()->ReportDefaultReason);
+    this->ui->lineEditReason->setText(this->reportedUser->GetSite()->GetProjectConfig()->ReportDefaultReason);
     this->qHistory = new ApiQuery(ActionQuery, this->reportedUser->GetSite());
     this->qHistory->Parameters = "list=recentchanges&rcuser=" + QUrl::toPercentEncoding(user->Username) +
             "&rcprop=user%7Ccomment%7Ctimestamp%7Ctitle%7Cids%7Csizes&rclimit=20&rctype=edit%7Cnew";
     this->qHistory->Process();
     if (!this->reportedUser->GetSite()->ProjectConfig->Rights.contains("block"))
     {
-        this->ui->pushButton_4->setEnabled(false);
+        this->ui->buttonBlock->setEnabled(false);
     }
     this->qBlockHistory = new ApiQuery(ActionQuery, this->reportedUser->GetSite());
     this->qBlockHistory->Parameters = "list=logevents&leprop=ids%7Ctitle%7Ctype%7Cuser%7Ctimestamp%7Ccomment%7Cdetails%7Ctags&letype=block&"\
@@ -195,7 +195,7 @@ void ReportUser::SilentReport()
 {
     this->flagSilent = true;
     this->setAttribute(Qt::WA_DeleteOnClose);
-    this->ui->lineEdit->setText(this->reportedUser->GetSite()->GetProjectConfig()->ReportAutoSummary);
+    this->ui->lineEditReason->setText(this->reportedUser->GetSite()->GetProjectConfig()->ReportAutoSummary);
     this->reportUser();
 }
 
@@ -277,17 +277,17 @@ void ReportUser::OnReportUserTimer()
                         }
                     }
                 }
-                this->ui->tableWidget_2->insertRow(0);
-                this->ui->tableWidget_2->setItem(0, 0, new QTableWidgetItem(id));
-                this->ui->tableWidget_2->setItem(0, 1, new QTableWidgetItem(timestamp));
-                this->ui->tableWidget_2->setItem(0, 2, new QTableWidgetItem(action));
-                this->ui->tableWidget_2->setItem(0, 3, new QTableWidgetItem(user));
-                this->ui->tableWidget_2->setItem(0, 4, new QTableWidgetItem(comment));
-                this->ui->tableWidget_2->setItem(0, 5, new QTableWidgetItem(duration));
-                this->ui->tableWidget_2->setItem(0, 6, new QTableWidgetItem(expiration));
-                this->ui->tableWidget_2->setItem(0, 7, new QTableWidgetItem(flags));
+                this->ui->tableWidgetBlocks->insertRow(0);
+                this->ui->tableWidgetBlocks->setItem(0, 0, new QTableWidgetItem(id));
+                this->ui->tableWidgetBlocks->setItem(0, 1, new QTableWidgetItem(timestamp));
+                this->ui->tableWidgetBlocks->setItem(0, 2, new QTableWidgetItem(action));
+                this->ui->tableWidgetBlocks->setItem(0, 3, new QTableWidgetItem(user));
+                this->ui->tableWidgetBlocks->setItem(0, 4, new QTableWidgetItem(comment));
+                this->ui->tableWidgetBlocks->setItem(0, 5, new QTableWidgetItem(duration));
+                this->ui->tableWidgetBlocks->setItem(0, 6, new QTableWidgetItem(expiration));
+                this->ui->tableWidgetBlocks->setItem(0, 7, new QTableWidgetItem(flags));
             }
-            this->ui->tableWidget_2->resizeRowsToContents();
+            this->ui->tableWidgetBlocks->resizeRowsToContents();
             this->qBlockHistory = nullptr;
         }
     }
@@ -301,8 +301,8 @@ void ReportUser::OnReportUserTimer()
             if (this->qEdit->IsFailed())
             {
                 this->tReportUser->stop();
-                this->ui->pushButton->setText(_l("report-user"));
-                this->ui->pushButton->setEnabled(true);
+                this->ui->buttonReport->setText(_l("report-user"));
+                this->ui->buttonReport->setEnabled(true);
                 if (this->flagSilent)
                 {
                     Syslog::HuggleLogs->ErrorLog(_l("report-fail", this->qEdit->GetFailureReason()));
@@ -319,7 +319,7 @@ void ReportUser::OnReportUserTimer()
                 return;
             }
             this->reportedUser->IsReported = true;
-            this->ui->pushButton->setText(_l("report-done"));
+            this->ui->buttonReport->setText(_l("report-done"));
             WikiUser::UpdateUser(this->reportedUser);
             this->kill();
             if (this->flagSilent)
@@ -354,7 +354,7 @@ void ReportUser::OnReportUserTimer()
             QDomNodeList results = d.elementsByTagName("rev");
             if (results.count() == 0)
             {
-                this->ui->pushButton->setText(_l("report-fail2", this->reportedUser->GetSite()->GetProjectConfig()->ReportAIV));
+                this->ui->buttonReport->setText(_l("report-fail2", this->reportedUser->GetSite()->GetProjectConfig()->ReportAIV));
                 this->qHistory = nullptr;
                 return;
             }
@@ -371,7 +371,7 @@ void ReportUser::OnReportUserTimer()
             this->reportContent = e.text();
             if (this->checkUserIsReported())
             {
-                this->ui->pushButton->setText(_l("report-duplicate"));
+                this->ui->buttonReport->setText(_l("report-duplicate"));
                 this->reportedUser->IsReported = true;
                 WikiUser::UpdateUser(this->reportedUser);
                 this->kill();
@@ -387,7 +387,7 @@ void ReportUser::OnReportUserTimer()
             QString summary = this->reportedUser->GetSite()->GetProjectConfig()->ReportSummary;
             summary = summary.replace("$1", this->reportedUser->Username);
             this->qEdit = WikiUtil::EditPage(this->reportedUser->GetSite()->GetProjectConfig()->AIVP, this->reportContent, summary, false, this->reportTs);
-            this->ui->pushButton->setText(_l("report-write"));
+            this->ui->buttonReport->setText(_l("report-write"));
             this->qHistory.Delete();
         }
         return;
@@ -420,22 +420,22 @@ void ReportUser::OnReportUserTimer()
                     diff = edit.attribute("revid");
                 }
                 QString link = Configuration::GetProjectScriptURL(this->reportedUser->GetSite()) + "index.php?title=" + page + "&diff=" + diff;
-                this->ui->tableWidget->insertRow(0);
-                this->ui->tableWidget->setItem(0, 0, new QTableWidgetItem(page));
-                this->ui->tableWidget->setItem(0, 1, new QTableWidgetItem(time));
-                this->ui->tableWidget->setItem(0, 2, new QTableWidgetItem(link));
-                this->ui->tableWidget->setItem(0, 3, new QTableWidgetItem(diff));
+                this->ui->tableWidgetEdits->insertRow(0);
+                this->ui->tableWidgetEdits->setItem(0, 0, new QTableWidgetItem(page));
+                this->ui->tableWidgetEdits->setItem(0, 1, new QTableWidgetItem(time));
+                this->ui->tableWidgetEdits->setItem(0, 2, new QTableWidgetItem(link));
+                this->ui->tableWidgetEdits->setItem(0, 3, new QTableWidgetItem(diff));
                 QCheckBox *Item = new QCheckBox(this);
                 this->checkBoxes.insert(0, Item);
-                this->ui->tableWidget->setCellWidget(0, 4, Item);
+                this->ui->tableWidgetEdits->setCellWidget(0, 4, Item);
                 ++xx;
             }
-            this->ui->tableWidget->sortByColumn(1, Qt::DescendingOrder);
+            this->ui->tableWidgetEdits->sortByColumn(1, Qt::DescendingOrder);
         }
-        this->ui->tableWidget->resizeRowsToContents();
+        this->ui->tableWidgetEdits->resizeRowsToContents();
         this->qHistory.Delete();
-        this->ui->pushButton->setEnabled(true);
-        this->ui->pushButton->setText(_l("report-tu"));
+        this->ui->buttonReport->setEnabled(true);
+        this->ui->buttonReport->setText(_l("report-tu"));
     }
 }
 
@@ -503,7 +503,7 @@ void ReportUser::OnReportCheckTimer()
         }
         UiGeneric::pMessageBox(this, _l("result"), result);
         this->qCheckIfBlocked.Delete();
-        this->ui->pushButton_7->setEnabled(true);
+        this->ui->buttonCheckUserBlockStatus->setEnabled(true);
     }
     // If qReport is no null it means we are now retrieving the report page and we need to test
     // report status of user
@@ -512,13 +512,13 @@ void ReportUser::OnReportCheckTimer()
         QDomDocument d;
         d.setContent(this->qReport->Result->Data);
         QDomNodeList results = d.elementsByTagName("rev");
-        this->ui->pushButton_3->setEnabled(true);
+        this->ui->buttonCheckUser->setEnabled(true);
         if (results.count() == 0)
         {
             this->errorMessage(_l("report-page-fail", this->reportedUser->GetSite()->GetProjectConfig()->ReportAIV));
             return;
         }
-        this->ui->pushButton_3->setEnabled(true);
+        this->ui->buttonCheckUser->setEnabled(true);
         QDomElement e = results.at(0).toElement();
         if (e.attributes().contains("timestamp"))
         {
@@ -548,33 +548,33 @@ void ReportUser::OnReportCheckTimer()
     }
 }
 
-void ReportUser::on_pushButton_clicked()
+void ReportUser::on_buttonReport_clicked()
 {
     this->reportUser();
 }
 
-void ReportUser::on_pushButton_2_clicked()
+void ReportUser::on_buttonTalkPage_clicked()
 {
     this->webView->DisplayPage(Configuration::GetProjectWikiURL(this->reportedUser->GetSite()) + QUrl::toPercentEncoding
                               (this->reportedUser->GetTalk()) + "?action=render");
 }
 
-void ReportUser::on_tableWidget_clicked(const QModelIndex &index)
+void ReportUser::on_tableWidgetEdits_clicked(const QModelIndex &index)
 {
     this->webView->RenderHtml(_l("wait"));
     this->tPageDiff->stop();
     if (this->qDiff != nullptr)
         this->qDiff->Kill();
 
-    this->qDiff = WikiUtil::APIRequest(ActionCompare, this->reportedUser->GetSite(), "fromrev=" + this->ui->tableWidget->item(index.row(), 3)->text() + "&torelative=prev"\
+    this->qDiff = WikiUtil::APIRequest(ActionCompare, this->reportedUser->GetSite(), "fromrev=" + this->ui->tableWidgetEdits->item(index.row(), 3)->text() + "&torelative=prev"\
                                        "&prop=" + QUrl::toPercentEncoding("diff|comment|parsedcomment"));
     this->tPageDiff->start(HUGGLE_TIMER);
 }
 
-void Huggle::ReportUser::on_pushButton_5_clicked()
+void Huggle::ReportUser::on_buttonSelectAll_clicked()
 {
     int xx = 0;
-    while (xx < this->ui->tableWidget->rowCount())
+    while (xx < this->ui->tableWidgetEdits->rowCount())
     {
         if (this->checkBoxes.count() > xx)
             this->checkBoxes.at(xx)->setChecked(true);
@@ -583,10 +583,10 @@ void Huggle::ReportUser::on_pushButton_5_clicked()
     }
 }
 
-void Huggle::ReportUser::on_pushButton_6_clicked()
+void Huggle::ReportUser::on_buttonRemoveSelection_clicked()
 {
     int xx = 0;
-    while (xx < this->ui->tableWidget->rowCount())
+    while (xx < this->ui->tableWidgetEdits->rowCount())
     {
         if (this->checkBoxes.count() > xx)
             this->checkBoxes.at(xx)->setChecked(false);
@@ -618,26 +618,26 @@ void ReportUser::insertUser()
     }
     text = text.replace("$1", this->reportedUser->UnderscorelessUsername());
     text = text.replace("$2", reportText);
-    text = text.replace("$3", ui->lineEdit->text());
+    text = text.replace("$3", ui->lineEditReason->text());
     this->reportContent = reportContent + "\n" + text;
 }
 
 void ReportUser::reportUser()
 {
-    this->ui->pushButton->setEnabled(false);
+    this->ui->buttonReport->setEnabled(false);
     // we need to get a report info for all selected diffs
     QString reports = "";
     int xx = 0;
     int EvidenceID = 0;
-    while (xx < this->ui->tableWidget->rowCount())
+    while (xx < this->ui->tableWidgetEdits->rowCount())
     {
         if (this->checkBoxes.count() > xx)
         {
-            QCheckBox *checkBox = dynamic_cast<QCheckBox*>(this->ui->tableWidget->cellWidget(xx, 4));
+            QCheckBox *checkBox = dynamic_cast<QCheckBox*>(this->ui->tableWidgetEdits->cellWidget(xx, 4));
             if (checkBox->isChecked())
             {
                 ++EvidenceID;
-                reports += "[[Special:Diff/" + this->ui->tableWidget->item(xx, 3)->text() + "|" +
+                reports += "[[Special:Diff/" + this->ui->tableWidgetEdits->item(xx, 3)->text() + "|" +
                            QString::number(EvidenceID) + "]] ";
             }
         }
@@ -649,13 +649,13 @@ void ReportUser::reportUser()
         mb = QMessageBox::question(this, "Question", _l("report-evidence-none-provid"), QMessageBox::Yes|QMessageBox::No);
         if (mb == QMessageBox::No)
         {
-            this->ui->pushButton->setEnabled(true);
+            this->ui->buttonReport->setEnabled(true);
             return;
         }
     }
     // obtain current page
     this->loading = true;
-    this->ui->pushButton->setText(_l("report-retrieving"));
+    this->ui->buttonReport->setText(_l("report-retrieving"));
     this->qHistory = WikiUtil::RetrieveWikiPageContents(this->reportedUser->GetSite()->GetProjectConfig()->ReportAIV, this->reportedUser->GetSite());
     this->qHistory->Site = this->reportedUser->GetSite();
     this->qHistory->Process();
@@ -680,16 +680,16 @@ void ReportUser::errorMessage(QString reason)
     this->qReport = nullptr;
 }
 
-void ReportUser::on_pushButton_3_clicked()
+void ReportUser::on_buttonCheckUser_clicked()
 {
-    this->ui->pushButton_3->setEnabled(false);
+    this->ui->buttonCheckUser->setEnabled(false);
     this->qReport = WikiUtil::RetrieveWikiPageContents(this->reportedUser->GetSite()->GetProjectConfig()->ReportAIV,
                                                        this->reportedUser->GetSite());
     this->qReport->Process();
     this->tReportPageCheck->start(HUGGLE_TIMER);
 }
 
-void Huggle::ReportUser::on_pushButton_4_clicked()
+void ReportUser::on_buttonBlock_clicked()
 {
     if (this->blockUser != nullptr)
     {
@@ -700,9 +700,9 @@ void Huggle::ReportUser::on_pushButton_4_clicked()
     this->blockUser->show();
 }
 
-void Huggle::ReportUser::on_pushButton_7_clicked()
+void ReportUser::on_buttonCheckUserBlockStatus_clicked()
 {
-    this->ui->pushButton_7->setEnabled(false);
+    this->ui->buttonCheckUserBlockStatus->setEnabled(false);
     this->qCheckIfBlocked = new ApiQuery(ActionQuery, this->reportedUser->GetSite());
     this->qCheckIfBlocked->Target = "user";
     this->qCheckIfBlocked->Parameters = "list=blocks&";

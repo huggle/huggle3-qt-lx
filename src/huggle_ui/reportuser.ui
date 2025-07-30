@@ -30,7 +30,7 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="labelIntroduction">
      <property name="minimumSize">
       <size>
        <width>0</width>
@@ -71,14 +71,14 @@
         <number>10</number>
        </property>
        <item>
-        <widget class="QLabel" name="label_3">
+        <widget class="QLabel" name="labelEditsIntro">
          <property name="text">
           <string>You want to report this user for following edits:</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QTableWidget" name="tableWidget">
+        <widget class="QTableWidget" name="tableWidgetEdits">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -113,14 +113,14 @@
         <number>10</number>
        </property>
        <item>
-        <widget class="QLabel" name="label_4">
+        <widget class="QLabel" name="labelBlocksIntro">
          <property name="text">
           <string>List of all blocks that were ever issued on this user</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QTableWidget" name="tableWidget_2">
+        <widget class="QTableWidget" name="tableWidgetBlocks">
          <property name="selectionBehavior">
           <enum>QAbstractItemView::SelectRows</enum>
          </property>
@@ -136,14 +136,14 @@
       <number>0</number>
      </property>
      <item>
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="labelReasonIntro">
        <property name="text">
         <string>Information</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit">
+      <widget class="QLineEdit" name="lineEditReason">
        <property name="text">
         <string>Report Reason</string>
        </property>
@@ -157,14 +157,14 @@
       <number>0</number>
      </property>
      <item>
-      <widget class="QPushButton" name="pushButton_4">
+      <widget class="QPushButton" name="buttonBlock">
        <property name="text">
         <string>Block</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="buttonReport">
        <property name="text">
         <string>Report</string>
        </property>
@@ -174,35 +174,35 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="buttonTalkPage">
        <property name="text">
         <string>Talk page</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_7">
+      <widget class="QPushButton" name="buttonCheckBlocked">
        <property name="text">
         <string>Check if user is blocked</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QPushButton" name="buttonCheckReported">
        <property name="text">
         <string>Check if user is reported</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_5">
+      <widget class="QPushButton" name="buttonSelectAll">
        <property name="text">
         <string>Select all</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_6">
+      <widget class="QPushButton" name="buttonRemoveSelection">
        <property name="text">
         <string>Remove selection</string>
        </property>

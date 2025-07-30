@@ -19,14 +19,14 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="labelDuration">
      <property name="text">
       <string>Protection duration:</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QComboBox" name="comboBox_2">
+    <widget class="QComboBox" name="comboBoxDuration">
      <item>
       <property name="text">
        <string>3 days</string>
@@ -70,28 +70,28 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="labelReason">
      <property name="text">
       <string>Protection reason:</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QComboBox" name="comboBox">
+    <widget class="QComboBox" name="comboBoxReason">
      <property name="editable">
       <bool>true</bool>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_3">
+    <widget class="QLabel" name="labelProtectionType">
      <property name="text">
       <string>Protection:</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QComboBox" name="comboBox_3">
+    <widget class="QComboBox" name="comboBoxProtectionType">
      <property name="editable">
       <bool>false</bool>
      </property>

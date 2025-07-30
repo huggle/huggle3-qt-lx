@@ -27,12 +27,12 @@ ProtectPage::ProtectPage(QWidget *parent) : HW("protectpageform", this, parent),
 {
     this->ui->setupUi(this);
     this->PageToProtect = nullptr;
-    this->ui->comboBox_3->addItem(_l("protect-none"));
-    this->ui->comboBox_3->addItem(_l("protect-semiprotection"));
-    this->ui->comboBox_3->addItem(_l("protect-fullprotection"));
-    this->ui->comboBox_3->setCurrentIndex(2);
+    this->ui->comboBoxProtectionType->addItem(_l("protect-none"));
+    this->ui->comboBoxProtectionType->addItem(_l("protect-semiprotection"));
+    this->ui->comboBoxProtectionType->addItem(_l("protect-fullprotection"));
+    this->ui->comboBoxProtectionType->setCurrentIndex(2);
     this->tt = nullptr;
-    this->ui->comboBox->addItem(Configuration::HuggleConfiguration->ProjectConfig->ProtectReason);
+    this->ui->comboBoxReason->addItem(Configuration::HuggleConfiguration->ProjectConfig->ProtectReason);
     this->RestoreWindow();
 }
 
@@ -64,7 +64,7 @@ void ProtectPage::on_btnProtect_clicked()
     this->qProtection = new ApiQuery(ActionProtect, this->PageToProtect->GetSite());
     this->qProtection->UsingPOST = true;
     QString protection = "edit=sysop|move=sysop";
-    switch (this->ui->comboBox_3->currentIndex())
+    switch (this->ui->comboBoxProtectionType->currentIndex())
     {
         case 0:
             protection = "edit=all|move=all";
@@ -74,10 +74,10 @@ void ProtectPage::on_btnProtect_clicked()
             break;
     }
     // reason why protect
-    QString reason = Configuration::GenerateSuffix(this->ui->comboBox->currentText(), this->PageToProtect->GetSite()->GetProjectConfig());
+    QString reason = Configuration::GenerateSuffix(this->ui->comboBoxReason->currentText(), this->PageToProtect->GetSite()->GetProjectConfig());
     this->qProtection->Parameters = "title=" + QUrl::toPercentEncoding(this->PageToProtect->PageName)
             + "&reason=" + QUrl::toPercentEncoding(reason)
-            + "&expiry=" + QUrl::toPercentEncoding(this->ui->comboBox_2->currentText())
+            + "&expiry=" + QUrl::toPercentEncoding(this->ui->comboBoxDuration->currentText())
             + "&protections=" + QUrl::toPercentEncoding(protection)
             + "&token=" + QUrl::toPercentEncoding(this->PageToProtect->GetSite()->GetProjectConfig()->Token_Csrf);
     this->qProtection->Target = "Protecting " + this->PageToProtect->PageName;

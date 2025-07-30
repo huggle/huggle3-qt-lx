@@ -73,15 +73,15 @@ namespace Huggle
             void on_ButtonOK_clicked();
             void on_ButtonExit_clicked();
             void OnTimerTick();
-            void on_pushButton_clicked();
+            void on_buttonReloadWikis_clicked();
             void on_labelTranslate_linkActivated(const QString &link);
             void on_lineEdit_username_textChanged(const QString &arg1);
             void on_lineEdit_password_textChanged(const QString &arg1);
-            void on_pushButton_2_clicked();
+            void on_buttonToggleProjects_clicked();
             void on_label_linkActivated(const QString &link);
             void on_lineEditBotUser_textChanged(const QString &arg1);
             void on_lineEditBotP_textChanged(const QString &arg1);
-            void on_label_2_linkActivated(const QString &link);
+            void on_labelBotPasswordHelp_linkActivated(const QString &link);
             void on_tabWidget_currentChanged(int index);
             void on_Language_currentIndexChanged(int index);
 

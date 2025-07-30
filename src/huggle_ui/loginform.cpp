@@ -59,7 +59,7 @@ LoginForm::LoginForm(QWidget *parent) : HW("login", this, parent), ui(new Ui::Lo
     this->ui->setupUi(this);
     this->ui->tableWidget->setVisible(false);
     if (hcfg->SystemConfig_Multiple)
-        this->on_pushButton_2_clicked();
+        this->on_buttonToggleProjects_clicked();
     this->ui->tableWidget->setColumnCount(2);
     this->ui->tableWidget->horizontalHeader()->setVisible(false);
     this->ui->tableWidget->verticalHeader()->setVisible(false);
@@ -71,7 +71,7 @@ LoginForm::LoginForm(QWidget *parent) : HW("login", this, parent), ui(new Ui::Lo
     this->timer = new QTimer(this);
     connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTimerTick()));
     this->resetForm();
-    this->ui->checkBox->setChecked(hcfg->SystemConfig_UsingSSL);
+    this->ui->checkBoxUseHTTPS->setChecked(hcfg->SystemConfig_UsingSSL);
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
     int localization_ix=0, preferred=0;
     while (localization_ix<Localizations::HuggleLocalizations->LocalizationData.count())
@@ -100,8 +100,8 @@ LoginForm::LoginForm(QWidget *parent) : HW("login", this, parent), ui(new Ui::Lo
     if (!QSslSocket::supportsSsl())
     {
         hcfg->SystemConfig_UsingSSL = false;
-        this->ui->checkBox->setEnabled(false);
-        this->ui->checkBox->setChecked(false);
+        this->ui->checkBoxUseHTTPS->setEnabled(false);
+        this->ui->checkBoxUseHTTPS->setChecked(false);
 #if QT_VERSION >= 0x050400
         UiGeneric::pMessageBox(this, "Unable to find SSL libraries", "Huggle was unable to locate SSL libraries. This build requires:\nSSL version: " + QSslSocket::sslLibraryBuildVersionString() +
                                                                      "\nQt (built on): " + QString(QT_VERSION_STR) + "\nQt (running): " + QString(qVersion()), MessageBoxStyleError);
@@ -156,7 +156,7 @@ LoginForm::LoginForm(QWidget *parent) : HW("login", this, parent), ui(new Ui::Lo
             this->ui->lineEditBotP->setText(hcfg->SystemConfig_RememberedPassword);
         else
             this->ui->lineEdit_password->setText(hcfg->SystemConfig_RememberedPassword);
-        this->ui->checkBox_2->setChecked(true);
+        this->ui->checkBoxRememberPassword->setChecked(true);
     }
 
     // If we are using login file, override the stored password (and ignore password updates)
@@ -164,7 +164,7 @@ LoginForm::LoginForm(QWidget *parent) : HW("login", this, parent), ui(new Ui::Lo
     {
         this->ui->lineEditBotP->setText(hcfg->TemporaryConfig_Password);
         this->ui->lineEditBotUser->setText(hcfg->SystemConfig_BotLogin);
-        this->ui->checkBox_2->setChecked(false);
+        this->ui->checkBoxRememberPassword->setChecked(false);
     }
 
     // Check if we wanted to login using --login option
@@ -192,25 +192,25 @@ void LoginForm::Localize()
 {
     this->ui->ButtonExit->setText(_l("main-system-exit"));
     this->ui->ButtonOK->setText(_l("login-start"));
-    this->ui->checkBox->setText(_l("login-ssl"));
+    this->ui->checkBoxUseHTTPS->setText(_l("login-ssl"));
     this->ui->labelBotUserName->setText(_l("login-username"));
-    this->ui->pushButton->setToolTip(_l("login-reload-tool-tip"));
-    this->ui->pushButton->setText(_l("reload"));
+    this->ui->buttonReloadWikis->setToolTip(_l("login-reload-tool-tip"));
+    this->ui->buttonReloadWikis->setText(_l("reload"));
     this->ui->labelBotPassword->setText(_l("login-password"));
     this->ui->tabWidget->setTabText(0, _l("login-tab-botp"));
     this->ui->tabWidget->setTabText(1, _l("login-tab-login"));
     this->ui->labelUsername->setText(_l("login-username"));
     this->ui->labelProject->setText(_l("login-project"));
     this->ui->labelLanguage->setText(_l("login-language"));
-    this->ui->label_2->setText("<a href=\"https://www.mediawiki.org/wiki/Manual:Huggle/Bot_passwords\">" + _l("login-bot") + "</a>");
+    this->ui->labelBotPasswordHelp->setText("<a href=\"https://www.mediawiki.org/wiki/Manual:Huggle/Bot_passwords\">" + _l("login-bot") + "</a>");
     this->ui->labelPassword->setText(_l("login-password"));
-    this->ui->checkBox_2->setText(_l("login-remember-password"));
-    this->ui->checkBox_2->setToolTip(_l("login-remember-password-tooltip"));
+    this->ui->checkBoxRememberPassword->setText(_l("login-remember-password"));
+    this->ui->checkBoxRememberPassword->setToolTip(_l("login-remember-password-tooltip"));
     this->ui->labelIntro->setText(_l("login-intro"));
     if (!this->ui->tableWidget->isVisible())
-        this->ui->pushButton_2->setText(_l("projects") + " >>");
+        this->ui->buttonToggleProjects->setText(_l("projects") + " >>");
     else
-        this->ui->pushButton_2->setText(_l("projects") + " <<");
+        this->ui->buttonToggleProjects->setText(_l("projects") + " <<");
     this->ui->label->setText("<a href='dummy'>" + _l("login-proxy") + "</a>");
     this->ui->labelTranslate->setText(QString("<html><head/><body><p><a href=\"https://meta.wikimedia.org/wiki/Huggle/Localization\"><span style=\""\
                                               " text-decoration: underline; color:#0000ff;\">%1</span></a></p></body></html>").arg(_l("login-translate")));
@@ -297,22 +297,22 @@ int LoginForm::GetRowIDForSite(WikiSite *site, int row)
 
 void LoginForm::enableForm(bool value)
 {
-    this->ui->checkBox_2->setEnabled(value);
+    this->ui->checkBoxRememberPassword->setEnabled(value);
     this->ui->lineEditBotP->setEnabled(value);
     this->ui->lineEditBotUser->setEnabled(value);
     this->ui->Language->setEnabled(value);
     this->ui->label->setEnabled(value);
     this->ui->Project->setEnabled(value);
     if (value)
-        this->ui->checkBox->setEnabled(QSslSocket::supportsSsl());
+        this->ui->checkBoxUseHTTPS->setEnabled(QSslSocket::supportsSsl());
     else
-        this->ui->checkBox->setEnabled(false);
+        this->ui->checkBoxUseHTTPS->setEnabled(false);
     this->ui->lineEdit_username->setEnabled(value);
     this->ui->ButtonExit->setEnabled(value);
-    this->ui->pushButton_2->setEnabled(value);
+    this->ui->buttonToggleProjects->setEnabled(value);
     this->ui->tableWidget->setEnabled(value);
     this->ui->lineEdit_password->setEnabled(value);
-    this->ui->pushButton->setEnabled(value);
+    this->ui->buttonReloadWikis->setEnabled(value);
     this->ui->ButtonOK->setEnabled(value);
 }
 
@@ -427,7 +427,7 @@ void LoginForm::pressOK()
         UiGeneric::pMessageBox(this, _l("error"), _l("no-projects-defined-in-list"));
         return;
     }
-    hcfg->SystemConfig_StorePassword = this->ui->checkBox_2->isChecked();
+    hcfg->SystemConfig_StorePassword = this->ui->checkBoxRememberPassword->isChecked();
     if (hcfg->SystemConfig_BotPassword)
     {
         hcfg->SystemConfig_BotLogin = this->ui->lineEditBotUser->text();
@@ -452,7 +452,7 @@ void LoginForm::pressOK()
     hcfg->Project = hcfg->ProjectList.at(this->ui->Project->currentIndex());
     // we need to clear a list of projects we are logged to and insert at least this one
     hcfg->Projects.clear();
-    hcfg->SystemConfig_UsingSSL = this->ui->checkBox->isChecked();
+    hcfg->SystemConfig_UsingSSL = this->ui->checkBoxUseHTTPS->isChecked();
     hcfg->Projects << hcfg->Project;
     if (hcfg->SystemConfig_Multiple)
     {
@@ -1515,12 +1515,12 @@ void LoginForm::OnTimerTick()
     this->finishLogin();
 }
 
-void LoginForm::on_pushButton_clicked()
+void LoginForm::on_buttonReloadWikis_clicked()
 {
     this->disableForm();
     this->qDatabase = new ApiQuery(ActionQuery, hcfg->GlobalWiki);
     this->Refreshing = true;
-    hcfg->SystemConfig_UsingSSL = this->ui->checkBox->isChecked();
+    hcfg->SystemConfig_UsingSSL = this->ui->checkBoxUseHTTPS->isChecked();
     this->timer->start(HUGGLE_TIMER);
     this->qDatabase->OverrideWiki = hcfg->SystemConfig_GlobalConfigurationWikiAddress;
     this->ui->ButtonOK->setText(_l("[[cancel]]"));
@@ -1570,17 +1570,17 @@ void LoginForm::clearLoadingFormRows()
     this->loadingFormRows.clear();
 }
 
-void Huggle::LoginForm::on_pushButton_2_clicked()
+void Huggle::LoginForm::on_buttonToggleProjects_clicked()
 {
     if (this->ui->tableWidget->isVisible())
     {
-        this->ui->pushButton_2->setText(_l("projects") + " >>");
+        this->ui->buttonToggleProjects->setText(_l("projects") + " >>");
         this->ui->tableWidget->setVisible(false);
         hcfg->SystemConfig_Multiple = false;
     } else
     {
         hcfg->SystemConfig_Multiple = true;
-        this->ui->pushButton_2->setText(_l("projects") + " <<");
+        this->ui->buttonToggleProjects->setText(_l("projects") + " <<");
         this->ui->tableWidget->setVisible(true);
         if (this->height() <= 480)
             this->resize(this->width(), 520);
@@ -1606,7 +1606,7 @@ void Huggle::LoginForm::on_lineEditBotP_textChanged(const QString &arg1)
     LoginForm::verifyLogin();
 }
 
-void Huggle::LoginForm::on_label_2_linkActivated(const QString &link)
+void Huggle::LoginForm::on_labelBotPasswordHelp_linkActivated(const QString &link)
 {
     QDesktopServices::openUrl(link);
 }

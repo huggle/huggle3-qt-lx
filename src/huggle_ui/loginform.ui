@@ -235,7 +235,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="labelBotPasswordHelp">
      <property name="text">
       <string>&lt;a href=&quot;huggle://login&quot;&gt;What is Bot / Interactive password&lt;/a&gt;</string>
      </property>
@@ -245,14 +245,14 @@
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="checkBox">
+    <widget class="QCheckBox" name="checkBoxUseHTTPS">
      <property name="text">
       <string>Use HTTPS (requires OpenSSL libs)</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="checkBox_2">
+    <widget class="QCheckBox" name="checkBoxRememberPassword">
      <property name="toolTip">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This option will store your password in a plaintext on your hard drive. Use it only if you are the only person with access to this computer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
@@ -308,7 +308,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="buttonReloadWikis">
        <property name="toolTip">
         <string>Download a list of wikis where huggle is enabled from internet</string>
        </property>
@@ -318,7 +318,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="buttonToggleProjects">
        <property name="text">
         <string>Projects &gt;&gt;</string>
        </property>
