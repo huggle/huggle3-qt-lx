@@ -774,6 +774,10 @@
   <string name="preferences-watchlist-nochange">Non fare nulla</string>
   <string name="preferences-max-score">Abilita il punteggio globale massimo (le modifiche con un punteggio più alto verranno ignorate; utile se si vogliono vedere solo le modifiche corrette)</string>
   <string name="preferences-reset-gui">Inizializza l’interfaccia grafica</string>
+  <string name="preferences-reset-config-title">Reimposta configurazione</string>
+  <string name="preferences-factory">Ripristina le impostazioni predefinite di fabbrica</string>
+  <string name="preferences-reset-config-done">Ripristino della configurazione</string>
+  <string name="preferences-reset-config-restart">La configurazione di Huggle è stata ripristinata ai valori predefiniti. Potrebbe essere necessario riavviare Huggle affinché tutte le modifiche abbiano effetto.</string>
   <string name="preferences-keystroke-rate-limit">Previeni la ripetizione dei tasti seguendo la frequenza in millisecondi (solo 1 stesso tasto di scelta rapida può essere attivato in N ms)</string>
   <string name="fail">Fallito</string>
   <string name="request">Richiesta</string>

@@ -563,6 +563,8 @@
   <string name="queue-editfiltersgroup">تنظیم پالایه‌ها</string>
   <string name="queue-userregex">نام کاربری با عبارت با قاعده همخوانی دارد:</string>
   <string name="queue-summaryregex">خلاصه ویرایش با عبارت با قاعده همخوانی دارد:</string>
+  <string name="queue-filter-add">افزودن</string>
+  <string name="queue-filter-delete">حذف</string>
   <string name="queue-filternewpage">صفحهٔ جدید</string>
   <string name="queue-filterownuserspace">فضای کاربری متعلق به کاربر</string>
   <string name="queue-filteranonymous">کاربر ناشناس</string>
@@ -620,6 +622,7 @@
   <string name="uaa-g1">گرفتن محتوی وپ:تام</string>
   <string name="uaa-e1">کوئری برای محتویات این صفحه هیچ داده‌ای باز نمی‌گرداند</string>
   <string name="uaa-e2">محتویات این صفحه قابل دسترس نیست.</string>
+  <string name="uaa-close">بستن</string>
   <string name="read-only">پروژهٔ $1 به عنوان فقط-خواندن تنظیم شده است، عملکرد ویرایشی ابزار محدود خواهد بود.</string>
   <string name="revert-confirm-multiple">این عمل، چند ویرایش $1 را برمی‌گرداند. ادامه می‌دهید؟</string>
   <string name="revert-confirm-range">نویسنده نسخهٔ هدف، $2، در همان محدودهٔ نویسندهٔ نسخهٔ کنونی است، $1، و ممکن است همان شخص باشد. پیش از هر اقدامی مطمئن شوید که نسخهٔ هدف درست انتحاب شده. ادامه می‌دهید؟</string>
@@ -843,6 +846,12 @@
   <string name="preferences-empty-queue-page">صفحهٔ صف خالی:</string>
   <string name="preferences-reset-gui">بازگردانی رابط کاربری</string>
   <string name="preferences-restore-factory-layout">با این کار هاگل به حالت روز اول باز می‌گردد. هاگل خاموش می‌شود. آیا ادامه دهم؟</string>
+  <string name="preferences-reset-config-title">بازنشانی پیکربندی</string>
+  <string name="preferences-factory">بازنشانی به پیش‌فرض‌های کارخانه</string>
+  <string name="preferences-reset-config-question">آیا مطمئنید که می‌خواهید همهٔ تنظیمات هاگل را به مقادیر پیش‌فرض بازنشانی کنید؟ این کار پیکربندی کنونی شما را پاک کرده و هاگل را می‌بندد.</string>
+  <string name="preferences-reset-config-done">پیکربندی بازنشانی شد</string>
+  <string name="preferences-reset-config-restart">پیکربندی هاگل به حالت پیش‌فرض بازنشانی شده است. ممکن است نیاز باشد هاگل را دوباره راه‌اندازی کنید تا همهٔ تغییرات اعمال شوند.</string>
+  <string name="preferences-huggle2-config-success">تنظیمات با موفقیت پیکربندی شدند تا هاگل ۳ رفتاری مشابه هاگل ۲ داشته باشد.</string>
   <string name="preferences-keystroke-rate-limit">جلوگیری از کلید‌های تکراری با نرخ زیر در میلی ثانیه (فقط یک میانبر مشابه در N ms ممکن است باعث شود)</string>
   <string name="preferences-color-scheme-diff">رنگ تفاوت</string>
   <string name="preferences-color-scheme-diff-default">پیش‌فرض</string>

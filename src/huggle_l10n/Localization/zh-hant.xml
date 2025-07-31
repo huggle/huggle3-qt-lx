@@ -547,6 +547,8 @@
   <string name="queue-editfiltersgroup">編輯篩選條件</string>
   <string name="queue-userregex">符合正規表達式的用戶名稱：</string>
   <string name="queue-summaryregex">符合正規表達式的摘要：</string>
+  <string name="queue-filter-add">新增</string>
+  <string name="queue-filter-delete">刪除</string>
   <string name="queue-filternewpage">新頁面</string>
   <string name="queue-filterownuserspace">用戶擁有的用戶空間</string>
   <string name="queue-filteranonymous">匿名使用者</string>
@@ -827,7 +829,13 @@
   <string name="preferences-queue-size">佇列長度</string>
   <string name="preferences-empty-queue-page">空佇列頁面：</string>
   <string name="preferences-reset-gui">重新設定圖形介面</string>
-  <string name="preferences-restore-factory-layout">這會重設Huggle的配置。Huggle會先關閉，繼續？</string>
+  <string name="preferences-restore-factory-layout">這將重新設成 Huggle 的出廠設定。Huggle 會先關閉，要繼續嗎？</string>
+  <string name="preferences-reset-config-title">重新設定組態</string>
+  <string name="preferences-factory">重新設定成出廠預設</string>
+  <string name="preferences-reset-config-question">您確定您要將 Huggle 重新設回預設值？這會清除您目前的組態並關閉 Huggle。</string>
+  <string name="preferences-reset-config-done">組態重新設定</string>
+  <string name="preferences-reset-config-restart">Huggle 的組態已重新設成預設值。您需要重新啟動 Huggle 來讓所有變動生效。</string>
+  <string name="preferences-huggle2-config-success">設定已成功讓 Huggle 3 行為組態成類似 Huggle 2 的模樣</string>
   <string name="preferences-keystroke-rate-limit">防止以下毫秒單位頻率的重複鍵盤敲擊（同一快速鍵在 N 毫秒內僅可觸發 1 次）</string>
   <string name="preferences-color-scheme-diff">差異色彩</string>
   <string name="preferences-color-scheme-diff-default">預設</string>
