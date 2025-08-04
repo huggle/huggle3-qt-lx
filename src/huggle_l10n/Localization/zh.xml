@@ -563,6 +563,8 @@
   <string name="queue-editfiltersgroup">编辑过滤器</string>
   <string name="queue-userregex">匹配正则表达式的用户名：</string>
   <string name="queue-summaryregex">匹配正则表达式的摘要：</string>
+  <string name="queue-filter-add">添加</string>
+  <string name="queue-filter-delete">删除</string>
   <string name="queue-filternewpage">新页面</string>
   <string name="queue-filterownuserspace">用户自己的用户空间</string>
   <string name="queue-filteranonymous">匿名用户</string>
@@ -844,6 +846,12 @@
   <string name="preferences-empty-queue-page">空队列页面：</string>
   <string name="preferences-reset-gui">重置GUI</string>
   <string name="preferences-restore-factory-layout">这将恢复huggle的出厂设计，就像您当初安装它时那样。Huggle将会关闭。继续么？</string>
+  <string name="preferences-reset-config-title">重置配置</string>
+  <string name="preferences-factory">重置为出厂默认值</string>
+  <string name="preferences-reset-config-question">您确定要将所有Huggle设置重置为默认值吗？这会清除您当前的配置并关闭Huggle。</string>
+  <string name="preferences-reset-config-done">配置已重置</string>
+  <string name="preferences-reset-config-restart">Huggle的配置已重置为默认值。您可能需要重启Huggle以使所有更改生效。</string>
+  <string name="preferences-huggle2-config-success">已成功配置设置，现在Huggle 3的行为配置与Huggle 2类似</string>
   <string name="preferences-keystroke-rate-limit">防止以下频率（毫秒）的重复击键（同一快捷键在N毫秒内只允许触发1次）</string>
   <string name="preferences-color-scheme-diff">色差</string>
   <string name="preferences-color-scheme-diff-default">默认</string>

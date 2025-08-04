@@ -339,6 +339,8 @@
   <string name="queue-pagefiltersgroup">Filtere vu Säitentitelen</string>
   <string name="queue-namespaces">Nummraim:</string>
   <string name="queue-editfiltersgroup">Filteren änneren</string>
+  <string name="queue-filter-add">Derbäisetzen</string>
+  <string name="queue-filter-delete">Läschen</string>
   <string name="queue-filternewpage">Nei Säit</string>
   <string name="queue-filteranonymous">Anonyme Benotzer</string>
   <string name="queue-filterignored">Ignoréierte Benotzer</string>

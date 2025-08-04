@@ -561,6 +561,8 @@
   <string name="queue-editfiltersgroup">عدل المرشحات</string>
   <string name="queue-userregex">المصطلح الدائم لنتيجة البحث عن اسم مستخدم:</string>
   <string name="queue-summaryregex">المصطلح الدائم لنتيجة البحث عن ملخص:</string>
+  <string name="queue-filter-add">أضف</string>
+  <string name="queue-filter-delete">حذف</string>
   <string name="queue-filternewpage">صفحة جديدة</string>
   <string name="queue-filterownuserspace">مساحة المستخدم</string>
   <string name="queue-filteranonymous">مستخدم مجهول</string>
@@ -618,6 +620,7 @@
   <string name="uaa-g1">الحصول على محتوى UAA</string>
   <string name="uaa-e1">لم يُرجِع الاستعلام عن محتويات الصفحة أية بيانات.</string>
   <string name="uaa-e2">محتويات الصفحة غير متوفرة.</string>
+  <string name="uaa-close">إغلاق</string>
   <string name="read-only">يتم تكوين المشروع $1 للقراءة فقط; ستكون وظائف التحرير محدودة</string>
   <string name="revert-confirm-multiple">هذا سيسترجع تعديلات متعددة لـ \'$1\'. استمر؟</string>
   <string name="revert-confirm-range">مؤلف النسخة المستهدفة, $2, في نفس نطاق مؤلف النسخة الحالية, $1, وقد يكون نفس الشخص; لضمان أن النسخة المستهدفة صحيحة قبل الاستمرار. استمر؟</string>
@@ -841,6 +844,12 @@
   <string name="preferences-empty-queue-page">صفحة قائمة الانتظار الفارغة:</string>
   <string name="preferences-reset-gui">إعادة تعيين واجهة المستخدم الرسومية</string>
   <string name="preferences-restore-factory-layout">سيؤدي هذا إلى استعادة تصميم المصنع لهغل كما كان عند تثبيته، سيتم إغلاق هغل، استمر؟</string>
+  <string name="preferences-reset-config-title">إعادة تعيين التكوين</string>
+  <string name="preferences-factory">إعادة التعيين إلى إعدادات المصنع الافتراضية</string>
+  <string name="preferences-reset-config-question">هل أنت متأكد من رغبتك في إعادة ضبط جميع إعدادات Huggle إلى قيمها الافتراضية؟ سيؤدي هذا إلى حذف إعداداتك الحالية وإيقاف Huggle.</string>
+  <string name="preferences-reset-config-done">إعادة تعيين التكوين</string>
+  <string name="preferences-reset-config-restart">تم إعادة ضبط إعدادات Huggle إلى الوضع الافتراضي. قد تحتاج إلى إعادة تشغيل Huggle لتطبيق جميع التغييرات.</string>
+  <string name="preferences-huggle2-config-success">تم تكوين الإعدادات بنجاح لجعل Huggle 3 يتصرف بشكل مشابه لـ Huggle 2</string>
   <string name="preferences-keystroke-rate-limit">منع ضغطات المفاتيح المتكررة باتباع المعدل بالمللي ثانية (يمكن تشغيل نفس الاختصار فقط داخل N ms)</string>
   <string name="preferences-color-scheme-diff">ألوان الفرق</string>
   <string name="preferences-color-scheme-diff-default">افتراضي</string>

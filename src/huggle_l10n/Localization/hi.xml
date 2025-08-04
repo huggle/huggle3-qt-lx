@@ -398,6 +398,8 @@
   <string name="queue-editfiltersgroup">दुरुपयोग छनक</string>
   <string name="queue-userregex">यह सदस्य नाम नियमित एक्सप्रेशनस से मिलता है:</string>
   <string name="queue-summaryregex">यह सारांश नियमित एक्सप्रेशनस से मिलता है:</string>
+  <string name="queue-filter-add">जोड़ें</string>
+  <string name="queue-filter-delete">हटाएँ</string>
   <string name="queue-filternewpage">नाया पृष्ठ</string>
   <string name="queue-filterownuserspace">सदस्य का अपना सदस्य पृष्ठ</string>
   <string name="queue-filteranonymous">अनामक सदस्य</string>

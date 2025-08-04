@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
+* ABPMAB
 * Asarta
 * Bas dehaan
 * Hex
@@ -548,6 +549,8 @@
   <string name="queue-editfiltersgroup">Filters bewerken</string>
   <string name="queue-userregex">Gebruikersnaam komt overeen met een reguliere expressie:</string>
   <string name="queue-summaryregex">Samenvatting komt overeen met een reguliere expressie:</string>
+  <string name="queue-filter-add">Toevoegen</string>
+  <string name="queue-filter-delete">Verwijderen</string>
   <string name="queue-filternewpage">Nieuwe pagina</string>
   <string name="queue-filterownuserspace">Eigen gebruikersruimte</string>
   <string name="queue-filteranonymous">Anonieme gebruiker</string>
@@ -605,6 +608,7 @@
   <string name="uaa-g1">Inhoud van \'edits bewaken\' ophalen</string>
   <string name="uaa-e1">Het verzoek voor de pagina-inhoud gaf geen data.</string>
   <string name="uaa-e2">De inhoud van de pagina was niet beschikbaar.</string>
+  <string name="uaa-close">Sluiten</string>
   <string name="read-only">Project $1 is geconfigureerd als alleen-lezen, bewerkingsfuncties zijn beperkt</string>
   <string name="revert-confirm-multiple">Dit draait meerdere bewerkingen van $1 terug. Wilt u doorgaan?</string>
   <string name="revert-confirm-range">De auteur van de doel-versie, $2, is dezelfde auteur als die van de huidige versie, $1, en is dus mogelijk hetzelfde persoon. Controleer of de doel-versie correct is.\nDoorgaan?</string>
@@ -828,6 +832,12 @@
   <string name="preferences-empty-queue-page">Wachtrijpagina legen:</string>
   <string name="preferences-reset-gui">Opnieuw instellen</string>
   <string name="preferences-restore-factory-layout">Hiermee worden alle instellingen gemaakt zoals direct na de installatie. Huggle wordt gestopt. Doorgaan?</string>
+  <string name="preferences-reset-config-title">Configuratie resetten</string>
+  <string name="preferences-factory">Terugzetten naar fabrieksinstellingen</string>
+  <string name="preferences-reset-config-question">Weet u zeker dat u alle Huggle-instellingen wilt terugzetten naar de standaardwaarden? Hiermee wist u uw huidige configuratie en wordt Huggle afgesloten.</string>
+  <string name="preferences-reset-config-done">Configuratie resetten</string>
+  <string name="preferences-reset-config-restart">De configuratie van Huggle is teruggezet naar de standaardinstellingen. Mogelijk moet u Huggle opnieuw opstarten om alle wijzigingen door te voeren.</string>
+  <string name="preferences-huggle2-config-success">De instellingen zijn succesvol geconfigureerd om Huggle 3 op een vergelijkbare manier te laten functioneren als Huggle 2</string>
   <string name="preferences-keystroke-rate-limit">Voorkomt herhaling van toetsaanslagen in milliseconden (slecht één snelkoppeling kan per N ms uitgevoerd worden)</string>
   <string name="preferences-color-scheme-diff">Diff-kleuren</string>
   <string name="preferences-color-scheme-diff-default">Standaard</string>
