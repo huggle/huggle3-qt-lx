@@ -61,14 +61,14 @@ namespace Huggle
             void OnReportUserTimer();
             void OnPageDiffTimer();
             void OnReportCheckTimer();
-            void on_pushButton_clicked();
-            void on_pushButton_2_clicked();
-            void on_tableWidget_clicked(const QModelIndex &index);
-            void on_pushButton_3_clicked();
-            void on_pushButton_4_clicked();
-            void on_pushButton_5_clicked();
-            void on_pushButton_6_clicked();
-            void on_pushButton_7_clicked();
+            void on_buttonReport_clicked();
+            void on_buttonTalkPage_clicked();
+            void on_tableWidgetEdits_clicked(const QModelIndex &index);
+            void on_buttonSelectAll_clicked();
+            void on_buttonRemoveSelection_clicked();
+            void on_buttonCheckUser_clicked();
+            void on_buttonBlock_clicked();
+            void on_buttonCheckUserBlockStatus_clicked();
         private:
             bool checkUserIsReported();
             void insertUser();

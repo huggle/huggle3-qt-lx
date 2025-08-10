@@ -503,7 +503,7 @@ void ReportUser::OnReportCheckTimer()
         }
         UiGeneric::pMessageBox(this, _l("result"), result);
         this->qCheckIfBlocked.Delete();
-        this->ui->buttonCheckUserBlockStatus->setEnabled(true);
+        this->ui->buttonCheckBlocked->setEnabled(true);
     }
     // If qReport is no null it means we are now retrieving the report page and we need to test
     // report status of user
@@ -512,13 +512,13 @@ void ReportUser::OnReportCheckTimer()
         QDomDocument d;
         d.setContent(this->qReport->Result->Data);
         QDomNodeList results = d.elementsByTagName("rev");
-        this->ui->buttonCheckUser->setEnabled(true);
+        this->ui->buttonCheckReported->setEnabled(true);
         if (results.count() == 0)
         {
             this->errorMessage(_l("report-page-fail", this->reportedUser->GetSite()->GetProjectConfig()->ReportAIV));
             return;
         }
-        this->ui->buttonCheckUser->setEnabled(true);
+        this->ui->buttonCheckReported->setEnabled(true);
         QDomElement e = results.at(0).toElement();
         if (e.attributes().contains("timestamp"))
         {
@@ -571,7 +571,7 @@ void ReportUser::on_tableWidgetEdits_clicked(const QModelIndex &index)
     this->tPageDiff->start(HUGGLE_TIMER);
 }
 
-void Huggle::ReportUser::on_buttonSelectAll_clicked()
+void ReportUser::on_buttonSelectAll_clicked()
 {
     int xx = 0;
     while (xx < this->ui->tableWidgetEdits->rowCount())
@@ -583,7 +583,7 @@ void Huggle::ReportUser::on_buttonSelectAll_clicked()
     }
 }
 
-void Huggle::ReportUser::on_buttonRemoveSelection_clicked()
+void ReportUser::on_buttonRemoveSelection_clicked()
 {
     int xx = 0;
     while (xx < this->ui->tableWidgetEdits->rowCount())
@@ -682,7 +682,7 @@ void ReportUser::errorMessage(QString reason)
 
 void ReportUser::on_buttonCheckUser_clicked()
 {
-    this->ui->buttonCheckUser->setEnabled(false);
+    this->ui->buttonCheckReported->setEnabled(false);
     this->qReport = WikiUtil::RetrieveWikiPageContents(this->reportedUser->GetSite()->GetProjectConfig()->ReportAIV,
                                                        this->reportedUser->GetSite());
     this->qReport->Process();
@@ -702,7 +702,7 @@ void ReportUser::on_buttonBlock_clicked()
 
 void ReportUser::on_buttonCheckUserBlockStatus_clicked()
 {
-    this->ui->buttonCheckUserBlockStatus->setEnabled(false);
+    this->ui->buttonCheckBlocked->setEnabled(false);
     this->qCheckIfBlocked = new ApiQuery(ActionQuery, this->reportedUser->GetSite());
     this->qCheckIfBlocked->Target = "user";
     this->qCheckIfBlocked->Parameters = "list=blocks&";
