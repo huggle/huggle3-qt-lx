@@ -214,6 +214,8 @@
   <string name="queue-diffsgroup">فرق</string>
   <string name="queue-namespaces">ناں جاہیں:</string>
   <string name="queue-editfiltersgroup">چھاݨے تبدیل کرو</string>
+  <string name="queue-filter-add">شامل کرو</string>
+  <string name="queue-filter-delete">مٹاؤ</string>
   <string name="queue-filternewpage">نواں ورقہ</string>
   <string name="queue-filterreverts">واپس</string>
   <string name="queue-filternotifications">اطلاع نامہ</string>

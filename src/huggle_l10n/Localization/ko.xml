@@ -537,6 +537,8 @@
   <string name="queue-editfiltersgroup">편집 필터</string>
   <string name="queue-userregex">정규 표현식과 일치하는 사용자 이름:</string>
   <string name="queue-summaryregex">정규 표현식과 일치하는 요약:</string>
+  <string name="queue-filter-add">추가</string>
+  <string name="queue-filter-delete">삭제</string>
   <string name="queue-filternewpage">새 문서</string>
   <string name="queue-filterownuserspace">사용자 자신의 사용자공간</string>
   <string name="queue-filteranonymous">익명 사용자</string>
