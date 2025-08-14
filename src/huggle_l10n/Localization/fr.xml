@@ -555,6 +555,8 @@
   <string name="queue-editfiltersgroup">Modifier les filtres</string>
   <string name="queue-userregex">Le nom d’utilisateur correspond à l’expression rationnelle :</string>
   <string name="queue-summaryregex">Le sommaire correspond à l’expression rationnelle :</string>
+  <string name="queue-filter-add">Ajouter</string>
+  <string name="queue-filter-delete">Supprimer</string>
   <string name="queue-filternewpage">Nouvelle page</string>
   <string name="queue-filterownuserspace">Espace de noms propre à l’utilisateur</string>
   <string name="queue-filteranonymous">Utilisateur anonyme</string>
@@ -836,6 +838,12 @@
   <string name="preferences-empty-queue-page">Page de file d’attente vide :</string>
   <string name="preferences-reset-gui">Réinitialiser l’IHM</string>
   <string name="preferences-restore-factory-layout">Cela rétablira la disposition d’usine de Huggle comme il se trouvait quand vous l’avez installé. Huggle s’arrêtera. Continuer ?</string>
+  <string name="preferences-reset-config-title">Réinitialiser la configuration</string>
+  <string name="preferences-factory">Réinitialiser aux paramètres d’usine</string>
+  <string name="preferences-reset-config-question">Voulez-vous vraiment réinitialiser tous les paramètres de Huggle à leur valeur par défaut ? Cela effacera votre configuration actuelle et fermera Huggle.</string>
+  <string name="preferences-reset-config-done">Réinitialisation de la configuration</string>
+  <string name="preferences-reset-config-restart">La configuration de Huggle a été réinitialisée aux valeurs par défaut. Vous devrez peut-être redémarrer Huggle pour que toutes les modifications soient prises en compte.</string>
+  <string name="preferences-huggle2-config-success">Les paramètres ont été configurés avec succès pour que Huggle 3 se comporte comme Huggle 2</string>
   <string name="preferences-keystroke-rate-limit">Prévenir les répétitions de touche durant un nombre donné de millisecondes (un seul raccourci peut être activé en \'\'N\'\' ms)</string>
   <string name="preferences-color-scheme-diff">Couleurs du diff</string>
   <string name="preferences-color-scheme-diff-default">Par défaut</string>

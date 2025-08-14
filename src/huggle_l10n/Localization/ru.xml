@@ -571,6 +571,8 @@
   <string name="queue-editfiltersgroup">Изменить фильтры</string>
   <string name="queue-userregex">Имя пользователя совпадает с регулярным выражением:</string>
   <string name="queue-summaryregex">Описание совпадает с регулярным выражением:</string>
+  <string name="queue-filter-add">Добавить</string>
+  <string name="queue-filter-delete">Удалить</string>
   <string name="queue-filternewpage">Новая страница</string>
   <string name="queue-filterownuserspace">В подпространстве участника</string>
   <string name="queue-filteranonymous">Анонимный пользователь</string>
@@ -852,6 +854,12 @@
   <string name="preferences-empty-queue-page">Страница пустой очереди:</string>
   <string name="preferences-reset-gui">Сбросить интерфейс</string>
   <string name="preferences-restore-factory-layout">Это восстановит стандартные настройки Huggle, как при  установке. При этом Huggle будет выключен. Продолжить?</string>
+  <string name="preferences-reset-config-title">Сбросить настройки</string>
+  <string name="preferences-factory">Сброс к настройкам по умолчанию</string>
+  <string name="preferences-reset-config-question">Вы уверены, что хотите сбросить все настройки Huggle до значений по умолчанию? Это приведёт к удалению текущей конфигурации и отключению Huggle.</string>
+  <string name="preferences-reset-config-done">Сброс настроек</string>
+  <string name="preferences-reset-config-restart">Настройки Huggle сброшены до значений по умолчанию. Для вступления всех изменений в силу может потребоваться перезапуск Huggle.</string>
+  <string name="preferences-huggle2-config-success">Настройки были успешно установлены, чтобы Huggle 3 работал аналогично Huggle 2</string>
   <string name="preferences-keystroke-rate-limit">Опрашивать клавиатурные сочетания с определённой частотой в миллисекундах, чтобы предотвратить повторы нажатий (комбинация клавиш может быть использована лишь один раз в течение N мс)</string>
   <string name="preferences-color-scheme-diff">Цвета сравнений</string>
   <string name="preferences-color-scheme-diff-default">По-умолчанию</string>
