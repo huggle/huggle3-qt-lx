@@ -544,6 +544,8 @@
   <string name="queue-editfiltersgroup">מסנני עריכה</string>
   <string name="queue-userregex">שם המשתמש מתאים לביטוי הרגולרי:</string>
   <string name="queue-summaryregex">התקציר מתאים לביטוי הרגולרי:</string>
+  <string name="queue-filter-add">הוספה</string>
+  <string name="queue-filter-delete">מחיקה</string>
   <string name="queue-filternewpage">דף חדש</string>
   <string name="queue-filterownuserspace">מרחב המשתמש של המשתמש עצמו</string>
   <string name="queue-filteranonymous">משתמש אלמוני</string>
@@ -601,6 +603,7 @@
   <string name="uaa-g1">קבלת תוכן ה־UAA</string>
   <string name="uaa-e1">השאילתה לתוכן הדף לא החזירה נתונים.</string>
   <string name="uaa-e2">תכני הדף לא היו זמינים.</string>
+  <string name="uaa-close">סגירה</string>
   <string name="read-only">המיזם $1 מוגדר לקריאה בלבד, פונקציות של עריכה תהיינה מוגבלות</string>
   <string name="revert-confirm-multiple">זה ישחזר מספר עריכות מאת $1. להמשיך?</string>
   <string name="revert-confirm-range">מחבר גרסת היעד, $2, באותו הטווח כמו מחבר הגרסה הנוכחית, $1, וייתכן שזה אותו האדם. נא לוודא שגרסת היעד נכונה לפני המשך העבודה. להמשיך?</string>
@@ -824,6 +827,12 @@
   <string name="preferences-empty-queue-page">דף תורות ריק:</string>
   <string name="preferences-reset-gui">איפוס GUI</string>
   <string name="preferences-restore-factory-layout">פעולה זו תאפס את הפריסה של האגל להגדרות ההתחלתיות שלו. משום כך האגל יבצע כיבוי. להמשיך?</string>
+  <string name="preferences-reset-config-title">איפוס ההגדרות</string>
+  <string name="preferences-factory">איפוס לברירות המחדל המקוריות</string>
+  <string name="preferences-reset-config-question">לאפס את כל ההגדרות של Huggle לערכי ברירת המחדל? הפעולה הזאת תמחק את ההגדרות הנוכחיות שלך ותכבה את Huggle.</string>
+  <string name="preferences-reset-config-done">איפוס הגדרות</string>
+  <string name="preferences-reset-config-restart">ההגדרות של Huggle אופסו לברירת המחדל. כנראה שצריך להפעיל את Huggle מחדש כדי שכל השינויים יחולו.</string>
+  <string name="preferences-huggle2-config-success">התצורה הוגדרה כדי לגרום ל־Huggle 3 להתנהג בדומה ל־Huggle 2</string>
   <string name="preferences-keystroke-rate-limit">מנע הקשות חוזרות ונשנות על ידי הקצב הבא במילי-שניות (ניתן להפעיל רק קיצור דרך אחד זהה בתוך N ms)</string>
   <string name="preferences-color-scheme-diff">צבעי הבדלים</string>
   <string name="preferences-color-scheme-diff-default">ברירת המחדל</string>
