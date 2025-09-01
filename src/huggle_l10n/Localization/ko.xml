@@ -596,6 +596,7 @@
   <string name="uaa-g1">UAA의 내용을 가져오는 중</string>
   <string name="uaa-e1">문서 내용에 대한 쿼리는 반환한 데이터가 없습니다 .</string>
   <string name="uaa-e2">문서 내용은 사용할 수 없었습니다.</string>
+  <string name="uaa-close">닫기</string>
   <string name="read-only">$1 프로젝트는 읽기 전용으로 구성되어 있으므로 편집 기능이 제한됩니다</string>
   <string name="revert-confirm-multiple">$1의 여러번의 편집을 되돌립니다. 계속하시겠습니까?</string>
   <string name="revert-error-first">이 편집은 문서의 첫 편집이므로 되돌릴 수 없습니다.</string>
