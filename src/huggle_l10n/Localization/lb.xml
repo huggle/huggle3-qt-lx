@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
+* GilPe
 * Les Meloures
 * Macofe
 * Robby
@@ -35,7 +36,7 @@
   <string name="yes">Jo</string>
   <string name="editing-page">Säit änneren</string>
   <string name="successful">Erfollegräich</string>
-  <string name="summary">Resumé</string>
+  <string name="summary">Resümmee</string>
   <string name="id">ID</string>
   <string name="type">Typ</string>
   <string name="target">Zil</string>
@@ -56,7 +57,7 @@
   <string name="disable">Ausschalten</string>
   <string name="flags">Markéierungen</string>
   <string name="browser-none">Elo gëtt et nach keng Säit fir ze weisen.</string>
-  <string name="browser-miss-summ">Et gouf kee Resumé uginn</string>
+  <string name="browser-miss-summ">Et gouf kee Resümmee uginn</string>
   <string name="browser-diff">Ënnerscheed vun der Säit: $1 (Score: $2)</string>
   <string name="about-contributors">Entwéckler:</string>
   <string name="block-not">Benotzer ass net gespaart</string>
@@ -93,8 +94,8 @@
   <string name="config-minor">Als \'Klengegkeet\' markéieren</string>
   <string name="config-ip">IP-Benotzer</string>
   <string name="config-watchlist">Op d\'Iwwerwaachungslëscht derbäisetzen</string>
-  <string name="config-defaultsummary">Standard-Resumé fir manuell Ännerungen</string>
-  <string name="config-undosummary">Resumé beim Zrécksetze vun eegenen Ännerungen</string>
+  <string name="config-defaultsummary">Standard-Resümmee fir manuell Ännerungen</string>
+  <string name="config-undosummary">Resümmee beim Zerécksetze vun eegenen Ännerungen</string>
   <string name="config-welcome-empty-page">E Begréissungsmessage u Benotzer schécken déi eng eidel Diskussiounssäit hunn an eng gutt Ännerung gemaach hunn</string>
   <string name="config-revert">Zrécksetzen</string>
   <string name="config-skip">Iwwersprangen</string>
@@ -125,7 +126,7 @@
   <string name="config-blocktime">Standard-Dauer vun der Spär</string>
   <string name="config-blocktimeanon">Anonym Benotzer</string>
   <string name="config-blocktimereg">registréiert Benotzer</string>
-  <string name="config-summaryprompt">Resumé aginn</string>
+  <string name="config-summaryprompt">Resümmee aginn</string>
   <string name="config-history">Déi komplett Versioune vun allen Artikelen eroflueden</string>
   <string name="config-defaultsprompt">Standardastellunge restauréieren?</string>
   <string name="config-logbrowsetitle">Plaz vum Log-Fichier</string>
@@ -280,7 +281,7 @@
   <string name="main-user-retrieving-tp">Diskussiounssäit vu(n) $1 ofruffen</string>
   <string name="main-user-block">Spären...</string>
   <string name="main-user-manualtemplate">Manuell Schabloun</string>
-  <string name="main-browser-back">Zréck</string>
+  <string name="main-browser-back">Zeréck</string>
   <string name="main-browser-forward">Virun</string>
   <string name="main-browser-open">An engem externe Browser kucken</string>
   <string name="main-browser-newedits">Nei Ännerungen vun der Säit weisen</string>
@@ -324,7 +325,7 @@
   <string name="message-title">Message $1</string>
   <string name="message-subject">Sujet:</string>
   <string name="message-message">Message:</string>
-  <string name="message-summary">Resumé:</string>
+  <string name="message-summary">Resümmee:</string>
   <string name="message-autosign">Ënnerschrëft automatesch drunhänken</string>
   <string name="message-done">Message iwwermëttelt un: $1</string>
   <string name="protect-request-title">Spär ufroe fir $1</string>
@@ -381,7 +382,7 @@
   <string name="tag-title">Markéierung $1</string>
   <string name="tag-tagselector">Markéierung derbäisetzen</string>
   <string name="tag-parameter">Parameter</string>
-  <string name="tag-summary">Resumé:</string>
+  <string name="tag-summary">Resümmee:</string>
   <string name="tag-insertatend">Um Schluss vun der Säit drasetzen</string>
   <string name="update-title">Nei Versioun disponibel</string>
   <string name="update-progress">Nei Versioun gëtt erofgelueden, waart wgl. ...</string>
