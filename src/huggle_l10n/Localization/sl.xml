@@ -117,6 +117,7 @@
   <string name="main-queue">Čakalna vrsta</string>
   <string name="main-queue-next">Naprej</string>
   <string name="main-queue-count">{{PLURAL:$1|$1 predmet|$1 predmeta|$1 predmeti|$1 predmetov}}</string>
+  <string name="main-queue-query">Izvajanje poizvedbe ...</string>
   <string name="main-queue-reset">Ponastavi</string>
   <string name="main-goto-mycontribs">Moji prispevki</string>
   <string name="main-revision-decline">Zavrnitev redakcije</string>

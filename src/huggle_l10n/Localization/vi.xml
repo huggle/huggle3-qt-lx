@@ -19,6 +19,7 @@
 * TARGET6tidiem
 * Tryvix1509
 * Vinhtantran
+* Yuki Shiromita
 -->
 <resources>
   <string name="name">Tiếng Việt</string>
@@ -550,6 +551,8 @@
   <string name="queue-editfiltersgroup">Sửa các bộ lọc</string>
   <string name="queue-userregex">Tên thành viên khớp với biểu thức chính quy:</string>
   <string name="queue-summaryregex">Tóm tắt khớp với biểu thức chính quy:</string>
+  <string name="queue-filter-add">Thêm</string>
+  <string name="queue-filter-delete">Xóa</string>
   <string name="queue-filternewpage">Trang mới</string>
   <string name="queue-filterownuserspace">Không gian thành viên của chính thành viên</string>
   <string name="queue-filteranonymous">Người dùng vô danh</string>
@@ -607,6 +610,7 @@
   <string name="uaa-g1">Đang lấy nội dung của Tin nhắn cho bảo quản viên</string>
   <string name="uaa-e1">Truy vấn cho nội dung trang không trả về dữ liệu.</string>
   <string name="uaa-e2">Nội dung trang này chưa sẵn có</string>
+  <string name="uaa-close">Đóng</string>
   <string name="read-only">Dự án $1 được cấu hình là chỉ đọc, các chức năng sửa đổi sẽ bị hạn chế</string>
   <string name="revert-confirm-multiple">Việc này sẽ lùi lại nhiều sửa đổi của $1. Tiếp tục chứ?</string>
   <string name="revert-confirm-range">Tác giả của \'bản xem lại\' đích, $2, ở trong cùng dải với tác giả của bản xem lại mới nhất, $1, và có thể là cùng một người. Hãy đảm bảo rằng \'bản xem lại\' đích đấy là chính xác trước khi hành động. Tiếp tục chứ?</string>
