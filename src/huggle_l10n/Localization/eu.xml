@@ -498,7 +498,7 @@
   <string name="queue-listbuilder">Zerrenda eraikitzailea...</string>
   <string name="queue-sortorder">Ordena antolatu:</string>
   <string name="queue-removeviewed">Aldaketak kendu behin ikusita</string>
-  <string name="queue-removeold">Kendu aldaketa zaharrak orrialde berdinera</string>
+  <string name="queue-removeold">Kendu orrialde bereko aldaketa zaharrak</string>
   <string name="queue-diffsgroup">Diffak</string>
   <string name="queue-pagefiltersgroup">Orrialdetako izenburuen iragazkiak</string>
   <string name="queue-pageregex">Izenburuak esaera erregularrarekin bat egiten du:</string>
