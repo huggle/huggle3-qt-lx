@@ -3,7 +3,7 @@ huggle3-qt-lx
 
 Huggle 3 is an anti-vandalism tool for use on [Wikipedia](https://wikipedia.org) and other [MediaWiki](https://mediawiki.org) sites, written in C++ (QT framework). It is officially supported for Windows (10 or newer), MacOS and Linux (debian/ubuntu).
 
-[![Build Status](https://api.travis-ci.org/huggle/huggle3-qt-lx.png?branch=master)](https://travis-ci.org/huggle/huggle3-qt-lx/)
+[![Build](https://github.com/huggle/huggle3-qt-lx/actions/workflows/huggle.yml/badge.svg?branch=master)](https://github.com/huggle/huggle3-qt-lx/actions/workflows/huggle.yml)
 [![Build status](https://ci.appveyor.com/api/projects/status/huy2phxnc95m77sl?svg=true)](https://ci.appveyor.com/project/benapetr/huggle3-qt-lx)
 
 Building
@@ -86,7 +86,7 @@ Everyone is allowed to send their pull requests to this repository, and all regu
 get a developer access to directly push if they need it. If you want to join the Huggle
 developer team, please see <https://meta.wikimedia.org/wiki/Huggle/Members> and insert yourself.
 
-This repository is running CI using travis. If you want to change anything which doesn't require a
+This repository is running CI using github actions. If you want to change anything which doesn't require a
 sanity check, like documentation or comments, please append [ci skip] to your message.
 
 Reporting bugs
