@@ -17,7 +17,7 @@ jobs:
         qt-version: [5.12.10, 5.15.2]
     steps:
       - uses: actions/checkout@v2
-      - uses: jurplel/install-qt-action@v2
+      - uses: jurplel/install-qt-action@v4
         with:
           version: ${{ matrix.qt-version }}
           modules: 'qtwebengine'
@@ -58,7 +58,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: recursive
-      - uses: jurplel/install-qt-action@v2
+      - uses: jurplel/install-qt-action@v4
         with:
           version: ${{ matrix.qt-version }}
           modules: 'qtwebengine'
