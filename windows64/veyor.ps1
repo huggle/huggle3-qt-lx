@@ -167,7 +167,7 @@ if (!(Test-Path("definitions.hpp")))
 }
 
 # patch yaml-cpp
-cd $root_path\src\3rd\yaml-cpp
+cd $root_path\..\src\3rd\yaml-cpp
 git checkout ee99c4151c1af794a412b101a75921c086acaac0
 
 #let's try to invoke cmake now
