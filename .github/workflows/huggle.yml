@@ -72,4 +72,6 @@ jobs:
           if ($path) {
           & $path $args
           }
-          ./github_actions.ps1 -msbuild_path $msbuildpath -qt5_path $env:Qt5_Dir
+          # Qt5_DIR points to ...\lib\cmake\Qt5 – go up 3 levels to get the Qt root
+          $QtRoot = Split-Path $env:Qt5_DIR -Parent -Parent -Parent
+          ./github_actions.ps1 -msbuild_path $msbuildpath -qt5_path $QtRoot
