@@ -38,7 +38,7 @@ jobs:
       - uses: jurplel/install-qt-action@v4
         with:
           version: ${{ matrix.qt-version }}
-          modules: 'qtwebengine'
+          modules: 'qtwebengine qtmultimedia'
           # Make CMake see Qt6
       - name: Set up Qt6 env for CMake
         shell: bash
