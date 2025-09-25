@@ -64,7 +64,7 @@ jobs:
           version: ${{ matrix.qt-version }}
           modules: 'qtwebengine'
       - uses: microsoft/setup-msbuild@v1.0.2
-      - name: run appveyor script
+      - name: run build script
         shell: pwsh
         working-directory: ./windows64
         run: |
@@ -72,4 +72,4 @@ jobs:
           if ($path) {
           & $path $args
           }
-          ./veyor.ps1 -msbuild_path $msbuildpath -qt5_path $env:Qt5_Dir
+          ./github_actions.ps1 -msbuild_path $msbuildpath -qt5_path $env:Qt5_Dir
