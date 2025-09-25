@@ -13,11 +13,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ubuntu-version: [18.04, 20.04]
+        ubuntu-version: [22.04]
         qt-version: [5.12.10, 5.15.2]
     steps:
       - uses: actions/checkout@v2
-      - uses: jurplel/install-qt-action@v2
+      - uses: jurplel/install-qt-action@v4
         with:
           version: ${{ matrix.qt-version }}
           modules: 'qtwebengine'
@@ -28,17 +28,29 @@ jobs:
     name: macOS
     runs-on: macos-latest
     env:
-      QTTYPE: 5
+      QTTYPE: 6
     strategy:
       fail-fast: false
       matrix:
-        qt-version: [5.12.10, 5.15.2]
+        # Note Qt 5 doesn't ship x86 so it will fail on ARM runner
+        qt-version: [6.7.2]
     steps:
-      - uses: jurplel/install-qt-action@v2
+      - uses: jurplel/install-qt-action@v4
         with:
           version: ${{ matrix.qt-version }}
-          modules: 'qtwebengine'
-      - uses: actions/checkout@v2
+          modules: 'qtwebchannel qtwebengine qtmultimedia qtpositioning'
+          # Make CMake see Qt6
+      - name: Set up Qt6 env for CMake
+        shell: bash
+        run: |
+          QT_PREFIX="${Qt6_DIR%/lib/cmake/Qt6}"
+          echo "CMAKE_PREFIX_PATH=$QT_PREFIX" >> "$GITHUB_ENV"
+          echo "$QT_PREFIX/bin" >> "$GITHUB_PATH"
+          # Optional but helpful:
+          echo "QT_HOST_PATH=$QT_PREFIX" >> "$GITHUB_ENV"
+          echo "QT_PLUGIN_PATH=$QT_PREFIX/plugins" >> "$GITHUB_ENV"
+          echo "QML2_IMPORT_PATH=$QT_PREFIX/qml" >> "$GITHUB_ENV"
+      - uses: actions/checkout@v4
       - run: travis/before_install_osx.sh
       - run: travis/before_script_osx.sh
       - run: travis/script_osx.sh
@@ -51,19 +63,19 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        windows-version: [2019]
+        windows-version: [2022]
         qt-version: [5.12.10, 5.15.2]
     steps:
       - name: checkout code
         uses: actions/checkout@v2
         with:
           submodules: recursive
-      - uses: jurplel/install-qt-action@v2
+      - uses: jurplel/install-qt-action@v4
         with:
           version: ${{ matrix.qt-version }}
           modules: 'qtwebengine'
       - uses: microsoft/setup-msbuild@v1.0.2
-      - name: run appveyor script
+      - name: run build script
         shell: pwsh
         working-directory: ./windows64
         run: |
@@ -71,4 +83,6 @@ jobs:
           if ($path) {
           & $path $args
           }
-          ./veyor.ps1 -msbuild_path $msbuildpath -qt5_path $env:Qt5_Dir
+          # Qt5_DIR points to ...\lib\cmake\Qt5 – go up 2 levels to get the Qt root
+          $QtRoot = (Get-Item $env:Qt5_DIR).Parent.Parent.FullName
+          ./github_actions.ps1 -msbuild_path $msbuildpath -qt5_path $QtRoot
