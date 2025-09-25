@@ -1,6 +1,6 @@
 # This is a build file for tst_testmain (used with cmake)
 # you will need to update it by hand
-cmake_minimum_required (VERSION 2.8.0)
+cmake_minimum_required (VERSION 3.5)
 
 if (NOT HUGGLE_CMAKE)
     message(FATAL_ERROR "This cmake file can't be used on its own, it must be included from parent folder")
