@@ -28,7 +28,7 @@ jobs:
     name: macOS
     runs-on: macos-latest
     env:
-      QTTYPE: 5
+      QTTYPE: 6
     strategy:
       fail-fast: false
       matrix:
@@ -84,5 +84,5 @@ jobs:
           & $path $args
           }
           # Qt5_DIR points to ...\lib\cmake\Qt5 – go up 3 levels to get the Qt root
-          $QtRoot = Split-Path $env:Qt5_DIR -Parent -Parent -Parent
+          $QtRoot = (Get-Item $env:Qt5_DIR).Parent.Parent.Parent.FullName
           ./github_actions.ps1 -msbuild_path $msbuildpath -qt5_path $QtRoot
