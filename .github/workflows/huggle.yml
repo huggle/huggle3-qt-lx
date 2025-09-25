@@ -39,6 +39,17 @@ jobs:
         with:
           version: ${{ matrix.qt-version }}
           modules: 'qtwebengine'
+          # Make CMake see Qt6
+      - name: Set up Qt6 env for CMake
+        shell: bash
+        run: |
+          QT_PREFIX="${Qt6_DIR%/lib/cmake/Qt6}"
+          echo "CMAKE_PREFIX_PATH=$QT_PREFIX" >> "$GITHUB_ENV"
+          echo "$QT_PREFIX/bin" >> "$GITHUB_PATH"
+          # Optional but helpful:
+          echo "QT_HOST_PATH=$QT_PREFIX" >> "$GITHUB_ENV"
+          echo "QT_PLUGIN_PATH=$QT_PREFIX/plugins" >> "$GITHUB_ENV"
+          echo "QML2_IMPORT_PATH=$QT_PREFIX/qml" >> "$GITHUB_ENV"
       - uses: actions/checkout@v4
       - run: travis/before_install_osx.sh
       - run: travis/before_script_osx.sh
