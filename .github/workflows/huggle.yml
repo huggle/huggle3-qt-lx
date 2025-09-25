@@ -32,7 +32,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        qt-version: [5.12.10, 5.15.2]
+        # Note Qt 5 doesn't ship x86 so it will fail on ARM runner
+        qt-version: [6.5.3]
     steps:
       - uses: jurplel/install-qt-action@v4
         with:
