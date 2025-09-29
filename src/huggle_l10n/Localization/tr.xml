@@ -19,6 +19,7 @@
 * Joseph
 * Kendinciz
 * Kumkumuk
+* Leo
 * LuCKY
 * Macofe
 * Mavrikant
@@ -566,6 +567,8 @@
   <string name="queue-editfiltersgroup">Süzgeçleri düzenle</string>
   <string name="queue-userregex">Kullanıcı adı düzenli bir ifade ile eşleşiyor:</string>
   <string name="queue-summaryregex">Özet düzenli bir ifade ile eşleşiyor:</string>
+  <string name="queue-filter-add">Ekle</string>
+  <string name="queue-filter-delete">Sil</string>
   <string name="queue-filternewpage">Yeni sayfa</string>
   <string name="queue-filterownuserspace">Kullanıcının kendi kullanıcı alanı</string>
   <string name="queue-filteranonymous">Anonim kullanıcı</string>
@@ -623,6 +626,7 @@
   <string name="uaa-g1">UAA içeriği alınıyor</string>
   <string name="uaa-e1">Sayfa içeriği için yapılan sorgu yanıt olarak herhangi bir veri getirmedi</string>
   <string name="uaa-e2">Sayfa içeriği mevcut değildi.</string>
+  <string name="uaa-close">Kapat</string>
   <string name="read-only">Proje $1 salt okunur olarak yapılandırıldı, düzenleme işlevleri sınırlı olacak</string>
   <string name="revert-confirm-multiple">Bu $1 tarafından yapılan birden fazla değişikliği geri alacak. Devam edilsin mi?</string>
   <string name="revert-confirm-range">Hedef sürümün yazarı $2, şu anki sürümün yazarı $1 ile aynı aralıkta ve aynı kişi olabilir. Devam etmeden önce hedef sürümün düzgünlüğünden emin olun lütfen. Devam edilsin mi?</string>
@@ -846,6 +850,12 @@
   <string name="preferences-empty-queue-page">Boş sorgu sayfası:</string>
   <string name="preferences-reset-gui">GUI\'yi sıfırlayın</string>
   <string name="preferences-restore-factory-layout">Bu, Huggle\'ın fabrika ayarlarını yüklediğiniz zamanki gibi geri yükleyecektir. Huggle kapanacak. Devam et?</string>
+  <string name="preferences-reset-config-title">Yapılandırmayı Sıfırla</string>
+  <string name="preferences-factory">Fabrika varsayılanlarına sıfırla</string>
+  <string name="preferences-reset-config-question">Tüm Huggle ayarlarını varsayılan değerlere sıfırlamak istediğinizden emin misiniz? Bu işlem mevcut yapılandırmanızı silecek ve Huggle\'ı kapatacaktır.</string>
+  <string name="preferences-reset-config-done">Yapılandırma sıfırlaması</string>
+  <string name="preferences-reset-config-restart">Huggle yapılandırması varsayılan ayarlara sıfırlandı. Tüm değişikliklerin etkili olması için Huggle\'ı yeniden başlatmanız gerekebilir.</string>
+  <string name="preferences-huggle2-config-success">Huggle 3\'ün Huggle 2\'ye benzer şekilde davranmasını sağlamak için ayarlar başarıyla yapılandırıldı</string>
   <string name="preferences-keystroke-rate-limit">Milisaniye cinsinden hızı takip ederek tekrarlanan tuş vuruşlarını önleme (N ms içinde sadece 1 aynı kısayol tetiklenebilir)</string>
   <string name="preferences-color-scheme-diff">Fark renkleri</string>
   <string name="preferences-color-scheme-diff-default">Varsayılan</string>

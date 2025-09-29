@@ -326,7 +326,7 @@
   <string name="login-error-invalid">Ongeldige gebruikersnaam</string>
   <string name="login-error-noconfig">$1 heeft geen configuratiepagina voor Huggle</string>
   <string name="login-error-nouser">De gebruiker bestaat niet</string>
-  <string name="login-error-no-valid-token">De website gaf geen geldige login-token</string>
+  <string name="login-error-no-valid-token">De website gaf geen geldig token voor aanmelden</string>
   <string name="login-error-password">Onjuist wachtwoord</string>
   <string name="login-error-projdisabled">Huggle is momenteel uitgeschakeld op dit project.</string>
   <string name="login-error-unknown">Niet in staat om aan te melden bij $1.</string>
