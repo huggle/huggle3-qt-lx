@@ -834,6 +834,12 @@
   <string name="preferences-empty-queue-page">Trang truy vấn trống:</string>
   <string name="preferences-reset-gui">Đặt lại GUI</string>
   <string name="preferences-restore-factory-layout">Thao tác này sẽ khôi phục về bố cục ban đầu của huggle như hồi lúc bạn cài đặt nó. Huggle sẽ bị tắt. Tiếp tục chứ?</string>
+  <string name="preferences-reset-config-title">Đặt lại cấu hình</string>
+  <string name="preferences-factory">Đặt lại về cài đặt mặc định</string>
+  <string name="preferences-reset-config-question">Bạn có chắc chắn muốn đặt lại tất cả cài đặt Huggle về mặc định không? Thao tác này sẽ xóa cấu hình hiện tại của bạn và tắt Huggle.</string>
+  <string name="preferences-reset-config-done">Thiết lập lại cấu hình</string>
+  <string name="preferences-reset-config-restart">Cấu hình của Huggle đã được đặt lại về mặc định. Bạn có thể cần khởi động lại Huggle để tất cả các thay đổi có hiệu lực.</string>
+  <string name="preferences-huggle2-config-success">Các thiết lập đã được cấu hình thành công để Huggle 3 hoạt động tương tự như Huggle 2</string>
   <string name="preferences-keystroke-rate-limit">Ngăn ngừa chuyện gõ phím lặp đi lặp lại bằng cách theo dõi tốc độ gõ tính bằng mili-giây (cùng 1 lối tắt thì trong vòng N ms chỉ có thể phát động một lần duy nhất)</string>
   <string name="preferences-color-scheme-diff">Màu sắc bản khác biệt</string>
   <string name="preferences-color-scheme-diff-default">Mặc định</string>
