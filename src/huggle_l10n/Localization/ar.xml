@@ -387,7 +387,7 @@
   <string name="main-queue-count">$1 عناصر</string>
   <string name="main-queue-query">الاستعلام قيد الإجراء...</string>
   <string name="main-queue-reset">تصفير</string>
-  <string name="main-queue-clearall">امسح الكل</string>
+  <string name="main-queue-clearall">مسح الكل</string>
   <string name="main-queue-options">إدارة الطوابير...</string>
   <string name="main-queue-when-full">عند امتلاء قائمة الانتظار</string>
   <string name="main-queue-when-full-stop">وقف التغذية</string>
