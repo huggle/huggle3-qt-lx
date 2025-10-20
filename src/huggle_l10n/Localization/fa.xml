@@ -341,7 +341,7 @@
   <string name="login-error-noconfig">$1 صفحهٔ پیکربندی هاگل ندارد</string>
   <string name="login-error-nouser">این حساب کاربری وجود ندارد</string>
   <string name="login-error-no-valid-token">توکن معتبری برای ورود از سوی سایت ارسال نشد</string>
-  <string name="login-error-password">رمز عبور نادرست</string>
+  <string name="login-error-password">گذرواژهٔ نادرست</string>
   <string name="login-error-projdisabled">هاگل اکنون در پروژه شما غیرفعال است.</string>
   <string name="login-error-unknown">قادر به ثبت ورود در $1 نبود.</string>
   <string name="login-error-version">این نسخه، قدیمی است. به آخرین نسخه روزآمدسازی کنید.</string>
