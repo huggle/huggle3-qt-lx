@@ -590,7 +590,7 @@
   <string name="report-message">پیام:</string>
   <string name="report-log">هشدار برای این کاربر:</string>
   <string name="report-include">در گزارش</string>
-  <string name="report-select">خواهشمند است به منظور بازکردن پیش‌نمایش یک تفاوت در فهرست انتخاب کنید</string>
+  <string name="report-select">خواهشمند است برای باز کردن پیش‌نمایش، یکی از تفاوت‌های موجود در فهرست را انتخاب کنید</string>
   <string name="report-write">نوشتن</string>
   <string name="reportuser-not">این کاربر هم‌اکنون گزارش نشده است</string>
   <string name="report-evidence-none-provid">هیچ تفاوتی به عنوان مدرک فراهم نشده. این باعث می‌شود مدیران خیلی سخت بتوانند خرابکار بودن یا نبودن کاربر را تشخیص دهند. مطمئنید که می‌خواهید ادامه دهید؟</string>
