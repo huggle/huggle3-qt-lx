@@ -97,7 +97,7 @@
   <string name="config-defaultsummary">Standard-Resümmee fir manuell Ännerungen</string>
   <string name="config-undosummary">Resümmee beim Zerécksetze vun eegenen Ännerungen</string>
   <string name="config-welcome-empty-page">E Begréissungsmessage u Benotzer schécken déi eng eidel Diskussiounssäit hunn an eng gutt Ännerung gemaach hunn</string>
-  <string name="config-revert">Zrécksetzen</string>
+  <string name="config-revert">Zerécksetzen</string>
   <string name="config-skip">Iwwersprangen</string>
   <string name="config-months-name">Méint als Iwwerschrëft benotzen aplaz vum Numm vun enger Säit</string>
   <string name="config-enable-irc">IRC aktivéieren</string>
@@ -227,7 +227,7 @@
   <string name="main-system-exit">Erausgoen</string>
   <string name="main-queue-next">Weider</string>
   <string name="main-queue-count">$1 Elementer</string>
-  <string name="main-queue-reset">Zrécksetzen</string>
+  <string name="main-queue-reset">Zerécksetzen</string>
   <string name="main-queue-clearall">All eidelmaachen</string>
   <string name="main-queue-when-full-remove">Al Ännerungen ewechhuelen</string>
   <string name="main-goto-mytalk">Meng Diskussiounssäit</string>
@@ -345,7 +345,7 @@
   <string name="queue-filternewpage">Nei Säit</string>
   <string name="queue-filteranonymous">Anonyme Benotzer</string>
   <string name="queue-filterignored">Ignoréierte Benotzer</string>
-  <string name="queue-filterreverts">Zrécksetzen</string>
+  <string name="queue-filterreverts">Zerécksetzen</string>
   <string name="queue-filternotifications">Notifikatioun</string>
   <string name="queue-filterwarnings">Warnung</string>
   <string name="queue-filtertags">Markéierung</string>
@@ -407,7 +407,7 @@
   <string name="shortcut-suspicious">Ännerung als verdächteg markéieren</string>
   <string name="shortcut-back">Op déi virdru gewisen Ännerung goen</string>
   <string name="shortcut-warn">Dem Benotzer eng Warnung schécken ouni d\'Ännerung zréckzesetzen</string>
-  <string name="shortcut-revert">Ännerung zrécksetzen</string>
+  <string name="shortcut-revert">Ännerung zerécksetzen</string>
   <string name="shortcut-watch">Setzt eng gewise Säit op Är Iwwerwaachungslëscht derbäi</string>
   <string name="shortcut-unwatch">Hëlt eng gewise Säit vun Ärer Iwwerwaachungslëscht erof</string>
   <string name="shortcut-good">Déi elo gewisen Ännerung als gutt markéieren</string>
@@ -479,7 +479,7 @@
   <string name="preferences-watchlist-preferences">Iwwerwaacht Är Wiki-Astellungen</string>
   <string name="preferences-watchlist-nochange">Näischt maachen</string>
   <string name="preferences-auto-watch-talk">D\'Diskussiounssäit vun engem Benotzer iwwerwaachen déi vun Iech eng Warnung kritt huet</string>
-  <string name="preferences-reset-gui">GUI zrécksetzen</string>
+  <string name="preferences-reset-gui">GUI zerécksetzen</string>
   <string name="preferences-color-scheme-diff-default">Standard</string>
   <string name="preferences-color-scheme-diff-dark-mode">Däischtere Modus</string>
   <string name="request">Ufro</string>
