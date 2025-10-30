@@ -170,6 +170,7 @@
   <string name="queue-diffsgroup">Razl</string>
   <string name="queue-pagefiltersgroup">Filtri naslovov strani</string>
   <string name="queue-namespaces">Imenski prostori:</string>
+  <string name="queue-filter-add">Dodaj</string>
   <string name="queue-filternewpage">Nova stran</string>
   <string name="queue-filterreverts">Vrnitev</string>
   <string name="queue-filternotifications">Obvestilo</string>
