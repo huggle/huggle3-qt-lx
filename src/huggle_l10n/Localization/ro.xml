@@ -7,6 +7,7 @@
 * MSClaudiu
 * Macofe
 * Patrick Star
+* SZ475
 * Silviu200530
 * Strainu
 -->
@@ -540,6 +541,8 @@
   <string name="queue-editfiltersgroup">Filtre de editare</string>
   <string name="queue-userregex">Numele de utilizator se potrivește cu expresia regulată:</string>
   <string name="queue-summaryregex">Sumarul se potrivește cu expreisa regulată:</string>
+  <string name="queue-filter-add">Adaugă</string>
+  <string name="queue-filter-delete">Șterge</string>
   <string name="queue-filternewpage">Pagină nouă</string>
   <string name="queue-filterownuserspace">Pagina de utilizator proprie a utilizatorului</string>
   <string name="queue-filteranonymous">Utilizator anonim</string>
@@ -597,6 +600,7 @@
   <string name="uaa-g1">Citire a conținutului UAA</string>
   <string name="uaa-e1">Interogarea pentru conținutul paginii nu a returnat date.</string>
   <string name="uaa-e2">Conținutul paginii nu era disponibil.</string>
+  <string name="uaa-close">Închide</string>
   <string name="read-only">Proiectul $1 este configurat ca modul de citire, funcțiile de editare vor fi limitate</string>
   <string name="revert-confirm-multiple">Se va reveni asupra mai multor editări ale lui $1. Continuați?</string>
   <string name="revert-confirm-range">Autorul reviziei, $2, este în aceeași gamă de adrese ca și autorul reviziei curente, $1, și s-ar putea să fie aceeași persoană. Asigurați-vă că revizia este corectă înainte de a merge mai departe. Continuăm?</string>
@@ -820,10 +824,18 @@
   <string name="preferences-empty-queue-page">Pagina coadă goală:</string>
   <string name="preferences-reset-gui">Reset GUI</string>
   <string name="preferences-restore-factory-layout">Acest lucru va restabili aspectul din fabrică al huggle-ului, așa cum a fost când l-ați instalat. Huggle se va opri. Continuă?</string>
+  <string name="preferences-reset-config-title">Resetare configurație</string>
+  <string name="preferences-factory">Resetare la setările implicite</string>
+  <string name="preferences-reset-config-question">Sigur vrei să resetezi toate setările Huggle la valorile implicite? Aceasta va șterge configurația curentă și va închide Huggle.</string>
+  <string name="preferences-reset-config-done">Resetare de configurație</string>
+  <string name="preferences-reset-config-restart">Configurația Huggle a fost resetată la valorile implicite. Este posibil să fie nevoie să reporniți Huggle pentru ca toate modificările să aibă efect.</string>
+  <string name="preferences-huggle2-config-success">Setările au fost configurate cu succes pentru ca Huggle 3 să se comporte similar cu Huggle 2.</string>
   <string name="preferences-keystroke-rate-limit">Împiedicați apăsarea repetată a tastelor urmând rata în milisecunde (doar 1 aceeași scurtătură poate fi declanșată în N ms)</string>
   <string name="preferences-color-scheme-diff">Culori diff</string>
   <string name="preferences-color-scheme-diff-default">Implicit</string>
   <string name="preferences-color-scheme-diff-dark-mode">Mod întunecat</string>
+  <string name="preferences-template-spam-info">Aceste opțiuni controlează subsistemul care împiedică utilizatorii țintă să fie trimiși cu spam prin șabloane. În mod implicit, utilizatorii nu sunt avertizați privind șabloanele pentru modificările prea vechi și primesc, de asemenea, un singur avertisment privind șablonul în cazul în care anulați mai multe modificări efectuate de același utilizator într-un timp foarte scurt.</string>
+  <string name="preferences-template-spam-title">Prevenirea spamului prin șabloane</string>
   <string name="fail">Eșuează</string>
   <string name="request">Cere</string>
   <string name="requesting">Cer</string>
