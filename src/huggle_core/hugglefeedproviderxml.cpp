@@ -64,7 +64,11 @@ bool HuggleFeedProviderXml::Start()
     delete this->networkSocket;
     this->networkSocket = new QTcpSocket();
     connect(this->networkSocket, SIGNAL(readyRead()), this, SLOT(OnReceive()));
+#ifdef QT6_BUILD
+    connect(this->networkSocket, SIGNAL(errorOccurred(QAbstractSocket::SocketError)), this, SLOT(OnError(QAbstractSocket::SocketError)));
+#else
     connect(this->networkSocket, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(OnError(QAbstractSocket::SocketError)));
+#endif
     this->isConnecting = true;
     this->isWorking = true;
     this->networkSocket->connectToHost(hcfg->GlobalConfig_Xmlrcs, hcfg->GlobalConfig_XmlrcsPort);
