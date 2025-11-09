@@ -124,6 +124,20 @@ QVariant UserConfiguration::SetOption(const QString& key, const QString& config,
     QString d_ = def.toString();
     QString value = ConfigurationParse(key, config, d_);
     HuggleOption *h;
+#ifdef QT6_BUILD
+    switch (def.typeId())
+    {
+        case QMetaType::Int:
+            h = new HuggleOption(key, value.toInt(), value == d_);
+            break;
+        case QMetaType::Bool:
+            h = new HuggleOption(key, Generic::SafeBool(value), value == d_);
+            break;
+        default:
+            h = new HuggleOption(key, value, value == d_);
+            break;
+    }
+#else
     switch (def.type())
     {
         case QVariant::Int:
@@ -136,6 +150,7 @@ QVariant UserConfiguration::SetOption(const QString& key, const QString& config,
             h = new HuggleOption(key, value, value == d_);
             break;
     }
+#endif
     this->UserOptions.insert(key, h);
     return h->GetVariant();
 }
@@ -150,6 +165,20 @@ QVariant UserConfiguration::SetOptionYAML(const QString& key, YAML::Node &config
     QString default_str = def.toString();
     QString value = YAML2String(key, config, default_str);
     HuggleOption *h;
+#ifdef QT6_BUILD
+    switch (def.typeId())
+    {
+        case QMetaType::Int:
+            h = new HuggleOption(key, value.toInt(), value == default_str);
+            break;
+        case QMetaType::Bool:
+            h = new HuggleOption(key, Generic::SafeBool(value), value == default_str);
+            break;
+        default:
+            h = new HuggleOption(key, value, value == default_str);
+            break;
+    }
+#else
     switch (def.type())
     {
         case QVariant::Int:
@@ -162,6 +191,7 @@ QVariant UserConfiguration::SetOptionYAML(const QString& key, YAML::Node &config
             h = new HuggleOption(key, value, value == default_str);
             break;
     }
+#endif
     this->UserOptions.insert(key, h);
     return h->GetVariant();
 }
@@ -306,7 +336,11 @@ QString UserConfiguration::MakeLocalUserConfig(ProjectConfiguration *Project)
         }
         if (!option->IsDefault())
         {
+#ifdef QT6_BUILD
+            if (option->GetVariant().typeId() != QMetaType::QStringList)
+#else
             if (option->GetVariant().type() != QVariant::StringList)
+#endif
             {
                 // in case we modified this item we store it
                 AppendConf(&configuration, item, option->GetVariant().toString());

@@ -285,6 +285,31 @@ QJSValue JSMarshallingHelper::FromQVariantHash(QHash<QString, QVariant> hash, QJ
 
 QJSValue JSMarshallingHelper::FromVariant(const QVariant& variant)
 {
+#ifdef QT6_BUILD
+    switch (variant.typeId())
+    {
+        case QMetaType::Bool:
+            return QJSValue(variant.toBool());
+        case QMetaType::QDate:
+            return QJSValue(variant.toDate().toString());
+        case QMetaType::QDateTime:
+            return QJSValue(variant.toDateTime().toString());
+        case QMetaType::Double:
+            return QJSValue(variant.toDouble());
+        case QMetaType::Int:
+            return QJSValue(variant.toInt());
+        case QMetaType::UInt:
+            return QJSValue(variant.toUInt());
+        case QMetaType::LongLong:
+            return QJSValue(static_cast<double>(variant.toLongLong()));
+        case QMetaType::ULongLong:
+            return QJSValue(static_cast<double>(variant.toULongLong()));
+        case QMetaType::QString:
+            return QJSValue(variant.toString());
+        default:
+            return QJSValue();
+    }
+#else
     switch (variant.type())
     {
         case QVariant::Bool:
@@ -308,6 +333,7 @@ QJSValue JSMarshallingHelper::FromVariant(const QVariant& variant)
         default:
             return QJSValue();
     }
+#endif
 }
 
 QJSValue JSMarshallingHelper::FromQStringHash(QHash<QString, QString> hash, QJSEngine *engine)
