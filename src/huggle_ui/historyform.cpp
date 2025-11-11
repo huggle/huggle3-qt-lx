@@ -136,7 +136,7 @@ void HistoryForm::onTick01()
 
     if (this->RetrievingEdit && this->RetrievedEdit != nullptr)
     {
-        if (this->RetrievedEdit->IsPostProcessed())
+        if (this->RetrievedEdit->IsProcessed())
         {
             MainWindow::HuggleMain->DisplayEdit(this->RetrievedEdit, false, true);
             this->RetrievingEdit = false;

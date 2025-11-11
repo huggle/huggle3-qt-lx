@@ -38,8 +38,8 @@ namespace Huggle
     enum WEStatus
     {
         StatusNone,
-        StatusProcessed,
-        StatusPostProcessed
+        StatusPreProcessed,
+        StatusProcessed
     };
 
     class Query;
@@ -71,9 +71,10 @@ namespace Huggle
 
 	//! That means each edit has has one of 3 basic states in its lifecycle:
 	//! None - edit was just created and is not suitable for use elsewhere in the program as many attributes may be missing, these attributes are inserted during processing and post processing
-	//! Processed - edit was processed, that means the basic informations about the edit were properly set by various helper functions.
-	//!				Processing is a very quick operation, it happens within the program, no external API calls are needed. It fills up most of essential properties, but not all of them.
-	//! Postprocessed - edit was processed by the processor thread which handles various API calls asynchronously in order to fetch all available detailed information about the edit and the detailed information.
+    //! PreProcessed - edit was preprocessed, that means the basic informations about the edit were properly set by various helper functions.
+    //!				   Preprocessing is only a very quick operation, it happens within the main thread, no external API calls are needed. It fills up only most of the essential properties, but not all of them.
+    //! Processed -    edit was fully processed by the edit processing thread which handles various API calls, and regex parsing asynchronously in order to fetch all available detailed
+    //!                information about the edit and the detailed information.
 
 	//! Edits are heavily cached across Huggle in order to avoid unnecessary API calls
 
@@ -103,7 +104,7 @@ namespace Huggle
             QString GetFullUrl();
             bool IsRangeOfEdits();
             //! Return true in case this edit was post processed already
-            bool IsPostProcessed();
+            bool IsProcessed();
             //! If edit is ready to be added to queue
             bool IsReady();
             //! Processes all score words in text
@@ -163,7 +164,7 @@ namespace Huggle
             long Score = 0;
             //! This score is used to determine if edit was done in good faith, even if it wasn't OK
             long GoodfaithScore = 0;
-            //! Function to call when post processing of edit is finished
+            //! Function to call when processing of edit is finished
             WEPostprocessedCallback PostprocessCallback = nullptr;
             void *PostprocessCallback_Owner = nullptr;
             QHash<QString, QVariant> PropertyBag;
@@ -181,10 +182,11 @@ namespace Huggle
             bool processingRevs;
             bool processingEditInfo;
             bool processingDiff = false;
-            //! This variable is used by worker thread and needs to be public so that it is working
+
+            // These 2 variables are used by worker thread
             bool postProcessing;
-            //! This variable is used by worker thread and needs to be public so that it is working
             bool processedByWorkerThread;
+
             Collectable_SmartPtr<ApiQuery> qTalkpage;
             //! This is a query used to retrieve information about the user
             Collectable_SmartPtr<ApiQuery> qUser;
@@ -208,9 +210,9 @@ namespace Huggle
         return QDateTime::fromMSecsSinceEpoch(0);
     }
 
-    inline bool WikiEdit::IsPostProcessed()
+    inline bool WikiEdit::IsProcessed()
     {
-        return (this->Status == StatusPostProcessed);
+        return (this->Status == StatusProcessed);
     }
 
     inline long WikiEdit::GetSize()

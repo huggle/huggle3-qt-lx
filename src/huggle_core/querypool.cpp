@@ -78,9 +78,9 @@ void QueryPool::PreProcessEdit(WikiEdit *edit)
 {
     if (edit == nullptr)
         throw new Huggle::NullPointerException("WikiEdit *edit", BOOST_CURRENT_FUNCTION);
-    if (edit->Status == StatusProcessed)
+    if (edit->Status == StatusPreProcessed)
         return;
-    if (edit->Status == StatusPostProcessed)
+    if (edit->Status == StatusProcessed)
         throw new Huggle::Exception("Pre process of edit that was already post processed", BOOST_CURRENT_FUNCTION);
     if (edit->User == nullptr)
         throw new Huggle::NullPointerException("edit->User", BOOST_CURRENT_FUNCTION);
@@ -115,7 +115,7 @@ void QueryPool::PreProcessEdit(WikiEdit *edit)
     if (hcfg->UserConfig->RemoveAfterTrustedEdit && edit->User->IsWhitelisted() && EditQueue::Primary)
         EditQueue::Primary->DeleteOlder(edit);
 
-    edit->Status = StatusProcessed;
+    edit->Status = StatusPreProcessed;
     Hooks::EditAfterPreProcess(edit);
 }
 

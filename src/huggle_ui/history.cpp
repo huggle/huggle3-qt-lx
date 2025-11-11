@@ -274,7 +274,7 @@ void History::Display()
     if (this->DisplayedEdit == nullptr)
         return;
 
-    if (!this->DisplayedEdit->IsPostProcessed())
+    if (!this->DisplayedEdit->IsProcessed())
         return;
 
     MainWindow::HuggleMain->DisplayEdit(this->DisplayedEdit);
@@ -372,7 +372,7 @@ void History::ShowEdit()
         case HistoryProtect:
             return;
     }
-    if (!edit->IsPostProcessed())
+    if (!edit->IsProcessed())
     {
         // now we need to display it
         QueryPool::HugglePool->PreProcessEdit(edit);

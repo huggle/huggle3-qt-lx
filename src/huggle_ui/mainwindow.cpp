@@ -1202,7 +1202,7 @@ Collectable_SmartPtr<RevertQuery> MainWindow::Revert(const QString& summary, boo
         UiGeneric::pMessageBox(this, _l("main-revert-newpage-title"), _l("main-revert-newpage"), MessageBoxStyleNormal, true);
         return revert_query;
     }
-    if (!this->CurrentEdit->IsPostProcessed())
+    if (!this->CurrentEdit->IsProcessed())
     {
         // This shouldn't ever happen, however there is still a rare bug, when you get error messaages like
         // WARNING: unable to retrieve diff for edit [edit name] fallback to web rendering
@@ -1555,7 +1555,7 @@ void MainWindow::OnMainTimerTick()
         int edit_id = 0;
         while (edit_id < this->PendingEdits.count())
         {
-            if (this->PendingEdits.at(edit_id)->IsReady() && this->PendingEdits.at(edit_id)->IsPostProcessed())
+            if (this->PendingEdits.at(edit_id)->IsReady() && this->PendingEdits.at(edit_id)->IsProcessed())
             {
                 WikiEdit *edit = this->PendingEdits.at(edit_id);
                 Hooks::WikiEdit_ScoreJS(edit);

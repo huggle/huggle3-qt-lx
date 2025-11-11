@@ -145,5 +145,5 @@ bool EditQueue_UnprocessedEdit::IsPostProcessing()
 {
     if (this->Edit == nullptr)
         return false;
-    return this->Edit->Status != WEStatus::StatusPostProcessed;
+    return this->Edit->Status != WEStatus::StatusProcessed;
 }

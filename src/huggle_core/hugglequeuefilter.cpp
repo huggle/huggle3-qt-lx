@@ -164,7 +164,7 @@ bool HuggleQueueFilter::Matches(WikiEdit *edit)
         if (this->Self == HuggleQueueFilterMatchRequire && edit->User->Username.toLower() == Configuration::HuggleConfiguration->SystemConfig_UserName.toLower())
             return false;
     }
-    if (edit->IsPostProcessed())
+    if (edit->IsProcessed())
     {
         if (hcfg->SystemConfig_CatScansAndWatched)
         {

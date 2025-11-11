@@ -121,7 +121,7 @@ void UserinfoForm::OnTick()
 {
     if (this->edit != nullptr)
     {
-        if (this->edit->IsPostProcessed())
+        if (this->edit->IsProcessed())
         {
             MainWindow::HuggleMain->DisplayEdit(this->edit, false, false, true, true);
             this->edit.Delete();
@@ -239,7 +239,7 @@ void UserinfoForm::JumpToSpecificContrib(long revid, QString page)
     while (x < WikiEdit::EditList.count())
     {
         WikiEdit *edit = WikiEdit::EditList.at(x++);
-        if (!edit->IsPostProcessed())
+        if (!edit->IsProcessed())
             continue;
         if (edit->RevID == revid)
         {

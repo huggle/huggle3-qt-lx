@@ -226,7 +226,7 @@ void HuggleTool::finishPage()
 
 void HuggleTool::finishEdit()
 {
-    if (this->edit == nullptr || !this->edit->IsPostProcessed())
+    if (this->edit == nullptr || !this->edit->IsProcessed())
         return;
     this->tick->stop();
     this->ui->pushButtonLoad->setEnabled(true);

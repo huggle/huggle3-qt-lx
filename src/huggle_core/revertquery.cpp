@@ -258,7 +258,7 @@ void RevertQuery::preflightCheck()
         while (index < WikiEdit::EditList.count())
         {
             WikiEdit *w = WikiEdit::EditList.at(index++);
-            if (!w->IsPostProcessed())
+            if (!w->IsProcessed())
                 continue;
             if (w != this->editToBeReverted)
             {

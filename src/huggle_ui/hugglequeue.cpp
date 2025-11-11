@@ -43,7 +43,7 @@ void HuggleQueue::AddItem(WikiEdit *edit)
     if (edit == nullptr)
         throw new Huggle::NullPointerException("WikiEdit *page", BOOST_CURRENT_FUNCTION);
 
-    if (!edit->IsPostProcessed())
+    if (!edit->IsProcessed())
         throw new Huggle::Exception("Insert of non processed edit to queue", BOOST_CURRENT_FUNCTION);
 
     if (!edit->IsValid)
@@ -95,7 +95,7 @@ void HuggleQueue::AddItem(WikiEdit *edit)
         {
             // retrieve the edit
             WikiEdit *current_edit = Huggle::WikiEdit::EditList.at(i++);
-            if (!current_edit->IsPostProcessed())
+            if (!current_edit->IsProcessed())
                 continue;
             // if this is a same edit we can go next
             if (current_edit == edit)

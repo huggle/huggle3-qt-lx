@@ -617,14 +617,14 @@ void WikiEdit::PostProcess()
         throw new Huggle::NullPointerException("local WikiPage Page", BOOST_CURRENT_FUNCTION);
     if (this->Status == Huggle::StatusNone)
     {
-        Exception::ThrowSoftException("Processing edit to " + this->Page->PageName + "which was requested to be post processed,"\
-                                      " but wasn't processed yet", BOOST_CURRENT_FUNCTION);
+        Exception::ThrowSoftException("Processing edit of " + this->Page->PageName + " which was requested to be post-processed,"\
+                                      " but wasn't pre-processed yet", BOOST_CURRENT_FUNCTION);
         QueryPool::HugglePool->PreProcessEdit(this);
     }
-    if (this->Status == Huggle::StatusPostProcessed)
-        throw new Huggle::Exception("Unable to post process an edit that is already processed", BOOST_CURRENT_FUNCTION);
-    if (this->Status != Huggle::StatusProcessed)
-        throw new Huggle::Exception("Unable to post process an edit that wasn't in processed status", BOOST_CURRENT_FUNCTION);
+    if (this->Status == Huggle::StatusProcessed)
+        throw new Huggle::Exception("Unable to process an edit that is already processed", BOOST_CURRENT_FUNCTION);
+    if (this->Status != Huggle::StatusPreProcessed)
+        throw new Huggle::Exception("Unable to process an edit that wasn't in preprocessed status", BOOST_CURRENT_FUNCTION);
     this->postProcessing = true;
 #ifndef HUGGLE_SDK
     // Send info to other functions
@@ -899,5 +899,5 @@ void WikiEdit_ProcessorThread::Process(WikiEdit *edit)
     // Hooks::EditAfterPostProcess(edit);
     edit->postProcessing = false;
     edit->processedByWorkerThread = true;
-    edit->Status = StatusPostProcessed;
+    edit->Status = StatusProcessed;
 }
