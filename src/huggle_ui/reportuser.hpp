@@ -66,10 +66,11 @@ namespace Huggle
             void on_tableWidgetEdits_clicked(const QModelIndex &index);
             void on_buttonSelectAll_clicked();
             void on_buttonRemoveSelection_clicked();
-            void on_buttonCheckUser_clicked();
             void on_buttonBlock_clicked();
-            void on_buttonCheckUserBlockStatus_clicked();
-        private:
+            void on_buttonCheckBlocked_clicked();
+            void on_buttonCheckReported_clicked();
+
+    private:
             bool checkUserIsReported();
             void insertUser();
             void reportUser();

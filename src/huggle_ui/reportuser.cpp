@@ -680,15 +680,6 @@ void ReportUser::errorMessage(QString reason)
     this->qReport = nullptr;
 }
 
-void ReportUser::on_buttonCheckUser_clicked()
-{
-    this->ui->buttonCheckReported->setEnabled(false);
-    this->qReport = WikiUtil::RetrieveWikiPageContents(this->reportedUser->GetSite()->GetProjectConfig()->ReportAIV,
-                                                       this->reportedUser->GetSite());
-    this->qReport->Process();
-    this->tReportPageCheck->start(HUGGLE_TIMER);
-}
-
 void ReportUser::on_buttonBlock_clicked()
 {
     if (this->blockUser != nullptr)
@@ -700,7 +691,7 @@ void ReportUser::on_buttonBlock_clicked()
     this->blockUser->show();
 }
 
-void ReportUser::on_buttonCheckUserBlockStatus_clicked()
+void ReportUser::on_buttonCheckBlocked_clicked()
 {
     this->ui->buttonCheckBlocked->setEnabled(false);
     this->qCheckIfBlocked = new ApiQuery(ActionQuery, this->reportedUser->GetSite());
@@ -716,3 +707,14 @@ void ReportUser::on_buttonCheckUserBlockStatus_clicked()
     this->qCheckIfBlocked->Process();
     this->tReportPageCheck->start(HUGGLE_TIMER);
 }
+
+
+void ReportUser::on_buttonCheckReported_clicked()
+{
+    this->ui->buttonCheckReported->setEnabled(false);
+    this->qReport = WikiUtil::RetrieveWikiPageContents(this->reportedUser->GetSite()->GetProjectConfig()->ReportAIV,
+                                                       this->reportedUser->GetSite());
+    this->qReport->Process();
+    this->tReportPageCheck->start(HUGGLE_TIMER);
+}
+
