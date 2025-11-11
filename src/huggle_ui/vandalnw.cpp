@@ -466,6 +466,16 @@ void VandalNw::refreshUL()
     }
 }
 
+bool VandalNw::IsValidCommand(const QString& message)
+{
+    // Check if message starts with one of the valid HAN command keywords
+    // These commands can be sent with or without the IRC prefix
+    return message.startsWith("GOOD ") ||
+           message.startsWith("ROLLBACK ") ||
+           message.startsWith("SUSPICIOUS ") ||
+           message.startsWith("SCORED ");
+}
+
 void VandalNw::ProcessCommand(WikiSite *site, QString nick, QString ident, QString host, QString message)
 {
     HAN::MessageType mt;
@@ -476,11 +486,28 @@ void VandalNw::ProcessCommand(WikiSite *site, QString nick, QString ident, QStri
     {
         mt = HAN::MessageType_Bot;
     }
-    QString Command = message.mid(2);
-    if (Command.contains(" "))
+    
+    // Extract the command, handling both prefixed (with QChar(001)) and non-prefixed formats
+    // Original format: Prefix (2 chars) + Command + " " + RevID
+    // New format: Command + " " + RevID (for backwards compatibility with bots that don't use prefix)
+    QString Command;
+    QString commandData;
+    
+    if (message.startsWith(this->Prefix))
     {
-        Command = Command.mid(0, Command.indexOf(" "));
-        QString revid = message.mid(message.indexOf(" ") + 1);
+        // Traditional format with prefix - skip the 2-character prefix
+        commandData = message.mid(2);
+    }
+    else
+    {
+        // Non-prefixed format for bots that don't implement the prefix correctly
+        commandData = message;
+    }
+    
+    if (commandData.contains(" "))
+    {
+        Command = commandData.mid(0, commandData.indexOf(" "));
+        QString revid = commandData.mid(commandData.indexOf(" ") + 1);
         QString parameter = "";
         if (revid.contains(" "))
         {
@@ -728,7 +755,10 @@ void VandalNw::OnIRCChannelMessage(libircclient::Parser *px)
         MainWindow::HuggleMain->TrayMessage("Huggle anti-vandalism network", message);
     }
 
-    if (message.startsWith(this->Prefix))
+    // Process as command if:
+    // 1. Message starts with the traditional prefix (QChar(001) + QChar(001))
+    // 2. Message starts with a valid command keyword (for bots that don't use prefix)
+    if (message.startsWith(this->Prefix) || this->IsValidCommand(message))
     {
         this->ProcessCommand(site, nick, px->GetSourceUserInfo()->GetIdent(), px->GetSourceUserInfo()->GetHost(), message);
     } else

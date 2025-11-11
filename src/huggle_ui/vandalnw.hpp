@@ -133,6 +133,9 @@ namespace Huggle
             QHash<QString,WikiSite*> Ch2Site;
             QHash<WikiSite*,QString> Site2Channel;
             //! Prefix to special commands that are being sent to network to other users
+            //! Traditional format: QChar(001) + QChar(001) prefix followed by command
+            //! For backward compatibility, commands without prefix are also accepted if they
+            //! start with valid keywords: GOOD, ROLLBACK, SUSPICIOUS, or SCORED
             QString Prefix;
             QList<HAN::RescoreItem> UnparsedScores;
             QList<HAN::GenericItem> UnparsedGood;
@@ -144,6 +147,8 @@ namespace Huggle
             void ProcessSusp(WikiEdit *edit, QString nick, QString ident, QString hn);
             //! Reload user list
             void refreshUL();
+            //! Check if message starts with a valid HAN command keyword (for unprefixed commands)
+            bool IsValidCommand(const QString& message);
             void ProcessCommand(WikiSite *site, QString nick, QString ident, QString host, QString message);
             Ui::VandalNw *ui;
             //! Pointer to irc server
