@@ -131,7 +131,7 @@ void GenericBrowser::DisplayDiff(WikiEdit *edit)
     }
     if (!edit->DiffText.length())
     {
-        Huggle::Syslog::HuggleLogs->WarningLog("unable to retrieve diff for edit " + edit->Page->PageName + " fallback to web rendering");
+        Huggle::Syslog::HuggleLogs->WarningLog("unable to retrieve diff for edit " + edit->Page->PageName + " (edit->DiffText is empty) fallback to web rendering");
         this->RenderHtml(_l("browser-load"));
         if (edit->DiffTo != "prev")
         {

@@ -1204,8 +1204,11 @@ Collectable_SmartPtr<RevertQuery> MainWindow::Revert(const QString& summary, boo
     }
     if (!this->CurrentEdit->IsPostProcessed())
     {
-        // This shouldn't ever happen, there is no need to translate this message
-        // becase it's nearly impossible to be ever displayed
+        // This shouldn't ever happen, however there is still a rare bug, when you get error messaages like
+        // WARNING: unable to retrieve diff for edit [edit name] fallback to web rendering
+        // which is exactly what gets us in here
+
+        // We need to keep this check until that bug is fixed, translation of this is probably not necessary
         Syslog::HuggleLogs->ErrorLog("This edit is still being processed, please wait");
         return ptr_;
     }
