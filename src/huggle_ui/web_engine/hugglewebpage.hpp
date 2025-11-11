@@ -22,6 +22,7 @@ namespace Huggle
     {
         Q_OBJECT
         public:
+            explicit HuggleWebEnginePage(QObject *parent = nullptr);
             bool acceptNavigationRequest(const QUrl & url, QWebEnginePage::NavigationType type, bool isMainFrame);
     };
 }

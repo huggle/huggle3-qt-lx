@@ -13,6 +13,10 @@
 
 using namespace Huggle;
 
+HuggleWebEnginePage::HuggleWebEnginePage(QObject *parent) : QWebEnginePage(parent)
+{
+}
+
 bool HuggleWebEnginePage::acceptNavigationRequest(const QUrl &url, QWebEnginePage::NavigationType type, bool isMainFrame)
 {
     if (type == QWebEnginePage::NavigationTypeLinkClicked)

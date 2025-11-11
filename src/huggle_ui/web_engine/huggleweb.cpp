@@ -19,7 +19,7 @@ HuggleWeb::HuggleWeb(QWidget *parent) : GenericBrowser(parent), ui(new Ui::Huggl
     this->ui->setupUi(this);
     this->ui->label->setVisible(false);
     this->ui->lineEdit->setVisible(false);
-    this->ui->webView->setPage(new HuggleWebEnginePage());
+    this->ui->webView->setPage(new HuggleWebEnginePage(this->ui->webView));
 }
 
 HuggleWeb::~HuggleWeb()
