@@ -496,10 +496,10 @@ QAction *MainWindow::GetMenuItem(int menu_item)
     }
 }
 
-void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, bool KeepUser, bool ForcedJump)
+void MainWindow::DisplayEdit(WikiEdit *edit, bool ignore_history, bool keep_history, bool keep_user, bool forced_jump)
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
-    if (e == nullptr || this->ShuttingDown)
+    if (edit == nullptr || this->ShuttingDown)
     {
         // Huggle is either shutting down or edit is nullptr so we can't do anything here
         return;
@@ -509,7 +509,7 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
         // we need to delete this because it's related to an old edit
         this->qNext.Delete();
     }
-    if (e->Page == nullptr || e->User == nullptr)
+    if (edit->Page == nullptr || edit->User == nullptr)
     {
         throw new Huggle::NullPointerException("WikiEdit *e->Page || WikiEdit *e->User", BOOST_CURRENT_FUNCTION);
     }
@@ -519,47 +519,47 @@ void MainWindow::ProcessEdit(WikiEdit *e, bool IgnoreHistory, bool KeepHistory, 
         this->OnNext_EvPage = nullptr;
     }
     // we need to safely delete the edit later
-    e->IncRef();
+    edit->IncRef();
     // if there are actually some totally old edits in history that we need to delete
     while (this->Historical.count() > Configuration::HuggleConfiguration->SystemConfig_HistorySize)
     {
         WikiEdit *prev = this->Historical.at(0);
-        if (prev == e)
+        if (prev == edit)
             break;
 
         this->Historical.removeAt(0);
         prev->RemoveFromHistoryChain();
         prev->UnregisterConsumer(HUGGLECONSUMER_MAINFORM_HISTORICAL);
     }
-    if (!this->Historical.contains(e))
+    if (!this->Historical.contains(edit))
     {
-        e->RegisterConsumer(HUGGLECONSUMER_MAINFORM_HISTORICAL);
-        this->Historical.append(e);
+        edit->RegisterConsumer(HUGGLECONSUMER_MAINFORM_HISTORICAL);
+        this->Historical.append(edit);
         if (this->CurrentEdit != nullptr)
         {
-            if (!IgnoreHistory)
+            if (!ignore_history)
             {
-                e->RemoveFromHistoryChain();
+                edit->RemoveFromHistoryChain();
                 // now we need to get to last edit in chain
                 WikiEdit *latest = this->CurrentEdit;
                 while (latest->Next != nullptr)
                     latest = latest->Next;
-                latest->Next = e;
-                e->Previous = latest;
+                latest->Next = edit;
+                edit->Previous = latest;
             }
         }
     }
-    this->Queue1->ChangeSite(e->GetSite());
-    e->User->Resync();
-    Configuration::HuggleConfiguration->ForceNoEditJump = ForcedJump;
-    this->CurrentEdit = e;
+    this->Queue1->ChangeSite(edit->GetSite());
+    edit->User->Resync();
+    Configuration::HuggleConfiguration->ForceNoEditJump = forced_jump;
+    this->CurrentEdit = edit;
     this->editLoadDateTime = QDateTime::currentDateTime();
-    this->Browser->DisplayDiff(e);
-    this->Render(KeepHistory, KeepUser);
-    e->DecRef();
+    this->Browser->DisplayDiff(edit);
+    this->Render(keep_history, keep_user);
+    edit->DecRef();
 }
 
-void MainWindow::Render(bool KeepHistory, bool KeepUser)
+void MainWindow::Render(bool keep_history, bool keep_user)
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     if (this->CurrentEdit != nullptr)
@@ -569,13 +569,13 @@ void MainWindow::Render(bool KeepHistory, bool KeepUser)
 
         this->ui->actionFinal->setVisible(this->GetCurrentWikiSite()->GetProjectConfig()->InstantWarnings);
         this->wEditBar->RemoveAll();
-        if (!KeepUser)
+        if (!keep_user)
         {
             this->wUserInfo->ChangeUser(this->CurrentEdit->User);
             if (Configuration::HuggleConfiguration->UserConfig->HistoryLoad)
                 this->wUserInfo->Read();
         }
-        if (!KeepHistory)
+        if (!keep_history)
         {
             this->wHistory->Update(this->CurrentEdit);
             if (Configuration::HuggleConfiguration->UserConfig->HistoryLoad)
@@ -765,14 +765,14 @@ void MainWindow::GoForward()
 {
     if (this->CurrentEdit == nullptr || this->CurrentEdit->Next == nullptr)
         return;
-    this->ProcessEdit(this->CurrentEdit->Next, true);
+    this->DisplayEdit(this->CurrentEdit->Next, true);
 }
 
 void MainWindow::GoBackward()
 {
     if (this->CurrentEdit == nullptr || this->CurrentEdit->Previous == nullptr)
         return;
-    this->ProcessEdit(this->CurrentEdit->Previous, true);
+    this->DisplayEdit(this->CurrentEdit->Previous, true);
 }
 
 void MainWindow::ShowToolTip(const QString& text)
@@ -1189,18 +1189,18 @@ QString MainWindow::WikiScriptURL()
 Collectable_SmartPtr<RevertQuery> MainWindow::Revert(const QString& summary, bool next, bool single_rv)
 {
     bool rollback = true;
-    Collectable_SmartPtr<RevertQuery> ptr_;
+    Collectable_SmartPtr<RevertQuery> revert_query;
     if (this->CurrentEdit == nullptr)
     {
         Syslog::HuggleLogs->ErrorLog(_l("main-revert-null"));
-        return ptr_;
+        return revert_query;
     }
     if (!this->CheckRevertable())
-        return ptr_;
+        return revert_query;
     if (this->CurrentEdit->NewPage)
     {
         UiGeneric::pMessageBox(this, _l("main-revert-newpage-title"), _l("main-revert-newpage"), MessageBoxStyleNormal, true);
-        return ptr_;
+        return revert_query;
     }
     if (!this->CurrentEdit->IsPostProcessed())
     {
@@ -1210,7 +1210,7 @@ Collectable_SmartPtr<RevertQuery> MainWindow::Revert(const QString& summary, boo
 
         // We need to keep this check until that bug is fixed, translation of this is probably not necessary
         Syslog::HuggleLogs->ErrorLog("This edit is still being processed, please wait");
-        return ptr_;
+        return revert_query;
     }
     if (this->CurrentEdit->GetSite()->GetProjectConfig()->Token_Rollback.isEmpty())
     {
@@ -1224,29 +1224,29 @@ Collectable_SmartPtr<RevertQuery> MainWindow::Revert(const QString& summary, boo
         Hooks::OnRevert(this->CurrentEdit);
         if (hcfg->UserConfig->InsertEditsOfRolledUserToQueue)
             this->insertRelatedEditsToQueue();
-        ptr_ = WikiUtil::RevertEdit(this->CurrentEdit, summary, false, rollback);
-        if (single_rv) { ptr_->SetLast(); }
+        revert_query = WikiUtil::RevertEdit(this->CurrentEdit, summary, false, rollback);
+        if (single_rv) { revert_query->SetLast(); }
         if (Configuration::HuggleConfiguration->SystemConfig_InstantReverts)
         {
-            ptr_->Process();
+            revert_query->Process();
         } else
         {
-            ptr_->Date = QDateTime::currentDateTime();
-            ptr_->IncRef();
-            this->RevertStack.append(ptr_);
+            revert_query->Date = QDateTime::currentDateTime();
+            revert_query->IncRef();
+            this->RevertStack.append(revert_query);
         }
         if (next)
-            this->DisplayNext(ptr_);
+            this->DisplayNext(revert_query);
     }
-    return ptr_;
+    return revert_query;
 }
 
-bool MainWindow::preflightCheck(WikiEdit *_e)
+bool MainWindow::preflightCheck(WikiEdit *edit)
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
-    if (!Hooks::RevertPreflight(_e))
+    if (!Hooks::RevertPreflight(edit))
     {
-        HUGGLE_DEBUG("Hook prevented revert of " + _e->Page->PageName, 2);
+        HUGGLE_DEBUG("Hook prevented revert of " + edit->Page->PageName, 2);
         return false;
     }
     if (this->qNext != nullptr)
@@ -1255,28 +1255,28 @@ bool MainWindow::preflightCheck(WikiEdit *_e)
                             MessageBoxStyleNormal, true);
         return false;
     }
-    if (_e == nullptr)
+    if (edit == nullptr)
         throw new Huggle::NullPointerException("WikiEdit *_e", BOOST_CURRENT_FUNCTION);
-    bool Warn = false;
+    bool warn = false;
     QString type = _l("main-revert-type-unknown");
-    if (hcfg->SystemConfig_WarnUserSpaceRoll && _e->Page->IsUserpage())
+    if (hcfg->SystemConfig_WarnUserSpaceRoll && edit->Page->IsUserpage())
     {
         type = _l("main-revert-type-in-userspace");
-        Warn = true;
-    } else if (hcfg->ProjectConfig->ConfirmOnSelfRevs && (_e->User->Username.toLower() == hcfg->SystemConfig_UserName.toLower()))
+        warn = true;
+    } else if (hcfg->ProjectConfig->ConfirmOnSelfRevs && (edit->User->Username.toLower() == hcfg->SystemConfig_UserName.toLower()))
     {
         type = _l("main-revert-type-made-by-you");
-        Warn = true;
-    } else if (hcfg->ProjectConfig->ConfirmTalk && _e->Page->IsTalk())
+        warn = true;
+    } else if (hcfg->ProjectConfig->ConfirmTalk && edit->Page->IsTalk())
     {
         type = _l("main-revert-type-made-on-talk-page");
-        Warn = true;
-    } else if (hcfg->ProjectConfig->ConfirmWL && _e->User->IsWhitelisted())
+        warn = true;
+    } else if (hcfg->ProjectConfig->ConfirmWL && edit->User->IsWhitelisted())
     {
         type = _l("main-revert-type-made-white-list");
-        Warn = true;
+        warn = true;
     }
-    if (Warn)
+    if (warn)
     {
         int q = UiGeneric::pMessageBox(this, _l("shortcut-revert"), _l("main-revert-warn", type), MessageBoxStyleQuestion);
         if (q == QMessageBox::No)
@@ -1552,39 +1552,39 @@ void MainWindow::OnMainTimerTick()
     if (this->PendingEdits.count() > 0)
     {
         // postprocessed edits can be added to queue
-        int c = 0;
-        while (c < this->PendingEdits.count())
+        int edit_id = 0;
+        while (edit_id < this->PendingEdits.count())
         {
-            if (this->PendingEdits.at(c)->IsReady() && this->PendingEdits.at(c)->IsPostProcessed())
+            if (this->PendingEdits.at(edit_id)->IsReady() && this->PendingEdits.at(edit_id)->IsPostProcessed())
             {
-                WikiEdit *edit = this->PendingEdits.at(c);
+                WikiEdit *edit = this->PendingEdits.at(edit_id);
                 Hooks::WikiEdit_ScoreJS(edit);
                 // We need to check the edit against filter once more, because some of the checks work
                 // only on post processed edits
                 if (edit->GetSite()->CurrentFilter->Matches(edit))
                     this->Queue1->AddItem(edit);
-                this->PendingEdits.removeAt(c);
+                this->PendingEdits.removeAt(edit_id);
                 edit->UnregisterConsumer(HUGGLECONSUMER_MAINPEND);
             } else
             {
-                c++;
+                edit_id++;
             }
         }
     }
     // let's refresh the edits that are being post processed
     if (QueryPool::HugglePool->ProcessingEdits.count() > 0)
     {
-        int Edit = 0;
-        while (Edit < QueryPool::HugglePool->ProcessingEdits.count())
+        int edit_id = 0;
+        while (edit_id < QueryPool::HugglePool->ProcessingEdits.count())
         {
-            WikiEdit *e = QueryPool::HugglePool->ProcessingEdits.at(Edit);
-            if (e->finalizePostProcessing())
+            WikiEdit *edit = QueryPool::HugglePool->ProcessingEdits.at(edit_id);
+            if (edit->finalizePostProcessing())
             {
-                QueryPool::HugglePool->ProcessingEdits.removeAt(Edit);
-                e->UnregisterConsumer(HUGGLECONSUMER_CORE_POSTPROCESS);
+                QueryPool::HugglePool->ProcessingEdits.removeAt(edit_id);
+                edit->UnregisterConsumer(HUGGLECONSUMER_CORE_POSTPROCESS);
             } else
             {
-                Edit++;
+                edit_id++;
             }
         }
     }
@@ -1637,9 +1637,9 @@ void MainWindow::TruncateReverts()
     }
     while (QueryPool::HugglePool->RevertBuffer.count() > 10)
     {
-        WikiEdit *we = QueryPool::HugglePool->RevertBuffer.at(0);
+        WikiEdit *edit = QueryPool::HugglePool->RevertBuffer.at(0);
         QueryPool::HugglePool->RevertBuffer.removeAt(0);
-        we->UnregisterConsumer(HUGGLECONSUMER_QP_REVERTBUFFER);
+        edit->UnregisterConsumer(HUGGLECONSUMER_QP_REVERTBUFFER);
     }
 }
 
@@ -1729,9 +1729,10 @@ void MainWindow::OnTimerTick0()
                                                MessageBoxStyleQuestion, true) == QMessageBox::No)
                         continue;
                 }
-                Collectable_SmartPtr<EditQuery> temp = WikiUtil::EditPage(site, page, site->GetUserConfig()->MakeLocalUserConfig(site->GetProjectConfig()), _l("saveuserconfig-progress"), true);
-                temp->IncRef();
-                this->storageQueries.insert(site, temp.GetPtr());
+                Collectable_SmartPtr<EditQuery> edit_query = WikiUtil::EditPage(site, page, site->GetUserConfig()->MakeLocalUserConfig(site->GetProjectConfig()),
+                                                                          _l("saveuserconfig-progress"), true);
+                edit_query->IncRef();
+                this->storageQueries.insert(site, edit_query.GetPtr());
             }
             return;
         }
@@ -2269,7 +2270,7 @@ static void DisplayRevid_Finish(WikiEdit *edit, void *source, QString er)
     // this is true hack as it's async call, but we don't really need to have the edit post processed for it
     // to be rendered, let's just call it to be safe, as having unprocessed edits in buffer is a bad thing
     QueryPool::HugglePool->PostProcessEdit(edit);
-    window->ProcessEdit(edit);
+    window->DisplayEdit(edit);
 }
 
 static void DisplayRevid_Error(WikiEdit *edit, void *source, const QString& error)
@@ -2287,7 +2288,7 @@ void MainWindow::DisplayRevid(revid_ht revid, WikiSite *site)
     Collectable_SmartPtr<WikiEdit> edit = WikiEdit::FromCacheByRevID(revid);
     if (edit != nullptr)
     {
-        this->ProcessEdit(edit);
+        this->DisplayEdit(edit);
         this->wEditBar->RefreshPage();
         return;
     }

@@ -127,14 +127,14 @@ namespace Huggle
             QMenu *GetMenu(int menu_id);
             QAction *GetMenuItem(int menu_item);
             /*!
-             * \brief ProcessEdit Will display an edit in huggle window
-             * \param e Edit
-             * \param IgnoreHistory If true the history of huggle will not be updated
-             * \param KeepHistory
-             * \param KeepUser
-             * \param ForceJump
+             * \brief DisplayEdit Will display an edit in huggle window
+             * \param edit Edit
+             * \param ignore_history if true the history of huggle will not be updated
+             * \param keep_history if true the history panel will not refresh (will retain history of previously loaded edit)
+             * \param keep_user if true the user panel will not refresh (will retain same user as before)
+             * \param force_jump
              */
-            void ProcessEdit(WikiEdit *e, bool IgnoreHistory = false, bool KeepHistory = false, bool KeepUser = false, bool ForceJump = false);
+            void DisplayEdit(WikiEdit *edit, bool ignore_history = false, bool keep_history = false, bool keep_user = false, bool forced_jump = false);
             /*!
              * \brief Revert perform a revert of an edit
              * \param summary Summary that you want to use for this revert
@@ -181,7 +181,7 @@ namespace Huggle
             void DisplayRevid(revid_ht revid, WikiSite *site);
             void PauseQueue();
             //! Recreate interface, should be called everytime you do anything with main form
-            void Render(bool KeepHistory = false, bool KeepUser = false);
+            void Render(bool keep_history = false, bool keep_user = false);
             void ResumeQueue();
             //! Request a page deletion csd or afd and so on
             void RequestPD(WikiEdit *edit = nullptr);
@@ -423,7 +423,7 @@ namespace Huggle
             //! When any button to welcome current user is pressed it call this function
             void triggerWelcome();
             //! Check if we can revert this edit
-            bool preflightCheck(WikiEdit *_e);
+            bool preflightCheck(WikiEdit *edit);
             //! Welcome user
             void welcomeCurrentUser(QString message);
             void RevertAgf(bool only);

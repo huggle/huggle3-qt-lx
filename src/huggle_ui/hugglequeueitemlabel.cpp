@@ -56,7 +56,7 @@ void HuggleQueueItemLabel::SetLabelToolTip(QString text)
 
 void HuggleQueueItemLabel::Process(QLayoutItem *qi)
 {
-    MainWindow::HuggleMain->ProcessEdit(this->Edit);
+    MainWindow::HuggleMain->DisplayEdit(this->Edit);
     this->Remove(qi);
 }
 

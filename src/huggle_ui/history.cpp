@@ -277,7 +277,7 @@ void History::Display()
     if (!this->DisplayedEdit->IsPostProcessed())
         return;
 
-    MainWindow::HuggleMain->ProcessEdit(this->DisplayedEdit);
+    MainWindow::HuggleMain->DisplayEdit(this->DisplayedEdit);
     this->DisplayedEdit.Delete();
     this->timerDisplayEditFromHistLs->stop();
 }
@@ -383,7 +383,7 @@ void History::ShowEdit()
     } else
     {
         // let's display it
-        MainWindow::HuggleMain->ProcessEdit(edit);
+        MainWindow::HuggleMain->DisplayEdit(edit);
     }
 }
 

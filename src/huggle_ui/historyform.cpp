@@ -138,7 +138,7 @@ void HistoryForm::onTick01()
     {
         if (this->RetrievedEdit->IsPostProcessed())
         {
-            MainWindow::HuggleMain->ProcessEdit(this->RetrievedEdit, false, true);
+            MainWindow::HuggleMain->DisplayEdit(this->RetrievedEdit, false, true);
             this->RetrievingEdit = false;
             this->RetrievedEdit = nullptr;
             this->t1->stop();
@@ -387,7 +387,7 @@ void HistoryForm::GetEdit(long revid, QString prev, QString user, QString html, 
     Collectable_SmartPtr<WikiEdit> edit = WikiEdit::FromCacheByRevID(revid, prev);
     if (edit != nullptr)
     {
-        MainWindow::HuggleMain->ProcessEdit(edit, false, true);
+        MainWindow::HuggleMain->DisplayEdit(edit, false, true);
         this->RetrievingEdit = false;
         this->MakeSelectedRowBold();
         MainWindow::HuggleMain->wEditBar->RefreshPage();

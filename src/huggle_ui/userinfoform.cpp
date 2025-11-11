@@ -123,7 +123,7 @@ void UserinfoForm::OnTick()
     {
         if (this->edit->IsPostProcessed())
         {
-            MainWindow::HuggleMain->ProcessEdit(this->edit, false, false, true, true);
+            MainWindow::HuggleMain->DisplayEdit(this->edit, false, false, true, true);
             this->edit.Delete();
         }
         return;
@@ -243,7 +243,7 @@ void UserinfoForm::JumpToSpecificContrib(long revid, QString page)
             continue;
         if (edit->RevID == revid)
         {
-            MainWindow::HuggleMain->ProcessEdit(edit, true, false, true);
+            MainWindow::HuggleMain->DisplayEdit(edit, true, false, true);
             WikiEdit::Lock_EditList->unlock();
             return;
         }

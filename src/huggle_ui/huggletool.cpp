@@ -230,7 +230,7 @@ void HuggleTool::finishEdit()
         return;
     this->tick->stop();
     this->ui->pushButtonLoad->setEnabled(true);
-    MainWindow::HuggleMain->ProcessEdit(this->edit, false, false, false, true);
+    MainWindow::HuggleMain->DisplayEdit(this->edit, false, false, false, true);
 }
 
 QString HuggleTool::getColor(QString color)
