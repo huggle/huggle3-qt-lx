@@ -443,7 +443,7 @@ QString WikiEdit::GetPixmap()
     if (this->User->IsWhitelisted())
         return ":/huggle/pictures/Resources/blob-ignored.png";
 
-    if (this->User->IsIP())
+    if (this->User->IsAnon())
         return ":/huggle/pictures/Resources/blob-anon.png";
 
     return ":/huggle/pictures/Resources/blob-none.png";
@@ -695,7 +695,7 @@ void WikiEdit::PostProcess()
     }
 
     this->processingRevs = true;
-    if (this->User->IsIP())
+    if (this->User->IsAnon())
         return;
     this->qUser = new ApiQuery(ActionQuery, this->GetSite());
     this->qUser->Parameters = "list=users&usprop=blockinfo%7Cgroups%7Ceditcount%7Cregistration&ususers="
@@ -823,7 +823,7 @@ void WikiEdit_ProcessorThread::Process(WikiEdit *edit)
         ProjectConfiguration *conf = edit->GetSite()->GetProjectConfig();
         if (edit->IsRevert())
         {
-            if (edit->User->IsIP())
+            if (edit->User->IsAnon())
             {
                 // Reverts made by anons are very likely reverts to vandalism
                 edit->RecordScore("IPScore_talk", conf->IPScore * 10);
@@ -837,7 +837,7 @@ void WikiEdit_ProcessorThread::Process(WikiEdit *edit)
             }
         }
         // score
-        if (edit->User->IsIP())
+        if (edit->User->IsAnon())
         {
             edit->RecordScore("IPScore", conf->IPScore);
         }

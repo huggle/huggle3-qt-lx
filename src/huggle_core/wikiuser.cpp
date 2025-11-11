@@ -33,6 +33,7 @@ HREGEX_TYPE WikiUser::IPv6Regex("(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9
                             "-9]){0,1}[0-9]).){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}"\
                             ":){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]).){3,3}(25[0-5]|(2[0-4]|1{0,1}["\
                             "0-9]){0,1}[0-9]))");
+HREGEX_TYPE WikiUser::TempAccountRegex(R"(^~\d{4}-\d{1,5}-\d{1,5}$)");
 QList<WikiUser*> WikiUser::ProblematicUsers;
 
 #ifdef QT6_BUILD
@@ -110,7 +111,7 @@ void WikiUser::UpdateUser(WikiUser *us)
             user->contentsOfTalkPage = us->contentsOfTalkPage;
             user->LastMessageTime = us->LastMessageTime;
             user->LastMessageTimeKnown = us->LastMessageTimeKnown;
-            if (!us->IsIP() && user->EditCount < 0)
+            if (!us->IsAnon() && user->EditCount < 0)
             {
                 user->EditCount = us->EditCount;
             }
@@ -158,10 +159,25 @@ bool WikiUser::IsIPv6(const QString &user)
 #endif
 }
 
+bool WikiUser::IsTemporary(const QString &user)
+{
+    HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
+#ifdef QT6_BUILD
+    QRegularExpressionMatch match = WikiUser::TempAccountRegex.match(user);
+    if (match.hasMatch())
+        return true;
+#else
+    if (WikiUser::TempAccountRegex.exactMatch(user))
+        return true;
+#endif
+
+    return false;
+}
+
 void WikiUser::UpdateWl(WikiUser *us, long score)
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
-    if (!us->IsIP() && score <= us->GetSite()->GetProjectConfig()->WhitelistScore && !us->IsWhitelisted())
+    if (!us->IsAnon() && score <= us->GetSite()->GetProjectConfig()->WhitelistScore && !us->IsWhitelisted())
     {
         if (us->GetSite()->GetProjectConfig()->WhiteList.contains(us->Username))
         {
@@ -186,7 +202,7 @@ WikiUser::WikiUser(WikiSite *site) : MediaWikiObject(site)
     this->userMutex = new QMutex(QMutex::Recursive);
 #endif
     this->Username = "";
-    this->IP = true;
+    this->isAnon = true;
     this->BadnessScore = 0;
     this->warningLevel = 0;
     this->IsBlocked = false;
@@ -207,7 +223,7 @@ WikiUser::WikiUser(WikiUser *u) : MediaWikiObject(u)
 #else
     this->userMutex = new QMutex(QMutex::Recursive);
 #endif
-    this->IP = u->IP;
+    this->isAnon = u->isAnon;
     this->Username = u->Username;
     this->warningLevel = u->warningLevel;
     this->BadnessScore = u->BadnessScore;
@@ -233,7 +249,7 @@ WikiUser::WikiUser(const WikiUser &u) : MediaWikiObject(u)
 #endif
     this->warningLevel = u.warningLevel;
     this->IsReported = u.IsReported;
-    this->IP = u.IP;
+    this->isAnon = u.isAnon;
     this->Username = u.Username;
     this->BadnessScore = u.BadnessScore;
     this->IsBlocked = u.IsBlocked;
@@ -255,17 +271,11 @@ WikiUser::WikiUser(const QString &user, WikiSite *site) : MediaWikiObject(site)
 #else
     this->userMutex = new QMutex(QMutex::Recursive);
 #endif
-    this->IP = false;
-    if (!user.isEmpty())
-    {
-        if (WikiUser::IsIPv4(user))
-        {
-            this->IP = true;
-        } else if (WikiUser::IsIPv6(user))
-        {
-            this->IP = true;
-        }
-    }
+    this->isAnon = false;
+
+    if (!user.isEmpty() && (WikiUser::IsIPv4(user) || WikiUser::IsIPv6(user) || WikiUser::IsTemporary(user)))
+        this->isAnon = true;
+
     this->Username = user;
     this->Sanitize();
     this->IsBlocked = false;
@@ -473,7 +483,7 @@ QString WikiUser::Flags()
     {
         pflags += "E";
     }
-    if (this->IsIP())
+    if (this->IsAnon())
     {
         nflags += "R";
     }

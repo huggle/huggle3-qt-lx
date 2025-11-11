@@ -612,7 +612,7 @@ bool ReportUser::checkUserIsReported()
 void ReportUser::insertUser()
 {
     QString text = this->reportedUser->GetSite()->GetProjectConfig()->IPVTemplateReport;
-    if (!this->reportedUser->IsIP())
+    if (!this->reportedUser->IsAnon())
     {
         text = this->reportedUser->GetSite()->GetProjectConfig()->RUTemplateReport;
     }
@@ -706,7 +706,7 @@ void ReportUser::on_buttonCheckUserBlockStatus_clicked()
     this->qCheckIfBlocked = new ApiQuery(ActionQuery, this->reportedUser->GetSite());
     this->qCheckIfBlocked->Target = "user";
     this->qCheckIfBlocked->Parameters = "list=blocks&";
-    if (!this->reportedUser->IsIP())
+    if (!this->reportedUser->IsAnon())
     {
         this->qCheckIfBlocked->Parameters += "bkusers=" + QUrl::toPercentEncoding(this->reportedUser->Username);
     } else

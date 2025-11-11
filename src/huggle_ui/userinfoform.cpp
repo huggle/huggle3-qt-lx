@@ -158,7 +158,7 @@ void UserinfoForm::OnTick()
                 UserInfoFormHistoryItem item(this->User->GetSite());
                 item.Top = edit.attributes().contains("top");
                 item.Name = this->User->Username;
-                if (this->User->IsIP())
+                if (this->User->IsAnon())
                 {
                     item.Type = EditType_Anon;
                 }

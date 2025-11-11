@@ -433,7 +433,7 @@ QString Warnings::RetrieveTemplateToWarn(const QString& type, WikiSite *site, bo
 
 QString Warnings::UpdateSharedIPTemplate(WikiUser *user, QString text, WikiSite *site)
 {
-    if (!user->IsIP() || site->GetProjectConfig()->SharedIPTemplate.isEmpty())
+    if (!user->IsAnon() || site->GetProjectConfig()->SharedIPTemplate.isEmpty())
     {
         return text;
     }

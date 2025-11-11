@@ -1409,7 +1409,7 @@ void MainWindow::triggerWelcome()
 {
     ProjectConfiguration *conf = this->GetCurrentWikiSite()->GetProjectConfig();
     QString message;
-    if (this->CurrentEdit->User->IsIP() && !conf->WelcomeAnon.isEmpty())
+    if (this->CurrentEdit->User->IsAnon() && !conf->WelcomeAnon.isEmpty())
     {
         message = conf->WelcomeAnon + " ~~~~";
     }
@@ -2789,7 +2789,7 @@ void MainWindow::on_actionClear_talk_page_of_user_triggered()
         return;
     if (!this->EditingChecks())
         return;
-    if (!this->CurrentEdit->User->IsIP())
+    if (!this->CurrentEdit->User->IsAnon())
     {
         Syslog::HuggleLogs->Log(_l("feature-nfru"));
         return;
@@ -2990,7 +2990,7 @@ void MainWindow::on_actionReport_username_triggered()
         UiGeneric::pMessageBox(this, _l("uaa-not-supported"), _l("uaa-not-supported-text"), MessageBoxStyleWarning, true);
         return;
     }
-    if (this->CurrentEdit->User->IsIP())
+    if (this->CurrentEdit->User->IsAnon())
     {
         Syslog::HuggleLogs->ErrorLog(_l("main-report-ip-not-supported"));
         return;

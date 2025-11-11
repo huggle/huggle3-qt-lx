@@ -62,7 +62,8 @@ QJSValue JSMarshallingHelper::FromUser(WikiUser *user, QJSEngine *engine)
     o.setProperty("WarningLevel", QJSValue(static_cast<int>(user->GetWarningLevel())));
     o.setProperty("IsBlocked", QJSValue(user->IsBlocked));
     o.setProperty("IsBot", QJSValue(user->IsBot()));
-    o.setProperty("IsIP", QJSValue(user->IsIP()));
+    o.setProperty("IsIP", QJSValue(user->IsAnon())); // Retained for backwards compatibility
+    o.setProperty("IsAnon", QJSValue(user->IsAnon()));
     o.setProperty("IsReported", QJSValue(user->IsReported));
     o.setProperty("IsWhitelisted", QJSValue(user->IsWhitelisted()));
     o.setProperty("RegistrationDate", QJSValue(user->RegistrationDate));

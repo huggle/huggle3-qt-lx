@@ -124,9 +124,9 @@ bool HuggleQueueFilter::Matches(WikiEdit *edit)
     }
     if (this->IP != HuggleQueueFilterMatchIgnore)
     {
-        if (this->IP == HuggleQueueFilterMatchExclude && edit->User->IsIP())
+        if (this->IP == HuggleQueueFilterMatchExclude && edit->User->IsAnon())
             return false;
-        if (this->IP == HuggleQueueFilterMatchRequire && !edit->User->IsIP())
+        if (this->IP == HuggleQueueFilterMatchRequire && !edit->User->IsAnon())
             return false;
     }
     if (this->Minor != HuggleQueueFilterMatchIgnore)

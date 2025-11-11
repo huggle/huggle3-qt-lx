@@ -42,6 +42,9 @@ namespace Huggle
             static void UpdateUser(WikiUser *us);
             static bool IsIPv4(const QString &user);
             static bool IsIPv6(const QString &user);
+            //! Check for new temporary account format: ~YYYY-XXXXX-XX following the naming described on this page:
+            //! https://en.wikipedia.org/wiki/Wikipedia:Temporary_accounts
+            static bool IsTemporary(const QString &user);
             static void UpdateWl(WikiUser *us, long score);
             /*!
              * \brief Function that return static version of this user
@@ -94,7 +97,7 @@ namespace Huggle
              */
             void ForceIP();
             //! Returns true in case the current user is IP user
-            bool IsIP() const;
+            bool IsAnon() const;
             bool EqualTo(WikiUser *user);
             //! This function will reparse whole talk page of user in order to figure out which level they have
 
@@ -159,6 +162,8 @@ namespace Huggle
             static HREGEX_TYPE IPv4Regex;
             //! Matches all IP
             static HREGEX_TYPE IPv6Regex;
+            //! Matches temporary account names (~YYYY-XXXXX-XX)
+            static HREGEX_TYPE TempAccountRegex;
 
             /*!
              * \brief Badness score of current user
@@ -179,7 +184,7 @@ namespace Huggle
             HMUTEX_TYPE *userMutex;
             WikiPage *wpTalkPage = nullptr;
             bool isBot;
-            bool IP;
+            bool isAnon;
     };
 
     inline void WikiUser::Sanitize()
@@ -189,7 +194,7 @@ namespace Huggle
 
     inline void WikiUser::ForceIP()
     {
-        this->IP = true;
+        this->isAnon = true;
     }
 
     inline bool WikiUser::TalkPage_WasRetrieved()
@@ -197,9 +202,10 @@ namespace Huggle
         return this->talkPageWasRetrieved;
     }
 
-    inline bool WikiUser::IsIP() const
+    //! Whether user is anonymous - all IP and temp accounts are considered that
+    inline bool WikiUser::IsAnon() const
     {
-        return this->IP;
+        return this->isAnon;
     }
 
     inline QDateTime WikiUser::TalkPage_RetrievalTime()

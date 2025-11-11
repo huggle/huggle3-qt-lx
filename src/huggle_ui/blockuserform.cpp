@@ -65,7 +65,7 @@ void BlockUserForm::SetWikiUser(WikiUser *User)
     foreach (QString op, User->GetSite()->GetProjectConfig()->BlockExpiryOptions)
         this->ui->comboBoxDuration->addItem(op);
     this->setWindowTitle(_l("block-title", this->user->Username));
-    if (this->user->IsIP())
+    if (this->user->IsAnon())
     {
         this->ui->checkBoxAnonOnly->setEnabled(true);
         this->ui->comboBoxDuration->lineEdit()->setText(User->GetSite()->GetProjectConfig()->BlockTimeAnon);
@@ -213,7 +213,7 @@ void BlockUserForm::on_btnCheck_clicked()
     this->qUser = new ApiQuery(ActionQuery, this->user->GetSite());
     this->qUser->Target = "user";
     this->qUser->Parameters = "list=blocks&";
-    if (!this->user->IsIP())
+    if (!this->user->IsAnon())
     {
         this->qUser->Parameters += "bkusers=" + QUrl::toPercentEncoding(this->user->Username);
     } else
