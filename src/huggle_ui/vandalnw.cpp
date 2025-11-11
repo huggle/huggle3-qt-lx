@@ -300,6 +300,9 @@ bool VandalNw::IsBot(QString nick, QString host)
         return true;
     if (nick.toLower().endsWith("-bot"))
         return true;
+    // Well this is a bit of a hack, but so is most of this file
+    if (nick == "ClueBot_NG")
+        return true;
     if (host.endsWith("bot.huggle"))
         return true;
     return false;
@@ -769,8 +772,7 @@ void VandalNw::OnIRCLoggedIn(libircclient::Parser *px)
 {
     (void)px;
     this->JoinedMain = true;
-    /// \todo LOCALIZE ME
-    this->Insert("You are now connected to huggle antivandalism network", HAN::MessageType_Info);
+    this->Insert(_l("han-connected"), HAN::MessageType_Info);
     foreach(QString channel, this->Site2Channel.values())
     {
         if (channel.startsWith("#"))
@@ -785,7 +787,6 @@ void VandalNw::OnConnected()
 
 void VandalNw::OnDisconnected()
 {
-    /// \todo LOCALIZE ME
-    this->Insert("Lost connection to antivandalism network", HAN::MessageType_Info);
+    this->Insert(_l("han-disconnected"), HAN::MessageType_Info);
     this->ui->pushButton->setEnabled(false);
 }

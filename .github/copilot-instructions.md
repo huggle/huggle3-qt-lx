@@ -65,6 +65,24 @@ HUGGLE_ERROR("Error occurred");
 HUGGLE_DEBUG("Debug info", verbosity_level);
 ```
 
+#### Localization System
+Huggle uses XML-based localization files stored in `src/huggle_l10n/Localization/` and `src/Localization/`:
+```cpp
+// Use _l() function for all user-facing strings
+UiGeneric::pMessageBox(this, _l("main-title"), _l("main-message"));
+
+// With parameters (use $1, $2, etc. in XML)
+Syslog::HuggleLogs->Log(_l("main-stat", edits_count, reverts_count));
+```
+
+**Adding new localizations:**
+1. Add string to `src/huggle_l10n/Localization/en.xml` and `src/Localization/en.xml`:
+   ```xml
+   <string name="main-new-message">Your message here with $1 parameter</string>
+   ```
+2. Use in code with `_l("main-new-message")` or `_l("main-new-message", param1, param2)`
+3. Never hardcode user-facing strings; always use localization keys
+
 #### Configuration Access
 ```cpp
 // Global config via hcfg singleton
