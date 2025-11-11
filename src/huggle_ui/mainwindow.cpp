@@ -1721,11 +1721,9 @@ void MainWindow::OnTimerTick0()
             {
                 if (*site->UserConfig->Previous_Version > huggle_version)
                 {
-                    //! \todo LOCALIZE THIS
-                    if (UiGeneric::pMessageBox(this, "Do you really want to store the configs",
-                                               "This version of huggle (" + QString(HUGGLE_VERSION) + ") is older than version of huggle that you used last (" +
-                                               site->UserConfig->Previous_Version->ToString() + ") if you continue, some of the settings you stored "\
-                                               "with the newer version may be lost. Do you really want to do that? (clicking no will skip it)",
+                    if (UiGeneric::pMessageBox(this, _l("main-config-version-mismatch-title"),
+                                               _l("main-config-version-mismatch-text", QString(HUGGLE_VERSION), 
+                                                  site->UserConfig->Previous_Version->ToString()),
                                                MessageBoxStyleQuestion, true) == QMessageBox::No)
                         continue;
                 }
@@ -1991,12 +1989,11 @@ bool MainWindow::BrowserPageIsEditable()
     return this->EditablePage;
 }
 
-//! \todo LOCALIZE THIS
 bool MainWindow::CheckEditableBrowserPage()
 {
     if (!this->EditablePage || this->CurrentEdit == nullptr)
     {
-        UiGeneric::pMessageBox(this, "Cannot perform action", _l("main-no-page"), MessageBoxStyleNormal, true);
+        UiGeneric::pMessageBox(this, _l("main-action-unavailable-title"), _l("main-no-page"), MessageBoxStyleNormal, true);
         return false;
     }
     if (hcfg->SystemConfig_RequestDelay)
@@ -2995,8 +2992,7 @@ void MainWindow::on_actionReport_username_triggered()
     }
     if (this->CurrentEdit->User->IsIP())
     {
-        //! \todo Localize me
-        Syslog::HuggleLogs->ErrorLog("You can't report IP address using this feature");
+        Syslog::HuggleLogs->ErrorLog(_l("main-report-ip-not-supported"));
         return;
     }
     delete this->fUaaReportForm;
@@ -3239,14 +3235,12 @@ void MainWindow::on_actionAbort_2_triggered()
         return;
     if (!this->RevertStack.count())
     {
-        //! \todo Localize me
-        Syslog::HuggleLogs->ErrorLog("Nothing to stop");
+        Syslog::HuggleLogs->ErrorLog(_l("main-abort-nothing-to-stop"));
         return;
     }
     if (Configuration::HuggleConfiguration->SystemConfig_InstantReverts)
     {
-        //! \todo Localize me
-        Syslog::HuggleLogs->ErrorLog("Unable to cancel the current operation, you need to disable Instant reverts in preferences for this feature to work");
+        Syslog::HuggleLogs->ErrorLog(_l("main-abort-instant-reverts-enabled"));
         return;
     }
     // we cancel the latest revert query that is waiting in a stack

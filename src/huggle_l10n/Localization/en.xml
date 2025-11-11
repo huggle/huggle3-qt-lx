@@ -899,4 +899,10 @@
   <string name="tip14">You can chat with other active users of Huggle who are using the program right now. You will see them in the "Network" window, if they are online.</string>
   <string name="tip15">If you find other problems with the article but rollback doesn't help, you can press E to edit the article immediately in your default browser (not inside Huggle).</string>
   <string name="tip16">If you accidentally pressed revert button, you may still be able to cancel the ongoing revert by pressing ESC quickly.</string>
+  <string name="main-config-version-mismatch-title">Store configuration?</string>
+  <string name="main-config-version-mismatch-text">This version of Huggle ($1) is older than the version you used last ($2). If you continue, some settings stored with the newer version may be lost. Do you want to continue? (Clicking No will skip saving.)</string>
+  <string name="main-action-unavailable-title">Action unavailable</string>
+  <string name="main-report-ip-not-supported">You can't report IP addresses using this feature</string>
+  <string name="main-abort-nothing-to-stop">Nothing to stop</string>
+  <string name="main-abort-instant-reverts-enabled">Unable to cancel the current operation; you need to disable Instant reverts in preferences for this feature to work</string>
 </resources>
