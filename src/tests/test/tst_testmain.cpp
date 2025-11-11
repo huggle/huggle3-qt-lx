@@ -48,7 +48,7 @@ class HuggleTest : public QObject
         void testCaseTalkPageParser0013() { testTalkPageWarningParser("0013", QDate(2014, 5, 13), 2); }
         void testCaseTalkPageParser0014() { testTalkPageWarningParser("0014", QDate(2014, 5, 13), 4); }
         void testCaseTalkPageParser0015() { testTalkPageWarningParser("0015", QDate(2014, 5, 16), 1); }
-        //! Test if IsIP returns true for users who are IP's
+        //! Test if IsAnon returns true for users who are IP's
         void testCaseWikiUserCheckIP();
         void testCaseTerminalParser();
         void testCaseConfigurationParse_YAML();
@@ -216,13 +216,13 @@ void HuggleTest::testCaseScores()
 
 void HuggleTest::testCaseWikiUserCheckIP()
 {
-    QVERIFY2(Huggle::WikiUser("10.0.0.1", hcfg->Project).IsIP(), "Invalid result for new WikiUser with username of 10.0.0.1, the result of IsIP() was false, but should have been true");
-    QVERIFY2(Huggle::WikiUser("132.185.160.97", hcfg->Project).IsIP(), "Invalid result for new WikiUser with username of 132.185.160.97, the result of IsIP() was false, but should have been true");
-    QVERIFY2(Huggle::WikiUser("150.30.0.56", hcfg->Project).IsIP(), "Invalid result for new WikiUser with username of 150.30.0.56, the result of IsIP() was false, but should have been true");
-    QVERIFY2((Huggle::WikiUser("355.2.0.1", hcfg->Project).IsIP() == false), "Invalid result for new WikiUser with username of 355.2.0.1, the result of IsIP() was true, but should have been false");
-    QVERIFY2((Huggle::WikiUser("Frank", hcfg->Project).IsIP() == false), "Invalid result for new WikiUser with username of IP, the result of IsIP() was true, but should have been false");
-    QVERIFY2((Huggle::WikiUser("Joe", hcfg->Project).IsIP() == false), "Invalid result for new WikiUser with username of IP, the result of IsIP() was true, but should have been false");
-    QVERIFY2((Huggle::WikiUser("2601:7:9380:135:1CCE:4CC0:7B6:8CD5", hcfg->Project).IsIP()), "Invalid result for new WikiUser with username of 2601:7:9380:135:1CCE:4CC0:7B6:8CD5, the result of IsIP() was false, but should have been true");
+    QVERIFY2(Huggle::WikiUser("10.0.0.1", hcfg->Project).IsAnon(), "Invalid result for new WikiUser with username of 10.0.0.1, the result of IsAnon() was false, but should have been true");
+    QVERIFY2(Huggle::WikiUser("132.185.160.97", hcfg->Project).IsAnon(), "Invalid result for new WikiUser with username of 132.185.160.97, the result of IsAnon() was false, but should have been true");
+    QVERIFY2(Huggle::WikiUser("150.30.0.56", hcfg->Project).IsAnon(), "Invalid result for new WikiUser with username of 150.30.0.56, the result of IsAnon() was false, but should have been true");
+    QVERIFY2((Huggle::WikiUser("355.2.0.1", hcfg->Project).IsAnon() == false), "Invalid result for new WikiUser with username of 355.2.0.1, the result of IsAnon() was true, but should have been false");
+    QVERIFY2((Huggle::WikiUser("Frank", hcfg->Project).IsAnon() == false), "Invalid result for new WikiUser with username of IP, the result of IsAnon() was true, but should have been false");
+    QVERIFY2((Huggle::WikiUser("Joe", hcfg->Project).IsAnon() == false), "Invalid result for new WikiUser with username of IP, the result of IsAnon() was true, but should have been false");
+    QVERIFY2((Huggle::WikiUser("2601:7:9380:135:1CCE:4CC0:7B6:8CD5", hcfg->Project).IsAnon()), "Invalid result for new WikiUser with username of 2601:7:9380:135:1CCE:4CC0:7B6:8CD5, the result of IsAnon() was false, but should have been true");
 }
 
 void HuggleTest::testCaseTerminalParser()
