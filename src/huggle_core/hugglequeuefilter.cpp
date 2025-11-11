@@ -50,7 +50,7 @@ HuggleQueueFilter *HuggleQueueFilter::GetFilter(const QString& filter_name, Wiki
         if (filter->QueueName == filter_name)
             return filter;
     }
-    Syslog::HuggleLogs->WarningLog("There is no filter " + filter_name + " on " + site->Name + " falling back to default filter");
+    HUGGLE_DEBUG1("There is no filter " + filter_name + " on " + site->Name + " falling back to default filter");
     return DefaultFilter;
 }
 
