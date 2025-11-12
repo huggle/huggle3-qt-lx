@@ -1128,6 +1128,45 @@ void MainWindow::ReloadShort(const QString& id)
         case HUGGLE_ACCEL_MAIN_EDIT_IN_BROWSER:
             q = this->ui->actionEdit_page_in_browser;
             break;
+        case HUGGLE_ACCEL_MAIN_HISTORY_PAGE:
+            q = this->ui->actionDisplay_history_in_browser;
+            break;
+        case HUGGLE_ACCEL_MAIN_SPEEDY_DELETE:
+            q = this->ui->actionRequest_speedy_deletion;
+            break;
+        case HUGGLE_ACCEL_MAIN_DELETE_PAGE:
+            q = this->ui->actionDelete_page;
+            break;
+        case HUGGLE_ACCEL_MAIN_REMOVE_WHITELIST:
+            q = this->ui->actionRemove_edits_made_by_whitelisted_users;
+            break;
+        case HUGGLE_ACCEL_MAIN_REMOVE_LOW_SCORE:
+            q = this->ui->actionDelete_all_edits_with_score_lower_than_200;
+            break;
+        case HUGGLE_ACCEL_MAIN_INCREASE_BS:
+            q = this->ui->actionIncrease_badness_score_by_20;
+            break;
+        case HUGGLE_ACCEL_MAIN_DECREASE_BS:
+            q = this->ui->actionDecrease_badness_score_by_20;
+            break;
+        case HUGGLE_ACCEL_MAIN_WELCOME:
+            q = this->ui->actionWelcome_user;
+            break;
+        case HUGGLE_ACCEL_MAIN_BLOCK_USER:
+            q = this->ui->actionBlock_user;
+            break;
+        case HUGGLE_ACCEL_MAIN_HELP:
+            q = this->ui->actionContents;
+            break;
+        case HUGGLE_ACCEL_MAIN_PREFERENCES:
+            q = this->ui->actionPreferences;
+            break;
+        case HUGGLE_ACCEL_MAIN_EMERGENCY_ABORT:
+            q = this->ui->actionAbort;
+            break;
+        case HUGGLE_ACCEL_MAIN_FIND:
+            q = this->ui->actionFind;
+            break;
     }
 
     if (q != nullptr)
