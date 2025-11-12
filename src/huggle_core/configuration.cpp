@@ -80,6 +80,19 @@ Configuration::Configuration()
     this->MakeShortcut("main-clear-queue", "shortcut-main-clear-queue", "Ctrl+Space");
     this->MakeShortcut("main-edit", "shortcut-edit", "Shift+E");
     this->MakeShortcut("main-edit-in-browser", "shortcut-edit-in-browser", "E");
+    this->MakeShortcut("main-history-page", "shortcut-history-page", "H");
+    this->MakeShortcut("main-speedy-delete", "shortcut-speedy-delete", "Ctrl+S");
+    this->MakeShortcut("main-delete-page", "shortcut-delete-page", "Ctrl+D");
+    this->MakeShortcut("main-remove-whitelist", "shortcut-remove-whitelist", "Ctrl+Alt+W");
+    this->MakeShortcut("main-remove-low-score", "shortcut-remove-low-score", "Ctrl+Alt+D");
+    this->MakeShortcut("main-increase-bs", "shortcut-increase-bs", "Shift+I");
+    this->MakeShortcut("main-decrease-bs", "shortcut-decrease-bs", "Shift+D");
+    this->MakeShortcut("main-welcome", "shortcut-welcome", "Ctrl+H");
+    this->MakeShortcut("main-block-user", "shortcut-block-user", "Ctrl+B");
+    this->MakeShortcut("main-help", "shortcut-help", "F1");
+    this->MakeShortcut("main-preferences", "shortcut-preferences", "Ctrl+P");
+    this->MakeShortcut("main-emergency-abort", "shortcut-emergency-abort", "Esc");
+    this->MakeShortcut("main-find", "shortcut-find", "Ctrl+F");
     this->ResetMenuShortcuts();
 }
 
@@ -810,6 +823,32 @@ Shortcut::Shortcut(const QString &name, const QString &description)
         else if (name == "main-warn-20")
             this->ID = HUGGLE_ACCEL_MAIN_WARN20;
     }
+    else if (name == "main-history-page")
+        this->ID = HUGGLE_ACCEL_MAIN_HISTORY_PAGE;
+    else if (name == "main-speedy-delete")
+        this->ID = HUGGLE_ACCEL_MAIN_SPEEDY_DELETE;
+    else if (name == "main-delete-page")
+        this->ID = HUGGLE_ACCEL_MAIN_DELETE_PAGE;
+    else if (name == "main-remove-whitelist")
+        this->ID = HUGGLE_ACCEL_MAIN_REMOVE_WHITELIST;
+    else if (name == "main-remove-low-score")
+        this->ID = HUGGLE_ACCEL_MAIN_REMOVE_LOW_SCORE;
+    else if (name == "main-increase-bs")
+        this->ID = HUGGLE_ACCEL_MAIN_INCREASE_BS;
+    else if (name == "main-decrease-bs")
+        this->ID = HUGGLE_ACCEL_MAIN_DECREASE_BS;
+    else if (name == "main-welcome")
+        this->ID = HUGGLE_ACCEL_MAIN_WELCOME;
+    else if (name == "main-block-user")
+        this->ID = HUGGLE_ACCEL_MAIN_BLOCK_USER;
+    else if (name == "main-help")
+        this->ID = HUGGLE_ACCEL_MAIN_HELP;
+    else if (name == "main-preferences")
+        this->ID = HUGGLE_ACCEL_MAIN_PREFERENCES;
+    else if (name == "main-emergency-abort")
+        this->ID = HUGGLE_ACCEL_MAIN_EMERGENCY_ABORT;
+    else if (name == "main-find")
+        this->ID = HUGGLE_ACCEL_MAIN_FIND;
 }
 
 Shortcut::Shortcut(const Shortcut &copy)
