@@ -45,6 +45,8 @@ HAS_PREFIX=0
 PREFIX=""
 BUILD='release'
 BUILD_CHANGED=0
+ARCH_VALUE=""
+EXPECT_ARCH_VALUE=0
 if [ x"$*" != x ];then
     echo "Options used: $*"
 fi
@@ -62,6 +64,8 @@ do
         echo " --folder <folder>: change the default build folder"
         echo " --no-audio: don't build huggle with audio engine"
         echo " --no-colors: suppress colors"
+        echo " --archs <archs>: pass a semicolon-separated list to CMAKE_OSX_ARCHITECTURES"
+        echo " --universal: shortcut for --archs arm64;x86_64"
         echo " --prefix: specify prefix for installation path"
         echo " --enable-profiler: compile built-in profiler"
         echo " --tests: unit tests"
@@ -82,6 +86,11 @@ do
         _BUILD=0
         continue
     fi
+    if [ "$EXPECT_ARCH_VALUE" = "1" ];then
+        EXPECT_ARCH_VALUE=0
+        ARCH_VALUE=$var
+        continue
+    fi
     if [ "$_Q" = "1" ];then
         _Q=0
         QTPATH=$var
@@ -97,6 +106,14 @@ do
     fi
     if [ "$var" = "--prefix" ];then
         HAS_PREFIX=1
+        continue
+    fi
+    if [ "$var" = "--archs" ];then
+        EXPECT_ARCH_VALUE=1
+        continue
+    fi
+    if [ "$var" = "--universal" ];then
+        ARCH_VALUE="arm64;x86_64"
         continue
     fi
     if [ "$var" = "--qtpath" ];then
@@ -145,6 +162,11 @@ do
         continue
     fi
 done
+
+if [ "$EXPECT_ARCH_VALUE" = "1" ];then
+    echo "Error: --archs option requires a value"
+    exit 1
+fi
 
 ok()
 {
@@ -250,6 +272,10 @@ if [ x"$PREFIX" != "x" ];then
 fi
 if [ x"$QTPATH" != "x" ];then
     CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_PREFIX_PATH:PATH=$QTPATH"
+fi
+if [ x"$ARCH_VALUE" != "x" ];then
+    ARCH_ESCAPED=${ARCH_VALUE//;/\\;}
+    CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_OSX_ARCHITECTURES:STRING=$ARCH_ESCAPED"
 fi
 if [ $modules -gt 0 ];then
     CMAKE_ARGS="$CMAKE_ARGS -DHUGGLE_EXT=TRUE"

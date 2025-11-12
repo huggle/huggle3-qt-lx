@@ -7,6 +7,14 @@ else
   QTDIR=~/Qt/5.12.0/clang_64/
 fi
 
+# Default to universal builds unless the caller overrides via HUGGLE_MACOS_ARCHS
+if [ -n "$HUGGLE_MACOS_ARCHS" ]; then
+  MACOS_ARCHS="$HUGGLE_MACOS_ARCHS"
+else
+  MACOS_ARCHS="arm64;x86_64"
+fi
+echo "Building for macOS architectures: $MACOS_ARCHS"
+
 # Get Qt version and split on dots.
 # TODO: Perhaps we can do this in configure instead?
 QTVERSION=`${QTDIR}/bin/qtpaths --qt-version`
@@ -31,7 +39,7 @@ if [ -d release ];then
     exit 1
 fi
 cd .. || exit 1
-./configure ${EXTRA_FLAGS} --qtpath "$QTDIR" --extension || exit 1
+./configure ${EXTRA_FLAGS} --qtpath "$QTDIR" --extension --archs "$MACOS_ARCHS" || exit 1
 cd release || exit 1
 make -j $(sysctl -n hw.ncpu) || exit 1
 cd "$of"
