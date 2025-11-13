@@ -57,9 +57,7 @@ void Huggle::ReloginForm::on_pushButton_ForceExit_clicked()
 void Huggle::ReloginForm::on_pushButton_Relog_clicked()
 {
     // Reinitialize network manager in order to rid of all cookies, session data or cached info
-    delete Query::NetworkManager;
-    Query::NetworkManager = new QNetworkAccessManager();
-    Query::NetworkManager->setCookieJar(new QNetworkCookieJar(Query::NetworkManager));
+    Core::HuggleCore->ResetNetworkManager();
 
     hcfg->SystemConfig_StorePassword = this->ui->checkBox_RemeberPw->isChecked();
     this->ui->pushButton_Relog->setEnabled(false);
