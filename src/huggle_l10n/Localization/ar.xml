@@ -723,7 +723,7 @@
   <string name="han-connecting">الاتصال بشبكة مكافحة التخريب في هغل</string>
   <string name="han-already-connected">لا يتصل بشبكة هغل لمكافحة التخريب لأنه متصل بالفعل</string>
   <string name="han-already-connecting">يُرجَى الانتظار، أنا أتصل بشبكة هغل لمكافحة التخريب بالفعل...</string>
-  <string name="han-disconnected">تم قطع اتصالك بHAN</string>
+  <string name="han-disconnected" fuzzy="true">تم قطع اتصالك بHAN</string>
   <string name="han-network">الشبكة</string>
   <string name="han-send">إرسال</string>
   <string name="error-loggedout">تم الخروج من الحساب، قيد تسجيل الدخول...</string>
@@ -931,4 +931,10 @@
   <string name="tip14">يمكنك الدردشة مع المستخدمين النشطين الآخرين لهغل الذين يستخدمون البرنامج في الوقت الحالي، سوف تراهم في نافذة \"الشبكة\"، إذا كانوا متصلين بالإنترنت.</string>
   <string name="tip15">إذا وجدت مشاكل أخرى في المقالة ولكن لا يساعد الاسترجاع، فيمكنك الضغط على ث لتحرير المقال على الفور في المتصفح الافتراضي (وليس داخل هغل).</string>
   <string name="tip16">لو أنك ضغطت على زر الاسترجاع بالخطأ، فربما تكون قادرا على إلغاء الاسترجاع الحالي عن طريق الضغط على ESC بسرعة.</string>
+  <string name="main-config-version-mismatch-title">تكوين المتجر؟</string>
+  <string name="main-config-version-mismatch-text">هذا الإصدار من Huggle ( $1 ) أقدم من الإصدار الذي استخدمته سابقًا ( $2 ). إذا تابعت، فقد تفقد بعض الإعدادات المخزنة في الإصدار الأحدث. هل تريد المتابعة؟ (النقر على \"لا\" سيمنع الحفظ).</string>
+  <string name="main-action-unavailable-title">الإجراء غير متاح</string>
+  <string name="main-report-ip-not-supported">لا يمكنك الإبلاغ عن عناوين IP باستخدام هذه الميزة</string>
+  <string name="main-abort-nothing-to-stop">لا شيء يوقفه</string>
+  <string name="main-abort-instant-reverts-enabled">غير قادر على إلغاء العملية الحالية؛ تحتاج إلى تعطيل عمليات الإرجاع الفورية في التفضيلات حتى تعمل هذه الميزة</string>
 </resources>

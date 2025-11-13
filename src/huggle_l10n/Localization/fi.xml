@@ -255,7 +255,7 @@
   <string name="warning-submit">Lähetä</string>
   <string name="warninglist-no-warning-title">Ei varoitusta</string>
   <string name="han-already-connecting">Odota, yhdistän jo HAN:iin...</string>
-  <string name="han-disconnected">Yhteytesi HAN:iin katkaistiin</string>
+  <string name="han-disconnected" fuzzy="true">Yhteytesi HAN:iin katkaistiin</string>
   <string name="han-network">Verkko</string>
   <string name="han-send">Lähetä</string>
   <string name="error-pagemissing">Sivua ei ole olemassa</string>

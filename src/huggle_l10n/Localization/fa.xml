@@ -725,7 +725,7 @@
   <string name="han-connecting">در حال ارتباط با شبکه ضد خرابکاری هاگل</string>
   <string name="han-already-connected">به شبکه ضدخرابکاری هاگل متصل نمی‌شود زیرا از پیش متصل است</string>
   <string name="han-already-connecting">لطفاً صبر کنید، من از پیش در حال اتصال به شبکه ضدخرابکاری هاگل هستم...</string>
-  <string name="han-disconnected">شما از شبکه ضدخرابکاری هاگل قطع اتصال شدید</string>
+  <string name="han-disconnected" fuzzy="true">شما از شبکه ضدخرابکاری هاگل قطع اتصال شدید</string>
   <string name="han-network">شبکه</string>
   <string name="han-send">ارسال</string>
   <string name="error-loggedout">از حساب خارج شده است، مجدداً در حال وارد شدن است ...</string>

@@ -656,7 +656,7 @@
   <string name="han-connecting">হাগল অ্যান্টি ধ্বংসপ্রবণতা নেটওয়ার্কে সংযুক্ত করা হচ্ছে</string>
   <string name="han-already-connected">HAN-এ সংযোগ করা হচ্ছে না কারণ এটি ইতিমধ্যে সংযুক্ত</string>
   <string name="han-already-connecting">অনুগ্রহ করে অপেক্ষা করুন, আমি ইতিমধ্যে HAN-এর সাথে সংযোগ করছি...</string>
-  <string name="han-disconnected">আপনি HAN থেকে বিচ্ছিন্ন হয়ে গেছেন</string>
+  <string name="han-disconnected" fuzzy="true">আপনি HAN থেকে বিচ্ছিন্ন হয়ে গেছেন</string>
   <string name="han-network">নেটওয়ার্ক</string>
   <string name="han-send">পাঠান</string>
   <string name="error-loggedout">অ্যাকাউন্ট থেকে বেরিয়ে যাওয়া হয়েছে, আবার প্রবেশ করানো হচ্ছে...</string>

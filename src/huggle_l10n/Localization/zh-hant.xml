@@ -141,7 +141,7 @@
   <string name="config-use-rollback">使用軟體回退</string>
   <string name="config-welcome-empty-page">發送歡迎信息到作出了良好編輯的只有空對話頁的用戶</string>
   <string name="config-conflicts-revert">自動解決與其他用戶在同一頁面回退或更改的編輯衝突</string>
-  <string name="config-instant-reverts">使用立即回退（非常快，但執行後無法撤銷）</string>
+  <string name="config-instant-reverts">使用即時回退（非常快，但執行後無法撤銷）</string>
   <string name="config-reverts-multiple">由同一使用者的多次編輯回退：</string>
   <string name="config-revert-wait">回退延遲 (秒)</string>
   <string name="config-revert">回退</string>
@@ -709,7 +709,7 @@
   <string name="han-connecting">正在連線至 Huggle 反破壞網路</string>
   <string name="han-already-connected">已連線至HAN，不須再次連線</string>
   <string name="han-already-connecting">請稍後，我正在連線至HAN...</string>
-  <string name="han-disconnected">您已從HAN失去連結</string>
+  <string name="han-disconnected">與反破壞網路失去連接</string>
   <string name="han-network">網路</string>
   <string name="han-send">傳送</string>
   <string name="error-loggedout">帳號已登出，重新登入中…</string>
@@ -917,4 +917,12 @@
   <string name="tip14">您可以與其他正使用此應用程式的 Huggle 活躍使用者聊天。只要他們有在線上，可以在「網路」視窗裡找到他們。</string>
   <string name="tip15">如果您找到其它無法用回退解決的條目問題，您可以按下 E 鍵來在您預設的瀏覽器（而不是在 Huggle）裡立即編輯條目。</string>
   <string name="tip16">若您不小心按到回退按鈕，仍可快速按ESC鍵來試著取消回退。</string>
+  <string name="main-config-version-mismatch-title">儲存組態設定？</string>
+  <string name="main-config-version-mismatch-text">此版本的 Huggle（$1）比您上次使用的版本（$2）舊。如果您繼續使用的話，在新版本儲存的一些設定可能會遺失，是否要繼續？（點擊「否」將跳過儲存。）</string>
+  <string name="main-action-unavailable-title">操作不可用</string>
+  <string name="main-report-ip-not-supported">您無法使用此功能來報告 IP 位址。</string>
+  <string name="main-abort-nothing-to-stop">無需停止事件</string>
+  <string name="main-abort-instant-reverts-enabled">無法取消目前操作，您需要在偏好設定中停用「即時回退」才能使其生效。</string>
+  <string name="main-clear-talk-page-summary">已清理討論頁的舊模板</string>
+  <string name="han-connected">您現已連接到 Huggle 反破壞網路</string>
 </resources>

@@ -712,7 +712,7 @@
   <string name="han-connecting">Verbindung mit dem Huggle-Anti-Vandalismus-Netzwerk</string>
   <string name="han-already-connected">Verbindung mit HAN wurde nicht hergestellt, da es bereits verbunden ist.</string>
   <string name="han-already-connecting">Bitte warten. Ich verbinde bereits mit HAN</string>
-  <string name="han-disconnected">Du wurdest von HAN getrennt</string>
+  <string name="han-disconnected" fuzzy="true">Du wurdest von HAN getrennt</string>
   <string name="han-network">Netzwerk</string>
   <string name="han-send">Senden</string>
   <string name="error-loggedout">Benutzer wurde abgemeldet, logge wieder ein...</string>

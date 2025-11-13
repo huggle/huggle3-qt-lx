@@ -667,7 +667,7 @@
   <string name="han-connecting">Connessione alla rete antivandalismo Huggle</string>
   <string name="han-already-connected">Non ci si connette con HAN perché è già collegato</string>
   <string name="han-already-connecting">Attendi, sto connettendo a HAN...</string>
-  <string name="han-disconnected">Sei stato disconnesso da HAN</string>
+  <string name="han-disconnected">Connessione persa alla rete antivandalismo</string>
   <string name="han-network">Rete</string>
   <string name="han-send">Invia</string>
   <string name="error-loggedout">L\'utenza è stata disconnessa, riconnessione...</string>
@@ -835,4 +835,7 @@
   <string name="tip3">La maggior parte delle preferenze sono memorizzate sul wiki in [[Special:MyPage/huggle.yaml.js]]. Puoi anche cambiarle manualmente direttamente lì.</string>
   <string name="tip4">Praticamente ogni oggetto sullo schermo può essere chiuso in sicurezza (eccetto la barra di navigazione).</string>
   <string name="tip8">Premendo G la modifica verrà marcata come “modifica corretta”. Agli altri verrà segnalato che tale modifica può essere ignorata, verrà decrementato il punteggio di cattiveria dell’utente e facoltativamente gli verrà inviato un messaggio di benvenuto.</string>
+  <string name="main-action-unavailable-title">Azione non disponibile</string>
+  <string name="main-report-ip-not-supported">Non è possibile segnalare gli indirizzi IP utilizzando questa funzione</string>
+  <string name="han-connected">Ora sei connesso alla rete antivandalismo di Huggle</string>
 </resources>

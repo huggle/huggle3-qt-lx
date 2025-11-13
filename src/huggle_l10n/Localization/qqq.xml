@@ -32,6 +32,7 @@
 * Wladek92
 * Андрей
 * ديفيد
+* बडा काजी
 -->
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="all">
   <string name="name">{{doc-important|Change this to the autonym of language that you are translating into. DO NOT DIRECTLY TRANSLATE “ENGLISH”!!!}}\nThis is a name of the language as shown on the login form.\n{{Identical|English}}</string>
@@ -239,7 +240,7 @@
   <string name="main-system-statistics">{{Identical|Statistics}}</string>
   <string name="main-system-options">{{Identical|Options}}</string>
   <string name="main-system-logout">{{Identical|Log out}}</string>
-  <string name="main-system-abort">Menu entry to cancel current operation\n{{Identical|Abort}}</string>
+  <string name="main-system-abort">रोक्नुहोस्</string>
   <string name="main-system-change-provider">Menu entry to change recent changes provider (wiki/api-feed or irc)</string>
   <string name="main-system-change-provider-irc">IRC (Internet Relay Chat).\n{{Identical|IRC}}</string>
   <string name="main-system-change-provider-wiki">{{Identical|Wiki}}</string>

@@ -719,7 +719,7 @@
   <string name="han-connecting">Conectando à rede de antivandalismo do Huggle</string>
   <string name="han-already-connected">Não foi possível conectar a HAN porque já está conectada</string>
   <string name="han-already-connecting">Por favor aguarde, estou me conectando a HAN...</string>
-  <string name="han-disconnected">Você foi desconectado da HAN</string>
+  <string name="han-disconnected" fuzzy="true">Você foi desconectado da HAN</string>
   <string name="han-network">Rede</string>
   <string name="han-send">Enviar</string>
   <string name="error-loggedout">Você saiu de sua conta de usuário, entrando na conta...</string>

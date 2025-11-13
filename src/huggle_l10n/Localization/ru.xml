@@ -733,7 +733,7 @@
   <string name="han-connecting">Подключение к антивандальной сети Huggle (HAN)</string>
   <string name="han-already-connected">Подключение к HAN не производится, поскольку он уже подключен</string>
   <string name="han-already-connecting">Пожалуйста, подождите, я уже подключаюсь к HAN...</string>
-  <string name="han-disconnected">Вы были отключены от HAN</string>
+  <string name="han-disconnected" fuzzy="true">Вы были отключены от HAN</string>
   <string name="han-network">Сеть</string>
   <string name="han-send">Отправить</string>
   <string name="error-loggedout">Произошло разъединение, повторный вход...</string>

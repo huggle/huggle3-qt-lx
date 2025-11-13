@@ -668,7 +668,7 @@
   <string name="missing-warning">$1 అనే హెచ్చరిక మూస ఏదీ లేదు</string>
   <string name="han-already-connected">HAN ఈసరికే కనెక్టయి ఉంది కాబట్టి ఇప్పుడూ కనెక్టవడం లేదు</string>
   <string name="han-already-connecting">ఆగండి, HAN కు కనెక్టవుతునాను...</string>
-  <string name="han-disconnected">HAN నుంచి విడివడ్డారు</string>
+  <string name="han-disconnected" fuzzy="true">HAN నుంచి విడివడ్డారు</string>
   <string name="han-network">నెట్‌వర్కు</string>
   <string name="han-send">పంపించు</string>
   <string name="error-loggedout">ఖాతా లాగౌటయింది, తిరిగి లాగినవుతున్నాం...</string>

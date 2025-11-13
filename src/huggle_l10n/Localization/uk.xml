@@ -704,7 +704,7 @@
   <string name="han-connecting">Підключення до антивандальної мережі Huggle</string>
   <string name="han-already-connected">Підключення до антивандальної мережі Huggle (HAN) вже було проведено</string>
   <string name="han-already-connecting">Будь ласка, зачекайте, вже підключаюся до антивандальної мережі Huggle (HAN)…</string>
-  <string name="han-disconnected">Вас було від’єднано від антивандальної мережі Huggle (HAN)</string>
+  <string name="han-disconnected" fuzzy="true">Вас було від’єднано від антивандальної мережі Huggle (HAN)</string>
   <string name="han-network">Мережа</string>
   <string name="han-send">Надіслати</string>
   <string name="error-loggedout">Сталося роз’єднання, виконую повторний вхід…</string>

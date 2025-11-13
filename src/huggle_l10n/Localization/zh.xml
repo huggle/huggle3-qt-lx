@@ -725,7 +725,7 @@
   <string name="han-connecting">正在连接Huggle反破坏网络（HAN）</string>
   <string name="han-already-connected">没有连接到HAN，因为它已经连接</string>
   <string name="han-already-connecting">请稍候，我正在连接HAN...</string>
-  <string name="han-disconnected">您已从HAN断开</string>
+  <string name="han-disconnected" fuzzy="true">您已从HAN断开</string>
   <string name="han-network">网络</string>
   <string name="han-send">发送</string>
   <string name="error-loggedout">账户已退出，重新登入中…</string>

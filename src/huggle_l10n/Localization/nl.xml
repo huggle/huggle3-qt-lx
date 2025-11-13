@@ -711,7 +711,7 @@
   <string name="han-connecting">Verbinding maken met het anti-vandalismenetwerk van Huggle</string>
   <string name="han-already-connected">Geen verbinding met de HAN omdat deze al verbonden is</string>
   <string name="han-already-connecting">Een ogenblik geduld, ik ben al aan het verbinden met de HAN…</string>
-  <string name="han-disconnected">De verbinding met de HAN is verbroken</string>
+  <string name="han-disconnected" fuzzy="true">De verbinding met de HAN is verbroken</string>
   <string name="han-network">Netwerk</string>
   <string name="han-send">Verzenden</string>
   <string name="error-loggedout">Account is afgemeld, wordt opnieuw aangemeld…</string>
@@ -919,4 +919,10 @@
   <string name="tip14">U kunt chatten met andere actieve gebruikers van Huggle die het programma nu gebruiken. U ziet ze in het venster \"Netwerk\", als ze online zijn.</string>
   <string name="tip15">Als u andere problemen met de pagina ondervindt en het terugdraaien niet helpt, kunt u E toetsen om de pagina direct in uw standaardbrowser te bewerken (niet in Huggle).</string>
   <string name="tip16">Als u per ongeluk op de knop Terugdraaien hebt gedrukt, kunt u de lopende bewerking mogelijk nog annuleren door snel ESC te toetsen.</string>
+  <string name="main-config-version-mismatch-title">Instellingen opslaan?</string>
+  <string name="main-config-version-mismatch-text">Deze versie van Huggle ($1) is ouder dan de versie die u het laatst gebruikte ($2). Als u doorgaat, kunnen sommige instellingen die met de nieuwere versie zijn opgeslagen, verloren gaan. Wilt u doorgaan? Als u op Nee klikt, wordt het opslaan overgeslagen.</string>
+  <string name="main-action-unavailable-title">Handeling niet beschikbaar</string>
+  <string name="main-report-ip-not-supported">U kunt met deze functie geen IP-adressen rapporteren</string>
+  <string name="main-abort-nothing-to-stop">Niets om te stoppen</string>
+  <string name="main-abort-instant-reverts-enabled">De huidige bewerking kan niet worden geannuleerd. U moet \'Direct terugdraaien\' in de voorkeuren uitschakelen om deze functie te laten werken.</string>
 </resources>

@@ -703,7 +703,7 @@
   <string name="han-connecting">Conectarea la rețeaua anti-vandalism Huggle</string>
   <string name="han-already-connected">Nu mă conectez la HAN deoarece este deja conectat</string>
   <string name="han-already-connecting">Vă rugăm să așteptați, deja mă conectez la HAN ...</string>
-  <string name="han-disconnected">Ați fost deconectat de la HAN</string>
+  <string name="han-disconnected" fuzzy="true">Ați fost deconectat de la HAN</string>
   <string name="han-network">Rețea</string>
   <string name="han-send">Trimite</string>
   <string name="error-loggedout">Contul nu mai este autentificat, reautentific...</string>

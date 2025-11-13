@@ -713,7 +713,7 @@
   <string name="han-connecting">Đang kết nối tới mạng lưới chống phá hoại Huggle</string>
   <string name="han-already-connected">Sẽ không kết nối tới HAN vì nó đã được kết nối rồi</string>
   <string name="han-already-connecting">Xin vui lòng đợi, tôi đang kết nối với HAN rồi...</string>
-  <string name="han-disconnected">Bạn đã bị ngắt kết nối khỏi HAN</string>
+  <string name="han-disconnected" fuzzy="true">Bạn đã bị ngắt kết nối khỏi HAN</string>
   <string name="han-network">Mạng lưới</string>
   <string name="han-send">Gửi</string>
   <string name="error-loggedout">Tài khoản đã bị đăng xuất, đang đăng nhập lại...</string>
