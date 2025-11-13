@@ -1,4 +1,4 @@
-# This is a powershell script that prepare huggle project so that it can be built
+ # This is a powershell script that prepare huggle project so that it can be built
 
 #  Copyright (c) 2015 - 2019, Petr Bena
 #  All rights reserved.
@@ -43,8 +43,27 @@ param
     [string]$vcredist = "vcredist_x86.exe",
     [string]$cmake_param = "",
     [string]$vcinstall_path = "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\",
-    [int]$qt_version = 5
+    [int]$qt_version = 5,
+    [string]$platform = "Win32"
 )
+
+function Invoke-Logged {
+    param(
+        [Parameter(Mandatory=$true)][string]$File,
+        [Parameter(Mandatory=$true)][string]$Args,
+        [string]$Out = "$PWD\cmd.out",
+        [string]$Err = "$PWD\cmd.err"
+    )
+    $p = Start-Process -FilePath $File -ArgumentList $Args -NoNewWindow -Wait -PassThru `
+         -RedirectStandardOutput $Out -RedirectStandardError $Err
+    if ($p.ExitCode -ne 0) {
+        Write-Host "`n---- $File FAILED (exit $($p.ExitCode)) ----"
+        Write-Host "See:"
+        Write-Host "  $Out"
+        Write-Host "  $Err"
+        exit $p.ExitCode
+    }
+}
 
 Write-Host "Script parameters:"
 Write-Host "MSBuild Path: $msbuild_path"
@@ -190,19 +209,19 @@ if ($qt_version -eq 6)
 {
     $qt_params = "-DQT6_BUILD=true -DQT5_BUILD=false"
 }
-if ($python)
-{
-    cmake ..\..\src\ -G "$cmake_generator" -DWEB_ENGINE=true -DPYTHON_BUILD=true -DCMAKE_PREFIX_PATH:STRING=$qt_path -Wno-dev -DHUGGLE_EXT=true $qt_params $cmake_param
-} else
-{
-    cmake ..\..\src\ -G "$cmake_generator" -DWEB_ENGINE=true -DPYTHON_BUILD=false -DCMAKE_PREFIX_PATH:STRING=$qt_path -Wno-dev -DHUGGLE_EXT=true $qt_params $cmake_param
-}
+
+$pyFlag = if ($python) { "true" } else { "false" }
+$cmakeArgs = '..\..\src\ -G "{0}" -A Win32 -DWEB_ENGINE=true -DPYTHON_BUILD={1} -DCMAKE_PREFIX_PATH:STRING="{2}" -Wno-dev -DHUGGLE_EXT=true {3} {4} --log-level=VERBOSE' `
+             -f $cmake_generator, $pyFlag, $qt_path, $qt_params, $cmake_param
+
+Invoke-Logged -File "cmake" -Args $cmakeArgs -Out "$PWD\cmake.out" -Err "$PWD\cmake.err"
+
 if ($mingw)
 {
     & mingw32-make.exe
 } else
 {
-    & $msbuild_path "HuggleProject.sln" "/p:Configuration=Release" "/v:minimal"
+    & $msbuild_path "HuggleProject.sln" "/p:Configuration=Release" "/v:minimal" "/p:Platform=$platform"
 }
 cd $root_path
 echo "Preparing the package structure"
@@ -247,7 +266,8 @@ else
 cp $openssl_path\*.dll release
 
 # Set the environment variable needed by windeployqt, todo: check if it's already set
-$env:VCINSTALLDIR = $vcinstall_path
+# Not needed if we properly use vars
+#$env:VCINSTALLDIR = $vcinstall_path
 
 Invoke-Expression "$qt_path\bin\windeployqt.exe release\huggle_ui.dll"
 
@@ -262,3 +282,5 @@ if ($mingw)
 & $nsis_path $nsis_file
 
 Read-Host -Prompt "Press Enter to continue"
+ 
+
