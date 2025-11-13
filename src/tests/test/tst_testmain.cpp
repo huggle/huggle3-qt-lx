@@ -220,9 +220,12 @@ void HuggleTest::testCaseWikiUserCheckIP()
     QVERIFY2(Huggle::WikiUser("132.185.160.97", hcfg->Project).IsAnon(), "Invalid result for new WikiUser with username of 132.185.160.97, the result of IsAnon() was false, but should have been true");
     QVERIFY2(Huggle::WikiUser("150.30.0.56", hcfg->Project).IsAnon(), "Invalid result for new WikiUser with username of 150.30.0.56, the result of IsAnon() was false, but should have been true");
     QVERIFY2((Huggle::WikiUser("355.2.0.1", hcfg->Project).IsAnon() == false), "Invalid result for new WikiUser with username of 355.2.0.1, the result of IsAnon() was true, but should have been false");
-    QVERIFY2((Huggle::WikiUser("Frank", hcfg->Project).IsAnon() == false), "Invalid result for new WikiUser with username of IP, the result of IsAnon() was true, but should have been false");
-    QVERIFY2((Huggle::WikiUser("Joe", hcfg->Project).IsAnon() == false), "Invalid result for new WikiUser with username of IP, the result of IsAnon() was true, but should have been false");
+    QVERIFY2((Huggle::WikiUser("Frank", hcfg->Project).IsAnon() == false), "Invalid result for new WikiUser with username of Frank, the result of IsAnon() was true, but should have been false");
+    QVERIFY2((Huggle::WikiUser("Joe", hcfg->Project).IsAnon() == false), "Invalid result for new WikiUser with username of Joe, the result of IsAnon() was true, but should have been false");
     QVERIFY2((Huggle::WikiUser("2601:7:9380:135:1CCE:4CC0:7B6:8CD5", hcfg->Project).IsAnon()), "Invalid result for new WikiUser with username of 2601:7:9380:135:1CCE:4CC0:7B6:8CD5, the result of IsAnon() was false, but should have been true");
+    QVERIFY2((Huggle::WikiUser("~2025-33137-16", hcfg->Project).IsAnon() == true), "Invalid result for new WikiUser with username of ~2025-33137-16, the result of IsAnon() was false, but should have been true");
+    QVERIFY2((Huggle::WikiUser("~2025-31256-01", hcfg->Project).IsAnon() == true), "Invalid result for new WikiUser with username of ~2025-31256-01, the result of IsAnon() was false, but should have been true");
+    QVERIFY2((Huggle::WikiUser("~20256-31256-04561", hcfg->Project).IsAnon() == false), "Invalid result for new WikiUser with username of ~20256-31256-04561, the result of IsAnon() was true, but should have been false");
 }
 
 void HuggleTest::testCaseTerminalParser()
