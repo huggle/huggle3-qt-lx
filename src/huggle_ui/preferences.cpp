@@ -20,6 +20,7 @@
 #include <QFile>
 #include <QDir>
 #include <QMenu>
+#include <QCloseEvent>
 #include <huggle_core/core.hpp>
 #include <huggle_core/configuration.hpp>
 #include <huggle_core/exception.hpp>
@@ -215,6 +216,25 @@ Preferences::~Preferences()
     delete this->ui;
 }
 
+void Preferences::closeEvent(QCloseEvent *event)
+{
+    if (this->forceClose)
+    {
+        event->accept();
+        return;
+    }
+
+    int result = UiGeneric::pMessageBox(this, _l("preferences-unsaved-title"),
+                                       _l("preferences-unsaved-text"),
+                                       MessageBoxStyleQuestion);
+    if (result == QMessageBox::No)
+    {
+        event->ignore();
+        return;
+    }
+    event->accept();
+}
+
 static void SetValue(HuggleQueueFilterMatch matching, QComboBox *item)
 {
     switch (matching)
@@ -404,7 +424,7 @@ void Huggle::Preferences::on_checkBox_InstantReverts_clicked()
 
 void Preferences::RecordKeys(int row, int column)
 {
-    if (this->RewritingForm)
+    if (this->shortcutsRewriting)
         return;
     if (column != 2)
     {
@@ -443,13 +463,13 @@ void Preferences::RecordKeys(int row, int column)
         }
     }
 
-    this->ModifiedForm = true;
-    this->RewritingForm = true;
+    this->shortcutsModified = true;
+    this->shortcutsRewriting = true;
     this->IgnoreConflicts = false;
     hcfg->Shortcuts[id].Modified = true;
     hcfg->Shortcuts[id].QAccel = key;
     this->ui->tableWidget_2->setItem(row, column, new QTableWidgetItem(key));
-    this->RewritingForm = false;
+    this->shortcutsRewriting = false;
     return;
 
     revert:
@@ -848,19 +868,22 @@ void Huggle::Preferences::on_pushButton_OK_clicked()
     {
         hcfg->UserConfig->GoNext = Configuration_OnNext_Next;
     }
-    if (this->ModifiedForm)
+    if (this->shortcutsModified)
     {
         // we need to reload the shortcuts in main form
         hcfg->ReloadOfMainformNeeded = true;
     }
     Configuration::SaveSystemConfig();
     MainWindow::HuggleMain->ReloadInterface();
+
     this->hide();
 }
 
 void Huggle::Preferences::on_pushButton_CloseWin_clicked()
 {
+    this->forceClose = true;
     this->close();
+    this->forceClose = false;
 }
 
 void Huggle::Preferences::on_pushButton_QueueSave_clicked()

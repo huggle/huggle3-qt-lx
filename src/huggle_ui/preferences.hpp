@@ -20,6 +20,7 @@
 #include <QHash>
 
 class QCheckBox;
+class QCloseEvent;
 
 namespace Ui
 {
@@ -38,6 +39,9 @@ namespace Huggle
             explicit Preferences(QWidget *parent = nullptr);
             ~Preferences();
             void EnableQueues(bool enabled);
+
+        protected:
+            void closeEvent(QCloseEvent *event) override;
 
         private slots:
             void on_listWidget_itemSelectionChanged();
@@ -84,10 +88,11 @@ namespace Huggle
             WikiSite *Site;
             bool IgnoreConflicts = false;
             bool isNowReloadingFilters = false;
-            bool RewritingForm = false;
-            bool ModifiedForm = false;
+            bool shortcutsRewriting = false;
+            bool shortcutsModified = false;
             int queueID = 0;
             bool queueModified = false;
+            bool forceClose = false;
             Ui::Preferences *ui;
     };
 }

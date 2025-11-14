@@ -17,6 +17,7 @@
 
 namespace Huggle
 {
+    //! Huggle Window base class, it provides some basic save / restore layout functionality shared by all Huggle windows
     class HUGGLE_EX_UI HW : public QDialog
     {
         Q_OBJECT
