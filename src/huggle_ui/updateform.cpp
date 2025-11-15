@@ -92,7 +92,7 @@ void UpdateForm::Check()
 
     HUGGLE_DEBUG1("checking for update at " + this->qData->URL);
     this->qData->Process();
-    connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTick()));
+    connect(this->timer, &QTimer::timeout, this, &UpdateForm::OnTick);
     this->qData->IncRef();
     this->timer->start(HUGGLE_TIMER);
 #endif
@@ -549,13 +549,13 @@ void UpdateForm::PreparationFinish()
     QString program = this->TempPath + QDir::separator() + "huggle.exe";
     QString arguments = "--huggleinternal-update \"" + this->RootPath + "\" -v --syslog \"" + this->TempPath + QDir::separator() + "update.log\"";
     /*
-    QProcess *ClientProcess = new QProcess( this );
+    QProcess *ClientProcess = new QProcess(this);
     // exit calling application on called application start
-    connect( ClientProcess, SIGNAL( started() ), this, SLOT( Exit() ) );
+    connect(ClientProcess, &QProcess::started, this, &UpdateForm::Exit);
     // receive errors
-    connect(ClientProcess, SIGNAL(error(QProcess::ProcessError)), this, SLOT(ProcessError(QProcess::ProcessError)));
+    connect(ClientProcess, &QProcess::errorOccurred, this, &UpdateForm::ProcessError);
 
-    ClientProcess->startDetached( program, arguments );*/
+    ClientProcess->startDetached(program, arguments);*/
 #ifdef __GNUC__
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wmissing-field-initializers"
@@ -682,9 +682,9 @@ void UpdateForm::ProcessDownload()
     }
     this->url = QUrl(this->inst->Source);
     this->reply = this->manager->get(QNetworkRequest(this->url));
-    connect(this->reply, SIGNAL(finished()), this, SLOT(httpDownloadFinished()));
-    connect(this->reply, SIGNAL(readyRead()), this, SLOT(httpReadyRead()));
-    connect(this->reply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(updateDownloadProgress(qint64,qint64)));
+    connect(this->reply, &QNetworkReply::finished, this, &UpdateForm::httpDownloadFinished);
+    connect(this->reply, &QIODevice::readyRead, this, &UpdateForm::httpReadyRead);
+    connect(this->reply, &QNetworkReply::downloadProgress, this, &UpdateForm::updateDownloadProgress);
 }
 
 void UpdateForm::Write(QString message)
@@ -833,7 +833,7 @@ void UpdateForm::NextInstruction()
 void UpdateForm::Update()
 {
     this->TempPath = QApplication::applicationDirPath() + QDir::separator();
-    connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTick()));
+    connect(this->timer, &QTimer::timeout, this, &UpdateForm::OnTick);
     LOG("Reading manifest");
     QFile file(QApplication::applicationDirPath() + "/updater.xml");
     if (!file.open(QIODevice::ReadOnly))

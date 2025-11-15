@@ -20,7 +20,7 @@ WhitelistForm::WhitelistForm(QWidget *parent) : QDialog(parent), ui(new Ui::Whit
 {
     this->ui->setupUi(this);
     this->timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(OnTick()));
+    connect(timer, &QTimer::timeout, this, &WhitelistForm::OnTick);
     foreach (WikiSite *wiki, Configuration::HuggleConfiguration->Projects)
     {
         // register every project we use

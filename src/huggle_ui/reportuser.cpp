@@ -74,7 +74,7 @@ ReportUser::ReportUser(QWidget *parent, bool browser) : HW("reportuser", this, p
     this->ui->buttonReport->setText(_l("report-history"));
     QStringList header;
     this->tPageDiff = new QTimer(this);
-    connect(this->tPageDiff, SIGNAL(timeout()), this, SLOT(OnPageDiffTimer()));
+    connect(this->tPageDiff, &QTimer::timeout, this, &ReportUser::OnPageDiffTimer);
     header << _l("page") <<
               _l("time") <<
               _l("link") <<
@@ -91,7 +91,7 @@ ReportUser::ReportUser(QWidget *parent, bool browser) : HW("reportuser", this, p
     this->isSendingMessageNow = false;
     this->reportTs = "null";
     this->tReportPageCheck = new QTimer(this);
-    connect(this->tReportPageCheck, SIGNAL(timeout()), this, SLOT(OnReportCheckTimer()));
+    connect(this->tReportPageCheck, &QTimer::timeout, this, &ReportUser::OnReportCheckTimer);
     this->blockUser = nullptr;
     this->reportText = "";
     this->loading = false;
@@ -186,7 +186,7 @@ bool ReportUser::SetUser(WikiUser *user)
                                       "ledir=newer&letitle=User:" + QUrl::toPercentEncoding(this->reportedUser->Username);
     this->qBlockHistory->Process();
     this->tReportUser = new QTimer(this);
-    connect(this->tReportUser, SIGNAL(timeout()), this, SLOT(OnReportUserTimer()));
+    connect(this->tReportUser, &QTimer::timeout, this, &ReportUser::OnReportUserTimer);
     this->tReportUser->start(HUGGLE_TIMER);
     return true;
 }
@@ -717,4 +717,3 @@ void ReportUser::on_buttonCheckReported_clicked()
     this->qReport->Process();
     this->tReportPageCheck->start(HUGGLE_TIMER);
 }
-

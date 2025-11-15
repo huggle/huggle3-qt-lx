@@ -191,7 +191,7 @@ unsigned int HuggleJS::create_timer(int interval, const QString& function, bool 
 {
     unsigned int timer_id = this->lastTimer++;
     QTimer *timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(OnTime()));
+    connect(timer, &QTimer::timeout, this, &HuggleJS::OnTime);
     this->timers.insert(timer_id, timer);
     this->timerFunctions.insert(timer, function);
     if (start)

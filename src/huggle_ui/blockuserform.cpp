@@ -43,7 +43,7 @@ BlockUserForm::BlockUserForm(QWidget *parent) : HW("blockuser", this, parent), u
     this->ui->cbMessageTarget->setText(_l("block-message-user"));
     this->ui->labelDuration->setText(_l("block-duration"));
     this->timer = new QTimer(this);
-    connect(this->timer, SIGNAL(timeout()), this, SLOT(onTick()));
+    connect(this->timer, &QTimer::timeout, this, &BlockUserForm::onTick);
     this->RestoreWindow();
 }
 

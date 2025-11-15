@@ -28,7 +28,7 @@ void HuggleWeb::DisplayPage(const QString &url)
 {
     this->ui->webView->load(url);
     this->ui->webView->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
-    connect(this->ui->webView, SIGNAL(linkClicked(QUrl)), this, SLOT(Click(QUrl)));
+    connect(this->ui->webView, &QWebView::linkClicked, this, &HuggleWeb::Click);
 }
 
 void HuggleWeb::RenderHtml(const QString &html)

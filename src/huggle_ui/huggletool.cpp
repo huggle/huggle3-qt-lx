@@ -50,7 +50,7 @@ HuggleTool::HuggleTool(QWidget *parent) : QDockWidget(parent), ui(new Ui::Huggle
     foreach (WikiSite *site, Configuration::HuggleConfiguration->Projects)
         this->ui->comboBoxProject->addItem(site->Name);    
     this->ui->comboBoxProject->setCurrentIndex(0);
-    connect(this->tick, SIGNAL(timeout()), this, SLOT(onTick()));
+    connect(this->tick, &QTimer::timeout, this, &HuggleTool::onTick);
     this->ui->lineEdit_UserName->setStyleSheet(this->getColor("black"));
     this->ui->lineEdit_PageName->setStyleSheet(this->getColor("black"));
     this->queryPhase = 0;

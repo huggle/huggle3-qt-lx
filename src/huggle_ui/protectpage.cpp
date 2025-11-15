@@ -84,7 +84,7 @@ void ProtectPage::on_btnProtect_clicked()
     QueryPool::HugglePool->AppendQuery(this->qProtection);
     this->qProtection->Process();
     this->tt = new QTimer(this);
-    connect(this->tt, SIGNAL(timeout()), this, SLOT(onTick()));
+    connect(this->tt, &QTimer::timeout, this, &ProtectPage::onTick);
     this->tt->start(HUGGLE_TIMER);
 }
 
@@ -122,4 +122,3 @@ void ProtectPage::Protect()
     this->qProtection = nullptr;
     this->close();
 }
-

@@ -96,7 +96,7 @@ void HistoryForm::Read()
     delete this->t1;
     this->t1 = new QTimer(this);
     this->Clear();
-    connect(t1, SIGNAL(timeout()), this, SLOT(onTick01()));
+    connect(t1, &QTimer::timeout, this, &HistoryForm::onTick01);
     this->t1->start(HUGGLE_TIMER);
 }
 
@@ -422,7 +422,7 @@ void HistoryForm::GetEdit(long revid, QString prev, QString user, QString html, 
     MainWindow::HuggleMain->LockPage();
     MainWindow::HuggleMain->Browser->RenderHtml(html);
     this->t1 = new QTimer();
-    connect(this->t1, SIGNAL(timeout()), this, SLOT(onTick01()));
+    connect(this->t1, &QTimer::timeout, this, &HistoryForm::onTick01);
     if (!turtlemode)
     {
         this->t1->start(HUGGLE_TIMER);

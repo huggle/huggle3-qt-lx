@@ -225,7 +225,7 @@ int HuggleUIJS::show_persistent_overlay(QString text, int x, int y, int width, i
     OverlayBox *ob = MainWindow::HuggleMain->ShowOverlay(text, x, y, 0, width, height, false);
     int id = this->lastOB++;
     ob->SetPersistent(true);
-    connect(ob, SIGNAL(destroyed(QObject*)), this, SLOT(OverlayClosed(QObject*)));
+    connect(ob, &QObject::destroyed, this, &HuggleUIJS::OverlayClosed);
     this->overlayBoxes.insert(id, ob);
     return id;
 }
@@ -234,7 +234,7 @@ bool HuggleUIJS::destroy_persistent_overlay(int overlay)
 {
     if (!this->overlayBoxes.contains(overlay))
         return false;
-    disconnect(this->overlayBoxes[overlay], SIGNAL(destroyed(QObject*)), this, SLOT(OverlayClosed(QObject*)));
+    disconnect(this->overlayBoxes[overlay], &QObject::destroyed, this, &HuggleUIJS::OverlayClosed);
     this->overlayBoxes[overlay]->Close();
     this->overlayBoxes.remove(overlay);
     return true;

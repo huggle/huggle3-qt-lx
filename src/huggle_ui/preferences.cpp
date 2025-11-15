@@ -84,7 +84,7 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     this->ui->tableWidget_3->setShowGrid(false);
     this->ui->tableWidget_3->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
     this->ui->tableWidget_3->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    connect(this->ui->tableWidget_Shortcuts, SIGNAL(cellChanged(int,int)), this, SLOT(RecordKeys(int,int)));
+    connect(this->ui->tableWidget_Shortcuts, &QTableWidget::cellChanged, this, &Preferences::RecordKeys);
     // Set up context menu for the queue filter list
     this->ui->listWidget->setContextMenuPolicy(Qt::CustomContextMenu);
 #if QT_VERSION >= 0x050000
@@ -360,7 +360,7 @@ void Preferences::reloadUI()
         this->ui->tableWidget_3->setItem(rw, 0, new QTableWidgetItem(ms->GetName()));
         QCheckBox *Item = new QCheckBox();
         // Connect checkbox signal to our slot
-        connect(Item, SIGNAL(toggled(bool)), this, SLOT(onNamespaceBoxToggled(bool)));
+        connect(Item, &QCheckBox::toggled, this, &Preferences::onNamespaceBoxToggled);
         this->namespaceBoxes.insert(Item, ms->GetID());
         this->ui->tableWidget_3->setCellWidget(rw, 1, Item);
         rw++;

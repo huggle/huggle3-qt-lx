@@ -37,7 +37,7 @@ UserinfoForm::UserinfoForm(QWidget *parent) : QDockWidget(parent), ui(new Ui::Us
     this->User = nullptr;
     this->ui->setupUi(this);
     this->ui->pushButton->setEnabled(false);
-    connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTick()));
+    connect(this->timer, &QTimer::timeout, this, &UserinfoForm::OnTick);
     QStringList header;
     this->setWindowTitle(_l("userinfo-generic"));
     this->ui->pushButton->setText(_l("userinfo-no-user"));

@@ -71,7 +71,7 @@ namespace Huggle
             QString Hook_OnMainStatusbarUpdate(QString text);
             int GetHookID(const QString &hook) override;
         public slots:
-            void MenuClicked();
+            void MenuClicked(bool checked = false);
         private:
             static QList<UiScript*> uiScripts;
             void registerClasses() override;

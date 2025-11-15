@@ -106,7 +106,7 @@ void RevertQuery::Process()
         delete this->timer;
     this->StartTime = QDateTime::currentDateTime();
     this->timer = new QTimer(this);
-    connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTick()));
+    connect(this->timer, &QTimer::timeout, this, &RevertQuery::OnTick);
     this->timer->start(100);
     // we need to register the consumer here because of timer so that in case we decided to
     // decref this query while timer is still running we don't run to segfault

@@ -30,10 +30,10 @@ UAAReport::UAAReport(QWidget *parent) : HW("uaareport", this, parent), ui(new Ui
     this->ui->setupUi(this);
     this->User = nullptr;
     this->Timer = new QTimer(this);
-    connect(this->Timer, SIGNAL(timeout()), this, SLOT(onTick()));
+    connect(this->Timer, &QTimer::timeout, this, &UAAReport::onTick);
     this->page = nullptr;
     this->TimerCheck = new QTimer(this);
-    connect(this->TimerCheck, SIGNAL(timeout()), this, SLOT(onStartOfSearch()));
+    connect(this->TimerCheck, &QTimer::timeout, this, &UAAReport::onStartOfSearch);
     this->reportPageContents = "";
     this->OptionalReason = "";
     this->UAAReportReason = "";

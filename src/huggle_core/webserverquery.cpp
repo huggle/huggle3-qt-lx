@@ -32,8 +32,8 @@ WebserverQuery::~WebserverQuery()
 {
     if (this->reply != nullptr)
     {
-        QObject::disconnect(this->reply, SIGNAL(finished()), this, SLOT(Finished()));
-        QObject::disconnect(this->reply, SIGNAL(readyRead()), this, SLOT(ReadData()));
+        QObject::disconnect(this->reply, &QNetworkReply::finished, this, &WebserverQuery::Finished);
+        QObject::disconnect(this->reply, &QIODevice::readyRead, this, &WebserverQuery::ReadData);
         this->disconnect(this->reply);
         this->reply->abort();
         this->reply->disconnect(this);
@@ -67,8 +67,8 @@ void WebserverQuery::Process()
         this->reply = Query::NetworkManager->get(request);
     }
     request.setRawHeader("User-Agent", Configuration::HuggleConfiguration->WebRequest_UserAgent);
-    QObject::connect(this->reply, SIGNAL(finished()), this, SLOT(Finished()));
-    QObject::connect(this->reply, SIGNAL(readyRead()), this, SLOT(ReadData()));
+    QObject::connect(this->reply, &QNetworkReply::finished, this, &WebserverQuery::Finished);
+    QObject::connect(this->reply, &QIODevice::readyRead, this, &WebserverQuery::ReadData);
     Huggle::Syslog::HuggleLogs->DebugLog("Processing webserver request " + this->URL, 2);
 }
 

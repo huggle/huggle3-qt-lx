@@ -30,8 +30,8 @@ WLQuery::~WLQuery()
 {
     if (this->networkReply != nullptr)
     {
-        QObject::disconnect(this->networkReply, SIGNAL(finished()), this, SLOT(finished()));
-        QObject::disconnect(this->networkReply, SIGNAL(readyRead()), this, SLOT(readData()));
+        QObject::disconnect(this->networkReply, &QNetworkReply::finished, this, &WLQuery::finished);
+        QObject::disconnect(this->networkReply, &QIODevice::readyRead, this, &WLQuery::readData);
         this->networkReply->abort();
         this->networkReply->disconnect(this);
         this->networkReply->deleteLater();
@@ -56,8 +56,8 @@ void WLQuery::Kill()
 {
     if (this->networkReply != nullptr)
     {
-        QObject::disconnect(this->networkReply, SIGNAL(finished()), this, SLOT(finished()));
-        QObject::disconnect(this->networkReply, SIGNAL(readyRead()), this, SLOT(readData()));
+        QObject::disconnect(this->networkReply, &QNetworkReply::finished, this, &WLQuery::finished);
+        QObject::disconnect(this->networkReply, &QIODevice::readyRead, this, &WLQuery::readData);
         if (this->status == StatusProcessing)
         {
             this->status = StatusKilled;
@@ -135,10 +135,10 @@ void WLQuery::Process()
         this->networkReply = Query::NetworkManager->post(request, data);
     }
     request.setRawHeader("User-Agent", Configuration::HuggleConfiguration->WebRequest_UserAgent);
-    QObject::connect(this->networkReply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(writeProgress(qint64,qint64)));
-    QObject::connect(this->networkReply, SIGNAL(uploadProgress(qint64,qint64)), this, SLOT(writeProgress(qint64,qint64)));
-    QObject::connect(this->networkReply, SIGNAL(finished()), this, SLOT(finished()));
-    QObject::connect(this->networkReply, SIGNAL(readyRead()), this, SLOT(readData()));
+    QObject::connect(this->networkReply, &QNetworkReply::downloadProgress, this, &WLQuery::writeProgress);
+    QObject::connect(this->networkReply, &QNetworkReply::uploadProgress, this, &WLQuery::writeProgress);
+    QObject::connect(this->networkReply, &QNetworkReply::finished, this, &WLQuery::finished);
+    QObject::connect(this->networkReply, &QIODevice::readyRead, this, &WLQuery::readData);
 }
 
 void WLQuery::readData()

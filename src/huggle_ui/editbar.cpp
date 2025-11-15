@@ -30,7 +30,7 @@ using namespace Huggle;
 EditBar::EditBar(QWidget *parent) : QDockWidget(parent), ui(new Ui::EditBar)
 {
     this->ui->setupUi(this);
-    connect(&this->timer, SIGNAL(timeout()), this, SLOT(OnReload()));
+    connect(&this->timer, &QTimer::timeout, this, &EditBar::OnReload);
     this->ui->label_2->setText(_l("user"));
     this->ui->label->setText(_l("page"));
     this->pageSX = 0;

@@ -29,7 +29,7 @@ using namespace Huggle;
 SpeedyForm::SpeedyForm(QWidget *parent) : HW("speedyform", this, parent), ui(new Ui::SpeedyForm)
 {
     this->timer = new QTimer(this);
-    this->connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTick()));
+    connect(this->timer, &QTimer::timeout, this, &SpeedyForm::OnTick);
     this->ui->setupUi(this);
     this->ui->cbSendWarning->setText(_l("speedy-notifycreator"));
     this->ui->lbReason->setText(_l("speedy-reason"));

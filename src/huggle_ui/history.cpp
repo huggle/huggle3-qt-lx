@@ -34,10 +34,10 @@ History::History(QWidget *parent) : QDockWidget(parent), ui(new Ui::History)
     this->ui->setupUi(this);
     this->setWindowTitle(_l("userhistory-title"));
     this->timerRetrievePageInformation = new QTimer(this);
-    connect(this->timerRetrievePageInformation, SIGNAL(timeout()), this, SLOT(Tick()));
+    connect(this->timerRetrievePageInformation, &QTimer::timeout, this, &History::Tick);
     this->ui->tableWidget->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(this->ui->tableWidget, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(ContextMenu(QPoint)));
-    connect(this->ui->tableWidget, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(on_tableWidget_doubleClicked(QModelIndex)));
+    connect(this->ui->tableWidget, &QWidget::customContextMenuRequested, this, &History::ContextMenu);
+    connect(this->ui->tableWidget, &QTableWidget::doubleClicked, this, &History::on_tableWidget_doubleClicked);
     this->ui->tableWidget->setColumnCount(5);
     QStringList header;
     header << _l("[[id]]") << _l("[[type]]") << _l("[[target]]") << _l("result") << _l("project");
@@ -53,7 +53,7 @@ History::History(QWidget *parent) : QDockWidget(parent), ui(new Ui::History)
     this->ui->tableWidget->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 #endif
     this->timerDisplayEditFromHistLs = new QTimer();
-    connect(this->timerDisplayEditFromHistLs, SIGNAL(timeout()), this, SLOT(Display()));
+    connect(this->timerDisplayEditFromHistLs, &QTimer::timeout, this, &History::Display);
     this->ui->tableWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
     this->ui->tableWidget->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
     this->ui->tableWidget->setShowGrid(false);

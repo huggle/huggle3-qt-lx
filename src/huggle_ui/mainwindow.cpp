@@ -211,9 +211,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
             provider_xml->setCheckable(true);
             provider_wiki->setCheckable(true);
             provider_irc->setCheckable(true);
-            connect(provider_xml, SIGNAL(triggered()), this, SLOT(SetProviderXml()));
-            connect(provider_wiki, SIGNAL(triggered()), this, SLOT(SetProviderWiki()));
-            connect(provider_irc, SIGNAL(triggered()), this, SLOT(SetProviderIRC()));
+            connect(provider_xml, &QAction::triggered, this, &MainWindow::SetProviderXml);
+            connect(provider_wiki, &QAction::triggered, this, &MainWindow::SetProviderWiki);
+            connect(provider_irc, &QAction::triggered, this, &MainWindow::SetProviderIRC);
             menu->addAction(provider_xml);
             menu->addAction(provider_irc);
             menu->addAction(provider_wiki);
@@ -239,7 +239,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->tabifyDockWidget(this->SystemLog, this->Queries);
     this->generalTimer = new QTimer(this);
     //this->ui->actionTag_2->setVisible(false);
-    connect(this->generalTimer, SIGNAL(timeout()), this, SLOT(OnMainTimerTick()));
+    connect(this->generalTimer, &QTimer::timeout, this, &MainWindow::OnMainTimerTick);
     this->generalTimer->start(HUGGLE_TIMER);
     QFile *layout;
     if (QFile::exists(Configuration::GetConfigurationPath() + "mainwindow_state"))
@@ -288,7 +288,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
             if (name.endsWith(","))
                 name = name.mid(0, name.length() - 1);
             QAction *action = new QAction(name, this);
-            connect(action, SIGNAL(triggered()), this, SLOT(Go()));
+            connect(action, &QAction::triggered, this, &MainWindow::Go);
             action->setToolTip(url);
             list.append(action);
         }
@@ -300,20 +300,20 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@irc");
     this->tCheck = new QTimer(this);
     HUGGLE_PROFILER_PRINT_TIME("MainWindow::MainWindow(QWidget *parent)@hooks");
-    connect(this->tCheck, SIGNAL(timeout()), this, SLOT(TimerCheckTPOnTick()));
+    connect(this->tCheck, &QTimer::timeout, this, &MainWindow::TimerCheckTPOnTick);
     this->tStatusBarRefreshTimer = new QTimer(this);
-    connect(this->tStatusBarRefreshTimer, SIGNAL(timeout()), this, SLOT(OnStatusBarRefreshTimerTick()));
+    connect(this->tStatusBarRefreshTimer, &QTimer::timeout, this, &MainWindow::OnStatusBarRefreshTimerTick);
     this->tCheck->start(20000);
     this->tStatusBarRefreshTimer->start(500);
     if (!Events::Global)
         throw new Exception("Global events aren't instantiated now", BOOST_CURRENT_FUNCTION);
-    connect(Events::Global, SIGNAL(QueryPool_FinishPreprocess(WikiEdit*)), this, SLOT(OnFinishPreProcess(WikiEdit*)));
-    connect(Events::Global, SIGNAL(WikiEdit_OnNewHistoryItem(HistoryItem*)), this, SLOT(OnWikiEditHist(HistoryItem*)));
-    connect(Events::Global, SIGNAL(WikiUser_Updated(WikiUser*)), this, SLOT(OnWikiUserUpdate(WikiUser*)));
-    connect(Events::Global, SIGNAL(System_ErrorMessage(QString,QString)), this, SLOT(OnError(QString,QString)));
-    connect(Events::Global, SIGNAL(System_Message(QString,QString)), this, SLOT(OnMessage(QString,QString)));
-    connect(Events::Global, SIGNAL(System_WarningMessage(QString,QString)), this, SLOT(OnWarning(QString,QString)));
-    connect(Events::Global, SIGNAL(System_YesNoQuestion(QString,QString,bool*)), this, SLOT(OnQuestion(QString,QString,bool*)));
+    connect(Events::Global, &Events::QueryPool_FinishPreprocess, this, &MainWindow::OnFinishPreProcess);
+    connect(Events::Global, &Events::WikiEdit_OnNewHistoryItem, this, &MainWindow::OnWikiEditHist);
+    connect(Events::Global, &Events::WikiUser_Updated, this, &MainWindow::OnWikiUserUpdate);
+    connect(Events::Global, &Events::System_ErrorMessage, this, &MainWindow::OnError);
+    connect(Events::Global, &Events::System_Message, this, &MainWindow::OnMessage);
+    connect(Events::Global, &Events::System_WarningMessage, this, &MainWindow::OnWarning);
+    connect(Events::Global, &Events::System_YesNoQuestion, this, &MainWindow::OnQuestion);
     this->EnableEditing(false);
     UiHooks::MainWindow_OnLoad(this);
 }
@@ -1891,16 +1891,18 @@ void MainWindow::on_actionBack_triggered()
     this->GoBackward();
 }
 
-void MainWindow::CustomWelcome()
+void MainWindow::CustomWelcome(bool checked)
 {
+    Q_UNUSED(checked);
     if (!this->EditingChecks())
         return;
     QAction *welcome = reinterpret_cast<QAction*>(QObject::sender());
     this->welcomeCurrentUser(HuggleParser::GetValueFromSSItem(welcome->data().toString()));
 }
 
-void MainWindow::CustomRevert()
+void MainWindow::CustomRevert(bool checked)
 {
+    Q_UNUSED(checked);
     if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_REVERT))
         return;
     if (!this->EditingChecks() || !this->CheckRevertable())
@@ -1921,8 +1923,9 @@ void MainWindow::CustomRevert()
     this->Revert(summary);
 }
 
-void MainWindow::CustomRevertWarn()
+void MainWindow::CustomRevertWarn(bool checked)
 {
+    Q_UNUSED(checked);
     if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_REVERT_AND_WARN))
         return;
     if (!this->EditingChecks() || !this->CheckRevertable())
@@ -1951,8 +1954,9 @@ void MainWindow::CustomRevertWarn()
     }
 }
 
-void MainWindow::CustomWarn()
+void MainWindow::CustomWarn(bool checked)
 {
+    Q_UNUSED(checked);
     if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_WARN))
         return;
     if (!this->EditingChecks())
@@ -2018,7 +2022,7 @@ void MainWindow::Exit()
     this->fWaiting->show();
     this->fWaiting->Status(10, _l("whitelist-download"));
     this->wlt = new QTimer(this);
-    connect(this->wlt, SIGNAL(timeout()), this, SLOT(OnTimerTick0()));
+    connect(this->wlt, &QTimer::timeout, this, &MainWindow::OnTimerTick0);
     this->wlt->start(800);
     Configuration::SaveSystemConfig();
 }
@@ -2630,9 +2634,9 @@ void MainWindow::ReloadInterface()
             this->WarnMenu->addAction(actionb);
             this->RevertSummaries->addAction(action);
             r++;
-            connect(action, SIGNAL(triggered()), this, SLOT(CustomRevert()));
-            connect(actiona, SIGNAL(triggered()), this, SLOT(CustomRevertWarn()));
-            connect(actionb, SIGNAL(triggered()), this, SLOT(CustomWarn()));
+            connect(action, &QAction::triggered, this, &MainWindow::CustomRevert);
+            connect(actiona, &QAction::triggered, this, &MainWindow::CustomRevertWarn);
+            connect(actionb, &QAction::triggered, this, &MainWindow::CustomWarn);
         }
     }
 
@@ -2649,7 +2653,7 @@ void MainWindow::ReloadInterface()
             action->setData(qv);
             this->WelcomeMenu->addAction(action);
             r++;
-            connect(action, SIGNAL(triggered()), this, SLOT(CustomWelcome()));
+            connect(action, &QAction::triggered, this, &MainWindow::CustomWelcome);
         }
     }
 
@@ -3339,8 +3343,9 @@ void MainWindow::on_actionReload_menus_triggered()
     this->ReloadInterface();
 }
 
-void MainWindow::SetProviderIRC()
+void MainWindow::SetProviderIRC(bool checked)
 {
+    Q_UNUSED(checked);
     QAction *action = reinterpret_cast<QAction*>(QObject::sender());
     if (!this->ActionSites.contains(action))
         throw new Huggle::Exception("There is no such a site in hash table", BOOST_CURRENT_FUNCTION);
@@ -3348,8 +3353,9 @@ void MainWindow::SetProviderIRC()
     this->ChangeProvider(wiki, HUGGLE_FEED_PROVIDER_IRC);
 }
 
-void MainWindow::SetProviderWiki()
+void MainWindow::SetProviderWiki(bool checked)
 {
+    Q_UNUSED(checked);
     QAction *action = reinterpret_cast<QAction*>(QObject::sender());
     if (!this->ActionSites.contains(action))
         throw new Huggle::Exception("There is no such a site in hash table", BOOST_CURRENT_FUNCTION);
@@ -3357,8 +3363,9 @@ void MainWindow::SetProviderWiki()
     this->ChangeProvider(wiki, HUGGLE_FEED_PROVIDER_WIKI);
 }
 
-void MainWindow::SetProviderXml()
+void MainWindow::SetProviderXml(bool checked)
 {
+    Q_UNUSED(checked);
     QAction *action = reinterpret_cast<QAction*>(QObject::sender());
     if (!this->ActionSites.contains(action))
         throw new Huggle::Exception("There is no such a site in hash table", BOOST_CURRENT_FUNCTION);
@@ -3414,8 +3421,9 @@ void MainWindow::on_actionMy_Contributions_triggered()
                                     QUrl::toPercentEncoding(hcfg->SystemConfig_UserName));
 }
 
-void MainWindow::Go()
+void MainWindow::Go(bool checked)
 {
+    Q_UNUSED(checked);
     QAction *action = reinterpret_cast<QAction*>(QObject::sender());
     QDesktopServices::openUrl(QString(Configuration::GetProjectWikiURL() + action->toolTip()));
 }

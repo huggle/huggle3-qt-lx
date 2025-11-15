@@ -209,8 +209,9 @@ int UiScript::GetHookID(const QString &hook)
     return Script::GetHookID(hook);
 }
 
-void UiScript::MenuClicked()
+void UiScript::MenuClicked(bool checked)
 {
+    Q_UNUSED(checked);
     QAction *menu = dynamic_cast<QAction*>(QObject::sender());
     if (!this->scriptMenusByAction.contains(menu))
     {
@@ -247,7 +248,7 @@ ScriptMenu::ScriptMenu(UiScript *s, QMenu *parent, QString text, QString fc, boo
     this->item->setCheckable(checkable);
     if (parent)
         parent->insertAction(before, this->item);
-    UiScript::connect(this->item, SIGNAL(triggered()), this->script, SLOT(MenuClicked()));
+    UiScript::connect(this->item, &QAction::triggered, this->script, &UiScript::MenuClicked);
 }
 
 ScriptMenu::~ScriptMenu()

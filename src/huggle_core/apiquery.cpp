@@ -364,16 +364,16 @@ void ApiQuery::Process()
     }
     if (!this->HiddenQuery)
         HUGGLE_DEBUG("Processing api request " + this->URL, 6);
-    QObject::connect(this->reply, SIGNAL(finished()), this, SLOT(finished()));
-    QObject::connect(this->reply, SIGNAL(readyRead()), this, SLOT(readData()));
+    QObject::connect(this->reply, &QNetworkReply::finished, this, &ApiQuery::finished);
+    QObject::connect(this->reply, &QIODevice::readyRead, this, &ApiQuery::readData);
 }
 
 void ApiQuery::Kill()
 {
     if (this->reply != nullptr)
     {
-        QObject::disconnect(this->reply, SIGNAL(finished()), this, SLOT(finished()));
-        QObject::disconnect(this->reply, SIGNAL(readyRead()), this, SLOT(readData()));
+        QObject::disconnect(this->reply, &QNetworkReply::finished, this, &ApiQuery::finished);
+        QObject::disconnect(this->reply, &QIODevice::readyRead, this, &ApiQuery::readData);
         if (this->status == StatusProcessing)
         {
             if (this->Result == nullptr)

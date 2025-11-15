@@ -28,7 +28,7 @@ using namespace Huggle;
 HuggleFeedProviderXml::HuggleFeedProviderXml(WikiSite *site) : HuggleFeed(site)
 {
     this->pinger = new QTimer();
-    connect(this->pinger, SIGNAL(timeout()), this, SLOT(OnPing()));
+    connect(this->pinger, &QTimer::timeout, this, &HuggleFeedProviderXml::OnPing);
     this->networkSocket = nullptr;
 }
 
@@ -63,17 +63,17 @@ bool HuggleFeedProviderXml::Start()
     }
     delete this->networkSocket;
     this->networkSocket = new QTcpSocket();
-    connect(this->networkSocket, SIGNAL(readyRead()), this, SLOT(OnReceive()));
+    connect(this->networkSocket, &QTcpSocket::readyRead, this, &HuggleFeedProviderXml::OnReceive);
 #ifdef QT6_BUILD
-    connect(this->networkSocket, SIGNAL(errorOccurred(QAbstractSocket::SocketError)), this, SLOT(OnError(QAbstractSocket::SocketError)));
+    connect(this->networkSocket, &QAbstractSocket::errorOccurred, this, &HuggleFeedProviderXml::OnError);
 #else
-    connect(this->networkSocket, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(OnError(QAbstractSocket::SocketError)));
+    connect(this->networkSocket, &QAbstractSocket::error, this, &HuggleFeedProviderXml::OnError);
 #endif
     this->isConnecting = true;
     this->isWorking = true;
     this->networkSocket->connectToHost(hcfg->GlobalConfig_Xmlrcs, hcfg->GlobalConfig_XmlrcsPort);
     // we need to handle the connection later
-    connect(this->networkSocket, SIGNAL(connected()), this, SLOT(OnConnect()));
+    connect(this->networkSocket, &QTcpSocket::connected, this, &HuggleFeedProviderXml::OnConnect);
     return true;
 }
 

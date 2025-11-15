@@ -69,7 +69,7 @@ LoginForm::LoginForm(QWidget *parent) : HW("login", this, parent), ui(new Ui::Lo
     this->ui->tableWidget->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
     this->ui->tableWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
     this->timer = new QTimer(this);
-    connect(this->timer, SIGNAL(timeout()), this, SLOT(OnTimerTick()));
+    connect(this->timer, &QTimer::timeout, this, &LoginForm::OnTimerTick);
     this->resetForm();
     this->ui->checkBoxUseHTTPS->setChecked(hcfg->SystemConfig_UsingSSL);
     this->setWindowFlags(this->windowFlags() & ~Qt::WindowContextHelpButtonHint);
@@ -1645,4 +1645,3 @@ void LoginForm::on_Language_currentIndexChanged(int index)
     Localizations::HuggleLocalizations->PreferredLanguage = lang;
     this->Localize();
 }
-

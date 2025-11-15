@@ -37,7 +37,7 @@ ReloginForm::ReloginForm(WikiSite *site, QWidget *parent) : QDialog(parent), ui(
     if (!hcfg->SystemConfig_StorePassword)
         this->ui->checkBox->setEnabled(false);
     this->Localize();
-    connect(this->reloginTimer, SIGNAL(timeout()), this, SLOT(ReloginTick()));
+    connect(this->reloginTimer, &QTimer::timeout, this, &ReloginForm::ReloginTick);
     if (hcfg->SystemConfig_Autorelog && hcfg->SystemConfig_StorePassword)
         this->ui->pushButton_Relog->click();
 }

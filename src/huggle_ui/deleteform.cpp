@@ -148,7 +148,7 @@ void DeleteForm::on_deleteButton_clicked()
 
     // we need to wait for the deletion to finish before we can close the form
     this->tDelete = new QTimer(this);
-    connect(this->tDelete, SIGNAL(timeout()), this, SLOT(OnTick()));
+    connect(this->tDelete, &QTimer::timeout, this, &DeleteForm::OnTick);
     this->tDelete->start(HUGGLE_TIMER);
 }
 

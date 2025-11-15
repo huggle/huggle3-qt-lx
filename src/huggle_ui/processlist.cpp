@@ -41,7 +41,7 @@ ProcessList::ProcessList(QWidget *parent) : QDockWidget(parent), ui(new Ui::Proc
     this->ui->tableWidget->verticalHeader()->setVisible(false);
     this->ui->tableWidget->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
     this->ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    connect(this->ui->tableWidget, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(ContextMenu(QPoint)));
+    connect(this->ui->tableWidget, &QWidget::customContextMenuRequested, this, &ProcessList::ContextMenu);
     if (Configuration::HuggleConfiguration->SystemConfig_DynamicColsInList)
     {
 #if QT_VERSION >= 0x050000
@@ -63,8 +63,8 @@ ProcessList::ProcessList(QWidget *parent) : QDockWidget(parent), ui(new Ui::Proc
     this->ui->tableWidget->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
     this->ui->tableWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
     this->ui->tableWidget->setShowGrid(false);
-    connect(Events::Global, SIGNAL(QueryPool_Remove(Query*)), this, SLOT(OnQueryPoolRemove(Query*)));
-    connect(Events::Global, SIGNAL(QueryPool_Update(Query*)), this, SLOT(OnQueryPoolUpdate(Query*)));
+    connect(Events::Global, &Events::QueryPool_Remove, this, &ProcessList::OnQueryPoolRemove);
+    connect(Events::Global, &Events::QueryPool_Update, this, &ProcessList::OnQueryPoolUpdate);
     this->Removed = new QList<ProcessListRemovedItem*>();
 }
 
