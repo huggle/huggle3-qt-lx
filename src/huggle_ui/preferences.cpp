@@ -44,7 +44,7 @@ static void SetDefaults(QComboBox *item)
 Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(new Ui::Preferences)
 {
     this->ui->setupUi(this);
-    this->ui->tableWidget_2->setColumnCount(3);
+    this->ui->tableWidget_Shortcuts->setColumnCount(3);
     QStringList headers;
     SetDefaults(this->ui->cbqBots);
     SetDefaults(this->ui->cbqFrd);
@@ -61,12 +61,12 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     this->ui->cbProviders->addItem("IRC");
     this->ui->cbProviders->addItem("XmlRcs");
     headers << _l("config-function") << _l("config-description") << _l("config-shortcut");
-    this->ui->tableWidget_2->setHorizontalHeaderLabels(headers);
-    this->ui->tableWidget_2->verticalHeader()->setVisible(false);
-    this->ui->tableWidget_2->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
-    this->Reload2();
-    this->ui->tableWidget_2->setShowGrid(false);
-    this->ui->tableWidget_2->resizeRowsToContents();
+    this->ui->tableWidget_Shortcuts->setHorizontalHeaderLabels(headers);
+    this->ui->tableWidget_Shortcuts->verticalHeader()->setVisible(false);
+    this->ui->tableWidget_Shortcuts->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
+    this->reloadShortcuts();
+    this->ui->tableWidget_Shortcuts->setShowGrid(false);
+    this->ui->tableWidget_Shortcuts->resizeRowsToContents();
     // headers
     this->ui->tableWidget->setColumnCount(5);
     this->setWindowTitle(_l("config-title"));
@@ -84,7 +84,7 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     this->ui->tableWidget_3->setShowGrid(false);
     this->ui->tableWidget_3->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
     this->ui->tableWidget_3->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    connect(this->ui->tableWidget_2, SIGNAL(cellChanged(int,int)), this, SLOT(RecordKeys(int,int)));
+    connect(this->ui->tableWidget_Shortcuts, SIGNAL(cellChanged(int,int)), this, SLOT(RecordKeys(int,int)));
     // Set up context menu for the queue filter list
     this->ui->listWidget->setContextMenuPolicy(Qt::CustomContextMenu);
 #if QT_VERSION >= 0x050000
@@ -96,10 +96,10 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
 #endif
     this->ui->tableWidget->setShowGrid(false);
     int c = 0;
-    this->Site = hcfg->Projects.at(0);
+    this->defaultSite = hcfg->Projects.at(0);
     foreach (WikiSite *site, hcfg->Projects)
         this->ui->cbSites->addItem(site->Name);
-    this->Reload();
+    this->reloadUI();
     this->ui->comboBox_WatchlistPreference->addItem(_l("preferences-watchlist-watch"));
     this->ui->comboBox_WatchlistPreference->addItem(_l("preferences-watchlist-unwatch"));
     this->ui->comboBox_WatchlistPreference->addItem(_l("preferences-watchlist-preferences"));
@@ -200,7 +200,7 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
 #endif
 
     // options
-    this->ResetItems();
+    this->resetItems();
     this->on_checkBox_RequireDelay_clicked();
     this->on_checkBox_InstantReverts_clicked();
 
@@ -211,7 +211,7 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
 
 Preferences::~Preferences()
 {
-    foreach (QCheckBox *i, this->NamespaceBoxes.keys())
+    foreach (QCheckBox *i, this->namespaceBoxes.keys())
         delete i;
     delete this->ui;
 }
@@ -264,21 +264,21 @@ void Huggle::Preferences::on_listWidget_itemSelectionChanged()
             return;
         }
     }
-    if (!HuggleQueueFilter::Filters.contains(this->Site))
+    if (!HuggleQueueFilter::Filters.contains(this->defaultSite))
         throw new Huggle::Exception("There is no such a wiki site", BOOST_CURRENT_FUNCTION);
     int id = this->ui->listWidget->currentRow();
-    if (id < 0 || id >= HuggleQueueFilter::Filters[this->Site]->count())
+    if (id < 0 || id >= HuggleQueueFilter::Filters[this->defaultSite]->count())
     {
         return;
     }
-    if (!HuggleQueueFilter::Filters[this->Site]->at(id)->IsChangeable())
+    if (!HuggleQueueFilter::Filters[this->defaultSite]->at(id)->IsChangeable())
     {
         this->EnableQueues(false);
     } else
     {
         this->EnableQueues(true);
     }
-    HuggleQueueFilter *f = HuggleQueueFilter::Filters[this->Site]->at(ui->listWidget->currentRow());
+    HuggleQueueFilter *f = HuggleQueueFilter::Filters[this->defaultSite]->at(ui->listWidget->currentRow());
     SetValue(f->getIgnoreBots(), this->ui->cbqBots);
     SetValue(f->getIgnoreNP(), this->ui->cbqNew);
     SetValue(f->getIgnoreWL(), this->ui->cbqWl);
@@ -294,8 +294,8 @@ void Huggle::Preferences::on_listWidget_itemSelectionChanged()
     this->ui->leRequiredTags->setText(f->GetRequiredTags_CommaSeparated());
     this->ui->leIgnoredCategories->setText(f->GetIgnoredCategories_CommaSeparated());
     this->ui->leRequiredCategories->setText(f->GetRequiredCategories_CommaSeparated());
-    foreach (QCheckBox *cb, this->NamespaceBoxes.keys())
-        cb->setChecked(f->IgnoresNS(this->NamespaceBoxes[cb]));
+    foreach (QCheckBox *cb, this->namespaceBoxes.keys())
+        cb->setChecked(f->IgnoresNS(this->namespaceBoxes[cb]));
     this->ui->lineEdit->setText(f->QueueName);
     this->queueID = id;
     this->queueModified = false;
@@ -344,24 +344,24 @@ static HuggleQueueFilterMatch Match(QComboBox *item)
     return HuggleQueueFilterMatchIgnore;
 }
 
-void Preferences::Reload()
+void Preferences::reloadUI()
 {
-    if (!HuggleQueueFilter::Filters.contains(this->Site))
+    if (!HuggleQueueFilter::Filters.contains(this->defaultSite))
         throw new Huggle::Exception("There is no such a wiki site", BOOST_CURRENT_FUNCTION);
     while (this->ui->tableWidget_3->rowCount() > 0)
         this->ui->tableWidget_3->removeRow(0);
-    foreach (QCheckBox *qb, this->NamespaceBoxes.keys())
+    foreach (QCheckBox *qb, this->namespaceBoxes.keys())
         delete qb;
-    this->NamespaceBoxes.clear();
+    this->namespaceBoxes.clear();
     int rw = 0;
-    foreach (WikiPageNS *ms, this->Site->NamespaceList.values())
+    foreach (WikiPageNS *ms, this->defaultSite->NamespaceList.values())
     {
         this->ui->tableWidget_3->insertRow(rw);
         this->ui->tableWidget_3->setItem(rw, 0, new QTableWidgetItem(ms->GetName()));
         QCheckBox *Item = new QCheckBox();
         // Connect checkbox signal to our slot
         connect(Item, SIGNAL(toggled(bool)), this, SLOT(onNamespaceBoxToggled(bool)));
-        this->NamespaceBoxes.insert(Item, ms->GetID());
+        this->namespaceBoxes.insert(Item, ms->GetID());
         this->ui->tableWidget_3->setCellWidget(rw, 1, Item);
         rw++;
     }
@@ -372,11 +372,11 @@ void Preferences::Reload()
     this->isNowReloadingFilters = true;
     this->ui->cbDefault->clear();
     this->ui->listWidget->clear();
-    while (c < HuggleQueueFilter::Filters[this->Site]->count())
+    while (c < HuggleQueueFilter::Filters[this->defaultSite]->count())
     {
-        QString name = HuggleQueueFilter::Filters[this->Site]->at(c)->QueueName;
+        QString name = HuggleQueueFilter::Filters[this->defaultSite]->at(c)->QueueName;
 
-        if (name == this->Site->UserConfig->QueueID)
+        if (name == this->defaultSite->UserConfig->QueueID)
             d = c;
         this->ui->listWidget->addItem(name);
         this->ui->cbDefault->addItem(name);
@@ -387,27 +387,27 @@ void Preferences::Reload()
     this->queueModified = false;
 }
 
-void Preferences::Reload2()
+void Preferences::reloadShortcuts()
 {
     QStringList list = hcfg->Shortcuts.keys();
-    this->ui->tableWidget_2->clearContents();
+    this->ui->tableWidget_Shortcuts->clearContents();
     list.sort();
     int row = 0;
     foreach (QString key, list)
     {
-        this->ui->tableWidget_2->insertRow(row);
+        this->ui->tableWidget_Shortcuts->insertRow(row);
         Shortcut shortcut = Shortcut(hcfg->Shortcuts[key]);
         QTableWidgetItem *w = new QTableWidgetItem(shortcut.Name);
         w->setFlags(w->flags() ^Qt::ItemIsEditable);
-        this->ui->tableWidget_2->setItem(row, 0, w);
+        this->ui->tableWidget_Shortcuts->setItem(row, 0, w);
         w = new QTableWidgetItem(_l(hcfg->Shortcuts[key].Description));
         w->setFlags(w->flags() ^Qt::ItemIsEditable);
-        this->ui->tableWidget_2->setItem(row, 1, w);
-        this->ui->tableWidget_2->setItem(row, 2, new QTableWidgetItem(hcfg->Shortcuts[key].QAccel));
+        this->ui->tableWidget_Shortcuts->setItem(row, 1, w);
+        this->ui->tableWidget_Shortcuts->setItem(row, 2, new QTableWidgetItem(hcfg->Shortcuts[key].QAccel));
         row++;
     }
-    this->ui->tableWidget_2->resizeColumnsToContents();
-    this->ui->tableWidget_2->resizeRowsToContents();
+    this->ui->tableWidget_Shortcuts->resizeColumnsToContents();
+    this->ui->tableWidget_Shortcuts->resizeRowsToContents();
 }
 
 void Huggle::Preferences::on_checkBox_RequireDelay_clicked()
@@ -433,19 +433,19 @@ void Preferences::RecordKeys(int row, int column)
     }
 
     // let's get the shortcut id
-    QString id = this->ui->tableWidget_2->item(row, 0)->text();
+    QString id = this->ui->tableWidget_Shortcuts->item(row, 0)->text();
     QString key = "";
 
-    if (!this->ui->tableWidget_2->item(row, column)->text().isEmpty())
+    if (!this->ui->tableWidget_Shortcuts->item(row, column)->text().isEmpty())
     {
-        key = QKeySequence(this->ui->tableWidget_2->item(row, column)->text()).toString();
+        key = QKeySequence(this->ui->tableWidget_Shortcuts->item(row, column)->text()).toString();
         if (key.isEmpty())
         {
             // let's revert this
-            Syslog::HuggleLogs->ErrorLog("Invalid shortcut: " + this->ui->tableWidget_2->item(row, column)->text());
+            Syslog::HuggleLogs->ErrorLog("Invalid shortcut: " + this->ui->tableWidget_Shortcuts->item(row, column)->text());
             goto revert;
         }
-        if (!this->IgnoreConflicts)
+        if (!this->shortcutsIgnoreConflicts)
         {
             // check if there isn't another shortcut which uses this
             QStringList keys = hcfg->Shortcuts.keys();
@@ -465,16 +465,16 @@ void Preferences::RecordKeys(int row, int column)
 
     this->shortcutsModified = true;
     this->shortcutsRewriting = true;
-    this->IgnoreConflicts = false;
+    this->shortcutsIgnoreConflicts = false;
     hcfg->Shortcuts[id].Modified = true;
     hcfg->Shortcuts[id].QAccel = key;
-    this->ui->tableWidget_2->setItem(row, column, new QTableWidgetItem(key));
+    this->ui->tableWidget_Shortcuts->setItem(row, column, new QTableWidgetItem(key));
     this->shortcutsRewriting = false;
     return;
 
     revert:
-        this->IgnoreConflicts = true;
-        this->ui->tableWidget_2->setItem(row, column, new QTableWidgetItem(hcfg->Shortcuts[id].QAccel));
+        this->shortcutsIgnoreConflicts = true;
+        this->ui->tableWidget_Shortcuts->setItem(row, column, new QTableWidgetItem(hcfg->Shortcuts[id].QAccel));
         return;
 }
 
@@ -495,8 +495,8 @@ void Huggle::Preferences::on_pbHuggle2_clicked()
 
 void Huggle::Preferences::on_cbSites_currentIndexChanged(int index)
 {
-    this->Site = hcfg->Projects.at(index);
-    this->Reload();
+    this->defaultSite = hcfg->Projects.at(index);
+    this->reloadUI();
 }
 
 void Huggle::Preferences::on_cbDefault_currentIndexChanged(int index)
@@ -505,8 +505,8 @@ void Huggle::Preferences::on_cbDefault_currentIndexChanged(int index)
         return;
 
     // update the filter
-    this->Site->UserConfig->QueueID = this->ui->cbDefault->itemText(index);
-    this->Site->CurrentFilter = HuggleQueueFilter::GetFilter(this->ui->cbDefault->itemText(index), this->Site);
+    this->defaultSite->UserConfig->QueueID = this->ui->cbDefault->itemText(index);
+    this->defaultSite->CurrentFilter = HuggleQueueFilter::GetFilter(this->ui->cbDefault->itemText(index), this->defaultSite);
     MainWindow::HuggleMain->Queue1->Filters();
 }
 
@@ -566,7 +566,7 @@ void Huggle::Preferences::on_tableWidget_customContextMenuRequested(const QPoint
     }
 }
 
-void Preferences::ResetItems()
+void Preferences::resetItems()
 {
     int provider = 1;
     if (hcfg->UserConfig->PreferredProvider > -1 && hcfg->UserConfig->PreferredProvider < 3)
@@ -888,14 +888,14 @@ void Huggle::Preferences::on_pushButton_CloseWin_clicked()
 
 void Huggle::Preferences::on_pushButton_QueueSave_clicked()
 {
-    if (!HuggleQueueFilter::Filters.contains(this->Site))
+    if (!HuggleQueueFilter::Filters.contains(this->defaultSite))
         throw new Huggle::Exception("There is no such a wiki site", BOOST_CURRENT_FUNCTION);
     int id = this->ui->listWidget->currentRow();
-    if (id < 0 || id >= HuggleQueueFilter::Filters[this->Site]->count())
+    if (id < 0 || id >= HuggleQueueFilter::Filters[this->defaultSite]->count())
     {
         return;
     }
-    HuggleQueueFilter *filter = HuggleQueueFilter::Filters[this->Site]->at(id);
+    HuggleQueueFilter *filter = HuggleQueueFilter::Filters[this->defaultSite]->at(id);
     if (!filter->IsChangeable())
     {
         // don't touch a default filter
@@ -908,7 +908,7 @@ void Huggle::Preferences::on_pushButton_QueueSave_clicked()
         mb.exec();
         return;
     }
-    if (this->ui->tableWidget_3->rowCount() != this->Site->NamespaceList.count())
+    if (this->ui->tableWidget_3->rowCount() != this->defaultSite->NamespaceList.count())
         throw new Huggle::Exception("Number of ns in config file differs", BOOST_CURRENT_FUNCTION);
     filter->SetIgnoredTags_CommaSeparated(this->ui->leIgnoredTags->text());
     filter->SetRequiredTags_CommaSeparated(this->ui->leRequiredTags->text());
@@ -929,11 +929,11 @@ void Huggle::Preferences::on_pushButton_QueueSave_clicked()
     while (ns < this->ui->tableWidget_3->rowCount())
     {
         QCheckBox *selected_box = dynamic_cast<QCheckBox*>(this->ui->tableWidget_3->cellWidget(ns, 1));
-        if (!this->NamespaceBoxes.contains(selected_box))
+        if (!this->namespaceBoxes.contains(selected_box))
             throw new Huggle::Exception("There is no such a box in the ram", BOOST_CURRENT_FUNCTION);
-        if (!this->Site->NamespaceList.contains(this->NamespaceBoxes[selected_box]))
+        if (!this->defaultSite->NamespaceList.contains(this->namespaceBoxes[selected_box]))
             throw new Huggle::Exception("There is no such space in site", BOOST_CURRENT_FUNCTION);
-        int nsid = this->NamespaceBoxes[selected_box];
+        int nsid = this->namespaceBoxes[selected_box];
         if (!filter->Namespaces.contains(nsid))
         {
             filter->Namespaces.insert(nsid, selected_box->isChecked());
@@ -945,46 +945,46 @@ void Huggle::Preferences::on_pushButton_QueueSave_clicked()
     }
     filter->QueueName = this->ui->lineEdit->text();
     MainWindow::HuggleMain->Queue1->Filters();
-    this->Reload();
+    this->reloadUI();
     this->queueModified = false;
 }
 
 void Huggle::Preferences::on_pushButton_QueueDelete_clicked()
 {
-    if (!HuggleQueueFilter::Filters.contains(this->Site))
+    if (!HuggleQueueFilter::Filters.contains(this->defaultSite))
         throw new Huggle::Exception("There is no such a wiki site", BOOST_CURRENT_FUNCTION);
     int id = this->ui->listWidget->currentRow();
-    if (id < 0 || id >= HuggleQueueFilter::Filters[this->Site]->count())
+    if (id < 0 || id >= HuggleQueueFilter::Filters[this->defaultSite]->count())
     {
         return;
     }
-    HuggleQueueFilter *filter = HuggleQueueFilter::Filters[this->Site]->at(id);
+    HuggleQueueFilter *filter = HuggleQueueFilter::Filters[this->defaultSite]->at(id);
     if (!filter->IsChangeable())
     {
         // don't touch a default filter
         return;
     }
-    if (this->Site->CurrentFilter == filter)
+    if (this->defaultSite->CurrentFilter == filter)
     {
         UiGeneric::MessageBox(_l("error"), _l("preferences-delete-using-filter"), MessageBoxStyleWarning);
         return;
     }
-    HuggleQueueFilter::Filters[this->Site]->removeAll(filter);
+    HuggleQueueFilter::Filters[this->defaultSite]->removeAll(filter);
     delete filter;
     this->EnableQueues(false);
     MainWindow::HuggleMain->Queue1->Filters();
-    this->Reload();
+    this->reloadUI();
 }
 
 void Huggle::Preferences::on_pushButton_QueueInsert_clicked()
 {
-    if (!HuggleQueueFilter::Filters.contains(this->Site))
+    if (!HuggleQueueFilter::Filters.contains(this->defaultSite))
         throw new Huggle::Exception("There is no such a wiki site", BOOST_CURRENT_FUNCTION);
     HuggleQueueFilter *filter = new HuggleQueueFilter();
-    filter->QueueName = "User defined queue #" + QString::number(HuggleQueueFilter::Filters[this->Site]->count());
-    HuggleQueueFilter::Filters[this->Site]->append(filter);
+    filter->QueueName = "User defined queue #" + QString::number(HuggleQueueFilter::Filters[this->defaultSite]->count());
+    HuggleQueueFilter::Filters[this->defaultSite]->append(filter);
     MainWindow::HuggleMain->Queue1->Filters();
-    this->Reload();
+    this->reloadUI();
 }
 
 void Huggle::Preferences::on_pushButton_QueueReset_clicked()
@@ -1004,10 +1004,10 @@ void Huggle::Preferences::on_listWidget_customContextMenuRequested(const QPoint 
     if (this->ui->listWidget->currentRow() >= 0)
     {
         int id = this->ui->listWidget->currentRow();
-        if (id < HuggleQueueFilter::Filters[this->Site]->count())
+        if (id < HuggleQueueFilter::Filters[this->defaultSite]->count())
         {
-            HuggleQueueFilter *filter = HuggleQueueFilter::Filters[this->Site]->at(id);
-            canDelete = filter->IsChangeable() && (this->Site->CurrentFilter != filter);
+            HuggleQueueFilter *filter = HuggleQueueFilter::Filters[this->defaultSite]->at(id);
+            canDelete = filter->IsChangeable() && (this->defaultSite->CurrentFilter != filter);
         }
     }
     

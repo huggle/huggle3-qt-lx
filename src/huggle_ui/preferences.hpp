@@ -80,14 +80,14 @@ namespace Huggle
             void on_pushButton_ResetConfig_clicked();
 
         private:
-            void ResetItems();
-            void Reload();
+            void resetItems();
+            void reloadUI();
             //! Used to reload shortcuts only
-            void Reload2();
-            QHash<QCheckBox*, int> NamespaceBoxes;
-            WikiSite *Site;
-            bool IgnoreConflicts = false;
+            void reloadShortcuts();
+            QHash<QCheckBox*, int> namespaceBoxes;
+            WikiSite *defaultSite;
             bool isNowReloadingFilters = false;
+            bool shortcutsIgnoreConflicts = false;
             bool shortcutsRewriting = false;
             bool shortcutsModified = false;
             int queueID = 0;

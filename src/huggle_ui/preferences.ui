@@ -578,7 +578,7 @@
         <number>8</number>
        </property>
        <item>
-        <widget class="QTableWidget" name="tableWidget_2">
+        <widget class="QTableWidget" name="tableWidget_Shortcuts">
          <property name="selectionBehavior">
           <enum>QAbstractItemView::SelectRows</enum>
          </property>
