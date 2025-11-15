@@ -920,7 +920,6 @@
   <string name="main-abort-instant-reverts-enabled">Unable to cancel the current operation; you need to disable Instant reverts in preferences for this feature to work</string>
   <string name="main-clear-talk-page-summary">Cleaned old templates from talk page</string>
   <string name="han-connected">You are now connected to Huggle anti-vandalism network</string>
-  <string name="han-disconnected">Lost connection to anti-vandalism network</string>
   <string name="preferences-unsaved-title">Preferences</string>
   <string name="preferences-unsaved-text">Closing this form may lose unsaved changes. Do you want to close anyway?</string>
 </resources>

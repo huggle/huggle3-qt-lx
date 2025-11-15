@@ -176,7 +176,8 @@ void VandalNw::Disconnect()
 {
     this->irc->Disconnect(Generic::IRCQuitDefaultMessage());
     this->JoinedMain = false;
-    this->Insert(_l("han-disconnected"), HAN::MessageType_Info);
+    // No need to do this since this is already printed by the event
+    //this->Insert(_l("han-disconnected"), HAN::MessageType_Info);
     this->refreshUL();
     this->ui->pushButton->setEnabled(false);
 }
