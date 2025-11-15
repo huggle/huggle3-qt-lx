@@ -3,7 +3,10 @@ cmake_minimum_required (VERSION 3.5)
 
 # So that MacOS builds are working on older versions as well
 set(CMAKE_OSX_DEPLOYMENT_TARGET "10.9" CACHE STRING "Minimum OS X deployment version")
-set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Choose the type of build, options are: Debug or Release (or any other documented for CMAKE_BUILD_TYPE")
+if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+    set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Choose the type of build, options are: Debug or Release (or any other documented for CMAKE_BUILD_TYPE" FORCE)
+endif()
+set(CMAKE_DEBUG_POSTFIX "" CACHE STRING "Suffix for debug versions of built targets")
 set(INSTALL_BIN_DIR bin CACHE PATH "Installation directory for executables")
 set(INSTALL_LIB_DIR lib CACHE PATH "Installation directory for libraries")
 set(INSTALL_DATA_DIR share/${PROJECT_NAME} CACHE PATH "Installation directory for data files")
