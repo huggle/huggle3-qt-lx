@@ -680,6 +680,7 @@
   <string name="shortcut-preferences">Open preferences dialog</string>
   <string name="shortcut-emergency-abort">Emergency abort of delayed actions</string>
   <string name="shortcut-find">Find text in the current page</string>
+  <string name="shortcut-edit-user-talk">Open the current user's talk page in a browser (edit view)</string>
   <string name="warning-title">Warn $1</string>
   <string name="warning-levelgroup">Warning level</string>
   <string name="warning-levelauto">Automatic</string>

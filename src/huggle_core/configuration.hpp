@@ -121,6 +121,7 @@ class QXmlStreamWriter;
 #define HUGGLE_ACCEL_MAIN_EDIT                  65
 #define HUGGLE_ACCEL_MAIN_CLEAR_QUEUE           66
 #define HUGGLE_ACCEL_MAIN_EDIT_IN_BROWSER       68
+#define HUGGLE_ACCEL_MAIN_EDIT_USER_TALK        78
 #define HUGGLE_ACCEL_MAIN_HISTORY_PAGE          69
 #define HUGGLE_ACCEL_MAIN_SPEEDY_DELETE         70
 #define HUGGLE_ACCEL_MAIN_DELETE_PAGE           71

@@ -1128,6 +1128,9 @@ void MainWindow::ReloadShort(const QString& id)
         case HUGGLE_ACCEL_MAIN_EDIT_IN_BROWSER:
             q = this->ui->actionEdit_page_in_browser;
             break;
+        case HUGGLE_ACCEL_MAIN_EDIT_USER_TALK:
+            q = this->ui->actionEdit_user_talk;
+            break;
         case HUGGLE_ACCEL_MAIN_HISTORY_PAGE:
             q = this->ui->actionDisplay_history_in_browser;
             break;

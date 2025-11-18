@@ -80,6 +80,7 @@ Configuration::Configuration()
     this->MakeShortcut("main-clear-queue", "shortcut-main-clear-queue", "Ctrl+Space");
     this->MakeShortcut("main-edit", "shortcut-edit", "Shift+E");
     this->MakeShortcut("main-edit-in-browser", "shortcut-edit-in-browser", "E");
+    this->MakeShortcut("main-edit-user-talk", "shortcut-edit-user-talk", "Shift+T");
     this->MakeShortcut("main-history-page", "shortcut-history-page", "H");
     this->MakeShortcut("main-speedy-delete", "shortcut-speedy-delete", "Ctrl+S");
     this->MakeShortcut("main-delete-page", "shortcut-delete-page", "Ctrl+D");
@@ -684,6 +685,8 @@ Shortcut::Shortcut(const QString &name, const QString &description)
         this->ID = HUGGLE_ACCEL_MAIN_EDIT;
     else if (name == "main-edit-in-browser")
         this->ID = HUGGLE_ACCEL_MAIN_EDIT_IN_BROWSER;
+    else if (name == "main-edit-user-talk")
+        this->ID = HUGGLE_ACCEL_MAIN_EDIT_USER_TALK;
     else if (name == "main-page-refresh")
         this->ID = HUGGLE_ACCEL_MAIN_REFRESH;
     else if (name == "main-user-clear-tp")
