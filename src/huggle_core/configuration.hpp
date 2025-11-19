@@ -121,6 +121,7 @@ class QXmlStreamWriter;
 #define HUGGLE_ACCEL_MAIN_EDIT                  65
 #define HUGGLE_ACCEL_MAIN_CLEAR_QUEUE           66
 #define HUGGLE_ACCEL_MAIN_EDIT_IN_BROWSER       68
+#define HUGGLE_ACCEL_MAIN_EDIT_USER_TALK        78
 #define HUGGLE_ACCEL_MAIN_HISTORY_PAGE          69
 #define HUGGLE_ACCEL_MAIN_SPEEDY_DELETE         70
 #define HUGGLE_ACCEL_MAIN_DELETE_PAGE           71
@@ -130,6 +131,7 @@ class QXmlStreamWriter;
 #define HUGGLE_ACCEL_MAIN_HELP                  75
 #define HUGGLE_ACCEL_MAIN_PREFERENCES           76
 #define HUGGLE_ACCEL_MAIN_EMERGENCY_ABORT       77
+#define HUGGLE_ACCEL_MAIN_EDIT_USER_TALK        78
 #define HUGGLE_ACCEL_CLOSE_TAB                  200
 #define HUGGLE_ACCEL_CREATE_NEW_TAB             206
 #define HUGGLE_ACCEL_USER_REPORT_USER_NAME      300
