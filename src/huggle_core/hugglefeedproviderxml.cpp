@@ -67,7 +67,10 @@ bool HuggleFeedProviderXml::Start()
 #ifdef QT6_BUILD
     connect(this->networkSocket, &QAbstractSocket::errorOccurred, this, &HuggleFeedProviderXml::OnError);
 #else
-    connect(this->networkSocket, &QAbstractSocket::error, this, &HuggleFeedProviderXml::OnError);
+    connect(this->networkSocket,
+            static_cast<void (QAbstractSocket::*)(QAbstractSocket::SocketError)>(&QAbstractSocket::error),
+            this,
+            &HuggleFeedProviderXml::OnError);
 #endif
     this->isConnecting = true;
     this->isWorking = true;
