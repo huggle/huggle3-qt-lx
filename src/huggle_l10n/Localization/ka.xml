@@ -320,7 +320,7 @@
   <string name="warning-warnlog">ამ მომხმარებლის გაფრთხილებები:</string>
   <string name="warning-submit">გაგზავნა</string>
   <string name="han-already-connecting">გთხოვთ, მოიცადოთ, უკვე გაკავშირებთ HAN-ს…</string>
-  <string name="han-disconnected" fuzzy="true">თქვენ გამოეთიშეთ HAN-ს.</string>
+  <string name="han-disconnected">თქვენ გამოეთიშეთ HAN-ს.</string>
   <string name="error-unknown">უცნობი შეცდომა</string>
   <string name="block-done">$1 დაიბლოკა</string>
   <string name="block-progress">იბლოკება $1...</string>

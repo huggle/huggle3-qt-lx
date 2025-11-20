@@ -222,7 +222,7 @@
   <string name="delete-rem-talk">Вилучити пов’язану сторінку обговорення</string>
   <string name="delete-notify">Повідомити автора</string>
   <string name="delete-error-token">Помилка: не вдалося отримати токен вилучення. Причина відмови: $1</string>
-  <string name="delete-token01">Отримання маркера для вилучення $1</string>
+  <string name="delete-token01">Отримання токена для вилучення $1</string>
   <string name="delete-token02">В результаті запиту токена не отримано</string>
   <string name="delete-e1">Неможливо вилучити сторінку: $1</string>
   <string name="delete-e2">Неможливо вилучити сторінку</string>
@@ -322,7 +322,7 @@
   <string name="login-error-invalid">Неправильне ім’я користувача</string>
   <string name="login-error-noconfig">В $1 відсутня сторінка налаштувань Huggle</string>
   <string name="login-error-nouser">Такого користувача не існує</string>
-  <string name="login-error-no-valid-token">Сайт не повертає дійсний маркер входу</string>
+  <string name="login-error-no-valid-token">Сайт не повертає дійсний токен входу</string>
   <string name="login-error-password">Неправильний пароль</string>
   <string name="login-error-projdisabled">В даний момент Huggle відключений для $1.</string>
   <string name="login-error-unknown">Не вдалося увійти до $1.</string>
@@ -704,7 +704,7 @@
   <string name="han-connecting">Підключення до антивандальної мережі Huggle</string>
   <string name="han-already-connected">Підключення до антивандальної мережі Huggle (HAN) вже було проведено</string>
   <string name="han-already-connecting">Будь ласка, зачекайте, вже підключаюся до антивандальної мережі Huggle (HAN)…</string>
-  <string name="han-disconnected" fuzzy="true">Вас було від’єднано від антивандальної мережі Huggle (HAN)</string>
+  <string name="han-disconnected">Вас було від’єднано від антивандальної мережі Huggle (HAN)</string>
   <string name="han-network">Мережа</string>
   <string name="han-send">Надіслати</string>
   <string name="error-loggedout">Сталося роз’єднання, виконую повторний вхід…</string>
@@ -748,7 +748,7 @@
   <string name="newtab-text">Вкладки в Huggle працюють так само, як і в будь-якому іншому веб-браузері. Усі вкладки в Huggle мають однакову чергу, але вони корисні, якщо ви хочете стежити за певною сторінкою, або якщо ви хочете перевірити зміни пізніше.</string>
   <string name="notify-fail">Не вдалося повідомити автора сторінки $1</string>
   <string name="notify-unknowncreator">Не вдалося знайти автора сторінки</string>
-  <string name="protect-done">Змінено рівень захисту для сторінки $1</string>
+  <string name="protect-done">Змінено рівень захисту для $1</string>
   <string name="protect-fail">Не змінено рівень захисту для сторінки $1</string>
   <string name="protect-progress">Змінюю рівень захисту для сторінки $1…</string>
   <string name="protectlog-fail">Не вдалося отримати журнал захисту для сторінки $1</string>

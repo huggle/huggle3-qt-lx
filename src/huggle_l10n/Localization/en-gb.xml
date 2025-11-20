@@ -691,7 +691,7 @@
   <string name="han-connecting">Connecting to the Huggle anti vandalism network</string>
   <string name="han-already-connected">Not connecting to HAN because it\'s already connected</string>
   <string name="han-already-connecting">Please wait, I am already connecting to HAN...</string>
-  <string name="han-disconnected" fuzzy="true">You were disconnected from HAN</string>
+  <string name="han-disconnected">You were disconnected from HAN</string>
   <string name="han-network">Network</string>
   <string name="han-send">Send</string>
   <string name="error-loggedout">Account has been logged out, logging back in...</string>

@@ -266,7 +266,7 @@
   <string name="login-intro">Vui lòng chọn dự án và nhập tên thành viên cùng với mật khẩu. Bạn cũng có thể đăng nhập vào nhiều dự án bằng cách click lên nút \"Các dự án\".</string>
   <string name="invalid-bot-user-name">Đây không phải là tên bot hợp lệ. Ví dụ cho tên bot hợp lệ: Jimbo@Huggle</string>
   <string name="login-tab-botp">Mật khẩu bot</string>
-  <string name="login-tab-login">Di sản</string>
+  <string name="login-tab-login">Cổ điển</string>
   <string name="login-reload-tool-tip">Tải lại danh sách các dự án sẵn có mà có thể được sử dụng trong Huggle. Điều này có thể có ích trong trường hợp bạn muốn sử dụng Huggle trong một dự án mà công cụ này đã được bật dùng gần đây.</string>
   <string name="login-language">Ngôn ngữ:</string>
   <string name="login-project">Dự án:</string>
@@ -283,7 +283,7 @@
   <string name="login-fail-css">Đăng nhập thất bại tại $1: Không thể truy xuất cấu hình thành viên. Special:MyPage/huggle3.css đang bị thiếu. Có phải bạn đã tạo huggle3.css trong không gian thành viên của mình không?</string>
   <string name="login-fail-enable-true">Đăng nhập thất bại tại $1: Bạn không có enable:true trong cấu hình cá nhân của mình.</string>
   <string name="login-fail-no-info">Đăng nhập thất bại tại $1: Không thể truy xuất thông tin thành viên: $2</string>
-  <string name="login-bot">Sự khác biệt giữa đăng nhập BotPassword và đăng nhập di sản là gì?</string>
+  <string name="login-bot">Sự khác biệt giữa đăng nhập BotPassword và đăng nhập cổ điển là gì?</string>
   <string name="login-fail-parse-config">Đăng nhập thất bại tại $1: Không thể parse cấu hình thành viên. Xem nhật trình debug để biết thêm chi tiết.</string>
   <string name="login-fail-parse-config-yaml">Đăng nhập thất bại tại $1: Không thể parse cấu hình thành viên: $2</string>
   <string name="login-fail-user-data">Đăng nhập thất bại tại $1: Không thể truy xuất thông tin thành viên. Truy vấn API không trả về dữ liệu nào.</string>
@@ -713,7 +713,7 @@
   <string name="han-connecting">Đang kết nối tới mạng lưới chống phá hoại Huggle</string>
   <string name="han-already-connected">Sẽ không kết nối tới HAN vì nó đã được kết nối rồi</string>
   <string name="han-already-connecting">Xin vui lòng đợi, tôi đang kết nối với HAN rồi...</string>
-  <string name="han-disconnected" fuzzy="true">Bạn đã bị ngắt kết nối khỏi HAN</string>
+  <string name="han-disconnected">Bạn đã bị ngắt kết nối khỏi HAN</string>
   <string name="han-network">Mạng lưới</string>
   <string name="han-send">Gửi</string>
   <string name="error-loggedout">Tài khoản đã bị đăng xuất, đang đăng nhập lại...</string>

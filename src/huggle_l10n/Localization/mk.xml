@@ -695,7 +695,7 @@
   <string name="han-connecting">Се поврзувам со противвандалистичката мрежа на Huggle</string>
   <string name="han-already-connected">Не се поврзувам со HAN бидејќи веќе сме поврзани</string>
   <string name="han-already-connecting">Почекајте. Веќе се поврзувам со HAN...</string>
-  <string name="han-disconnected" fuzzy="true">Поврзани сте од HAN</string>
+  <string name="han-disconnected">Поврзани сте од HAN</string>
   <string name="han-network">Мрежа</string>
   <string name="han-send">Испрати</string>
   <string name="error-loggedout">Одјавени сте. Ве пренајавувам...</string>

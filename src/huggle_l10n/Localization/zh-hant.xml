@@ -685,6 +685,20 @@
   <string name="shortcut-user-clear-talk">清除目前使用者的對話頁</string>
   <string name="shortcut-main-clear-queue">清除佇列</string>
   <string name="shortcut-revert-agf">假定善意回退，並自訂編輯摘要</string>
+  <string name="shortcut-history-page">顯示瀏覽器中目前顯示頁面的歷史紀錄</string>
+  <string name="shortcut-speedy-delete">請求盡快刪除目前顯示的頁面</string>
+  <string name="shortcut-delete-page">刪除目前顯示的頁面</string>
+  <string name="shortcut-remove-whitelist">從佇列裡移除由白名單使用者做出的編輯</string>
+  <string name="shortcut-remove-low-score">從佇列裡移除所有記分低於 -200 的編輯</string>
+  <string name="shortcut-increase-bs">將目前使用者的不良記分提高 20 分</string>
+  <string name="shortcut-decrease-bs">將目前使用者的不良記分降低 20 分</string>
+  <string name="shortcut-welcome">使用預設歡迎訊息來歡迎使用者</string>
+  <string name="shortcut-block-user">封鎖做出目前所顯示出編輯內容的使用者</string>
+  <string name="shortcut-help">開啟說明內容</string>
+  <string name="shortcut-preferences">開啟首選對話框</string>
+  <string name="shortcut-emergency-abort">延遲操作緊急中止</string>
+  <string name="shortcut-find">在目前頁面裡尋找文字</string>
+  <string name="shortcut-edit-user-talk">在瀏覽器中開啟目前使用者的討論頁面（編輯檢視）</string>
   <string name="warning-title">警告 $1</string>
   <string name="warning-levelgroup">警告等級</string>
   <string name="warning-levelauto">自動</string>
@@ -709,7 +723,7 @@
   <string name="han-connecting">正在連線至 Huggle 反破壞網路</string>
   <string name="han-already-connected">已連線至HAN，不須再次連線</string>
   <string name="han-already-connecting">請稍後，我正在連線至HAN...</string>
-  <string name="han-disconnected">與反破壞網路失去連接</string>
+  <string name="han-disconnected">您已斷開與 HAN 的連線。</string>
   <string name="han-network">網路</string>
   <string name="han-send">傳送</string>
   <string name="error-loggedout">帳號已登出，重新登入中…</string>
@@ -925,4 +939,6 @@
   <string name="main-abort-instant-reverts-enabled">無法取消目前操作，您需要在偏好設定中停用「即時回退」才能使其生效。</string>
   <string name="main-clear-talk-page-summary">已清理討論頁的舊模板</string>
   <string name="han-connected">您現已連接到 Huggle 反破壞網路</string>
+  <string name="preferences-unsaved-title">偏好設定</string>
+  <string name="preferences-unsaved-text">關閉此表單可能會遺失尚未儲存的變更。您是否仍要關閉？</string>
 </resources>

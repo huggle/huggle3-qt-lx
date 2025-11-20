@@ -649,7 +649,7 @@
   <string name="han-connecting">Ansluter till Huggles anti-vandalismnätverk</string>
   <string name="han-already-connected">Inte ansluten till HAN eftersom den är redan ansluten</string>
   <string name="han-already-connecting">Var god vänta, jag ansluter redan till HAN...</string>
-  <string name="han-disconnected" fuzzy="true">Du blev frånkopplad från HAN</string>
+  <string name="han-disconnected">Du blev frånkopplad från HAN</string>
   <string name="han-network">Nätverk</string>
   <string name="han-send">Skicka</string>
   <string name="error-loggedout">Konto har loggats ut, loggar in igen...</string>

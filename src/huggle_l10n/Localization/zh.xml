@@ -15,6 +15,7 @@
 * McDutchie
 * NeverBehave
 * NigelSoft
+* Peterxy12
 * Phenolla
 * Shizhao
 * SolidBlock
@@ -725,7 +726,7 @@
   <string name="han-connecting">正在连接Huggle反破坏网络（HAN）</string>
   <string name="han-already-connected">没有连接到HAN，因为它已经连接</string>
   <string name="han-already-connecting">请稍候，我正在连接HAN...</string>
-  <string name="han-disconnected" fuzzy="true">您已从HAN断开</string>
+  <string name="han-disconnected">您已从HAN断开</string>
   <string name="han-network">网络</string>
   <string name="han-send">发送</string>
   <string name="error-loggedout">账户已退出，重新登入中…</string>
@@ -933,4 +934,5 @@
   <string name="tip14">您可以与其他Huggle活跃用户聊天，只要它们正在使用程序的话。您将在“网络”窗口看见他们，只要它们在线即可。</string>
   <string name="tip15">如果您找到条目中的其他问题，但回退并无帮助，您可以点击E使用您的默认浏览器（而不是在Huggle内）立刻编辑条目。</string>
   <string name="tip16">如果您不小心按了回退键，您仍然可以迅速按下 ESC 键来取消正在进行中的回退操作。</string>
+  <string name="preferences-unsaved-title">偏好设置</string>
 </resources>

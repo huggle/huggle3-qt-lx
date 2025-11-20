@@ -683,7 +683,7 @@
   <string name="han-connecting">Huggle 문서 훼손 방지 네트워크로 연결 중</string>
   <string name="han-already-connected">이미 연결되어 있으므로 HAN에 연결하지 않습니다</string>
   <string name="han-already-connecting">기다려 주십시오. HAN에 이미 연결 중입니다...</string>
-  <string name="han-disconnected" fuzzy="true">HAN으로부터 접속이 끊어졌습니다</string>
+  <string name="han-disconnected">HAN으로부터 접속이 끊어졌습니다</string>
   <string name="han-network">네트워크</string>
   <string name="han-send">보내기</string>
   <string name="error-loggedout">계정이 로그아웃되어 있습니다. 다시 로그인하는 중...</string>

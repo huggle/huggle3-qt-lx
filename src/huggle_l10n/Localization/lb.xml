@@ -420,6 +420,8 @@
   <string name="shortcut-revert-and-stay">Aktuell Ännerung zrécksetzen an op der Säit bleiwen</string>
   <string name="shortcut-user-clear-talk">Eng Diskussiounssäit vum aktuelle Benotzer eidelmaachen</string>
   <string name="shortcut-main-clear-queue">Queue eidelmaachen</string>
+  <string name="shortcut-delete-page">Déi aktuell ugewise Säit läschen</string>
+  <string name="shortcut-find">Text op der aktueller Säit fannen</string>
   <string name="warning-title">$1 warnen</string>
   <string name="warning-levelauto">Automatesch</string>
   <string name="warning-level1">Niveau 1</string>
@@ -510,4 +512,6 @@
   <string name="query-protected-link">Gespaarte Link</string>
   <string name="queue-empty-title">Se ass eidel</string>
   <string name="queue-empty-text">Et ass soss näischt an der Queue...</string>
+  <string name="main-action-unavailable-title">Aktioun net disponibel</string>
+  <string name="preferences-unsaved-title">Astellungen</string>
 </resources>

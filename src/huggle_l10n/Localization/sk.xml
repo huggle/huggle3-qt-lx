@@ -694,7 +694,7 @@
   <string name="han-connecting">Pripájanie k Huggle sieti proti vandalizmu (HSPV)</string>
   <string name="han-already-connected">Nepripája sa k HSPV pretože už je pripojené</string>
   <string name="han-already-connecting">Čakajte prosím, už sa k HSPV pripájam...</string>
-  <string name="han-disconnected" fuzzy="true">Boli ste odpojení od HSPV</string>
+  <string name="han-disconnected">Boli ste odpojení od HSPV</string>
   <string name="han-network">Sieť</string>
   <string name="han-send">Odoslať</string>
   <string name="error-loggedout">Účet bol odhlásený, prihlasovanie späť...</string>

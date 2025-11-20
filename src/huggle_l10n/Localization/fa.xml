@@ -701,6 +701,9 @@
   <string name="shortcut-user-clear-talk">پاک کردن صفحهٔ بحث این کاربر</string>
   <string name="shortcut-main-clear-queue">حذف صف</string>
   <string name="shortcut-revert-agf">واگردانی با فرض حس نیت، با یک خلاصۀ ویرایش سفارشی</string>
+  <string name="shortcut-history-page">نمایش تاریخچهٔ صفحهٔ نمایش‌یافته در مرورگر</string>
+  <string name="shortcut-preferences">گشودن پنجرهٔ ترجیحات</string>
+  <string name="shortcut-emergency-abort">لغو اضطراری عمل‌های به تعویق افتاده</string>
   <string name="warning-title">هشدار $1</string>
   <string name="warning-levelgroup">سطح هشدار</string>
   <string name="warning-levelauto">خودکار</string>
@@ -725,7 +728,7 @@
   <string name="han-connecting">در حال ارتباط با شبکه ضد خرابکاری هاگل</string>
   <string name="han-already-connected">به شبکه ضدخرابکاری هاگل متصل نمی‌شود زیرا از پیش متصل است</string>
   <string name="han-already-connecting">لطفاً صبر کنید، من از پیش در حال اتصال به شبکه ضدخرابکاری هاگل هستم...</string>
-  <string name="han-disconnected" fuzzy="true">شما از شبکه ضدخرابکاری هاگل قطع اتصال شدید</string>
+  <string name="han-disconnected">شما از شبکه ضدخرابکاری هاگل قطع اتصال شدید</string>
   <string name="han-network">شبکه</string>
   <string name="han-send">ارسال</string>
   <string name="error-loggedout">از حساب خارج شده است، مجدداً در حال وارد شدن است ...</string>
@@ -933,4 +936,6 @@
   <string name="tip14">می‌توانید با سایر کاربران فعال که الان از هاگل استفاده می‌کنند چت کنید. اگر برخط باشند می‌توانید آنها را در پنجرهٔ شبکه مشاهده کنید.</string>
   <string name="tip15">اگر مشکلی با این مقاله پیدا کردید اما بازگردانی به شما کمک نمی‌کند، می‌توانید E را برای ویرایش مقاله بلافاصله در مرورگر پیش فرض خود (نه در داخل Huggle) فشار دهید.</string>
   <string name="tip16">اگر شما به طور تصادفی دکمه برگشت را فشار داده اید، می‌توانید با فشار دادن کلید ESC به سرعت برگشت را لغو کنید.</string>
+  <string name="preferences-unsaved-title">ترجیحات</string>
+  <string name="preferences-unsaved-text">بستن این فرم منجر به از دست رفتن تغییرات ذخیره‌نشده خواهد شد. آیا می‌خواهید فرم را ببندید؟</string>
 </resources>

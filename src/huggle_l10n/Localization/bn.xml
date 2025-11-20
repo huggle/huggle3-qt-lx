@@ -656,7 +656,7 @@
   <string name="han-connecting">হাগল অ্যান্টি ধ্বংসপ্রবণতা নেটওয়ার্কে সংযুক্ত করা হচ্ছে</string>
   <string name="han-already-connected">HAN-এ সংযোগ করা হচ্ছে না কারণ এটি ইতিমধ্যে সংযুক্ত</string>
   <string name="han-already-connecting">অনুগ্রহ করে অপেক্ষা করুন, আমি ইতিমধ্যে HAN-এর সাথে সংযোগ করছি...</string>
-  <string name="han-disconnected" fuzzy="true">আপনি HAN থেকে বিচ্ছিন্ন হয়ে গেছেন</string>
+  <string name="han-disconnected">আপনি HAN থেকে বিচ্ছিন্ন হয়ে গেছেন</string>
   <string name="han-network">নেটওয়ার্ক</string>
   <string name="han-send">পাঠান</string>
   <string name="error-loggedout">অ্যাকাউন্ট থেকে বেরিয়ে যাওয়া হয়েছে, আবার প্রবেশ করানো হচ্ছে...</string>
@@ -827,4 +827,5 @@
   <string name="queue-empty-text">সারিটিতে আর অন্য কিছু নেই...</string>
   <string name="tip3" fuzzy="true">অধিকাংশ পছন্দ উইকির [[Special:MyPage/huggle3.css]]-এ সংরক্ষণ করা হয়। আপনি ম্যানুয়ালি সেখানে তাদের পরিবর্তন করতে পারেন।</string>
   <string name="tip10">বেশিরভাগ শর্টকাটগুলি আপনার পছন্দে পরিবর্তন করা যাবে।</string>
+  <string name="preferences-unsaved-title">পছন্দসমূহ</string>
 </resources>

@@ -583,7 +583,7 @@
   <string name="han-not">HAN není povolena v konfiguraci</string>
   <string name="han-connecting">Připojení k síti Huggle proti vandalismu</string>
   <string name="han-already-connecting">Prosím, počkejte, již se připojuji na HPV...</string>
-  <string name="han-disconnected" fuzzy="true">Byli jste odpojeni od HAN</string>
+  <string name="han-disconnected">Byli jste odpojeni od HAN</string>
   <string name="error-loggedout">Účet byl odhlášen, přihlašuji se...</string>
   <string name="error-noresponse">Žádná odpověď</string>
   <string name="error-pagemissing">Tato stránka neexistuje</string>

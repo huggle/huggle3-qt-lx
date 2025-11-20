@@ -722,7 +722,7 @@
   <string name="han-connecting">Conectando con la red antivandalismo de Huggle «HAN»</string>
   <string name="han-already-connected">No se puede conectar con HAN porque ya estás conectado</string>
   <string name="han-already-connecting">Espera, ya me estoy conectando con HAN...</string>
-  <string name="han-disconnected" fuzzy="true">Has sido desconectado de HAN</string>
+  <string name="han-disconnected">Has sido desconectado de HAN</string>
   <string name="han-network">Red</string>
   <string name="han-send">Enviar</string>
   <string name="error-loggedout">La cuenta ha sido desconectada, volviendo a iniciar sesión...</string>

@@ -687,6 +687,19 @@
   <string name="shortcut-user-clear-talk">Maak overlegpagina van de huidige gebruiker leeg</string>
   <string name="shortcut-main-clear-queue">Maak wachtrij leeg</string>
   <string name="shortcut-revert-agf">Ongedaan maken maar uitgaan van goede trouw, met een aangepaste bewerkingssamenvatting</string>
+  <string name="shortcut-history-page">Geschiedenis weergeven van de huidige pagina in de browser</string>
+  <string name="shortcut-speedy-delete">Snelle verwijdering aanvragen van de huidige pagina</string>
+  <string name="shortcut-delete-page">Huidige pagina verwijderen</string>
+  <string name="shortcut-remove-whitelist">Bewerkingen van toegelaten gebruikers uit de wachtrij verwijderen</string>
+  <string name="shortcut-remove-low-score">Alle bewerkingen met een score lager dan -200 uit de wachtrij verwijderen</string>
+  <string name="shortcut-increase-bs">Slechtheidsscore van de huidige gebruiker met 20 verhogen</string>
+  <string name="shortcut-decrease-bs">Slechtheidsscore van de huidige gebruiker met 20 verlagen</string>
+  <string name="shortcut-welcome">De gebruiker met een standaardwelkomstbericht verwelkomen</string>
+  <string name="shortcut-block-user">De gebruiker die de momenteel weergegeven bewerking heeft uitgevoerd blokkeren</string>
+  <string name="shortcut-help">Hulpinhoud openen</string>
+  <string name="shortcut-preferences">Voorkeurenvenster openen</string>
+  <string name="shortcut-emergency-abort">Vertraagde handelingen direct stoppen</string>
+  <string name="shortcut-find">Tekst op de huidige pagina zoeken</string>
   <string name="warning-title">$1 waarschuwen</string>
   <string name="warning-levelgroup">Waarschuwingsniveau</string>
   <string name="warning-levelauto">Automatisch</string>
@@ -711,7 +724,7 @@
   <string name="han-connecting">Verbinding maken met het anti-vandalismenetwerk van Huggle</string>
   <string name="han-already-connected">Geen verbinding met de HAN omdat deze al verbonden is</string>
   <string name="han-already-connecting">Een ogenblik geduld, ik ben al aan het verbinden met de HAN…</string>
-  <string name="han-disconnected" fuzzy="true">De verbinding met de HAN is verbroken</string>
+  <string name="han-disconnected" fuzzy="true">Verbinding met anti-vandalismenetwerk verbroken</string>
   <string name="han-network">Netwerk</string>
   <string name="han-send">Verzenden</string>
   <string name="error-loggedout">Account is afgemeld, wordt opnieuw aangemeld…</string>
@@ -925,4 +938,8 @@
   <string name="main-report-ip-not-supported">U kunt met deze functie geen IP-adressen rapporteren</string>
   <string name="main-abort-nothing-to-stop">Niets om te stoppen</string>
   <string name="main-abort-instant-reverts-enabled">De huidige bewerking kan niet worden geannuleerd. U moet \'Direct terugdraaien\' in de voorkeuren uitschakelen om deze functie te laten werken.</string>
+  <string name="main-clear-talk-page-summary">Oude sjablonen van overlegpagina verwijderd</string>
+  <string name="han-connected">U bent nu verbonden met het Huggle anti-vandalismenetwerk</string>
+  <string name="preferences-unsaved-title">Voorkeuren</string>
+  <string name="preferences-unsaved-text">Als u dit formulier sluit, gaan mogelijk niet-opgeslagen wijzigingen verloren. Wilt u het toch sluiten?</string>
 </resources>

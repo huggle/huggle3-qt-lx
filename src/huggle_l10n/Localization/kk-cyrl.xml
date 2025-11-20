@@ -438,7 +438,7 @@
   <string name="han-connecting" fuzzy="true">Huggle антивандализм желісіне қосылу</string>
   <string name="han-already-connected">Huggle антивандализм желісіне қосылмады, себебі ол әлдеқашан байланысқан</string>
   <string name="han-already-connecting" fuzzy="true">Күте тұрыңыз, мен әлдеқашан Huggle антивандализм желісіне қосылғамын</string>
-  <string name="han-disconnected" fuzzy="true">Сіз Huggle антивандализм желісіне қосылмағансыз</string>
+  <string name="han-disconnected">Сіз Huggle антивандализм желісіне қосылмағансыз</string>
   <string name="error-loggedout">Аккаунт шығып кеткен, қайта кіріңіз...</string>
   <string name="error-noresponse">Жауап жоқ</string>
   <string name="error-pagemissing">Бет жоқ</string>

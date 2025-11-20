@@ -706,7 +706,7 @@
   <string name="han-connecting">מתחבר לרשת האגל למאבק בהשחתות</string>
   <string name="han-already-connected">לא מתחבר ל־HAN, כי כבר התחברתי</string>
   <string name="han-already-connecting">נא להמתין, אני כבר מתחבר ל־HAN...</string>
-  <string name="han-disconnected" fuzzy="true">התנתקת מ־HAN</string>
+  <string name="han-disconnected">התנתקת מ־HAN</string>
   <string name="han-network">רשת</string>
   <string name="han-send">שליחה</string>
   <string name="error-loggedout">החשבון יצא, מתבצעת כניסה חזרה...</string>

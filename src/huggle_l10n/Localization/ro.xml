@@ -679,6 +679,10 @@
   <string name="shortcut-user-clear-talk">Ștergeți o pagină de discuții a utilizatorului curent</string>
   <string name="shortcut-main-clear-queue">Șterge coada</string>
   <string name="shortcut-revert-agf">Reveniți presupunând bună credință, cu un rezumat personalizat de editare</string>
+  <string name="shortcut-history-page">Afișează istoricul paginii afișate în prezent în browser</string>
+  <string name="shortcut-speedy-delete">Solicitați ștergerea rapidă a paginii afișate în prezent</string>
+  <string name="shortcut-delete-page">Ștergeți pagina afișată în prezent</string>
+  <string name="shortcut-help">Deschide conținutul de ajutor</string>
   <string name="warning-title">Avertizează $1</string>
   <string name="warning-levelgroup">Nivelul avertismentului</string>
   <string name="warning-levelauto">Automat</string>
@@ -703,7 +707,7 @@
   <string name="han-connecting">Conectarea la rețeaua anti-vandalism Huggle</string>
   <string name="han-already-connected">Nu mă conectez la HAN deoarece este deja conectat</string>
   <string name="han-already-connecting">Vă rugăm să așteptați, deja mă conectez la HAN ...</string>
-  <string name="han-disconnected" fuzzy="true">Ați fost deconectat de la HAN</string>
+  <string name="han-disconnected" fuzzy="true">Conexiunea cu rețeaua antivandalism s-a pierdut</string>
   <string name="han-network">Rețea</string>
   <string name="han-send">Trimite</string>
   <string name="error-loggedout">Contul nu mai este autentificat, reautentific...</string>
@@ -911,4 +915,11 @@
   <string name="tip14">Puteți discuta cu alți utilizatori activi ai Huggle care utilizează programul chiar acum. Le veți vedea în fereastra „Rețea”, dacă sunt online.</string>
   <string name="tip15">Dacă găsiți alte probleme cu articolul, dar rollback-ul nu ajută, puteți apăsa E pentru a edita articolul imediat în browserul implicit (nu în Huggle).</string>
   <string name="tip16">Dacă ați apăsat din greșeală butonul Revenire, puteți totuși să anulați revenirea în curs apăsând rapid ESC.</string>
+  <string name="main-config-version-mismatch-title">Stocați configurația?</string>
+  <string name="main-config-version-mismatch-text">Această versiune de Huggle ($1) este mai veche decât versiunea utilizată ultima dată ($2). Dacă continuați, este posibil ca unele setări stocate odată cu versiunea mai nouă să se piardă. Doriți să continuați? (Dacă faceți clic pe Nu, salvarea va fi omisă.)</string>
+  <string name="main-action-unavailable-title">Acțiune indisponibilă</string>
+  <string name="main-report-ip-not-supported">Nu puteți raporta adrese IP folosind această funcție</string>
+  <string name="main-abort-nothing-to-stop">Nimic de oprit</string>
+  <string name="preferences-unsaved-title">Preferințe</string>
+  <string name="preferences-unsaved-text">Închiderea acestui formular poate duce la pierderea modificărilor nesalvate. Doriți să îl închideți oricum?</string>
 </resources>

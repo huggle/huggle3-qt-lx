@@ -699,6 +699,19 @@
   <string name="shortcut-user-clear-talk">مسح صفحة نقاش المستخدم الحالي</string>
   <string name="shortcut-main-clear-queue">مسح الطابور</string>
   <string name="shortcut-revert-agf">العودة مع افتراض حسن النية، مع ملخص تعديل مخصص</string>
+  <string name="shortcut-history-page">عرض سجل الصفحة المعروضة حاليًا في المتصفح</string>
+  <string name="shortcut-speedy-delete">اطلب الحذف السريع للصفحة المعروضة حاليًا</string>
+  <string name="shortcut-delete-page">حذف الصفحة المعروضة حاليًا</string>
+  <string name="shortcut-remove-whitelist">إزالة التعديلات التي أجراها المستخدمون المدرجون في القائمة البيضاء من قائمة الانتظار</string>
+  <string name="shortcut-remove-low-score">إزالة جميع التعديلات التي حصلت على درجة أقل من -200 من قائمة الانتظار</string>
+  <string name="shortcut-increase-bs">زيادة درجة سوء المستخدم الحالي بمقدار 20</string>
+  <string name="shortcut-decrease-bs">تقليل درجة سوء المستخدم الحالي بمقدار 20</string>
+  <string name="shortcut-welcome">الترحيب بالمستخدم باستخدام رسالة الترحيب الافتراضية</string>
+  <string name="shortcut-block-user">حظر المستخدم الذي أجرى التعديل المعروض حاليًا</string>
+  <string name="shortcut-help">فتح محتويات المساعدة</string>
+  <string name="shortcut-preferences">فتح مربع حوار التفضيلات</string>
+  <string name="shortcut-emergency-abort">الإجهاض الطارئ للإجراءات المتأخرة</string>
+  <string name="shortcut-find">البحث عن النص في الصفحة الحالية</string>
   <string name="warning-title">حذّر $1</string>
   <string name="warning-levelgroup">مستوى التحذير</string>
   <string name="warning-levelauto">تلقائي</string>
@@ -723,7 +736,7 @@
   <string name="han-connecting">الاتصال بشبكة مكافحة التخريب في هغل</string>
   <string name="han-already-connected">لا يتصل بشبكة هغل لمكافحة التخريب لأنه متصل بالفعل</string>
   <string name="han-already-connecting">يُرجَى الانتظار، أنا أتصل بشبكة هغل لمكافحة التخريب بالفعل...</string>
-  <string name="han-disconnected" fuzzy="true">تم قطع اتصالك بHAN</string>
+  <string name="han-disconnected">تم قطع اتصالك بHAN</string>
   <string name="han-network">الشبكة</string>
   <string name="han-send">إرسال</string>
   <string name="error-loggedout">تم الخروج من الحساب، قيد تسجيل الدخول...</string>
@@ -937,4 +950,8 @@
   <string name="main-report-ip-not-supported">لا يمكنك الإبلاغ عن عناوين IP باستخدام هذه الميزة</string>
   <string name="main-abort-nothing-to-stop">لا شيء يوقفه</string>
   <string name="main-abort-instant-reverts-enabled">غير قادر على إلغاء العملية الحالية؛ تحتاج إلى تعطيل عمليات الإرجاع الفورية في التفضيلات حتى تعمل هذه الميزة</string>
+  <string name="main-clear-talk-page-summary">تم تنظيف القوالب القديمة من صفحة النقاش</string>
+  <string name="han-connected">أنت الآن متصل بشبكة Huggle لمكافحة التخريب</string>
+  <string name="preferences-unsaved-title">التفضيلات</string>
+  <string name="preferences-unsaved-text">قد يؤدي إغلاق هذا النموذج إلى فقدان التغييرات غير المحفوظة. هل ترغب في الإغلاق على أي حال؟</string>
 </resources>
