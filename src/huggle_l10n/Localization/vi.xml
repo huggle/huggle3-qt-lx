@@ -23,7 +23,7 @@
 -->
 <resources>
   <string name="name">Tiếng Việt</string>
-  <string name="autorelog">Cứ làm thế và không cần hỏi lại lần sau</string>
+  <string name="autorelog">Tiếp tục và không hỏi lại lần sau</string>
   <string name="isrtl">false</string>
   <string name="add">Thêm</string>
   <string name="cancel">Hủy bỏ</string>

@@ -712,6 +712,7 @@
   <string name="shortcut-preferences">فتح مربع حوار التفضيلات</string>
   <string name="shortcut-emergency-abort">الإجهاض الطارئ للإجراءات المتأخرة</string>
   <string name="shortcut-find">البحث عن النص في الصفحة الحالية</string>
+  <string name="shortcut-edit-user-talk">افتح صفحة المستخدم الحالي للمحادثة في متصفح (تعديل المظهر)</string>
   <string name="warning-title">حذّر $1</string>
   <string name="warning-levelgroup">مستوى التحذير</string>
   <string name="warning-levelauto">تلقائي</string>

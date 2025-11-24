@@ -729,7 +729,7 @@
   <string name="han-connecting">Huggle anti-vandalizm ağına bağlanılıyor</string>
   <string name="han-already-connected">HAN\'a zaten bağlı</string>
   <string name="han-already-connecting">Lütfen bekleyin, zaten HAN\'a bağlanmaya çalışıyorum.</string>
-  <string name="han-disconnected" fuzzy="true">Vandalizm karşıtı ağa bağlantı kesildi</string>
+  <string name="han-disconnected">HAN\'dan bağlantınız kesildi</string>
   <string name="han-network">Ağ</string>
   <string name="han-send">Gönder</string>
   <string name="error-loggedout">Hesaptan çıkış yapılmış, tekrar bağlanılıyor...</string>
