@@ -1764,7 +1764,7 @@ void MainWindow::OnTimerTick0()
                 if (*site->UserConfig->Previous_Version > huggle_version)
                 {
                     if (UiGeneric::pMessageBox(this, _l("main-config-version-mismatch-title"),
-                                               _l("main-config-version-mismatch-text", QString(HUGGLE_VERSION), 
+                                               _l("main-config-version-mismatch-text", QString(HUGGLE_VERSION),
                                                   site->UserConfig->Previous_Version->ToString()),
                                                MessageBoxStyleQuestion, true) == QMessageBox::No)
                         continue;
@@ -2567,7 +2567,7 @@ void MainWindow::ChangeProvider(WikiSite *site, int id)
         {
             case HUGGLE_FEED_PROVIDER_IRC:
                 if (!site->GetProjectConfig()->UseIrc)
-                {   
+                {
                     Syslog::HuggleLogs->Log(_l("irc-not"));
                     this->lIRC[site]->setEnabled(false);
                     this->SwitchAlternativeFeedProvider(site);
