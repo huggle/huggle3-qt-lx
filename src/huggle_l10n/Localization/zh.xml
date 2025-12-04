@@ -702,6 +702,20 @@
   <string name="shortcut-user-clear-talk">清空当前用户的讨论页</string>
   <string name="shortcut-main-clear-queue">清空查询</string>
   <string name="shortcut-revert-agf">假定善意回退，并自定义编辑摘要</string>
+  <string name="shortcut-history-page">显示浏览器中目前显示页面的历史记录</string>
+  <string name="shortcut-speedy-delete">请求快速删除当前显示的页面</string>
+  <string name="shortcut-delete-page">删除目前显示的页面</string>
+  <string name="shortcut-remove-whitelist">从队列中移除由白名单用户做出的编辑</string>
+  <string name="shortcut-remove-low-score">从队列中移除所有分数低于-200的编辑</string>
+  <string name="shortcut-increase-bs">将当前用户的不良分数提高20分</string>
+  <string name="shortcut-decrease-bs">将当前用户的不良分数降低20分</string>
+  <string name="shortcut-welcome">使用默认欢迎消息来欢迎用户</string>
+  <string name="shortcut-block-user">封禁做出当前所显示编辑的用户</string>
+  <string name="shortcut-help">开启帮助内容</string>
+  <string name="shortcut-preferences">开启首选项对话框</string>
+  <string name="shortcut-emergency-abort">延迟操作紧急中止</string>
+  <string name="shortcut-find">在当前页面中查找文本</string>
+  <string name="shortcut-edit-user-talk">在浏览器中打开当前用户的讨论页（编辑视图）</string>
   <string name="warning-title">警告$1</string>
   <string name="warning-levelgroup">警告级别</string>
   <string name="warning-levelauto">自动</string>
@@ -934,5 +948,14 @@
   <string name="tip14">您可以与其他Huggle活跃用户聊天，只要它们正在使用程序的话。您将在“网络”窗口看见他们，只要它们在线即可。</string>
   <string name="tip15">如果您找到条目中的其他问题，但回退并无帮助，您可以点击E使用您的默认浏览器（而不是在Huggle内）立刻编辑条目。</string>
   <string name="tip16">如果您不小心按了回退键，您仍然可以迅速按下 ESC 键来取消正在进行中的回退操作。</string>
+  <string name="main-config-version-mismatch-title">存储配置？</string>
+  <string name="main-config-version-mismatch-text">此版本的Huggle（$1）比您上次使用的版本（$2）旧。如果您继续，在新版本存储的一些设置可能会丢失。是否要继续？（点击“否”将跳过存储。）</string>
+  <string name="main-action-unavailable-title">操作不可用</string>
+  <string name="main-report-ip-not-supported">您无法使用此功能来举报IP地址</string>
+  <string name="main-abort-nothing-to-stop">无需停止事件</string>
+  <string name="main-abort-instant-reverts-enabled">无法取消当前操作，您需要在参数设置中禁用“即时回退”才能使其生效。</string>
+  <string name="main-clear-talk-page-summary">已清理讨论页的旧模板</string>
+  <string name="han-connected">您现已连接到Huggle反破坏网络</string>
   <string name="preferences-unsaved-title">偏好设置</string>
+  <string name="preferences-unsaved-text">关闭此表单可能会丢失尚未保存的更改。是否仍要关闭？</string>
 </resources>

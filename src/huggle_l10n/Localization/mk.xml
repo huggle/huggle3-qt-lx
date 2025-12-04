@@ -536,6 +536,8 @@
   <string name="queue-editfiltersgroup">Измени филтри</string>
   <string name="queue-userregex">Корисничкото име се совпаѓа со регуларниот израз:</string>
   <string name="queue-summaryregex">Описот име се совпаѓа со регуларниот израз:</string>
+  <string name="queue-filter-add">Додај</string>
+  <string name="queue-filter-delete">Избриши</string>
   <string name="queue-filternewpage">Нова страница</string>
   <string name="queue-filterownuserspace">Сопствен простор на корисникот</string>
   <string name="queue-filteranonymous">Анонимен корисник</string>
@@ -593,6 +595,7 @@
   <string name="uaa-g1">Земам содржини од UAA</string>
   <string name="uaa-e1">Барањето за содржините на страницата не даде податоци.</string>
   <string name="uaa-e2">Содржините на страницата не беа достапни.</string>
+  <string name="uaa-close">Затвори</string>
   <string name="read-only">Проектот $1 е наместен само на читање. Можностите за уредување ќе бидат ограничени</string>
   <string name="revert-confirm-multiple">Со ова ќе отповикате повеќе уредувања на $1. Да продолжам?</string>
   <string name="revert-confirm-range">Авторот на целната преработка ($2) е во истиот опсег со авторот на тековната ($1), и затоа може да се работи за истата личност. Проверете дали целната преработка ви е исправна пред да одите понатаму. Да продолжам?</string>
@@ -671,6 +674,13 @@
   <string name="shortcut-user-clear-talk">Исчисти разговорна страница на тековниот корисник</string>
   <string name="shortcut-main-clear-queue">Исчисти редица</string>
   <string name="shortcut-revert-agf">Отповикај, претпоставувајќи добронамерност, со сопствен опис на уредувањето</string>
+  <string name="shortcut-history-page">Прикажи историја на тековно прикажаната страница во прелистувачот</string>
+  <string name="shortcut-speedy-delete">Побарајте брзо бришење на тековно прикажаната страница</string>
+  <string name="shortcut-delete-page">Избришете ја тековно прикажаната страница</string>
+  <string name="shortcut-remove-whitelist">Отстрани ги од редицата сите уредувања направени од корисници на белиот список</string>
+  <string name="shortcut-remove-low-score">Отстрани ги од редицата сите уредувања со помалку од -200 бода</string>
+  <string name="shortcut-increase-bs">Зголеми ја оценката на штетноста на корисникот за 20</string>
+  <string name="shortcut-decrease-bs">Намали ја оценката на штетноста на корисникот за 20</string>
   <string name="warning-title">Опомени го $1</string>
   <string name="warning-levelgroup">Степен на опомена</string>
   <string name="warning-levelauto">Автоматски</string>
@@ -880,5 +890,6 @@
   <string name="queue-empty-text">Нема ништо друго во редицата...</string>
   <string name="protip">ProTip</string>
   <string name="wikipagetagsform-group">Група во {{$1}}</string>
+  <string name="tip8">Со стискање на G ќе го означите ова уредување како „добро уредување“. Ова ќе ги извести другите дека ова уредување може да се занемари, ја намалува оценката на штетноста на корисникот и, по желба, му праќа порака со добредојде.</string>
   <string name="tip10">Највеќето тастатурни кратенки можат да се изменат во вашите нагодувања.</string>
 </resources>
