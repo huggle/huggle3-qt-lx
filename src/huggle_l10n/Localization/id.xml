@@ -11,6 +11,7 @@
 * Kenrick95
 * Macofe
 * NFarras
+* Penyuwangi
 * Rachmat04
 * Raynasution
 * Silencemen21
@@ -87,7 +88,7 @@
   <string name="block-message-user">Kirim pesan kepada pengguna dengan penjelasan pemblokiran</string>
   <string name="block-anononly">Hanya blokir pengguna anonim</string>
   <string name="block-creation">Pembuatan akun blokir</string>
-  <string name="block-autoblock">Mengaktifkan blokir otomatis</string>
+  <string name="block-autoblock">Nyalakan blokir otomatis</string>
   <string name="block-email">Blokir surel</string>
   <string name="block-usertalk">Pembicaraan</string>
   <string name="block-usercontribs">Kontribusi</string>
@@ -120,7 +121,7 @@
   <string name="config-ircport">Porta IRC</string>
   <string name="config-difffontsize">Perbedaan ukuran huruf</string>
   <string name="config-logfile">Berkas log</string>
-  <string name="config-viewlocalconfig">Lihat konfigurasi lokal folder</string>
+  <string name="config-viewlocalconfig">Lihat folder fonfigurasi setempat</string>
   <string name="config-trayicon">Tampilkan baki ikon</string>
   <string name="config-startupmessage">Tampilkan pesan pembuka</string>
   <string name="config-shownewmessages">Tampilkan bar pesan baru</string>
@@ -150,7 +151,7 @@
   <string name="config-merge-messages">Gabungkan pesan-pesan Anda dengan pesan lain dalam bagian yang ada</string>
   <string name="config-months-name">Gunakan bulan sebagai judul kepada alih-alih nama halaman</string>
   <string name="config-automatic-warning">Gunakan jenis dan tingkat peringatan otomatis pada fungsi \"kirimkan peringatan\"</string>
-  <string name="config-enable-irc">Aktifkan IRC</string>
+  <string name="config-enable-irc">Nyalakan IRC</string>
   <string name="config-remove-reverted">Hapus suntingan yang sudah dibalikkan oleh pengguna lain</string>
   <string name="config-remove-old">Hapus suntingan lama dari daftar jika suntingan baru pada halaman yang sama terurai</string>
   <string name="config-auto-load-history">Muat sejarah dan informasi pengguna secara otomatis (membutuhkan banyak bandwidth jaringan)</string>
@@ -266,7 +267,7 @@
   <string name="login-progress-language">Memperbarui berkas pesan...</string>
   <string name="login-progress-global">Memeriksa konfigurasi global...</string>
   <string name="login-progress-config">Memeriksa halaman konfigurasi...</string>
-  <string name="login-progress-local">Memerisa konfigurasi lokal untuk $1</string>
+  <string name="login-progress-local">Memerisa konfigurasi setempat untuk $1</string>
   <string name="login-progress-user">Memeriksa konfigurasi pengguna untuk $1</string>
   <string name="login-progress-user-info">Memeriksa info pengguna untuk $1</string>
   <string name="login-progress-whitelist">Mengambil daftar putih pengguna...</string>
