@@ -700,6 +700,7 @@
   <string name="shortcut-preferences">Voorkeurenvenster openen</string>
   <string name="shortcut-emergency-abort">Vertraagde handelingen direct stoppen</string>
   <string name="shortcut-find">Tekst op de huidige pagina zoeken</string>
+  <string name="shortcut-edit-user-talk">Overlegpagina van de huidige gebruiker openen in een browser (bewerkingsweergave)</string>
   <string name="warning-title">$1 waarschuwen</string>
   <string name="warning-levelgroup">Waarschuwingsniveau</string>
   <string name="warning-levelauto">Automatisch</string>
@@ -724,7 +725,7 @@
   <string name="han-connecting">Verbinding maken met het anti-vandalismenetwerk van Huggle</string>
   <string name="han-already-connected">Geen verbinding met de HAN omdat deze al verbonden is</string>
   <string name="han-already-connecting">Een ogenblik geduld, ik ben al aan het verbinden met de HAN…</string>
-  <string name="han-disconnected" fuzzy="true">Verbinding met anti-vandalismenetwerk verbroken</string>
+  <string name="han-disconnected">Verbinding met HAN verbroken</string>
   <string name="han-network">Netwerk</string>
   <string name="han-send">Verzenden</string>
   <string name="error-loggedout">Account is afgemeld, wordt opnieuw aangemeld…</string>

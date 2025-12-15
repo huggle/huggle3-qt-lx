@@ -121,7 +121,7 @@
   <string name="config-ircport">Porta IRC</string>
   <string name="config-difffontsize">Perbedaan ukuran huruf</string>
   <string name="config-logfile">Berkas log</string>
-  <string name="config-viewlocalconfig">Lihat folder fonfigurasi setempat</string>
+  <string name="config-viewlocalconfig">Lihat folder fonfigurasi lokal</string>
   <string name="config-trayicon">Tampilkan baki ikon</string>
   <string name="config-startupmessage">Tampilkan pesan pembuka</string>
   <string name="config-shownewmessages">Tampilkan bar pesan baru</string>
@@ -129,7 +129,7 @@
   <string name="config-shortcutaction">Tindakan</string>
   <string name="config-changeshortcut">Ubah pintasan $1</string>
   <string name="config-noshortcut">Tidak ada</string>
-  <string name="config-defaults">Baku</string>
+  <string name="config-defaults">Bawaan</string>
   <string name="config-minor">Tandakan sebagai suntingan kecil</string>
   <string name="config-ip">Pengguna anonim (pengguna IP)</string>
   <string name="config-watchlist">Tambahkan ke daftar pantauan</string>
@@ -182,7 +182,7 @@
   <string name="config-confirmsame">Konfirmasi pengembalian hasil suntingan oleh pengguna yang dibalikan</string>
   <string name="config-confirmselfrevert">Konfirmasi pengembalian hasil suntingan sendiri (kecuali urung)</string>
   <string name="config-confirmwarned">Konfirmasi pengembalian hasil suntingan oleh pengguna yang diperingatkan</string>
-  <string name="config-confirmrange">Konfirmasi pengembalian hasil edit oleh pengguna anonim dalam rentang / 16 yang sama saat pengguna dikembalikan</string>
+  <string name="config-confirmrange">Konfirmasi pengembalian suntingan oleh pengguna anonim dalam rentang /16 yang sama saat pengguna dikembalikan</string>
   <string name="config-confirmpage">Konfirmasi pengembalian pada halaman yang diabaikan</string>
   <string name="config-autoadvance">Setelah mengembalikan, pindah ke penyuntingan berikutnya dalam antrian</string>
   <string name="config-userollback">Gunakan pengembalian jika tersedia</string>
@@ -267,7 +267,7 @@
   <string name="login-progress-language">Memperbarui berkas pesan...</string>
   <string name="login-progress-global">Memeriksa konfigurasi global...</string>
   <string name="login-progress-config">Memeriksa halaman konfigurasi...</string>
-  <string name="login-progress-local">Memerisa konfigurasi setempat untuk $1</string>
+  <string name="login-progress-local">Memeriksa konfigurasi lokal untuk $1</string>
   <string name="login-progress-user">Memeriksa konfigurasi pengguna untuk $1</string>
   <string name="login-progress-user-info">Memeriksa info pengguna untuk $1</string>
   <string name="login-progress-whitelist">Mengambil daftar putih pengguna...</string>
@@ -326,7 +326,7 @@
   <string name="main-page-viewlatest">Lihat revisi terakhir</string>
   <string name="main-page-history">Mengambil riwayat</string>
   <string name="main-page-historypage">Lihat riwayat</string>
-  <string name="main-page-edit">Sunting halaman dalam browser</string>
+  <string name="main-page-edit">Sunting halaman dalam peramban</string>
   <string name="main-page-tag">Tag</string>
   <string name="main-page-reqdeletion">Minta penghapusan cepat</string>
   <string name="main-page-reqprotection">Minta perlindungan halaman</string>
@@ -444,7 +444,7 @@
   <string name="userinfo-generic">Informasi pengguna</string>
   <string name="shortcut-report-user">Laporkan pengguna</string>
   <string name="shortcut-revert">Kembalikan suntingan</string>
-  <string name="shortcut-browser-close-tab">Menutup browser tab</string>
+  <string name="shortcut-browser-close-tab">Tutup tab peramban</string>
   <string name="shortcut-tab">Buka tab baru</string>
   <string name="warning-level1">Tingkat 1</string>
   <string name="warning-level2">Tingkat 2</string>
@@ -458,7 +458,7 @@
   <string name="delete-progress">Menghapus $1...</string>
   <string name="edit-progress">Menyunting $1...</string>
   <string name="preferences-color-scheme-diff">Warna berbeda</string>
-  <string name="preferences-color-scheme-diff-default">Baku</string>
+  <string name="preferences-color-scheme-diff-default">Bawaan</string>
   <string name="preferences-color-scheme-diff-dark-mode">Mode gelap</string>
   <string name="fail">Gagal</string>
   <string name="request">Permintaan</string>
@@ -490,7 +490,7 @@
   <string name="title-on">di $1</string>
   <string name="main-revert-custom-reason-text">Tidak ada alasan diberikan</string>
   <string name="main-revert-already-pending-title">Perubahan ini sudah dikembalikan</string>
-  <string name="main-revert-already-pending-text">nda tidak dapat kembali mengedit ini, karena itu sudah dipulihkan kembali. Mohon tunggu!</string>
+  <string name="main-revert-already-pending-text">Anda tidak dapat kembali menyunting ini, karena itu sudah dikembalikan. Mohon tunggu!</string>
   <string name="main-revert-type-unknown">tidak diketahui</string>
   <string name="main-revert-type-in-userspace">di ruang pengguna</string>
   <string name="main-revert-type-made-by-you">Dibuat oleh Anda</string>
