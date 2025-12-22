@@ -4,6 +4,7 @@
 * Andikbuyung
 * Arief
 * Arifin.wijaya
+* Bennylin
 * Boesenbergia
 * FBN122645
 * Hidayatsrf
@@ -407,7 +408,7 @@
   <string name="queue-queues">Antrean:</string>
   <string name="queue-listselector">Daftar</string>
   <string name="queue-diffsgroup">Beda</string>
-  <string name="queue-namespaces">Ruangnama</string>
+  <string name="queue-namespaces">Ruang nama:</string>
   <string name="queue-filternewpage">Halaman baru</string>
   <string name="queue-filteranonymous">Pengguna anonim</string>
   <string name="queue-filterreverts">Batalkan</string>
