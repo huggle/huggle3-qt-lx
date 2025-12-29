@@ -328,7 +328,7 @@
   <string name="main-page-history">Mengambil riwayat</string>
   <string name="main-page-historypage">Lihat riwayat</string>
   <string name="main-page-edit">Sunting halaman dalam peramban</string>
-  <string name="main-page-tag">Tag</string>
+  <string name="main-page-tag">Tanda</string>
   <string name="main-page-reqdeletion">Minta penghapusan cepat</string>
   <string name="main-page-reqprotection">Minta perlindungan halaman</string>
   <string name="main-page-watch">Pantau</string>
@@ -468,10 +468,10 @@
   <string name="protect-request-fail">Tidak dapat mengambil halaman laporan saat ini: $1</string>
   <string name="message-fail">Gagal menyampaikan pesan</string>
   <string name="edit-conflict">Konflik penyuntingan</string>
-  <string name="page-tag-nodescription">Tidak ada deskripsi untuk tag ini</string>
+  <string name="page-tag-nodescription">Tidak ada deskripsi untuk tanda ini</string>
   <string name="page-tag-noparameters">Tidak ada parameter</string>
-  <string name="page-tag-fail">Gagal memberi tag halaman</string>
-  <string name="page-tag-error">Tidak dapat memberi tag pada halaman, kesalahannya adalah: $1</string>
+  <string name="page-tag-fail">Gagal memberi tanda halaman</string>
+  <string name="page-tag-error">Tidak dapat memberi tanda pada halaman, galatnya adalah: $1</string>
   <string name="page-unknown">Halaman tidak diketahui</string>
   <string name="summary-edit-range">Menampilkan perbedaan diff dari revid $1 hingga $2</string>
   <string name="namespace">Ruang nama</string>
