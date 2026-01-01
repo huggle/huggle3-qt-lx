@@ -83,7 +83,7 @@
   <string name="flags">Flagi</string>
   <string name="gracetime">Oczekiwanie na zakończenie żądań dokonujących edycji...</string>
   <string name="browser-none">Nie ma jeszcze strony do wyświetlania.</string>
-  <string name="browser-load" fuzzy="true">Pobieranie różnic używając awaryjnego renderowania web, proszę czekać...</string>
+  <string name="browser-load">Pobieranie widoku różnic używając awaryjnego wywołania renderowania w MediaWiki, proszę czekać...</string>
   <string name="browser-miss-summ">Nie podano opisu edycji</string>
   <string name="browser-diff">Porównanie strony: $1 (wynik: $2)</string>
   <string name="browser-fail">Nie można pobrać różnicy: $1</string>
@@ -289,7 +289,7 @@
   <string name="login-error-config">Nie udało się zalogować, nie można przetworzyć lokalnych ustawień dla $1: $2</string>
   <string name="login-error-count">Korzystanie z Huggle w tym projekcie wymaga co najmniej $1 edycji.</string>
   <string name="login-error-disabled">Huggle nie jest włączony dla twojego konta na $1. Sprawdź swoją stronę konfiguracji użytkownika.</string>
-  <string name="login-error-global" fuzzy="true">Logowanie nie udało się: nie można przetworzyć globalnych ustawień. Zobacz log debugowania, aby uzyskać więcej informacji.</string>
+  <string name="login-error-global">Logowanie nie udało się - możliwe problemy z połączeniem sieciowym. Nie można pobrać albo przetworzyć strony globalnych ustawień</string>
   <string name="login-error-invalid">Nieprawidłowa nazwa użytkownika</string>
   <string name="login-error-noconfig">$1 nie ma strony konfiguracyjnej Huggle\'a</string>
   <string name="login-error-nouser">Użytkownik nie istnieje</string>
@@ -455,6 +455,8 @@
   <string name="queue-diffsgroup">Zmiany</string>
   <string name="queue-namespaces">Przestrzenie nazw:</string>
   <string name="queue-editfiltersgroup">Edytuj filtry</string>
+  <string name="queue-filter-add">Dodaj</string>
+  <string name="queue-filter-delete">Usuń</string>
   <string name="queue-filternewpage">Nowa strona</string>
   <string name="queue-filteranonymous">Anonimowy użytkownik</string>
   <string name="queue-filterignored">Ignorowany użytkownik</string>
@@ -471,6 +473,7 @@
   <string name="report-title">Raport $1</string>
   <string name="report-tu">Zgłoś użytkownika</string>
   <string name="report-reason">Powód:</string>
+  <string name="report-auto">Zgłoszono $1</string>
   <string name="report-intro">Zgłaszasz użytkownika $1</string>
   <string name="report-message">Wiadomość:</string>
   <string name="report-log">Ostrzeżenia dla tego użytkownika:</string>

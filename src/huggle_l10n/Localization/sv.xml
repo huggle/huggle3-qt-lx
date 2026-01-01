@@ -9,6 +9,7 @@
 * McDutchie
 * Paracel63
 * Sabelöga
+* Stefan2255
 * Umeaboy
 * WikiPhoenix
 -->
@@ -241,7 +242,7 @@
   <string name="login-intro">Var god välj ett projekt och ange ditt användarnamn och lösenord. Du kan logga in på flera projekt genom att även klicka på \"Projekt\"-knappen.</string>
   <string name="invalid-bot-user-name">Detta är inte ett giltigt namn på en bot. Ett exempel på ett giltigt namn på en bot: Jimbo@Huggle</string>
   <string name="login-tab-botp">Botlösenord</string>
-  <string name="login-tab-login" fuzzy="true">Logga in</string>
+  <string name="login-tab-login">Arv</string>
   <string name="login-language">Språk:</string>
   <string name="login-project">Projekt:</string>
   <string name="login-username">Användarnamn:</string>
@@ -294,10 +295,10 @@
   <string name="login-error-cancelled">Avbruten.</string>
   <string name="login-error-config">Inloggning misslyckades, kunde inte läsa lokal konfiguration för $1: $2</string>
   <string name="login-error-config-retrieve">Inloggning misslyckades, kunde inte hämta användarkonfiguration: $1</string>
-  <string name="login-error-config-query-no-data" fuzzy="true">Inloggning misslyckades, kunde inte hämta global konfiguration, API-begäran returnerade ingen data</string>
+  <string name="login-error-config-query-no-data">Inloggning misslyckades - möjliga problem med nätverksanslutningen? Det gick inte att ladda ner global konfiguration</string>
   <string name="login-error-count">Minst $1 redigeringar krävs för att använda Huggle på detta projekt.</string>
   <string name="login-error-disabled">Huggle är inte aktiverat för ditt konto på $1. Kontrollera sidan för dina användarkonfigurationer.</string>
-  <string name="login-error-global" fuzzy="true">Inloggning misslyckades: Kunde inte läsa global konfiguration. Se felsökningsloggen för fler detaljer.</string>
+  <string name="login-error-global">Inloggningen misslyckades - möjligt problem med nätverksanslutningen? Det gick inte att ladda ner eller analysera den globala konfigurationssidan</string>
   <string name="login-error-invalid">Ogiltigt användarnamn</string>
   <string name="login-error-noconfig">$1 har inte en Huggle-konfigurationssida</string>
   <string name="login-error-nouser">Användaren finns inte</string>
@@ -316,7 +317,7 @@
   <string name="main-menu-provider-stop">Stoppa leverantör</string>
   <string name="main-menu-provider-resume">Återuppta leverantör</string>
   <string name="main-help-copy-syslog-to-clip">Kopiera systemlogg till urklipp</string>
-  <string name="provider-up" fuzzy="true">Ansluter till strömmen med senaste ändringar på $2 med tillhandahållaren: $1</string>
+  <string name="provider-up">Ansluter till strömmen med senaste ändringar på $2 med tillhandahållaren: $1</string>
   <string name="main-no-reason">Ingen anledning angavs av användaren</string>
   <string name="main-restoring-slap">En annan redigering återställs för tillfället, var god vänta...</string>
   <string name="main-page">Sida</string>
@@ -775,7 +776,7 @@
   <string name="relogin-fail">Kunde inte logga in på wiki: $1</string>
   <string name="projects">Projekt</string>
   <string name="unable-to-retrieve-user-list">Kunde inte hämta listan över användare: $1</string>
-  <string name="login-no-userinfo" fuzzy="true">Sidan gav inte att någon användarinformation</string>
+  <string name="login-no-userinfo">Webbplatsen returnerade ingen användarinformation</string>
   <string name="login-invalid-register-date">Ogiltigt registreringsdatum returnerades av MediaWiki</string>
   <string name="login-no-site-info-returned">Ingen webbplatsinfo returnerade för denna wiki</string>
   <string name="loading-main-window">Läser in Huggles huvudfönster...</string>
