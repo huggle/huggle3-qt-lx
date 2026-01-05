@@ -228,7 +228,7 @@
   <string name="main-queue-next">Weider</string>
   <string name="main-queue-count">$1 Elementer</string>
   <string name="main-queue-reset">Zerécksetzen</string>
-  <string name="main-queue-clearall">All eidelmaachen</string>
+  <string name="main-queue-clearall">All eidel maachen</string>
   <string name="main-queue-when-full-remove">Al Ännerungen ewechhuelen</string>
   <string name="main-goto-mytalk">Meng Diskussiounssäit</string>
   <string name="main-goto-mycontribs">Meng Kontributiounen</string>
@@ -419,7 +419,7 @@
   <string name="shortcut-tab">Mécht en neien Tab op</string>
   <string name="shortcut-revert-and-stay">Aktuell Ännerung zrécksetzen an op der Säit bleiwen</string>
   <string name="shortcut-user-clear-talk">Eng Diskussiounssäit vum aktuelle Benotzer eidelmaachen</string>
-  <string name="shortcut-main-clear-queue">Queue eidelmaachen</string>
+  <string name="shortcut-main-clear-queue">Queue eidel maachen</string>
   <string name="shortcut-delete-page">Déi aktuell ugewise Säit läschen</string>
   <string name="shortcut-find">Text op der aktueller Säit fannen</string>
   <string name="warning-title">$1 warnen</string>
