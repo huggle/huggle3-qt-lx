@@ -728,7 +728,7 @@
   <string name="speedy-progress">Marcatura di \'$1\' per una cancellazione rapida...</string>
   <string name="speedy-wrong">La marcatura richiesta non è valida. Per favore scegli un altro motivo di cancellazione.</string>
   <string name="speedy-finished">Terminato</string>
-  <string name="warn-alreadyblocked">L\'utente è già stato bloccato</string>
+  <string name="warn-alreadyblocked">L\'utenza è già stata bloccata</string>
   <string name="editquery-success">$1 modificata con successo su $2</string>
   <string name="editquery-token">Recupero del token per modificare $1</string>
   <string name="editquery-token-error">Impossibile recuperare il token di modifica</string>
