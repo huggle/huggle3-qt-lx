@@ -682,7 +682,17 @@
   <string name="shortcut-history-page">Afișează istoricul paginii afișate în prezent în browser</string>
   <string name="shortcut-speedy-delete">Solicitați ștergerea rapidă a paginii afișate în prezent</string>
   <string name="shortcut-delete-page">Ștergeți pagina afișată în prezent</string>
+  <string name="shortcut-remove-whitelist">Eliminați din coadă editările făcute de utilizatorii din lista albă</string>
+  <string name="shortcut-remove-low-score">Eliminați din coadă toate editările cu scor mai mic de -200</string>
+  <string name="shortcut-increase-bs">Creşteţi scorul de răutate al utilizatorului curent cu 20</string>
+  <string name="shortcut-decrease-bs">Reduceți scorul de răutate al utilizatorului curent cu 20</string>
+  <string name="shortcut-welcome">Întâmpinați utilizatorul cu mesajul de bun venit implicit</string>
+  <string name="shortcut-block-user">Blochează utilizatorul care a efectuat editarea afișată în prezent</string>
   <string name="shortcut-help">Deschide conținutul de ajutor</string>
+  <string name="shortcut-preferences">Deschide dialogul de preferințe</string>
+  <string name="shortcut-emergency-abort">Anulare de urgență a acțiunilor amânate</string>
+  <string name="shortcut-find">Găsiți text în pagina curentă</string>
+  <string name="shortcut-edit-user-talk">Deschide pagina de discuții a utilizatorului curent într-un browser (vizualizare în mod de modificare)</string>
   <string name="warning-title">Avertizează $1</string>
   <string name="warning-levelgroup">Nivelul avertismentului</string>
   <string name="warning-levelauto">Automat</string>
@@ -707,7 +717,7 @@
   <string name="han-connecting">Conectarea la rețeaua anti-vandalism Huggle</string>
   <string name="han-already-connected">Nu mă conectez la HAN deoarece este deja conectat</string>
   <string name="han-already-connecting">Vă rugăm să așteptați, deja mă conectez la HAN ...</string>
-  <string name="han-disconnected" fuzzy="true">Conexiunea cu rețeaua antivandalism s-a pierdut</string>
+  <string name="han-disconnected">Ai fost deconectat de la HAN</string>
   <string name="han-network">Rețea</string>
   <string name="han-send">Trimite</string>
   <string name="error-loggedout">Contul nu mai este autentificat, reautentific...</string>
@@ -920,6 +930,9 @@
   <string name="main-action-unavailable-title">Acțiune indisponibilă</string>
   <string name="main-report-ip-not-supported">Nu puteți raporta adrese IP folosind această funcție</string>
   <string name="main-abort-nothing-to-stop">Nimic de oprit</string>
+  <string name="main-abort-instant-reverts-enabled">Nu se poate anula operațiunea curentă; trebuie să dezactivați Revenirile instantanee în preferințe pentru ca această funcție să funcționeze.</string>
+  <string name="main-clear-talk-page-summary">Formatele vechi au fost curățate de pe pagina de discuții</string>
+  <string name="han-connected">Acum ești conectat la rețeaua anti-vandalism Huggle</string>
   <string name="preferences-unsaved-title">Preferințe</string>
   <string name="preferences-unsaved-text">Închiderea acestui formular poate duce la pierderea modificărilor nesalvate. Doriți să îl închideți oricum?</string>
 </resources>
