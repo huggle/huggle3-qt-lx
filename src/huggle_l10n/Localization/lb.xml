@@ -87,6 +87,7 @@
   <string name="config-title">Optiounen</string>
   <string name="config-already-in-use">Dëse Shortcut gëtt scho vu(n) $1 benotzt, sicht Iech wgl. een Aneren eraus</string>
   <string name="config-logfile">Lobuch-Fichier</string>
+  <string name="config-shortcutlist">Tastekombinatiounen</string>
   <string name="config-shortcutaction">Aktioun</string>
   <string name="config-changeshortcut">Ofkierzung fir $1 änneren</string>
   <string name="config-noshortcut">Keng</string>

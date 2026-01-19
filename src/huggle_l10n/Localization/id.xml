@@ -396,7 +396,7 @@
   <string name="message-message">Pesan:</string>
   <string name="message-summary">Ringkasan:</string>
   <string name="protect-reason">Alasan:</string>
-  <string name="protect-expiry">Kadaluarsa:</string>
+  <string name="protect-expiry">Kedaluwarsa:</string>
   <string name="protect-log">Log pelindungan:</string>
   <string name="protect-currentlevel">Level perlindungan saat ini</string>
   <string name="protect-type">Jenis perlindungan:</string>

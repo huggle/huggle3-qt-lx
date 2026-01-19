@@ -474,7 +474,7 @@
   <string name="main-restore-data-fail">Impossibile ripristinare la revisione, perché il wiki non ha fornito alcun dato per la versione selezionata</string>
   <string name="main-custom-reason-fail">Non hai fornito un motivo valido</string>
   <string name="main-report-username">Segnala il nome utente</string>
-  <string name="main-report-user">Segnala l\'utente</string>
+  <string name="main-report-user">Segnala utente</string>
   <string name="main-edit-user-talk">Modifica discussioni utente</string>
   <string name="main-statistics-paused">in pausa</string>
   <string name="main-statistics-none">nessuno</string>
@@ -544,7 +544,7 @@
   <string name="queue-usergroup">Mostra solamente le modifiche di questi utenti</string>
   <string name="report-title">Segnala $1</string>
   <string name="report-warn">Quest\'utente ha già raggiunto il livello di avviso 4, quindi non gli/le verranno inviati ulteriori template. Puoi segnalarlo/a ora, ma, per favore, assicurati che abbia già raggiunto il corretto numero di avvertimenti recenti! Puoi farlo cliccando sul pulsante della \"pagina di discussione\" nel form seguente. Ricorda che questo form e questo avvertimento vengono mostrati sia nel caso in cui il tuo ripristino abbia avuto successo che nel caso contrario, quindi potresti entrare in conflitto con altri utenti (controlla di nuovo che l\'utente non sia già stato/a segnalato/a). Vuoi segnalare quest\'utente?</string>
-  <string name="report-tu">Segnala l\'utente</string>
+  <string name="report-tu">Segnala utente</string>
   <string name="report-reason">Motivo:</string>
   <string name="report-auto">Segnalato $1</string>
   <string name="report-intro">Stai per segnalare l\'utente $1</string>
@@ -622,7 +622,7 @@
   <string name="userinfo-no-user">Nessun utente</string>
   <string name="shortcut-page-patrol-edit">Verifica modifica</string>
   <string name="shortcut-report-username">Segnala il nome utente</string>
-  <string name="shortcut-report-user">Segnala l\'utente</string>
+  <string name="shortcut-report-user">Segnala utente</string>
   <string name="shortcut-my-talk">La mia pagina di discussione</string>
   <string name="shortcut-raw">Ripristina la modifica e avvisa un utente</string>
   <string name="shortcut-contrib">Mostra i contributi dell\'utente che ha effettuato la modifica attualmente visualizzata.</string>

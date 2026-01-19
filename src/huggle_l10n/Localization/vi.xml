@@ -90,7 +90,7 @@
   <string name="block-duration">Thời lượng:</string>
   <string name="block-message">Tin nhắn trên trang thảo luận:</string>
   <string name="block-message-user">Gửi tin nhắn tới thành viên mục tiêu, kèm theo lý do cấm</string>
-  <string name="block-anononly">Chỉ cấm người dùng vô danh</string>
+  <string name="block-anononly">Chỉ cấm người dùng chưa đăng nhập</string>
   <string name="block-creation">Cấm mở tài khoản</string>
   <string name="block-autoblock">Tự động cấm các địa chỉ IP mà người này sử dụng</string>
   <string name="block-email">Cấm thư điện tử</string>
@@ -187,7 +187,7 @@
   <string name="config-confirmsame">Xác nhận lùi lại bản sửa đổi của thành viên đang bị lùi lại</string>
   <string name="config-confirmselfrevert">Xác nhận lùi lại những sửa đổi của chính mình (ngoại trừ hoàn tác)</string>
   <string name="config-confirmwarned">Xác nhận lùi lại sửa đổi của một thành viên bị cảnh báo</string>
-  <string name="config-confirmrange">Xác nhận lùi lại những sửa đổi của những người dùng vô danh trong cùng dải /16 với tư cách là thành viên đang bị lùi lại</string>
+  <string name="config-confirmrange">Xác nhận lùi lại những sửa đổi của những người dùng chưa đăng nhập trong cùng dải /16 với tư cách là thành viên đang bị lùi lại</string>
   <string name="config-confirmpage">Xác nhận lùi lại trên các trang được bỏ qua</string>
   <string name="config-autoadvance">Sau khi lùi lại, di chuyển sang sửa đổi tiếp theo trong hàng chờ</string>
   <string name="config-userollback">Sử dụng lùi sửa nếu sẵn có</string>
@@ -204,7 +204,7 @@
   <string name="config-promptforblock">Nhắc về việc cấm nếu được hỏi cảnh báo thành viên bằng cảnh báo cuối cùng</string>
   <string name="config-blockreason">Lý do cấm mặc định</string>
   <string name="config-blocktime">Thời lượng cấm mặc định</string>
-  <string name="config-blocktimeanon">người dùng vô danh</string>
+  <string name="config-blocktimeanon">người dùng chưa đăng nhập</string>
   <string name="config-blocktimereg">thành viên có tài khoản</string>
   <string name="config-summaryprompt">Nhập tóm lược</string>
   <string name="config-history">Tải về trọn vẹn lịch sử của tất cả bài viết</string>
@@ -555,7 +555,7 @@
   <string name="queue-filter-delete">Xóa</string>
   <string name="queue-filternewpage">Trang mới</string>
   <string name="queue-filterownuserspace">Không gian thành viên của chính thành viên</string>
-  <string name="queue-filteranonymous">Người dùng vô danh</string>
+  <string name="queue-filteranonymous">Người dùng chưa đăng nhập</string>
   <string name="queue-filterignored">Thành viên bị bỏ qua</string>
   <string name="queue-filterreverts">Lùi lại</string>
   <string name="queue-filternotifications">Thông báo</string>
