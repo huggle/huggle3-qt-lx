@@ -58,6 +58,7 @@ void WebserverQuery::Process()
 
     QUrl url = QUrl::fromEncoded(this->URL.toUtf8());
     QNetworkRequest request(url);
+    request.setRawHeader("User-Agent", Configuration::HuggleConfiguration->WebRequest_UserAgent);
     if (this->UsingPOST)
     {
         request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
@@ -66,7 +67,6 @@ void WebserverQuery::Process()
     {
         this->reply = Query::NetworkManager->get(request);
     }
-    request.setRawHeader("User-Agent", Configuration::HuggleConfiguration->WebRequest_UserAgent);
     QObject::connect(this->reply, &QNetworkReply::finished, this, &WebserverQuery::Finished);
     QObject::connect(this->reply, &QIODevice::readyRead, this, &WebserverQuery::ReadData);
     Huggle::Syslog::HuggleLogs->DebugLog("Processing webserver request " + this->URL, 2);
