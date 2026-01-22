@@ -45,7 +45,7 @@
   <string name="save">Simpan</string>
   <string name="show">Tampilkan</string>
   <string name="no-instant">Pesan ke $2 tidak dapat dikirim, karena peringatan instan tidak diaktifkan pada proyek $1. Pilih tingkat peringatan yang berbeda.</string>
-  <string name="undo">Balikkan</string>
+  <string name="undo">Batalkan</string>
   <string name="yes">Ya</string>
   <string name="editing-page">Menyunting halaman</string>
   <string name="agf">Batalkan dan tandai sebagai suntingan berniat baik tanpa alasan spesifik</string>
