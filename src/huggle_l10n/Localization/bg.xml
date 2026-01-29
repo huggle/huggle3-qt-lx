@@ -145,11 +145,14 @@
   <string name="message-message">Съобщение:</string>
   <string name="message-summary">Резюме:</string>
   <string name="message-autosign">Автоматично добавяне на подпис</string>
+  <string name="protect-reason">Причина:</string>
   <string name="queue-namespaces">Именни пространства:</string>
   <string name="queue-filternewpage">Нова страница</string>
+  <string name="report-reason">Причина:</string>
   <string name="report-message">Съобщение:</string>
   <string name="score-word">Дума</string>
   <string name="score-range">Обхват</string>
+  <string name="speedy-reason">Причина:</string>
   <string name="update-title">Има нова версия</string>
   <string name="updater-update">Обновяване</string>
   <string name="updater-close">Затваряне</string>
