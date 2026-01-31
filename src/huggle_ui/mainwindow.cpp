@@ -1077,7 +1077,7 @@ void MainWindow::ReloadShort(const QString& id)
             q = this->ui->actionFlag_as_a_good_edit;
             break;
         case HUGGLE_ACCEL_MAIN_OPEN_IN_BROWSER:
-            q = this->ui->actionOpen_page_in_browser;
+            q = this->ui->actionOpen_in_a_browser;
             break;
         case HUGGLE_ACCEL_MAIN_TALK:
             q = this->ui->actionTalk_page;
@@ -1764,7 +1764,7 @@ void MainWindow::OnTimerTick0()
                 if (*site->UserConfig->Previous_Version > huggle_version)
                 {
                     if (UiGeneric::pMessageBox(this, _l("main-config-version-mismatch-title"),
-                                               _l("main-config-version-mismatch-text", QString(HUGGLE_VERSION), 
+                                               _l("main-config-version-mismatch-text", QString(HUGGLE_VERSION),
                                                   site->UserConfig->Previous_Version->ToString()),
                                                MessageBoxStyleQuestion, true) == QMessageBox::No)
                         continue;
@@ -2567,7 +2567,7 @@ void MainWindow::ChangeProvider(WikiSite *site, int id)
         {
             case HUGGLE_FEED_PROVIDER_IRC:
                 if (!site->GetProjectConfig()->UseIrc)
-                {   
+                {
                     Syslog::HuggleLogs->Log(_l("irc-not"));
                     this->lIRC[site]->setEnabled(false);
                     this->SwitchAlternativeFeedProvider(site);
