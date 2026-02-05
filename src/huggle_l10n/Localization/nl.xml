@@ -157,7 +157,7 @@
   <string name="config-remove-reverted">Bewerkingen uit de wachtrij verwijderen die al zijn teruggedraaid door iemand anders</string>
   <string name="config-remove-old">Oudere bewerkingen verwijderen als de nieuwere bewerking op dezelfde pagina verwerkt is</string>
   <string name="config-auto-load-history">Automatisch geschiedenis en gebruikersgegevens laden (vereist veel bandbreedte)</string>
-  <string name="config-last-revision">Schakel naar de laatste revisie van de pagina in het geval de huidige geladen bewerking niet de laatste revisie is (wordt buiten de cache om geladen, wat Huggle trager maakt)</string>
+  <string name="config-last-revision">Schakel naar de laatste versie van de pagina in het geval de huidige geladen bewerking niet de laatste versie is (wordt buiten de cache om geladen, wat Huggle trager maakt)</string>
   <string name="config-require-delay">Vereis een vertraging na het laden van iedere bewerking, gedurende welke tijd het niet mogelijk is om functies waar schrijven voor nodig is te gebruiken (handig voor het vermijden van meerdere toetsaanslagen)</string>
   <string name="config-wait-edit">De vertraging, in seconden, totdat schrijffuncties weer beschikbaar zijn:</string>
   <string name="config-display-next">Volgende weergeven</string>
@@ -612,7 +612,7 @@
   <string name="read-only">Project $1 is geconfigureerd als alleen-lezen, bewerkingsfuncties zijn beperkt</string>
   <string name="revert-confirm-multiple">Dit draait meerdere bewerkingen van $1 terug. Wilt u doorgaan?</string>
   <string name="revert-confirm-range">De auteur van de doel-versie, $2, is dezelfde auteur als die van de huidige versie, $1, en is dus mogelijk hetzelfde persoon. Controleer of de doel-versie correct is.\nDoorgaan?</string>
-  <string name="revert-confirm-same">Dit draait de bewerking terug naar een andere revisie van de gebruiker die u nu terugdraait, $1. Wilt u doorgaan?</string>
+  <string name="revert-confirm-same">Dit draait de bewerking terug naar een andere versie door de gebruiker $1 die u nu terugdraait. Wilt u doorgaan?</string>
   <string name="revert-confirm-warned">Dit zal de pagina terugdraaien naar een versie van $1, die in het verleden is gewaarschuwd. Doorgaan?</string>
   <string name="revert-error-first">Dit is de eerste bewerking op deze pagina, en kan dus niet worden teruggedraaid.</string>
   <string name="revert-only">Dit is de enige bewerking op deze pagina.</string>
