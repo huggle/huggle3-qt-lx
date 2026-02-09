@@ -2,6 +2,7 @@
 <!-- Authors:
 * !Silent
 * Araceletorres
+* Arcstur
 * ArgonSim
 * Athena in Wonderland
 * Cainamarques
@@ -560,6 +561,8 @@
   <string name="queue-editfiltersgroup">Editar filtros</string>
   <string name="queue-userregex">Nome de usuário na expressão regular:</string>
   <string name="queue-summaryregex">Sumário de edição na expressão regular:</string>
+  <string name="queue-filter-add">Adicionar</string>
+  <string name="queue-filter-delete">Excluir</string>
   <string name="queue-filternewpage">Página nova</string>
   <string name="queue-filterownuserspace">Páginas e subpáginas do usuário</string>
   <string name="queue-filteranonymous">Usuário anônimo</string>
@@ -617,6 +620,7 @@
   <string name="uaa-g1">Obtendo conteúdo de UAA</string>
   <string name="uaa-e1">A consulta para o conteúdo da página não retornou dados.</string>
   <string name="uaa-e2">Os conteúdos das páginas estão indisponíveis.</string>
+  <string name="uaa-close">Fechar</string>
   <string name="read-only">O projeto $1 foi configurado para o modo exclusivo de leitura, as funções de edição serão limitadas</string>
   <string name="revert-confirm-multiple">Você vai reverter várias edições do usuário \'$1\'. Continuar?</string>
   <string name="revert-confirm-range">O autor da edição para qual vai reverter, $2, provavelmente é o mesmo autor da edição atual, $1, por ser um IP da mesma gama; certifique-se se quer mesmo reverter para esta edição. Continuar?</string>
