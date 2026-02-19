@@ -18,6 +18,7 @@
 * Peterxy12
 * Phenolla
 * Shizhao
+* ShuQizhe
 * SolidBlock
 * Tomchen1989
 * WQL
@@ -51,7 +52,7 @@
   <string name="done">完成</string>
   <string name="no">否</string>
   <string name="ok">确定</string>
-  <string name="override-warn">您已经覆盖了项目配置路径。滥用此功能以获取维基的写入权限，可能会导致您的帐户被无限期封禁。</string>
+  <string name="override-warn">您已经覆盖了项目配置路径。滥用此功能以获取维基的写入权限，可能会导致您的账户被无限期封禁。</string>
   <string name="remove">移除</string>
   <string name="rename">重命名</string>
   <string name="reload">重新加载</string>

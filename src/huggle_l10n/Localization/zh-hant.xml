@@ -10,6 +10,7 @@
 * Liuxinyu970226
 * Macofe
 * Sanmosa
+* ShuQizhe
 * Simon Shek
 * Winston Sung
 * Xiplus
@@ -34,7 +35,7 @@
   <string name="done">完成</string>
   <string name="no">否</string>
   <string name="ok">確定</string>
-  <string name="override-warn">您已覆蓋項目設定的路徑。請留意，若濫用此功能在 wiki 上獲得原先您所不俱有的寫入存取，可能會導致永久封禁您的帳號。</string>
+  <string name="override-warn">您已覆蓋項目設定的路徑。請留意，若濫用此功能在 wiki 上獲得原先您所不俱有的寫入存取，可能會導致您的帳戶被永久封鎖。</string>
   <string name="remove">移除</string>
   <string name="rename">重新命名</string>
   <string name="reload">重新載入</string>
