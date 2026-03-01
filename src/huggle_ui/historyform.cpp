@@ -277,11 +277,13 @@ void HistoryForm::onTick01()
         }
         else
         {
-            QPoint pntr(0, this->pos().y());
-            if (this->pos().x() > 400)
-                pntr.setX(this->pos().x() - 200);
+            // Calculate tooltip position relative to the screen where the app is located
+            QPoint globalPos = this->mapToGlobal(QPoint(0, 0));
+            QPoint pntr(0, globalPos.y());
+            if (globalPos.x() > 400)
+                pntr.setX(globalPos.x() - 200);
             else
-                pntr.setX(this->pos().x() + 100);
+                pntr.setX(globalPos.x() + 100);
 
             if (hcfg->UserConfig->ShowWarningIfNotOnLastRevision)
             {
