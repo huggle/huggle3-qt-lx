@@ -29,7 +29,7 @@ QStringList Huggle_l10n::GetLocalizations()
             << "bg" // Bulgarian
             << "bn" // Bengali
             << "br" // Brezhoneg
-            << "cz" // Czech
+            << "cs" // Czech
             << "de" // Deutsch
             << "en" // English
             << "en-gb"
@@ -57,7 +57,7 @@ QStringList Huggle_l10n::GetLocalizations()
             << "mr" // Marathi
             << "ms"
             << "nl" // Dutch
-            << "no" // Norwegian
+            << "nb" // Norwegian
             << "oc" // Occitan
             << "or" // Oriya
             << "pl" // Polish
@@ -73,8 +73,8 @@ QStringList Huggle_l10n::GetLocalizations()
             << "uk" // Ukrainian
             << "ur" // Urdu
             << "vi" // Vietnamese
-            << "zh" // Chinese
-            << "zh-hant" // Chinese hant
+            << "zh-Hans" // Chinese
+            << "zh-Hant" // Chinese hant
             << "bs" // Bosnian
             << "da" // Danish
             << "diq" // Zazaki
@@ -86,7 +86,7 @@ QStringList Huggle_l10n::GetLocalizations()
             << "sk" // Slovak
             << "skr-arab" // Saraiki (Arabic script)
             << "sl" // Slovenian
-            << "sr-ec" // Serbian (Cyrillic script)
-            << "sr-el"; // Serbian (Latin script)
+            << "sr-Cyrl" // Serbian (Cyrillic script)
+            << "sr-Latn"; // Serbian (Latin script)
     return results;
 }
