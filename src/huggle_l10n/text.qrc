@@ -6,7 +6,7 @@
     <file>Localization/bg.xml</file>
     <file>Localization/bn.xml</file>
     <file>Localization/br.xml</file>
-    <file>Localization/cz.xml</file>
+    <file>Localization/cs.xml</file>
     <file>Localization/de.xml</file>
     <file>Localization/es.xml</file>
     <file>Localization/fa.xml</file>
@@ -32,7 +32,7 @@
     <file>Localization/ms.xml</file>
     <file>Localization/mr.xml</file>
     <file>Localization/nl.xml</file>
-    <file>Localization/no.xml</file>
+    <file>Localization/nb.xml</file>
     <file>Localization/oc.xml</file>
     <file>Localization/or.xml</file>
     <file>Localization/pl.xml</file>
@@ -47,8 +47,8 @@
     <file>Localization/uk.xml</file>
     <file>Localization/ur.xml</file>
     <file>Localization/vi.xml</file>
-    <file>Localization/zh.xml</file>
-    <file>Localization/zh-hant.xml</file>
+    <file>Localization/zh-Hans.xml</file>
+    <file>Localization/zh-Hant.xml</file>
     <file>Localization/bs.xml</file>
     <file>Localization/da.xml</file>
     <file>Localization/diq.xml</file>
@@ -60,8 +60,8 @@
     <file>Localization/sk.xml</file>
     <file>Localization/skr-arab.xml</file>
     <file>Localization/sl.xml</file>
-    <file>Localization/sr-ec.xml</file>
-    <file>Localization/sr-el.xml</file>
+    <file>Localization/sr-Cyrl.xml</file>
+    <file>Localization/sr-Latn.xml</file>
     <file>Localization/te.xml</file>
   </qresource>
 </RCC>
