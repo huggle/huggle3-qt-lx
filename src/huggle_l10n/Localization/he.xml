@@ -682,6 +682,17 @@
   <string name="shortcut-user-clear-talk">מחיקת דף שיחה של המשתמש הנוכחי</string>
   <string name="shortcut-main-clear-queue">ניקוי תור</string>
   <string name="shortcut-revert-agf">לשחזר עם הנחת כוונה טובה, עם תקציר עריכה מותאם אישית</string>
+  <string name="shortcut-history-page">הצגת ההיסטוריה של הדף שמופיע כרגע בדפדפן</string>
+  <string name="shortcut-speedy-delete">לבקש מחיקה מהירה של הדף שמופיע כרגע</string>
+  <string name="shortcut-delete-page">מחיקת הדף שמופיע כרגע</string>
+  <string name="shortcut-increase-bs">להגדיל את ניקוד הרוע של המשתמש הנוכחי ב־20</string>
+  <string name="shortcut-decrease-bs">להקטין את ניקוד הרוע של המשתמש הנוכחי ב־20</string>
+  <string name="shortcut-welcome">לקבל את פני המשתמש או המשתמשת עם הודעת ברירת מחדל לקבלת פנים</string>
+  <string name="shortcut-block-user">לחסום את המשתמש שביצע את העריכה שמופיעה</string>
+  <string name="shortcut-help">פתיחת תוכן העזרה</string>
+  <string name="shortcut-preferences">פתיחת חלונית העדפות</string>
+  <string name="shortcut-find">איתור טקסט בדף הנוכחי</string>
+  <string name="shortcut-edit-user-talk">פתיחת דף השיחה של המשתמש הנוכחי הדפדפן (תצוגת עריכה)</string>
   <string name="warning-title">להזהיר את $1</string>
   <string name="warning-levelgroup">רמת אזהרה</string>
   <string name="warning-levelauto">אוטומטית</string>
@@ -914,4 +925,12 @@
   <string name="tip14">אפשר להשתמש בצ’אט עם משתמשים פעילים אחרים בהאגל אשר משתמשים כעת בתוכנה. ניתן לראות אותם בחלון \"רשת\" אם הם מחוברים.</string>
   <string name="tip15">אם אתה מוצא בעיות אחרות במאמר אך החזרה לא עוזרת, תוכל ללחוץ על E כדי לערוך את המאמר באופן מיידי בדפדפן ברירת המחדל שלך (לא בתוך האגל).</string>
   <string name="tip16">אם כפתור השחזור נלחץ בטעות, עדיין ניתן לבטל את השחזור שעומד להתבצע באמצעות הקשה על ESC מהר.</string>
+  <string name="main-config-version-mismatch-title">לאחסן הגדרות?</string>
+  <string name="main-action-unavailable-title">הפעולה לא זמינה</string>
+  <string name="main-report-ip-not-supported">אי אפשר לדווח על כתובות IP דרך היכולת הזאת</string>
+  <string name="main-abort-nothing-to-stop">אין מה לעצור</string>
+  <string name="main-clear-talk-page-summary">הוסרו תבניות ישנות מדף השיחה</string>
+  <string name="han-connected">התחברת כעת לרשת מניעת ההשחתה של Huggle</string>
+  <string name="preferences-unsaved-title">העדפות</string>
+  <string name="preferences-unsaved-text">סגירת הטופס הזה תסלק שינויים שלא נשמרו. לסגור בכל זאת?</string>
 </resources>
