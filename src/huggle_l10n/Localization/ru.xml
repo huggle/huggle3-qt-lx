@@ -39,6 +39,7 @@
 * Дмитрий
 * Евгений
 * ЛосЯш
+* Маринад
 * Ядерный Трамвай
 -->
 <resources>
@@ -228,7 +229,7 @@
   <string name="config-blocktimereg">зарегистрированные участники</string>
   <string name="config-summaryprompt">Введите описание правки</string>
   <string name="config-history">Загружать всю историю для всех статей</string>
-  <string name="config-defaultsprompt">Восстановить умолчания?</string>
+  <string name="config-defaultsprompt">Восстановить настройки по умолчанию?</string>
   <string name="config-logbrowsetitle">Расположение файла журнала</string>
   <string name="config-shortcutconflict">Комбинация клавиш \'$1\' конфликтует с другой комбинацией клавиш: \'$2\'.</string>
   <string name="config-no-colon">Вы не можете использовать : в имени очереди</string>
@@ -709,6 +710,11 @@
   <string name="shortcut-user-clear-talk">Очистить страницу обсуждения текущего участника</string>
   <string name="shortcut-main-clear-queue">Очистить очередь</string>
   <string name="shortcut-revert-agf">Откатить, предполагая добрые намерения и указать описание правки, отличающееся от стандартного</string>
+  <string name="shortcut-history-page">Отобразить историю текущей страницы в браузере</string>
+  <string name="shortcut-speedy-delete">Номинировать текущую страницу на быстрое удаление</string>
+  <string name="shortcut-delete-page">Удалить текущую страницу</string>
+  <string name="shortcut-remove-whitelist">Убрать из очереди правки, сделанные участниками из белого списка</string>
+  <string name="shortcut-help">Открыть содержание справки</string>
   <string name="warning-title">Предупредить $1</string>
   <string name="warning-levelgroup">Уровень предупреждения</string>
   <string name="warning-levelauto">Автоматически</string>
@@ -941,4 +947,5 @@
   <string name="tip14">Вы можете общаться с другими активными пользователями Huggle, которые сейчас используют программу. Вы увидите их в окне \"Сеть\", если они находятся в сети.</string>
   <string name="tip15">Если вы нашли иные проблемы со статьёй и откат не помогает, вы можете нажать \"E\", чтобы отредактировать статью через браузер (вне Huggle).</string>
   <string name="tip16">Если вы случайно нажали кнопку отката, вы можете отменить выполняющийся откат быстрым нажатием клавиши ESC.</string>
+  <string name="main-abort-nothing-to-stop">Нечего останавливать</string>
 </resources>
