@@ -75,15 +75,16 @@ ReportUser::ReportUser(QWidget *parent, bool browser) : HW("reportuser", this, p
     QStringList header;
     this->tPageDiff = new QTimer(this);
     connect(this->tPageDiff, &QTimer::timeout, this, &ReportUser::OnPageDiffTimer);
-    header << _l("page") <<
-              _l("time") <<
-              _l("link") <<
-              _l("diffid");
     if (!this->isBrowser)
     {
         // In case we are in browser mode we don't want to use this column
         header << _l("report-include");
     }
+    header << _l("page") <<
+              _l("time") <<
+              _l("link") <<
+              _l("diffid");
+
     this->ui->tableWidgetEdits->setColumnCount(header.size());
     this->ui->tableWidgetEdits->setHorizontalHeaderLabels(header);
     this->ui->tableWidgetEdits->verticalHeader()->setVisible(false);
@@ -421,13 +422,13 @@ void ReportUser::OnReportUserTimer()
                 }
                 QString link = Configuration::GetProjectScriptURL(this->reportedUser->GetSite()) + "index.php?title=" + page + "&diff=" + diff;
                 this->ui->tableWidgetEdits->insertRow(0);
-                this->ui->tableWidgetEdits->setItem(0, 0, new QTableWidgetItem(page));
-                this->ui->tableWidgetEdits->setItem(0, 1, new QTableWidgetItem(time));
-                this->ui->tableWidgetEdits->setItem(0, 2, new QTableWidgetItem(link));
-                this->ui->tableWidgetEdits->setItem(0, 3, new QTableWidgetItem(diff));
                 QCheckBox *Item = new QCheckBox(this);
                 this->checkBoxes.insert(0, Item);
-                this->ui->tableWidgetEdits->setCellWidget(0, 4, Item);
+                this->ui->tableWidgetEdits->setCellWidget(0, 0, Item);
+                this->ui->tableWidgetEdits->setItem(0, 1, new QTableWidgetItem(page));
+                this->ui->tableWidgetEdits->setItem(0, 2, new QTableWidgetItem(time));
+                this->ui->tableWidgetEdits->setItem(0, 3, new QTableWidgetItem(link));
+                this->ui->tableWidgetEdits->setItem(0, 4, new QTableWidgetItem(diff));
                 ++xx;
             }
             this->ui->tableWidgetEdits->sortByColumn(1, Qt::DescendingOrder);
@@ -566,7 +567,7 @@ void ReportUser::on_tableWidgetEdits_clicked(const QModelIndex &index)
     if (this->qDiff != nullptr)
         this->qDiff->Kill();
 
-    this->qDiff = WikiUtil::APIRequest(ActionCompare, this->reportedUser->GetSite(), "fromrev=" + this->ui->tableWidgetEdits->item(index.row(), 3)->text() + "&torelative=prev"\
+    this->qDiff = WikiUtil::APIRequest(ActionCompare, this->reportedUser->GetSite(), "fromrev=" + this->ui->tableWidgetEdits->item(index.row(), 4)->text() + "&torelative=prev"\
                                        "&prop=" + QUrl::toPercentEncoding("diff|comment|parsedcomment"));
     this->tPageDiff->start(HUGGLE_TIMER);
 }
@@ -633,7 +634,7 @@ void ReportUser::reportUser()
     {
         if (this->checkBoxes.count() > xx)
         {
-            QCheckBox *checkBox = dynamic_cast<QCheckBox*>(this->ui->tableWidgetEdits->cellWidget(xx, 4));
+            QCheckBox *checkBox = dynamic_cast<QCheckBox*>(this->ui->tableWidgetEdits->cellWidget(xx, 0));
             if (checkBox->isChecked())
             {
                 ++EvidenceID;
