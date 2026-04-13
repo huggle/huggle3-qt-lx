@@ -674,7 +674,7 @@
   <string name="shortcut-good">Markeer de weergeven bewerking als een goede bewerking</string>
   <string name="shortcut-open-in-huggle">Opent de huidige pagina</string>
   <string name="shortcut-open">Opent de huidige bewerking in een browser</string>
-  <string name="shortcut-talk">Toon overlegpagina van de gebruiker die deze bewerking heeft gemaakt</string>
+  <string name="shortcut-talk">Overlegpagina weergeven van de gebruiker die deze bewerking heeft gemaakt</string>
   <string name="shortcut-revert-agf-1">Uitgaan van goede trouw en de laatste bewerking terugdraaien</string>
   <string name="shortcut-edit">Bewerk de huidige pagina</string>
   <string name="shortcut-edit-in-browser">Bewerk de huidige pagina in een browser</string>
