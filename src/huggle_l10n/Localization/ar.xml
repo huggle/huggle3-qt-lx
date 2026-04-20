@@ -49,7 +49,7 @@
   <string name="no">لا</string>
   <string name="ok">موافق</string>
   <string name="override-warn">لقد تجاوزت مسار تكوين المشروع، رجاءً ضع في اعتبارك أن إساءة استخدام هذه الميزة للكتابة على ويكي ليس لديك الحق في الكتابة فيها، قد يؤدي إلى منع دائم لحسابك.</string>
-  <string name="remove">أزل</string>
+  <string name="remove">إزالة</string>
   <string name="rename">غير الاسم</string>
   <string name="reload">إعادة تحميل</string>
   <string name="project">المشروع</string>
