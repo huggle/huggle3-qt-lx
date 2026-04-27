@@ -9,6 +9,7 @@
 * Macofe
 * Revi
 * SeoJeongHo
+* Tensama0415
 * Twotwo2019
 * Tyey
 * YeBoy371
@@ -609,14 +610,14 @@
   <string name="revert-fail">$1을 되돌리지 못했습니다: $2</string>
   <string name="revert-nochange">대상 판의 내용은 현재 판의 내용과 동일합니다</string>
   <string name="speedy-reason">이유:</string>
-  <string name="speedy-parameters">변수:</string>
+  <string name="speedy-parameters">매개변수:</string>
   <string name="speedy-notifycreator">문서 만든이에게 알림</string>
   <string name="rollback">$1 되돌리는 중</string>
   <string name="software-rollback">되돌리기 사용자 권한이 없으므로, 소프트웨어 되돌리기를 사용합니다</string>
   <string name="tag-title">$1 태그</string>
   <string name="tag-tagselector">태그 추가:</string>
   <string name="tag-tags">태그:</string>
-  <string name="tag-parameter">변수</string>
+  <string name="tag-parameter">매개변수</string>
   <string name="tag-summary">요약:</string>
   <string name="tag-insertatend">문서의 끝에 넣기</string>
   <string name="update-title">새 버전을 사용할 수 있습니다</string>
@@ -814,7 +815,7 @@
   <string name="message-fail">메시지 전달을 실패했습니다</string>
   <string name="edit-conflict">편집 충돌</string>
   <string name="page-tag-nodescription">이 태그에 대한 설명이 없습니다</string>
-  <string name="page-tag-noparameters">변수 없음</string>
+  <string name="page-tag-noparameters">매개변수 없음</string>
   <string name="page-tag-fail">문서를 태그하는 데 실패함</string>
   <string name="page-tag-error">페이지를 태그할 수 없습니다. 오류: $1</string>
   <string name="page-unknown">알 수 없는 문서</string>
