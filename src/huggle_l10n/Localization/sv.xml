@@ -385,7 +385,7 @@
   <string name="main-page-reqdeletion">Begär snabbradering</string>
   <string name="main-page-reqprotection">Begär skydd av sida</string>
   <string name="main-page-watch">Bevaka</string>
-  <string name="main-page-unwatch">Avbevaka</string>
+  <string name="main-page-unwatch">Sluta bevaka</string>
   <string name="main-page-purge">Rensa</string>
   <string name="main-page-curr-disp">Visas för tillfället</string>
   <string name="main-page-display">Visa denna sida</string>

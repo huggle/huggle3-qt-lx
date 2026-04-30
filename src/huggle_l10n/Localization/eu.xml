@@ -209,9 +209,9 @@
   <string name="delete-error-token">Akatsa: Ezabatutako tokena eskuratzeak huts egin du. Emandako arrazoia hurrengoa izan da: $1</string>
   <string name="delete-token01">$1 ezabatzeko tokena lortzen</string>
   <string name="delete-token02">Eskaerak ez du tokenik itzuli</string>
-  <string name="delete-e1">Orrialdea ezin da ezabatu: $1</string>
+  <string name="delete-e1">Orria ezin da ezabatu: $1</string>
   <string name="delete-e2">Ezinezkoa orrialdea ezabatzea</string>
-  <string name="delete-edsc">Ezinezkoa orrialdea ezabatzea $1(a)gatik</string>
+  <string name="delete-edsc">Ezin da orria ezabatu. Arrazoia: $1</string>
   <string name="delete-failed-no-info">Eskaeran ez da orrialdearen inguruko informaziorik eman (administratzailea zara?)</string>
   <string name="extension-kl">Ez dabil</string>
   <string name="extension-ok">Kargatzen eta martxan</string>
