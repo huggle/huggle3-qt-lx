@@ -541,7 +541,7 @@
   <string name="queue-filter-add">추가</string>
   <string name="queue-filter-delete">삭제</string>
   <string name="queue-filternewpage">새 문서</string>
-  <string name="queue-filterownuserspace">사용자 자신의 사용자공간</string>
+  <string name="queue-filterownuserspace">사용자 자신의 사용자 공간</string>
   <string name="queue-filteranonymous">익명 사용자</string>
   <string name="queue-filterignored">무시된 사용자</string>
   <string name="queue-filterreverts">되돌리기</string>
