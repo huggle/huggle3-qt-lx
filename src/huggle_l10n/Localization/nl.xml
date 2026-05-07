@@ -541,7 +541,7 @@
   <string name="queue-removeviewed">Bewerkingen verwijderen als bekeken</string>
   <string name="queue-removeold">Oude bewerkingen aan dezelfde pagina verwijderen</string>
   <string name="queue-ignorepages">Bewerkingen aan pagina\'s op de lijst van te negeren pagina\'s negeren</string>
-  <string name="queue-traynotification">Notificatie weergeven als een versie aan deze wachtrij wordt toegevoegd</string>
+  <string name="queue-traynotification">Melding weergeven als een versie aan deze wachtrij wordt toegevoegd</string>
   <string name="queue-diffsgroup">Verschillen</string>
   <string name="queue-pagefiltersgroup">Paginanaamfilters</string>
   <string name="queue-pageregex">Naam komt overeen met een reguliere expressie:</string>
@@ -556,7 +556,7 @@
   <string name="queue-filteranonymous">Anonieme gebruiker</string>
   <string name="queue-filterignored">Genegeerde gebruiker</string>
   <string name="queue-filterreverts">Terugdraaien</string>
-  <string name="queue-filternotifications">Notificatie</string>
+  <string name="queue-filternotifications">Melding</string>
   <string name="queue-filterwarnings">Waarschuwing</string>
   <string name="queue-filtertags">Label</string>
   <string name="queue-filterbot">Robotbewerking</string>
