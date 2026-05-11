@@ -794,7 +794,7 @@
   <string name="editquery-nocsrft">Geen CSRF-token</string>
   <string name="editquery-error-retrieve-prev">Het was niet mogelijk de vorige inhoud van de pagina op te halen: $1</string>
   <string name="editquery-error-append">U kan niet Toevoegen aan einde en Toevoegen aan beging voor het bewerken van een pagina gebruiken</string>
-  <string name="editquery-error-badtoken">Ongeldig token</string>
+  <string name="editquery-error-badtoken">Onjuist token</string>
   <string name="editquery-invalid-token">Het bewerken van $1 kan niet plaatsvinden omdat het token in de cache niet langer geldig is. Probeer de pagina nog een keer te bewerken</string>
   <string name="provider-failure">Feedprovider $1 op $2 heeft een foutmelding gegeven. bezig een alternatieve provider te vinden</string>
   <string name="provider-primary-failure">De primaire feedprovider heeft een foutmelding gegeven. Er wordt teruggevallen op de wikiprovider</string>

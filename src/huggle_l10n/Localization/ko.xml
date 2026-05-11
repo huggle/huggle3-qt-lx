@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Authors:
 * Adreamy
+* Bisang
 * Ellif
 * Gusdud25
 * Hwangjy9
@@ -94,7 +95,7 @@
   <string name="block-blockloglabel">차단 기록:</string>
   <string name="block-warnloglabel">경고:</string>
   <string name="block-sharedipwarning">참고: $1 IP는 공유나 유동 IP 주소로 나타났습니다.</string>
-  <string name="block-rangeblockwarning">$1 IP는 이미 $2의 광역 차단의 영향을 받고 있습니다. \n이 차단은 광역 차단의 효과를 덮어씁니다. 계속하겠습니까?</string>
+  <string name="block-rangeblockwarning">$1 IP는 이미 $2의 광역 차단의 영향을 받고 있습니다. \n이 차단은 광역 차단의 효과를 재정의합니다. 계속하겠습니까?</string>
   <string name="block-token-1">$1님을 차단할 토큰을 얻는 중</string>
   <string name="block-fail">$1 사용자를 차단할 수 없습니다</string>
   <string name="block-token-e1">토큰을 얻을 수 없습니다: $1</string>
@@ -665,6 +666,7 @@
   <string name="shortcut-user-contribs-browser">브라우저에서 사용자 기여 열기</string>
   <string name="shortcut-user-clear-talk">현재 사용자의 토론 문서를 지우기</string>
   <string name="shortcut-main-clear-queue">대기열 지우기</string>
+  <string name="shortcut-delete-page">현재 표시되는 문서를 삭제하기</string>
   <string name="shortcut-help">도움말 목차 열기</string>
   <string name="shortcut-preferences">환경 설정 대화 상자 열기</string>
   <string name="shortcut-find">현재 페이지에서 텍스트 찾기</string>
@@ -871,6 +873,7 @@
   <string name="tip14">지금 프로그램을 사용하고 있는 Huggle의 다른 활동 사용자들과 대화할 수 있습니다. 해당 사용자들이 온라인 상태인 경우 \"네트워크\" 창에서 이들을 볼 수 있습니다.</string>
   <string name="tip15">문서에 다른 문제를 발견하였으나 되돌리기가 도움이 되지 않는 경우 (Huggle 내에서가 아닌) 기본 브라우저에서 E를 눌러 즉시 문서를 편집할 수 있습니다.</string>
   <string name="tip16">되돌리기 버튼을 잘못 눌렀을 경우 ESC를 빠르게 누름으로써 진행 중인 되돌리기를 취소할 수 있습니다.</string>
+  <string name="main-config-version-mismatch-title">설정을 저장할까요?</string>
   <string name="main-report-ip-not-supported">이 기능을 사용하여 IP 주소를 보고할 수 없습니다</string>
   <string name="preferences-unsaved-title">환경 설정</string>
 </resources>
