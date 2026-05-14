@@ -112,7 +112,7 @@
   <string name="config-friend">Frënd</string>
   <string name="config-userspace">Benotzernummraum</string>
   <string name="config-talk">Diskussiounssäit</string>
-  <string name="config-updates">No Aktualisatioune sichen</string>
+  <string name="config-updates">No Aktualiséierunge sichen</string>
   <string name="config-beta">No Beta-Versioune sichen</string>
   <string name="config-close-without">Zoumaachen ouni ze späicheren</string>
   <string name="config-confirmmultiple">Méi Zrécksetzunge vun enger Ännerung vum selweschte Benotzer confirméieren</string>
@@ -131,7 +131,7 @@
   <string name="config-history">Déi komplett Versioune vun allen Artikelen eroflueden</string>
   <string name="config-defaultsprompt">Standardastellunge restauréieren?</string>
   <string name="config-logbrowsetitle">Plaz vum Log-Fichier</string>
-  <string name="config-notify-update">No Aktualisatioune sichen</string>
+  <string name="config-notify-update">No Aktualiséierunge sichen</string>
   <string name="config-notify-beta">Nokucken ob Beta-Versiounen disponibel sinn</string>
   <string name="custommessage-title">Dem $1 e Message schécken</string>
   <string name="custommessage-subject">Titel</string>
@@ -395,7 +395,7 @@
   <string name="updater-update-available">Eng nei Versioun vun Huggle ass disponibel: Versioun $1</string>
   <string name="updater-open-manualdownloadpage">Download-Säit opmaachen</string>
   <string name="updater-close">Zoumaachen</string>
-  <string name="updater-disable-notify">Aktualisatiounen desaktivéieren</string>
+  <string name="updater-disable-notify">Aktualiséierungen desaktivéieren</string>
   <string name="updater-wait">Ech aktualiséieren elo Huggle, waart wgl. ...</string>
   <string name="userinfo-generic">Benotzerinformatioun</string>
   <string name="userinfo-retrieve">Informatiounen ofruffen</string>
