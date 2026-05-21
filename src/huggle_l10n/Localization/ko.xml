@@ -125,7 +125,7 @@
   <string name="config-startupmessage">시작 메시지 보이기</string>
   <string name="config-shownewmessages">새 메시지 막대 보이기</string>
   <string name="config-shortcutlist">키보드 단축키</string>
-  <string name="config-shortcutaction">동작</string>
+  <string name="config-shortcutaction">작업</string>
   <string name="config-changeshortcut">$1에 대한 단축키 바꾸기</string>
   <string name="config-noshortcut">없음</string>
   <string name="config-defaults">기본값</string>
@@ -412,7 +412,7 @@
   <string name="main-page-patrol">점검한 것으로 표시</string>
   <string name="main-page-move">이동...</string>
   <string name="main-page-flag-suspicious-edit">의심스러운 편집으로 플래그 (이 동작은 사용자에게 +1점을 줍니다)</string>
-  <string name="main-page-flag-good-edit">좋은 편집으로 표시 (이 동작은 사용자의 점수에서 200점을 차감합니다)</string>
+  <string name="main-page-flag-good-edit">좋은 편집으로 표시 (이 작업은 사용자의 점수에서 200점을 차감합니다)</string>
   <string name="main-page-protect">보호</string>
   <string name="main-page-delete">삭제</string>
   <string name="main-page-load">불러오기</string>
@@ -476,7 +476,7 @@
   <string name="main-tip-userreport">이 사용자 보고</string>
   <string name="main-tip-userblock">이 사용자 차단</string>
   <string name="main-revision-acceptpend">보류 중인 판 승인</string>
-  <string name="main-no-page">문서를 불러오지 못했거나 읽기 전용이기 때문에 요청하신 동작을 할 수 없습니다. 다시 시도하기 전에 편집 가능한 페이지를 불러와 주세요.</string>
+  <string name="main-no-page">문서를 불러오지 못했거나 읽기 전용이기 때문에 요청하신 작업을 할 수 없습니다. 다시 시도하기 전에 편집 가능한 페이지를 불러와 주세요.</string>
   <string name="main-revert-null">되돌릴 수 없으며, 편집이 비어 있습니다 (null)</string>
   <string name="main-revert-newpage-title">이것을 되돌릴 수 없습니다</string>
   <string name="main-revert-newpage">이것은 새 문서이므로 되돌릴 수 없습니다. 태그하거나 삭제할 수 있습니다.</string>
@@ -780,7 +780,7 @@
   <string name="welcome-page-miss-fail">허글이 사용자 토론 문서의 포함을 얻을 수 없습니다, 그들에게 환영 메시지를 보내겠습니까?</string>
   <string name="cr-newer-edits">충돌 해결: 새로운 편집을 포함한 모든 편집을 되돌렸습니다. 편집은 동일 사용자에 의해 이루어졌습니다: $1.</string>
   <string name="cr-resolved-same-user">충돌 해결: 동일 사용자의 새로운 편집을 포함한 모든 편집을 되돌렸습니다: $1</string>
-  <string name="cr-stop-new-edit">충돌 해결: 어떠한 동작도 수행하지 않았음 - $1 문서에 더 새로운 편집이 있습니다</string>
+  <string name="cr-stop-new-edit">충돌 해결: 어떠한 작업도 수행하지 않았음 - $1 문서에 더 새로운 편집이 있습니다</string>
   <string name="cr-stop-multiple-same">충돌 해결: 아무 작업도 하지 않음 - $1에 대한 동일 사용자의 편집이 다수 있습니다</string>
   <string name="cr-revert-same-user">충돌 해결: 모든 편집을 되돌림 - $1에 대한 동일 사용자의 편집이 다수 있습니다</string>
   <string name="cr-message-same">같은 사용자가 $1에 기여한 여러 편집이 있습니다, 정말로 되돌리시겠습니까?</string>
@@ -857,7 +857,7 @@
   <string name="main-revert-type-made-white-list">화이트리스트에 있는 사용자가 수행함</string>
   <string name="query-result-nodata">쿼리 결과에 어떠한 데이터도 포함되어 있지 않습니다</string>
   <string name="main-revert-warn">이 편집은 $1이므로 문서 훼손으로 보이더라도 그렇지 않을 수 있습니다. 정말 되돌리시겠습니까?</string>
-  <string name="query-request-noaction">api 요청을 위해 지정된 동작이 없습니다</string>
+  <string name="query-request-noaction">api 요청을 위해 지정된 작업이 없습니다</string>
   <string name="query-login-undefined">로그인 토큰에는 사용자 지정 값이 필요하지만, 메모리에 저장되어 있지 않습니다</string>
   <string name="query-protected-link">보호된 링크</string>
   <string name="queue-empty-title">비어 있습니다</string>
@@ -875,6 +875,7 @@
   <string name="tip15">문서에 다른 문제를 발견하였으나 되돌리기가 도움이 되지 않는 경우 (Huggle 내에서가 아닌) 기본 브라우저에서 E를 눌러 즉시 문서를 편집할 수 있습니다.</string>
   <string name="tip16">되돌리기 버튼을 잘못 눌렀을 경우 ESC를 빠르게 누름으로써 진행 중인 되돌리기를 취소할 수 있습니다.</string>
   <string name="main-config-version-mismatch-title">설정을 저장할까요?</string>
+  <string name="main-action-unavailable-title">작업 불가능</string>
   <string name="main-report-ip-not-supported">이 기능을 사용하여 IP 주소를 보고할 수 없습니다</string>
   <string name="preferences-unsaved-title">환경 설정</string>
 </resources>
