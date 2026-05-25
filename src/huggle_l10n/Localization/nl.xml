@@ -36,7 +36,7 @@
   <string name="done">Afgerond</string>
   <string name="no">Nee</string>
   <string name="ok">OK</string>
-  <string name="override-warn">Je hebt het configuratiepad van het project overschreven. Houd er rekening mee dat misbruik van deze functie om schrijftoegang te krijgen op de wiki, waar je die normaal gesproken niet zou hebben, kan leiden tot een permanente blokkering van je account.</string>
+  <string name="override-warn">U hebt het configuratiepad van het project overschreven. Houd er rekening mee dat misbruik van deze functie om schrijftoegang te krijgen op de wiki, waar u die normaal gesproken niet zou hebben, kan leiden tot een permanente blokkade van uw account.</string>
   <string name="remove">Verwijderen</string>
   <string name="rename">Hernoemen</string>
   <string name="reload">Herladen</string>
@@ -308,7 +308,7 @@
   <string name="login-progress-user-info">Gebruikersgegevens voor $1 controleren</string>
   <string name="login-progress-whitelist">Witte lijst met gebruikers ophalen...</string>
   <string name="login-remember-password">Wachtwoord onthouden</string>
-  <string name="login-remember-password-tooltip">Deze optie bewaard je wachtwoord in platte tekst op je harde schijf. Gebruik dit alleen als jij de enige bent met toegang tot deze computer.</string>
+  <string name="login-remember-password-tooltip">Deze optie bewaard uw wachtwoord in platte tekst op uw harde schijf. Gebruik dit alleen als u de enige bent met toegang tot deze computer.</string>
   <string name="login-ssl">Gebruik HTTPS om aan te melden (OpenSSL vereist)</string>
   <string name="login-fail">aanmelden op $1 mislukt</string>
   <string name="login-fail-with-reason">Aanmelden (op $1) mislukt: $2</string>
@@ -596,7 +596,7 @@
   <string name="ssl-is-not-supported">Je hebt gekozen om SSL te gebruiker, maar $1 ondersteund dit niet.</string>
   <string name="ssl-required">De webserver van $1 eist dat SSL is ingeschakeld. Schakel SSL in en probeer het opnieuw. Indien je SSL niet kan inschakelen (het vakje is geblokkeerd) moet je mogelijk de OpenSSL libraries installeren op je systeem.</string>
   <string name="uaa-not-supported">UAA niet beschikbaar</string>
-  <string name="uaa-not-supported-text">De \"Bewerkingen van gebruiker bewaken\" pagina is niet beschikbaar op jouw wiki.</string>
+  <string name="uaa-not-supported-text">De \"Bewerkingen van gebruiker bewaken\" pagina is niet beschikbaar op uw wiki.</string>
   <string name="uaa-reporting">$1 rapporteren op \'edits bewaken\'</string>
   <string name="uaa-reported">Gerapporteerd</string>
   <string name="uaa-user-reported-title">De gebruiker is al gerapporteerd</string>
@@ -739,8 +739,8 @@
   <string name="blocklog-fail">Het ophalen van het blokkeerlogboek voor $1 is mislukt</string>
   <string name="blocklog-none">Er is geen blokkeerlogboek voor $1</string>
   <string name="blocklog-progress">Blokkeerlogboek aan het ophalen voor $1...</string>
-  <string name="blocknotify-fail">Heeft $1 niet op de hoogte gebracht van de blokkering</string>
-  <string name="blocknotify-progress">$1 wordt op de hoogte gebracht van de blokkering…</string>
+  <string name="blocknotify-fail">Heeft $1 niet op de hoogte gebracht van de blokkade</string>
+  <string name="blocknotify-progress">$1 wordt op de hoogte gebracht van de blokkade…</string>
   <string name="delete-done">$1 verwijderd</string>
   <string name="delete-fail">Heeft $1 niet verwijderd</string>
   <string name="delete-progress">$1 verwijderen...</string>
