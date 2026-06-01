@@ -705,6 +705,20 @@
   <string name="shortcut-user-clear-talk">Geçerli kullanıcının konuşma sayfasını temizle</string>
   <string name="shortcut-main-clear-queue">Sırayı temizle</string>
   <string name="shortcut-revert-agf">Özel bir düzenleme özeti ile iyi niyetli varsayımlara geri dönün</string>
+  <string name="shortcut-history-page">Şu anda görüntülenen sayfanın geçmişini tarayıcıda görüntüle</string>
+  <string name="shortcut-speedy-delete">Şu anda görüntülenen sayfanın hızlı silinmesini talep et</string>
+  <string name="shortcut-delete-page">Şu anda görüntülenen sayfayı sil</string>
+  <string name="shortcut-remove-whitelist">Beyaz listedeki kullanıcıların yaptığı düzenlemeleri kuyruktan kaldır</string>
+  <string name="shortcut-remove-low-score">Puanı -200\'den düşük olan tüm düzenlemeleri kuyruktan kaldır</string>
+  <string name="shortcut-increase-bs">Mevcut kullanıcının kötülük puanını 20 artır</string>
+  <string name="shortcut-decrease-bs">Mevcut kullanıcının kötülük puanını 20 azalt</string>
+  <string name="shortcut-welcome">Kullanıcıyı varsayılan hoş geldiniz mesajıyla karşıla</string>
+  <string name="shortcut-block-user">Şu anda görüntülenen düzenlemeyi yapan kullanıcıyı engelle</string>
+  <string name="shortcut-help">Yardım içeriklerini aç</string>
+  <string name="shortcut-preferences">Tercihler iletişim kutusunu aç</string>
+  <string name="shortcut-emergency-abort">Gecikmiş eylemlerin acil durdurulması</string>
+  <string name="shortcut-find">Geçerli sayfada metin bul</string>
+  <string name="shortcut-edit-user-talk">Mevcut kullanıcının mesaj sayfasını tarayıcıda aç (düzenleme görünümü)</string>
   <string name="warning-title">Uyar $1</string>
   <string name="warning-levelgroup">Uyarı seviyesi</string>
   <string name="warning-levelauto">Otomatik</string>
@@ -937,4 +951,14 @@
   <string name="tip14">Programı kullanan Huggle\'ın diğer aktif kullanıcılarıyla hemen sohbet edebilirsiniz. Çevrimiçi oldukları takdirde onları \"Ağ\" penceresinde göreceksiniz.</string>
   <string name="tip15">Maddeyle ilgili başka sorun bulursanız ve geri alma size yardımcı olmazsa maddeyi derhal varsayılan tarayıcınızda (Huggle içinde değil) düzenlemek için E tuşuna basabilirsiniz.</string>
   <string name="tip16">Yanlışlıkla geri alma düğmesine basmanız halinde ESC tuşuna hızlıca basarak devam eden geri dönüşü iptal edebilirsiniz.</string>
+  <string name="main-config-version-mismatch-title">Yapılandırma kaydedilsin mi?</string>
+  <string name="main-config-version-mismatch-text">Bu Huggle sürümü ($1), en son kullandığınız sürümden ($2) daha eskidir. Devam ederseniz, daha yeni sürümle kaydedilen bazı ayarlar kaybolabilir.</string>
+  <string name="main-action-unavailable-title">Eylem kullanılamıyor</string>
+  <string name="main-report-ip-not-supported">Bu özelliği kullanarak IP adreslerini bildiremezsiniz</string>
+  <string name="main-abort-nothing-to-stop">Durduracak bir şey yok</string>
+  <string name="main-abort-instant-reverts-enabled">Geçerli işlem iptal edilemiyor; bu özelliğin çalışması için tercihlerde Anında geri alma seçeneğini devre dışı bırakmanız gerekiyor</string>
+  <string name="main-clear-talk-page-summary">Mesaj sayfasından eski şablonlar temizlendi</string>
+  <string name="han-connected">Artık Huggle vandalizm karşıtı ağına bağlısınız</string>
+  <string name="preferences-unsaved-title">Tercihler</string>
+  <string name="preferences-unsaved-text">Bu formu kapatmak kaydedilmemiş değişiklikleri kaybedebilir. Yine de kapatmak istiyor musunuz?</string>
 </resources>
