@@ -495,7 +495,7 @@
   <string name="main-report-user">Поскаржитися на користувача</string>
   <string name="main-edit-user-talk">Редагувати сторінку користувача</string>
   <string name="main-statistics-paused">призупинено</string>
-  <string name="main-statistics-waiting">Очікуємо нових змін</string>
+  <string name="main-statistics-waiting">Очікуємо нових редагувань</string>
   <string name="main-statistics-none">немає</string>
   <string name="main-tab-welcome-title">Вітальна сторінка</string>
   <string name="message-title">Повідомлення $1</string>
@@ -545,6 +545,8 @@
   <string name="queue-editfiltersgroup">Змінити фільтри</string>
   <string name="queue-userregex">Ім\'я користувача співпадає з регулярним виразом:</string>
   <string name="queue-summaryregex">Опис редагування співпадає з регулярним виразом:</string>
+  <string name="queue-filter-add">Додати</string>
+  <string name="queue-filter-delete">Видалити</string>
   <string name="queue-filternewpage">Нова сторінка</string>
   <string name="queue-filterownuserspace">Особистий простір користувача</string>
   <string name="queue-filteranonymous">Анонімний користувач</string>
@@ -602,6 +604,7 @@
   <string name="uaa-g1">Завантажую сторінку з повідомленнями…</string>
   <string name="uaa-e1">Запит на вміст сторінки не повертає жодних даних.</string>
   <string name="uaa-e2">Вміст сторінки недоступний.</string>
+  <string name="uaa-close">Закрити</string>
   <string name="read-only">Проєкт $1 налаштований лише для читання, функції редагування будуть обмежені</string>
   <string name="revert-confirm-multiple">Ви відкотите одразу кілька редагувань користувача $1. Бажаєте продовжити?</string>
   <string name="revert-confirm-range">Автор версії, до якої планується зробити відкіт, з того ж діапазону IP-адрес, що й автор поточної версії, і може бути однією й тією ж особою. Тому, будь ласка, перевірте також версію, до якої планується зробити відкіт, на наявність небажаного вмісту. Бажаєте продовжити?</string>
@@ -680,6 +683,11 @@
   <string name="shortcut-user-clear-talk">Очистити сторінку обговорення поточного користувача</string>
   <string name="shortcut-main-clear-queue">Очистити чергу</string>
   <string name="shortcut-revert-agf">Відмінити, припускаючи добросовісність, зі спеціальним описом редагування</string>
+  <string name="shortcut-history-page">Показати історію поточної сторінки у браузері</string>
+  <string name="shortcut-speedy-delete">Запит на швидке видалення поточної сторінки</string>
+  <string name="shortcut-delete-page">Видалити поточну сторінку</string>
+  <string name="shortcut-remove-whitelist">Видалити з черги редагування, внесені користувачами з білого списку</string>
+  <string name="shortcut-remove-low-score">Видалити з черги всі редагування з оцінкою нижче -200</string>
   <string name="warning-title">Попередити $1</string>
   <string name="warning-levelgroup">Рівень попередження</string>
   <string name="warning-levelauto">Автоматично</string>
@@ -795,8 +803,8 @@
   <string name="welcome-show">Показати це повідомлення також за наступного входу у Huggle</string>
   <string name="welcome-tp-empty-fail">Сторінка обговорення цього користувача не є порожньою. Ви впевнені, що хочете надіслати йому повідомлення?</string>
   <string name="welcome-page-miss-fail">Huggle не зміг отримати вміст сторінки обговорення цього користувача. Ви впевнені, що хочете привітати його?</string>
-  <string name="cr-newer-edits">Конфлікт вирішено: відкинуто всі зміни, включно з новими редагуваннями. Усі редагування були від одного користувача: $1.</string>
-  <string name="cr-resolved-same-user">Конфлікт вирішено: відкинуто всі зміни, включно з новими редагуваннями, зробленими тими ж користувачами: $1</string>
+  <string name="cr-newer-edits">Конфлікт вирішено: відкинуто всі редагування, включно з новими. Усі редагування були від одного користувача: $1.</string>
+  <string name="cr-resolved-same-user">Конфлікт вирішено: відкинуто всі редагування, включно з новими, зробленими тими ж користувачами: $1</string>
   <string name="cr-stop-new-edit">Конфлікт вирішено: не виконано ніяких дій. На сторінці $1 з’явилися нові редагування.</string>
   <string name="cr-stop-multiple-same">Конфлікт вирішено: не виконано ніяких дій. На сторінці $1 є декілька редагувань від одного користувача</string>
   <string name="cr-revert-same-user">Конфлікт вирішено: відкинуто всі редагування. Є декілька редагувань тільки від одного користувача на сторінці $1.</string>
@@ -829,6 +837,7 @@
   <string name="preferences-color-scheme-diff">Різниці кольорів</string>
   <string name="preferences-color-scheme-diff-default">За замовчуванням</string>
   <string name="preferences-color-scheme-diff-dark-mode">Темний режим</string>
+  <string name="preferences-template-spam-info">Ці опції керують підсистемою, яка запобігає розсилці шаблонів спаму цільовим користувачам. За замовчуванням користувачі не отримують попереджень про шаблони для занадто старих редагувань, а також отримують лише одне попередження про шаблон, якщо ви скасуєте кілька редагувань одного користувача за дуже короткий час.</string>
   <string name="preferences-template-spam-title">Запобігання шаблону спаму</string>
   <string name="fail">Збій</string>
   <string name="request">Запит</string>
@@ -905,4 +914,5 @@
   <string name="tip14">Ви можете спілкуватися з іншими активними користувачами Huggle, які зараз користуються програмою. Ви побачите їх у вікні «Мережа», якщо вони онлайн.</string>
   <string name="tip15">Якщо ви знайшли інші проблеми зі статтею, але відкат не допоміг, ви можете натиснути E, щоб негайно відредагувати статтю у веб-переглядачі за умовчанням (а не всередині Huggle).</string>
   <string name="tip16">Якщо ви випадково натиснули кнопку повернення, можливо, ви все одно зможете скасувати поточну реверсію, швидко натиснувши ESC.</string>
+  <string name="main-report-ip-not-supported">Ви не можете повідомляти про IP-адреси за допомогою цієї функції</string>
 </resources>
