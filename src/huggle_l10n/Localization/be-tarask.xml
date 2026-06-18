@@ -233,6 +233,7 @@
   <string name="warning-level2">2 ровень</string>
   <string name="warning-level3">3 ровень</string>
   <string name="han-disconnected" fuzzy="true">Страта сувязі з анты-вандальнай сеткай</string>
+  <string name="editquery-error-badtoken">Хібны токэн</string>
   <string name="edit-conflict">Канфлікт рэдагаваньняў</string>
   <string name="loading-main-window">Ладаваньне галоўнага вакна Huggle...</string>
   <string name="main-clear-talk-page-summary">Размоўная старонка ачышчана ад старых шаблёнаў</string>

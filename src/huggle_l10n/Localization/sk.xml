@@ -3,6 +3,7 @@
 * Ignatgg
 * Mikulas1
 * TomášPolonec
+* Wizzard
 * Yardom78
 -->
 <resources>
@@ -535,6 +536,8 @@
   <string name="queue-editfiltersgroup">Upraviť filtre</string>
   <string name="queue-userregex">Používateľské mená sa zhodujú s regulárnym výrazom:</string>
   <string name="queue-summaryregex">Zhrnutia sa zhodujú s regulárnym výrazom:</string>
+  <string name="queue-filter-add">Pridať</string>
+  <string name="queue-filter-delete">Zmazať</string>
   <string name="queue-filternewpage">Nová stránka</string>
   <string name="queue-filterownuserspace">Vlastný používateľský priestor</string>
   <string name="queue-filteranonymous">Anonymný používateľ</string>
@@ -592,6 +595,7 @@
   <string name="uaa-g1">Získavanie obsahu z PMPS</string>
   <string name="uaa-e1">Dopyt na stránku obsahu nevrátil údaje.</string>
   <string name="uaa-e2">Obsah stránky nebol dostupný.</string>
+  <string name="uaa-close">Zavrieť</string>
   <string name="read-only">Projekt $1 je konfigurovaný len na čítanie, funkcie úprav budú obmedzené</string>
   <string name="revert-confirm-multiple">Toto vráti späť viac úprav vykonaných používateľom $1. Pokračovať?</string>
   <string name="revert-confirm-range">Autor cieľovej revízie $2 je v tom istom rozsahu ako autor aktuálnej revízie $1 a možno je to tá istá osoba. Pred pokračovaním sa uistite, že cieľová revízia je správna. Pokračovať?</string>
@@ -670,6 +674,20 @@
   <string name="shortcut-user-clear-talk">Vyčistiť diskusnú stránku aktuálneho používateľa</string>
   <string name="shortcut-main-clear-queue">Vyčistiť poradie</string>
   <string name="shortcut-revert-agf">Vrátiť v dobrej viere s vlastným zhrnutím úpravy</string>
+  <string name="shortcut-history-page">Zobraziť históriu aktuálne zobrazenej stránky v prehliadači</string>
+  <string name="shortcut-speedy-delete">Požiadať o rýchle zmazanie aktuálne zobrazenej stránky</string>
+  <string name="shortcut-delete-page">Zmazať aktuálne zobrazenú stránku</string>
+  <string name="shortcut-remove-whitelist">Odstrániť z fronty úpravy používateľov na bielej listine</string>
+  <string name="shortcut-remove-low-score">Odstrániť z fronty všetky úpravy so skóre nižším ako -200</string>
+  <string name="shortcut-increase-bs">Zvýšiť skóre závadnosti aktuálneho používateľa o 20</string>
+  <string name="shortcut-decrease-bs">Znížiť skóre závadnosti aktuálneho používateľa o 20</string>
+  <string name="shortcut-welcome">Privítať používateľa predvolenou uvítacou správou</string>
+  <string name="shortcut-block-user">Zablokovať používateľa, ktorý vykonal aktuálne zobrazenú úpravu</string>
+  <string name="shortcut-help">Otvoriť obsah pomocníka</string>
+  <string name="shortcut-preferences">Otvoriť dialóg nastavení</string>
+  <string name="shortcut-emergency-abort">Núdzové prerušenie oneskorených akcií</string>
+  <string name="shortcut-find">Nájsť text na aktuálnej stránke</string>
+  <string name="shortcut-edit-user-talk">Otvoriť diskusnú stránku aktuálneho používateľa v prehliadači (v režime úpravy)</string>
   <string name="warning-title">Varovať $1</string>
   <string name="warning-levelgroup">Úroveň varovania</string>
   <string name="warning-levelauto">Automaticky</string>
@@ -815,6 +833,12 @@
   <string name="preferences-empty-queue-page">Vyprázdniť stránku poradia:</string>
   <string name="preferences-reset-gui">Resetovať GUI</string>
   <string name="preferences-restore-factory-layout">Toto obnoví rozloženie Huggle na pôvodné, tak aké bolo pri inštalácii. Huggle sa vypne. Pokračovať?</string>
+  <string name="preferences-reset-config-title">Obnoviť konfiguráciu</string>
+  <string name="preferences-factory">Obnoviť na výrobné nastavenia</string>
+  <string name="preferences-reset-config-question">Naozaj chcete obnoviť všetky nastavenia Huggle na predvolené hodnoty? Tým sa vymaže vaša aktuálna konfigurácia a Huggle sa vypne.</string>
+  <string name="preferences-reset-config-done">Konfigurácia obnovená</string>
+  <string name="preferences-reset-config-restart">Konfigurácia Huggle bola obnovená na predvolenú. Možno bude treba Huggle reštartovať, aby sa všetky zmeny prejavili.</string>
+  <string name="preferences-huggle2-config-success">Nastavenia boli úspešne nakonfigurované tak, aby sa Huggle 3 správal podobne ako Huggle 2</string>
   <string name="preferences-keystroke-rate-limit">Predísť opakovanému stlačeniu kláves nastavením frekvencie v milisekundách (len 1 skratka počas N ms)</string>
   <string name="preferences-color-scheme-diff">Farby rozdielov</string>
   <string name="preferences-color-scheme-diff-default">Predvolené</string>
@@ -896,4 +920,14 @@
   <string name="tip14">Môžete diskutovať s ostatnými aktívnymi používateľmi Huglle, ktorý práve tento program používajú. Uvidíte ich v okne \"sieť\".</string>
   <string name="tip15">Ak ste natrafili na iné problémy s článkom, ale funkcia rollback nepomohla, môžete stlačiť E a upraviť článok okamžite vo Vašom predvolenom prehliadači (nie v rámci Huggle).</string>
   <string name="tip16">Ak ste náhodne stlačili tlačítko pre vrátenie úpravy, stále vrátenie môžete zrušiť rýchlym stlačením tlačítka ESC.</string>
+  <string name="main-config-version-mismatch-title">Uložiť konfiguráciu?</string>
+  <string name="main-config-version-mismatch-text">Táto verzia Huggle ($1) je staršia ako verzia, ktorú ste použili naposledy ($2). Ak budete pokračovať, niektoré nastavenia uložené s novšou verziou sa môžu stratiť. Chcete pokračovať? (Kliknutím na Nie sa ukladanie preskočí.)</string>
+  <string name="main-action-unavailable-title">Akcia nie je dostupná</string>
+  <string name="main-report-ip-not-supported">IP adresy nemôžete nahlásiť pomocou tejto funkcie</string>
+  <string name="main-abort-nothing-to-stop">Nie je čo zastaviť</string>
+  <string name="main-abort-instant-reverts-enabled">Aktuálnu operáciu nemožno zrušiť; aby táto funkcia fungovala, musíte v nastaveniach zakázať Okamžité vrátenia</string>
+  <string name="main-clear-talk-page-summary">Vyčistené staré šablóny z diskusnej stránky</string>
+  <string name="han-connected">Teraz ste pripojení k antivandalskej sieti Huggle</string>
+  <string name="preferences-unsaved-title">Nastavenia</string>
+  <string name="preferences-unsaved-text">Zatvorením tohto formulára môžete prísť o neuložené zmeny. Chcete ho aj tak zavrieť?</string>
 </resources>
