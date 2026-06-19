@@ -21,6 +21,30 @@
 #include <huggle_core/terminalparser.hpp>
 #include <huggle_core/wikiuser.hpp>
 #include <huggle_core/version.hpp>
+#include <huggle_core/query.hpp>
+#include <huggle_core/querypool.hpp>
+#include <huggle_core/events.hpp>
+
+class TestQuery : public Huggle::Query
+{
+    public:
+        int killCount = 0;
+        int processCount = 0;
+        Huggle::Query::Status statusAtProcess = Huggle::Query::StatusNull;
+
+        void Kill() override
+        {
+            this->killCount++;
+            this->status = StatusKilled;
+        }
+
+        void Process() override
+        {
+            this->processCount++;
+            this->statusAtProcess = this->status;
+            this->status = StatusProcessing;
+        }
+};
 
 static void testTalkPageWarningParser(QString id, QDate date, int level);
 //! This is a unit test
@@ -57,11 +81,14 @@ class HuggleTest : public QObject
         void testCaseVersionComparison();
         void testCaseGenerics();
         void testCaseWikiPage();
+        void testCaseQueryPoolFinishedQueryWithoutResult();
+        void testCaseQueryTimeoutRetriesOnce();
 };
 
 HuggleTest::HuggleTest()
 {
     Huggle::Configuration::HuggleConfiguration = new Huggle::Configuration();
+    Huggle::Events::Global = new Huggle::Events();
     QFile f(":/test/wikipage/config.txt");
     f.open(QIODevice::ReadOnly);
     Huggle::Configuration::HuggleConfiguration->Project = new Huggle::WikiSite("en", "en.wikipedia");
@@ -77,6 +104,8 @@ HuggleTest::HuggleTest()
 
 HuggleTest::~HuggleTest()
 {
+    delete Huggle::Events::Global;
+    Huggle::Events::Global = nullptr;
     delete Huggle::Configuration::HuggleConfiguration;
 }
 
@@ -226,6 +255,37 @@ void HuggleTest::testCaseWikiUserCheckIP()
     QVERIFY2((Huggle::WikiUser("~2025-33137-16", hcfg->Project).IsAnon() == true), "Invalid result for new WikiUser with username of ~2025-33137-16, the result of IsAnon() was false, but should have been true");
     QVERIFY2((Huggle::WikiUser("~2025-31256-01", hcfg->Project).IsAnon() == true), "Invalid result for new WikiUser with username of ~2025-31256-01, the result of IsAnon() was false, but should have been true");
     QVERIFY2((Huggle::WikiUser("~20256-31256-04561", hcfg->Project).IsAnon() == false), "Invalid result for new WikiUser with username of ~20256-31256-04561, the result of IsAnon() was true, but should have been false");
+}
+
+void HuggleTest::testCaseQueryPoolFinishedQueryWithoutResult()
+{
+    Huggle::QueryPool query_pool;
+    TestQuery *query = new TestQuery();
+    query->SetStatus(Huggle::Query::StatusDone);
+
+    query_pool.AppendQuery(query);
+    QCOMPARE(query_pool.RunningQueriesGetCount(), 1);
+    query_pool.CheckQueries();
+    QCOMPARE(query_pool.RunningQueriesGetCount(), 0);
+
+    QVERIFY(query->SafeDelete());
+}
+
+void HuggleTest::testCaseQueryTimeoutRetriesOnce()
+{
+    TestQuery query;
+    query.Timeout = -1;
+    query.SetStatus(Huggle::Query::StatusProcessing);
+
+    QVERIFY(!query.IsProcessed());
+    QCOMPARE(query.killCount, 1);
+    QCOMPARE(query.processCount, 1);
+    QCOMPARE(query.statusAtProcess, Huggle::Query::StatusNull);
+    QVERIFY(query.IsProcessed());
+    QCOMPARE(query.killCount, 2);
+    QCOMPARE(query.processCount, 1);
+    QVERIFY(query.Result != nullptr);
+    QVERIFY(query.Result->IsFailed());
 }
 
 void HuggleTest::testCaseTerminalParser()

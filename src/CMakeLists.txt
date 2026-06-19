@@ -129,6 +129,7 @@ add_subdirectory(huggle_ui)
 add_subdirectory(huggle)
 
 if (HUGGLE_TEST)
+    enable_testing()
     add_subdirectory(tests)
 endif()
 
