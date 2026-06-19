@@ -42,6 +42,7 @@ Query::Query()
     this->Timeout = 60;
     this->StartTime = QDateTime::currentDateTime();
     this->RetryOnTimeoutFailure = true;
+    this->isRepeated = false;
 }
 
 Query::~Query()
@@ -65,6 +66,7 @@ bool Query::IsProcessed()
             this->Result = nullptr;
             this->StartTime = QDateTime::currentDateTime();
             this->isRepeated = true;
+            this->status = StatusNull;
             this->Process();
             return false;
         }

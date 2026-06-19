@@ -193,7 +193,7 @@ void QueryPool::CheckQueries()
 #endif
             this->runningQueries.removeAt(curr);
             // this is pretty spamy :o
-            HUGGLE_DEBUG("Query finished with: " + q->Result->Data, 8);
+            HUGGLE_DEBUG("Query finished with: " + (q->Result != nullptr ? q->Result->Data : QString("<no result>")), 8);
             Hooks::QueryPool_Update(q);
             Hooks::QueryPool_Remove(q);
             q->UnregisterConsumer(HUGGLECONSUMER_QP);
@@ -248,4 +248,3 @@ void QueryPool::registerQueryPerfTime(Query *item)
     this->performanceInfo.append(item->ExecutionTime());
 }
 #endif
-

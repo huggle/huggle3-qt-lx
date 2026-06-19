@@ -76,7 +76,14 @@ void WebserverQuery::Kill()
 {
     if (this->reply != nullptr)
     {
+        QObject::disconnect(this->reply, &QNetworkReply::finished, this, &WebserverQuery::Finished);
+        QObject::disconnect(this->reply, &QIODevice::readyRead, this, &WebserverQuery::ReadData);
+        this->status = StatusKilled;
+        this->disconnect(this->reply);
         this->reply->abort();
+        this->reply->disconnect(this);
+        this->reply->deleteLater();
+        this->reply = nullptr;
     }
 }
 
