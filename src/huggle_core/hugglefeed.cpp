@@ -17,7 +17,7 @@ using namespace Huggle;
 
 QList<HuggleFeed*> HuggleFeed::providerList;
 
-QList<HuggleFeed *> HuggleFeed::GetProviders()
+const QList<HuggleFeed *>& HuggleFeed::GetProviders()
 {
     return HuggleFeed::providerList;
 }

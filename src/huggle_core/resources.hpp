@@ -30,13 +30,13 @@ namespace Huggle
         public:
             static void Init();
             static void Uninit();
-            static void PlayExternalSoundFile(QString path);
-            static void PlayEmbeddedSoundFile(QString file);
+            static void PlayExternalSoundFile(const QString& path);
+            static void PlayEmbeddedSoundFile(const QString& file);
             static QString GetHtmlHeader(Huggle::WikiSite *site);
             static QString GetEmptyQueueHTML();
             static QString GetNewTabHTML();
-            static QString GetResource(QString path);
-            static QByteArray GetResourceAsBinary(QString path);
+            static QString GetResource(const QString& path);
+            static QByteArray GetResourceAsBinary(const QString& path);
             static QString GetRandomProTip();
             static int GetRandom(int low, int high);
             static QString HtmlIncoming;

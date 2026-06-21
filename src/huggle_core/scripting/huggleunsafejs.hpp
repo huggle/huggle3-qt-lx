@@ -30,15 +30,15 @@ namespace Huggle
         public:
             HuggleUnsafeJS(Script *s);
             QHash<QString, QString> GetFunctions();
-            Q_INVOKABLE bool append_string_to_file(QString text, QString file_path);
-            Q_INVOKABLE QString read_file_to_string(QString file_path);
-            Q_INVOKABLE QList<QString> read_file_to_list(QString file_path);
-            Q_INVOKABLE bool write_string_to_file(QString text, QString file_path);
-            Q_INVOKABLE void play_file(QString file);
+            Q_INVOKABLE bool append_string_to_file(const QString& text, const QString& file_path);
+            Q_INVOKABLE QString read_file_to_string(const QString& file_path);
+            Q_INVOKABLE QList<QString> read_file_to_list(const QString& file_path);
+            Q_INVOKABLE bool write_string_to_file(const QString& text, const QString& file_path);
+            Q_INVOKABLE void play_file(const QString& file);
             Q_INVOKABLE int sys_get_verbosity_level();
             Q_INVOKABLE void sys_set_verbosity_level(int verbosity_level);
-            Q_INVOKABLE QJSValue get_cfg(QString key);
-            Q_INVOKABLE bool set_cfg(QString key, QJSValue data);
+            Q_INVOKABLE QJSValue get_cfg(const QString& key);
+            Q_INVOKABLE bool set_cfg(const QString& key, QJSValue data);
         private:
             QHash<QString, QString> function_help;
     };

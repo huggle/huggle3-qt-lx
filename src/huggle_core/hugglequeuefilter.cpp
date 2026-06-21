@@ -178,14 +178,14 @@ bool HuggleQueueFilter::Matches(WikiEdit *edit)
 
             if (!edit->Page->GetCategories().isEmpty() && this->IgnoreCategories.count())
             {
-                foreach (QString cat, edit->Page->GetCategories())
+                for (const QString& cat : edit->Page->GetCategories())
                 {
                     if (this->IgnoreCategories.contains(cat))
                         return false;
                 }
             }
 
-            foreach (QString rc, this->RequireCategories)
+            for (const QString& rc : this->RequireCategories)
             {
                 if (!edit->Page->GetCategories().contains(rc))
                     return false;
@@ -194,7 +194,7 @@ bool HuggleQueueFilter::Matches(WikiEdit *edit)
 
         if (!edit->Tags.isEmpty() && this->IgnoreTags.count())
         {
-            foreach (QString tag, edit->Tags)
+            for (const QString& tag : edit->Tags)
             {
                 if (this->IgnoreTags.contains(tag))
                     return false;
@@ -202,7 +202,7 @@ bool HuggleQueueFilter::Matches(WikiEdit *edit)
         }
         if (this->RequireTags.count())
         {
-            foreach (QString tx, this->RequireTags)
+            for (const QString& tx : this->RequireTags)
             {
                 if (!edit->Tags.contains(tx))
                     return false;
@@ -215,7 +215,7 @@ bool HuggleQueueFilter::Matches(WikiEdit *edit)
 QString HuggleQueueFilter::GetIgnoredTags_CommaSeparated() const
 {
     QString result = "";
-    foreach (QString item, this->IgnoreTags)
+    for (const QString& item : this->IgnoreTags)
         result += item + ",";
     if (result.endsWith(","))
         result = result.mid(0, result.size() - 1);
@@ -225,7 +225,7 @@ QString HuggleQueueFilter::GetIgnoredTags_CommaSeparated() const
 QString HuggleQueueFilter::GetRequiredTags_CommaSeparated() const
 {
     QString result = "";
-    foreach (QString item, this->RequireTags)
+    for (const QString& item : this->RequireTags)
         result += item + ",";
     if (result.endsWith(","))
         result = result.mid(0, result.size() - 1);
@@ -245,7 +245,7 @@ void HuggleQueueFilter::SetRequiredTags_CommaSeparated(const QString &list)
 QString HuggleQueueFilter::GetIgnoredCategories_CommaSeparated() const
 {
     QString result = "";
-    foreach (QString item, this->IgnoreCategories)
+    for (const QString& item : this->IgnoreCategories)
         result += item + ",";
     if (result.endsWith(","))
         result = result.mid(0, result.size() - 1);
@@ -255,7 +255,7 @@ QString HuggleQueueFilter::GetIgnoredCategories_CommaSeparated() const
 QString HuggleQueueFilter::GetRequiredCategories_CommaSeparated() const
 {
     QString result = "";
-    foreach (QString item, this->RequireCategories)
+    for (const QString& item : this->RequireCategories)
         result += item + ",";
     if (result.endsWith(","))
         result = result.mid(0, result.size() - 1);

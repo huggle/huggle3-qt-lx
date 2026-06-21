@@ -217,7 +217,7 @@ static void WriteIn(ApiQuery *q, QNetworkReply *reply)
     {
         QString header_list;
         QList<QByteArray> headerList = reply->rawHeaderList();
-        foreach(QByteArray head, headerList)
+        for (const QByteArray& head : headerList)
             header_list += head + ": " + reply->rawHeader(head) + "\n";
         WriteFile("======================================\n" + QString::number(q->QueryID()) + " IN " + q->GetSite()->Name + " " + QDateTime::currentDateTime().toString() + "\n======================================\nHEADERS:\n" +
             header_list + "\n\nDATA:\n" + q->Result->Data);
@@ -231,7 +231,7 @@ static void WriteOut(ApiQuery *q, QNetworkRequest *request)
     QString id = "======================================\n" + QString::number(q->QueryID()) + " OUT " + q->GetSite()->Name + " " + QDateTime::currentDateTime().toString() + "\n======================================\n";
     QString header_list;
     QList<QByteArray> headerList = request->rawHeaderList();
-    foreach(QByteArray head, headerList)
+    for (const QByteArray& head : headerList)
         header_list += head + ": " + request->rawHeader(head) + "\n";
     if (q->HiddenQuery)
         WriteFile(id + "(secret url) HEADERS:\n" + header_list + "\n\nDATA: (secret data)");
@@ -347,7 +347,7 @@ void ApiQuery::Process()
     // Calculate size of outgoing request
     int request_size = 0;
     QList<QByteArray> headerList = request.rawHeaderList();
-    foreach(QByteArray header, headerList)
+    for (const QByteArray& header : headerList)
         request_size += header.size();
     if (this->UsingPOST)
         request_size += this->Parameters.size() + this->URL.size();

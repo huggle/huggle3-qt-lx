@@ -36,8 +36,8 @@ namespace Huggle
         public:
             explicit HuggleLog(QWidget *parent = 0);
             ~HuggleLog();
-            void InsertText(HuggleLog_Line line);
-            QString Format(HuggleLog_Line line);
+            void InsertText(const HuggleLog_Line& line);
+            QString Format(const HuggleLog_Line& line);
             void Render();
             bool Modified;
 

@@ -41,7 +41,7 @@ namespace Huggle
     class HUGGLE_EX_CORE HuggleFeed : public MediaWikiObject
     {
         public:
-            static QList<HuggleFeed*> GetProviders();
+            static const QList<HuggleFeed*>& GetProviders();
             static QList<HuggleFeed*> GetProvidersForSite(WikiSite *site);
             static HuggleFeed *GetAlternativeFeedProvider(HuggleFeed *provider);
             static HuggleFeed *GetProviderByID(WikiSite *site, int id);

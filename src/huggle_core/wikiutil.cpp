@@ -186,7 +186,7 @@ Collectable_SmartPtr<EditQuery> WikiUtil::EditPage(WikiPage *page, const QString
     return eq;
 }
 
-QString WikiUtil::SanitizeUser(QString username)
+QString WikiUtil::SanitizeUser(const QString& username)
 {
     // ensure we don't modify the original string
     if (username.contains(" "))

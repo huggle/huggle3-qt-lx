@@ -72,8 +72,8 @@ namespace Huggle
              * \param dv Default value
              * \return Value
              */
-            virtual QString GetConfig(QString key, QString dv = "");
-            virtual void SetConfig(QString key, QString value);
+            virtual QString GetConfig(const QString& key, const QString& dv = "");
+            virtual void SetConfig(const QString& key, const QString& value);
             /*!
              * \brief Hook_BadnessScore When the score of user is changed
              * \param user pointer to user whom score is changed
@@ -106,7 +106,7 @@ namespace Huggle
              * \param userscore Score of user
              * \return If false is returned the internal scoring is skipped
              */
-            virtual bool Hook_EditBeforeScore(QString text, QString page, int* editscore, int userscore) { return true; }
+            virtual bool Hook_EditBeforeScore(const QString& text, const QString& page, int* editscore, int userscore) { return true; }
             virtual bool Hook_EditBeforePreProcessing(void *edit) { return true; }
             virtual void Hook_EditBeforePostProcessing(void *edit) {}
             virtual void Hook_WarningFinished(void *edit) {}

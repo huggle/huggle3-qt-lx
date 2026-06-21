@@ -33,7 +33,7 @@ HuggleUnsafeJS::HuggleUnsafeJS(Script *s) : GenericJSClass(s)
     this->function_help.insert("get_cfg", "(string key): return system setting");
 }
 
-bool HuggleUnsafeJS::append_string_to_file(QString text, QString file_path)
+bool HuggleUnsafeJS::append_string_to_file(const QString& text, const QString& file_path)
 {
     QFile file(file_path);
     if (!file.open(QIODevice::WriteOnly))
@@ -51,7 +51,7 @@ QHash<QString, QString> HuggleUnsafeJS::GetFunctions()
     return this->function_help;
 }
 
-QString HuggleUnsafeJS::read_file_to_string(QString file_path)
+QString HuggleUnsafeJS::read_file_to_string(const QString& file_path)
 {
     QFile file(file_path);
     if (!file.open(QIODevice::ReadOnly))
@@ -62,7 +62,7 @@ QString HuggleUnsafeJS::read_file_to_string(QString file_path)
     return QString(file.readAll());
 }
 
-QList<QString> HuggleUnsafeJS::read_file_to_list(QString file_path)
+QList<QString> HuggleUnsafeJS::read_file_to_list(const QString& file_path)
 {
     QFile file(file_path);
     if (!file.open(QIODevice::ReadOnly))
@@ -74,7 +74,7 @@ QList<QString> HuggleUnsafeJS::read_file_to_list(QString file_path)
     return data.split("\n");
 }
 
-bool HuggleUnsafeJS::write_string_to_file(QString text, QString file_path)
+bool HuggleUnsafeJS::write_string_to_file(const QString& text, const QString& file_path)
 {
     QFile file(file_path);
     if (!file.open(QIODevice::Truncate | QIODevice::WriteOnly))
@@ -87,7 +87,7 @@ bool HuggleUnsafeJS::write_string_to_file(QString text, QString file_path)
     return true;
 }
 
-void HuggleUnsafeJS::play_file(QString file)
+void HuggleUnsafeJS::play_file(const QString& file)
 {
     Resources::PlayExternalSoundFile(file);
 }
@@ -104,7 +104,7 @@ void HuggleUnsafeJS::sys_set_verbosity_level(int verbosity_level)
     hcfg->Verbosity = static_cast<unsigned int>(verbosity_level);
 }
 
-QJSValue HuggleUnsafeJS::get_cfg(QString key)
+QJSValue HuggleUnsafeJS::get_cfg(const QString& key)
 {
     if (key == "ScoreDebug")
     {
@@ -133,7 +133,7 @@ QJSValue HuggleUnsafeJS::get_cfg(QString key)
     return QJSValue();
 }
 
-bool HuggleUnsafeJS::set_cfg(QString key, QJSValue data)
+bool HuggleUnsafeJS::set_cfg(const QString& key, QJSValue data)
 {
     if (key == "ScoreDebug")
     {

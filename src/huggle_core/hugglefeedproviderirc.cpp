@@ -340,7 +340,7 @@ void HuggleFeedProviderIRC::OnConnected()
     this->startupTime = QDateTime::currentDateTime();
 }
 
-void HuggleFeedProviderIRC::OnFailure(QString reason, int code)
+void HuggleFeedProviderIRC::OnFailure(const QString& reason, int code)
 {
     // We don't need to echo this as error, it's actually OK
     if (code == EDISCONNECTED)

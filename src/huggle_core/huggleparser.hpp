@@ -55,11 +55,11 @@ namespace Huggle
         HUGGLE_EX_CORE unsigned int YAML2UInt(const QString& key, YAML::Node &node, unsigned int missing = 0);
         HUGGLE_EX_CORE double YAML2Double(const QString& key, YAML::Node &node, double missing = 0);
         HUGGLE_EX_CORE long long YAML2LongLong(const QString& key, YAML::Node &node, long long missing = 0);
-        HUGGLE_EX_CORE QHash<QString, QVariant> YAML2QHash(const QString &key, YAML::Node &node, QHash<QString, QVariant> missing, bool *ok = nullptr);
+        HUGGLE_EX_CORE QHash<QString, QVariant> YAML2QHash(const QString &key, YAML::Node &node, const QHash<QString, QVariant>& missing, bool *ok = nullptr);
         HUGGLE_EX_CORE QStringList YAML2QStringList(YAML::Node &node, bool *ok = nullptr);
-        HUGGLE_EX_CORE QStringList YAML2QStringList(YAML::Node &node, QStringList missing, bool *ok = nullptr);
+        HUGGLE_EX_CORE QStringList YAML2QStringList(YAML::Node &node, const QStringList& missing, bool *ok = nullptr);
         HUGGLE_EX_CORE QStringList YAML2QStringList(const QString &key, YAML::Node &node, bool *ok = nullptr);
-        HUGGLE_EX_CORE QStringList YAML2QStringList(const QString& key, YAML::Node &node, QStringList missing, bool *ok = nullptr);
+        HUGGLE_EX_CORE QStringList YAML2QStringList(const QString& key, YAML::Node &node, const QStringList& missing, bool *ok = nullptr);
         HUGGLE_EX_CORE QHash<QString, QString> YAML2QStringHash(YAML::Node &node, bool *ok = nullptr);
         HUGGLE_EX_CORE QHash<QString, QString> YAML2QStringHash(const QString &key, YAML::Node &node, bool *ok = nullptr);
         HUGGLE_EX_CORE QHash<QString, QString> YAML2QStringHash(const QString &key, YAML::Node &node, QHash<QString, QString> missing, bool *ok = nullptr);
@@ -69,9 +69,9 @@ namespace Huggle
         //! \todo This function needs a unit test
         HUGGLE_EX_CORE QString GetSummaryOfWarningTypeFromWarningKey(const QString& key, ProjectConfiguration *project_conf, UserConfiguration *user_conf = nullptr);
         //! \todo This function needs a unit test
-        HUGGLE_EX_CORE QString GetNameOfWarningTypeFromWarningKey(QString key, ProjectConfiguration *project_conf);
+        HUGGLE_EX_CORE QString GetNameOfWarningTypeFromWarningKey(const QString& key, ProjectConfiguration *project_conf);
         //! \todo This function needs a unit test
-        HUGGLE_EX_CORE QString GetKeyOfWarningTypeFromWarningName(QString id, ProjectConfiguration *project_conf);
+        HUGGLE_EX_CORE QString GetKeyOfWarningTypeFromWarningName(const QString& id, ProjectConfiguration *project_conf);
         //! \todo This function needs a unit test
         /*!
          * \brief ConfigurationParse_QL Parses a QStringList of values for a given key
@@ -84,19 +84,19 @@ namespace Huggle
          */
         HUGGLE_EX_CORE QStringList ConfigurationParse_QL(const QString &key, const QString &content, bool CS = false);
         //! \todo This function needs a unit test
-        HUGGLE_EX_CORE QStringList ConfigurationParse_QL(const QString &key, const QString &content, QStringList list, bool CS = false);
+        HUGGLE_EX_CORE QStringList ConfigurationParse_QL(const QString &key, const QString &content, const QStringList& list, bool CS = false);
         //! \todo This function needs a unit test
         //! Provides a QList from a value that has items separated by commas, each item on a line. The trailing comma will be trimmed.
         HUGGLE_EX_CORE QStringList ConfigurationParseTrimmed_QL(const QString &key, const QString &content, bool CS = false, bool RemoveNull = false);
         HUGGLE_EX_CORE QList<HuggleQueueFilter*> ConfigurationParseQueueList_YAML(YAML::Node &node, bool locked = false);
         //! \todo This function needs a unit test
-        HUGGLE_EX_CORE QList<HuggleQueueFilter*> ConfigurationParseQueueList(QString content, bool locked = false);
+        HUGGLE_EX_CORE QList<HuggleQueueFilter*> ConfigurationParseQueueList(const QString& content, bool locked = false);
         /*!
          * \brief GetIDOfMonth retrieve a month based on list of localized months in configuration file
          * \param month
          * \return If there is no such a month this function will return negative number
          */
-        HUGGLE_EX_CORE byte_ht GetIDOfMonth(QString month, WikiSite *site);
+        HUGGLE_EX_CORE byte_ht GetIDOfMonth(const QString& month, WikiSite *site);
         //! \todo This function needs a unit test
         //! Parse a part patterns for score words
         HUGGLE_EX_CORE void ParsePatterns(const QString &text, WikiSite *site);
@@ -110,9 +110,9 @@ namespace Huggle
         HUGGLE_EX_CORE void ParseNoTalkWords_yaml(YAML::Node &node, WikiSite *site);
         HUGGLE_EX_CORE void ParseNoTalkPatterns_yaml(YAML::Node &node, WikiSite *site);
         //! \todo This function needs a unit test
-        HUGGLE_EX_CORE QString GetValueFromSSItem(QString item);
+        HUGGLE_EX_CORE QString GetValueFromSSItem(const QString& item);
         //! \todo This function needs a unit test
-        HUGGLE_EX_CORE QString GetKeyFromSSItem(QString item);
+        HUGGLE_EX_CORE QString GetKeyFromSSItem(const QString& item);
         /*!
          * \brief Process content of talk page in order to figure which user level they have
          * \param page The content of talk page

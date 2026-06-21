@@ -65,7 +65,7 @@ namespace Huggle
         private slots:
             void OnIRCChannelMessage(libircclient::Parser *px);
             void OnConnected();
-            void OnFailure(QString reason, int code);
+            void OnFailure(const QString& reason, int code);
             void OnDisconnected();
         protected:
             bool isConnected;

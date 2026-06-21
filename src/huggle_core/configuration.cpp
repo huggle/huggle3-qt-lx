@@ -176,18 +176,17 @@ QString Configuration::GetConfigurationPath()
 
 QString Configuration::ReplaceSpecialUserPage(QString PageName)
 {
-    QString result = PageName;
-    PageName = PageName.toLower();
-    if (PageName.startsWith("special:mypage"))
+    QString lower = PageName.toLower();
+    if (lower.startsWith("special:mypage"))
     {
-        result = result.mid(14);
-        result = "User:$1" + result;
-    } else if (PageName.startsWith("special:mytalk"))
+        PageName = PageName.mid(14);
+        PageName = "User:$1" + PageName;
+    } else if (lower.startsWith("special:mytalk"))
     {
-        result = result.mid(14);
-        result = "User_talk:$1" + result;
+        PageName = PageName.mid(14);
+        PageName = "User_talk:$1" + PageName;
     }
-    return result;
+    return PageName;
 }
 
 void Configuration::MakeShortcut(const QString &name, const QString &description, const QString &default_accel)

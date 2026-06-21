@@ -76,7 +76,7 @@ bool HuggleParser::ConfigurationParseBool(const QString &key, const QString &con
 QString HuggleParser::GetSummaryOfWarningTypeFromWarningKey(const QString& key, ProjectConfiguration *project_conf, UserConfiguration *user_conf)
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
-    foreach (QString line, project_conf->RevertSummaries)
+    for (const QString& line : project_conf->RevertSummaries)
         if (line.startsWith(key + ";"))
             return HuggleParser::GetValueFromSSItem(line);
     if (!user_conf)
@@ -85,20 +85,20 @@ QString HuggleParser::GetSummaryOfWarningTypeFromWarningKey(const QString& key, 
     return user_conf->DefaultSummary;
 }
 
-QString HuggleParser::GetNameOfWarningTypeFromWarningKey(QString key, ProjectConfiguration *project_conf)
+QString HuggleParser::GetNameOfWarningTypeFromWarningKey(const QString& key, ProjectConfiguration *project_conf)
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     // get a key
-    foreach (QString line, project_conf->WarningTypes)
+    for (const QString& line : project_conf->WarningTypes)
         if (line.startsWith(key + ";"))
             return HuggleParser::GetValueFromSSItem(line);
     return key;
 }
 
-QString HuggleParser::GetKeyOfWarningTypeFromWarningName(QString id, ProjectConfiguration *project_conf)
+QString HuggleParser::GetKeyOfWarningTypeFromWarningName(const QString& id, ProjectConfiguration *project_conf)
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
-    foreach (QString line, project_conf->WarningTypes)
+    for (const QString& line : project_conf->WarningTypes)
     {
         if (line.endsWith(id) || line.endsWith(id + ","))
         {
@@ -150,7 +150,7 @@ static QList<ScoreWord> ParseScoreWords(QString text, const QString& wt)
                 break;
             line++;
         }
-        foreach(QString w, word)
+        for (const QString& w : word)
             contents.append(ScoreWord(w, score));
     }
     return contents;
@@ -180,7 +180,7 @@ void HuggleParser::ParseWords(const QString &text, WikiSite *site)
     site->ProjectConfig->ScoreWords = ParseScoreWords(text, "score-words");
 }
 
-QString HuggleParser::GetValueFromSSItem(QString item)
+QString HuggleParser::GetValueFromSSItem(const QString& item)
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     if (item.contains(";"))
@@ -195,7 +195,7 @@ QString HuggleParser::GetValueFromSSItem(QString item)
     return item;
 }
 
-QString HuggleParser::GetKeyFromSSItem(QString item)
+QString HuggleParser::GetKeyFromSSItem(const QString& item)
 {
     HUGGLE_PROFILER_INCRCALL(BOOST_CURRENT_FUNCTION);
     if (item.contains(";"))
@@ -362,7 +362,7 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt, WikiSite *site)
     byte_ht level = 4;
     while (level > 0)
     {
-        foreach (QString df, site->ProjectConfig->WarningDefs)
+        for (const QString& df : site->ProjectConfig->WarningDefs)
         {
             if (HuggleParser::GetKeyFromSSItem(df).toInt() == level && page.contains(HuggleParser::GetValueFromSSItem(df)))
             {
@@ -469,7 +469,7 @@ QStringList HuggleParser::ConfigurationParse_QL(const QString &key, const QStrin
     return list;
 }
 
-QStringList HuggleParser::ConfigurationParse_QL(const QString &key, const QString &content, QStringList list, bool CS)
+QStringList HuggleParser::ConfigurationParse_QL(const QString &key, const QString &content, const QStringList& list, bool CS)
 {
     QStringList result = HuggleParser::ConfigurationParse_QL(key, content, CS);
     if (result.count() == 0)
@@ -483,7 +483,7 @@ QStringList HuggleParser::ConfigurationParseTrimmed_QL(const QString &key, const
 {
     QStringList result = HuggleParser::ConfigurationParse_QL(key, content, CS);
     QStringList trimmed;
-    foreach (QString item, result)
+    for (const QString& item : result)
     {
         if (RemoveNull)
         {
@@ -525,7 +525,7 @@ QList<HuggleQueueFilter*> HuggleParser::ConfigurationParseQueueList(QString cont
     QStringList Filtered = content.replace("\r", "").split("\n");
     QStringList Info;
     // we need to assume that all queues are intended with at least 4 spaces
-    foreach (QString lt, Filtered)
+    for (const QString& lt : Filtered)
     {
         if (lt.startsWith("    ") || lt.length() == 0)
         {
@@ -591,7 +591,7 @@ QList<HuggleQueueFilter*> HuggleParser::ConfigurationParseQueueList(QString cont
                 if (key == "filtered-ns")
                 {
                     QStringList ns = val.split(",");
-                    foreach (QString namespace_id, ns)
+                    for (const QString& namespace_id : ns)
                     {
                         if (namespace_id.isEmpty())
                             continue;
@@ -836,7 +836,7 @@ QStringList HuggleParser::YAML2QStringList(YAML::Node &node, bool *ok)
     return YAML2QStringList(node, missing, ok);
 }
 
-QStringList HuggleParser::YAML2QStringList(YAML::Node &node, QStringList missing, bool *ok)
+QStringList HuggleParser::YAML2QStringList(YAML::Node &node, const QStringList& missing, bool *ok)
 {
     if (ok)
         *ok = false;
@@ -872,7 +872,7 @@ QStringList HuggleParser::YAML2QStringList(const QString &key, YAML::Node &node,
     return YAML2QStringList(key, node, missing, ok);
 }
 
-QStringList HuggleParser::YAML2QStringList(const QString& key, YAML::Node &node, QStringList missing, bool *ok)
+QStringList HuggleParser::YAML2QStringList(const QString& key, YAML::Node &node, const QStringList& missing, bool *ok)
 {
     if (ok)
         *ok = false;
@@ -969,7 +969,7 @@ QHash<QString, QString> HuggleParser::YAML2QStringHash(const QString &key, YAML:
     return YAML2QStringHash(key, node, missing, ok);
 }
 
-QHash<QString, QVariant> HuggleParser::YAML2QHash(const QString &key, YAML::Node &node, QHash<QString, QVariant> missing, bool *ok)
+QHash<QString, QVariant> HuggleParser::YAML2QHash(const QString &key, YAML::Node &node, const QHash<QString, QVariant>& missing, bool *ok)
 {
     if (ok)
         *ok = false;
@@ -1123,7 +1123,7 @@ QList<HuggleQueueFilter *> HuggleParser::ConfigurationParseQueueList_YAML(YAML::
         filter->setIgnore_UserSpace(HuggleQueueFilterMatchIgnore);
         filter->setIgnoreWL(HuggleQueueFilterMatchIgnore);
         ReturnValue.append(filter);
-        foreach (QString key, queue_data.keys())
+        for (const QString& key : queue_data.keys())
         {
             QString val = queue_data[key];
             if (key == "filter-ignored")
@@ -1139,7 +1139,7 @@ QList<HuggleQueueFilter *> HuggleParser::ConfigurationParseQueueList_YAML(YAML::
             if (key == "filtered-ns")
             {
                 QStringList ns = val.split(",");
-                foreach (QString namespace_id, ns)
+                for (const QString& namespace_id : ns)
                 {
                     if (namespace_id.isEmpty())
                         continue;
@@ -1220,11 +1220,11 @@ static QList<ScoreWord> ParseScoreWords_YAML(YAML::Node &node, const QString& ke
     QList<ScoreWord> results;
     QHash<QString, QVariant> score_words = HuggleParser::YAML2QHash(key, node, QHash<QString, QVariant>());
     QList<QString> s_keys = score_words.keys();
-    foreach (QString score_str, s_keys)
+    for (const QString& score_str : s_keys)
     {
         int score = score_str.toInt();
         QStringList words = score_words[score_str].toStringList();
-        foreach (QString w, words)
+        for (const QString& w : words)
         {
             results.append(ScoreWord(w, score));
         }

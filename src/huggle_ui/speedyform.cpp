@@ -138,7 +138,7 @@ void SpeedyForm::Init(WikiEdit *edit_)
         throw new Huggle::NullPointerException("WikiEdit *edit_", BOOST_CURRENT_FUNCTION);
     }
     this->edit = edit_;
-    foreach (ProjectConfiguration::SpeedyOption item, this->edit->GetSite()->GetProjectConfig()->SpeedyTemplates)
+    for (const ProjectConfiguration::SpeedyOption& item : this->edit->GetSite()->GetProjectConfig()->SpeedyTemplates)
     {
         this->ui->cbReason->addItem(item.Tag + ": " + item.Info);
     }

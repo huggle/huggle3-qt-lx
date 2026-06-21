@@ -68,7 +68,7 @@ bool Generic::ReportPreFlightCheck()
     return Hooks::ShowYesNoQuestion(_l("report-tu"), _l("report-warn"), false);
 }
 
-QString Generic::SanitizePath(QString name)
+QString Generic::SanitizePath(const QString& name)
 {
     QString new_name = name;
     while (new_name.contains("//"))

@@ -452,7 +452,7 @@ QString WikiEdit::GetPixmap()
 static long ProcessPartsInWikiText(QStringList *list, const QString& text, QList<ScoreWord> *wl)
 {
     long rs = 0;
-    foreach (ScoreWord word, *wl)
+    for (const ScoreWord& word : *wl)
     {
         QString w = word.word;
         if (text.contains(w))
@@ -467,7 +467,7 @@ static long ProcessPartsInWikiText(QStringList *list, const QString& text, QList
 static long ProcessWordsInWikiText(QStringList *list, const QString& text, QList<ScoreWord> *wl)
 {
     long rs = 0;
-    foreach (ScoreWord word, *wl)
+    for (const ScoreWord& word : *wl)
     {
         QString w = word.word;
         // if there is no such a string in text we can skip it

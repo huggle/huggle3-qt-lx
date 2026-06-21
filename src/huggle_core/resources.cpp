@@ -39,7 +39,7 @@ int     Huggle::Resources::proTipCount = -100;
 
 static int last_tip = -1;
 
-QString Huggle::Resources::GetResource(QString path)
+QString Huggle::Resources::GetResource(const QString& path)
 {
     QFile *vf = new QFile(":" + path);
     if (!vf->open(QIODevice::ReadOnly))
@@ -54,7 +54,7 @@ QString Huggle::Resources::GetResource(QString path)
     return result;
 }
 
-QByteArray Huggle::Resources::GetResourceAsBinary(QString path)
+QByteArray Huggle::Resources::GetResourceAsBinary(const QString& path)
 {
     QFile *vf = new QFile(":" + path);
     if (!vf->open(QIODevice::ReadOnly))
@@ -123,7 +123,7 @@ void Huggle::Resources::Uninit()
 #endif
 }
 
-void Huggle::Resources::PlayExternalSoundFile(QString path)
+void Huggle::Resources::PlayExternalSoundFile(const QString& path)
 {
 #ifndef HUGGLE_NOAUDIO
     #ifdef QT6_BUILD
@@ -138,7 +138,7 @@ void Huggle::Resources::PlayExternalSoundFile(QString path)
 #endif
 }
 
-void Huggle::Resources::PlayEmbeddedSoundFile(QString file)
+void Huggle::Resources::PlayEmbeddedSoundFile(const QString& file)
 {
 #ifndef HUGGLE_NOAUDIO
     #ifdef QT6_BUILD

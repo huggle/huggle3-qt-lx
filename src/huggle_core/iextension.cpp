@@ -49,12 +49,12 @@ void iExtension::Init()
         Huggle::Configuration::HuggleConfiguration = reinterpret_cast<Huggle::Configuration*>(this->Configuration);
 }
 
-QString iExtension::GetConfig(QString key, QString dv)
+QString iExtension::GetConfig(const QString& key, const QString& dv)
 {
     return hcfg->GetExtensionConfig(this->GetExtensionName(), key, dv);
 }
 
-void iExtension::SetConfig(QString key, QString value)
+void iExtension::SetConfig(const QString& key, const QString& value)
 {
     hcfg->SetExtensionConfig(this->GetExtensionName(), key, value);
 }

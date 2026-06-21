@@ -21,7 +21,7 @@ namespace Huggle
     //! Helper functions to convert some items to mediawiki format
     namespace MediaWiki
     {
-        HUGGLE_EX_CORE QDateTime   FromMWTimestamp(QString timestamp);
+        HUGGLE_EX_CORE QDateTime   FromMWTimestamp(const QString& timestamp);
         HUGGLE_EX_CORE QString     ToMWTimestamp(QDateTime DateTime_);
     }
 }

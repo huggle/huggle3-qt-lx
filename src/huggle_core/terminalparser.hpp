@@ -23,7 +23,7 @@ namespace Huggle
     {
         public:
             TerminalParser(int argc, char *argv[]);
-            TerminalParser(QStringList argv);
+            TerminalParser(const QStringList& argv);
             /*!
              * \brief Checks the given arguments for an argument requesting help
              * \return true if help was requested (-h or --help was there)

@@ -263,7 +263,7 @@ void UserinfoForm::JumpToSpecificContrib(long revid, QString page)
 QList<revid_ht> UserinfoForm::GetTopRevisions()
 {
     QList<revid_ht> top_revisions;
-    foreach (UserInfoFormHistoryItem i, this->Items)
+    for (const UserInfoFormHistoryItem& i : this->Items)
     {
         if (i.Top)
             top_revisions.append(i.RevID.toLongLong());

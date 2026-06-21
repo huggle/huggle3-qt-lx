@@ -12,7 +12,7 @@
 
 using namespace Huggle;
 
-QDateTime MediaWiki::FromMWTimestamp(QString timestamp)
+QDateTime MediaWiki::FromMWTimestamp(const QString& timestamp)
 {
     QDateTime date = QDateTime::fromString(timestamp, "yyyy-MM-ddThh:mm:ssZ");
     date.setTimeSpec(Qt::UTC);

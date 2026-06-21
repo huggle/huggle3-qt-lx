@@ -138,7 +138,7 @@ void EditBar::RefreshUser()
     this->clearUser();
     UserinfoForm *userinfo = MainWindow::HuggleMain->wUserInfo;
     // now we need to insert the items upside down
-    foreach (UserInfoFormHistoryItem i, userinfo->Items)
+    for (UserInfoFormHistoryItem& i : userinfo->Items)
         this->insertUser(&i);
     // we need to scroll to the edge of list
     this->moveUser(20 * userinfo->Items.count());

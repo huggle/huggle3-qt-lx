@@ -34,14 +34,14 @@ ScoreWordsDbForm::ScoreWordsDbForm(QWidget *parent) : QDialog(parent), ui(new Ui
 #endif
     this->ui->tableWidget->setShowGrid(false);
     int x = 0;
-    foreach (ScoreWord word, hcfg->ProjectConfig->ScoreWords)
+    for (const ScoreWord& word : hcfg->ProjectConfig->ScoreWords)
     {
         this->ui->tableWidget->insertRow(x);
         this->ui->tableWidget->setItem(x, 0, new QTableWidgetItem(QString::number(word.score)));
         this->ui->tableWidget->setItem(x, 1, new QTableWidgetItem(word.word));
         this->ui->tableWidget->setItem(x++, 2, new QTableWidgetItem(_l("score-only-whole-word")));
     }
-    foreach (ScoreWord word, hcfg->ProjectConfig->ScoreParts)
+    for (const ScoreWord& word : hcfg->ProjectConfig->ScoreParts)
     {
         this->ui->tableWidget->insertRow(x);
         this->ui->tableWidget->setItem(x, 0, new QTableWidgetItem(QString::number(word.score)));
@@ -49,7 +49,7 @@ ScoreWordsDbForm::ScoreWordsDbForm(QWidget *parent) : QDialog(parent), ui(new Ui
         this->ui->tableWidget->setItem(x, 2, new QTableWidgetItem(_l("score-take-any-word")));
         x++;
     }
-    foreach (ScoreWord word, hcfg->ProjectConfig->NoTalkScoreParts)
+    for (const ScoreWord& word : hcfg->ProjectConfig->NoTalkScoreParts)
     {
         this->ui->tableWidget->insertRow(x);
         this->ui->tableWidget->setItem(x, 0, new QTableWidgetItem(QString::number(word.score)));
@@ -57,7 +57,7 @@ ScoreWordsDbForm::ScoreWordsDbForm(QWidget *parent) : QDialog(parent), ui(new Ui
         this->ui->tableWidget->setItem(x, 2, new QTableWidgetItem(_l("score-take-any-no-talk-word")));
         x++;
     }
-    foreach (ScoreWord word, hcfg->ProjectConfig->NoTalkScoreWords)
+    for (const ScoreWord& word : hcfg->ProjectConfig->NoTalkScoreWords)
     {
         this->ui->tableWidget->insertRow(x);
         this->ui->tableWidget->setItem(x, 0, new QTableWidgetItem(QString::number(word.score)));

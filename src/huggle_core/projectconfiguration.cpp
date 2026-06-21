@@ -878,7 +878,7 @@ bool ProjectConfiguration::ParseYAML(const QString& yaml_src, QString *reason, W
     return true;
 }
 
-QString ProjectConfiguration::GetConfig(QString key, QString dv)
+QString ProjectConfiguration::GetConfig(const QString& key, const QString& dv)
 {
     if (this->cache.contains(key))
         return this->cache[key];

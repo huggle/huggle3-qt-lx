@@ -120,8 +120,8 @@ namespace Huggle
             bool IsUnsafe();
             bool SupportFunction(const QString& name);
             QString GetHelpForFunc(const QString& name);
-            QList<QString> GetHooks();
-            QList<QString> GetFunctions();
+            const QList<QString>& GetHooks() const;
+            const QList<QString>& GetFunctions() const;
             ScriptMemPool *GetMemPool();
             QJSEngine *GetEngine();
             // External callbacks exists for security reasons - each script can expose its own

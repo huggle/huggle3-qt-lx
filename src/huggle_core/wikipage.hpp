@@ -50,8 +50,8 @@ namespace Huggle
             bool IsUserpage();
             //! Writes a wikipage name that is encoded using percent encoding
             QString EncodedName();
-            QStringList GetCategories();
-            void SetCategories(QStringList value);
+            const QStringList& GetCategories() const;
+            void SetCategories(const QStringList& value);
             bool IsWatched();
             void SetWatched(bool value);
             QString GetContent();
@@ -84,12 +84,12 @@ namespace Huggle
         return this->NS;
     }
 
-    inline QStringList WikiPage::GetCategories()
+    inline const QStringList& WikiPage::GetCategories() const
     {
         return this->categories;
     }
 
-    inline void WikiPage::SetCategories(QStringList value)
+    inline void WikiPage::SetCategories(const QStringList& value)
     {
         this->categories = value;
     }

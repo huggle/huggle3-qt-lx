@@ -96,7 +96,7 @@ namespace Huggle
          * \param username Username that is to be fixed
          * \return
          */
-        HUGGLE_EX_CORE QString SanitizeUser(QString username);
+        HUGGLE_EX_CORE QString SanitizeUser(const QString& username);
         HUGGLE_EX_CORE Collectable_SmartPtr<EditQuery> PrependTextToPage(WikiPage *page, const QString &text, const QString &summary = "Edited using huggle", bool minor = false);
         HUGGLE_EX_CORE Collectable_SmartPtr<EditQuery> PrependTextToPage(const QString &page, const QString &text, QString summary = "Edited using huggle", bool minor = false, WikiSite *site = nullptr);
         HUGGLE_EX_CORE Collectable_SmartPtr<EditQuery> AppendTextToPage(const QString &page, const QString &text, QString summary = "Edited using huggle", bool minor = false, WikiSite *site = nullptr);

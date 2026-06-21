@@ -48,10 +48,10 @@ namespace Huggle
             void QueryPool_FinishPostprocess(WikiEdit *wiki_edit);
             void Reporting_SilentReport(WikiUser *wiki_user);
             void Reporting_Report(WikiUser *wiki_user);
-            void System_Message(QString title, QString text);
-            void System_WarningMessage(QString title, QString text);
-            void System_ErrorMessage(QString title, QString text);
-            void System_YesNoQuestion(QString title, QString text, bool *yes);
+            void System_Message(const QString& title, const QString& text);
+            void System_WarningMessage(const QString& title, const QString& text);
+            void System_ErrorMessage(const QString& title, const QString& text);
+            void System_YesNoQuestion(const QString& title, const QString& text, bool *yes);
 
         private:
             friend class Hooks;

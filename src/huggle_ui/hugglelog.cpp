@@ -40,7 +40,7 @@ HuggleLog::~HuggleLog()
     delete this->ui;
 }
 
-void HuggleLog::InsertText(HuggleLog_Line line)
+void HuggleLog::InsertText(const HuggleLog_Line& line)
 {
     this->lock->lock();
     // we don't want to have too much text here because that makes the rendering too slow
@@ -53,7 +53,7 @@ void HuggleLog::InsertText(HuggleLog_Line line)
     this->Modified = true;
 }
 
-QString HuggleLog::Format(HuggleLog_Line line)
+QString HuggleLog::Format(const HuggleLog_Line& line)
 {
     QString color = "";
     switch (line.Type)

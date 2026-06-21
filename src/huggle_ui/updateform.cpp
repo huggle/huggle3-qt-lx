@@ -853,7 +853,7 @@ void UpdateForm::Update()
     this->timer->start(HUGGLE_TIMER);
 }
 
-void UpdateForm::Generic_Exec(QString path, QStringList parameters)
+void UpdateForm::Generic_Exec(const QString& path, const QStringList& parameters)
 {
     QProcess *ClientProcess = new QProcess(this);
     ClientProcess->startDetached(path, parameters);

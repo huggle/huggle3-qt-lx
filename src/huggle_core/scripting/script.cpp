@@ -236,12 +236,12 @@ QString Script::GetHelpForFunc(const QString& name)
     return this->functionsHelp[name];
 }
 
-QList<QString> Script::GetHooks()
+const QList<QString>& Script::GetHooks() const
 {
     return this->hooksExported;
 }
 
-QList<QString> Script::GetFunctions()
+const QList<QString>& Script::GetFunctions() const
 {
     return this->functionsExported;
 }
@@ -770,16 +770,16 @@ QJSValue Script::executeFunction(const QString& function)
 
 void Script::registerClass(const QString &name, GenericJSClass *c)
 {
-    QHash<QString, QString> functions = c->GetFunctions();
+    const QHash<QString, QString> functions = c->GetFunctions();
     QHash<QString, ScriptFunctionHelp> function_help = c->GetFunctionHelp();
 
-    foreach (QString function, functions.keys())
+    for (const QString& function : functions.keys())
     {
         this->functionsExported.append(name + "." + function);
         this->functionsHelp.insert(name + "." + function, functions[function]);
     }
 
-    foreach (QString function, function_help.keys())
+    for (const QString& function : function_help.keys())
     {
         this->functionsDocs.insert(name + "." + function, function_help[function]);
         this->functionsDocs[function].FunctionName = function;

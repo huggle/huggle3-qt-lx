@@ -17,7 +17,7 @@
 using namespace Huggle;
 using namespace std;
 
-TerminalParser::TerminalParser(QStringList argv)
+TerminalParser::TerminalParser(const QStringList& argv)
 {
     this->args = argv;
 }
