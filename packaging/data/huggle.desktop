@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Huggle
+GenericName=MediaWiki anti-vandalism tool
+Comment=Review and revert vandalism on Wikipedia and other MediaWiki sites
+Exec=huggle
+Icon=huggle
+StartupNotify=true
+Terminal=false
+Categories=Network;Qt;
+Keywords=Wikipedia;MediaWiki;vandalism;moderation;

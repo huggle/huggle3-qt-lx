@@ -1,0 +1,5 @@
+huggle (3.4.14-1) unstable; urgency=medium
+
+  * Add reproducible one-command Linux packaging.
+
+ -- Petr Bena <benapetr@gmail.com>  Sun, 21 Jun 2026 17:30:00 +0200

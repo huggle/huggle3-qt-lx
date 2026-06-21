@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>org.wikimedia.Huggle</id>
+  <name>Huggle</name>
+  <summary>Review and revert vandalism on MediaWiki sites</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <description>
+    <p>
+      Huggle is a fast diff browser for Wikipedia and other MediaWiki sites,
+      designed to help reviewers detect and revert vandalism.
+    </p>
+  </description>
+  <launchable type="desktop-id">huggle.desktop</launchable>
+  <provides>
+    <binary>huggle</binary>
+  </provides>
+  <url type="homepage">https://meta.wikimedia.org/wiki/Huggle</url>
+  <url type="bugtracker">https://phabricator.wikimedia.org/maniphest/task/create/?projects=Huggle</url>
+  <url type="vcs-browser">https://github.com/huggle/huggle3-qt-lx</url>
+  <content_rating type="oars-1.1"/>
+</component>

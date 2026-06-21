@@ -10,3 +10,14 @@ version.txt
 
 /release
 /debug
+/packaging/output
+/packaging/.appimage-build
+/packaging/.AppDir
+/packaging/.rpm-build
+/debian/build
+/debian/.debhelper
+/debian/huggle
+/debian/files
+/debian/debhelper-build-stamp
+/debian/*.debhelper.log
+/debian/*.substvars

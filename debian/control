@@ -1,0 +1,23 @@
+Source: huggle
+Section: net
+Priority: optional
+Maintainer: Petr Bena <benapetr@gmail.com>
+Build-Depends:
+ debhelper-compat (= 13),
+ cmake,
+ pkg-config,
+ qt6-base-dev,
+ qt6-declarative-dev,
+ qt6-webengine-dev,
+ qt6-multimedia-dev,
+ libyaml-cpp-dev
+Standards-Version: 4.6.2
+Rules-Requires-Root: no
+Homepage: https://meta.wikimedia.org/wiki/Huggle
+
+Package: huggle
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: anti-vandalism tool for Wikipedia and MediaWiki
+ Huggle is a fast diff browser for Wikipedia and other MediaWiki sites,
+ designed to help reviewers detect and revert vandalism.

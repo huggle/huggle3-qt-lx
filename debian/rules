@@ -1,0 +1,30 @@
+#!/usr/bin/make -f
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+
+%:
+	dh $@ --buildsystem=cmake --sourcedirectory=src --builddirectory=debian/build
+
+override_dh_auto_configure:
+	dh_auto_configure -- \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DCMAKE_INSTALL_LIBDIR=lib/$(DEB_HOST_MULTIARCH) \
+		-DQT6_BUILD=true \
+		-DWEB_ENGINE=true \
+		-DHUGGLE_EXT=true \
+		-DYAML_CPP_INSTALL=false
+
+override_dh_auto_install:
+	dh_auto_install
+	install -Dm644 packaging/data/huggle.desktop \
+		debian/huggle/usr/share/applications/huggle.desktop
+	install -Dm644 packaging/data/org.wikimedia.Huggle.metainfo.xml \
+		debian/huggle/usr/share/metainfo/org.wikimedia.Huggle.metainfo.xml
+	install -Dm644 src/huggle_res/Resources/huggle3_newlogo.png \
+		debian/huggle/usr/share/icons/hicolor/256x256/apps/huggle.png
+
+override_dh_clean:
+	rm -rf debian/build
+	dh_clean

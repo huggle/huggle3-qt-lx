@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+APP_NAME="huggle"
+APP_VERSION="$(sed -n 's/^#define HUGGLE_VERSION[[:space:]]*"\([^"]*\)".*/\1/p' \
+    "$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/src/huggle_core/definitions_prod.hpp")"
+MAINTAINER="Petr Bena <benapetr@gmail.com>"
+DESCRIPTION="Anti-vandalism tool for Wikipedia and other MediaWiki sites"
+APP_HOMEPAGE_URL="https://github.com/huggle/huggle3-qt-lx"
+APP_ID="org.wikimedia.Huggle"
+
+if [ -z "$APP_VERSION" ]; then
+    echo "Error: unable to determine Huggle version." >&2
+    return 1 2>/dev/null || exit 1
+fi
