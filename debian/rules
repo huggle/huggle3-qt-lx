@@ -7,6 +7,7 @@ DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 	dh $@ --buildsystem=cmake --sourcedirectory=src --builddirectory=debian/build
 
 override_dh_auto_configure:
+	./packaging/prepare-source.sh
 	dh_auto_configure -- \
 		-DCMAKE_BUILD_TYPE=Release \
 		-DCMAKE_INSTALL_PREFIX=/usr \

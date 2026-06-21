@@ -143,6 +143,7 @@ designed to help reviewers detect and revert vandalism.
 %autosetup
 
 %build
+./packaging/prepare-source.sh
 cmake -S src -B build \\
     -DCMAKE_BUILD_TYPE=Release \\
     -DCMAKE_INSTALL_PREFIX=%{_prefix} \\

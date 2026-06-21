@@ -32,3 +32,5 @@ AppImage packaging additionally requires `linuxdeploy`,
 `--qt /path/to/Qt` when Qt is installed outside the system prefix.
 
 All package builds enable Qt 6, Qt WebEngine, audio, and Huggle extensions.
+Before configuring CMake, they generate `src/huggle_core/version.txt` and
+ensure `src/huggle_core/definitions.hpp` exists, matching `./configure`.

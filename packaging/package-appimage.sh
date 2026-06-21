@@ -59,6 +59,8 @@ echo "Version: $APP_VERSION"
 echo "CPUs: $NCPUS"
 echo
 
+"$SCRIPT_DIR/prepare-source.sh"
+
 cmake -S "$PROJECT_ROOT/src" -B "$BUILD_DIR" \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX=/usr \
