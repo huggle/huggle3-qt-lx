@@ -18,6 +18,7 @@
 #include "hw.hpp"
 #include <QList>
 #include <QHash>
+#include <QVariantMap>
 
 class QCheckBox;
 class QCloseEvent;
@@ -85,6 +86,9 @@ namespace Huggle
             void reloadUI();
             //! Used to reload shortcuts only
             void reloadShortcuts();
+            QVariantMap preferencesState() const;
+            bool hasUnsavedChanges() const;
+            QVariantMap initialPreferencesState;
             QHash<QCheckBox*, int> namespaceBoxes;
             WikiSite *defaultSite;
             bool isNowReloadingFilters = false;

@@ -209,6 +209,7 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     this->ui->label_pt->setText("<b>" + _l("protip") + ":</b> " + Resources::GetRandomProTip());
     this->RestoreWindow();
     this->queueModified = false;
+    this->initialPreferencesState = this->preferencesState();
 }
 
 Preferences::~Preferences()
@@ -226,6 +227,12 @@ void Preferences::closeEvent(QCloseEvent *event)
         return;
     }
 
+    if (!this->hasUnsavedChanges())
+    {
+        event->accept();
+        return;
+    }
+
     int result = UiGeneric::pMessageBox(this, _l("preferences-unsaved-title"),
                                        _l("preferences-unsaved-text"),
                                        MessageBoxStyleQuestion);
@@ -235,6 +242,84 @@ void Preferences::closeEvent(QCloseEvent *event)
         return;
     }
     event->accept();
+}
+
+QVariantMap Preferences::preferencesState() const
+{
+    QVariantMap state;
+    int goNext = Configuration_OnNext_Stay;
+    if (this->ui->radioButton_RetrieveEdit->isChecked())
+        goNext = Configuration_OnNext_Revert;
+    else if (this->ui->radioButton_DisplayNext->isChecked())
+        goNext = Configuration_OnNext_Next;
+
+    state.insert("automatically-resolve-conflicts", this->ui->checkBox_AutoResolveConflicts->isChecked());
+    state.insert("warn-user-space-rollback", this->ui->checkBox_ConfirmUserSpaceEditRevert->isChecked());
+    state.insert("warning-api", this->ui->checkBox_WarningApi->isChecked());
+    state.insert("using-irc", this->ui->checkBox_EnableIrc->isChecked());
+    state.insert("use-rollback", this->ui->checkBox_UseRollback->isChecked());
+    state.insert("automatically-group", this->ui->checkBox_AutomaticallyGroup->isChecked());
+    state.insert("revert-on-multiple-edits", this->ui->radioButton_Revert->isChecked());
+    state.insert("confirm-own-revert", this->ui->checkBox_ConfirmOwnEditRevert->isChecked());
+    state.insert("confirm-whitelisted-revert", this->ui->checkBox_ConfirmWhitelistedRevert->isChecked());
+    state.insert("revert-newer-edits", this->ui->checkBox_RevertNewerEdits->isChecked());
+    state.insert("load-history", this->ui->checkBox_AutoLoadHistory->isChecked());
+    state.insert("month-headers", this->ui->checkBox_MonthHeaders->isChecked());
+    state.insert("merge-messages", this->ui->checkBox_MergeMessages->isChecked());
+    state.insert("confirm-talk-revert", this->ui->checkBox_ConfirmTalkRevert->isChecked());
+    state.insert("last-revision", this->ui->checkBox_LastRevision->isChecked());
+    state.insert("remove-reverted-edits", this->ui->checkBox_RemoveRevertedEdits->isChecked());
+    state.insert("remove-old-edits", this->ui->checkBox_RemoveOldEdits->isChecked());
+    state.insert("dynamic-columns", this->ui->checkBox_DynamicColumns->isChecked());
+    state.insert("display-title", this->ui->checkBox_TitleDiff->isChecked());
+    state.insert("preferred-provider", this->ui->cbProviders->currentIndex());
+    state.insert("automatic-warning", this->ui->checkBox_AutoWarning->isChecked());
+    state.insert("retrieve-founder", this->ui->checkBox_RetrieveFounder->isChecked());
+    state.insert("message-notification", this->ui->checkBox_MessageNotification->isChecked());
+    state.insert("require-delay", this->ui->checkBox_RequireDelay->isChecked());
+    state.insert("remove-after-trusted-edit", this->ui->ck_RemoveTrusted->isChecked());
+    state.insert("request-delay", this->ui->lineEdit_DelayValue->text().toUInt());
+    state.insert("revert-delay", this->ui->lineEdit_RevertDelay->text().toInt());
+    state.insert("instant-reverts", this->ui->checkBox_InstantReverts->isChecked());
+    state.insert("automatic-reports", this->ui->checkBox_AutoReport->isChecked());
+    state.insert("enable-updates", this->ui->checkBox_notifyUpdate->isChecked());
+    state.insert("notify-beta", this->ui->checkBox_notifyBeta->isChecked());
+    state.insert("html-messages", this->ui->checkBox_HtmlMessages->isChecked());
+    state.insert("enable-min-score", this->ui->cbMinScore->isChecked());
+    state.insert("min-score", this->ui->leMinScore->text().toLongLong());
+    state.insert("max-score", this->ui->leMaxScore->text().toLongLong());
+    state.insert("number-dropdown-menu-items", this->ui->cbNumberMenus->isChecked());
+    state.insert("enable-max-score", this->ui->cbMaxScore->isChecked());
+    state.insert("queue-size", this->ui->le_QueueSize->text().toInt());
+    state.insert("watch-warned-users", this->ui->cb_WatchWarn->isChecked());
+    state.insert("empty-queue-page", this->ui->le_EmptyQueuePage->text());
+    state.insert("automatic-refresh", this->ui->cb_AutoRefresh->isChecked());
+    state.insert("play-sound-on-irc-message", this->ui->cbPlayOnIRCMsg->isChecked());
+    state.insert("queue-sound-min-score", this->ui->ln_QueueSoundMinScore->text().toLongLong());
+    state.insert("play-sound-on-queue", this->ui->cbPlayOnNewItem->isChecked());
+    state.insert("catscans-and-watched", this->ui->cbCatScansAndWatched->isChecked());
+    state.insert("warn-if-not-last-revision", this->ui->cbShowWarningIfNotOnLastRevision->isChecked());
+    state.insert("highlight-summary", this->ui->checkBox_SummaryPresent->isChecked());
+    state.insert("review-rolled-user-edits", this->ui->checkBox_ReviewEditsMadeByVandal->isChecked());
+    state.insert("font-size", this->ui->sxFontSize->value());
+    state.insert("enforce-black-and-white-css", this->ui->checkBox_EnforceBAWC->isChecked());
+    state.insert("confirm-recent-warning", this->ui->checkBox_RecentMsgs->isChecked());
+    state.insert("skip-warning-confirmation", this->ui->checkBox_SkipConfirm->isChecked());
+    state.insert("confirm-very-old-edits", this->ui->checkBox_OldEdits->isChecked());
+    state.insert("watchlist-preference", this->ui->comboBox_WatchlistPreference->currentIndex());
+    state.insert("font", this->ui->lineEdit_Font->text());
+    state.insert("unsafe-extensions", this->ui->checkBox_unsafe->isChecked());
+    state.insert("keystroke-rate", this->ui->le_KeystrokeRate->text().toInt());
+    state.insert("keystroke-rate-limit", this->ui->cbKeystrokeFix->isChecked());
+    state.insert("color-scheme", this->ui->radioButton_DarkMode->isChecked() ? 1 : 0);
+    state.insert("welcome-good-edits", this->ui->checkBox_WelcomeEmptyPage->isChecked());
+    state.insert("go-next", goNext);
+    return state;
+}
+
+bool Preferences::hasUnsavedChanges() const
+{
+    return this->shortcutsModified || this->queueModified || this->preferencesState() != this->initialPreferencesState;
 }
 
 static void SetValue(HuggleQueueFilterMatch matching, QComboBox *item)
