@@ -1077,7 +1077,7 @@ void MainWindow::ReloadShort(const QString& id)
             q = this->ui->actionFlag_as_a_good_edit;
             break;
         case HUGGLE_ACCEL_MAIN_OPEN_IN_BROWSER:
-            q = this->ui->actionOpen_page_in_browser;
+            q = this->ui->actionOpen_in_a_browser;
             break;
         case HUGGLE_ACCEL_MAIN_TALK:
             q = this->ui->actionTalk_page;

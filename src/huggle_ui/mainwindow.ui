@@ -459,14 +459,6 @@
     <string notr="true">Welcome user (Ctrl-H)</string>
    </property>
   </action>
-  <action name="actionOpen_page_in_browser">
-   <property name="text">
-    <string>Open page in browser</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+O</string>
-   </property>
-  </action>
   <action name="actionOpen_in_a_browser">
    <property name="icon">
     <iconset resource="../huggle_res/pictures.qrc">
