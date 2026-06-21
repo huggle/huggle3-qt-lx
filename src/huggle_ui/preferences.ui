@@ -567,7 +567,7 @@
       <attribute name="title">
        <string>Shortcuts</string>
       </attribute>
-      <layout class="QHBoxLayout" name="horizontalLayout_8">
+      <layout class="QVBoxLayout" name="verticalLayout_Shortcuts">
        <property name="leftMargin">
         <number>8</number>
        </property>
@@ -577,6 +577,13 @@
        <property name="bottomMargin">
         <number>8</number>
        </property>
+       <item>
+        <widget class="QLineEdit" name="lineEdit_ShortcutSearch">
+         <property name="clearButtonEnabled">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
        <item>
         <widget class="QTableWidget" name="tableWidget_Shortcuts">
          <property name="selectionBehavior">

@@ -89,6 +89,7 @@
   <string name="config-function">Function</string>
   <string name="config-description">Description</string>
   <string name="config-shortcut">Shortcut</string>
+  <string name="preferences-shortcuts-search">Search shortcuts...</string>
   <string name="config-queue-filter-ignore">Ignore (doesn&apos;t matter)</string>
   <string name="config-queue-filter-exclude">Exclude (must not be)</string>
   <string name="config-queue-filter-require">Require (must be)</string>

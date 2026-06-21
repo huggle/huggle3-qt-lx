@@ -64,6 +64,7 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     this->ui->tableWidget_Shortcuts->setHorizontalHeaderLabels(headers);
     this->ui->tableWidget_Shortcuts->verticalHeader()->setVisible(false);
     this->ui->tableWidget_Shortcuts->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
+    this->ui->lineEdit_ShortcutSearch->setPlaceholderText(_l("preferences-shortcuts-search"));
     this->reloadShortcuts();
     this->ui->tableWidget_Shortcuts->setShowGrid(false);
     this->ui->tableWidget_Shortcuts->resizeRowsToContents();
@@ -84,6 +85,7 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     this->ui->tableWidget_3->setShowGrid(false);
     this->ui->tableWidget_3->horizontalHeader()->setSelectionBehavior(QAbstractItemView::SelectRows);
     this->ui->tableWidget_3->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    connect(this->ui->lineEdit_ShortcutSearch, &QLineEdit::textChanged, this, &Preferences::filterShortcuts);
     connect(this->ui->tableWidget_Shortcuts, &QTableWidget::cellChanged, this, &Preferences::RecordKeys);
     // Set up context menu for the queue filter list
     this->ui->listWidget->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -408,6 +410,25 @@ void Preferences::reloadShortcuts()
     }
     this->ui->tableWidget_Shortcuts->resizeColumnsToContents();
     this->ui->tableWidget_Shortcuts->resizeRowsToContents();
+    this->filterShortcuts(this->ui->lineEdit_ShortcutSearch->text());
+}
+
+void Preferences::filterShortcuts(const QString &text)
+{
+    const QString filter = text.trimmed();
+
+    for (int row = 0; row < this->ui->tableWidget_Shortcuts->rowCount(); row++)
+    {
+        bool matches = filter.isEmpty();
+
+        for (int column = 0; column < this->ui->tableWidget_Shortcuts->columnCount() && !matches; column++)
+        {
+            QTableWidgetItem *item = this->ui->tableWidget_Shortcuts->item(row, column);
+            matches = item && item->text().contains(filter, Qt::CaseInsensitive);
+        }
+
+        this->ui->tableWidget_Shortcuts->setRowHidden(row, !matches);
+    }
 }
 
 void Huggle::Preferences::on_checkBox_RequireDelay_clicked()

@@ -48,6 +48,7 @@ namespace Huggle
             void on_checkBox_clicked();
             void on_checkBox_RequireDelay_clicked();
             void on_checkBox_InstantReverts_clicked();
+            void filterShortcuts(const QString &text);
             void RecordKeys(int row, int column);
             void on_pbHuggle2_clicked();
             void on_cbSites_currentIndexChanged(int index);
