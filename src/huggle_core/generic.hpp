@@ -41,7 +41,7 @@ namespace Huggle
          * \param value QString Text that needs to be changed to bool
          * \param defaultvalue bool What value should bool have in case that text can't be parsed, by default it's false
          */
-        HUGGLE_EX_CORE bool SafeBool(const QString& value, bool defaultvalue = false);
+        HUGGLE_EX_CORE bool SafeBool(QString value, bool defaultvalue = false);
         //! Display a user message before reporting a user based on user preferences
         HUGGLE_EX_CORE bool ReportPreFlightCheck();
         HUGGLE_EX_CORE QString SanitizePath(const QString& name);

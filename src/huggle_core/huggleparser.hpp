@@ -90,13 +90,13 @@ namespace Huggle
         HUGGLE_EX_CORE QStringList ConfigurationParseTrimmed_QL(const QString &key, const QString &content, bool CS = false, bool RemoveNull = false);
         HUGGLE_EX_CORE QList<HuggleQueueFilter*> ConfigurationParseQueueList_YAML(YAML::Node &node, bool locked = false);
         //! \todo This function needs a unit test
-        HUGGLE_EX_CORE QList<HuggleQueueFilter*> ConfigurationParseQueueList(const QString& content, bool locked = false);
+        HUGGLE_EX_CORE QList<HuggleQueueFilter*> ConfigurationParseQueueList(QString content, bool locked = false);
         /*!
          * \brief GetIDOfMonth retrieve a month based on list of localized months in configuration file
          * \param month
          * \return If there is no such a month this function will return negative number
          */
-        HUGGLE_EX_CORE byte_ht GetIDOfMonth(const QString& month, WikiSite *site);
+        HUGGLE_EX_CORE byte_ht GetIDOfMonth(QString month, WikiSite *site);
         //! \todo This function needs a unit test
         //! Parse a part patterns for score words
         HUGGLE_EX_CORE void ParsePatterns(const QString &text, WikiSite *site);
