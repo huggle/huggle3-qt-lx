@@ -16,7 +16,12 @@ Run the matching script on the target distribution:
 ```
 
 Each script accepts `--version x.y.z`. The default version is read from
-`src/huggle_core/definitions_prod.hpp`.
+`src/huggle_core/definitions_prod.hpp`; this option overrides the Huggle
+application version, not the operating-system version.
+
+The shared `package-deb.sh` and `package-rpm.sh` scripts can also be executed
+directly with no arguments. They detect the current container distribution
+from `/etc/os-release`.
 
 The distro scripts check their build dependencies and print the appropriate
 installation command when something is missing. Rocky Linux may require CRB

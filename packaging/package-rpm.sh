@@ -13,7 +13,8 @@ NCPUS="$(packaging_jobs)"
 
 usage()
 {
-    echo "Usage: $0 --target fedora|rocky [--version x.y.z]"
+    echo "Usage: $0 [--version x.y.z]"
+    echo "Builds for the Fedora or Rocky Linux system detected from /etc/os-release."
 }
 
 while [[ $# -gt 0 ]]; do
@@ -38,19 +39,27 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-if [[ "$TARGET" != "fedora" && "$TARGET" != "rocky" ]]; then
-    usage
-    exit 1
-fi
-
 require_commands rpm rpmbuild cmake make tar gzip
 
 if [ -r /etc/os-release ]; then
     . /etc/os-release
-    if [[ "${ID:-}" != "$TARGET" ]]; then
+    if [ -z "$TARGET" ]; then
+        case "${ID:-}" in
+            fedora|rocky)
+                TARGET="$ID"
+                ;;
+            *)
+                echo "Error: package-rpm.sh must run on Fedora or Rocky Linux; detected ${ID:-unknown}." >&2
+                exit 1
+                ;;
+        esac
+    elif [[ "${ID:-}" != "$TARGET" ]]; then
         echo "Error: this script targets $TARGET, but the current system is ${ID:-unknown}." >&2
         exit 1
     fi
+else
+    echo "Error: unable to detect the target distribution because /etc/os-release is missing." >&2
+    exit 1
 fi
 
 BUILD_DEPENDENCIES=(

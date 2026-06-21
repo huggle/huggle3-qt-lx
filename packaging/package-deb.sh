@@ -12,7 +12,8 @@ NCPUS="$(packaging_jobs)"
 
 usage()
 {
-    echo "Usage: $0 --target debian|ubuntu [--version x.y.z]"
+    echo "Usage: $0 [--version x.y.z]"
+    echo "Builds for the Debian or Ubuntu system detected from /etc/os-release."
 }
 
 while [[ $# -gt 0 ]]; do
@@ -37,19 +38,27 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-if [[ "$TARGET" != "debian" && "$TARGET" != "ubuntu" ]]; then
-    usage
-    exit 1
-fi
-
 require_commands dpkg-buildpackage dpkg-query cmake make
 
 if [ -r /etc/os-release ]; then
     . /etc/os-release
-    if [[ "${ID:-}" != "$TARGET" && ! " ${ID_LIKE:-} " =~ " $TARGET " ]]; then
+    if [ -z "$TARGET" ]; then
+        case "${ID:-}" in
+            debian|ubuntu)
+                TARGET="$ID"
+                ;;
+            *)
+                echo "Error: package-deb.sh must run on Debian or Ubuntu; detected ${ID:-unknown}." >&2
+                exit 1
+                ;;
+        esac
+    elif [[ "${ID:-}" != "$TARGET" ]]; then
         echo "Error: this script targets $TARGET, but the current system is ${ID:-unknown}." >&2
         exit 1
     fi
+else
+    echo "Error: unable to detect the target distribution because /etc/os-release is missing." >&2
+    exit 1
 fi
 
 BUILD_DEPENDENCIES=(
