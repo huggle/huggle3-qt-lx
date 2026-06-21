@@ -103,8 +103,12 @@ SOURCE_DIR_NAME="${APP_NAME}-${APP_VERSION}"
 SOURCE_TARBALL="$RPM_TOPDIR/SOURCES/${SOURCE_DIR_NAME}.tar.gz"
 SPEC_PATH="$RPM_TOPDIR/SPECS/${APP_NAME}.spec"
 
+echo "Cleaning previous $TARGET package build..."
 rm -rf "$WORK_DIR"
 mkdir -p "$RPM_TOPDIR"/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS} "$OUTPUT_DIR"
+rm -f \
+    "$OUTPUT_DIR"/huggle-"$APP_VERSION"-"$RELEASE"*.rpm \
+    "$OUTPUT_DIR"/huggle-"$APP_VERSION"-"$RELEASE"*.src.rpm
 
 echo "================================"
 echo "Building Huggle for ${TARGET^}"

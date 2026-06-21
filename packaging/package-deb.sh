@@ -114,12 +114,29 @@ echo "Version: $DEB_VERSION"
 echo "CPUs: $NCPUS"
 echo
 
-cd "$PROJECT_ROOT"
-DEB_BUILD_OPTIONS="parallel=$NCPUS" dpkg-buildpackage -b -us -uc
+echo "Step 1: Cleaning previous Debian package build..."
+rm -rf \
+    "$PROJECT_ROOT/debian/build" \
+    "$PROJECT_ROOT/debian/huggle" \
+    "$PROJECT_ROOT/debian/.debhelper"
+rm -f \
+    "$PROJECT_ROOT/debian/debhelper-build-stamp" \
+    "$PROJECT_ROOT/debian/files" \
+    "$PROJECT_ROOT"/debian/*.debhelper.log \
+    "$PROJECT_ROOT"/debian/*.substvars
 
 OUTPUT_DIR="$SCRIPT_DIR/output"
 OUTPUT_PARENT="$(dirname "$PROJECT_ROOT")"
 mkdir -p "$OUTPUT_DIR"
+rm -f \
+    "$OUTPUT_DIR"/huggle_"$DEB_VERSION"_*.deb \
+    "$OUTPUT_DIR"/huggle-dbgsym_"$DEB_VERSION"_*.deb \
+    "$OUTPUT_PARENT"/huggle_"$DEB_VERSION"_*.deb \
+    "$OUTPUT_PARENT"/huggle-dbgsym_"$DEB_VERSION"_*.deb
+
+echo "Step 2: Building package..."
+cd "$PROJECT_ROOT"
+DEB_BUILD_OPTIONS="parallel=$NCPUS" dpkg-buildpackage -b -us -uc
 
 mapfile -t DEB_FILES < <(
     find "$OUTPUT_PARENT" "$PROJECT_ROOT" -maxdepth 1 -type f \

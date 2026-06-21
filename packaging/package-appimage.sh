@@ -49,8 +49,12 @@ done
 
 require_commands cmake make linuxdeploy linuxdeploy-plugin-qt linuxdeploy-plugin-appimage
 
+echo "Cleaning previous AppImage build..."
 rm -rf "$BUILD_DIR" "$APPDIR"
 mkdir -p "$BUILD_DIR" "$APPDIR" "$OUTPUT_DIR"
+ARCH="$(uname -m)"
+OUTPUT_PATH="$OUTPUT_DIR/huggle-${APP_VERSION}-${ARCH}.AppImage"
+rm -f "$OUTPUT_PATH"
 
 echo "================================"
 echo "Building Huggle AppImage"
@@ -104,8 +108,6 @@ if [ ${#APPIMAGES[@]} -eq 0 ]; then
     exit 1
 fi
 
-ARCH="$(uname -m)"
-OUTPUT_PATH="$OUTPUT_DIR/huggle-${APP_VERSION}-${ARCH}.AppImage"
 mv -f "${APPIMAGES[0]}" "$OUTPUT_PATH"
 echo
 echo "AppImage: $OUTPUT_PATH"

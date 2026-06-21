@@ -34,3 +34,7 @@ AppImage packaging additionally requires `linuxdeploy`,
 All package builds enable Qt 6, Qt WebEngine, audio, and Huggle extensions.
 Before configuring CMake, they generate `src/huggle_core/version.txt` and
 ensure `src/huggle_core/definitions.hpp` exists, matching `./configure`.
+
+Every packaging script removes its own previous build and staging directories
+before starting. It also replaces an existing artifact for the same target and
+application version, so repeated executions always perform a clean build.
