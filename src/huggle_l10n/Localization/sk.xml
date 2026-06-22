@@ -96,6 +96,7 @@
   <string name="config-function">Funkcia</string>
   <string name="config-description">Popis</string>
   <string name="config-shortcut">Skratka</string>
+  <string name="preferences-shortcuts-search">Hľadať skratky…</string>
   <string name="config-queue-filter-ignore">Ignorovať (nevadí)</string>
   <string name="config-queue-filter-exclude">Vynechať (nemusí byť)</string>
   <string name="config-queue-filter-require">Požadovať (musí byť)</string>

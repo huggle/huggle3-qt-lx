@@ -93,6 +93,7 @@
   <string name="config-function">Feidhm</string>
   <string name="config-description">Cur síos</string>
   <string name="config-shortcut">Aicearra</string>
+  <string name="preferences-shortcuts-search">Cuardaigh aicearraí...</string>
   <string name="config-queue-filter-ignore">Déan neamhaird de (is cuma)</string>
   <string name="config-queue-filter-exclude">Eisiamh (ní mór é a bheith)</string>
   <string name="config-queue-filter-require">Éiligh (ní mór a bheith)</string>

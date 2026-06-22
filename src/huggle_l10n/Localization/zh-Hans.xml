@@ -126,6 +126,7 @@
   <string name="config-function">函数</string>
   <string name="config-description">说明</string>
   <string name="config-shortcut">快捷方式</string>
+  <string name="preferences-shortcuts-search">搜索快捷方式…</string>
   <string name="config-queue-filter-ignore">忽略（无所谓）</string>
   <string name="config-queue-filter-exclude">排除（必须不）</string>
   <string name="config-queue-filter-require">要求（必须）</string>

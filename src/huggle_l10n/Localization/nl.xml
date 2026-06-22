@@ -109,6 +109,7 @@
   <string name="config-function">Functie</string>
   <string name="config-description">Beschrijving</string>
   <string name="config-shortcut">Snelkoppeling</string>
+  <string name="preferences-shortcuts-search">Snelkoppelingen zoeken...</string>
   <string name="config-queue-filter-ignore">Negeren (maakt niet uit)</string>
   <string name="config-queue-filter-exclude">Uitsluiten (mag niet zijn)</string>
   <string name="config-queue-filter-require">Vereist (moet worden)</string>

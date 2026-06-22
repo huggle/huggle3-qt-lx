@@ -109,6 +109,7 @@
   <string name="config-function">기능</string>
   <string name="config-description">설명</string>
   <string name="config-shortcut">단축키</string>
+  <string name="preferences-shortcuts-search">단축키를 검색...</string>
   <string name="config-queue-filter-ignore">무시 (신경 쓰지 않습니다)</string>
   <string name="config-queue-filter-exclude">제외 (아니어야 합니다)</string>
   <string name="config-queue-filter-require">필요 (이어야 합니다)</string>
@@ -208,7 +209,7 @@
   <string name="config-history">모든 문서의 모든 역사 다운로드</string>
   <string name="config-defaultsprompt">기본값으로 복구할까요?</string>
   <string name="config-logbrowsetitle">기록 파일 위치</string>
-  <string name="config-shortcutconflict">\'$1\' 바로가기는 \'$1\'에 대한 기존 바로가기와 충돌합니다.</string>
+  <string name="config-shortcutconflict">단축키 \'$1\'은(는) 기존 단축키 \'$1\'와(과) 충돌합니다.</string>
   <string name="config-no-colon">대기열의 이름에서 : 사용할 수 없습니다</string>
   <string name="config-notify-update">업데이트 확인</string>
   <string name="config-notify-beta">사용할 수 있으면 베타 버전 확인</string>
