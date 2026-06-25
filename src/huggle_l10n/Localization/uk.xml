@@ -105,6 +105,7 @@
   <string name="config-function">Функція</string>
   <string name="config-description">Опис</string>
   <string name="config-shortcut">Комбінація клавіш</string>
+  <string name="preferences-shortcuts-search">Пошук комбінацій клавіш...</string>
   <string name="config-queue-filter-ignore">Ігнорувати (не має значення)</string>
   <string name="config-queue-filter-exclude">Виключити (не повинно бути)</string>
   <string name="config-queue-filter-require">Вимагати (повинно бути)</string>
@@ -688,6 +689,15 @@
   <string name="shortcut-delete-page">Видалити поточну сторінку</string>
   <string name="shortcut-remove-whitelist">Видалити з черги редагування, внесені користувачами з білого списку</string>
   <string name="shortcut-remove-low-score">Видалити з черги всі редагування з оцінкою нижче -200</string>
+  <string name="shortcut-increase-bs">Збільшити показник поганості поточного користувача на 20</string>
+  <string name="shortcut-decrease-bs">Зменшити оцінку поганості поточного користувача на 20</string>
+  <string name="shortcut-welcome">Привітати користувача повідомленням за замовчуванням</string>
+  <string name="shortcut-block-user">Заблокувати користувача, який вніс редагування, що відображається зараз</string>
+  <string name="shortcut-help">Відкрити вміст довідки</string>
+  <string name="shortcut-preferences">Відкрити діалогове вікно налаштувань</string>
+  <string name="shortcut-emergency-abort">Екстрене переривання відтермінованих дій</string>
+  <string name="shortcut-find">Пошук тексту на поточній сторінці</string>
+  <string name="shortcut-edit-user-talk">Відкрити сторінку обговорення поточного користувача у браузері (режим редагування)</string>
   <string name="warning-title">Попередити $1</string>
   <string name="warning-levelgroup">Рівень попередження</string>
   <string name="warning-levelauto">Автоматично</string>

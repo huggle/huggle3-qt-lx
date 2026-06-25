@@ -121,6 +121,7 @@
   <string name="config-function">وظيفة</string>
   <string name="config-description">وصف</string>
   <string name="config-shortcut">اختصار</string>
+  <string name="preferences-shortcuts-search">اختصارات البحث...</string>
   <string name="config-queue-filter-ignore">تجاهل (لا يهم)</string>
   <string name="config-queue-filter-exclude">استبعاد (يجب أن لا يكون)</string>
   <string name="config-queue-filter-require">مطلوب (يجب أن يكون)</string>
