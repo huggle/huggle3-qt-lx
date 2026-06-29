@@ -172,7 +172,7 @@
   <string name="config-friend">친구</string>
   <string name="config-userspace">사용자 공간</string>
   <string name="config-talk">토론 문서</string>
-  <string name="config-columns-dynamic">목록의 컬럼을 동적(항목의 크기에 따라 크기 변경)으로 또는 수동(사용자가 크기를 변경)으로 변경</string>
+  <string name="config-columns-dynamic">목록의 열을 동적(항목의 크기에 따라 크기 변경)으로 또는 수동(사용자가 크기를 변경)으로 변경</string>
   <string name="config-message-notification">당신의 토론 문서에 새로운 메시지를 받을 때 알림을 표시</string>
   <string name="config-warning-api">API 쿼리에 대한 경고 표시</string>
   <string name="config-title-diff">모든 차이점 비교표 상단에 문서 제목을 크게 표시하는 기능</string>
@@ -309,7 +309,7 @@
   <string name="login-progress-user-info">$1에 대한 사용자 정보를 확인하는 중</string>
   <string name="login-progress-whitelist">사용자 허용 목록을 가져오는 중...</string>
   <string name="login-remember-password">비밀번호 기억</string>
-  <string name="login-remember-password-tooltip">이 옵션은 하드 드라이브에 암호를 플레인텍스트로 저장합니다. 이 컴퓨터에 접근하는 유일한 사용자인 경우에만 사용하십시오.</string>
+  <string name="login-remember-password-tooltip">이 옵션은 하드 드라이브에 암호를 평문으로 저장합니다. 이 컴퓨터에 접근하는 유일한 사용자인 경우에만 사용하십시오.</string>
   <string name="login-ssl">로그인에 HTTPS 사용 (OpenSSL 필요)</string>
   <string name="login-fail">$1에 로그인을 실패했습니다</string>
   <string name="login-fail-with-reason">로그인 실패 ($1): $2</string>

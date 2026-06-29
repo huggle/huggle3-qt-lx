@@ -104,6 +104,7 @@
   <string name="config-function">פונקציה</string>
   <string name="config-description">תיאור</string>
   <string name="config-shortcut">קיצור דרך</string>
+  <string name="preferences-shortcuts-search">חיפוש במקשי הקיצור...</string>
   <string name="config-queue-filter-ignore">להתעלם (לא חשוב)</string>
   <string name="config-queue-filter-exclude">לכלול (חייב לא להיות)</string>
   <string name="config-queue-filter-require">לדרוש (חייב להיות)</string>
@@ -420,7 +421,7 @@
   <string name="main-page-delete">מחיקה</string>
   <string name="main-page-load">לטעון</string>
   <string name="main-patrol-not-enabled">ניטור לא מופעל ב$1</string>
-  <string name="main-page-refresh">רענון</string>
+  <string name="main-page-refresh">ריענון</string>
   <string name="main-page-restore">שחזור הגרסה הזאת</string>
   <string name="main-page-watchlist-add">הוספת דף לרשימת המעקב</string>
   <string name="main-page-tab-close">סגירת הכרטיסייה הנוכחית</string>
@@ -685,8 +686,8 @@
   <string name="shortcut-history-page">הצגת ההיסטוריה של הדף שמופיע כרגע בדפדפן</string>
   <string name="shortcut-speedy-delete">לבקש מחיקה מהירה של הדף שמופיע כרגע</string>
   <string name="shortcut-delete-page">מחיקת הדף שמופיע כרגע</string>
-  <string name="shortcut-remove-whitelist">הסרת עריכות שבוצעו על ידי המשתמשים ברשימה הלבנה מהתור</string>
-  <string name="shortcut-remove-low-score">הסרת כל העריכות עם ניקוד הנמוך מ־‎-200 מהתור</string>
+  <string name="shortcut-remove-whitelist">הסרת עריכות שבוצעו על־ידי המשתמשים ברשימה הלבנה מהתור</string>
+  <string name="shortcut-remove-low-score">הסרת כל העריכות עם דירוג הנמוך מ־‎-200 מהתור</string>
   <string name="shortcut-increase-bs">להגדיל את ניקוד הרוע של המשתמש הנוכחי ב־20</string>
   <string name="shortcut-decrease-bs">להקטין את ניקוד הרוע של המשתמש הנוכחי ב־20</string>
   <string name="shortcut-welcome">לקבל את פני המשתמש או המשתמשת עם הודעת ברירת מחדל לקבלת פנים</string>
@@ -929,11 +930,11 @@
   <string name="tip15">אם אתה מוצא בעיות אחרות במאמר אך החזרה לא עוזרת, תוכל ללחוץ על E כדי לערוך את המאמר באופן מיידי בדפדפן ברירת המחדל שלך (לא בתוך האגל).</string>
   <string name="tip16">אם כפתור השחזור נלחץ בטעות, עדיין ניתן לבטל את השחזור שעומד להתבצע באמצעות הקשה על ESC מהר.</string>
   <string name="main-config-version-mismatch-title">לאחסן הגדרות?</string>
-  <string name="main-config-version-mismatch-text">גרסה זו של Huggle ($1) היא ישנה מזו שהשתמשתם לאחרונה ($2). אם תמשיכו, חלק מההגדרות שנשמרו עם הגרסה החדשה יותר יימחקו. האם ברצונכם להמשיך? (לחיצה על ״לא״ תדלג על השמירה.)</string>
+  <string name="main-config-version-mismatch-text">הגרסה הזאת של Huggle (מס\' $1) ישנה מזאת שהשתמשת בה לאחרונה (מס\' $2). המשך העבודה יכול לגרום לכך שהגדרות אחדות שנשמרו עם הגרסה החדשה יותר יימחקו. האם להמשיך? (לחיצה על ״לא״ תדלג על השמירה.)</string>
   <string name="main-action-unavailable-title">הפעולה לא זמינה</string>
   <string name="main-report-ip-not-supported">אי אפשר לדווח על כתובות IP דרך היכולת הזאת</string>
   <string name="main-abort-nothing-to-stop">אין מה לעצור</string>
-  <string name="main-abort-instant-reverts-enabled">לא ניתן לבטל את הפעולה הנוכחית; יש להשבית שחזורים מידיים בהעדפות על מנת להפעיל אפשרות זו</string>
+  <string name="main-abort-instant-reverts-enabled">לא ניתן לבטל את הפעולה הנוכחית; יש להשבית שחזורים מיידיים בהעדפות כדי להפעיל את האפשרות הזאת</string>
   <string name="main-clear-talk-page-summary">הוסרו תבניות ישנות מדף השיחה</string>
   <string name="han-connected">התחברת כעת לרשת מניעת ההשחתה של Huggle</string>
   <string name="preferences-unsaved-title">העדפות</string>
