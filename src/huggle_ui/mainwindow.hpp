@@ -364,6 +364,7 @@ namespace Huggle
             void SetProviderIRC(bool checked = false);
             void SetProviderWiki(bool checked = false);
             void SetProviderXml(bool checked = false);
+            void SetProviderEventStreams(bool checked = false);
             void on_actionInsert_page_to_a_watchlist_triggered();
             void on_actionRemove_page_from_a_watchlist_triggered();
             void on_actionMy_talk_page_triggered();
@@ -378,6 +379,7 @@ namespace Huggle
             void on_actionLog_out_triggered();
             void on_actionReload_tokens_triggered();
             void on_actionXmlRcs_triggered();
+            void on_actionEventStreams_triggered();
             void OnStatusBarRefreshTimerTick();
             void on_actionQueue_legend_triggered();
             void on_actionPatrol_triggered();
@@ -467,6 +469,7 @@ namespace Huggle
             QHash<WikiSite*, QAction*> lXml;
             QHash<WikiSite*, QAction*> lIRC;
             QHash<WikiSite*, QAction*> lWikis;
+            QHash<WikiSite*, QAction*> lEventStreams;
             QDateTime lastKeyStrokeCheck;
             //! This is used to store last time of keypress for shortcuts, used as workaround for Qt bugs resulting
             //! in multiple key strokes

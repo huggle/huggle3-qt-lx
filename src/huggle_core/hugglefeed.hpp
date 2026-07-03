@@ -21,6 +21,7 @@
 #define HUGGLE_FEED_PROVIDER_IRC          0
 #define HUGGLE_FEED_PROVIDER_WIKI         1
 #define HUGGLE_FEED_PROVIDER_XMLRPC       2
+#define HUGGLE_FEED_PROVIDER_EVENTSTREAMS 3
 
 namespace Huggle
 {

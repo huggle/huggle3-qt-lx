@@ -57,9 +57,10 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     SetDefaults(this->ui->cbqWl);
     SetDefaults(this->ui->cbqWatched);
     SetDefaults(this->ui->cbqIP);
-    this->ui->cbProviders->addItem("Wiki");
     this->ui->cbProviders->addItem("IRC");
+    this->ui->cbProviders->addItem("Wiki");
     this->ui->cbProviders->addItem("XmlRcs");
+    this->ui->cbProviders->addItem("EventStreams");
     headers << _l("config-function") << _l("config-description") << _l("config-shortcut");
     this->ui->tableWidget_Shortcuts->setHorizontalHeaderLabels(headers);
     this->ui->tableWidget_Shortcuts->verticalHeader()->setVisible(false);
@@ -675,7 +676,7 @@ void Huggle::Preferences::on_tableWidget_customContextMenuRequested(const QPoint
 void Preferences::resetItems()
 {
     int provider = 1;
-    if (hcfg->UserConfig->PreferredProvider > -1 && hcfg->UserConfig->PreferredProvider < 3)
+    if (hcfg->UserConfig->PreferredProvider > -1 && hcfg->UserConfig->PreferredProvider < 4)
         provider = hcfg->UserConfig->PreferredProvider;
     this->ui->cbProviders->setCurrentIndex(provider);
     switch(hcfg->UserConfig->GoNext)
