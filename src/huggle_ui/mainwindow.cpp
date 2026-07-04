@@ -220,8 +220,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
             connect(provider_wiki, &QAction::triggered, this, &MainWindow::SetProviderWiki);
             connect(provider_irc, &QAction::triggered, this, &MainWindow::SetProviderIRC);
             connect(provider_eventstreams, &QAction::triggered, this, &MainWindow::SetProviderEventStreams);
-            menu->addAction(provider_eventstreams);
             menu->addAction(provider_xml);
+            menu->addAction(provider_eventstreams);
             menu->addAction(provider_irc);
             menu->addAction(provider_wiki);
             this->ActionSites.insert(provider_xml, site);

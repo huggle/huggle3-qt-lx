@@ -92,10 +92,10 @@
      <property name="title">
       <string>Change provider</string>
      </property>
-     <addaction name="actionIRC"/>
-     <addaction name="actionWiki"/>
      <addaction name="actionXmlRcs"/>
      <addaction name="actionEventStreams"/>
+     <addaction name="actionIRC"/>
+     <addaction name="actionWiki"/>
     </widget>
     <addaction name="actionPreferences"/>
     <addaction name="actionShow_talk"/>

@@ -45,7 +45,7 @@ namespace Huggle
             void Stop() override;
             bool Restart() override { this->Stop(); return this->Start(); }
             bool ContainsEdit() override;
-            int FeedPriority() override { return 110; }
+            int FeedPriority() override { return 50; }
             QString GetError() override;
             unsigned long long GetBytesReceived() override;
             unsigned long long GetBytesSent() override;
