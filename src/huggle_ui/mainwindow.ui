@@ -92,9 +92,10 @@
      <property name="title">
       <string>Change provider</string>
      </property>
+     <addaction name="actionXmlRcs"/>
+     <addaction name="actionEventStreams"/>
      <addaction name="actionIRC"/>
      <addaction name="actionWiki"/>
-     <addaction name="actionXmlRcs"/>
     </widget>
     <addaction name="actionPreferences"/>
     <addaction name="actionShow_talk"/>
@@ -1056,6 +1057,14 @@
    </property>
    <property name="text">
     <string>XmlRcs</string>
+   </property>
+  </action>
+  <action name="actionEventStreams">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>EventStreams</string>
    </property>
   </action>
   <action name="actionQueue_legend">

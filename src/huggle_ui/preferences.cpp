@@ -25,6 +25,7 @@
 #include <huggle_core/configuration.hpp>
 #include <huggle_core/exception.hpp>
 #include <huggle_core/generic.hpp>
+#include <huggle_core/hugglefeed.hpp>
 #include <huggle_core/huggleoption.hpp>
 #include <huggle_core/localization.hpp>
 #include <huggle_core/wikisite.hpp>
@@ -57,9 +58,10 @@ Preferences::Preferences(QWidget *parent) : HW("preferences", this, parent), ui(
     SetDefaults(this->ui->cbqWl);
     SetDefaults(this->ui->cbqWatched);
     SetDefaults(this->ui->cbqIP);
-    this->ui->cbProviders->addItem("Wiki");
-    this->ui->cbProviders->addItem("IRC");
-    this->ui->cbProviders->addItem("XmlRcs");
+    this->ui->cbProviders->addItem("XmlRcs", HUGGLE_FEED_PROVIDER_XMLRPC);
+    this->ui->cbProviders->addItem("EventStreams", HUGGLE_FEED_PROVIDER_EVENTSTREAMS);
+    this->ui->cbProviders->addItem("IRC", HUGGLE_FEED_PROVIDER_IRC);
+    this->ui->cbProviders->addItem("Wiki", HUGGLE_FEED_PROVIDER_WIKI);
     headers << _l("config-function") << _l("config-description") << _l("config-shortcut");
     this->ui->tableWidget_Shortcuts->setHorizontalHeaderLabels(headers);
     this->ui->tableWidget_Shortcuts->verticalHeader()->setVisible(false);
@@ -272,7 +274,7 @@ QVariantMap Preferences::preferencesState() const
     state.insert("remove-old-edits", this->ui->checkBox_RemoveOldEdits->isChecked());
     state.insert("dynamic-columns", this->ui->checkBox_DynamicColumns->isChecked());
     state.insert("display-title", this->ui->checkBox_TitleDiff->isChecked());
-    state.insert("preferred-provider", this->ui->cbProviders->currentIndex());
+    state.insert("preferred-provider", this->ui->cbProviders->currentData().toInt());
     state.insert("automatic-warning", this->ui->checkBox_AutoWarning->isChecked());
     state.insert("retrieve-founder", this->ui->checkBox_RetrieveFounder->isChecked());
     state.insert("message-notification", this->ui->checkBox_MessageNotification->isChecked());
@@ -674,9 +676,9 @@ void Huggle::Preferences::on_tableWidget_customContextMenuRequested(const QPoint
 
 void Preferences::resetItems()
 {
-    int provider = 1;
-    if (hcfg->UserConfig->PreferredProvider > -1 && hcfg->UserConfig->PreferredProvider < 3)
-        provider = hcfg->UserConfig->PreferredProvider;
+    int provider = this->ui->cbProviders->findData(hcfg->UserConfig->PreferredProvider);
+    if (provider < 0)
+        provider = this->ui->cbProviders->findData(HUGGLE_FEED_PROVIDER_XMLRPC);
     this->ui->cbProviders->setCurrentIndex(provider);
     switch(hcfg->UserConfig->GoNext)
     {
@@ -901,7 +903,7 @@ void Huggle::Preferences::on_pushButton_OK_clicked()
     hcfg->UserConfig->TruncateEdits = this->ui->checkBox_RemoveOldEdits->isChecked();
     hcfg->SystemConfig_DynamicColsInList = this->ui->checkBox_DynamicColumns->isChecked();
     hcfg->UserConfig->DisplayTitle = this->ui->checkBox_TitleDiff->isChecked();
-    hcfg->UserConfig->PreferredProvider = this->ui->cbProviders->currentIndex();
+    hcfg->UserConfig->PreferredProvider = this->ui->cbProviders->currentData().toInt();
     hcfg->UserConfig->ManualWarning = !this->ui->checkBox_AutoWarning->isChecked();
     hcfg->UserConfig->RetrieveFounder = this->ui->checkBox_RetrieveFounder->isChecked();
     hcfg->UserConfig->CheckTP = this->ui->checkBox_MessageNotification->isChecked();

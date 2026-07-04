@@ -55,6 +55,7 @@
 #include <huggle_core/hugglefeedproviderwiki.hpp>
 #include <huggle_core/hugglefeedproviderirc.hpp>
 #include <huggle_core/hugglefeedproviderxml.hpp>
+#include <huggle_core/hugglefeedprovidereventstreams.hpp>
 #include <huggle_core/huggleparser.hpp>
 #include <huggle_core/huggleprofiler.hpp>
 
@@ -121,6 +122,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         this->ui->actionIRC->setVisible(false);
         this->ui->actionWiki->setVisible(false);
         this->ui->actionXmlRcs->setVisible(false);
+        this->ui->actionEventStreams->setVisible(false);
     }
     this->Status = new QLabel();
     this->Status->setTextInteractionFlags(Qt::TextSelectableByMouse);
@@ -205,26 +207,33 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
             QAction *provider_irc = new QAction("IRC", menu);
             QAction *provider_wiki = new QAction("Wiki", menu);
             QAction *provider_xml = new QAction("XmlRcs", menu);
+            QAction *provider_eventstreams = new QAction("EventStreams", menu);
             this->lXml.insert(site, provider_xml);
             this->lWikis.insert(site, provider_wiki);
             this->lIRC.insert(site, provider_irc);
+            this->lEventStreams.insert(site, provider_eventstreams);
             provider_xml->setCheckable(true);
             provider_wiki->setCheckable(true);
             provider_irc->setCheckable(true);
+            provider_eventstreams->setCheckable(true);
             connect(provider_xml, &QAction::triggered, this, &MainWindow::SetProviderXml);
             connect(provider_wiki, &QAction::triggered, this, &MainWindow::SetProviderWiki);
             connect(provider_irc, &QAction::triggered, this, &MainWindow::SetProviderIRC);
+            connect(provider_eventstreams, &QAction::triggered, this, &MainWindow::SetProviderEventStreams);
             menu->addAction(provider_xml);
+            menu->addAction(provider_eventstreams);
             menu->addAction(provider_irc);
             menu->addAction(provider_wiki);
             this->ActionSites.insert(provider_xml, site);
             this->ActionSites.insert(provider_irc, site);
             this->ActionSites.insert(provider_wiki, site);
+            this->ActionSites.insert(provider_eventstreams, site);
         }
         // Create basic providers
         this->huggleFeeds.append(new HuggleFeedProviderWiki(site));
         this->huggleFeeds.append(new HuggleFeedProviderIRC(site));
         this->huggleFeeds.append(new HuggleFeedProviderXml(site));
+        this->huggleFeeds.append(new HuggleFeedProviderEventStreams(site));
         Hooks::FeedProvidersOnInit(site);
         this->ChangeProvider(site, hcfg->UserConfig->PreferredProvider);
     }
@@ -2146,6 +2155,7 @@ void MainWindow::Localize()
     this->ui->actionAbort_2->setText(_l("main-system-abort"));
     this->ui->menuChange_provider->setTitle(_l("main-system-change-provider"));
     this->ui->actionIRC->setText(_l("main-system-change-provider-irc"));
+    this->ui->actionEventStreams->setText("EventStreams");
     this->ui->actionConnect->setText(_l("main-han-connect"));
     this->ui->actionDisconnect->setText(_l("main-han-disconnect"));
     this->ui->actionDisplay_user_messages->setText(_l("main-han-display-user-messages"));
@@ -2532,6 +2542,7 @@ void MainWindow::ChangeProvider(WikiSite *site, int id)
     {
         // uncheck all menus for provider
         this->ui->actionXmlRcs->setChecked(false);
+        this->ui->actionEventStreams->setChecked(false);
         this->ui->actionIRC->setChecked(false);
         this->ui->actionWiki->setChecked(false);
         // check the proper one based on type
@@ -2553,15 +2564,19 @@ void MainWindow::ChangeProvider(WikiSite *site, int id)
             case HUGGLE_FEED_PROVIDER_XMLRPC:
                 this->ui->actionXmlRcs->setChecked(true);
                 break;
+            case HUGGLE_FEED_PROVIDER_EVENTSTREAMS:
+                this->ui->actionEventStreams->setChecked(true);
+                break;
         }
     } else
     {
-        if (!this->lIRC.contains(site) || !this->lWikis.contains(site) || !this->lXml.contains(site))
+        if (!this->lIRC.contains(site) || !this->lWikis.contains(site) || !this->lXml.contains(site) || !this->lEventStreams.contains(site))
             throw new Huggle::Exception("This site is not in provider lists", BOOST_CURRENT_FUNCTION);
         // uncheck all menus for provider
         this->lWikis[site]->setChecked(false);
         this->lXml[site]->setChecked(false);
         this->lIRC[site]->setChecked(false);
+        this->lEventStreams[site]->setChecked(false);
         // check the proper one based on type
         switch (site->Provider->GetID())
         {
@@ -2580,6 +2595,9 @@ void MainWindow::ChangeProvider(WikiSite *site, int id)
                 break;
             case HUGGLE_FEED_PROVIDER_XMLRPC:
                 this->lXml[site]->setChecked(true);
+                break;
+            case HUGGLE_FEED_PROVIDER_EVENTSTREAMS:
+                this->lEventStreams[site]->setChecked(true);
                 break;
         }
     }
@@ -3376,6 +3394,16 @@ void MainWindow::SetProviderXml(bool checked)
     this->ChangeProvider(wiki, HUGGLE_FEED_PROVIDER_XMLRPC);
 }
 
+void MainWindow::SetProviderEventStreams(bool checked)
+{
+    Q_UNUSED(checked);
+    QAction *action = reinterpret_cast<QAction*>(QObject::sender());
+    if (!this->ActionSites.contains(action))
+        throw new Huggle::Exception("There is no such a site in hash table", BOOST_CURRENT_FUNCTION);
+    WikiSite *wiki = this->ActionSites[action];
+    this->ChangeProvider(wiki, HUGGLE_FEED_PROVIDER_EVENTSTREAMS);
+}
+
 void MainWindow::on_actionInsert_page_to_a_watchlist_triggered()
 {
     if (!this->keystrokeCheck(HUGGLE_ACCEL_MAIN_WATCH))
@@ -3508,6 +3536,12 @@ void MainWindow::on_actionXmlRcs_triggered()
 {
     WikiSite *site = this->GetCurrentWikiSite();
     this->ChangeProvider(site, HUGGLE_FEED_PROVIDER_XMLRPC);
+}
+
+void MainWindow::on_actionEventStreams_triggered()
+{
+    WikiSite *site = this->GetCurrentWikiSite();
+    this->ChangeProvider(site, HUGGLE_FEED_PROVIDER_EVENTSTREAMS);
 }
 
 void MainWindow::OnStatusBarRefreshTimerTick()
