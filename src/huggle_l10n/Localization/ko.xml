@@ -10,6 +10,7 @@
 * Macofe
 * Revi
 * SeoJeongHo
+* Suleiman the Magnificent Television
 * Tensama0415
 * Twotwo2019
 * Tyey
@@ -44,9 +45,9 @@
   <string name="warning">경고</string>
   <string name="result">결과</string>
   <string name="save">저장</string>
-  <string name="show">보이기</string>
+  <string name="show">보기</string>
   <string name="no-instant">$1 프로젝트에 순간 경고가 사용되지 않아 $2에 메시지를 보낼 수 없습니다. 다른 경고 레벨을 선택해 주십시오.</string>
-  <string name="undo">되돌리기</string>
+  <string name="undo">실행 취소</string>
   <string name="yes">예</string>
   <string name="editing-page">문서 편집</string>
   <string name="agf">사용자 지정 이유로 좋은 편집으로 되돌리기</string>
@@ -60,7 +61,7 @@
   <string name="date">날짜</string>
   <string name="page">문서</string>
   <string name="time">시간</string>
-  <string name="version">판</string>
+  <string name="version">버전</string>
   <string name="general-name">이름</string>
   <string name="author">저자</string>
   <string name="description">설명</string>
@@ -85,7 +86,7 @@
   <string name="block-not">사용자가 차단되어 있지 않습니다</string>
   <string name="block-title">$1 차단</string>
   <string name="block-reason">이유:</string>
-  <string name="block-duration">기한:</string>
+  <string name="block-duration">기간:</string>
   <string name="block-message">토론 문서 메시지:</string>
   <string name="block-message-user">대상 사용자에게 차단 설명 메시지를 보내기</string>
   <string name="block-anononly">익명 사용자만 막기</string>

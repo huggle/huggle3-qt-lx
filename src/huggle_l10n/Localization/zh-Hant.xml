@@ -107,7 +107,8 @@
   <string name="contribution-browser-user-info">顯示使用者$1近期的貢獻</string>
   <string name="config-function">功能</string>
   <string name="config-description">描述說明</string>
-  <string name="config-shortcut">捷徑</string>
+  <string name="config-shortcut">快捷</string>
+  <string name="preferences-shortcuts-search">搜尋快捷…</string>
   <string name="config-queue-filter-ignore">忽略 (無所謂)</string>
   <string name="config-queue-filter-exclude">排除 (必須不是)</string>
   <string name="config-queue-filter-require">必要 (必須是)</string>
@@ -115,7 +116,7 @@
   <string name="config-queue-modified-text">您已變動過佇列，但尚未儲存。若您繼續的話，您做出的更改會被捨棄掉。您確定要繼續嗎？</string>
   <string name="config-summ">自訂模板回退原因</string>
   <string name="config-title">選項</string>
-  <string name="config-already-in-use">此捷徑已被 $1 使用，請選擇另一個</string>
+  <string name="config-already-in-use">此快捷已被 $1 使用，請選擇另一個</string>
   <string name="config-openinbrowser">在新的瀏覽器視窗開啟連結</string>
   <string name="config-shownewedits">顯示他們於選擇頁面所做的新編輯</string>
   <string name="config-ircmode">如果可以，使用 IRC feed 來取的近期變更</string>
@@ -128,7 +129,7 @@
   <string name="config-shownewmessages">顯示新訊息列</string>
   <string name="config-shortcutlist">快捷鍵</string>
   <string name="config-shortcutaction">動作</string>
-  <string name="config-changeshortcut">改變$1的捷徑</string>
+  <string name="config-changeshortcut">改變$1的快捷</string>
   <string name="config-noshortcut">無</string>
   <string name="config-defaults">預設</string>
   <string name="config-minor">標記為小修改</string>
