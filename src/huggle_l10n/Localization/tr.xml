@@ -127,6 +127,7 @@
   <string name="config-function">İşlev</string>
   <string name="config-description">Açıklama</string>
   <string name="config-shortcut">Kısayol</string>
+  <string name="preferences-shortcuts-search">Arama kısayolları...</string>
   <string name="config-queue-filter-ignore">Yoksay (fark etmez)</string>
   <string name="config-queue-filter-exclude">Hariç tut (olmamalıdır)</string>
   <string name="config-queue-filter-require">Gerekli (olmalı)</string>
