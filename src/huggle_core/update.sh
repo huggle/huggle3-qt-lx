@@ -9,7 +9,7 @@
 
 # This file is called from multiple places, most notably configure script
 
-if [ -d ../../.git ];then
+if git rev-parse --is-inside-work-tree >/dev/null 2>&1;then
   c=`git rev-list HEAD --count`
   hash=`git describe --always --tags`
 else
