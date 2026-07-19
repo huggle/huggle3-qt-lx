@@ -16,6 +16,7 @@
 #include <QTimer>
 #include "hw.hpp"
 #include <huggle_core/collectable_smartptr.hpp>
+#include <huggle_core/message.hpp>
 #include <huggle_core/wikiedit.hpp>
 
 class QCloseEvent;
@@ -31,7 +32,6 @@ namespace Huggle
     class WikiUser;
     class ApiQuery;
     class EditQuery;
-    class Message;
     class Query;
 
     /*!

@@ -66,7 +66,7 @@ void SpeedyForm::on_btnTag_clicked()
         return;
     if (this->edit->Page->IsUserpage())
     {
-        QMessageBox::StandardButton qb = QMessageBox::question(MainWindow::HuggleMain, "Request",  _l("delete-user"), QMessageBox::Yes|QMessageBox::No);
+        QMessageBox::StandardButton qb = QMessageBox::question(MainWindow::HuggleMain, _l("request"),  _l("delete-user"), QMessageBox::Yes|QMessageBox::No);
         if (qb == QMessageBox::No)
             return;
     }
@@ -209,6 +209,7 @@ void SpeedyForm::Fail(const QString &reason, bool pageTagged)
 {
     this->busy = false;
     this->timer->stop();
+    this->ui->btnTag->setText(_l("speedy-failed"));
     this->ui->btnCancel->setEnabled(true);
     QString messageText = pageTagged ? _l("speedy-notification-fail", reason) : _l("speedy-fail", reason);
     UiGeneric::MessageBox(_l("error"), messageText, MessageBoxStyleError, false, this);
@@ -278,7 +279,7 @@ void SpeedyForm::notifyFounder(const QString &founder)
 {
     if (founder.isEmpty())
     {
-        this->Fail(_l("speedy-creator-fail", "The founder name was empty"), true);
+        this->Fail(_l("speedy-creator-empty"), true);
         return;
     }
 
@@ -290,7 +291,7 @@ void SpeedyForm::notifyFounder(const QString &founder)
     this->message = WikiUtil::MessageUser(&creator, this->warning, "", summary, false, nullptr, false, false, true);
     if (this->message == nullptr)
     {
-        this->Fail("Unable to create the notification", true);
+        this->Fail(_l("speedy-notification-create-fail"), true);
         return;
     }
     this->timer->start(HUGGLE_TIMER);

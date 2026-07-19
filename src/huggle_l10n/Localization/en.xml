@@ -768,7 +768,10 @@
   <string name="speedy-progress">Tagging &apos;$1&apos; for speedy deletion...</string>
   <string name="speedy-notify-progress">Notifying the page creator...</string>
   <string name="speedy-creator-fail">Unable to determine the page creator: $1</string>
+  <string name="speedy-creator-empty">The page creator name was empty</string>
+  <string name="speedy-notification-create-fail">Unable to create the notification</string>
   <string name="speedy-notification-fail">The page was tagged for speedy deletion, but the creator could not be notified: $1</string>
+  <string name="speedy-failed">Failed</string>
   <string name="speedy-wrong">The requested tag is not valid. Please choose a different deletion reason</string>
   <string name="speedy-finished">Finished</string>
   <string name="warn-alreadyblocked">The user has already been blocked</string>
