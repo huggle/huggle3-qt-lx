@@ -136,23 +136,16 @@ bool WikiEdit::finalizePostProcessing()
             Syslog::HuggleLogs->ErrorLog("Failed to retrieve founder for page " + this->Page->PageName + ": " + this->qFounder->GetFailureReason());
         } else
         {
-            QList<ApiQueryResultNode*> revisions = this->qFounder->GetApiQueryResult()->GetNodes("rev");
-            if (revisions.count() == 0)
+            bool failed;
+            QString error;
+            QString founder = WikiUtil::EvaluatePageFounder(this->qFounder->GetApiQueryResult(), &failed, &error);
+            if (failed)
             {
-                Syslog::HuggleLogs->ErrorLog("Failed to retrieve founder for page " + this->Page->PageName + ": " + this->qFounder->GetFailureReason());
+                Syslog::HuggleLogs->ErrorLog("Failed to retrieve founder for page " + this->Page->PageName + ": " + error);
                 HUGGLE_DEBUG(this->qFounder->Result->Data, 1);
-            }
-            else if (revisions.count() == 1)
+            } else
             {
-                ApiQueryResultNode *node = revisions.at(0);
-                if (!node->Attributes.contains("timestamp") || !node->Attributes.contains("user"))
-                {
-                    HUGGLE_DEBUG1("Invalid revision info while fetching info for page");
-                }
-                else
-                {
-                    this->Page->SetFounder(node->GetAttribute("user"));
-                }
+                this->Page->SetFounder(founder);
             }
         }
         this->qFounder = nullptr;

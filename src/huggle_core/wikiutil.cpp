@@ -513,6 +513,48 @@ WikiSite *WikiUtil::GetSiteByName(QString name)
     return nullptr;
 }
 
+QString WikiUtil::EvaluatePageFounder(ApiQueryResult *result, bool *failed, QString *error)
+{
+    if (!failed)
+        throw new Huggle::NullPointerException("bool *failed", BOOST_CURRENT_FUNCTION);
+
+    *failed = true;
+    if (error)
+        error->clear();
+    if (!result)
+    {
+        if (error)
+            *error = "Query result was NULL";
+        return "";
+    }
+    if (result->IsFailed())
+    {
+        if (error)
+            *error = result->ErrorMessage;
+        return "";
+    }
+
+    QList<ApiQueryResultNode*> revisions = result->GetNodes("rev");
+    if (revisions.count() != 1)
+    {
+        if (error)
+            *error = "The founder query did not return exactly one revision";
+        return "";
+    }
+
+    ApiQueryResultNode *revision = revisions.at(0);
+    QString founder = revision->GetAttribute("user");
+    if (founder.isEmpty())
+    {
+        if (error)
+            *error = "The first revision did not include its author";
+        return "";
+    }
+
+    *failed = false;
+    return founder;
+}
+
 void WikiUtil::PatrolEdit(WikiEdit *edit)
 {
     if (edit == nullptr)

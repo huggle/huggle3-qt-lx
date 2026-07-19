@@ -24,6 +24,8 @@
 #include <huggle_core/query.hpp>
 #include <huggle_core/querypool.hpp>
 #include <huggle_core/events.hpp>
+#include <huggle_core/apiqueryresult.hpp>
+#include <huggle_core/wikiutil.hpp>
 
 class TestQuery : public Huggle::Query
 {
@@ -81,6 +83,7 @@ class HuggleTest : public QObject
         void testCaseVersionComparison();
         void testCaseGenerics();
         void testCaseWikiPage();
+        void testCasePageFounderResult();
         void testCaseQueryPoolFinishedQueryWithoutResult();
         void testCaseQueryTimeoutRetriesOnce();
 };
@@ -255,6 +258,27 @@ void HuggleTest::testCaseWikiUserCheckIP()
     QVERIFY2((Huggle::WikiUser("~2025-33137-16", hcfg->Project).IsAnon() == true), "Invalid result for new WikiUser with username of ~2025-33137-16, the result of IsAnon() was false, but should have been true");
     QVERIFY2((Huggle::WikiUser("~2025-31256-01", hcfg->Project).IsAnon() == true), "Invalid result for new WikiUser with username of ~2025-31256-01, the result of IsAnon() was false, but should have been true");
     QVERIFY2((Huggle::WikiUser("~20256-31256-04561", hcfg->Project).IsAnon() == false), "Invalid result for new WikiUser with username of ~20256-31256-04561, the result of IsAnon() was true, but should have been false");
+}
+
+void HuggleTest::testCasePageFounderResult()
+{
+    Huggle::ApiQueryResult result;
+    result.Data = "<api><query><pages><page><revisions><rev revid=\"1\" user=\"Page creator\" timestamp=\"2021-01-01T00:00:00Z\" /></revisions></page></pages></query></api>";
+    result.Process();
+
+    bool failed;
+    QString error;
+    QCOMPARE(Huggle::WikiUtil::EvaluatePageFounder(&result, &failed, &error), QString("Page creator"));
+    QVERIFY(!failed);
+    QVERIFY(error.isEmpty());
+
+    Huggle::ApiQueryResult missingFounder;
+    missingFounder.Data = "<api><query><pages><page><revisions><rev revid=\"1\" timestamp=\"2021-01-01T00:00:00Z\" /></revisions></page></pages></query></api>";
+    missingFounder.Process();
+
+    QVERIFY(Huggle::WikiUtil::EvaluatePageFounder(&missingFounder, &failed, &error).isEmpty());
+    QVERIFY(failed);
+    QVERIFY(!error.isEmpty());
 }
 
 void HuggleTest::testCaseQueryPoolFinishedQueryWithoutResult()

@@ -31,6 +31,7 @@ namespace Huggle
     class EditQuery;
     class RevertQuery;
     class Message;
+    class ApiQueryResult;
     class WikiPage;
     class WikiEdit;
     class WikiSite;
@@ -135,6 +136,7 @@ namespace Huggle
         HUGGLE_EX_CORE QString EvaluateWikiPageContents(ApiQuery *query, bool *failed, QString *ts = nullptr, QString *comment = nullptr,
                                                         QString *user = nullptr, long *revid = nullptr, int *reason = nullptr,
                                                         QString *title = nullptr);
+        HUGGLE_EX_CORE QString EvaluatePageFounder(ApiQueryResult *result, bool *failed, QString *error = nullptr);
         HUGGLE_EX_CORE void PatrolEdit(WikiEdit *edit);
         //! \obsolete RetrieveWikiPageContents(WikiPage *page, bool parse = false);
         HUGGLE_EX_CORE ApiQuery *RetrieveWikiPageContents(const QString &page, WikiSite *site);

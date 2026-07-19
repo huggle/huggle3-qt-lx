@@ -15,10 +15,10 @@
 
 #include <QTimer>
 #include "hw.hpp"
-#include <huggle_core/apiquery.hpp>
 #include <huggle_core/collectable_smartptr.hpp>
-#include <huggle_core/editquery.hpp>
 #include <huggle_core/wikiedit.hpp>
+
+class QCloseEvent;
 
 namespace Ui
 {
@@ -31,6 +31,8 @@ namespace Huggle
     class WikiUser;
     class ApiQuery;
     class EditQuery;
+    class Message;
+    class Query;
 
     /*!
      * \brief The window that is used to report a page for deletion
@@ -43,11 +45,12 @@ namespace Huggle
             Q_OBJECT
         public:
             explicit SpeedyForm(QWidget *parent = nullptr);
-            ~SpeedyForm();
+            ~SpeedyForm() override;
             void Init(WikiEdit *edit_);
             QString GetSelectedDBReason();
             QString GetSelectedTagID();
             void SetMessageUserCheck(bool new_value);
+            bool IsBusy() const;
             bool ReplacePage = false;
             QString ReplacingText;
             Collectable_SmartPtr<WikiEdit> edit;
@@ -61,16 +64,30 @@ namespace Huggle
             void on_cbReason_currentIndexChanged(int index);
 
         private:
-            void Fail(QString reason);
+            static void *ContentSuccess(Query *query);
+            static void *ContentFailure(Query *query);
+            static void *EditSuccess(Query *query);
+            static void *EditFailure(Query *query);
+            static void *FounderSuccess(Query *query);
+            static void *FounderFailure(Query *query);
+            static SpeedyForm *ReleaseCallback(Query *query);
+            static void DetachCallback(Query *query);
+            void closeEvent(QCloseEvent *event) override;
+            void Fail(const QString &reason, bool pageTagged = false);
+            void Finish();
             void processTags();
+            void tagSucceeded();
+            void retrieveFounder();
+            void notifyFounder(const QString &founder);
             Collectable_SmartPtr<EditQuery> Template;
             Collectable_SmartPtr<ApiQuery> qObtainText;
+            Collectable_SmartPtr<ApiQuery> qFounder;
+            Collectable_SmartPtr<Message> message;
             QString base;
             QString warning;
             QTimer *timer;
             Ui::SpeedyForm *ui;
+            bool busy = false;
     };
 }
 #endif // SPEEDYFORM_H
-
-
