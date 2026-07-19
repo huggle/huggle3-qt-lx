@@ -15,7 +15,9 @@
 
 #include <QTimer>
 #include "hw.hpp"
+#include <huggle_core/apiquery.hpp>
 #include <huggle_core/collectable_smartptr.hpp>
+#include <huggle_core/editquery.hpp>
 #include <huggle_core/message.hpp>
 #include <huggle_core/wikiedit.hpp>
 
@@ -30,8 +32,6 @@ namespace Huggle
 {
     class WikiEdit;
     class WikiUser;
-    class ApiQuery;
-    class EditQuery;
     class Query;
 
     /*!
