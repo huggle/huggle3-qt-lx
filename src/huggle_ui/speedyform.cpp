@@ -192,7 +192,11 @@ SpeedyForm *SpeedyForm::ReleaseCallback(Query *query)
     query->CallbackOwner = nullptr;
     query->SuccessCallback = nullptr;
     query->FailureCallback = nullptr;
-    query->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
+    // Query completion code can continue using the query after invoking its callback.
+    QTimer::singleShot(0, [query]()
+    {
+        query->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
+    });
     return form;
 }
 
@@ -213,6 +217,7 @@ void SpeedyForm::Fail(const QString &reason, bool pageTagged)
     this->ui->btnCancel->setEnabled(true);
     QString messageText = pageTagged ? _l("speedy-notification-fail", reason) : _l("speedy-fail", reason);
     UiGeneric::MessageBox(_l("error"), messageText, MessageBoxStyleError, false, this);
+    // The hook reports whether the page was tagged; creator notification is best-effort.
     UiHooks::Speedy_Finished(this->edit, this->Header, pageTagged);
 }
 
