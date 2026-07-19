@@ -18,6 +18,7 @@
 #include "editquery.hpp"
 #include "exception.hpp"
 #include "gc.hpp"
+#include "message.hpp"
 #include "revertquery.hpp"
 #include "webserverquery.hpp"
 #include "wlquery.hpp"
@@ -34,5 +35,6 @@ namespace Huggle
     template class Collectable_SmartPtr<HistoryItem>;
     template class Collectable_SmartPtr<WLQuery>;
     template class Collectable_SmartPtr<ApiQuery>;
+    template class Collectable_SmartPtr<Message>;
 }
 #endif
