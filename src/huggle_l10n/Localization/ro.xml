@@ -101,6 +101,7 @@
   <string name="config-function">Funcție</string>
   <string name="config-description">Descriere</string>
   <string name="config-shortcut">Scurtătură</string>
+  <string name="preferences-shortcuts-search">Caută scurtături...</string>
   <string name="config-queue-filter-ignore">Ignorat (nu contează)</string>
   <string name="config-queue-filter-exclude">Exclus (nu trebuie să fie)</string>
   <string name="config-queue-filter-require">Obligatoriu (trebuie să fie)</string>
