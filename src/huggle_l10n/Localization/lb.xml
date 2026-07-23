@@ -71,7 +71,7 @@
   <string name="block-email">E-Mail spären</string>
   <string name="block-usertalk">Diskussioun</string>
   <string name="block-usercontribs">Kontributiounen</string>
-  <string name="block-blockloglabel">Spärlëscht:</string>
+  <string name="block-blockloglabel">Logbuch vun de Spären:</string>
   <string name="block-warnloglabel">Warnungen:</string>
   <string name="block-fail">De Benotzer konnt net gespaart ginn. $1</string>
   <string name="block-type">Spären / Spär ophiewen</string>
@@ -94,7 +94,7 @@
   <string name="config-defaults">Standard</string>
   <string name="config-minor">Als \'Klengegkeet\' markéieren</string>
   <string name="config-ip">IP-Benotzer</string>
-  <string name="config-watchlist">Op d\'Iwwerwaachungslëscht derbäisetzen</string>
+  <string name="config-watchlist">Op d\'Iwwerwaachungslëscht setzen</string>
   <string name="config-defaultsummary">Standard-Resümmee fir manuell Ännerungen</string>
   <string name="config-undosummary">Resümmee beim Zerécksetze vun eegenen Ännerungen</string>
   <string name="config-welcome-empty-page">E Begréissungsmessage u Benotzer schécken déi eng eidel Diskussiounssäit hunn an eng gutt Ännerung gemaach hunn</string>
