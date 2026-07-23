@@ -206,7 +206,7 @@ fi
 
 ok
 
-if [ -d ".git" ];then
+if git rev-parse --is-inside-work-tree >/dev/null 2>&1;then
     echo "This is a git repository, updating modules..."
     git submodule init
     git submodule update
