@@ -55,6 +55,7 @@
   <string name="duration">Dauer</string>
   <string name="enable">Aschalten</string>
   <string name="disable">Ausschalten</string>
+  <string name="no-token">Keen Token</string>
   <string name="flags">Markéierungen</string>
   <string name="browser-none">Elo gëtt et nach keng Säit fir ze weisen.</string>
   <string name="browser-miss-summ">Et gouf kee Resümmee uginn</string>
@@ -489,6 +490,7 @@
   <string name="preferences-watchlist-nochange">Näischt maachen</string>
   <string name="preferences-auto-watch-talk">D\'Diskussiounssäit vun engem Benotzer iwwerwaachen déi vun Iech eng Warnung kritt huet</string>
   <string name="preferences-reset-gui">GUI zerécksetzen</string>
+  <string name="preferences-reset-config-title">Konfiguratioun zerécksetzen</string>
   <string name="preferences-color-scheme-diff-default">Standard</string>
   <string name="preferences-color-scheme-diff-dark-mode">Däischtere Modus</string>
   <string name="request">Ufro</string>

@@ -843,6 +843,12 @@
   <string name="preferences-empty-queue-page">Сторінка порожньої черги:</string>
   <string name="preferences-reset-gui">Скинути графічний інтерфейс</string>
   <string name="preferences-restore-factory-layout">Це відновить заводський макет huggle, як це було, коли ви його встановлювали. Huggle закриється. Продовжити?</string>
+  <string name="preferences-reset-config-title">Скинути конфігурацію</string>
+  <string name="preferences-factory">Скинути до заводських налаштувань</string>
+  <string name="preferences-reset-config-question">Ви впевнені, що хочете скинути всі налаштування Huggle до значень за замовчуванням? Це призведе до видалення вашої поточної конфігурації та завершення роботи Huggle.</string>
+  <string name="preferences-reset-config-done">Скидання конфігурації</string>
+  <string name="preferences-reset-config-restart">Конфігурацію Huggle скинуто до стандартних налаштувань. Можливо, вам доведеться перезапустити Huggle, щоб усі зміни набули чинності.</string>
+  <string name="preferences-huggle2-config-success">Налаштування успішно налаштовано таким чином, щоб Huggle 3 поводився подібно до Huggle 2.</string>
   <string name="preferences-keystroke-rate-limit">Запобігайте повторним натисканням клавіш, дотримуючись швидкості в мілісекундах (лише 1 такий самий ярлик може бути запущений протягом N мс)</string>
   <string name="preferences-color-scheme-diff">Різниці кольорів</string>
   <string name="preferences-color-scheme-diff-default">За замовчуванням</string>
@@ -924,5 +930,14 @@
   <string name="tip14">Ви можете спілкуватися з іншими активними користувачами Huggle, які зараз користуються програмою. Ви побачите їх у вікні «Мережа», якщо вони онлайн.</string>
   <string name="tip15">Якщо ви знайшли інші проблеми зі статтею, але відкат не допоміг, ви можете натиснути E, щоб негайно відредагувати статтю у веб-переглядачі за умовчанням (а не всередині Huggle).</string>
   <string name="tip16">Якщо ви випадково натиснули кнопку повернення, можливо, ви все одно зможете скасувати поточну реверсію, швидко натиснувши ESC.</string>
+  <string name="main-config-version-mismatch-title">Зберегти налаштування?</string>
+  <string name="main-config-version-mismatch-text">Ця версія Huggle ($1) старіша за версію, яку ви використовували востаннє ($2). Якщо ви продовжите, деякі налаштування, збережені в новішій версії, можуть бути втрачені. Продовжити? (Натискання кнопки \"Ні\" призведе до пропуску збереження.)</string>
+  <string name="main-action-unavailable-title">Дія недоступна</string>
   <string name="main-report-ip-not-supported">Ви не можете повідомляти про IP-адреси за допомогою цієї функції</string>
+  <string name="main-abort-nothing-to-stop">Нема що зупиняти!</string>
+  <string name="main-abort-instant-reverts-enabled">Не вдається скасувати поточну операцію; щоб ця функція працювала, потрібно вимкнути миттєве скасування в налаштуваннях.</string>
+  <string name="main-clear-talk-page-summary">Очищено старі шаблони зі сторінки обговорення</string>
+  <string name="han-connected">Ви тепер підключені до мережі Huggle для боротьби з вандалізмом</string>
+  <string name="preferences-unsaved-title">Налаштування</string>
+  <string name="preferences-unsaved-text">Закриття цієї форми може призвести до втрати незбережених змін. Ви все одно хочете закрити?</string>
 </resources>

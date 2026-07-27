@@ -388,7 +388,7 @@
   <string name="main-queue-clear">پاک کردن فعلی</string>
   <string name="main-queue-count">$1 مورد</string>
   <string name="main-queue-query">اجرای کوئری...</string>
-  <string name="main-queue-reset">از نو</string>
+  <string name="main-queue-reset">بازنشانی</string>
   <string name="main-queue-clearall">پاک کردن همه</string>
   <string name="main-queue-options">مدیریت صف...</string>
   <string name="main-queue-when-full">وقتی صف پر است</string>
@@ -847,7 +847,7 @@
   <string name="preferences-min-score">فعال‌کردن حداقل امتیاز کلی (ویرایش‌ها با امتیاز کمتر رها می‌شوند- برای زمانی که می‌خواهید فقط ویرایش‌های بد را ببنید کاربرد دارد)</string>
   <string name="preferences-queue-size">طول صف</string>
   <string name="preferences-empty-queue-page">صفحهٔ صف خالی:</string>
-  <string name="preferences-reset-gui">بازگردانی رابط کاربری</string>
+  <string name="preferences-reset-gui">بازنشانی رابط کاربری</string>
   <string name="preferences-restore-factory-layout">با این کار هاگل به حالت روز اول باز می‌گردد. هاگل خاموش می‌شود. آیا ادامه دهم؟</string>
   <string name="preferences-reset-config-title">بازنشانی پیکربندی</string>
   <string name="preferences-factory">بازنشانی به پیش‌فرض‌های کارخانه</string>
