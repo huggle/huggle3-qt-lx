@@ -111,7 +111,7 @@
   <string name="contribution-browser-user-info">Mostrando i contributi recenti dell\'utente $1</string>
   <string name="config-function">Funzione</string>
   <string name="config-description">Descrizione</string>
-  <string name="config-shortcut">Scelta rapida</string>
+  <string name="config-shortcut">Tasti di scelta rapida</string>
   <string name="config-queue-filter-ignore">Ignora (non è importante)</string>
   <string name="config-queue-filter-exclude">Escludi (non deve esserci)</string>
   <string name="config-queue-filter-require">Richiedi (deve esserci)</string>

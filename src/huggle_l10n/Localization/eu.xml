@@ -59,7 +59,7 @@
   <string name="link">Esteka</string>
   <string name="reason">Arrazoia</string>
   <string name="diffid">DiffID</string>
-  <string name="whitelisted" fuzzy="true">$ 1 eta $ 2 puntuaketa $ 3 zuri-zerrendan agertu dira</string>
+  <string name="whitelisted">$1 erabiltzaileak $2 puntuazioa du $3 webgunean, eta 1 zerrenda zurian sartu da</string>
   <string name="expiry-time">Iraungitze denbora</string>
   <string name="duration">Iraupena</string>
   <string name="enable">Gaitu</string>
@@ -100,6 +100,7 @@
   <string name="config-function">Funtzioa</string>
   <string name="config-description">Deskribapena</string>
   <string name="config-shortcut">Lasterbidea</string>
+  <string name="preferences-shortcuts-search">Bilatu lasterbideak...</string>
   <string name="config-queue-filter-ignore">Ez ikusi (ez du garrantzirik)</string>
   <string name="config-queue-filter-exclude">Baztertu (ez luke egon behar)</string>
   <string name="config-queue-filter-require">Eskatu (egon behar da)</string>
