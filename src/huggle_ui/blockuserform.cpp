@@ -97,6 +97,9 @@ void BlockUserForm::onTick()
         case 1:
             this->Block();
             break;
+        case 2:
+            this->recheck();
+            break;
     }
 }
 
@@ -122,6 +125,7 @@ void BlockUserForm::Block()
         this->qUser->Result->SetError(HUGGLE_EUNKNOWN, "Unable to block: " + reason);
         this->qUser = nullptr;
         this->ui->btnBlock->setEnabled(true);
+        this->ui->btnCheck->setEnabled(true);
         this->timer->stop();
         return;
     }
@@ -144,6 +148,10 @@ void BlockUserForm::Failed(QString reason)
     UiGeneric::pMessageBox(this, "Unable to block user", _l("block-fail", reason),
                            MessageBoxStyleError, true);
     this->ui->btnBlock->setEnabled(true);
+    this->ui->btnCheck->setEnabled(true);
+    this->qUser = nullptr;
+    if (this->timer != nullptr)
+        this->timer->stop();
 }
 
 void BlockUserForm::on_btnBlock_clicked()
@@ -221,6 +229,11 @@ void BlockUserForm::recheck()
 {
     if (this->qUser == nullptr)
         throw new Huggle::NullPointerException("local ApiQuery qUser",  BOOST_CURRENT_FUNCTION);
+    if (this->qUser->IsFailed())
+    {
+        this->Failed(this->qUser->GetFailureReason());
+        return;
+    }
     if (this->qUser->IsProcessed())
     {
         ApiQueryResultNode *result = this->qUser->GetApiQueryResult()->GetNode("block");
