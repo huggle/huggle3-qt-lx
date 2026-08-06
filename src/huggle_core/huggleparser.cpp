@@ -292,6 +292,14 @@ byte_ht HuggleParser::GetLevel(QString page, QDate bt, WikiSite *site)
                     continue;
                 }
                 time = parts_section.at(parts_section.length() - 5) + " " + parts_section.at(parts_section.length() - 4) + " " + parts_section.at(parts_section.length() - 3);
+            } else if (site->Name.startsWith("es")) {
+                // Spanish signatures: 20:53 6 ago 2026 (UTC)
+                QStringList parts_section = section.split(' ');
+                if (parts_section.length() < 4) {
+                    CurrentIndex++;
+                    continue;
+                }
+                time = parts_section.at(parts_section.length() - 3) + " " + parts_section.at(parts_section.length() - 2) + " " + parts_section.at(parts_section.length() - 1);
             } else {
                 if (!section.contains(site->GetProjectConfig()->Parser_Date_Prefix))
                 {
