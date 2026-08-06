@@ -123,6 +123,7 @@
   <string name="config-function">Función</string>
   <string name="config-description">Descripción</string>
   <string name="config-shortcut">Atajo</string>
+  <string name="preferences-shortcuts-search">Atajos de búsqueda...</string>
   <string name="config-queue-filter-ignore">Ignorar (no importa)</string>
   <string name="config-queue-filter-exclude">Excluir (no debe estar)</string>
   <string name="config-queue-filter-require">Requerir (es necesario)</string>
@@ -563,6 +564,8 @@
   <string name="queue-editfiltersgroup">Editar filtros</string>
   <string name="queue-userregex">El nombre de usuario coincide con la expresión regular:</string>
   <string name="queue-summaryregex">El resumen coincide con la expresión regular:</string>
+  <string name="queue-filter-add">Añadir</string>
+  <string name="queue-filter-delete">Borrar</string>
   <string name="queue-filternewpage">Página nueva</string>
   <string name="queue-filterownuserspace">Páginas y subpáginas de usuario</string>
   <string name="queue-filteranonymous">Usuario anónimo</string>
@@ -620,6 +623,7 @@
   <string name="uaa-g1">Obteniendo contenido de UAA</string>
   <string name="uaa-e1">La consulta del contenido de la página no devolvió ningún dato.</string>
   <string name="uaa-e2">El contenido de la página no estaba disponible.</string>
+  <string name="uaa-close">Cerrar</string>
   <string name="read-only">El proyecto $1 está configurado como de solo lectura. Se limitarán las funciones de edición.</string>
   <string name="revert-confirm-multiple">Esto revertirá múltiples ediciones de $1. ¿Continuar?</string>
   <string name="revert-confirm-range">El autor de la edición a la que quieres revertir, $2, está en el mismo rango IP que el autor de la edición actual, $1, y pueden ser la misma persona. Asegúrate de que estés revirtiendo a la edición correcta antes de proceder. ¿Continuar?</string>
@@ -698,6 +702,20 @@
   <string name="shortcut-user-clear-talk">Limpiar la página de discusión del usuario actual</string>
   <string name="shortcut-main-clear-queue">Borrar consulta</string>
   <string name="shortcut-revert-agf">Revertir presumiendo buena fe, con resumen de edición personalizado</string>
+  <string name="shortcut-history-page">Mostrar el historial de la página que se está visualizando actualmente en el navegador.</string>
+  <string name="shortcut-speedy-delete">Solicitar la eliminación rápida de la página que se muestra actualmente</string>
+  <string name="shortcut-delete-page">Eliminar la página que se muestra actualmente</string>
+  <string name="shortcut-remove-whitelist">Eliminar de la cola las ediciones realizadas por usuarios incluidos en la lista blanca.</string>
+  <string name="shortcut-remove-low-score">Eliminar de la cola todas las ediciones con puntaje inferior a -200</string>
+  <string name="shortcut-increase-bs">Aumentar en 20 el puntaje de maldad del usuario actual</string>
+  <string name="shortcut-decrease-bs">Reducir en 20 el puntaje de maldad del usuario actual</string>
+  <string name="shortcut-welcome">Dar la bienvenida al usuario con el mensaje de bienvenida predeterminado</string>
+  <string name="shortcut-block-user">Bloquear el usuario que hizo la edición actualmente mostrada</string>
+  <string name="shortcut-help">Abrir el contenido de ayuda</string>
+  <string name="shortcut-preferences">Abrir el cuadro de diálogo de preferencias</string>
+  <string name="shortcut-emergency-abort">Abortar de emergencia las acciones demoradas</string>
+  <string name="shortcut-find">Buscar texto en la página actual</string>
+  <string name="shortcut-edit-user-talk">Abrir en el navegador la página de discusión del usuario actual en vista de edición</string>
   <string name="warning-title">Advertir a $1</string>
   <string name="warning-levelgroup">Nivel de advertencia</string>
   <string name="warning-levelauto">Automático</string>
@@ -843,6 +861,12 @@
   <string name="preferences-empty-queue-page">Página de cola vacía:</string>
   <string name="preferences-reset-gui">Restablecer GUI</string>
   <string name="preferences-restore-factory-layout">Esto restaurará el diseño de original de Huggle tal como era cuando lo instalaste. Huggle se cerrará. ¿Quieres continuar?</string>
+  <string name="preferences-reset-config-title">Restablecer configuración</string>
+  <string name="preferences-factory">Restablecer a la configuración de fábrica</string>
+  <string name="preferences-reset-config-question">¿Está seguro de que desea restablecer todos los ajustes de Huggle a sus valores predeterminados? Esto borrará su configuración actual y cerrará Huggle.</string>
+  <string name="preferences-reset-config-done">Configuración restablecida</string>
+  <string name="preferences-reset-config-restart">La configuración de Huggle se ha restablecido a los valores predeterminados. Es posible que deba reiniciar Huggle para que todos los cambios surtan efecto.</string>
+  <string name="preferences-huggle2-config-success">Los ajustes se configuraron correctamente para que Huggle 3 se comporte de forma similar a Huggle 2.</string>
   <string name="preferences-keystroke-rate-limit">Evita pulsaciones repetidas del teclado poniendo la velocidad en milisegundos (solo puede activarse 1 mismo atajo en N ms)</string>
   <string name="preferences-color-scheme-diff">Colores de diferencial</string>
   <string name="preferences-color-scheme-diff-default">Predeterminado</string>
@@ -924,4 +948,14 @@
   <string name="tip14">¿Quieres chatear con otros usuarios activos de Huggle que están usando el programa ahora? Si están en línea, los verás en la ventana «Red».</string>
   <string name="tip15">Si te encuentras problemas con un artículo y la reversión no te ayuda, puedes presionar E para editar el artículo inmediatamente en tu navegador predeterminado (no dentro de Huggle).</string>
   <string name="tip16">Si por accidente digitaste el botón de revertir, aún puedes cancelar la reversión en curso digitando rápidamente ESC.</string>
+  <string name="main-config-version-mismatch-title">¿Guardar configuración?</string>
+  <string name="main-config-version-mismatch-text">Esta versión de Huggle ($1) es anterior a la versión que usó por última vez ($2). Si continúa, podrían perderse algunos ajustes guardados con la versión más reciente. ¿Desea continuar? (Al hacer clic en \'No\' se omitirá el guardado).</string>
+  <string name="main-action-unavailable-title">Acción no disponible</string>
+  <string name="main-report-ip-not-supported">No puedes reportar direcciones IP usando esta función.</string>
+  <string name="main-abort-nothing-to-stop">Nada que detener</string>
+  <string name="main-abort-instant-reverts-enabled">No se pudo cancelar la operación actual; debes desactivar las reversiones instantáneas en las preferencias para que esta función opere correctamente.</string>
+  <string name="main-clear-talk-page-summary">Se limpiaron las plantillas antiguas de la página de discusión.</string>
+  <string name="han-connected">Ahora estás conectado a la red antivandalismo de Huggle.</string>
+  <string name="preferences-unsaved-title">Preferencias</string>
+  <string name="preferences-unsaved-text">Al cerrar este formulario, es posible que se pierdan los cambios no guardados. ¿Deseas cerrarlo de todos modos?</string>
 </resources>
