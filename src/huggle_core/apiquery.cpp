@@ -60,8 +60,7 @@ void ApiQuery::constructUrl()
     }
     if (this->Parameters.length() > 0)
         this->URL += "&" + this->Parameters;
-    if (this->IsContinuous)
-        this->URL += "&rawcontinue=1";
+    // rawcontinue=1 is obsolete in modern MediaWiki API and causes HTTP 400 Bad Request
     switch (this->RequestFormat)
     {
         case XML:
@@ -88,8 +87,7 @@ QString ApiQuery::constructParameterLessUrl()
         url = Configuration::GetProjectScriptURL(this->GetSite()) + "api.php?action=" + this->actionPart;
     else
         url = Configuration::GetURLProtocolPrefix(this->GetSite()) + this->OverrideWiki + "api.php?action=" + this->actionPart;
-    if (this->IsContinuous)
-        url += "&rawcontinue=1";
+    // rawcontinue=1 is obsolete in modern MediaWiki API and causes HTTP 400 Bad Request
     switch (this->RequestFormat)
     {
         case XML:
