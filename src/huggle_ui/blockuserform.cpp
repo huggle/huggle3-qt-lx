@@ -65,13 +65,21 @@ void BlockUserForm::SetWikiUser(WikiUser *User)
     foreach (QString op, User->GetSite()->GetProjectConfig()->BlockExpiryOptions)
         this->ui->comboBoxDuration->addItem(op);
     this->setWindowTitle(_l("block-title", this->user->Username));
-    if (this->user->IsAnon())
+    if (WikiUser::IsIPv4(this->user->Username) || WikiUser::IsIPv6(this->user->Username))
     {
         this->ui->checkBoxAnonOnly->setEnabled(true);
         this->ui->comboBoxDuration->lineEdit()->setText(User->GetSite()->GetProjectConfig()->BlockTimeAnon);
         this->ui->checkBoxAnonOnly->setChecked(true);
+    } else if (WikiUser::IsTemporary(this->user->Username))
+    {
+        // Temporary accounts (~2026-...) are unregistered users but NOT IP addresses; anononly must be false.
+        this->ui->checkBoxAnonOnly->setEnabled(false);
+        this->ui->checkBoxAnonOnly->setChecked(false);
+        this->ui->comboBoxDuration->lineEdit()->setText(User->GetSite()->GetProjectConfig()->BlockTimeAnon);
     } else
     {
+        this->ui->checkBoxAnonOnly->setEnabled(false);
+        this->ui->checkBoxAnonOnly->setChecked(false);
         this->ui->comboBoxDuration->lineEdit()->setText(User->GetSite()->GetProjectConfig()->BlockTime);
     }
     this->ui->comboBoxReason->addItem(User->GetSite()->ProjectConfig->BlockReason);
@@ -88,12 +96,8 @@ void BlockUserForm::onTick()
     {
         case 1:
             this->Block();
-            return;
-        case 2:
-            this->recheck();
-            return;
+            break;
     }
-    this->timer->stop();
 }
 
 void BlockUserForm::Block()
@@ -133,32 +137,20 @@ void BlockUserForm::Block()
     this->timer->stop();
     if (this->ui->cbMessageTarget->isChecked())
         this->sendBlockNotice(nullptr);
-    /*
-     * This doesn't work in some cases this window is deleted on close, so after 2 seconds this will be referring to
-     * memory that was already cleared, resulting in segfault
-     *
-    // Close window after 2 seconds
-    QTimer::singleShot(2000, [this]()->void{
-        this->close();
-    });
-    */
 }
 
 void BlockUserForm::Failed(QString reason)
 {
     UiGeneric::pMessageBox(this, "Unable to block user", _l("block-fail", reason),
-                         MessageBoxStyleError, true);
-    this->timer->stop();
+                           MessageBoxStyleError, true);
     this->ui->btnBlock->setEnabled(true);
-    // remove the pointers
-    this->qUser.Delete();
 }
 
 void BlockUserForm::on_btnBlock_clicked()
 {
     // disable the button so that user can't click it multiple times
     this->ui->btnBlock->setEnabled(false);
-    this->qUser = new ApiQuery(ActionQuery, this->user->GetSite());
+    this->qUser = new ApiQuery(ActionBlock, this->user->GetSite());
     this->QueryPhase = 1;
     QString nocreate = "";
     if (this->ui->checkBoxDisableAccountCreation->isChecked())
@@ -175,7 +167,7 @@ void BlockUserForm::on_btnBlock_clicked()
     QString allowusertalk = "";
     if (!this->ui->checkBoxRemoveTalkAccess->isChecked())
         allowusertalk = "&allowusertalk=";
-    this->qUser->Parameters = "action=block&user=" +  QUrl::toPercentEncoding(this->user->Username) + "&reason="
+    this->qUser->Parameters = "user=" +  QUrl::toPercentEncoding(this->user->Username) + "&reason="
             + QUrl::toPercentEncoding(this->ui->comboBoxReason->currentText()) + "&expiry="
             + QUrl::toPercentEncoding(this->ui->comboBoxDuration->currentText())
             + nocreate + anononly + noemail + autoblock + allowusertalk + "&token="
