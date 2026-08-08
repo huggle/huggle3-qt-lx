@@ -9,19 +9,29 @@
 //GNU General Public License for more details.
 
 #include "speedyform.hpp"
+#include <QCloseEvent>
 #include <QMessageBox>
+#include <QUrl>
+#include <huggle_core/apiquery.hpp>
 #include <huggle_core/configuration.hpp>
 #include <huggle_core/core.hpp>
+#include <huggle_core/editquery.hpp>
 #include <huggle_core/exception.hpp>
+#include <huggle_core/gc.hpp>
 #include <huggle_core/generic.hpp>
 #include <huggle_core/localization.hpp>
+#include <huggle_core/message.hpp>
+#include <huggle_core/projectconfiguration.hpp>
+#include <huggle_core/query.hpp>
 #include <huggle_core/syslog.hpp>
-#include <huggle_core/wikiuser.hpp>
+#include <huggle_core/wikiedit.hpp>
+#include <huggle_core/wikipage.hpp>
 #include <huggle_core/wikisite.hpp>
+#include <huggle_core/wikiuser.hpp>
 #include <huggle_core/wikiutil.hpp>
+#include "mainwindow.hpp"
 #include "uigeneric.hpp"
 #include "uihooks.hpp"
-#include "mainwindow.hpp"
 #include "ui_speedyform.h"
 
 using namespace Huggle;
@@ -38,6 +48,9 @@ SpeedyForm::SpeedyForm(QWidget *parent) : HW("speedyform", this, parent), ui(new
 
 SpeedyForm::~SpeedyForm()
 {
+    DetachCallback(this->qObtainText);
+    DetachCallback(this->Template);
+    DetachCallback(this->qFounder);
     delete this->ui;
 }
 
@@ -53,11 +66,9 @@ void SpeedyForm::on_btnTag_clicked()
         return;
     if (this->edit->Page->IsUserpage())
     {
-        QMessageBox::StandardButton qb = QMessageBox::question(MainWindow::HuggleMain, "Request",  _l("delete-user"), QMessageBox::Yes|QMessageBox::No);
+        QMessageBox::StandardButton qb = QMessageBox::question(MainWindow::HuggleMain, _l("request"),  _l("delete-user"), QMessageBox::Yes|QMessageBox::No);
         if (qb == QMessageBox::No)
-        {
             return;
-        }
     }
     if (this->ui->cbReason->currentText().isEmpty())
     {
@@ -70,63 +81,231 @@ void SpeedyForm::on_btnTag_clicked()
     this->ui->leParameter->setEnabled(false);
     this->ui->btnTag->setText(_l("speedy-progress", this->edit->Page->PageName));
     this->ui->btnTag->setEnabled(false);
+    this->ui->btnCancel->setEnabled(false);
     this->Header = this->ui->cbReason->currentText();
-    // first we need to retrieve the content of page if we don't have it already
+    this->busy = true;
+
     this->qObtainText = WikiUtil::RetrieveWikiPageContents(this->edit->Page);
-    this->timer->start(HUGGLE_TIMER);
+    this->qObtainText->CallbackOwner = this;
+    this->qObtainText->SuccessCallback = &SpeedyForm::ContentSuccess;
+    this->qObtainText->FailureCallback = &SpeedyForm::ContentFailure;
     this->qObtainText->Process();
 }
 
-void Finalize(Query *result)
+void *SpeedyForm::ContentSuccess(Query *query)
 {
-    SpeedyForm *form = reinterpret_cast<SpeedyForm*>(result->CallbackResult);
-    UiHooks::Speedy_Finished(form->edit, form->Header, true);
-    result->CallbackResult = nullptr;
-    result->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
-    form->close();
+    SpeedyForm *form = ReleaseCallback(query);
+    if (!form)
+        return nullptr;
+
+    bool failed = false;
+    form->Text = WikiUtil::EvaluateWikiPageContents(static_cast<ApiQuery*>(query), &failed, &form->base);
+    form->qObtainText.Delete();
+    if (failed)
+        form->Fail(form->Text);
+    else
+        form->processTags();
+    return nullptr;
 }
 
-void SpeedyForm::Fail(QString reason)
+void *SpeedyForm::ContentFailure(Query *query)
 {
-    this->qObtainText.Delete();
-    this->Template.Delete();
-    UiGeneric::MessageBox("Error", reason, MessageBoxStyleError);
-    UiHooks::Speedy_Finished(this->edit, this->ui->cbReason->currentText(), false);
+    SpeedyForm *form = ReleaseCallback(query);
+    if (!form)
+        return nullptr;
+
+    QString reason = query->GetFailureReason();
+    form->qObtainText.Delete();
+    form->Fail(reason);
+    return nullptr;
+}
+
+void *SpeedyForm::EditSuccess(Query *query)
+{
+    SpeedyForm *form = ReleaseCallback(query);
+    if (!form)
+        return nullptr;
+
+    form->Template.Delete();
+    form->tagSucceeded();
+    return nullptr;
+}
+
+void SpeedyForm::tagSucceeded()
+{
+    if (!this->ui->cbSendWarning->isChecked())
+        this->Finish();
+    else if (this->edit->Page->FounderKnown())
+        this->notifyFounder(this->edit->Page->GetFounder());
+    else
+        this->retrieveFounder();
+}
+
+void *SpeedyForm::EditFailure(Query *query)
+{
+    SpeedyForm *form = ReleaseCallback(query);
+    if (!form)
+        return nullptr;
+
+    QString reason = query->GetFailureReason();
+    form->Template.Delete();
+    form->Fail(reason);
+    return nullptr;
+}
+
+void *SpeedyForm::FounderSuccess(Query *query)
+{
+    SpeedyForm *form = ReleaseCallback(query);
+    if (!form)
+        return nullptr;
+
+    bool failed = false;
+    QString error;
+    QString founder = WikiUtil::EvaluatePageFounder(static_cast<ApiQuery*>(query)->GetApiQueryResult(), &failed, &error);
+    form->qFounder.Delete();
+    if (failed)
+    {
+        form->Fail(_l("speedy-creator-fail", error), true);
+        return nullptr;
+    }
+
+    form->edit->Page->SetFounder(founder);
+    form->notifyFounder(founder);
+    return nullptr;
+}
+
+void *SpeedyForm::FounderFailure(Query *query)
+{
+    SpeedyForm *form = ReleaseCallback(query);
+    if (!form)
+        return nullptr;
+
+    QString reason = query->GetFailureReason();
+    form->qFounder.Delete();
+    form->Fail(_l("speedy-creator-fail", reason), true);
+    return nullptr;
+}
+
+SpeedyForm *SpeedyForm::ReleaseCallback(Query *query)
+{
+    SpeedyForm *form = static_cast<SpeedyForm*>(query->CallbackOwner);
+    query->CallbackOwner = nullptr;
+    query->SuccessCallback = nullptr;
+    query->FailureCallback = nullptr;
+    // Query completion code can continue using the query after invoking its callback.
+    QTimer::singleShot(0, [query]()
+    {
+        query->UnregisterConsumer(HUGGLECONSUMER_CALLBACK);
+    });
+    return form;
+}
+
+void SpeedyForm::DetachCallback(Query *query)
+{
+    if (!query)
+        return;
+    query->CallbackOwner = nullptr;
+    query->SuccessCallback = nullptr;
+    query->FailureCallback = nullptr;
+}
+
+void SpeedyForm::Fail(const QString &reason, bool pageTagged)
+{
+    this->busy = false;
     this->timer->stop();
+    this->ui->btnTag->setText(_l("speedy-failed"));
+    this->ui->btnCancel->setEnabled(true);
+    QString messageText = pageTagged ? _l("speedy-notification-fail", reason) : _l("speedy-fail", reason);
+    UiGeneric::MessageBox(_l("error"), messageText, MessageBoxStyleError, false, this);
+    // The hook reports whether the page was tagged; creator notification is best-effort.
+    UiHooks::Speedy_Finished(this->edit, this->Header, pageTagged);
+}
+
+void SpeedyForm::Finish()
+{
+    this->busy = false;
+    this->timer->stop();
+    this->ui->btnTag->setText(_l("speedy-finished"));
+    UiHooks::Speedy_Finished(this->edit, this->Header, true);
+    this->close();
 }
 
 void SpeedyForm::processTags()
 {
-    // insert the template to bottom of the page
     ProjectConfiguration::SpeedyOption speedy_option = this->edit->GetSite()->GetProjectConfig()->SpeedyTemplates.at(this->ui->cbReason->currentIndex());
-    //! \todo make this cross wiki instead of checking random tag
-    QString lower = this->Text;
-    lower = lower.toLower();
+    QString lower = this->Text.toLower();
     if (lower.contains("{{db"))
     {
         this->Fail(_l("speedy-csd-existing"));
-        this->close();
         return;
     }
     if (this->ReplacePage)
         this->Text = this->ReplacingText;
-    // insert a tag to page
     if (this->ui->leParameter->text().isEmpty())
         this->Text = "{{" + speedy_option.Template + "}}\n" + this->Text;
     else
         this->Text = "{{" + speedy_option.Template + "|" + this->ui->leParameter->text() + "}}\n" + this->Text;
-    // store a message we later send to user (we need to check if edit is successful first)
     this->warning = speedy_option.Msg;
-    // let's modify the page now
     QString summary = this->edit->GetSite()->GetProjectConfig()->SpeedyEditSummary;
     summary.replace("$1", this->edit->Page->PageName);
     this->Template = WikiUtil::EditPage(this->edit->Page, this->Text, summary, false, this->base);
-    this->Template->CallbackResult = reinterpret_cast<void*>(this);
-    this->Template->SuccessCallback = reinterpret_cast<Callback>(Finalize);
+    this->Template->CallbackOwner = this;
+    this->Template->SuccessCallback = &SpeedyForm::EditSuccess;
+    this->Template->FailureCallback = &SpeedyForm::EditFailure;
+    if (this->Template->IsProcessed())
+    {
+        bool failed = this->Template->IsFailed();
+        QString reason;
+        if (failed)
+            reason = this->Template->GetFailureReason();
+        DetachCallback(this->Template);
+        this->Template.Delete();
+        if (failed)
+            this->Fail(reason);
+        else
+            this->tagSucceeded();
+    }
+}
+
+void SpeedyForm::retrieveFounder()
+{
+    this->ui->btnTag->setText(_l("speedy-notify-progress"));
+    this->qFounder = new ApiQuery(ActionQuery, this->edit->GetSite());
+    this->qFounder->Parameters = "prop=revisions&titles=" + QUrl::toPercentEncoding(this->edit->Page->PageName) +
+                                "&rvdir=newer&rvlimit=1&rvprop=" + QUrl::toPercentEncoding("ids|user|timestamp");
+    this->qFounder->Target = this->edit->Page->PageName + " (retrieving founder)";
+    this->qFounder->CallbackOwner = this;
+    this->qFounder->SuccessCallback = &SpeedyForm::FounderSuccess;
+    this->qFounder->FailureCallback = &SpeedyForm::FounderFailure;
+    this->qFounder->Process();
+}
+
+void SpeedyForm::notifyFounder(const QString &founder)
+{
+    if (founder.isEmpty())
+    {
+        this->Fail(_l("speedy-creator-empty"), true);
+        return;
+    }
+
+    this->ui->btnTag->setText(_l("speedy-notify-progress"));
+    QString summary = this->edit->GetSite()->GetProjectConfig()->SpeedyWarningSummary;
+    summary.replace("$1", this->edit->Page->PageName);
+    this->warning.replace("$1", this->edit->Page->PageName);
+    WikiUser creator(founder, this->edit->GetSite());
+    this->message = WikiUtil::MessageUser(&creator, this->warning, "", summary, false, nullptr, false, false, true);
+    if (this->message == nullptr)
+    {
+        this->Fail(_l("speedy-notification-create-fail"), true);
+        return;
+    }
+    this->timer->start(HUGGLE_TIMER);
 }
 
 void SpeedyForm::on_btnCancel_clicked()
 {
+    if (this->busy)
+        return;
     this->timer->stop();
     this->close();
 }
@@ -134,14 +313,11 @@ void SpeedyForm::on_btnCancel_clicked()
 void SpeedyForm::Init(WikiEdit *edit_)
 {
     if (edit_ == nullptr)
-    {
         throw new Huggle::NullPointerException("WikiEdit *edit_", BOOST_CURRENT_FUNCTION);
-    }
+
     this->edit = edit_;
     for (const ProjectConfiguration::SpeedyOption& item : this->edit->GetSite()->GetProjectConfig()->SpeedyTemplates)
-    {
         this->ui->cbReason->addItem(item.Tag + ": " + item.Info);
-    }
     this->ui->lbInfo->setText(edit_->Page->PageName);
     this->ui->cbSendWarning->setChecked(edit_->GetSite()->GetProjectConfig()->Speedy_WarningOnByDefault);
     if (!edit_->GetSite()->GetProjectConfig()->Speedy_EnableWarnings)
@@ -168,41 +344,34 @@ void SpeedyForm::SetMessageUserCheck(bool new_value)
 
 void SpeedyForm::OnTick()
 {
-    if (this->qObtainText != nullptr)
+    if (this->message == nullptr || !this->message->IsFinished())
+        return;
+
+    if (this->message->IsFailed())
     {
-        if (!this->qObtainText->IsProcessed()) { return; }
-        bool failed = false;
-        this->Text = WikiUtil::EvaluateWikiPageContents(this->qObtainText, &failed, &this->base);
-        if (failed)
-        {
-            this->Fail(this->Text);
-            return;
-        }
-        this->qObtainText = nullptr;
-        this->processTags();
+        QString reason = this->message->ErrorText;
+        this->message.Delete();
+        this->Fail(reason, true);
+    } else
+    {
+        this->message.Delete();
+        this->Finish();
+    }
+}
+
+bool SpeedyForm::IsBusy() const
+{
+    return this->busy;
+}
+
+void SpeedyForm::closeEvent(QCloseEvent *event)
+{
+    if (this->busy)
+    {
+        event->ignore();
         return;
     }
-    if (this->Template != nullptr)
-    {
-        if (this->Template->IsProcessed())
-        {
-            if(this->Template->IsFailed())
-            {
-                this->Fail(_l("speedy-fail", this->Template->GetFailureReason()));
-                return;
-            }
-            this->Template = nullptr;
-            if (this->ui->cbSendWarning->isChecked())
-            {
-                QString summary = this->edit->GetSite()->GetProjectConfig()->SpeedyWarningSummary;
-                summary.replace("$1", this->edit->Page->PageName);
-                this->warning.replace("$1", this->edit->Page->PageName);
-                WikiUtil::MessageUser(this->edit->User, this->warning, "", summary, false);
-            }
-            this->timer->stop();
-            this->ui->btnTag->setText(_l("speedy-finished"));
-        }
-    }
+    HW::closeEvent(event);
 }
 
 void Huggle::SpeedyForm::on_cbReason_currentIndexChanged(int index)

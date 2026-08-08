@@ -633,6 +633,13 @@ void MainWindow::RequestPD(WikiEdit *edit)
     }
     if (edit == nullptr)
         edit = this->CurrentEdit;
+    if (this->fSpeedyDelete != nullptr && this->fSpeedyDelete->IsBusy())
+    {
+        this->fSpeedyDelete->show();
+        this->fSpeedyDelete->raise();
+        this->fSpeedyDelete->activateWindow();
+        return;
+    }
     delete this->fSpeedyDelete;
     this->fSpeedyDelete = new SpeedyForm(this);
     this->fSpeedyDelete->Init(edit);
