@@ -21,8 +21,10 @@ jobs:
         with:
           version: ${{ matrix.qt-version }}
           modules: 'qtwebengine'
-      - run: travis/before_script.sh
-      - run: travis/script.sh
+      - name: Build
+        run: .github/scripts/build-linux.sh
+      - name: Test
+        run: .github/scripts/test-linux.sh
 
   build-macos:
     name: macOS
@@ -51,9 +53,10 @@ jobs:
           echo "QT_PLUGIN_PATH=$QT_PREFIX/plugins" >> "$GITHUB_ENV"
           echo "QML2_IMPORT_PATH=$QT_PREFIX/qml" >> "$GITHUB_ENV"
       - uses: actions/checkout@v4
-      - run: travis/before_install_osx.sh
-      - run: travis/before_script_osx.sh
-      - run: travis/script_osx.sh
+      - name: Build
+        run: .github/scripts/build-macos.sh
+      - name: Test
+        run: .github/scripts/test-macos.sh
 
   build-windows:
     name: Windows
