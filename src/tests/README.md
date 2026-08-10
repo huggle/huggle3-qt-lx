@@ -19,9 +19,7 @@ Run tst_testmain and wait for results
 
 This folder is only for developers, if you are regular huggle user you don't need to use it
 
-Travis CI [![Build Status](https://travis-ci.org/huggle/huggle3-qt-lx.png?branch=master)](https://travis-ci.org/huggle/huggle3-qt-lx) 
-==================
+Continuous integration [![Build](https://github.com/huggle/huggle3-qt-lx/actions/workflows/huggle.yml/badge.svg?branch=master)](https://github.com/huggle/huggle3-qt-lx/actions/workflows/huggle.yml)
+======================
 
-After every commit / branch / pull request on github the build is automatically run by travis-ci.org
-
-The current status of the build can be see at [https://travis-ci.org/huggle/huggle3-qt-lx](https://travis-ci.org/huggle/huggle3-qt-lx)
+GitHub Actions automatically runs the build for pushes and pull requests.
