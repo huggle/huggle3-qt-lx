@@ -782,6 +782,12 @@
   <string name="reqprotection-progress">Відправляю запит на захист сторінки «$1»…</string>
   <string name="speedy-fail">Неможливо номінувати сторінку на швидке вилучення: $1</string>
   <string name="speedy-progress">Номіную сторінку $1 на швидке вилучення…</string>
+  <string name="speedy-notify-progress">Сповіщення автора сторінки...</string>
+  <string name="speedy-creator-fail">Не вдалося визначити автора сторінки: $1</string>
+  <string name="speedy-creator-empty">Ім\'я автора сторінки було порожнім</string>
+  <string name="speedy-notification-create-fail">Не вдалося створити сповіщення</string>
+  <string name="speedy-notification-fail">Сторінку було позначено для швидкого видалення, але автора не вдалося сповістити: $1</string>
+  <string name="speedy-failed">Помилка</string>
   <string name="speedy-wrong">Запитувана мітка некоректна. Будь ласка, оберіть іншу причину вилучення.</string>
   <string name="speedy-finished">Виконано</string>
   <string name="warn-alreadyblocked">Цього користувача вже заблоковано</string>

@@ -770,6 +770,12 @@
   <string name="reqprotection-progress">Ag iarraidh cosaint ar \'$1\'...</string>
   <string name="speedy-fail">Ní féidir an leathanach a chlibeáil le haghaidh scriosadh tapa: $1</string>
   <string name="speedy-progress">Ag clibeáil \'$1\' le haghaidh scriosadh tapa...</string>
+  <string name="speedy-notify-progress">Ag cur fógra chuig cruthaitheoir an leathanaigh...</string>
+  <string name="speedy-creator-fail">Ní féidir cruthaitheoir an leathanaigh a chinneadh: $1</string>
+  <string name="speedy-creator-empty">Bhí ainm chruthaitheoir an leathanaigh folamh</string>
+  <string name="speedy-notification-create-fail">Ní féidir an fógra a chruthú</string>
+  <string name="speedy-notification-fail">Cuireadh clib ar an leathanach le haghaidh scriosadh tapa, ach níorbh fhéidir fógra a thabhairt don chruthaitheoir: $1</string>
+  <string name="speedy-failed">Theip air</string>
   <string name="speedy-wrong">Níl an clib iarrtha bailí. Roghnaigh cúis scriosta eile le do thoil.</string>
   <string name="speedy-finished">Críochnaithe</string>
   <string name="warn-alreadyblocked">Tá an t-úsáideoir blocáilte cheana féin</string>

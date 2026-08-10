@@ -18,6 +18,7 @@
 * Peterxy
 * Peterxy12
 * Phenolla
+* Quaff5353
 * Shizhao
 * ShuQizhe
 * SolidBlock
@@ -803,6 +804,12 @@
   <string name="reqprotection-progress">正在请求保护“$1”…</string>
   <string name="speedy-fail">无法标记页面为快速删除：$1</string>
   <string name="speedy-progress">正在标记“$1”为快速删除…</string>
+  <string name="speedy-notify-progress">正在通知页面创建者……</string>
+  <string name="speedy-creator-fail">无法查明页面创建者：$1</string>
+  <string name="speedy-creator-empty">页面创建者的名字为空</string>
+  <string name="speedy-notification-create-fail">无法创建通知</string>
+  <string name="speedy-notification-fail">该页面已被标记为快速删除，但创建者无法收到通知： $1</string>
+  <string name="speedy-failed">失败</string>
   <string name="speedy-wrong">请求的标签无效。请选择不同的删除原因</string>
   <string name="speedy-finished">结束</string>
   <string name="warn-alreadyblocked">用户已被封禁</string>

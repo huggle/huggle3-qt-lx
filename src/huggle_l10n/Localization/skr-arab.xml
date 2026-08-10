@@ -263,6 +263,7 @@
   <string name="block-done">$1 بلاک کرݙتے</string>
   <string name="delete-done">$1 مٹاݙتے</string>
   <string name="newtab-title">ایہ نواں ٹیب ہے!</string>
+  <string name="speedy-failed">ناکام تھیا</string>
   <string name="speedy-finished">مُک ڳیا</string>
   <string name="editquery-error-badtoken">گندہ ٹوکن</string>
   <string name="logs-widget-name">سسٹم لاگ</string>

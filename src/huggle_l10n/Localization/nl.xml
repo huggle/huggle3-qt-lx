@@ -786,6 +786,12 @@
   <string name="reqprotection-progress">Beveiliging aanvragen van \'$1\'...</string>
   <string name="speedy-fail">Het was niet mogelijk de pagina te labelen voor snelle verwijdering: $1</string>
   <string name="speedy-progress">\'$1\' markeren voor direct verwijderen...</string>
+  <string name="speedy-notify-progress">De maker van de pagina wordt op de hoogte gesteld...</string>
+  <string name="speedy-creator-fail">De maker van de pagina kon niet worden vastgesteld: $1</string>
+  <string name="speedy-creator-empty">De naam van de paginamaker was leeg</string>
+  <string name="speedy-notification-create-fail">Het lukt niet om de melding te maken</string>
+  <string name="speedy-notification-fail">De pagina is gemarkeerd voor snelle verwijdering, maar de maker kon niet op de hoogte worden gesteld: $1</string>
+  <string name="speedy-failed">Mislukt</string>
   <string name="speedy-wrong">Het opgevraagde label is niet geldig. Kies een andere reden voor verwijderen</string>
   <string name="speedy-finished">Voltooid</string>
   <string name="warn-alreadyblocked">De gebruiker is al geblokkeerd</string>

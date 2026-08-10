@@ -787,6 +787,7 @@
   <string name="reqprotection-progress">\'$1\' 보호 요청 중...</string>
   <string name="speedy-fail">빠른 삭제를 위해 문서에 태그할 수 없습니다: $1</string>
   <string name="speedy-progress">빠른 삭제를 위해 \'$1\'를 표시합니다...</string>
+  <string name="speedy-failed">실패</string>
   <string name="speedy-wrong">요청한 태그가 유효하지 않습니다. 다른 삭제 이유를 선택해 주십시오</string>
   <string name="speedy-finished">마침</string>
   <string name="warn-alreadyblocked">사용자가 이미 차단되어 있습니다</string>
