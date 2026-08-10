@@ -1,8 +1,12 @@
 # This is a build file for Huggle (used with cmake)
 cmake_minimum_required (VERSION 3.5)
 
-# So that MacOS builds are working on older versions as well
-set(CMAKE_OSX_DEPLOYMENT_TARGET "10.9" CACHE STRING "Minimum OS X deployment version")
+# Set this before project() initializes the compiler toolchain.
+if (QT6_BUILD)
+    set(CMAKE_OSX_DEPLOYMENT_TARGET "12.0" CACHE STRING "Minimum OS X deployment version" FORCE)
+else()
+    set(CMAKE_OSX_DEPLOYMENT_TARGET "10.9" CACHE STRING "Minimum OS X deployment version")
+endif()
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Choose the type of build, options are: Debug or Release (or any other documented for CMAKE_BUILD_TYPE" FORCE)
 endif()
@@ -11,8 +15,16 @@ set(INSTALL_BIN_DIR bin CACHE PATH "Installation directory for executables")
 set(INSTALL_LIB_DIR lib CACHE PATH "Installation directory for libraries")
 set(INSTALL_DATA_DIR share/${PROJECT_NAME} CACHE PATH "Installation directory for data files")
 
+file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/huggle_core/definitions_prod.hpp" HUGGLE_VERSION_DEFINITION
+     REGEX "^#define HUGGLE_VERSION[ \t]+\"[0-9]+\\.[0-9]+\\.[0-9]+\"")
+if (NOT HUGGLE_VERSION_DEFINITION)
+    message(FATAL_ERROR "Unable to read HUGGLE_VERSION from huggle_core/definitions_prod.hpp")
+endif()
+string(REGEX REPLACE "^#define HUGGLE_VERSION[ \t]+\"([0-9]+\\.[0-9]+\\.[0-9]+)\".*" "\\1"
+       HUGGLE_VERSION "${HUGGLE_VERSION_DEFINITION}")
+
 #set(CMAKE_CXX_STANDARD 11)
-project(HuggleProject)
+project(HuggleProject VERSION "${HUGGLE_VERSION}")
 execute_process(COMMAND "${CMAKE_SOURCE_DIR}/build/prepare_cmake.sh" WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 
 if (${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION} GREATER 3.0)
@@ -34,7 +46,10 @@ if (QT6_BUILD)
     set (QT5_BUILD false)
     set (WEB_ENGINE true)
     add_definitions( -DQT6_BUILD )
-    set(CMAKE_OSX_DEPLOYMENT_TARGET "10.15" CACHE STRING "Minimum OS X deployment version" FORCE)
+endif()
+
+if (APPLE)
+    set(CMAKE_INSTALL_RPATH "@loader_path;@loader_path/../Frameworks")
 endif()
 
 set(HUGGLE_CMAKE true)

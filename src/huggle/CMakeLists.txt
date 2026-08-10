@@ -30,6 +30,16 @@ file(GLOB headers "*.hpp")
 set(huggle_SOURCES ${srcx})
 set(huggle_FORMS ${uixx})
 set(huggle_RESOURCES ${resx})
+set(huggle_BUNDLE_RESOURCES)
+
+if (APPLE)
+    set(huggle_ICON "${CMAKE_SOURCE_DIR}/huggle_res/Resources/huggle.icns")
+    set_source_files_properties("${huggle_ICON}" PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
+    list(APPEND huggle_BUNDLE_RESOURCES "${huggle_ICON}")
+    configure_file("${CMAKE_CURRENT_SOURCE_DIR}/Info.plist.in"
+                   "${CMAKE_CURRENT_BINARY_DIR}/Info.plist"
+                   @ONLY)
+endif()
 
 if (QT6_BUILD)
     QT6_WRAP_CPP(huggle_HEADERS_MOC ${huggle_HEADERS})
@@ -43,7 +53,17 @@ endif()
 
 add_definitions(${QT_DEFINITIONS})
 
-add_executable(huggle ${huggle_SOURCES} ${headers} ${huggle_HEADERS_MOC} ${huggle_FORMS_HEADERS} ${huggle_RESOURCES_RCC})
+if (APPLE)
+    add_executable(huggle MACOSX_BUNDLE ${huggle_SOURCES} ${headers} ${huggle_HEADERS_MOC}
+                   ${huggle_FORMS_HEADERS} ${huggle_RESOURCES_RCC} ${huggle_BUNDLE_RESOURCES})
+    set_target_properties(huggle PROPERTIES
+        MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_BINARY_DIR}/Info.plist"
+        INSTALL_RPATH "@executable_path/../Frameworks"
+    )
+else()
+    add_executable(huggle ${huggle_SOURCES} ${headers} ${huggle_HEADERS_MOC}
+                   ${huggle_FORMS_HEADERS} ${huggle_RESOURCES_RCC})
+endif()
 target_link_libraries(huggle ${QT_LIBRARIES})
 
 if (WIN32)
@@ -60,5 +80,7 @@ endif()
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 install(FILES ${CMAKE_SOURCE_DIR}/huggle/man/huggle.1 DESTINATION share/man/man1)
-install(TARGETS huggle DESTINATION ${CMAKE_INSTALL_BINDIR})
+install(TARGETS huggle
+        BUNDLE DESTINATION .
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 install(FILES ${CMAKE_SOURCE_DIR}/build/huggle.desktop DESTINATION share/applications)

@@ -6,7 +6,14 @@ if (NOT HUGGLE_CMAKE)
 endif()
 
 project(huggle_core)
-execute_process(COMMAND "${CMAKE_SOURCE_DIR}/update.sh" WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
+execute_process(
+    COMMAND "${CMAKE_CURRENT_SOURCE_DIR}/update.sh"
+    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+    RESULT_VARIABLE HUGGLE_VERSION_RESULT
+)
+if (NOT HUGGLE_VERSION_RESULT EQUAL 0)
+    message(FATAL_ERROR "Unable to generate huggle_core/version.txt")
+endif()
 
 include(GNUInstallDirs)
 

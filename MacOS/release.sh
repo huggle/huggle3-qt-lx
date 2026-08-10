@@ -1,83 +1,146 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-# Point to the Qt clang_64 directory, for example ~/Qt/5.9.1/clang_64/
-if [ x"$1" != x ];then
-  QTDIR="$1"
-else
-  QTDIR=~/Qt/5.12.0/clang_64/
-fi
+set -euo pipefail
 
-# Get Qt version and split on dots.
-# TODO: Perhaps we can do this in configure instead?
-QTVERSION=`${QTDIR}/bin/qtpaths --qt-version`
-version_array=( ${QTVERSION//./ } )
-EXTRA_FLAGS=""
-if [ ${version_array[0]} -eq 5 ]; then
-    EXTRA_FLAGS=""
-    # Qt >= 5.4 requires this special flag
-    if [ ${version_array[1]} -ge 4 ]; then
-        EXTRA_FLAGS="${EXTRA_FLAGS} --web-engine"
-    fi
-elif [ ${version_array[0]} -eq 6 ]; then
-    EXTRA_FLAGS="${EXTRA_FLAGS} --web-engine --qt6"
-else
-    echo "Unsupported Qt version ${QTVERSION}, must be 5.x"
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+ROOT_DIR="$(cd -- "${SCRIPT_DIR}/.." && pwd)"
+SOURCE_DIR="${ROOT_DIR}/src"
+
+if [[ "$(uname -s)" != "Darwin" ]]; then
+    echo "macOS packaging must run on macOS" >&2
     exit 1
 fi
-echo "Checking sanity of system..."
-of=`pwd`
-if [ -d release ];then
-    echo "Release folder is already in folder, you need to delete it"
-    exit 1
-fi
-cd .. || exit 1
-./configure ${EXTRA_FLAGS} --qtpath "$QTDIR" --extension || exit 1
-cd release || exit 1
-make -j $(sysctl -n hw.ncpu) || exit 1
-cd "$of"
-cp -r ../release "$of/release" || exit 1
-mkdir package || exit 1
-mkdir package/huggle.app
-cd package/huggle.app || exit 1
-mkdir Contents
-mkdir Contents/Frameworks
-mkdir Contents/MacOS
-mkdir Contents/PlugIns
-mkdir Contents/Resources
-mkdir Contents/SharedFrameworks
-cd "$of"
 
-echo "Copying the binaries to package"
-cp info.plist package/huggle.app/Contents || exit 1
-cp release/*/*.dylib package/huggle.app/Contents/MacOS || exit 1
-cp release/huggle/huggle package/huggle.app/Contents/MacOS || exit 1
-echo "Copying js"
-cp ../src/scripts/*.js package/huggle.app/Contents/PlugIns/ || exit 1
-for extension in `ls release/extensions`
+missing_submodules=()
+for path in \
+    src/3rd/libirc/CMakeLists.txt \
+    src/3rd/yaml-cpp/CMakeLists.txt \
+    src/extensions/extension-scoring/CMakeLists.txt \
+    src/extensions/extension-thanks/CMakeLists.txt \
+    src/extensions/enwiki/CMakeLists.txt \
+    src/extensions/mass-delivery/CMakeLists.txt \
+    src/extensions/extension-splitter-helper/CMakeLists.txt \
+    src/extensions/extension-mass-delete/CMakeLists.txt \
+    src/extensions/extension-flow/CMakeLists.txt
 do
-    cp release/extensions/$extension/*.dylib package/huggle.app/Contents/PlugIns/ || exit 1
+    [[ -f "${ROOT_DIR}/${path}" ]] || missing_submodules+=("${path}")
 done
-cp ../src/huggle_res/Resources/huggle.icns package/huggle.app/Contents/Resources || exit 1
-#cp -R $QTDIR/lib/QtWebKitWidgets.framework/ package/huggle.app/Contents/Frameworks || exit 1
-#cp -R $QTDIR/lib/QtWebKit.framework/ package/huggle.app/Contents/Frameworks || exit 1
-#cp -R $QTDIR/lib/QtNetwork.framework/ package/huggle.app/Contents/Frameworks || exit 1
-#cp -R $QTDIR/lib/QtXml.framework/ package/huggle.app/Contents/Frameworks || exit 1
-#cp -R $QTDIR/lib/QtWidgets.framework/ package/huggle.app/Contents/Frameworks || exit 1
-#cp -R $QTDIR/lib/QtCore.framework/ package/huggle.app/Contents/Frameworks || exit 1
-#cp -R $QTDIR/lib/QtGui.framework/ package/huggle.app/Contents/Frameworks || exit 1
-#	/Users/petanb/Qt5.4.1/5.4/clang_64/lib/QtWebKitWidgets.framework/Versions/5/QtWebKitWidgets (compatibility version 5.4.0, current version 5.4.1)
-#	/Users/petanb/Qt5.4.1/5.4/clang_64/lib/QtWebKit.framework/Versions/5/QtWebKit (compatibility version 5.4.0, current version 5.4.1)
-#	/Users/petanb/Qt5.4.1/5.4/clang_64/lib/QtNetwork.framework/Versions/5/QtNetwork (compatibility version 5.4.0, current version 5.4.1)
-#	/Users/petanb/Qt5.4.1/5.4/clang_64/lib/QtXml.framework/Versions/5/QtXml (compatibility version 5.4.0, current version 5.4.1)
-#	/Users/petanb/Qt5.4.1/5.4/clang_64/lib/QtWidgets.framework/Versions/5/QtWidgets (compatibility version 5.4.0, current version 5.4.1)
-#	/Users/petanb/Qt5.4.1/5.4/clang_64/lib/QtGui.framework/Versions/5/QtGui (compatibility version 5.4.0, current version 5.4.1)
-#	/Users/petanb/Qt5.4.1/5.4/clang_64/lib/QtCore.framework/Versions/5/QtCore
-cd package
-#install-name_tool -id @executable_path/../Frameworks/QtWebKitWidgets.framework/Versions/5/QtWebKitWidgets huggle.app/Contents/Frameworks/QtWebKitWidgets.framework/Versions/5/QtWebKitWidgets
-#install-name_tool -id @executable_path/../Frameworks/QtWebKit.framework/Versions/5/QtWebKit huggle.app/Contents/Frameworks/QtWebKit.framework/Versions/5/QtWebKit
-#install-name_tool -id @executable_path/../Frameworks/QtNetwork.framework/Versions/5/QtNetwork huggle.app/Contents/Frameworks/QtNetwork.framework/Versions/5/QtNetwork
-#install-name_tool -id @executable_path/../Frameworks/QtXml.framework/Versions/5/QtXml huggle.app/Contents/Frameworks/QtXml.framework/Versions/5/QtXml
-#install-name_tool -id @executable_path/../Frameworks/QtWidgets.framework/Versions/5/QtWidgets huggle.app/Contents/Frameworks/QtWidgets.framework/Versions/5/QtWidgets
-#install-name_tool -id @executable_path/../Frameworks/ huggle.app/Contents/Frameworks/
-#install-name_tool -id @executable_path/../Frameworks/ huggle.app/Contents/Frameworks/
-$QTDIR/bin/macdeployqt huggle.app -dmg
+if (( ${#missing_submodules[@]} > 0 )); then
+    printf 'Missing required submodule: %s\n' "${missing_submodules[@]}" >&2
+    echo "Run: git submodule update --init --recursive" >&2
+    exit 1
+fi
+
+find_qt_prefix()
+{
+    if [[ -n "${1:-}" ]]; then
+        printf '%s\n' "$1"
+    elif [[ -n "${QT_ROOT_DIR:-}" ]]; then
+        printf '%s\n' "${QT_ROOT_DIR}"
+    elif command -v qtpaths6 >/dev/null 2>&1; then
+        qtpaths6 --query QT_INSTALL_PREFIX
+    elif command -v qtpaths >/dev/null 2>&1; then
+        qtpaths --query QT_INSTALL_PREFIX
+    else
+        echo "Unable to find Qt 6; pass its prefix as the first argument or set QT_ROOT_DIR" >&2
+        return 1
+    fi
+}
+
+QT_PREFIX="$(find_qt_prefix "${1:-}")"
+MACDEPLOYQT="${QT_PREFIX}/bin/macdeployqt"
+if [[ ! -x "${MACDEPLOYQT}" ]]; then
+    echo "Unable to find macdeployqt at ${MACDEPLOYQT}" >&2
+    exit 1
+fi
+QTPATHS="${QT_PREFIX}/bin/qtpaths"
+if [[ ! -x "${QTPATHS}" ]]; then
+    QTPATHS="${QT_PREFIX}/bin/qtpaths6"
+fi
+if [[ ! -x "${QTPATHS}" || "$("${QTPATHS}" --qt-version)" != "6.9.2" ]]; then
+    echo "macOS release packaging requires the official Qt 6.9.2 distribution" >&2
+    exit 1
+fi
+
+QT_CORE="${QT_PREFIX}/lib/QtCore.framework/Versions/A/QtCore"
+QT_ARCHITECTURES="$(lipo -archs "${QT_CORE}")"
+if [[ " ${QT_ARCHITECTURES} " != *" arm64 "* ||
+      " ${QT_ARCHITECTURES} " != *" x86_64 "* ]]; then
+    echo "Qt 6.9.2 must contain both arm64 and x86_64 architectures" >&2
+    exit 1
+fi
+
+BUILD_ROOT="${HUGGLE_BUILD_DIR:-${ROOT_DIR}/release/macos-universal}"
+BUILD_DIR="${BUILD_ROOT}/build"
+STAGE_DIR="${BUILD_ROOT}/stage"
+OUTPUT_DIR="${HUGGLE_OUTPUT_DIR:-${ROOT_DIR}/release/artifacts}"
+PARALLEL="${CMAKE_BUILD_PARALLEL_LEVEL:-$(sysctl -n hw.ncpu)}"
+
+cmake -S "${SOURCE_DIR}" -B "${BUILD_DIR}" \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_BINDIR:PATH=bin \
+    -DCMAKE_INSTALL_DATADIR:PATH=share \
+    -DCMAKE_INSTALL_LIBDIR:PATH=lib \
+    -DCMAKE_INSTALL_PREFIX:PATH=/usr/local \
+    -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64" \
+    -DCMAKE_PREFIX_PATH="${QT_PREFIX}" \
+    -DQT5_BUILD=OFF \
+    -DQT6_BUILD=ON \
+    -DWEB_ENGINE=ON \
+    -DHUGGLE_EXT=ON \
+    -DHUGGLE_TEST=ON \
+    -DCMAKE_DISABLE_FIND_PACKAGE_YAML-CPP=ON \
+    -DYAML_BUILD_SHARED_LIBS=OFF
+
+cmake --build "${BUILD_DIR}" --parallel "${PARALLEL}"
+ctest --test-dir "${BUILD_DIR}" --output-on-failure
+
+cmake -E remove_directory "${STAGE_DIR}"
+cmake --install "${BUILD_DIR}" --prefix "${STAGE_DIR}"
+
+APP_BUNDLE="${STAGE_DIR}/huggle.app"
+FRAMEWORKS_DIR="${APP_BUNDLE}/Contents/Frameworks"
+PLUGINS_DIR="${APP_BUNDLE}/Contents/PlugIns"
+
+if [[ ! -d "${APP_BUNDLE}" ]]; then
+    echo "CMake did not install ${APP_BUNDLE}" >&2
+    exit 1
+fi
+
+mkdir -p "${FRAMEWORKS_DIR}" "${PLUGINS_DIR}"
+shopt -s nullglob
+
+PROJECT_LIBRARIES=("${STAGE_DIR}/lib/"*.dylib)
+if (( ${#PROJECT_LIBRARIES[@]} == 0 )); then
+    echo "No Huggle libraries were installed in ${STAGE_DIR}/lib" >&2
+    exit 1
+fi
+cp -R -p "${PROJECT_LIBRARIES[@]}" "${FRAMEWORKS_DIR}/"
+
+COMPILED_EXTENSIONS=("${STAGE_DIR}/share/huggle/extensions/"*.dylib)
+SCRIPT_EXTENSIONS=("${STAGE_DIR}/share/huggle/extensions/"*.js)
+if (( ${#COMPILED_EXTENSIONS[@]} == 0 || ${#SCRIPT_EXTENSIONS[@]} == 0 )); then
+    echo "Huggle extensions were not installed completely" >&2
+    exit 1
+fi
+cp -R -p "${COMPILED_EXTENSIONS[@]}" "${PLUGINS_DIR}/"
+
+DEPLOY_ARGS=("${APP_BUNDLE}" "-always-overwrite"
+             "-libpath=${FRAMEWORKS_DIR}" "-libpath=${QT_PREFIX}/lib")
+for extension in "${PLUGINS_DIR}/"*.dylib; do
+    DEPLOY_ARGS+=("-executable=${extension}")
+done
+"${MACDEPLOYQT}" "${DEPLOY_ARGS[@]}"
+
+cp -R -p "${SCRIPT_EXTENSIONS[@]}" "${PLUGINS_DIR}/"
+codesign --force --deep --sign - "${APP_BUNDLE}"
+"${SCRIPT_DIR}/verify-app.sh" "${APP_BUNDLE}"
+
+VERSION="$(plutil -extract CFBundleShortVersionString raw "${APP_BUNDLE}/Contents/Info.plist")"
+mkdir -p "${OUTPUT_DIR}"
+DMG_PATH="${OUTPUT_DIR}/huggle_${VERSION}_universal.dmg"
+rm -f "${DMG_PATH}"
+hdiutil create -volname "Huggle ${VERSION}" -srcfolder "${APP_BUNDLE}" \
+    -format UDZO -ov "${DMG_PATH}"
+
+printf 'Created %s\n' "${DMG_PATH}"
