@@ -140,7 +140,22 @@ VERSION="$(plutil -extract CFBundleShortVersionString raw "${APP_BUNDLE}/Content
 mkdir -p "${OUTPUT_DIR}"
 DMG_PATH="${OUTPUT_DIR}/huggle_${VERSION}_universal.dmg"
 rm -f "${DMG_PATH}"
-hdiutil create -volname "Huggle ${VERSION}" -srcfolder "${APP_BUNDLE}" \
-    -format UDZO -ov "${DMG_PATH}"
+DMG_CREATED=false
+for attempt in 1 2 3; do
+    if hdiutil create -volname "Huggle ${VERSION}" -srcfolder "${APP_BUNDLE}" \
+        -format UDZO -ov "${DMG_PATH}"; then
+        DMG_CREATED=true
+        break
+    fi
+    if (( attempt < 3 )); then
+        echo "DMG creation failed; retrying (${attempt}/3)" >&2
+        rm -f "${DMG_PATH}"
+        sleep 5
+    fi
+done
+if [[ "${DMG_CREATED}" != true ]]; then
+    echo "Unable to create ${DMG_PATH} after 3 attempts" >&2
+    exit 1
+fi
 
 printf 'Created %s\n' "${DMG_PATH}"

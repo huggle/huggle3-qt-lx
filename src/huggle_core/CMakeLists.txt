@@ -6,14 +6,41 @@ if (NOT HUGGLE_CMAKE)
 endif()
 
 project(huggle_core)
-execute_process(
-    COMMAND "${CMAKE_CURRENT_SOURCE_DIR}/update.sh"
-    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
-    RESULT_VARIABLE HUGGLE_VERSION_RESULT
-)
-if (NOT HUGGLE_VERSION_RESULT EQUAL 0)
-    message(FATAL_ERROR "Unable to generate huggle_core/version.txt")
+set(HUGGLE_BUILD_REVISION "production build")
+set(HUGGLE_BUILD_HASH "")
+find_package(Git QUIET)
+if (GIT_FOUND)
+    execute_process(
+        COMMAND "${GIT_EXECUTABLE}" rev-parse --is-inside-work-tree
+        WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+        RESULT_VARIABLE HUGGLE_GIT_REPOSITORY_RESULT
+        OUTPUT_QUIET
+        ERROR_QUIET
+    )
+    if (HUGGLE_GIT_REPOSITORY_RESULT EQUAL 0)
+        execute_process(
+            COMMAND "${GIT_EXECUTABLE}" rev-list HEAD --count
+            WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+            RESULT_VARIABLE HUGGLE_GIT_COUNT_RESULT
+            OUTPUT_VARIABLE HUGGLE_BUILD_REVISION
+            OUTPUT_STRIP_TRAILING_WHITESPACE
+            ERROR_QUIET
+        )
+        execute_process(
+            COMMAND "${GIT_EXECUTABLE}" describe --always --tags
+            WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+            RESULT_VARIABLE HUGGLE_GIT_DESCRIBE_RESULT
+            OUTPUT_VARIABLE HUGGLE_BUILD_HASH
+            OUTPUT_STRIP_TRAILING_WHITESPACE
+            ERROR_QUIET
+        )
+        if (NOT HUGGLE_GIT_COUNT_RESULT EQUAL 0 OR NOT HUGGLE_GIT_DESCRIBE_RESULT EQUAL 0)
+            message(FATAL_ERROR "Unable to read the Huggle Git revision")
+        endif()
+    endif()
 endif()
+file(WRITE "${CMAKE_CURRENT_SOURCE_DIR}/version.txt"
+     "build: ${HUGGLE_BUILD_REVISION} ${HUGGLE_BUILD_HASH}\n")
 
 include(GNUInstallDirs)
 
