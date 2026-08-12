@@ -5,6 +5,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(cd -- "${SCRIPT_DIR}/.." && pwd)"
 SOURCE_DIR="${ROOT_DIR}/src"
+QT_VERSION="${HUGGLE_QT_VERSION:-6.9.2}"
 
 if [[ "$(uname -s)" != "Darwin" ]]; then
     echo "macOS packaging must run on macOS" >&2
@@ -57,8 +58,8 @@ QTPATHS="${QT_PREFIX}/bin/qtpaths"
 if [[ ! -x "${QTPATHS}" ]]; then
     QTPATHS="${QT_PREFIX}/bin/qtpaths6"
 fi
-if [[ ! -x "${QTPATHS}" || "$("${QTPATHS}" --qt-version)" != "6.9.2" ]]; then
-    echo "macOS release packaging requires the official Qt 6.9.2 distribution" >&2
+if [[ ! -x "${QTPATHS}" || "$("${QTPATHS}" --qt-version)" != "${QT_VERSION}" ]]; then
+    echo "macOS release packaging requires the official Qt ${QT_VERSION} distribution" >&2
     exit 1
 fi
 
@@ -66,7 +67,7 @@ QT_CORE="${QT_PREFIX}/lib/QtCore.framework/Versions/A/QtCore"
 QT_ARCHITECTURES="$(lipo -archs "${QT_CORE}")"
 if [[ " ${QT_ARCHITECTURES} " != *" arm64 "* ||
       " ${QT_ARCHITECTURES} " != *" x86_64 "* ]]; then
-    echo "Qt 6.9.2 must contain both arm64 and x86_64 architectures" >&2
+    echo "Qt ${QT_VERSION} must contain both arm64 and x86_64 architectures" >&2
     exit 1
 fi
 

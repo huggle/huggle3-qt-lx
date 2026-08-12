@@ -9,8 +9,9 @@ native Apple Silicon (`arm64`) and Intel (`x86_64`) binaries.
 - Xcode 15 command-line tools or newer
 - CMake
 - Git with the repository submodules initialized
-- The official Qt 6.9.2 `clang_64` distribution with WebEngine, WebChannel,
-  Multimedia, Positioning, and SerialPort
+- The official Qt `clang_64` distribution selected by `HUGGLE_QT_VERSION`
+  (6.9.2 by default), with WebEngine, WebChannel, Multimedia, Positioning,
+  and SerialPort
 
 Initialize the dependencies before the first build:
 
@@ -43,6 +44,7 @@ The following environment variables can override the defaults:
 
 - `HUGGLE_BUILD_DIR`: build and staging directory.
 - `HUGGLE_OUTPUT_DIR`: destination for the DMG.
+- `HUGGLE_QT_VERSION`: required Qt version (defaults to the CI version, 6.9.2).
 - `CMAKE_BUILD_PARALLEL_LEVEL`: number of parallel build jobs.
 
 Qt 6.9 supports deployment to macOS 12 or newer.
