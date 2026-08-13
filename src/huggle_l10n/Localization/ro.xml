@@ -2,6 +2,7 @@
 <!-- Authors:
 * Andrei Stroe
 * Andreyyshore
+* Blaséd
 * Firilacroco
 * Ignatgg
 * MSClaudiu
@@ -778,6 +779,10 @@
   <string name="reqprotection-progress">Cer protejarea paginii \'$1\'...</string>
   <string name="speedy-fail">Nu am putut eticheta pagina pentru ștergere rapidă: $1</string>
   <string name="speedy-progress">Etichetez $1 pentru ștergere rapidă...</string>
+  <string name="speedy-notify-progress">Se anunță creatorul paginii...</string>
+  <string name="speedy-creator-fail">Nu s-a putut determina creatorul paginii: $1</string>
+  <string name="speedy-creator-empty">Numele creatorului paginii a fost gol</string>
+  <string name="speedy-failed">Eșuat</string>
   <string name="speedy-wrong">Eticheta cerută nu este validă. Vă rog să alegeți un alt motiv de ștergere</string>
   <string name="speedy-finished">Terminat</string>
   <string name="warn-alreadyblocked">Utilizatorul a fost deja blocat</string>

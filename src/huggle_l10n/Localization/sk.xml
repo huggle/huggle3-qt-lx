@@ -773,6 +773,12 @@
   <string name="reqprotection-progress">Vyžadovanie ochrany pre $1...</string>
   <string name="speedy-fail">Nepodarilo sa označiť stránku pre rýchle vymazanie: $1</string>
   <string name="speedy-progress">Označovanie $1 pre rýchle vymazanie...</string>
+  <string name="speedy-notify-progress">Upozorňuje sa tvorca stránky...</string>
+  <string name="speedy-creator-fail">Nie je možné určiť tvorcu stránky: $1</string>
+  <string name="speedy-creator-empty">Meno tvorcu stránky bolo prázdne</string>
+  <string name="speedy-notification-create-fail">Nie je možné vytvoriť upozornenie</string>
+  <string name="speedy-notification-fail">Stránka bola označená na rýchle zmazanie, ale tvorcu sa nepodarilo upozorniť: $1</string>
+  <string name="speedy-failed">Zlyhalo</string>
   <string name="speedy-wrong">Požadovaná značka nie je platná. Prosím vyberte iný dôvod pre vymazanie</string>
   <string name="speedy-finished">Ukončené</string>
   <string name="warn-alreadyblocked">Tento používateľ/ka už je zablokovaný/á</string>
