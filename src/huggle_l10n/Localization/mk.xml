@@ -812,7 +812,7 @@
   <string name="preferences-extension-enabled-restart">Додатокот е оневозможен. Меѓутоа, ќе треба да го превклучите Huggle одново за да се доврши оневозможувањето.</string>
   <string name="preferences-enforce-baw">Наметни црно-бела за разликите во HTML</string>
   <string name="preferences-watchlist-watch">Додај во набљудувани</string>
-  <string name="preferences-watchlist-unwatch">Отстрани набљудуваните</string>
+  <string name="preferences-watchlist-unwatch">Отстрани од набљудуваните</string>
   <string name="preferences-watchlist-preferences">Води се по моите нагодувања на викито</string>
   <string name="preferences-watchlist-nochange">Не прави ништо</string>
   <string name="preferences-auto-watch-talk">Набљудувај разговорна страница на корисник кој прима предупредување од вас</string>

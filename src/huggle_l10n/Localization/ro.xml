@@ -403,7 +403,7 @@
   <string name="main-page-history">Citește istoricul</string>
   <string name="main-page-historypage">Arată pagina de istoric</string>
   <string name="main-page-edit">Editează pagina în browser</string>
-  <string name="main-page-tag">Tag</string>
+  <string name="main-page-tag">Etichetă</string>
   <string name="main-page-reqdeletion">Cere ștergerea rapidă</string>
   <string name="main-page-reqprotection">Cere protejarea paginii</string>
   <string name="main-page-watch">Urmărește</string>
@@ -552,7 +552,7 @@
   <string name="queue-filterreverts">Revenire</string>
   <string name="queue-filternotifications">Notificare</string>
   <string name="queue-filterwarnings">Avertisment</string>
-  <string name="queue-filtertags">Tag</string>
+  <string name="queue-filtertags">Etichetă</string>
   <string name="queue-filterbot">Editare robot</string>
   <string name="queue-filterassisted">Editare asistată</string>
   <string name="queue-filterhuggle">Editare Huggle</string>

@@ -252,7 +252,7 @@
   <string name="login-error-noconfig">$1 n\'en deus pajenn gefluniañ Huggle ebet.</string>
   <string name="login-error-nouser">N\'eus ket eus an implijer</string>
   <string name="login-error-password">Ger-tremen direizh</string>
-  <string name="login-error-unknown">Ne c\'haller ket kevreañ da $1.</string>
+  <string name="login-error-unknown">Ne c\'haller ket kevreañ ouzh $1.</string>
   <string name="login-error-version">Diamzeret eo ar stumm-mañ. Hizivaat gant ar stumm diwezhañ.</string>
   <string name="main-help-copy-syslog-to-clip">Eilañ marilh ar reizhiad er golver</string>
   <string name="main-no-reason">N\'eus bet roet abeg ebet gant an implijer</string>
