@@ -291,13 +291,18 @@ for extension in "${PLUGINS_DIR}/"*.dylib; do
 done
 "${MACDEPLOYQT}" "${DEPLOY_ARGS[@]}"
 
+# Huggle does not use NMEA GPS positioning, and this plugin adds a QtSerialPort
+# runtime dependency that is not needed by the application bundle.
+rm -f "${PLUGINS_DIR}/position/libqtposition_nmea.dylib"
+
 cp -R -p "${SCRIPT_EXTENSIONS[@]}" "${PLUGINS_DIR}/"
 codesign --force --deep --sign - "${APP_BUNDLE}"
 "${SCRIPT_DIR}/verify-app.sh" "${APP_BUNDLE}"
 
 VERSION="$(plutil -extract CFBundleShortVersionString raw "${APP_BUNDLE}/Contents/Info.plist")"
 mkdir -p "${OUTPUT_DIR}"
-DMG_PATH="${OUTPUT_DIR}/huggle_${VERSION}_universal.dmg"
+OUTPUT_DIR_ABS="$(cd "${OUTPUT_DIR}" && pwd -P)"
+DMG_PATH="${OUTPUT_DIR_ABS}/huggle_${VERSION}_universal.dmg"
 rm -f "${DMG_PATH}"
 DMG_CREATED=false
 for attempt in 1 2 3; do
@@ -317,4 +322,4 @@ if [[ "${DMG_CREATED}" != true ]]; then
     exit 1
 fi
 
-printf 'Created %s\n' "${DMG_PATH}"
+printf 'Package path: %s\n' "${DMG_PATH}"

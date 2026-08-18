@@ -10,8 +10,7 @@ native Apple Silicon (`arm64`) and Intel (`x86_64`) binaries.
 - CMake
 - Git with the repository submodules initialized
 - The official Qt `clang_64` distribution selected by `HUGGLE_QT_VERSION`
-  (6.9.2 by default), with WebEngine, WebChannel, Multimedia, Positioning,
-  and SerialPort
+  (6.9.2 by default), with WebEngine, WebChannel, Multimedia, and Positioning
 
 Initialize the dependencies before the first build:
 
