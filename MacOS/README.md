@@ -21,11 +21,18 @@ git submodule update --init --recursive
 
 ## Build and package
 
-Run the release script and pass the Qt installation prefix if Qt is not
+Run the release script and pass the Qt root directory and version if Qt is not
 discoverable through `QT_ROOT_DIR`, `qtpaths6`, or `qtpaths`.
 
 ```sh
-./MacOS/release.sh /path/to/Qt/6.9.2/macos
+./MacOS/release.sh --qt-prefix ~/Qt --qt-version 6.9.2
+```
+
+For custom builds or non-standard Qt layouts, pass the complete Qt installation
+prefix explicitly with `--qt-full-path`:
+
+```sh
+./MacOS/release.sh --qt-full-path /path/to/Qt/6.9.2/macos
 ```
 
 Release packaging intentionally uses the same official Qt distribution as CI.
@@ -46,6 +53,8 @@ The following environment variables can override the defaults:
 - `HUGGLE_OUTPUT_DIR`: destination for the DMG.
 - `HUGGLE_QT_VERSION`: required Qt version (defaults to the CI version, 6.9.2).
 - `CMAKE_BUILD_PARALLEL_LEVEL`: number of parallel build jobs.
+
+Run `./MacOS/release.sh --help` for the complete list of script options.
 
 Qt 6.9 supports deployment to macOS 12 or newer.
 

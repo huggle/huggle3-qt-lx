@@ -5,7 +5,163 @@ set -euo pipefail
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(cd -- "${SCRIPT_DIR}/.." && pwd)"
 SOURCE_DIR="${ROOT_DIR}/src"
-QT_VERSION="${HUGGLE_QT_VERSION:-6.9.2}"
+DEFAULT_QT_VERSION="6.9.2"
+QT_VERSION="${HUGGLE_QT_VERSION:-${DEFAULT_QT_VERSION}}"
+QT_ROOT_ARG=""
+QT_FULL_PATH_ARG=""
+
+usage()
+{
+    cat <<EOF
+Usage: $(basename "$0") [options] [QT_FULL_PATH]
+
+Build, test, and package a universal macOS Huggle release DMG.
+
+Options:
+  -h, --help                 Show this help text and exit.
+      --qt-prefix PATH       Qt root directory. The Qt prefix is resolved as
+                             PATH/<qt-version>/macos.
+      --qt-full-path PATH    Full Qt installation prefix containing
+                             bin/macdeployqt. This is equivalent to the
+                             optional QT_FULL_PATH positional argument.
+      --qt-version VERSION   Required Qt version. Overrides HUGGLE_QT_VERSION
+                             and the default ${DEFAULT_QT_VERSION}.
+
+Environment:
+  QT_ROOT_DIR                     Full Qt installation prefix if Qt path options
+                                  and QT_FULL_PATH are omitted.
+  HUGGLE_QT_VERSION               Required Qt version, default ${DEFAULT_QT_VERSION}.
+  HUGGLE_BUILD_DIR                Build and staging root, default
+                                  release/macos-universal.
+  HUGGLE_OUTPUT_DIR               DMG output directory, default
+                                  release/artifacts.
+  CMAKE_BUILD_PARALLEL_LEVEL      Number of parallel build jobs, default
+                                  the host CPU count.
+
+Examples:
+  ./MacOS/release.sh --qt-prefix ~/Qt --qt-version 6.9.2
+  ./MacOS/release.sh --qt-full-path /path/to/Qt/6.9.2/macos
+  ./MacOS/release.sh /path/to/Qt/6.9.2/macos
+EOF
+}
+
+set_qt_root()
+{
+    if [[ -n "${QT_FULL_PATH_ARG}" ]]; then
+        echo "--qt-prefix cannot be used with --qt-full-path or positional QT_FULL_PATH" >&2
+        exit 2
+    fi
+    if [[ -n "${QT_ROOT_ARG}" ]]; then
+        echo "Only one Qt root may be specified" >&2
+        exit 2
+    fi
+    QT_ROOT_ARG="$1"
+}
+
+set_qt_full_path()
+{
+    if [[ -n "${QT_ROOT_ARG}" ]]; then
+        echo "--qt-full-path cannot be used with --qt-prefix" >&2
+        exit 2
+    fi
+    if [[ -n "${QT_FULL_PATH_ARG}" ]]; then
+        echo "Only one full Qt path may be specified" >&2
+        exit 2
+    fi
+    QT_FULL_PATH_ARG="$1"
+}
+
+while (( $# > 0 )); do
+    case "$1" in
+        -h|--help)
+            usage
+            exit 0
+            ;;
+        --qt-prefix)
+            if (( $# < 2 )); then
+                echo "--qt-prefix requires a path" >&2
+                exit 2
+            fi
+            if [[ -z "$2" ]]; then
+                echo "--qt-prefix requires a non-empty path" >&2
+                exit 2
+            fi
+            set_qt_root "$2"
+            shift 2
+            ;;
+        --qt-prefix=*)
+            qt_root="${1#*=}"
+            if [[ -z "${qt_root}" ]]; then
+                echo "--qt-prefix requires a non-empty path" >&2
+                exit 2
+            fi
+            set_qt_root "${qt_root}"
+            shift
+            ;;
+        --qt-full-path)
+            if (( $# < 2 )); then
+                echo "--qt-full-path requires a path" >&2
+                exit 2
+            fi
+            if [[ -z "$2" ]]; then
+                echo "--qt-full-path requires a non-empty path" >&2
+                exit 2
+            fi
+            set_qt_full_path "$2"
+            shift 2
+            ;;
+        --qt-full-path=*)
+            qt_full_path="${1#*=}"
+            if [[ -z "${qt_full_path}" ]]; then
+                echo "--qt-full-path requires a non-empty path" >&2
+                exit 2
+            fi
+            set_qt_full_path "${qt_full_path}"
+            shift
+            ;;
+        --qt-version)
+            if (( $# < 2 )); then
+                echo "--qt-version requires a version" >&2
+                exit 2
+            fi
+            if [[ -z "$2" ]]; then
+                echo "--qt-version requires a non-empty version" >&2
+                exit 2
+            fi
+            QT_VERSION="$2"
+            shift 2
+            ;;
+        --qt-version=*)
+            QT_VERSION="${1#*=}"
+            if [[ -z "${QT_VERSION}" ]]; then
+                echo "--qt-version requires a non-empty version" >&2
+                exit 2
+            fi
+            shift
+            ;;
+        --)
+            shift
+            break
+            ;;
+        -*)
+            echo "Unknown option: $1" >&2
+            echo "Run $(basename "$0") --help for usage." >&2
+            exit 2
+            ;;
+        *)
+            set_qt_full_path "$1"
+            shift
+            ;;
+    esac
+done
+
+if (( $# > 0 )); then
+    if (( $# > 1 )); then
+        echo "Only one full Qt path may be specified" >&2
+        exit 2
+    fi
+    set_qt_full_path "$1"
+fi
 
 if [[ "$(uname -s)" != "Darwin" ]]; then
     echo "macOS packaging must run on macOS" >&2
@@ -36,6 +192,8 @@ find_qt_prefix()
 {
     if [[ -n "${1:-}" ]]; then
         printf '%s\n' "$1"
+    elif [[ -n "${QT_ROOT_ARG}" ]]; then
+        printf '%s/%s/macos\n' "${QT_ROOT_ARG%/}" "${QT_VERSION}"
     elif [[ -n "${QT_ROOT_DIR:-}" ]]; then
         printf '%s\n' "${QT_ROOT_DIR}"
     elif command -v qtpaths6 >/dev/null 2>&1; then
@@ -43,12 +201,12 @@ find_qt_prefix()
     elif command -v qtpaths >/dev/null 2>&1; then
         qtpaths --query QT_INSTALL_PREFIX
     else
-        echo "Unable to find Qt 6; pass its prefix as the first argument or set QT_ROOT_DIR" >&2
+        echo "Unable to find Qt 6; pass --qt-prefix, --qt-full-path, or set QT_ROOT_DIR" >&2
         return 1
     fi
 }
 
-QT_PREFIX="$(find_qt_prefix "${1:-}")"
+QT_PREFIX="$(find_qt_prefix "${QT_FULL_PATH_ARG}")"
 MACDEPLOYQT="${QT_PREFIX}/bin/macdeployqt"
 if [[ ! -x "${MACDEPLOYQT}" ]]; then
     echo "Unable to find macdeployqt at ${MACDEPLOYQT}" >&2
