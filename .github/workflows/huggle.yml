@@ -27,36 +27,27 @@ jobs:
         run: .github/scripts/test-linux.sh
 
   build-macos:
-    name: macOS
-    runs-on: macos-latest
-    env:
-      QTTYPE: 6
-    strategy:
-      fail-fast: false
-      matrix:
-        # Note Qt 5 doesn't ship x86 so it will fail on ARM runner
-        qt-version: [6.9.2]
+    name: macOS universal
+    runs-on: macos-15
     steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
       - uses: jurplel/install-qt-action@v4
         with:
-          version: ${{ matrix.qt-version }}
-          modules: 'qtwebchannel qtwebengine qtmultimedia qtpositioning'
-          # Make CMake see Qt6
-      - name: Set up Qt6 env for CMake
-        shell: bash
-        run: |
-          QT_PREFIX="${Qt6_DIR%/lib/cmake/Qt6}"
-          echo "CMAKE_PREFIX_PATH=$QT_PREFIX" >> "$GITHUB_ENV"
-          echo "$QT_PREFIX/bin" >> "$GITHUB_PATH"
-          # Optional but helpful:
-          echo "QT_HOST_PATH=$QT_PREFIX" >> "$GITHUB_ENV"
-          echo "QT_PLUGIN_PATH=$QT_PREFIX/plugins" >> "$GITHUB_ENV"
-          echo "QML2_IMPORT_PATH=$QT_PREFIX/qml" >> "$GITHUB_ENV"
-      - uses: actions/checkout@v4
-      - name: Build
-        run: .github/scripts/build-macos.sh
-      - name: Test
-        run: .github/scripts/test-macos.sh
+          version: '6.9.2'
+          arch: clang_64
+          modules: 'qtwebchannel qtwebengine qtmultimedia qtpositioning qtserialport'
+          cache: true
+      - name: Build, test, and package
+        run: ./MacOS/release.sh "$QT_ROOT_DIR"
+      - name: Upload DMG
+        uses: actions/upload-artifact@v4
+        with:
+          name: huggle-macos-universal
+          path: release/artifacts/*.dmg
+          if-no-files-found: error
+          retention-days: 14
 
   build-windows:
     name: Windows
