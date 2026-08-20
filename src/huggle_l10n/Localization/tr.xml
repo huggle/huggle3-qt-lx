@@ -804,6 +804,12 @@
   <string name="reqprotection-progress">\'$1\' için koruma talep ediliyor...</string>
   <string name="speedy-fail">Hızlı silme için etiketlenemedi: $1</string>
   <string name="speedy-progress">\'$1\' hızlı silme için etiketleniyor...</string>
+  <string name="speedy-notify-progress">Sayfayı oluşturana bildirim gönderiliyor...</string>
+  <string name="speedy-creator-fail">Sayfayı oluşturan kişi belirlenemedi: $1</string>
+  <string name="speedy-creator-empty">Sayfayı oluşturan belli değil</string>
+  <string name="speedy-notification-create-fail">Bildirim oluşturulamadı</string>
+  <string name="speedy-notification-fail">Sayfa, hızlı silinme için etiketlendi ancak sayfayı oluşturan kişiye bildirim gönderilemedi: $1</string>
+  <string name="speedy-failed">Başarısız</string>
   <string name="speedy-wrong">İstenen etiket geçerli değil. Lütfen farklı bir silinme sebebi seçiniz.</string>
   <string name="speedy-finished">Tamamlandı</string>
   <string name="warn-alreadyblocked">Kullanıcı zaten engellenmiş</string>
