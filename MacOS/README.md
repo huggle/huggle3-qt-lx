@@ -1,7 +1,8 @@
 # macOS builds
 
-Huggle is packaged for macOS with Qt 6 as a universal application containing
-native Apple Silicon (`arm64`) and Intel (`x86_64`) binaries.
+Huggle is packaged for macOS with Qt 6. The default release is a universal
+application containing native Apple Silicon (`arm64`) and Intel (`x86_64`)
+binaries. Smaller architecture-specific DMGs can also be produced.
 
 ## Requirements
 
@@ -27,6 +28,19 @@ discoverable through `QT_ROOT_DIR`, `qtpaths6`, or `qtpaths`.
 ./MacOS/release.sh --qt-prefix ~/Qt --qt-version 6.9.2
 ```
 
+To build only one architecture, add `--arm` or `--intel`:
+
+```sh
+./MacOS/release.sh --arm --qt-prefix ~/Qt --qt-version 6.9.2
+./MacOS/release.sh --intel --qt-prefix ~/Qt --qt-version 6.9.2
+```
+
+To build all release DMGs in one run, use `--all`:
+
+```sh
+./MacOS/release.sh --all --qt-prefix ~/Qt --qt-version 6.9.2
+```
+
 For custom builds or non-standard Qt layouts, pass the complete Qt installation
 prefix explicitly with `--qt-full-path`:
 
@@ -44,11 +58,14 @@ bundle, and writes the result to:
 
 ```text
 release/artifacts/huggle_<version>_universal.dmg
+release/artifacts/huggle_<version>_arm.dmg
+release/artifacts/huggle_<version>_intel.dmg
 ```
 
 The following environment variables can override the defaults:
 
-- `HUGGLE_BUILD_DIR`: build and staging directory.
+- `HUGGLE_BUILD_DIR`: build and staging directory. When `--all` is used with
+  this override, each variant uses a subdirectory below `HUGGLE_BUILD_DIR`.
 - `HUGGLE_OUTPUT_DIR`: destination for the DMG.
 - `HUGGLE_QT_VERSION`: required Qt version (defaults to the CI version, 6.9.2).
 - `CMAKE_BUILD_PARALLEL_LEVEL`: number of parallel build jobs.
