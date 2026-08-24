@@ -798,6 +798,12 @@
   <string name="reqprotection-progress">جار طلب الحماية لـ\'$1\'...</string>
   <string name="speedy-fail">لم يمكن وسم $1 للحذف السريع</string>
   <string name="speedy-progress">قيد وسم \'$1\' للحذف السريع...</string>
+  <string name="speedy-notify-progress">إشعار منشئ الصفحة...</string>
+  <string name="speedy-creator-fail">تعذر تحديد مُنشئ الصفحة: $1</string>
+  <string name="speedy-creator-empty">اسم منشئ الصفحة كان فارغًا</string>
+  <string name="speedy-notification-create-fail">تعذر إنشاء الإشعار</string>
+  <string name="speedy-notification-fail">تم وضع علامة على الصفحة لحذفها بسرعة، ولكن تعذر إخطار منشئها: $1</string>
+  <string name="speedy-failed">فشل</string>
   <string name="speedy-wrong">العلامة المطلوبة غير صالحة; الرجاء اختيار سبب حذف مختلف</string>
   <string name="speedy-finished">انتهى</string>
   <string name="warn-alreadyblocked">تم منع المستخدم بالفعل</string>

@@ -784,9 +784,9 @@
   <string name="speedy-notify-progress">נשלחת הודעה ליוצרי הדף...</string>
   <string name="speedy-creator-fail">לא ניתן לקבוע מי יצר את הדף: $1</string>
   <string name="speedy-creator-empty">שם יוצר הדף היה ריק</string>
-  <string name="speedy-notification-create-fail">לא ניתן ליצור את ההתראה</string>
+  <string name="speedy-notification-create-fail">לא ניתן ליצור את ההתרעה</string>
   <string name="speedy-notification-fail">הדף תויג למחיקה מהירה אבל לא ניתן ליצור קשר עם היוצר: $1</string>
-  <string name="speedy-failed">נכשל</string>
+  <string name="speedy-failed">נכשלה</string>
   <string name="speedy-wrong">התג שביקשת אינו תקין. נא לבחור סיבה אחרת למחיקה.</string>
   <string name="speedy-finished">סיום</string>
   <string name="warn-alreadyblocked">המשתמש כבר נחסם</string>

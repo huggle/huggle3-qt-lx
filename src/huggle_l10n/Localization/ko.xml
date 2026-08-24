@@ -226,7 +226,7 @@
   <string name="delete-reason">이유:</string>
   <string name="delete-deletionlog">삭제 기록:</string>
   <string name="delete-rem-talk">관련된 토론 삭제</string>
-  <string name="delete-notify">만든이 알림</string>
+  <string name="delete-notify">작성자 알림</string>
   <string name="delete-error-token">오류: 삭제 토큰을 가져오는 데 실패했습니다. 이유는 다음과 같습니다: $1</string>
   <string name="delete-token01">$1 문서를 삭제할 토큰을 얻는 중</string>
   <string name="delete-token02">쿼리가 반환한 토큰이 없습니다</string>
@@ -630,7 +630,7 @@
   <string name="speedy-reason">이유:</string>
   <string name="speedy-parameters">매개변수:</string>
   <string name="speedy-parameters-fail">이 빠른 옵션을 사용하려면 매개변수를 제공해야 합니다</string>
-  <string name="speedy-notifycreator">문서 만든이에게 알림</string>
+  <string name="speedy-notifycreator">문서 작성자에게 알림</string>
   <string name="rollback">$1 되돌리는 중</string>
   <string name="software-rollback">되돌리기 사용자 권한이 없으므로, 소프트웨어 되돌리기를 사용합니다</string>
   <string name="tag-title">$1 태그</string>
@@ -769,7 +769,7 @@
   <string name="history-welcome-msg">이 토론 문서를 만들었으나 이 동작을 취소할 수 없습니다. 환영 틀로 대체하시겠습니까?</string>
   <string name="newtab-title">이것은 새 탭입니다!</string>
   <string name="newtab-text">Huggle의 탭은 다른 웹 브라우저와 비슷한 방식으로 작동합니다. Huggle 내의 모든 탭은 같은 대기열을 공유하지만, 특정 문서를 계속 지켜보거나 나중에 편집을 확인하려는 경우 유용합니다.</string>
-  <string name="notify-fail">$1의 제작자에게 알리지 않았음</string>
+  <string name="notify-fail">$1의 작성자에게 알리지 않았음</string>
   <string name="notify-unknowncreator">문서 작성자를 찾을 수 없습니다</string>
   <string name="protect-done">$1 문서의 보호 설정을 바꿨습니다</string>
   <string name="protect-fail">$1의 보호 수준을 변경하지 못했습니다</string>
@@ -787,6 +787,11 @@
   <string name="reqprotection-progress">\'$1\' 보호 요청 중...</string>
   <string name="speedy-fail">빠른 삭제를 위해 문서에 태그할 수 없습니다: $1</string>
   <string name="speedy-progress">빠른 삭제를 위해 \'$1\'를 표시합니다...</string>
+  <string name="speedy-notify-progress">문서 작성자에게 알림...</string>
+  <string name="speedy-creator-fail">문서 작성자를 확인할 수 없습니다: $1</string>
+  <string name="speedy-creator-empty">문서 작성자의 이름이 비어 있습니다.</string>
+  <string name="speedy-notification-create-fail">알림을 생성할 수 없습니다</string>
+  <string name="speedy-notification-fail">해당 문서는 빠른 삭제 대상으로 태그되었지만, 작성자에게 알림이 전송되지 않았습니다: $1</string>
   <string name="speedy-failed">실패</string>
   <string name="speedy-wrong">요청한 태그가 유효하지 않습니다. 다른 삭제 이유를 선택해 주십시오</string>
   <string name="speedy-finished">마침</string>
