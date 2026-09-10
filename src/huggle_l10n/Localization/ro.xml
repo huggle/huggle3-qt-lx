@@ -11,6 +11,7 @@
 * SZ475
 * Silviu200530
 * Strainu
+* Vellion Eagle
 -->
 <resources>
   <string name="name">Română</string>
@@ -782,6 +783,8 @@
   <string name="speedy-notify-progress">Se anunță creatorul paginii...</string>
   <string name="speedy-creator-fail">Nu s-a putut determina creatorul paginii: $1</string>
   <string name="speedy-creator-empty">Numele creatorului paginii a fost gol</string>
+  <string name="speedy-notification-create-fail">Nu s-a putut crea notificarea</string>
+  <string name="speedy-notification-fail">Pagina a fost etichetată pentru ștergere rapidă, dar creatorul nu a putut fi notificat: $1</string>
   <string name="speedy-failed">Eșuat</string>
   <string name="speedy-wrong">Eticheta cerută nu este validă. Vă rog să alegeți un alt motiv de ștergere</string>
   <string name="speedy-finished">Terminat</string>
