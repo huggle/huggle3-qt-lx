@@ -616,7 +616,7 @@
   <string name="revert-confirm-warned">這將回退到由$1所做出的編輯版本，而對方先前已被警告過。要繼續？</string>
   <string name="revert-error-first">此為該頁面的第一個編輯，因此不能回退。</string>
   <string name="revert-only">此編輯是該頁面唯一的編輯。</string>
-  <string name="revert-creator">最後一次編輯由頁面創建者$1做出。</string>
+  <string name="revert-creator">最後一次編輯由頁面建立者$1做出。</string>
   <string name="revert-preflightcheck">預先檢查</string>
   <string name="revert-delete-instead">是否刪除此頁面？</string>
   <string name="revert-speedy-instead">是否標記快速刪除？</string>
@@ -767,8 +767,8 @@
   <string name="history-welcome-msg">您已建立了此對話頁，因此不能被撤銷。您是否想改以一個歡迎模板來替換呢？</string>
   <string name="newtab-title">這是一個新頁籤！</string>
   <string name="newtab-text">Huggle 上的頁籤如同其它瀏覽器，採用著類似的運作方式。所有在 Huggle 的頁籤分享同一佇列，它們在您想要專注於特定頁面，或是您想事後檢查一筆編輯時很有用。</string>
-  <string name="notify-fail">未通知$1的創建者</string>
-  <string name="notify-unknowncreator">找不到頁面創建者</string>
+  <string name="notify-fail">未通知$1的建立者</string>
+  <string name="notify-unknowncreator">找不到頁面建立者</string>
   <string name="protect-done">已變更$1的保護層級</string>
   <string name="protect-fail">未變更$1的保護層級</string>
   <string name="protect-progress">正在變更$1的保護層級...</string>
@@ -785,6 +785,12 @@
   <string name="reqprotection-progress">請求保護“$1”...</string>
   <string name="speedy-fail">無法對頁面標記快速刪除：$1</string>
   <string name="speedy-progress">標記“$1”為快速刪除...</string>
+  <string name="speedy-notify-progress">正在通知頁面建立者…</string>
+  <string name="speedy-creator-fail">無法確定頁面建立者：$1</string>
+  <string name="speedy-creator-empty">頁面建立者名稱為空</string>
+  <string name="speedy-notification-create-fail">無法建立通知</string>
+  <string name="speedy-notification-fail">該頁面已標記為快速刪除，但無法收到通知建立者：$1</string>
+  <string name="speedy-failed">失敗</string>
   <string name="speedy-wrong">請求標籤無效。請選擇不同的刪除原因</string>
   <string name="speedy-finished">已完成</string>
   <string name="warn-alreadyblocked">該使用者已被封禁</string>
