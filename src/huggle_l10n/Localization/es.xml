@@ -800,6 +800,12 @@
   <string name="reqprotection-progress">Solicitando la protección de \'$1\'...</string>
   <string name="speedy-fail">No se puede marcar la página para borrado rápido: $1</string>
   <string name="speedy-progress">Marcando \'$1\' para borrado rápido...</string>
+  <string name="speedy-notify-progress">Notificando al creador de la página...</string>
+  <string name="speedy-creator-fail">No se pudo determinar el creador de la página: $1</string>
+  <string name="speedy-creator-empty">El nombre del creador de la página estaba vacío.</string>
+  <string name="speedy-notification-create-fail">No se pudo crear la notificación</string>
+  <string name="speedy-notification-fail">La página fue marcada para su borrado rápido, pero no se pudo notificar al creador: $1</string>
+  <string name="speedy-failed">Falló</string>
   <string name="speedy-wrong">La etiqueta solicitada no es válida. Elige otro motivo de borrado</string>
   <string name="speedy-finished">Finalizado</string>
   <string name="warn-alreadyblocked">El usuario ya ha sido bloqueado</string>
