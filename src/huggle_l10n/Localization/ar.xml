@@ -45,7 +45,7 @@
   <string name="deleted">محذوف</string>
   <string name="error">خطأ</string>
   <string name="exit">خروج</string>
-  <string name="done">نُفّذ</string>
+  <string name="done">تم</string>
   <string name="no">لا</string>
   <string name="ok">موافق</string>
   <string name="override-warn">لقد تجاوزت مسار تكوين المشروع، رجاءً ضع في اعتبارك أن إساءة استخدام هذه الميزة للكتابة على ويكي ليس لديك الحق في الكتابة فيها، قد يؤدي إلى منع دائم لحسابك.</string>
@@ -65,7 +65,7 @@
   <string name="successful">ناجح</string>
   <string name="summary">ملخص</string>
   <string name="id">المعرف</string>
-  <string name="type">نوع</string>
+  <string name="type">النوع</string>
   <string name="target">الهدف</string>
   <string name="user">مستخدم</string>
   <string name="size">الحجم</string>
