@@ -124,6 +124,7 @@
   <string name="config-function">تابع</string>
   <string name="config-description">توضیح</string>
   <string name="config-shortcut">میانبر</string>
+  <string name="preferences-shortcuts-search">جست‌وجوی میانبرها…</string>
   <string name="config-queue-filter-ignore">چشم‌پوشی (مهم نیست)</string>
   <string name="config-queue-filter-exclude">کنار گذاشتن (دیگر نباشد)</string>
   <string name="config-queue-filter-require">لازم (باید باشد)</string>
@@ -703,8 +704,19 @@
   <string name="shortcut-main-clear-queue">حذف صف</string>
   <string name="shortcut-revert-agf">واگردانی با فرض حس نیت، با یک خلاصۀ ویرایش سفارشی</string>
   <string name="shortcut-history-page">نمایش تاریخچهٔ صفحهٔ نمایش‌یافته در مرورگر</string>
+  <string name="shortcut-speedy-delete">درخواست حذف سریع صفحهٔ در حال نمایش</string>
+  <string name="shortcut-delete-page">حذف صفحهٔ در حال نمایش</string>
+  <string name="shortcut-remove-whitelist">حذف ویرایش‌های کاربران فهرست سفید از صف</string>
+  <string name="shortcut-remove-low-score">حذف همهٔ ویرایش‌های دارای امتیاز کمتر از منفی ۲۰۰ از صف</string>
+  <string name="shortcut-increase-bs">افزایش امتیاز خرابکاری کاربر فعلی به‌اندازهٔ ۲۰</string>
+  <string name="shortcut-decrease-bs">کاهش امتیاز خرابکاری کاربر فعلی به‌اندازهٔ ۲۰</string>
+  <string name="shortcut-welcome">خوشامدگویی به کاربر با پیام خوشامد پیش‌فرض</string>
+  <string name="shortcut-block-user">بستن دسترسی کاربری که ویرایش در حال نمایش را انجام داده است</string>
+  <string name="shortcut-help">بازکردن محتوای راهنما</string>
   <string name="shortcut-preferences">گشودن پنجرهٔ ترجیحات</string>
   <string name="shortcut-emergency-abort">لغو اضطراری عمل‌های به تعویق افتاده</string>
+  <string name="shortcut-find">یافتن متن در صفحهٔ فعلی</string>
+  <string name="shortcut-edit-user-talk">بازکردن صفحهٔ بحث کاربر فعلی در مرورگر (حالت ویرایش)</string>
   <string name="warning-title">هشدار $1</string>
   <string name="warning-levelgroup">سطح هشدار</string>
   <string name="warning-levelauto">خودکار</string>
@@ -789,6 +801,12 @@
   <string name="reqprotection-progress">در حال درخواست محافظت برای $1</string>
   <string name="speedy-fail">امکان زدن برچسب حذف سریع به صفحه نبود: $1</string>
   <string name="speedy-progress">زدن برچسب حذف سریع بر \'$1\'</string>
+  <string name="speedy-notify-progress">در حال اطلاع‌رسانی به ایجادکنندهٔ صفحه…</string>
+  <string name="speedy-creator-fail">شناسایی ایجادکنندهٔ صفحه ممکن نیست: $1</string>
+  <string name="speedy-creator-empty">نام ایجادکنندهٔ صفحه خالی بود</string>
+  <string name="speedy-notification-create-fail">ایجاد پیام اطلاع‌رسانی ممکن نیست</string>
+  <string name="speedy-notification-fail">صفحه برای حذف سریع برچسب خورد، اما اطلاع‌رسانی به ایجادکنندهٔ آن ممکن نشد: $1</string>
+  <string name="speedy-failed">ناموفق</string>
   <string name="speedy-wrong">برچسب درخواست شده معتبر نیست. لطفاً دلیل حذف دیگری انتخاب کنید</string>
   <string name="speedy-finished">تمام شد</string>
   <string name="warn-alreadyblocked">کاربر در حال حاضر بسته شده است</string>
@@ -937,6 +955,14 @@
   <string name="tip14">می‌توانید با سایر کاربران فعال که الان از هاگل استفاده می‌کنند چت کنید. اگر برخط باشند می‌توانید آنها را در پنجرهٔ شبکه مشاهده کنید.</string>
   <string name="tip15">اگر مشکلی با این مقاله پیدا کردید اما بازگردانی به شما کمک نمی‌کند، می‌توانید E را برای ویرایش مقاله بلافاصله در مرورگر پیش فرض خود (نه در داخل Huggle) فشار دهید.</string>
   <string name="tip16">اگر شما به طور تصادفی دکمه برگشت را فشار داده اید، می‌توانید با فشار دادن کلید ESC به سرعت برگشت را لغو کنید.</string>
+  <string name="main-config-version-mismatch-title">پیکربندی ذخیره شود؟</string>
+  <string name="main-config-version-mismatch-text">این نسخهٔ هاگل ($1) از نسخه‌ای که آخرین بار استفاده کردید ($2) قدیمی‌تر است. اگر ادامه دهید، ممکن است برخی تنظیمات ذخیره‌شده با نسخهٔ جدیدتر از بین بروند. می‌خواهید ادامه دهید؟ (با انتخاب «نه»، ذخیره‌سازی انجام نمی‌شود.)</string>
+  <string name="main-action-unavailable-title">این عمل در دسترس نیست</string>
+  <string name="main-report-ip-not-supported">با این قابلیت نمی‌توانید نشانی‌های آی‌پی را گزارش کنید</string>
+  <string name="main-abort-nothing-to-stop">چیزی برای توقف وجود ندارد</string>
+  <string name="main-abort-instant-reverts-enabled">لغو عملیات فعلی ممکن نیست؛ برای استفاده از این قابلیت، باید واگردانی فوری را در ترجیحات غیرفعال کنید</string>
+  <string name="main-clear-talk-page-summary">الگوهای قدیمی از صفحهٔ بحث پاک شدند</string>
+  <string name="han-connected">اکنون به شبکهٔ ضدخرابکاری هاگل متصل هستید</string>
   <string name="preferences-unsaved-title">ترجیحات</string>
   <string name="preferences-unsaved-text">بستن این فرم منجر به از دست رفتن تغییرات ذخیره‌نشده خواهد شد. آیا می‌خواهید فرم را ببندید؟</string>
 </resources>
