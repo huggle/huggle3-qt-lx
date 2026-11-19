@@ -17,6 +17,7 @@
 * Q.Khải
 * SongNgu.xyz
 * TARGET6tidiem
+* Thingofme
 * Tryvix1509
 * Veritas Sapientiae
 * Vinhtantran
@@ -112,6 +113,7 @@
   <string name="config-function">Chức năng</string>
   <string name="config-description">Mô tả</string>
   <string name="config-shortcut">Lối tắt</string>
+  <string name="preferences-shortcuts-search">Tìm kiếm các phím tắt...</string>
   <string name="config-queue-filter-ignore">Bỏ qua (không bận tâm)</string>
   <string name="config-queue-filter-exclude">Loại trừ (không được là)</string>
   <string name="config-queue-filter-require">Yêu cầu (phải là)</string>
@@ -690,6 +692,20 @@
   <string name="shortcut-user-clear-talk">Tẩy trống trang thảo luận của thành viên hiện tại</string>
   <string name="shortcut-main-clear-queue">Tẩy trống hàng đợi</string>
   <string name="shortcut-revert-agf">Lùi lại sửa đổi cho là thiện ý, kèm một tóm lược sửa đổi tùy biến</string>
+  <string name="shortcut-history-page">Tải lịch sử của trang đang hiển thị trong trình duyệt</string>
+  <string name="shortcut-speedy-delete">Yêu cầu xoá nhanh trang này</string>
+  <string name="shortcut-delete-page">Xoá trang được hiển thị này</string>
+  <string name="shortcut-remove-whitelist">Xóa các sửa đổi do người dùng trong danh sách trắng thực hiện từ hàng đợi</string>
+  <string name="shortcut-remove-low-score">Xoá bỏ các sửa đổi với số điểm -200 từ hàng đợi</string>
+  <string name="shortcut-increase-bs">Tăng số điểm xấu của người dùng hiện tại lên 20</string>
+  <string name="shortcut-decrease-bs">Giảm số điểm xấu của người dùng hiện tại xuống 20</string>
+  <string name="shortcut-welcome">Chào mừng thành viên với thông điệp chào đón mặc định</string>
+  <string name="shortcut-block-user">Cấm người dùng đang thực hiện sửa đổi đang hiển thị</string>
+  <string name="shortcut-help">Mở khung trợ giúp</string>
+  <string name="shortcut-preferences">Mở khung tuỳ chọn</string>
+  <string name="shortcut-emergency-abort">Huỷ bỏ khẩn cấp sửa đổi bị hoãn</string>
+  <string name="shortcut-find">Tìm kiếm nội dung tại trang hiện tại</string>
+  <string name="shortcut-edit-user-talk">Mở trang thảo luận của thành viên hiện tại trong trình duyệt (trình chỉnh sửa)</string>
   <string name="warning-title">Cảnh báo $1</string>
   <string name="warning-levelgroup">Cấp độ cảnh báo</string>
   <string name="warning-levelauto">Tự động</string>
@@ -774,6 +790,12 @@
   <string name="reqprotection-progress">Đang yêu cầu khóa cho “$1”…</string>
   <string name="speedy-fail">Không thể treo biển xóa nhanh cho: $1</string>
   <string name="speedy-progress">Đang treo biển xóa nhanh cho “$1”…</string>
+  <string name="speedy-notify-progress">Đang thông báo cho người tạo trang...</string>
+  <string name="speedy-creator-fail">Không thể xác định người tạo trang: $1</string>
+  <string name="speedy-creator-empty">Tên người tạo trang đang bị trống</string>
+  <string name="speedy-notification-create-fail">Không thể tạo thông báo</string>
+  <string name="speedy-notification-fail">Trang đã được gán thẻ xoá nhanh, nhưng người tạo không thể được thông báo: $1</string>
+  <string name="speedy-failed">Thất bại</string>
   <string name="speedy-wrong">Biển xóa nhanh được yêu cầu đấy không hợp lệ. Xin vui lòng chọn một lý do xóa khác</string>
   <string name="speedy-finished">Đã hoàn thành</string>
   <string name="warn-alreadyblocked">Thành viên đấy đã bị cấm rồi</string>
@@ -922,4 +944,5 @@
   <string name="tip14">Bạn có thể trò chuyện với những thành viên còn hoạt động mà đang sử dụng chương trình Huggle này ngay bây giờ. Nếu họ đang trực tuyến thì bạn sẽ thấy họ trong cửa sổ “Mạng lưới”.</string>
   <string name="tip15">Nếu bạn tìm thấy những vấn đề khác với bài viết nhưng lệnh lùi sửa không giúp được gì, bạn có thể nhấn phím E để sửa đổi bài viết ngay lập tức trong trình duyệt mặc định của bạn (không phải bên trong Huggle).</string>
   <string name="tip16">Nếu bạn có vô tình nhấn nút lùi lại, bạn vẫn có thể hủy lệnh lùi lại đang diễn ra bằng cách nhanh tay nhấn ESC.</string>
+  <string name="main-config-version-mismatch-title">Lưu cấu hình?</string>
 </resources>

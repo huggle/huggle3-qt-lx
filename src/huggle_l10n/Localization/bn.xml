@@ -58,7 +58,7 @@
   <string name="general-name">নাম</string>
   <string name="author">লেখক</string>
   <string name="description">বিবরণ</string>
-  <string name="status">অবস্থা</string>
+  <string name="status">স্থিতি</string>
   <string name="link">সংযোগ</string>
   <string name="reason">কারণ</string>
   <string name="diffid">পার্থক্যID</string>
