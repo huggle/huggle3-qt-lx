@@ -945,4 +945,13 @@
   <string name="tip15">Nếu bạn tìm thấy những vấn đề khác với bài viết nhưng lệnh lùi sửa không giúp được gì, bạn có thể nhấn phím E để sửa đổi bài viết ngay lập tức trong trình duyệt mặc định của bạn (không phải bên trong Huggle).</string>
   <string name="tip16">Nếu bạn có vô tình nhấn nút lùi lại, bạn vẫn có thể hủy lệnh lùi lại đang diễn ra bằng cách nhanh tay nhấn ESC.</string>
   <string name="main-config-version-mismatch-title">Lưu cấu hình?</string>
+  <string name="main-config-version-mismatch-text">Phiên bản Huggle ($1) này cũ hơn phiên bản bạn đã sử dụng gần nhất ($2). Nếu bạn tiếp tục, một số cài đặt ở phiên bản mới hơn có thể bị mất. Bạn muốn tiếp tục không?  (Ấn Không sẽ bỏ qua việc lưu trữ này.)</string>
+  <string name="main-action-unavailable-title">Hành động này không khả dụng</string>
+  <string name="main-report-ip-not-supported">Bạn không thể báo cáo địa chỉ IP bằng tính năng này</string>
+  <string name="main-abort-nothing-to-stop">Không có gì để ngăn chặn</string>
+  <string name="main-abort-instant-reverts-enabled">Không thể hủy bỏ hành động hiện tại; bạn cần phải vô hiệu hoá Lùi tức thời để tính năng này hoạt động</string>
+  <string name="main-clear-talk-page-summary">Dọn dẹp các bản mẫu cũ trong trang thảo luận</string>
+  <string name="han-connected">Bạn đã được kết nối với mạng lưới chống phá hoại của Kaggle</string>
+  <string name="preferences-unsaved-title">Tùy chọn</string>
+  <string name="preferences-unsaved-text">Đóng biểu mẫu này có thể mất thay đổi chưa được lưu. Bạn có muốn thực hiện?</string>
 </resources>
