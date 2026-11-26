@@ -371,7 +371,7 @@
   <string name="main-queue-count">$1 פריטים</string>
   <string name="main-queue-query">הרצת השאילתה...</string>
   <string name="main-queue-reset">איפוס</string>
-  <string name="main-queue-clearall">ניקוי הכול</string>
+  <string name="main-queue-clearall">לנקות הכול</string>
   <string name="main-queue-options">ניהול תורים...</string>
   <string name="main-queue-when-full">כאשר התור מלא</string>
   <string name="main-queue-when-full-stop">עצירת ההזנה</string>

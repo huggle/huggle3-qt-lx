@@ -747,7 +747,7 @@
   <string name="error-loggedout">از حساب خارج شده است، مجدداً در حال وارد شدن است ...</string>
   <string name="error-noresponse">عدم پاسخ</string>
   <string name="error-pagemissing">این صفحه وجود ندارد</string>
-  <string name="error-reloginfail">ناموفق در ورود به سامانه، هاگل را راه‌اندازی مجدد نمایید.</string>
+  <string name="error-reloginfail">ناموفق در ورود به سامانه، هاگل را دوباره راه‌اندازی نمایید.</string>
   <string name="error-timeout">اتمام زمان درخواست</string>
   <string name="error-unknown">خطای ناشناخته</string>
   <string name="block-done">$1 بسته‌شد.</string>

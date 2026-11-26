@@ -269,7 +269,7 @@
   <string name="revert-confirm-multiple">Ini akan membalikkan berbilang suntingan oleh $1. Teruskan?</string>
   <string name="revert-confirm-range">Pengarang semakan yang disasarkan iaitu $2 sama julat dengan pengarang semakan semasa iaitu $1, jangan-jangan sama orangnya. Pastikan semakan sasaran adalah betul sebelum meneruskan. Teruskan?</string>
   <string name="revert-confirm-same">Ini akan dibalikkan kepada satu lagi semakan oleh pengguna yang sedang dikenakan pembalikan iaitu $1. Teruskan?</string>
-  <string name="revert-confirm-warned">Ini akan diundurkan kepada semakan oleh $1 yang telah diberi amaran sebelum ini. Teruskan?</string>
+  <string name="revert-confirm-warned">Hal ini akan balik kepada semakan oleh $1 yang telah diberi amaran sebelum ini. Teruskan?</string>
   <string name="revert-error-first">Ini suntingan sulung laman ini, jadi tak boleh dibalikkan.</string>
   <string name="revert-fail">$1 tidak dibalikkan: $2</string>
   <string name="speedy-reason">Sebab:</string>
